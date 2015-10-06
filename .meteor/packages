@@ -12,3 +12,6 @@ iron:router
 tap:i18n
 accounts-twitter
 accounts-ui
+service-configuration
+accounts-facebook
+accounts-google
