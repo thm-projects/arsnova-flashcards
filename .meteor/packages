@@ -10,3 +10,5 @@ insecure
 twbs:bootstrap
 iron:router
 tap:i18n
+accounts-twitter
+accounts-ui

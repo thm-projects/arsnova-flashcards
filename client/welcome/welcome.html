@@ -1,6 +1,6 @@
 <template name="welcome">
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:700px">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button id="btn_close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -23,29 +23,29 @@
               <div class="item active">
                 <img alt="Second slide" src="img/carousel0.jpg">
                 <div class="carousel-caption" style="color:#000">
-                  <h3 data-i18n="carousel-inner.carousel-header-0"></h3>
-                  <p data-i18n="carousel-inner.carousel-paragraph-0"></p>
+                  <h3 ><div>{{_ "carousel-inner.carousel-header-0"}}</div></h3>
+                  <p ><div>{{_ "carousel-inner.carousel-paragraph-0"}}</div></p>
                 </div>
               </div>
               <div class="item">
                 <img alt="Second slide" src="img/carousel1.jpg">
                 <div class="carousel-caption" style="color:#000">
-                  <h3 data-i18n="carousel-inner.carousel-header-1"></h3>
-                  <p data-i18n="carousel-inner.carousel-paragraph-1"></p>
+                  <h3 ><div>{{_ "carousel-inner.carousel-header-1"}}</div></h3>
+                  <p ><div>{{_ "carousel-inner.carousel-paragraph-1"}}</div></p>
                 </div>
               </div>
               <div class="item">
                 <img alt="Second slide" src="img/carousel2.jpg">
                 <div class="carousel-caption" style="color:#000">
-                  <h3 data-i18n="carousel-inner.carousel-header-2"></h3>
-                  <p data-i18n="carousel-inner.carousel-paragraph-2"></p>
+                  <h3 ><div>{{_ "carousel-inner.carousel-header-2"}}</div></h3>
+                  <p ><div>{{_ "carousel-inner.carousel-paragraph-2"}}</div></p>
                 </div>
               </div>
               <div class="item">
                 <img alt="Second slide" src="img/carousel3.jpg">
                 <div class="carousel-caption" style="color:#000; border:1px">
-                  <h3 data-i18n="carousel-inner.carousel-header-3"></h3>
-                  <p data-i18n="carousel-inner.carousel-paragraph-3"></p>
+                  <h3 ><div>{{_ "carousel-inner.carousel-header-3"}}</div></h3>
+                  <p ><div>{{_ "carousel-inner.carousel-paragraph-3"}}</div></p>
                 </div>
               </div>
             </div>
@@ -71,15 +71,16 @@
 
   <div class="login">
     <hr />
-    <a id="about" class="btn btn-success btn-about" data-toggle="modal" data-target="#myModal" style="margin:18px 0 35px; display:inline-block" data-i18n="intro.about"></a>
+    <a id="about" class="btn btn-success btn-about" data-toggle="modal" data-target="#myModal" style="margin:18px 0 35px; display:inline-block"><div>{{_ "intro.about"}}</div></a>
     <div>
-      <span class="text-muted" data-i18n="intro.choose"></span><br /><br />
+      <span class="text-muted" ><div>{{_ "intro.choose"}}</div></span><br /><br />
       <a id="facebook" href="/auth/facebook"><img src="img/social_facebook_box_white.png" /></a>
       <a id="twitter" href="/auth/twitter"><img src="img/social_twitter_box_white.png"/></a>
       <a id="google" href="/auth/google"><img src="img/social_google_box_white.png" /></a>
       <a id="cas" href="/auth/cas"><img src="img/social_cas_box_white.png" /></a>
     </div>
   </div>
-  <a id="impressum" href="/impressum" class="text-muted" style="margin-top:70px; display:inline-block" data-i18n="intro.impressum"></a>
+  {{> loginButtons}}
+  <a id="impressum" href="/impressum" class="text-muted" style="margin-top:70px; display:inline-block" ><div>{{_ "intro.impressum"}}</div></a>
   </div>
 </template>

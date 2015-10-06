@@ -1,0 +1,301 @@
+{
+  "intro": {
+    "about": "About THMcards",
+    "choose": "Select your login:",
+    "impressum": "Legal Notice"
+  },
+
+  "carousel-inner": {
+  	"carousel-header-0": " Your digital flashcards",
+  	"carousel-paragraph-0": "Create an learn your own digital flashcards.",
+
+  	"carousel-header-1": "THMcards speaks TeX",
+  	"carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
+
+  	"carousel-header-2": "Hello World!",
+  	"carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
+
+  	"carousel-header-3": "Collect badges",
+  	"carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
+  },
+
+  "navbar-collapse": {
+  	"carddecks": "My deck of cards",
+  	"pool": "Pool",
+  	"myprofile": "My profile",
+  	"logout": "Logout",
+  	"search": "Search"
+  },
+
+  "footer": {
+  	"impressum": "Legal Notice"
+  },
+
+  "input-group": {
+  	"newcarddeck": "New deck of cards"
+  },
+
+  "upload-form":{
+      "submit": "Submit",
+      "import": "Import",
+      "popover-content": "<div> Here you can upload your own decks of cards to THMCards. Currently we support the formats Json and CSV(Excel, comma-separated).<br /> Please have a look at these templates: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
+  },
+
+  "nav-list": {
+  	"category": "Category",
+  	"created": "Created",
+  	"learned": "Learned"
+  },
+
+  "set-list": {
+  	"name": "Name",
+  	"category": "Category",
+  	"description": "Description"
+  },
+
+  "set-list-empty": {
+  	"emptytextlist": "You have not created any deck of cards yet",
+  	"newset": "Create a deck of cards"
+  },
+
+  "set-list-learned-empty": {
+  	"emptytextlist": "You have not learned any deck of cards yet"
+  },
+
+  "modal-dialog": {
+  	"newcarddeck": "Create a new deck of cards",
+    "editcard": "Edit deck of cards",
+  	"name": "Name",
+  	"nameplaceholder": "Name",
+  	"descriptionplaceholder": "Description",
+  	"categoryplaceholder": "Informatics, law, economy, ...",
+  	"description": "Description",
+  	"category": "Category",
+  	"visibility": "Visible for",
+  	"visibilityoption1": "me",
+  	"visibilityoption2": "all",
+  	"rating": "Ratings",
+  	"ratingoption1": "allow",
+  	"ratingoption2": "disable",
+    "cancel": "Cancel",
+    "createcarddeck": "Create a deck of cards",
+    "delete": "Delete deck of cards",
+    "save": "Edit deck of cards"
+  },
+
+
+  "profil-header": {
+  	"name": "Profile of "
+  },
+
+  "panel-heading": {
+  	"hallo": "Hello!"
+  },
+
+  "panel-body": {
+  	"name": "User name",
+  	"login": "Login via",
+  	"email": "Email",
+  	"profilepublic": "Public profile",
+  	"profilepublicoption1": "Yes",
+  	"profilepublicoption2": "No"
+  },
+
+  "panel-heading-experience": {
+      "experience": "Experience Points (XP)"
+    },
+
+  "panel-body-experience": {
+    "total": "Total",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "days": "7 days",
+    "lastredeem": "At last for: "
+  },
+
+  "panel-heading-badges": {
+    "badges": "Badges"
+  },
+
+  "panel-body-badges": {
+    "text1": "You have the possibility to synchronize your collected badges with the Mozilla Badge Backpack.",
+    "text2": "To add the badges to the ",
+    "text3": "OpenBadges Plattform",
+    "text4": ", click the following button:",
+    "button": "Synchronize now"
+  },
+
+  "panel-heading-meteor": {
+    "meteor": "Meteor statistics"
+  },
+
+  "panel-body-meteor": {
+    "points": "Total score",
+    "played": "Played",
+    "games": "Games",
+    "game": "Game"
+  },
+
+  "table-meteor": {
+    "carddeck": "Deck of cards",
+    "yourhighscore": "Your highscore",
+    "position": "Pos.",
+    "highscore": "Highscore"
+  },
+
+  "sidebar-nav": {
+    "created": "Created by",
+    "at": "on",
+    "view": "Change view",
+    "viewmap": "Card",
+    "viewlist": "List",
+    "createcard": "Create a new card",
+    "editcard": "Edit deck of cards",
+    "exportSet": "Export deck"
+  },
+
+  "pool": {
+    "name": "Name",
+    "description": "Description",
+    "created": "Created by"
+  },
+
+  "cardmemo": {
+    "showanswer": "Show answer",
+    "rateanswer": "Rate your answer",
+    "rate0": "Blackout",
+    "rate1": "Wrong answer, but reminds on the right one",
+    "rate2": "Wrong answer, but reminds on the right one easily",
+    "rate3": "Right answer after thinking intently",
+    "rate4": "Right answer after short hesitation",
+    "rate5": "Perfect answer",
+    "memotext": "Compare the answer above with the one out of your memory and rate it with the scale. The next point of revision of your flashcard is based on the rating."
+  },
+
+   "memo-endscreen": {
+    "text": "Learning unit done successfully",
+    "back": "Back to deck of cards"
+  },
+
+  "memo-empty": {
+    "text": "After lesson plan there are no flashcards to learn at the moment",
+    "back": "Back to deck of cards"
+  },
+
+  "meteorgame": {
+    "description": "Destroy the meteorites before they reach the earth! Each meteorite is labelled with one page of one of your learn card - destroy it with the correct answer on the back!",
+    "warning": "Attention! Meteor works best with flashcards, which contain short keywords and concised sentences.",
+    "start": "Start",
+    "level": "Level ",
+    "answer": "Enter answer",
+    "quit": "Quit game",
+    "anser2": "Enter answer",
+    "question": "Question",
+    "correctanswer": "Correct answer",
+    "insertanswer": "Enter correct answer",
+    "answer3": "Solve"
+  },
+
+  "meteorgame-gameover": {
+    "gameover": "Game Over",
+    "text1": "You reached ",
+    "text2": "points",
+    "text3": " !",
+    "highscores": "Highscores",
+    "player": "Player",
+    "points": "Points",
+    "back": "Back",
+    "newgame": "New Game"
+  },
+
+  "rating-field": {
+    "title": " rate",
+    "stars": "Stars",
+    "rating": "Rating",
+    "minchars": "At least 60 chars",
+    "chars": "Chars",
+    "minchars": "At least 60 chars",
+    "cancel": "Cancel",
+    "edit": "Rate deck of cards"
+  },
+
+   "rating-table": {
+    "name": "Name",
+    "rating": "Rating",
+    "comment": "Comment"
+  },
+
+  "learn-endscreen": {
+    "success": "Learn unit done successfully",
+    "back": "Choose another box or go back to deck of cards",
+    "back2": "Back to deck of cards"
+  },
+
+  "carddeck-table": {
+    "name": "Name",
+    "category": "Category",
+    "description": "Rating"
+  },
+
+  "nocards":"No cards available",
+  "learn":"Learn",
+  "learnfile":"Leitner's learning box",
+  "memo":"Memo",
+  "meteor":"Meteor",
+  "play":"Play",
+  "yourhighscore": "Your highscore:",
+  "points":"Points",
+
+  "foreside":"Front",
+  "backside":"Back",
+  "options":"Options",
+
+  "newcard":"New card",
+  "editcard":"Edit card",
+  "showpicture":"Show image",
+  "linkorsearchitem":"Enter link or search item",
+  "searchpicture": "Image search",
+  "declinecard":"Cancel",
+  "deletecard":"Delete card",
+  "savecard":"Save card",
+  "insertpicture":"Add image",
+  "insertpicture2": "Add image",
+
+  "pointslvl1": "",
+  "pointslvl2": "points",
+  "pointslvl3": " to the next level",
+
+  "meteortext": "You have not played a game yet",
+
+  "valuation": "Rating",
+  "valuationtext": " Stars by ",
+  "valuationtext2": " ratings",
+
+  "norating": "No ratings available",
+  "createdof": "Created of",
+  "backcarddecks": "Back to deck of cards",
+  "createdof2": "Created of",
+
+  "subject1": "Box 1",
+  "subject2": "Box 2",
+  "subject3": "Box 3",
+  "subject4": "Box 4",
+  "subject5": "Box 5",
+
+  "know": "Known",
+  "notknow": "Not known",
+
+  "clickcart": "Click on the card to turn it",
+  "choosesubject": "Choose a box on the left side",
+
+  "carddecks": "Deck of cards",
+
+  "gold": "Gold",
+  "silver": "Silver",
+  "bronze": "Bronze",
+
+  "newbadge": "New Badge",
+  "badgetext1": "You received the Badge ",
+  "badgetext2": "denizen",
+  "badgetext3": ""
+}

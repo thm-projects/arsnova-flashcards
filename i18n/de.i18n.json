@@ -1,0 +1,301 @@
+{
+  "intro": {
+    "about": "Was ist THMcards?",
+    "choose": "Wähle deinen Login:",
+    "impressum": "Impressum"
+  },
+
+  "carousel-inner": {
+  	"carousel-header-0": "Deine digitalen Lernkarten",
+  	"carousel-paragraph-0": "Lerne oder erstelle deine eigenen digitalen Lernkarten.",
+
+  	"carousel-header-1": "THMcards spricht TeX",
+  	"carousel-paragraph-1": "Endlich ein einfacher Weg sperrige Matheformeln zu lernen.",
+
+  	"carousel-header-2": "Hello World!",
+  	"carousel-paragraph-2": "Lerne Programmcode einfacher - dank automatischem Syntaxhighlighting.",
+
+  	"carousel-header-3": "Sammel Badges",
+  	"carousel-paragraph-3": "Ausgewählte Aktionen und herausragende Leistungen werden mit Abzeichen belohnt. Hol' sie dir!"
+  },
+
+  "navbar-collapse": {
+  	"carddecks": "Meine Kartensätze",
+  	"pool": "Pool",
+  	"myprofile": "Mein Profil",
+  	"logout": "Logout",
+  	"search": "Suche"
+  },
+
+  "footer": {
+  	"impressum": "Impressum"
+  },
+
+  "input-group": {
+  	"newcarddeck": "Neuer Kartensatz"
+  },
+
+  "upload-form": {
+      "submit": "Hochladen",
+      "import": "Import",
+      "popover-content": "<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
+  },
+
+"nav-list": {
+  	"category": "Kategorie",
+  	"created": "Erstellt",
+  	"learned": "Gelernt"
+  },
+
+  "set-list": {
+  	"name": "Name",
+  	"category": "Kategorie",
+  	"description": "Beschreibung"
+  },
+
+  "set-list-empty": {
+  	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+  	"newset": "Kartensatz anlegen"
+  },
+
+  "set-list-learned-empty": {
+  	"emptytextlist": "Du hast noch keinen Kartensatz gelernt"
+  },
+
+  "modal-dialog": {
+  	"newcarddeck": "Neuen Kartensatz anlegen",
+    "editcard": "Kartensatz editieren",
+  	"name": "Name",
+  	"nameplaceholder": "Name",
+  	"descriptionplaceholder": "Beschreibung",
+  	"categoryplaceholder": "Informatik, Jura, Wirtschaft, ...",
+  	"description": "Beschreibung",
+  	"category": "Kategorie",
+  	"visibility": "Sichtbar für",
+  	"visibilityoption1": "mich",
+  	"visibilityoption2": "alle",
+  	"rating": "Bewertungen",
+  	"ratingoption1": "erlauben",
+  	"ratingoption2": "abschalten",
+    "cancel": "Abbrechen",
+    "createcarddeck": "Kartensatz anlegen",
+    "delete": "Kartensatz löschen",
+    "save": "Kartensatz speichern"
+  },
+
+
+  "profil-header": {
+  	"name": "Profil von "
+  },
+
+  "panel-heading": {
+  	"hallo": "Hallo!"
+  },
+
+  "panel-body": {
+  	"name": "Benutzername",
+  	"login": "Angemeldet via",
+  	"email": "Email",
+  	"profilepublic": "Profil öffentlich",
+  	"profilepublicoption1": "Ja",
+  	"profilepublicoption2": "Nein"
+  },
+
+  "panel-heading-experience": {
+      "experience": "Erfahrungspunkte (XP)"
+    },
+
+  "panel-body-experience": {
+    "total": "Total",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "days": "7 Tage",
+    "lastredeem": "Zuletzt für: "
+  },
+
+  "panel-heading-badges": {
+    "badges": "Badges"
+  },
+
+  "panel-body-badges": {
+    "text1": "Du hast die Möglichkeit, deine gesammelten Badges mit dem Mozilla Badge Backpack zu syncronisieren.",
+    "text2": "Um deine Badges der ",
+    "text3": "OpenBadges Plattform",
+    "text4": " hinzuzufügen, klicke auf den folgenden Button:",
+    "button": "Jetzt syncronisieren"
+  },
+
+  "panel-heading-meteor": {
+    "meteor": "Meteor Statistiken"
+  },
+
+  "panel-body-meteor": {
+    "points": "Gesamtpunktzahl",
+    "played": "Gespielt",
+    "games": "Spiele",
+    "game": "Spiel"
+  },
+
+  "table-meteor": {
+    "carddeck": "Kartensatz",
+    "yourhighscore": "Dein Highscore",
+    "position": "Pos.",
+    "highscore": "Highscore"
+  },
+
+  "sidebar-nav": { 
+    "created": "Erstellt von",
+    "at": "am",
+    "view": "Ansicht wechseln",
+    "viewmap": "Karte",
+    "viewlist": "Liste",
+    "createcard": "Neue Karte erstellen",
+    "editcard": "Kartensatz editieren",
+    "exportSet": "Kartensatz exportieren"
+  },
+
+  "pool": {
+    "name": "Name",
+    "description": "Beschreibung",
+    "created": "Erstellt von"
+  },
+
+  "cardmemo": {
+    "showanswer": "Zeige Antwort",
+    "rateanswer": "Bewerte deine Antwort",
+    "rate0": "Blackout",
+    "rate1": "Falsche Antwort, aber an die Richtige erinnert",
+    "rate2": "Falsche Antwort, aber leicht an die Richtige erinnert",
+    "rate3": "Richtige Antwort nach längerem Überlegen",
+    "rate4": "Richtige Antwort nach kurzem Zögern",
+    "rate5": "Perfekte Antwort",
+    "memotext": "Vergleiche die obige Antwort mit der aus deiner Erinnerung und bewerte sie mit Hilfe der Skala. Anhand der Bewertung wird der Zeitpunkt für die nächste Wiederholung deiner Lernkarte berechnet."
+  },
+
+  "memo-endscreen": {
+    "text": "Lerneinheit erfolgreich beendet",
+    "back": "Zurück zum Kartensatz"
+  },
+
+  "memo-empty": {
+    "text": "Aktuell keine nach Lernplan zu lernenden Karten",
+    "back": "Zurück zum Kartensatz"
+  },
+
+  "meteorgame": {
+    "description": "Zerstöre die Meteoriten bevor sie die Erde erreichen! Jeder Meteorit ist mit einer Seite deiner Lernkarten beschriftet - zerstöre ihn durch korrekte Eingabe der Rückseite!",
+    "warning": "Bitte beachten! Meteor funktioniert am Besten mit Lernkarten, die kurze Stichwörter und prägnante Sätze beinhalten.",
+    "start": "Start",
+    "level": "Level ",
+    "answer": "Lösung eingeben",
+    "quit": "Spiel beenden",
+    "anser2": "Lösung eingeben",
+    "question": "Frage",
+    "correctanswer": "Korrekte Antwort",
+    "insertanswer": "Korrekte Antwort eingeben",
+    "answer3": "Lösen"
+  },
+
+  "meteorgame-gameover": {
+    "gameover": "Game Over",
+    "text1": "Du hast ",
+    "text2": "Punkte",
+    "text3": " erzielt!",
+    "highscores": "Highscores",
+    "player": "Spieler",
+    "points": "Punkte",
+    "back": "Zurück",
+    "newgame": "Neues Spiel"
+  },
+
+  "rating-field": {
+    "title": " bewerten",
+    "stars": "Sterne",
+    "rating": "Bewertung",
+    "minchars": "Mindestens 60 Zeichen",
+    "chars": "Zeichen",
+    "minchars": "Mindestens 60 Zeichen",
+    "cancel": "Abbrechen",
+    "edit": "Kartensatz bewerten"
+  },
+
+   "rating-table": {
+    "name": "Name",
+    "rating": "Bewertung",
+    "comment": "Kommentar"
+  },
+
+  "learn-endscreen": {
+    "success": "Lerneinheit erfolgreich beendet",
+    "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz",
+    "back2": "Zurück zum Kartensatz"
+  },
+
+  "carddeck-table": {
+    "name": "Name",
+    "category": "Kategorie",
+    "description": "Beschreibung"
+  },
+
+  "nocards":"Keine Karten vorhanden",
+  "learn":"Lernen",
+  "learnfile":"Lernkartei",
+  "memo":"Memo",
+  "meteor":"Meteor",
+  "play":"Spielen",
+  "yourhighscore": "Dein Highscore:",
+  "points":"Punkte",
+
+  "foreside":"Vorderseite",
+  "backside":"Rückseite",
+  "options":"Optionen",
+
+  "newcard":"Neue Karte",
+  "editcard":"Karte bearbeiten",
+  "showpicture":"Bild anzeigen",
+  "linkorsearchitem":"Link oder Suchbegriff eingeben",
+  "searchpicture": "Bildsuche",
+  "declinecard":"Abbrechen",
+  "deletecard":"Karte löschen",
+  "savecard":"Karte speichern",
+  "insertpicture":"Bild einfügen",
+  "insertpicture2": "Bild einfügen",
+
+  "pointslvl1": "Noch",
+  "pointslvl2": "Punkte",
+  "pointslvl3": " bis zum nächsten Level",
+
+  "meteortext": "Du hast bisher noch kein Spiel gespielt",
+
+  "valuation": "Bewertung",
+  "valuationtext": " Sterne bei ",
+  "valuationtext2": " Bewertungen",
+
+  "norating": "Keine Bewertungen vorhanden",
+  "createdof": "Erstellt von",
+  "backcarddecks": "Zurück zum Kartensatz",
+  "createdof2": "Erstellt von",
+
+  "subject1": "Fach 1",
+  "subject2": "Fach 2",
+  "subject3": "Fach 3",
+  "subject4": "Fach 4",
+  "subject5": "Fach 5",
+
+  "know": "Gewusst",
+  "notknow": "Nicht gewusst",
+
+  "clickcart": "Klicke auf die Karte um Sie zu drehen",
+  "choosesubject": "Wähle ein Fach auf der linken Seite",
+
+  "carddecks": "Kartensätze",
+
+  "gold": "Gold",
+  "silver": "Silber",
+  "bronze": "Bronze",
+
+  "newbadge": "Neuer Badge",
+  "badgetext1": "Du hast den Badge ",
+  "badgetext2": "Stammgast",
+  "badgetext3": " erhalten"
+}
