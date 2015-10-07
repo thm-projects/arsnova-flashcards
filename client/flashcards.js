@@ -1,7 +1,19 @@
 Router.route('/', {
-  template: 'welcome'
+  template: 'welcome',
+  name: 'welcome'
 });
 Router.route('/impressum');
+Router.route('/cardsets', {
+  template: 'cardsets',
+  onBeforeAction: function(){
+    var currentUser = Meteor.userId();
+        if(currentUser){
+            this.next();
+        } else {
+            this.render("welcome");
+        }
+    }
+});
 
 getUserLanguage = function () {
   return navigator.language.substr(0,2);
