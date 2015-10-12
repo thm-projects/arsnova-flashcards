@@ -1,6 +1,126 @@
-
 <template name="cardsets">
-  cardsets
-  <button href="#" id="logout">Logout</button>
+  {{> sidebar}}
 
+
+</template>
+
+<template name="sidebar">
+  <div class="col-md-3">
+    <div class="well well-sm sidebar-nav">
+      <div class="input-group">
+        <input class="form-control" type="text" id="new-set-input" placeholder="{{_ "input-group.newcarddeck"}}">
+        <span class="input-group-btn">
+          <button id="newCardSet" class="btn btn-primary saveSet" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+        </span>
+      </div>
+
+      <hr />
+
+      <div class="input-group">
+        <form style="width: 143px; float: left;" method="post" action="/import" enctype="multipart/form-data">
+          <span class="input-group" style="width: 143px;">
+            <span style="position:relative; width: 103px;">
+              <input id="file" style="position:absolute; width: 103px;" class="form-control" placeholder="{{_ "upload-form.import"}}">
+              <input id="fileInput" type="file" name="file" style="opacity:0; z-index:1; width: 103px; height: 34px; cursor: pointer;">
+            </span>
+            <span class="input-group-btn">
+              <button id="fileSubmit" type="submit" class="btn btn-primary disabled"><i class="glyphicon glyphicon-cloud-upload"></i></button>
+            </span>
+          </span>
+        </form>
+        <div style="float: right; margin-left: 9px;">
+          <button type="button" id="fileHelp" class="btn btn-default" data-toggle="popover" data-html="true" data-trigger="click" data-container="body" data-content="<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>" data-placement="right" data-i18n="[data-content]upload-form.popover-content" data-original-title="" title="">
+            <i class="glyphicon glyphicon-question-sign"></i>
+          </button>
+        </div>
+      </div>
+
+      <hr />
+
+      <ul class="nav nav-list">
+        <li class="nav-header">{{_ "nav-list.category"}}</li>
+        <li><a id="setCreated" href="/main/created" name="set-created">{{_ "nav-list.created"}}</a></li>
+        <li><a id="setLearned" href="/main/learned" name="set-learned">{{_ "nav-list.learned"}}</a></li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+
+<template name="created">
+
+</template>
+
+
+<template name="learned">
+
+</template>
+
+
+<template name="cardmodal">
+  <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title" data-i18n="modal-dialog.newcarddeck">Neuen Kartensatz anlegen</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <div class="form-group setdetails name">
+              <label class="col-md-3 control-label" for="newSetName" data-i18n="modal-dialog.name">Name</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="newSetName" placeholder="Name" data-i18n="[placeholder]modal-dialog.nameplaceholder">
+                <span id="helpNewSetName" class="help-block name"></span>
+              </div>
+            </div>
+            <div class="form-group setdetails description">
+              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.description">Beschreibung</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="Beschreibung" data-i18n="[placeholder]modal-dialog.descriptionplaceholder"></textarea>
+                <span id="helpNewSetDescription" class="help-block description"></span>
+              </div>
+            </div>
+            <div class="form-group setdetails category">
+              <label class="col-md-3 control-label" for="newSetCategory" data-i18n="modal-dialog.category">Kategorie</label>
+              <div class="col-md-9">
+                <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input class="form-control tt-query" type="text" id="newSetCategory" placeholder="Informatik, Jura, Wirtschaft, ..." data-i18n="[placeholder]modal-dialog.categoryplaceholder" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
+                <span id="helpNewSetCategory" class="help-block category"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.visibility">Sichtbar für</label>
+              <div class="controls col-md-9">
+                <div class="btn-group" data-toggle="buttons">
+                  <label id="newCardSetVisibilityoption1" class="btn btn-default active" style="width:100px">
+                    <input type="radio" name="options" value="private" id="visibility_private"><div data-i18n="modal-dialog.visibilityoption1">mich</div>
+                  </label>
+                  <label id="newCardSetVisibilityoption2" class="btn btn-default" style="width:100px">
+                    <input type="radio" name="options" value="public" id="visibility_public"><div data-i18n="modal-dialog.visibilityoption2">alle</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.rating">Bewertungen</label>
+              <div class="controls col-md-9">
+                <div class="btn-group btn-group-rating" data-toggle="buttons">
+                  <label id="newCardSetRatingoption1" class="btn btn-default active" style="width:100px">
+                    <input type="radio" name="rating" value="true" id="rating_true"><div data-i18n="modal-dialog.ratingoption1">erlauben</div>
+                  </label>
+                  <label id="newCardSetRatingoption2" class="btn btn-default" style="width:100px">
+                    <input type="radio" name="rating" value="false" id="rating_false"><div data-i18n="modal-dialog.ratingoption2">abschalten</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="newCardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-i18n="modal-dialog.cancel">Abbrechen</button>
+          <button id="createCardSet" class="btn btn-primary" data-loading-text="Speichere Deck..." data-i18n="modal-dialog.createcarddeck">Kartensatz anlegen</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </template>

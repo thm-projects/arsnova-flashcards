@@ -1,1 +1,5 @@
-/* CSS declarations go here */
+html,
+body {
+  height: 100%;
+  background-image: url('/img/light_wool.png');
+}/* CSS declarations go here */

@@ -1,0 +1,40 @@
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+#wrap > .container {
+  padding-top: 40px;
+}
+.container .credit {
+  margin: 20px 0;
+}
+
+.navbar li input {
+  margin-top: 8px;
+}
+
+.navbar li.dropdown {
+  margin-left:8px;
+  min-width: 150px;
+}
+
+.navbar .navbar-brand {
+  padding: 10px 20px;
+}
+
+.navbar .navbar-brand img {
+    width: 142px;
+    height: 30px;
+}
+
+/* Set the fixed height of the footer here */
+
+#footer {
+  height: 60px;
+  background-color: #F8F8F8;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+}

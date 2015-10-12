@@ -3,17 +3,25 @@ Router.route('/', {
   name: 'welcome'
 });
 Router.route('/impressum');
-Router.route('/cardsets', {
-  template: 'cardsets',
+Router.route('/main', {
+  template: 'main',
   onBeforeAction: function(){
-    var currentUser = Meteor.userId();
-        if(currentUser){
-            this.next();
-        } else {
-            this.render("welcome");
-        }
+    if(Meteor.userId()){
+      this.next();
+    } else {
+      this.render("welcome");
     }
+  }
 });
+
+Router.route('/main/created', {
+  template: 'created'
+});
+
+Router.route('/main/learned', {
+  template: 'learned'
+});
+
 
 getUserLanguage = function () {
   return navigator.language.substr(0,2);

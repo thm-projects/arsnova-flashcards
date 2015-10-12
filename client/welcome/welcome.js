@@ -4,6 +4,12 @@ Template.welcome.events({
             if (err) {
                 throw new Meteor.Error("Facebook login failed");
             }
+            else {
+              var currentRoute = Router.current().route.getName();
+              if(currentRoute == "welcome"){
+                Router.go("main");
+              }
+            }
         });
     },
 
