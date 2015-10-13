@@ -1,6 +1,16 @@
-Router.route('/', {
-  template: 'main',
+Router.route('/', function (){
+  this.redirect('home');
+});
+
+Router.route('/impressum');
+
+Router.configure({
+  layoutTemplate: 'main',
+});
+
+Router.route('/home', {
   name: 'home',
+  template: 'cardsets',
   onBeforeAction: function(){
     if(Meteor.userId()){
       this.next();
@@ -10,10 +20,9 @@ Router.route('/', {
   }
 });
 
-Router.route('/impressum');
-
-Router.route('/main/created', {
-  template: 'created'
+Router.route('/pool', {
+  name: 'pool',
+  template: 'pool'
 });
 
 Router.route('/main/learned', {
