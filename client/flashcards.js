@@ -1,10 +1,6 @@
 Router.route('/', {
-  template: 'welcome',
-  name: 'welcome'
-});
-Router.route('/impressum');
-Router.route('/main', {
   template: 'main',
+  name: 'home',
   onBeforeAction: function(){
     if(Meteor.userId()){
       this.next();
@@ -13,6 +9,8 @@ Router.route('/main', {
     }
   }
 });
+
+Router.route('/impressum');
 
 Router.route('/main/created', {
   template: 'created'
