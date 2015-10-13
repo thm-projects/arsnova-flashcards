@@ -2,20 +2,31 @@ Router.route('/', function (){
   this.redirect('home');
 });
 
-Router.route('/impressum');
+Router.configure({
+  layoutTemplate: 'impressum'
+});
+
+Router.route('/impressum', {
+  name: 'impressum',
+  layoutTemplate: 'impressum'
+});
 
 Router.configure({
-  layoutTemplate: 'main',
+  layoutTemplate: 'welcome'
+});
+
+Router.configure({
+  layoutTemplate: 'main'
 });
 
 Router.route('/home', {
   name: 'home',
-  template: 'cardsets',
-  onBeforeAction: function(){
+  action: function(){
     if(Meteor.userId()){
-      this.next();
+      this.layout('main');
+      this.render('cardsets');
     } else {
-      this.render("welcome");
+      this.layout('welcome');
     }
   }
 });
