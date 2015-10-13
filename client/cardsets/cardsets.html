@@ -1,6 +1,6 @@
 <template name="cardsets">
   {{> sidebar}}
-
+  {{> yield 'cardsets'}}
 
 </template>
 
@@ -39,8 +39,8 @@
 
       <ul class="nav nav-list">
         <li class="nav-header">{{_ "nav-list.category"}}</li>
-        <li><a id="setCreated" href="/main/created" name="set-created">{{_ "nav-list.created"}}</a></li>
-        <li><a id="setLearned" href="/main/learned" name="set-learned">{{_ "nav-list.learned"}}</a></li>
+        <li><a id="setCreated" href="#" name="set-created">{{_ "nav-list.created"}}</a></li>
+        <li><a id="setLearned" href="#" name="set-learned">{{_ "nav-list.learned"}}</a></li>
       </ul>
     </div>
   </div>
@@ -48,12 +48,12 @@
 
 
 <template name="created">
-
+  createdfdsafdsfdsafsdfsdasssssssssssssssssssss
 </template>
 
 
 <template name="learned">
-
+  learned
 </template>
 
 

@@ -31,13 +31,19 @@ Router.route('/home', {
   }
 });
 
+Router.route('/home/created-cardsets', {
+  name: 'created',
+  template: 'created'
+});
+
 Router.route('/pool', {
   name: 'pool',
   template: 'pool'
 });
 
-Router.route('/main/learned', {
-  template: 'learned'
+Router.route('/profile', {
+  name: 'userprofile',
+  template: 'userprofile'
 });
 
 
