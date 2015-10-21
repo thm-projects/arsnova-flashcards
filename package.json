@@ -1,0 +1,6 @@
+{
+  "name": "flashcards",
+  "scripts": {
+    "start": "meteor --settings settings-development.json"
+  }
+}
