@@ -23,6 +23,14 @@ Template.welcome.events({
         });
     },
 
+    'click #cas': function(event) {
+        Meteor.loginWithCas({}, function(err){
+            if (err) {
+                throw new Meteor.Error("Google login failed");
+            }
+        });
+    },
+
     'click #logout': function(event) {
         Meteor.logout(function(err){
             if (err) {

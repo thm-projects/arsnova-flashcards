@@ -51,16 +51,20 @@ getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
 
+// Returns username
 Template.registerHelper("usernameFromId", function () {
     var service = _.keys(Meteor.user().services)[0];
+    // Google and Facebook
     if (service == 'google' || service == 'facebook') {
       return Meteor.user().services[service].email;
     }
+    // Twitter
     else if (service == 'twitter') {
       return Meteor.user().services[service].screenName;
     }
+    // CAS
     else {
-      return 'Anonymous';
+      return Meteor.user().profile.name;
     }
 });
 

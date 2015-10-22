@@ -1,6 +1,12 @@
 {
   "public": {
-    "rooturl": "http://localhost:3000"
+    "rooturl": "http://localhost:3000",
+    "cas": {
+        "loginUrl": "https://cas.thm.de/cas/login",
+        "serviceParam": "service",
+        "popupWidth": 810,
+        "popupHeight": 610
+    }
   },
   "facebook": {
     "api": "162760697401847",
@@ -13,5 +19,9 @@
   "google": {
     "api": "131328643116-j00jrgjupbbfeft1a9o0p5ling05vsus.apps.googleusercontent.com",
     "secret": "2-P5Vy6VI0eOrKIlOCZZq8cR"
+  },
+  "cas": {
+      "baseUrl": "https://cas.thm.de/cas",
+      "autoClose": true
   }
 }
