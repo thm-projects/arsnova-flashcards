@@ -53,6 +53,8 @@ getUserLanguage = function () {
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
+    Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
+
     Session.set("showLoadingIndicator", true);
 
     TAPi18n.setLanguage(getUserLanguage())

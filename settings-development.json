@@ -1,5 +1,7 @@
 {
-  "rooturl": "http://localhost:3000",
+  "public": {
+    "rooturl": "http://localhost:3000"
+  },
   "facebook": {
     "api": "162760697401847",
     "secret": "151daa9c4bc95310e9e1fb90accd70f8"
