@@ -51,6 +51,19 @@ getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
 
+Template.registerHelper("usernameFromId", function () {
+    var service = _.keys(Meteor.user().services)[0];
+    if (service == 'google' || service == 'facebook') {
+      return Meteor.user().services[service].email;
+    }
+    else if (service == 'twitter') {
+      return Meteor.user().services[service].screenName;
+    }
+    else {
+      return 'Anonymous';
+    }
+});
+
 if (Meteor.isClient) {
   Meteor.startup(function () {
     Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
