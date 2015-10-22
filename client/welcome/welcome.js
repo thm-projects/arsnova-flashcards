@@ -26,7 +26,7 @@ Template.welcome.events({
     'click #cas': function(event) {
         Meteor.loginWithCas({}, function(err){
             if (err) {
-                throw new Meteor.Error("Google login failed");
+                throw new Meteor.Error("CAS login failed");
             }
         });
     },
