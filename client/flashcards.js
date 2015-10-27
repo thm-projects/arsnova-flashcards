@@ -1,3 +1,5 @@
+//------------------------ ROUTING
+
 Router.route('/', function (){
   this.redirect('home');
 });
@@ -61,28 +63,19 @@ var goToCreated = function() {
 Router.onBeforeAction(isSignedIn, {except: ['home', 'impressum']});
 Router.onBeforeAction(goToCreated, {only: ['home']});
 
+
+//------------------------ GET LANGUAGE FROM USER
+
 getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
 
-// Returns username
-Template.registerHelper("usernameFromId", function () {
-    var service = _.keys(Meteor.user().services)[0];
-    // Google and Facebook
-    if (service == 'google' || service == 'facebook') {
-      return Meteor.user().services[service].name;
-    }
-    // Twitter
-    else if (service == 'twitter') {
-      return Meteor.user().services[service].screenName;
-    }
-    // CAS
-    else {
-      return Meteor.user().profile.name;
-    }
-});
 
 if (Meteor.isClient) {
+
+
+  //------------------------ LOADING I18N
+
   Meteor.startup(function () {
     Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
 
