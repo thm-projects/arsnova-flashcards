@@ -1,3 +1,8 @@
+//------------------------ ACCESS DATABASE
+
+Cardsets = new Mongo.Collection('cardsets');
+
+
 //------------------------ ROUTING
 
 Router.route('/', function (){
@@ -69,7 +74,6 @@ Router.onBeforeAction(goToCreated, {only: ['home']});
 getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
-
 
 if (Meteor.isClient) {
 

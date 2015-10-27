@@ -9,6 +9,7 @@
 
 </template>
 
+
 <template name="sidebar">
   <div id='set-list-sidebar-region' class="col-md-3">
     <div class="well well-sm sidebar-nav">
@@ -62,7 +63,8 @@
           <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
         </tr>
       </thead>
-      <tbody id="cardSetView"><tr class="empty-list">
+      <tbody id="cardSetView">
+      <!--  <tr class="empty-list">
         <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
           <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
           <br>
@@ -70,9 +72,22 @@
             <span id="setListEmpty">{{_ "set-list-empty.newset"}}</span>
           </a>
         </td>
-      </tr></tbody>
+      </tr>-->
+        {{#each cardsetList}}
+          {{> cardsetRow}}
+        {{/each}}
+      </tbody>
     </table>
   </div>
+</template>
+
+
+<template name="cardsetRow">
+  <tr class="cardsetRow">
+    <td>{{name}}</td>
+    <td>{{category}}</td>
+    <td>{{description}}</td>
+  </tr>
 </template>
 
 

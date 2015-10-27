@@ -1,3 +1,5 @@
+//------------------------ LOGIN EVENT
+
 Template.welcome.events({
     'click #facebook': function(event) {
         Meteor.loginWithFacebook({}, function(err){
