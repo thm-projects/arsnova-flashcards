@@ -13,3 +13,22 @@ hr {
   rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
+
+.table th {
+  background-color: #fff;
+}
+
+.emptyCellList {
+  padding-top: 33px !important;
+}
+
+.emptyTextList {
+  color: #666;
+  font-family: "Georgia",serif;
+  font-style: italic;
+}
+
+.btn-newSet {
+  margin-bottom: 27px;
+  margin-top: 20px;
+}

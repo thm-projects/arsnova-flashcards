@@ -1,11 +1,16 @@
 <template name="cardsets">
   {{> sidebar}}
-  {{> yield 'cardsets'}}
+  {{#if isActiveRoute 'created'}}
+    {{> created}}
+  {{/if}}
+  {{#if isActiveRoute 'learned'}}
+    {{> learned}}
+  {{/if}}
 
 </template>
 
 <template name="sidebar">
-  <div class="col-md-3">
+  <div id='set-list-sidebar-region' class="col-md-3">
     <div class="well well-sm sidebar-nav">
       <div class="input-group">
         <input class="form-control" type="text" id="new-set-input" placeholder="{{_ "input-group.newcarddeck"}}">
@@ -20,7 +25,7 @@
         <form style="width: 143px; float: left;" method="post" action="/import" enctype="multipart/form-data">
           <span class="input-group" style="width: 143px;">
             <span style="position:relative; width: 103px;">
-              <input id="file" style="position:absolute; width: 103px;" class="form-control" placeholder="{{_ "upload-form.import"}}">
+              <input id="file" style="width: 103px;" class="form-control" placeholder="{{_ "upload-form.import"}}">
               <input id="fileInput" type="file" name="file" style="opacity:0; z-index:1; width: 103px; height: 34px; cursor: pointer;">
             </span>
             <span class="input-group-btn">
@@ -39,8 +44,8 @@
 
       <ul class="nav nav-list">
         <li class="nav-header">{{_ "nav-list.category"}}</li>
-        <li><a id="setCreated" href="#" name="set-created">{{_ "nav-list.created"}}</a></li>
-        <li><a id="setLearned" href="#" name="set-learned">{{_ "nav-list.learned"}}</a></li>
+        <li><a id="setCreated" href="{{pathFor route='created'}}" name="set-created">{{_ "nav-list.created"}}</a></li>
+        <li><a id="setLearned" href="{{pathFor route='learned'}}" name="set-learned">{{_ "nav-list.learned"}}</a></li>
       </ul>
     </div>
   </div>
@@ -48,12 +53,45 @@
 
 
 <template name="created">
-  createdfdsafdsfdsafsdfsdasssssssssssssssssssss
+  <div class="col-md-9" id="set-list-region">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="set-list">
+        <tr>
+          <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
+          <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
+          <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
+        </tr>
+      </thead>
+      <tbody id="cardSetView"><tr class="empty-list">
+        <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
+          <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
+          <br>
+          <a class="btn-newSet btn btn-primary btn-s">
+            <span id="setListEmpty">{{_ "set-list-empty.newset"}}</span>
+          </a>
+        </td>
+      </tr></tbody>
+    </table>
+  </div>
 </template>
 
 
 <template name="learned">
-  learned
+  <div id="set-list-region" class="col-md-9"><table class="table table-bordered table-striped table-hover">
+        <thead class="set-list">
+          <tr>
+            <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
+            <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
+            <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
+          </tr>
+        </thead>
+        <tbody id="cardSetView"><tr class="empty-list">
+            <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
+              <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
+              <br><br>
+            </td>
+      </tr></tbody>
+      </table></div>
 </template>
 
 

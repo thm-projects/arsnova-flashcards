@@ -29,6 +29,11 @@ Router.route('/created', {
   template: 'cardsets'
 });
 
+Router.route('/learned', {
+  name: 'learned',
+  template: 'cardsets'
+});
+
 Router.route('/pool', {
   name: 'pool'
 });
@@ -55,52 +60,6 @@ var goToCreated = function() {
 
 Router.onBeforeAction(isSignedIn, {except: ['home', 'impressum']});
 Router.onBeforeAction(goToCreated, {only: ['home']});
-/*
-Router.route('/', function (){
-  this.redirect('home');
-});
-*/
-
-/*
-Router.configure({
-  layoutTemplate: 'welcome'
-});
-
-Router.configure({
-  layoutTemplate: 'main'
-});
-
-Router.route('/home', {
-  name: 'home',
-  layoutTemplate: 'welcome'
-});
-
-
-Router.route('/created-cardsets', {
-  name: 'created',
-  onBeforeAction: function(){
-    if(!Meteor.userId()){
-      Router.go('home');
-    }
-    else
-    {
-      this.layout('main');
-      this.render('cardsets');
-
-    }
-  }
-});
-
-Router.route('/pool', {
-  name: 'pool',
-  template: 'pool'
-});
-
-Router.route('/profile', {
-  name: 'userprofile',
-  template: 'userprofile'
-});*/
-
 
 getUserLanguage = function () {
   return navigator.language.substr(0,2);
