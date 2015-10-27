@@ -3,7 +3,20 @@ Router.route('/', function (){
 });
 
 Router.configure({
+  layoutTemplate: 'welcome'
+});
+
+Router.configure({
   layoutTemplate: 'impressum'
+});
+
+Router.configure({
+  layoutTemplate: 'main'
+});
+
+Router.route('/home', {
+  name: 'home',
+  layoutTemplate: 'welcome'
 });
 
 Router.route('/impressum', {
@@ -11,6 +24,44 @@ Router.route('/impressum', {
   layoutTemplate: 'impressum'
 });
 
+Router.route('/created', {
+  name: 'created',
+  template: 'cardsets'
+});
+
+Router.route('/pool', {
+  name: 'pool'
+});
+
+Router.route('/profile', {
+  name: 'userprofile'
+});
+
+var isSignedIn = function() {
+  if (!(Meteor.user() || Meteor.loggingIn())) {
+    Router.go('home');
+  } else {
+    this.next();
+  }
+};
+
+var goToCreated = function() {
+  if (Meteor.user()) {
+    Router.go('created');
+  } else {
+    this.next();
+  }
+};
+
+Router.onBeforeAction(isSignedIn, {except: ['home', 'impressum']});
+Router.onBeforeAction(goToCreated, {only: ['home']});
+/*
+Router.route('/', function (){
+  this.redirect('home');
+});
+*/
+
+/*
 Router.configure({
   layoutTemplate: 'welcome'
 });
@@ -21,19 +72,23 @@ Router.configure({
 
 Router.route('/home', {
   name: 'home',
-  action: function(){
-    if(Meteor.userId()){
-      this.layout('main');
-      this.render('cardsets');
-    } else {
-      this.layout('welcome');
-    }
-  }
+  layoutTemplate: 'welcome'
 });
 
-Router.route('/home/created-cardsets', {
+
+Router.route('/created-cardsets', {
   name: 'created',
-  template: 'created'
+  onBeforeAction: function(){
+    if(!Meteor.userId()){
+      Router.go('home');
+    }
+    else
+    {
+      this.layout('main');
+      this.render('cardsets');
+
+    }
+  }
 });
 
 Router.route('/pool', {
@@ -44,7 +99,7 @@ Router.route('/pool', {
 Router.route('/profile', {
   name: 'userprofile',
   template: 'userprofile'
-});
+});*/
 
 
 getUserLanguage = function () {
