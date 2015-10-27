@@ -75,6 +75,7 @@ getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
 
+
 if (Meteor.isClient) {
 
 

@@ -1,4 +1,8 @@
 <template name="cardsets">
+  {{#if showCardsetForm}}
+    {{> cardsetForm}}
+  {{/if}}
+
   {{> sidebar}}
   {{#if isActiveRoute 'created'}}
     {{> created}}
@@ -6,7 +10,6 @@
   {{#if isActiveRoute 'learned'}}
     {{> learned}}
   {{/if}}
-
 </template>
 
 
@@ -118,8 +121,8 @@
 </template>
 
 
-<template name="cardmodal">
-  <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<template name="cardsetForm">
+  <div class="modal fade in" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -131,21 +134,21 @@
             <div class="form-group setdetails name">
               <label class="col-md-3 control-label" for="newSetName" data-i18n="modal-dialog.name">Name</label>
               <div class="col-md-9">
-                <input class="form-control" type="text" id="newSetName" placeholder="Name" data-i18n="[placeholder]modal-dialog.nameplaceholder">
+                <input class="form-control" type="text" id="newSetName" placeholder="Name" data-i18n="[placeholder]modal-dialog.nameplaceholder" value="{{cardset.name}}">
                 <span id="helpNewSetName" class="help-block name"></span>
               </div>
             </div>
             <div class="form-group setdetails description">
               <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.description">Beschreibung</label>
               <div class="col-md-9">
-                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="Beschreibung" data-i18n="[placeholder]modal-dialog.descriptionplaceholder"></textarea>
+                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="Beschreibung" data-i18n="[placeholder]modal-dialog.descriptionplaceholder" value="{{cardset.description}}"></textarea>
                 <span id="helpNewSetDescription" class="help-block description"></span>
               </div>
             </div>
             <div class="form-group setdetails category">
               <label class="col-md-3 control-label" for="newSetCategory" data-i18n="modal-dialog.category">Kategorie</label>
               <div class="col-md-9">
-                <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input class="form-control tt-query" type="text" id="newSetCategory" placeholder="Informatik, Jura, Wirtschaft, ..." data-i18n="[placeholder]modal-dialog.categoryplaceholder" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
+                <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input class="form-control tt-query" type="text" id="newSetCategory" placeholder="Informatik, Jura, Wirtschaft, ..." data-i18n="[placeholder]modal-dialog.categoryplaceholder" value="{{cardset.category}}" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
                 <span id="helpNewSetCategory" class="help-block category"></span>
               </div>
             </div>
@@ -178,8 +181,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button id="newCardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-i18n="modal-dialog.cancel">Abbrechen</button>
-          <button id="createCardSet" class="btn btn-primary" data-loading-text="Speichere Deck..." data-i18n="modal-dialog.createcarddeck">Kartensatz anlegen</button>
+          <button class="btn btn-default cancel" data-dismiss="modal" aria-hidden="true" data-i18n="modal-dialog.cancel">Abbrechen</button>
+          <button class="btn btn-primary save" data-i18n="modal-dialog.createcarddeck">Kartensatz anlegen</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
