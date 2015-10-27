@@ -56,7 +56,7 @@ Template.registerHelper("usernameFromId", function () {
     var service = _.keys(Meteor.user().services)[0];
     // Google and Facebook
     if (service == 'google' || service == 'facebook') {
-      return Meteor.user().services[service].email;
+      return Meteor.user().services[service].name;
     }
     // Twitter
     else if (service == 'twitter') {
