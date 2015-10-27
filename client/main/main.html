@@ -21,7 +21,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><input type="text" class="form-control" placeholder="{{_ "navbar-collapse.search"}}" id="input-search"/></li>
-              <li class="dropdown">
+              <li class="dropdown {{#if isActiveRoute 'userprofile'}}active{{/if}}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <span id="usr-name">{{usernameFromId}}</span>
                   <b class="caret"></b>
