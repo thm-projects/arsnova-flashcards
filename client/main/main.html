@@ -8,13 +8,24 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul id="navbar" class="nav navbar-nav">
-              <li id="navbar-ownsets"><a href="{{pathFor route='home'}}" id="cardsets">{{_ "navbar-collapse.carddecks"}}</a></li>
-              <li id="navbar-pool"><a href="{{pathFor route='pool'}}" id="pool">{{_ "navbar-collapse.pool"}}</a></li>
+              <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}">
+                <a href="{{pathFor route='home'}}" id="cardsets">
+                  {{_ "navbar-collapse.carddecks"}}
+                </a>
+              </li>
+              <li id="navbar-pool" class="{{#if isActiveRoute 'pool'}}active{{/if}}">
+                <a href="{{pathFor route='pool'}}" id="pool">
+                  {{_ "navbar-collapse.pool"}}
+                </a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><input type="text" class="form-control" placeholder="{{_ "navbar-collapse.search"}}" id="input-search"/></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="usr-name">{{usernameFromId}}</span> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span id="usr-name">{{usernameFromId}}</span>
+                  <b class="caret"></b>
+                </a>
                 <ul class="dropdown-menu">
                   <li><a href="{{pathFor route='userprofile'}}" id="usr-profile">{{_ "navbar-collapse.myprofile"}}</a></li>
                   <li class="divider"></li>

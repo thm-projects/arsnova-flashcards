@@ -44,8 +44,16 @@
 
       <ul class="nav nav-list">
         <li class="nav-header">{{_ "nav-list.category"}}</li>
-        <li><a id="setCreated" href="{{pathFor route='created'}}" name="set-created">{{_ "nav-list.created"}}</a></li>
-        <li><a id="setLearned" href="{{pathFor route='learned'}}" name="set-learned">{{_ "nav-list.learned"}}</a></li>
+        <li class="{{#if isActiveRoute 'created'}}active{{/if}}">
+          <a id="setCreated" href="{{pathFor route='created'}}" name="set-created">
+            {{_ "nav-list.created"}}
+          </a>
+        </li>
+        <li class="{{#if isActiveRoute 'learned'}}active{{/if}}">
+          <a id="setLearned" href="{{pathFor route='learned'}}" name="set-learned">
+            {{_ "nav-list.learned"}}
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -78,20 +86,20 @@
 
 <template name="learned">
   <div id="set-list-region" class="col-md-9"><table class="table table-bordered table-striped table-hover">
-        <thead class="set-list">
-          <tr>
-            <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
-            <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
-            <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
-          </tr>
-        </thead>
-        <tbody id="cardSetView"><tr class="empty-list">
-            <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
-              <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
-              <br><br>
-            </td>
-      </tr></tbody>
-      </table></div>
+    <thead class="set-list">
+      <tr>
+        <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
+        <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
+        <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
+      </tr>
+    </thead>
+    <tbody id="cardSetView"><tr class="empty-list">
+      <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
+        <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
+        <br><br>
+      </td>
+    </tr></tbody>
+  </table></div>
 </template>
 
 
