@@ -68,7 +68,7 @@
   	"name": "Name",
   	"nameplaceholder": "Name",
   	"descriptionplaceholder": "Description",
-  	"categoryplaceholder": "Informatics, law, economy, ...",
+  	"categoryplaceholder": "Choose a category",
   	"description": "Description",
   	"category": "Category",
   	"visibility": "Visible for",

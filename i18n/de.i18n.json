@@ -68,7 +68,7 @@
   	"name": "Name",
   	"nameplaceholder": "Name",
   	"descriptionplaceholder": "Beschreibung",
-  	"categoryplaceholder": "Informatik, Jura, Wirtschaft, ...",
+  	"categoryplaceholder": "Wähle eine Kategorie",
   	"description": "Beschreibung",
   	"category": "Kategorie",
   	"visibility": "Sichtbar für",
@@ -143,7 +143,7 @@
     "highscore": "Highscore"
   },
 
-  "sidebar-nav": { 
+  "sidebar-nav": {
     "created": "Erstellt von",
     "at": "am",
     "view": "Ansicht wechseln",
