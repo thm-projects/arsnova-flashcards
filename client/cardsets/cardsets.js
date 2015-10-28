@@ -25,6 +25,12 @@ Template.cardsets.events({
   },
   'click .cancel': function(evt, tmpl){
     Session.set('showCardsetsForm', false);
+  },
+  'click .category': function (evt, tmpl) {
+    var categoryName = $(evt.currentTarget).attr("data");
+    var categoryId = $(evt.currentTarget).val();
+    $('#newSetCategory').text(categoryName);
+    tmpl.find('#newSetCategory').value = categoryId;
   }
 })
 
