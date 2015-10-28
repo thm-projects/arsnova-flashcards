@@ -15,5 +15,10 @@ Template.cardset.events({
   },
   'click #cardSetCancel': function(evt, tmpl){
     Session.set('showCardsetForm', false);
+  },
+  'click #cardSetDelete': function(evt, tmpl){
+    Cardsets.remove(this._id);
+    Session.set('showCardsetForm', false);
+    Router.go('created');;
   }
 })
