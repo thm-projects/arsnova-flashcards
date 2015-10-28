@@ -4,13 +4,14 @@
   {{/if}}
 
   {{> sidebarCardset}}
-  {{#if isActiveRoute regex='^cardsetdetails'}}
+  {{#if isActiveRoute 'cardsetdetailsid'}}
     {{> cardsetDetails}}
   {{/if}}
-  {{#if isActiveRoute regex='^cardsetlist'}}
+  {{#if isActiveRoute 'cardsetlistid'}}
     {{> cardsetList}}
   {{/if}}
 </template>
+
 
 <template name="sidebarCardset">
   <div class="col-md-3">
@@ -24,19 +25,19 @@
 
         <hr />
 
-        <span class="nav-header" style="padding-left:0" data-i18n="sidebar-nav.created">Erstellt von</span>
+        <span class="nav-header" style="padding-left:0">{{_ "sidebar-nav.created"}}</span>
         <span style="font-family:'Georgia'">
-          <a id="usr-profile2" href="/#profile/mzmn17">{{usernameFromId}}</a>
-          <span data-i18n="sidebar-nav.at">am</span>
-          27. Oktober 2015 18:07 Uhr
+          <a id="usr-profile2" href="{{pathFor route='userprofile'}}">{{usernameFromId}}</a>
+          <span>{{_ "sidebar-nav.at"}}</span>
+          <span>{{date}}</span>
         </span>
 
         <hr />
 
-        <span class="nav-header" style="padding-left:0; margin-bottom:3px" data-i18n="sidebar-nav.view">Ansicht wechseln</span>
+        <span class="nav-header" style="padding-left:0; margin-bottom:3px">{{_ "sidebar-nav.view"}}</span>
         <div class="btn-group btn-group-xs btn-group-justified">
-          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout" href="/cardsetdetails/{{_id}}" data-i18n="sidebar-nav.viewmap">Karte</a>
-          <a id="btnToListLayout" class="btn btn-default btn-listLayout" href="/cardsetlist/{{_id}}" data-i18n="sidebar-nav.viewlist">Liste</a>
+          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
+          <a id="btnToListLayout" class="btn btn-default btn-listLayout" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
         </div>
 
         <hr />
@@ -48,13 +49,14 @@
 
     <div id="set-details-controls-region">
       <div class="well well-sm sidebar-nav">
-        <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%" data-i18n="sidebar-nav.createcard">Neue Karte erstellen</button>
-        <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" style="width:100%; margin-top:10px" data-i18n="sidebar-nav.editcard">Kartensatz editieren</button>
-        <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px" data-i18n="sidebar-nav.exportSet">Kartensatz exportieren</button>
+        <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
+        <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
+        <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
       </div>
     </div>
   </div>
 </template>
+
 
 <template name="cardsetDetails">
   <div class="col-md-9" id="set-details-region">
@@ -68,7 +70,7 @@
           <div class="empty-item">
             <div class="box">
               <div class="block">
-                <div class="centered front" style="font-size:2em" data-i18n="nocards">Keine Karten vorhanden</div>
+                <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
               </div>
             </div>
           </div>
@@ -107,26 +109,26 @@
             <hr />
             <hr />
 
-            <button id="learnfile" class="btn btn-default learn btn-block" data-i18n="learnfile" disabled="">Lernkartei</button>
-            <button id="memo" class="btn btn-default memo btn-block" style="margin-top:10px;" data-i18n="memo" disabled="">Memo</button>
+            <button id="learnfile" class="btn btn-default learn btn-block" disabled="">{{_ "learnfile"}}</button>
+            <button id="memo" class="btn btn-default memo btn-block" style="margin-top:10px;" disabled="">{{_ "memo"}}</button>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="well well-sm setWell">
-            <h4 data-i18n="meteor">Meteor</h4>
+            <h4>{{_ "meteor"}}</h4>
 
             <hr />
 
             <div class="meteorBox">
-              <span data-i18n="yourhighscore">Dein Highscore:</span>
+              <span>{{_ "yourhighscore"}}</span>
               <span class="pull-right"><span id="meteor-set-points">0</span>
                 <span> </span>
-                <span data-i18n="points">Punkte</span>
+                <span>{{_ "points"}}</span>
               </span>
             </div>
 
-            <button id="play" class="btn btn-primary play-meteor btn-block" data-i18n="play" disabled="">Spielen</button>
+            <button id="play" class="btn btn-primary play-meteor btn-block" disabled="">{{_ "play"}}</button>
           </div>
         </div>
       </div>
@@ -134,64 +136,65 @@
   </div>
 </template>
 
+
 <template name="cardsetList">
   Das ist die Kartenlistansicht.
 </template>
 
 
 <template name="cardsetForm">
-  <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade in" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title" data-i18n="modal-dialog.editcard">Kartensatz editieren</h4>
+          <h4 class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
         </div>
         <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group setdetails name">
-              <label class="col-md-3 control-label" for="editSetName" data-i18n="modal-dialog.name">Name</label>
+              <label class="col-md-3 control-label" for="editSetName">{{_ "modal-dialog.name"}}</label>
               <div class="col-md-9">
                 <input class="form-control" type="text" id="editSetName">
                 <span id="helpEditSetName" class="help-block name"></span>
               </div>
             </div>
             <div class="form-group setdetails description">
-              <label class="col-md-3 control-label" for="editSetDescription" data-i18n="modal-dialog.description">Beschreibung</label>
+              <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.description"}}</label>
               <div class="col-md-9">
                 <textarea class="form-control" rows="3" id="editSetDescription"></textarea>
                 <span id="helpEditSetDescription" class="help-block description"></span>
               </div>
             </div>
             <div class="form-group setdetails category">
-              <label class="col-md-3 control-label" for="editSetCategory" data-i18n="modal-dialog.category">Kategorie</label>
+              <label class="col-md-3 control-label" for="editSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
                 <input class="form-control" type="text" id="editSetCategory">
                 <span id="helpEditSetCategory" class="help-block category"></span>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="editSetDescription" data-i18n="modal-dialog.visibility">Sichtbar für</label>
+              <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.visibility"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group" data-toggle="buttons">
                   <label id="visibilityoption1" class="btn private btn-default active" style="width:100px">
-                    <input type="radio" name="options" value="private" id="edit_visibility_private"><span data-i18n="modal-dialog.visibilityoption1">mich</span>
+                    <input type="radio" name="options" value="private" id="edit_visibility_private"><span>{{_ "modal-dialog.visibilityoption1"}}</span>
                   </label>
                   <label id="visibilityoption2" class="btn public btn-default" style="width:100px">
-                    <input type="radio" name="options" value="public" id="edit_visibility_public"> <span data-i18n="modal-dialog.visibilityoption2">alle</span>
+                    <input type="radio" name="options" value="public" id="edit_visibility_public"> <span>{{_ "modal-dialog.visibilityoption2"}}</span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.rating">Bewertungen</label>
+              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.rating"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group btn-group-rating" data-toggle="buttons">
                   <label id="ratingoption1" class="btn rating-true btn-default active" style="width:100px">
-                    <input type="radio" name="rating" value="true" id="rating_true"><span data-i18n="modal-dialog.ratingoption1">erlauben</span>
+                    <input type="radio" name="rating" value="true" id="rating_true"><span>{{_ "modal-dialog.ratingoption1"}}</span>
                   </label>
                   <label id="ratingoption2" class="btn rating-false btn-default" style="width:100px">
-                    <input type="radio" name="rating" value="false" id="rating_false"><span data-i18n="modal-dialog.ratingoption2">abschalten</span>
+                    <input type="radio" name="rating" value="false" id="rating_false"><span>{{_ "modal-dialog.ratingoption2"}}</span>
                   </label>
                 </div>
               </div>
@@ -199,11 +202,11 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-i18n="modal-dialog.cancel">Abbrechen</button>
-          <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px" data-loading-text="Lösche Deck..." data-i18n="modal-dialog.delete" data-clickout="5">Kartensatz löschen</button>
-          <button id="cardSetSave" class="btn btn-primary" data-loading-text="Speichere Deck..." data-i18n="modal-dialog.save">Kartensatz speichern</button>
+          <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{_ "modal-dialog.cancel"}}</button>
+          <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px" data-loading-text="Lösche Deck..." data-clickout="5">{{_ "modal-dialog.delete"}}</button>
+          <button id="cardSetSave" class="btn btn-primary" data-loading-text="Speichere Deck..." data-i18n="modal-dialog.save">{{_ "modal-dialog.save"}}</button>
         </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      </div>
+    </div>
+  </div>
 </template>
