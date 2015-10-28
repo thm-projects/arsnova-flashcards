@@ -1,8 +1,3 @@
-//------------------------ ACCESS DATABASE
-
-Cardsets = new Mongo.Collection('cardsets');
-
-
 //------------------------ ROUTING
 
 Router.route('/', function (){
@@ -76,23 +71,19 @@ getUserLanguage = function () {
 };
 
 
-if (Meteor.isClient) {
+//------------------------ LOADING I18N
 
+Meteor.startup(function () {
+  Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
 
-  //------------------------ LOADING I18N
+  Session.set("showLoadingIndicator", true);
 
-  Meteor.startup(function () {
-    Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
-
-    Session.set("showLoadingIndicator", true);
-
-    TAPi18n.setLanguage(getUserLanguage())
-      .done(function () {
-        Session.set("showLoadingIndicator", false);
-      })
-      .fail(function (error_message) {
-        // Handle the situation
-        console.log(error_message);
-      });
-  });
-}
+  TAPi18n.setLanguage(getUserLanguage())
+    .done(function () {
+      Session.set("showLoadingIndicator", false);
+    })
+    .fail(function (error_message) {
+      // Handle the situation
+      console.log(error_message);
+    });
+});
