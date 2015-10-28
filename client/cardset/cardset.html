@@ -166,11 +166,20 @@
                 <span id="helpEditSetDescription" class="help-block description"></span>
               </div>
             </div>
-            <div class="form-group setdetails category">
-              <label class="col-md-3 control-label" for="editSetCategory">{{_ "modal-dialog.category"}}</label>
+            <div class="form-group setdetails categories">
+              <label class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
-                <input class="form-control" type="text" id="editSetCategory" value="{{category}}">
-                <span id="helpEditSetCategory" class="help-block category"></span>
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="newSetCategory">{{category}}</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    {{#each getpool}}
+                      <li class="category" value="{{id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="form-group">

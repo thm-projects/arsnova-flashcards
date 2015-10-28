@@ -29,9 +29,8 @@ Template.cardsets.events({
   },
   'click .category': function (evt, tmpl) {
     var categoryName = $(evt.currentTarget).attr("data");
-    var categoryId = $(evt.currentTarget).val();
     $('#newSetCategory').text(categoryName);
-    tmpl.find('#newSetCategory').value = categoryId;
+    tmpl.find('#newSetCategory').value = categoryName;
   }
 })
 

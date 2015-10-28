@@ -20,5 +20,10 @@ Template.cardset.events({
     Cardsets.remove(this._id);
     Session.set('showCardsetForm', false);
     Router.go('created');;
+  },
+  'click .category': function (evt, tmpl) {
+    var categoryName = $(evt.currentTarget).attr("data");
+    $('#newSetCategory').text(categoryName);
+    tmpl.find('#newSetCategory').value = categoryName;
   }
 })
