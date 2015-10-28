@@ -1,9 +1,9 @@
 <template name="cardsets">
-  {{#if showCardsetForm}}
-    {{> cardsetForm}}
+  {{#if showCardsetsForm}}
+    {{> cardsetsForm}}
   {{/if}}
 
-  {{> sidebar}}
+  {{> sidebarCardsets}}
   {{#if isActiveRoute 'created'}}
     {{> created}}
   {{/if}}
@@ -13,7 +13,7 @@
 </template>
 
 
-<template name="sidebar">
+<template name="sidebarCardsets">
   <div id='set-list-sidebar-region' class="col-md-3">
     <div class="well well-sm sidebar-nav">
       <div class="input-group">
@@ -110,7 +110,7 @@
 </template>
 
 
-<template name="cardsetForm">
+<template name="cardsetsForm">
   <div class="modal fade in" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
