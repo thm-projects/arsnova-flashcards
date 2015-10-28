@@ -36,8 +36,9 @@ Router.route('/learned', {
   template: 'cardsets'
 });
 
-Router.route('/cardset/:_id', {
+Router.route('/created/:_id', {
   name: 'cardset',
+  template: 'cardset',
   data: function() {
     var currentCardset = this.params._id;
     return Cardsets.findOne({_id: currentCardset});

@@ -84,7 +84,7 @@
 
 <template name="cardsetRow">
   <tr class="cardsetRow">
-    <td><a href="/cardset/{{_id}}">{{name}}</a></td>
+    <td><a href="/created/{{_id}}">{{name}}</a></td>
     <td>{{category}}</td>
     <td>{{description}}</td>
   </tr>
@@ -116,53 +116,53 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title" data-i18n="modal-dialog.newcarddeck">Neuen Kartensatz anlegen</h4>
+          <h4 class="modal-title">{{_ "modal-dialog.newcarddeck"}}</h4>
         </div>
         <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group setdetails name">
-              <label class="col-md-3 control-label" for="newSetName" data-i18n="modal-dialog.name">Name</label>
+              <label class="col-md-3 control-label" for="newSetName">{{_ "modal-dialog.name"}}</label>
               <div class="col-md-9">
-                <input class="form-control" type="text" id="newSetName" placeholder="Name" data-i18n="[placeholder]modal-dialog.nameplaceholder" value="{{cardset.name}}">
+                <input class="form-control" type="text" id="newSetName" placeholder="{{_ "modal-dialog.nameplaceholder"}}" value="{{cardset.name}}">
                 <span id="helpNewSetName" class="help-block name"></span>
               </div>
             </div>
             <div class="form-group setdetails description">
-              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.description">Beschreibung</label>
+              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.description"}}</label>
               <div class="col-md-9">
-                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="Beschreibung" data-i18n="[placeholder]modal-dialog.descriptionplaceholder" value="{{cardset.description}}"></textarea>
+                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="{{_ "modal-dialog.descriptionplaceholder"}}" value="{{cardset.description}}"></textarea>
                 <span id="helpNewSetDescription" class="help-block description"></span>
               </div>
             </div>
             <div class="form-group setdetails category">
-              <label class="col-md-3 control-label" for="newSetCategory" data-i18n="modal-dialog.category">Kategorie</label>
+              <label class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
-                <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input class="form-control tt-query" type="text" id="newSetCategory" placeholder="Informatik, Jura, Wirtschaft, ..." data-i18n="[placeholder]modal-dialog.categoryplaceholder" value="{{cardset.category}}" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
+                <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input class="form-control tt-query" type="text" id="newSetCategory" placeholder="{{_ "modal-dialog.categoryplaceholder"}}" value="{{cardset.category}}" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
                 <span id="helpNewSetCategory" class="help-block category"></span>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.visibility">Sichtbar für</label>
+              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.visibility"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group" data-toggle="buttons">
                   <label id="newCardSetVisibilityoption1" class="btn btn-default active" style="width:100px">
-                    <input type="radio" name="options" value="private" id="visibility_private"><div data-i18n="modal-dialog.visibilityoption1">mich</div>
+                    <input type="radio" name="options" value="private" id="visibility_private"><div>{{_ "modal-dialog.visibilityoption1"}}</div>
                   </label>
                   <label id="newCardSetVisibilityoption2" class="btn btn-default" style="width:100px">
-                    <input type="radio" name="options" value="public" id="visibility_public"><div data-i18n="modal-dialog.visibilityoption2">alle</div>
+                    <input type="radio" name="options" value="public" id="visibility_public"><div>{{_ "modal-dialog.visibilityoption2"}}</div>
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription" data-i18n="modal-dialog.rating">Bewertungen</label>
+              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.rating"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group btn-group-rating" data-toggle="buttons">
                   <label id="newCardSetRatingoption1" class="btn btn-default active" style="width:100px">
-                    <input type="radio" name="rating" value="true" id="rating_true"><div data-i18n="modal-dialog.ratingoption1">erlauben</div>
+                    <input type="radio" name="rating" value="true" id="rating_true"><div>{{_ "modal-dialog.ratingoption1"}}</div>
                   </label>
                   <label id="newCardSetRatingoption2" class="btn btn-default" style="width:100px">
-                    <input type="radio" name="rating" value="false" id="rating_false"><div data-i18n="modal-dialog.ratingoption2">abschalten</div>
+                    <input type="radio" name="rating" value="false" id="rating_false"><div>{{_ "modal-dialog.ratingoption2"}}</div>
                   </label>
                 </div>
               </div>
@@ -170,8 +170,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-default cancel" data-dismiss="modal" aria-hidden="true" data-i18n="modal-dialog.cancel">Abbrechen</button>
-          <button class="btn btn-primary save" data-i18n="modal-dialog.createcarddeck">Kartensatz anlegen</button>
+          <button class="btn btn-default cancel" data-dismiss="modal" aria-hidden="true">{{_ "modal-dialog.cancel"}}</button>
+          <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
