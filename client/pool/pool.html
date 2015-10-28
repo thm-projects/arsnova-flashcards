@@ -1,3 +1,11 @@
 <template name="pool">
-  Das ist die Pool Ansicht.
+  <div class="row">
+    <div class="col-md-12" id="pool-category-region">
+      <div class="list-group">
+        {{#each getpool}}
+          <a class="list-group-item" href="pool/{{name}}"><span class="badge">{{count}}</span> {{name}}</a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </template>

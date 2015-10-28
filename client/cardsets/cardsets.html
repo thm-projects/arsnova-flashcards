@@ -26,22 +26,11 @@
       <hr />
 
       <div class="input-group">
-        <form style="width: 143px; float: left;" method="post" action="/import" enctype="multipart/form-data">
-          <span class="input-group" style="width: 143px;">
-            <span style="position:relative; width: 103px;">
-              <input id="file" style="width: 103px;" class="form-control" placeholder="{{_ "upload-form.import"}}">
-              <input id="fileInput" type="file" name="file" style="opacity:0; z-index:1; width: 103px; height: 34px; cursor: pointer;">
-            </span>
-            <span class="input-group-btn">
-              <button id="fileSubmit" type="submit" class="btn btn-primary disabled"><i class="glyphicon glyphicon-cloud-upload"></i></button>
-            </span>
-          </span>
-        </form>
-        <div style="float: right; margin-left: 9px;">
-          <button type="button" id="fileHelp" class="btn btn-default" data-toggle="popover" data-html="true" data-trigger="click" data-container="body" data-content="<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>" data-placement="right" data-i18n="[data-content]upload-form.popover-content" data-original-title="" title="">
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </button>
-        </div>
+        <input class="form-control" type="text" id="file" placeholder="{{_ "upload-form.import"}}">
+        <span class="input-group-btn">
+          <button id="fileHelp" class="btn btn-default" data-toggle="popover" data-html="true" data-trigger="click" data-container="body" data-content="{{_ "upload-form.popover-content"}}"><i class="glyphicon glyphicon-question-sign"></i></button>
+          <button id="fileSubmit" class="btn btn-primary disabled" type="submit"><i class="glyphicon glyphicon-cloud-upload"></i></button>
+        </span>
       </div>
 
       <hr />
@@ -69,9 +58,9 @@
     <table class="table table-bordered table-striped table-hover">
       <thead class="set-list">
         <tr>
-          <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
-          <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
-          <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
+          <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a></th>
+          <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a></th>
+          <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a></th>
         </tr>
       </thead>
       <tbody id="cardSetView">
@@ -106,9 +95,9 @@
   <div id="set-list-region" class="col-md-9"><table class="table table-bordered table-striped table-hover">
     <thead class="set-list">
       <tr>
-        <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="javascript:void(0)">⇑</a></th>
-        <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="javascript:void(0)">⇑</a></th>
-        <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="javascript:void(0)">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="javascript:void(0)">⇑</a></th>
+        <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a></th>
+        <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a></th>
+        <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a></th>
       </tr>
     </thead>
     <tbody id="cardSetView"><tr class="empty-list">
