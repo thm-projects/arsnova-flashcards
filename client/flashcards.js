@@ -1,6 +1,6 @@
 //------------------------ ROUTING
 
-Router.route('/', function (){
+Router.route('/', function () {
   this.redirect('home');
 });
 
@@ -36,8 +36,25 @@ Router.route('/learned', {
   template: 'cardsets'
 });
 
-Router.route('/created/:_id', {
-  name: 'cardset',
+Router.route('/cardsetdetails', function() {
+  this.redirect('created');
+});
+
+Router.route('/cardsetdetails/:_id', {
+  name: 'cardsetdetailsid',
+  template: 'cardset',
+  data: function() {
+    var currentCardset = this.params._id;
+    return Cardsets.findOne({_id: currentCardset});
+  }
+});
+
+Router.route('/cardsetlist', function() {
+  this.redirect('created');
+});
+
+Router.route('/cardsetlist/:_id', {
+  name: 'cardsetlistid',
   template: 'cardset',
   data: function() {
     var currentCardset = this.params._id;
