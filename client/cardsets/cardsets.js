@@ -1,20 +1,21 @@
 Session.setDefault('showCardsetForm', false);
 
-Template.cardsets.events({
-    'click .saveSet': function(evt, tmpl){
-      Session.set('showCardsetForm', true);
-    }
+Template.cardsets.helpers ({
+  showCardsetForm: function() {
+    return Session.get('showCardsetForm');
+  }
 })
 
-Template.cardsets.showCardsetForm = function(){
-  return Session.get('showCardsetForm');
-}
+Template.created.helpers ({
+  cardsetList: function() {
+    return Cardsets.find();
+  }
+})
 
-Template.created.cardsetList = function() {
-  return Cardsets.find();
-}
-
-Template.cardsetForm.events({
+Template.cardsets.events({
+  'click .saveSet': function(evt, tmpl){
+    Session.set('showCardsetForm', true);
+  },
   'click .save': function(evt, tmpl){
     var name = tmpl.find('#newSetName').value;
     var category = tmpl.find('#newSetCategory').value;
