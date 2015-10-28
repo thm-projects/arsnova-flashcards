@@ -36,11 +36,11 @@ Router.route('/learned', {
   template: 'cardsets'
 });
 
-Router.route('/cardsetdetails', function() {
+Router.route('/cardset', function() {
   this.redirect('created');
 });
 
-Router.route('/cardsetdetails/:_id', {
+Router.route('/cardset/:_id', {
   name: 'cardsetdetailsid',
   template: 'cardset',
   data: function() {

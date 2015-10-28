@@ -20,7 +20,8 @@ Template.cardsets.events({
     var name = tmpl.find('#newSetName').value;
     var category = tmpl.find('#newSetCategory').value;
     var description = tmpl.find('#newSetDescription').value;
-    addCardset(name, category, description);
+    var date = moment().locale(getUserLanguage()).format('LLL');
+    addCardset(name, category, description, date);
     Session.set('showCardsetsForm', false);
   },
   'click .cancel': function(evt, tmpl){
@@ -28,6 +29,6 @@ Template.cardsets.events({
   }
 })
 
-var addCardset = function(name, category, description) {
-  Cardsets.insert({name: name, category: category, description: description});
+var addCardset = function(name, category, description, date) {
+  Cardsets.insert({name: name, category: category, description: description, date: date});
 }
