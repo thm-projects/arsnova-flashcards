@@ -13,7 +13,7 @@
                   {{_ "navbar-collapse.carddecks"}}
                 </a>
               </li>
-              <li id="navbar-pool" class="{{#if isActiveRoute 'pool'}}active{{/if}}">
+              <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
                 <a href="{{pathFor route='pool'}}" id="pool">
                   {{_ "navbar-collapse.pool"}}
                 </a>
