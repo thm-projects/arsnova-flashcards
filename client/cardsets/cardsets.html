@@ -92,7 +92,7 @@
 <template name="cardsetRow">
   <tr class="cardsetRow">
     <td><a href="/cardset/{{_id}}">{{name}}</a></td>
-    <td>{{category}}</td>
+    <td>{{getCategory this.category }}</td>
     <td>{{description}}</td>
   </tr>
 </template>
@@ -161,9 +161,9 @@
                     <span id="newSetCategory">{{_ "modal-dialog.categoryplaceholder"}}</span>
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu">
                     {{#each getCategories}}
-                      <li class="category" value="{{id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
                     {{/each}}
                   </ul>
                 </div>

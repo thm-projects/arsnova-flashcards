@@ -11,4 +11,28 @@
 
 <template name="category">
   <h3>{{name}}</h3>
+  <div class="col-md-12" id="pool-category-region">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>
+            <span>{{_ "pool.name"}}</span>
+          </th>
+          <th>
+            <span>{{_ "pool.description"}}</span>
+          </th>
+          <th>
+            <span>{{_ "pool.created"}}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="cardSetsPool">
+        <tr>
+          <td><a href="" class="pool-category-set-details-link"></a></td>
+          <td></td>
+          <td><a href="" class="pool-category-set-owner-link"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
