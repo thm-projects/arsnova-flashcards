@@ -64,18 +64,13 @@
         </tr>
       </thead>
       <tbody id="cardSetView">
-      <!--  <tr class="empty-list">
-        <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
-          <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
-          <br>
-          <a class="btn-newSet btn btn-primary btn-s">
-            <span id="setListEmpty">{{_ "set-list-empty.newset"}}</span>
-          </a>
-        </td>
-      </tr>-->
-        {{#each cardsetList}}
-          {{> cardsetRow}}
-        {{/each}}
+        {{#if cardsetList.count}}
+          {{#each cardsetList}}
+            {{> cardsetRow}}
+          {{/each}}
+        {{else}}
+          {{> cardsetEmpty}}
+        {{/if}}
       </tbody>
     </table>
   </div>
@@ -90,6 +85,18 @@
   </tr>
 </template>
 
+
+<template name="cardsetEmpty">
+  <tr class="empty-list">
+    <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
+      <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
+      <br>
+      <a class="btn-newSet btn btn-primary btn-s">
+        <span id="setListEmpty">{{_ "set-list-empty.newset"}}</span>
+      </a>
+    </td>
+  </tr>
+</template>
 
 <template name="learned">
   <div id="set-list-region" class="col-md-9"><table class="table table-bordered table-striped table-hover">
