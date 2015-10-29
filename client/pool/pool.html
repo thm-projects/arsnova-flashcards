@@ -15,23 +15,28 @@
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
-          <th>
-            <span>{{_ "pool.name"}}</span>
-          </th>
-          <th>
-            <span>{{_ "pool.description"}}</span>
-          </th>
-          <th>
-            <span>{{_ "pool.created"}}</span>
-          </th>
+          <th><span>{{_ "pool.name"}}</span></th>
+          <th><span>{{_ "pool.description"}}</span></th>
+          <th><span>{{_ "pool.created"}}</span></th>
         </tr>
       </thead>
       <tbody id="cardSetsPool">
-        <tr>
-          <td><a href="" class="pool-category-set-details-link"></a></td>
-          <td></td>
-          <td><a href="" class="pool-category-set-owner-link"></a></td>
-        </tr>
+        {{#if getDecks.count}}
+          {{#each getDecks}}
+            <tr>
+              <td><a href="" class="pool-category-set-details-link">{{name}}</a></td>
+              <td></td>
+              <td><a href="" class="pool-category-set-owner-link"></a>3</td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr class="empty-list">
+            <td align="center" colspan="3" class="set-list-empty">
+              <span class="emptyTextList">{{_ "nocards"}}</span>
+              <br>
+            </td>
+          </tr>
+        {{/if}}
       </tbody>
     </table>
   </div>

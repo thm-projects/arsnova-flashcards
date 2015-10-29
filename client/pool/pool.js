@@ -7,3 +7,9 @@ Template.registerHelper("getCategory", function(value) {
   if (id.length == 1) id = "0" + id;
   return Categories.findOne(id).name;
 });
+
+Template.category.helpers ({
+  getDecks: function() {
+    return Cardsets.find({ category : this._id });
+  }
+})
