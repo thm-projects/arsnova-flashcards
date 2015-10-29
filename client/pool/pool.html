@@ -1,9 +1,14 @@
 <template name="pool">
   <div class="col-md-12" id="pool-category-region">
     <div class="list-group">
-      {{#each getpool}}
-        <a class="list-group-item" href="pool/{{name}}"><span class="badge">0</span> {{name}}</a>
+      {{#each getCategories}}
+      <a class="list-group-item" href="pool/{{_id}}">
+        <span class="badge">0</span> {{name}}</a>
       {{/each}}
     </div>
   </div>
+</template>
+
+<template name="category">
+  <h3>{{name}}</h3>
 </template>

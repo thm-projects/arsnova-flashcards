@@ -1,6 +1,7 @@
 {
   "name": "flashcards",
   "scripts": {
-    "start": "meteor --settings settings-development.json"
+    "start": "meteor --settings settings-development.json",
+    "init": "mongoimport --db meteor --collection categories --type json --file 'i18n/categories.json' -h localhost --port 3001"
   }
 }

@@ -66,6 +66,15 @@ Router.route('/pool', {
   name: 'pool'
 });
 
+Router.route('/pool/:_id', {
+  name: 'category',
+  template: 'category',
+  data: function() {
+    var currentPool = this.params._id;
+    return Categories.findOne({_id: currentPool});
+  }
+});
+
 Router.route('/profile', {
   name: 'userprofile'
 });
