@@ -58,9 +58,21 @@
     <table class="table table-bordered table-striped table-hover">
       <thead class="set-list">
         <tr>
-          <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a></th>
-          <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a></th>
-          <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a></th>
+          <th>
+            <span>{{_ "set-list.name"}}</span>
+            <a class="namedown" href="#">⇓</a>
+            <a class="nameup" href="#">⇑</a>
+          </th>
+          <th width="25%">
+            <span>{{_ "set-list.category"}}</span>
+            <a class="categorydown" href="#">⇓</a>
+            <a class="categoryup" href="#">⇑</a>
+          </th>
+          <th width="40%">
+            <span>{{_ "set-list.description"}}</span>
+            <a class="descriptiondown" href="#">⇓</a>
+            <a class="descriptionup" href="#">⇑</a>
+          </th>
         </tr>
       </thead>
       <tbody id="cardSetView">

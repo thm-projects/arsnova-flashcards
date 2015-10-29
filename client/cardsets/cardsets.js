@@ -1,4 +1,5 @@
 Session.setDefault('showCardsetsForm', false);
+Session.setDefault('cardsetSort', {name: 1});
 
 Template.cardsets.helpers ({
   showCardsetsForm: function() {
@@ -8,12 +9,12 @@ Template.cardsets.helpers ({
 
 Template.created.helpers ({
   cardsetList: function() {
-    return Cardsets.find();
+    return Cardsets.find({}, {sort: Session.get('cardsetSort')});
   }
 })
 
 Template.cardsets.events({
-  'click .saveSet': function(evt, tmpl){
+  'click .saveSet, click #setListEmpty': function(evt, tmpl){
     Session.set('showCardsetsForm', true);
   },
   'click .save': function(evt, tmpl){
