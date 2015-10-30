@@ -1,5 +1,13 @@
-html,
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
-  height: 100%;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
   background-image: url('/img/light_wool.png');
-}/* CSS declarations go here */
+}
+
+body > .container {
+    padding: 60px 15px 0;
+}

@@ -1,49 +1,67 @@
 <template name="main">
-  <div id="wrap">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div id="navbar-header" class="navbar-header">
-            <a class="navbar-brand" href="{{pathFor route='home'}}"><img src="/img/cardlogo_welcome.png" alt="THMcards Logo" /></a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul id="navbar" class="nav navbar-nav">
-              <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid'}}active{{/if}}">
-                <a href="{{pathFor route='home'}}" id="cardsets">
-                  {{_ "navbar-collapse.carddecks"}}
-                </a>
-              </li>
-              <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
-                <a href="{{pathFor route='pool'}}" id="pool">
-                  {{_ "navbar-collapse.pool"}}
-                </a>
-              </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><input type="text" class="form-control" placeholder="{{_ "navbar-collapse.search"}}" id="input-search"/></li>
-              <li class="dropdown {{#if isActiveRoute 'userprofile'}}active{{/if}}">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span id="usr-name">{{usernameFromId}}</span>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{pathFor route='userprofile'}}" id="usr-profile">{{_ "navbar-collapse.myprofile"}}</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#" id="logout" style="color:#D9534F">{{_ "navbar-collapse.logout"}}</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{pathFor route='home'}}">
+            <img src="/img/cardlogo_welcome.png" alt="THMcards Logo" />
+          </a>
+
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul id="navbar" class="nav navbar-nav">
+            <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid'}}active{{/if}}">
+              <a href="{{pathFor route='home'}}" id="cardsets">
+                {{_ "navbar-collapse.carddecks"}}
+              </a>
+            </li>
+            <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
+              <a href="{{pathFor route='pool'}}" id="pool">
+                {{_ "navbar-collapse.pool"}}
+              </a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left hidden-sm" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="{{_ "navbar-collapse.search"}}" id="input-search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown {{#if isActiveRoute 'userprofile'}}active{{/if}}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span id="usr-name">{{usernameFromId}}</span>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{{pathFor route='userprofile'}}" id="usr-profile">{{_ "navbar-collapse.myprofile"}}</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="logout" style="color:#D9534F">{{_ "navbar-collapse.logout"}}</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
+      <!-- /.container-fluid -->
     </div>
-    <div id="main" class="container">
-      <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-      <div class="row">
-        {{> yield}}
-      </div>
+  </nav>
+  <div id="main" class="container">
+    <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
+    <div class="row">
+      {{> yield}}
     </div>
   </div>
+
 
   <div id="footer" class="footer">
     <div class="container">
