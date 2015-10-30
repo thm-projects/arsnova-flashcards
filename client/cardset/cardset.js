@@ -17,7 +17,7 @@ Template.cardset.events({
     Session.set('showCardsetForm', false);
   },
   'click #cardSetDelete': function(evt, tmpl){
-    Cardsets.remove(this._id);
+    Meteor.call("deleteCardset", this._id);
     Session.set('showCardsetForm', false);
     Router.go('created');;
   },

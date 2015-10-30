@@ -5,13 +5,13 @@ Template.cardsets.helpers ({
   showCardsetsForm: function() {
     return Session.get('showCardsetsForm');
   }
-})
+});
 
 Template.created.helpers ({
   cardsetList: function() {
     return Cardsets.find({}, {sort: Session.get('cardsetSort')});
   }
-})
+});
 
 Template.cardsets.events({
   'click .saveSet, click #setListEmpty': function(evt, tmpl){
@@ -22,7 +22,7 @@ Template.cardsets.events({
     var category = tmpl.find('#newSetCategory').value;
     var description = tmpl.find('#newSetDescription').value;
     var date = moment().locale(getUserLanguage()).format('LL');
-    addCardset(name, category, description, date);
+    Meteor.call("addCardset", name, category, description, date);
     Session.set('showCardsetsForm', false);
   },
   'click .cancel': function(evt, tmpl){
@@ -34,8 +34,4 @@ Template.cardsets.events({
     $('#newSetCategory').text(categoryName);
     tmpl.find('#newSetCategory').value = categoryId;
   }
-})
-
-var addCardset = function(name, category, description, date) {
-  Cardsets.insert({name: name, category: category, description: description, date: date});
-}
+});
