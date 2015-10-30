@@ -1,3 +1,5 @@
+Meteor.subscribe("cardsets");
+
 Session.setDefault('showCardsetForm', false);
 
 Template.cardset.helpers ({

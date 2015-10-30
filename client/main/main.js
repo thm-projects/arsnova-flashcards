@@ -9,21 +9,10 @@ Template.main.events({
 });
 
 
-//------------------------ DISPLAY USER NAME
+//------------------------ RETURNS USERNAME
 
-// Returns username
-Template.registerHelper("usernameFromId", function () {
-    var service = _.keys(Meteor.user().services)[0];
-    // Google and Facebook
-    if (service == 'google' || service == 'facebook') {
-      return Meteor.user().services[service].name;
-    }
-    // Twitter
-    else if (service == 'twitter') {
-      return Meteor.user().services[service].screenName;
-    }
-    // CAS
-    else {
-      return Meteor.user().profile.name;
-    }
+Template.main.helpers ({
+  getUsername: function(){
+    return Meteor.user().profile.name;
+  }
 });

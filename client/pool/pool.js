@@ -1,3 +1,6 @@
+Meteor.subscribe("categories");
+Meteor.subscribe("cardsets");
+
 Template.registerHelper("getCategories", function() {
   return Categories.find({}, {sort: {name: 1}});
 });

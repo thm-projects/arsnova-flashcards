@@ -1,3 +1,5 @@
+Meteor.subscribe("cardsets");
+
 Session.setDefault('showCardsetsForm', false);
 Session.setDefault('cardsetSort', {name: 1});
 
