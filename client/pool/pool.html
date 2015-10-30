@@ -3,14 +3,16 @@
     <div class="list-group">
       {{#each getCategories}}
       <a class="list-group-item" href="pool/{{_id}}">
-        <span class="badge">0</span> {{name}}</a>
+        <span class="badge">{{getCount this._id}}</span> {{name}}</a>
       {{/each}}
     </div>
   </div>
 </template>
 
 <template name="category">
-  <h3>{{name}}</h3>
+  <div class="col-md-12">
+    <h4>{{name}}</h4>
+  </div>
   <div class="col-md-12" id="pool-category-region">
     <table class="table table-bordered table-striped table-hover">
       <thead>
@@ -25,8 +27,8 @@
           {{#each getDecks}}
             <tr>
               <td><a href="" class="pool-category-set-details-link">{{name}}</a></td>
-              <td></td>
-              <td><a href="" class="pool-category-set-owner-link"></a>3</td>
+              <td>{{description}}</td>
+              <td><a href="" class="pool-category-set-owner-link"></a></td>
             </tr>
           {{/each}}
         {{else}}
