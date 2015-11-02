@@ -52,6 +52,7 @@
 
     <div id="set-details-rating-region"></div>
 
+    {{#if isOwner}}
     <div id="set-details-controls-region">
       <div class="well well-sm sidebar-nav">
         <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
@@ -59,6 +60,7 @@
         <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
       </div>
     </div>
+    {{/if}}
   </div>
 </template>
 

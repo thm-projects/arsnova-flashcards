@@ -33,3 +33,9 @@ Template.cardset.events({
     tmpl.find('#newSetCategory').value = categoryId;
   }
 });
+
+Template.sidebarCardset.helpers({
+  'isOwner': function() {
+    return this.owner === Meteor.userId();
+  }
+});
