@@ -2,7 +2,11 @@ Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
 Template.registerHelper("getCategories", function() {
-  return Categories.find({}, {sort: {name: 1}});
+  return Categories.find({}, {
+    sort: {
+      name: 1
+    }
+  });
 });
 
 Template.registerHelper("getCategory", function(value) {
@@ -11,15 +15,21 @@ Template.registerHelper("getCategory", function(value) {
   return Categories.findOne(id).name;
 });
 
-Template.category.helpers ({
-  getDecks: function(){
+Template.category.helpers({
+  getDecks: function() {
     var id = parseInt(this._id);
-    return Cardsets.find({category : id});
+    return Cardsets.find({
+      category: id,
+      visible: true
+    });
   }
 });
 
-Template.pool.helpers ({
-  getCount: function(id){
-    return Cardsets.find({category : parseInt(id)}).count();
+Template.pool.helpers({
+  getCount: function(id) {
+    return Cardsets.find({
+      category: parseInt(id),
+      visible: true
+    }).count();
   }
 });
