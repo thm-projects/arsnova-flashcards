@@ -177,13 +177,13 @@
               <label class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span id="newSetCategory">{{getCategory this.category }}</span>
+                  <button class="btn btn-default dropdown-toggle" type="button" id="editSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="editSetCategory">{{getCategory this.category }}</span>
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     {{#each getCategories}}
-                      <li class="category" value="{{id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
                     {{/each}}
                   </ul>
                 </div>
@@ -192,12 +192,12 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.visibility"}}</label>
               <div class="controls col-md-9">
-                <div class="btn-group" data-toggle="buttons">
+                <div id="editCardSetVisibility" class="btn-group" data-toggle="buttons">
                   <label id="visibilityoption1" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="private" id="edit_visibility_private"><span>{{_ "modal-dialog.visibilityoption1"}}</span>
+                    <input type="radio" name="options" value="false" id="edit_visibility_private"><span>{{_ "modal-dialog.visibilityoption1"}}</span>
                   </label>
                   <label id="visibilityoption2" class="btn public btn-default {{#if visible true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="public" id="edit_visibility_public"> <span>{{_ "modal-dialog.visibilityoption2"}}</span>
+                    <input type="radio" name="options" value="true" id="edit_visibility_public"> <span>{{_ "modal-dialog.visibilityoption2"}}</span>
                   </label>
                 </div>
               </div>
@@ -205,7 +205,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.rating"}}</label>
               <div class="controls col-md-9">
-                <div class="btn-group btn-group-rating" data-toggle="buttons">
+                <div id="editCardSetRating" class="btn-group btn-group-rating" data-toggle="buttons">
                   <label id="ratingoption1" class="btn rating-true btn-default {{#if ratings true}}active{{/if}}" style="width:100px">
                     <input type="radio" name="rating" value="true" id="rating_true"><span>{{_ "modal-dialog.ratingoption1"}}</span>
                   </label>

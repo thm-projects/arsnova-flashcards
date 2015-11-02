@@ -16,6 +16,13 @@ Template.cardset.events({
     Session.set('showCardsetForm', true);
   },
   'click #cardSetSave': function(evt, tmpl) {
+    var name = tmpl.find('#editSetName').value;
+    var category = tmpl.find('#editSetCategory').value;
+    var description = tmpl.find('#editSetDescription').value;
+    var date = moment().locale(getUserLanguage()).format('LL');
+    var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
+    var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
+    Meteor.call("updateCardset", this._id, name, category, description, date, visible, ratings);
     Session.set('showCardsetForm', false);
   },
   'click #cardSetCancel': function(evt, tmpl) {
@@ -29,8 +36,8 @@ Template.cardset.events({
   'click .category': function(evt, tmpl) {
     var categoryName = $(evt.currentTarget).attr("data");
     var categoryId = $(evt.currentTarget).val();
-    $('#newSetCategory').text(categoryName);
-    tmpl.find('#newSetCategory').value = categoryId;
+    $('#editSetCategory').text(categoryName);
+    tmpl.find('#editSetCategory').value = categoryId;
   }
 });
 
