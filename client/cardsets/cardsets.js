@@ -31,7 +31,7 @@ Template.cardsets.events({
     var description = tmpl.find('#newSetDescription').value;
     var date = moment().locale(getUserLanguage()).format('LL');
     var visible = ('true' === tmpl.find('#newCardSetVisibility > .active > input').value);
-    var ratings = true; //ToDo
+    var ratings = ('true' === tmpl.find('#newCardSetRating > .active > input').value);
     Meteor.call("addCardset", name, category, description, date, visible, ratings);
     Session.set('showCardsetsForm', false);
   },

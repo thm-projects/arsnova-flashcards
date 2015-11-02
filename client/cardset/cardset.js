@@ -39,3 +39,12 @@ Template.sidebarCardset.helpers({
     return this.owner === Meteor.userId();
   }
 });
+
+Template.cardsetForm.helpers({
+  'visible': function(visible) {
+    return Cardsets.findOne(this._id).visible === visible;
+  },
+  'ratings': function(ratings) {
+    return Cardsets.findOne(this._id).ratings === ratings;
+  }
+});

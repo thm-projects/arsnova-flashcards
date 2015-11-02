@@ -193,10 +193,10 @@
               <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.visibility"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group" data-toggle="buttons">
-                  <label id="visibilityoption1" class="btn private btn-default active" style="width:100px">
+                  <label id="visibilityoption1" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
                     <input type="radio" name="options" value="private" id="edit_visibility_private"><span>{{_ "modal-dialog.visibilityoption1"}}</span>
                   </label>
-                  <label id="visibilityoption2" class="btn public btn-default" style="width:100px">
+                  <label id="visibilityoption2" class="btn public btn-default {{#if visible true}}active{{/if}}" style="width:100px">
                     <input type="radio" name="options" value="public" id="edit_visibility_public"> <span>{{_ "modal-dialog.visibilityoption2"}}</span>
                   </label>
                 </div>
@@ -206,10 +206,10 @@
               <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.rating"}}</label>
               <div class="controls col-md-9">
                 <div class="btn-group btn-group-rating" data-toggle="buttons">
-                  <label id="ratingoption1" class="btn rating-true btn-default active" style="width:100px">
+                  <label id="ratingoption1" class="btn rating-true btn-default {{#if ratings true}}active{{/if}}" style="width:100px">
                     <input type="radio" name="rating" value="true" id="rating_true"><span>{{_ "modal-dialog.ratingoption1"}}</span>
                   </label>
-                  <label id="ratingoption2" class="btn rating-false btn-default" style="width:100px">
+                  <label id="ratingoption2" class="btn rating-false btn-default {{#if ratings false}}active{{/if}}" style="width:100px">
                     <input type="radio" name="rating" value="false" id="rating_false"><span>{{_ "modal-dialog.ratingoption2"}}</span>
                   </label>
                 </div>
