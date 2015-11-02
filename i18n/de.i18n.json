@@ -237,6 +237,7 @@
     "description": "Beschreibung"
   },
 
+  "permission":"Zugriff verweigert",
   "nocards":"Keine Karten vorhanden",
   "learn":"Lernen",
   "learnfile":"Lernkartei",

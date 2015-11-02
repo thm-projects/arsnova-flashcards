@@ -5,6 +5,9 @@ Session.setDefault('showCardsetForm', false);
 Template.cardset.helpers({
   'showCardsetForm': function() {
     return Session.get('showCardsetForm');
+  },
+  'hasPermission': function() {
+    return this.owner === Meteor.userId() || this.visible === true;
   }
 });
 

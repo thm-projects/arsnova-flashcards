@@ -237,6 +237,7 @@
     "description": "Rating"
   },
 
+  "permission":"Permission denied",
   "nocards":"No cards available",
   "learn":"Learn",
   "learnfile":"Leitner's learning box",

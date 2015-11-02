@@ -1,14 +1,18 @@
 <template name="cardset">
-  {{#if showCardsetForm}}
-    {{> cardsetForm}}
-  {{/if}}
+  {{#if hasPermission}}
+    {{#if showCardsetForm}}
+      {{> cardsetForm}}
+    {{/if}}
 
-  {{> sidebarCardset}}
-  {{#if isActiveRoute 'cardsetdetailsid'}}
-    {{> cardsetDetails}}
-  {{/if}}
-  {{#if isActiveRoute 'cardsetlistid'}}
-    {{> cardsetList}}
+    {{> sidebarCardset}}
+    {{#if isActiveRoute 'cardsetdetailsid'}}
+      {{> cardsetDetails}}
+    {{/if}}
+    {{#if isActiveRoute 'cardsetlistid'}}
+      {{> cardsetList}}
+    {{/if}}
+  {{else}}
+    <h4>{{_ "permission"}}</h4>
   {{/if}}
 </template>
 
