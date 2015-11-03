@@ -17,6 +17,10 @@ Template.cardset.events({
   },
   'click #cardSetSave': function(evt, tmpl) {
     var name = tmpl.find('#editSetName').value;
+
+    if (tmpl.find('#editSetCategory').value === undefined){
+      tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+    }
     var category = tmpl.find('#editSetCategory').value;
     var description = tmpl.find('#editSetDescription').value;
     var date = moment().locale(getUserLanguage()).format('LL');
