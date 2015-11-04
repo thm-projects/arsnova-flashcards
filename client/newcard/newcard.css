@@ -1,0 +1,13 @@
+.row .cardtext .btn-group {
+  margin-bottom: 15px;
+}
+.newcardtextarea {
+  margin-bottom: 15px;
+  resize: vertical;
+}
+.newCardButtons {
+  width: 100%;
+}
+.newCardButton {
+  width: 50%;
+}

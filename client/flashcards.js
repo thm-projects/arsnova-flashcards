@@ -62,6 +62,10 @@ Router.route('/cardsetlist/:_id', {
   }
 });
 
+Router.route('/cardset/:_id/newcard', {
+  name: 'newcard'
+});
+
 Router.route('/pool', {
   name: 'pool'
 });

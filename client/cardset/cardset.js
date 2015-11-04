@@ -18,7 +18,7 @@ Template.cardset.events({
   'click #cardSetSave': function(evt, tmpl) {
     var name = tmpl.find('#editSetName').value;
 
-    if (tmpl.find('#editSetCategory').value === undefined){
+    if (tmpl.find('#editSetCategory').value === undefined) {
       tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
     }
     var category = tmpl.find('#editSetCategory').value;
@@ -48,6 +48,12 @@ Template.cardset.events({
 Template.sidebarCardset.helpers({
   'isOwner': function() {
     return this.owner === Meteor.userId();
+  }
+});
+
+Template.sidebarCardset.events({
+  "click #set-details-controls-btn-newCard": function() {
+    Router.go('newcard', {_id: this._id});
   }
 });
 
