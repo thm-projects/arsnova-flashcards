@@ -4,9 +4,10 @@ Template.newcard.events({
       _id: this._id
     });
   },
-  "click #cardNewCard": function() {
-    // ToDo: Save before close
-    //#fronttext > newcardtextarea
+  "click #cardNewCard": function(evt, tmpl) {
+    front = $("#mdText1").html();
+    back = $('#mdText2').html();
+    Meteor.call("addCard", this._id, front, back);
     Router.go('cardsetdetailsid', {
       _id: this._id
     });
@@ -28,10 +29,11 @@ Template.editor.onRendered(function() {
 });
 
 Template.editor.events({
-  'keyup #editor-wrap-1 > .CodeMirror': function(event, template) {
-    var text = template.editor.getValue();
+  'keyup #editor-wrap-1 > .CodeMirror': function(evt, tmpl) {
+    var text = tmpl.editor.getValue();
 
     if (text !== "") {
+      $("#mdText1").html(text);
       Meteor.promise("convertMarkdown", text)
         .then(function(html) {
           $("#preview1").html(html);
@@ -41,10 +43,11 @@ Template.editor.events({
         });
     }
   },
-  'keyup #editor-wrap-2 > .CodeMirror': function(event, template) {
-    var text = template.editor.getValue();
+  'keyup #editor-wrap-2 > .CodeMirror': function(evt, tmpl) {
+    var text = tmpl.editor.getValue();
 
     if (text !== "") {
+      $("#mdText2").html(text);
       Meteor.promise("convertMarkdown", text)
         .then(function(html) {
           $("#preview2").html(html);
