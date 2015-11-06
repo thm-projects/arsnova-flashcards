@@ -1,6 +1,3 @@
-.row .cardtext .btn-group {
-  margin-bottom: 15px;
-}
 .newcardtextarea {
   margin-bottom: 15px;
   resize: vertical;
@@ -10,4 +7,51 @@
 }
 .newCardButton {
   width: 50%;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.editor-wrap .CodeMirror {
+  height: 100%;
+}
+
+.editor-wrap .CodeMirror .CodeMirror-gutters {
+  border-right: none;
+}
+
+.editor-wrap .CodeMirror .CodeMirror-sizer {
+  padding: 15px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+#editor {
+  visibility: hidden;
+}
+
+.preview-wrap {
+  overflow: auto;
+  right: 0px;
+
+  padding: 20px;
+}
+
+#preview > *:last-child {
+  margin-bottom: 0px;
+}
+
+#preview > *:first-child {
+  margin-top: 0px;
+}
+
+#preview > *:last-child {
+  margin-bottom: 0px;
+}
+
+#preview img {
+  display: block;
+  height: auto;
+  max-width: 100%;
 }
