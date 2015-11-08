@@ -92,17 +92,7 @@
         </a>
       </div>
 
-      <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title">&nbsp;</h4>
-            </div>
-            <div class="modal-body" id="setdetails-pictureModal-body"></div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+      {{> cardsetPictureForm}}
 
       <div class="row">
         <div class="col-md-12"><h4>&nbsp;</h4></div>
@@ -145,7 +135,35 @@
 
 
 <template name="cardsetList">
-  Das ist die Kartenlistansicht.
+  <div class="col-md-9" id="set-details-region">
+    <table class="table table-bordered table-striped table-hover">
+      <div class="listhead"></div>
+      <thead>
+        <tr>
+          <th>
+            <span data-i18n="foreside">{{_ "foreside"}}</span>
+            <a href="#">⇓</a>
+            <a href="#">⇑</a>
+          </th>
+          <th>
+            <span data-i18n="backside">{{_ "backside"}}</span>
+            <a href="#">⇓</a>
+            <a href="#">⇑</a>
+          </th>
+          <th data-i18n="options">{{_ "options"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="empty-listitem">
+          <td colspan="3" align="center">
+            <span style="font-family:'Georgia'" data-i18n="nocards">{{_ "nocards"}}</span>
+          </td>
+        </tr>
+      </tbody>
+
+      {{> cardsetPictureForm}}
+    </table>
+  </div>
 </template>
 
 
@@ -225,4 +243,19 @@
       </div>
     </div>
   </div>
+</template>
+
+
+<template name="cardsetPictureForm">
+  <div class="modal fade" id="pictureModalList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">&nbsp;</h4>
+        </div>
+        <div class="modal-body" id="setdetails-pictureModalList-body"></div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </template>
