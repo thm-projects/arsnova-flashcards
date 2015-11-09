@@ -154,11 +154,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="empty-listitem">
-          <td colspan="3" align="center">
-            <span style="font-family:'Georgia'" data-i18n="nocards">{{_ "nocards"}}</span>
-          </td>
-        </tr>
+        {{#if cardsCount}}
+          {{#each cardsetList.cards}}
+            <tr class="empty-listitem">
+              <td colspan="3" align="center">
+                <span style="font-family:'Georgia'" data-i18n="nocards">karte vorhanden</span>
+              </td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr class="empty-listitem">
+            <td colspan="3" align="center">
+              <span style="font-family:'Georgia'" data-i18n="nocards">{{_ "nocards"}}</span>
+            </td>
+          </tr>
+        {{/if}}
+
       </tbody>
 
       {{> cardsetPictureForm}}

@@ -12,7 +12,8 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().profile.name,
       visible: visible,
-      ratings: ratings
+      ratings: ratings,
+      cards: []
     });
   },
   deleteCardset: function(id) {
@@ -31,7 +32,6 @@ Meteor.methods({
         name: name,
         category: category,
         description: description,
-        date: date,
         visible: visible,
         ratings: ratings
       }
@@ -44,10 +44,10 @@ Meteor.methods({
     }
     Cardsets.update(cardset, {
       $push: {
-        cards: [
-          front,
-          back
-        ]
+        cards: {
+          front: front,
+          back: back
+        }
       }
     });
   }

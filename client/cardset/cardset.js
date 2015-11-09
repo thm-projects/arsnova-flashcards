@@ -11,6 +11,27 @@ Template.cardset.helpers({
   }
 });
 
+Template.cardsetList.helpers({
+  cardsetList: function() {
+    return Cardsets.findOne(
+      {_id:this._id},
+      {fields: {'cards': 1}},
+      {owner: Meteor.userId()});
+  },
+  cardsCount: function() {
+    var cardCount = Cardsets.find({_id:this._id, cards:{$size:0}}).count();;
+      console.log(cardCount);
+    if (cardCount === 0)
+      return true;
+    else
+      return false;
+
+
+  }
+});
+
+
+
 Template.cardset.events({
   'click .editSet': function(evt, tmpl) {
     Session.set('showCardsetForm', true);
