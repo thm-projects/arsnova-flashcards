@@ -1,0 +1,20 @@
+.learn-box {
+  width: 100%;
+  margin-top: 10px;
+}
+#subject1 {
+  margin-top: 0px;
+}
+#cardsetName {
+  margin: 0
+}
+#cardsetDesc {
+  font-family: 'Georgia';
+  font-style: italic;
+}
+#cardsetCreated {
+  padding-left: 0;
+}
+#cardsetWrap {
+  font-family: 'Georgia';
+}

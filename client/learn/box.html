@@ -1,0 +1,110 @@
+<template name="box">
+
+  <div class="col-md-3">
+
+    <div id="set-learn-sideBar-region">
+      <div class="well well-sm sidebar-nav">
+        <h4 id="cardsetName">{{name}}</h4>
+        <hr>
+        <span id="cardsetDesc">{{description}}</span>
+        <hr>
+        <span id="cardsetCreated" class="nav-header">{{_ "createdof2"}}</span>
+        <span id="cardsetWrap">
+          <a id="cardsetUser" href="{{pathFor route='userprofile'}}">{{username}}</a>
+          <br>
+          <span>{{_ "sidebar-nav.at"}}</span>
+          <span>{{date}}</span>
+        </span>
+      </div>
+    </div>
+
+    <div id="set-learn-controls-region">
+      <div class="well well-sm sidebar-nav">
+        <button class="btn btn-default learn-box" id="subject1">
+          <span class="pull-left">{{_ "subject1"}}</span>
+          <span class="badge pull-right one">0</span>
+        </button>
+        <button class="btn btn-default learn-box" id="subject2">
+          <span class="pull-left">{{_ "subject2"}}</span>
+          <span class="badge pull-right two">0</span>
+        </button>
+        <button class="btn btn-default learn-box" id="subject3">
+          <span class="pull-left">{{_ "subject3"}}</span>
+          <span class="badge pull-right three">0</span>
+        </button>
+        <button class="btn btn-default learn-box" id="subject4">
+          <span class="pull-left">{{_ "subject4"}}</span>
+          <span class="badge pull-right four">0</span>
+        </button>
+        <button class="btn btn-default learn-box" id="subject5">
+          <span class="pull-left">{{_ "subject5"}}</span>
+          <span class="badge pull-right five">0</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-9">
+    <div id="set-learn-region">
+      <div>
+        <div style="display:none" class="carousel slide" id="cardCarousel">
+          <div class="carousel-indicators">
+            <small class="text-muted card-indicator">Noch 1 Karte im aktuellen Fach</small>
+          </div>
+          <div class="carousel-inner">
+            <div class="item">
+              <div class="box">
+                <span class="clicktoflip" id="clicktoflip2">Click to flip</span>
+                <img src="/img/icon_front.png" class="cardside cardfront-symbol">
+                <img style="display:none" src="/img/icon_back.png" class="cardside cardback-symbol">
+                <a style="display:none" href="#showPictureModal" class="btn-showPictureModal btn btn-default btn-xs">
+                  <i class="glyphicon glyphicon-picture"></i>
+                  <small>Bild anzeigen</small>
+                </a>
+                <div class="block">
+                  <div class="cardContent centered front active">
+                    <p>$ (a_n) $</p>
+                  </div>
+                  <div style="display:none" class="cardContent centered back">
+                    <p>$ (a_n) $</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="learn-navigation">
+          <button data-i18n="know" style="width:100%; margin-top:10px; display:none" class="btn btn-primary answer card-success" id="know">Known</button>
+          <button data-i18n="notknow" style="width:100%; margin-top:10px; display:none" class="btn btn-default answer card-fail" id="notknow">Not known</button>
+        </div>
+
+        <div style="display:none" class="box learn-endscreen">
+          <div class="block">
+            <div data-i18n="learn-endscreen.success" class="centered front learnbox-success">Learn unit done successfully</div>
+            <div data-i18n="learn-endscreen.back" class="centered front learnbox-choose-message">Choose another box or go back to deck of cards</div>
+            <br>
+            <a onclick="history.go(-1)" class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
+              <span data-i18n="learn-endscreen.back2">Back to deck of cards</span>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="box learn-startscreen">
+          <div class="block">
+            <div style="font-size:1.8em" class="centered front">{{_ "choosesubject"}}</div>
+          </div>
+        </div>
+
+        <div style="display:none" class="learn-cardHelptext">
+          <span data-i18n="clickcart">Click on the card to turn it</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</template>

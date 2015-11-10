@@ -83,6 +83,24 @@ Router.route('/pool/:_id', {
   }
 });
 
+Router.route('/box/:_id', {
+  name: 'box',
+  template: 'box',
+  data: function() {
+    var currentBox = this.params._id;
+    return Cardsets.findOne({_id: currentBox});
+  }
+});
+
+Router.route('/memo/:_id', {
+  name: 'memo',
+  template: 'memo',
+  data: function() {
+    var currentMemo = this.params._id;
+    return Cardsets.findOne({_id: currentMemo});
+  }
+});
+
 Router.route('/profile', {
   name: 'userprofile'
 });

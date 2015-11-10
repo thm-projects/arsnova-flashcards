@@ -76,6 +76,15 @@ Template.cardset.events({
   }
 });
 
+Template.cardsetDetails.events({
+  "click #learnBox": function() {
+    Router.go('box', {_id: this._id});
+  },
+  "click #learnMemo": function() {
+    Router.go('memo', {_id: this._id});
+  }
+});
+
 Template.sidebarCardset.helpers({
   'isOwner': function() {
     return this.owner === Meteor.userId();
