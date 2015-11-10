@@ -20,7 +20,7 @@ Template.cardsetList.helpers({
   },
   cardsCount: function() {
     var cardCount = Cardsets.find({_id:this._id, cards:{$size:0}}).count();
-    
+
     if (cardCount === 0)
       return true;
     else
@@ -59,6 +59,15 @@ Template.cardset.events({
     var categoryId = $(evt.currentTarget).val();
     $('#editSetCategory').text(categoryName);
     tmpl.find('#editSetCategory').value = categoryId;
+  }
+});
+
+Template.cardsetDetails.events({
+  "click #learnBox": function() {
+    Router.go('box', {_id: this._id});
+  },
+  "click #learnMemo": function() {
+    Router.go('memo', {_id: this._id});
   }
 });
 

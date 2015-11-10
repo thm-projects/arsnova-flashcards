@@ -1,0 +1,77 @@
+<template name="memo">
+  <div class="col-md-12">
+    <div id="set-memo-region">
+      <div>
+        <div id="cardCarousel" class="carousel slide cardmemo">
+          <ol class="carousel-indicators"></ol>
+          <div class="carousel-inner">
+            <div class="empty-item">
+              <div class="row twosided memo-empty">
+                <div class="col-md-6">
+                  <div class="box">
+                    <div class="block memocontent-block">
+                      <div class="double" data-i18n="memo-empty.text">Aktuell keine nach Lernplan zu lernenden Karten</div>
+                      <br>
+                      <a class="btn-back btn btn-default btn-s" onclick="history.go(-1)">
+                        <span data-i18n="memo-empty.back">Zurück zum Kartensatz</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="box">
+                    <div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="memoShowAnswer" class="btn btn-primary answer show-answer" title="success" data-i18n="cardmemo.showanswer">Zeige Antwort</button>
+          <div class="rating-controls" style="display:none">
+            <div class="btn-toolbar memo-toolbar">
+              <div class="memo-cardHelptext">
+                <span data-i18n="cardmemo.rateanswer">Bewerte deine Antwort</span>
+              </div>
+              <div class="btn-group memo-rating">
+                <button id="memoRate0" class="btn btn-default rate-answer wrong" data-placement="bottom" data-id="0" data-i18n="[title]cardmemo.rate0" title="Blackout" data-original-title="">0</button>
+                <button id="memoRate1" class="btn btn-default rate-answer wrong" data-placement="bottom" data-id="1" data-i18n="[title]cardmemo.rate1" title="Falsche Antwort, aber an die Richtige erinnert" data-original-title="">1</button>
+                <button id="memoRate2" class="btn btn-default rate-answer" data-placement="bottom" data-id="2" data-i18n="[title]cardmemo.rate2" title="Falsche Antwort, aber leicht an die Richtige erinnert" data-original-title="">2</button>
+                <button id="memoRate3" class="btn btn-default rate-answer" data-placement="bottom" data-id="3" data-i18n="[title]cardmemo.rate3" title="Richtige Antwort nach längerem Überlegen" data-original-title="">3</button>
+                <button id="memoRate4" class="btn btn-default rate-answer" data-placement="bottom" data-id="4" data-i18n="[title]cardmemo.rate4" title="Richtige Antwort nach kurzem Zögern" data-original-title="">4</button>
+                <button id="memoRate5" class="btn btn-default rate-answer" data-placement="bottom" data-id="5" data-i18n="[title]cardmemo.rate5" title="Perfekte Antwort" data-original-title="">5</button>
+                <a id="memetext" class="btn btn-default btn-info memo-helptext" data-placement="bottom" title="" data-i18n="[data-content]cardmemo.memotext" data-content="Vergleiche die obige Antwort mit der aus deiner Erinnerung und bewerte sie mit Hilfe der Skala. Anhand der Bewertung wird der Zeitpunkt für die nächste Wiederholung deiner Lernkarte berechnet."
+                data-original-title="Memo">
+                  <i class="glyphicon glyphicon-question-sign"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="memo-endscreen" style="display:none">
+          <div class="row twosided">
+            <div class="col-md-6">
+              <div class="box">
+                <div class="block memocontent-block">
+                  <div class="double" data-i18n="memo-endscreen.text">Lerneinheit erfolgreich beendet</div>
+                  <br>
+                  <a id="memoEndscreenBack" class="btn-back btn btn-default btn-s" onclick="history.go(-1)">
+                    <span data-i18n="memo-endscreen.back">Zurück zum Kartensatz</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="box">
+                <div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
