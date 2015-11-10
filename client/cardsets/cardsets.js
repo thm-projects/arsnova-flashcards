@@ -45,3 +45,9 @@ Template.cardsets.events({
     tmpl.find('#newSetCategory').value = categoryId;
   }
 });
+
+Template.cardsetRow.helpers({
+  getCount: function(id) {
+    return Cardsets.findOne({_id: id}).cards.length;
+  }
+});

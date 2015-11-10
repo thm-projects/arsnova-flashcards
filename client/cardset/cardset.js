@@ -19,18 +19,14 @@ Template.cardsetList.helpers({
       {owner: Meteor.userId()});
   },
   cardsCount: function() {
-    var cardCount = Cardsets.find({_id:this._id, cards:{$size:0}}).count();;
-      console.log(cardCount);
+    var cardCount = Cardsets.find({_id:this._id, cards:{$size:0}}).count();
+    
     if (cardCount === 0)
       return true;
     else
       return false;
-
-
   }
 });
-
-
 
 Template.cardset.events({
   'click .editSet': function(evt, tmpl) {

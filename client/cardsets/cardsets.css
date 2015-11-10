@@ -36,3 +36,7 @@ hr {
 ul.nav-list li.active {
   font-weight: bold;
 }
+
+.cardsetBadge {
+  float: right;
+}
