@@ -18,13 +18,27 @@ Template.cardsetList.helpers({
       {fields: {'cards': 1}},
       {owner: Meteor.userId()});
   },
-  cardsCount: function() {
-    var cardCount = Cardsets.find({_id:this._id, cards:{$size:0}}).count();
-    
-    if (cardCount === 0)
+  cardsCount: function(id) {
+    var cardCount = Cardsets.findOne({_id: id}).cards.length;
+
+    if (cardCount > 0)
       return true;
     else
       return false;
+  }
+});
+
+Template.cardsetDetails.helpers({
+  cardsCount: function(id) {
+    var cardCount = Cardsets.findOne({_id: id}).cards.length;
+
+    if (cardCount > 0)
+      return true;
+    else
+      return false;
+  },
+  totalCards: function(id) {
+    return Cardsets.findOne({_id: id}).cards.length;
   }
 });
 

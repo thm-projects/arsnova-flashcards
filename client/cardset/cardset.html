@@ -69,6 +69,14 @@
   <div class="col-md-9" id="set-details-region">
     <div>
       <div id="cardCarousel" class="carousel slide">
+        {{#if cardsCount this._id}}
+          Karte vorhanden
+          {{totalCards this._id}}
+
+
+        {{else}}
+          Karte nicht vorhanden
+        {{/if}}
         <div class="carousel-indicators">
           <small class="text-muted card-indicator"> </small>
         </div>
@@ -101,7 +109,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="well well-sm setWell">
-            <h4 data-i18n="learn">Lernen</h4>
+            <h4>{{_ "learn"}}</h4>
 
             <hr />
             <hr />
@@ -141,31 +149,31 @@
       <thead>
         <tr>
           <th>
-            <span data-i18n="foreside">{{_ "foreside"}}</span>
+            <span>{{_ "foreside"}}</span>
             <a href="#">⇓</a>
             <a href="#">⇑</a>
           </th>
           <th>
-            <span data-i18n="backside">{{_ "backside"}}</span>
+            <span>{{_ "backside"}}</span>
             <a href="#">⇓</a>
             <a href="#">⇑</a>
           </th>
-          <th data-i18n="options">{{_ "options"}}</th>
+          <th>{{_ "options"}}</th>
         </tr>
       </thead>
       <tbody>
-        {{#if cardsCount}}
+        {{#if cardsCount this._id}}
           {{#each cardsetList.cards}}
-            <tr class="empty-listitem">
-              <td colspan="3" align="center">
-                <span style="font-family:'Georgia'" data-i18n="nocards">karte vorhanden</span>
-              </td>
+            <tr class="listitem">
+              <td>{{front}}</td>
+              <td>{{back}}</td>
+              <td></td>
             </tr>
           {{/each}}
         {{else}}
           <tr class="empty-listitem">
             <td colspan="3" align="center">
-              <span style="font-family:'Georgia'" data-i18n="nocards">{{_ "nocards"}}</span>
+              <span style="font-family:'Georgia'">{{_ "nocards"}}</span>
             </td>
           </tr>
         {{/if}}
@@ -249,7 +257,7 @@
         <div class="modal-footer">
           <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{_ "modal-dialog.cancel"}}</button>
           <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px" data-loading-text="Lösche Deck..." data-clickout="5">{{_ "modal-dialog.delete"}}</button>
-          <button id="cardSetSave" class="btn btn-primary" data-loading-text="Speichere Deck..." data-i18n="modal-dialog.save">{{_ "modal-dialog.save"}}</button>
+          <button id="cardSetSave" class="btn btn-primary" data-loading-text="Speichere Deck...">{{_ "modal-dialog.save"}}</button>
         </div>
       </div>
     </div>
