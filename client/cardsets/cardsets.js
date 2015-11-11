@@ -29,7 +29,7 @@ Template.cardsets.events({
     var name = tmpl.find('#newSetName').value;
     var category = tmpl.find('#newSetCategory').value;
     var description = tmpl.find('#newSetDescription').value;
-    var date = moment().locale(getUserLanguage()).format('LL');
+    var date = new Date();
     var visible = ('true' === tmpl.find('#newCardSetVisibility > .active > input').value);
     var ratings = ('true' === tmpl.find('#newCardSetRating > .active > input').value);
     Meteor.call("addCardset", name, category, description, date, visible, ratings);

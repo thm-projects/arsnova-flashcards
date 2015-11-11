@@ -19,7 +19,7 @@ Meteor.methods({
   deleteCardset: function(id) {
     Cardsets.remove(id);
   },
-  updateCardset: function(id, name, category, description, date, visible, ratings) {
+  updateCardset: function(id, name, category, description, visible, ratings) {
     var deck = Cardsets.findOne(id);
 
     // Make sure only the task owner can make a task private
