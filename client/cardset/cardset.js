@@ -2,6 +2,15 @@ Meteor.subscribe("cardsets");
 
 Session.setDefault('showCardsetForm', false);
 
+Template.registerHelper("cardsCount", function(id) {
+  var cardCount = Cardsets.findOne({_id: id}).cards.length;
+
+  if (cardCount > 0)
+    return true;
+  else
+    return false;
+});
+
 Template.cardset.helpers({
   'showCardsetForm': function() {
     return Session.get('showCardsetForm');
@@ -17,28 +26,24 @@ Template.cardsetList.helpers({
       {_id:this._id},
       {fields: {'cards': 1}},
       {owner: Meteor.userId()});
-  },
-  cardsCount: function(id) {
-    var cardCount = Cardsets.findOne({_id: id}).cards.length;
-
-    if (cardCount > 0)
-      return true;
-    else
-      return false;
   }
 });
 
 Template.cardsetDetails.helpers({
-  cardsCount: function(id) {
-    var cardCount = Cardsets.findOne({_id: id}).cards.length;
-
-    if (cardCount > 0)
-      return true;
-    else
-      return false;
-  },
   totalCards: function(id) {
     return Cardsets.findOne({_id: id}).cards.length;
+  },
+  cardsetList: function() {
+    return Cardsets.findOne(
+      {_id:this._id},
+      {fields: {'cards': 1}},
+      {owner: Meteor.userId()});
+  },
+  cardsIndex: function(index) {
+    return index+1;
+  },
+  cardActive: function(index) {
+    return 0 === index
   }
 });
 

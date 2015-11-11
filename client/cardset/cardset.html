@@ -69,28 +69,50 @@
   <div class="col-md-9" id="set-details-region">
     <div>
       <div id="cardCarousel" class="carousel slide">
-        {{#if cardsCount this._id}}
-          Karte vorhanden
-          {{totalCards this._id}}
-
-
-        {{else}}
-          Karte nicht vorhanden
-        {{/if}}
         <div class="carousel-indicators">
           <small class="text-muted card-indicator"> </small>
         </div>
-
         <div class="carousel-inner">
-          <div class="empty-item">
-            <div class="box">
-              <div class="block">
-                <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
+          {{#if cardsCount this._id}}
+            Karte vorhanden
+            {{totalCards this._id}}
+            {{#each cardsetList.cards}}
+
+
+              <div class="item {{#if cardActive @index}}active{{/if}}">
+                <div class="box">
+                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display:none">
+                  <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="#editCard" style="display: inline;">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                  </a>
+                  <a class="btn-showPictureModal btn btn-default btn-xs btn-showPictureDetails" href="#showPictureModal" style="display: block;">
+                    <i class="glyphicon glyphicon-picture"></i>
+                    <small data-i18n="showpicture">Bild anzeigen</small>
+                  </a>
+                  <div class="block">
+                    <div class="cardContent centered front active">
+                      <p>testvdsa</p>
+                    </div>
+                    <div class="cardContent centered back" style="display:none">
+                      <p>fsafsdafd</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{cardsIndex @index}}
+            {{/each}}
+          {{else}}
+            <div class="empty-item">
+              <div class="box">
+                <div class="block">
+                  <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
+                </div>
               </div>
             </div>
-          </div>
+          {{/if}}
         </div>
-
         <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" style="display: none;">
           <span class="icon-prev"></span>
         </a>
