@@ -3,7 +3,6 @@
 }
 
 .carousel-inner {
-  border-radius: 4px;
   min-height: 278px;
 }
 
@@ -14,6 +13,7 @@
   height: 278px;
   padding: 50px;
   margin: 0 auto;
+  border-radius: 4px;
   background-color: #fff;
   background-image: url('/img/card_background.png');
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
@@ -50,6 +50,26 @@
   -ms-transform: skew(5deg) rotate(5deg);
   -o-transform: skew(5deg) rotate(5deg);
   transform: skew(5deg) rotate(5deg);
+}
+
+.btn-editCard {
+  position: absolute;
+  left: 12px;
+  top: 11px;
+}
+
+.clicktoflip {
+  color:#666;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  font-style: italic;
+}
+
+img.cardside {
+  position: absolute;
+  right: 88px;
+  top: 13px;
 }
 
 .block {
