@@ -7,3 +7,8 @@ Template.registerHelper("hasPermission", function() {
 Template.registerHelper("cardsCount", function(carddeckId) {
   return Cardsets.findOne({_id: carddeckId}).cards.length;
 });
+
+// Returns the locale date
+Template.registerHelper("getDate", function() {
+  return moment(this.date).locale(getUserLanguage()).format('LL');
+});

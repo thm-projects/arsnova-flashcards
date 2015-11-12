@@ -6,14 +6,13 @@
 
   <!-- Main -->
   <div class="col-md-9">
-    <!-- Startscreen -->
-    {{> boxStart}}
-
-    <!-- Mainscreen -->
-    <!-- {{> boxMain}} -->
-
-    <!-- Endscreen -->
-    <!-- {{> boxEnd}} -->
+    {{#if isFinish}}
+      {{> boxEnd}}
+    {{else}} {{#if boxSelected}}
+      {{> boxMain}}
+    {{else}}
+      {{> boxStart}}
+    {{/if}}{{/if}}
   </div>
 
   <!-- Permission denied -->
@@ -42,23 +41,23 @@
 
   <div id="set-learn-controls-region">
     <div class="well well-sm sidebar-nav">
-      <button class="btn btn-default learn-box" id="subject1">
+      <button class="btn btn-default learn-box {{selectedBox 1}}" id="subject1" value="1">
         <span class="pull-left">{{_ "subject1"}}</span>
         <span class="badge pull-right one">0</span>
       </button>
-      <button class="btn btn-default learn-box" id="subject2">
+      <button class="btn btn-default learn-box {{selectedBox 2}}" id="subject2" value="2">
         <span class="pull-left">{{_ "subject2"}}</span>
         <span class="badge pull-right two">0</span>
       </button>
-      <button class="btn btn-default learn-box" id="subject3">
+      <button class="btn btn-default learn-box {{selectedBox 3}}" id="subject3" value="3">
         <span class="pull-left">{{_ "subject3"}}</span>
         <span class="badge pull-right three">0</span>
       </button>
-      <button class="btn btn-default learn-box" id="subject4">
+      <button class="btn btn-default learn-box {{selectedBox 4}}" id="subject4" value="4">
         <span class="pull-left">{{_ "subject4"}}</span>
         <span class="badge pull-right four">0</span>
       </button>
-      <button class="btn btn-default learn-box" id="subject5">
+      <button class="btn btn-default learn-box {{selectedBox 5}}" id="subject5" value="5">
         <span class="pull-left">{{_ "subject5"}}</span>
         <span class="badge pull-right five">0</span>
       </button>
