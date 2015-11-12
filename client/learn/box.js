@@ -16,6 +16,30 @@ Template.box.helpers({
 
 /**
  * ############################################################################
+ * boxMain
+ * ############################################################################
+ */
+
+Template.boxMain.helpers({
+  isFront: function() {
+    isFront = Session.get('isFront');
+    return isFront === true;
+  }
+});
+
+Template.boxMain.events({
+  "click .box": function(event, template) {
+    isFront = Session.get('isFront');
+    if (isFront === true) {
+      Session.set('isFront', false);
+    } else {
+      Session.set('isFront', true);
+    }
+  }
+});
+
+/**
+ * ############################################################################
  * boxSide
  * ############################################################################
  */
@@ -24,8 +48,8 @@ Template.boxSide.events({
   "click .learn-box": function(event, template) {
     var box = $(event.currentTarget).val();
     Session.set('selectedBox', box);
+    Session.set('isFront', true);
     var selectedBox = Session.get('selectedBox');
-    console.log(selectedBox);
   }
 });
 
