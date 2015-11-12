@@ -31,7 +31,7 @@ Template.cardsetDetails.helpers({
     return index+1;
   },
   cardActive: function(index) {
-    return 0 === index
+    return 0 === index;
   }
 });
 
@@ -74,6 +74,20 @@ Template.cardsetDetails.events({
   },
   "click #learnMemo": function() {
     Router.go('memo', {_id: this._id});
+  },
+  "click .box": function() {
+    if ($(".cardfront-symbol").css('display') == 'none') {
+      $(".cardfront-symbol").css('display', "");
+      $(".cardback-symbol").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
+    }
+    else if ($(".cardback-symbol").css('display') == 'none') {
+      $(".cardfront-symbol").css('display', "none");
+      $(".cardback-symbol").css('display', "");
+      $(".cardfront").css('display', "none");
+      $(".cardback").css('display', "");
+    }
   }
 });
 

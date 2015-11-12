@@ -74,34 +74,30 @@
         </div>
         <div class="carousel-inner">
           {{#if cardsCount this._id}}
-            Karte vorhanden
-            {{totalCards this._id}}
+            <!--Karte vorhanden
+            {{totalCards this._id}}-->
             {{#each cardsetList.cards}}
 
 
               <div class="item {{#if cardActive @index}}active{{/if}}">
                 <div class="box">
-                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display:none">
-                  <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="#editCard" style="display: inline;">
+                  <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="#" style="display: inline;">
                     <i class="glyphicon glyphicon-pencil"></i>
                   </a>
-                  <a class="btn-showPictureModal btn btn-default btn-xs btn-showPictureDetails" href="#showPictureModal" style="display: block;">
-                    <i class="glyphicon glyphicon-picture"></i>
-                    <small data-i18n="showpicture">Bild anzeigen</small>
-                  </a>
+                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
                   <div class="block">
-                    <div class="cardContent centered front active">
-                      <p>testvdsa</p>
+                    <div class="cardContent centered cardfront">
+                      <p>{{front}}</p>
                     </div>
-                    <div class="cardContent centered back" style="display:none">
-                      <p>fsafsdafd</p>
+                    <div class="cardContent centered cardback" style="display:none">
+                      <p>{{back}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              {{cardsIndex @index}}
+              <!--{{cardsIndex @index}}-->
             {{/each}}
           {{else}}
             <div class="empty-item">
@@ -113,13 +109,7 @@
             </div>
           {{/if}}
         </div>
-        <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" style="display: none;">
-          <span class="icon-prev"></span>
-        </a>
 
-        <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" style="display: none;">
-          <span class="icon-next"></span>
-        </a>
       </div>
 
       {{> cardsetPictureForm}}
