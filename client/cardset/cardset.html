@@ -68,10 +68,11 @@
 <template name="cardsetDetails">
   <div class="col-md-9" id="set-details-region">
     <div>
-      <div id="cardCarousel" class="carousel slide">
+      <div id="cardCarousel" class="carousel slide" data-interval="false">
         <div class="carousel-indicators">
-          <small class="text-muted card-indicator"> </small>
+
         </div>
+
         <div class="carousel-inner">
           {{#if cardsCount this._id}}
             <!--Karte vorhanden
@@ -97,6 +98,8 @@
                   </div>
                 </div>
               </div>
+
+
               <!--{{cardsIndex @index}}-->
             {{/each}}
           {{else}}
@@ -109,6 +112,13 @@
             </div>
           {{/if}}
         </div>
+
+        <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
+          <span class="icon-prev"></span>
+        </a>
+        <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
+          <span class="icon-next"></span>
+        </a>
 
       </div>
 
@@ -175,9 +185,11 @@
       <tbody>
         {{#if cardsCount this._id}}
           {{#each cardsetList.cards}}
+
             <tr class="listitem">
-              <td>{{front}}</td>
-              <td>{{back}}</td>
+              {{cardlistMarkdown this.front this.back @index}}
+              <td class="front{{@index}}"></td>
+              <td class="back{{@index}}"></td>
               <td></td>
             </tr>
           {{/each}}
