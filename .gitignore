@@ -1,3 +1,4 @@
 settings-production.json
 settings-staging.json
 npm-debug.log
+.DS_Store

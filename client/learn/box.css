@@ -18,3 +18,33 @@
 #cardsetWrap {
   font-family: 'Georgia';
 }
+.learn-cardHelptext {
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+}
+.carousel-inner {
+  border-radius: 4px;
+}
+.carousel-inner {
+  min-height: 278px;
+}
+#cardCarousel .carousel-indicators {
+  bottom: 0px;
+}
+.clicktoflip {
+  color: #666;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  font-style: italic;
+}
+img.cardside {
+  position: absolute;
+  right: 88px;
+  top: 13px;
+}

@@ -2,21 +2,9 @@ Meteor.subscribe("cardsets");
 
 Session.setDefault('showCardsetForm', false);
 
-Template.registerHelper("cardsCount", function(id) {
-  var cardCount = Cardsets.findOne({_id: id}).cards.length;
-
-  if (cardCount > 0)
-    return true;
-  else
-    return false;
-});
-
 Template.cardset.helpers({
   'showCardsetForm': function() {
     return Session.get('showCardsetForm');
-  },
-  'hasPermission': function() {
-    return this.owner === Meteor.userId() || this.visible === true;
   }
 });
 
