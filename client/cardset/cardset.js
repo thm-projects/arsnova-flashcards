@@ -14,6 +14,16 @@ Template.cardsetList.helpers({
       {_id:this._id},
       {fields: {'cards': 1}},
       {owner: Meteor.userId()});
+  },
+  cardlistMarkdown: function(front, back, index) {
+    Meteor.promise("convertMarkdown", front)
+      .then(function(html) {
+        $(".front"+index).html(html);
+      });
+    Meteor.promise("convertMarkdown", back)
+      .then(function(html) {
+        $(".back"+index).html(html);
+      });
   }
 });
 
