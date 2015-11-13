@@ -1,47 +1,17 @@
 Meteor.subscribe("cardsets");
+Meteor.subscribe("cards");
 
 Session.setDefault('showCardsetForm', false);
+
+/**
+ * ############################################################################
+ * cardset
+ * ############################################################################
+ */
 
 Template.cardset.helpers({
   'showCardsetForm': function() {
     return Session.get('showCardsetForm');
-  }
-});
-
-Template.cardsetList.helpers({
-  cardsetList: function() {
-    return Cardsets.findOne(
-      {_id:this._id},
-      {fields: {'cards': 1}},
-      {owner: Meteor.userId()});
-  },
-  cardlistMarkdown: function(front, back, index) {
-    Meteor.promise("convertMarkdown", front)
-      .then(function(html) {
-        $(".front"+index).html(html);
-      });
-    Meteor.promise("convertMarkdown", back)
-      .then(function(html) {
-        $(".back"+index).html(html);
-      });
-  }
-});
-
-Template.cardsetDetails.helpers({
-  totalCards: function(id) {
-    return Cardsets.findOne({_id: id}).cards.length;
-  },
-  cardsetList: function() {
-    return Cardsets.findOne(
-      {_id:this._id},
-      {fields: {'cards': 1}},
-      {owner: Meteor.userId()});
-  },
-  cardsIndex: function(index) {
-    return index+1;
-  },
-  cardActive: function(index) {
-    return 0 === index;
   }
 });
 
@@ -78,6 +48,40 @@ Template.cardset.events({
   }
 });
 
+/**
+ * ############################################################################
+ * cardsetList
+ * ############################################################################
+ */
+
+Template.cardsetList.helpers({
+  cardlistMarkdown: function(front, back, index) {
+    Meteor.promise("convertMarkdown", front)
+      .then(function(html) {
+        $(".front"+index).html(html);
+      });
+    Meteor.promise("convertMarkdown", back)
+      .then(function(html) {
+        $(".back"+index).html(html);
+      });
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetDetails
+ * ############################################################################
+ */
+
+Template.cardsetDetails.helpers({
+  cardsIndex: function(index) {
+    return index+1;
+  },
+  cardActive: function(index) {
+    return 0 === index;
+  }
+});
+
 Template.cardsetDetails.events({
   "click #learnBox": function() {
     Router.go('box', {_id: this._id});
@@ -101,20 +105,23 @@ Template.cardsetDetails.events({
   }
 });
 
-Template.sidebarCardset.helpers({
-  'isOwner': function() {
-    return this.owner === Meteor.userId();
-  },
-  getDateFormat: function() {
-    return moment(this.date).locale(getUserLanguage()).format('LL');
-  }
-});
+/**
+ * ############################################################################
+ * sidebarCardset
+ * ############################################################################
+ */
 
 Template.sidebarCardset.events({
   "click #set-details-controls-btn-newCard": function() {
     Router.go('newcard', {_id: this._id});
   }
 });
+
+/**
+ * ############################################################################
+ * cardsetForm
+ * ############################################################################
+ */
 
 Template.cardsetForm.helpers({
   'visible': function(visible) {

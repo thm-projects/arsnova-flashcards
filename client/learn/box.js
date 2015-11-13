@@ -4,6 +4,16 @@
  * ############################################################################
  */
 
+Template.box.rendered = function(){
+  /*
+  Überprüfe ob Nutzer den Kartensatz bereits gelernt hat
+    Wenn ja: Nichts zu tun
+    Wenn nicht: Füge Nutzer zum Kartensatz hinzu und lege alle Karten in die erste Box
+
+  */
+  console.log("Hallo");
+};
+
 Template.box.helpers({
   boxSelected: function() {
     var selectedBox = Session.get('selectedBox');
@@ -28,13 +38,19 @@ Template.boxMain.helpers({
 });
 
 Template.boxMain.events({
-  "click .box": function(event, template) {
+  "click .box": function() {
     isFront = Session.get('isFront');
     if (isFront === true) {
       Session.set('isFront', false);
     } else {
       Session.set('isFront', true);
     }
+  },
+  "click #known": function() {
+    Session.set('isFront', true);
+  },
+  "click #notknown": function() {
+    Session.set('isFront', true);
   }
 });
 

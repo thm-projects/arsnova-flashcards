@@ -1,3 +1,9 @@
+/**
+ * ############################################################################
+ * newcard
+ * ############################################################################
+ */
+
 Template.newcard.events({
   "click #cardCancel": function() {
     Router.go('cardsetdetailsid', {
@@ -17,7 +23,13 @@ Template.newcard.events({
   }
 });
 
-Template.editor.onRendered(function() {
+/**
+ * ############################################################################
+ * editor
+ * ############################################################################
+ */
+
+Template.editor.rendered = function() {
   this.editor = CodeMirror.fromTextArea(this.find("#editor"), {
     mode: "markdown",
     theme: "monokai",
@@ -26,7 +38,7 @@ Template.editor.onRendered(function() {
     lineNumbers: true,
     fixedGutter: false
   });
-});
+};
 
 Template.editor.events({
   'keyup #editor-wrap-1 > .CodeMirror': function(evt, tmpl) {

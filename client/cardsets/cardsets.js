@@ -1,16 +1,16 @@
 Meteor.subscribe("cardsets");
+Meteor.subscribe("cards");
 
 Session.setDefault('showCardsetsForm', false);
 Session.setDefault('cardsetSort', {
   name: 1
 });
 
-Template.cardsets.helpers({
-  showCardsetsForm: function() {
-    return Session.get('showCardsetsForm');
-  }
-});
-
+/**
+ * ############################################################################
+ * created
+ * ############################################################################
+ */
 Template.created.helpers({
   cardsetList: function() {
     return Cardsets.find({
@@ -18,6 +18,18 @@ Template.created.helpers({
     }, {
       sort: Session.get('cardsetSort')
     });
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsets
+ * ############################################################################
+ */
+
+Template.cardsets.helpers({
+  showCardsetsForm: function() {
+    return Session.get('showCardsetsForm');
   }
 });
 
@@ -43,11 +55,5 @@ Template.cardsets.events({
     var categoryId = $(evt.currentTarget).val();
     $('#newSetCategory').text(categoryName);
     tmpl.find('#newSetCategory').value = categoryId;
-  }
-});
-
-Template.cardsetRow.helpers({
-  getCount: function(id) {
-    return Cardsets.findOne({_id: id}).cards.length;
   }
 });

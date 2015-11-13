@@ -12,21 +12,19 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().profile.name,
       visible: visible,
-      ratings: ratings,
-      cards: []
+      ratings: ratings
     });
   },
   deleteCardset: function(id) {
     Cardsets.remove(id);
+    Cards.remove({cardset_id: id});
   },
   updateCardset: function(id, name, category, description, visible, ratings) {
-    var deck = Cardsets.findOne(id);
-
     // Make sure only the task owner can make a task private
+    var deck = Cardsets.findOne(id);
     if (deck.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-
     Cardsets.update(id, {
       $set: {
         name: name,
@@ -37,18 +35,16 @@ Meteor.methods({
       }
     });
   },
-  addCard: function(cardset, front, back) {
+  addCard: function(cardset_id, front, back) {
     // Make sure the user is logged in and is authorized
+    var deck = Cardsets.findOne(cardset_id);
     if (!Meteor.userId() && deck.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-    Cardsets.update(cardset, {
-      $push: {
-        cards: {
-          front: front,
-          back: back
-        }
-      }
+    Cards.insert({
+      front: front,
+      back: back,
+      cardset_id: cardset_id
     });
   }
 });

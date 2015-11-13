@@ -34,7 +34,7 @@
           <a id="usr-profile2" href="{{pathFor route='userprofile'}}">{{username}}</a>
           <br>
           <span>{{_ "sidebar-nav.at"}}</span>
-          <span>{{getDateFormat}}</span>
+          <span>{{getDate}}</span>
         </span>
 
         <hr />
@@ -74,12 +74,9 @@
         </div>
 
         <div class="carousel-inner">
-          {{#if cardsCount this._id}}
-            <!--Karte vorhanden
-            {{totalCards this._id}}-->
-            {{#each cardsetList.cards}}
-
-
+          {{#if countCards this._id}}
+            <!--Karte vorhanden-->
+            {{#each getCards}}
               <div class="item {{#if cardActive @index}}active{{/if}}">
                 <div class="box">
                   <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="#" style="display: inline;">
@@ -98,8 +95,6 @@
                   </div>
                 </div>
               </div>
-
-
               <!--{{cardsIndex @index}}-->
             {{/each}}
           {{else}}
@@ -183,8 +178,8 @@
         </tr>
       </thead>
       <tbody>
-        {{#if cardsCount this._id}}
-          {{#each cardsetList.cards}}
+        {{#if countCards this._id}}
+          {{#each getCards}}
 
             <tr class="listitem">
               {{cardlistMarkdown this.front this.back @index}}

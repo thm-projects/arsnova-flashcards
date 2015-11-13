@@ -91,7 +91,7 @@
 
 <template name="cardsetRow">
   <tr class="cardsetRow">
-    <td><a href="/cardset/{{_id}}">{{name}}<span class="badge cardsetBadge">{{getCount this._id}}</span></a></td>
+    <td><a href="/cardset/{{_id}}">{{name}}<span class="badge cardsetBadge">{{countCards this._id}}</span></a></td>
     <td>{{getCategory this.category }}</td>
     <td>{{description}}</td>
   </tr>
