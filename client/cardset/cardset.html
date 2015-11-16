@@ -68,14 +68,9 @@
 <template name="cardsetDetails">
   <div class="col-md-9" id="set-details-region">
     <div>
-      <div id="cardCarousel" class="carousel slide" data-interval="false">
-        <div class="carousel-indicators">
-
-        </div>
-
-        <div class="carousel-inner">
-          {{#if countCards this._id}}
-            <!--Karte vorhanden-->
+      {{#if countCards this._id}}
+        <div id="cardCarousel" class="carousel slide" data-interval="false">
+          <div class="carousel-inner">
             {{#each getCards}}
               <div class="item {{#if cardActive @index}}active{{/if}}">
                 <div class="box">
@@ -93,11 +88,27 @@
                       <p>{{back}}</p>
                     </div>
                   </div>
+                  <div class="cardNumber">
+                    {{cardsIndex @index}}/{{countCards this.cardset_id}}
+                  </div>
                 </div>
               </div>
-              <!--{{cardsIndex @index}}-->
             {{/each}}
-          {{else}}
+          </div>
+
+          {{#if cardCountOne this._id}}
+            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
+              <span class="icon-prev"></span>
+            </a>
+            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
+              <span class="icon-next"></span>
+            </a>
+          {{/if}}
+        </div>
+
+      {{else}}
+        <div id="cardCarousel" class="carousel slide" data-interval="false">
+          <div class="carousel-inner">
             <div class="empty-item">
               <div class="box">
                 <div class="block">
@@ -105,17 +116,9 @@
                 </div>
               </div>
             </div>
-          {{/if}}
+          </div>
         </div>
-
-        <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
-          <span class="icon-prev"></span>
-        </a>
-        <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
-          <span class="icon-next"></span>
-        </a>
-
-      </div>
+      {{/if}}
 
       {{> cardsetPictureForm}}
 

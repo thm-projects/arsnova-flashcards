@@ -79,6 +79,14 @@ Template.cardsetDetails.helpers({
   },
   cardActive: function(index) {
     return 0 === index;
+  },
+  cardCountOne: function(cardset_id) {
+    var count = Cards.find({cardset_id: cardset_id}).count();
+    console.log(count);
+    if(count === 1)
+      return false;
+    else
+      return true;
   }
 });
 
