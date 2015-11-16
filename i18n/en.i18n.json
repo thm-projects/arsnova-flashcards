@@ -286,6 +286,9 @@
   "know": "Known",
   "notknow": "Not known",
 
+  "box_status": "Only one card in the current box",
+  "box_status_plural": "Only __count__ cards in the current box",
+
   "clickcart": "Click on the card to turn it",
   "choosesubject": "Choose a box on the left side",
 

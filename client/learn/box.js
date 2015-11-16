@@ -1,26 +1,41 @@
+Meteor.subscribe("cardsets");
+Meteor.subscribe("cards");
+Meteor.subscribe("learned");
+
+Session.set('selectedBox', null);
+Session.set('isFront', true);
+Session.set('maxIndex', 1);
+Session.set('isFinish', false);
+
 /**
  * ############################################################################
  * box
  * ############################################################################
  */
 
-Template.box.rendered = function(){
-  /*
-  Überprüfe ob Nutzer den Kartensatz bereits gelernt hat
-    Wenn ja: Nichts zu tun
-    Wenn nicht: Füge Nutzer zum Kartensatz hinzu und lege alle Karten in die erste Box
-
-  */
-  console.log("Hallo");
-};
-
 Template.box.helpers({
   boxSelected: function() {
     var selectedBox = Session.get('selectedBox');
     return selectedBox !== null;
   },
+  isNotEmpty: function() {
+    var notEmpty = Learned.find({
+      cardset_id: this._id,
+      user_id: Meteor.userId(),
+      box: parseInt(Session.get('selectedBox'))
+    }).count();
+    return notEmpty;
+  },
   isFinish: function() {
-    return false;
+    return Session.get('isFinish');
+  },
+  addLearned: function() {
+    cards = Cards.find({
+      cardset_id: this._id
+    });
+    cards.forEach(function(card) {
+      Meteor.call("addLearned", card.cardset_id, card._id);
+    });
   }
 });
 
@@ -34,6 +49,39 @@ Template.boxMain.helpers({
   isFront: function() {
     isFront = Session.get('isFront');
     return isFront === true;
+  },
+  getCardsByBox: function() {
+    selectedBox = parseInt(Session.get('selectedBox'));
+
+    var learnedCardIds = Learned.find({
+      cardset_id: this._id,
+      user_id: Meteor.userId(),
+      box: selectedBox
+    }).map(function(card) {
+      return card.card_id;
+    });
+
+    var learned = Cards.find({
+      cardset_id: this._id,
+      _id: {
+        $in: learnedCardIds
+      }
+    });
+
+    // _.shuffle(learned.fetch());
+    return learned;
+  },
+  cardActiveByBox: function(index) {
+    return 1 === index + 1;
+  },
+  countBox: function() {
+    var maxIndex = Learned.find({
+      cardset_id: this._id,
+      user_id: Meteor.userId(),
+      box: parseInt(Session.get('selectedBox'))
+    }).count();
+    Session.set('maxIndex', maxIndex);
+    return maxIndex;
   }
 });
 
@@ -47,9 +95,34 @@ Template.boxMain.events({
     }
   },
   "click #known": function() {
+    var currentCard = $('.carousel-inner > .active').attr('data');
+    var currentLearned = Learned.findOne({
+      card_id: currentCard,
+      user_id: Meteor.userId()
+    });
+
+    selectedBox = parseInt(Session.get('selectedBox'));
+    if (selectedBox < 5) {
+      Meteor.call('updateLearned', currentLearned._id, selectedBox + 1);
+    }
+
+    if (1 === parseInt(Session.get('maxIndex'))) {
+      Session.set('isFinish', true);
+    }
     Session.set('isFront', true);
+
   },
   "click #notknown": function() {
+    var currentCard = $('.carousel-inner > .active').attr('data');
+    var currentLearned = Learned.findOne({
+      card_id: currentCard,
+      user_id: Meteor.userId()
+    });
+    Meteor.call('updateLearned', currentLearned._id, 1);
+
+    if (1 === parseInt(Session.get('maxIndex'))) {
+      Session.set('isFinish', true);
+    }
     Session.set('isFront', true);
   }
 });
@@ -65,7 +138,7 @@ Template.boxSide.events({
     var box = $(event.currentTarget).val();
     Session.set('selectedBox', box);
     Session.set('isFront', true);
-    var selectedBox = Session.get('selectedBox');
+    Session.set('isFinish', false);
   }
 });
 
@@ -75,9 +148,30 @@ Template.boxSide.helpers({
     if (boxId == selectedBox) {
       return "active";
     }
+  },
+  countBox: function(boxId) {
+    return Learned.find({
+      cardset_id: this._id,
+      user_id: Meteor.userId(),
+      box: boxId
+    }).count();
   }
 });
 
 Template.boxSide.destroyed = function() {
   Session.set('selectedBox', null);
 };
+
+/**
+ * ############################################################################
+ * boxEnd
+ * ############################################################################
+ */
+
+Template.boxEnd.events({
+  "click #endscreenBack": function() {
+    Session.set('selectedBox', null);
+    Session.set('isFinish', false);
+    Router.go('cardsetdetailsid', {_id: this._id});
+  }
+});

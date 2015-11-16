@@ -68,6 +68,6 @@ Template.editor.events({
           Bert.alert(error.reason, "Error: Can't convert to Markdown");
         });
     }
-  },
+  }
 
 });

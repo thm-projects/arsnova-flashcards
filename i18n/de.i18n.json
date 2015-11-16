@@ -286,6 +286,9 @@
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
 
+  "box_status": "Noch eine Karte im aktuellen Fach",
+  "box_status_plural": "Noch __count__ Karten im aktuellen Fach",
+
   "clickcart": "Klicke auf die Karte um Sie zu drehen",
   "choosesubject": "Wähle ein Fach auf der linken Seite",
 
