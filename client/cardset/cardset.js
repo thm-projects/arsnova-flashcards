@@ -110,6 +110,22 @@ Template.cardsetDetails.events({
       $(".cardfront").css('display', "none");
       $(".cardback").css('display', "");
     }
+  },
+  "click #leftCarouselControl": function() {
+    if ($(".cardfront-symbol").css('display') == 'none') {
+      $(".cardfront-symbol").css('display', "");
+      $(".cardback-symbol").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
+    }
+  },
+  "click #rightCarouselControl": function() {
+    if ($(".cardfront-symbol").css('display') == 'none') {
+      $(".cardfront-symbol").css('display', "");
+      $(".cardback-symbol").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
+    }
   }
 });
 
