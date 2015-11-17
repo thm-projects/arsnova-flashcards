@@ -23,6 +23,13 @@
   top: 11px;
 }
 
+.btn-showPictureDetails {
+  position: absolute;
+  left: 45px;
+  top: 11px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 .clicktoflip {
   color:#666;
   position: absolute;
@@ -83,4 +90,15 @@ img.cardside {
   margin:12px 0 12px;
   display:inline-table;
   width:100%
+}
+
+#pictureModal .modal-header {
+  min-height: 50px;
+}
+
+#setdetails-pictureModal-body img{
+  max-width: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
 }
