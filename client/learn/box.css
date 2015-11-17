@@ -48,3 +48,6 @@ img.cardside {
   right: 88px;
   top: 13px;
 }
+.block:before {
+  height: 70%;
+}
