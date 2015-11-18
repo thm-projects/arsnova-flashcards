@@ -115,23 +115,18 @@ Template.cardsetDetails.helpers({
   cardDetailsMarkdown: function(front, back, index) {
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
-        $(".cardfront"+index).html(html);
-        if($(".cardfront"+index+" img").length > 0)
-        {
-          $(".pictureDetailfront"+index).css('display', "");
-        }
-        var src = $('.cardfront'+index+' img').attr('src');
-        var alt = $('.cardfront'+index+' img').attr('alt');
-        $(".pictureDetailfront"+index).data('val', src);
-        $(".pictureDetailfront"+index).data('alt', alt);
+        $(".detailfront"+index).html(html);
+        var src = $('.detailfront'+index+' img').attr('src');
+        var alt = $('.detailfront'+index+' img').attr('alt');
+        $('.detailfront'+index+' img').replaceWith($('<a class="card-detailfront btn-showPictureModal" href="#" data-val="'+src+'" data-alt="'+alt+'"><i class="glyphicon glyphicon-picture"></i></a>'));
+
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
-        $(".cardback"+index).html(html);
-        var src = $('.cardback'+index+' img').attr('src');
-        var alt = $('.cardback'+index+' img').attr('alt');
-        $(".pictureDetailback"+index).data('val', src);
-        $(".pictureDetailback"+index).data('alt', alt);
+        $(".detailback"+index).html(html);
+        var src = $('.detailback'+index+' img').attr('src');
+        var alt = $('.detailback'+index+' img').attr('alt');
+        $('.detailback'+index+' img').replaceWith($('<a class="card-detailback btn-showPictureModal" href="#" data-val="'+src+'" data-alt="'+alt+'"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
   },
   showCardsetPictureForm: function() {
@@ -146,48 +141,30 @@ Template.cardsetDetails.events({
   "click #learnMemo": function() {
     Router.go('memo', {_id: this._id});
   },
-  "click .box": function(evt) {
+  "click .box": function() {
     if ($(".cardfront-symbol").css('display') == 'none') {
       $(".cardfront-symbol").css('display', "");
       $(".cardback-symbol").css('display', "none");
-      $(".detailfront").css('display', "");
-      $(".detailback").css('display', "none");
-      if($(evt.currentTarget).find(".detailfront img").length > 0)
-      {
-        $(evt.currentTarget).find(".picFront").css('display', "");
-      }
-      $(evt.currentTarget).find(".picBack").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
     }
     else if ($(".cardback-symbol").css('display') == 'none') {
       $(".cardfront-symbol").css('display', "none");
       $(".cardback-symbol").css('display', "");
-      $(".detailfront").css('display', "none");
-      $(".detailback").css('display', "");
-      if($(evt.currentTarget).find(".detailback img").length > 0)
-      {
-        $(evt.currentTarget).find(".picBack").css('display', "");
-      }
-      $(evt.currentTarget).find(".picFront").css('display', "none");
+      $(".cardfront").css('display', "none");
+      $(".cardback").css('display', "");
     }
   },
   "click #leftCarouselControl, click #rightCarouselControl": function(evt) {
     if ($(".cardfront-symbol").css('display') == 'none') {
       $(".cardfront-symbol").css('display', "");
       $(".cardback-symbol").css('display', "none");
-      $(".detailfront").css('display', "");
-      $(".detailback").css('display', "none");
-
-      var cur = $(evt.currentTarget).prevAll();
-
-      if(cur.find('.item.active .detailfront img').length > 0)
-      {
-        cur.find(".item.active .picFront").css('display', "");
-      }
-
-      cur.find(".picBack").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
     }
   },
-  'click .item.active .picFront, click .item.active .picBack': function(evt, tmpl) {
+  'click .item.active .block a': function(evt, tmpl) {
+    evt.preventDefault();
     Session.set('showCardsetPictureForm', true);
     var src = $(evt.currentTarget).data('val');
     var alt = $(evt.currentTarget).data('alt');
@@ -195,6 +172,7 @@ Template.cardsetDetails.events({
       $("#pictureModal .modal-title").html(alt);
       $("#setdetails-pictureModal-body").html("<img src='"+src+"' alt='"+alt+"'>");
     }, 0);
+    evt.stopPropagation();
   },
   'click #pictureModal .close': function(evt, tmpl) {
     Session.set('showCardsetPictureForm', false);
