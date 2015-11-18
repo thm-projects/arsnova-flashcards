@@ -1,0 +1,16 @@
+.memo-site {
+  color: #666;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-style: italic;
+}
+.memo-site img.cardside {
+  position: relative;
+  right: 5px;
+  top: 0;
+}
+#memoEndBtn {
+  top: -50px;
+  position: relative;
+}
