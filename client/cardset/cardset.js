@@ -78,7 +78,7 @@ Template.cardsetList.helpers({
 });
 
 Template.cardsetList.events({
-  'click .listitem a': function(evt, tmpl) {
+  'click .listitem .card-front, click .listitem .card-back': function(evt, tmpl) {
     Session.set('showCardsetPictureForm', true);
     var src = $(evt.currentTarget).data('val');
     var alt = $(evt.currentTarget).data('alt');
