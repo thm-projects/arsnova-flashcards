@@ -1,7 +1,6 @@
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 
-Session.setDefault('showCardsetForm', false);
 Session.setDefault('showCardsetPictureForm', false);
 
 /**
@@ -10,16 +9,7 @@ Session.setDefault('showCardsetPictureForm', false);
  * ############################################################################
  */
 
-Template.cardset.helpers({
-  'showCardsetForm': function() {
-    return Session.get('showCardsetForm');
-  }
-});
-
 Template.cardset.events({
-  'click .editSet': function(evt, tmpl) {
-    Session.set('showCardsetForm', true);
-  },
   'click #cardSetSave': function(evt, tmpl) {
     var name = tmpl.find('#editSetName').value;
 
@@ -31,15 +21,14 @@ Template.cardset.events({
     var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
     var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
     Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
-    Session.set('showCardsetForm', false);
   },
-  'click #cardSetCancel': function(evt, tmpl) {
-    Session.set('showCardsetForm', false);
-  },
-  'click #cardSetDelete': function(evt, tmpl) {
-    Meteor.call("deleteCardset", this._id);
-    Session.set('showCardsetForm', false);
-    Router.go('created');
+  'click #cardSetDelete': function() {
+    var id = this._id;
+
+    $('#editSetModal').on('hidden.bs.modal', function() {
+      Meteor.call("deleteCardset", id);
+      Router.go('created');
+    }).modal('hide');
   },
   'click .category': function(evt, tmpl) {
     var categoryName = $(evt.currentTarget).attr("data");
