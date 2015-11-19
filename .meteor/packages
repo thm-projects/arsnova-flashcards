@@ -17,7 +17,6 @@ atoy40:accounts-cas
 momentjs:moment
 rzymek:moment-locales
 tap:i18n-db
-perak:codemirror
 themeteorchef:commonmark
 okgrow:promise
 reactive-var
@@ -36,3 +35,4 @@ random
 ejson
 spacebars
 check
+wtfzn:bootstrap-markdown

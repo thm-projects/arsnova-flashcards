@@ -7,12 +7,11 @@
 
     <div id="fronttext" class="col-md-6 cardtext">
       <h5>{{_ "foreside"}}</h5>
-      {{>editor id="1"}}
+      {{> frontEditor}}
     </div>
-
     <div id="backtext" class="col-md-6 cardtext">
       <h5>{{_ "backside"}}</h5>
-      {{>editor id="2"}}
+      {{> backEditor}}
     </div>
 
     <div class="col-md-12">
@@ -30,66 +29,14 @@
 
 </template>
 
-
-<template name="editor">
-  <div class="panel panel-default editor-preview">
-    <div class="panel-heading">
-      {{>cardtext}}
-    </div>
-    <div class="panel-body editor-wrap" id="editor-wrap-{{id}}">
-      <textarea id="editor" class="newcardtextarea" rows="10"></textarea>
-    </div>
-    <div class="panel-footer preview-wrap ">
-      <div id="preview{{id}}"></div>
-    </div>
-    <div id="mdText{{id}}" class="hidden"></div>
-  </div>
+<template name="frontEditor">
+  <form>
+    <textarea id="frontEditor" name="content" data-provide="markdown" rows="10"></textarea>
+  </form>
 </template>
 
-
-<template name="cardtext">
-  <div class="md-editor">
-    <div class="md-header btn-toolbar">
-      <div class="btn-group">
-        <button class="btn-default btn-sm btn" type="button" title="Bold" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdBold" data-hotkey="Ctrl+B">
-          <span class="glyphicon glyphicon-bold"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Italic" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdItalic" data-hotkey="Ctrl+I">
-          <span class="glyphicon glyphicon-italic"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Heading" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdHeading" data-hotkey="Ctrl+H">
-          <span class="glyphicon glyphicon-header"></span>
-        </button>
-      </div>
-      <div class="btn-group">
-        <button class="btn-default btn-sm btn" type="button" title="URL/Link" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdUrl" data-hotkey="Ctrl+L">
-          <span class="glyphicon glyphicon-link"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Image" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdImage" data-hotkey="Ctrl+G">
-          <span class="glyphicon glyphicon-picture"></span>
-        </button>
-      </div>
-      <div class="btn-group">
-        <button class="btn-default btn-sm btn" type="button" title="Unordered List" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdList" data-hotkey="Ctrl+U">
-          <span class="glyphicon glyphicon-list"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Ordered List" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdListO" data-hotkey="Ctrl+O">
-          <span class="glyphicon glyphicon-th-list"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Code" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdCode" data-hotkey="Ctrl+K">
-          <span class="glyphicon glyphicon-asterisk"></span>
-        </button>
-        <button class="btn-default btn-sm btn" type="button" title="Quote" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdQuote" data-hotkey="Ctrl+Q">
-          <span class="glyphicon glyphicon-comment"></span>
-        </button>
-      </div>
-
-      <div class="btn-group">
-        <button disabled="disabled" class="btn-default btn-sm btn" type="button" title="Tex" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdTex" data-hotkey="" data-toggle="button">
-          <span class="glyphicon glyphicon-usd"></span>
-        </button>
-      </div>
-    </div>
-
-  </div>
+<template name="backEditor">
+  <form>
+    <textarea id="backEditor" name="content" data-provide="markdown" rows="10"></textarea>
+  </form>
 </template>

@@ -125,11 +125,6 @@ Meteor.methods({
       }
     }
 
-    console.log("Interval: " + interval);
-    console.log("Repeats: " + reps);
-    console.log("EF: " + ef);
-    console.log("Next: " + nextDate);
-
     Learned.update(learned_id, {
       $set: {
         ef: ef,
