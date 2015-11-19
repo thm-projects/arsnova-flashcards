@@ -1,7 +1,6 @@
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 
-Session.setDefault('showCardsetsForm', false);
 Session.setDefault('cardsetSort', {
   name: 1
 });
@@ -27,23 +26,13 @@ Template.created.helpers({
  * ############################################################################
  */
 
-Template.cardsets.helpers({
-  showCardsetsForm: function() {
-    return Session.get('showCardsetsForm');
-  }
-});
-
 Template.cardsets.events({
-  'click .saveSet, click #setListEmpty': function(evt, tmpl) {
-    Session.set('showCardsetsForm', true);
+  'click .saveSet, click #setListEmpty': function() {
     var inputValue = $('#new-set-input').val();
-    setTimeout(function() {
-      $('#newSetName').val(inputValue);
-      $('#new-set-input').val('');
-    }, 0);
-
+    $('#newSetName').val(inputValue);
+    $('#new-set-input').val('');
   },
-  'click .save': function(evt, tmpl) {
+  'click #newSetModal .save': function(evt, tmpl) {
     var name = tmpl.find('#newSetName').value;
     var category = tmpl.find('#newSetCategory').value;
     var description = tmpl.find('#newSetDescription').value;
@@ -51,10 +40,6 @@ Template.cardsets.events({
     var visible = ('true' === tmpl.find('#newCardSetVisibility > .active > input').value);
     var ratings = ('true' === tmpl.find('#newCardSetRating > .active > input').value);
     Meteor.call("addCardset", name, category, description, date, visible, ratings);
-    Session.set('showCardsetsForm', false);
-  },
-  'click .cancel': function(evt, tmpl) {
-    Session.set('showCardsetsForm', false);
   },
   'click .category': function(evt, tmpl) {
     var categoryName = $(evt.currentTarget).attr("data");
