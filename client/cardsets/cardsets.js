@@ -36,6 +36,12 @@ Template.cardsets.helpers({
 Template.cardsets.events({
   'click .saveSet, click #setListEmpty': function(evt, tmpl) {
     Session.set('showCardsetsForm', true);
+    var inputValue = $('#new-set-input').val();
+    setTimeout(function() {
+      $('#newSetName').val(inputValue);
+      $('#new-set-input').val('');
+    }, 0);
+
   },
   'click .save': function(evt, tmpl) {
     var name = tmpl.find('#newSetName').value;
