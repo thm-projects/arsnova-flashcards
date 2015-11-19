@@ -27,7 +27,7 @@ Template.created.helpers({
  */
 
 Template.cardsets.events({
-  'click .saveSet, click #setListEmpty': function() {
+  'click #newCardSet': function() {
     var inputValue = $('#new-set-input').val();
     $('#newSetName').val(inputValue);
     $('#new-set-input').val('');

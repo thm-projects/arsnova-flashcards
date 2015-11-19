@@ -18,7 +18,7 @@
       <div class="input-group">
         <input class="form-control" type="text" id="new-set-input" placeholder="{{_ "input-group.newcarddeck"}}">
         <span class="input-group-btn">
-          <button id="newCardSet" type="button" class="btn btn-primary saveSet"  data-toggle="modal" data-target="#newSetModal"><i class="glyphicon glyphicon-plus"></i></button>
+          <button id="newCardSet" type="button" class="btn btn-primary saveSet" data-toggle="modal" data-target="#newSetModal"><i class="glyphicon glyphicon-plus"></i></button>
         </span>
       </div>
 
@@ -102,9 +102,7 @@
     <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
       <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
       <br>
-      <a class="btn-newSet btn btn-primary btn-s">
-        <span id="setListEmpty">{{_ "set-list-empty.newset"}}</span>
-      </a>
+        <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
     </td>
   </tr>
 </template>

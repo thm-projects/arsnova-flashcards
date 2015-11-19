@@ -21,6 +21,15 @@ Template.cardset.events({
     Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
   },
   'click #cardSetDelete': function() {
+    $("#cardSetDelete").css('display', "none");
+    $("#cardSetConfirm").css('display', "");
+    
+    $('#editSetModal').on('hidden.bs.modal', function() {
+      $("#cardSetDelete").css('display', "");
+      $("#cardSetConfirm").css('display', "none");
+    });
+  },
+  'click #cardSetConfirm': function() {
     var id = this._id;
 
     $('#editSetModal').on('hidden.bs.modal', function() {
@@ -97,7 +106,6 @@ Template.cardsetDetails.helpers({
         var src = $('.detailfront'+index+' img').attr('src');
         var alt = $('.detailfront'+index+' img').attr('alt');
         $('.detailfront'+index+' img').replaceWith($('<a class="card-detailfront btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" data-val="'+src+'" data-alt="'+alt+'" style="cursor:pointer"><i class="glyphicon glyphicon-picture"></i></a>'));
-
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {

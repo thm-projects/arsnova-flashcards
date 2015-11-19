@@ -80,6 +80,7 @@
     "cancel": "Abbrechen",
     "createcarddeck": "Kartensatz anlegen",
     "delete": "Kartensatz löschen",
+    "confirm": "Sicher?",
     "save": "Kartensatz speichern"
   },
 
