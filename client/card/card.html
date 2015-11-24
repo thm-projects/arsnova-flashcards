@@ -1,0 +1,59 @@
+<template name="newCard">
+  <div class="container">
+    <div class="col-md-12">
+      <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
+    </div>
+    {{> editor}}
+  </div>
+</template>
+
+<template name="editCard">
+  <div class="container">
+    <div class="col-md-12">
+      <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
+    </div>
+    {{> editor}}
+  </div>
+</template>
+
+<template name="editor">
+  <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
+    <h5>{{_ "foreside"}}</h5>
+    {{> frontEditor}}
+  </div>
+  <div id="backtext" class="col-md-6 cardtext" data-content="{{back}}">
+    <h5>{{_ "backside"}}</h5>
+    {{> backEditor}}
+  </div>
+  {{> btnCard}}
+</template>
+
+<template name="frontEditor">
+  <form>
+    <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
+  </form>
+</template>
+
+<template name="backEditor">
+  <form>
+    <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
+  </form>
+</template>
+
+<template name="btnCard">
+  <div class="col-md-12">
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      {{#if isEditMode}}
+        <div class="btn-group" role="group">
+          <button id="cardDelete" class="btn btn-danger btn-large delete" onclick="history.go(-1)">{{_ "deletecard"}}</button>
+        </div>
+      {{/if}}
+      <div class="btn-group" role="group">
+        <button id="cardCancel" class="btn btn-default btn-large cancel" onclick="history.go(-1)">{{_ "declinecard"}}</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button id="cardSave" class="btn btn-success btn-large save" onclick="history.go(-1)">{{_ "savecard"}}</button>
+      </div>
+    </div>
+  </div>
+</template>

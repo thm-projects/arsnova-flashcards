@@ -61,10 +61,18 @@ Router.route('/cardsetlist/:_id', {
 });
 
 Router.route('/newcard/:_id', {
-  name: 'newcard',
+  name: 'newCard',
   data: function() {
     var currentCardset = this.params._id;
     return Cardsets.findOne({_id: currentCardset});
+  }
+});
+
+Router.route('/editcard/:_id', {
+  name: 'editCard',
+  data: function() {
+    var currentCard = this.params._id;
+    return Cards.findOne({_id: currentCard});
   }
 });
 

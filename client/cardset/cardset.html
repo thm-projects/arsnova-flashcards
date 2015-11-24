@@ -72,7 +72,7 @@
             {{#each getCards}}
               <div class="item {{#if cardActive @index}}active{{/if}}">
                 <div class="box">
-                  <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="#" style="display: inline;">
+                  <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="{{pathFor route='editCard'}}" style="display: inline;">
                     <i class="glyphicon glyphicon-pencil"></i>
                   </a>
                   <span id="clicktoflip" class="clicktoflip">Click to flip</span>
@@ -188,7 +188,7 @@
               <td class="front{{@index}}"></td>
               <td class="back{{@index}}"></td>
               <td>
-          <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="##" style="margin-left: 5px;">
+          <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="{{pathFor route='editCard'}}" style="margin-left: 5px;">
             <i class="glyphicon glyphicon-pencil"></i>
           </a>
           <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' href="#">
