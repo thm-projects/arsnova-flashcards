@@ -1,34 +1,12 @@
 /**
  * ############################################################################
- * newCard
- * ############################################################################
- */
-
-Template.newCard.rendered = function() {
-  Session.set('newCardMode', true);
-  Session.set('frontText', undefined);
-  Session.set('backText', undefined);
-};
-
-/**
- * ############################################################################
- * editCard
- * ############################################################################
- */
-
-Template.editCard.rendered = function() {
-  Session.set('newCardMode', false);
-};
-
-/**
- * ############################################################################
  * btnCard
  * ############################################################################
  */
 
 Template.btnCard.helpers({
   isEditMode: function() {
-    return !Session.get('newCardMode');
+    return ActiveRoute.name('editCard');
   }
 });
 
@@ -36,7 +14,7 @@ Template.btnCard.events({
   "click #cardSave": function(evt, tmpl) {
     front = Session.get('frontText');
     back = Session.get('backText');
-    if (Session.get('newCardMode')) {
+    if (ActiveRoute.name('newCard')) {
       Meteor.call("addCard", this._id, front, back);
     } else {
       Meteor.call("updateCard", this._id, front, back);
@@ -88,7 +66,7 @@ Template.frontEditor.rendered = function() {
     ]
   });
 
-  if (!Session.get('newCardMode')) {
+  if (ActiveRoute.name('editCard')) {
     front = $('#fronttext').data('content');
     Session.set('frontText', front);
     if (front !== "") {
@@ -100,6 +78,8 @@ Template.frontEditor.rendered = function() {
           console.log("Error: Can't convert to Markdown");
         });
     }
+  } else {
+        Session.set('frontText', undefined);
   }
 };
 
@@ -142,7 +122,7 @@ Template.backEditor.rendered = function() {
       }]
     ]
   });
-  if (!Session.get('newCardMode')) {
+  if (ActiveRoute.name('editCard')) {
     back = $('#backtext').data('content');
     Session.set('backText', back);
     if (back !== "") {
@@ -154,6 +134,8 @@ Template.backEditor.rendered = function() {
           console.log("Error: Can't convert to Markdown");
         });
     }
+  } else {
+        Session.set('backText', undefined);
   }
 };
 
