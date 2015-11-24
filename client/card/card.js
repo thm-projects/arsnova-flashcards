@@ -41,9 +41,6 @@ Template.btnCard.events({
     } else {
       Meteor.call("updateCard", this._id, front, back);
     }
-    Router.go('cardsetdetailsid', {
-      _id: this._id
-    });
   },
   "click #cardDelete": function(evt, tmpl) {
     var id = this._id;
@@ -91,13 +88,18 @@ Template.frontEditor.rendered = function() {
     ]
   });
 
-  front = $('#fronttext').data('content');
-  Session.set('frontText', front);
-  if (front !== "") {
-    Meteor.promise("convertMarkdown", front)
-      .then(function(rendered) {
-        $("#fronttext .md-footer").html(rendered);
-      });
+  if (!Session.get('newCardMode')) {
+    front = $('#fronttext').data('content');
+    Session.set('frontText', front);
+    if (front !== "") {
+      Meteor.promise("convertMarkdown", front)
+        .then(function(rendered) {
+          $("#fronttext .md-footer").html(rendered);
+        })
+        .catch(function(error) {
+          console.log("Error: Can't convert to Markdown");
+        });
+    }
   }
 };
 
@@ -140,14 +142,18 @@ Template.backEditor.rendered = function() {
       }]
     ]
   });
-
-  back = $('#backtext').data('content');
-  Session.set('backText', back);
-  if (back !== "") {
-    Meteor.promise("convertMarkdown", back)
-      .then(function(rendered) {
-        $("#backtext .md-footer").html(rendered);
-      });
+  if (!Session.get('newCardMode')) {
+    back = $('#backtext').data('content');
+    Session.set('backText', back);
+    if (back !== "") {
+      Meteor.promise("convertMarkdown", back)
+        .then(function(rendered) {
+          $("#backtext .md-footer").html(rendered);
+        })
+        .catch(function(error) {
+          console.log("Error: Can't convert to Markdown");
+        });
+    }
   }
 };
 
