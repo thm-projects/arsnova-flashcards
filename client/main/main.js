@@ -13,6 +13,8 @@ Template.main.events({
 
 Template.main.helpers ({
   getUsername: function(){
-    return Meteor.user().profile.name;
-  }
+    if(Meteor.userId()) {
+      return Meteor.user().profile.name;
+    }
+  } 
 });
