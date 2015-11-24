@@ -1,5 +1,5 @@
 Meteor.methods({
-  addCardset: function(name, category, description, date, visible, ratings) {
+  addCardset: function(name, category, description, visible, ratings) {
     // Make sure the user is logged in before inserting a cardset
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -8,7 +8,7 @@ Meteor.methods({
       name: name,
       category: category,
       description: description,
-      date: date,
+      date: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().profile.name,
       visible: visible,
