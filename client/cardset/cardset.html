@@ -1,8 +1,6 @@
 <template name="cardset">
   {{#if hasPermission}}
-    {{#if showCardsetForm}}
-      {{> cardsetForm}}
-    {{/if}}
+    {{> cardsetForm}}
 
     {{> sidebarCardset}}
     {{#if isActiveRoute 'cardsetdetailsid'}}
@@ -41,8 +39,8 @@
 
         <span class="nav-header" style="padding-left:0; margin-bottom:3px">{{_ "sidebar-nav.view"}}</span>
         <div class="btn-group btn-group-xs btn-group-justified">
-          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
-          <a id="btnToListLayout" class="btn btn-default btn-listLayout" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
+          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
+          <a id="btnToListLayout" class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
         </div>
 
         <hr />
@@ -56,7 +54,7 @@
     <div id="set-details-controls-region">
       <div class="well well-sm sidebar-nav">
         <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
-        <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
+        <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" data-toggle="modal" data-target="#editSetModal" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
         <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
       </div>
     </div>
@@ -121,9 +119,7 @@
         </div>
       {{/if}}
 
-      {{#if showCardsetPictureForm}}
-        {{> cardsetPictureForm}}
-      {{/if}}
+      {{> cardsetPictureForm}}
 
       <div class="row">
         <div class="col-md-12"><h4>&nbsp;</h4></div>
@@ -210,21 +206,19 @@
         {{/if}}
 
       </tbody>
-      {{#if showCardsetPictureForm}}
-        {{> cardsetPictureForm}}
-      {{/if}}
+      {{> cardsetPictureForm}}
     </table>
   </div>
 </template>
 
 
 <template name="cardsetForm">
-  <div class="modal fade in" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+  <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="editSetModalTitle" class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
         </div>
         <div class="modal-body">
           <div class="form-horizontal">
@@ -287,9 +281,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{_ "modal-dialog.cancel"}}</button>
-          <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px" data-loading-text="Lösche Deck..." data-clickout="5">{{_ "modal-dialog.delete"}}</button>
-          <button id="cardSetSave" class="btn btn-primary" data-loading-text="Speichere Deck...">{{_ "modal-dialog.save"}}</button>
+          <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+          <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_ "modal-dialog.delete"}}</button>
+          <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_ "modal-dialog.confirm"}}</button>
+          <button id="cardSetSave" class="btn btn-primary" data-dismiss="modal">{{_ "modal-dialog.save"}}</button>
         </div>
       </div>
     </div>
@@ -298,12 +293,12 @@
 
 
 <template name="cardsetPictureForm">
-  <div class="modal fade in" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block">
+  <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalTitle">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="pictureModal" class="modal-title"></h4>
         </div>
         <div class="modal-body" id="setdetails-pictureModal-body"></div>
       </div><!-- /.modal-content -->
