@@ -16,6 +16,11 @@ Meteor.methods({
     });
   },
   deleteCardset: function(id) {
+    // Make sure only the task owner can make a task private
+    var cardset = Cardsets.findOne(id);
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
     Cardsets.remove(id);
     Cards.remove({
       cardset_id: id
@@ -23,8 +28,8 @@ Meteor.methods({
   },
   updateCardset: function(id, name, category, description, visible, ratings) {
     // Make sure only the task owner can make a task private
-    var deck = Cardsets.findOne(id);
-    if (deck.owner !== Meteor.userId()) {
+    var cardset = Cardsets.findOne(id);
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
     Cardsets.update(id, {
@@ -39,14 +44,40 @@ Meteor.methods({
   },
   addCard: function(cardset_id, front, back) {
     // Make sure the user is logged in and is authorized
-    var deck = Cardsets.findOne(cardset_id);
-    if (!Meteor.userId() && deck.owner !== Meteor.userId()) {
+    var cardset = Cardsets.findOne(cardset_id);
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
     Cards.insert({
       front: front,
       back: back,
       cardset_id: cardset_id
+    });
+  },
+  deleteCard: function(card_id) {
+    // Make sure the user is logged in and is authorized
+    var card = Cards.findOne(card_id);
+    var cardset = Cardsets.findOne(card.cardset_id);
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Cards.remove(card_id);
+    Learned.remove({
+      card_id: card_id
+    });
+  },
+  updateCard: function(card_id, front, back) {
+    // Make sure the user is logged in and is authorized
+    var card = Cards.findOne(card_id);
+    var cardset = Cardsets.findOne(card.cardset_id);
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Cards.update(card_id, {
+      $set: {
+        front: front,
+        back: back
+      }
     });
   },
   addLearned: function(cardset_id, card_id) {

@@ -187,7 +187,7 @@ Template.cardsetDetails.events({
 
 Template.sidebarCardset.events({
   "click #set-details-controls-btn-newCard": function() {
-    Router.go('newcard', {_id: this._id});
+    Router.go('newCard', {_id: this._id});
   }
 });
 
