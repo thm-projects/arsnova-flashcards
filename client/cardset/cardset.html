@@ -1,14 +1,7 @@
 <template name="cardset">
-  {{#if hasPermission}}
-    {{> cardsetForm}}
-
-    {{> sidebarCardset}}
-    {{#if isActiveRoute 'cardsetdetailsid'}}
-      {{> cardsetDetails}}
-    {{/if}}
-    {{#if isActiveRoute 'cardsetlistid'}}
-      {{> cardsetList}}
-    {{/if}}
+  {{#if hasPermission}} {{> cardsetForm}} {{> sidebarCardset}}
+    {{#if isActiveRoute 'cardsetdetailsid'}} {{> cardsetDetails}} {{/if}}
+    {{#if isActiveRoute 'cardsetlistid'}} {{> cardsetList}} {{/if}}
   {{else}}
     <h4>{{_ "permission"}}</h4>
   {{/if}}
@@ -37,7 +30,7 @@
 
         <hr />
 
-        <span class="nav-header" style="padding-left:0; margin-bottom:3px">{{_ "sidebar-nav.view"}}</span>
+        <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
         <div class="btn-group btn-group-xs btn-group-justified">
           <a id="btnToCardLayout" class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
           <a id="btnToListLayout" class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
@@ -48,16 +41,37 @@
       </div>
     </div>
 
-    <div id="set-details-rating-region"></div>
+    {{#if ratingEnabled}}
+      <div id="set-details-rating-region">
+        <div id="set-details-controls-region">
+          <div class="well well-sm sidebar-nav">
+            <span class="nav-header-cardset">{{_ "valuation"}}</span>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                {{#if hasRated}}
+                  {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                {{else}}
+                  {{> starsRating id='rating' rating=0 mutable=true}}
+                {{/if}}
+              </div>
+            </div>
+            <span class="ratingText text-muted">
+              <span>&#216; {{getAverage}} {{_ "valuation2"}}</span>
+              <span>{{_ "valuationtext"}} {{countRatings}} {{_ "valuationtext2"}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    {{/if}}
 
     {{#if isOwner}}
-    <div id="set-details-controls-region">
-      <div class="well well-sm sidebar-nav">
-        <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
-        <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" data-toggle="modal" data-target="#editSetModal" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
-        <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
+      <div id="set-details-controls-region">
+        <div class="well well-sm sidebar-nav">
+          <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
+          <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" data-toggle="modal" data-target="#editSetModal" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
+          <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
+        </div>
       </div>
-    </div>
     {{/if}}
   </div>
 </template>
@@ -117,12 +131,12 @@
             </div>
           </div>
         </div>
-      {{/if}}
-
-      {{> cardsetPictureForm}}
+      {{/if}} {{> cardsetPictureForm}}
 
       <div class="row">
-        <div class="col-md-12"><h4>&nbsp;</h4></div>
+        <div class="col-md-12">
+          <h4>&nbsp;</h4>
+        </div>
       </div>
 
       <div class="row">
@@ -145,7 +159,8 @@
 
             <div class="meteorBox">
               <span>{{_ "yourhighscore"}}</span>
-              <span class="pull-right"><span id="meteor-set-points">0</span>
+              <span class="pull-right">
+                <span id="meteor-set-points">0</span>
                 <span> </span>
                 <span>{{_ "points"}}</span>
               </span>
@@ -188,16 +203,15 @@
               <td class="front{{@index}}"></td>
               <td class="back{{@index}}"></td>
               <td>
-          <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="{{pathFor route='editCard'}}" style="margin-left: 5px;">
-            <i class="glyphicon glyphicon-pencil"></i>
-          </a>
-          <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' href="#">
-            <i class="glyphicon glyphicon-ban-circle"></i>
-          </a>
-        </td>
+                <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="{{pathFor route='editCard'}}" style="margin-left: 5px;">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+                <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' href="#">
+                  <i class="glyphicon glyphicon-ban-circle"></i>
+                </a>
+              </td>
             </tr>
-          {{/each}}
-        {{else}}
+          {{/each}} {{else}}
           <tr class="empty-listitem">
             <td colspan="3" align="center">
               <span style="font-family:'Georgia'">{{_ "nocards"}}</span>
@@ -257,10 +271,12 @@
               <div class="controls col-md-9">
                 <div id="editCardSetVisibility" class="btn-group" data-toggle="buttons">
                   <label id="visibilityoption1" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="false" id="edit_visibility_private"><span>{{_ "modal-dialog.visibilityoption1"}}</span>
+                    <input type="radio" name="options" value="false" id="edit_visibility_private">
+                    <span>{{_ "modal-dialog.visibilityoption1"}}</span>
                   </label>
                   <label id="visibilityoption2" class="btn public btn-default {{#if visible true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true" id="edit_visibility_public"> <span>{{_ "modal-dialog.visibilityoption2"}}</span>
+                    <input type="radio" name="options" value="true" id="edit_visibility_public">
+                    <span>{{_ "modal-dialog.visibilityoption2"}}</span>
                   </label>
                 </div>
               </div>
@@ -270,10 +286,12 @@
               <div class="controls col-md-9">
                 <div id="editCardSetRating" class="btn-group btn-group-rating" data-toggle="buttons">
                   <label id="ratingoption1" class="btn rating-true btn-default {{#if ratings true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="rating" value="true" id="rating_true"><span>{{_ "modal-dialog.ratingoption1"}}</span>
+                    <input type="radio" name="rating" value="true" id="rating_true">
+                    <span>{{_ "modal-dialog.ratingoption1"}}</span>
                   </label>
                   <label id="ratingoption2" class="btn rating-false btn-default {{#if ratings false}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="rating" value="false" id="rating_false"><span>{{_ "modal-dialog.ratingoption2"}}</span>
+                    <input type="radio" name="rating" value="false" id="rating_false">
+                    <span>{{_ "modal-dialog.ratingoption2"}}</span>
                   </label>
                 </div>
               </div>
@@ -301,7 +319,10 @@
           <h4 id="pictureModal" class="modal-title"></h4>
         </div>
         <div class="modal-body" id="setdetails-pictureModal-body"></div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>

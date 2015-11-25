@@ -164,5 +164,17 @@ Meteor.methods({
         nextDate: nextDate
       }
     });
+  },
+  addRating: function (cardset_id, rating) {
+    // Make sure the user is logged in
+    if (!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Ratings.insert({
+      cardset_id: cardset_id,
+      user: Meteor.userId(),
+      rating: rating
+    });
   }
 });
