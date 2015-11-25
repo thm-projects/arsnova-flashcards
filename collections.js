@@ -1,6 +1,29 @@
 //------------------------ ACCESS DATABASE
 
 Cardsets = new Mongo.Collection('cardsets');
+
+CardsetsIndex = new EasySearch.Index({
+  collection: Cardsets,
+  fields: ['name', 'description'],
+  engine: new EasySearch.Minimongo({
+    selector: function(searchObject, options, aggregation) {
+      // Default selector
+      defSelector = this.defaultConfiguration().selector(searchObject, options, aggregation);
+
+      // Filter selector
+      selector = {};
+      selector.$and = [defSelector, {
+        $or: [{
+          owner: Meteor.userId()
+        }, {
+          visible: true
+        }]
+      }];
+      return selector;
+    }
+  })
+});
+
 Cards = new Mongo.Collection('cards');
 Learned = new Mongo.Collection('learned');
 Categories = new TAPi18n.Collection("categories");

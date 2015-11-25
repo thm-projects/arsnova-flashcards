@@ -1,3 +1,9 @@
+<template name="search">
+  <p>
+    hu
+  </p>
+</template>
+
 <template name="main">
 
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -31,11 +37,18 @@
               </a>
             </li>
           </ul>
-          <form class="navbar-form navbar-left hidden-sm" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{_ "navbar-collapse.search"}}" id="input-search">
+          <div id="searchDropdown" class="navbar-form navbar-left hidden-sm input-append btn-group" role="search">
+            <input id="input-search" class="form-control typeahead" name="search" type="text" autocomplete="off" spellcheck="off" data-source="search" data-template="search" placeholder="{{_ "navbar-collapse.search"}}">
+            <div id="searchResults" class="dropdown-menu list-group">
+              {{#each searchCategories}}
+                <a href="/cardset/{{_id}}" class="list-group-item">
+                  <h4 class="list-group-item-heading">{{name}}</h4>
+                  <p class="list-group-item-text">{{description}}</p>
+                </a>
+              {{/each}}
             </div>
-          </form>
+          </div>
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown {{#if isActiveRoute 'userprofile'}}active{{/if}}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
