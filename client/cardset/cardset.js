@@ -185,6 +185,10 @@ Template.cardsetList.events({
     var alt = $(evt.currentTarget).data('alt');
     $("#pictureModal .modal-title").html(alt);
     $("#setdetails-pictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
+  },
+  'click .deleteCardList': function() {
+    var id = this._id;
+    Meteor.call("deleteCard", id);
   }
 });
 
