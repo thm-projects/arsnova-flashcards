@@ -12,12 +12,36 @@ Template.btnCard.helpers({
 
 Template.btnCard.events({
   "click #cardSave": function(evt, tmpl) {
-    front = Session.get('frontText');
-    back = Session.get('backText');
-    if (ActiveRoute.name('newCard')) {
-      Meteor.call("addCard", this._id, front, back);
-    } else {
-      Meteor.call("updateCard", this._id, front, back);
+    if ($('#frontEditor').val() === '') {
+      $('#fronttext .md-editor').css('border-color', '#b94a48');
+      $('#helpNewFronttext').html(TAPi18n.__('fronttext_required'));
+      $('#helpNewFronttext').css('color', '#b94a48');
+    }
+    if ($('#backEditor').val() === '') {
+      $('#backtext .md-editor').css('border-color', '#b94a48');
+      $('#helpNewBacktext').html(TAPi18n.__('backtext_required'));
+      $('#helpNewBacktext').css('color', '#b94a48');
+    }
+    if ($('#frontEditor').val().length > 700) {
+      $('#fronttext .md-editor').css('border-color', '#b94a48');
+      $('#helpNewFronttext').html(TAPi18n.__('text_max'));
+      $('#helpNewFronttext').css('color', '#b94a48');
+    }
+    if ($('#backEditor').val().length > 700) {
+      $('#backtext .md-editor').css('border-color', '#b94a48');
+      $('#helpNewBacktext').html(TAPi18n.__('text_max'));
+      $('#helpNewBacktext').css('color', '#b94a48');
+    }
+    if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 700 && $('#backEditor').val().length <= 700)
+    {
+      front = Session.get('frontText');
+      back = Session.get('backText');
+      if (ActiveRoute.name('newCard')) {
+        Meteor.call("addCard", this._id, front, back);
+      } else {
+        Meteor.call("updateCard", this._id, front, back);
+      }
+      window.history.go(-1);
     }
   },
   "click #cardDelete": function(evt, tmpl) {
@@ -83,6 +107,13 @@ Template.frontEditor.rendered = function() {
   }
 };
 
+Template.frontEditor.events({
+  'keyup #frontEditor': function() {
+    $('#fronttext .md-editor').css('border-color', '');
+    $('#helpNewFronttext').html('');
+  }
+});
+
 /**
  * ############################################################################
  * backEditor
@@ -138,6 +169,13 @@ Template.backEditor.rendered = function() {
         Session.set('backText', undefined);
   }
 };
+
+Template.backEditor.events({
+  'keyup #backEditor': function() {
+    $('#backtext .md-editor').css('border-color', '');
+    $('#helpNewBacktext').html('');
+  }
+});
 
 /**
  * ############################################################################

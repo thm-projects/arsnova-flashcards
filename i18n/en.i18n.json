@@ -251,9 +251,13 @@
   "yourhighscore": "Your highscore:",
   "points":"Points",
 
-  "foreside":"Front",
+  "frontside":"Front",
   "backside":"Back",
   "options":"Options",
+  "fronttext_required":"The front field is required!",
+  "backtext_required":"The back field is required!",
+  "text_max": "No more than 700 characters allowed!",
+
 
   "newcard":"New card",
   "editcard":"Edit card",

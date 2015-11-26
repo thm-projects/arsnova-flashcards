@@ -251,9 +251,12 @@
   "yourhighscore": "Dein Highscore:",
   "points":"Punkte",
 
-  "foreside":"Vorderseite",
+  "frontside":"Vorderseite",
   "backside":"Rückseite",
   "options":"Optionen",
+  "fronttext_required":"Bitte Vorderseite ausfüllen!",
+  "backtext_required":"Bitte Rückseite ausfüllen!",
+  "text_max": "Es sind nur 700 Zeichen erlaubt!",
 
   "newcard":"Neue Karte",
   "editcard":"Karte bearbeiten",

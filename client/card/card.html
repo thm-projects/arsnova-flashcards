@@ -26,7 +26,7 @@
 
 <template name="editor">
   <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
-    <h5>{{_ "foreside"}}</h5>
+    <h5>{{_ "frontside"}}</h5>
     {{> frontEditor}}
   </div>
   <div id="backtext" class="col-md-6 cardtext" data-content="{{back}}">
@@ -40,12 +40,14 @@
   <form>
     <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
   </form>
+  <span id="helpNewFronttext" class="help-block fronttext"></span>
 </template>
 
 <template name="backEditor">
   <form>
     <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
   </form>
+  <span id="helpNewBacktext" class="help-block backtext"></span>
 </template>
 
 <template name="btnCard">
@@ -60,7 +62,7 @@
         <button id="cardCancel" class="btn btn-default btn-large cancel" onclick="history.go(-1)">{{_ "declinecard"}}</button>
       </div>
       <div class="btn-group" role="group">
-        <button id="cardSave" class="btn btn-success btn-large save" onclick="history.go(-1)">{{_ "savecard"}}</button>
+        <button id="cardSave" class="btn btn-success btn-large save">{{_ "savecard"}}</button>
       </div>
     </div>
   </div>

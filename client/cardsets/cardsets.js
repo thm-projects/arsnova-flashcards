@@ -53,7 +53,6 @@ Template.cardsets.events({
       $('#helpNewSetDescription').css('color', '#b94a48');
     }
     if ($('#newSetCategory').val() === "") {
-      console.log("falsch");
       $('#newSetCategoryLabel').css('color', '#b94a48');
       $('#newSetCategoryDropdown').css('border-color', '#b94a48');
       $('#helpNewSetCategory').html(TAPi18n.__('modal-dialog.category_required'));
