@@ -1,12 +1,7 @@
 <template name="cardsets">
-  {{> cardsetsForm}}
-  {{> sidebarCardsets}}
-  {{#if isActiveRoute 'created'}}
-    {{> created}}
-  {{/if}}
-  {{#if isActiveRoute 'learned'}}
-    {{> learned}}
-  {{/if}}
+  {{> cardsetsForm}} {{> sidebarCardsets}}
+  {{#if isActiveRoute 'created'}} {{> created}} {{/if}}
+  {{#if isActiveRoute 'learned'}} {{> learned}} {{/if}}
 </template>
 
 
@@ -88,7 +83,11 @@
 
 <template name="cardsetRow">
   <tr class="cardsetRow">
-    <td><a href="/cardset/{{_id}}">{{name}}<span class="badge cardsetBadge">{{countCards this._id}}</span></a></td>
+    <td>
+      <a href="/cardset/{{_id}}">{{name}}
+        <span class="badge cardsetBadge">{{countCards this._id}}</span>
+      </a>
+    </td>
     <td>{{getCategory this.category }}</td>
     <td>{{description}}</td>
   </tr>
@@ -100,27 +99,59 @@
     <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
       <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
       <br>
-        <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+      <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
     </td>
   </tr>
 </template>
 
+
 <template name="learned">
-  <div id="set-list-region" class="col-md-9"><table class="table table-bordered table-striped table-hover">
-    <thead class="set-list">
-      <tr>
-        <th><span>{{_ "set-list.name"}}</span> <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a></th>
-        <th width="25%"><span>{{_ "set-list.category"}}</span> <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a></th>
-        <th width="40%"><span>{{_ "set-list.description"}}</span> <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a><a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a></th>
-      </tr>
-    </thead>
-    <tbody id="cardSetView"><tr class="empty-list">
-      <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
-        <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
-        <br><br>
-      </td>
-    </tr></tbody>
-  </table></div>
+  <div id="set-list-region" class="col-md-9">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="set-list">
+        <tr>
+          <th>
+            <span>{{_ "set-list.name"}}</span>
+            <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a>
+            <a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a>
+          </th>
+          <th width="25%">
+            <span>{{_ "set-list.category"}}</span>
+            <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a>
+            <a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a>
+          </th>
+          <th width="40%">
+            <span>{{_ "set-list.description"}}</span>
+            <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a>
+            <a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="cardSetView">
+        {{#if learnedList.count}}
+          {{#each learnedList}}
+            <tr class="cardsetRow">
+              <td>
+                <a href="/cardset/{{_id}}">{{name}}
+                <span class="badge cardsetBadge">{{countCards this._id}}</span>
+              </a>
+              </td>
+              <td>{{getCategory this.category }}</td>
+              <td>{{description}}</td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr class="empty-list">
+            <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
+              <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
+              <br>
+              <br>
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
 </template>
 
 
@@ -170,10 +201,12 @@
               <div class="controls col-md-9">
                 <div id="newCardSetVisibility" class="btn-group" data-toggle="buttons">
                   <label id="newCardSetVisibilityoption1" class="btn btn-default active visible" style="width:100px">
-                    <input type="radio" name="options" id="visibility_private" value="false"><div>{{_ "modal-dialog.visibilityoption1"}}</div>
+                    <input type="radio" name="options" id="visibility_private" value="false">
+                    <div>{{_ "modal-dialog.visibilityoption1"}}</div>
                   </label>
                   <label id="newCardSetVisibilityoption2" class="btn btn-default visible" style="width:100px">
-                    <input type="radio" name="options" id="visibility_public" value="true"><div>{{_ "modal-dialog.visibilityoption2"}}</div>
+                    <input type="radio" name="options" id="visibility_public" value="true">
+                    <div>{{_ "modal-dialog.visibilityoption2"}}</div>
                   </label>
                 </div>
               </div>
@@ -183,10 +216,12 @@
               <div class="controls col-md-9">
                 <div id="newCardSetRating" class="btn-group btn-group-rating" data-toggle="buttons">
                   <label id="newCardSetRatingoption1" class="btn btn-default active" style="width:100px">
-                    <input type="radio" name="rating" value="true" id="rating_true"><div>{{_ "modal-dialog.ratingoption1"}}</div>
+                    <input type="radio" name="rating" value="true" id="rating_true">
+                    <div>{{_ "modal-dialog.ratingoption1"}}</div>
                   </label>
                   <label id="newCardSetRatingoption2" class="btn btn-default" style="width:100px">
-                    <input type="radio" name="rating" value="false" id="rating_false"><div>{{_ "modal-dialog.ratingoption2"}}</div>
+                    <input type="radio" name="rating" value="false" id="rating_false">
+                    <div>{{_ "modal-dialog.ratingoption2"}}</div>
                   </label>
                 </div>
               </div>
