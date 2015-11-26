@@ -7,23 +7,58 @@ Meteor.subscribe("cards");
  * ############################################################################
  */
 
+Template.cardset.helpers({
+  'onEditmodalClose': function(id) {
+      Session.set('previousName', Cardsets.findOne(id).name);
+      Session.set('previousDescription', Cardsets.findOne(id).description);
+      Session.set('previousCategory', Cardsets.findOne(id).category);
+      Session.set('previousVisible', Cardsets.findOne(id).visible);
+      Session.set('previousRatings', Cardsets.findOne(id).ratings);
+
+      var previousCategory = Cardsets.findOne(id).category;
+      var categoryId = previousCategory.toString();
+
+      if (categoryId.length == 1) categoryId = "0" + categoryId;
+
+      var category = Categories.findOne(categoryId);
+      if (category !== undefined) {
+        Session.set('previousCategoryName', category.name);
+      }
+  }
+});
+
 Template.cardset.events({
   'click #cardSetSave': function(evt, tmpl) {
-    var name = tmpl.find('#editSetName').value;
-
-    if (tmpl.find('#editSetCategory').value === undefined) {
-      tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+    if ($('#editSetName').val() === "") {
+      $('#editSetNameLabel').css('color', '#b94a48');
+      $('#editSetName').css('border-color', '#b94a48');
+      $('#helpEditSetName').html(TAPi18n.__('modal-dialog.name_required'));
+      $('#helpEditSetName').css('color', '#b94a48');
     }
-    var category = tmpl.find('#editSetCategory').value;
-    var description = tmpl.find('#editSetDescription').value;
-    var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
-    var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
-    Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
+    if ($('#editSetDescription').val() === "") {
+      $('#editSetDescriptionLabel').css('color', '#b94a48');
+      $('#editSetDescription').css('border-color', '#b94a48');
+      $('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
+      $('#helpEditSetDescription').css('color', '#b94a48');
+    }
+    if ($('#editSetName').val() !== "" && $('#editSetDescription').val() !== "") {
+      var name = tmpl.find('#editSetName').value;
+      if (tmpl.find('#editSetCategory').value === undefined) {
+        tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+      }
+      var category = tmpl.find('#editSetCategory').value;
+      var description = tmpl.find('#editSetDescription').value;
+      var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
+      var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
+      Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
+      $('#editSetModal').modal('hide');
+    }
+
   },
   'click #cardSetDelete': function() {
     $("#cardSetDelete").css('display', "none");
     $("#cardSetConfirm").css('display', "");
-    
+
     $('#editSetModal').on('hidden.bs.modal', function() {
       $("#cardSetDelete").css('display', "");
       $("#cardSetConfirm").css('display', "none");
@@ -42,6 +77,77 @@ Template.cardset.events({
     var categoryId = $(evt.currentTarget).val();
     $('#editSetCategory').text(categoryName);
     tmpl.find('#editSetCategory').value = categoryId;
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetForm
+ * ############################################################################
+ */
+
+Template.cardsetForm.onRendered(function() {
+  $('#editSetModal').on('hidden.bs.modal', function() {
+    $('#helpEditSetName').html('');
+    $('#helpEditSetDescription').html('');
+
+    var previousName = Session.get('previousName');
+    var previousDescription = Session.get('previousDescription');
+    var previousCategoryName = Session.get('previousCategoryName');
+    var previousVisible = Session.get('previousVisible');
+    var previousRatings = Session.get('previousRatings');
+
+    if (previousName != $('#editSetName').val())
+    {
+      $('#editSetName').val(previousName);
+      $('#editSetNameLabel').css('color', '');
+      $('#editSetName').css('border-color', '');
+    }
+    if (previousDescription != $('#editSetDescription').val())
+    {
+      $('#editSetDescription').val(previousDescription);
+      $('#editSetDescriptionLabel').css('color', '');
+      $('#editSetDescription').css('border-color', '');
+    }
+    if (previousCategoryName != $('#editSetCategory').html())
+    {
+      $('#editSetCategory').html(previousCategoryName);
+    }
+    if (previousVisible != $('#editCardSetVisibility > .active > input').val())
+    {
+      if(previousVisible) {
+        $('#visibilityoption1').removeClass('active');
+        $('#visibilityoption2').addClass('active');
+      }
+      else {
+        $('#visibilityoption2').removeClass('active');
+        $('#visibilityoption1').addClass('active');
+      }
+    }
+    if (previousRatings != $('#editCardSetRating > .active > input').val())
+    {
+      if(previousRatings) {
+        $('#ratingoption2').removeClass('active');
+        $('#ratingoption1').addClass('active');
+      }
+      else {
+        $('#ratingoption1').removeClass('active');
+        $('#ratingoption2').addClass('active');
+      }
+    }
+  });
+});
+
+Template.cardsetForm.events({
+  'keyup #editSetName': function() {
+    $('#editSetNameLabel').css('color', '');
+    $('#editSetName').css('border-color', '');
+    $('#helpEditSetName').html('');
+  },
+  'keyup #editSetDescription': function() {
+    $('#editSetDescriptionLabel').css('color', '');
+    $('#editSetDescription').css('border-color', '');
+    $('#helpEditSetDescription').html('');
   }
 });
 

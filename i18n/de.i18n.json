@@ -81,7 +81,10 @@
     "createcarddeck": "Kartensatz anlegen",
     "delete": "Kartensatz löschen",
     "confirm": "Sicher?",
-    "save": "Kartensatz speichern"
+    "save": "Kartensatz speichern",
+    "name_required": "Geben Sie einen Namen ein!",
+    "description_required": "Geben Sie eine Beschreibung ein!",
+    "category_required": "Wählen Sie eine Kategorie!"
   },
 
 

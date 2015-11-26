@@ -1,7 +1,5 @@
 <template name="cardsets">
   {{> cardsetsForm}}
-
-
   {{> sidebarCardsets}}
   {{#if isActiveRoute 'created'}}
     {{> created}}
@@ -137,21 +135,21 @@
         <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group setdetails name">
-              <label class="col-md-3 control-label" for="newSetName">{{_ "modal-dialog.name"}}</label>
+              <label id="newSetNameLabel" class="col-md-3 control-label" for="newSetName">{{_ "modal-dialog.name"}}</label>
               <div class="col-md-9">
                 <input class="form-control" type="text" id="newSetName" placeholder="{{_ "modal-dialog.nameplaceholder"}}">
                 <span id="helpNewSetName" class="help-block name"></span>
               </div>
             </div>
             <div class="form-group setdetails description">
-              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.description"}}</label>
+              <label id="newSetDescriptionLabel" class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.description"}}</label>
               <div class="col-md-9">
                 <textarea class="form-control" rows="3" id="newSetDescription" placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
                 <span id="helpNewSetDescription" class="help-block description"></span>
               </div>
             </div>
             <div class="form-group setdetails categories">
-              <label class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
+              <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -164,6 +162,7 @@
                     {{/each}}
                   </ul>
                 </div>
+                <span id="helpNewSetCategory" class="help-block category"></span>
               </div>
             </div>
             <div class="form-group">
@@ -196,7 +195,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-default cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button class="btn btn-primary save" data-dismiss="modal">{{_ "modal-dialog.createcarddeck"}}</button>
+          <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
         </div>
       </div>
     </div>

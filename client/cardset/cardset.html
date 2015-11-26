@@ -1,7 +1,7 @@
 <template name="cardset">
   {{#if hasPermission}}
     {{> cardsetForm}}
-
+    {{onEditmodalClose this._id}}
     {{> sidebarCardset}}
     {{#if isActiveRoute 'cardsetdetailsid'}}
       {{> cardsetDetails}}
@@ -223,21 +223,21 @@
         <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group setdetails name">
-              <label class="col-md-3 control-label" for="editSetName">{{_ "modal-dialog.name"}}</label>
+              <label id="editSetNameLabel" class="col-md-3 control-label" for="editSetName">{{_ "modal-dialog.name"}}</label>
               <div class="col-md-9">
                 <input class="form-control" type="text" id="editSetName" value="{{name}}">
                 <span id="helpEditSetName" class="help-block name"></span>
               </div>
             </div>
             <div class="form-group setdetails description">
-              <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.description"}}</label>
+              <label id="editSetDescriptionLabel" class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.description"}}</label>
               <div class="col-md-9">
                 <textarea class="form-control" rows="3" id="editSetDescription" value="{{description}}"></textarea>
                 <span id="helpEditSetDescription" class="help-block description"></span>
               </div>
             </div>
             <div class="form-group setdetails categories">
-              <label class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
+              <label id="editSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
               <div class="col-md-9">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="editSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -284,7 +284,7 @@
           <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
           <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_ "modal-dialog.delete"}}</button>
           <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_ "modal-dialog.confirm"}}</button>
-          <button id="cardSetSave" class="btn btn-primary" data-dismiss="modal">{{_ "modal-dialog.save"}}</button>
+          <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
         </div>
       </div>
     </div>
