@@ -13,6 +13,16 @@ Session.set('isFinish', false);
  * ############################################################################
  */
 
+ Template.box.onCreated(function() {
+   var cardset_id = Router.current().params._id;
+   cards = Cards.find({
+     cardset_id: cardset_id
+   });
+   cards.forEach(function(card) {
+     Meteor.call("addLearned", card.cardset_id, card._id);
+   });
+ });
+
 Template.box.helpers({
   boxSelected: function() {
     var selectedBox = Session.get('selectedBox');
@@ -28,14 +38,6 @@ Template.box.helpers({
   },
   isFinish: function() {
     return Session.get('isFinish');
-  },
-  addLearned: function() {
-    cards = Cards.find({
-      cardset_id: this._id
-    });
-    cards.forEach(function(card) {
-      Meteor.call("addLearned", card.cardset_id, card._id);
-    });
   }
 });
 
@@ -158,9 +160,9 @@ Template.boxSide.helpers({
   }
 });
 
-Template.boxSide.destroyed = function() {
+Template.boxSide.onDestroyed(function() {
   Session.set('selectedBox', null);
-};
+});
 
 /**
  * ############################################################################

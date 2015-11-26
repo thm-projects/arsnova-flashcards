@@ -273,8 +273,9 @@
   "meteortext": "Du hast bisher noch kein Spiel gespielt",
 
   "valuation": "Bewertung",
-  "valuationtext": " Sterne bei ",
-  "valuationtext2": " Bewertungen",
+  "valuation2": "Sterne",
+  "valuationtext": "bei",
+  "valuationtext2": "Bewertungen",
 
   "norating": "Keine Bewertungen vorhanden",
   "createdof": "Erstellt von",

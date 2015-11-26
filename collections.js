@@ -1,6 +1,10 @@
 //------------------------ ACCESS DATABASE
 
 Cardsets = new Mongo.Collection('cardsets');
+Cards = new Mongo.Collection('cards');
+Learned = new Mongo.Collection('learned');
+Ratings = new Mongo.Collection("ratings");
+Categories = new TAPi18n.Collection("categories");
 
 CardsetsIndex = new EasySearch.Index({
   collection: Cardsets,
@@ -23,10 +27,6 @@ CardsetsIndex = new EasySearch.Index({
     }
   })
 });
-
-Cards = new Mongo.Collection('cards');
-Learned = new Mongo.Collection('learned');
-Categories = new TAPi18n.Collection("categories");
 
 CardsetsSchema = new SimpleSchema({
   name: {

@@ -13,3 +13,7 @@ Meteor.publish("cards", function() {
 Meteor.publish("learned", function() {
   return Learned.find();
 });
+
+Meteor.publish("ratings", function(){
+  return Ratings.find();
+});

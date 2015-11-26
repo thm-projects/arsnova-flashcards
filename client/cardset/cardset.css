@@ -1,11 +1,9 @@
 .carousel-inner {
   min-height: 278px;
 }
-
-.box
-{
+.box {
   border: 1px solid #DDDDDD;
-  font-family:'Georgia', serif;
+  font-family: 'Georgia', serif;
   height: 278px;
   padding: 50px;
   margin: 0 auto;
@@ -16,88 +14,96 @@
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
-
 .btn-editCard {
   position: absolute;
   left: 12px;
   top: 11px;
 }
-
 .btn-showPictureDetails {
   position: absolute;
   left: 45px;
   top: 11px;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 .clicktoflip {
-  color:#666;
+  color: #666;
   position: absolute;
   right: 10px;
   top: 13px;
   font-style: italic;
 }
-
 img.cardside {
   position: absolute;
   right: 88px;
   top: 13px;
 }
-
 .block {
   text-align: center;
   height: 100%;
 }
-
 .block:before {
   content: '';
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-  margin-right: -0.25em; /* Adjusts for spacing */
+  margin-right: -0.25em;
+  /* Adjusts for spacing */
 }
-
 .centered {
   display: inline-block;
   vertical-align: middle;
   font-size: 1.2em;
 }
-
 .carousel-control.left, .carousel-control.right {
-    background-image: none;
-    height: 150px;
-    margin-top: 65px;
+  background-image: none;
+  height: 150px;
+  margin-top: 65px;
 }
-
 .carousel-control {
   color: #000;
   width: 7%;
   z-index: 5;
 }
-
 .cardNumber {
   text-align: center;
   margin-top: 34px;
   color: #999;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 85%;
 }
-
 .meteorBox {
-  line-height:32px;
-  font-family:'Georgia', serif;
-  margin:12px 0 12px;
-  display:inline-table;
-  width:100%
+  line-height: 32px;
+  font-family: 'Georgia', serif;
+  margin: 12px 0 12px;
+  display: inline-table;
+  width: 100%
 }
-
 #pictureModal .modal-header {
   min-height: 50px;
 }
-
-#setdetails-pictureModal-body img{
+#setdetails-pictureModal-body img {
   max-width: 100%;
   width: auto;
   margin: auto;
   display: block;
+}
+.nav-header-cardset {
+  display: block;
+  padding-left: 0;
+  margin-bottom: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #999999;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+.ratingText {
+  display: inline-block;
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
+}
+#ratingLocked .stars {
+ cursor: auto;
 }
