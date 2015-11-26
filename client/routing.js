@@ -107,8 +107,10 @@ Router.route('/memo/:_id', {
   }
 });
 
-Router.route('/profile', {
-  name: 'userprofile'
+Router.route('/profile/:_id', {
+  name: 'profile',
+  template: 'profile',
+  data: function() { return Meteor.users.findOne(this.params._id); }
 });
 
 var isSignedIn = function() {

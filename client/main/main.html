@@ -44,13 +44,13 @@
           </div>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown {{#if isActiveRoute 'userprofile'}}active{{/if}}">
+            <li class="dropdown {{#if isActiveRoute 'profile'}}active{{/if}}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span id="usr-name">{{getUsername}}</span>
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="{{pathFor route='userprofile'}}" id="usr-profile">{{_ "navbar-collapse.myprofile"}}</a></li>
+                <li><a id="usr-profile" role="button">{{_ "navbar-collapse.myprofile"}}</a></li>
                 <li class="divider"></li>
                 <li><a href="#" id="logout" style="color:#D9534F">{{_ "navbar-collapse.logout"}}</a></li>
               </ul>

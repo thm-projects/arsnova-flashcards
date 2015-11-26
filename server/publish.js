@@ -17,3 +17,7 @@ Meteor.publish("learned", function() {
 Meteor.publish("ratings", function(){
   return Ratings.find();
 });
+
+Meteor.publish('users', function() {
+   return Meteor.users.find();
+});

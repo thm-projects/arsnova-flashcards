@@ -16,7 +16,9 @@ Template.main.events({
   'click #searchResults': function (event) {
     $('#searchDropdown').removeClass("open");
     $('#input-search').val('');
-
+  },
+  'click #usr-profile': function () {
+    Router.go('profile', {_id: Meteor.userId()});
   }
 });
 
