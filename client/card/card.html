@@ -1,19 +1,27 @@
 <template name="newCard">
-  <div class="container">
-    <div class="col-md-12">
-      <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
+  {{#if isOwner}}
+    <div class="container">
+      <div class="col-md-12">
+        <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
+      </div>
+      {{> editor}}
     </div>
-    {{> editor}}
-  </div>
+  {{else}}
+    <h4>{{_ "permission"}}</h4>
+  {{/if}}
 </template>
 
 <template name="editCard">
-  <div class="container">
-    <div class="col-md-12">
-      <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
+  {{#if isOwner}}
+    <div class="container">
+      <div class="col-md-12">
+        <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
+      </div>
+      {{> editor}}
     </div>
-    {{> editor}}
-  </div>
+  {{else}}
+    <h4>{{_ "permission"}}</h4>
+  {{/if}}
 </template>
 
 <template name="editor">

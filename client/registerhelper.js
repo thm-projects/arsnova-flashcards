@@ -5,7 +5,12 @@ Template.registerHelper("hasPermission", function() {
 
 // Check if user is owner of a cardset
 Template.registerHelper("isOwner", function() {
-  return this.owner === Meteor.userId();
+  var owner = this.owner;
+  if (owner === undefined) owner = Template.parentData(1).owner;
+  if (owner === undefined) {
+    owner = Cardsets.findOne(Cards.findOne(this._id).cardset_id).owner;
+  }
+  return owner === Meteor.userId();
 });
 
 // Returns the number of cards in a carddeck

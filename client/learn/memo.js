@@ -8,13 +8,19 @@ Meteor.subscribe("learned");
  * ############################################################################
  */
 
-Template.name.rendered = function() {
-  Session.set('showAnswer', false);
-};
+Template.memo.onCreated(function() {
+  var cardset_id = Router.current().params._id;
+  cards = Cards.find({
+    cardset_id: cardset_id
+  });
+  cards.forEach(function(card) {
+    Meteor.call("addLearned", card.cardset_id, card._id);
+  });
+});
 
-Template.memo.destroyed = function() {
+Template.memo.onDestroyed(function() {
   Session.set("showAnswer", false);
-};
+});
 
 Template.memo.helpers({
   showAnswer: function() {
@@ -34,14 +40,6 @@ Template.memo.helpers({
 
     return (learned === undefined);
   },
-  addLearned: function() {
-    cards = Cards.find({
-      cardset_id: this._id
-    });
-    cards.forEach(function(card) {
-      Meteor.call("addLearned", card.cardset_id, card._id);
-    });
-  },
   getMemoCard: function() {
     var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     actualDate.setHours(0, 0, 0, 0);
@@ -57,7 +55,6 @@ Template.memo.helpers({
         nextDate: 1
       }
     });
-    console.log(learned);
     if (learned !== undefined) {
       var cards = Cards.findOne({
         cardset_id: this._id,
@@ -66,7 +63,6 @@ Template.memo.helpers({
       Session.set('currentCard', cards._id);
       return cards;
     }
-
   },
 });
 
@@ -93,11 +89,11 @@ Template.memo.events({
  * ############################################################################
  */
 
-Template.memoRate.rendered = function() {
+Template.memoRate.onRendered(function() {
   $('[data-toggle="tooltip"]').tooltip({
     placement: 'bottom'
   });
   $('[data-toggle="popover"]').popover({
     placement: 'left'
   });
-};
+});
