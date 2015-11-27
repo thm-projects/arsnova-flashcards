@@ -18,6 +18,10 @@ Meteor.publish("ratings", function(){
   return Ratings.find();
 });
 
+Meteor.publish("experience", function(){
+  return Experience.find();
+});
+
 Meteor.publish('userData', function() {
    return Meteor.users.find();
 });
