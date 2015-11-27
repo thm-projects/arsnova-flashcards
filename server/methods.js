@@ -176,5 +176,19 @@ Meteor.methods({
       user: Meteor.userId(),
       rating: rating
     });
+  },
+  updateUsersVisibility: function (visible) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        visible: visible
+      }
+    });
+  },
+  updateUsersEmail: function (email) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        email: email
+      }
+    });
   }
 });
