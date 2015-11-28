@@ -48,3 +48,12 @@ img.cardside {
   right: 88px;
   top: 13px;
 }
+#boxPictureModal .modal-header {
+  min-height: 50px;
+}
+#setdetails-boxPictureModal-body img {
+  max-width: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
+}

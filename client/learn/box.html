@@ -105,17 +105,19 @@
           <div class="box">
             <span class="clicktoflip" id="clicktoflip">Click to flip</span>
             {{#if isFront}}
+              {{boxMarkdownFront this.front @index}}
               <img class="cardside cardfront-symbol" src="/img/icon_front.png">
               <div class="block">
-                <div class="cardContent centered front active">
-                  <p>{{front}}</p>
+                <div class="cardContent centered front{{@index}} active">
+                  <!--<p>{{front}}</p>-->
                 </div>
               </div>
             {{else}}
+              {{boxMarkdownBack this.back @index}}
               <img class="cardside cardback-symbol" src="/img/icon_back.png">
               <div class="block">
-                <div class="cardContent centered front active">
-                  <p>{{back}}</p>
+                <div class="cardContent centered back{{@index}} active">
+                  <!--<p>{{back}}</p>-->
                 </div>
               </div>
             {{/if}}
@@ -143,7 +145,7 @@
       </div>
     </div>
   {{/if}}
-
+  {{> boxPictureForm}}
 </template>
 
 <!-- Endscreen -->
@@ -158,4 +160,21 @@
       </a>
     </div>
   </div>
+</template>
+
+<template name="boxPictureForm">
+  <div class="modal fade" id="boxPictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="boxpictureModal" class="modal-title"></h4>
+        </div>
+        <div class="modal-body" id="setdetails-boxPictureModal-body"></div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>
