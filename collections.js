@@ -4,6 +4,7 @@ Cardsets = new Mongo.Collection('cardsets');
 Cards = new Mongo.Collection('cards');
 Learned = new Mongo.Collection('learned');
 Ratings = new Mongo.Collection("ratings");
+Experience = new Mongo.Collection("experience");
 Categories = new TAPi18n.Collection("categories");
 
 CardsetsIndex = new EasySearch.Index({

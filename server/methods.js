@@ -14,6 +14,12 @@ Meteor.methods({
       visible: visible,
       ratings: ratings
     });
+    Experience.insert({
+      type: 2,
+      value: 3,
+      date: new Date(),
+      owner: Meteor.userId()
+    });
   },
   deleteCardset: function(id) {
     // Make sure only the task owner can make a task private
@@ -52,6 +58,12 @@ Meteor.methods({
       front: front,
       back: back,
       cardset_id: cardset_id
+    });
+    Experience.insert({
+      type: 3,
+      value: 2,
+      date: new Date(),
+      owner: Meteor.userId()
     });
   },
   deleteCard: function(card_id) {
@@ -175,6 +187,26 @@ Meteor.methods({
       cardset_id: cardset_id,
       user: Meteor.userId(),
       rating: rating
+    });
+    Experience.insert({
+      type: 4,
+      value: 1,
+      date: new Date(),
+      owner: Meteor.userId()
+    });
+  },
+  updateUsersVisibility: function (visible) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        visible: visible
+      }
+    });
+  },
+  updateUsersEmail: function (email) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        email: email
+      }
     });
   }
 });
