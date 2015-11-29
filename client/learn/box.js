@@ -55,26 +55,24 @@ Template.boxMain.helpers({
   getCardsByBox: function() {
     selectedBox = parseInt(Session.get('selectedBox'));
 
-    var learnedCardIds = Learned.find({
+    var learnedCards = Learned.find({
       cardset_id: this._id,
       user_id: Meteor.userId(),
       box: selectedBox
     }, {
       sort: {
-        currentDate: -1
-      }
-    }).map(function(card) {
-      return card.card_id;
-    });
-
-    var learned = Cards.find({
-      cardset_id: this._id,
-      _id: {
-        $in: learnedCardIds
+        currentDate: 1
       }
     });
 
-    return learned;
+    var cards = [];
+    learnedCards.forEach(function(learnedCard) {
+      var card = Cards.findOne({
+        _id: learnedCard.card_id
+      });
+    }); 
+
+    return cards;
   },
   cardActiveByBox: function(index) {
     return 1 === index + 1;
