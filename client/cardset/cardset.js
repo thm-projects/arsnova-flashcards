@@ -331,6 +331,9 @@ Template.sidebarCardset.events({
     if (count === 0) {
       Meteor.call("addRating", cardset_id, rating);
     }
+  },
+  'click #usr-profile2': function () {
+    Router.go('profile', {_id: Meteor.userId()});
   }
 });
 

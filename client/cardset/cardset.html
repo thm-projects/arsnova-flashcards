@@ -29,7 +29,7 @@
 
         <span class="nav-header" style="padding-left:0">{{_ "sidebar-nav.created"}}</span>
         <span style="font-family:'Georgia'">
-          <a id="usr-profile2" href="{{pathFor route='userprofile'}}">{{username}}</a>
+          <a id="usr-profile2" role="button">{{username}}</a>
           <br>
           <span>{{_ "sidebar-nav.at"}}</span>
           <span>{{getDate}}</span>
@@ -327,7 +327,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="pictureModal" class="modal-title"></h4>
+          <h4 id="pictureModalTitle" class="modal-title"></h4>
         </div>
         <div class="modal-body" id="setdetails-pictureModal-body"></div>
       </div>

@@ -11,15 +11,16 @@
               <div class="col-md-6">
                 <div class="box">
                   <span class="memo-site">
-                    <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "foreside"}}
+                    <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "frontside"}}
                   </span>
-                  <div class="block memocontent-block">
+                  <div class="block memocontent-block frontblock">
                     {{#if isFinish}}
                       <span>{{_ "memo-empty.text"}}</span>
                       <a id="memoEndBtn" class="btn-back btn btn-default btn-s" onclick="history.go(-1)">
                         <span>{{_ "memo-endscreen.back"}}</span>
                       </a>
                     {{else}}
+                      {{memoMarkdownFront getMemoCard.front}}
                       <span>{{getMemoCard.front}}</span>
                     {{/if}}
                   </div>
@@ -30,9 +31,10 @@
                   <span class="memo-site">
                     <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "backside"}}
                   </span>
-                  <div class="block memocontent-block">
+                  <div class="block memocontent-block backblock">
                     {{#if showAnswer}}
                       <span>{{getMemoCard.back}}</span>
+                      {{memoMarkdownBack getMemoCard.back}}
                     {{/if}}
                   </div>
                 </div>
@@ -63,6 +65,7 @@
   {{else}}
     <h4>{{_ "permission"}}</h4>
   {{/if}}
+  {{> memoPictureForm}}
 </template>
 
 <template name="memoRate">
@@ -91,4 +94,21 @@
       </button>
     </div>
   </div>
+</template>
+
+<template name="memoPictureForm">
+  <div class="modal fade" id="memoPictureModal" tabindex="-1" role="dialog" aria-labelledby="memoPictureModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="memoPictureModalTitle" class="modal-title"></h4>
+        </div>
+        <div class="modal-body" id="setdetails-memoPictureModal-body"></div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>
