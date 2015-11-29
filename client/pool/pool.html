@@ -17,9 +17,19 @@
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
-          <th><span>{{_ "pool.name"}}</span></th>
-          <th><span>{{_ "pool.description"}}</span></th>
-          <th><span>{{_ "pool.created"}}</span></th>
+          <th>
+            <span>{{_ "pool.name"}}</span>
+            <a class="namedown" role="button">⇓</a>
+            <a class="nameup" role="button">⇑</a>
+          </th>
+          <th>
+            <span>{{_ "pool.description"}}</span>
+          </th>
+          <th>
+            <span>{{_ "pool.created"}}</span>
+            <a class="createddown" role="button">⇓</a>
+            <a class="createdup" role="button">⇑</a>
+          </th>
         </tr>
       </thead>
       <tbody id="cardSetsPool">
