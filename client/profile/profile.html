@@ -157,20 +157,19 @@
           <div class="col-md-2" style="text-align:center;">
             <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36.png')">
               <span style="font-weight:bold; color: #000; font-size:13px; padding-top:5px; display:inline-block">
-                #
+                {{getLvl}}
               </span>
             </div>
           </div>
           <div class="col-md-8" style="text-align:center">
             <div class="progress" style="margin:0">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-
+              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{getXpPercent}};">
               </div>
             </div>
             <small class="text-muted">
               <span>{{_ "pointslvl1"}}</span>
               <em>
-                <span>#</span>
+                <span>{{getXp}}</span>
                 <span>{{_ "pointslvl2"}}</span>
               </em>
               <span>{{_ "pointslvl3"}}</span>
@@ -179,7 +178,7 @@
           <div class="col-md-2" style="text-align:center;">
             <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36_gray.png')">
               <span style="font-weight:bold; color: #fff; font-size:13px; padding-top:5px; display:inline-block">
-                #
+                {{getNextLvl}}
               </span>
             </div>
           </div>

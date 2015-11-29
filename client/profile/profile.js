@@ -12,6 +12,18 @@ Template.registerHelper("getUser", function() {
  * ############################################################################
  */
 
+Template.profile.onRendered(function() {
+  var user = Meteor.users.findOne({
+    _id: Meteor.userId(),
+    lvl: {
+      $exists: false
+    }
+  });
+
+  if (user !== undefined)
+    Meteor.call("initUser");
+});
+
 Template.profile.helpers({
   isVisible: function() {
     return Meteor.users.findOne(this._id).visible || this._id === Meteor.userId();
@@ -73,6 +85,7 @@ Template.profileXp.helpers({
     allXp.forEach(function(xp) {
       result = result + xp.value;
     });
+    Session.set("totalXp", result);
     return result;
   },
   getXpToday: function() {
@@ -159,5 +172,38 @@ Template.profileXp.helpers({
       }
     }
     return name + " (+" + last.value + ")";
+  },
+  getLvl: function() {
+    return Meteor.users.findOne(this._id).lvl;
+  },
+  getNextLvl: function() {
+    return Meteor.users.findOne(this._id).lvl + 1;
+  },
+  getXp: function() {
+    var level = Meteor.users.findOne(this._id).lvl + 1;
+    var points = xpForLevel(level);
+    var required = points - Session.get("totalXp");
+
+    return required;
+  },
+  getXpPercent: function() {
+    var points = Session.get("totalXp");
+    var currentLevel = Meteor.users.findOne(this._id).lvl;
+    var nextLevel = Meteor.users.findOne(this._id).lvl + 1;
+    var currentPoints = xpForLevel(currentLevel);
+    var nextPoints = xpForLevel(nextLevel);
+
+    var res = (points - currentPoints) / (nextPoints - currentPoints) * 100;
+
+    return res + "%";
   }
 });
+
+function xpForLevel(level) {
+  var points = 0;
+
+  for (i = 1; i < level; i++){
+    points += Math.floor(i + 30 * Math.pow(2, i / 10));
+  }
+  return Math.floor(points / 4);
+}

@@ -1,3 +1,27 @@
+function checkLvl() {
+  var pts = 0;
+  var points = 0;
+  var output = 0;
+  var lvl = 1;
+
+  var allXp = Experience.find({
+    owner: Meteor.userId()
+  });
+  allXp.forEach(function(xp) {
+    pts = pts + xp.value;
+  });
+  while (pts > output) {
+    points += Math.floor(lvl + 30 * Math.pow(2, lvl / 10));
+    output = Math.floor(points / 4);
+    if (pts >= output) lvl++;
+  }
+  Meteor.users.update(Meteor.user()._id, {
+    $set: {
+      lvl: lvl
+    }
+  });
+}
+
 Meteor.methods({
   addCardset: function(name, category, description, visible, ratings) {
     // Make sure the user is logged in before inserting a cardset
@@ -20,6 +44,7 @@ Meteor.methods({
       date: new Date(),
       owner: Meteor.userId()
     });
+    checkLvl();
   },
   deleteCardset: function(id) {
     // Make sure only the task owner can make a task private
@@ -65,6 +90,7 @@ Meteor.methods({
       date: new Date(),
       owner: Meteor.userId()
     });
+    checkLvl();
   },
   deleteCard: function(card_id) {
     // Make sure the user is logged in and is authorized
@@ -179,7 +205,7 @@ Meteor.methods({
       }
     });
   },
-  addRating: function (cardset_id, rating) {
+  addRating: function(cardset_id, rating) {
     // Make sure the user is logged in
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -196,18 +222,28 @@ Meteor.methods({
       date: new Date(),
       owner: Meteor.userId()
     });
+    checkLvl();
   },
-  updateUsersVisibility: function (visible) {
+  updateUsersVisibility: function(visible) {
     Meteor.users.update(Meteor.user()._id, {
       $set: {
         visible: visible
       }
     });
   },
-  updateUsersEmail: function (email) {
+  updateUsersEmail: function(email) {
     Meteor.users.update(Meteor.user()._id, {
       $set: {
         email: email
+      }
+    });
+  },
+  initUser: function() {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        visible: true,
+        email: "",
+        lvl: 1
       }
     });
   }
