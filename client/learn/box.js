@@ -70,6 +70,7 @@ Template.boxMain.helpers({
       var card = Cards.findOne({
         _id: learnedCard.card_id
       });
+      cards.push(card);
     }); 
 
     return cards;
