@@ -4,6 +4,8 @@ Meteor.subscribe('ratings', function onReady() {
   Session.set('ratingsLoaded', true);
 });
 
+Session.setDefault('cardSort', {front: 1});
+
 /**
  * ############################################################################
  * cardset
@@ -12,21 +14,21 @@ Meteor.subscribe('ratings', function onReady() {
 
 Template.cardset.helpers({
   'onEditmodalClose': function(id) {
-      Session.set('previousName', Cardsets.findOne(id).name);
-      Session.set('previousDescription', Cardsets.findOne(id).description);
-      Session.set('previousCategory', Cardsets.findOne(id).category);
-      Session.set('previousVisible', Cardsets.findOne(id).visible);
-      Session.set('previousRatings', Cardsets.findOne(id).ratings);
+    Session.set('previousName', Cardsets.findOne(id).name);
+    Session.set('previousDescription', Cardsets.findOne(id).description);
+    Session.set('previousCategory', Cardsets.findOne(id).category);
+    Session.set('previousVisible', Cardsets.findOne(id).visible);
+    Session.set('previousRatings', Cardsets.findOne(id).ratings);
 
-      var previousCategory = Cardsets.findOne(id).category;
-      var categoryId = previousCategory.toString();
+    var previousCategory = Cardsets.findOne(id).category;
+    var categoryId = previousCategory.toString();
 
-      if (categoryId.length == 1) categoryId = "0" + categoryId;
+    if (categoryId.length == 1) categoryId = "0" + categoryId;
 
-      var category = Categories.findOne(categoryId);
-      if (category !== undefined) {
-        Session.set('previousCategoryName', category.name);
-      }
+    var category = Categories.findOne(categoryId);
+    if (category !== undefined) {
+      Session.set('previousCategoryName', category.name);
+    }
   }
 });
 
@@ -100,40 +102,33 @@ Template.cardsetForm.onRendered(function() {
     var previousVisible = Session.get('previousVisible');
     var previousRatings = Session.get('previousRatings');
 
-    if (previousName != $('#editSetName').val())
-    {
+    if (previousName != $('#editSetName').val()) {
       $('#editSetName').val(previousName);
       $('#editSetNameLabel').css('color', '');
       $('#editSetName').css('border-color', '');
     }
-    if (previousDescription != $('#editSetDescription').val())
-    {
+    if (previousDescription != $('#editSetDescription').val()) {
       $('#editSetDescription').val(previousDescription);
       $('#editSetDescriptionLabel').css('color', '');
       $('#editSetDescription').css('border-color', '');
     }
-    if (previousCategoryName != $('#editSetCategory').html())
-    {
+    if (previousCategoryName != $('#editSetCategory').html()) {
       $('#editSetCategory').html(previousCategoryName);
     }
-    if (previousVisible != $('#editCardSetVisibility > .active > input').val())
-    {
-      if(previousVisible) {
+    if (previousVisible != $('#editCardSetVisibility > .active > input').val()) {
+      if (previousVisible) {
         $('#visibilityoption1').removeClass('active');
         $('#visibilityoption2').addClass('active');
-      }
-      else {
+      } else {
         $('#visibilityoption2').removeClass('active');
         $('#visibilityoption1').addClass('active');
       }
     }
-    if (previousRatings != $('#editCardSetRating > .active > input').val())
-    {
-      if(previousRatings) {
+    if (previousRatings != $('#editCardSetRating > .active > input').val()) {
+      if (previousRatings) {
         $('#ratingoption2').removeClass('active');
         $('#ratingoption1').addClass('active');
-      }
-      else {
+      } else {
         $('#ratingoption1').removeClass('active');
         $('#ratingoption2').addClass('active');
       }
@@ -176,6 +171,13 @@ Template.cardsetList.helpers({
         var alt = $('.listitem img').attr('alt');
         $('.listitem img').replaceWith($('<a class="card-back btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" href="#" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
+  },
+  cardList: function() {
+    return Cards.find({
+      cardset_id: this._id
+    }, {
+      sort: Session.get("cardSort")
+    });
   }
 });
 
@@ -189,8 +191,25 @@ Template.cardsetList.events({
   'click .deleteCardList': function() {
     var id = this._id;
     Meteor.call("deleteCard", id);
+  },
+  'click #set-details-region .frontdown': function() {
+    Session.set('cardSort', {front: 1});
+  },
+  'click #set-details-region .frontup': function() {
+    Session.set('cardSort', {front: -1});
+  },
+  'click #set-details-region .backdown': function() {
+    Session.set('cardSort', {back: 1});
+  },
+  'click #set-details-region .backup': function() {
+    Session.set('cardSort', {back: -1});
   }
 });
+
+Template.cardsetList.onDestroyed(function() {
+  Session.set('cardSort', {front: 1});
+});
+
 
 /**
  * ############################################################################
@@ -332,8 +351,10 @@ Template.sidebarCardset.events({
       Meteor.call("addRating", cardset_id, rating);
     }
   },
-  'click #usr-profile2': function () {
-    Router.go('profile', {_id: Meteor.userId()});
+  'click #usr-profile2': function() {
+    Router.go('profile', {
+      _id: Meteor.userId()
+    });
   }
 });
 

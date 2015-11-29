@@ -1,6 +1,8 @@
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
+Session.setDefault('poolSort', {name: 1});
+
 /**
  * ############################################################################
  * category
@@ -13,8 +15,29 @@ Template.category.helpers({
     return Cardsets.find({
       category: id,
       visible: true
+    }, {
+      sort: Session.get('poolSort')
     });
   }
+});
+
+Template.category.events({
+  'click #pool-category-region .namedown': function() {
+    Session.set('poolSort', {name: 1});
+  },
+  'click #pool-category-region .nameup': function() {
+    Session.set('poolSort', {name: -1});
+  },
+  'click #pool-category-region .createddown': function() {
+    Session.set('poolSort', {username: 1});
+  },
+  'click #pool-category-region .createdup': function() {
+    Session.set('poolSort', {username: -1});
+  }
+});
+
+Template.category.onDestroyed(function() {
+  Session.set('poolSort', {name: 1});
 });
 
 /**

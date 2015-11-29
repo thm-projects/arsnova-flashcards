@@ -52,18 +52,16 @@
         <tr>
           <th>
             <span>{{_ "set-list.name"}}</span>
-            <a class="namedown" href="#">⇓</a>
-            <a class="nameup" href="#">⇑</a>
+            <a class="namedown" role="button">⇓</a>
+            <a class="nameup" role="button">⇑</a>
           </th>
           <th>
             <span>{{_ "set-list.category"}}</span>
-            <a class="categorydown" href="#">⇓</a>
-            <a class="categoryup" href="#">⇑</a>
+            <a class="categorydown" role="button">⇓</a>
+            <a class="categoryup" role="button">⇑</a>
           </th>
           <th>
             <span>{{_ "set-list.description"}}</span>
-            <a class="descriptiondown" href="#">⇓</a>
-            <a class="descriptionup" href="#">⇑</a>
           </th>
         </tr>
       </thead>
@@ -106,24 +104,22 @@
 
 
 <template name="learned">
-  <div id="set-list-region" class="col-md-9">
+  <div id="learned-list-region" class="col-md-9">
     <table class="table table-bordered table-striped table-hover">
       <thead class="set-list">
         <tr>
           <th>
             <span>{{_ "set-list.name"}}</span>
-            <a onclick="Cards.Set.Controller.showListLayout('name', 'down');" href="">⇓</a>
-            <a onclick="Cards.Set.Controller.showListLayout('name', 'up');" href="">⇑</a>
+            <a class="namedown" role="button">⇓</a>
+            <a class="nameup" role="button">⇑</a>
           </th>
-          <th width="25%">
+          <th>
             <span>{{_ "set-list.category"}}</span>
-            <a onclick="Cards.Set.Controller.showListLayout('category', 'down');" href="">⇓</a>
-            <a onclick="Cards.Set.Controller.showListLayout('category', 'up');" href="">⇑</a>
+            <a class="categorydown" role="button">⇓</a>
+            <a class="categoryup" role="button">⇑</a>
           </th>
-          <th width="40%">
+          <th>
             <span>{{_ "set-list.description"}}</span>
-            <a onclick="Cards.Set.Controller.showListLayout('description', 'down');" href="">⇓</a>
-            <a onclick="Cards.Set.Controller.showListLayout('description', 'up');" href="">⇑</a>
           </th>
         </tr>
       </thead>

@@ -192,21 +192,21 @@
       <thead>
         <tr>
           <th>
-            <span>{{_ "foreside"}}</span>
-            <a href="#">⇓</a>
-            <a href="#">⇑</a>
+            <span>{{_ "frontside"}}</span>
+            <a class="frontdown" role="button">⇓</a>
+            <a class="frontup" role="button">⇑</a>
           </th>
           <th>
             <span>{{_ "backside"}}</span>
-            <a href="#">⇓</a>
-            <a href="#">⇑</a>
+            <a class="backdown" role="button">⇓</a>
+            <a class="backup" role="button">⇑</a>
           </th>
           <th>{{_ "options"}}</th>
         </tr>
       </thead>
       <tbody>
         {{#if countCards this._id}}
-          {{#each getCards}}
+          {{#each cardList}}
             <tr class="listitem">
               {{cardlistMarkdown this.front this.back @index}}
               <td class="front{{@index}}"></td>

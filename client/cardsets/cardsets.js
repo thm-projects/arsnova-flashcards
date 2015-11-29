@@ -1,10 +1,8 @@
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 
-Session.setDefault('cardsetSort', {
-  name: 1
-});
-
+Session.setDefault('cardsetSortCreated', {name: 1});
+Session.setDefault('cardsetSortLearned', {name: 1});
 /**
  * ############################################################################
  * created
@@ -16,9 +14,28 @@ Template.created.helpers({
     return Cardsets.find({
       owner: Meteor.userId()
     }, {
-      sort: Session.get('cardsetSort')
+      sort: Session.get('cardsetSortCreated')
     });
   }
+});
+
+Template.created.events({
+  'click #set-list-region .namedown': function() {
+    Session.set('cardsetSortCreated', {name: 1});
+  },
+  'click #set-list-region .nameup': function() {
+    Session.set('cardsetSortCreated', {name: -1});
+  },
+  'click #set-list-region .categorydown': function() {
+    Session.set('cardsetSortCreated', {category: 1});
+  },
+  'click #set-list-region .categoryup': function() {
+    Session.set('cardsetSortCreated', {category: -1});
+  }
+});
+
+Template.created.onDestroyed(function() {
+  Session.set('cardsetSortCreated', {name: 1});
 });
 
 /**
@@ -43,8 +60,29 @@ Template.learned.helpers({
       _id: {
         $in: learnedCardsets
       }
+    }, {
+      sort: Session.get('cardsetSortLearned')
     });
   }
+});
+
+Template.learned.events({
+  'click #learned-list-region .namedown': function() {
+    Session.set('cardsetSortLearned', {name: 1});
+  },
+  'click #learned-list-region .nameup': function() {
+    Session.set('cardsetSortLearned', {name: -1});
+  },
+  'click #learned-list-region .categorydown': function() {
+    Session.set('cardsetSortLearned', {category: 1});
+  },
+  'click #learned-list-region .categoryup': function() {
+    Session.set('cardsetSortLearned', {category: -1});
+  }
+});
+
+Template.created.onDestroyed(function() {
+  Session.set('cardsetSortLearned', {name: 1});
 });
 
 /**
