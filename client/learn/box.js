@@ -13,15 +13,15 @@ Session.set('isFinish', false);
  * ############################################################################
  */
 
- Template.box.onCreated(function() {
-   var cardset_id = Router.current().params._id;
-   cards = Cards.find({
-     cardset_id: cardset_id
-   });
-   cards.forEach(function(card) {
-     Meteor.call("addLearned", card.cardset_id, card._id);
-   });
- });
+Template.box.onCreated(function() {
+  var cardset_id = Router.current().params._id;
+  cards = Cards.find({
+    cardset_id: cardset_id
+  });
+  cards.forEach(function(card) {
+    Meteor.call("addLearned", card.cardset_id, card._id);
+  });
+});
 
 Template.box.helpers({
   boxSelected: function() {
@@ -59,6 +59,10 @@ Template.boxMain.helpers({
       cardset_id: this._id,
       user_id: Meteor.userId(),
       box: selectedBox
+    }, {
+      sort: {
+        currentDate: -1
+      }
     }).map(function(card) {
       return card.card_id;
     });
@@ -70,7 +74,6 @@ Template.boxMain.helpers({
       }
     });
 
-    // _.shuffle(learned.fetch());
     return learned;
   },
   cardActiveByBox: function(index) {
@@ -92,7 +95,7 @@ Template.boxMain.helpers({
         var src = $('.front' + index + ' img').attr('src');
         var alt = $('.front' + index + ' img').attr('alt');
         $('.front' + index + ' img').replaceWith($('<a class="card-front btn-showBoxPictureModal" data-toggle="modal" data-target="#boxPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
-    });
+      });
   },
   boxMarkdownBack: function(back, index) {
     Meteor.promise("convertMarkdown", back)
@@ -101,7 +104,7 @@ Template.boxMain.helpers({
         var src = $('.back' + index + ' img').attr('src');
         var alt = $('.back' + index + ' img').attr('alt');
         $('.back' + index + ' img').replaceWith($('<a class="card-back btn-showBoxPictureModal" data-toggle="modal" data-target="#boxPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
-    });
+      });
   }
 });
 
@@ -168,6 +171,11 @@ Template.boxSide.events({
     Session.set('selectedBox', box);
     Session.set('isFront', true);
     Session.set('isFinish', false);
+  },
+  'click #cardsetUser': function() {
+    Router.go('profile', {
+      _id: Meteor.userId()
+    });
   }
 });
 
@@ -201,6 +209,8 @@ Template.boxEnd.events({
   "click #endscreenBack": function() {
     Session.set('selectedBox', null);
     Session.set('isFinish', false);
-    Router.go('cardsetdetailsid', {_id: this._id});
+    Router.go('cardsetdetailsid', {
+      _id: this._id
+    });
   }
 });

@@ -112,7 +112,8 @@ Meteor.methods({
         ef: 2.5,
         reps: 0,
         interval: 0,
-        nextDate: new Date()
+        nextDate: new Date(),
+        currentDate: new Date()
       }
     });
   },
@@ -123,7 +124,8 @@ Meteor.methods({
     }
     Learned.update(learned_id, {
       $set: {
-        box: box
+        box: box,
+        currentDate: new Date()
       }
     });
   },
