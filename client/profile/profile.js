@@ -4,6 +4,7 @@ Meteor.subscribe("badges");
 
 Template.registerHelper("getUser", function() {
   var user = Meteor.users.findOne(this._id);
+  Session.set("user", user._id);
   return user;
 });
 
@@ -27,6 +28,9 @@ Template.profile.onRendered(function() {
 
 Template.profile.helpers({
   isVisible: function() {
+    if (this._id === undefined)
+      return null;
+
     return Meteor.users.findOne(this._id).visible || this._id === Meteor.userId();
   }
 });
@@ -61,6 +65,9 @@ Template.profile.events({
 
 Template.profileInfo.helpers({
   getService: function() {
+    if (this._id === undefined)
+      return null;
+
     var user = Meteor.users.findOne(this._id);
     var service = _.keys(user.services)[0];
     service = service.charAt(0).toUpperCase() + service.slice(1);
@@ -172,6 +179,10 @@ Template.profileXp.helpers({
           break;
       }
     }
+
+    if (last === undefined)
+      return null;
+
     return name + " (+" + last.value + ")";
   },
   getLvl: function() {
@@ -203,7 +214,7 @@ Template.profileXp.helpers({
 function xpForLevel(level) {
   var points = 0;
 
-  for (i = 1; i < level; i++){
+  for (i = 1; i < level; i++) {
     points += Math.floor(i + 30 * Math.pow(2, i / 10));
   }
   return Math.floor(points / 4);
@@ -215,14 +226,145 @@ function xpForLevel(level) {
  * ############################################################################
  */
 
- Template.profileBadges.helpers({
-   getBadges: function(){
-     return Badges.find();
-   },
-   isGained: function(index, rank){
-     return false;
-   },
-   getPercent: function(index, rank){
-     return "0%";
-   }
- });
+Template.profileBadges.helpers({
+  getBadges: function() {
+    return Badges.find();
+  },
+  isGained: function(index, rank) {
+    switch (index) {
+      case 0:
+        return kritiker(rank) >= 100;
+      case 1:
+        return krone(rank) >= 100;
+      case 2:
+        return stammgast(rank) >= 100;
+      case 3:
+        return streber(rank) >= 100;
+      case 4:
+        return wohltaeter(rank) >= 100;
+      default:
+        return false;
+    }
+  },
+  getPercent: function(index, rank) {
+    switch (index) {
+      case 0:
+        return kritiker(rank);
+      case 1:
+        return krone(rank);
+      case 2:
+        return stammgast(rank);
+      case 3:
+        return streber(rank);
+      case 4:
+        return wohltaeter(rank);
+      default:
+        return 0;
+    }
+  }
+});
+
+function kritiker(rank) {
+  var ratings = Ratings.find({
+    user: Session.get("user")
+  }).count();
+
+  var badge = Badges.findOne("1");
+  switch (rank) {
+    case 3:
+      return ratings / badge.rank3 * 100;
+    case 2:
+      return ratings / badge.rank2 * 100;
+    case 1:
+      return ratings / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
+
+function krone(rank) {
+  var cardsets = Cardsets.find({
+    owner: Session.get("user")
+  });
+
+  var count = 0;
+
+  cardsets.forEach(function(cardset) {
+    var ratings = Ratings.find({
+      cardset_id: cardset._id
+    });
+    if (ratings.count() > 1) {
+      var total = 0;
+      ratings.forEach(function(rating) {
+        total += rating.rating;
+      });
+      if (total / ratings.count() >= 4.5) {
+        count++;
+      }
+    }
+  }); 
+
+  var badge = Badges.findOne("2");
+  switch (rank) {
+    case 3:
+      return count / badge.rank3 * 100;
+    case 2:
+      return count / badge.rank2 * 100;
+    case 1:
+      return count / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
+
+function stammgast(rank) {
+  return 0;
+}
+
+function streber(rank) {
+  var learned = Learned.find({
+    user_id: Session.get("user")
+  }).count();
+
+  var badge = Badges.findOne("4");
+  switch (rank) {
+    case 3:
+      return learned / badge.rank3 * 100;
+    case 2:
+      return learned / badge.rank2 * 100;
+    case 1:
+      return learned / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
+
+function wohltaeter(rank) {
+  var cardsets = Cardsets.find({
+    owner: Session.get("user"),
+    visible: true
+  });
+
+  var count = 0;
+
+  cardsets.forEach(function(cardset) {
+    var cards = Cards.find({
+      cardset_id: cardset._id
+    });
+    if (cards.count() >= 5) {
+      count++;
+    }
+  }); 
+
+  var badge = Badges.findOne("5");
+  switch (rank) {
+    case 3:
+      return count / badge.rank3 * 100;
+    case 2:
+      return count / badge.rank2 * 100;
+    case 1:
+      return count / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
