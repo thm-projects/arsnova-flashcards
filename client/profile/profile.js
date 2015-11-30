@@ -14,18 +14,6 @@ Template.registerHelper("getUser", function() {
  * ############################################################################
  */
 
-Template.profile.onRendered(function() {
-  var user = Meteor.users.findOne({
-    _id: Meteor.userId(),
-    lvl: {
-      $exists: false
-    }
-  });
-
-  if (user !== undefined)
-    Meteor.call("initUser");
-});
-
 Template.profile.helpers({
   isVisible: function() {
     if (this._id === undefined)
@@ -65,11 +53,11 @@ Template.profile.events({
 
 Template.profileInfo.helpers({
   getService: function() {
-    if (this._id === undefined)
+    if (this._id === undefined || Meteor.user().services === undefined || Meteor.user().services === null)
       return null;
 
     var user = Meteor.users.findOne(this._id);
-    var service = _.keys(user.services)[0];
+    var service = _.keys(Meteor.user().services)[0];
     service = service.charAt(0).toUpperCase() + service.slice(1);
     return service;
   },
@@ -318,7 +306,19 @@ function krone(rank) {
 }
 
 function stammgast(rank) {
-  return 0;
+    var user = Meteor.users.findOne(Session.get("user")).daysInRow;
+
+    var badge = Badges.findOne("3");
+    switch (rank) {
+      case 3:
+        return user / badge.rank3 * 100;
+      case 2:
+        return user / badge.rank2 * 100;
+      case 1:
+        return user / badge.rank1 * 100;
+      default:
+        return 0;
+    }
 }
 
 function streber(rank) {

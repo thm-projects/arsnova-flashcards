@@ -15,7 +15,7 @@ function checkLvl() {
     output = Math.floor(points / 4);
     if (pts >= output) lvl++;
   }
-  Meteor.users.update(Meteor.user()._id, {
+  Meteor.users.update(Meteor.userId(), {
     $set: {
       lvl: lvl
     }
@@ -243,8 +243,33 @@ Meteor.methods({
       $set: {
         visible: true,
         email: "",
-        lvl: 1
+        lvl: 1,
+        lastOnAt: new Date(),
+        daysInRow: 0
       }
     });
+  },
+  updateUsersLast: function(id) {
+    Meteor.users.update(id, {
+      $set: {
+        lastOnAt: new Date()
+      }
+    });
+  },
+  updateUsersDaysInRow: function(id, row) {
+    Meteor.users.update(id, {
+      $set: {
+        daysInRow: row
+      }
+    });
+  },
+  addExperience: function(type, value) {
+    Experience.insert({
+      type: type,
+      value: value,
+      date: new Date(),
+      owner: Meteor.userId()
+    });
+    checkLvl();
   }
 });

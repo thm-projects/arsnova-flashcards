@@ -126,10 +126,10 @@ Meteor.startup(function() {
   }, {
     "_id": "3",
     "name": "Stammgast",
-    "desc": "Besuche THMcards mehrere Tage am Stück und erhalte den Stammgast Badge!",
-    "rank1": 32,
-    "rank2": 20,
-    "rank3": 3,
+    "desc": "Besuche THMcards mehrere Tage und erhalte den Stammgast Badge!",
+    "rank1": 50,
+    "rank2": 25,
+    "rank3": 10,
     "unit": "Tage",
     "badge": "stammgast"
   }, {
