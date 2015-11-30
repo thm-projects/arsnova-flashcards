@@ -4,7 +4,7 @@ ARSnova Flashcards is a digital recreation of a classic learning tool. The servi
 
 ## Getting Started
 
-To start ARSnova Flashcards on localhost use `npm start` inside the repository. To initialize the database use `npm run init` while the app is running. You can then access ARSnova Flashcards from your host machine by opening http://localhost:3000.
+To start ARSnova Flashcards on localhost use `npm start` inside the repository. You can then access ARSnova Flashcards from your host machine by opening http://localhost:3000.
 
 ## CI Pipeline
 

@@ -1,5 +1,6 @@
 Meteor.subscribe("userData");
 Meteor.subscribe("experience");
+Meteor.subscribe("badges");
 
 Template.registerHelper("getUser", function() {
   var user = Meteor.users.findOne(this._id);
@@ -207,3 +208,21 @@ function xpForLevel(level) {
   }
   return Math.floor(points / 4);
 }
+
+/**
+ * ############################################################################
+ * profileBadges
+ * ############################################################################
+ */
+
+ Template.profileBadges.helpers({
+   getBadges: function(){
+     return Badges.find();
+   },
+   isGained: function(index, rank){
+     return false;
+   },
+   getPercent: function(index, rank){
+     return "0%";
+   }
+ });

@@ -11,6 +11,9 @@
     <div class="row">
       {{> profileInfo}} {{> profileXp}}
     </div>
+    <div class="row">
+      {{> profileBadges}}
+    </div>
   {{else}}
     <div class="row profil-header">
       <div class="col-md-12">
@@ -185,6 +188,112 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</template>
+
+<!--##################################################################-->
+<!--profileBadges-->
+<!--##################################################################-->
+
+<template name="profileBadges">
+  <div class="col-md-12" id="profile-badge-region">
+    <div class="panel panel-default">
+      <div class="panel-heading panel-heading-badges">
+        <h3 class="panel-title">{{_ "panel-heading-badges.badges"}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          {{#each badge in getBadges}}
+
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{badge.name}}</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row">
+
+                        <div class="col-md-4">
+                          <div class="well well-sm badgeWell">
+                            <div class="row">
+                              <img src="/badges/{{badge.badge}}_3{{#unless isGained @index 3}}_gray{{/unless}}.png" height="60">
+                            </div>
+                            <div class="row">
+                              <strong>{{_ "bronze"}}</strong>
+                            </div>
+                            <div class="row">
+                              <p>{{badge.rank3}} {{badge.unit}}</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="progress badgeFooterProgress">
+                                  <div class="progress-bar" role="progressbar" style="width: {{ getPercent @index 3}}"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="well well-sm badgeWell">
+                            <div class="row">
+                              <img src="/badges/{{badge.badge}}_2{{#unless isGained @index 2}}_gray{{/unless}}.png" height="60">
+                            </div>
+                            <div class="row">
+                              <strong>{{_ "silver"}}</strong>
+                            </div>
+                            <div class="row">
+                              <p>{{badge.rank2}} {{badge.unit}}</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="progress badgeFooterProgress">
+                                  <div class="progress-bar" role="progressbar" style="width: {{ getPercent @index 2}}"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="well well-sm badgeWell">
+                            <div class="row">
+                              <img src="/badges/{{badge.badge}}_1{{#unless isGained @index 1}}_gray{{/unless}}.png" height="60">
+                            </div>
+                            <div class="row">
+                              <strong>{{_ "gold"}}</strong>
+                            </div>
+                            <div class="row">
+                              <p>{{badge.rank1}} {{badge.unit}}</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="progress badgeFooterProgress">
+                                  <div class="progress-bar" role="progressbar" style="width: {{ getPercent @index 1}}"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <p>{{badge.desc}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
