@@ -136,6 +136,15 @@ Template.cardsetForm.onRendered(function() {
   });
 });
 
+Template.cardsetForm.helpers({
+  'visible': function(visible) {
+    return Cardsets.findOne(this._id).visible === visible;
+  },
+  'ratings': function(ratings) {
+    return Cardsets.findOne(this._id).ratings === ratings;
+  }
+});
+
 Template.cardsetForm.events({
   'keyup #editSetName': function() {
     $('#editSetNameLabel').css('color', '');
@@ -355,20 +364,22 @@ Template.sidebarCardset.events({
     Router.go('profile', {
       _id: Meteor.userId()
     });
-  }
-});
-
-/**
- * ############################################################################
- * cardsetForm
- * ############################################################################
- */
-
-Template.cardsetForm.helpers({
-  'visible': function(visible) {
-    return Cardsets.findOne(this._id).visible === visible;
   },
-  'ratings': function(ratings) {
-    return Cardsets.findOne(this._id).ratings === ratings;
+  'click #set-details-controls-btn-exportSet': function() {
+    var cardset = Cardsets.findOne(this._id);
+    var cards = Cards.find({cardset_id: this._id}).fetch();
+    var cardsString = '{"cardset": ' + JSON.stringify(cardset) + ', "cards": [';
+
+    for(var card in cards) {
+      cardsString += JSON.stringify(cards[card]);
+
+      if (cards.length-1 != card) {
+        cardsString += ", ";
+      }
+    }
+
+    cardsString += "]}";
+    var exportData = new Blob([cardsString], {type: "application/json"});
+    saveAs(exportData, cardset.name+".json");
   }
 });
