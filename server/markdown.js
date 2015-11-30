@@ -1,6 +1,7 @@
 Meteor.methods({
   convertMarkdown: function( markdown ){
     check( markdown, String );
-    return parseMarkdown( markdown );
+    kramed.options({katex: true});
+    return kramed( markdown );
   }
 });

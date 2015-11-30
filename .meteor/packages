@@ -17,7 +17,6 @@ atoy40:accounts-cas
 momentjs:moment
 rzymek:moment-locales
 tap:i18n-db
-themeteorchef:commonmark
 okgrow:promise
 reactive-var
 themeteorchef:bert
@@ -40,3 +39,5 @@ aldeed:collection2
 peerlibrary:blaze-components
 easy:search
 barbatus:stars-rating
+rexzh0u:kramed
+simple:katex
