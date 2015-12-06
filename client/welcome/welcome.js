@@ -38,6 +38,6 @@ Template.welcome.events({
             if (err) {
                 throw new Meteor.Error("Logout failed");
             }
-        })
+        });
     }
 });
