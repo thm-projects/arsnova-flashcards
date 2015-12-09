@@ -108,7 +108,7 @@ Meteor.startup(function() {
   var badges = [{
     "_id": "1",
     "name": "Reviewer",
-    "desc": "Criticism is the highest form of affection. Users will be rewarded with this badge if they objectively deal with the cards of other sets and express constructive feedback or praise.",
+    "desc": "Criticism is the highest form of affection. Users will be rewarded with this badge if they deal with cardsets of others and give constructive feedback.",
     "rank1": 50,
     "rank2": 25,
     "rank3": 10,
@@ -123,8 +123,8 @@ Meteor.startup(function() {
     }
   }, {
     "_id": "2",
-    "name": "The reviewers darling",
-    "desc": "You will earn this badge if your cardsets will be evaluated by other learners well. It will count all your public cardsets with at least 5 reviews with an average rating of 4.5 stars.",
+    "name": "Reviewer's favourite",
+    "desc": "You will obtain this badge by earning good feedback of other users. It contains all your public cardsets with at least 5 reviews with an average rating of 4.5 stars.",
     "rank1": 30,
     "rank2": 15,
     "rank3": 5,
@@ -139,8 +139,8 @@ Meteor.startup(function() {
     }
   }, {
     "_id": "3",
-    "name": "Habitué",
-    "desc": "Visit THMcards for several days and get this badge!",
+    "name": "Patron",
+    "desc": "Visit THMcards for several days to obtain this badge!",
     "rank1": 50,
     "rank2": 25,
     "rank3": 10,
@@ -155,8 +155,8 @@ Meteor.startup(function() {
     }
   }, {
     "_id": "4",
-    "name": "Striver",
-    "desc": "Aspiration is rewarded. Learn different card sets to obtain this badge. It does'nt matter which learning method you use.",
+    "name": "Nerd",
+    "desc": "Ambitiousness is rewarded. Learn different cardsets to obtain this badge. It doesn't matter which learning method you use.",
     "rank1": 30,
     "rank2": 15,
     "rank3": 5,
@@ -172,7 +172,7 @@ Meteor.startup(function() {
   }, {
     "_id": "5",
     "name": "Benefactor",
-    "desc": "Create a certain number of public card sets that contain at least 5 cards.",
+    "desc": "Create a certain number of public cardsets that contain at least 5 cards.",
     "rank1": 15,
     "rank2": 10,
     "rank3": 5,
