@@ -118,6 +118,13 @@
     "lastredeem": "At last for: "
   },
 
+  "panel-body-last": {
+    "login": "Login",
+    "cardset": "Create cardset",
+    "card": "Create card ",
+    "rating": "Rated cardset"
+  },
+
   "panel-heading-badges": {
     "badges": "Badges"
   },
