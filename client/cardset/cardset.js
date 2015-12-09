@@ -4,7 +4,9 @@ Meteor.subscribe('ratings', function onReady() {
   Session.set('ratingsLoaded', true);
 });
 
-Session.setDefault('cardSort', {front: 1});
+Session.setDefault('cardSort', {
+  front: 1
+});
 
 /**
  * ############################################################################
@@ -202,21 +204,31 @@ Template.cardsetList.events({
     Meteor.call("deleteCard", id);
   },
   'click #set-details-region .frontdown': function() {
-    Session.set('cardSort', {front: 1});
+    Session.set('cardSort', {
+      front: 1
+    });
   },
   'click #set-details-region .frontup': function() {
-    Session.set('cardSort', {front: -1});
+    Session.set('cardSort', {
+      front: -1
+    });
   },
   'click #set-details-region .backdown': function() {
-    Session.set('cardSort', {back: 1});
+    Session.set('cardSort', {
+      back: 1
+    });
   },
   'click #set-details-region .backup': function() {
-    Session.set('cardSort', {back: -1});
+    Session.set('cardSort', {
+      back: -1
+    });
   }
 });
 
 Template.cardsetList.onDestroyed(function() {
-  Session.set('cardSort', {front: 1});
+  Session.set('cardSort', {
+    front: 1
+  });
 });
 
 
@@ -376,20 +388,29 @@ Template.cardButtons.events({
   },
   'click #set-details-controls-btn-exportCards': function() {
     var cardset = Cardsets.findOne(this._id);
-    var cards = Cards.find({cardset_id: this._id}).fetch();
-    var cardsString = '{"cardset": ' + JSON.stringify(cardset) + ', "cards": [';
+    var cards = Cards.find({
+      cardset_id: this._id
+    }, {
+      fields: {
+        'front': 1,
+        'back': 1,
+        '_id': 0
+      }
+    }).fetch();
+    var cardsString = '';
 
-    for(var card in cards) {
+    for (var card in cards) {
       cardsString += JSON.stringify(cards[card]);
 
-      if (cards.length-1 != card) {
+      if (cards.length - 1 != card) {
         cardsString += ", ";
       }
     }
 
-    cardsString += "]}";
-    var exportData = new Blob([cardsString], {type: "application/json"});
-    saveAs(exportData, cardset.name+".json");
+    var exportData = new Blob([cardsString], {
+      type: "application/json"
+    });
+    saveAs(exportData, cardset.name + ".json");
   }
 });
 
@@ -413,11 +434,14 @@ Template.cardsetImportForm.events({
   'change [name="uploadFile"]': function(evt, tmpl) {
     tmpl.uploading.set(true);
     var cardset_id = Template.parentData(1)._id;
-    
-    Papa.parse(evt.target.files[0], {
-      header: true,
-      complete: function(results, file) {
-        Meteor.call('parseUpload', results.data, cardset_id, function(error, response) {
+
+    if (evt.target.files[0].name.match(/\.(json)$/)) {
+      console.log("is json junge");
+      var reader = new FileReader();
+      reader.onload = function() {
+        var res = $.parseJSON('[' + this.result + ']');
+        console.log(res);
+        Meteor.call('parseUpload', res, cardset_id, function(error, response) {
           if (error) {
             tmpl.uploading.set(false);
             Bert.alert(error.reason, 'warning');
@@ -426,7 +450,29 @@ Template.cardsetImportForm.events({
             Bert.alert('Upload complete!', 'success', 'growl-top-right');
           }
         });
-      }
-    });
+      };
+      reader.readAsText(evt.target.files[0]);
+    } else if (evt.target.files[0].name.match(/\.(csv)$/)) {
+      Papa.parse(evt.target.files[0], {
+        header: true,
+        complete: function(results, file) {
+          Meteor.call('parseUpload', results.data, cardset_id, function(error, response) {
+            if (error) {
+              tmpl.uploading.set(false);
+              Bert.alert(error.reason, 'warning');
+            } else {
+              tmpl.uploading.set(false);
+              Bert.alert('Upload complete!', 'success', 'growl-top-right');
+            }
+          });
+        }
+      });
+    } else {
+      tmpl.uploading.set(false);
+      Bert.alert('Wrong file extension', 'warning', 'growl-top-right');
+    }
+
+
+
   }
 });
