@@ -261,16 +261,6 @@ Template.cardsetDetails.helpers({
 });
 
 Template.cardsetDetails.events({
-  "click #learnBox": function() {
-    Router.go('box', {
-      _id: this._id
-    });
-  },
-  "click #learnMemo": function() {
-    Router.go('memo', {
-      _id: this._id
-    });
-  },
   "click .box": function() {
     if ($(".cardfront-symbol").css('display') == 'none') {
       $(".cardfront-symbol").css('display', "");
@@ -344,8 +334,13 @@ Template.sidebarCardset.helpers({
 });
 
 Template.sidebarCardset.events({
-  "click #set-details-controls-btn-newCard": function() {
-    Router.go('newCard', {
+  "click #learnBox": function() {
+    Router.go('box', {
+      _id: this._id
+    });
+  },
+  "click #learnMemo": function() {
+    Router.go('memo', {
       _id: this._id
     });
   },
@@ -362,10 +357,24 @@ Template.sidebarCardset.events({
   },
   'click #usr-profile2': function() {
     Router.go('profile', {
-      _id: Meteor.userId()
+      _id: this.owner
+    });
+  }
+});
+
+/**
+ * ############################################################################
+ * cardButtons
+ * ############################################################################
+ */
+
+Template.cardButtons.events({
+  "click #set-details-controls-btn-newCard": function() {
+    Router.go('newCard', {
+      _id: this._id
     });
   },
-  'click #set-details-controls-btn-exportSet': function() {
+  'click #set-details-controls-btn-exportCards': function() {
     var cardset = Cardsets.findOne(this._id);
     var cards = Cards.find({cardset_id: this._id}).fetch();
     var cardsString = '{"cardset": ' + JSON.stringify(cardset) + ', "cards": [';
@@ -381,5 +390,43 @@ Template.sidebarCardset.events({
     cardsString += "]}";
     var exportData = new Blob([cardsString], {type: "application/json"});
     saveAs(exportData, cardset.name+".json");
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetImportForm
+ * ############################################################################
+ */
+
+Template.cardsetImportForm.onCreated(function() {
+  Template.instance().uploading = new ReactiveVar(false);
+});
+
+Template.cardsetImportForm.helpers({
+  uploading: function() {
+    return Template.instance().uploading.get();
+  }
+});
+
+Template.cardsetImportForm.events({
+  'change [name="uploadFile"]': function(evt, tmpl) {
+    tmpl.uploading.set(true);
+    var cardset_id = Template.parentData(1)._id;
+    
+    Papa.parse(evt.target.files[0], {
+      header: true,
+      complete: function(results, file) {
+        Meteor.call('parseUpload', results.data, cardset_id, function(error, response) {
+          if (error) {
+            tmpl.uploading.set(false);
+            Bert.alert(error.reason, 'warning');
+          } else {
+            tmpl.uploading.set(false);
+            Bert.alert('Upload complete!', 'success', 'growl-top-right');
+          }
+        });
+      }
+    });
   }
 });

@@ -17,16 +17,6 @@
 
       <hr />
 
-      <div class="input-group">
-        <input class="form-control" type="text" id="file" placeholder="{{_ "upload-form.import"}}">
-        <span class="input-group-btn">
-          <button id="fileHelp" class="btn btn-default" data-toggle="popover" data-html="true" data-trigger="click" data-container="body" data-content="{{_ "upload-form.popover-content"}}"><i class="glyphicon glyphicon-question-sign"></i></button>
-          <button id="fileSubmit" class="btn btn-primary disabled" type="submit"><i class="glyphicon glyphicon-cloud-upload"></i></button>
-        </span>
-      </div>
-
-      <hr />
-
       <ul class="nav nav-list">
         <li class="nav-header">{{_ "nav-list.category"}}</li>
         <li class="{{#if isActiveRoute 'created'}}active{{/if}}">

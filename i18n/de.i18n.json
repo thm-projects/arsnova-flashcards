@@ -36,9 +36,7 @@
   },
 
   "upload-form": {
-      "submit": "Hochladen",
-      "import": "Import",
-      "popover-content": "<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
+    "popover-content": "<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
   },
 
 "nav-list": {
@@ -155,8 +153,8 @@
     "viewmap": "Karte",
     "viewlist": "Liste",
     "createcard": "Neue Karte erstellen",
-    "editcard": "Kartensatz editieren",
-    "exportSet": "Kartensatz exportieren"
+    "importcard": "Karten importieren",
+    "exportcard": "Karten exportieren"
   },
 
   "pool": {

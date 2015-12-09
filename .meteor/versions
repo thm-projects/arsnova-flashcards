@@ -39,8 +39,10 @@ ecmascript-runtime@0.2.6
 ejson@1.0.7
 facebook@1.2.2
 fastclick@1.0.7
+fortawesome:fontawesome@4.5.0
 geojson-utils@1.0.4
 google@1.1.7
+harrison:papa-parse@1.1.1
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5

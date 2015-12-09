@@ -3,6 +3,7 @@
     {{> cardsetForm}}
     {{onEditmodalClose this._id}}
     {{> sidebarCardset}}
+    {{> cardButtons}}
     {{#if isActiveRoute 'cardsetdetailsid'}}
       {{> cardsetDetails}}
     {{/if}}
@@ -19,6 +20,11 @@
   <div class="col-md-3">
     <div id="set-details-sideBar-region">
       <div class="well well-sm sidebar-nav">
+        {{#if isOwner}}
+          <a id="editCardset" class="btn-editCardset btn btn-default btn-xs" data-toggle="modal" data-target="#editSetModal">
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>
+        {{/if}}
         <h4 style="margin:0">{{name}}</h4>
 
         <hr />
@@ -37,52 +43,61 @@
 
         <hr />
 
-        <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-        <div class="btn-group btn-group-xs btn-group-justified">
-          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
-          <a id="btnToListLayout" class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
-        </div>
-
-        <hr />
-
-      </div>
-    </div>
-
-    {{#if ratingEnabled}}
-      <div id="set-details-rating-region">
-        <div id="set-details-controls-region">
-          <div class="well well-sm sidebar-nav">
-            <span class="nav-header-cardset">{{_ "valuation"}}</span>
-            <div class="row">
-              <div class="col-md-6 col-md-offset-3">
-                {{#if hasRated}}
-                  {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                {{else}}
-                  {{> starsRating id='rating' rating=0 mutable=true}}
-                {{/if}}
-              </div>
+        {{#if ratingEnabled}}
+          <span class="nav-header-cardset">{{_ "valuation"}}</span>
+          <div class="panel panel-default">
+            <div class="ratingStars">
+              {{#if hasRated}}
+                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+              {{else}}
+                {{> starsRating id='rating' rating=0 mutable=true}}
+              {{/if}}
             </div>
             <span class="ratingText text-muted">
               <span>&#216; {{getAverage}} {{_ "valuation2"}}</span>
               <span>{{_ "valuationtext"}} {{countRatings}} {{_ "valuationtext2"}}</span>
             </span>
           </div>
-        </div>
-      </div>
-    {{/if}}
+        {{/if}}
 
-    {{#if isOwner}}
-      <div id="set-details-controls-region">
-        <div class="well well-sm sidebar-nav">
-          <button class="btn btn-primary newCard" id="set-details-controls-btn-newCard" style="width:100%">{{_ "sidebar-nav.createcard"}}</button>
-          <button class="btn btn-default editSet" id="set-details-controls-btn-editCard" data-toggle="modal" data-target="#editSetModal" style="width:100%; margin-top:10px">{{_ "sidebar-nav.editcard"}}</button>
-          <button class="btn btn-default exportSet" id="set-details-controls-btn-exportSet" style="width:100%; margin-top:10px">{{_ "sidebar-nav.exportSet"}}</button>
+        <hr />
+
+        <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
+        <div class="btn-group btn-group-xs btn-group-justified">
+          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
+          <a id="btnToListLayout" class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
         </div>
       </div>
-    {{/if}}
+    </div>
+
+    <div id="set-details-learn-region">
+      <div class="well well-sm sidebar-nav">
+        <span class="nav-header-cardset">{{_ "learn"}}</span>
+        <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
+        <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
+      </div>
+    </div>
   </div>
 </template>
 
+<template name="cardButtons">
+  {{#if isOwner}}
+    <div class="col-md-9">
+      <div class="btn-group btn-group-justified button-group-content" role="group">
+        <div class="btn-group" role="group">
+          <button class="btn btn-primary btn-default newCard" id="set-details-controls-btn-newCard">{{_ "sidebar-nav.createcard"}}</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default importCards" id="set-details-controls-btn-importCards" data-toggle="modal" data-target="#importModal">{{_ "sidebar-nav.importcard"}}</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default exportCards" id="set-details-controls-btn-exportCards">{{_ "sidebar-nav.exportcard"}}</button>
+        </div>
+      </div>
+    </div>
+    {{> cardsetImportForm}}
+  {{/if}}
+</template>
 
 <template name="cardsetDetails">
   <div class="col-md-9" id="set-details-region">
@@ -141,33 +156,12 @@
           </div>
         </div>
       {{/if}} {{> cardsetPictureForm}}
-
-      <div class="row">
-        <div class="col-md-12">
-          <h4>&nbsp;</h4>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="well well-sm setWell">
-            <h4>{{_ "learn"}}</h4>
-
-            <hr />
-
-            <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
-            <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
-          </div>
-        </div>
-        
-      </div>
     </div>
   </div>
 </template>
 
 
 <template name="cardsetList">
-
   <div class="col-md-9" id="set-details-region">
     <table class="table table-bordered table-striped table-hover">
       <div class="listhead"></div>
@@ -312,6 +306,29 @@
           <h4 id="pictureModalTitle" class="modal-title"></h4>
         </div>
         <div class="modal-body" id="setdetails-pictureModal-body"></div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</template>
+
+<template name="cardsetImportForm">
+  <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="importModalTitle" class="modal-title">Upload a CSV</h4>
+        </div>
+        <div class="modal-body">
+          {{#unless uploading}}
+            <input type="file" name="uploadFile">
+          {{else}}
+            <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+          {{/unless}}
+        </div>
       </div>
       <!-- /.modal-content -->
     </div>
