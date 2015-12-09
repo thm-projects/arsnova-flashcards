@@ -116,6 +116,13 @@
     "lastredeem": "Zuletzt für: "
   },
 
+  "panel-body-last": {
+    "login": "Login",
+    "cardset": "Kartensatz angelegt",
+    "card": "Karte angelegt",
+    "rating": "Kartensatz bewertet"
+  },
+
   "panel-heading-badges": {
     "badges": "Badges"
   },

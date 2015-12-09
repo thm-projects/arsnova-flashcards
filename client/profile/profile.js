@@ -151,16 +151,16 @@ Template.profileXp.helpers({
     if (last !== undefined) {
       switch (last.type) {
         case 1:
-          name = 'Login';
+          name = TAPi18n.__('panel-body-last.login');
           break;
         case 2:
-          name = 'Kartensatz angelegt';
+          name = TAPi18n.__('panel-body-last.cardset');
           break;
         case 3:
-          name = 'Karte angelegt';
+          name = TAPi18n.__('panel-body-last.card');
           break;
         case 4:
-          name = 'Kartensatz bewertet';
+          name = TAPi18n.__('panel-body-last.rating');
           break;
         default:
           name = 'Error';

@@ -107,49 +107,84 @@ Meteor.startup(function() {
 
   var badges = [{
     "_id": "1",
-    "name": "Kritiker",
-    "desc": "Kritik ist die höchste Form der Zuneigung. Benutzer, welche sich sachlich mit den Kartensätzen anderer auseinandersetzen und konstruktives Feedback oder Lob aussprechen, werden mit diesem Badge belohnt",
+    "name": "Reviewer",
+    "desc": "Criticism is the highest form of affection. Users will be rewarded with this badge if they objectively deal with the cards of other sets and express constructive feedback or praise.",
     "rank1": 50,
     "rank2": 25,
     "rank3": 10,
-    "unit": "Bewertungen",
-    "badge": "kritiker"
+    "unit": "ratings",
+    "badge": "kritiker",
+    "i18n": {
+      "de": {
+        "name": "Kritiker",
+        "desc": "Kritik ist die höchste Form der Zuneigung. Benutzer, welche sich sachlich mit den Kartensätzen anderer auseinandersetzen und konstruktives Feedback oder Lob aussprechen, werden mit diesem Badge belohnt",
+        "unit": "Bewertungen"
+      }
+    }
   }, {
     "_id": "2",
-    "name": "Liebling der Kritiker",
-    "desc": "Du erhälst diesen Badge, wenn deine Kartensätze von anderen Lernenden gut bewertet werden. Als Kartensätz zählen alle deine öffentlichen Kartensätze mit mindestens 5 Bewertungen bei einer durchschnittlichen Bewertung von 4,5 Sternen.",
+    "name": "The reviewers darling",
+    "desc": "You will earn this badge if your cardsets will be evaluated by other learners well. It will count all your public cardsets with at least 5 reviews with an average rating of 4.5 stars.",
     "rank1": 30,
     "rank2": 15,
     "rank3": 5,
-    "unit": "Kartensätze",
-    "badge": "krone"
+    "unit": "carddecks",
+    "badge": "krone",
+    "i18n": {
+      "de": {
+        "name": "Liebling der Kritiker",
+        "desc": "Du erhältst diesen Badge, wenn deine Kartensätze von anderen Lernenden gut bewertet werden. Als Kartensatz zählen alle deine öffentlichen Kartensätze mit mindestens 5 Bewertungen bei einer durchschnittlichen Bewertung von 4,5 Sternen.",
+        "unit": "Kartensätze"
+      }
+    }
   }, {
     "_id": "3",
-    "name": "Stammgast",
-    "desc": "Besuche THMcards mehrere Tage und erhalte den Stammgast Badge!",
+    "name": "Habitué",
+    "desc": "Visit THMcards for several days and get this badge!",
     "rank1": 50,
     "rank2": 25,
     "rank3": 10,
-    "unit": "Tage",
-    "badge": "stammgast"
+    "unit": "days",
+    "badge": "stammgast",
+    "i18n": {
+      "de": {
+        "name": "Stammgast",
+        "desc": "Besuche THMcards mehrere Tage und erhalte den Stammgast Badge!",
+        "unit": "Tage"
+      }
+    }
   }, {
     "_id": "4",
-    "name": "Streber",
-    "desc": "Strebsamkeit wird belohnt. Lerne unterschiedliche Kartensätze um diesen Badge zu erhalten. Es steht die frei, welche Lernmethode du wählst.",
+    "name": "Striver",
+    "desc": "Aspiration is rewarded. Learn different card sets to obtain this badge. It does'nt matter which learning method you use.",
     "rank1": 30,
     "rank2": 15,
     "rank3": 5,
-    "unit": "Kartensätze",
-    "badge": "streber"
+    "unit": "cardsets",
+    "badge": "streber",
+    "i18n": {
+      "de": {
+        "name": "Streber",
+        "desc": "Strebsamkeit wird belohnt. Lerne unterschiedliche Kartensätze um diesen Badge zu erhalten. Es steht dir frei, welche Lernmethode du wählst.",
+        "unit": "Kartensätze"
+      }
+    }
   }, {
     "_id": "5",
-    "name": "Wohltäter",
-    "desc": "Erstelle eine bestimmte Anzahl an öffentlichen Kartensätzen, die mindestens 5 Karten beinhalten.",
+    "name": "Benefactor",
+    "desc": "Create a certain number of public card sets that contain at least 5 cards.",
     "rank1": 15,
     "rank2": 10,
     "rank3": 5,
-    "unit": "Kartensätze",
-    "badge": "autor"
+    "unit": "cardsets",
+    "badge": "autor",
+    "i18n": {
+      "de": {
+        "name": "Wohltäter",
+        "desc": "Erstelle eine bestimmte Anzahl an öffentlichen Kartensätzen, die mindestens 5 Karten beinhalten.",
+        "unit": "Kartensätze"
+      }
+    }
   }];
 
 
