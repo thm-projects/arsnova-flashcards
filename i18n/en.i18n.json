@@ -36,7 +36,13 @@
   },
 
   "upload-form":{
-    "popover-content": "<div> Here you can upload your own decks of cards to THMCards. Currently we support the formats Json and CSV(Excel, comma-separated).<br /> Please have a look at these templates: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
+    "popover-content": "Here you can upload your own cards to the cardset. Currently the formats JSON and CSV (Excel, comma-separated) are supported. Please have a look at these templates:",
+    "upload-title": "Import cards",
+    "wait": "Uploading files...",
+    "select-file": "Select file",
+    "success": "Upload complete!",
+    "wrong-template": "Wrong file structure",
+    "wrong-file": "Wrong file extension"
   },
 
   "nav-list": {

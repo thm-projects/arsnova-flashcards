@@ -436,18 +436,16 @@ Template.cardsetImportForm.events({
     var cardset_id = Template.parentData(1)._id;
 
     if (evt.target.files[0].name.match(/\.(json)$/)) {
-      console.log("is json junge");
       var reader = new FileReader();
       reader.onload = function() {
         var res = $.parseJSON('[' + this.result + ']');
-        console.log(res);
         Meteor.call('parseUpload', res, cardset_id, function(error, response) {
           if (error) {
             tmpl.uploading.set(false);
-            Bert.alert(error.reason, 'warning');
+            Bert.alert(TAPi18n.__('upload-form.success'), 'danger', 'growl-bottom-right');
           } else {
             tmpl.uploading.set(false);
-            Bert.alert('Upload complete!', 'success', 'growl-top-right');
+            Bert.alert('Upload complete!', 'success', 'growl-bottom-right');
           }
         });
       };
@@ -459,20 +457,17 @@ Template.cardsetImportForm.events({
           Meteor.call('parseUpload', results.data, cardset_id, function(error, response) {
             if (error) {
               tmpl.uploading.set(false);
-              Bert.alert(error.reason, 'warning');
+              Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
             } else {
               tmpl.uploading.set(false);
-              Bert.alert('Upload complete!', 'success', 'growl-top-right');
+              Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
             }
           });
         }
       });
     } else {
       tmpl.uploading.set(false);
-      Bert.alert('Wrong file extension', 'warning', 'growl-top-right');
+      Bert.alert(TAPi18n.__('upload-form.wrong-file'), 'danger', 'growl-bottom-right');
     }
-
-
-
   }
 });

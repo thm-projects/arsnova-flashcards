@@ -320,13 +320,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="importModalTitle" class="modal-title">Upload a CSV</h4>
+          <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}</h4>
         </div>
         <div class="modal-body">
+          <p>{{_ "upload-form.popover-content"}}</p>
+          <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>JSON</a>
+          <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>
+
+          <hr />
+
           {{#unless uploading}}
-            <input type="file" name="uploadFile">
+            <span class="btn btn-primary btn-file">
+              {{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
+            </span>
           {{else}}
-            <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+            <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
           {{/unless}}
         </div>
       </div>

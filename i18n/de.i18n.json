@@ -36,7 +36,13 @@
   },
 
   "upload-form": {
-    "popover-content": "<div> Hier kannst du bestehende Kartensets zu THMCards hochladen. Unterstützt werden die Formate Json und CSV(Excel, kommagetrennt).<br /> Folgende Templates zeigen die nötige Struktur auf: </div> <a role='button' target='_blank' class='btn btn-default' href='/static/example.json'>Json</a> <a role='button' target='_blank' class='btn btn-default' href='/static/example.csv'>CSV</a>"
+    "popover-content": "Hier können bestehende Karten zum Kartensatz hochgeladen werden. Unterstützt werden die Formate JSON und CSV (Excel, kommagetrennt). Folgende Templates zeigen die nötige Struktur auf:",
+    "upload-title": "Karten importieren",
+    "wait": "Dateien werden hochgeladen",
+    "select-file": "Datei auswählen",
+    "success": "Datei hochgeladen!",
+    "wrong-template": "Fehlerhafte Dateistruktur",
+    "wrong-file": "Falsches Dateiformat"
   },
 
 "nav-list": {
