@@ -442,10 +442,10 @@ Template.cardsetImportForm.events({
         Meteor.call('parseUpload', res, cardset_id, function(error, response) {
           if (error) {
             tmpl.uploading.set(false);
-            Bert.alert(TAPi18n.__('upload-form.success'), 'danger', 'growl-bottom-right');
+            Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
           } else {
             tmpl.uploading.set(false);
-            Bert.alert('Upload complete!', 'success', 'growl-bottom-right');
+            Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
           }
         });
       };
