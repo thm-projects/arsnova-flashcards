@@ -78,6 +78,9 @@ img.cardside {
   display: inline-table;
   width: 100%
 }
+#editSetDescription {
+  resize: none;
+}
 #pictureModal .modal-header {
   min-height: 50px;
 }

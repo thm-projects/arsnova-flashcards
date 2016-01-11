@@ -192,7 +192,7 @@
                   <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="{{pathFor route='editCard'}}" style="margin-left: 5px;">
                     <i class="glyphicon glyphicon-pencil"></i>
                   </a>
-                  <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' href="">
+                  <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                   </a>
                 {{/if}}
@@ -207,7 +207,7 @@
         {{/if}}
 
       </tbody>
-      {{> cardsetPictureForm}}
+      {{> cardsetPictureForm}}{{> cardsetConfirmForm}}
     </table>
   </div>
 </template>
@@ -254,7 +254,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.visibility"}}</label>
+              <label class="col-md-3 control-label">{{_ "modal-dialog.visibility"}}</label>
               <div class="controls col-md-9">
                 <div id="editCardSetVisibility" class="btn-group" data-toggle="buttons">
                   <label id="visibilityoption1" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
@@ -306,6 +306,30 @@
           <h4 id="pictureModalTitle" class="modal-title"></h4>
         </div>
         <div class="modal-body" id="setdetails-pictureModal-body"></div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</template>
+
+<template name="cardsetConfirmForm">
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="confirmModalTitle" class="modal-title">{{_ "confirm-form.title"}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{_ "confirm-form.text"}}</p>
+          <br />
+          <hr />
+
+          <button id="cardDelete" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "modal-dialog.delete"}}</button>
+          <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+        </div>
       </div>
       <!-- /.modal-content -->
     </div>

@@ -44,10 +44,15 @@ Template.btnCard.events({
       window.history.go(-1);
     }
   },
-  "click #cardDelete": function(evt, tmpl) {
+  'click #cardDelete': function() {
+    $("#cardDelete").remove();
+    $("#changeDeleteButton").html('<button id="cardConfirm" class="btn btn-warning btn-large" onclick="history.go(-1)">'+TAPi18n.__("confirmcard")+'</button>');
+
+  },
+  'click #cardConfirm': function() {
     var id = this._id;
     Meteor.call("deleteCard", id);
-  }
+  },
 });
 
 /**

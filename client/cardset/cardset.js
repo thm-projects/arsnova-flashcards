@@ -60,7 +60,6 @@ Template.cardset.events({
       Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
       $('#editSetModal').modal('hide');
     }
-
   },
   'click #cardSetDelete': function() {
     $("#cardSetDelete").css('display', "none");
@@ -200,8 +199,7 @@ Template.cardsetList.events({
     $("#setdetails-pictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
   },
   'click .deleteCardList': function() {
-    var id = this._id;
-    Meteor.call("deleteCard", id);
+    Session.set('cardId', this._id);
   },
   'click #set-details-region .frontdown': function() {
     Session.set('cardSort', {
@@ -469,5 +467,21 @@ Template.cardsetImportForm.events({
       tmpl.uploading.set(false);
       Bert.alert(TAPi18n.__('upload-form.wrong-file'), 'danger', 'growl-bottom-right');
     }
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetConfirmForm
+ * ############################################################################
+ */
+
+Template.cardsetConfirmForm.events({
+  'click #cardDelete': function() {
+    var id = Session.get('cardId');
+
+    $('#confirmModal').on('hidden.bs.modal', function() {
+      Meteor.call("deleteCard", id);
+    }).modal('hide');
   }
 });

@@ -1,7 +1,6 @@
 hr {
   margin: 10px 0;
 }
-
 .nav-header {
   display: block;
   padding: 3px 15px;
@@ -9,34 +8,30 @@ hr {
   font-weight: bold;
   line-height: 20px;
   color: #999999;
-  text-shadow: 0 1px 0
-  rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
-
 .table th {
   background-color: #fff;
 }
-
 .emptyCellList {
   padding-top: 33px !important;
 }
-
 .emptyTextList {
   color: #666;
-  font-family: "Georgia",serif;
+  font-family: "Georgia", serif;
   font-style: italic;
 }
-
 .btn-newSet {
   margin-bottom: 27px;
   margin-top: 20px;
 }
-
 ul.nav-list li.active {
   font-weight: bold;
 }
-
 .cardsetBadge {
   float: right;
+}
+#newSetDescription {
+  resize: none;
 }

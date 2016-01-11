@@ -45,6 +45,11 @@
     "wrong-file": "Wrong file extension"
   },
 
+  "confirm-form": {
+    "title": "Delete card",
+    "text": "Do you really want to delete this card?"
+  },
+
   "nav-list": {
   	"category": "Category",
   	"created": "Created",
@@ -278,6 +283,7 @@
   "searchpicture": "Image search",
   "declinecard":"Cancel",
   "deletecard":"Delete card",
+  "confirmcard":"Sure?",
   "savecard":"Save card",
   "insertpicture":"Add image",
   "insertpicture2": "Add image",

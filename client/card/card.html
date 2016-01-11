@@ -54,8 +54,8 @@
   <div class="col-md-12">
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
       {{#if isEditMode}}
-        <div class="btn-group" role="group">
-          <button id="cardDelete" class="btn btn-danger btn-large delete" onclick="history.go(-1)">{{_ "deletecard"}}</button>
+        <div id="changeDeleteButton" class="btn-group" role="group">
+          <button id="cardDelete" class="btn btn-danger btn-large">{{_ "deletecard"}}</button>
         </div>
       {{/if}}
       <div class="btn-group" role="group">

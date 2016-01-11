@@ -45,7 +45,12 @@
     "wrong-file": "Falsches Dateiformat"
   },
 
-"nav-list": {
+  "confirm-form": {
+    "title": "Karte löschen",
+    "text": "Wollen Sie diese Karte wirklich löschen?"
+  },
+
+  "nav-list": {
   	"category": "Kategorie",
   	"created": "Erstellt",
   	"learned": "Gelernt"
@@ -277,6 +282,7 @@
   "searchpicture": "Bildsuche",
   "declinecard":"Abbrechen",
   "deletecard":"Karte löschen",
+  "confirmcard":"Sicher?",
   "savecard":"Karte speichern",
   "insertpicture":"Bild einfügen",
   "insertpicture2": "Bild einfügen",
