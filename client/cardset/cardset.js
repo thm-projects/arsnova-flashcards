@@ -292,13 +292,16 @@ Template.cardsetDetails.events({
       $(".cardback").css('display', "none");
     }
   },
-  'click .item.active .block a': function(evt, tmpl) {
+  'click .item.active .block .btn-showPictureModal': function(evt, tmpl) {
     evt.stopPropagation();
     var src = $(evt.currentTarget).data('val');
     var alt = $(evt.currentTarget).data('alt');
     $("#pictureModal .modal-title").html(alt);
     $("#setdetails-pictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
     $('#pictureModal').modal('show');
+  },
+  'click .item.active .block a': function() {
+    evt.stopPropagation();
   }
 });
 

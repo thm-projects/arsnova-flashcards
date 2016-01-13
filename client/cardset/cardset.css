@@ -54,6 +54,9 @@ img.cardside {
   vertical-align: middle;
   font-size: 1.2em;
 }
+.block pre {
+  text-align: left;
+}
 .carousel-control.left, .carousel-control.right {
   background-image: none;
   height: 150px;
