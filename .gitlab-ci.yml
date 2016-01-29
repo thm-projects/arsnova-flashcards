@@ -1,6 +1,9 @@
 job1:
   script:
     - ls
+    - pwd
+    - cd ..
+    - ls
     - git fetch --all
     - git reset --hard origin/master
   tags:
