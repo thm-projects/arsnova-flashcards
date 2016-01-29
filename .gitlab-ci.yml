@@ -1,5 +1,7 @@
 job1:
   script:
     - ls
+    - git fetch --all
+    - git reset --hard origin/master
   tags:
     - nodejs
