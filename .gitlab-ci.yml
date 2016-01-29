@@ -2,4 +2,4 @@ job1:
   script:
     - ls
   tags:
-    -nodejs
+    - nodejs
