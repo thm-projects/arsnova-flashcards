@@ -1,8 +1,5 @@
-stages:
-  - deploy
-
-gitlab-ci-multi-runner:
-  stage: deploy
-  only:
-    - staging
-  tags: nodejs
+job1:
+  script:
+    - ls
+  tags:
+    -nodejs
