@@ -27,6 +27,9 @@ Template.main.events({
 });
 
 Template.main.helpers({
+  getYear: function() {
+    return moment(new Date()).format("YYYY");
+  },
   getUsername: function() {
     if (Meteor.user()) {
       return Meteor.user().profile.name;
