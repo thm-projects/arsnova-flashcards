@@ -1,0 +1,8 @@
+stages:
+  - deploy
+
+cards2:
+  stage: deploy
+  only:
+    - staging
+  tags: nodejs
