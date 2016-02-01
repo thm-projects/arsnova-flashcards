@@ -1,6 +1,6 @@
 deploy-staging:
   script:
-    - echo $SSH_KEY > /root/.ssh/id_rsa
-    - scp . meteor@cards2.mni.thm.de:~/flashcards/
+    - echo $SSH_KEY > ssh_id_rsa
+    - scp -i ssh_id_rsa . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
