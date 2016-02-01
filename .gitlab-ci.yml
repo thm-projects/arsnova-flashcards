@@ -6,8 +6,8 @@ deploy-staging:
     - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
     - chmod 0600 ssh_id_rsa
     - ls -al
-    - ssh-keygen -y -f ssh_id_rsa > ssh_id_rsa.pub
-    - ssh-keygen -l -f ssh_id_rsa
+    #- ssh-keygen -y -f ssh_id_rsa > ssh_id_rsa.pub
+    #- ssh-keygen -l -f ssh_id_rsa
     - scp -vvv -i ssh_id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null . meteor@cards2.mni.thm.de:~/flashcards/
     # -o UserKnownHostsFile=ssh_known_hosts
   tags:
