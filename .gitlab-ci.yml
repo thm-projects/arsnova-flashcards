@@ -1,6 +1,7 @@
 deploy-staging:
   script:
     - echo $SSH_KEY > ssh_id_rsa
-    - scp -i ssh_id_rsa . meteor@cards2.mni.thm.de:~/flashcards/
+    - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
+    - scp -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
