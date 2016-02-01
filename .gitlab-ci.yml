@@ -1,6 +1,7 @@
 deploy-staging:
   script:
     - ls -al
+    - env
     - echo $SSH_KEY > ssh_id_rsa
     - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
     - chmod 0600 ssh_id_rsa
