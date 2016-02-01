@@ -1,7 +1,8 @@
-image: centos:latest
+image: ubuntu:latest
 
 deploy-staging:
   script:
+    - apt-get install -y openssh-client
     - ls -al
     - env
     - echo $SSH_KEY > ssh_id_rsa
