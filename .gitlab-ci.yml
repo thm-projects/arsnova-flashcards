@@ -1,8 +1,5 @@
-image: ubuntu:latest
-
 deploy-staging:
   script:
-    - apt-get install -y openssh-client
     - ls -al
     - env
     - echo $SSH_KEY > ssh_id_rsa
@@ -11,6 +8,7 @@ deploy-staging:
     - ls -al
     - ssh-keygen -y -f ssh_id_rsa > ssh_id_rsa.pub
     - ssh-keygen -l -f ssh_id_rsa
-    - scp -vvv -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
+    - scp -vvv -i ssh_id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null . meteor@cards2.mni.thm.de:~/flashcards/
+    # -o UserKnownHostsFile=ssh_known_hosts
   tags:
     - nodejs
