@@ -4,6 +4,6 @@ deploy-staging:
     - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
     - chmod 0600 ssh_id_rsa
     - ls -al
-    - scp -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
+    - scp -v -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
