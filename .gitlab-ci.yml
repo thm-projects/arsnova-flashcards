@@ -1,10 +1,6 @@
-job1:
+deploy-staging:
   script:
-    - ls
-    - pwd
-    - cd ..
-    - ls
-    - git fetch --all
-    - git reset --hard origin/master
+    - echo $SSH_KEY > ~/.ssh/id_rsa
+    - scp . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
