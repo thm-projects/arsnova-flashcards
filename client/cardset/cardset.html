@@ -113,6 +113,9 @@
                       <i class="glyphicon glyphicon-pencil"></i>
                     </a>
                   {{/if}}
+                  <div class="cardNumber">
+                    {{cardsIndex @index}}/{{countCards this.cardset_id}}
+                  </div>
                   <span id="clicktoflip" class="clicktoflip">Click to flip</span>
                   <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                   <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
@@ -124,9 +127,6 @@
                     <div class="cardContent centered cardback detailback{{@index}}" style="display:none">
                       <p>{{back}}</p>
                     </div>
-                  </div>
-                  <div class="cardNumber">
-                    {{cardsIndex @index}}/{{countCards this.cardset_id}}
                   </div>
                 </div>
               </div>

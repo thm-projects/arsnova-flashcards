@@ -91,18 +91,12 @@ Template.boxMain.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".front" + index).html(html);
-        var src = $('.front' + index + ' img').attr('src');
-        var alt = $('.front' + index + ' img').attr('alt');
-        $('.front' + index + ' img').replaceWith($('<a class="card-front btn-showBoxPictureModal" data-toggle="modal" data-target="#boxPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
   },
   boxMarkdownBack: function(back, index) {
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".back" + index).html(html);
-        var src = $('.back' + index + ' img').attr('src');
-        var alt = $('.back' + index + ' img').attr('alt');
-        $('.back' + index + ' img').replaceWith($('<a class="card-back btn-showBoxPictureModal" data-toggle="modal" data-target="#boxPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
   }
 });
@@ -146,15 +140,6 @@ Template.boxMain.events({
       Session.set('isFinish', true);
     }
     Session.set('isFront', true);
-  },
-  'click .item.active .block a': function(evt, tmpl) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    var src = $(evt.currentTarget).data('val');
-    var alt = $(evt.currentTarget).data('alt');
-    $("#boxPictureModal .modal-title").html(alt);
-    $("#setdetails-boxPictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
-    $('#boxPictureModal').modal('show');
   }
 });
 

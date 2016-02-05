@@ -170,16 +170,10 @@ Template.cardsetList.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".front" + index).html(html);
-        var src = $('.listitem img').attr('src');
-        var alt = $('.listitem img').attr('alt');
-        $('.listitem img').replaceWith($('<a class="card-front btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" href="#" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".back" + index).html(html);
-        var src = $('.listitem img').attr('src');
-        var alt = $('.listitem img').attr('alt');
-        $('.listitem img').replaceWith($('<a class="card-back btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" href="#" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
   },
   cardList: function() {
@@ -192,12 +186,6 @@ Template.cardsetList.helpers({
 });
 
 Template.cardsetList.events({
-  'click .listitem .card-front, click .listitem .card-back': function(evt, tmpl) {
-    var src = $(evt.currentTarget).data('val');
-    var alt = $(evt.currentTarget).data('alt');
-    $("#pictureModal .modal-title").html(alt);
-    $("#setdetails-pictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
-  },
   'click .deleteCardList': function() {
     Session.set('cardId', this._id);
   },
@@ -256,16 +244,10 @@ Template.cardsetDetails.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".detailfront" + index).html(html);
-        var src = $('.detailfront' + index + ' img').attr('src');
-        var alt = $('.detailfront' + index + ' img').attr('alt');
-        $('.detailfront' + index + ' img').replaceWith($('<a class="card-detailfront btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" data-val="' + src + '" data-alt="' + alt + '" style="cursor:pointer"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".detailback" + index).html(html);
-        var src = $('.detailback' + index + ' img').attr('src');
-        var alt = $('.detailback' + index + ' img').attr('alt');
-        $('.detailback' + index + ' img').replaceWith($('<a class="card-detailback btn-showPictureModal" data-toggle="modal" data-target="#pictureModal" data-val="' + src + '" data-alt="' + alt + '" style="cursor:pointer"><i class="glyphicon glyphicon-picture"></i></a>'));
       });
   }
 });
@@ -291,14 +273,6 @@ Template.cardsetDetails.events({
       $(".cardfront").css('display', "");
       $(".cardback").css('display', "none");
     }
-  },
-  'click .item.active .block .btn-showPictureModal': function(evt, tmpl) {
-    evt.stopPropagation();
-    var src = $(evt.currentTarget).data('val');
-    var alt = $(evt.currentTarget).data('alt');
-    $("#pictureModal .modal-title").html(alt);
-    $("#setdetails-pictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
-    $('#pictureModal').modal('show');
   },
   'click .item.active .block a': function() {
     evt.stopPropagation();

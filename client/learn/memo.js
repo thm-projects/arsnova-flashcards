@@ -68,18 +68,12 @@ Template.memo.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".box .frontblock span").html(html);
-        var src = $(".box .frontblock span img").attr('src');
-        var alt = $(".box .frontblock span img").attr('alt');
-        $(".box .frontblock span img").replaceWith($('<a class="card-front btn-showMemoPictureModal" data-toggle="modal" data-target="#memoPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
     });
   },
   memoMarkdownBack: function(back) {
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".box .backblock span").html(html);
-        var src = $(".box .backblock span img").attr('src');
-        var alt = $(".box .backblock span img").attr('alt');
-        $(".box .backblock span img").replaceWith($('<a class="card-back btn-showMemoPictureModal" data-toggle="modal" data-target="#memoPictureModal" href="" data-val="' + src + '" data-alt="' + alt + '"><i class="glyphicon glyphicon-picture"></i></a>'));
     });
   }
 });
@@ -98,15 +92,6 @@ Template.memo.events({
 
     Meteor.call("updateLearnedMemo", currentLearned._id, grade);
     Session.set("showAnswer", false);
-  },
-  'click .box .frontblock span a, click .box .backblock span a': function(evt, tmpl) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    var src = $(evt.currentTarget).data('val');
-    var alt = $(evt.currentTarget).data('alt');
-    $("#memoPictureModal .modal-title").html(alt);
-    $("#setdetails-memoPictureModal-body").html("<img src='" + src + "' alt='" + alt + "'>");
-    $('#memoPictureModal').modal('show');
   }
 });
 
