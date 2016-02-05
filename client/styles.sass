@@ -1,0 +1,118 @@
+$bgColor: #dfe5e6
+$bgDefault: #3d9c19
+$bgHighlight: #328114
+$colDefault: #ecf0f1
+$colHighlight: white
+$dropDown: false
+$bgFooter: whitesmoke
+
+html
+  position: relative
+  min-height: 100%
+
+body
+  margin-bottom: 60px
+  background-color: $bgColor
+  > .container
+    padding: 80px 15px 0
+
+.table
+  background-color: $colHighlight
+
+.navbar-default
+  background-color: $bgDefault
+  border-color: $bgHighlight
+  .navbar-brand
+    color: $colDefault
+    padding: 10px 20px
+    > img
+      height: 22px
+      margin-top: 5px
+    &:hover,
+    &:focus
+      color: $colHighlight
+  .navbar-text
+    color: $colDefault
+  .navbar-nav
+    > li
+      > a
+        color: $colDefault
+        &:hover,
+        &:focus
+          color: $colHighlight
+      @if $dropDown
+        > .dropdown-menu
+          background-color: $bgDefault
+          > li
+            > a
+              color: $colDefault
+              &:hover,
+              &:focus
+                color: $colHighlight
+                background-color: $bgHighlight
+            > .divider
+              background-color: $bgHighlight
+    @if $dropDown
+      .open .dropdown-menu > .active
+        > a,
+        > a:hover,
+        > a:focus
+          color: $colHighlight
+          background-color: $bgHighlight
+    > .active
+      > a,
+      > a:hover,
+      > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+    > .open
+      > a,
+      > a:hover,
+      > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+  .navbar-toggle
+    border-color: $bgHighlight
+    &:hover,
+    &:focus
+      background-color: $bgHighlight
+    .icon-bar
+      background-color: $colDefault
+  .navbar-collapse,
+  .navbar-form
+    border-color: $colDefault
+  .navbar-link
+    color: $colDefault
+    &:hover
+      color: $colHighlight
+
+@media (max-width: 767px)
+  .navbar-default .navbar-nav .open .dropdown-menu
+    > li > a
+      color: $colDefault
+      &:hover,
+      &:focus
+        color: $colHighlight
+    > .active
+      > a,
+      > a:hover,
+      > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+
+.footer
+  .container .credit
+    margin: 20px 0
+  position: absolute
+  bottom: 0
+  width: 100%
+  height: 60px
+  background-color: $bgFooter
+  > .container
+    padding-right: 15px
+    padding-left: 15px
+
+#searchResults
+  min-width: 210px
+  padding-top: 0
+  padding-bottom: 0
