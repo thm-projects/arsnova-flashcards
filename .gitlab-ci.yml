@@ -1,10 +1,8 @@
-job1:
+deploy-staging:
   script:
-    - ls
-    - pwd
-    - cd ..
-    - ls
-    - git fetch --all
-    - git reset --hard origin/master
+    - echo $SSH_KEY > ssh_id_rsa
+    - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
+    - chmod 0600 ssh_id_rsa
+    - scp -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
