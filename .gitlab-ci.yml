@@ -5,11 +5,6 @@ deploy-staging:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    
-    # try to connect to cards2
-    - ssh meteor@cards2.mni.thm.de
-    - ls -l
-    # try to clone yourself, the SSH_PRIVATE_KEY was added as deploy key to this repository
-    - git clone git@git.thm.de:arsnova/flashcards.git
+    - scp -rp . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
