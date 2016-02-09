@@ -170,10 +170,12 @@ Template.cardsetList.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".front" + index).html(html);
+        $('table').addClass('table');
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".back" + index).html(html);
+        $('table').addClass('table');
       });
   },
   cardList: function() {
@@ -244,10 +246,12 @@ Template.cardsetDetails.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".detailfront" + index).html(html);
+        $('table').addClass('table');
       });
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".detailback" + index).html(html);
+        $('table').addClass('table');
       });
   }
 });

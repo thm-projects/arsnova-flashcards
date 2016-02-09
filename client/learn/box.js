@@ -91,12 +91,14 @@ Template.boxMain.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".front" + index).html(html);
+        $('table').addClass('table');
       });
   },
   boxMarkdownBack: function(back, index) {
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".back" + index).html(html);
+        $('table').addClass('table');
       });
   }
 });

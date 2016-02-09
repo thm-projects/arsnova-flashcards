@@ -68,12 +68,14 @@ Template.memo.helpers({
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
         $(".box .frontblock span").html(html);
+        $('table').addClass('table');
     });
   },
   memoMarkdownBack: function(back) {
     Meteor.promise("convertMarkdown", back)
       .then(function(html) {
         $(".box .backblock span").html(html);
+        $('table').addClass('table');
     });
   }
 });
