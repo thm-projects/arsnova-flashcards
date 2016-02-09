@@ -1,8 +1,11 @@
 deploy-staging:
   script:
-    - echo $SSH_KEY > ssh_id_rsa
-    - echo $SSH_STAGING_HOST_SIG > ssh_known_hosts
-    - chmod 0600 ssh_id_rsa
-    - scp -i ssh_id_rsa -o UserKnownHostsFile=ssh_known_hosts . meteor@cards2.mni.thm.de:~/flashcards/
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - rsync -a . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
