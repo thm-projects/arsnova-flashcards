@@ -6,6 +6,6 @@ deploy-staging:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - rsync -a . meteor@cards2.mni.thm.de:~/flashcards/
+    - rsync -r . meteor@cards2.mni.thm.de:~/flashcards/
   tags:
     - nodejs
