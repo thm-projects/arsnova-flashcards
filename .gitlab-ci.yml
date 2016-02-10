@@ -1,10 +1,25 @@
-deploy-staging:
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+
+staging:
+  stage: test
   script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
     - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; git reset --hard origin/master'
+    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; git reset --hard FETCH_HEAD'
+  tags:
+    - nodejs
+
+production:
+  stage: deploy
+  script:
+    - ssh-add <(echo "$PRODUCTION_SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - ssh $PRODUCTION_USER@$PRODUCTION_HOST 'cd flashcards/; git fetch --all; git reset --hard origin/master'
+  only:
+    - master
   tags:
     - nodejs
