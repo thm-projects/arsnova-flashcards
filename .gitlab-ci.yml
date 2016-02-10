@@ -8,7 +8,7 @@ staging:
     - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; git reset --hard origin/master'
+    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; git reset --hard FETCH_HEAD'
   tags:
     - nodejs
 
