@@ -8,9 +8,8 @@ To start ARSnova Flashcards on localhost use `meteor --settings settings-develop
 
 ## CI Pipeline
 
-- [Jenkins](http://trautrims.com:8080/view/Flashcards/)
-- [Staging](http://arsnovaflashcards.meteor.com)
-- [Production](http://cards2.mni.thm.de)
+- [Staging](http://cards2.mni.thm.de)
+- [Production](http://cards.thm.de)
 
 
 ## Credits
