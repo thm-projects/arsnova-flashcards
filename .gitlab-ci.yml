@@ -8,10 +8,7 @@ staging:
     - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - echo $CI_BUILD_ID
-    - echo $CI_BUILD_REF
-    - echo $CI_BUILD_REF_NAME
-    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; commitid='git rev-parse --short HEAD'; git reset --hard $commitid'
+    - ssh $STAGING_USER@$STAGING_HOST 'cd flashcards/; git fetch --all; git reset --hard origin/$CI_BUILD_REF_NAME'
   tags:
     - nodejs
 
