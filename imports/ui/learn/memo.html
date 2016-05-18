@@ -33,8 +33,10 @@
                   </span>
                   <div class="block memocontent-block backblock">
                     {{#if showAnswer}}
-                      <span>{{getMemoCard.back}}</span>
-                      {{memoMarkdownBack getMemoCard.back}}
+                      {{#unless isFinish}}
+                        <span>{{getMemoCard.back}}</span>
+                        {{memoMarkdownBack getMemoCard.back}}
+                      {{/unless}}
                     {{/if}}
                   </div>
                 </div>
