@@ -18,7 +18,9 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {{#if currentUser }}
           <ul id="navbar" class="nav navbar-nav">
+
             <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid|newcard'}}active{{/if}}">
               <a href="{{pathFor route='home'}}" id="cardsets">
                 {{_ "navbar-collapse.carddecks"}}
@@ -55,6 +57,7 @@
               </ul>
             </li>
           </ul>
+          {{/if}}
         </div>
         <!-- /.navbar-collapse -->
       </div>

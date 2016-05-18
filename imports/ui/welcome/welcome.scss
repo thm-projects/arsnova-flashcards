@@ -1,44 +1,29 @@
 //colors
 $color_wild_sand_approx: rgb(245, 245, 245);
 $color_fuscous_gray_approx: rgb(85, 85, 84);
-
 #welcome {
 	text-align: center;
-	#head {
-		background-color: $color_wild_sand_approx;
-		padding: 24px;
-	}
 	#slogan {
 		display: inline-block;
-		margin-top: 24px;
 		color: $color_fuscous_gray_approx;
 		.lmargin {
 			margin-left: 24px;
 		}
 	}
-	.container {
-		margin-top: 24px;
-	}
 	.carousel-caption {
 		color: $color_fuscous_gray_approx;
 		text-shadow: -1px -1px 0 $color_wild_sand_approx, 1px -1px 0 $color_wild_sand_approx, -1px 1px 0 $color_wild_sand_approx, 1px 1px 0 $color_wild_sand_approx;
 	}
+	.carousel-inner > .item > img {
+		width: 100%;
+	}
 	#login {
-		hr {
-			margin: 10px 0 20px;
-		}
-		div a {
-			margin-left: 20px;
+		a {
+			margin-left: 10px;
 			&#facebook {
 				margin-left: 0;
 			}
 		}
 	}
-	#impressum {
-		margin-top: 70px;
-		display: inline-block;
-	}
-	.carousel-inner > .item > img {
-		width: 100%;
-	}
+
 }
