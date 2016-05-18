@@ -1,0 +1,148 @@
+.carousel-inner
+  min-height: 278px
+
+.box
+  border: 1px solid #DDDDDD
+  font-family: 'Georgia', serif
+  //height: 400px
+  min-height: 400px
+  padding: 50px
+  margin: 0 auto
+  border-radius: 4px
+  background-color: #fff
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1)
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1)
+
+.btn-editCard
+  position: absolute
+  left: 12px
+  top: 11px
+
+.btn-showPictureDetails
+  position: absolute
+  left: 45px
+  top: 11px
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+.clicktoflip
+  color: #666
+  position: absolute
+  right: 10px
+  top: 13px
+  font-style: italic
+
+img.cardside
+  position: absolute
+  right: 88px
+  top: 13px
+
+.block
+  text-align: center
+  height: 100%
+  &:before
+    content: ''
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+    margin-right: -0.25em
+
+.centered
+  display: inline-block
+  vertical-align: middle
+  font-size: 1.2em
+  img
+    max-width: 370px
+
+.block pre
+  text-align: left
+
+.carousel-control
+  &.left, &.right
+    background-image: none
+    height: 320px
+    margin-top: 40px
+    margin-bottom: 40px
+  color: #000
+  width: 7%
+  z-index: 5
+
+.cardNumber
+  color: #999
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 85%
+  position: absolute
+  left: 50%
+  top: 14px
+  margin-left: -16px
+
+.meteorBox
+  line-height: 32px
+  font-family: 'Georgia', serif
+  margin: 12px 0 12px
+  display: inline-table
+  width: 100%
+
+#editSetDescription
+  resize: none
+
+#pictureModal .modal-header
+  min-height: 50px
+
+#setdetails-pictureModal-body img
+  max-width: 100%
+  width: auto
+  margin: auto
+  display: block
+
+.nav-header-cardset
+  display: block
+  padding-left: 0
+  margin-bottom: 3px
+  font-size: 11px
+  font-weight: bold
+  line-height: 20px
+  color: #999999
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  text-transform: uppercase
+
+.ratingStars
+  margin-left: -33px
+  padding-left: 50%
+
+.ratingText
+  display: inline-block
+  font-size: 11px
+  text-align: center
+  width: 100%
+
+#ratingLocked .stars
+  cursor: auto
+
+.button-group-content
+  margin-bottom: 20px
+
+.btn-editCardset
+  float: left
+  margin-right: 7px
+
+#importModal hr
+  margin: 20px 0
+
+.btn-file
+  position: relative
+  overflow: hidden
+  input[type=file]
+    position: absolute
+    top: 0
+    right: 0
+    min-width: 100%
+    min-height: 100%
+    font-size: 100px
+    text-align: right
+    filter: alpha(opacity = 0)
+    opacity: 0
+    outline: none
+    background: white
+    cursor: inherit
+    display: block
