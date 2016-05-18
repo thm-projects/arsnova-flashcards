@@ -42,7 +42,7 @@ es5-shim@4.5.10
 facebook@1.2.6
 fastclick@1.0.11
 fortawesome:fontawesome@4.5.0
-fourseven:scss@3.2.0
+fourseven:scss@3.4.3
 geojson-utils@1.0.8
 google@1.1.11
 harrison:papa-parse@1.1.1
@@ -195,7 +195,7 @@ tap:i18n@1.8.0
 tap:i18n-db@0.4.0
 templating@1.1.9
 templating-tools@1.0.4
-themeteorchef:bert@1.1.0
+themeteorchef:bert@2.1.0
 tracker@1.0.13
 twbs:bootstrap@3.3.6
 twitter@1.1.9
