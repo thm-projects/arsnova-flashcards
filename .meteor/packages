@@ -28,6 +28,7 @@ accounts-facebook
 accounts-google
 zimme:active-route
 atoy40:accounts-cas
+random
 momentjs:moment
 rzymek:moment-locales
 tap:i18n-db
