@@ -1,0 +1,151 @@
+//colors
+$color_athens_gray_approx: rgb(236, 240, 241);
+$white: rgb(255, 255, 255);
+$color_bilbao_approx: rgb(50, 129, 20);
+$color_mercury_approx: rgb(223, 229, 230);
+$color_la_palma_approx: rgb(61, 156, 25);
+$color_wild_sand_approx: rgb(245, 245, 245);
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 60px;
+	background-color: $color_mercury_approx;
+	> .container {
+		padding: 80px 15px 0;
+	}
+}
+.table {
+	background-color: $white;
+	img {
+		max-width: 370px;
+	}
+}
+.navbar-default {
+	background-color: $color_la_palma_approx;
+	border-color: $color_bilbao_approx;
+	.navbar-brand {
+		color: $color_athens_gray_approx;
+		padding: 10px 20px;
+		> img {
+			height: 22px;
+			margin-top: 5px;
+		}
+		&:hover {
+			color: $white;
+		}
+		&:focus {
+			color: $white;
+		}
+	}
+	.navbar-text {
+		color: $color_athens_gray_approx;
+	}
+	.navbar-nav {
+		> {
+			.active > a {
+				color: $white;
+				background-color: $color_bilbao_approx;
+				&:hover {
+					color: $white;
+					background-color: $color_bilbao_approx;
+				}
+				&:focus {
+					color: $white;
+					background-color: $color_bilbao_approx;
+				}
+			}
+			.open > a {
+				color: $white;
+				background-color: $color_bilbao_approx;
+				&:hover {
+					color: $white;
+					background-color: $color_bilbao_approx;
+				}
+				&:focus {
+					color: $white;
+					background-color: $color_bilbao_approx;
+				}
+			}
+		}
+		> li > a {
+			color: $color_athens_gray_approx;
+			&:hover {
+				color: $white;
+			}
+			&:focus {
+				color: $white;
+			}
+		}
+	}
+	.navbar-toggle {
+		border-color: $color_bilbao_approx;
+		&:hover {
+			background-color: $color_bilbao_approx;
+		}
+		&:focus {
+			background-color: $color_bilbao_approx;
+		}
+		.icon-bar {
+			background-color: $color_athens_gray_approx;
+		}
+	}
+	.navbar-collapse {
+		border-color: $color_athens_gray_approx;
+	}
+	.navbar-form {
+		border-color: $color_athens_gray_approx;
+	}
+	.navbar-link {
+		color: $color_athens_gray_approx;
+		&:hover {
+			color: $white;
+		}
+	}
+}
+@media(max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu {
+		> li > a {
+			color: $color_athens_gray_approx;
+			&:hover {
+				color: $white;
+			}
+			&:focus {
+				color: $white;
+			}
+		}
+		> .active > a {
+			color: $white;
+			background-color: $color_bilbao_approx;
+			&:hover {
+				color: $white;
+				background-color: $color_bilbao_approx;
+			}
+			&:focus {
+				color: $white;
+				background-color: $color_bilbao_approx;
+			}
+		}
+	}
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: $color_wild_sand_approx;
+	.container .credit {
+		margin: 20px 0;
+	}
+	> .container {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+}
+#searchResults {
+	min-width: 210px;
+	padding-top: 0;
+	padding-bottom: 0;
+}

@@ -1,0 +1,47 @@
+//colors
+$color_mountain_mist_approx: rgb(153, 153, 153);
+$white: rgb(255, 255, 255);
+$black_50: rgba(0, 0, 0, 0.5);
+$color_storm_dust_approx: rgb(102, 102, 102);
+
+//fonts
+$font_0: Georgia;
+$font_1: serif;
+
+hr {
+	margin: 10px 0;
+}
+.nav-header {
+	display: block;
+	padding: 3px 15px;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 20px;
+	color: $color_mountain_mist_approx;
+	text-shadow: 0 1px 0 $black_50;
+	text-transform: uppercase;
+}
+.emptyCellList {
+	padding-top: 33px !important;
+}
+.emptyTextList {
+	color: $color_storm_dust_approx;
+	font-family: $font_0, $font_1;
+	font-style: italic;
+}
+.btn-newSet {
+	margin-bottom: 27px;
+	margin-top: 20px;
+}
+.cardsetBadge {
+	float: right;
+}
+#newSetDescription {
+	resize: none;
+}
+.table th {
+	background-color: $white;
+}
+ul.nav-list li.active {
+	font-weight: bold;
+}

@@ -1,0 +1,55 @@
+<template name="pool">
+  <div class="col-md-12" id="pool-category-region">
+    <div class="list-group">
+      {{#each getCategories}}
+      <a class="list-group-item" href="pool/{{_id}}">
+        <span class="badge">{{getCount this._id}}</span> {{name}}</a>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="category">
+  <div class="col-md-12">
+    <h4>{{name}}</h4>
+  </div>
+  <div class="col-md-12" id="pool-category-region">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            <span>{{_ "pool.name"}}</span>
+            <a class="namedown" role="button">⇓</a>
+            <a class="nameup" role="button">⇑</a>
+          </th>
+          <th>
+            <span>{{_ "pool.description"}}</span>
+          </th>
+          <th>
+            <span>{{_ "pool.created"}}</span>
+            <a class="createddown" role="button">⇓</a>
+            <a class="createdup" role="button">⇑</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="cardSetsPool">
+        {{#if getDecks.count}}
+          {{#each getDecks}}
+            <tr>
+              <td><a href="/cardset/{{_id}}" class="pool-category-set-details-link">{{name}}</a></td>
+              <td>{{description}}</td>
+              <td><a href="/profile/{{owner}}" class="pool-category-set-owner-link">{{username}}</a></td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr class="empty-list">
+            <td align="center" colspan="3" class="set-list-empty">
+              <span class="emptyTextList">{{_ "nocards"}}</span>
+              <br>
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</template>
