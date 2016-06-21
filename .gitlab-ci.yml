@@ -29,6 +29,19 @@ production:
     
 before_script:
 
+sonar:
+  stage: test
+  only:
+    - master
+    - staging
+    - gitlabCI
+  tags:
+    - gradle
+  allow_failure: true
+  dependencies: []
+  script:
+    - gradle sonarqube
+
 build:
   stage: build
   only:
@@ -51,6 +64,21 @@ build:
   artifacts:
     paths:
       - build/bundle/
+
+deploy_staging:
+  stage: deploy
+  only:
+    - gitlabCI
+  tags:
+    - ssh
+  dependencies:
+    - build
+  script:
+    - chmod -R a+rX,ug+w "build"
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh && echo "$STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
+    - scp -r "build/bundle/"* "$STAGING_SSH_URL"
 
 sync_mirror:
   stage: deploy
