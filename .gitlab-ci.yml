@@ -1,3 +1,6 @@
+variables:
+  MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
+
 before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
@@ -23,3 +26,20 @@ production:
     - master
   tags:
     - nodejs
+    
+before_script:
+
+sync_mirror:
+  stage: deploy
+  tags:
+    - git
+  when: always
+  allow_failure: true
+  dependencies: []
+  script:
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh && echo "$SYNC_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$SYNC_SSH_PRIVATE_KEY")
+    - git clone --bare "$CI_BUILD_REPO" mirror.git
+    - cd mirror.git
+    - git push --mirror "$MIRROR_REPO"
