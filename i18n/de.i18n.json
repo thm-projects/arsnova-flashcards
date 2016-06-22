@@ -273,7 +273,7 @@
   "options":"Optionen",
   "fronttext_required":"Bitte Vorderseite ausfüllen!",
   "backtext_required":"Bitte Rückseite ausfüllen!",
-  "text_max": "Es sind nur 700 Zeichen erlaubt!",
+  "text_max": "Es sind nur 10000 Zeichen erlaubt!",
 
   "newcard":"Neue Karte",
   "editcard":"Karte bearbeiten",
