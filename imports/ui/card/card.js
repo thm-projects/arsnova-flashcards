@@ -34,17 +34,17 @@ Template.btnCard.events({
       $('#helpNewBacktext').html(TAPi18n.__('backtext_required'));
       $('#helpNewBacktext').css('color', '#b94a48');
     }
-    if ($('#frontEditor').val().length > 700) {
+    if ($('#frontEditor').val().length > 10000) {
       $('#fronttext .md-editor').css('border-color', '#b94a48');
       $('#helpNewFronttext').html(TAPi18n.__('text_max'));
       $('#helpNewFronttext').css('color', '#b94a48');
     }
-    if ($('#backEditor').val().length > 700) {
+    if ($('#backEditor').val().length > 10000) {
       $('#backtext .md-editor').css('border-color', '#b94a48');
       $('#helpNewBacktext').html(TAPi18n.__('text_max'));
       $('#helpNewBacktext').css('color', '#b94a48');
     }
-    if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 700 && $('#backEditor').val().length <= 700)
+    if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000)
     {
       front = Session.get('frontText');
       back = Session.get('backText');

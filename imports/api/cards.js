@@ -16,11 +16,11 @@ if (Meteor.isServer) {
 CardsSchema = new SimpleSchema({
   front: {
     type: String,
-    max: 700
+    max: 10000
   },
   back: {
     type: String,
-    max: 700
+    max: 10000
   },
   cardset_id: {
     type: String
