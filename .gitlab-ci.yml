@@ -5,16 +5,6 @@ before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
 
-staging:
-  stage: test
-  script:
-    - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
-    - mkdir -p ~/.ssh
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - ssh $STAGING_USER@$STAGING_HOST "cd flashcards/; git fetch --all; git reset --hard origin/$CI_BUILD_REF_NAME"
-  tags:
-    - nodejs
-
 production:
   stage: deploy
   script:
