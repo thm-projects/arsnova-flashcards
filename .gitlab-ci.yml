@@ -1,13 +1,11 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
 
-before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - eval $(ssh-agent -s)
-
 production:
   stage: deploy
   script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
     - ssh-add <(echo "$PRODUCTION_SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
@@ -16,15 +14,12 @@ production:
     - master
   tags:
     - nodejs
-    
-before_script:
 
 sonar:
   stage: test
   only:
     - master
     - staging
-    - gitlabCI
   tags:
     - gradle
   allow_failure: true
@@ -37,7 +32,6 @@ build:
   only:
     - master
     - staging
-    - gitlabCI
     - /^v[0-9]+/
   tags:
     - meteor
@@ -58,7 +52,7 @@ build:
 deploy_staging:
   stage: deploy
   only:
-    - gitlabCI
+    - staging
   tags:
     - ssh
   dependencies:
@@ -66,9 +60,9 @@ deploy_staging:
   script:
     - chmod -R a+rX,ug+w "build"
     - eval $(ssh-agent -s)
-    - mkdir ~/.ssh && echo "$STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
-    - scp -r "build/bundle/"* "$STAGING_SSH_URL"
+    - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
+    - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
 
 sync_mirror:
   stage: deploy
