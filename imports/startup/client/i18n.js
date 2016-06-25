@@ -20,6 +20,6 @@ Meteor.startup(function () {
     })
     .fail(function (error_message) {
       // Handle the situation
-      console.log(error_message);
+      throw new Meteor.Error(error_message, "Can't get User Language");
     });
 });

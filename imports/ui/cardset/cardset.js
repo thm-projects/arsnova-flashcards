@@ -19,7 +19,7 @@ import './cardset.html';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe('ratings', function onReady() {
+Meteor.subscribe('ratings', function() {
   Session.set('ratingsLoaded', true);
 });
 
@@ -289,7 +289,7 @@ Template.cardsetDetails.events({
       $(".cardback").css('display', "");
     }
   },
-  "click #leftCarouselControl, click #rightCarouselControl": function(evt) {
+  "click #leftCarouselControl, click #rightCarouselControl": function() {
     if ($(".cardfront-symbol").css('display') == 'none') {
       $(".cardfront-symbol").css('display', "");
       $(".cardback-symbol").css('display', "none");
