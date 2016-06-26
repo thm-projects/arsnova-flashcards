@@ -1,20 +1,6 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
 
-production:
-  stage: deploy
-  script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$PRODUCTION_SSH_PRIVATE_KEY")
-    - mkdir -p ~/.ssh
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - ssh $PRODUCTION_USER@$PRODUCTION_HOST 'cd flashcards/; git fetch --all; git reset --hard origin/master'
-  only:
-    - master
-  tags:
-    - nodejs
-
 sonar:
   stage: test
   only:
@@ -63,6 +49,21 @@ deploy_staging:
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
+
+deploy_production:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - ssh
+  dependencies:
+    - build
+  script:
+    - chmod -R a+rX,ug+w "build"
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
+    - scp -r "build/bundle/"* "$NEW_PRODUCTION_SSH_URL"
 
 sync_mirror:
   stage: deploy
