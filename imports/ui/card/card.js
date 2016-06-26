@@ -116,7 +116,7 @@ Template.frontEditor.rendered = function() {
           $("#fronttext .md-footer").html(rendered);
         })
         .catch(function(error) {
-          console.log("Error: Can't convert to Markdown");
+          throw new Meteor.Error(error, "Can't convert to Markdown");
         });
     }
   } else {
@@ -179,7 +179,7 @@ Template.backEditor.rendered = function() {
           $("#backtext .md-footer").html(rendered);
         })
         .catch(function(error) {
-          console.log("Error: Can't convert to Markdown");
+          throw new Meteor.Error(error, "Can't convert to Markdown");
         });
     }
   } else {
@@ -229,7 +229,7 @@ function tex(e) {
 function image(e) {
   // Give ![] surround the selection and prepend the image link
   var chunk, cursor, selected = e.getSelection(),
-    content = e.getContent(),
+      content = e.getContent(),
     link;
 
   if (selected.length === 0) {

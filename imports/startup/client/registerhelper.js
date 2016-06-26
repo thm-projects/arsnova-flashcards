@@ -53,7 +53,7 @@ Template.registerHelper("getCategories", function() {
 // Return the name of a Category
 Template.registerHelper("getCategory", function(value) {
   var id = value.toString();
-  if (id.length == 1) id = "0" + id;
+  if (id.length === 1) id = "0" + id;
 
   var category = Categories.findOne(id);
   if (category !== undefined) {

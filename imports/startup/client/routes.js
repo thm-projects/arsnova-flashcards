@@ -64,7 +64,6 @@ Router.route('/cardset/:_id/newcard', {
 Router.route('/cardset/:_id/editcard/:cardid', {
   name: 'editCard',
   data: function() {
-    var currentCardset = this.params._id;
     var currentCard = this.params.cardid;
     return Cards.findOne({_id: currentCard});
   }

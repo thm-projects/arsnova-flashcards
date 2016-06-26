@@ -75,7 +75,6 @@ Template.profileInfo.helpers({
       return null;
     }
 
-    var user = Meteor.users.findOne(this._id);
     var service = _.keys(Meteor.user().services)[0];
     service = service.charAt(0).toUpperCase() + service.slice(1);
     return service;

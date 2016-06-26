@@ -30,7 +30,7 @@ Template.main.events({
       $('#searchDropdown').removeClass("open");
     }
   },
-  'click #searchResults': function(event) {
+  'click #searchResults': function() {
     $('#searchDropdown').removeClass("open");
     $('#input-search').val('');
   },
@@ -74,25 +74,3 @@ Template.main.onRendered(function() {
     Meteor.call("initUser");
   }
 });
-
-/*Meteor.users.find({
-  "status.online": true
-}).observe({
-  added: function(user) {
-    var lastDate = user.lastOnAt;
-    lastDate.setHours(0, 0, 0, 0);
-
-    var actualDate = new Date();
-    actualDate.setHours(0, 0, 0, 0);
-
-    if (lastDate < actualDate) {
-      Meteor.call("updateUsersDaysInRow", user._id, user.daysInRow + 1);
-      Meteor.call("addExperience", 1, 2);
-    }
-
-    Meteor.call("updateUsersLast", user._id);
-  },
-  remove: function(user) {
-    Meteor.call("updateUsersLast", user._id);
-  }
-});*/

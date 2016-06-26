@@ -195,15 +195,16 @@ Meteor.startup(function() {
   if (Categories.find().count() === 0) {
     console.log("Initialize Categories");
     for (var category in categories) {
-      console.log(categories[category]);
-      Categories.insert(categories[category]);
+      if (categories.hasOwnProperty(category)) {
+        Categories.insert(categories[category]);
+      }
     }
   }
   if (Badges.find().count() === 0) {
-    console.log("Initialize Badges");
     for (var badge in badges) {
-      console.log(badges[badge]);
-      Badges.insert(badges[badge]);
+      if (badges.hasOwnProperty(badge)) {
+        Badges.insert(badges[badge]);
+      }
     }
   }
 });
