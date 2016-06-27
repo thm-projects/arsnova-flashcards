@@ -158,7 +158,7 @@ Template.profileXp.helpers({
   },
   getLast: function() {
     var last = Experience.findOne({
-      owner: this._id,
+      owner: this._id
     }, {
       sort: {
         date: -1

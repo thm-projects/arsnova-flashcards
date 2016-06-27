@@ -64,7 +64,7 @@ Template.btnCard.events({
   'click #cardConfirm': function() {
     var id = this._id;
     Meteor.call("deleteCard", id);
-  },
+  }
 });
 
 /**
