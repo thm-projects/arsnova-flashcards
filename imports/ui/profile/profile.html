@@ -1,28 +1,30 @@
 <template name="profile">
-  {{#if isVisible}}
-    <div class="row profil-header">
-      <div class="col-md-12">
-        <h3 style="margin-bottom:20px">
-          <span>{{_ "profil-header.name"}}</span>
-          <span id="profileName">{{getUser.profile.name}}</span>
-        </h3>
+    <div class="col-md-12">
+    {{#if isVisible}}
+      <div class="row profil-header">
+        <div class="col-md-12">
+          <h3 style="margin-bottom:20px">
+            <span>{{_ "profil-header.name"}}</span>
+            <span id="profileName">{{getUser.profile.name}}</span>
+          </h3>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      {{> profileInfo}} {{> profileXp}}
-    </div>
-    <div class="row">
-      {{> profileBadges}}
-    </div>
-  {{else}}
-    <div class="row profil-header">
-      <div class="col-md-12">
-        <h3 style="margin-bottom:20px">
-          <span>{{_ "panel-body.profileprivate"}}</span>
-        </h3>
+      <div class="row">
+        {{> profileInfo}} {{> profileXp}}
       </div>
+      <div class="row">
+        {{> profileBadges}}
+      </div>
+    {{else}}
+      <div class="row profil-header">
+        <div class="col-md-12">
+          <h3 style="margin-bottom:20px">
+            <span>{{_ "panel-body.profileprivate"}}</span>
+          </h3>
+        </div>
+      </div>
+    {{/if}}
     </div>
-  {{/if}}
 </template>
 
 <!--##################################################################-->
