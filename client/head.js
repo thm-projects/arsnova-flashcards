@@ -7,4 +7,4 @@ import '../imports/startup/client/useraccounts-configuration.js';
 
 
 // USER INTERFACE IMPORTS -------------------------------------------------
-import '../imports/ui/main/main.js'
+import '../imports/ui/main/main.js';
