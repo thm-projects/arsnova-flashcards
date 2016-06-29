@@ -258,8 +258,7 @@ Template.cardsetDetails.helpers({
     var count = Cards.find({
       cardset_id: cardset_id
     }).count();
-      return count === 1;
-  },
+    return count !== 1;  },
   cardDetailsMarkdown: function(front, back, index) {
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
