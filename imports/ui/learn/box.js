@@ -84,7 +84,7 @@ Template.boxMain.helpers({
         _id: learnedCard.card_id
       });
       cards.push(card);
-    }); 
+    });
 
     return cards;
   },
@@ -165,7 +165,7 @@ Template.boxMain.events({
  */
 
 Template.boxSide.events({
-  "click .learn-box": function(event, template) {
+  "click .learn-box": function(event) {
     var box = $(event.currentTarget).val();
     Session.set('selectedBox', box);
     Session.set('isFront', true);
@@ -181,7 +181,7 @@ Template.boxSide.events({
 Template.boxSide.helpers({
   selectedBox: function(boxId) {
     var selectedBox = Session.get('selectedBox');
-    if (boxId == selectedBox) {
+    if (boxId === selectedBox) {
       return "active";
     }
   },
