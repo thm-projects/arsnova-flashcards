@@ -25,7 +25,9 @@ Meteor.methods({
     while (pts > output) {
       points += Math.floor(lvl + 30 * Math.pow(2, lvl / 10));
       output = Math.floor(points / 4);
-      if (pts >= output) lvl++;
+      if (pts >= output) {
+	lvl++;
+      }
     }
     Meteor.users.update(Meteor.userId(), {
       $set: {
