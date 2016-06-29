@@ -44,7 +44,9 @@ Template.cardset.helpers({
     var previousCategory = Cardsets.findOne(id).category;
     var categoryId = previousCategory.toString();
 
-    if (categoryId.length == 1) categoryId = "0" + categoryId;
+    if (categoryId.length === 1) {
+	categoryId = "0" + categoryId;
+    }
 
     var category = Categories.findOne(categoryId);
     if (category !== undefined) {
@@ -122,20 +124,20 @@ Template.cardsetForm.onRendered(function() {
     var previousVisible = Session.get('previousVisible');
     var previousRatings = Session.get('previousRatings');
 
-    if (previousName != $('#editSetName').val()) {
+    if (previousName !== $('#editSetName').val()) {
       $('#editSetName').val(previousName);
       $('#editSetNameLabel').css('color', '');
       $('#editSetName').css('border-color', '');
     }
-    if (previousDescription != $('#editSetDescription').val()) {
+    if (previousDescription !== $('#editSetDescription').val()) {
       $('#editSetDescription').val(previousDescription);
       $('#editSetDescriptionLabel').css('color', '');
       $('#editSetDescription').css('border-color', '');
     }
-    if (previousCategoryName != $('#editSetCategory').html()) {
+    if (previousCategoryName !== $('#editSetCategory').html()) {
       $('#editSetCategory').html(previousCategoryName);
     }
-    if (previousVisible != $('#editCardSetVisibility > .active > input').val()) {
+    if (previousVisible !== $('#editCardSetVisibility > .active > input').val()) {
       if (previousVisible) {
         $('#visibilityoption1').removeClass('active');
         $('#visibilityoption2').addClass('active');
@@ -144,7 +146,7 @@ Template.cardsetForm.onRendered(function() {
         $('#visibilityoption1').addClass('active');
       }
     }
-    if (previousRatings != $('#editCardSetRating > .active > input').val()) {
+    if (previousRatings !== $('#editCardSetRating > .active > input').val()) {
       if (previousRatings) {
         $('#ratingoption2').removeClass('active');
         $('#ratingoption1').addClass('active');
@@ -255,12 +257,8 @@ Template.cardsetDetails.helpers({
   cardCountOne: function(cardset_id) {
     var count = Cards.find({
       cardset_id: cardset_id
-    }).count();
-    if (count === 1)
-      return false;
-    else
-      return true;
-  },
+    }).count();
+    return count !== 1;  },
   cardDetailsMarkdown: function(front, back, index) {
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
@@ -277,12 +275,12 @@ Template.cardsetDetails.helpers({
 
 Template.cardsetDetails.events({
   "click .box": function() {
-    if ($(".cardfront-symbol").css('display') == 'none') {
+    if ($(".cardfront-symbol").css('display') === 'none') {
       $(".cardfront-symbol").css('display', "");
       $(".cardback-symbol").css('display', "none");
       $(".cardfront").css('display', "");
       $(".cardback").css('display', "none");
-    } else if ($(".cardback-symbol").css('display') == 'none') {
+    } else if ($(".cardback-symbol").css('display') === 'none') {
       $(".cardfront-symbol").css('display', "none");
       $(".cardback-symbol").css('display', "");
       $(".cardfront").css('display', "none");
@@ -290,7 +288,7 @@ Template.cardsetDetails.events({
     }
   },
   "click #leftCarouselControl, click #rightCarouselControl": function() {
-    if ($(".cardfront-symbol").css('display') == 'none') {
+    if ($(".cardfront-symbol").css('display') === 'none') {
       $(".cardfront-symbol").css('display', "");
       $(".cardback-symbol").css('display', "none");
       $(".cardfront").css('display', "");
@@ -354,7 +352,7 @@ Template.sidebarCardset.events({
       _id: this._id
     });
   },
-  'click #rating': function(event, template) {
+  'click #rating': function() {
     var cardset_id = Template.parentData(1)._id;
     var rating = $('#rating').data('userrating');
     var count = Ratings.find({
@@ -400,7 +398,7 @@ Template.cardButtons.events({
     for (var card in cards) {
       cardsString += JSON.stringify(cards[card]);
 
-      if (cards.length - 1 != card) {
+      if (cards.length - 1 !== card) {
         cardsString += ", ";
       }
     }
@@ -437,7 +435,7 @@ Template.cardsetImportForm.events({
       var reader = new FileReader();
       reader.onload = function() {
         var res = $.parseJSON('[' + this.result + ']');
-        Meteor.call('parseUpload', res, cardset_id, function(error, response) {
+        Meteor.call('parseUpload', res, cardset_id, function(error) {
           if (error) {
             tmpl.uploading.set(false);
             Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
@@ -451,8 +449,8 @@ Template.cardsetImportForm.events({
     } else if (evt.target.files[0].name.match(/\.(csv)$/)) {
       Papa.parse(evt.target.files[0], {
         header: true,
-        complete: function(results, file) {
-          Meteor.call('parseUpload', results.data, cardset_id, function(error, response) {
+        complete: function(results) {
+          Meteor.call('parseUpload', results.data, cardset_id, function(error) {
           if (error) {
               tmpl.uploading.set(false);
               Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');

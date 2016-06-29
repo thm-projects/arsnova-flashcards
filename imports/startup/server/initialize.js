@@ -193,7 +193,6 @@ Meteor.startup(function() {
 
 
   if (Categories.find().count() === 0) {
-    console.log("Initialize Categories");
     for (var category in categories) {
       if (categories.hasOwnProperty(category)) {
         Categories.insert(categories[category]);
