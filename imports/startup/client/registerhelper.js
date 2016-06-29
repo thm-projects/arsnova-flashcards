@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Categories } from '../../api/categories.js';
-import { Cardsets } from '../../api/cardsets.js'
-import { Cards } from '../../api/cards.js'
+import { Cardsets } from '../../api/cardsets.js';
+import { Cards } from '../../api/cards.js';
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function() {
@@ -11,14 +11,20 @@ Template.registerHelper("hasPermission", function() {
 // Check if user is owner of a cardset
 Template.registerHelper("isOwnerCard", function() {
     var owner;
-    if(this._id) owner = Cardsets.findOne(Router.current().params._id).owner;
+    if(this._id) {
+	owner = Cardsets.findOne(Router.current().params._id).owner;
+    }
     return owner === Meteor.userId();
 });
 
 Template.registerHelper("isOwner", function() {
   var owner;
-  if (this.owner) owner = this.owner;
-  if (owner === undefined) owner = Template.parentData(1).owner;
+  if (this.owner) {
+    owner = this.owner;
+  }
+  if (owner === undefined) {
+    owner = Template.parentData(1).owner;
+  }
   return owner === Meteor.userId();
 });
 
@@ -53,7 +59,9 @@ Template.registerHelper("getCategories", function() {
 // Return the name of a Category
 Template.registerHelper("getCategory", function(value) {
   var id = value.toString();
-  if (id.length === 1) id = "0" + id;
+  if (id.length === 1) {
+    id = "0" + id;
+  }
 
   var category = Categories.findOne(id);
   if (category !== undefined) {
