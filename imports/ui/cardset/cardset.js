@@ -398,7 +398,7 @@ Template.cardButtons.events({
     for (var card in cards) {
       cardsString += JSON.stringify(cards[card]);
 
-      if (cards.length - 1 !== card) {
+      if (cards.length - 1 > card) {
         cardsString += ", ";
       }
     }
