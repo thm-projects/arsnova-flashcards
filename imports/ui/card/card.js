@@ -46,8 +46,8 @@ Template.btnCard.events({
     }
     if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000)
     {
-      front = Session.get('frontText');
-      back = Session.get('backText');
+      var front = Session.get('frontText');
+      var back = Session.get('backText');
       if (ActiveRoute.name('newCard')) {
         Meteor.call("addCard", this._id, front, back);
       } else {
@@ -80,7 +80,7 @@ Template.frontEditor.rendered = function() {
     fullscreen: false,
     footer: "<p></p>",
     onChange: function(e) {
-      content = e.getContent();
+      var content = e.getContent();
       Session.set('frontText', content);
       if (content !== "") {
         Meteor.promise("convertMarkdown", content)
@@ -108,7 +108,7 @@ Template.frontEditor.rendered = function() {
   });
 
   if (ActiveRoute.name('editCard')) {
-    front = String($('#fronttext').data('content'));
+    var front = String($('#fronttext').data('content'));
     Session.set('frontText', front);
     if (front !== "") {
       Meteor.promise("convertMarkdown", front)
@@ -144,7 +144,7 @@ Template.backEditor.rendered = function() {
     fullscreen: false,
     footer: "<p></p>",
     onChange: function(e) {
-      content = e.getContent();
+      var content = e.getContent();
       Session.set('backText', content);
       if (content !== "") {
         Meteor.promise("convertMarkdown", content)
@@ -171,7 +171,7 @@ Template.backEditor.rendered = function() {
     ]
   });
   if (ActiveRoute.name('editCard')) {
-    back = String($('#backtext').data('content'));
+    var back = String($('#backtext').data('content'));
     Session.set('backText', back);
     if (back !== "") {
       Meteor.promise("convertMarkdown", back)

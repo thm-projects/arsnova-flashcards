@@ -13,7 +13,7 @@ if (Meteor.isServer) {
   });
 }
 
-CardsSchema = new SimpleSchema({
+var CardsSchema = new SimpleSchema({
   front: {
     type: String,
     max: 10000
