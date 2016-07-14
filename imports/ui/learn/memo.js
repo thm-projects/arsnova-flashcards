@@ -23,7 +23,7 @@ Meteor.subscribe("learned");
 
 Template.memo.onCreated(function() {
   var cardset_id = Router.current().params._id;
-  cards = Cards.find({
+  var cards = Cards.find({
     cardset_id: cardset_id
   });
   cards.forEach(function(card) {

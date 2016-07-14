@@ -28,7 +28,7 @@ Session.set('isFinish', false);
 
 Template.box.onCreated(function() {
   var cardset_id = Router.current().params._id;
-  cards = Cards.find({
+  var cards = Cards.find({
     cardset_id: cardset_id
   });
   cards.forEach(function(card) {
@@ -62,11 +62,11 @@ Template.box.helpers({
 
 Template.boxMain.helpers({
   isFront: function() {
-    isFront = Session.get('isFront');
+    var isFront = Session.get('isFront');
     return isFront === true;
   },
   getCardsByBox: function() {
-    selectedBox = parseInt(Session.get('selectedBox'));
+    var selectedBox = parseInt(Session.get('selectedBox'));
 
     var learnedCards = Learned.find({
       cardset_id: this._id,
@@ -118,7 +118,7 @@ Template.boxMain.helpers({
 
 Template.boxMain.events({
   "click .box": function() {
-    isFront = Session.get('isFront');
+    var isFront = Session.get('isFront');
     if (isFront === true) {
       Session.set('isFront', false);
     } else {
@@ -132,7 +132,7 @@ Template.boxMain.events({
       user_id: Meteor.userId()
     });
 
-    selectedBox = parseInt(Session.get('selectedBox'));
+    var selectedBox = parseInt(Session.get('selectedBox'));
     if (selectedBox < 5) {
       Meteor.call('updateLearned', currentLearned._id, selectedBox + 1);
     }
