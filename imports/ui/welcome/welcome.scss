@@ -19,9 +19,9 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 	}
 	#login {
 		a {
-			margin-left: 10px;
-			&#facebook {
-				margin-left: 0;
+			margin-right: 14px;
+			&:last-child {
+				margin-right: 0; 
 			}
 		}
 	}

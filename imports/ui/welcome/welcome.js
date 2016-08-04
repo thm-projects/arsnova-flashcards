@@ -48,3 +48,22 @@ Template.welcome.events({
         });
     }
 });
+
+Template.welcome.onRendered(function() {
+  if(Meteor.settings.public.displayLoginButtons.displayFacebook)
+  {
+    $('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" /></a>');
+  }
+  if(Meteor.settings.public.displayLoginButtons.displayTwitter)
+  {
+    $('.panel-footer').append('<a id="twitter" href=""><img src="img/social_twitter_box_white.png" /></a>');
+  }
+  if(Meteor.settings.public.displayLoginButtons.displayGoogle)
+  {
+    $('.panel-footer').append('<a id="google" href=""><img src="img/social_google_box_white.png" /></a>');
+  }
+  if(Meteor.settings.public.displayLoginButtons.displayCas)
+  {
+    $('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" /></a>');
+  }
+});

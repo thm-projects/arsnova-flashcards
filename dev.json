@@ -6,6 +6,12 @@
       "serviceParam": "service",
       "popupWidth": 810,
       "popupHeight": 610
+    },
+    "displayLoginButtons": {
+      "displayFacebook": false,
+      "displayTwitter": false,
+      "displayGoogle": false,
+      "displayCas": true
     }
   },
   "facebook": {
