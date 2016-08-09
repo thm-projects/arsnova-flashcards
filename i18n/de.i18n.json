@@ -329,5 +329,13 @@
   "newbadge": "Neuer Badge",
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
-  "badgetext3": " erhalten"
+  "badgetext3": " erhalten",
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "cardsets": "Kartensätze",
+    "cards": "Karten",
+    "users": "Benutzer",
+    "see_all": "Alle ansehen"
+  }
 }

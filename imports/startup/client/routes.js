@@ -119,7 +119,23 @@ Router.route('/admin/dashboard', {
   onBeforeAction: function() {
     if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
     {
-      Router.go('created');
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
+Router.route('/admin/users', {
+  name: 'admin_users',
+  template: 'admin_users',
+  layoutTemplate: 'admin_main',
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
     }
     else
     {

@@ -330,5 +330,13 @@
   "newbadge": "New Badge",
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
-  "badgetext3": ""
+  "badgetext3": "",
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "cardsets": "Cardsets",
+    "cards": "Cards",
+    "users": "Users",
+    "see_all": "See all"
+  }
 }
