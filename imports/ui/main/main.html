@@ -47,7 +47,7 @@
           <ul class="nav navbar-nav navbar-right">
             {{#if isInRole 'admin-user'}}
               <li id="navbar-adminpanel">
-                <a href="#" id="adminpanel">
+                <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
                   {{_ "navbar-collapse.admin"}}
                 </a>
               </li>

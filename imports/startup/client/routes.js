@@ -6,6 +6,14 @@ Router.route('/', function () {
   this.redirect('home');
 });
 
+Router.route('/admin', function () {
+  this.redirect('admin_dashboard');
+});
+
+Router.configure({
+  layoutTemplate: 'admin_main'
+});
+
 Router.configure({
   layoutTemplate: 'main'
 });
@@ -102,6 +110,12 @@ Router.route('/profile/:_id', {
   name: 'profile',
   template: 'profile',
   data: function() { return Meteor.users.findOne(this.params._id); }
+});
+
+Router.route('/admin/dashboard', {
+  name: 'admin_dashboard',
+  template: 'admin_dashboard',
+  layoutTemplate: 'admin_main'
 });
 
 var isSignedIn = function() {

@@ -25,7 +25,8 @@
     "admin": "Admin",
   	"myprofile": "Mein Profil",
   	"logout": "Logout",
-  	"search": "Suche"
+  	"search": "Suche",
+    "home": "Home"
   },
 
   "footer": {

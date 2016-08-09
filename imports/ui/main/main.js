@@ -11,7 +11,7 @@ import '../impressum/impressum.js';
 import '../cardsets/cardsets.js';
 import '../pool/pool.js';
 import '../profile/profile.js'
-
+import '../admin_main/admin_main.js';
 
 Meteor.subscribe("Users");
 
