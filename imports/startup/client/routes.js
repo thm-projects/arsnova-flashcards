@@ -115,7 +115,17 @@ Router.route('/profile/:_id', {
 Router.route('/admin/dashboard', {
   name: 'admin_dashboard',
   template: 'admin_dashboard',
-  layoutTemplate: 'admin_main'
+  layoutTemplate: 'admin_main',
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('created');
+    }
+    else
+    {
+      this.next();
+    }
+  }
 });
 
 var isSignedIn = function() {
