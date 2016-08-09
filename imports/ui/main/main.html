@@ -45,6 +45,13 @@
           </div>
 
           <ul class="nav navbar-nav navbar-right">
+            {{#if isInRole 'admin-user'}}
+              <li id="navbar-adminpanel">
+                <a href="#" id="adminpanel">
+                  {{_ "navbar-collapse.admin"}}
+                </a>
+              </li>
+            {{/if}}
             <li class="dropdown {{#if isActiveRoute 'profile'}}active{{/if}}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span id="usr-name">{{getUsername}}</span>

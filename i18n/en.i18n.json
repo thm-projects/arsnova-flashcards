@@ -22,6 +22,7 @@
   "navbar-collapse": {
   	"carddecks": "My deck of cards",
   	"pool": "Pool",
+    "admin": "Admin",
   	"myprofile": "My profile",
   	"logout": "Logout",
   	"search": "Search"
