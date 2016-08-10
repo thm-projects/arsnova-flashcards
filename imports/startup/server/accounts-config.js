@@ -30,9 +30,16 @@ ServiceConfiguration.configurations.insert({
 
 
 Meteor.users.after.insert(function (userId, doc) {
-  if(doc.profile.name === 'mzmn17')
+  if(doc.services.cas)
   {
-    Roles.addUsersToRoles(doc._id, ['admin-user']);
+    if(doc.services.cas.id === 'mzmn17')
+    {
+      Roles.addUsersToRoles(doc._id, ['admin-user']);
+    }
+    else
+    {
+      Roles.addUsersToRoles(doc._id, ['normal-user']);
+    }
   }
   else
   {

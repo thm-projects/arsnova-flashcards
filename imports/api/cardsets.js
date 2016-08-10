@@ -8,7 +8,13 @@ export const Cardsets = new Mongo.Collection("cardsets");
 
 if (Meteor.isServer) {
   Meteor.publish("cardsets", function() {
-    return Cardsets.find();
+    if (Roles.userIsInRole(this.userId, 'admin-user')) {
+      return Cardsets.find();
+    }
+    else if (this.userId)
+    {
+      return Cardsets.find({$or: [{visible: true}, {owner: this.userId}]});
+    }
   });
 }
 

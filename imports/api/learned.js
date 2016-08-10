@@ -5,7 +5,9 @@ export const Learned = new Mongo.Collection("learned");
 
 if (Meteor.isServer) {
   Meteor.publish("learned", function() {
-    return Learned.find();
+    if (this.userId) {
+      return Learned.find({user_id: this.userId});
+    }
   });
 }
 

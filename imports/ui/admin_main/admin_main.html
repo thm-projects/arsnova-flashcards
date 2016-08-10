@@ -20,20 +20,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.home"}}</a></li>
-
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span id="usr-name">{{_ "navbar-collapse.admin"}}</span>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a id="usr-profile" role="button">{{_ "navbar-collapse.myprofile"}}</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#" id="logout_admin" style="color:#D9534F">{{_ "navbar-collapse.logout"}}</a></li>
-                </ul>
-              </li>
-
+            <li><a href="#" id="logout_admin">{{_ "navbar-collapse.logout"}}</a></li>
           </ul>
         </div>
       </div>
