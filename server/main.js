@@ -15,3 +15,4 @@ import '../imports/api/ratings.js';
 import '../imports/api/userdata.js';
 import '../imports/api/markdown.js';
 import '../imports/api/upload.js';
+import '../imports/api/allusers.js';
