@@ -11,6 +11,7 @@ import './admin_main.html';
 
 import '../admin_dashboard/admin_dashboard.js';
 import '../admin_cardsets/admin_cardsets.js';
+import '../admin_cards/admin_cards.js';
 import '../admin_users/admin_users.js';
 
 

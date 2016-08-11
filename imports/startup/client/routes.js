@@ -167,6 +167,22 @@ Router.route('/admin/cardsets', {
   }
 });
 
+Router.route('/admin/cards', {
+  name: 'admin_cards',
+  template: 'admin_cards',
+  layoutTemplate: 'admin_main',
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
 var isSignedIn = function() {
   if (!(Meteor.user() || Meteor.loggingIn())) {
     Router.go('home');
