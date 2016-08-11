@@ -365,7 +365,11 @@
       							<li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
       						</ul>
       						<div class="panel-footer">
-      							<a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
+                    {{#if isInRole 'edu-user'}}
+      							<a class="btn btn-lg btn-block btn-default disabled" href="#">{{_ "billing.plan.impossible"}}</a>
+                    {{else}}
+                    <a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
+                    {{/if}}
       						</div>
       					</div>
       				</div>
@@ -382,7 +386,11 @@
       							<li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
       						</ul>
       						<div class="panel-footer">
-      							<a class="btn btn-lg btn-block btn-primary" href="#">{{_ "billing.plan.cas"}}</a>
+                    {{#if isInRole 'edu-user'}}
+      							<a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
+                    {{else}}
+      							<a class="btn btn-lg btn-block btn-default disabled" href="#">{{_ "billing.plan.cas"}}</a>
+                    {{/if}}
       						</div>
       					</div>
       				</div>
@@ -400,7 +408,7 @@
       							<li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
       						</ul>
       						<div class="panel-footer">
-      							<a class="btn btn-lg btn-block btn-danger" href="#">{{_ "billing.plan.subscribe"}}</a>
+      							<a class="btn btn-lg btn-block btn-info disabled" href="#">{{_ "billing.plan.subscribe"}}</a>
       						</div>
       					</div>
       				</div>

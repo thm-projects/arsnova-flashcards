@@ -120,7 +120,8 @@
       "actual": "Your current plan!",
       "free": "Create. Learn. Share",
       "edu": "Get Edu-Flashcards for free",
-      "cas": "Log in with CAS!",
+      "cas": "Only for CAS user!",
+      "impossible": "Not possible!",
       "pro": "Create and get Pro-Flashcards",
       "month": "month",
       "subscribe": "Subscribe now!"
