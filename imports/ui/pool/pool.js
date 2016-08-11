@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../api/cardsets.js';
 import { Categories } from '../../api/categories.js';
+import { Ratings } from '../../api/ratings.js';
 
 import './pool.html';
 
@@ -30,21 +31,64 @@ Template.category.helpers({
     }, {
       sort: Session.get('poolSort')
     });
+  },
+  getAverage: function() {
+    var ratings = Ratings.find({
+      cardset_id: this._id
+    });
+    var count = ratings.count();
+    if (count !== 0) {
+      var amount = 0;
+      ratings.forEach(function(rate) {
+        amount = amount + rate.rating;
+      });
+      var result = (amount / count).toFixed(2);
+      return result;
+    } else {
+      return 0;
+    }
+  },
+  nameUp: function() {
+    return Session.get('poolSort').name === 1;
+  },
+  getSortUserIcon: function(val) {
+    var sort = Session.get('poolSort');
+    console.log(sort);
+    if (sort.username === 1) {
+      return '<i class="fa fa-sort-asc"></i>';
+    } else if (sort.username === -1){
+      return '<i class="fa fa-sort-desc"></i>';
+    }
+  },
+  getSortNameIcon: function() {
+    var sort = Session.get('poolSort');
+    console.log(sort);
+    if (sort.name === 1) {
+      return '<i class="fa fa-sort-asc"></i>';
+    } else if (sort.name === -1){
+      return '<i class="fa fa-sort-desc"></i>';
+    }
   }
 });
 
 Template.category.events({
-  'click #pool-category-region .namedown': function() {
-    Session.set('poolSort', {name: 1});
+  'click #sortName': function() {
+    var sort = Session.get('poolSort');
+    if (sort.name === 1) {
+      Session.set('poolSort', {name: -1});
+    }
+    else {
+      Session.set('poolSort', {name: 1});
+    }
   },
-  'click #pool-category-region .nameup': function() {
-    Session.set('poolSort', {name: -1});
-  },
-  'click #pool-category-region .createddown': function() {
-    Session.set('poolSort', {username: 1});
-  },
-  'click #pool-category-region .createdup': function() {
-    Session.set('poolSort', {username: -1});
+  'click #sortUser': function() {
+    var sort = Session.get('poolSort');
+    if (sort.username === 1) {
+      Session.set('poolSort', {username: -1});
+    }
+    else {
+      Session.set('poolSort', {username: 1});
+    }
   }
 });
 
