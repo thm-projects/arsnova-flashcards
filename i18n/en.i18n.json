@@ -93,7 +93,7 @@
     "createcarddeck": "Create a deck of cards",
     "delete": "Delete deck of cards",
     "confirm": "Sure?",
-    "save": "Edit deck of cards",
+    "save": "Save deck of cards",
     "name_required": "The name field is required!",
     "description_required": "The decription field is required!",
     "category_required": "The category field is required!"
@@ -360,7 +360,13 @@
     "dashboard": "Dashboard",
     "cardsets": "Cardsets",
     "cards": "Cards",
-    "users": "Users",
-    "see_all": "See all"
+    "users": "User",
+    "see_all": "See all",
+    "roles": "Roles",
+    "mail": "Mail",
+    "joined": "Joined",
+    "edit": "Edit",
+    "edituser": "Edit user",
+    "notifyuser": "Notify user"
   }
 }

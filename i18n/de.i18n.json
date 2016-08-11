@@ -360,6 +360,12 @@
     "cardsets": "Kartensätze",
     "cards": "Karten",
     "users": "Benutzer",
-    "see_all": "Alle ansehen"
+    "see_all": "Alle ansehen",
+    "roles": "Rollen",
+    "mail": "Mail",
+    "joined": "Beigetreten",
+    "edit": "Bearbeiten",
+    "edituser": "Benutzer bearbeiten",
+    "notifyuser": "Benutzer benachrichtigen"
   }
 }
