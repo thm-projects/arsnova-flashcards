@@ -148,7 +148,8 @@ Template.cardsets.events({
       var description = $('#newSetDescription').val();
       var visible = ('true' === $('#newCardSetVisibility > .active > input').val());
       var ratings = ('true' === $('#newCardSetRating > .active > input').val());
-      Meteor.call("addCardset", name, category, description, visible, ratings);
+      var kind = $('#newCardSetKind > .active > input').val();
+      Meteor.call("addCardset", name, category, description, visible, ratings, kind);
       $('#newSetModal').modal('hide');
     }
   }

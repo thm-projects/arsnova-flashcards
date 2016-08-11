@@ -40,12 +40,13 @@ Template.cardset.helpers({
     Session.set('previousCategory', Cardsets.findOne(id).category);
     Session.set('previousVisible', Cardsets.findOne(id).visible);
     Session.set('previousRatings', Cardsets.findOne(id).ratings);
+    Session.set('previousKind', Cardsets.findOne(id).kind);
 
     var previousCategory = Cardsets.findOne(id).category;
     var categoryId = previousCategory.toString();
 
     if (categoryId.length === 1) {
-	categoryId = "0" + categoryId;
+	     categoryId = "0" + categoryId;
     }
 
     var category = Categories.findOne(categoryId);
@@ -78,7 +79,8 @@ Template.cardset.events({
       var description = tmpl.find('#editSetDescription').value;
       var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
       var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
-      Meteor.call("updateCardset", this._id, name, category, description, visible, ratings);
+      var kind = tmpl.find('#editCardSetKind > .active > input').value;
+      Meteor.call("updateCardset", this._id, name, category, description, visible, ratings, kind);
       $('#editSetModal').modal('hide');
     }
   },
@@ -123,6 +125,7 @@ Template.cardsetForm.onRendered(function() {
     var previousCategoryName = Session.get('previousCategoryName');
     var previousVisible = Session.get('previousVisible');
     var previousRatings = Session.get('previousRatings');
+    var previousKind = Session.get('previousKind');
 
     if (previousName !== $('#editSetName').val()) {
       $('#editSetName').val(previousName);
@@ -155,6 +158,21 @@ Template.cardsetForm.onRendered(function() {
         $('#ratingoption2').addClass('active');
       }
     }
+    if (previousKind !== $('#editCardSetKind > .active > input').val()) {
+      if (previousKind === 'free') {
+        $('#kindoption1').addClass('active');
+        $('#kindoption2').removeClass('active');
+        $('#kindoption3').removeClass('active');
+      } else if (previousKind === 'edu') {
+        $('#kindoption1').removeClass('active');
+        $('#kindoption2').addClass('active');
+        $('#kindoption3').removeClass('active');
+      } else if (previousKind === 'pro') {
+        $('#kindoption1').removeClass('active');
+        $('#kindoption2').removeClass('active');
+        $('#kindoption3').addClass('active');
+      }
+    }
   });
 });
 
@@ -164,6 +182,9 @@ Template.cardsetForm.helpers({
   },
   'ratings': function(ratings) {
     return Cardsets.findOne(this._id).ratings === ratings;
+  },
+  'kind': function(kind) {
+    return Cardsets.findOne(this._id).kind === kind;
   }
 });
 

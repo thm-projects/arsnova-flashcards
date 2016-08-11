@@ -89,6 +89,7 @@
   	"rating": "Bewertungen",
   	"ratingoption1": "erlauben",
   	"ratingoption2": "abschalten",
+    "kind": "Art",
     "cancel": "Abbrechen",
     "createcarddeck": "Kartensatz anlegen",
     "delete": "Kartensatz löschen",

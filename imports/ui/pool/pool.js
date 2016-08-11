@@ -48,12 +48,8 @@ Template.category.helpers({
       return 0;
     }
   },
-  nameUp: function() {
-    return Session.get('poolSort').name === 1;
-  },
   getSortUserIcon: function(val) {
     var sort = Session.get('poolSort');
-    console.log(sort);
     if (sort.username === 1) {
       return '<i class="fa fa-sort-asc"></i>';
     } else if (sort.username === -1){
@@ -62,12 +58,23 @@ Template.category.helpers({
   },
   getSortNameIcon: function() {
     var sort = Session.get('poolSort');
-    console.log(sort);
     if (sort.name === 1) {
       return '<i class="fa fa-sort-asc"></i>';
     } else if (sort.name === -1){
       return '<i class="fa fa-sort-desc"></i>';
     }
+  },
+  getKind: function() {
+    switch (this.kind) {
+      case "free":
+        return null;
+      case "edu":
+        return '<span class="label label-success">Edu</span>';
+      case "pro":
+        return '<span class="label label-warning">Pro</span>';
+      default:
+        return null;
+      }
   }
 });
 

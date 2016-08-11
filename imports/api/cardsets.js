@@ -44,6 +44,9 @@ CardsetsSchema = new SimpleSchema({
   },
   ratings: {
     type: Boolean
+  },
+  kind: {
+    type: String
   }
 });
 
@@ -72,7 +75,7 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-  addCardset: function(name, category, description, visible, ratings) {
+  addCardset: function(name, category, description, visible, ratings, kind) {
     // Make sure the user is logged in before inserting a cardset
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -85,7 +88,8 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().profile.name,
       visible: visible,
-      ratings: ratings
+      ratings: ratings,
+      kind: kind
     });
     Experience.insert({
       type: 2,
@@ -106,7 +110,7 @@ Meteor.methods({
       cardset_id: id
     });
   },
-  updateCardset: function(id, name, category, description, visible, ratings) {
+  updateCardset: function(id, name, category, description, visible, ratings, kind) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
     if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
@@ -118,7 +122,8 @@ Meteor.methods({
         category: category,
         description: description,
         visible: visible,
-        ratings: ratings
+        ratings: ratings,
+        kind: kind
       }
     });
   }

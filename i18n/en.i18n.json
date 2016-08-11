@@ -89,6 +89,7 @@
   	"rating": "Ratings",
   	"ratingoption1": "allow",
   	"ratingoption2": "disable",
+    "kind": "Kind",
     "cancel": "Cancel",
     "createcarddeck": "Create a deck of cards",
     "delete": "Delete deck of cards",
