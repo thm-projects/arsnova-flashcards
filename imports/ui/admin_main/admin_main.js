@@ -10,8 +10,9 @@ import { Categories } from '../../api/categories.js';
 import './admin_main.html';
 
 import '../admin_dashboard/admin_dashboard.js';
+import '../admin_cardsets/admin_cardsets.js';
 import '../admin_users/admin_users.js';
-//import '../admin_cardsets/admin_cardsets.js';
+
 
 Template.admin_main.events({
   'click #logout_admin': function(event) {

@@ -361,11 +361,16 @@
     "cards": "Karten",
     "users": "Benutzer",
     "see_all": "Alle ansehen",
+    "name": "Name",
     "roles": "Rollen",
     "mail": "Mail",
     "joined": "Beigetreten",
+    "created": "Erstelldatum",
     "edit": "Bearbeiten",
+    "delete": "Löschen",
     "edituser": "Benutzer bearbeiten",
+    "editcardset": "Kartensatz bearbeiten",
+    "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen"
   }
 }

@@ -362,11 +362,16 @@
     "cards": "Cards",
     "users": "User",
     "see_all": "See all",
+    "name": "Name",
     "roles": "Roles",
     "mail": "Mail",
     "joined": "Joined",
+    "created": "Created At",
     "edit": "Edit",
+    "delete": "Delete",
     "edituser": "Edit user",
+    "editcardset": "Edit cardset",
+    "deletecardset": "Delete cardset",
     "notifyuser": "Notify user"
   }
 }

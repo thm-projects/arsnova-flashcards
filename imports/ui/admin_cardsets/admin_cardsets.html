@@ -1,0 +1,12 @@
+<template name="admin_cardsets">
+  <div class="content-header">
+    <h1>
+      {{_ "admin.cardsets"}}
+    </h1>
+  </div>
+  <div class="content">
+    <div class="admin_cardsets_table">
+      {{> reactiveTable collection=cardsetListAdmin settings=tableSettings}}
+    </div>
+  </div>
+</template>
