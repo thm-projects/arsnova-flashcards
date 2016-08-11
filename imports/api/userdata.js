@@ -4,8 +4,9 @@ import { Mongo } from 'meteor/mongo';
 if (Meteor.isServer) {
 Meteor.publish("userData", function () {
   if (this.userId) {
-    return Meteor.users.find({_id: this.userId},
-                             {fields: {'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1}});
+    return Meteor.users.find(
+      {$or: [{visible: true}, {_id: this.userId}]},
+      {fields: {'profile.name': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1}});
   } else {
     this.ready();
   }

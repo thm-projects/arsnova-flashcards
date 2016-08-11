@@ -52,17 +52,11 @@
                 </a>
               </li>
             {{/if}}
-            <li class="dropdown {{#if isActiveRoute 'profile'}}active{{/if}}">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span id="usr-name">{{getUsername}}</span>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a id="usr-profile" role="button">{{_ "navbar-collapse.myprofile"}}</a></li>
-                <li class="divider"></li>
-                <li><a href="#" id="logout" style="color:#D9534F">{{_ "navbar-collapse.logout"}}</a></li>
-              </ul>
+            <!-- <li id="navbar-profile" class="{{#if isActivePath regex='^\\/profile'}}active{{/if}}"> -->
+            <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">
+              <a href="{{pathFor 'profileOverview' _id=currentUser._id}}" id="usr-profile">{{getUsername}}</a>
             </li>
+            <li><a href="#" id="logout"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
           </ul>
           {{/if}}
         </div>

@@ -21,9 +21,12 @@ Meteor.subscribe("badges");
 Meteor.subscribe("userData");
 
 Template.registerHelper("getUser", function() {
-  var user = Meteor.users.findOne(this._id);
-  Session.set("user", user._id);
+  var user = Meteor.users.findOne(Router.current().params._id);
+  Session.set("user", user);
   return user;
+});
+Template.registerHelper("isUser", function() {
+  return Router.current().params._id === Meteor.userId();
 });
 
 /**
@@ -34,14 +37,45 @@ Template.registerHelper("getUser", function() {
 
 Template.profile.helpers({
   isVisible: function() {
-    if (this._id === undefined)
-      return null;
-
-    return Meteor.users.findOne(this._id).visible || this._id === Meteor.userId();
+    var userId = Router.current().params._id;
+    if (userId !== undefined) {
+      var user = Meteor.users.findOne(userId);
+      if (user !== undefined) {
+        return userId === Meteor.userId() || user.visible;
+      }
+    }
+    return null;
   }
 });
 
-Template.profile.events({
+/**
+ * ############################################################################
+ * profileSidebar
+ * ############################################################################
+ */
+
+Template.profileSidebar.helpers({
+  getService: function() {
+    var userId = Router.current().params._id;
+    if (userId !== undefined) {
+      var user = Meteor.users.findOne(userId);
+      if (user !== undefined) {
+        var service = _.keys(user.services)[0];
+        service = service.charAt(0).toUpperCase() + service.slice(1);
+        return service;
+      }
+    }
+    return null;
+  }
+});
+
+/**
+ * ############################################################################
+ * profileInfo
+ * ############################################################################
+ */
+
+Template.profileSettings.events({
   "click #profilepublicoption1": function(event, template) {
     Meteor.call("updateUsersVisibility", true);
   },
@@ -65,27 +99,6 @@ Template.profile.events({
 
 /**
  * ############################################################################
- * profileInfo
- * ############################################################################
- */
-
-Template.profileInfo.helpers({
-  getService: function() {
-    if (this._id === undefined || Meteor.user().services === undefined || Meteor.user().services === null){
-      return null;
-    }
-
-    var service = _.keys(Meteor.user().services)[0];
-    service = service.charAt(0).toUpperCase() + service.slice(1);
-    return service;
-  },
-  isUser: function() {
-    return this._id === Meteor.userId();
-  }
-});
-
-/**
- * ############################################################################
  * profileXp
  * ############################################################################
  */
@@ -93,7 +106,7 @@ Template.profileInfo.helpers({
 Template.profileXp.helpers({
   getXpTotal: function() {
     var allXp = Experience.find({
-      owner: this._id
+      owner: Router.current().params._id
     });
     var result = 0;
     allXp.forEach(function(xp) {
@@ -107,7 +120,7 @@ Template.profileXp.helpers({
     date.setHours(0, 0, 0, 0);
 
     var allXp = Experience.find({
-      owner: this._id,
+      owner: Router.current().params._id,
       date: {
         $gte: date
       }
@@ -125,7 +138,7 @@ Template.profileXp.helpers({
     maxDate.setHours(0, 0, 0, 0);
 
     var allXp = Experience.find({
-      owner: this._id,
+      owner: Router.current().params._id,
       date: {
         $gte: minDate,
         $lte: maxDate
@@ -144,7 +157,7 @@ Template.profileXp.helpers({
     maxDate.setHours(0, 0, 0, 0);
 
     var allXp = Experience.find({
-      owner: this._id,
+      owner: Router.current().params._id,
       date: {
         $gte: minDate,
         $lte: maxDate
@@ -158,7 +171,7 @@ Template.profileXp.helpers({
   },
   getLast: function() {
     var last = Experience.findOne({
-      owner: this._id
+      owner: Router.current().params._id
     }, {
       sort: {
         date: -1
@@ -192,13 +205,13 @@ Template.profileXp.helpers({
     return name + " (+" + last.value + ")";
   },
   getLvl: function() {
-    return Meteor.users.findOne(this._id).lvl;
+    return getLvl();
   },
   getNextLvl: function() {
-    return Meteor.users.findOne(this._id).lvl + 1;
+    return getLvl() + 1;
   },
   getXp: function() {
-    var level = Meteor.users.findOne(this._id).lvl + 1;
+    var level = getLvl() + 1;
     var points = xpForLevel(level);
     var required = points - Session.get("totalXp");
 
@@ -206,8 +219,8 @@ Template.profileXp.helpers({
   },
   getXpPercent: function() {
     var points = Session.get("totalXp");
-    var currentLevel = Meteor.users.findOne(this._id).lvl;
-    var nextLevel = Meteor.users.findOne(this._id).lvl + 1;
+    var currentLevel = getLvl();
+    var nextLevel = getLvl() + 1;
     var currentPoints = xpForLevel(currentLevel);
     var nextPoints = xpForLevel(nextLevel);
 
@@ -216,6 +229,14 @@ Template.profileXp.helpers({
     return res + "%";
   }
 });
+
+function getLvl() {
+  var user = Meteor.users.findOne(Router.current().params._id);
+  if (user === undefined) {
+    return null;
+  }
+  return user.lvl;
+}
 
 function xpForLevel(level) {
   var points = 0;

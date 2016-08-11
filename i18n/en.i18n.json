@@ -24,6 +24,7 @@
   	"pool": "Pool",
     "admin": "Admin",
   	"myprofile": "My profile",
+  	"billing": "Billing",
   	"logout": "Logout",
   	"search": "Search",
     "home": "Home"
@@ -98,18 +99,34 @@
     "category_required": "The category field is required!"
   },
 
+  "profile": {
+    "overview": "Overview",
+    "billing": "Billing",
+    "settings": "Settings"
+  },
 
   "profil-header": {
   	"name": "Profile of "
   },
 
   "panel-heading": {
-  	"hallo": "Hello!"
+  	"hallo": "Settings"
+  },
+
+  "billing": {
+    "plan": {
+      "header": "Plan",
+      "desc": "Choose your plan below."
+    },
+    "payment": {
+      "header": "Payment Methods",
+      "desc": "Please enter your preferred payment method below."
+    }
   },
 
   "panel-body": {
   	"name": "User name",
-  	"login": "Login via",
+  	"login": "Registered via",
   	"email": "Email",
   	"profilepublic": "Public profile",
   	"profilepublicoption1": "Yes",
