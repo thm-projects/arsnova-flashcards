@@ -8,9 +8,9 @@
       "popupHeight": 610
     },
     "displayLoginButtons": {
-      "displayFacebook": false,
-      "displayTwitter": false,
-      "displayGoogle": false,
+      "displayFacebook": true,
+      "displayTwitter": true,
+      "displayGoogle": true,
       "displayCas": true
     }
   },

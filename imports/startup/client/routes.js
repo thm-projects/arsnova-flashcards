@@ -106,10 +106,17 @@ Router.route('/memo/:_id', {
   }
 });
 
-Router.route('/profile/:_id', {
-  name: 'profile',
-  template: 'profile',
-  data: function() { return Meteor.users.findOne(this.params._id); }
+Router.route('/profile/:_id/overview', {
+  name: 'profileOverview',
+  template: 'profile'
+});
+Router.route('/profile/:_id/billing', {
+  name: 'profileBilling',
+  template: 'profile'
+});
+Router.route('/profile/:_id/settings', {
+  name: 'profileSettings',
+  template: 'profile'
 });
 
 Router.route('/admin/dashboard', {

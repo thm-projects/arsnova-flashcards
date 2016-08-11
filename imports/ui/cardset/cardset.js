@@ -364,7 +364,7 @@ Template.sidebarCardset.events({
     }
   },
   'click #usr-profile2': function() {
-    Router.go('profile', {
+    Router.go('profileOverview', {
       _id: this.owner
     });
   }

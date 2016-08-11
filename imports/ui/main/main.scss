@@ -44,6 +44,9 @@ body {
 		color: $color_athens_gray_approx;
 	}
 	.navbar-nav {
+		.glyphicon{
+			margin-right: 5px;
+		}
 		> {
 			.active > a {
 				color: $white;
