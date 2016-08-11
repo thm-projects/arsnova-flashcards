@@ -116,7 +116,14 @@
   "billing": {
     "plan": {
       "header": "Plan",
-      "desc": "Choose your plan below."
+      "desc": "Choose your plan below.",
+      "actual": "Your current plan!",
+      "free": "Create. Learn. Share",
+      "edu": "Get Edu-Flashcards for free",
+      "cas": "Log in with CAS!",
+      "pro": "Create and get Pro-Flashcards",
+      "month": "month",
+      "subscribe": "Subscribe now!"
     },
     "payment": {
       "header": "Payment Methods",

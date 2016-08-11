@@ -116,7 +116,14 @@
   "billing": {
     "plan": {
       "header": "Mitgliedschaft",
-      "desc": "Wähle deine gewünschte Mitgliedsart aus."
+      "desc": "Wähle deine gewünschte Mitgliedsart aus.",
+      "actual": "Ausgewählt!",
+      "free": "Create. Learn. Share",
+      "edu": "Edu-Kartensätze frei erhältlich",
+      "cas": "Mit CAS anmelden!",
+      "pro": "Erstelle und erhalte Pro-Kartensätze",
+      "month": "Monat",
+      "subscribe": "Abonniere jetzt!"
     },
     "payment": {
       "header": "Zahlungsmethode",
