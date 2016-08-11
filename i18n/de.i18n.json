@@ -363,6 +363,9 @@
     "users": "Benutzer",
     "see_all": "Alle ansehen",
     "name": "Name",
+    "cardset": "Kartensatz",
+    "front": "Vorderseite",
+    "back": "Rückseite",
     "roles": "Rollen",
     "mail": "Mail",
     "joined": "Beigetreten",
@@ -371,6 +374,8 @@
     "delete": "Löschen",
     "edituser": "Benutzer bearbeiten",
     "editcardset": "Kartensatz bearbeiten",
+    "editcard": "Karte bearbeiten",
+    "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen"
   }

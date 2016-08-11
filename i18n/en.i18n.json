@@ -364,6 +364,9 @@
     "users": "User",
     "see_all": "See all",
     "name": "Name",
+    "cardset": "Cardset",
+    "front": "Front",
+    "back": "Back",
     "roles": "Roles",
     "mail": "Mail",
     "joined": "Joined",
@@ -372,6 +375,8 @@
     "delete": "Delete",
     "edituser": "Edit user",
     "editcardset": "Edit cardset",
+    "editcard": "Edit card",
+    "deletecard": "Delete card",
     "deletecardset": "Delete cardset",
     "notifyuser": "Notify user"
   }
