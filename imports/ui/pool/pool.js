@@ -67,13 +67,13 @@ Template.category.helpers({
   getKind: function() {
     switch (this.kind) {
       case "free":
-        return null;
+        return '<span class="label label-default">Free</span>';
       case "edu":
         return '<span class="label label-success">Edu</span>';
       case "pro":
         return '<span class="label label-warning">Pro</span>';
       default:
-        return null;
+        return '<span class="label label-danger">Undefined!</span>';
       }
   }
 });
