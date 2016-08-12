@@ -22,12 +22,12 @@
   "navbar-collapse": {
   	"carddecks": "Meine Kartensätze",
   	"pool": "Pool",
-    "admin": "Admin",
   	"myprofile": "Mein Profil",
   	"billing": "Abrechnung",
   	"logout": "Logout",
   	"search": "Suche",
-    "home": "Home"
+    "frontend": "Front-End",
+    "backend": "Back-End"
   },
 
   "footer": {
