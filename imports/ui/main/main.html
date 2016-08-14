@@ -53,6 +53,38 @@
               </li>
             {{/if}}
             <!-- <li id="navbar-profile" class="{{#if isActivePath regex='^\\/profile'}}active{{/if}}"> -->
+            <li class="dropdown">
+              <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell"></i> <span class="badge">42</span>
+              </a>
+
+              <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                <div class="notification-heading">
+                  <h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">Clear all <i class="fa fa-trash"></i></h4>
+                </div>
+                <li class="divider"></li>
+               <div class="notifications-wrapper">
+                 <a class="content" href="#">
+                   <div class="notification-item">
+                    <h4 class="item-title">Mitteilung</h4>
+                    <p class="item-info">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </a>
+
+                 <a class="content" href="#">
+                  <div class="notification-item">
+                    <h4 class="item-title">Mitteilung</h4>
+                    <p class="item-info"> At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                  </div>
+                </a>
+
+               </div>
+                <li class="divider"></li>
+                <div class="notification-footer"><h4 class="menu-title"><a href="#">View all <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
+              </ul>
+
+            </li>
             <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">
               <a href="{{pathFor 'profileOverview' _id=currentUser._id}}" id="usr-profile">{{getUsername}}</a>
             </li>
