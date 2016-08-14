@@ -355,7 +355,7 @@
                 <div>{{_ "billing.plan.desc"}}</div>
                 <br>
                 <div class="col-md-6">
-                    <div class="panel price panel-default">
+                    <div class="panel price {{#if isInRole 'standard'}}panel-success{{else}}panel-default{{/if}}">
                         <div class="panel-heading  text-center">
                             <h3>STANDARD</h3>
                         </div>
@@ -371,15 +371,15 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <a class="btn btn-lg btn-block btn-info" href="#">{{_ "billing.plan.subscribe"}}</a>
+                                <button id="downgrade" class="btn btn-block btn-default" href="#">{{_ "billing.plan.back"}}</button>
                             {{else}}
-                                <a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
+                                <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
                             {{/if}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="panel price panel-default">
+                    <div class="panel price {{#if isInRole 'pro'}}panel-success{{else}}panel-default{{/if}}">
                         <div class="panel-heading  text-center">
                             <h3>PRO</h3>
                         </div>
@@ -394,9 +394,9 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
+                                <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
                             {{else}}
-                                <a class="btn btn-lg btn-block btn-info" href="#">{{_ "billing.plan.subscribe"}}</a>
+                                <button id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
                             {{/if}}
                         </div>
                     </div>
