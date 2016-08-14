@@ -124,7 +124,11 @@
       "back": "Back to free plan",
       "pro": "Create and get Pro-Flashcards",
       "month": "month",
-      "subscribe": "Subscribe now!"
+      "subscribe": "Subscribe now!",
+      "lecturer": "Request now to get all the benefits of a lecturer.",
+      "send": "Send request",
+      "name": "Name",
+      "prename": "Prename"
     },
     "payment": {
       "header": "Payment Methods",

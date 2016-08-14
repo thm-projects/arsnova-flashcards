@@ -124,7 +124,11 @@
       "back": "Zurück zur kostenfreien Version",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
-      "subscribe": "Abonniere die Pro-Version jetzt!"
+      "subscribe": "Abonniere die Pro-Version jetzt!",
+      "lecturer": "Jetzt anfragen um alle Vorteile eines Dozenten zu erhalten.",
+      "send": "Anfrage versenden",
+      "name": "Name",
+      "prename": "Vorname"
     },
     "payment": {
       "header": "Zahlungsmethode",
