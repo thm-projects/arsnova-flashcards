@@ -110,6 +110,8 @@
   "profile": {
     "overview": "Overview",
     "billing": "Billing",
+    "membership": "Membership",
+    "notifications": "Notifications",
     "settings": "Settings"
   },
 

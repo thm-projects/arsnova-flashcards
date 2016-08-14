@@ -114,6 +114,14 @@ Router.route('/profile/:_id/billing', {
   name: 'profileBilling',
   template: 'profile'
 });
+Router.route('/profile/:_id/membership', {
+  name: 'profileMembership',
+  template: 'profile'
+});
+Router.route('/profile/:_id/notifications', {
+  name: 'profileNotifications',
+  template: 'profile'
+});
 Router.route('/profile/:_id/settings', {
   name: 'profileSettings',
   template: 'profile'

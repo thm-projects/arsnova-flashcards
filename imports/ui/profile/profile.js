@@ -10,6 +10,7 @@ import { Cardsets } from '../../api/cardsets.js';
 import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 import { Ratings } from '../../api/ratings.js';
+import { Notifications } from '../../api/notifications.js';
 
 import { userData } from '../../api/userdata.js';
 
@@ -18,6 +19,7 @@ import './profile.html';
 
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
+Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 
 Template.registerHelper("getUser", function() {
@@ -99,17 +101,29 @@ Template.profileSettings.events({
 
 /**
  * ############################################################################
- * profileBilling
+ * profileMembership
  * ############################################################################
  */
 
-Template.profileBilling.events({
+Template.profileMembership.events({
     "click #upgrade": function() {
         Meteor.call("upgradeUser");
     },
     "click #downgrade": function() {
         Meteor.call("downgradeUser");
     },
+});
+
+/**
+ * ############################################################################
+ * profileNotifications
+ * ############################################################################
+ */
+
+Template.profileNotifications.helpers({
+    getNotifications: function() {
+        return Notifications.find();
+    }
 });
 
 

@@ -18,6 +18,26 @@
       </div>
     {{/if}}
 
+    {{#if isActiveRoute 'profileMembership'}}
+      <div id="profileMembership">
+        {{#if isUser}}
+        {{> profileMembership}}
+        {{else}}
+        <h3>{{_ "permission"}}</h3>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if isActiveRoute 'profileNotifications'}}
+      <div id="profileNotifications">
+        {{#if isUser}}
+        {{> profileNotifications}}
+        {{else}}
+        <h3>{{_ "permission"}}</h3>
+        {{/if}}
+      </div>
+    {{/if}}
+
     {{#if isActiveRoute 'profileSettings'}}
       <div id="profileSettings">
         {{#if isUser}}
@@ -56,17 +76,27 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation" class="{{#if isActiveRoute 'profileOverview'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/overview">
-              <i class="glyphicon glyphicon-bookmark"></i>{{_ "profile.overview"}}
+              <i class="fa fa-trophy"></i>{{_ "profile.overview"}}
             </a>
           </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/billing">
-              <i class="glyphicon glyphicon-credit-card"></i>{{_ "profile.billing"}}
+              <i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
+            </a>
+          </li>
+          <li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/membership">
+              <i class="fa fa-user"></i>{{_ "profile.membership"}}
+            </a>
+          </li>
+          <li role="presentation" class="{{#if isActiveRoute 'profileNotifications'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/notifications">
+              <i class="fa fa-bell"></i>{{_ "profile.notifications"}}
             </a>
           </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileSettings'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/settings">
-              <i class="glyphicon glyphicon-cog"></i>{{_ "profile.settings"}}
+              <i class="fa fa-cog"></i>{{_ "profile.settings"}}
             </a>
           </li>
         </ul>
@@ -346,6 +376,17 @@
 </template>
 
 <template name="profileBilling">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
+      </div>
+      <div class="panel-body">
+          {{_ "billing.payment.desc"}}
+      </div>
+  </div>
+</template>
+
+<template name="profileMembership">
     <div id="profile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -435,13 +476,29 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
-            </div>
-            <div class="panel-body">
-                {{_ "billing.payment.desc"}}
-            </div>
+    </div>
+</template>
+
+<template name="profileNotifications">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "profile.notifications"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{#if getNotifications.count}}
+                <div class="list-group">
+                    {{#each getNotifications}}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{type}}</h4>
+                            <p class="list-group-item-text">{{text}}</p>
+                        </a>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="notification-heading">
+                    <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                </div>
+            {{/if}}
         </div>
     </div>
 </template>

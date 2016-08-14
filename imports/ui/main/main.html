@@ -77,7 +77,7 @@
                                         </div>
                                         <li class="divider"></li>
                                         <div class="notification-footer">
-                                            <h4 class="menu-title"><a href="#">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
+                                            <h4 class="menu-title"><a href="{{pathFor 'profileNotifications' _id=currentUser._id}}">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
                                     {{else}}
                                         <div class="notification-heading">
                                             <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
