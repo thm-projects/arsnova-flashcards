@@ -38,11 +38,11 @@ Meteor.users.after.insert(function (userId, doc) {
     }
     else
     {
-      Roles.addUsersToRoles(doc._id, ['student-user'], 'university');
+      Roles.addUsersToRoles(doc._id, ['standard', 'university']);
     }
   }
   else
   {
-    Roles.addUsersToRoles(doc._id, ['free-user'], 'standard');
+    Roles.addUsersToRoles(doc._id, ['standard']);
   }
 });

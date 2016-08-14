@@ -220,14 +220,18 @@
                     <input type="radio" name="kind" value="free" id="rating_false">
                     <div>Free</div>
                   </label>
-                  <label id="newCardSetRatingoption2" class="btn btn-success" style="width:100px">
+                  {{#if isInRole 'lecturer'}}
+                  <label id="newCardSetRatingoption2" class="btn btn-success diabled" style="width:100px">
                     <input type="radio" name="kind" value="edu" id="rating_edu">
                     <div>Edu</div>
                   </label>
+                  {{/if}}
+                  {{#if isInRole 'pro'}}
                   <label id="newCardSetRatingoption3" class="btn btn-warning" style="width:100px">
                     <input type="radio" name="kind" value="pro" id="rating_pro">
                     <div>Pro</div>
                   </label>
+                  {{/if}}
                 </div>
               </div>
             </div>
