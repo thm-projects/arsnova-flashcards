@@ -10,6 +10,7 @@ import '../imports/api/learned.js';
 import '../imports/api/badges.js';
 import '../imports/api/experience.js';
 import '../imports/api/ratings.js';
+import '../imports/api/notifications.js';
 
 // SERVER METHODS ------------------------------------------------
 import '../imports/api/userdata.js';

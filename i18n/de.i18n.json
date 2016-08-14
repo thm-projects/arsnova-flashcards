@@ -34,6 +34,13 @@
   	"impressum": "Impressum"
   },
 
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "clearAll": "Entferne alle",
+    "viewAll": "Zeige alle",
+    "noNotification": "Keine Benachrichtigungen vorhanden"
+  },
+
   "input-group": {
   	"newcarddeck": "Neuer Kartensatz"
   },

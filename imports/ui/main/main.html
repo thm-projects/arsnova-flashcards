@@ -1,114 +1,114 @@
 <template name="main">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{pathFor route='home'}}">
-            <img src="/img/logo.png" alt="THMcards Logo" />
-          </a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{pathFor route='home'}}">
+                        <img src="/img/logo.png" alt="THMcards Logo" />
+                    </a>
 
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          {{#if currentUser }}
-          <ul id="navbar" class="nav navbar-nav">
-
-            <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid|newcard'}}active{{/if}}">
-              <a href="{{pathFor route='home'}}" id="cardsets">
-                {{_ "navbar-collapse.carddecks"}}
-              </a>
-            </li>
-            <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
-              <a href="{{pathFor route='pool'}}" id="pool">
-                {{_ "navbar-collapse.pool"}}
-              </a>
-            </li>
-          </ul>
-          <div id="searchDropdown" class="navbar-form navbar-left hidden-sm input-append btn-group" role="search">
-            <input id="input-search" class="form-control typeahead" name="search" type="text" autocomplete="off" spellcheck="off" data-source="search" data-template="search" placeholder="{{_ "navbar-collapse.search"}}">
-            <div id="searchResults" class="dropdown-menu list-group">
-              {{#each searchCategories}}
-                <a href="/cardset/{{_id}}" class="list-group-item">
-                  <h4 class="list-group-item-heading">{{name}}</h4>
-                  <p class="list-group-item-text">{{description}}</p>
-                </a>
-              {{/each}}
-            </div>
-          </div>
-
-          <ul class="nav navbar-nav navbar-right">
-            {{#if isInRole 'admin-user'}}
-              <li id="navbar-adminpanel">
-                <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
-                  {{_ "navbar-collapse.backend"}}
-                </a>
-              </li>
-            {{/if}}
-            <!-- <li id="navbar-profile" class="{{#if isActivePath regex='^\\/profile'}}active{{/if}}"> -->
-            <li class="dropdown">
-              <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell"></i> <span class="badge">42</span>
-              </a>
-
-              <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-                <div class="notification-heading">
-                  <h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">Clear all <i class="fa fa-trash"></i></h4>
                 </div>
-                <li class="divider"></li>
-               <div class="notifications-wrapper">
-                 <a class="content" href="#">
-                   <div class="notification-item">
-                    <h4 class="item-title">Mitteilung</h4>
-                    <p class="item-info">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </a>
 
-                 <a class="content" href="#">
-                  <div class="notification-item">
-                    <h4 class="item-title">Mitteilung</h4>
-                    <p class="item-info"> At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                  </div>
-                </a>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    {{#if currentUser }}
+                        <ul id="navbar" class="nav navbar-nav">
 
-               </div>
-                <li class="divider"></li>
-                <div class="notification-footer"><h4 class="menu-title"><a href="#">View all <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
-              </ul>
+                            <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid|newcard'}}active{{/if}}">
+                                <a href="{{pathFor route='home'}}" id="cardsets">
+                                  {{_ "navbar-collapse.carddecks"}}
+                                </a>
+                            </li>
+                            <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
+                                <a href="{{pathFor route='pool'}}" id="pool">
+                                  {{_ "navbar-collapse.pool"}}
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="searchDropdown" class="navbar-form navbar-left hidden-sm input-append btn-group" role="search">
+                            <input id="input-search" class="form-control typeahead" name="search" type="text" autocomplete="off" spellcheck="off" data-source="search" data-template="search" placeholder="{{_ "navbar-collapse.search"}}">
+                            <div id="searchResults" class="dropdown-menu list-group">
+                                {{#each searchCategories}}
+                                    <a href="/cardset/{{_id}}" class="list-group-item">
+                                        <h4 class="list-group-item-heading">{{name}}</h4>
+                                        <p class="list-group-item-text">{{description}}</p>
+                                    </a>
+                                {{/each}}
+                            </div>
+                        </div>
 
-            </li>
-            <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">
-              <a href="{{pathFor 'profileOverview' _id=currentUser._id}}" id="usr-profile">{{getUsername}}</a>
-            </li>
-            <li><a href="#" id="logout"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
-          </ul>
-          {{/if}}
+                        <ul class="nav navbar-nav navbar-right">
+                            {{#if isInRole 'admin-user'}}
+                                <li id="navbar-adminpanel">
+                                    <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
+                                      {{_ "navbar-collapse.backend"}}
+                                    </a>
+                                </li>
+                            {{/if}}
+                            <!-- <li id="navbar-profile" class="{{#if isActivePath regex='^\\/profile'}}active{{/if}}"> -->
+                            <li class="dropdown">
+                                <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell"></i> <span class="badge">{{getNotifications.count}}</span>
+                                </a>
+
+                                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                                    {{#if getNotifications.count}}
+                                        <div class="notification-heading">
+                                            <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                                            <h4 class="menu-title pull-right">{{_ "notifications.clearAll"}} <i class="fa fa-trash"></i></h4>
+                                        </div>
+                                        <li class="divider"></li>
+                                        <div class="notifications-wrapper">
+                                            {{#each getNotifications}}
+                                                <a class="content">
+                                                    <div class="notification-item">
+                                                        <h4 class="item-title">{{type}}</h4>
+                                                        <p class="item-info">{{text}}</p>
+                                                    </div>
+                                                </a>
+                                            {{/each}}
+                                        </div>
+                                        <li class="divider"></li>
+                                        <div class="notification-footer">
+                                            <h4 class="menu-title"><a href="#">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
+                                    {{else}}
+                                        <div class="notification-heading">
+                                            <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                                        </div>
+                                    {{/if}}
+                                </ul>
+                            </li>
+                            <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">
+                                <a href="{{pathFor 'profileOverview' _id=currentUser._id}}" id="usr-profile">{{getUsername}}</a>
+                            </li>
+                            <li><a href="#" id="logout"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
+                        </ul>
+                    {{/if}}
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
+    </nav>
+    <div id="main" class="container">
+        <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
+        <div class="row">
+            {{> yield}}
+        </div>
     </div>
-  </nav>
-  <div id="main" class="container">
-    <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-    <div class="row">
-      {{> yield}}
-    </div>
-  </div>
 
 
-  <div id="footer" class="footer">
-    <div class="container">
-      <p class="muted credit pull-left">&copy; {{getYear}} THMcards</p>
-      <p class="muted credit pull-right"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "footer.impressum"}}</a></p>
+    <div id="footer" class="footer">
+        <div class="container">
+            <p class="muted credit pull-left">&copy; {{getYear}} THMcards</p>
+            <p class="muted credit pull-right"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "footer.impressum"}}</a></p>
+        </div>
     </div>
-  </div>
 </template>
