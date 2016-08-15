@@ -9,7 +9,13 @@ import { Cardsets } from '../../api/cardsets.js';
 
 import './admin_cards.html';
 
+import '../admin_cards/admin_card.js';
 
+/**
+ * ############################################################################
+ * admin_cards
+ * ############################################################################
+ */
 
 Template.admin_cards.helpers({
   cardListAdmin: function () {
@@ -29,13 +35,44 @@ Template.admin_cards.helpers({
           var cardsetname = Cardsets.findOne({ _id: cardset_id });
           if (cardsetname) return cardsetname.username;
         }},
-        { key: 'edit', label: TAPi18n.__('admin.edit'), sortable: false, fn: function() {
-          return new Spacebars.SafeString("<a class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+        { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, fn: function(value) {
+          return new Spacebars.SafeString("<a id='linkToAdminCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' href='#' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
         }},
         { key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function() {
-          return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+          return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
         }}
       ]
     }
+  }
+});
+
+Template.admin_cards.events({
+  'click .reactive-table tbody tr': function(event) {
+    event.preventDefault();
+    var card = this;
+
+    if (event.target.className == "deleteCardAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+      Session.set('cardId', card._id);
+    }
+  },
+  'click #linkToAdminCard': function(event) {
+    var cardid = $(event.currentTarget).data("cardid");
+    Router.go('admin_card', { _id: cardid });
+  }
+});
+
+/**
+ * ############################################################################
+ * cardConfirmFormAdmin
+ * ############################################################################
+ */
+
+Template.cardConfirmFormAdmin.events({
+  'click #cardDeleteAdmin': function() {
+    var id = Session.get('cardId');
+
+    $('#cardConfirmModalAdmin').on('hidden.bs.modal', function() {
+      Meteor.call("deleteCard", id);
+    }).modal('hide');
   }
 });

@@ -9,4 +9,29 @@
       {{> reactiveTable collection=cardListAdmin settings=tableSettings}}
     </div>
   </div>
+  {{> cardConfirmFormAdmin}}
+</template>
+
+<template name="cardConfirmFormAdmin">
+  <div class="modal fade" id="cardConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="cardConfirmModalTitleAdmin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="cardConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.cards.title"}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{_ "admin.confirm-form.cards.text"}}</p>
+          <br />
+          <hr />
+
+          <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.cards.title"}}</button>
+          <button id="cardCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>

@@ -396,6 +396,10 @@
         "title": "Kartensatz löschen",
         "text": "Wollen Sie diesen Kartensatz wirklich löschen?"
       },
+      "cards": {
+        "title": "Karte löschen",
+        "text": "Wollen Sie diese Karte wirklich löschen?"
+      },
 
       "cancel": "Abbrechen"
     },

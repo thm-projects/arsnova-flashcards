@@ -59,8 +59,11 @@ Meteor.methods({
     // Make sure the user is logged in and is authorized
     var card = Cards.findOne(card_id);
     var cardset = Cardsets.findOne(card.cardset_id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
     }
     Cards.remove(card_id);
     Learned.remove({

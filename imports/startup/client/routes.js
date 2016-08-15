@@ -211,6 +211,26 @@ Router.route('/admin/cards', {
   }
 });
 
+Router.route('/admin/card/:_id', {
+  name: 'admin_card',
+  template: 'admin_card',
+  layoutTemplate: 'admin_main',
+  data: function() {
+    var currentCard = this.params.cardid;
+    return Cards.findOne({_id: currentCard});
+  },
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
 var isSignedIn = function() {
   if (!(Meteor.user() || Meteor.loggingIn())) {
     Router.go('home');

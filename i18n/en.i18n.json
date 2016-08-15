@@ -397,6 +397,10 @@
         "title": "Delete cardset",
         "text": "Do you really want to delete this cardset?"
       },
+      "cards": {
+        "title": "Delete card",
+        "text": "Do you really want to delete this card?"
+      },
 
       "cancel": "Cancel"
     },
