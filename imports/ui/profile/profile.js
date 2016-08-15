@@ -62,9 +62,11 @@ Template.profileSidebar.helpers({
     if (userId !== undefined) {
       var user = Meteor.users.findOne(userId);
       if (user !== undefined) {
-        var service = _.keys(user.services)[0];
-        service = service.charAt(0).toUpperCase() + service.slice(1);
-        return service;
+        if (user.services !== undefined){
+          var service = _.keys(user.services)[0];
+          service = service.charAt(0).toUpperCase() + service.slice(1);
+          return service;
+        }
       }
     }
     return null;
