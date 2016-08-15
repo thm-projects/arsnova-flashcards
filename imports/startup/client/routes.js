@@ -182,6 +182,16 @@ Router.route('/admin/cardset/:_id', {
   data: function() {
     var currentCardset = this.params._id;
     return Cardsets.findOne({_id: currentCardset});
+  },
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
   }
 });
 

@@ -95,9 +95,6 @@ body {
   .reactive-table-navigation {
     .page-number {
       margin-right: 20px;
-      label:last-child {
-        margin-right: 21px;
-      }
     }
   }
 }
@@ -112,6 +109,14 @@ body {
     .box-button-admin {
       border-top: 1px solid #ddd;
       padding-top: 20px;
+    }
+  }
+}
+
+.reactive-table-navigation {
+  .page-number {
+    label:last-child {
+      margin-right: 21px;
     }
   }
 }

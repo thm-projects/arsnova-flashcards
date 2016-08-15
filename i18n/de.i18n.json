@@ -403,6 +403,9 @@
     "cardset": {
       "header": "Kartensatz",
       "edit": "Bearbeite",
+      "username": "Benutzer",
+      "date": "Erstelldatum",
+      "info": "Kartensatzinformationen",
       "name": "Name",
       "description": "Beschreibung",
       "category": "Kategorie",

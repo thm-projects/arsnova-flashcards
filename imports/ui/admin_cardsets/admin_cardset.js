@@ -5,7 +5,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../api/cardsets.js';
-//import { Cards } from '../../api/cards.js';
+import { Cards } from '../../api/cards.js';
 import { Categories } from '../../api/categories.js';
 
 import './admin_cardset.html';
@@ -33,6 +33,26 @@ Template.admin_cardset.helpers({
     if(Cardsets.findOne(this._id) !== undefined)
     {
       return Cardsets.findOne(this._id).kind === kind;
+    }
+  },
+  cardListCardsetAdmin: function () {
+    return Cards.find({ cardset_id: this._id });
+  },
+  tableSettings: function() {
+    return {
+      showFilter: false,
+      rowsPerPage: 5,
+      showNavigationRowsPerPage: false,
+      fields: [
+        { key: 'front', label: TAPi18n.__('admin.front') },
+        { key: 'back', label: TAPi18n.__('admin.back') },
+        { key: 'options', label: TAPi18n.__('admin.edit'), sortable: false, fn: function() {
+          return new Spacebars.SafeString("<a class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+        }},
+        { key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function() {
+          return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+        }}
+      ]
     }
   }
 });

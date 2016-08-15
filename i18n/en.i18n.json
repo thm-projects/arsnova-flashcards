@@ -404,6 +404,9 @@
     "cardset": {
       "header": "Cardset",
       "edit": "Edit",
+      "username": "User",
+      "date": "Created At",
+      "info": "Cardset info",
       "name": "Name",
       "description": "Description",
     	"category": "Category",
