@@ -5,10 +5,40 @@ export const Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isServer) {
   Meteor.publish("notifications", function() {
-    if (this.userId) {
+    if (Roles.userIsInRole(this.userId, 'admin-user')) {
+      return Notifications.find({target: {$in: [this.userId, "admin"]}});
+    }
+    else if (this.userId)
+    {
       return Notifications.find({target: this.userId});
     }
   });
+
+  var NotificationSchema = new SimpleSchema({
+    target: {
+      type: String
+    },
+    origin: {
+      type: String
+    },
+    type: {
+      type: String
+    },
+    text: {
+      type: String
+    },
+    date: {
+      type: String
+    },
+    read: {
+      type: Boolean
+    },
+    cleared: {
+      type: Boolean
+    },
+  });
+
+  Notifications.attachSchema(NotificationSchema);
 }
 
 Meteor.methods({
@@ -24,6 +54,8 @@ Meteor.methods({
       type: type,
       text: text,
       date: new Date(),
+      read: false,
+      cleared: false
     });
   }
 });

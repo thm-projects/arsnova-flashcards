@@ -63,7 +63,7 @@ Template.main.helpers({
     return false;
   },
   getNotifications: function() {
-    return Notifications.find();
+    return Notifications.find({}, {sort: {date: -1}});
   }
 });
 

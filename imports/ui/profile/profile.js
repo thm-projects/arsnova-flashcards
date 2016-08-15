@@ -112,6 +112,23 @@ Template.profileMembership.events({
     "click #downgrade": function() {
         Meteor.call("downgradeUser");
     },
+    "click #sendLecturerRequest": function() {
+        var name = $('#inputName').val();
+        var prename = $('#inputPrename').val();
+
+        if (name === '' || prename === ''){
+          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger');
+        }
+        else {
+          var text = prename + " " + name + " möchte Dozent werden. Jetzt im Back-End freischalten.";
+          var type = "Dozenten Anfrage";
+          var target = "admin";
+
+          Meteor.call("addNotification", target, type, text);
+          Bert.alert('Anfrage wurde gesendet', 'success');
+
+        }
+    },
 });
 
 /**
@@ -122,7 +139,7 @@ Template.profileMembership.events({
 
 Template.profileNotifications.helpers({
     getNotifications: function() {
-        return Notifications.find();
+        return Notifications.find({}, {sort: {date: -1}});
     }
 });
 
