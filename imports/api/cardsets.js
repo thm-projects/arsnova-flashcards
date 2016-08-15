@@ -117,9 +117,13 @@ Meteor.methods({
   updateCardset: function(id, name, category, description, visible, ratings, kind) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
     }
+    
     Cardsets.update(id, {
       $set: {
         name: name,

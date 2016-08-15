@@ -91,8 +91,8 @@
   	"description": "Description",
   	"category": "Category",
   	"visibility": "Visible for",
-  	"visibilityoption1": "me",
-  	"visibilityoption2": "all",
+  	"visibilityoption1": "Private",
+  	"visibilityoption2": "Public",
   	"rating": "Ratings",
   	"ratingoption1": "allow",
   	"ratingoption2": "disable",
@@ -377,7 +377,6 @@
     "users": "User",
     "see_all": "See all",
     "name": "Name",
-    "cardset": "Cardset",
     "front": "Front",
     "back": "Back",
     "roles": "Roles",
@@ -400,6 +399,25 @@
       },
 
       "cancel": "Cancel"
+    },
+
+    "cardset": {
+      "header": "Cardset",
+      "edit": "Edit",
+      "name": "Name",
+      "description": "Description",
+    	"category": "Category",
+    	"visibility": "Visible for",
+    	"visibilityoption1": "Private",
+    	"visibilityoption2": "Public",
+    	"rating": "Ratings",
+    	"ratingoption1": "allow",
+    	"ratingoption2": "disable",
+      "kind": "Kind",
+      "cancel": "Cancel",
+      "save": "Save deck of cards",
+      "name_required": "The name field is required!",
+      "description_required": "The decription field is required!"
     }
   }
 }

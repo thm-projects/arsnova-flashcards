@@ -21,7 +21,7 @@ Template.admin_cards.helpers({
       fields: [
         { key: 'front', label: TAPi18n.__('admin.front') },
         { key: 'back', label: TAPi18n.__('admin.back') },
-        { key: 'cardset_id', label: TAPi18n.__('admin.cardset'), fn: function(cardset_id) {
+        { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), fn: function(cardset_id) {
           var cardsetname = Cardsets.findOne({ _id: cardset_id });
           if (cardsetname) return cardsetname.name;
         }},

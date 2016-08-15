@@ -376,7 +376,6 @@
     "users": "Benutzer",
     "see_all": "Alle ansehen",
     "name": "Name",
-    "cardset": "Kartensatz",
     "front": "Vorderseite",
     "back": "Rückseite",
     "roles": "Rollen",
@@ -399,6 +398,25 @@
       },
 
       "cancel": "Abbrechen"
+    },
+
+    "cardset": {
+      "header": "Kartensatz",
+      "edit": "Bearbeite",
+      "name": "Name",
+      "description": "Beschreibung",
+      "category": "Kategorie",
+      "visibility": "Sichtbar für",
+      "visibilityoption1": "mich",
+      "visibilityoption2": "alle",
+      "rating": "Bewertungen",
+      "ratingoption1": "erlauben",
+      "ratingoption2": "abschalten",
+      "kind": "Art",
+      "cancel": "Abbrechen",
+      "save": "Kartensatz speichern",
+      "name_required": "Geben Sie einen Namen ein!",
+      "description_required": "Geben Sie eine Beschreibung ein!"
     }
   }
 }

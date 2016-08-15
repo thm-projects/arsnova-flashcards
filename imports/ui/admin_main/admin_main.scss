@@ -68,4 +68,50 @@ body {
 .content-header {
   position: relative;
   padding-bottom: 20px;
+  small {
+    font-size: 18px;
+  }
+}
+
+.admin_table {
+  background-color: #f9f9f9;
+  padding-top: 20px;
+  border-radius: 3px;
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  .clearfix {
+    border-bottom: 1px solid #ddd;
+    .reactive-table-options {
+      float: left !important;
+      .reactive-table-filter {
+        float: left !important;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  table {
+    border-bottom: 1px solid #ddd;
+  }
+  .reactive-table-navigation {
+    .page-number {
+      margin-right: 20px;
+      label:last-child {
+        margin-right: 21px;
+      }
+    }
+  }
+}
+
+.content.box-admin {
+  border-top: 4px solid white;
+  border-radius: 3px;
+  border-bottom: 4px solid white;
+  background-color: #f9f9f9;
+  .box-body-admin {
+    padding: 10px;
+    .box-button-admin {
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+  }
 }

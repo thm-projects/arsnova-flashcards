@@ -1,3 +1,91 @@
 <template name="admin_cardset">
-  Cardset View
+  <div class="content-header">
+    <h1>
+      {{_ "admin.cardset.header"}}
+      <small>{{_ "admin.cardset.edit"}} {{_id}}</small>
+    </h1>
+  </div>
+  <div class="content box-admin">
+    <div class="box-body-admin">
+      <form id="admin_cardset_update">
+        <div class="form-group">
+          <label id="editCardsetNameLabelAdmin">{{_ "admin.cardset.name"}}</label>
+          <input class="form-control" type="text" id="editCardsetNameAdmin" value="{{name}}">
+          <span id="helpEditCardsetNameAdmin" class="help-block name"></span>
+        </div>
+        <div class="form-group">
+          <label id="editCardsetDescriptionLabelAdmin">{{_ "admin.cardset.description"}}</label>
+          <textarea class="form-control" type="text" id="editCardsetDescriptionAdmin" value="{{description}}"></textarea>
+          <span id="helpEditCardsetDescriptionAdmin" class="help-block description"></span>
+        </div>
+        <div class="form-group">
+          <label id="editCardsetCategoryLabelAdmin">{{_ "admin.cardset.category"}}</label>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="editCardsetCategoryDropdownAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span id="editCardsetCategoryAdmin">{{getCategory this.category}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              {{#each getCategories}}
+                <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{_ "admin.cardset.visibility"}}</label>
+          <div class="controls">
+            <div id="editCardsetVisibilityAdmin" class="btn-group" data-toggle="buttons">
+              <label id="visibilityoption1Admin" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
+                <input type="radio" name="options" value="false" id="edit_visibility_private_admin">
+                <span>{{_ "admin.cardset.visibilityoption1"}}</span>
+              </label>
+              <label id="visibilityoption2Admin" class="btn public btn-default {{#if visible true}}active{{/if}}" style="width:100px">
+                <input type="radio" name="options" value="true" id="edit_visibility_public_admin">
+                <span>{{_ "admin.cardset.visibilityoption2"}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="newSetDescription">{{_ "admin.cardset.rating"}}</label>
+          <div class="controls">
+            <div id="editCardsetRatingAdmin" class="btn-group btn-group-rating" data-toggle="buttons">
+              <label id="ratingoption1Admin" class="btn rating-true btn-default {{#if ratings true}}active{{/if}}" style="width:100px">
+                <input type="radio" name="rating" value="true" id="rating_true_admin">
+                <span>{{_ "admin.cardset.ratingoption1"}}</span>
+              </label>
+              <label id="ratingoption2Admin" class="btn rating-false btn-default {{#if ratings false}}active{{/if}}" style="width:100px">
+                <input type="radio" name="rating" value="false" id="rating_false_admin">
+                <span>{{_ "admin.cardset.ratingoption2"}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="newSetDescription">{{_ "admin.cardset.kind"}}</label>
+          <div class="controls">
+            <div id="editCardsetKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
+              <label id="kindoption1Admin" class="btn btn-default {{#if kind 'free'}}active{{/if}}" style="width:100px">
+                <input type="radio" name="kind" value="free" id="kind_false">
+                <div>Free</div>
+              </label>
+              <label id="kindoption2Admin" class="btn btn-success {{#if kind 'edu'}}active{{/if}}" style="width:100px">
+                <input type="radio" name="kind" value="edu" id="kind_edu">
+                <div>Edu</div>
+              </label>
+              <label id="kindoption3Admin" class="btn btn-warning {{#if kind 'pro'}}active{{/if}}" style="width:100px">
+                <input type="radio" name="kind" value="pro" id="kind_pro">
+                <div>Pro</div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="box-button-admin">
+        <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
+        <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
+      </div>
+    </div>
+  </div>
 </template>
