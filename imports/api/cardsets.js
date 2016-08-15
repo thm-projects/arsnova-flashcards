@@ -102,9 +102,13 @@ Meteor.methods({
   deleteCardset: function(id) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
     }
+
     Cardsets.remove(id);
     Cards.remove({
       cardset_id: id

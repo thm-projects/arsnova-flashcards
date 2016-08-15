@@ -378,6 +378,15 @@
     "editcard": "Karte bearbeiten",
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
-    "notifyuser": "Benutzer benachrichtigen"
+    "notifyuser": "Benutzer benachrichtigen",
+
+    "confirm-form": {
+      "cardsets": {
+        "title": "Kartensatz löschen",
+        "text": "Wollen Sie diesen Kartensatz wirklich löschen?"
+      },
+
+      "cancel": "Abbrechen"
+    }
   }
 }
