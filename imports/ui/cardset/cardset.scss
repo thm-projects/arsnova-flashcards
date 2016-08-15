@@ -16,6 +16,23 @@ $font_3: Helvetica;
 $font_4: Arial;
 $font_5: sans-serif;
 
+.cardsetInfo {
+	h3 {
+			margin-top: 0;
+	}
+	.well {
+			margin-bottom: 0;
+	}
+	.left {
+			float: left;
+	}
+	#ratingLocked {
+			margin-top: 2px;
+			margin-left: 6px;
+			left: 6px;
+	}
+}
+
 //@extend-elements
 //original selectors
 //.carousel-control.left, .carousel-control.right

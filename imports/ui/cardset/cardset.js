@@ -323,11 +323,11 @@ Template.cardsetDetails.events({
 
 /**
  * ############################################################################
- * sidebarCardset
+ * cardsetInfo
  * ############################################################################
  */
 
-Template.sidebarCardset.helpers({
+Template.cardsetInfo.helpers({
   getAverage: function() {
     var ratings = Ratings.find({
       cardset_id: this._id
@@ -357,12 +357,27 @@ Template.sidebarCardset.helpers({
       cardset_id: this._id,
       user: Meteor.userId()
     }).count();
-    var owner = Cardsets.findOne(this._id).owner;
-    return count !== 0 || owner === Meteor.userId();
+    var cardset = Cardsets.findOne(this._id);
+    if (cardset !== null) {
+      var owner = cardset.owner;
+      return count !== 0 || owner === Meteor.userId();
+    }
+  },
+  getKind: function() {
+    switch (this.kind) {
+      case "free":
+        return '<span class="label label-default">Free</span>';
+      case "edu":
+        return '<span class="label label-success">Edu</span>';
+      case "pro":
+        return '<span class="label label-warning">Pro</span>';
+      default:
+        return '<span class="label label-danger">Undefined!</span>';
+      }
   }
 });
 
-Template.sidebarCardset.events({
+Template.cardsetInfo.events({
   "click #learnBox": function() {
     Router.go('box', {
       _id: this._id
@@ -384,26 +399,7 @@ Template.sidebarCardset.events({
       Meteor.call("addRating", cardset_id, rating);
     }
   },
-  'click #usr-profile2': function() {
-    Router.go('profileOverview', {
-      _id: this.owner
-    });
-  }
-});
-
-/**
- * ############################################################################
- * cardButtons
- * ############################################################################
- */
-
-Template.cardButtons.events({
-  "click #set-details-controls-btn-newCard": function() {
-    Router.go('newCard', {
-      _id: this._id
-    });
-  },
-  'click #set-details-controls-btn-exportCards': function() {
+  'click #exportCardsBtn': function() {
     var cardset = Cardsets.findOne(this._id);
     var cards = Cards.find({
       cardset_id: this._id
@@ -428,6 +424,24 @@ Template.cardButtons.events({
       type: "application/json"
     });
     saveAs(exportData, cardset.name + ".json");
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetSidebar
+ * ############################################################################
+ */
+Template.cardsetSidebar.events({
+  "click #learnBox": function() {
+    Router.go('box', {
+      _id: this._id
+    });
+  },
+  "click #learnMemo": function() {
+    Router.go('memo', {
+      _id: this._id
+    });
   }
 });
 
