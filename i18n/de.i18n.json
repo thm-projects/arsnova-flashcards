@@ -34,6 +34,13 @@
   	"impressum": "Impressum"
   },
 
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "clearAll": "Entferne alle",
+    "viewAll": "Zeige alle",
+    "noNotification": "Keine Benachrichtigungen vorhanden"
+  },
+
   "input-group": {
   	"newcarddeck": "Neuer Kartensatz"
   },
@@ -103,6 +110,8 @@
   "profile": {
     "overview": "Konsole",
     "billing": "Abrechnung",
+    "membership": "Mitgliedschaft",
+    "notifications": "Benachrichtigungen",
     "settings": "Einstellungen"
   },
 
@@ -118,14 +127,17 @@
     "plan": {
       "header": "Mitgliedschaft",
       "desc": "Wähle deine gewünschte Mitgliedsart aus.",
-      "actual": "Ausgewählt!",
+      "actual": "Deine momentane Auswahl",
       "free": "Create. Learn. Share",
       "edu": "Edu-Kartensätze frei erhältlich",
-      "cas": "Nur für CAS-Nutzer!",
-      "impossible": "Nicht möglich!",
+      "back": "Zurück zur kostenfreien Version",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
-      "subscribe": "Abonniere jetzt!"
+      "subscribe": "Abonniere die Pro-Version jetzt!",
+      "lecturer": "Jetzt anfragen um alle Vorteile eines Dozenten zu erhalten.",
+      "send": "Anfrage versenden",
+      "name": "Name",
+      "prename": "Vorname"
     },
     "payment": {
       "header": "Zahlungsmethode",

@@ -34,6 +34,13 @@
   	"impressum": "Legal Notice"
   },
 
+  "notifications": {
+    "title": "Notifications",
+    "clearAll": "Clear all",
+    "viewAll": "View all",
+    "noNotification": "No notifications available"
+  },
+
   "input-group": {
   	"newcarddeck": "New deck of cards"
   },
@@ -103,6 +110,8 @@
   "profile": {
     "overview": "Overview",
     "billing": "Billing",
+    "membership": "Membership",
+    "notifications": "Notifications",
     "settings": "Settings"
   },
 
@@ -121,11 +130,14 @@
       "actual": "Your current plan!",
       "free": "Create. Learn. Share",
       "edu": "Get Edu-Flashcards for free",
-      "cas": "Only for CAS user!",
-      "impossible": "Not possible!",
+      "back": "Back to free plan",
       "pro": "Create and get Pro-Flashcards",
       "month": "month",
-      "subscribe": "Subscribe now!"
+      "subscribe": "Subscribe now!",
+      "lecturer": "Request now to get all the benefits of a lecturer.",
+      "send": "Send request",
+      "name": "Name",
+      "prename": "Prename"
     },
     "payment": {
       "header": "Payment Methods",

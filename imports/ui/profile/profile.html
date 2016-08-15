@@ -18,6 +18,26 @@
       </div>
     {{/if}}
 
+    {{#if isActiveRoute 'profileMembership'}}
+      <div id="profileMembership">
+        {{#if isUser}}
+        {{> profileMembership}}
+        {{else}}
+        <h3>{{_ "permission"}}</h3>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if isActiveRoute 'profileNotifications'}}
+      <div id="profileNotifications">
+        {{#if isUser}}
+        {{> profileNotifications}}
+        {{else}}
+        <h3>{{_ "permission"}}</h3>
+        {{/if}}
+      </div>
+    {{/if}}
+
     {{#if isActiveRoute 'profileSettings'}}
       <div id="profileSettings">
         {{#if isUser}}
@@ -56,17 +76,27 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation" class="{{#if isActiveRoute 'profileOverview'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/overview">
-              <i class="glyphicon glyphicon-bookmark"></i>{{_ "profile.overview"}}
+              <i class="fa fa-trophy"></i>{{_ "profile.overview"}}
             </a>
           </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/billing">
-              <i class="glyphicon glyphicon-credit-card"></i>{{_ "profile.billing"}}
+              <i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
+            </a>
+          </li>
+          <li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/membership">
+              <i class="fa fa-user"></i>{{_ "profile.membership"}}
+            </a>
+          </li>
+          <li role="presentation" class="{{#if isActiveRoute 'profileNotifications'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/notifications">
+              <i class="fa fa-bell"></i>{{_ "profile.notifications"}}
             </a>
           </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileSettings'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/settings">
-              <i class="glyphicon glyphicon-cog"></i>{{_ "profile.settings"}}
+              <i class="fa fa-cog"></i>{{_ "profile.settings"}}
             </a>
           </li>
         </ul>
@@ -346,81 +376,129 @@
 </template>
 
 <template name="profileBilling">
-  <div id="profile-info">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">{{_ "billing.plan.header"}}</h3>
-          </div>
-          <div class="panel-body">
-              <div>{{_ "billing.plan.desc"}}</div><br>
-              <div class="col-md-4">
-      					<div class="panel price panel-default">
-      						<div class="panel-heading  text-center">
-      						<h3>FREE</h3>
-      						</div>
-      						<div class="panel-body text-center">
-      							<p class="lead"><h2>0€</h2></p>
-      						</div>
-      						<ul class="list-group list-group-flush text-center">
-      							<li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-      						</ul>
-      						<div class="panel-footer">
-                    {{#if isInRole 'edu-user'}}
-      							<a class="btn btn-lg btn-block btn-default disabled" href="#">{{_ "billing.plan.impossible"}}</a>
-                    {{else}}
-                    <a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
-                    {{/if}}
-      						</div>
-      					</div>
-      				</div>
-              <div class="col-md-4">
-      					<div class="panel price panel-default">
-      						<div class="panel-heading  text-center">
-      						<h3>EDU</h3>
-      						</div>
-      						<div class="panel-body text-center">
-      							<p class="lead"><h2>0€</h2></p>
-      						</div>
-      						<ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-      							<li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-      						</ul>
-      						<div class="panel-footer">
-                    {{#if isInRole 'edu-user'}}
-      							<a class="btn btn-lg btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</a>
-                    {{else}}
-      							<a class="btn btn-lg btn-block btn-default disabled" href="#">{{_ "billing.plan.cas"}}</a>
-                    {{/if}}
-      						</div>
-      					</div>
-      				</div>
-              <div class="col-md-4">
-      					<div class="panel price panel-default">
-      						<div class="panel-heading  text-center">
-      						<h3>PRO</h3>
-      						</div>
-      						<div class="panel-body text-center">
-      							<p class="lead"><h2>9€ / {{_ "billing.plan.month"}}</h2></p>
-      						</div>
-      						<ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-      							<li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-      							<li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
-      						</ul>
-      						<div class="panel-footer">
-      							<a class="btn btn-lg btn-block btn-info disabled" href="#">{{_ "billing.plan.subscribe"}}</a>
-      						</div>
-      					</div>
-      				</div>
-          </div>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
       </div>
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
-          </div>
-          <div class="panel-body">
-              {{_ "billing.payment.desc"}}
-          </div>
+      <div class="panel-body">
+          {{_ "billing.payment.desc"}}
       </div>
   </div>
+</template>
+
+<template name="profileMembership">
+    <div id="profile-info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{_ "billing.plan.header"}}</h3>
+            </div>
+            <div class="panel-body">
+                <div>{{_ "billing.plan.desc"}}</div>
+                <br>
+                <div class="col-md-6">
+                    <div class="panel price {{#if isInRole 'standard'}}panel-success{{else}}panel-default{{/if}}">
+                        <div class="panel-heading  text-center">
+                            <h3>STANDARD</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p class="lead">
+                                <h2>0€</h2></p>
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+                            {{#if isInRole 'university'}}
+                                <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+                            {{/if}}
+                        </ul>
+                        <div class="panel-footer">
+                            {{#if isInRole 'pro'}}
+                                <button id="downgrade" class="btn btn-block btn-default" href="#">{{_ "billing.plan.back"}}</button>
+                            {{else}}
+                                <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel price {{#if isInRole 'pro'}}panel-success{{else}}panel-default{{/if}}">
+                        <div class="panel-heading  text-center">
+                            <h3>PRO</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p class="lead">
+                                <h2>9€ / {{_ "billing.plan.month"}}</h2></p>
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+                            <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+                            <li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
+                        </ul>
+                        <div class="panel-footer">
+                            {{#if isInRole 'pro'}}
+                                <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
+                            {{else}}
+                                <button id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">{{_ "billing.plan.lecturer"}}</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="inputName" class="col-sm-2 control-label">{{_ "billing.plan.name"}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputName" placeholder="{{_ "billing.plan.name"}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPrename" class="col-sm-2 control-label">{{_ "billing.plan.prename"}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPrename" placeholder="{{_ "billing.plan.prename"}}">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="submit" id="sendLecturerRequest" class="btn btn-default">{{_ "billing.plan.send"}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="profileNotifications">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "profile.notifications"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{#if getNotifications.count}}
+                <div class="list-group">
+                    {{#each getNotifications}}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{type}}</h4>
+                            <p class="list-group-item-text">{{text}}</p>
+                        </a>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="notification-heading">
+                    <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                </div>
+            {{/if}}
+        </div>
+    </div>
 </template>

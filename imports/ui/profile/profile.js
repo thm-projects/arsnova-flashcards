@@ -10,6 +10,7 @@ import { Cardsets } from '../../api/cardsets.js';
 import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 import { Ratings } from '../../api/ratings.js';
+import { Notifications } from '../../api/notifications.js';
 
 import { userData } from '../../api/userdata.js';
 
@@ -18,6 +19,7 @@ import './profile.html';
 
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
+Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 
 Template.registerHelper("getUser", function() {
@@ -60,9 +62,11 @@ Template.profileSidebar.helpers({
     if (userId !== undefined) {
       var user = Meteor.users.findOne(userId);
       if (user !== undefined) {
-        var service = _.keys(user.services)[0];
-        service = service.charAt(0).toUpperCase() + service.slice(1);
-        return service;
+        if (user.services !== undefined){
+          var service = _.keys(user.services)[0];
+          service = service.charAt(0).toUpperCase() + service.slice(1);
+          return service;
+        }
       }
     }
     return null;
@@ -96,6 +100,51 @@ Template.profileSettings.events({
     }
   }
 });
+
+/**
+ * ############################################################################
+ * profileMembership
+ * ############################################################################
+ */
+
+Template.profileMembership.events({
+    "click #upgrade": function() {
+        Meteor.call("upgradeUser");
+    },
+    "click #downgrade": function() {
+        Meteor.call("downgradeUser");
+    },
+    "click #sendLecturerRequest": function() {
+        var name = $('#inputName').val();
+        var prename = $('#inputPrename').val();
+
+        if (name === '' || prename === ''){
+          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger');
+        }
+        else {
+          var text = prename + " " + name + " möchte Dozent werden. Jetzt im Back-End freischalten.";
+          var type = "Dozenten Anfrage";
+          var target = "admin";
+
+          Meteor.call("addNotification", target, type, text);
+          Bert.alert('Anfrage wurde gesendet', 'success');
+
+        }
+    },
+});
+
+/**
+ * ############################################################################
+ * profileNotifications
+ * ############################################################################
+ */
+
+Template.profileNotifications.helpers({
+    getNotifications: function() {
+        return Notifications.find({}, {sort: {date: -1}});
+    }
+});
+
 
 /**
  * ############################################################################

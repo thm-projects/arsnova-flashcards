@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
+import { Notifications } from '../../api/notifications.js';
+
 import './main.html';
 
 import '../welcome/welcome.js';
@@ -14,6 +16,7 @@ import '../profile/profile.js'
 import '../admin_main/admin_main.js';
 
 Meteor.subscribe("Users");
+Meteor.subscribe("notifications");
 
 Template.main.events({
   'click #logout': function(event) {
@@ -58,6 +61,9 @@ Template.main.helpers({
       return Router.current().params._id === Meteor.userId();
     }
     return false;
+  },
+  getNotifications: function() {
+    return Notifications.find({}, {sort: {date: -1}});
   }
 });
 

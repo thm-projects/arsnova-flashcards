@@ -32,11 +32,12 @@
         {{#if getDecks.count}}
             {{#each getDecks}}
                 <div class="col-md-12">
+                  <a href="/cardset/{{_id}}">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-sm-8">
                                 <div class="">
-                                    <h4>{{{getKind}}} <a href="/cardset/{{_id}}">{{name}}</a></h4>
+                                    <h4>{{{getKind}}} {{name}}</h4>
                                     <hr> {{description}}
                                 </div>
                             </div>
@@ -53,6 +54,7 @@
                             </div>
                         </div>
                     </div>
+                  </a>
                 </div>
             {{/each}}
         {{else}}
