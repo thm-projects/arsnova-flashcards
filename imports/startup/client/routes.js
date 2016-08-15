@@ -175,6 +175,16 @@ Router.route('/admin/cardsets', {
   }
 });
 
+Router.route('/admin/cardset/:_id', {
+  name: 'admin_cardset',
+  template: 'admin_cardset',
+  layoutTemplate: 'admin_main',
+  data: function() {
+    var currentCardset = this.params._id;
+    return Cardsets.findOne({_id: currentCardset});
+  }
+});
+
 Router.route('/admin/cards', {
   name: 'admin_cards',
   template: 'admin_cards',
