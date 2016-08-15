@@ -358,11 +358,10 @@ Template.cardsetInfo.helpers({
       user: Meteor.userId()
     }).count();
     var cardset = Cardsets.findOne(this._id);
-    if (cardset === null) {
-      return null;
+    if (cardset !== null) {
+      var owner = cardset.owner;
+      return count !== 0 || owner === Meteor.userId();
     }
-    var owner = cardset.owner;
-    return count !== 0 || owner === Meteor.userId();
   },
   getKind: function() {
     switch (this.kind) {
@@ -425,6 +424,24 @@ Template.cardsetInfo.events({
       type: "application/json"
     });
     saveAs(exportData, cardset.name + ".json");
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetSidebar
+ * ############################################################################
+ */
+Template.cardsetSidebar.events({
+  "click #learnBox": function() {
+    Router.go('box', {
+      _id: this._id
+    });
+  },
+  "click #learnMemo": function() {
+    Router.go('memo', {
+      _id: this._id
+    });
   }
 });
 

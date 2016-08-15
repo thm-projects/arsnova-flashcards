@@ -2,6 +2,7 @@
   {{> cardsetInfo}}
   {{#if hasPermission}}
     {{> cardsetForm}}
+    {{> cardsetImportForm}}
     {{onEditmodalClose this._id}}
     {{> cardsetSidebar}}
     {{#if isActiveRoute 'cardsetdetailsid'}}
@@ -12,7 +13,7 @@
     {{/if}}
   {{else}}
     <div class="col-md-12">
-      <h4>{{_ "permission"}}</h4>      
+      <h4>{{_ "permission"}}</h4>
     </div>
   {{/if}}
 </template>

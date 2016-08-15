@@ -32,11 +32,11 @@ Template.registerHelper("isOwnerCard", function() {
 });
 
 Template.registerHelper("isOwner", function() {
-  var owner;
+  var owner = undefined;
   if (this.owner) {
     owner = this.owner;
   }
-  if (owner === undefined) {
+  else if (Template.parentData(1)) {
     owner = Template.parentData(1).owner;
   }
   return owner === Meteor.userId();
