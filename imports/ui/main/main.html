@@ -21,7 +21,7 @@
                     {{#if currentUser }}
                         <ul id="navbar" class="nav navbar-nav">
 
-                            <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned|cardsetdetailsid|cardsetlistid|newcard'}}active{{/if}}">
+                            <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}">
                                 <a href="{{pathFor route='home'}}" id="cardsets">
                                   {{_ "navbar-collapse.carddecks"}}
                                 </a>

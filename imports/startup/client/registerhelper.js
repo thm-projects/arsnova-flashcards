@@ -5,14 +5,28 @@ import { Cards } from '../../api/cards.js';
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function() {
-  return this.owner === Meteor.userId() || this.visible === true;
+  var userId = Meteor.userId();
+  var cardsetKind = this.kind;
+
+  var hasRole = false;
+  if (Roles.userIsInRole(userId, 'pro')) {
+    hasRole = true;
+  }
+  else if (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) {
+    hasRole = true;
+  }
+  else if (cardsetKind === 'free') {
+    hasRole = true;
+  }
+
+  return this.owner === Meteor.userId() || (this.visible === true && hasRole);
 });
 
 // Check if user is owner of a cardset
 Template.registerHelper("isOwnerCard", function() {
     var owner;
     if(this._id) {
-	owner = Cardsets.findOne(Router.current().params._id).owner;
+	     owner = Cardsets.findOne(Router.current().params._id).owner;
     }
     return owner === Meteor.userId();
 });
