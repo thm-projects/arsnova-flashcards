@@ -8,25 +8,6 @@ Template.registerHelper("hasPermission", function() {
   return this.owner === Meteor.userId() || this.visible === true;
 });
 
-// Check if user is in role to look at a cardset
-Template.registerHelper("isInRole", function() {
-  var userId = Meteor.userId();
-  var cardsetKind = this.kind;
-
-  var hasRole = false;
-  if (Roles.userIsInRole(userId, 'pro')) {
-    hasRole = true;
-  }
-  else if (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) {
-    hasRole = true;
-  }
-  else if (cardsetKind === 'free') {
-    hasRole = true;
-  }
-
-  return this.owner === Meteor.userId() || hasRole;
-});
-
 // Check if user is owner of a cardset
 Template.registerHelper("isOwnerCard", function() {
     var owner;

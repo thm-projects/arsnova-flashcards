@@ -53,6 +53,23 @@ Template.cardset.helpers({
     if (category !== undefined) {
       Session.set('previousCategoryName', category.name);
     }
+  },
+  'hasCardsetPermission': function() {
+    var userId = Meteor.userId();
+    var cardsetKind = this.kind;
+
+    var hasRole = false;
+    if (Roles.userIsInRole(userId, 'pro')) {
+      hasRole = true;
+    }
+    else if (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) {
+      hasRole = true;
+    }
+    else if (cardsetKind === 'free') {
+      hasRole = true;
+    }
+
+    return this.owner === Meteor.userId() || hasRole;
   }
 });
 

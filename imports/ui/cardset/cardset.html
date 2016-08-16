@@ -6,7 +6,7 @@
     {{> cardsetImportForm}}
     {{onEditmodalClose this._id}}
 
-    {{#if isInRole}}
+    {{#if hasCardsetPermission}}
       {{> cardsetSidebar}}
       {{#if isActiveRoute 'cardsetdetailsid'}}
         {{> cardsetDetails}}
