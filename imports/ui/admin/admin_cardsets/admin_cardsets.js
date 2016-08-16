@@ -4,11 +4,11 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
-import { Cardsets } from '../../api/cardsets.js';
+import { Cardsets } from '../../../api/cardsets.js';
 
 import './admin_cardsets.html';
 
-import '../admin_cardsets/admin_cardset.js';
+import './admin_cardset.js';
 
 /**
  * ############################################################################

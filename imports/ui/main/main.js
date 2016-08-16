@@ -13,7 +13,7 @@ import '../impressum/impressum.js';
 import '../cardsets/cardsets.js';
 import '../pool/pool.js';
 import '../profile/profile.js'
-import '../admin_main/admin_main.js';
+import '../admin/admin.js';
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");

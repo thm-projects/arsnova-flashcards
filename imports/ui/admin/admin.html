@@ -34,27 +34,41 @@
 
       <ul class="sidebar-nav">
         <li>
-          <a href="{{pathFor route='admin_dashboard'}}">{{_ "admin.dashboard"}}</a>
+          <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}" href="{{pathFor route='admin_dashboard'}}">
+            <i class="fa fa-dashboard"></i>
+            <span>{{_ "admin.dashboard"}}</span>
+          </a>
         </li>
         <li>
-          <a href="{{pathFor route='admin_cardsets'}}">{{_ "admin.cardsets"}}</a>
+          <a class="{{#if isActiveRoute regex='admin_cardsets|admin_cardset'}}active{{/if}}" href="{{pathFor route='admin_cardsets'}}">
+            <i class="fa fa-folder-open"></i>
+            <span>{{_ "admin.cardsets"}}</span>
+          </a>
         </li>
         <li>
-          <a href="{{pathFor route='admin_cards'}}">{{_ "admin.cards"}}</a>
+          <a class="{{#if isActiveRoute regex='adminCards|adminCard'}}active{{/if}}" href="{{pathFor route='adminCards'}}">
+            <i class="fa fa-file"></i>
+            <span>{{_ "admin.cards"}}</span>
+          </a>
         </li>
         <li>
-          <a href="{{pathFor route='admin_users'}}">{{_ "admin.users"}}</a>
+          <a class="{{#if isActiveRoute regex='admin_users'}}active{{/if}}" href="{{pathFor route='admin_users'}}">
+            <i class="fa fa-users"></i>
+            <span>{{_ "admin.users"}}</span>
+          </a>
+        </li>
+        <li>
+          <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}" href="{{pathFor route='admin_notifications'}}">
+            <i class="fa fa-bell"></i>
+            <span>{{_ "admin.notifications"}}</span>
+          </a>
         </li>
       </ul>
     </div>
     <!-- /#sidebar-wrapper -->
 
     <div id='admin-content-wrapper'>
-      <div class="container-fluid">
-        <div class="col-md-9 col-sm-8 col-xs-12">
-          {{> yield}}
-        </div>
-      </div>
+      {{> yield}}
     </div>
   </div>
 </template>
