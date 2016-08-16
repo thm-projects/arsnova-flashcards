@@ -4,12 +4,12 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
-import { Cards } from '../../api/cards.js';
-import { Cardsets } from '../../api/cardsets.js';
+import { Cards } from '../../../api/cards.js';
+import { Cardsets } from '../../../api/cardsets.js';
 
 import './admin_cards.html';
 
-import '../admin_cards/admin_card.js';
+import './admin_card.js';
 
 /**
  * ############################################################################
@@ -57,7 +57,7 @@ Template.admin_cards.events({
   },
   'click #linkToAdminCard': function(event) {
     var cardid = $(event.currentTarget).data("cardid");
-    Router.go('admin_card', { _id: cardid });
+    Router.go('adminCard', { _id: cardid });
   }
 });
 

@@ -143,22 +143,6 @@ Router.route('/admin/dashboard', {
   }
 });
 
-Router.route('/admin/users', {
-  name: 'admin_users',
-  template: 'admin_users',
-  layoutTemplate: 'admin_main',
-  onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
-    {
-      Router.go('home');
-    }
-    else
-    {
-      this.next();
-    }
-  }
-});
-
 Router.route('/admin/cardsets', {
   name: 'admin_cardsets',
   template: 'admin_cardsets',
@@ -196,7 +180,7 @@ Router.route('/admin/cardset/:_id', {
 });
 
 Router.route('/admin/cards', {
-  name: 'admin_cards',
+  name: 'adminCards',
   template: 'admin_cards',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
@@ -212,13 +196,45 @@ Router.route('/admin/cards', {
 });
 
 Router.route('/admin/card/:_id', {
-  name: 'admin_card',
+  name: 'adminCard',
   template: 'admin_card',
   layoutTemplate: 'admin_main',
   data: function() {
     var currentCard = this.params.cardid;
     return Cards.findOne({_id: currentCard});
   },
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
+Router.route('/admin/users', {
+  name: 'admin_users',
+  template: 'admin_users',
+  layoutTemplate: 'admin_main',
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
+Router.route('/admin/notifications', {
+  name: 'admin_notifications',
+  template: 'admin_notifications',
+  layoutTemplate: 'admin_main',
   onBeforeAction: function() {
     if (!Roles.userIsInRole(Meteor.userId(), ['admin-user']))
     {
