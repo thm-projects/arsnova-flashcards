@@ -1,15 +1,31 @@
 <template name="cardset">
-  {{> cardsetInfo}}
   {{#if hasPermission}}
+    {{> cardsetInfo}}
+
     {{> cardsetForm}}
     {{> cardsetImportForm}}
     {{onEditmodalClose this._id}}
-    {{> cardsetSidebar}}
-    {{#if isActiveRoute 'cardsetdetailsid'}}
-      {{> cardsetDetails}}
-    {{/if}}
-    {{#if isActiveRoute 'cardsetlistid'}}
-      {{> cardsetList}}
+
+    {{#if isInRole}}
+      {{> cardsetSidebar}}
+      {{#if isActiveRoute 'cardsetdetailsid'}}
+        {{> cardsetDetails}}
+      {{/if}}
+      {{#if isActiveRoute 'cardsetlistid'}}
+        {{> cardsetList}}
+      {{/if}}
+    {{else}}
+      <div class="col-md-12">
+        <div class="panel panel-default cardsetInfo">
+            <div class="panel-body">
+              <strong>Kaufe diesen Kartensatz oder werde Premium-Nutzer:</strong><br>
+              <div class="btn-group">
+                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning" type="button">Premium-Nutzer</a>
+                  <a id="sortUser" class="btn btn-default disabled" type="button">Kaufen</a>
+              </div>
+            </div>
+        </div>
+      </div>
     {{/if}}
   {{else}}
     <div class="col-md-12">
