@@ -61,15 +61,16 @@ Meteor.methods({
     Meteor.call('checkLvl');
   },
   deleteCard: function(card_id) {
-    // Make sure the user is logged in and is authorized
-    var card = Cards.findOne(card_id);
-    var cardset = Cardsets.findOne(card.cardset_id);
-
     if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      // Make sure the user is logged in and is authorized
+      var card = Cards.findOne(card_id);
+      var cardset = Cardsets.findOne(card.cardset_id);
+
       if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
     }
+
     Cards.remove(card_id);
     Learned.remove({
       card_id: card_id
