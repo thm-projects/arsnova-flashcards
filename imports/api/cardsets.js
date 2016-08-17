@@ -11,6 +11,9 @@ if (Meteor.isServer) {
     if (Roles.userIsInRole(this.userId, 'admin-user')) {
       return Cardsets.find();
     }
+    else if (Roles.userIsInRole(this.userId, 'lecturer')) {
+      return Cardsets.find({$or: [{visible: true}, {request: true}, {owner: this.userId}]});
+    }
     else if (this.userId)
     {
       return Cardsets.find({$or: [{visible: true}, {owner: this.userId}]});
@@ -51,6 +54,12 @@ CardsetsSchema = new SimpleSchema({
   price: {
     type: Number,
     decimal: true
+  },
+  reviewed: {
+    type: Boolean
+  },
+  request: {
+    type: Boolean
   }
 });
 
@@ -94,7 +103,9 @@ Meteor.methods({
       visible: visible,
       ratings: ratings,
       kind: kind,
-      price: 0
+      price: 0,
+      reviewed: false,
+      request: false
     });
     Experience.insert({
       type: 2,
@@ -151,6 +162,26 @@ Meteor.methods({
       $set: {
         kind: kind,
         price: price,
+        visible: visible
+      }
+    });
+  },
+  publicateProRequest: function(id, request, visible) {
+    // Make sure only the task owner can make a task private
+    var cardset = Cardsets.findOne(id);
+
+
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      if (!Roles.userIsInRole(this.userId, 'lecturer')) {
+        if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+          throw new Meteor.Error("not-authorized");
+        }
+      }
+    }
+
+    Cardsets.update(id, {
+      $set: {
+        request: request,
         visible: visible
       }
     });

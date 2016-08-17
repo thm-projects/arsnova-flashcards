@@ -126,6 +126,10 @@ Router.route('/profile/:_id/settings', {
   name: 'profileSettings',
   template: 'profile'
 });
+Router.route('/profile/:_id/requests', {
+  name: 'profileRequests',
+  template: 'profile'
+});
 
 Router.route('/admin/dashboard', {
   name: 'admin_dashboard',

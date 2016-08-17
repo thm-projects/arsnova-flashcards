@@ -114,7 +114,9 @@
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "requests": "Pro-Freigabe",
+    "norequests": "Keine Anfragen vorhanden"
   },
 
   "profil-header": {

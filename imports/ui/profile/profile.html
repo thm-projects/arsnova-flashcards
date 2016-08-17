@@ -47,6 +47,20 @@
         {{/if}}
       </div>
     {{/if}}
+
+    {{#if isActiveRoute 'profileRequests'}}
+      <div id="profileRequests">
+        {{#if isUser}}
+          {{#if isInRole 'lecturer'}}
+            {{> profileRequests}}
+          {{else}}
+            <h3>{{_ "permission"}}</h3>
+          {{/if}}
+        {{else}}
+          <h3>{{_ "permission"}}</h3>
+        {{/if}}
+      </div>
+    {{/if}}
   </div>
   {{else}}
   <div class="row profil-header">
@@ -99,6 +113,14 @@
               <i class="fa fa-cog"></i>{{_ "profile.settings"}}
             </a>
           </li>
+          {{#if isInRole 'lecturer'}}
+          <hr>
+          <li role="presentation" class="{{#if isActiveRoute 'profileRequests'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/requests">
+              <i class="fa fa-check"></i>{{_ "profile.requests"}}
+            </a>
+          </li>
+          {{/if}}
         </ul>
         {{/if}}
     </div>
@@ -505,6 +527,33 @@
             {{else}}
                 <div class="notification-heading">
                     <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<!--##################################################################-->
+<!--profileRequests-->
+<!--##################################################################-->
+<template name="profileRequests">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "profile.requests"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{#if getRequests.count}}
+                <div class="list-group">
+                    {{#each getRequests}}
+                        <a href="/cardset/{{_id}}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{name}}</h4>
+                            <p class="list-group-item-text">{{description}}</p>
+                        </a>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="notification-heading">
+                    <h4 class="menu-title">{{_ "profile.norequests"}}</h4>
                 </div>
             {{/if}}
         </div>

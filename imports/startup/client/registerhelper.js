@@ -5,7 +5,12 @@ import { Cards } from '../../api/cards.js';
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function() {
-  return this.owner === Meteor.userId() || this.visible === true;
+  if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+    return this.owner === Meteor.userId() || this.visible === true || this.request === true;
+  }
+  else {
+    return this.owner === Meteor.userId() || this.visible === true;
+  }
 });
 
 // Check if user is owner of a cardset

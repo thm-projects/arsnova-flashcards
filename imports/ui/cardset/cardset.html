@@ -8,6 +8,15 @@
     {{onEditmodalClose this._id}}
 
     {{#if hasCardsetPermission}}
+      {{#if isLecturerAndHasRequest}}
+          <div class="col-md-12">
+            <div class="panel panel-default cardsetInfo">
+                <div class="panel-body">
+                      <a id="releaseCardset" class="btn btn-success" type="button">Kartensatz freigeben</a>
+                </div>
+            </div>
+          </div>
+      {{/if}}
       {{> cardsetSidebar}}
       {{#if isActiveRoute 'cardsetdetailsid'}}
         {{> cardsetDetails}}

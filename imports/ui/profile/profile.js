@@ -21,6 +21,7 @@ Meteor.subscribe("experience");
 Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
+Meteor.subscribe("cardsets");
 
 Template.registerHelper("getUser", function() {
   var user = Meteor.users.findOne(Router.current().params._id);
@@ -142,6 +143,18 @@ Template.profileMembership.events({
 Template.profileNotifications.helpers({
     getNotifications: function() {
         return Notifications.find({}, {sort: {date: -1}});
+    }
+});
+
+/**
+ * ############################################################################
+ * profileRequests
+ * ############################################################################
+ */
+
+Template.profileRequests.helpers({
+    getRequests: function() {
+        return Cardsets.find({request: true});
     }
 });
 
