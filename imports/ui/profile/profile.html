@@ -272,7 +272,6 @@
 <!--##################################################################-->
 <!--profileBadges-->
 <!--##################################################################-->
-
 <template name="profileBadges">
     <div class="col-md-12" id="profile-badge-region">
         <div class="panel panel-default">
@@ -375,6 +374,9 @@
     </div>
 </template>
 
+<!--##################################################################-->
+<!--profileBilling-->
+<!--##################################################################-->
 <template name="profileBilling">
   <div class="panel panel-default">
       <div class="panel-heading">
@@ -386,6 +388,9 @@
   </div>
 </template>
 
+<!--##################################################################-->
+<!--profileMembership-->
+<!--##################################################################-->
 <template name="profileMembership">
     <div id="profile-info">
         <div class="panel panel-default">
@@ -452,7 +457,7 @@
                             </div>
                             <div id="collapse1" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" id="lecturerRequestForm">
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 control-label">{{_ "billing.plan.name"}}</label>
                                             <div class="col-sm-10">
@@ -479,6 +484,9 @@
     </div>
 </template>
 
+<!--##################################################################-->
+<!--profileNotifications-->
+<!--##################################################################-->
 <template name="profileNotifications">
     <div class="panel panel-default">
         <div class="panel-heading">
