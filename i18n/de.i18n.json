@@ -106,7 +106,7 @@
     "description_required": "Geben Sie eine Beschreibung ein!",
     "category_required": "Wählen Sie eine Kategorie!",
     "price": "Verkaufspreis",
-    "publicate": "Veröffentlichen"
+    "publicate": "Status speichern"
   },
 
   "profile": {
@@ -215,7 +215,7 @@
     "createcard": "Neue Karte erstellen",
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
-    "publicate": "Kartensatz veröffentlichen"
+    "publicate": "Status"
   },
 
   "pool": {
