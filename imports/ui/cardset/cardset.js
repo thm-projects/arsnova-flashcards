@@ -38,9 +38,6 @@ Template.cardset.helpers({
     Session.set('previousName', Cardsets.findOne(id).name);
     Session.set('previousDescription', Cardsets.findOne(id).description);
     Session.set('previousCategory', Cardsets.findOne(id).category);
-    Session.set('previousVisible', Cardsets.findOne(id).visible);
-    Session.set('previousRatings', Cardsets.findOne(id).ratings);
-    Session.set('previousKind', Cardsets.findOne(id).kind);
 
     var previousCategory = Cardsets.findOne(id).category;
     var categoryId = previousCategory.toString();
@@ -94,10 +91,8 @@ Template.cardset.events({
       }
       var category = tmpl.find('#editSetCategory').value;
       var description = tmpl.find('#editSetDescription').value;
-      var visible = ('true' === tmpl.find('#editCardSetVisibility > .active > input').value);
-      var ratings = ('true' === tmpl.find('#editCardSetRating > .active > input').value);
-      var kind = tmpl.find('#editCardSetKind > .active > input').value;
-      Meteor.call("updateCardset", this._id, name, category, description, visible, ratings, kind);
+
+      Meteor.call("updateCardset", this._id, name, category, description);
       $('#editSetModal').modal('hide');
     }
   },
@@ -140,9 +135,6 @@ Template.cardsetForm.onRendered(function() {
     var previousName = Session.get('previousName');
     var previousDescription = Session.get('previousDescription');
     var previousCategoryName = Session.get('previousCategoryName');
-    var previousVisible = Session.get('previousVisible');
-    var previousRatings = Session.get('previousRatings');
-    var previousKind = Session.get('previousKind');
 
     if (previousName !== $('#editSetName').val()) {
       $('#editSetName').val(previousName);
@@ -156,39 +148,6 @@ Template.cardsetForm.onRendered(function() {
     }
     if (previousCategoryName !== $('#editSetCategory').html()) {
       $('#editSetCategory').html(previousCategoryName);
-    }
-    if (previousVisible !== $('#editCardSetVisibility > .active > input').val()) {
-      if (previousVisible) {
-        $('#visibilityoption1').removeClass('active');
-        $('#visibilityoption2').addClass('active');
-      } else {
-        $('#visibilityoption2').removeClass('active');
-        $('#visibilityoption1').addClass('active');
-      }
-    }
-    if (previousRatings !== $('#editCardSetRating > .active > input').val()) {
-      if (previousRatings) {
-        $('#ratingoption2').removeClass('active');
-        $('#ratingoption1').addClass('active');
-      } else {
-        $('#ratingoption1').removeClass('active');
-        $('#ratingoption2').addClass('active');
-      }
-    }
-    if (previousKind !== $('#editCardSetKind > .active > input').val()) {
-      if (previousKind === 'free') {
-        $('#kindoption1').addClass('active');
-        $('#kindoption2').removeClass('active');
-        $('#kindoption3').removeClass('active');
-      } else if (previousKind === 'edu') {
-        $('#kindoption1').removeClass('active');
-        $('#kindoption2').addClass('active');
-        $('#kindoption3').removeClass('active');
-      } else if (previousKind === 'pro') {
-        $('#kindoption1').removeClass('active');
-        $('#kindoption2').removeClass('active');
-        $('#kindoption3').addClass('active');
-      }
     }
   });
 });
@@ -382,6 +341,8 @@ Template.cardsetInfo.helpers({
   },
   getKind: function() {
     switch (this.kind) {
+      case "personal":
+        return '<span class="label label-info">Private</span>';
       case "free":
         return '<span class="label label-default">Free</span>';
       case "edu":
@@ -532,6 +493,24 @@ Template.cardsetConfirmForm.events({
 
     $('#confirmModal').on('hidden.bs.modal', function() {
       Meteor.call("deleteCard", id);
+    }).modal('hide');
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetPublicateForm
+ * ############################################################################
+ */
+
+Template.cardsetPublicateForm.events({
+  'click #cardsetPublicate': function(evt, tmpl) {
+    var id = this._id;
+    var kind = tmpl.find('#publicateKind > .active > input').value;
+    var price = tmpl.find('#publicatePrice').value;
+
+    $('#publicateModal').on('hidden.bs.modal', function() {
+      Meteor.call("publicateCardset", id, kind, price, true);
     }).modal('hide');
   }
 });

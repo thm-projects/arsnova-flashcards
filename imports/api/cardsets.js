@@ -47,6 +47,11 @@ CardsetsSchema = new SimpleSchema({
   },
   kind: {
     type: String
+  },
+  price: {
+    type: Number,
+    decimal: true,
+    min: 0.01
   }
 });
 
@@ -114,7 +119,7 @@ Meteor.methods({
       cardset_id: id
     });
   },
-  updateCardset: function(id, name, category, description, visible, ratings, kind) {
+  updateCardset: function(id, name, category, description) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
@@ -123,15 +128,30 @@ Meteor.methods({
         throw new Meteor.Error("not-authorized");
       }
     }
-    
+
     Cardsets.update(id, {
       $set: {
         name: name,
         category: category,
-        description: description,
-        visible: visible,
-        ratings: ratings,
-        kind: kind
+        description: description
+      }
+    });
+  },
+  publicateCardset: function(id, kind, price, visible) {
+    // Make sure only the task owner can make a task private
+    var cardset = Cardsets.findOne(id);
+
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+    }
+
+    Cardsets.update(id, {
+      $set: {
+        kind: kind,
+        price: price,
+        visible: visible
       }
     });
   }

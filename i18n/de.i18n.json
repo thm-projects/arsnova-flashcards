@@ -104,7 +104,9 @@
     "save": "Kartensatz speichern",
     "name_required": "Geben Sie einen Namen ein!",
     "description_required": "Geben Sie eine Beschreibung ein!",
-    "category_required": "Wählen Sie eine Kategorie!"
+    "category_required": "Wählen Sie eine Kategorie!",
+    "price": "Verkaufspreis",
+    "publicate": "Veröffentlichen"
   },
 
   "profile": {
@@ -212,7 +214,8 @@
     "viewlist": "Liste",
     "createcard": "Neue Karte erstellen",
     "importcard": "Karten importieren",
-    "exportcard": "Karten exportieren"
+    "exportcard": "Karten exportieren",
+    "publicate": "Kartensatz veröffentlichen"
   },
 
   "pool": {

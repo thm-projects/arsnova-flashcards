@@ -4,6 +4,7 @@
 
     {{> cardsetForm}}
     {{> cardsetImportForm}}
+    {{> cardsetPublicateForm}}
     {{onEditmodalClose this._id}}
 
     {{#if hasCardsetPermission}}
@@ -69,9 +70,13 @@
               <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}</button>
               <div class="btn-group">
                   <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
-                  <a type="button" id="importCardsBtn" class="btn btn-default"  data-toggle="modal" data-target="#importModal"><i class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a>
-                  <a type="button" id="exportCardsBtn" class="btn btn-default"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
+                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
+                    <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
+                  </ul>
               </div>
+              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal"><i class="fa fa-share"></i> {{_ "sidebar-nav.publicate"}}</button>
             </div>
           {{/if}}
       </div>
@@ -157,7 +162,7 @@
             </div>
           </div>
         </div>
-      {{/if}} {{> cardsetPictureForm}}
+      {{/if}}
     </div>
   </div>
 </template>
@@ -209,7 +214,7 @@
         {{/if}}
 
       </tbody>
-      {{> cardsetPictureForm}}{{> cardsetConfirmForm}}
+      {{> cardsetConfirmForm}}
     </table>
   </div>
 </template>
@@ -255,55 +260,6 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "modal-dialog.visibility"}}</label>
-              <div class="controls col-md-9">
-                <div id="editCardSetVisibility" class="btn-group" data-toggle="buttons">
-                  <label id="visibilityoption1" class="btn private btn-default {{#if visible false}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="false" id="edit_visibility_private">
-                    <span>{{_ "modal-dialog.visibilityoption1"}}</span>
-                  </label>
-                  <label id="visibilityoption2" class="btn public btn-default {{#if visible true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true" id="edit_visibility_public">
-                    <span>{{_ "modal-dialog.visibilityoption2"}}</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.rating"}}</label>
-              <div class="controls col-md-9">
-                <div id="editCardSetRating" class="btn-group btn-group-rating" data-toggle="buttons">
-                  <label id="ratingoption1" class="btn rating-true btn-default {{#if ratings true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="rating" value="true" id="rating_true">
-                    <span>{{_ "modal-dialog.ratingoption1"}}</span>
-                  </label>
-                  <label id="ratingoption2" class="btn rating-false btn-default {{#if ratings false}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="rating" value="false" id="rating_false">
-                    <span>{{_ "modal-dialog.ratingoption2"}}</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
-              <div class="controls col-md-9">
-                <div id="editCardSetKind" class="btn-group btn-group-kind" data-toggle="buttons">
-                  <label id="kindoption1" class="btn btn-default {{#if kind 'free'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="free" id="kind_false">
-                    <div>Free</div>
-                  </label>
-                  <label id="kindoption2" class="btn btn-success {{#if kind 'edu'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="edu" id="kind_edu">
-                    <div>Edu</div>
-                  </label>
-                  <label id="kindoption3" class="btn btn-warning {{#if kind 'pro'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="pro" id="kind_pro">
-                    <div>Pro</div>
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -315,24 +271,6 @@
       </div>
     </div>
   </div>
-</template>
-
-
-<template name="cardsetPictureForm">
-  <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="pictureModalTitle" class="modal-title"></h4>
-        </div>
-        <div class="modal-body" id="setdetails-pictureModal-body"></div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
 </template>
 
 <template name="cardsetConfirmForm">
@@ -382,6 +320,59 @@
           {{else}}
             <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
           {{/unless}}
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</template>
+
+<template name="cardsetPublicateForm">
+  <div class="modal fade" id="publicateModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publicate"}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
+              <div class="controls col-md-9">
+                <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
+                  <label id="kindoption1" class="btn btn-default active" style="width:100px">
+                    <input type="radio" name="kind" value="free" id="kind_false">
+                    <div>Free</div>
+                  </label>
+                  <label id="kindoption2" class="btn btn-success" style="width:100px">
+                    <input type="radio" name="kind" value="edu" id="kind_edu">
+                    <div>Edu</div>
+                  </label>
+                  <label id="kindoption3" class="btn btn-warning" style="width:100px">
+                    <input type="radio" name="kind" value="pro" id="kind_pro">
+                    <div>Pro</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label id="publicatePriceLabel" class="col-md-3 control-label" for="publicatePrice">{{_ "modal-dialog.price"}}</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <input class="form-control" type="text" id="publicatePrice" value="{{price}}">
+                  <span class="input-group-addon">€</span>
+                </div>
+                <span id="helpEditSetName" class="help-block name"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+          <button id="cardsetPublicate" class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
         </div>
       </div>
       <!-- /.modal-content -->

@@ -104,7 +104,9 @@
     "save": "Save deck of cards",
     "name_required": "The name field is required!",
     "description_required": "The decription field is required!",
-    "category_required": "The category field is required!"
+    "category_required": "The category field is required!",
+    "price": "Retail price",
+    "publicate": "Publicate"
   },
 
   "profile": {
@@ -212,7 +214,8 @@
     "viewlist": "List",
     "createcard": "Create a new card",
     "importcard": "Import cards",
-    "exportcard": "Export cards"
+    "exportcard": "Export cards",
+    "publicate": "Publicate cardset"
   },
 
   "pool": {

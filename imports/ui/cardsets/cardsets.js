@@ -146,10 +146,8 @@ Template.cardsets.events({
       var name = $('#newSetName').val();
       var category = $('#newSetCategory').val();
       var description = $('#newSetDescription').val();
-      var visible = ('true' === $('#newCardSetVisibility > .active > input').val());
-      var ratings = ('true' === $('#newCardSetRating > .active > input').val());
-      var kind = $('#newCardSetKind > .active > input').val();
-      Meteor.call("addCardset", name, category, description, visible, ratings, kind);
+
+      Meteor.call("addCardset", name, category, description, false, true, 'personal');
       $('#newSetModal').modal('hide');
     }
   }
@@ -180,16 +178,6 @@ Template.cardsetsForm.onRendered(function() {
     $('#helpNewSetCategory').html('');
     $('#newSetCategoryDropdown').css('border-color', '');
     $('#newSetCategoryLabel').css('color', '');
-
-    if ($('#newCardSetVisibilityoption2').hasClass('active')) {
-      $('#newCardSetVisibilityoption2').removeClass('active');
-      $('#newCardSetVisibilityoption1').addClass('active');
-    }
-
-    if ($('#newCardSetRatingoption2').hasClass('active')) {
-      $('#newCardSetRatingoption2').removeClass('active');
-      $('#newCardSetRatingoption1').addClass('active');
-    }
   });
 });
 
