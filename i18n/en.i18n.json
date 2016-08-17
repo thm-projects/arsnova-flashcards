@@ -114,7 +114,9 @@
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
-    "settings": "Settings"
+    "settings": "Settings",
+    "requests": "Pro approval",
+    "norequests": "No requests"
   },
 
   "profil-header": {

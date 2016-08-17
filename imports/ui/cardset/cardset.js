@@ -62,6 +62,9 @@ Template.cardset.helpers({
     if (Roles.userIsInRole(userId, 'pro')) {
       hasRole = true;
     }
+    else if (Roles.userIsInRole(userId, 'lecturer')) {
+      hasRole = true;
+    }
     else if (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) {
       hasRole = true;
     }
@@ -70,6 +73,9 @@ Template.cardset.helpers({
     }
 
     return this.owner === Meteor.userId() || hasRole;
+  },
+  'isLecturerAndHasRequest': function() {
+    return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true)
   }
 });
 
@@ -121,6 +127,9 @@ Template.cardset.events({
     var categoryId = $(evt.currentTarget).val();
     $('#editSetCategory').text(categoryName);
     tmpl.find('#editSetCategory').value = categoryId;
+  },
+  'click #releaseCardset': function() {
+    Meteor.call("publicateProRequest", this._id, false, true);
   }
 });
 
@@ -366,7 +375,11 @@ Template.cardsetInfo.helpers({
       var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
       return "Veröffentlicht (" + kind + ")";
     } else {
-      return "Privat";
+      if (this.kind === 'pro' && this.request === true) {
+        return "In Überprüfung (Pro)";
+      } else {
+        return "Private";
+      }
     }
   }
 });
@@ -540,15 +553,30 @@ Template.cardsetPublicateForm.events({
     var visible = true;
 
     if (kind === 'edu' || kind === 'pro') {
-      price = tmpl.find('#publicatePrice').value;
+      if (tmpl.find('#publicatePrice') !== null) {
+        price = tmpl.find('#publicatePrice').value;
+      }
+      else {
+        price = this.price;
+      }
     }
     if (kind === 'personal') {
       visible = false;
     }
+    if (kind === 'pro') {
+      visible = false;
+      Meteor.call("publicateProRequest", id, true, visible);
 
-    $('#publicateModal').on('hidden.bs.modal', function() {
-      Meteor.call("publicateCardset", id, kind, price, visible);
-    }).modal('hide');
+      var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
+      var type = "Pro-Überprüfung";
+      var target = "lecturer";
+
+      Meteor.call("addNotification", target, type, text);
+      Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success');
+    }
+
+    Meteor.call("publicateCardset", id, kind, price, visible);
+    $('#publicateModal').modal('hide');
   },
   'change #publicateKind': function(evt, tmpl){
     var kind = tmpl.find('#publicateKind > .active > input').value;
