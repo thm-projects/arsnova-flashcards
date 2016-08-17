@@ -107,7 +107,7 @@
       {{#if countCards this._id}}
         <div id="cardCarousel" class="carousel slide" data-interval="false">
           <div class="carousel-inner">
-            {{#each getCards}}
+            {{#each getCardsCheckActive}}
               <div class="item {{#if cardActive @index}}active{{/if}}">
                 <div class="box">
                   {{#if isOwner}}

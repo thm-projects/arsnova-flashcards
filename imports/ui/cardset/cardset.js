@@ -308,6 +308,15 @@ Template.cardsetDetails.helpers({
         $(".detailback" + index).html(html);
         $('table').addClass('table');
       });
+  },
+  getCardsCheckActive: function() {
+    var query = Cards.find();
+    query.observeChanges({
+      removed: function() {
+        $('#cardCarousel .item:first-child').addClass('active');
+      }
+    });
+    return query;
   }
 });
 
