@@ -128,7 +128,7 @@ Template.profileMembership.events({
 
           Meteor.call("addNotification", target, type, text);
           Bert.alert('Anfrage wurde gesendet', 'success');
-
+          document.getElementById("lecturerRequestForm").reset();
         }
     },
 });
