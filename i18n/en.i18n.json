@@ -395,6 +395,7 @@
     "deletecard": "Delete card",
     "deletecardset": "Delete cardset",
     "notifyuser": "Notify user",
+    "view": "View",
 
     "confirm-form": {
       "cardsets": {

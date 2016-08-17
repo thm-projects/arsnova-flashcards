@@ -27,7 +27,7 @@ Template.admin_cardsets.helpers({
         { key: 'name', label: TAPi18n.__('admin.name') },
         { key: 'username', label: TAPi18n.__('admin.users') },
         { key: 'date', label: TAPi18n.__('admin.created') },
-        { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, fn: function(value) {
+        { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' href='#' data-cardsetid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
         }},
         { key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function() {

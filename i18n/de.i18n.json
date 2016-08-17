@@ -394,6 +394,7 @@
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen",
+    "view": "Übersicht",
 
     "confirm-form": {
       "cardsets": {
