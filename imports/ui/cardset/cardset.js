@@ -18,7 +18,6 @@ import './cardset.html';
 
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 Meteor.subscribe('ratings', function() {
   Session.set('ratingsLoaded', true);
 });
@@ -32,6 +31,10 @@ Session.setDefault('cardSort', {
  * cardset
  * ############################################################################
  */
+
+ Template.cardset.rendered = function(){
+   Meteor.subscribe("cards", Router.current().params._id);
+ }
 
 Template.cardset.helpers({
   'onEditmodalClose': function(id) {
@@ -503,14 +506,32 @@ Template.cardsetConfirmForm.events({
  * ############################################################################
  */
 
+ Template.cardsetPublicateForm.rendered = function(){
+   Session.set('kind', 'free');
+ }
+
+Template.cardsetPublicateForm.helpers({
+  kindIsFree: function(){
+    return Session.get('kind') === 'free';
+  }
+});
+
 Template.cardsetPublicateForm.events({
   'click #cardsetPublicate': function(evt, tmpl) {
     var id = this._id;
     var kind = tmpl.find('#publicateKind > .active > input').value;
-    var price = tmpl.find('#publicatePrice').value;
+    var price = 0;
+
+    if (kind !== 'free') {
+      price = tmpl.find('#publicatePrice').value;
+    }
 
     $('#publicateModal').on('hidden.bs.modal', function() {
       Meteor.call("publicateCardset", id, kind, price, true);
     }).modal('hide');
+  },
+  'change #publicateKind': function(evt, tmpl){
+    var kind = tmpl.find('#publicateKind > .active > input').value;
+    Session.set('kind', kind);
   }
 });

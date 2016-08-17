@@ -50,8 +50,7 @@ CardsetsSchema = new SimpleSchema({
   },
   price: {
     type: Number,
-    decimal: true,
-    min: 0.01
+    decimal: true
   }
 });
 
@@ -94,7 +93,8 @@ Meteor.methods({
       username: Meteor.user().profile.name,
       visible: visible,
       ratings: ratings,
-      kind: kind
+      kind: kind,
+      price: 0
     });
     Experience.insert({
       type: 2,

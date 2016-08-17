@@ -8,13 +8,18 @@ import { Learned } from './learned.js';
 export const Cards = new Mongo.Collection("cards");
 
 if (Meteor.isServer) {
-  Meteor.publish("cards", function() {
+  Meteor.publish("cards", function(cardset_id) {
     if (Roles.userIsInRole(this.userId, 'admin-user')) {
       return Cards.find();
     }
     else if (this.userId)
     {
-      return Cards.find({cardset_id: {$in: Cardsets.find({$or: [{visible: true}, {owner: this.userId}]}).map(function(doc){return doc._id})}});
+      if (cardset_id !== undefined) {
+        return Cards.find({cardset_id: {$in: Cardsets.find({_id: cardset_id, $or: [{visible: true}, {owner: this.userId}]}).map(function(doc){return doc._id})}});
+      }
+      else {
+        return Cards.find({cardset_id: {$in: Cardsets.find({$or: [{visible: true}, {owner: this.userId}]}).map(function(doc){return doc._id})}});
+      }
     }
   });
 }
