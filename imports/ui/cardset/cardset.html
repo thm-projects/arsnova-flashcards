@@ -343,18 +343,22 @@
               <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
               <div class="controls col-md-9">
                 <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
-                  <label id="kindoption1" class="btn btn-default active" style="width:100px">
+                  <label id="kindoption1" class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}" style="width:100px">
                     <input type="radio" name="kind" value="free" id="kind_false">
                     <div>Free</div>
                   </label>
-                  <label id="kindoption2" class="btn btn-success" style="width:100px">
-                    <input type="radio" name="kind" value="edu" id="kind_edu">
-                    <div>Edu</div>
-                  </label>
-                  <label id="kindoption3" class="btn btn-warning" style="width:100px">
-                    <input type="radio" name="kind" value="pro" id="kind_pro">
-                    <div>Pro</div>
-                  </label>
+                  {{#if isInRole 'lecturer'}}
+                    <label id="kindoption2" class="btn btn-default {{#if kindIsActive 'edu'}}active{{/if}}" style="width:100px">
+                      <input type="radio" name="kind" value="edu" id="kind_edu">
+                      <div>Edu</div>
+                    </label>
+                  {{/if}}
+                  {{#if isInRole 'pro'}}
+                    <label id="kindoption3" class="btn btn-default {{#if kindIsActive 'pro'}}active{{/if}}" style="width:100px">
+                      <input type="radio" name="kind" value="pro" id="kind_pro">
+                      <div>Pro</div>
+                    </label>
+                  {{/if}}
                 </div>
               </div>
             </div>

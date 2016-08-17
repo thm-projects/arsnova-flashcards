@@ -507,12 +507,24 @@ Template.cardsetConfirmForm.events({
  */
 
  Template.cardsetPublicateForm.rendered = function(){
-   Session.set('kind', 'free');
+   console.log();
+   var cardset = Cardsets.findOne(Router.current().params._id);
+
+   if (cardset.kind === 'personal') {
+    Session.set('kind', 'free');
+   }
+   else {
+     Session.set('kind', cardset.kind);
+   }
+
  }
 
 Template.cardsetPublicateForm.helpers({
   kindIsFree: function(){
     return Session.get('kind') === 'free';
+  },
+  kindIsActive: function(kind) {
+    return kind === Session.get('kind');
   }
 });
 
