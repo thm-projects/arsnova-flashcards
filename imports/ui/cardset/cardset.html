@@ -76,7 +76,7 @@
                     <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                   </ul>
               </div>
-              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal"><i class="fa fa-share"></i> {{_ "sidebar-nav.publicate"}}</button>
+              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal"><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
             </div>
           {{/if}}
       </div>
@@ -343,8 +343,12 @@
               <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
               <div class="controls col-md-9">
                 <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
+                  <label id="kindoption0" class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}" style="width:100px">
+                    <input type="radio" name="kind" value="personal" id="kind_private">
+                    <div>Private</div>
+                  </label>
                   <label id="kindoption1" class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="free" id="kind_false">
+                    <input type="radio" name="kind" value="free" id="free">
                     <div>Free</div>
                   </label>
                   {{#if isInRole 'lecturer'}}
@@ -362,7 +366,7 @@
                 </div>
               </div>
             </div>
-            {{#unless kindIsFree}}
+            {{#if kindWithPrice}}
             <div class="form-group">
               <label id="publicatePriceLabel" class="col-md-3 control-label" for="publicatePrice">{{_ "modal-dialog.price"}} (€)</label>
               <div class="col-md-9">
@@ -382,7 +386,7 @@
                 </div>
               </div>
             </div>
-            {{/unless}}
+            {{/if}}
           </div>
         </div>
         <div class="modal-footer">

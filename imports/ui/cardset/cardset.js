@@ -360,6 +360,14 @@ Template.cardsetInfo.helpers({
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
+  },
+  getStatus: function() {
+    if (this.visible) {
+      var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
+      return "Veröffentlicht (" + kind + ")";
+    } else {
+      return "Privat";
+    }
   }
 });
 
@@ -512,24 +520,15 @@ Template.cardsetConfirmForm.events({
  */
 
  Template.cardsetPublicateForm.rendered = function(){
-   console.log();
-   var cardset = Cardsets.findOne(Router.current().params._id);
-
-   if (cardset.kind === 'personal') {
-    Session.set('kind', 'free');
-   }
-   else {
-     Session.set('kind', cardset.kind);
-   }
-
+    Session.set('kind', this.kind);
  }
 
 Template.cardsetPublicateForm.helpers({
-  kindIsFree: function(){
-    return Session.get('kind') === 'free';
+  kindWithPrice: function(){
+    return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
   },
   kindIsActive: function(kind) {
-    return kind === Session.get('kind');
+    return kind === this.kind;
   }
 });
 
@@ -538,13 +537,17 @@ Template.cardsetPublicateForm.events({
     var id = this._id;
     var kind = tmpl.find('#publicateKind > .active > input').value;
     var price = 0;
+    var visible = true;
 
-    if (kind !== 'free') {
+    if (kind === 'edu' || kind === 'pro') {
       price = tmpl.find('#publicatePrice').value;
+    }
+    if (kind === 'personal') {
+      visible = false;
     }
 
     $('#publicateModal').on('hidden.bs.modal', function() {
-      Meteor.call("publicateCardset", id, kind, price, true);
+      Meteor.call("publicateCardset", id, kind, price, visible);
     }).modal('hide');
   },
   'change #publicateKind': function(evt, tmpl){
