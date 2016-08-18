@@ -432,6 +432,23 @@
       "save": "Save deck of cards",
       "name_required": "The name field is required!",
       "description_required": "The decription field is required!"
+    },
+
+    "card": {
+      "header": "Card",
+      "edit": "Edit",
+      "username": "User",
+      "cardsetname": "Cardset",
+      "info": "Card info",
+      "front": "Front",
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save card",
+      "delete": "Delete card",
+      "confirm": "Sure?",
+      "front_required":"The front field is required!",
+      "backt_required":"The back field is required!",
+      "text_max": "No more than 10000 characters allowed!"
     }
   }
 }

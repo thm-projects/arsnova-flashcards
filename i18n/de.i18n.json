@@ -431,6 +431,23 @@
       "save": "Kartensatz speichern",
       "name_required": "Geben Sie einen Namen ein!",
       "description_required": "Geben Sie eine Beschreibung ein!"
+    },
+
+    "card": {
+      "header": "Karte",
+      "edit": "Bearbeite",
+      "username": "Benutzer",
+      "cardsetname": "Kartensatz",
+      "info": "Karteninformationen",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "cancel": "Abbrechen",
+      "save": "Karte speichern",
+      "delete": "Karte löschen",
+      "confirm": "Sicher?",
+      "front_required":"Bitte Vorderseite ausfüllen!",
+      "back_required":"Bitte Rückseite ausfüllen!",
+      "text_max": "Es sind nur 10000 Zeichen erlaubt!"
     }
   }
 }

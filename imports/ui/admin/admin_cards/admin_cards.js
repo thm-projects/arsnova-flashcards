@@ -50,12 +50,12 @@ Template.admin_cards.helpers({
         }
         },
         { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), cellClass: 'cardsetname', fn: function(cardset_id) {
-          var cardsetname = Cardsets.findOne({ _id: cardset_id });
-          if (cardsetname) return cardsetname.name;
+          var cardset = Cardsets.findOne({ _id: cardset_id });
+          if (cardset) return cardset.name;
         }},
         { key: 'cardset_id', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(cardset_id) {
-          var cardsetname = Cardsets.findOne({ _id: cardset_id });
-          if (cardsetname) return cardsetname.username;
+          var cardset = Cardsets.findOne({ _id: cardset_id });
+          if (cardset) return cardset.username;
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' href='#' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
