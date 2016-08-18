@@ -8,16 +8,21 @@
   <div class="content box-admin">
     <div class="box-body-admin">
       <form id="admin_cardset_update">
-        <div class="form-group">
-          <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
-          <input class="form-control" type="text" id="editCardsetUserAdmin" value="{{username}}" readonly>
-        </div>
-        <div class="form-group">
-          <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
-          <input class="form-control" type="text" id="editCardsetDateAdmin" value="{{date}}" readonly>
-        </div>
         <div class="panel panel-default">
           <div class="panel-heading">{{_ "admin.cardset.info"}}</div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
+              <a href="#">{{username}}</a>
+            </div>
+            <div class="form-group">
+              <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
+              {{date}}
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">{{_ "admin.cardset.settings"}}</div>
           <div class="panel-body">
             <div class="form-group">
               <label id="editCardsetNameLabelAdmin">{{_ "admin.cardset.name"}}</label>
@@ -106,6 +111,8 @@
       <div class="box-button-admin">
         <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
         <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
+        <button id="cardsetDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.cardset.delete"}}</button>
+        <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
       </div>
     </div>
   </div>

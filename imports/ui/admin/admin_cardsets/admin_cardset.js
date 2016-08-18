@@ -90,6 +90,15 @@ Template.admin_cardset.events({
   'click #cardsetCancelAdmin': function() {
     window.history.go(-1);
   },
+  'click #cardsetDeleteAdmin': function() {
+    $("#cardsetDeleteAdmin").css('display', "none");
+    $("#cardsetConfirmAdmin").css('display', "");
+  },
+  'click #cardsetConfirmAdmin': function() {
+    var id = this._id;
+    Meteor.call("deleteCardset", id);
+    window.history.go(-1);
+  },
   'click .category': function(evt, tmpl) {
     var categoryName = $(evt.currentTarget).attr("data");
     var categoryId = $(evt.currentTarget).val();

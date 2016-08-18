@@ -51,7 +51,9 @@ Template.admin_cards.helpers({
         },
         { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), cellClass: 'cardsetname', fn: function(cardset_id) {
           var cardset = Cardsets.findOne({ _id: cardset_id });
-          if (cardset) return cardset.name;
+          if (cardset) {
+            return new Spacebars.SafeString("<a id='linkToAdminCardCardset' href='#' data-cardsetid='" + cardset_id + "'>" + cardset.name + "</a>");
+          }
         }},
         { key: 'cardset_id', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(cardset_id) {
           var cardset = Cardsets.findOne({ _id: cardset_id });
@@ -80,6 +82,10 @@ Template.admin_cards.events({
   'click #linkToAdminCard': function(event) {
     var cardid = $(event.currentTarget).data("cardid");
     Router.go('adminCard', { _id: cardid });
+  },
+  'click #linkToAdminCardCardset': function(event) {
+    var cardsetid = $(event.currentTarget).data("cardsetid");
+    Router.go('admin_cardset', { _id: cardsetid });
   }
 });
 
