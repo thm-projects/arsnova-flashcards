@@ -396,6 +396,7 @@
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen",
+    "view": "Übersicht",
 
     "confirm-form": {
       "cardsets": {
@@ -413,9 +414,10 @@
     "cardset": {
       "header": "Kartensatz",
       "edit": "Bearbeite",
-      "username": "Benutzer",
-      "date": "Erstelldatum",
-      "info": "Kartensatzinformationen",
+      "username": "Benutzer:",
+      "date": "Erstelldatum:",
+      "info": "Kartensatz Informationen",
+      "settings": "Kartesatz Einstellungen",
       "name": "Name",
       "description": "Beschreibung",
       "category": "Kategorie",
@@ -428,8 +430,28 @@
       "kind": "Art",
       "cancel": "Abbrechen",
       "save": "Kartensatz speichern",
+      "delete": "Kartensatz löschen",
+      "confirm": "Sicher?",
       "name_required": "Geben Sie einen Namen ein!",
       "description_required": "Geben Sie eine Beschreibung ein!"
+    },
+
+    "card": {
+      "header": "Karte",
+      "edit": "Bearbeite",
+      "username": "Benutzer:",
+      "cardsetname": "Kartensatz:",
+      "info": "Karten Informationen",
+      "settings": "Karten Einstellungen",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "cancel": "Abbrechen",
+      "save": "Karte speichern",
+      "delete": "Karte löschen",
+      "confirm": "Sicher?",
+      "front_required":"Bitte Vorderseite ausfüllen!",
+      "back_required":"Bitte Rückseite ausfüllen!",
+      "text_max": "Es sind nur 10000 Zeichen erlaubt!"
     }
   }
 }

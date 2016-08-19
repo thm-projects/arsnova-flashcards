@@ -204,7 +204,7 @@ Router.route('/admin/card/:_id', {
   template: 'admin_card',
   layoutTemplate: 'admin_main',
   data: function() {
-    var currentCard = this.params.cardid;
+    var currentCard = this.params._id;
     return Cards.findOne({_id: currentCard});
   },
   onBeforeAction: function() {

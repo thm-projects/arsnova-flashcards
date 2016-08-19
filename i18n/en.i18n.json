@@ -397,6 +397,7 @@
     "deletecard": "Delete card",
     "deletecardset": "Delete cardset",
     "notifyuser": "Notify user",
+    "view": "View",
 
     "confirm-form": {
       "cardsets": {
@@ -414,9 +415,10 @@
     "cardset": {
       "header": "Cardset",
       "edit": "Edit",
-      "username": "User",
-      "date": "Created At",
+      "username": "User:",
+      "date": "Created At:",
       "info": "Cardset info",
+      "settings": "Cardset settings",
       "name": "Name",
       "description": "Description",
     	"category": "Category",
@@ -429,8 +431,28 @@
       "kind": "Kind",
       "cancel": "Cancel",
       "save": "Save deck of cards",
+      "delete": "Delete deck of cards",
+      "confirm": "Sure?",
       "name_required": "The name field is required!",
       "description_required": "The decription field is required!"
+    },
+
+    "card": {
+      "header": "Card",
+      "edit": "Edit",
+      "username": "User:",
+      "cardsetname": "Cardset:",
+      "info": "Card info",
+      "settings": "Card settings",
+      "front": "Front",
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save card",
+      "delete": "Delete card",
+      "confirm": "Sure?",
+      "front_required":"The front field is required!",
+      "backt_required":"The back field is required!",
+      "text_max": "No more than 10000 characters allowed!"
     }
   }
 }

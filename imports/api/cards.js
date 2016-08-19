@@ -77,12 +77,15 @@ Meteor.methods({
     });
   },
   updateCard: function(card_id, front, back) {
-    // Make sure the user is logged in and is authorized
-    var card = Cards.findOne(card_id);
-    var cardset = Cardsets.findOne(card.cardset_id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+      // Make sure the user is logged in and is authorized
+      var card = Cards.findOne(card_id);
+      var cardset = Cardsets.findOne(card.cardset_id);
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
     }
+
     Cards.update(card_id, {
       $set: {
         front: front,

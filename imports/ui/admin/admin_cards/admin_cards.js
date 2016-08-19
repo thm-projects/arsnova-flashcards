@@ -18,25 +18,49 @@ import './admin_card.js';
  */
 
 Template.admin_cards.helpers({
-  cardListAdmin: function () {
+  cardListAdmin: function() {
     return Cards.find();
   },
-  tableSettings: function () {
+  tableSettings: function() {
     return {
       showNavigationRowsPerPage: false,
       fields: [
-        { key: 'front', label: TAPi18n.__('admin.front') },
-        { key: 'back', label: TAPi18n.__('admin.back') },
-        { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), fn: function(cardset_id) {
-          var cardsetname = Cardsets.findOne({ _id: cardset_id });
-          if (cardsetname) return cardsetname.name;
+        { key: 'front', label: TAPi18n.__('admin.front'), sortable: false,
+          cellClass: function(value, object) {
+            var css = 'front_' + object._id;
+            return css;
+          },
+          fn: function(front, object) {
+            Meteor.promise("convertMarkdown", front)
+              .then(function(html) {
+                $(".front_" + object._id).html(html);
+              });
+          }
+        },
+        { key: 'back', label: TAPi18n.__('admin.back'), sortable: false,
+          cellClass: function(value, object) {
+            var css = 'back_' + object._id;
+            return css;
+          },
+          fn: function(front, object) {
+            Meteor.promise("convertMarkdown", front)
+              .then(function(html) {
+                $(".back_" + object._id).html(html);
+              });
+          }
+        },
+        { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), cellClass: 'cardsetname', fn: function(cardset_id) {
+          var cardset = Cardsets.findOne({ _id: cardset_id });
+          if (cardset) {
+            return new Spacebars.SafeString("<a id='linkToAdminCardCardset' href='#' data-cardsetid='" + cardset_id + "'>" + cardset.name + "</a>");
+          }
         }},
-        { key: 'cardset_id', label: TAPi18n.__('admin.users'), fn: function(cardset_id) {
-          var cardsetname = Cardsets.findOne({ _id: cardset_id });
-          if (cardsetname) return cardsetname.username;
+        { key: 'cardset_id', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(cardset_id) {
+          var cardset = Cardsets.findOne({ _id: cardset_id });
+          if (cardset) return cardset.username;
         }},
-        { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, fn: function(value) {
-          return new Spacebars.SafeString("<a id='linkToAdminCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' href='#' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+        { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
+          return new Spacebars.SafeString("<a id='linkToAdminCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
         }},
         { key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function() {
           return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
@@ -58,6 +82,10 @@ Template.admin_cards.events({
   'click #linkToAdminCard': function(event) {
     var cardid = $(event.currentTarget).data("cardid");
     Router.go('adminCard', { _id: cardid });
+  },
+  'click #linkToAdminCardCardset': function(event) {
+    var cardsetid = $(event.currentTarget).data("cardsetid");
+    Router.go('admin_cardset', { _id: cardsetid });
   }
 });
 

@@ -1,3 +1,52 @@
 <template name="admin_card">
-  Card View
+  <div class="content-header">
+    <h1>
+      {{_ "admin.card.header"}}
+      <small>{{_ "admin.card.edit"}} {{_id}}</small>
+    </h1>
+  </div>
+  <div class="content box-admin">
+    <div class="box-body-admin">
+      <form id="admin_card_update">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{_ "admin.card.info"}}</div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label id="editCardUserLabelAdmin">{{_ "admin.card.username"}}</label>
+              <a href="#">{{getUsername cardset_id}}</a>
+            </div>
+            <div class="form-group">
+              <label id="editCardCardsetnameLabelAdmin">{{_ "admin.card.cardsetname"}}</label>
+              <a href="/admin/cardset/{{cardset_id}}">{{getCardsetname cardset_id}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">{{_ "admin.card.settings"}}</div>
+          <div class="panel-body">
+            <div id="frontAdmin" class="cardtext" data-content="{{front}}">
+              <div class="form-group">
+                <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
+                <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
+              <span id="helpEditCardFrontAdmin" class="help-block front"></span>
+              </div>
+            </div>
+            <div id="backAdmin" class="cardtext" data-content="{{back}}">
+              <div class="form-group">
+                <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
+                <textarea id="editCardBackAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
+                <span id="helpEditCardBackAdmin" class="help-block back"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="box-button-admin">
+        <button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
+        <button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
+        <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.card.delete"}}</button>
+        <button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.card.confirm"}}</button>
+      </div>
+    </div>
+  </div>
 </template>
