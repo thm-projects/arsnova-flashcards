@@ -8,6 +8,9 @@ if (Meteor.isServer) {
     if (Roles.userIsInRole(this.userId, 'admin-user')) {
       return Notifications.find({target: {$in: [this.userId, "admin"]}});
     }
+    else if (Roles.userIsInRole(this.userId, 'lecturer')) {
+      return Notifications.find({target: {$in: [this.userId, "lecturer"]}});
+    }
     else if (this.userId)
     {
       return Notifications.find({target: this.userId});

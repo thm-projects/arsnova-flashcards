@@ -400,14 +400,24 @@
 <!--profileBilling-->
 <!--##################################################################-->
 <template name="profileBilling">
-  <div class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
-      </div>
-      <div class="panel-body">
-          {{_ "billing.payment.desc"}}
-      </div>
-  </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{_ "billing.payment.desc"}}
+        </div>
+        <div class="container">
+            <div class="radio">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Kreditkarte
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Paypal
+                </label>
+            </div>
+        </div>
+    </div>
 </template>
 
 <!--##################################################################-->

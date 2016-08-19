@@ -8,6 +8,7 @@ import { Cardsets } from '../../api/cardsets.js';
 import { Cards } from '../../api/cards.js';
 import { Categories } from '../../api/categories.js';
 import { Ratings } from '../../api/ratings.js';
+import { Paid } from '../../api/paid.js';
 
 
 import '../card/card.js';
@@ -18,6 +19,7 @@ import './cardset.html';
 
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("paid");
 Meteor.subscribe('ratings', function() {
   Session.set('ratingsLoaded', true);
 });
@@ -34,6 +36,42 @@ Session.setDefault('cardSort', {
 
  Template.cardset.rendered = function(){
    Meteor.subscribe("cards", Router.current().params._id);
+   Session.set('cardsetId', Router.current().params._id);
+
+   Meteor.call('getClientToken', function(error, clientToken) {
+    if (error) {
+      console.log(error);
+    } else {
+      braintree.setup(clientToken, "dropin", {
+        container: "payment-form",
+        paypal: {
+          singleUse: true,
+          amount: 2.99,
+          currency: 'EUR',
+          button: {
+            type: 'checkout'
+          }
+        },
+        onPaymentMethodReceived: function (response) {
+          var nonce = response.nonce;
+
+          Meteor.call('btCreateCustomer', function(error, success) {
+            if (error) {
+              throw new Meteor.Error('customer-creation-failed');
+            } else {
+              Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
+                if (error) {
+                  throw new Meteor.Error('transaction-creation-failed');
+                } else {
+                  Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
  }
 
 Template.cardset.helpers({
@@ -69,6 +107,9 @@ Template.cardset.helpers({
       hasRole = true;
     }
     else if (cardsetKind === 'free') {
+      hasRole = true;
+    }
+    else if (Paid.find({cardset_id:this._id, user_id:userId}).count() === 1) {
       hasRole = true;
     }
 
@@ -130,6 +171,9 @@ Template.cardset.events({
   },
   'click #releaseCardset': function() {
     Meteor.call("publicateProRequest", this._id, false, true);
+  },
+  'click #buyCardset': function() {
+    Meteor.call("addPaid", this._id, this.price);
   }
 });
 

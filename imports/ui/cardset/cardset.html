@@ -28,11 +28,17 @@
       <div class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
-              <strong>Kaufe diesen Kartensatz oder werde Premium-Nutzer:</strong><br>
-              <div class="btn-group">
-                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning" type="button">Premium-Nutzer</a>
-                  <a id="sortUser" class="btn btn-default disabled" type="button">Kaufen für {{price}}€</a>
-              </div>
+              <form role="form">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div id="payment-form"></div>
+                    <div class="btn-group">
+                        <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning" type="button">Als Premium-Nutzer lernen</a>
+                        <button type="submit" class="btn btn-success">Kartensatz kaufen für {{price}}</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
         </div>
       </div>
