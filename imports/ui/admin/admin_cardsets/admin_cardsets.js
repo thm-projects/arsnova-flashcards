@@ -30,11 +30,17 @@ Template.admin_cardsets.helpers({
           if (Roles.userIsInRole(object.owner, 'blocked')) {
             return TAPi18n.__('blockedUser');
           }
-          if (value === 'deleted') {
+          else if (value === 'deleted') {
             return TAPi18n.__('deletedUser');
           }
           else {
-            return value;
+            if (!Roles.userIsInRole(object.owner, 'admin')) {
+              return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
+            } else if (Meteor.user()._id === object.owner) {
+              return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
+            } else {
+              return value;
+            }
           }
         }},
         { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {
@@ -63,6 +69,10 @@ Template.admin_cardsets.events({
   'click #linkToAdminCardset': function(event) {
     var cardsetid = $(event.currentTarget).data("cardsetid");
     Router.go('admin_cardset', { _id: cardsetid });
+  },
+  'click #linkToAdminCardsetUser': function(event) {
+    var userid = $(event.currentTarget).data("userid");
+    Router.go('admin_user', { _id: userid });
   }
 });
 

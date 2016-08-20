@@ -57,7 +57,24 @@ Template.admin_cards.helpers({
         }},
         { key: 'cardset_id', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(cardset_id) {
           var cardset = Cardsets.findOne({ _id: cardset_id });
-          if (cardset) return cardset.username;
+          if (cardset) {
+            if (Roles.userIsInRole(cardset.owner, 'blocked')) {
+              return TAPi18n.__('blockedUser');
+            }
+            else if (cardset.username === 'deleted') {
+              return TAPi18n.__('deletedUser');
+            }
+            else {
+              if (!Roles.userIsInRole(cardset.owner, 'admin')) {
+                return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
+              }
+              else if (Meteor.user()._id === cardset.owner) {
+                return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
+              } else {
+                return cardset.username;
+              }
+            }
+          }
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
@@ -86,6 +103,10 @@ Template.admin_cards.events({
   'click #linkToAdminCardCardset': function(event) {
     var cardsetid = $(event.currentTarget).data("cardsetid");
     Router.go('admin_cardset', { _id: cardsetid });
+  },
+  'click #linkToAdminCardUser': function(event) {
+    var userid = $(event.currentTarget).data("userid");
+    Router.go('admin_user', { _id: userid });
   }
 });
 

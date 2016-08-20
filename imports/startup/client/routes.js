@@ -235,6 +235,26 @@ Router.route('/admin/users', {
   }
 });
 
+Router.route('/admin/user/:_id', {
+  name: 'admin_user',
+  template: 'admin_user',
+  layoutTemplate: 'admin_main',
+  data: function() {
+    var currentUser = this.params._id;
+    return Meteor.users.findOne({_id: currentUser});
+  },
+  onBeforeAction: function() {
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
+    {
+      Router.go('home');
+    }
+    else
+    {
+      this.next();
+    }
+  }
+});
+
 Router.route('/admin/notifications', {
   name: 'admin_notifications',
   template: 'admin_notifications',

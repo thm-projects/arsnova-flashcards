@@ -4,9 +4,12 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
+import { allUsers } from '../../../api/allusers.js';
+
 import './admin_users.html';
 
-import { allUsers } from '../../../api/allusers.js';
+import './admin_user.js';
+
 
 Meteor.subscribe('allUsers');
 
@@ -58,9 +61,9 @@ Template.admin_users.helpers({
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), cellClass:'edit', sortable: false, fn: function(value) {
           if (!Roles.userIsInRole(value, 'admin')) {
-            return new Spacebars.SafeString("<a class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+            return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
           } else if (Meteor.user()._id === value) {
-            return new Spacebars.SafeString("<a class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+            return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
           }
         }},
         { key: '_id', label: TAPi18n.__('admin.delete'), cellClass:'delete', sortable: false, fn: function(value) {
@@ -84,6 +87,10 @@ Template.admin_users.events({
       Session.set('userId', user._id);
     }
   },
+  'click #linkToAdminUser': function(event) {
+    var userid = $(event.currentTarget).data("userid");
+    Router.go('admin_user', { _id: userid });
+  }
 });
 
 /**

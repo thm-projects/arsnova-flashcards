@@ -76,3 +76,16 @@ Template.registerHelper("getCategory", function(value) {
     }
   }
 });
+
+// Returns the username of the cardset
+Template.registerHelper("getUsername", function(username, owner) {
+  if (Roles.userIsInRole(owner, 'blocked')) {
+    return TAPi18n.__('blockedUser');
+  }
+  else if (username === 'deleted') {
+    return TAPi18n.__('deletedUser');
+  }
+  else {
+    return username;
+  }
+});

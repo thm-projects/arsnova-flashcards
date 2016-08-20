@@ -16,13 +16,46 @@ import './admin_card.html';
  */
 
 Template.admin_card.helpers({
-  getUsername: function(cardset_id) {
-    var cardset = Cardsets.findOne({ _id: cardset_id});
-    return cardset.username;
+  getUsernameCard: function(cardset_id) {
+    var cardset = Cardsets.findOne({ _id: cardset_id });
+
+    if (Roles.userIsInRole(cardset.owner, 'blocked')) {
+      return TAPi18n.__('blockedUser');
+    }
+    else if (cardset.username === 'deleted') {
+      return TAPi18n.__('deletedUser');
+    }
+    else {
+      return cardset.username;;
+    }
+  },
+  userExistsCard: function(cardset_id) {
+    var cardset = Cardsets.findOne({ _id: cardset_id });
+
+    if (Roles.userIsInRole(cardset.owner, 'blocked')) {
+      return false;
+    }
+    else if (cardset.username === 'deleted') {
+      return false;
+    }
+    else {
+      if (!Roles.userIsInRole(cardset.owner, 'admin')) {
+        return true;
+      } else if (Meteor.user()._id === cardset.owner) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
   },
   getCardsetname: function(cardset_id) {
-    var cardset = Cardsets.findOne({ _id: cardset_id});
+    var cardset = Cardsets.findOne({ _id: cardset_id });
     return cardset.name;
+  },
+  getUserId: function(cardset_id) {
+    var cardset = Cardsets.findOne({ _id: cardset_id });
+    return cardset.owner;
   }
 });
 

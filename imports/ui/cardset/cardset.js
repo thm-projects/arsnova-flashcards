@@ -425,6 +425,17 @@ Template.cardsetInfo.helpers({
         return "Private";
       }
     }
+  },
+  userExists: function(username, owner) {
+    if (Roles.userIsInRole(owner, 'blocked')) {
+      return false;
+    }
+    else if (username === 'deleted') {
+      return false;
+    }
+    else {
+      return true;
+    }
   }
 });
 

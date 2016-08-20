@@ -35,6 +35,24 @@ Template.admin_cardset.helpers({
       return Cardsets.findOne(this._id).kind === kind;
     }
   },
+  userExistsCardset: function(username, owner) {
+    if (Roles.userIsInRole(owner, 'blocked')) {
+      return false;
+    }
+    else if (username === 'deleted') {
+      return false;
+    }
+    else {
+      if (!Roles.userIsInRole(owner, 'admin')) {
+        return true;
+      } else if (Meteor.user()._id === owner) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  },
   cardListCardsetAdmin: function () {
     return Cards.find({ cardset_id: this._id });
   },

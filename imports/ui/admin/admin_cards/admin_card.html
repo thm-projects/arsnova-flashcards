@@ -13,7 +13,11 @@
           <div class="panel-body">
             <div class="form-group">
               <label id="editCardUserLabelAdmin">{{_ "admin.card.username"}}</label>
-              <a href="#">{{getUsername cardset_id}}</a>
+              {{#if userExistsCard cardset_id}}
+                <a href="/admin/user/{{getUserId cardset_id}}">{{getUsernameCard cardset_id}}</a>
+              {{else}}
+                {{getUsernameCard cardset_id}}
+              {{/if}}
             </div>
             <div class="form-group">
               <label id="editCardCardsetnameLabelAdmin">{{_ "admin.card.cardsetname"}}</label>
