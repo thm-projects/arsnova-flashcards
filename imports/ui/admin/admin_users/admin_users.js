@@ -59,6 +59,8 @@ Template.admin_users.helpers({
         { key: '_id', label: TAPi18n.__('admin.edit'), cellClass:'edit', sortable: false, fn: function(value) {
           if (!Roles.userIsInRole(value, 'admin')) {
             return new Spacebars.SafeString("<a class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+          } else if (Meteor.user()._id === value) {
+            return new Spacebars.SafeString("<a class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "'><i class='glyphicon glyphicon-pencil'></i></a>");
           }
         }},
         { key: '_id', label: TAPi18n.__('admin.delete'), cellClass:'delete', sortable: false, fn: function(value) {
