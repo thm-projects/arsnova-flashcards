@@ -413,6 +413,10 @@
         "title": "Delete card",
         "text": "Do you really want to delete this card?"
       },
+      "users": {
+        "title": "Delete user",
+        "text": "Do you really want to delete this user?"
+      },
 
       "cancel": "Cancel"
     },
@@ -459,5 +463,8 @@
       "backt_required":"The back field is required!",
       "text_max": "No more than 10000 characters allowed!"
     }
-  }
+  },
+
+  "blockedUser": "Blocked User",
+  "deletedUser": "Deleted User"
 }

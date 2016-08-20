@@ -5,6 +5,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../../api/cardsets.js';
+import { allUsers } from '../../../api/allusers.js';
 
 import './admin_cardsets.html';
 
@@ -25,7 +26,17 @@ Template.admin_cardsets.helpers({
       showNavigationRowsPerPage: false,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
-        { key: 'username', label: TAPi18n.__('admin.users') },
+        { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {
+          if (Roles.userIsInRole(object.owner, 'blocked')) {
+            return TAPi18n.__('blockedUser');
+          }
+          if (value === 'deleted') {
+            return TAPi18n.__('deletedUser');
+          }
+          else {
+            return value;
+          }
+        }},
         { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {
             return moment(value).locale(getUserLanguage()).format('LL');
         }},

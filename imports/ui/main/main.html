@@ -45,7 +45,7 @@
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
-                            {{#if isInRole 'admin'}}
+                            {{#if isInRole 'admin, editor'}}
                                 <li id="navbar-adminpanel">
                                     <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
                                       {{_ "navbar-collapse.backend"}}

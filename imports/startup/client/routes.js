@@ -136,7 +136,7 @@ Router.route('/admin/dashboard', {
   template: 'admin_dashboard',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -152,7 +152,7 @@ Router.route('/admin/cardsets', {
   template: 'admin_cardsets',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -172,7 +172,7 @@ Router.route('/admin/cardset/:_id', {
     return Cardsets.findOne({_id: currentCardset});
   },
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -188,7 +188,7 @@ Router.route('/admin/cards', {
   template: 'admin_cards',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -208,7 +208,7 @@ Router.route('/admin/card/:_id', {
     return Cards.findOne({_id: currentCard});
   },
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -224,7 +224,7 @@ Router.route('/admin/users', {
   template: 'admin_users',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }
@@ -240,7 +240,7 @@ Router.route('/admin/notifications', {
   template: 'admin_notifications',
   layoutTemplate: 'admin_main',
   onBeforeAction: function() {
-    if (!Roles.userIsInRole(Meteor.userId(), ['admin']))
+    if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']))
     {
       Router.go('home');
     }

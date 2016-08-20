@@ -412,6 +412,10 @@
         "title": "Karte löschen",
         "text": "Wollen Sie diese Karte wirklich löschen?"
       },
+      "users": {
+        "title": "Benutzer löschen",
+        "text": "Wollen Sie diesen Benutzer wirklich löschen?"
+      },
 
       "cancel": "Abbrechen"
     },
@@ -458,5 +462,8 @@
       "back_required":"Bitte Rückseite ausfüllen!",
       "text_max": "Es sind nur 10000 Zeichen erlaubt!"
     }
-  }
+  },
+
+  "blockedUser": "Blockierter Benutzer",
+  "deletedUser": "Gelöschter Benutzer"
 }
