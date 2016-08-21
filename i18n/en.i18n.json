@@ -462,6 +462,24 @@
       "front_required":"The front field is required!",
       "backt_required":"The back field is required!",
       "text_max": "No more than 10000 characters allowed!"
+    },
+
+    "user": {
+      "header": "User",
+      "edit": "Edit",
+      "info": "User info",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Joined:",
+      "lvl": "Level:",
+      "visible": "Public profile",
+      "profilepublicoption1": "Yes",
+      "profilepublicoption2": "No",
+      "email": "Email",
+      "status": "User status",
+      "online": "Status:",
+      "lastLogin": "Last login:",
+      "clock": ""
     }
   },
 

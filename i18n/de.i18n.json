@@ -461,6 +461,24 @@
       "front_required":"Bitte Vorderseite ausfüllen!",
       "back_required":"Bitte Rückseite ausfüllen!",
       "text_max": "Es sind nur 10000 Zeichen erlaubt!"
+    },
+
+    "user": {
+      "header": "Benutzer",
+      "edit": "Bearbeite",
+      "info": "Benutzer Informationen",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Beigetreten:",
+      "lvl": "Level:",
+      "visible": "Profil öffentlich",
+      "profilepublicoption1": "Ja",
+      "profilepublicoption2": "Nein",
+      "email": "Email",
+      "status": "Benutzer Status",
+      "online": "Status:",
+      "lastLogin": "Letzter Login:",
+      "clock": " Uhr"
     }
   },
 
