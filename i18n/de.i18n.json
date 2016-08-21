@@ -472,13 +472,24 @@
       "date": "Beigetreten:",
       "lvl": "Level:",
       "visible": "Profil öffentlich",
-      "profilepublicoption1": "Ja",
-      "profilepublicoption2": "Nein",
+      "option1": "Ja",
+      "option2": "Nein",
       "email": "Email",
       "status": "Benutzer Status",
       "online": "Status:",
       "lastLogin": "Letzter Login:",
-      "clock": " Uhr"
+      "clock": " Uhr",
+      "roles": "Benutzerrollen",
+      "blocked": "Benutzer blockieren",
+      "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
+      "editortext": "Wollen Sie dem Benutzer Editor-Rechte geben? Als Editor User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "messageheader": "Benutzer benachrichtigen",
+      "messagetext": "Senden Sie dem Benutzer eine Benachrichtigung.",
+      "messagebutton": "Nachricht senden",
+      "cancel": "Abbrechen",
+      "save": "Benutzer speichern",
+      "delete": "Benutzer löschen",
+      "confirm": "Sicher?"
     }
   },
 

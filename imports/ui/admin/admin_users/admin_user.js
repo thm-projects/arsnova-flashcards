@@ -73,6 +73,21 @@ Template.admin_user.helpers({
         }}
       ]
     }
+  },
+  proUser: function(value) {
+    return Roles.userIsInRole(this._id, 'pro') === value;
+  },
+  eduUser: function(value) {
+    return Roles.userIsInRole(this._id, 'university') === value;
+  },
+  lecturerUser: function(value) {
+    return Roles.userIsInRole(this._id, 'lecturer') === value;
+  },
+  blockedUser: function(value) {
+    return Roles.userIsInRole(this._id, 'blocked') === value;
+  },
+  editorUser: function(value) {
+    return Roles.userIsInRole(this._id, 'editor') === value;
   }
 });
 

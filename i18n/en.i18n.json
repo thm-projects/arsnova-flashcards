@@ -473,13 +473,24 @@
       "date": "Joined:",
       "lvl": "Level:",
       "visible": "Public profile",
-      "profilepublicoption1": "Yes",
-      "profilepublicoption2": "No",
+      "option1": "Yes",
+      "option2": "No",
       "email": "Email",
       "status": "User status",
       "online": "Status:",
       "lastLogin": "Last login:",
-      "clock": ""
+      "clock": "",
+      "roles": "User roles",
+      "blocked": "Blocked user",
+      "blockedtext": "Do you want to deny the access to THMcards for this user?",
+      "editortext": "Do you want to give this user editor rights? As an editor user the user can access the admin panel and is allowed to edit content of THMcards.",
+      "messageheader": "Message user",
+      "messagetext": "Send a message to this user.",
+      "messagebutton": "Send message",
+      "cancel": "Cancel",
+      "save": "Save user",
+      "delete": "Delete user",
+      "confirm": "Sure?"
     }
   },
 
