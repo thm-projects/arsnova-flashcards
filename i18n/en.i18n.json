@@ -490,7 +490,8 @@
       "cancel": "Cancel",
       "save": "Save user",
       "delete": "Delete user",
-      "confirm": "Sure?"
+      "confirm": "Sure?",
+      "email_invalid": "Invalid Email"
     }
   },
 

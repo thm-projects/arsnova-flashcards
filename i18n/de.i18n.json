@@ -489,7 +489,8 @@
       "cancel": "Abbrechen",
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
-      "confirm": "Sicher?"
+      "confirm": "Sicher?",
+      "email_invalid": "Ungültige Email-Adresse"
     }
   },
 
