@@ -31,12 +31,12 @@
               <label id="editUserVisibleLabelAdmin">{{_ "admin.user.visible"}}</label>
               <div class="controls">
                 <div id="editUserVisibleAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="profilepublicoption1Admin" class="btn btn-default profile-public {{#if isVisible true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
+                  <label id="profilepublicoption1Admin" class="btn btn-default profile-public {{#if isVisible}}active{{/if}}" style="width:100px">
+                    <input type="radio" name="options" value="public">
                       <span>{{_ "admin.user.option1"}}</span>
                   </label>
-                  <label id="profilepublicoption2Admin" class="btn btn-default profile-private {{#if isVisible false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
+                  <label id="profilepublicoption2Admin" class="btn btn-default profile-private {{#unless isVisible}}active{{/unless}}" style="width:100px">
+                      <input type="radio" name="options" value="private">
                       <span>{{_ "admin.user.option2"}}</span>
                   </label>
                 </div>
