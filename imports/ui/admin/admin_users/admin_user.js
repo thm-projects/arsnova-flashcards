@@ -94,6 +94,28 @@ Template.admin_user.helpers({
   },
   editorUser: function(value) {
     return Roles.userIsInRole(this._id, 'editor') === value;
+  },
+  isAdminUser: function() {
+    var currentUser = Meteor.user()._id;
+
+    if (Roles.userIsInRole(this._id, 'admin')) {
+      if (Roles.userIsInRole(currentUser, 'editor')) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  },
+  isCurrentUser: function() {
+    var currentUser = Meteor.user()._id;
+
+    if (this._id === currentUser) {
+      return false;
+    } else {
+      return true;
+    }
   }
 });
 

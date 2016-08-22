@@ -70,88 +70,94 @@
             </div>
           </div>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.user.roles"}}</div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label id="editUserProLabelAdmin">Pro User</label>
-              <div class="controls">
-                <div id="editUserProAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="proOption1Admin" class="btn btn-default pro-true {{#if proUser true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
-                      <span>{{_ "admin.user.option1"}}</span>
-                  </label>
-                  <label id="proOption2Admin" class="btn btn-default pro-false {{#if proUser false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
-                      <span>{{_ "admin.user.option2"}}</span>
-                  </label>
+        {{#if isAdminUser}}
+          <div class="panel panel-default">
+            <div class="panel-heading">{{_ "admin.user.roles"}}</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label id="editUserProLabelAdmin">Pro User</label>
+                <div class="controls">
+                  <div id="editUserProAdmin" class="btn-group" data-toggle="buttons">
+                    <label id="proOption1Admin" class="btn btn-default pro-true {{#if proUser true}}active{{/if}}" style="width:100px">
+                      <input type="radio" name="options" value="true">
+                        <span>{{_ "admin.user.option1"}}</span>
+                    </label>
+                    <label id="proOption2Admin" class="btn btn-default pro-false {{#if proUser false}}active{{/if}}" style="width:100px">
+                        <input type="radio" name="options" value="false">
+                        <span>{{_ "admin.user.option2"}}</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label id="editUserEduLabelAdmin">Edu User</label>
-              <div class="controls">
-                <div id="editUserEduAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="eduOption1Admin" class="btn btn-default edu-true {{#if eduUser true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
-                      <span>{{_ "admin.user.option1"}}</span>
-                  </label>
-                  <label id="eduOption2Admin" class="btn btn-default edu-false {{#if eduUser false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
-                      <span>{{_ "admin.user.option2"}}</span>
-                  </label>
+              <div class="form-group">
+                <label id="editUserEduLabelAdmin">Edu User</label>
+                <div class="controls">
+                  <div id="editUserEduAdmin" class="btn-group" data-toggle="buttons">
+                    <label id="eduOption1Admin" class="btn btn-default edu-true {{#if eduUser true}}active{{/if}}" style="width:100px">
+                      <input type="radio" name="options" value="true">
+                        <span>{{_ "admin.user.option1"}}</span>
+                    </label>
+                    <label id="eduOption2Admin" class="btn btn-default edu-false {{#if eduUser false}}active{{/if}}" style="width:100px">
+                        <input type="radio" name="options" value="false">
+                        <span>{{_ "admin.user.option2"}}</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label id="editUserLecturerLabelAdmin">{{_ "admin.lecturer"}}</label>
-              <div class="controls">
-                <div id="editUserLecturerAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="lecturerOption1Admin" class="btn btn-default lecturer-true {{#if lecturerUser true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
-                      <span>{{_ "admin.user.option1"}}</span>
-                  </label>
-                  <label id="lecturerOption2Admin" class="btn btn-default lecturer-false {{#if lecturerUser false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
-                      <span>{{_ "admin.user.option2"}}</span>
-                  </label>
+              <div class="form-group">
+                <label id="editUserLecturerLabelAdmin">{{_ "admin.lecturer"}}</label>
+                <div class="controls">
+                  <div id="editUserLecturerAdmin" class="btn-group" data-toggle="buttons">
+                    <label id="lecturerOption1Admin" class="btn btn-default lecturer-true {{#if lecturerUser true}}active{{/if}}" style="width:100px">
+                      <input type="radio" name="options" value="true">
+                        <span>{{_ "admin.user.option1"}}</span>
+                    </label>
+                    <label id="lecturerOption2Admin" class="btn btn-default lecturer-false {{#if lecturerUser false}}active{{/if}}" style="width:100px">
+                        <input type="radio" name="options" value="false">
+                        <span>{{_ "admin.user.option2"}}</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
-              <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
-              <p>{{_ "admin.user.blockedtext"}}</p>
-              <div class="controls">
-                <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="blockedOption1Admin" class="btn btn-default blocked-true {{#if blockedUser true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
-                      <span>{{_ "admin.user.option1"}}</span>
-                  </label>
-                  <label id="blockedOption2Admin" class="btn btn-default blocked-false {{#if blockedUser false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
-                      <span>{{_ "admin.user.option2"}}</span>
-                  </label>
+              {{#if isCurrentUser}}
+                <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
+                  <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
+                  <p>{{_ "admin.user.blockedtext"}}</p>
+                  <div class="controls">
+                    <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
+                      <label id="blockedOption1Admin" class="btn btn-default blocked-true {{#if blockedUser true}}active{{/if}}" style="width:100px">
+                        <input type="radio" name="options" value="true">
+                          <span>{{_ "admin.user.option1"}}</span>
+                      </label>
+                      <label id="blockedOption2Admin" class="btn btn-default blocked-false {{#if blockedUser false}}active{{/if}}" style="width:100px">
+                          <input type="radio" name="options" value="false">
+                          <span>{{_ "admin.user.option2"}}</span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
-              <label id="editUserEditorLabelAdmin">Editor User</label>
-              <p>{{_ "admin.user.editortext"}}</p>
-              <div class="controls">
-                <div id="editUserEditorAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="editorOption1Admin" class="btn btn-default editor-true {{#if editorUser true}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="options" value="true">
-                      <span>{{_ "admin.user.option1"}}</span>
-                  </label>
-                  <label id="editorOption2Admin" class="btn btn-default editor-false {{#if editorUser false}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="options" value="false">
-                      <span>{{_ "admin.user.option2"}}</span>
-                  </label>
-                </div>
-              </div>
+                {{#if isInRole 'admin'}}
+                  <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
+                    <label id="editUserEditorLabelAdmin">Editor User</label>
+                    <p>{{_ "admin.user.editortext"}}</p>
+                    <div class="controls">
+                      <div id="editUserEditorAdmin" class="btn-group" data-toggle="buttons">
+                        <label id="editorOption1Admin" class="btn btn-default editor-true {{#if editorUser true}}active{{/if}}" style="width:100px">
+                          <input type="radio" name="options" value="true">
+                            <span>{{_ "admin.user.option1"}}</span>
+                        </label>
+                        <label id="editorOption2Admin" class="btn btn-default editor-false {{#if editorUser false}}active{{/if}}" style="width:100px">
+                            <input type="radio" name="options" value="false">
+                            <span>{{_ "admin.user.option2"}}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              {{/if}}
             </div>
           </div>
-        </div>
+        {{/if}}
         <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 10px">
           <h4>{{_ "admin.user.messageheader"}}</h4>
           <p>{{_ "admin.user.messagetext"}}</p>
@@ -161,8 +167,12 @@
       <div class="box-button-admin">
         <button id="userCancelAdmin" class="btn btn-default">{{_ "admin.user.cancel"}}</button>
         <button id="userSaveAdmin" class="btn btn-primary">{{_ "admin.user.save"}}</button>
-        <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.user.delete"}}</button>
-        <button id="userConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.user.confirm"}}</button>
+        {{#if isCurrentUser}}
+          {{#if isAdminUser}}
+            <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.user.delete"}}</button>
+            <button id="userConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.user.confirm"}}</button>
+          {{/if}}
+        {{/if}}
       </div>
     </div>
   </div>
