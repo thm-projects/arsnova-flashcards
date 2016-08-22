@@ -28,3 +28,11 @@ Template.admin_main.events({
     Router.go('home');
   }
 });
+
+Template.admin_main.helpers({
+  getUsername: function() {
+    if (Meteor.user()) {
+      return Meteor.user().profile.name;
+    }
+  }
+});

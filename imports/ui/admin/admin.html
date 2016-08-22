@@ -20,6 +20,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
+            {{#if currentUser}}
+              <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
+            {{/if}}
             <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
           </ul>
         </div>
