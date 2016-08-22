@@ -208,18 +208,6 @@ Template.cardsetForm.onRendered(function() {
   });
 });
 
-Template.cardsetForm.helpers({
-  'visible': function(visible) {
-    return Cardsets.findOne(this._id).visible === visible;
-  },
-  'ratings': function(ratings) {
-    return Cardsets.findOne(this._id).ratings === ratings;
-  },
-  'kind': function(kind) {
-    return Cardsets.findOne(this._id).kind === kind;
-  }
-});
-
 Template.cardsetForm.events({
   'keyup #editSetName': function() {
     $('#editSetNameLabel').css('color', '');
