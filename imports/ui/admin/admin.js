@@ -26,6 +26,11 @@ Template.admin_main.events({
     event.preventDefault();
     Meteor.logout();
     Router.go('home');
+  },
+  'click #logout_access_denied_admin': function(event) {
+    event.preventDefault();
+    Meteor.logout();
+    Router.go('home');
   }
 });
 
