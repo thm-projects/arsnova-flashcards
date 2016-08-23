@@ -41,14 +41,10 @@ Template.admin_user.helpers({
     }
   },
   getOnlineStatus: function(status) {
-    if (status) {
-      if (status === true) {
-        return "Online";
-      } else {
-        return "Offline";
-      }
+    if (status === true) {
+      return "Online";
     } else {
-      return null;
+      return "Offline";
     }
   },
   getLastLogin: function(lastLogin) {
