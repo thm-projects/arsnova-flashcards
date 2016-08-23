@@ -35,13 +35,7 @@ Template.admin_cardsets.helpers({
             return TAPi18n.__('deletedUser');
           }
           else {
-            if (!Roles.userIsInRole(object.owner, 'admin')) {
-              return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
-            } else if (Meteor.user()._id === object.owner) {
-              return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
-            } else {
-              return value;
-            }
+            return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
           }
         }},
         { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {

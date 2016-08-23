@@ -44,14 +44,7 @@ Template.admin_card.helpers({
         return false;
       }
       else {
-        if (!Roles.userIsInRole(cardset.owner, 'admin')) {
-          return true;
-        } else if (Meteor.user()._id === cardset.owner) {
-          return true;
-        }
-        else {
-          return false;
-        }
+        return true;
       }
     }
   },

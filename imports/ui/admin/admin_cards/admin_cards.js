@@ -65,14 +65,7 @@ Template.admin_cards.helpers({
               return TAPi18n.__('deletedUser');
             }
             else {
-              if (!Roles.userIsInRole(cardset.owner, 'admin')) {
-                return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
-              }
-              else if (Meteor.user()._id === cardset.owner) {
-                return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
-              } else {
-                return cardset.username;
-              }
+              return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
             }
           }
         }},

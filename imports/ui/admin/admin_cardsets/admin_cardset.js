@@ -42,14 +42,7 @@ Template.admin_cardset.helpers({
       return false;
     }
     else {
-      if (!Roles.userIsInRole(owner, 'admin')) {
-        return true;
-      } else if (Meteor.user()._id === owner) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return true;
     }
   },
   cardListCardsetAdmin: function () {
