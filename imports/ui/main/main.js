@@ -24,6 +24,11 @@ Template.main.events({
     Meteor.logout();
     Router.go('home');
   },
+  'click #logout_access_denied': function(event) {
+    event.preventDefault();
+    Meteor.logout();
+    Router.go('home');
+  },
   'keyup #input-search': function(event) {
     event.preventDefault();
     Session.set("searchValue", $(event.currentTarget).val());

@@ -1,77 +1,81 @@
 <template name="admin_main">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+  {{#if isInRole 'admin, editor'}}
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{pathFor route='home'}}">
-            <img src="/img/logo.png" alt="THMcards Logo" />
-          </a>
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{pathFor route='home'}}">
+              <img src="/img/logo.png" alt="THMcards Logo" />
+            </a>
 
-        </div>
+          </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-            {{#if currentUser}}
-              <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
-            {{/if}}
-            <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
-          </ul>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
+              {{#if currentUser}}
+                <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
+              {{/if}}
+              <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
+            </ul>
+          </div>
         </div>
+     </div>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <div id="admin-sidebar-wrapper">
+
+        <ul class="sidebar-nav">
+          <li>
+            <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}" href="{{pathFor route='admin_dashboard'}}">
+              <i class="fa fa-dashboard"></i>
+              <span>{{_ "admin.dashboard"}}</span>
+            </a>
+          </li>
+          <li>
+            <a class="{{#if isActiveRoute regex='admin_cardsets|admin_cardset'}}active{{/if}}" href="{{pathFor route='admin_cardsets'}}">
+              <i class="fa fa-folder-open"></i>
+              <span>{{_ "admin.cardsets"}}</span>
+            </a>
+          </li>
+          <li>
+            <a class="{{#if isActiveRoute regex='adminCards|adminCard'}}active{{/if}}" href="{{pathFor route='adminCards'}}">
+              <i class="fa fa-file"></i>
+              <span>{{_ "admin.cards"}}</span>
+            </a>
+          </li>
+          <li>
+            <a class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}" href="{{pathFor route='admin_users'}}">
+              <i class="fa fa-users"></i>
+              <span>{{_ "admin.users"}}</span>
+            </a>
+          </li>
+          <li>
+            <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}" href="{{pathFor route='admin_notifications'}}">
+              <i class="fa fa-bell"></i>
+              <span>{{_ "admin.notifications"}}</span>
+            </a>
+          </li>
+        </ul>
       </div>
-   </div>
-  </nav>
+      <!-- /#sidebar-wrapper -->
 
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <div id="admin-sidebar-wrapper">
-
-      <ul class="sidebar-nav">
-        <li>
-          <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}" href="{{pathFor route='admin_dashboard'}}">
-            <i class="fa fa-dashboard"></i>
-            <span>{{_ "admin.dashboard"}}</span>
-          </a>
-        </li>
-        <li>
-          <a class="{{#if isActiveRoute regex='admin_cardsets|admin_cardset'}}active{{/if}}" href="{{pathFor route='admin_cardsets'}}">
-            <i class="fa fa-folder-open"></i>
-            <span>{{_ "admin.cardsets"}}</span>
-          </a>
-        </li>
-        <li>
-          <a class="{{#if isActiveRoute regex='adminCards|adminCard'}}active{{/if}}" href="{{pathFor route='adminCards'}}">
-            <i class="fa fa-file"></i>
-            <span>{{_ "admin.cards"}}</span>
-          </a>
-        </li>
-        <li>
-          <a class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}" href="{{pathFor route='admin_users'}}">
-            <i class="fa fa-users"></i>
-            <span>{{_ "admin.users"}}</span>
-          </a>
-        </li>
-        <li>
-          <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}" href="{{pathFor route='admin_notifications'}}">
-            <i class="fa fa-bell"></i>
-            <span>{{_ "admin.notifications"}}</span>
-          </a>
-        </li>
-      </ul>
+      <div id='admin-content-wrapper'>
+        {{> yield}}
+      </div>
     </div>
-    <!-- /#sidebar-wrapper -->
-
-    <div id='admin-content-wrapper'>
-      {{> yield}}
-    </div>
-  </div>
+  {{else}}
+    Access Denied!
+  {{/if}}
 </template>
