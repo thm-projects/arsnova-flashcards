@@ -56,7 +56,7 @@ Template.registerHelper("getDate", function() {
 Template.registerHelper("getCategories", function() {
   return Categories.find({}, {
     sort: {
-      name: 1
+      _id: 1
     }
   });
 });
