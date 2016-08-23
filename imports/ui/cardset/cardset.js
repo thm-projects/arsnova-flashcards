@@ -575,16 +575,33 @@ Template.cardsetConfirmForm.events({
  * ############################################################################
  */
 
- Template.cardsetPublicateForm.rendered = function(){
-    Session.set('kind', this.kind);
- }
+Template.cardsetPublicateForm.onRendered(function() {
+  $('#publicateModal').on('hidden.bs.modal', function() {
+    var cardset = Cardsets.findOne(Session.get('cardsetId'));
+
+    $('#publicateKind > label').removeClass('active');
+    $('#publicateKind > label > input').filter(function() {
+        return this.value === cardset.kind
+    }).parent().addClass('active');
+    Session.set('kind', cardset.kind);
+
+    $('#publicatePrice').val(cardset.price);
+  });
+});
 
 Template.cardsetPublicateForm.helpers({
   kindWithPrice: function(){
-    return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
+    if (Session.get('kind') === undefined) {
+      return (this.kind === 'edu' || this.kind === 'pro');
+    } else {
+      return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
+    }
   },
   kindIsActive: function(kind) {
     return kind === this.kind;
+  },
+  priceIsSelected: function(price) {
+    return price === this.price ? 'selected' : '';
   }
 });
 
