@@ -74,7 +74,12 @@
                       {{/if}}
                       <strong>Karten:</strong> {{countCards this._id}}
                       <br>
-                      <strong>Ersteller:</strong> <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
+                      <strong>Ersteller:</strong>
+                      {{#if userExists username owner}}
+                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{getUsername username owner}}</a>
+                      {{else}}
+                        {{getUsername username owner}}
+                      {{/if}}
                       <br>
                       <strong>Datum:</strong> {{getDate}}
                   </div>

@@ -9,7 +9,7 @@ export const Cards = new Mongo.Collection("cards");
 
 if (Meteor.isServer) {
   Meteor.publish("cards", function(cardset_id) {
-    if (Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Cards.find();
     }
     else if (this.userId)
@@ -61,7 +61,7 @@ Meteor.methods({
     Meteor.call('checkLvl');
   },
   deleteCard: function(card_id) {
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       // Make sure the user is logged in and is authorized
       var card = Cards.findOne(card_id);
       var cardset = Cardsets.findOne(card.cardset_id);
@@ -77,7 +77,7 @@ Meteor.methods({
     });
   },
   updateCard: function(card_id, front, back) {
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       // Make sure the user is logged in and is authorized
       var card = Cards.findOne(card_id);
       var cardset = Cardsets.findOne(card.cardset_id);

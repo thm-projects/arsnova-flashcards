@@ -8,7 +8,7 @@ export const Cardsets = new Mongo.Collection("cardsets");
 
 if (Meteor.isServer) {
   Meteor.publish("cardsets", function() {
-    if (Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Cardsets.find();
     }
     else if (Roles.userIsInRole(this.userId, 'lecturer')) {
@@ -119,7 +119,7 @@ Meteor.methods({
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
@@ -134,7 +134,7 @@ Meteor.methods({
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
@@ -152,7 +152,7 @@ Meteor.methods({
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
@@ -171,7 +171,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(id);
 
 
-    if (!Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       if (!Roles.userIsInRole(this.userId, 'lecturer')) {
         if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
           throw new Meteor.Error("not-authorized");

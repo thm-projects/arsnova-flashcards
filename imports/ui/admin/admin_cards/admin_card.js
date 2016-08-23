@@ -16,13 +16,81 @@ import './admin_card.html';
  */
 
 Template.admin_card.helpers({
-  getUsername: function(cardset_id) {
-    var cardset = Cardsets.findOne({ _id: cardset_id});
-    return cardset.username;
+  getUsernameCard: function(cardset_id) {
+    if (cardset_id) {
+      var cardset = Cardsets.findOne({ _id: cardset_id });
+
+      if (Roles.userIsInRole(cardset.owner, 'blocked')) {
+        return TAPi18n.__('blockedUser');
+      }
+      else if (cardset.username === 'deleted') {
+        return TAPi18n.__('deletedUser');
+      }
+      else {
+        return cardset.username;;
+      }
+    } else {
+      return null;
+    }
+  },
+  userExistsCard: function(cardset_id) {
+    if (cardset_id) {
+      var cardset = Cardsets.findOne({ _id: cardset_id });
+
+      if (Roles.userIsInRole(cardset.owner, 'blocked')) {
+        return false;
+      }
+      else if (cardset.username === 'deleted') {
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
   },
   getCardsetname: function(cardset_id) {
-    var cardset = Cardsets.findOne({ _id: cardset_id});
-    return cardset.name;
+    if (cardset_id) {
+      var cardset = Cardsets.findOne({ _id: cardset_id });
+      return cardset.name;
+    } else {
+      return null;
+    }
+  },
+  getUserId: function(cardset_id) {
+    var cardset = Cardsets.findOne({ _id: cardset_id });
+    return cardset.owner;
+  },
+  getFront: function(front) {
+    if (front) {
+      Session.set('frontText', front);
+      if (front !== "") {
+        Meteor.promise("convertMarkdown", front)
+          .then(function(rendered) {
+            $("#frontAdmin .md-footer").html(rendered);
+          })
+          .catch(function(error) {
+            throw new Meteor.Error(error, "Can't convert to Markdown");
+          });
+      }
+    } else {
+      return null;
+    }
+  },
+  getBack: function(back) {
+    if (back) {
+      Session.set('backText', back);
+      if (back !== "") {
+        Meteor.promise("convertMarkdown", back)
+          .then(function(rendered) {
+            $("#backAdmin .md-footer").html(rendered);
+          })
+          .catch(function(error) {
+            throw new Meteor.Error(error, "Can't convert to Markdown");
+          });
+      }
+    } else {
+      return null;
+    }
   }
 });
 
@@ -112,18 +180,6 @@ Template.admin_card.rendered = function() {
     ]
   });
 
-  var front = String($('#frontAdmin').data('content'));
-  Session.set('frontText', front);
-  if (front !== "") {
-    Meteor.promise("convertMarkdown", front)
-      .then(function(rendered) {
-        $("#frontAdmin .md-footer").html(rendered);
-      })
-      .catch(function(error) {
-        throw new Meteor.Error(error, "Can't convert to Markdown");
-      });
-  }
-
   $("#editCardBackAdmin").markdown({
     autofocus: false,
     hiddenButtons: ["cmdPreview", "cmdImage"],
@@ -156,18 +212,6 @@ Template.admin_card.rendered = function() {
       }]
     ]
   });
-
-  var back = String($('#backAdmin').data('content'));
-  Session.set('backText', back);
-  if (back !== "") {
-    Meteor.promise("convertMarkdown", back)
-      .then(function(rendered) {
-        $("#backAdmin .md-footer").html(rendered);
-      })
-      .catch(function(error) {
-        throw new Meteor.Error(error, "Can't convert to Markdown");
-      });
-  }
 };
 
 /**

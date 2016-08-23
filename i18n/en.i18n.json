@@ -385,15 +385,20 @@
     "name": "Name",
     "front": "Front",
     "back": "Back",
-    "roles": "Roles",
+    "admin": "Admin",
+    "pro": "Pro",
+    "university": "Edu",
+    "lecturer": "Lecturer",
     "mail": "Mail",
     "joined": "Joined",
+    "blocked": "Blocked",
     "created": "Created At",
     "edit": "Edit",
     "delete": "Delete",
     "edituser": "Edit user",
     "editcardset": "Edit cardset",
     "editcard": "Edit card",
+    "deleteuser": "Delete user",
     "deletecard": "Delete card",
     "deletecardset": "Delete cardset",
     "notifyuser": "Notify user",
@@ -407,6 +412,10 @@
       "cards": {
         "title": "Delete card",
         "text": "Do you really want to delete this card?"
+      },
+      "users": {
+        "title": "Delete user",
+        "text": "Do you really want to delete this user?"
       },
 
       "cancel": "Cancel"
@@ -422,13 +431,8 @@
       "name": "Name",
       "description": "Description",
     	"category": "Category",
-    	"visibility": "Visible for",
-    	"visibilityoption1": "Private",
-    	"visibilityoption2": "Public",
-    	"rating": "Ratings",
-    	"ratingoption1": "allow",
-    	"ratingoption2": "disable",
       "kind": "Kind",
+      "price": "Retail price",
       "cancel": "Cancel",
       "save": "Save deck of cards",
       "delete": "Delete deck of cards",
@@ -453,6 +457,39 @@
       "front_required":"The front field is required!",
       "backt_required":"The back field is required!",
       "text_max": "No more than 10000 characters allowed!"
+    },
+
+    "user": {
+      "header": "User",
+      "edit": "Edit",
+      "info": "User info",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Joined:",
+      "lvl": "Level:",
+      "visible": "Public profile",
+      "option1": "Yes",
+      "option2": "No",
+      "email": "Email",
+      "status": "User status",
+      "online": "Status:",
+      "lastLogin": "Last login:",
+      "clock": "",
+      "roles": "User roles",
+      "blocked": "Blocked user",
+      "blockedtext": "Do you want to deny the access to THMcards for this user?",
+      "editortext": "Do you want to give this user editor rights? As an editor user the user can access the admin panel and is allowed to edit content of THMcards.",
+      "messageheader": "Message user",
+      "messagetext": "Send a message to this user.",
+      "messagebutton": "Send message",
+      "cancel": "Cancel",
+      "save": "Save user",
+      "delete": "Delete user",
+      "confirm": "Sure?",
+      "email_invalid": "Invalid Email"
     }
-  }
+  },
+
+  "blockedUser": "Blocked User",
+  "deletedUser": "Deleted User"
 }

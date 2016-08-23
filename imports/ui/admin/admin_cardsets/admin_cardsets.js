@@ -5,6 +5,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../../api/cardsets.js';
+import { allUsers } from '../../../api/allusers.js';
 
 import './admin_cardsets.html';
 
@@ -23,10 +24,23 @@ Template.admin_cardsets.helpers({
   tableSettings: function () {
     return {
       showNavigationRowsPerPage: false,
+      rowsPerPage: 20,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
-        { key: 'username', label: TAPi18n.__('admin.users') },
-        { key: 'date', label: TAPi18n.__('admin.created') },
+        { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {
+          if (Roles.userIsInRole(object.owner, 'blocked')) {
+            return TAPi18n.__('blockedUser');
+          }
+          else if (value === 'deleted') {
+            return TAPi18n.__('deletedUser');
+          }
+          else {
+            return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
+          }
+        }},
+        { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {
+            return moment(value).locale(getUserLanguage()).format('LL');
+        }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
         }},
@@ -50,6 +64,10 @@ Template.admin_cardsets.events({
   'click #linkToAdminCardset': function(event) {
     var cardsetid = $(event.currentTarget).data("cardsetid");
     Router.go('admin_cardset', { _id: cardsetid });
+  },
+  'click #linkToAdminCardsetUser': function(event) {
+    var userid = $(event.currentTarget).data("userid");
+    Router.go('admin_user', { _id: userid });
   }
 });
 

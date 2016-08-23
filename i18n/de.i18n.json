@@ -384,15 +384,20 @@
     "name": "Name",
     "front": "Vorderseite",
     "back": "Rückseite",
-    "roles": "Rollen",
+    "admin": "Admin",
+    "pro": "Pro",
+    "university": "Edu",
+    "lecturer": "Dozent",
     "mail": "Mail",
     "joined": "Beigetreten",
+    "blocked": "Blockiert",
     "created": "Erstelldatum",
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "edituser": "Benutzer bearbeiten",
     "editcardset": "Kartensatz bearbeiten",
     "editcard": "Karte bearbeiten",
+    "deleteuser": "Benutzer löschen",
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen",
@@ -406,6 +411,10 @@
       "cards": {
         "title": "Karte löschen",
         "text": "Wollen Sie diese Karte wirklich löschen?"
+      },
+      "users": {
+        "title": "Benutzer löschen",
+        "text": "Wollen Sie diesen Benutzer wirklich löschen?"
       },
 
       "cancel": "Abbrechen"
@@ -421,13 +430,8 @@
       "name": "Name",
       "description": "Beschreibung",
       "category": "Kategorie",
-      "visibility": "Sichtbar für",
-      "visibilityoption1": "mich",
-      "visibilityoption2": "alle",
-      "rating": "Bewertungen",
-      "ratingoption1": "erlauben",
-      "ratingoption2": "abschalten",
       "kind": "Art",
+      "price": "Verkaufspreis",
       "cancel": "Abbrechen",
       "save": "Kartensatz speichern",
       "delete": "Kartensatz löschen",
@@ -452,6 +456,39 @@
       "front_required":"Bitte Vorderseite ausfüllen!",
       "back_required":"Bitte Rückseite ausfüllen!",
       "text_max": "Es sind nur 10000 Zeichen erlaubt!"
+    },
+
+    "user": {
+      "header": "Benutzer",
+      "edit": "Bearbeite",
+      "info": "Benutzer Informationen",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Beigetreten:",
+      "lvl": "Level:",
+      "visible": "Profil öffentlich",
+      "option1": "Ja",
+      "option2": "Nein",
+      "email": "Email",
+      "status": "Benutzer Status",
+      "online": "Status:",
+      "lastLogin": "Letzter Login:",
+      "clock": " Uhr",
+      "roles": "Benutzerrollen",
+      "blocked": "Benutzer blockieren",
+      "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
+      "editortext": "Wollen Sie dem Benutzer Editor-Rechte geben? Als Editor User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "messageheader": "Benutzer benachrichtigen",
+      "messagetext": "Senden Sie dem Benutzer eine Benachrichtigung.",
+      "messagebutton": "Nachricht senden",
+      "cancel": "Abbrechen",
+      "save": "Benutzer speichern",
+      "delete": "Benutzer löschen",
+      "confirm": "Sicher?",
+      "email_invalid": "Ungültige Email-Adresse"
     }
-  }
+  },
+
+  "blockedUser": "Blockierter Benutzer",
+  "deletedUser": "Gelöschter Benutzer"
 }

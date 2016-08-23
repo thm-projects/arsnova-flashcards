@@ -10,4 +10,29 @@
       {{> reactiveTable collection=userListAdmin settings=tableSettings}}
     </div>
   </div>
+  {{> userConfirmFormAdmin}}
+</template>
+
+<template name="userConfirmFormAdmin">
+  <div class="modal fade" id="userConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="userConfirmModalTitleAdmin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="userConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.users.title"}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{_ "admin.confirm-form.users.text"}}</p>
+          <br />
+          <hr />
+
+          <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.users.title"}}</button>
+          <button id="userCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>

@@ -16,23 +16,33 @@ import './admin_cardset.html';
  * ############################################################################
  */
 
+ Template.admin_cardset.onRendered(function() {
+    Session.set('kind', this.kind);
+ });
+
 Template.admin_cardset.helpers({
-  'visible': function(visible) {
-    if(Cardsets.findOne(this._id) !== undefined)
-    {
-      return Cardsets.findOne(this._id).visible === visible;
-    }
+  kindIsActive: function(kind) {
+    return kind === this.kind;
   },
-  'ratings': function(ratings) {
-    if(Cardsets.findOne(this._id) !== undefined)
-    {
-      return Cardsets.findOne(this._id).ratings === ratings;
+  kindWithPrice: function(){
+    if (Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
+      return true;
+    } else if (this.kind === 'edu' || this.kind === 'pro') {
+      return true;
+    } else {
+      return false;
     }
+    return (this.kind === 'edu' || this.kind === 'pro');
   },
-  'kind': function(kind) {
-    if(Cardsets.findOne(this._id) !== undefined)
-    {
-      return Cardsets.findOne(this._id).kind === kind;
+  userExistsCardset: function(username, owner) {
+    if (Roles.userIsInRole(owner, 'blocked')) {
+      return false;
+    }
+    else if (username === 'deleted') {
+      return false;
+    }
+    else {
+      return true;
     }
   },
   cardListCardsetAdmin: function () {
@@ -80,6 +90,10 @@ Template.admin_cardset.helpers({
 });
 
 Template.admin_cardset.events({
+  'change #publicateKindAdmin': function(evt, tmpl){
+    var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+    Session.set('kind', kind);
+  },
   'click #cardsetSaveAdmin ': function(evt, tmpl) {
     if ($('#editCardsetNameAdmin').val() === "") {
       $('#editCardsetNameLabelAdmin').css('color', '#b94a48');
@@ -102,11 +116,34 @@ Template.admin_cardset.events({
       }
       var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
-      var visible = ('true' === tmpl.find('#editCardsetVisibilityAdmin > .active > input').value);
-      var ratings = ('true' === tmpl.find('#editCardsetRatingAdmin > .active > input').value);
-      var kind = tmpl.find('#editCardsetKindAdmin > .active > input').value;
+      var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+      var price = 0;
+      var visible = true;
 
-      Meteor.call("updateCardset", this._id, name, category, description, visible, ratings, kind);
+      if (kind === 'edu' || kind === 'pro') {
+        if (tmpl.find('#publicatePriceAdmin') !== null) {
+          price = tmpl.find('#publicatePriceAdmin').value;
+        }
+        else {
+          price = this.price;
+        }
+      }
+      if (kind === 'personal') {
+        visible = false;
+      }
+      if (kind === 'pro') {
+        visible = false;
+        Meteor.call("publicateProRequest", this._id, true, visible);
+
+        var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
+        var type = "Pro-Überprüfung";
+        var target = "lecturer";
+
+        Meteor.call("addNotification", target, type, text);
+      }
+
+      Meteor.call("publicateCardset", this._id, kind, price, visible);
+      Meteor.call("updateCardset", this._id, name, category, description);
       window.history.go(-1);
     }
   },

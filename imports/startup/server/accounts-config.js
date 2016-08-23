@@ -34,7 +34,7 @@ Meteor.users.after.insert(function (userId, doc) {
   {
     if(doc.services.cas.id === 'mzmn17')
     {
-      Roles.addUsersToRoles(doc._id, ['admin-user']);
+      Roles.addUsersToRoles(doc._id, ['standard', 'university', 'admin']);
     }
     else
     {

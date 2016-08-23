@@ -5,7 +5,7 @@ export const Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isServer) {
   Meteor.publish("notifications", function() {
-    if (Roles.userIsInRole(this.userId, 'admin-user')) {
+    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Notifications.find({target: {$in: [this.userId, "admin"]}});
     }
     else if (Roles.userIsInRole(this.userId, 'lecturer')) {
