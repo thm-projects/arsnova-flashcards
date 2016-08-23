@@ -36,23 +36,29 @@ Template.admin_user.helpers({
   getLvl: function() {
     if (this.lvl === undefined) {
       return 0;
-    }
-    else {
+    } else {
       return this.lvl;
     }
   },
-  getOnlineStatus: function() {
-    if (this.status.online === true) {
-      return "Online";
-    }
-    else {
-      return "Offline";
+  getOnlineStatus: function(status) {
+    if (status) {
+      if (status === true) {
+        return "Online";
+      } else {
+        return "Offline";
+      }
+    } else {
+      return null;
     }
   },
-  getLastLogin: function() {
-    return moment(this.status.lastLogin.date).locale(getUserLanguage()).format('LLL');
+  getLastLogin: function(lastLogin) {
+    if (lastLogin) {
+      return moment(this.status.lastLogin.date).locale(getUserLanguage()).format('LLL');
+    } else {
+      return null;
+    }
   },
-  cardsetListUserAdmin: function () {
+  cardsetListUserAdmin: function() {
     return Cardsets.find({ owner: this._id });
   },
   tableSettings: function() {
@@ -73,10 +79,11 @@ Template.admin_user.helpers({
       ]
     }
   },
-  'isVisible': function(visible) {
-    if(this._id !== undefined)
-    {
-      return Meteor.users.findOne(this._id).visible;
+  'isVisible': function(id) {
+    if (id) {
+      return Meteor.users.findOne(id).visible;
+    } else {
+      return null;
     }
   },
   proUser: function(value) {
@@ -94,26 +101,34 @@ Template.admin_user.helpers({
   editorUser: function(value) {
     return Roles.userIsInRole(this._id, 'editor') === value;
   },
-  isAdminUser: function() {
-    var currentUser = Meteor.user()._id;
+  isAdminUser: function(id) {
+    if (id) {
+      var currentUser = Meteor.user()._id;
 
-    if (Roles.userIsInRole(this._id, 'admin')) {
-      if (Roles.userIsInRole(currentUser, 'editor')) {
+      if (Roles.userIsInRole(id, 'admin')) {
+        if (Roles.userIsInRole(currentUser, 'editor')) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return null;
+    }
+  },
+  isCurrentUser: function(id) {
+    if(id) {
+      var currentUser = Meteor.user()._id;
+
+      if (id === currentUser) {
         return false;
       } else {
         return true;
       }
     } else {
-      return true;
-    }
-  },
-  isCurrentUser: function() {
-    var currentUser = Meteor.user()._id;
-
-    if (this._id === currentUser) {
-      return false;
-    } else {
-      return true;
+      return null;
     }
   }
 });

@@ -31,11 +31,11 @@
               <label id="editUserVisibleLabelAdmin">{{_ "admin.user.visible"}}</label>
               <div class="controls">
                 <div id="editUserVisibleAdmin" class="btn-group" data-toggle="buttons">
-                  <label id="profilepublicoption1Admin" class="btn btn-default profile-public {{#if isVisible}}active{{/if}}" style="width:100px">
+                  <label id="profilepublicoption1Admin" class="btn btn-default profile-public {{#if isVisible _id}}active{{/if}}" style="width:100px">
                     <input type="radio" name="options" value="public">
                       <span>{{_ "admin.user.option1"}}</span>
                   </label>
-                  <label id="profilepublicoption2Admin" class="btn btn-default profile-private {{#unless isVisible}}active{{/unless}}" style="width:100px">
+                  <label id="profilepublicoption2Admin" class="btn btn-default profile-private {{#unless isVisible _id}}active{{/unless}}" style="width:100px">
                       <input type="radio" name="options" value="private">
                       <span>{{_ "admin.user.option2"}}</span>
                   </label>
@@ -54,11 +54,11 @@
           <div class="panel-body">
             <div class="form-group">
               <label id="editUserOnlineLabelAdmin">{{_ "admin.user.online"}}</label>
-              {{getOnlineStatus}}
+              {{getOnlineStatus status.online}}
             </div>
             <div class="form-group">
               <label id="editUserLastLoginLabelAdmin">{{_ "admin.user.lastLogin"}}</label>
-              {{getLastLogin}}{{_ "admin.user.clock"}}
+              {{getLastLogin status.lastLogin}}{{_ "admin.user.clock"}}
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        {{#if isAdminUser}}
+        {{#if isAdminUser _id}}
           <div class="panel panel-default">
             <div class="panel-heading">{{_ "admin.user.roles"}}</div>
             <div class="panel-body">
@@ -119,7 +119,7 @@
                   </div>
                 </div>
               </div>
-              {{#if isCurrentUser}}
+              {{#if isCurrentUser _id}}
                 <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
                   <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
                   <p>{{_ "admin.user.blockedtext"}}</p>
