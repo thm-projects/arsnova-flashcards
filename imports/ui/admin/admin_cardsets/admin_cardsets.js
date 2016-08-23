@@ -24,6 +24,7 @@ Template.admin_cardsets.helpers({
   tableSettings: function () {
     return {
       showNavigationRowsPerPage: false,
+      rowsPerPage: 20,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
         { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {

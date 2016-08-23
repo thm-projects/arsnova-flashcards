@@ -58,7 +58,6 @@ Template.admin_user.helpers({
   tableSettings: function() {
     return {
       showFilter: false,
-      rowsPerPage: 5,
       showNavigationRowsPerPage: false,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },

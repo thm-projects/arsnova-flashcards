@@ -26,6 +26,7 @@ Template.admin_users.helpers({
   tableSettings: function () {
     return {
       showNavigationRowsPerPage: false,
+      rowsPerPage: 20,
       fields: [
         { key: '_id', label: TAPi18n.__('admin.admin'), cellClass:'admin', fn: function(value) {
           if (Roles.userIsInRole(value, 'admin') || Roles.userIsInRole(value, 'editor')) {
