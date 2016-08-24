@@ -108,12 +108,39 @@ Template.profileSettings.events({
  * ############################################################################
  */
 
+ Template.profileMembership.rendered = function(){
+   if ($('#subscribe-form').length) {
+     Meteor.call('getClientToken', function(error, clientToken) {
+      if (error) {
+        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+      } else {
+        braintree.setup(clientToken, "dropin", {
+          container: "subscribe-form",
+          onPaymentMethodReceived: function (response) {
+            var nonce = response.nonce;
+            var plan = Session.get('plan');
+            Meteor.call('subscribeToPlan', nonce, plan, function(error, success) {
+              if (error) {
+                throw new Meteor.Error(error.message, 'error');
+              } else {
+                Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+              }
+            });
+          }
+        });
+      }
+    });
+   }
+ }
+
 Template.profileMembership.events({
     "click #upgrade": function() {
-        Meteor.call("upgradeUser");
+        //Meteor.call("upgradeUser");
+        Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
-        Meteor.call("downgradeUser");
+        //Meteor.call("downgradeUser");
+        Session.set('plan', 'standard');
     },
     "click #sendLecturerRequest": function() {
         var name = $('#inputName').val();

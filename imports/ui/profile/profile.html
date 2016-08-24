@@ -406,55 +406,16 @@
         </div>
         <div class="panel-body">
             {{_ "billing.payment.desc"}}
-            <div>
-                <div class="radio">
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> Kreditkarte
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Paypal
-                    </label>
+            <form role="form">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="subscribe-form"></div>
+                  <div class="btn-group">
+                      <button type="submit" class="btn btn-success">Abbonieren</button>
+                  </div>
                 </div>
-                <div class="credit-card-box">
-                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
-                                    <div class="input-group">
-                                        <input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
-                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                    <input type="tel" class="form-control" name="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required />
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5 pull-right">
-                                <div class="form-group">
-                                    <label for="cardCVC">CV CODE</label>
-                                    <input type="tel" class="form-control" name="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
-                            </div>
-                        </div>
-                        <div class="row" style="display:none;">
-                            <div class="col-xs-12">
-                                <p class="payment-errors"></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              </div>
+            </form>
         </div>
     </div>
 </template>
@@ -488,7 +449,14 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button id="downgrade" class="btn btn-block btn-default" href="#">{{_ "billing.plan.back"}}</button>
+                                <form role="form">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div id="subscribe-form"></div>
+                                        <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
+                                    </div>
+                                  </div>
+                                </form>
                             {{else}}
                                 <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
                             {{/if}}
@@ -502,7 +470,7 @@
                         </div>
                         <div class="panel-body text-center">
                             <p class="lead">
-                                <h2>9€ / {{_ "billing.plan.month"}}</h2></p>
+                                <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
@@ -513,7 +481,14 @@
                             {{#if isInRole 'pro'}}
                                 <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
                             {{else}}
-                                <button id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+                                <form role="form">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div id="subscribe-form"></div>
+                                        <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+                                    </div>
+                                  </div>
+                                </form>
                             {{/if}}
                         </div>
                     </div>

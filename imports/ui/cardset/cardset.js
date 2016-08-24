@@ -40,18 +40,10 @@ Session.setDefault('cardSort', {
 
    Meteor.call('getClientToken', function(error, clientToken) {
     if (error) {
-      console.log(error);
+      throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
     } else {
       braintree.setup(clientToken, "dropin", {
         container: "payment-form",
-        paypal: {
-          singleUse: true,
-          amount: 2.99,
-          currency: 'EUR',
-          button: {
-            type: 'checkout'
-          }
-        },
         onPaymentMethodReceived: function (response) {
           var nonce = response.nonce;
 
@@ -171,9 +163,6 @@ Template.cardset.events({
   },
   'click #releaseCardset': function() {
     Meteor.call("publicateProRequest", this._id, false, true);
-  },
-  'click #buyCardset': function() {
-    Meteor.call("addPaid", this._id, this.price);
   }
 });
 

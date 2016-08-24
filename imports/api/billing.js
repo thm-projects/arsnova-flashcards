@@ -33,6 +33,48 @@ Meteor.methods({
     var response = generateToken(options);
     return response.clientToken;
   },
+  subscribeToPlan(nonce, plan) {
+    const customer = Meteor.wrapAsync(gateway.customer.create, gateway.customer);
+    const subscription = Meteor.wrapAsync(gateway.subscription.create, gateway.subscription);
+    const plans = Meteor.wrapAsync(gateway.plan.all, gateway.plan);
+    const plansResult = plans().plans;
+
+    const planId = plansResult.find((planObject) => {
+      return planObject.name === plan;
+    }).id;
+
+    const email = Meteor.user().email;
+
+    const customerResult = customer({
+      email,
+      paymentMethodNonce: nonce,
+    });
+
+    if (customerResult.success) {
+      const token = customerResult.customer.paymentMethods[0].token;
+      const subscriptionResult = subscription({
+        paymentMethodToken: token,
+        planId,
+      });
+
+      if (subscriptionResult.success) {
+        // Set / check the correct role for your user
+        const currentRoles = Roles.getRolesForUser(Meteor.userId());
+        currentRoles.forEach((role) => {
+          if (role === plan) {
+            throw new Meteor.Error('400', 'User already subscribed to this plan');
+          } else if (role === 'standard' || role === 'pro') {
+              Roles.removeUsersFromRoles(Meteor.userId(), role);
+          }
+        });
+
+        // add new subscription
+        Roles.addUsersToRoles(Meteor.userId(), plan);
+
+        return true;
+      }
+    }
+  },
   btCreateCustomer: function(){
     var user = Meteor.user();
 
