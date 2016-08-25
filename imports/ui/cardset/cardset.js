@@ -108,7 +108,7 @@ Template.cardset.helpers({
     return this.owner === Meteor.userId() || hasRole;
   },
   'isLecturerAndHasRequest': function() {
-    return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true)
+    return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
   }
 });
 
@@ -161,8 +161,19 @@ Template.cardset.events({
     $('#editSetCategory').text(categoryName);
     tmpl.find('#editSetCategory').value = categoryId;
   },
-  'click #releaseCardset': function() {
+  'click #acceptRequest': function() {
     Meteor.call("publicateProRequest", this._id, true, false, true);
+    Bert.alert('Kartensatz freigeschaltet', 'success', 'growl-bottom-right');
+  },
+  'click #declineRequest': function() {
+    var reason = $('#declineRequestReason').val();
+    if (reason === '') {
+      Bert.alert('Geben Sie eine Begründung für die Ablehnung der Anfrage an', 'danger', 'growl-bottom-right');
+    } else {
+      Meteor.call("publicateProRequest", this._id, false, false, false);
+      Meteor.call("addNotification", this.owner, "Kartensatzfreischaltung nicht stattgegeben", reason);
+      Bert.alert('Anfrage wurde abgelehnt!', 'info', 'growl-bottom-right');
+    }
   }
 });
 

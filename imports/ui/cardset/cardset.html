@@ -12,7 +12,13 @@
           <div class="col-md-12">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
-                      <a id="releaseCardset" class="btn btn-success" type="button">Kartensatz freigeben</a>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button id="acceptRequest" class="btn btn-success" type="button">Kartensatz freigeben</button>
+                        <button id="declineRequest" class="btn btn-danger" type="button">Kartensatz nicht freigeben</button>
+                      </span>
+                      <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
+                    </div>
                 </div>
             </div>
           </div>
