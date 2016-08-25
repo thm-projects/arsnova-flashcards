@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 import { Experience } from './experience.js';
+import { Cardsets } from './cardsets.js';
 
 export const Ratings = new Mongo.Collection("ratings");
 
@@ -23,6 +24,20 @@ Meteor.methods({
       user: owner,
       rating: rating
     });
+
+    Meteor.call("updateRelevance", cardset_id, function(error, relevance){
+      if(error){
+        console.log("error", error);
+      }
+      else {
+        Cardsets.update(cardset_id, {
+          $set: {
+            relevance: Number(relevance)
+          }
+        });
+      }
+    });
+
     Experience.insert({
       type: 4,
       value: 1,

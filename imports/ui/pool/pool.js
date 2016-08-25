@@ -64,6 +64,14 @@ Template.category.helpers({
       return '<i class="fa fa-sort-desc"></i>';
     }
   },
+  getSortRelevanceIcon: function() {
+    var sort = Session.get('poolSort');
+    if (sort.relevance === 1) {
+      return '<i class="fa fa-sort-asc"></i>';
+    } else if (sort.relevance === -1){
+      return '<i class="fa fa-sort-desc"></i>';
+    }
+  },
   getKind: function() {
     switch (this.kind) {
       case "free":
@@ -95,6 +103,15 @@ Template.category.events({
     }
     else {
       Session.set('poolSort', {username: 1});
+    }
+  },
+  'click #sortRelevance': function() {
+    var sort = Session.get('poolSort');
+    if (sort.relevance === 1) {
+      Session.set('poolSort', {relevance: -1});
+    }
+    else {
+      Session.set('poolSort', {relevance: 1});
     }
   }
 });
