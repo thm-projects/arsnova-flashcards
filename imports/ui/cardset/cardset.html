@@ -82,6 +82,12 @@
                       {{/if}}
                       <br>
                       <strong>Datum:</strong> {{getDate}}
+                      {{#if hasAmount}}
+                        <br><strong>Preis:</strong> {{getAmount}}
+                      {{/if}}
+                      {{#if isPurchased}}
+                        <br><strong>Gekauft am:</strong> {{getDateOfPurchase}}
+                      {{/if}}
                   </div>
               </div>
           </div>

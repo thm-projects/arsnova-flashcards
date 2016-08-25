@@ -413,6 +413,18 @@ Template.cardsetInfo.helpers({
     else {
       return true;
     }
+  },
+  hasAmount: function() {
+    return this.kind === 'pro' || this.kind === 'edu';
+  },
+  getAmount: function() {
+    return this.price + '€';
+  },
+  isPurchased: function() {
+    return Paid.findOne({cardset_id:this._id}) !== undefined;
+  },
+  getDateOfPurchase: function() {
+    return moment(Paid.findOne({cardset_id:this._id}).date).locale(getUserLanguage()).format('LL');
   }
 });
 
