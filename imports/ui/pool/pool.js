@@ -71,7 +71,7 @@ Template.category.helpers({
       case "edu":
         return '<span class="label label-success">Edu</span>';
       case "pro":
-        return '<span class="label label-warning">Pro</span>';
+        return '<span class="label label-info">Pro</span>';
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }

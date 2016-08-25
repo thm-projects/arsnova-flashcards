@@ -380,13 +380,13 @@ Template.cardsetInfo.helpers({
   getKind: function() {
     switch (this.kind) {
       case "personal":
-        return '<span class="label label-info">Private</span>';
+        return '<span class="label label-warning">Private</span>';
       case "free":
         return '<span class="label label-default">Free</span>';
       case "edu":
         return '<span class="label label-success">Edu</span>';
       case "pro":
-        return '<span class="label label-warning">Pro</span>';
+        return '<span class="label label-info">Pro</span>';
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
