@@ -443,11 +443,12 @@ Template.cardsetInfo.events({
     var cardset_id = Template.parentData(1)._id;
     var rating = $('#rating').data('userrating');
     var count = Ratings.find({
-      cardset_id: this._id,
+      cardset_id: cardset_id,
       user: Meteor.userId()
     }).count();
     if (count === 0) {
-      Meteor.call("addRating", cardset_id, rating);
+      var cardset = Cardsets.findOne({_id: cardset_id});
+      Meteor.call("addRating", cardset_id, cardset.owner, rating);
     }
   },
   'click #exportCardsBtn': function() {

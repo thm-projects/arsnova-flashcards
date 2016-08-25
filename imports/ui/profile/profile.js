@@ -373,6 +373,8 @@ Template.profileBadges.helpers({
         return streber(rank) >= 100;
       case 4:
         return wohltaeter(rank) >= 100;
+      case 5:
+        return bestseller(rank) >= 100;
       default:
         return false;
     }
@@ -389,6 +391,8 @@ Template.profileBadges.helpers({
         return streber(rank);
       case 4:
         return wohltaeter(rank);
+      case 5:
+        return bestseller(rank);
       default:
         return 0;
     }
@@ -397,7 +401,7 @@ Template.profileBadges.helpers({
 
 function kritiker(rank) {
   var ratings = Ratings.find({
-    user: Session.get("user")
+    user: Meteor.userId()
   }).count();
 
   var badge = Badges.findOne("1");
@@ -415,7 +419,7 @@ function kritiker(rank) {
 
 function krone(rank) {
   var cardsets = Cardsets.find({
-    owner: Session.get("user")
+    owner: Meteor.userId()
   });
 
   var count = 0;
@@ -449,7 +453,7 @@ function krone(rank) {
 }
 
 function stammgast(rank) {
-    var user = Meteor.users.findOne(Session.get("user")).daysInRow;
+    var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
 
     var badge = Badges.findOne("3");
     switch (rank) {
@@ -466,7 +470,7 @@ function stammgast(rank) {
 
 function streber(rank) {
   var learned = Learned.find({
-    user_id: Session.get("user")
+    user_id: Meteor.userId()
   }).count();
 
   var badge = Badges.findOne("4");
@@ -484,7 +488,7 @@ function streber(rank) {
 
 function wohltaeter(rank) {
   var cardsets = Cardsets.find({
-    owner: Session.get("user"),
+    owner: Meteor.userId(),
     visible: true
   });
 
@@ -507,6 +511,28 @@ function wohltaeter(rank) {
       return count / badge.rank2 * 100;
     case 1:
       return count / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
+
+function bestseller(rank) {
+  var cardsetsIds = Cardsets.find({
+    owner: Meteor.userId()
+  }).map(function (cardset) {return cardset._id; });
+
+  var learner = Learned.find({
+    cardset_id: {$in: cardsetsIds}
+  }).count();
+
+  var badge = Badges.findOne("6");
+  switch (rank) {
+    case 3:
+      return learner / badge.rank3 * 100;
+    case 2:
+      return learner / badge.rank2 * 100;
+    case 1:
+      return learner / badge.rank1 * 100;
     default:
       return 0;
   }

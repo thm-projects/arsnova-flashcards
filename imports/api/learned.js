@@ -1,12 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
+import { Cardsets } from './cardsets.js';
+
 export const Learned = new Mongo.Collection("learned");
 
 if (Meteor.isServer) {
   Meteor.publish("learned", function() {
     if (this.userId) {
-      return Learned.find({user_id: this.userId});
+      var cardsetsIds = Cardsets.find({
+        owner: this.userId
+      }).map(function (cardset) {return cardset._id; });
+
+      var learned = Learned.find({
+        $or: [{user_id: this.userId},{cardset_id: {$in: cardsetsIds}}]
+      });
+      return learned;
     }
   });
 }

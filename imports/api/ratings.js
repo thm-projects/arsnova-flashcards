@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  addRating: function(cardset_id, rating) {
+  addRating: function(cardset_id, owner, rating) {
     // Make sure the user is logged in
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -20,7 +20,7 @@ Meteor.methods({
 
     Ratings.insert({
       cardset_id: cardset_id,
-      user: Meteor.userId(),
+      user: owner,
       rating: rating
     });
     Experience.insert({
