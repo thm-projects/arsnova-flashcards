@@ -315,6 +315,8 @@ Template.profileXp.helpers({
     return getLvl() + 1;
   },
   getXp: function() {
+    Meteor.call('checkLvl');
+
     var level = getLvl() + 1;
     var points = xpForLevel(level);
     var required = points - Session.get("totalXp");
