@@ -148,9 +148,16 @@
       "header": "Zahlungsmethode",
       "desc": "Bitte geben Sie Ihre bevorzugte Zahlungsmethode an."
     },
+    "revenue": {
+      "header": "Umsatzhistorie",
+      "empty": "Sie haben bisher noch keine Einnahmen generiert!",
+      "boughtFrom": "Gekauft von",
+      "for": "für",
+      "at": "am"
+    },
     "purchases": {
       "header": "Zahlungshistorie",
-      "empty": "Sie haben bisher noch keine Rechnungen!",
+      "empty": "Sie haben bisher noch keine Käufe abgeschlossen!",
       "boughtFor": "Gekauft für",
       "at": "am"
     }

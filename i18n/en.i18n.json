@@ -148,6 +148,13 @@
       "header": "Payment Methods",
       "desc": "Please enter your preferred payment method below."
     },
+    "revenue": {
+      "header": "Revenue History",
+      "empty": "You have not generated any revenue yet!",
+      "boughtFrom": "Bought from",
+      "for": "for",
+      "at": "at"
+    },
     "purchases": {
       "header": "Payment History",
       "empty": "You don't have any invoices yet!",

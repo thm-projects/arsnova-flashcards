@@ -188,6 +188,13 @@ Template.profileBilling.helpers({
     getInvoices: function() {
       return Paid.find({user_id: Meteor.userId()});
     },
+    getRevenue: function() {
+      var cardsetsIds = Cardsets.find({
+        owner: Meteor.userId()
+      }).map(function (cardset) {return cardset._id; });
+
+      return Paid.find({cardset_id: {$in: cardsetsIds}});
+    },
     getCardsetName: function(cardset_id) {
       return Cardsets.findOne(cardset_id).name;
     }
