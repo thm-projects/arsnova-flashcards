@@ -38,32 +38,34 @@ Session.setDefault('cardSort', {
    Meteor.subscribe("cards", Router.current().params._id);
    Session.set('cardsetId', Router.current().params._id);
 
-   Meteor.call('getClientToken', function(error, clientToken) {
-    if (error) {
-      throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
-    } else {
-      braintree.setup(clientToken, "dropin", {
-        container: "payment-form",
-        onPaymentMethodReceived: function (response) {
-          var nonce = response.nonce;
+   if ($('#payment-form').length) {
+     Meteor.call('getClientToken', function(error, clientToken) {
+      if (error) {
+        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+      } else {
+        braintree.setup(clientToken, "dropin", {
+          container: "payment-form",
+          onPaymentMethodReceived: function (response) {
+            var nonce = response.nonce;
 
-          Meteor.call('btCreateCustomer', function(error, success) {
-            if (error) {
-              throw new Meteor.Error('customer-creation-failed');
-            } else {
-              Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
-                if (error) {
-                  throw new Meteor.Error('transaction-creation-failed');
-                } else {
-                  Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-  });
+            Meteor.call('btCreateCustomer', function(error, success) {
+              if (error) {
+                throw new Meteor.Error('customer-creation-failed');
+              } else {
+                Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
+                  if (error) {
+                    throw new Meteor.Error('transaction-creation-failed');
+                  } else {
+                    Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
  }
 
 Template.cardset.helpers({
