@@ -138,8 +138,9 @@
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
       "subscribe": "Abonniere die Pro-Version jetzt!",
-      "lecturer": "Jetzt anfragen um alle Vorteile eines Dozenten zu erhalten.",
-      "send": "Anfrage versenden",
+      "lecturer": "Dozent",
+      "send": "Anfrage versenden um alle Vorteile eines Dozenten zu erhalten.",
+      "lecturerActivatet": "Sie sind als Dozent freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
