@@ -117,13 +117,14 @@ Template.profileSettings.events({
         braintree.setup(clientToken, "dropin", {
           container: "subscribe-form",
           onPaymentMethodReceived: function (response) {
+            Bert.alert('In progress!', 'info', 'growl-bottom-right');
             var nonce = response.nonce;
             var plan = Session.get('plan');
-            Meteor.call('subscribeToPlan', nonce, plan, function(error, success) {
+            Meteor.call('btSubscribe', nonce, plan, function(error, success) {
               if (error) {
                 throw new Meteor.Error(error.message, 'error');
               } else {
-                Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+                Bert.alert('Thank you for your subscription!', 'success', 'growl-bottom-right');
               }
             });
           }
@@ -135,12 +136,26 @@ Template.profileSettings.events({
 
 Template.profileMembership.events({
     "click #upgrade": function() {
-        //Meteor.call("upgradeUser");
         Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
-        //Meteor.call("downgradeUser");
         Session.set('plan', 'standard');
+
+        var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");
+        if (confirmCancel){
+          Meteor.call('btCancelSubscription', function(error, response){
+            if (error){
+              Bert.alert(error.reason, "danger");
+            } else {
+              if (response.error){
+                Bert.alert(response.error.message, "danger");
+              } else {
+                Session.set('currentUserPlan_' + Meteor.userId(), null);
+                Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
+              }
+            }
+          });
+        }
     },
     "click #sendLecturerRequest": function() {
         var name = $('#inputName').val();

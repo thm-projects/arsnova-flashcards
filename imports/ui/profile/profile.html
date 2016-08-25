@@ -449,14 +449,7 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <form role="form">
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div id="subscribe-form"></div>
-                                        <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
-                                    </div>
-                                  </div>
-                                </form>
+                                <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
                             {{else}}
                                 <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
                             {{/if}}
