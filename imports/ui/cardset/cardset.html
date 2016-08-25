@@ -102,7 +102,10 @@
                     <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                   </ul>
               </div>
-              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isReviewed}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+              <div class="btn-group">
+                <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="popover" data-container="body" data-trigger="focus" title="Status eines Kartensatzes" data-content="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
+              </div>
             </div>
           {{/if}}
       </div>

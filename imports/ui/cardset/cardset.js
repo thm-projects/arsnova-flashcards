@@ -341,6 +341,12 @@ Template.cardsetDetails.events({
  * ############################################################################
  */
 
+ Template.cardsetInfo.onRendered(function() {
+   $('[data-toggle="popover"]').popover({
+     placement: 'right'
+   });
+});
+
 Template.cardsetInfo.helpers({
   getAverage: function() {
     var ratings = Ratings.find({
@@ -403,8 +409,9 @@ Template.cardsetInfo.helpers({
       }
     }
   },
-  isReviewed: function() {
-    return (this.reviewed || this.request) ? 'disabled' : '';
+  isDisabled: function() {
+    var cards = Cards.find({cardset_id: this._id}).count() < 5;
+    return (cards || this.reviewed || this.request) ? 'disabled' : '';
   },
   userExists: function(username, owner) {
     if (Roles.userIsInRole(owner, 'blocked')) {
