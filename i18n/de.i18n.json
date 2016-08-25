@@ -147,6 +147,12 @@
     "payment": {
       "header": "Zahlungsmethode",
       "desc": "Bitte geben Sie Ihre bevorzugte Zahlungsmethode an."
+    },
+    "purchases": {
+      "header": "Zahlungshistorie",
+      "empty": "Sie haben bisher noch keine Rechnungen!",
+      "boughtFor": "Gekauft für",
+      "at": "am"
     }
   },
 

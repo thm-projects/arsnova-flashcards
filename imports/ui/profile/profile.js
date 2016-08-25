@@ -10,6 +10,7 @@ import { Cardsets } from '../../api/cardsets.js';
 import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 import { Ratings } from '../../api/ratings.js';
+import { Paid } from '../../api/paid.js';
 import { Notifications } from '../../api/notifications.js';
 
 import { userData } from '../../api/userdata.js';
@@ -176,27 +177,19 @@ Template.profileMembership.events({
     },
 });
 
-/**
- * ############################################################################
- * profileNotifications
- * ############################################################################
- */
-
-Template.profileNotifications.helpers({
-    getNotifications: function() {
-        return Notifications.find({}, {sort: {date: -1}});
-    }
-});
 
 /**
  * ############################################################################
- * profileRequests
+ * profileBilling
  * ############################################################################
  */
 
-Template.profileRequests.helpers({
-    getRequests: function() {
-        return Cardsets.find({request: true});
+Template.profileBilling.helpers({
+    getInvoices: function() {
+      return Paid.find({user_id: Meteor.userId()});
+    },
+    getCardsetName: function(cardset_id) {
+      return Cardsets.findOne(cardset_id).name;
     }
 });
 

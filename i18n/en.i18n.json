@@ -147,6 +147,12 @@
     "payment": {
       "header": "Payment Methods",
       "desc": "Please enter your preferred payment method below."
+    },
+    "purchases": {
+      "header": "Payment History",
+      "empty": "You don't have any invoices yet!",
+      "boughtFor": "Bought for",
+      "at": "at"
     }
   },
 
