@@ -145,10 +145,10 @@ Template.profileMembership.events({
         if (confirmCancel){
           Meteor.call('btCancelSubscription', function(error, response){
             if (error){
-              Bert.alert(error.reason, "danger");
+              Bert.alert(error.reason, "danger", 'growl-bottom-right');
             } else {
               if (response.error){
-                Bert.alert(response.error.message, "danger");
+                Bert.alert(response.error.message, "danger", 'growl-bottom-right');
               } else {
                 Session.set('currentUserPlan_' + Meteor.userId(), null);
                 Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
@@ -162,7 +162,7 @@ Template.profileMembership.events({
         var prename = $('#inputPrename').val();
 
         if (name === '' || prename === ''){
-          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger');
+          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger', 'growl-bottom-right');
         }
         else {
           var text = prename + " " + name + " möchte Dozent werden. Jetzt im Back-End freischalten.";
@@ -170,7 +170,7 @@ Template.profileMembership.events({
           var target = "admin";
 
           Meteor.call("addNotification", target, type, text);
-          Bert.alert('Anfrage wurde gesendet', 'success');
+          Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
           document.getElementById("lecturerRequestForm").reset();
         }
     },

@@ -644,7 +644,7 @@ Template.cardsetPublicateForm.events({
       var target = "lecturer";
 
       Meteor.call("addNotification", target, type, text);
-      Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success');
+      Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
     }
 
     Meteor.call("publicateCardset", id, kind, price, visible);
