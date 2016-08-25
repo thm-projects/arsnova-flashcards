@@ -182,7 +182,7 @@ Meteor.methods({
       default:
         break;
     }
-    
+
     return relevance;
   },
   publicateCardset: function(id, kind, price, visible) {
@@ -211,7 +211,7 @@ Meteor.methods({
       }
     });
   },
-  publicateProRequest: function(id, request, visible) {
+  publicateProRequest: function(id, reviewed, request, visible) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
@@ -226,6 +226,7 @@ Meteor.methods({
 
     Cardsets.update(id, {
       $set: {
+        reviewed: reviewed,
         request: request,
         visible: visible
       }

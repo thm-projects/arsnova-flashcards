@@ -102,7 +102,7 @@
                     <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                   </ul>
               </div>
-              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal"><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isReviewed}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
             </div>
           {{/if}}
       </div>

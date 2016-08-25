@@ -162,7 +162,7 @@ Template.cardset.events({
     tmpl.find('#editSetCategory').value = categoryId;
   },
   'click #releaseCardset': function() {
-    Meteor.call("publicateProRequest", this._id, false, true);
+    Meteor.call("publicateProRequest", this._id, true, false, true);
   }
 });
 
@@ -403,6 +403,9 @@ Template.cardsetInfo.helpers({
       }
     }
   },
+  isReviewed: function() {
+    return (this.reviewed || this.request) ? 'disabled' : '';
+  },
   userExists: function(username, owner) {
     if (Roles.userIsInRole(owner, 'blocked')) {
       return false;
@@ -627,7 +630,7 @@ Template.cardsetPublicateForm.events({
     }
     if (kind === 'pro') {
       visible = false;
-      Meteor.call("publicateProRequest", id, true, visible);
+      Meteor.call("publicateProRequest", id, false, true, visible);
 
       var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
       var type = "Pro-Überprüfung";

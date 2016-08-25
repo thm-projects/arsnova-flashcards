@@ -133,7 +133,7 @@ Template.admin_cardset.events({
       }
       if (kind === 'pro') {
         visible = false;
-        Meteor.call("publicateProRequest", this._id, true, visible);
+        Meteor.call("publicateProRequest", this._id, false, true, visible);
 
         var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
         var type = "Pro-Überprüfung";
