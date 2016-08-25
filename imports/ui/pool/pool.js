@@ -14,7 +14,7 @@ import './pool.html';
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
-Session.setDefault('poolSort', {name: 1});
+Session.setDefault('poolSort', {relevance: -1});
 
 /**
  * ############################################################################
@@ -117,7 +117,7 @@ Template.category.events({
 });
 
 Template.category.onDestroyed(function() {
-  Session.set('poolSort', {name: 1});
+  Session.set('poolSort', {relevance: -1});
 });
 
 /**
