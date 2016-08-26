@@ -25,4 +25,7 @@ Template.admin_dashboard.helpers({
   totalUser: function() {
     return Meteor.users.find().count();
   },
+  getOnlineStatusTotal: function() {
+    return Meteor.users.find({ 'status.online': {$ne: false} }).count();
+  }
 });

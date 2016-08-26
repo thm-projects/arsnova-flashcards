@@ -35,10 +35,7 @@ Template.admin_cardset.helpers({
     return (this.kind === 'edu' || this.kind === 'pro');
   },
   userExistsCardset: function(username, owner) {
-    if (Roles.userIsInRole(owner, 'blocked')) {
-      return false;
-    }
-    else if (username === 'deleted') {
+    if (username === 'Deleted' || username === 'Blocked') {
       return false;
     }
     else {
@@ -50,7 +47,6 @@ Template.admin_cardset.helpers({
   },
   tableSettings: function() {
     return {
-      showFilter: false,
       rowsPerPage: 5,
       showNavigationRowsPerPage: false,
       fields: [

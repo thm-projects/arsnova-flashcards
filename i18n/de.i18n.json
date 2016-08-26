@@ -397,6 +397,7 @@
     "notifications": "Benachrichtigungen",
     "see_all": "Alle ansehen",
     "name": "Name",
+    "kind": "Art",
     "front": "Vorderseite",
     "back": "Rückseite",
     "admin": "Admin",
@@ -502,8 +503,5 @@
       "confirm": "Sicher?",
       "email_invalid": "Ungültige Email-Adresse"
     }
-  },
-
-  "blockedUser": "Blockierter Benutzer",
-  "deletedUser": "Gelöschter Benutzer"
+  }
 }

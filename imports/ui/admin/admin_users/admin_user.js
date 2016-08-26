@@ -55,16 +55,38 @@ Template.admin_user.helpers({
     }
   },
   cardsetListUserAdmin: function() {
-    return Cardsets.find({ owner: this._id });
+    var cardsets = Cardsets.find({ owner: this._id });
+    var fields = [];
+    var dateString = null;
+    var date = null;
+    var kind = null;
+
+    cardsets.forEach(function(cardset) {
+      dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
+      date = moment(cardset.date).format("YYYY-MM-DD");
+      if (cardset.kind === 'personal') {
+        kind = 'Private';
+      } else if (cardset.kind === 'free') {
+        kind = 'Free';
+      } else if (cardset.kind === 'edu') {
+        kind = 'Edu';
+      } else if (cardset.kind === 'pro') {
+        kind = 'Pro';
+      }
+
+      fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind, "dateString": dateString, "date": date})
+    });
+
+    return fields;
   },
   tableSettings: function() {
     return {
-      showFilter: false,
       showNavigationRowsPerPage: false,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
-        { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {
-            return moment(value).locale(getUserLanguage()).format('LL');
+        { key: 'kind', label: TAPi18n.__('admin.kind') },
+        { key: 'dateString', label: TAPi18n.__('admin.created'), fn: function(value, object) {
+          return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminUserCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
@@ -175,8 +197,10 @@ Template.admin_user.events({
       {
         if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
             Meteor.call('updateRoles', this._id, 'blocked');
+            Meteor.call('blockUser', this._id);
         } else {
           Meteor.call('removeRoles', this._id, 'blocked');
+          Meteor.call('standardUser', this._id, this.profile.name)
         }
       }
       if ($('#editUserEditorAdmin').length) {

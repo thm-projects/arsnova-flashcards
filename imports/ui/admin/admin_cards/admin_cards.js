@@ -19,7 +19,15 @@ import './admin_card.js';
 
 Template.admin_cards.helpers({
   cardListAdmin: function() {
-    return Cards.find();
+    var cards = Cards.find();
+    var fields = [];
+
+    cards.forEach(function(card) {
+      var cardset = Cardsets.findOne({ _id: card.cardset_id });
+      fields.push({"_id": card._id, "front": card.front, "back": card.back, "cardset_id": card.cardset_id, "cardsetname": cardset.name, "user_id": cardset.owner, "username": cardset.username});
+    });
+
+    return fields;
   },
   tableSettings: function() {
     return {
@@ -49,24 +57,18 @@ Template.admin_cards.helpers({
               });
           }
         },
-        { key: 'cardset_id', label: TAPi18n.__('admin.cardset.header'), cellClass: 'cardsetname', fn: function(cardset_id) {
-          var cardset = Cardsets.findOne({ _id: cardset_id });
-          if (cardset) {
-            return new Spacebars.SafeString("<a id='linkToAdminCardCardset' href='#' data-cardsetid='" + cardset_id + "'>" + cardset.name + "</a>");
-          }
+        { key: 'cardsetname', label: TAPi18n.__('admin.cardset.header'), cellClass: 'cardsetname', fn: function(value, object) {
+          return new Spacebars.SafeString("<a name='" + value + "' id='linkToAdminCardCardset' href='#' data-cardsetid='" + object.cardset_id + "'>" + value + "</a>");
         }},
-        { key: 'cardset_id', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(cardset_id) {
-          var cardset = Cardsets.findOne({ _id: cardset_id });
-          if (cardset) {
-            if (Roles.userIsInRole(cardset.owner, 'blocked')) {
-              return TAPi18n.__('blockedUser');
-            }
-            else if (cardset.username === 'deleted') {
-              return TAPi18n.__('deletedUser');
-            }
-            else {
-              return new Spacebars.SafeString("<a id='linkToAdminCardUser' href='#' data-userid='" + cardset.owner + "'>" + cardset.username + "</a>");
-            }
+        { key: 'username', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(value, object) {
+          if (value === 'Blocked') {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
+          }
+          else if (object.username === 'Deleted') {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
+          }
+          else {
+            return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardUser' href='#' data-userid='" + object.user_id + "'>" + value + "</a></span>");
           }
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {

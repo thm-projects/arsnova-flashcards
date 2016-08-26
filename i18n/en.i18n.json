@@ -398,6 +398,7 @@
     "notifications": "Notifications",
     "see_all": "See all",
     "name": "Name",
+    "kind": "Kind",
     "front": "Front",
     "back": "Back",
     "admin": "Admin",
@@ -503,8 +504,5 @@
       "confirm": "Sure?",
       "email_invalid": "Invalid Email"
     }
-  },
-
-  "blockedUser": "Blocked User",
-  "deletedUser": "Deleted User"
+  }
 }

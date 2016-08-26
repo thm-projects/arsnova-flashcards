@@ -19,16 +19,7 @@ Template.admin_card.helpers({
   getUsernameCard: function(cardset_id) {
     if (cardset_id) {
       var cardset = Cardsets.findOne({ _id: cardset_id });
-
-      if (Roles.userIsInRole(cardset.owner, 'blocked')) {
-        return TAPi18n.__('blockedUser');
-      }
-      else if (cardset.username === 'deleted') {
-        return TAPi18n.__('deletedUser');
-      }
-      else {
-        return cardset.username;;
-      }
+      return cardset.username;
     } else {
       return null;
     }
@@ -37,10 +28,7 @@ Template.admin_card.helpers({
     if (cardset_id) {
       var cardset = Cardsets.findOne({ _id: cardset_id });
 
-      if (Roles.userIsInRole(cardset.owner, 'blocked')) {
-        return false;
-      }
-      else if (cardset.username === 'deleted') {
+      if (cardset.username === 'Deleted' || cardset.username === 'Blocked') {
         return false;
       }
       else {

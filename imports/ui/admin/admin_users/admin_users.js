@@ -21,19 +21,34 @@ Meteor.subscribe('allUsers');
 
 Template.admin_users.helpers({
   userListAdmin: function () {
-    return Meteor.users.find();
+    var users = Meteor.users.find();
+    var fields = [];
+    var dateString = null;
+    var date = null;
+
+    users.forEach(function(user) {
+      dateString = moment(user.createdAt).locale(getUserLanguage()).format('LL');
+      date = moment(user.createdAt).format("YYYY-MM-DD");
+      fields.push({"_id": user._id, "profilename": user.profile.name, "dateString": dateString, "date": date});
+    });
+
+    return fields;
   },
   tableSettings: function () {
     return {
       showNavigationRowsPerPage: false,
       rowsPerPage: 20,
       fields: [
-        { key: '_id', label: TAPi18n.__('admin.admin'), cellClass:'admin', fn: function(value) {
+        { key: '_id', label: TAPi18n.__('admin.admin'), cellClass:'admin', fn: function(value, object) {
           if (Roles.userIsInRole(value, 'admin') || Roles.userIsInRole(value, 'editor')) {
-            return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+            return new Spacebars.SafeString("<span name='admin" + object.profilename + "'<i class='fa fa-check'></i>");
+          } else {
+            return new Spacebars.SafeString("<span name='normal" + object.profilename + "'></span>");
           }
         }},
-        { key: 'profile.name', label: TAPi18n.__('admin.users') },
+        { key: 'profilename', label: TAPi18n.__('admin.users'), fn: function(value) {
+          return value;
+        }},
         { key: '_id', label: TAPi18n.__('admin.pro'), cellClass:'pro', fn: function(value) {
           if (Roles.userIsInRole(value, 'pro')) {
             return new Spacebars.SafeString("<i class='fa fa-check'></i>");
@@ -52,8 +67,8 @@ Template.admin_users.helpers({
         { key: 'mailto', label: TAPi18n.__('admin.mail'), sortable: false, fn: function() {
           return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "'><i class='fa fa-envelope'></i></a>");
         }},
-        { key: 'createdAt', label: TAPi18n.__('admin.joined'), fn: function(value) {
-          return moment(value).locale(getUserLanguage()).format('LL');
+        { key: 'dateString', label: TAPi18n.__('admin.created'), fn: function(value, object) {
+          return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
         }},
         { key: '_id', label: TAPi18n.__('admin.blocked'), cellClass:'blocked', fn: function(value) {
           if (Roles.userIsInRole(value, 'blocked')) {

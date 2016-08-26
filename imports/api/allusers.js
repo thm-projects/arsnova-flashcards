@@ -32,9 +32,31 @@ Meteor.methods({
     Meteor.users.remove(user_id);
     Cardsets.update({ owner: user_id }, {
       $set: {
-        username: 'deleted'
+        username: 'Deleted'
       }
     });
+  },
+  blockUser: function(user_id) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Cardsets.update({ owner: user_id }, {
+      $set: {
+        username: 'Blocked'
+      }
+    })
+  },
+  standardUser: function(user_id, name) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Cardsets.update({ owner: user_id }, {
+      $set: {
+        username: name
+      }
+    })
   },
   updateRoles: function(user_id, newRole) {
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
