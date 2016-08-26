@@ -39,7 +39,10 @@
       <a href="{{pathFor route='admin_users'}}">
         <div class="small-box">
           <div class="inner">
-            <h3>{{totalUser}}</h3>
+            <h3>
+              {{totalUser}}
+              <span>({{getOnlineStatusTotal}} Online)</span>
+            </h3>
             <p>{{_ "admin.users"}}</p>
           </div>
           <div class="small-box-footer">

@@ -96,6 +96,10 @@ body {
                 margin: 0 0 10px 0;
                 white-space: nowrap;
                 padding: 0;
+                span {
+                  font-size: 18px;
+                  font-weight: normal;
+                }
               }
               p {
                 font-size: 15px;
@@ -123,6 +127,9 @@ body {
           .box-button-admin {
             border-top: 1px solid #ddd;
             padding-top: 20px;
+          }
+          .reactive-table-filter {
+            padding-top: 10px;
           }
         }
       }
