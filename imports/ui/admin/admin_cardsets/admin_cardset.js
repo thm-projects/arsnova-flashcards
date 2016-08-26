@@ -47,7 +47,6 @@ Template.admin_cardset.helpers({
   },
   tableSettings: function() {
     return {
-      showFilter: false,
       rowsPerPage: 5,
       showNavigationRowsPerPage: false,
       fields: [
