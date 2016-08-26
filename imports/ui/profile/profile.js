@@ -118,6 +118,8 @@ Template.profileSettings.events({
         braintree.setup(clientToken, "dropin", {
           container: "subscribe-form",
           onPaymentMethodReceived: function (response) {
+            $('#upgrade').prop( "disabled", true );
+
             Bert.alert('In progress!', 'info', 'growl-bottom-right');
             var nonce = response.nonce;
             var plan = Session.get('plan');
@@ -128,6 +130,7 @@ Template.profileSettings.events({
                 Bert.alert('Thank you for your subscription!', 'success', 'growl-bottom-right');
               }
             });
+            $btn.button('reset');
           }
         });
       }
@@ -140,6 +143,7 @@ Template.profileMembership.events({
         Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
+        $('#downgrade').prop( "disabled", true );
         Session.set('plan', 'standard');
 
         var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");

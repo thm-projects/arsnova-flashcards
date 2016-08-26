@@ -46,6 +46,8 @@ Session.setDefault('cardSort', {
         braintree.setup(clientToken, "dropin", {
           container: "payment-form",
           onPaymentMethodReceived: function (response) {
+            $('#buyCardsetBtn').prop( "disabled", true );
+
             var nonce = response.nonce;
 
             Meteor.call('btCreateCustomer', function(error, success) {
