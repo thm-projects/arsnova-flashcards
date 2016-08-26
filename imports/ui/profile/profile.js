@@ -130,7 +130,6 @@ Template.profileSettings.events({
                 Bert.alert('Thank you for your subscription!', 'success', 'growl-bottom-right');
               }
             });
-            $btn.button('reset');
           }
         });
       }
@@ -143,23 +142,28 @@ Template.profileMembership.events({
         Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
-        $('#downgrade').prop( "disabled", true );
-        Session.set('plan', 'standard');
-
-        var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");
-        if (confirmCancel){
-          Meteor.call('btCancelSubscription', function(error, response){
-            if (error){
-              Bert.alert(error.reason, "danger", 'growl-bottom-right');
-            } else {
-              if (response.error){
-                Bert.alert(response.error.message, "danger", 'growl-bottom-right');
+        var hasPro = Cardsets.find({owner: Meteor.userId()}).count();
+        if (hasPro > 0) {
+          Bert.alert('You can not downgrade if you have pro-cardsets!', 'danger', 'growl-bottom-right');
+        } else {
+          var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");
+          if (confirmCancel){
+            $('#downgrade').prop( "disabled", true );
+            Session.set('plan', 'standard');
+            
+            Meteor.call('btCancelSubscription', function(error, response){
+              if (error){
+                Bert.alert(error.reason, "danger", 'growl-bottom-right');
               } else {
-                Session.set('currentUserPlan_' + Meteor.userId(), null);
-                Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
+                if (response.error){
+                  Bert.alert(response.error.message, "danger", 'growl-bottom-right');
+                } else {
+                  Session.set('currentUserPlan_' + Meteor.userId(), null);
+                  Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
+                }
               }
-            }
-          });
+            });
+          }
         }
     },
     "click #sendLecturerRequest": function() {
