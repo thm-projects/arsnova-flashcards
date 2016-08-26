@@ -23,11 +23,22 @@ Template.admin_cardsets.helpers({
     var fields = [];
     var dateString = null;
     var date = null;
+    var kind = null;
 
     cardsets.forEach(function(cardset) {
       dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
       date = moment(cardset.date).format("YYYY-MM-DD");
-      fields.push({"_id": cardset._id, "name": cardset.name, "username": cardset.username, "owner": cardset.owner, "dateString": dateString, "date": date})
+      if (cardset.kind === 'personal') {
+        kind = 'Private';
+      } else if (cardset.kind === 'free') {
+        kind = 'Free';
+      } else if (cardset.kind === 'edu') {
+        kind = 'Edu';
+      } else if (cardset.kind === 'pro') {
+        kind = 'Pro';
+      }
+
+      fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind,  "username": cardset.username, "owner": cardset.owner, "dateString": dateString, "date": date})
     });
 
     return fields;
@@ -38,6 +49,7 @@ Template.admin_cardsets.helpers({
       rowsPerPage: 20,
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
+        { key: 'kind', label: TAPi18n.__('admin.kind') },
         { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {
           if (value === 'Blocked') {
             return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");

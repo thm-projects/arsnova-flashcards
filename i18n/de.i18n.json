@@ -396,6 +396,7 @@
     "notifications": "Benachrichtigungen",
     "see_all": "Alle ansehen",
     "name": "Name",
+    "kind": "Art",
     "front": "Vorderseite",
     "back": "Rückseite",
     "admin": "Admin",
