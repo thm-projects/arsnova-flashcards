@@ -171,7 +171,7 @@
             <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 10px">
               <h4>{{_ "admin.user.messageheader"}}</h4>
               <p>{{_ "admin.user.messagetext"}}</p>
-              <button class="btn btn-primary">{{_ "admin.user.messagebutton"}}</button>
+              <button type="button" class="btn btn-primary">{{_ "admin.user.messagebutton"}}</button>
             </div>
           </div>
         </form>
@@ -179,8 +179,8 @@
       <div class="box-button-admin">
         <button id="userCancelAdmin" class="btn btn-default">{{_ "admin.user.cancel"}}</button>
         <button id="userSaveAdmin" class="btn btn-primary">{{_ "admin.user.save"}}</button>
-        {{#if isCurrentUser}}
-          {{#if isAdminUser}}
+        {{#if isCurrentUser _id}}
+          {{#if isAdminUser _id}}
             <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.user.delete"}}</button>
             <button id="userConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.user.confirm"}}</button>
           {{/if}}
