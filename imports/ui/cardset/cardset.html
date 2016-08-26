@@ -76,9 +76,9 @@
                       <br>
                       <strong>Ersteller:</strong>
                       {{#if userExists username owner}}
-                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{getUsername username owner}}</a>
+                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
                       {{else}}
-                        {{getUsername username owner}}
+                        {{username}}
                       {{/if}}
                       <br>
                       <strong>Datum:</strong> {{getDate}}

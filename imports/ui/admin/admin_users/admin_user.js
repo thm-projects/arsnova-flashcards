@@ -175,8 +175,10 @@ Template.admin_user.events({
       {
         if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
             Meteor.call('updateRoles', this._id, 'blocked');
+            Meteor.call('blockUser', this._id);
         } else {
           Meteor.call('removeRoles', this._id, 'blocked');
+          Meteor.call('standardUser', this._id, this.profile.name)
         }
       }
       if ($('#editUserEditorAdmin').length) {

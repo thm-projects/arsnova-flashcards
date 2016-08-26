@@ -35,10 +35,7 @@ Template.admin_cardset.helpers({
     return (this.kind === 'edu' || this.kind === 'pro');
   },
   userExistsCardset: function(username, owner) {
-    if (Roles.userIsInRole(owner, 'blocked')) {
-      return false;
-    }
-    else if (username === 'deleted') {
+    if (username === 'Deleted' || username === 'Blocked') {
       return false;
     }
     else {

@@ -487,8 +487,5 @@
       "confirm": "Sicher?",
       "email_invalid": "Ungültige Email-Adresse"
     }
-  },
-
-  "blockedUser": "Blockierter Benutzer",
-  "deletedUser": "Gelöschter Benutzer"
+  }
 }

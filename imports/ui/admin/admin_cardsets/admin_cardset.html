@@ -14,9 +14,9 @@
             <div class="form-group">
               <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
               {{#if userExistsCardset username owner}}
-                <a href="/admin/user/{{owner}}">{{getUsername username owner}}</a>
+                <a href="/admin/user/{{owner}}">{{username}}</a>
               {{else}}
-                {{getUsername username owner}}
+                {{username}}
               {{/if}}
             </div>
             <div class="form-group">

@@ -19,7 +19,18 @@ import './admin_cardset.js';
 
 Template.admin_cardsets.helpers({
   cardsetListAdmin: function () {
-    return Cardsets.find();
+    var cardsets = Cardsets.find();
+    var fields = [];
+    var dateString = null;
+    var date = null;
+
+    cardsets.forEach(function(cardset) {
+      dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
+      date = moment(cardset.date).format("YYYY-MM-DD");
+      fields.push({"_id": cardset._id, "name": cardset.name, "username": cardset.username, "owner": cardset.owner, "dateString": dateString, "date": date})
+    });
+
+    return fields;
   },
   tableSettings: function () {
     return {
@@ -28,18 +39,18 @@ Template.admin_cardsets.helpers({
       fields: [
         { key: 'name', label: TAPi18n.__('admin.name') },
         { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {
-          if (Roles.userIsInRole(object.owner, 'blocked')) {
-            return TAPi18n.__('blockedUser');
+          if (value === 'Blocked') {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
           }
-          else if (value === 'deleted') {
-            return TAPi18n.__('deletedUser');
+          else if (value === 'Deleted') {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
           }
           else {
-            return new Spacebars.SafeString("<a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a>");
+            return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
           }
         }},
-        { key: 'date', label: TAPi18n.__('admin.created'), fn: function(value) {
-            return moment(value).locale(getUserLanguage()).format('LL');
+        { key: 'dateString', label: TAPi18n.__('admin.created'), fn: function(value, object) {
+          return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
         }},
         { key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function(value) {
           return new Spacebars.SafeString("<a id='linkToAdminCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
