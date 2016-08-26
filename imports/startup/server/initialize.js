@@ -189,6 +189,22 @@ Meteor.startup(function() {
         "unit": "Kartensätze"
       }
     }
+  }, {
+    "_id": "6",
+    "name": "Bestselling author",
+    "desc": "Reach many learners with popular cardsets.",
+    "rank1": 40,
+    "rank2": 20,
+    "rank3": 10,
+    "unit": "learner",
+    "badge": "bestseller",
+    "i18n": {
+      "de": {
+        "name": "Bestseller-Autor",
+        "desc": "Erreiche viele Lernende mithilfe beliebter Kartensätze.",
+        "unit": "Lernende"
+      }
+    }
   }];
 
 

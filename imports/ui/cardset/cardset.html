@@ -12,7 +12,13 @@
           <div class="col-md-12">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
-                      <a id="releaseCardset" class="btn btn-success" type="button">Kartensatz freigeben</a>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button id="acceptRequest" class="btn btn-success" type="button">Kartensatz freigeben</button>
+                        <button id="declineRequest" class="btn btn-danger" type="button">Kartensatz nicht freigeben</button>
+                      </span>
+                      <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
+                    </div>
                 </div>
             </div>
           </div>
@@ -82,6 +88,12 @@
                       {{/if}}
                       <br>
                       <strong>Datum:</strong> {{getDate}}
+                      {{#if hasAmount}}
+                        <br><strong>Preis:</strong> {{getAmount}}
+                      {{/if}}
+                      {{#if isPurchased}}
+                        <br><strong>Gekauft am:</strong> {{getDateOfPurchase}}
+                      {{/if}}
                   </div>
               </div>
           </div>
@@ -96,7 +108,10 @@
                     <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                   </ul>
               </div>
-              <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal"><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+              <div class="btn-group">
+                <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="popover" data-container="body" data-trigger="focus" title="Status eines Kartensatzes" data-content="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
+              </div>
             </div>
           {{/if}}
       </div>
@@ -392,16 +407,16 @@
               <div class="col-md-9">
                 <div class="input-group">
                   <select id="publicatePrice" class="form-control">
-                    <option>0.99</option>
-                    <option>1.99</option>
-                    <option>2.99</option>
-                    <option>3.99</option>
-                    <option>4.99</option>
-                    <option>5.99</option>
-                    <option>6.99</option>
-                    <option>7.99</option>
-                    <option>8.99</option>
-                    <option>9.99</option>
+                    <option {{priceIsSelected 0.99}}>0.99</option>
+                    <option {{priceIsSelected 1.99}}>1.99</option>
+                    <option {{priceIsSelected 2.99}}>2.99</option>
+                    <option {{priceIsSelected 3.99}}>3.99</option>
+                    <option {{priceIsSelected 4.99}}>4.99</option>
+                    <option {{priceIsSelected 5.99}}>5.99</option>
+                    <option {{priceIsSelected 6.99}}>6.99</option>
+                    <option {{priceIsSelected 7.99}}>7.99</option>
+                    <option {{priceIsSelected 8.99}}>8.99</option>
+                    <option {{priceIsSelected 9.99}}>9.99</option>
                   </select>
                 </div>
               </div>

@@ -110,7 +110,7 @@
   },
 
   "profile": {
-    "overview": "Overview",
+    "overview": "Learning Progress",
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
@@ -138,14 +138,28 @@
       "pro": "Create and get Pro-Flashcards",
       "month": "month",
       "subscribe": "Subscribe now!",
-      "lecturer": "Request now to get all the benefits of a lecturer.",
-      "send": "Send request",
+      "lecturer": "Lecturer",
+      "send": "Send request now to get all the benefits of a lecturer",
+      "lecturerActivatet": "You are activated as a lecturer.",
       "name": "Name",
       "prename": "Prename"
     },
     "payment": {
       "header": "Payment Methods",
       "desc": "Please enter your preferred payment method below."
+    },
+    "revenue": {
+      "header": "Revenue History",
+      "empty": "You have not generated any revenue yet!",
+      "boughtFrom": "Bought from",
+      "for": "for",
+      "at": "at"
+    },
+    "purchases": {
+      "header": "Payment History",
+      "empty": "You don't have any invoices yet!",
+      "boughtFor": "Bought for",
+      "at": "at"
     }
   },
 

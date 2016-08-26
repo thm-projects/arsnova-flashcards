@@ -93,14 +93,14 @@
               <i class="fa fa-trophy"></i>{{_ "profile.overview"}}
             </a>
           </li>
-          <li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/billing">
-              <i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
-            </a>
-          </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
             <a href="/profile/{{currentUser._id}}/membership">
               <i class="fa fa-user"></i>{{_ "profile.membership"}}
+            </a>
+          </li>
+          <li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
+            <a href="/profile/{{currentUser._id}}/billing">
+              <i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
             </a>
           </li>
           <li role="presentation" class="{{#if isActiveRoute 'profileNotifications'}}active{{/if}}">
@@ -406,55 +406,44 @@
         </div>
         <div class="panel-body">
             {{_ "billing.payment.desc"}}
-            <div>
-                <div class="radio">
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> Kreditkarte
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Paypal
-                    </label>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "billing.revenue.header"}}</h3>
+        </div>
+        <div class="panel-body">
+          {{#if getRevenue.count}}
+              <div class="list-group">
+                  {{#each getRevenue}}
+                      <a href="/cardset/{{cardset_id}}" class="list-group-item">
+                          <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
+                          <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_ "billing.revenue.for"}} {{amount}}€ {{_ "billing.revenue.at"}} {{getDate}}</p>
+                      </a>
+                  {{/each}}
+              </div>
+          {{else}}
+              <p class="alert alert-info">{{_ "billing.revenue.empty"}}</p>
+          {{/if}}
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "billing.purchases.header"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{#if getInvoices.count}}
+                <div class="list-group">
+                    {{#each getInvoices}}
+                        <a href="/cardset/{{cardset_id}}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
+                            <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_ "billing.purchases.at"}} {{getDate}}</p>
+                        </a>
+                    {{/each}}
                 </div>
-                <div class="credit-card-box">
-                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
-                                    <div class="input-group">
-                                        <input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
-                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                    <input type="tel" class="form-control" name="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required />
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5 pull-right">
-                                <div class="form-group">
-                                    <label for="cardCVC">CV CODE</label>
-                                    <input type="tel" class="form-control" name="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
-                            </div>
-                        </div>
-                        <div class="row" style="display:none;">
-                            <div class="col-xs-12">
-                                <p class="payment-errors"></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {{else}}
+                <p class="alert alert-info">{{_ "billing.purchases.empty"}}</p>
+            {{/if}}
         </div>
     </div>
 </template>
@@ -488,7 +477,7 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button id="downgrade" class="btn btn-block btn-default" href="#">{{_ "billing.plan.back"}}</button>
+                                <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
                             {{else}}
                                 <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
                             {{/if}}
@@ -502,7 +491,7 @@
                         </div>
                         <div class="panel-body text-center">
                             <p class="lead">
-                                <h2>9€ / {{_ "billing.plan.month"}}</h2></p>
+                                <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
@@ -513,43 +502,44 @@
                             {{#if isInRole 'pro'}}
                                 <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
                             {{else}}
-                                <button id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+                                <form role="form">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div id="subscribe-form"></div>
+                                        <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+                                    </div>
+                                  </div>
+                                </form>
                             {{/if}}
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#collapse1">{{_ "billing.plan.lecturer"}}</a>
-                                </h4>
-                            </div>
-                            <div id="collapse1" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" id="lecturerRequestForm">
-                                        <div class="form-group">
-                                            <label for="inputName" class="col-sm-2 control-label">{{_ "billing.plan.name"}}</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="{{_ "billing.plan.name"}}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPrename" class="col-sm-2 control-label">{{_ "billing.plan.prename"}}</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPrename" placeholder="{{_ "billing.plan.prename"}}">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="panel-footer">
-                                    <button type="submit" id="sendLecturerRequest" class="btn btn-default">{{_ "billing.plan.send"}}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{_ "billing.plan.lecturer"}}</h4>
+            </div>
+            <div class="panel-body">
+              {{#if isInRole 'lecturer'}}
+                  {{_ "billing.plan.lecturerActivatet"}}
+              {{else}}
+                  <form class="form-horizontal" id="lecturerRequestForm">
+                      <div class="form-group">
+                          <label for="inputName" class="col-sm-2 control-label">{{_ "billing.plan.name"}}</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputName" placeholder="{{_ "billing.plan.name"}}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputPrename" class="col-sm-2 control-label">{{_ "billing.plan.prename"}}</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputPrename" placeholder="{{_ "billing.plan.prename"}}">
+                          </div>
+                      </div>
+                      <button type="button" id="sendLecturerRequest" class="btn btn-default pull-right">{{_ "billing.plan.send"}}</button>
+                  </form>
+                {{/if}}
             </div>
         </div>
     </div>

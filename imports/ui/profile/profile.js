@@ -10,6 +10,7 @@ import { Cardsets } from '../../api/cardsets.js';
 import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 import { Ratings } from '../../api/ratings.js';
+import { Paid } from '../../api/paid.js';
 import { Notifications } from '../../api/notifications.js';
 
 import { userData } from '../../api/userdata.js';
@@ -108,19 +109,61 @@ Template.profileSettings.events({
  * ############################################################################
  */
 
+ Template.profileMembership.rendered = function(){
+   if ($('#subscribe-form').length) {
+     Meteor.call('getClientToken', function(error, clientToken) {
+      if (error) {
+        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+      } else {
+        braintree.setup(clientToken, "dropin", {
+          container: "subscribe-form",
+          onPaymentMethodReceived: function (response) {
+            Bert.alert('In progress!', 'info', 'growl-bottom-right');
+            var nonce = response.nonce;
+            var plan = Session.get('plan');
+            Meteor.call('btSubscribe', nonce, plan, function(error, success) {
+              if (error) {
+                throw new Meteor.Error(error.message, 'error');
+              } else {
+                Bert.alert('Thank you for your subscription!', 'success', 'growl-bottom-right');
+              }
+            });
+          }
+        });
+      }
+    });
+   }
+ }
+
 Template.profileMembership.events({
     "click #upgrade": function() {
-        Meteor.call("upgradeUser");
+        Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
-        Meteor.call("downgradeUser");
+        Session.set('plan', 'standard');
+
+        var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");
+        if (confirmCancel){
+          Meteor.call('btCancelSubscription', function(error, response){
+            if (error){
+              Bert.alert(error.reason, "danger", 'growl-bottom-right');
+            } else {
+              if (response.error){
+                Bert.alert(response.error.message, "danger", 'growl-bottom-right');
+              } else {
+                Session.set('currentUserPlan_' + Meteor.userId(), null);
+                Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
+              }
+            }
+          });
+        }
     },
     "click #sendLecturerRequest": function() {
         var name = $('#inputName').val();
         var prename = $('#inputPrename').val();
 
         if (name === '' || prename === ''){
-          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger');
+          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger', 'growl-bottom-right');
         }
         else {
           var text = prename + " " + name + " möchte Dozent werden. Jetzt im Back-End freischalten.";
@@ -128,33 +171,32 @@ Template.profileMembership.events({
           var target = "admin";
 
           Meteor.call("addNotification", target, type, text);
-          Bert.alert('Anfrage wurde gesendet', 'success');
+          Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
           document.getElementById("lecturerRequestForm").reset();
         }
     },
 });
 
-/**
- * ############################################################################
- * profileNotifications
- * ############################################################################
- */
-
-Template.profileNotifications.helpers({
-    getNotifications: function() {
-        return Notifications.find({}, {sort: {date: -1}});
-    }
-});
 
 /**
  * ############################################################################
- * profileRequests
+ * profileBilling
  * ############################################################################
  */
 
-Template.profileRequests.helpers({
-    getRequests: function() {
-        return Cardsets.find({request: true});
+Template.profileBilling.helpers({
+    getInvoices: function() {
+      return Paid.find({user_id: Meteor.userId()});
+    },
+    getRevenue: function() {
+      var cardsetsIds = Cardsets.find({
+        owner: Meteor.userId()
+      }).map(function (cardset) {return cardset._id; });
+
+      return Paid.find({cardset_id: {$in: cardsetsIds}});
+    },
+    getCardsetName: function(cardset_id) {
+      return Cardsets.findOne(cardset_id).name;
     }
 });
 
@@ -273,6 +315,8 @@ Template.profileXp.helpers({
     return getLvl() + 1;
   },
   getXp: function() {
+    Meteor.call('checkLvl');
+
     var level = getLvl() + 1;
     var points = xpForLevel(level);
     var required = points - Session.get("totalXp");
@@ -331,6 +375,8 @@ Template.profileBadges.helpers({
         return streber(rank) >= 100;
       case 4:
         return wohltaeter(rank) >= 100;
+      case 5:
+        return bestseller(rank) >= 100;
       default:
         return false;
     }
@@ -347,6 +393,8 @@ Template.profileBadges.helpers({
         return streber(rank);
       case 4:
         return wohltaeter(rank);
+      case 5:
+        return bestseller(rank);
       default:
         return 0;
     }
@@ -355,7 +403,7 @@ Template.profileBadges.helpers({
 
 function kritiker(rank) {
   var ratings = Ratings.find({
-    user: Session.get("user")
+    user: Meteor.userId()
   }).count();
 
   var badge = Badges.findOne("1");
@@ -373,7 +421,7 @@ function kritiker(rank) {
 
 function krone(rank) {
   var cardsets = Cardsets.find({
-    owner: Session.get("user")
+    owner: Meteor.userId()
   });
 
   var count = 0;
@@ -407,7 +455,7 @@ function krone(rank) {
 }
 
 function stammgast(rank) {
-    var user = Meteor.users.findOne(Session.get("user")).daysInRow;
+    var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
 
     var badge = Badges.findOne("3");
     switch (rank) {
@@ -424,7 +472,7 @@ function stammgast(rank) {
 
 function streber(rank) {
   var learned = Learned.find({
-    user_id: Session.get("user")
+    user_id: Meteor.userId()
   }).count();
 
   var badge = Badges.findOne("4");
@@ -442,7 +490,7 @@ function streber(rank) {
 
 function wohltaeter(rank) {
   var cardsets = Cardsets.find({
-    owner: Session.get("user"),
+    owner: Meteor.userId(),
     visible: true
   });
 
@@ -465,6 +513,28 @@ function wohltaeter(rank) {
       return count / badge.rank2 * 100;
     case 1:
       return count / badge.rank1 * 100;
+    default:
+      return 0;
+  }
+}
+
+function bestseller(rank) {
+  var cardsetsIds = Cardsets.find({
+    owner: Meteor.userId()
+  }).map(function (cardset) {return cardset._id; });
+
+  var learner = Learned.find({
+    cardset_id: {$in: cardsetsIds}
+  }).count();
+
+  var badge = Badges.findOne("6");
+  switch (rank) {
+    case 3:
+      return learner / badge.rank3 * 100;
+    case 2:
+      return learner / badge.rank2 * 100;
+    case 1:
+      return learner / badge.rank1 * 100;
     default:
       return 0;
   }

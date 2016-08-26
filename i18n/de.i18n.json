@@ -110,7 +110,7 @@
   },
 
   "profile": {
-    "overview": "Konsole",
+    "overview": "Lernfortschritt",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
@@ -138,14 +138,28 @@
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
       "subscribe": "Abonniere die Pro-Version jetzt!",
-      "lecturer": "Jetzt anfragen um alle Vorteile eines Dozenten zu erhalten.",
-      "send": "Anfrage versenden",
+      "lecturer": "Dozent",
+      "send": "Anfrage versenden um alle Vorteile eines Dozenten zu erhalten.",
+      "lecturerActivatet": "Sie sind als Dozent freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
     "payment": {
       "header": "Zahlungsmethode",
       "desc": "Bitte geben Sie Ihre bevorzugte Zahlungsmethode an."
+    },
+    "revenue": {
+      "header": "Umsatzhistorie",
+      "empty": "Sie haben bisher noch keine Einnahmen generiert!",
+      "boughtFrom": "Gekauft von",
+      "for": "für",
+      "at": "am"
+    },
+    "purchases": {
+      "header": "Zahlungshistorie",
+      "empty": "Sie haben bisher noch keine Käufe abgeschlossen!",
+      "boughtFor": "Gekauft für",
+      "at": "am"
     }
   },
 

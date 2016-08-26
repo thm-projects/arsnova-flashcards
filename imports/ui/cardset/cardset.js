@@ -38,40 +38,34 @@ Session.setDefault('cardSort', {
    Meteor.subscribe("cards", Router.current().params._id);
    Session.set('cardsetId', Router.current().params._id);
 
-   Meteor.call('getClientToken', function(error, clientToken) {
-    if (error) {
-      console.log(error);
-    } else {
-      braintree.setup(clientToken, "dropin", {
-        container: "payment-form",
-        paypal: {
-          singleUse: true,
-          amount: 2.99,
-          currency: 'EUR',
-          button: {
-            type: 'checkout'
-          }
-        },
-        onPaymentMethodReceived: function (response) {
-          var nonce = response.nonce;
+   if ($('#payment-form').length) {
+     Meteor.call('getClientToken', function(error, clientToken) {
+      if (error) {
+        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+      } else {
+        braintree.setup(clientToken, "dropin", {
+          container: "payment-form",
+          onPaymentMethodReceived: function (response) {
+            var nonce = response.nonce;
 
-          Meteor.call('btCreateCustomer', function(error, success) {
-            if (error) {
-              throw new Meteor.Error('customer-creation-failed');
-            } else {
-              Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
-                if (error) {
-                  throw new Meteor.Error('transaction-creation-failed');
-                } else {
-                  Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-  });
+            Meteor.call('btCreateCustomer', function(error, success) {
+              if (error) {
+                throw new Meteor.Error('customer-creation-failed');
+              } else {
+                Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
+                  if (error) {
+                    throw new Meteor.Error('transaction-creation-failed');
+                  } else {
+                    Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
  }
 
 Template.cardset.helpers({
@@ -116,7 +110,7 @@ Template.cardset.helpers({
     return this.owner === Meteor.userId() || hasRole;
   },
   'isLecturerAndHasRequest': function() {
-    return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true)
+    return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
   }
 });
 
@@ -169,11 +163,19 @@ Template.cardset.events({
     $('#editSetCategory').text(categoryName);
     tmpl.find('#editSetCategory').value = categoryId;
   },
-  'click #releaseCardset': function() {
-    Meteor.call("publicateProRequest", this._id, false, true);
+  'click #acceptRequest': function() {
+    Meteor.call("publicateProRequest", this._id, true, false, true);
+    Bert.alert('Kartensatz freigeschaltet', 'success', 'growl-bottom-right');
   },
-  'click #buyCardset': function() {
-    Meteor.call("addPaid", this._id, this.price);
+  'click #declineRequest': function() {
+    var reason = $('#declineRequestReason').val();
+    if (reason === '') {
+      Bert.alert('Geben Sie eine Begründung für die Ablehnung der Anfrage an', 'danger', 'growl-bottom-right');
+    } else {
+      Meteor.call("publicateProRequest", this._id, false, false, false);
+      Meteor.call("addNotification", this.owner, "Kartensatzfreischaltung nicht stattgegeben", reason);
+      Bert.alert('Anfrage wurde abgelehnt!', 'info', 'growl-bottom-right');
+    }
   }
 });
 
@@ -352,6 +354,12 @@ Template.cardsetDetails.events({
  * ############################################################################
  */
 
+ Template.cardsetInfo.onRendered(function() {
+   $('[data-toggle="popover"]').popover({
+     placement: 'right'
+   });
+});
+
 Template.cardsetInfo.helpers({
   getAverage: function() {
     var ratings = Ratings.find({
@@ -391,13 +399,13 @@ Template.cardsetInfo.helpers({
   getKind: function() {
     switch (this.kind) {
       case "personal":
-        return '<span class="label label-info">Private</span>';
+        return '<span class="label label-warning">Private</span>';
       case "free":
         return '<span class="label label-default">Free</span>';
       case "edu":
         return '<span class="label label-success">Edu</span>';
       case "pro":
-        return '<span class="label label-warning">Pro</span>';
+        return '<span class="label label-info">Pro</span>';
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
@@ -414,6 +422,10 @@ Template.cardsetInfo.helpers({
       }
     }
   },
+  isDisabled: function() {
+    var cards = Cards.find({cardset_id: this._id}).count() < 5;
+    return (cards || this.reviewed || this.request) ? 'disabled' : '';
+  },
   userExists: function(username, owner) {
     if (Roles.userIsInRole(owner, 'blocked')) {
       return false;
@@ -424,6 +436,18 @@ Template.cardsetInfo.helpers({
     else {
       return true;
     }
+  },
+  hasAmount: function() {
+    return this.kind === 'pro' || this.kind === 'edu';
+  },
+  getAmount: function() {
+    return this.price + '€';
+  },
+  isPurchased: function() {
+    return Paid.findOne({cardset_id:this._id}) !== undefined;
+  },
+  getDateOfPurchase: function() {
+    return moment(Paid.findOne({cardset_id:this._id}).date).locale(getUserLanguage()).format('LL');
   }
 });
 
@@ -442,11 +466,12 @@ Template.cardsetInfo.events({
     var cardset_id = Template.parentData(1)._id;
     var rating = $('#rating').data('userrating');
     var count = Ratings.find({
-      cardset_id: this._id,
+      cardset_id: cardset_id,
       user: Meteor.userId()
     }).count();
     if (count === 0) {
-      Meteor.call("addRating", cardset_id, rating);
+      var cardset = Cardsets.findOne({_id: cardset_id});
+      Meteor.call("addRating", cardset_id, cardset.owner, rating);
     }
   },
   'click #exportCardsBtn': function() {
@@ -575,16 +600,33 @@ Template.cardsetConfirmForm.events({
  * ############################################################################
  */
 
- Template.cardsetPublicateForm.rendered = function(){
-    Session.set('kind', this.kind);
- }
+Template.cardsetPublicateForm.onRendered(function() {
+  $('#publicateModal').on('hidden.bs.modal', function() {
+    var cardset = Cardsets.findOne(Session.get('cardsetId'));
+
+    $('#publicateKind > label').removeClass('active');
+    $('#publicateKind > label > input').filter(function() {
+        return this.value === cardset.kind
+    }).parent().addClass('active');
+    Session.set('kind', cardset.kind);
+
+    $('#publicatePrice').val(cardset.price);
+  });
+});
 
 Template.cardsetPublicateForm.helpers({
   kindWithPrice: function(){
-    return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
+    if (Session.get('kind') === undefined) {
+      return (this.kind === 'edu' || this.kind === 'pro');
+    } else {
+      return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
+    }
   },
   kindIsActive: function(kind) {
     return kind === this.kind;
+  },
+  priceIsSelected: function(price) {
+    return price === this.price ? 'selected' : '';
   }
 });
 
@@ -608,14 +650,14 @@ Template.cardsetPublicateForm.events({
     }
     if (kind === 'pro') {
       visible = false;
-      Meteor.call("publicateProRequest", id, true, visible);
+      Meteor.call("publicateProRequest", id, false, true, visible);
 
       var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
       var type = "Pro-Überprüfung";
       var target = "lecturer";
 
       Meteor.call("addNotification", target, type, text);
-      Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success');
+      Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
     }
 
     Meteor.call("publicateCardset", id, kind, price, visible);

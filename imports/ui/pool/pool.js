@@ -14,7 +14,7 @@ import './pool.html';
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
-Session.setDefault('poolSort', {name: 1});
+Session.setDefault('poolSort', {relevance: -1});
 
 /**
  * ############################################################################
@@ -64,6 +64,14 @@ Template.category.helpers({
       return '<i class="fa fa-sort-desc"></i>';
     }
   },
+  getSortRelevanceIcon: function() {
+    var sort = Session.get('poolSort');
+    if (sort.relevance === 1) {
+      return '<i class="fa fa-sort-asc"></i>';
+    } else if (sort.relevance === -1){
+      return '<i class="fa fa-sort-desc"></i>';
+    }
+  },
   getKind: function() {
     switch (this.kind) {
       case "free":
@@ -71,7 +79,7 @@ Template.category.helpers({
       case "edu":
         return '<span class="label label-success">Edu</span>';
       case "pro":
-        return '<span class="label label-warning">Pro</span>';
+        return '<span class="label label-info">Pro</span>';
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
@@ -96,11 +104,20 @@ Template.category.events({
     else {
       Session.set('poolSort', {username: 1});
     }
+  },
+  'click #sortRelevance': function() {
+    var sort = Session.get('poolSort');
+    if (sort.relevance === 1) {
+      Session.set('poolSort', {relevance: -1});
+    }
+    else {
+      Session.set('poolSort', {relevance: 1});
+    }
   }
 });
 
 Template.category.onDestroyed(function() {
-  Session.set('poolSort', {name: 1});
+  Session.set('poolSort', {relevance: -1});
 });
 
 /**

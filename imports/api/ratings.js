@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 import { Experience } from './experience.js';
+import { Cardsets } from './cardsets.js';
 
 export const Ratings = new Mongo.Collection("ratings");
 
@@ -12,7 +13,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  addRating: function(cardset_id, rating) {
+  addRating: function(cardset_id, owner, rating) {
     // Make sure the user is logged in
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -20,9 +21,23 @@ Meteor.methods({
 
     Ratings.insert({
       cardset_id: cardset_id,
-      user: Meteor.userId(),
+      user: owner,
       rating: rating
     });
+
+    Meteor.call("updateRelevance", cardset_id, function(error, relevance){
+      if(error){
+        console.log("error", error);
+      }
+      else {
+        Cardsets.update(cardset_id, {
+          $set: {
+            relevance: Number(relevance)
+          }
+        });
+      }
+    });
+
     Experience.insert({
       type: 4,
       value: 1,

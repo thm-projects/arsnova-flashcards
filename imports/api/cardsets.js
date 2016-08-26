@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 
 import { Cards } from './cards.js';
 import { Experience } from './experience.js';
+import { Ratings } from './ratings.js';
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -60,6 +61,10 @@ CardsetsSchema = new SimpleSchema({
   },
   request: {
     type: Boolean
+  },
+  relevance: {
+    type: Number,
+    decimal: true
   }
 });
 
@@ -105,7 +110,8 @@ Meteor.methods({
       kind: kind,
       price: 0,
       reviewed: false,
-      request: false
+      request: false,
+      relevance: 0
     });
     Experience.insert({
       type: 2,
@@ -148,6 +154,37 @@ Meteor.methods({
       }
     });
   },
+  updateRelevance: function(cardset_id) {
+    var relevance = 0;
+
+    var ratings = Ratings.find({cardset_id: cardset_id});
+    var count = ratings.count();
+    if (count !== 0) {
+      var amount = 0;
+      ratings.forEach(function(rate) {
+        amount = amount + rate.rating;
+      });
+      var result = (amount / count).toFixed(2);
+      relevance = Number(result);
+    }
+
+    var kind = Cardsets.findOne(cardset_id).kind;
+
+    switch (kind) {
+      case 'free':
+        break;
+      case 'edu':
+        relevance += 0.1;
+        break;
+      case 'pro':
+        relevance += 0.2;
+        break;
+      default:
+        break;
+    }
+
+    return relevance;
+  },
   publicateCardset: function(id, kind, price, visible) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
@@ -158,15 +195,23 @@ Meteor.methods({
       }
     }
 
-    Cardsets.update(id, {
-      $set: {
-        kind: kind,
-        price: price,
-        visible: visible
+    Meteor.call("updateRelevance", id, function(error, relevance){
+      if(error){
+        console.log("error", error);
+      }
+      else {
+        Cardsets.update(id, {
+          $set: {
+            kind: kind,
+            price: price,
+            visible: visible,
+            relevance: relevance
+          }
+        });
       }
     });
   },
-  publicateProRequest: function(id, request, visible) {
+  publicateProRequest: function(id, reviewed, request, visible) {
     // Make sure only the task owner can make a task private
     var cardset = Cardsets.findOne(id);
 
@@ -181,6 +226,7 @@ Meteor.methods({
 
     Cardsets.update(id, {
       $set: {
+        reviewed: reviewed,
         request: request,
         visible: visible
       }

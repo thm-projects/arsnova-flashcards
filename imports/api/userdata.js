@@ -52,39 +52,5 @@ Meteor.methods({
         daysInRow: row
       }
     });
-  },
-  upgradeUser: function () {
-    var loggedInUser = Meteor.user();
-
-    if (!loggedInUser || !Roles.userIsInRole(loggedInUser, 'standard')) {
-      throw new Meteor.Error(403, "Access denied");
-    }
-
-    var roles = ['pro'];
-    if (Roles.userIsInRole(loggedInUser._id, 'university')) {
-      roles.push('university');
-    }
-    if (Roles.userIsInRole(loggedInUser._id, 'lecturer')) {
-      roles.push('lecturer');
-    }
-
-    Roles.setUserRoles(loggedInUser._id, roles);
-  },
-  downgradeUser: function () {
-    var loggedInUser = Meteor.user();
-
-    if (!loggedInUser || !Roles.userIsInRole(loggedInUser, 'pro')) {
-      throw new Meteor.Error(403, "Access denied");
-    }
-
-    var roles = ['standard'];
-    if (Roles.userIsInRole(loggedInUser._id, 'university')) {
-      roles.push('university');
-    }
-    if (Roles.userIsInRole(loggedInUser._id, 'lecturer')) {
-      roles.push('lecturer');
-    }
-
-    Roles.setUserRoles(loggedInUser._id, roles);
   }
 });
