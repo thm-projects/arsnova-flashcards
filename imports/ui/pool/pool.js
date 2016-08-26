@@ -15,6 +15,7 @@ Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
 Session.setDefault('poolSort', {relevance: -1});
+Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
  * ############################################################################
@@ -27,7 +28,8 @@ Template.category.helpers({
     var id = parseInt(this._id);
     return Cardsets.find({
       category: id,
-      visible: true
+      visible: true,
+      kind: {$in: Session.get('poolFilter')}
     }, {
       sort: Session.get('poolSort')
     });
@@ -113,6 +115,14 @@ Template.category.events({
     else {
       Session.set('poolSort', {relevance: 1});
     }
+  },
+  'change #filterCheckbox': function() {
+    var filter = new Array();
+    $("#filterCheckbox input:checkbox:checked").each(function(){
+      filter.push($(this).val());
+    });
+    console.log(filter);
+    Session.set('poolFilter', filter);
   }
 });
 

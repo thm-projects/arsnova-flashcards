@@ -18,13 +18,22 @@
                         <h4>{{name}}</h4>
                     </div>
                     <div class="col-md-6">
-
+                      <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default active">
+                          <input type="checkbox" autocomplete="off" value="free" checked> Free
+                        </label>
+                        <label class="btn btn-success active">
+                          <input type="checkbox" autocomplete="off" value="edu" checked> Edu
+                        </label>
+                        <label class="btn btn-info active">
+                          <input type="checkbox" autocomplete="off" value="pro" checked> Pro
+                        </label>
+                      </div>
                         <div class="btn-group pull-right">
                             <button id="sortRelevance" class="btn btn-default" type="button">Relevanz {{{getSortRelevanceIcon}}}</button>
                             <button id="sortName" class="btn btn-default" type="button">Name {{{getSortNameIcon}}}</button>
                             <button id="sortUser" class="btn btn-default" type="button">Ersteller {{{getSortUserIcon}}}</button>
                         </div>
-                        <span class="sortText pull-right">Sortieren nach... </span>
                     </div>
                 </div>
             </div>
