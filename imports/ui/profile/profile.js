@@ -197,6 +197,11 @@ Template.profileBilling.helpers({
     },
     getCardsetName: function(cardset_id) {
       return Cardsets.findOne(cardset_id).name;
+    },
+    getBalance: function() {
+      Meteor.subscribe("privateUserData");
+      var balance = Meteor.users.findOne(Meteor.userId).balance;
+      return (balance !== undefined) ? balance : 0;
     }
 });
 

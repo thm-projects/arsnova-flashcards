@@ -11,6 +11,15 @@ Meteor.publish("userData", function () {
     this.ready();
   }
 });
+Meteor.publish("privateUserData", function () {
+  if (this.userId) {
+    return Meteor.users.find(
+      {_id: this.userId},
+      {fields: {'profile.name': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'balance': 1}});
+  } else {
+    this.ready();
+  }
+});
 }
 
 Meteor.methods({
@@ -52,5 +61,16 @@ Meteor.methods({
         daysInRow: row
       }
     });
-  }
+  },
+  increaseUsersBalance: function(user_id, lecturer_id, amount) {
+    if (amount < 10) {
+      var user_amount = Math.round((amount * 0.7) * 100) / 100;
+      var lecturer_amount = Math.round((amount * 0.05) * 100) / 100;
+
+      Meteor.users.update(user_id, {$inc: {balance: user_amount}});
+      Meteor.users.update(lecturer_id, {$inc: {balance: lecturer_amount}});
+    } else {
+      throw new Meteor.Error("Amount of money is too high");
+    }
+  },
 });

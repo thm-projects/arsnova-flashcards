@@ -150,6 +150,7 @@
     },
     "revenue": {
       "header": "Revenue History",
+      "balance": "Account balance",
       "empty": "You have not generated any revenue yet!",
       "boughtFrom": "Bought from",
       "for": "for",
