@@ -1,7 +1,6 @@
 <template name="admin_main">
   {{#if isInRole 'blocked'}}
-    Access Denied
-    <a href="#" id="logout_access_denied_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a>
+    {{> access_denied}}
   {{else}}
     {{#if isInRole 'admin, editor'}}
       <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,6 +27,38 @@
                 {{#if currentUser}}
                   <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
                 {{/if}}
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i> <span class="badge">{{getNotifications.count}}</span>
+                    </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        {{#if getNotifications.count}}
+                            <div class="notification-heading">
+                                <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                                <h4 class="menu-title pull-right">{{_ "notifications.clearAll"}} <i class="fa fa-trash"></i></h4>
+                            </div>
+                            <li class="divider"></li>
+                            <div class="notifications-wrapper">
+                                {{#each getNotifications}}
+                                    <a class="content">
+                                        <div class="notification-item">
+                                            <h4 class="item-title">{{type}}</h4>
+                                            <p class="item-info">{{text}}</p>
+                                        </div>
+                                    </a>
+                                {{/each}}
+                            </div>
+                            <li class="divider"></li>
+                            <div class="notification-footer">
+                                <h4 class="menu-title"><a href="{{pathFor 'profileNotifications' _id=currentUser._id}}">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
+                        {{else}}
+                            <div class="notification-heading">
+                                <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                            </div>
+                        {{/if}}
+                    </ul>
+                </li>
                 <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
               </ul>
             </div>
@@ -80,7 +111,7 @@
         </div>
       </div>
     {{else}}
-      Access Denied!
+      {{> access_denied}}
     {{/if}}
   {{/if}}
 </template>

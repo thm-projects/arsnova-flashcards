@@ -14,17 +14,13 @@ import '../cardsets/cardsets.js';
 import '../pool/pool.js';
 import '../profile/profile.js'
 import '../admin/admin.js';
+import '../access_denied/access_denied.js';
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 
 Template.main.events({
   'click #logout': function(event) {
-    event.preventDefault();
-    Meteor.logout();
-    Router.go('home');
-  },
-  'click #logout_access_denied': function(event) {
     event.preventDefault();
     Meteor.logout();
     Router.go('home');

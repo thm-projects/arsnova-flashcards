@@ -1,7 +1,6 @@
 <template name="main">
   {{#if isInRole 'blocked'}}
-    Access Denied!
-    <a href="#" id="logout_access_denied"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a>
+    {{> access_denied}}
   {{else}}
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -22,7 +21,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    {{#if currentUser }}
+                    {{#if currentUser}}
                         <ul id="navbar" class="nav navbar-nav">
 
                             <li id="navbar-ownsets" class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}">
