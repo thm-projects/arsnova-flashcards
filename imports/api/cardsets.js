@@ -65,6 +65,9 @@ CardsetsSchema = new SimpleSchema({
   relevance: {
     type: Number,
     decimal: true
+  },
+  quantity: {
+    type: Number
   }
 });
 
@@ -111,7 +114,8 @@ Meteor.methods({
       price: 0,
       reviewed: false,
       request: false,
-      relevance: 0
+      relevance: 0,
+      quantity: 0
     });
     Experience.insert({
       type: 2,

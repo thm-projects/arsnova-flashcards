@@ -290,6 +290,7 @@ Template.cardsetList.onDestroyed(function() {
  * ############################################################################
  */
 
+
 Template.cardsetDetails.helpers({
   cardsIndex: function(index) {
     return index + 1;
@@ -298,9 +299,9 @@ Template.cardsetDetails.helpers({
     return 0 === index;
   },
   cardCountOne: function(cardset_id) {
-    var count = Cards.find({
-      cardset_id: cardset_id
-    }).count();
+    var count = Cardsets.find({
+      _id: cardset_id
+    }).quantity;
     return count !== 1;  },
   cardDetailsMarkdown: function(front, back, index) {
     Meteor.promise("convertMarkdown", front)
@@ -324,6 +325,87 @@ Template.cardsetDetails.helpers({
 });
 
 Template.cardsetDetails.events({
+  "click .box": function() {
+    if ($(".cardfront-symbol").css('display') === 'none') {
+      $(".cardfront-symbol").css('display', "");
+      $(".cardback-symbol").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
+    } else if ($(".cardback-symbol").css('display') === 'none') {
+      $(".cardfront-symbol").css('display', "none");
+      $(".cardback-symbol").css('display', "");
+      $(".cardfront").css('display', "none");
+      $(".cardback").css('display', "");
+    }
+  },
+  "click #leftCarouselControl, click #rightCarouselControl": function() {
+    if ($(".cardfront-symbol").css('display') === 'none') {
+      $(".cardfront-symbol").css('display', "");
+      $(".cardback-symbol").css('display', "none");
+      $(".cardfront").css('display', "");
+      $(".cardback").css('display', "none");
+    }
+  },
+  'click .item.active .block a': function() {
+    evt.stopPropagation();
+  }
+});
+
+/**
+ * ############################################################################
+ * cardsetPreview
+ * ############################################################################
+ */
+
+ Template.cardsetPreview.rendered = function(){
+    Meteor.subscribe("cards", Router.current().params._id);
+}
+
+Template.cardsetPreview.helpers({
+  cardsIndex: function(index) {
+    return index + 1;
+  },
+  cardActive: function(index) {
+    return 0 === index;
+  },
+  cardCountOne: function(cardset_id) {
+    var count = Cardsets.find({
+      _id: cardset_id
+    }).quantity;
+
+    return count !== 1;
+  },
+  countPreviewCards: function(cardset_id) {
+    var count = Cards.find({
+      cardset_id: cardset_id
+    }).count();
+
+    return count;
+  },
+  cardDetailsMarkdown: function(front, back, index) {
+    Meteor.promise("convertMarkdown", front)
+      .then(function(html) {
+        $(".detailfront" + index).html(html);
+      });
+    Meteor.promise("convertMarkdown", back)
+      .then(function(html) {
+        $(".detailback" + index).html(html);
+      });
+  },
+  getCardsCheckActive: function() {
+    var query = Cards.find({cardset_id: this._id});
+
+    query.observeChanges({
+      removed: function() {
+        $('#cardCarousel .item:first-child').addClass('active');
+      }
+    });
+
+    return query;
+  }
+});
+
+Template.cardsetPreview.events({
   "click .box": function() {
     if ($(".cardfront-symbol").css('display') === 'none') {
       $(".cardfront-symbol").css('display', "");
@@ -425,8 +507,7 @@ Template.cardsetInfo.helpers({
     }
   },
   isDisabled: function() {
-    var cards = Cards.find({cardset_id: this._id}).count() < 5;
-    return (cards || this.reviewed || this.request) ? 'disabled' : '';
+    return (this.quantity < 5 || this.reviewed || this.request) ? 'disabled' : '';
   },
   userExists: function(username, owner) {
     if (Roles.userIsInRole(owner, 'blocked')) {

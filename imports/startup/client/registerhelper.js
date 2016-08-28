@@ -35,9 +35,7 @@ Template.registerHelper("isOwner", function() {
 
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function(cardset_id) {
-  return Cards.find({
-    cardset_id: cardset_id
-  }).count();
+  return Cardsets.findOne({_id: cardset_id}).quantity;
 });
 
 // Returns all Cards of a Carddeck
