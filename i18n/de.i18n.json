@@ -150,6 +150,7 @@
     },
     "revenue": {
       "header": "Umsatzhistorie",
+      "balance": "Kontostand",
       "empty": "Sie haben bisher noch keine Einnahmen generiert!",
       "boughtFrom": "Gekauft von",
       "for": "für",
