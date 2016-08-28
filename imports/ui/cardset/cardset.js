@@ -166,7 +166,7 @@ Template.cardset.events({
     tmpl.find('#editSetCategory').value = categoryId;
   },
   'click #acceptRequest': function() {
-    Meteor.call("publicateProRequest", this._id, true, false, true);
+    Meteor.call("acceptProRequest", this._id);
     Bert.alert('Kartensatz freigeschaltet', 'success', 'growl-bottom-right');
   },
   'click #declineRequest': function() {
@@ -174,7 +174,7 @@ Template.cardset.events({
     if (reason === '') {
       Bert.alert('Geben Sie eine Begründung für die Ablehnung der Anfrage an', 'danger', 'growl-bottom-right');
     } else {
-      Meteor.call("publicateProRequest", this._id, false, false, false);
+      Meteor.call("declineProRequest", this._id);
       Meteor.call("addNotification", this.owner, "Kartensatzfreischaltung nicht stattgegeben", reason);
       Bert.alert('Anfrage wurde abgelehnt!', 'info', 'growl-bottom-right');
     }
@@ -290,6 +290,12 @@ Template.cardsetList.onDestroyed(function() {
  * ############################################################################
  */
 
+ Template.cardsetDetails.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('cards', Router.current().params._id);
+  });
+});
+
 
 Template.cardsetDetails.helpers({
   cardsIndex: function(index) {
@@ -315,6 +321,7 @@ Template.cardsetDetails.helpers({
   },
   getCardsCheckActive: function() {
     var query = Cards.find({cardset_id: this._id});
+
     query.observeChanges({
       removed: function() {
         $('#cardCarousel .item:first-child').addClass('active');
@@ -356,6 +363,13 @@ Template.cardsetDetails.events({
  * cardsetPreview
  * ############################################################################
  */
+
+ Template.cardsetPreview.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('cards', Router.current().params._id);
+  });
+});
+
 
  Template.cardsetPreview.rendered = function(){
     Meteor.subscribe("cards", Router.current().params._id);
@@ -531,6 +545,10 @@ Template.cardsetInfo.helpers({
   },
   getDateOfPurchase: function() {
     return moment(Paid.findOne({cardset_id:this._id}).date).locale(getUserLanguage()).format('LL');
+  },
+  getReviewer: function() {
+    var reviewer = Meteor.users.findOne(this.reviewer);
+    return (reviewer !== undefined) ? reviewer.profile.name: undefined;
   }
 });
 
@@ -733,7 +751,7 @@ Template.cardsetPublicateForm.events({
     }
     if (kind === 'pro') {
       visible = false;
-      Meteor.call("publicateProRequest", id, false, true, visible);
+      Meteor.call("makeProRequest", id);
 
       var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
       var type = "Pro-Überprüfung";

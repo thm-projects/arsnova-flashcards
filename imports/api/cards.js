@@ -14,20 +14,26 @@ if (Meteor.isServer) {
     var cardset = Cardsets.findOne(cardset_id);
 
     var owner = (cardset !== undefined) ? cardset.owner : undefined;
-    var isOwner = this.userId === owner;
+    var isOwner = (this.userId === owner);
 
     var hasBought = Paid.findOne({cardset_id: cardset_id, user_id:this.userId}) !== undefined;
 
     var isFree = (cardset !== undefined) ? cardset.kind === 'free' : undefined;
+    var isVisible = (cardset !== undefined) ? cardset.visible : undefined;
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Cards.find();
     }
-    else if (isOwner || hasBought || isFree || Roles.userIsInRole(this.userId, ['pro']))
+    else if (isOwner || Roles.userIsInRole(this.userId, ['lecturer']))
     {
-      return Cards.find({cardset_id: {$in: Cardsets.find({_id: cardset_id, $or: [{visible: true}, {owner: this.userId}]}).map(function(doc){return doc._id})}});
+      return Cards.find({cardset_id: cardset_id});
     }
-    else {
+    else if (isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro'])))
+    {
+      return Cards.find({cardset_id: cardset_id});
+    }
+    else if (isVisible)
+    {
       var count = Cards.find({cardset_id:cardset_id}).count();
       var limit = count * 0.1;
 
@@ -37,7 +43,7 @@ if (Meteor.isServer) {
         limit = 15;
       }
 
-      return Cards.find({},{limit: limit});
+      return Cards.find({cardset_id: cardset_id},{limit: limit});
     }
   });
 }
