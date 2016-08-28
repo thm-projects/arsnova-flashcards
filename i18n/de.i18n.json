@@ -236,9 +236,12 @@
   },
 
   "pool": {
+    "relevance": "Relevanz",
     "name": "Name",
-    "description": "Beschreibung",
-    "created": "Erstellt von"
+    "author": "Autor",
+    "rating": "Bewertung",
+    "quantity": "Kartenanzahl",
+    "release": "Veröffentlicht"
   },
 
   "cardmemo": {

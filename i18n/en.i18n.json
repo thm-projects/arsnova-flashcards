@@ -236,9 +236,12 @@
   },
 
   "pool": {
+    "relevance": "Relevance",
     "name": "Name",
-    "description": "Description",
-    "created": "Created by"
+    "author": "Author",
+    "rating": "Rating",
+    "quantity": "Number of cards",
+    "release": "Published"
   },
 
   "cardmemo": {
