@@ -14,8 +14,8 @@
                 <div class="panel-body">
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button id="acceptRequest" class="btn btn-success" type="button">Kartensatz freigeben</button>
-                        <button id="declineRequest" class="btn btn-danger" type="button">Kartensatz nicht freigeben</button>
+                        <button id="acceptRequest" class="btn btn-success" type="button">{{_ "cardset.request.accept"}}</button>
+                        <button id="declineRequest" class="btn btn-danger" type="button">{{_ "cardset.request.decline"}}n</button>
                       </span>
                       <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
                     </div>
@@ -54,7 +54,7 @@
               <div class="col-sm-4">
                   <div class="well">
                       {{#if ratingEnabled}}
-                        <strong class="left">Bewertung:</strong>
+                        <strong class="left">{{_ "cardset.info.rating"}}:</strong>
                         {{#if hasRated}}
                           {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                         {{else}}
@@ -62,21 +62,21 @@
                         {{/if}}
                         <hr>
                       {{/if}}
-                      <strong>Kartenanzahl:</strong> {{this.quantity}}
+                      <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                       <br>
-                      <strong>Autor:</strong>
+                      <strong>{{_ "cardset.info.author"}}:</strong>
                       {{#if userExists username owner}}
                         <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
                       {{else}}
                         {{username}}
                       {{/if}}
-                      <br><strong>Veröffentlicht:</strong> {{getDate}}
-                      <br><strong>Prüfer:</strong> {{getReviewer}}
+                      <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
+                      <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
                       {{#if hasAmount}}
-                        <br><strong>Preis:</strong> {{getAmount}}
+                        <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
                       {{/if}}
                       {{#if isPurchased}}
-                        <br><strong>Gekauft am:</strong> {{getDateOfPurchase}}
+                        <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
                       {{/if}}
                   </div>
               </div>
@@ -134,8 +134,8 @@
               <div class="">
                 <div class="">
                   <div id="payment-form"></div>
-                  <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">Kartensatz kaufen für {{price}}€</button>
-                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning btn-block" type="button">Als Premium-Nutzer lernen</a>
+                  <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€</button>
+                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
                 </div>
               </div>
             </form>

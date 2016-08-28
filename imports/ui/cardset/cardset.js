@@ -58,7 +58,7 @@ Session.setDefault('cardSort', {
                   if (error) {
                     throw new Meteor.Error('transaction-creation-failed');
                   } else {
-                    Bert.alert('Thank you for your payment!', 'success', 'growl-bottom-right');
+                    Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
                   }
                 });
               }
@@ -167,16 +167,16 @@ Template.cardset.events({
   },
   'click #acceptRequest': function() {
     Meteor.call("acceptProRequest", this._id);
-    Bert.alert('Kartensatz freigeschaltet', 'success', 'growl-bottom-right');
+    Bert.alert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-bottom-right');
   },
   'click #declineRequest': function() {
     var reason = $('#declineRequestReason').val();
     if (reason === '') {
-      Bert.alert('Geben Sie eine Begründung für die Ablehnung der Anfrage an', 'danger', 'growl-bottom-right');
+      Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-bottom-right');
     } else {
       Meteor.call("declineProRequest", this._id);
       Meteor.call("addNotification", this.owner, "Kartensatzfreischaltung nicht stattgegeben", reason);
-      Bert.alert('Anfrage wurde abgelehnt!', 'info', 'growl-bottom-right');
+      Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
     }
   }
 });

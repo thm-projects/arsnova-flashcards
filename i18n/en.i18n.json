@@ -244,6 +244,30 @@
     "release": "Published"
   },
 
+  "cardset": {
+    "info": {
+      "author": "Author",
+      "rating": "Rating",
+      "quantity": "Number of cards",
+      "release": "Published",
+      "reviewer": "Reviewer",
+      "amount": "Price",
+      "bought": "Bought on"
+    },
+    "request": {
+      "accept": "Release cardset",
+      "decline": "Don't release cardset",
+      "accepted": "Cardset released",
+      "declined": "Cardset not released",
+      "reason": "Enter a reason for rejecting the request"
+    },
+    "money": {
+      "buy": "Buy cardset for",
+      "pro": "Learn as premium-user",
+      "bought": "Thank you for your payment!"
+    }
+  },
+
   "cardmemo": {
     "showanswer": "Show answer",
     "rateanswer": "Rate your answer",

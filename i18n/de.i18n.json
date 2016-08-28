@@ -244,6 +244,30 @@
     "release": "Veröffentlicht"
   },
 
+  "cardset": {
+    "info": {
+      "author": "Autor",
+      "rating": "Bewertung",
+      "quantity": "Kartenanzahl",
+      "release": "Veröffentlicht",
+      "reviewer": "Prüfer",
+      "amount": "Preis",
+      "bought": "Gekauft am"
+    },
+    "request": {
+      "accept": "Kartensatz freigeben",
+      "decline": "Kartensatz nicht freigeben",
+      "accepted": "Kartensatz freigegeben",
+      "declined": "Kartensatz nicht freigegeben",
+      "reason": "Geben Sie eine Begründung für die Ablehnung der Anfrage an"
+    },
+    "money": {
+      "buy": "Kartensatz kaufen für",
+      "pro": "Als Premium-Nutzer lernen",
+      "bought": "Vielen Dank für Ihren Kauf!"
+    }
+  },
+
   "cardmemo": {
     "showanswer": "Zeige Antwort",
     "rateanswer": "Bewerte deine Antwort",
