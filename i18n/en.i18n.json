@@ -504,5 +504,10 @@
       "confirm": "Sure?",
       "email_invalid": "Invalid Email"
     }
+  },
+
+  "access-denied": {
+    "title": "Access Denied",
+    "text": "You don't have permission to open this page!"
   }
 }

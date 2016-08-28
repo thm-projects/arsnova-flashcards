@@ -503,5 +503,10 @@
       "confirm": "Sicher?",
       "email_invalid": "Ungültige Email-Adresse"
     }
+  },
+
+  "access-denied": {
+    "title": "Zugriff verboten",
+    "text": "Sie haben keine Berechtigung diese Seite zu öffnen!"
   }
 }

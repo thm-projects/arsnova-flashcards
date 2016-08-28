@@ -2,36 +2,34 @@
 
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session';
 
 import { Notifications } from '../../api/notifications.js';
 
-import './admin.html';
-
-import './admin_dashboard/admin_dashboard.js';
-import './admin_cardsets/admin_cardsets.js';
-import './admin_cards/admin_cards.js';
-import './admin_users/admin_users.js';
-import './admin_notifications/admin_notifications.js';
-
+import './access_denied.html';
 
 Meteor.subscribe("notifications");
 
 /**
  * ############################################################################
- * admin_main
+ * access_denied_nav_admin
  * ############################################################################
  */
 
-Template.admin_main.events({
-  'click #logout_admin': function(event) {
+Template.access_denied.events({
+  'click #logout_access_denied': function(event) {
     event.preventDefault();
     Meteor.logout();
     Router.go('home');
   }
 });
 
-Template.admin_main.helpers({
+/**
+ * ############################################################################
+ * access_denied_nav_admin
+ * ############################################################################
+ */
+
+Template.access_denied_nav_admin.helpers({
   getUsername: function() {
     if (Meteor.user()) {
       return Meteor.user().profile.name;
