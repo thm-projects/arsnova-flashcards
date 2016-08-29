@@ -38,10 +38,12 @@ Session.setDefault('cardSort', {
    Meteor.subscribe("cards", Router.current().params._id);
    Session.set('cardsetId', Router.current().params._id);
 
+   var customerId = Meteor.user().customerId;
+
    if ($('#payment-form').length) {
-     Meteor.call('getClientToken', function(error, clientToken) {
+     Meteor.call('getClientToken', customerId, function(error, clientToken) {
       if (error) {
-        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+        throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
       } else {
         braintree.setup(clientToken, "dropin", {
           container: "payment-form",

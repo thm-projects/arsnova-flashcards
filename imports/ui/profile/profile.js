@@ -135,8 +135,10 @@ Template.profileSettings.events({
  */
 
  Template.profileMembership.rendered = function(){
+   var customerId = Meteor.user().customerId;
+
    if ($('#subscribe-form').length) {
-     Meteor.call('getClientToken', function(error, clientToken) {
+     Meteor.call('getClientToken', customerId, function(error, clientToken) {
       if (error) {
         throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
       } else {
@@ -242,7 +244,6 @@ Template.profileBilling.helpers({
           console.log("error", error);
         }
         if(result){
-           console.log(result);
            Session.set("paymentMethods", result);
         }
       });
@@ -257,7 +258,6 @@ Template.profileBilling.helpers({
            Session.set("hasPaymentMethods", !jQuery.isEmptyObject(result));
         }
       });
-      console.log(Session.get('hasPaymentMethods'));
       return Session.get('hasPaymentMethods');
     }
 });
