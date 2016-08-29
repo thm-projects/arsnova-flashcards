@@ -199,3 +199,17 @@ img.cardside {
 #set-details-region {
 	margin-bottom: 20px;
 }
+#selectLicenseModal {
+	#cc-modules img {
+		width: 40%;
+	}
+	#cc-description {
+		padding-top: 10px;
+		img {
+			width: 10%;
+		}
+		p {
+			padding-bottom: 10px;
+		}
+	}
+}

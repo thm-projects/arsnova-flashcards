@@ -5,8 +5,9 @@
     {{> cardsetForm}}
     {{> cardsetImportForm}}
     {{> cardsetPublicateForm}}
+    {{> selectLicenseForm}}
     {{onEditmodalClose this._id}}
-
+    
     {{#if hasCardsetPermission}}
       {{#if isLecturerAndHasRequest}}
           <div class="col-md-12">
@@ -112,6 +113,7 @@
                 <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
                 <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="popover" data-container="body" data-trigger="focus" title="Status eines Kartensatzes" data-content="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
               </div>
+              <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal" data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}</button>
             </div>
           {{/if}}
       </div>
@@ -427,6 +429,66 @@
         <div class="modal-footer">
           <button id="cardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
           <button id="cardsetPublicate" class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</template>
+
+<template name="selectLicenseForm">
+  <div class="modal fade" id="selectLicenseModal" tabindex="-1" role="dialog" aria-labelledby="selectLicenseModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label id="modulesLabel" class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
+              <div class="controls col-md-9">
+                <div id="cc-modules" class="btn-group" data-toggle="buttons">
+                  <label id="cc-option0" class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}" style="width:100px">
+                    <input type="checkbox" autocomplete="off" value="by" id="cc-by">
+                    <img src="/img/by.large.png" alt="Namensnennung" />
+                  </label>
+                  <label id="cc-option1" class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}" style="width:100px">
+                    <input type="checkbox" autocomplete="off" value="nc" id="cc-nc">
+                    <img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />
+                  </label>
+                  <label id="cc-option2" class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}" style="width:100px">
+                    <input type="checkbox" autocomplete="off" value="nd" id="cc-nd">
+                    <img src="/img/nd.large.png" alt="Keine Bearbeitung" />
+                  </label>
+                  <label id="cc-option3" class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}" style="width:100px">
+                    <input type="checkbox" autocomplete="off" value="sa" id="cc-sa">
+                    <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />
+                  </label>
+                </div>
+                <span id="helpCC-modules" class="help-block cc-modules"></span>
+              </div>
+
+              <div id=cc-description class="col-md-12">
+                <hr>
+                <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung" />
+                <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
+                <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell" />
+                <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
+                <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung" />
+                <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
+                <img class="col-md-2" src="/img/sa.large.png" alt="Keine Bearbeitung" />
+                <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="licenseCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+          <button id="licenseSave" class="btn btn-info pull-success">{{_ "modal-dialog.saveLicense"}}</button>
         </div>
       </div>
       <!-- /.modal-content -->

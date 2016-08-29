@@ -106,7 +106,13 @@
     "description_required": "Geben Sie eine Beschreibung ein!",
     "category_required": "Wählen Sie eine Kategorie!",
     "price": "Verkaufspreis",
-    "publicate": "Status speichern"
+    "publicate": "Status speichern",
+    "modules": "Rechtemodule",
+    "by-desc": "Der Name des Urhebers muss genannt werden.",
+    "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
+    "nd-desc": "Das Werk darf nicht verändert werden.",
+    "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
+    "saveLicense": "Lizenz speichern"
   },
 
   "profile": {
@@ -232,7 +238,8 @@
     "createcard": "Neue Karte erstellen",
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
-    "publicate": "Status"
+    "publicate": "Status",
+    "license": " Lizenz wählen"
   },
 
   "pool": {

@@ -65,6 +65,10 @@ CardsetsSchema = new SimpleSchema({
   relevance: {
     type: Number,
     decimal: true
+  },
+  license: {
+    type: [String],
+    maxCount: 4
   }
 });
 
@@ -111,7 +115,8 @@ Meteor.methods({
       price: 0,
       reviewed: false,
       request: false,
-      relevance: 0
+      relevance: 0,
+      license: []
     });
     Experience.insert({
       type: 2,
@@ -229,6 +234,21 @@ Meteor.methods({
         reviewed: reviewed,
         request: request,
         visible: visible
+      }
+    });
+  },
+  updateLicense: function(id, license) {
+    var cardset = Cardsets.findOne(id);
+
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+    }
+
+    Cardsets.update(id, {
+      $set: {
+        license: license
       }
     });
   }
