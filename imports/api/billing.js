@@ -25,16 +25,18 @@ Meteor.startup(function() {
 });
 
 Meteor.methods({
-    getClientToken: function(clientId) {
-        var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
-        var options = {};
+    getClientToken: function(customerId) {
+        var btClientToken = new Future();
 
-        if (clientId) {
-            options.clientId = clientId;
-        }
+        gateway.clientToken.generate({customerId: customerId}, function (error, response) {
+            if (error) {
+                btClientToken.return(error);
+            } else {
+                btClientToken.return(response.clientToken);
+            }
+        });
 
-        var response = generateToken(options);
-        return response.clientToken;
+        return btClientToken.wait();
     },
 
     btGetPaymentMethod: function() {
@@ -57,25 +59,29 @@ Meteor.methods({
         var user = Meteor.user();
         var cardset = Cardsets.findOne(cardset_id);
 
+        var btCreateTransaction = new Future();
+
         gateway.transaction.sale({
-            amount: cardset.price,
-            paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
-            customer: {
-                id: user.customerId
-            },
-            options: {
-                submitForSettlement: true, // Payment is submitted for settlement immediatelly
-                storeInVaultOnSuccess: true // Store customer in Braintree's Vault
-            }
-        }, function(err, success) {
-            if (err) {
-                console.log(err);
+          amount: cardset.price,
+          paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
+          customer: {
+              id: user.customerId
+          },
+          options: {
+              submitForSettlement: true, // Payment is submitted for settlement immediatelly
+              storeInVaultOnSuccess: true // Store customer in Braintree's Vault
+          }
+        }, function (error, response) {
+            if (error) {
+                btCreateTransaction.return(error);
             } else {
-                // When payment's successful, add "paid" role to current user.
                 Meteor.call('addPaid', cardset_id, cardset.price);
                 Meteor.call('increaseUsersBalance', cardset.owner, cardset.reviewer, cardset.price);
+                btCreateTransaction.return(response.clientToken);
             }
         });
+
+        return btCreateTransaction.wait();
     },
 
     btSubscribe: function(nonce, plan) {
