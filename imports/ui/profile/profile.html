@@ -415,7 +415,29 @@
             <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
         </div>
         <div class="panel-body">
-            {{_ "billing.payment.desc"}}
+          {{#if hasPaymentMethod}}
+            <div class="list-group">
+              {{#each getPaymentMethod}}
+                <div class="list-group-item {{#if default}}list-group-item-success{{/if}}">
+                  <div class="media">
+                    <div class="media-left media-middle">
+                        <img class="media-object" src="{{imageUrl}}" alt="...">
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{#if cardType}}{{cardType}}{{else}}PayPal{{/if}}</h4>
+                      {{#if cardType}}
+                        {{maskedNumber}} - {{expirationDate}}
+                      {{else}}
+                        {{email}}
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          {{else}}
+              <p class="alert alert-info">{{_ "billing.payment.empty"}}</p>
+          {{/if}}
         </div>
     </div>
     <div class="panel panel-default">
