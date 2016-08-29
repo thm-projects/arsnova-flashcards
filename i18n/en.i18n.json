@@ -253,7 +253,9 @@
     "rating": "Rating",
     "quantity": "Number of cards",
     "release": "Published",
-    "deleted": "Deleted"
+    "deleted": "Deleted",
+    "license": "License",
+    "dateUpdated": "Last updated"
   },
 
   "cardset": {
@@ -265,7 +267,9 @@
       "reviewer": "Reviewer",
       "amount": "Price",
       "bought": "Bought on",
-      "deleted": "Deleted"
+      "deleted": "Deleted",
+      "license": "License",
+      "dateUpdated": "Last updated"
     },
     "request": {
       "accept": "Release cardset",

@@ -72,6 +72,7 @@
                         {{username}} ({{_ "cardset.info.deleted"}})
                       {{/if}}
                       <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
+                      <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
                       <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
                       {{#if hasAmount}}
                         <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
@@ -79,6 +80,8 @@
                       {{#if isPurchased}}
                         <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
                       {{/if}}
+                      <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                      <span id="info_license">{{getLicense}}</span>
                   </div>
               </div>
           </div>
@@ -97,7 +100,9 @@
                 <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
                 <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="popover" data-container="body" data-trigger="focus" title="Status eines Kartensatzes" data-content="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
               </div>
-              <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal" data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}</button>
+              {{#if isPublished}}
+                <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal" data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}</button>
+              {{/if}}
             </div>
           {{/if}}
       </div>
@@ -527,7 +532,7 @@
                 <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
                 <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung" />
                 <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
-                <img class="col-md-2" src="/img/sa.large.png" alt="Keine Bearbeitung" />
+                <img class="col-md-2" src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />
                 <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
               </div>
             </div>

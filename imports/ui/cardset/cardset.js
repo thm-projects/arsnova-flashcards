@@ -540,6 +540,30 @@ Template.cardsetInfo.helpers({
   getReviewer: function() {
     var reviewer = Meteor.users.findOne(this.reviewer);
     return (reviewer !== undefined) ? reviewer.profile.name: undefined;
+  },
+  hasLicense: function() {
+    return this.license.length > 0
+  },
+  getLicense: function() {
+    var licenseString = "";
+
+    if (this.license.length > 0) {
+      if (this.license.includes('by')) { licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />'); }
+      if (this.license.includes('nc')) { licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />'); }
+      if (this.license.includes('nd')) { licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
+      if (this.license.includes('sa')) { licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
+
+      return new Spacebars.SafeString(licenseString)
+    } else {
+      return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
+    }
+  },
+  isPublished: function() {
+    if (this.kind === 'personal') {
+      return false;
+    } else {
+      return true;
+    }
   }
 });
 
@@ -728,6 +752,7 @@ Template.cardsetPublicateForm.events({
     var kind = tmpl.find('#publicateKind > .active > input').value;
     var price = 0;
     var visible = true;
+    var license = [];
 
     if (kind === 'edu' || kind === 'pro') {
       if (tmpl.find('#publicatePrice') !== null) {
@@ -739,6 +764,7 @@ Template.cardsetPublicateForm.events({
     }
     if (kind === 'personal') {
       visible = false;
+      Meteor.call('updateLicense', id, license);
     }
     if (kind === 'pro') {
       visible = false;

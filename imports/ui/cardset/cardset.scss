@@ -201,15 +201,19 @@ img.cardside {
 }
 #selectLicenseModal {
 	#cc-modules img {
-		width: 40%;
+		width: 30px;
 	}
 	#cc-description {
 		padding-top: 10px;
 		img {
-			width: 10%;
+			width: 58px;
 		}
 		p {
 			padding-bottom: 10px;
 		}
 	}
+}
+
+#info_license img {
+	width: 20px;
 }
