@@ -13,10 +13,10 @@
           <div class="panel-body">
             <div class="form-group">
               <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
-              {{#if userExistsCardset username owner}}
+              {{#if userExists userDeleted}}
                 <a href="/admin/user/{{owner}}">{{username}}</a>
               {{else}}
-                {{username}}
+                {{username}} ({{_ "admin.deleted"}})
               {{/if}}
             </div>
             <div class="form-group">

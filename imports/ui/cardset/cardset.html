@@ -7,7 +7,7 @@
     {{> cardsetPublicateForm}}
     {{> selectLicenseForm}}
     {{onEditmodalClose this._id}}
-    
+
     {{#if hasCardsetPermission}}
       {{#if isLecturerAndHasRequest}}
           <div class="col-md-12">
@@ -66,10 +66,10 @@
                       <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                       <br>
                       <strong>{{_ "cardset.info.author"}}:</strong>
-                      {{#if userExists username owner}}
-                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{getAuthor}}</a>
+                      {{#if userExists userDeleted}}
+                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
                       {{else}}
-                        {{username}}
+                        {{username}} ({{_ "cardset.info.deleted"}})
                       {{/if}}
                       <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
                       <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}

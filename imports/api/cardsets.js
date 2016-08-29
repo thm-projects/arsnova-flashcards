@@ -75,6 +75,9 @@ CardsetsSchema = new SimpleSchema({
   license: {
     type: [String],
     maxCount: 4
+  },
+  userDeleted: {
+    type: Boolean
   }
 });
 
@@ -124,7 +127,8 @@ Meteor.methods({
       request: false,
       relevance: 0,
       quantity: 0,
-      license: []
+      license: [],
+      userDeleted: false
     });
     Experience.insert({
       type: 2,

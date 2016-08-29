@@ -523,17 +523,6 @@ Template.cardsetInfo.helpers({
   isDisabled: function() {
     return (this.quantity < 5 || this.reviewed || this.request) ? 'disabled' : '';
   },
-  userExists: function(username, owner) {
-    if (Roles.userIsInRole(owner, 'blocked')) {
-      return false;
-    }
-    else if (username === 'deleted') {
-      return false;
-    }
-    else {
-      return true;
-    }
-  },
   hasAmount: function() {
     return this.kind === 'pro' || this.kind === 'edu';
   },
@@ -549,9 +538,6 @@ Template.cardsetInfo.helpers({
   getReviewer: function() {
     var reviewer = Meteor.users.findOne(this.reviewer);
     return (reviewer !== undefined) ? reviewer.profile.name: undefined;
-  },
-  getAuthor: function() {
-    return Meteor.users.findOne(this.owner).profile.name;
   }
 });
 

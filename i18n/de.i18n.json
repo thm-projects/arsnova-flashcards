@@ -112,7 +112,8 @@
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
-    "saveLicense": "Lizenz speichern"
+    "saveLicense": "Lizenz speichern",
+    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich."
   },
 
   "profile": {
@@ -251,7 +252,8 @@
     "author": "Autor",
     "rating": "Bewertung",
     "quantity": "Kartenanzahl",
-    "release": "Veröffentlicht"
+    "release": "Veröffentlicht",
+    "deleted": "Gelöscht"
   },
 
   "cardset": {
@@ -262,7 +264,8 @@
       "release": "Veröffentlicht",
       "reviewer": "Prüfer",
       "amount": "Preis",
-      "bought": "Gekauft am"
+      "bought": "Gekauft am",
+      "deleted": "Gelöscht"
     },
     "request": {
       "accept": "Kartensatz freigeben",
@@ -455,6 +458,7 @@
     "deletecardset": "Kartensatz löschen",
     "notifyuser": "Benutzer benachrichtigen",
     "view": "Übersicht",
+    "deleted": "Gelöscht",
 
     "confirm-form": {
       "cardsets": {
