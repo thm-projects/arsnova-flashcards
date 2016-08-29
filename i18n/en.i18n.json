@@ -153,7 +153,7 @@
     },
     "payment": {
       "header": "Payment Methods",
-      "desc": "Please enter your preferred payment method below."
+      "empty": "You have not added any payment method!"
     },
     "revenue": {
       "header": "Revenue History",

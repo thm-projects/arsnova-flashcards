@@ -235,6 +235,30 @@ Template.profileBilling.helpers({
       Meteor.subscribe("privateUserData");
       var balance = Meteor.users.findOne(Meteor.userId).balance;
       return (balance !== undefined) ? balance : 0;
+    },
+    getPaymentMethod: function() {
+      Meteor.call("btGetPaymentMethod", function(error, result){
+        if(error){
+          console.log("error", error);
+        }
+        if(result){
+           console.log(result);
+           Session.set("paymentMethods", result);
+        }
+      });
+      return Session.get('paymentMethods');
+    },
+    hasPaymentMethod: function() {
+      Meteor.call("btGetPaymentMethod", function(error, result){
+        if(error){
+          console.log("error", error);
+        }
+        if(result){
+           Session.set("hasPaymentMethods", !jQuery.isEmptyObject(result));
+        }
+      });
+      console.log(Session.get('hasPaymentMethods'));
+      return Session.get('hasPaymentMethods');
     }
 });
 

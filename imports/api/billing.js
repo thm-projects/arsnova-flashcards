@@ -37,6 +37,22 @@ Meteor.methods({
         return response.clientToken;
     },
 
+    btGetPaymentMethod: function() {
+      var btPayment = new Future();
+
+      var user = Meteor.users.findOne(this.userId);
+
+      Meteor.call('btFindCustomer', user.customerId, function(error, customer) {
+        if (error) {
+          btPayment.return(error);
+        } else {
+          btPayment.return(customer.paymentMethods);
+        }
+      });
+
+      return btPayment.wait();
+    },
+
     createTransaction: function(nonceFromTheClient, cardset_id) {
         var user = Meteor.user();
         var cardset = Cardsets.findOne(cardset_id);
