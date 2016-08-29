@@ -253,7 +253,9 @@
     "rating": "Bewertung",
     "quantity": "Kartenanzahl",
     "release": "Veröffentlicht",
-    "deleted": "Gelöscht"
+    "deleted": "Gelöscht",
+    "license": "Lizenz",
+    "dateUpdated": "Zuletzt Aktualisiert"
   },
 
   "cardset": {
@@ -266,7 +268,8 @@
       "amount": "Preis",
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
-      "license": "Lizenz"
+      "license": "Lizenz",
+      "dateUpdated": "Zuletzt Aktualisiert"
     },
     "request": {
       "accept": "Kartensatz freigeben",

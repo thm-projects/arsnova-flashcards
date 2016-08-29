@@ -37,6 +37,9 @@ CardsetsSchema = new SimpleSchema({
   date: {
     type: Date
   },
+  dateUpdated: {
+    type: Date
+  },
   owner: {
     type: String
   },
@@ -116,6 +119,7 @@ Meteor.methods({
       category: category,
       description: description,
       date: new Date(),
+      dateUpdated: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().profile.name,
       visible: visible,
@@ -167,7 +171,8 @@ Meteor.methods({
       $set: {
         name: name,
         category: category,
-        description: description
+        description: description,
+        dateUpdated: new Date()
       }
     });
   },
@@ -290,7 +295,8 @@ Meteor.methods({
 
     Cardsets.update(id, {
       $set: {
-        license: license
+        license: license,
+        dateUpdated: new Date()
       }
     });
   }
