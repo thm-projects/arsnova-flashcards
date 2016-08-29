@@ -15,8 +15,8 @@
                 <div class="panel-body">
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button id="acceptRequest" class="btn btn-success" type="button">Kartensatz freigeben</button>
-                        <button id="declineRequest" class="btn btn-danger" type="button">Kartensatz nicht freigeben</button>
+                        <button id="acceptRequest" class="btn btn-success" type="button">{{_ "cardset.request.accept"}}</button>
+                        <button id="declineRequest" class="btn btn-danger" type="button">{{_ "cardset.request.decline"}}n</button>
                       </span>
                       <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
                     </div>
@@ -32,23 +32,7 @@
         {{> cardsetList}}
       {{/if}}
     {{else}}
-      <div class="col-md-12">
-        <div class="panel panel-default cardsetInfo">
-            <div class="panel-body">
-              <form role="form">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div id="payment-form"></div>
-                    <div class="btn-group">
-                        <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning" type="button">Als Premium-Nutzer lernen</a>
-                        <button id="buyCardsetBtn" type="submit" class="btn btn-success">Kartensatz kaufen für {{price}}</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-        </div>
-      </div>
+      {{> cardsetPreview}}
     {{/if}}
   {{else}}
     <div class="col-md-12">
@@ -71,7 +55,7 @@
               <div class="col-sm-4">
                   <div class="well">
                       {{#if ratingEnabled}}
-                        <strong class="left">Bewertung:</strong>
+                        <strong class="left">{{_ "cardset.info.rating"}}:</strong>
                         {{#if hasRated}}
                           {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                         {{else}}
@@ -79,21 +63,21 @@
                         {{/if}}
                         <hr>
                       {{/if}}
-                      <strong>Karten:</strong> {{countCards this._id}}
+                      <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                       <br>
-                      <strong>Ersteller:</strong>
+                      <strong>{{_ "cardset.info.author"}}:</strong>
                       {{#if userExists username owner}}
-                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
+                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{getAuthor}}</a>
                       {{else}}
                         {{username}}
                       {{/if}}
-                      <br>
-                      <strong>Datum:</strong> {{getDate}}
+                      <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
+                      <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
                       {{#if hasAmount}}
-                        <br><strong>Preis:</strong> {{getAmount}}
+                        <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
                       {{/if}}
                       {{#if isPurchased}}
-                        <br><strong>Gekauft am:</strong> {{getDateOfPurchase}}
+                        <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
                       {{/if}}
                   </div>
               </div>
@@ -142,6 +126,69 @@
   </div>
 </template>
 
+
+<template name="cardsetPreview">
+  <div class="col-md-4">
+    <div class="">
+      <div class="panel panel-default cardsetInfo">
+          <div class="panel-body">
+            <form role="form">
+              <div class="">
+                <div class="">
+                  <div id="payment-form"></div>
+                  <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€</button>
+                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div class="btn-group btn-group-justified" role="group">
+    </div>
+
+  </div>
+  <div class="col-md-8" id="set-details-region">
+    <div>
+
+        <div id="cardCarousel" class="carousel slide" data-interval="false">
+          <div class="carousel-inner">
+            {{#each getCardsCheckActive}}
+              <div class="item {{#if cardActive @index}}active{{/if}}">
+                <div class="box">
+                  <div class="cardNumber">
+                    {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
+                  </div>
+                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
+                  <div class="block">
+                    {{cardDetailsMarkdown this.front this.back @index}}
+                    <div class="cardContent centered cardfront detailfront{{@index}}">
+                      <p>{{front}}</p>
+                    </div>
+                    <div class="cardContent centered cardback detailback{{@index}}" style="display:none">
+                      <p>{{back}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+
+          {{#if cardCountOne this._id}}
+            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
+              <span class="icon-prev"></span>
+            </a>
+            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
+              <span class="icon-next"></span>
+            </a>
+          {{/if}}
+        </div>
+
+    </div>
+  </div>
+</template>
 
 <template name="cardsetDetails">
   <div class="col-md-9" id="set-details-region">

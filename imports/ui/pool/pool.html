@@ -30,9 +30,9 @@
                         </label>
                       </div>
                         <div class="btn-group pull-right">
-                            <button id="sortRelevance" class="btn btn-default" type="button">Relevanz {{{getSortRelevanceIcon}}}</button>
-                            <button id="sortName" class="btn btn-default" type="button">Name {{{getSortNameIcon}}}</button>
-                            <button id="sortUser" class="btn btn-default" type="button">Ersteller {{{getSortUserIcon}}}</button>
+                            <button id="sortRelevance" class="btn btn-default" type="button">{{_ "pool.relevance"}} {{{getSortRelevanceIcon}}}</button>
+                            <button id="sortName" class="btn btn-default" type="button">{{_ "pool.name"}} {{{getSortNameIcon}}}</button>
+                            <button id="sortUser" class="btn btn-default" type="button">{{_ "pool.author"}} {{{getSortUserIcon}}}</button>
                         </div>
                     </div>
                 </div>
@@ -53,13 +53,13 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="well">
-                                    <strong class="left">Bewertung:</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                    <strong class="left">{{_ "pool.rating"}}:</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                                     <hr>
-                                    <strong>Karten:</strong> {{countCards this._id}}
+                                    <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
                                     <br>
-                                    <strong>Ersteller:</strong> {{username}}
+                                    <strong>{{_ "pool.author"}}:</strong> {{getAuthor}}
                                     <br>
-                                    <strong>Datum:</strong> {{getDate}}
+                                    <strong>{{_ "pool.release"}}:</strong> {{getDate}}
                                 </div>
                             </div>
                         </div>

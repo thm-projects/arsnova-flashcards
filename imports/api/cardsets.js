@@ -59,6 +59,9 @@ CardsetsSchema = new SimpleSchema({
   reviewed: {
     type: Boolean
   },
+  reviewer: {
+    type: String
+  },
   request: {
     type: Boolean
   },
@@ -66,10 +69,12 @@ CardsetsSchema = new SimpleSchema({
     type: Number,
     decimal: true
   },
+  quantity: {
+    type: Number
+  },
   license: {
     type: [String],
     maxCount: 4
-  }
 });
 
 Cardsets.attachSchema(CardsetsSchema);
@@ -114,8 +119,10 @@ Meteor.methods({
       kind: kind,
       price: 0,
       reviewed: false,
+      reviewer: 'undefined',
       request: false,
       relevance: 0,
+      quantity: 0,
       license: []
     });
     Experience.insert({
@@ -216,24 +223,54 @@ Meteor.methods({
       }
     });
   },
-  publicateProRequest: function(id, reviewed, request, visible) {
-    // Make sure only the task owner can make a task private
-    var cardset = Cardsets.findOne(id);
+  makeProRequest: function(cardset_id) {
+    var cardset = Cardsets.findOne(cardset_id);
 
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
 
-    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Roles.userIsInRole(this.userId, 'lecturer')) {
-        if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-          throw new Meteor.Error("not-authorized");
-        }
+    Cardsets.update(cardset_id, {
+      $set: {
+        reviewed: false,
+        request: true,
+        visible: false
+      }
+    });
+  },
+  acceptProRequest: function(cardset_id) {
+    var cardset = Cardsets.findOne(cardset_id);
+
+    if (!Roles.userIsInRole(this.userId, 'lecturer')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
       }
     }
 
-    Cardsets.update(id, {
+    Cardsets.update(cardset_id, {
       $set: {
-        reviewed: reviewed,
-        request: request,
-        visible: visible
+        reviewed: true,
+        reviewer: this.userId,
+        request: false,
+        visible: true
+      }
+    });
+  },
+  declineProRequest: function(cardset_id) {
+    var cardset = Cardsets.findOne(cardset_id);
+
+    if (!Roles.userIsInRole(this.userId, 'lecturer')) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+    }
+
+    Cardsets.update(cardset_id, {
+      $set: {
+        reviewed: false,
+        reviewer: this.userId,
+        request: false,
+        visible: false
       }
     });
   },

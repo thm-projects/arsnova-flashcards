@@ -19,6 +19,11 @@ Meteor.methods({
           back: item.back,
           cardset_id: cardset_id
         });
+        Cardsets.update(cardset_id, {
+          $set: {
+            quantity: Cards.find({cardset_id: cardset_id}).count()
+          }
+        });
       }
     }
   }

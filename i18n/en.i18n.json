@@ -177,7 +177,10 @@
   	"profilepublic": "Public profile",
   	"profilepublicoption1": "Yes",
   	"profilepublicoption2": "No",
-    "profileprivate": "Private profile"
+    "profileprivate": "Private profile",
+    "emailInvalid": "Enter a valid e-mail address",
+    "nameToShort": "Username must consist more than 5 letters!",
+    "nameAlreadyExists": "Username is already taken!"
   },
 
   "panel-heading-experience": {
@@ -243,9 +246,36 @@
   },
 
   "pool": {
+    "relevance": "Relevance",
     "name": "Name",
-    "description": "Description",
-    "created": "Created by"
+    "author": "Author",
+    "rating": "Rating",
+    "quantity": "Number of cards",
+    "release": "Published"
+  },
+
+  "cardset": {
+    "info": {
+      "author": "Author",
+      "rating": "Rating",
+      "quantity": "Number of cards",
+      "release": "Published",
+      "reviewer": "Reviewer",
+      "amount": "Price",
+      "bought": "Bought on"
+    },
+    "request": {
+      "accept": "Release cardset",
+      "decline": "Don't release cardset",
+      "accepted": "Cardset released",
+      "declined": "Cardset not released",
+      "reason": "Enter a reason for rejecting the request"
+    },
+    "money": {
+      "buy": "Buy cardset for",
+      "pro": "Learn as premium-user",
+      "bought": "Thank you for your payment!"
+    }
   },
 
   "cardmemo": {

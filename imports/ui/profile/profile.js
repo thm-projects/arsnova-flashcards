@@ -95,11 +95,36 @@ Template.profileSettings.events({
 
     if (check === false && email !== "") {
       $(event.currentTarget).parent().parent().addClass('has-error');
+      $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
     } else {
       $(event.currentTarget).parent().parent().removeClass('has-error');
       $(event.currentTarget).parent().parent().addClass('has-success');
+      $('#errorEmail').html('');
       Meteor.call("updateUsersEmail", email);
     }
+  },
+  "keyup #inputName": function(event, template) {
+    var name = $(event.currentTarget).val();
+
+    Meteor.call("checkUsersName", name, function(error, result){
+      if(error){
+        console.log("error", error);
+        $(event.currentTarget).parent().parent().addClass('has-error');
+        $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
+      }
+      if(result){
+         console.log(result);
+         if (result.length < 5) {
+           $(event.currentTarget).parent().parent().addClass('has-error');
+           $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+         } else {
+           $(event.currentTarget).parent().parent().removeClass('has-error');
+           $(event.currentTarget).parent().parent().addClass('has-success');
+           $('#errorName').html('');
+           Meteor.call("updateUsersName", result);
+         }
+      }
+    });
   }
 });
 
@@ -150,7 +175,7 @@ Template.profileMembership.events({
           if (confirmCancel){
             $('#downgrade').prop( "disabled", true );
             Session.set('plan', 'standard');
-            
+
             Meteor.call('btCancelSubscription', function(error, response){
               if (error){
                 Bert.alert(error.reason, "danger", 'growl-bottom-right');
@@ -204,12 +229,24 @@ Template.profileBilling.helpers({
       return Paid.find({cardset_id: {$in: cardsetsIds}});
     },
     getCardsetName: function(cardset_id) {
-      return Cardsets.findOne(cardset_id).name;
+      return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
     },
     getBalance: function() {
       Meteor.subscribe("privateUserData");
       var balance = Meteor.users.findOne(Meteor.userId).balance;
       return (balance !== undefined) ? balance : 0;
+    }
+});
+
+/**
+ * ############################################################################
+ * profileRequests
+ * ############################################################################
+ */
+
+Template.profileRequests.helpers({
+    getRequests: function() {
+      return Cardsets.find({request: true});
     }
 });
 

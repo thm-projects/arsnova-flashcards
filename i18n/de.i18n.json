@@ -177,7 +177,10 @@
   	"profilepublic": "Profil öffentlich",
   	"profilepublicoption1": "Ja",
   	"profilepublicoption2": "Nein",
-    "profileprivate": "Profil ist privat"
+    "profileprivate": "Profil ist privat",
+    "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
+    "nameToShort": "Benutzername muss aus mehr als 5 Buchstaben bestehen!",
+    "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
 
   "panel-heading-experience": {
@@ -243,9 +246,36 @@
   },
 
   "pool": {
+    "relevance": "Relevanz",
     "name": "Name",
-    "description": "Beschreibung",
-    "created": "Erstellt von"
+    "author": "Autor",
+    "rating": "Bewertung",
+    "quantity": "Kartenanzahl",
+    "release": "Veröffentlicht"
+  },
+
+  "cardset": {
+    "info": {
+      "author": "Autor",
+      "rating": "Bewertung",
+      "quantity": "Kartenanzahl",
+      "release": "Veröffentlicht",
+      "reviewer": "Prüfer",
+      "amount": "Preis",
+      "bought": "Gekauft am"
+    },
+    "request": {
+      "accept": "Kartensatz freigeben",
+      "decline": "Kartensatz nicht freigeben",
+      "accepted": "Kartensatz freigegeben",
+      "declined": "Kartensatz nicht freigegeben",
+      "reason": "Geben Sie eine Begründung für die Ablehnung der Anfrage an"
+    },
+    "money": {
+      "buy": "Kartensatz kaufen für",
+      "pro": "Als Premium-Nutzer lernen",
+      "bought": "Vielen Dank für Ihren Kauf!"
+    }
   },
 
   "cardmemo": {

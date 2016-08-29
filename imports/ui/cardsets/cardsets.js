@@ -6,7 +6,6 @@ import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../api/cardsets.js';
 import { Categories } from '../../api/categories.js';
-import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 
 
@@ -16,7 +15,6 @@ import './cardsets.html';
 
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 
 
 Session.setDefault('cardsetSortCreated', {name: 1});

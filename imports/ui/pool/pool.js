@@ -85,6 +85,9 @@ Template.category.helpers({
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
+  },
+  getAuthor: function() {
+    return Meteor.users.findOne(this.owner).profile.name;
   }
 });
 
@@ -121,7 +124,6 @@ Template.category.events({
     $("#filterCheckbox input:checkbox:checked").each(function(){
       filter.push($(this).val());
     });
-    console.log(filter);
     Session.set('poolFilter', filter);
   }
 });
