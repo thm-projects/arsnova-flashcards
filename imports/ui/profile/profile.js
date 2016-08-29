@@ -150,7 +150,7 @@ Template.profileMembership.events({
           if (confirmCancel){
             $('#downgrade').prop( "disabled", true );
             Session.set('plan', 'standard');
-            
+
             Meteor.call('btCancelSubscription', function(error, response){
               if (error){
                 Bert.alert(error.reason, "danger", 'growl-bottom-right');
@@ -204,7 +204,7 @@ Template.profileBilling.helpers({
       return Paid.find({cardset_id: {$in: cardsetsIds}});
     },
     getCardsetName: function(cardset_id) {
-      return Cardsets.findOne(cardset_id).name;
+      return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
     },
     getBalance: function() {
       Meteor.subscribe("privateUserData");

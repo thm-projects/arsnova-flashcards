@@ -39,10 +39,10 @@ Meteor.methods({
 
     createTransaction: function(nonceFromTheClient, cardset_id) {
         var user = Meteor.user();
-        var amount = Cardsets.findOne(cardset_id).price;
+        var cardset = Cardsets.findOne(cardset_id);
 
         gateway.transaction.sale({
-            amount: amount,
+            amount: cardset.price,
             paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
             customer: {
                 id: user.customerId
@@ -56,9 +56,8 @@ Meteor.methods({
                 console.log(err);
             } else {
                 // When payment's successful, add "paid" role to current user.
-                Meteor.call('addPaid', cardset_id, amount);
-                var lecturer_id = "gEM3FyuH7XvbkoLJi";
-                Meteor.call('increaseUsersBalance', Meteor.userId(), lecturer_id, amount);
+                Meteor.call('addPaid', cardset_id, cardset.price);
+                Meteor.call('increaseUsersBalance', cardset.owner, cardset.reviewer, cardset.price);
             }
         });
     },
