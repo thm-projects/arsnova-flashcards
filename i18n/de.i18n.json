@@ -171,7 +171,10 @@
   	"profilepublic": "Profil öffentlich",
   	"profilepublicoption1": "Ja",
   	"profilepublicoption2": "Nein",
-    "profileprivate": "Profil ist privat"
+    "profileprivate": "Profil ist privat",
+    "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
+    "nameToShort": "Benutzername muss aus mehr als 5 Buchstaben bestehen!",
+    "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
 
   "panel-heading-experience": {

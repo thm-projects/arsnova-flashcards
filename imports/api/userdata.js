@@ -37,6 +37,20 @@ Meteor.methods({
       }
     });
   },
+  updateUsersName: function(name) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        profile: {name: name}
+      }
+    });
+  },
+  checkUsersName: function(name) {
+    var userExists = Meteor.users.findOne({"profile.name": name});
+    if (userExists && userExists._id !== this.userId) {
+      throw new Meteor.Error("username already exists");
+    }
+    return name;
+  },
   initUser: function() {
     Meteor.users.update(Meteor.user()._id, {
       $set: {

@@ -70,8 +70,6 @@ Meteor.methods({
           if (error) {
             console.log(error);
           } else {
-            console.log(btCustomer);
-
             var customerId = '';
             if (btCustomer === undefined) {
               customerId = Meteor.user().customerId;
@@ -91,7 +89,8 @@ Meteor.methods({
                       plan: plan,
                       status: response.subscription.status,
                       billingDate: response.subscription.nextBillingDate
-                    }
+                    },
+                    visible: true
                   }
 
                   // Perform an update on this user.

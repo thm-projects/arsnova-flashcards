@@ -95,11 +95,36 @@ Template.profileSettings.events({
 
     if (check === false && email !== "") {
       $(event.currentTarget).parent().parent().addClass('has-error');
+      $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
     } else {
       $(event.currentTarget).parent().parent().removeClass('has-error');
       $(event.currentTarget).parent().parent().addClass('has-success');
+      $('#errorEmail').html('');
       Meteor.call("updateUsersEmail", email);
     }
+  },
+  "keyup #inputName": function(event, template) {
+    var name = $(event.currentTarget).val();
+
+    Meteor.call("checkUsersName", name, function(error, result){
+      if(error){
+        console.log("error", error);
+        $(event.currentTarget).parent().parent().addClass('has-error');
+        $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
+      }
+      if(result){
+         console.log(result);
+         if (result.length < 5) {
+           $(event.currentTarget).parent().parent().addClass('has-error');
+           $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+         } else {
+           $(event.currentTarget).parent().parent().removeClass('has-error');
+           $(event.currentTarget).parent().parent().addClass('has-success');
+           $('#errorName').html('');
+           Meteor.call("updateUsersName", result);
+         }
+      }
+    });
   }
 });
 
@@ -215,7 +240,7 @@ Template.profileBilling.helpers({
 
 /**
  * ############################################################################
- * profileBilling
+ * profileRequests
  * ############################################################################
  */
 

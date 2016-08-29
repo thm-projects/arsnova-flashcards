@@ -171,7 +171,10 @@
   	"profilepublic": "Public profile",
   	"profilepublicoption1": "Yes",
   	"profilepublicoption2": "No",
-    "profileprivate": "Private profile"
+    "profileprivate": "Private profile",
+    "emailInvalid": "Enter a valid e-mail address",
+    "nameToShort": "Username must consist more than 5 letters!",
+    "nameAlreadyExists": "Username is already taken!"
   },
 
   "panel-heading-experience": {

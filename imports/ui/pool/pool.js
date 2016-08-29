@@ -85,6 +85,9 @@ Template.category.helpers({
       default:
         return '<span class="label label-danger">Undefined!</span>';
       }
+  },
+  getAuthor: function() {
+    return Meteor.users.findOne(this.owner).profile.name;
   }
 });
 

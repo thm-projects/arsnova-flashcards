@@ -549,6 +549,9 @@ Template.cardsetInfo.helpers({
   getReviewer: function() {
     var reviewer = Meteor.users.findOne(this.reviewer);
     return (reviewer !== undefined) ? reviewer.profile.name: undefined;
+  },
+  getAuthor: function() {
+    return Meteor.users.findOne(this.owner).profile.name;
   }
 });
 
