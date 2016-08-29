@@ -75,6 +75,7 @@ CardsetsSchema = new SimpleSchema({
   license: {
     type: [String],
     maxCount: 4
+  }
 });
 
 Cardsets.attachSchema(CardsetsSchema);
