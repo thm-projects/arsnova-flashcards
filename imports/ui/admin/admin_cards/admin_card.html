@@ -16,7 +16,7 @@
               {{#if userExistsCard cardset_id}}
                 <a href="/admin/user/{{getUserId cardset_id}}">{{getUsernameCard cardset_id}}</a>
               {{else}}
-                {{getUsernameCard cardset_id}}
+                {{getUsernameCard cardset_id}} ({{_ "admin.deleted"}})
               {{/if}}
             </div>
             <div class="form-group">

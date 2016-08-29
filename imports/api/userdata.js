@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
+import { Cardsets } from './cardsets.js';
+
 if (Meteor.isServer) {
 Meteor.publish("userData", function () {
   if (this.userId) {
@@ -43,6 +45,11 @@ Meteor.methods({
         profile: {name: name}
       }
     });
+    Cardsets.update({ owner: Meteor.user()._id }, {
+      $set: {
+        username: name
+      }
+    }, {multi:true});
   },
   checkUsersName: function(name) {
     var userExists = Meteor.users.findOne({"profile.name": name});

@@ -24,7 +24,7 @@ Template.admin_cards.helpers({
 
     cards.forEach(function(card) {
       var cardset = Cardsets.findOne({ _id: card.cardset_id });
-      fields.push({"_id": card._id, "front": card.front, "back": card.back, "cardset_id": card.cardset_id, "cardsetname": cardset.name, "user_id": cardset.owner, "username": cardset.username});
+      fields.push({"_id": card._id, "front": card.front, "back": card.back, "cardset_id": card.cardset_id, "cardsetname": cardset.name, "user_id": cardset.owner, "username": cardset.username, "userDeleted": cardset.userDeleted});
     });
 
     return fields;
@@ -61,13 +61,9 @@ Template.admin_cards.helpers({
           return new Spacebars.SafeString("<a name='" + value + "' id='linkToAdminCardCardset' href='#' data-cardsetid='" + object.cardset_id + "'>" + value + "</a>");
         }},
         { key: 'username', label: TAPi18n.__('admin.users'), cellClass: 'username', fn: function(value, object) {
-          if (value === 'Blocked') {
-            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
-          }
-          else if (object.username === 'Deleted') {
-            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
-          }
-          else {
+          if (object.userDeleted) {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
+          } else {
             return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardUser' href='#' data-userid='" + object.user_id + "'>" + value + "</a></span>");
           }
         }},

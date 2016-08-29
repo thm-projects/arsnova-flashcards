@@ -34,14 +34,6 @@ Template.admin_cardset.helpers({
     }
     return (this.kind === 'edu' || this.kind === 'pro');
   },
-  userExistsCardset: function(username, owner) {
-    if (username === 'Deleted' || username === 'Blocked') {
-      return false;
-    }
-    else {
-      return true;
-    }
-  },
   cardListCardsetAdmin: function () {
     return Cards.find({ cardset_id: this._id });
   },

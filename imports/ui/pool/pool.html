@@ -57,7 +57,12 @@
                                     <hr>
                                     <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
                                     <br>
-                                    <strong>{{_ "pool.author"}}:</strong> {{getAuthor}}
+                                    <strong>{{_ "pool.author"}}:</strong>
+                                    {{#if userExists userDeleted}}
+                                      {{username}}
+                                    {{else}}
+                                      {{username}} ({{_ "pool.deleted"}})
+                                    {{/if}}
                                     <br>
                                     <strong>{{_ "pool.release"}}:</strong> {{getDate}}
                                 </div>

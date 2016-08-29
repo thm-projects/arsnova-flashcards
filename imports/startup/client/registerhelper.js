@@ -74,3 +74,12 @@ Template.registerHelper("getCategory", function(value) {
     }
   }
 });
+
+// Returns if user is deleted or not
+Template.registerHelper("userExists", function(userDeleted) {
+  if (userDeleted === true) {
+    return false;
+  } else {
+    return true;
+  }
+});

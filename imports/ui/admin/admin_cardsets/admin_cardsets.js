@@ -38,7 +38,7 @@ Template.admin_cardsets.helpers({
         kind = 'Pro';
       }
 
-      fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind,  "username": cardset.username, "owner": cardset.owner, "dateString": dateString, "date": date})
+      fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind,  "username": cardset.username, "owner": cardset.owner, "userDeleted": cardset.userDeleted, "dateString": dateString, "date": date})
     });
 
     return fields;
@@ -51,13 +51,9 @@ Template.admin_cardsets.helpers({
         { key: 'name', label: TAPi18n.__('admin.name') },
         { key: 'kind', label: TAPi18n.__('admin.kind') },
         { key: 'username', label: TAPi18n.__('admin.users'), fn: function(value, object) {
-          if (value === 'Blocked') {
-            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
-          }
-          else if (value === 'Deleted') {
-            return new Spacebars.SafeString("<span name='" + value + "'>" + value + "</span>");
-          }
-          else {
+          if (object.userDeleted) {
+            return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
+          } else {
             return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
           }
         }},

@@ -28,10 +28,9 @@ Template.admin_card.helpers({
     if (cardset_id) {
       var cardset = Cardsets.findOne({ _id: cardset_id });
 
-      if (cardset.username === 'Deleted' || cardset.username === 'Blocked') {
+      if (cardset.userDeleted) {
         return false;
-      }
-      else {
+      } else {
         return true;
       }
     }

@@ -106,7 +106,14 @@
     "description_required": "The decription field is required!",
     "category_required": "The category field is required!",
     "price": "Retail price",
-    "publicate": "Save state"
+    "publicate": "Save state",
+    "modules": "Types of licenses",
+    "by-desc": "Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits (attribution) in the manner specified by these.",
+    "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
+    "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
+    "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
+    "saveLicense": "Save license",
+    "wrongCombination": "This combination is not allowed."
   },
 
   "profile": {
@@ -235,7 +242,8 @@
     "createcard": "Create a new card",
     "importcard": "Import cards",
     "exportcard": "Export cards",
-    "publicate": "Publicate cardset"
+    "publicate": "Publicate cardset",
+    "license": " Select license"
   },
 
   "pool": {
@@ -244,7 +252,8 @@
     "author": "Author",
     "rating": "Rating",
     "quantity": "Number of cards",
-    "release": "Published"
+    "release": "Published",
+    "deleted": "Deleted"
   },
 
   "cardset": {
@@ -255,7 +264,8 @@
       "release": "Published",
       "reviewer": "Reviewer",
       "amount": "Price",
-      "bought": "Bought on"
+      "bought": "Bought on",
+      "deleted": "Deleted"
     },
     "request": {
       "accept": "Release cardset",
@@ -449,6 +459,7 @@
     "deletecardset": "Delete cardset",
     "notifyuser": "Notify user",
     "view": "View",
+    "deleted": "Deleted",
 
     "confirm-form": {
       "cardsets": {
