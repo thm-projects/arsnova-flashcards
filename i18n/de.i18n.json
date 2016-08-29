@@ -265,7 +265,8 @@
       "reviewer": "Prüfer",
       "amount": "Preis",
       "bought": "Gekauft am",
-      "deleted": "Gelöscht"
+      "deleted": "Gelöscht",
+      "license": "Lizenz"
     },
     "request": {
       "accept": "Kartensatz freigeben",

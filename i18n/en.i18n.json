@@ -265,7 +265,8 @@
       "reviewer": "Reviewer",
       "amount": "Price",
       "bought": "Bought on",
-      "deleted": "Deleted"
+      "deleted": "Deleted",
+      "license": "License"
     },
     "request": {
       "accept": "Release cardset",
