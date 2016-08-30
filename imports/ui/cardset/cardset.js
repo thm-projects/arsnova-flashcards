@@ -9,7 +9,7 @@ import { Cards } from '../../api/cards.js';
 import { Categories } from '../../api/categories.js';
 import { Ratings } from '../../api/ratings.js';
 import { Paid } from '../../api/paid.js';
-
+import { Notifications } from '../../api/notifications.js';
 
 import '../card/card.js';
 import '../learn/box.js';
@@ -20,6 +20,7 @@ import './cardset.html';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
+Meteor.subscribe("notifications");
 Meteor.subscribe('ratings', function() {
   Session.set('ratingsLoaded', true);
 });
@@ -824,6 +825,10 @@ Template.cardsetPublicateForm.events({
        Meteor.call('updateLicense', this._id, license);
        $('#selectLicenseModal').modal('hide');
      }
+   },
+   'change #cc-modules': function() {
+     $('#modulesLabel').css('color', '');
+     $('#helpCC-modules').html('');
    }
  });
 
@@ -839,3 +844,40 @@ Template.cardsetPublicateForm.events({
      }
    }
  });
+
+ /**
+  * ############################################################################
+  * reportCardsetForm
+  * ############################################################################
+  */
+
+  Template.reportCardsetForm.onRendered(function() {
+    $('#reportCardsetModal').on('hidden.bs.modal', function() {
+      $('#helpReportCardsetText').html('');
+      $('#reportCardsetTextLabel').css('color', '');
+      $('#reportCardsetText').css('border-color', '');
+      $('#reportCardsetText').val('');
+    });
+  });
+  Template.reportCardsetForm.events({
+    'click #reportCardsetSave': function(evt, tmpl) {
+      if ($('#reportCardsetText').val().length < 100) {
+        $('#reportCardsetTextLabel').css('color', '#b94a48');
+        $('#reportCardsetText').css('border-color', '#b94a48');
+        $('#helpReportCardsetText').html(TAPi18n.__('modal-dialog.text_chars'));
+        $('#helpReportCardsetText').css('color', '#b94a48');
+      } else {
+        var text = $('#reportCardsetText').val();
+        var type = "Kartensatz melden";
+        var target = "admin";
+
+        Meteor.call("addNotification", target, type, text, this._id);
+         $('#reportCardsetModal').modal('hide');
+      }
+    },
+    'keyup #reportCardsetText': function() {
+      $('#reportCardsetTextLabel').css('color', '');
+      $('#reportCardsetText').css('border-color', '');
+      $('#helpReportCardsetText').html('');
+    }
+  });

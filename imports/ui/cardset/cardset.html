@@ -6,6 +6,7 @@
     {{> cardsetImportForm}}
     {{> cardsetPublicateForm}}
     {{> selectLicenseForm}}
+    {{> reportCardsetForm}}
     {{onEditmodalClose this._id}}
 
     {{#if hasCardsetPermission}}
@@ -130,6 +131,9 @@
         <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
       </div>
     </div>
+    {{#unless isOwner}}
+      <a id="reportCardset" href="#" class="flag" data-toggle="modal" data-target="#reportCardsetModal">{{_ "report_button"}}</a>
+    {{/unless}}
   </div>
 </template>
 
@@ -550,4 +554,44 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+</template>
+
+<template name="reportCardsetForm">
+  <div class="modal fade" id="reportCardsetModal" tabindex="-1" role="dialog" aria-labelledby="reportCardsetModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="reportCardsetModalTitle" class="modal-title">{{_ "modal-dialog.reportCardset"}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <div class="form-group link_id">
+              <label id="reportCardsetLinkLabel" class="col-md-3 control-label">{{_ "modal-dialog.link"}}</label>
+              <p class="col-md-9">
+                {{_id}}
+              </p>
+            </div>
+            <div class="form-group cardsetname">
+              <label id="reportCardsetNameLabel" class="col-md-3 control-label">{{_ "modal-dialog.cardsetname"}}</label>
+              <p class="col-md-9">
+                {{name}}
+              </p>
+            </div>
+            <div class="form-group text">
+              <label id="reportCardsetTextLabel" class="col-md-3 control-label" for="reportCardsetText">{{_ "modal-dialog.text"}}</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="6" id="reportCardsetText"></textarea>
+                <span id="helpReportCardsetText" class="help-block text"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="reportCardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+          <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.reportCardset"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
