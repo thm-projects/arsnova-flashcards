@@ -494,6 +494,16 @@
       "cancel": "Abbrechen"
     },
 
+    "message": {
+      "messageUser": "Benutzer benachrichtigen",
+      "cardset": "Kartensatz",
+      "noCardsets": "Keine Kartensätze",
+      "text": "Grund",
+      "cancel": "Abbrechen",
+      "sendMessage": "Benachrichtigung senden",
+      "text_chars": "Es sind 100 Zeichen erforderlich!"
+    },
+
     "cardset": {
       "header": "Kartensatz",
       "edit": "Bearbeite",

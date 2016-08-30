@@ -496,6 +496,16 @@
       "cancel": "Cancel"
     },
 
+    "message": {
+      "messageUser": "Message User",
+      "cardset": "Cardset",
+      "noCardsets": "No cardsets",
+      "text": "Reason",
+      "cancel": "Cancel",
+      "sendMessage": "Send message",
+      "text_chars": "At least 100 chars required!"
+    },
+
     "cardset": {
       "header": "Cardset",
       "edit": "Edit",

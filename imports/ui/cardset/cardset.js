@@ -868,7 +868,7 @@ Template.cardsetPublicateForm.events({
         $('#helpReportCardsetText').css('color', '#b94a48');
       } else {
         var text = $('#reportCardsetText').val();
-        var type = "Kartensatz melden";
+        var type = "Gemeldeter Kartensatz";
         var target = "admin";
 
         Meteor.call("addNotification", target, type, text, this._id);
