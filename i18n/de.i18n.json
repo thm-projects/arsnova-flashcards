@@ -39,7 +39,10 @@
     "clearAll": "Leeren",
     "viewAll": "Zeige alle Benachrichtigungen",
     "noNotification": "Keine neuen Benachrichtigungen vorhanden",
-    "deleteAll": "Alle löschen"
+    "deleteAll": "Alle löschen",
+    "approved": "Freigegeben",
+    "pending": "Freigabe ausstehend",
+    "progress": "In Bearbeitung"
   },
 
   "input-group": {
@@ -124,7 +127,10 @@
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
     "requests": "Pro-Freigabe",
-    "norequests": "Keine Anfragen vorhanden"
+    "norequests": "Keine Anfragen vorhanden",
+    "lecturer": "Dozenten-Freigabe",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
   },
 
   "profil-header": {

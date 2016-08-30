@@ -80,7 +80,14 @@ Template.main.helpers({
   },
   getNotifications: function() {
     return Notifications.find({cleared: false}, {sort: {date: -1}});
-  }
+  },
+  getLink: function() {
+    if (this.type === 'Dozenten-Anfrage') {
+      return "/profile/" + this.origin + "/overview";
+    } else {
+      return "/cardset/" + this.link_id;
+    }
+  },
 });
 
 Template.main.onRendered(function() {
