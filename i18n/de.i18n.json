@@ -36,9 +36,10 @@
 
   "notifications": {
     "title": "Benachrichtigungen",
-    "clearAll": "Entferne alle",
-    "viewAll": "Zeige alle",
-    "noNotification": "Keine Benachrichtigungen vorhanden"
+    "clearAll": "Leeren",
+    "viewAll": "Zeige alle Benachrichtigungen",
+    "noNotification": "Keine neuen Benachrichtigungen vorhanden",
+    "deleteAll": "Alle löschen"
   },
 
   "input-group": {

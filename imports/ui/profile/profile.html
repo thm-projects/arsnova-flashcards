@@ -598,13 +598,15 @@
 <template name="profileNotifications">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{_ "profile.notifications"}}</h3>
+            <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
+            <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_ "notifications.deleteAll"}}</button>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             {{#if getNotifications.count}}
                 <div class="list-group">
                     {{#each getNotifications}}
-                        <a href="#" class="list-group-item">
+                        <a href="/cardset/{{link_id}}" class="list-group-item">
                             <h4 class="list-group-item-heading">{{type}}</h4>
                             <p class="list-group-item-text">{{text}}</p>
                         </a>

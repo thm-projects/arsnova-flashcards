@@ -297,6 +297,27 @@ Template.profileBilling.helpers({
 
 /**
  * ############################################################################
+ * profileNotifications
+ * ############################################################################
+ */
+
+ Template.profileNotifications.events({
+   "click #clearBtn": function(event, template){
+      var notifications = Notifications.find();
+      notifications.forEach(function (notification) {
+        Meteor.call("deleteNotification", notification);
+      });
+   }
+ });
+
+Template.profileNotifications.helpers({
+    getNotifications: function() {
+      return Notifications.find();
+    }
+});
+
+/**
+ * ############################################################################
  * profileRequests
  * ############################################################################
  */

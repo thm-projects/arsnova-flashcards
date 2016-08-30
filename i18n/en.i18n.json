@@ -38,7 +38,8 @@
     "title": "Notifications",
     "clearAll": "Clear all",
     "viewAll": "View all",
-    "noNotification": "No notifications available"
+    "noNotification": "No new notifications available",
+    "deleteAll": "Delete all"
   },
 
   "input-group": {
