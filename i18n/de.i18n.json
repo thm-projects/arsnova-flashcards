@@ -114,7 +114,7 @@
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
     "saveLicense": "Lizenz speichern",
-    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich."
+    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!"
   },
 
   "profile": {
@@ -261,7 +261,7 @@
     "release": "Veröffentlicht",
     "deleted": "Gelöscht",
     "license": "Lizenz",
-    "dateUpdated": "Zuletzt Aktualisiert"
+    "dateUpdated": "Zuletzt aktualisiert"
   },
 
   "cardset": {
@@ -275,7 +275,7 @@
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
       "license": "Lizenz",
-      "dateUpdated": "Zuletzt Aktualisiert"
+      "dateUpdated": "Zuletzt aktualisiert"
     },
     "request": {
       "accept": "Kartensatz freigeben",
@@ -504,7 +504,11 @@
       "delete": "Kartensatz löschen",
       "confirm": "Sicher?",
       "name_required": "Geben Sie einen Namen ein!",
-      "description_required": "Geben Sie eine Beschreibung ein!"
+      "description_required": "Geben Sie eine Beschreibung ein!",
+      "dateUpdated": "Zuletzt aktualisiert",
+      "license": "Lizenz",
+      "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!"
     },
 
     "card": {
@@ -552,7 +556,7 @@
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
       "confirm": "Sicher?",
-      "email_invalid": "Ungültige Email-Adresse",
+      "email_invalid": "Ungültige Email-Adresse!",
       "name_exists": "Benutzername ist bereits vergeben!",
       "name_toShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"

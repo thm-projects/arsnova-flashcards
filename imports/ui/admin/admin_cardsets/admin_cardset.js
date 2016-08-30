@@ -16,23 +16,34 @@ import './admin_cardset.html';
  * ############################################################################
  */
 
- Template.admin_cardset.onRendered(function() {
-    Session.set('kind', this.kind);
- });
-
 Template.admin_cardset.helpers({
   kindIsActive: function(kind) {
+    Session.set('kind', this.kind);
     return kind === this.kind;
   },
   kindWithPrice: function(){
     if (Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
       return true;
-    } else if (this.kind === 'edu' || this.kind === 'pro') {
+    } else {
+      return false;
+    }
+  },
+  priceIsSelected: function(price) {
+    return price === this.price ? 'selected' : '';
+  },
+  licenseIsActive: function(license) {
+    if (this.license !== undefined) {
+      if (this.license.includes(license)) return true;
+    } else {
+      return null;
+    }
+  },
+  isPublished: function() {
+    if (Session.get('kind') === 'free' || Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
       return true;
     } else {
       return false;
     }
-    return (this.kind === 'edu' || this.kind === 'pro');
   },
   cardListCardsetAdmin: function () {
     return Cards.find({ cardset_id: this._id });
@@ -95,7 +106,17 @@ Template.admin_cardset.events({
       $('#helpEditCardsetDescriptionAdmin').html(TAPi18n.__('admin.cardset.description_required'));
       $('#helpEditCardsetDescriptionAdmin').css('color', '#b94a48');
     }
-    if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "") {
+    if ((Session.get('kind') === 'pro' || Session.get('kind') === 'edu' || Session.get('kind') === 'free') && this.quantity < 5) {
+      $('#editCardsetKindLabelAdmin').css('color', '#b94a48');
+      $('#helpEditCardsetKindAdmin').html(TAPi18n.__('admin.cardset.noCards'));
+      $('#helpEditCardsetKindAdmin').css('color', '#b94a48');
+    }
+    if (("#cc-modules-admin").length && $("#cc-option2-admin").hasClass('active') && $("#cc-option3-admin").hasClass('active') || $("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) {
+      $('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
+      $('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
+      $('#helpCC-modules-admin').css('color', '#b94a48');
+    }
+    else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && (Session.get('kind') === 'personal' || (Session.get('kind') === 'pro' || Session.get('kind') === 'edu' || Session.get('kind') === 'free') && this.quantity >= 5)) {
       var name = tmpl.find('#editCardsetNameAdmin').value;
       var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
@@ -107,6 +128,16 @@ Template.admin_cardset.events({
       var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
       var price = 0;
       var visible = true;
+      var license = [];
+
+      if (("#cc-modules-admin").length) {
+        if ($("#cc-option0-admin").hasClass('active')) { license.push("by"); }
+        if ($("#cc-option1-admin").hasClass('active')) { license.push("nc"); }
+        if ($("#cc-option2-admin").hasClass('active')) { license.push("nd"); }
+        if ($("#cc-option3-admin").hasClass('active')) { license.push("sa"); }
+      }
+
+      Meteor.call('updateLicense', this._id, license);
 
       if (kind === 'edu' || kind === 'pro') {
         if (tmpl.find('#publicatePriceAdmin') !== null) {
@@ -121,7 +152,7 @@ Template.admin_cardset.events({
       }
       if (kind === 'pro') {
         visible = false;
-        Meteor.call("makeProRequest", this.id);
+        Meteor.call("makeProRequest", this._id);
 
         var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
         var type = "Pro-Überprüfung";
@@ -174,6 +205,14 @@ Template.admin_cardset.events({
     $('#editCardsetDescriptionLabelAdmin').css('color', '');
     $('#editCardsetDescriptionAdmin').css('border-color', '');
     $('#helpEditCardsetDescriptionAdmin').html('');
+  },
+  'change #cc-modules-admin': function() {
+    $('#editCardsetLicenseLabelAdmin').css('color', '');
+    $('#helpCC-modules-admin').html('');
+  },
+  'click #publicateKindAdmin': function() {
+    $('#editCardsetKindLabelAdmin').css('color', '');
+    $('#helpEditCardsetKindAdmin').html('');
   }
 });
 

@@ -114,7 +114,7 @@
     "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
     "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
     "saveLicense": "Save license",
-    "wrongCombination": "This combination is not allowed."
+    "wrongCombination": "This combination is not allowed!"
   },
 
   "profile": {
@@ -505,7 +505,11 @@
       "delete": "Delete deck of cards",
       "confirm": "Sure?",
       "name_required": "The name field is required!",
-      "description_required": "The decription field is required!"
+      "description_required": "The decription field is required!",
+      "dateUpdated": "Last updated",
+      "license": "License",
+      "wrongCombination": "This combination is not allowed!",
+      "noCards": "You have to create at least 5 cards to publish this cardset!"
     },
 
     "card": {
@@ -553,7 +557,7 @@
       "save": "Save user",
       "delete": "Delete user",
       "confirm": "Sure?",
-      "email_invalid": "Invalid Email",
+      "email_invalid": "Invalid Email!",
       "name_exists": "Username is already taken!",
       "name_toShort": "Username must consist more than 4 letters!",
       "visible_invalid": "Profile must be public!"
