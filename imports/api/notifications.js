@@ -54,8 +54,7 @@ Meteor.methods({
         Meteor.call("createNotification", lecturer._id, type, text, link_id);
       });
     } else if (target === 'admin') {
-      var admins = Roles.getUsersInRole('admin');
-      admins.push = Roles.getUsersInRole('editor');
+      var admins = Roles.getUsersInRole(['admin', 'editor']);
       admins.forEach(function (admin) {
         Meteor.call("createNotification", admin._id, type, text, link_id);
       });

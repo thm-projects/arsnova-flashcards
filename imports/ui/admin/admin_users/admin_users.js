@@ -177,6 +177,7 @@ Template.admin_users.events({
         }
 
         Meteor.call("addNotification", target, type, text, cardset_id);
+        Meteor.call("addNotification", 'admin', type, text, cardset_id);
         $('#messageModalAdmin').modal('hide');
       }
     },
