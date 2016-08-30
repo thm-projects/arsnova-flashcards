@@ -206,7 +206,7 @@ Template.profileMembership.events({
           var type = "Dozenten Anfrage";
           var target = "admin";
 
-          Meteor.call("addNotification", target, type, text);
+          Meteor.call("addNotification", target, type, text, target);
           Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
           document.getElementById("lecturerRequestForm").reset();
         }
@@ -302,11 +302,14 @@ Template.profileBilling.helpers({
  */
 
  Template.profileNotifications.events({
-   "click #clearBtn": function(event, template){
+   "click #clearBtn": function(){
       var notifications = Notifications.find();
       notifications.forEach(function (notification) {
         Meteor.call("deleteNotification", notification);
       });
+   },
+   "click #deleteNotificationBtn": function() {
+     Meteor.call("deleteNotification", this._id);
    }
  });
 
@@ -316,7 +319,6 @@ Template.profileNotifications.helpers({
     },
     getTimestamp: function() {
       return moment(this.date).locale(getUserLanguage()).format('LLLL');
-
     }
 });
 
