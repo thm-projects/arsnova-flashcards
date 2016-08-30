@@ -16,13 +16,17 @@ import './admin_cardset.html';
  * ############################################################################
  */
 
+Template.admin_cardset.onDestroyed(function() {
+  Session.set('kind', undefined);
+});
+
 Template.admin_cardset.helpers({
   kindIsActive: function(kind) {
     var sessionKind = Session.get('kind');
 
     if (sessionKind === undefined) {
       Session.set('kind', this.kind);
-    } 
+    }
     return kind === this.kind;
   },
   kindWithPrice: function(){
