@@ -37,6 +37,18 @@ Template.main.events({
   'click #searchResults': function() {
     $('#searchDropdown').removeClass("open");
     $('#input-search').val('');
+  },
+  'click #notificationsBtn': function() {
+    var notifications = Notifications.find({read: false});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsRead", notification._id);
+    });
+  },
+  'click #clearBtn': function() {
+    var notifications = Notifications.find({cleared: false});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsCleared", notification._id);
+    });
   }
 });
 
@@ -63,8 +75,11 @@ Template.main.helpers({
     }
     return false;
   },
+  countNotifications: function() {
+    return Notifications.find({read: false}).count();
+  },
   getNotifications: function() {
-    return Notifications.find({}, {sort: {date: -1}});
+    return Notifications.find({cleared: false}, {sort: {date: -1}});
   }
 });
 

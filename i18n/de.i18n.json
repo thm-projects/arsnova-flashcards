@@ -36,9 +36,10 @@
 
   "notifications": {
     "title": "Benachrichtigungen",
-    "clearAll": "Entferne alle",
-    "viewAll": "Zeige alle",
-    "noNotification": "Keine Benachrichtigungen vorhanden"
+    "clearAll": "Leeren",
+    "viewAll": "Zeige alle Benachrichtigungen",
+    "noNotification": "Keine neuen Benachrichtigungen vorhanden",
+    "deleteAll": "Alle löschen"
   },
 
   "input-group": {
@@ -153,7 +154,12 @@
     },
     "payment": {
       "header": "Zahlungsmethode",
-      "empty": "Sie haben bisher keine Zahlungsmethode hinzugefügt!"
+      "empty": "Sie haben bisher keine Zahlungsmethode hinzugefügt!",
+      "save": "Zahlungsmethode speichern",
+      "saveMsg": "Ihre Zahlungsmethode wurde gespeichert",
+      "progress": "Änderungen werden verarbeitet",
+      "actual": "Ihre Zahlungsmethoden:",
+      "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
     "revenue": {
       "header": "Umsatzhistorie",

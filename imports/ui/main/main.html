@@ -56,21 +56,21 @@
                                 </li>
                             {{/if}}
                             <!-- <li id="navbar-profile" class="{{#if isActivePath regex='^\\/profile'}}active{{/if}}"> -->
-                            <li class="dropdown">
+                            <li id="notificationsBtn" class="dropdown">
                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell"></i> <span class="badge">{{getNotifications.count}}</span>
+                                    <i class="fa fa-bell"></i> {{#if countNotifications}}<span class="badge">{{countNotifications}}</span>{{/if}}
                                 </a>
 
                                 <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                                    <div class="notification-heading">
+                                        <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                                        <button id="clearBtn" type="button" class="btn btn-default pull-right">{{_ "notifications.clearAll"}}</button>
+                                    </div>
+                                    <li class="divider"></li>
                                     {{#if getNotifications.count}}
-                                        <div class="notification-heading">
-                                            <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                            <h4 class="menu-title pull-right">{{_ "notifications.clearAll"}} <i class="fa fa-trash"></i></h4>
-                                        </div>
-                                        <li class="divider"></li>
                                         <div class="notifications-wrapper">
                                             {{#each getNotifications}}
-                                                <a class="content">
+                                                <a href="/cardset/{{link_id}}" class="content">
                                                     <div class="notification-item">
                                                         <h4 class="item-title">{{type}}</h4>
                                                         <p class="item-info">{{text}}</p>
@@ -78,14 +78,17 @@
                                                 </a>
                                             {{/each}}
                                         </div>
-                                        <li class="divider"></li>
-                                        <div class="notification-footer">
-                                            <h4 class="menu-title"><a href="{{pathFor 'profileNotifications' _id=currentUser._id}}">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
                                     {{else}}
                                         <div class="notification-heading">
                                             <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
                                         </div>
                                     {{/if}}
+                                    <li class="divider"></li>
+                                    <div class="notification-footer">
+                                        <a id="clearBtn" href="{{pathFor 'profileNotifications' _id=currentUser._id}}" type="button" class="btn btn-info">
+                                          {{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                                        </a>
+                                    </div>
                                 </ul>
                             </li>
                             <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">

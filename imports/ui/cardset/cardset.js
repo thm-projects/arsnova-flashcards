@@ -177,7 +177,7 @@ Template.cardset.events({
       Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-bottom-right');
     } else {
       Meteor.call("declineProRequest", this._id);
-      Meteor.call("addNotification", this.owner, "Kartensatzfreischaltung nicht stattgegeben", reason);
+      Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
       Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
     }
   }
@@ -767,11 +767,11 @@ Template.cardsetPublicateForm.events({
       visible = false;
       Meteor.call("makeProRequest", id);
 
-      var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
-      var type = "Pro-Überprüfung";
+      var text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
+      var type = "Kartensatz-Freigabe";
       var target = "lecturer";
 
-      Meteor.call("addNotification", target, type, text);
+      Meteor.call("addNotification", target, type, text, this._id);
       Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
     }
 

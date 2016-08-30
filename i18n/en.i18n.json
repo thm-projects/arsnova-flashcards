@@ -38,7 +38,8 @@
     "title": "Notifications",
     "clearAll": "Clear all",
     "viewAll": "View all",
-    "noNotification": "No notifications available"
+    "noNotification": "No new notifications available",
+    "deleteAll": "Delete all"
   },
 
   "input-group": {
@@ -153,7 +154,12 @@
     },
     "payment": {
       "header": "Payment Methods",
-      "empty": "You have not added any payment method!"
+      "empty": "You have not added any payment method!",
+      "save": "Save payment method",
+      "saveMsg": "Your payment methode was saved",
+      "progress": "Changes are processed",
+      "actual": "Your payment methods:",
+      "add": "Add or choose payment methods:"
     },
     "revenue": {
       "header": "Revenue History",

@@ -13,10 +13,10 @@
           <div class="col-md-12">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
-                    <div class="input-group">
+                    <div class="input-group has-error">
                       <span class="input-group-btn">
                         <button id="acceptRequest" class="btn btn-success" type="button">{{_ "cardset.request.accept"}}</button>
-                        <button id="declineRequest" class="btn btn-danger" type="button">{{_ "cardset.request.decline"}}n</button>
+                        <button id="declineRequest" class="btn btn-danger" type="button">{{_ "cardset.request.decline"}}</button>
                       </span>
                       <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
                     </div>
@@ -73,7 +73,9 @@
                       {{/if}}
                       <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
                       <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
+                      {{#if getReviewer}}
                       <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
+                      {{/if}}
                       {{#if hasAmount}}
                         <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
                       {{/if}}
