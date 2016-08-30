@@ -144,6 +144,7 @@ Template.profileSettings.events({
       } else {
         braintree.setup(clientToken, "dropin", {
           container: "subscribe-form",
+          defaultFirst: true,
           onPaymentMethodReceived: function (response) {
             $('#upgrade').prop( "disabled", true );
 
@@ -218,6 +219,38 @@ Template.profileMembership.events({
  * profileBilling
  * ############################################################################
  */
+
+ Template.profileBilling.rendered = function(){
+   var customerId = Meteor.user().customerId;
+
+   if ($('#paymentMethodDropIn').length) {
+     Meteor.call('getClientToken', customerId, function(error, clientToken) {
+      if (error) {
+        throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+      } else {
+        braintree.setup(clientToken, "dropin", {
+          container: "paymentMethodDropIn",
+          defaultFirst: true,
+          onPaymentMethodReceived: function (response) {
+            $('#savePaymentBtn').prop( "disabled", true );
+
+            Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
+            console.log(response);
+            var nonce = response.nonce;
+            Meteor.call('btUpdatePaymentMethod', nonce, function(error, success) {
+              if (error) {
+                throw new Meteor.Error(error.message, 'error');
+              } else {
+                Bert.alert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-bottom-right');
+                $('#savePaymentBtn').prop( "disabled", false );
+              }
+            });
+          }
+        });
+      }
+    });
+   }
+ }
 
 Template.profileBilling.helpers({
     getInvoices: function() {

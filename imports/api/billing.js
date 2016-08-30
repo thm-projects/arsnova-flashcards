@@ -55,8 +55,30 @@ Meteor.methods({
       return btPayment.wait();
     },
 
+    btUpdatePaymentMethod: function(nonceFromTheClient) {
+      var btUpdatePayment = new Future();
+
+      var user = Meteor.users.findOne(this.userId);
+
+      gateway.paymentMethod.create({
+        customerId: user.customerId,
+        paymentMethodNonce: nonceFromTheClient,
+        options: {
+          makeDefault: true
+        }
+      }, function (error, result) {
+        if (error) {
+            btUpdatePayment.return(error);
+        } else {
+            btUpdatePayment.return(result);
+        }
+      });
+
+      return btUpdatePayment.wait();
+    },
+
     createTransaction: function(nonceFromTheClient, cardset_id) {
-        var user = Meteor.user();
+        var user = Meteor.users.findOne(this.userId);
         var cardset = Cardsets.findOne(cardset_id);
 
         var btCreateTransaction = new Future();

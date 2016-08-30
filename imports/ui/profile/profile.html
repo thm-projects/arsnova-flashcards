@@ -415,6 +415,7 @@
             <h3 class="panel-title">{{_ "billing.payment.header"}}</h3>
         </div>
         <div class="panel-body">
+          <h5>{{_ "billing.payment.actual"}}</h5>
           {{#if hasPaymentMethod}}
             <div class="list-group">
               {{#each getPaymentMethod}}
@@ -438,6 +439,17 @@
           {{else}}
               <p class="alert alert-info">{{_ "billing.payment.empty"}}</p>
           {{/if}}
+
+          <br>
+          <h5>{{_ "billing.payment.add"}}</h5>
+          <form role="form">
+            <div class="row">
+              <div class="col-md-12">
+                <div id="paymentMethodDropIn"></div>
+                  <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_ "billing.payment.save"}}</button>
+              </div>
+            </div>
+          </form>
         </div>
     </div>
     <div class="panel panel-default">
