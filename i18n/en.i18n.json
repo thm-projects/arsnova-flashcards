@@ -114,7 +114,13 @@
     "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
     "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
     "saveLicense": "Save license",
-    "wrongCombination": "This combination is not allowed!"
+    "wrongCombination": "This combination is not allowed!",
+    "reportCardset": "Report cardset",
+    "link": "Cardset ID",
+    "cardsetname": "Cardset",
+    "date": "Date",
+    "text": "Reason",
+    "text_chars": "At least 100 chars required!"
   },
 
   "profile": {
@@ -373,6 +379,8 @@
   "learn":"Learn",
   "learnfile":"Leitner's learning box",
   "memo":"Memo",
+  "report": "Report this cardset",
+  "report_button": "Report cardset",
   "meteor":"Meteor",
   "play":"Play",
   "yourhighscore": "Your highscore:",
@@ -506,7 +514,7 @@
       "confirm": "Sure?",
       "name_required": "The name field is required!",
       "description_required": "The decription field is required!",
-      "dateUpdated": "Last updated",
+      "dateUpdated": "Last updated:",
       "license": "License",
       "wrongCombination": "This combination is not allowed!",
       "noCards": "You have to create at least 5 cards to publish this cardset!"

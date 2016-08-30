@@ -114,7 +114,12 @@
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
     "saveLicense": "Lizenz speichern",
-    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!"
+    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+    "reportCardset": "Kartensatz melden",
+    "link": "Kartensatz-ID",
+    "cardsetname": "Kartensatz",
+    "text": "Grund",
+    "text_chars": "Es sind 100 Zeichen erforderlich!"
   },
 
   "profile": {
@@ -373,6 +378,8 @@
   "learn":"Lernen",
   "learnfile":"Lernkartei",
   "memo":"Memo",
+  "report": "Diesen Kartensatz melden",
+  "report_button": "Kartensatz melden",
   "meteor":"Meteor",
   "play":"Spielen",
   "yourhighscore": "Dein Highscore:",
@@ -505,7 +512,7 @@
       "confirm": "Sicher?",
       "name_required": "Geben Sie einen Namen ein!",
       "description_required": "Geben Sie eine Beschreibung ein!",
-      "dateUpdated": "Zuletzt aktualisiert",
+      "dateUpdated": "Zuletzt aktualisiert:",
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!"
