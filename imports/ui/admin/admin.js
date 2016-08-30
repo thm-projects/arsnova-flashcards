@@ -38,6 +38,6 @@ Template.admin_main.helpers({
     }
   },
   getNotifications: function() {
-    return Notifications.find({}, {sort: {date: -1}});
+    return Notifications.find({ target_type: 'admin' }, {sort: {date: -1}});
   }
 });

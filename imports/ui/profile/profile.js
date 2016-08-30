@@ -316,7 +316,7 @@ Template.profileBilling.helpers({
 
 Template.profileNotifications.helpers({
     getNotifications: function() {
-      return Notifications.find({ type: { $not: 'Gemeldeter Kartensatz' } }, {sort: {date: -1}});
+      return Notifications.find({ target_type: 'user' }, {sort: {date: -1}});
     },
     getLink: function() {
       if (this.type === 'Dozenten-Anfrage') {
