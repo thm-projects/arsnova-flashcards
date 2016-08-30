@@ -202,11 +202,12 @@ Template.profileMembership.events({
           Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger', 'growl-bottom-right');
         }
         else {
-          var text = prename + " " + name + " möchte Dozent werden. Jetzt im Back-End freischalten.";
-          var type = "Dozenten Anfrage";
+          var text = prename + " " + name + " möchte Dozent werden.";
+          var type = "Dozenten-Anfrage";
           var target = "admin";
 
           Meteor.call("addNotification", target, type, text, target);
+          Meteor.call("setLecturerRequest", Meteor.userId(), true);
           Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
           document.getElementById("lecturerRequestForm").reset();
         }
@@ -315,10 +316,27 @@ Template.profileBilling.helpers({
 
 Template.profileNotifications.helpers({
     getNotifications: function() {
-      return Notifications.find();
+      return Notifications.find({}, {sort: {date: -1}});
     },
-    getTimestamp: function() {
-      return moment(this.date).locale(getUserLanguage()).format('LLLL');
+    getLink: function() {
+      if (this.type === 'Dozenten-Anfrage') {
+        return "/profile/" + this.origin + "/overview";
+      } else {
+        return "/cardset/" + this.link_id;
+      }
+    },
+    getStatus: function() {
+      if (this.type === 'Dozenten-Anfrage') {
+        var user = Meteor.users.findOne(this.origin);
+        return (user.roles.includes('lecturer')) ? TAPi18n.__('notifications.approved'): TAPi18n.__('notifications.pending');
+      }
+      else if (this.type === 'Kartensatz-Freigabe') {
+        var cardset = Cardsets.findOne(this.link_id);
+        return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
+      }
+      else {
+        return TAPi18n.__('notifications.progress');
+      }
     }
 });
 
@@ -331,6 +349,27 @@ Template.profileNotifications.helpers({
 Template.profileRequests.helpers({
     getRequests: function() {
       return Cardsets.find({request: true});
+    }
+});
+
+/**
+ * ############################################################################
+ * profileLecturer
+ * ############################################################################
+ */
+
+ Template.profileLecturer.events({
+   "click #acceptLecturerBtn": function(){
+     Meteor.call("setUserAsLecturer", this._id);
+   },
+   "click #declineLecturerBtn": function(){
+     Meteor.call("setLecturerRequest", this._id, false);
+   }
+ });
+
+Template.profileLecturer.helpers({
+    getLecturerRequests: function() {
+      return Meteor.users.find({request: true});
     }
 });
 

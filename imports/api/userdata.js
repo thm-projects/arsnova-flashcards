@@ -71,6 +71,30 @@ Meteor.methods({
       }
     });
   },
+  setUserAsLecturer: function(id) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Meteor.users.update(id, {
+      $set: {
+        visible: true,
+        request: false
+      }
+    });
+
+    Roles.addUsersToRoles(id, 'lecturer');
+  },
+  setLecturerRequest: function(user_id, request) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Meteor.users.update(user_id, {
+      $set: {
+        request: request
+      }
+    });
+  },
   updateUsersLast: function(id) {
     Meteor.users.update(id, {
       $set: {

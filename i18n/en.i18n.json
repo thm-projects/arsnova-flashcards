@@ -39,7 +39,10 @@
     "clearAll": "Clear all",
     "viewAll": "View all",
     "noNotification": "No new notifications available",
-    "deleteAll": "Delete all"
+    "deleteAll": "Delete all",
+    "approved": "Approved",
+    "pending": "Pending approval",
+    "progress": "In progress"
   },
 
   "input-group": {
@@ -130,7 +133,10 @@
     "notifications": "Notifications",
     "settings": "Settings",
     "requests": "Pro approval",
-    "norequests": "No requests"
+    "norequests": "No requests",
+    "lecturer": "Lecturer approval",
+    "accept": "Accept",
+    "decline": "Decline"
   },
 
   "profil-header": {

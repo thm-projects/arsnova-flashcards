@@ -55,6 +55,11 @@ Template.registerHelper("getDateUpdated", function() {
   return moment(this.dateUpdated).locale(getUserLanguage()).format('LL');
 });
 
+// Returns the locale date with time
+Template.registerHelper("getTimestamp", function() {
+  return moment(this.date).locale(getUserLanguage()).format('LLLL');
+});
+
 // Returns all Categories
 Template.registerHelper("getCategories", function() {
   return Categories.find({}, {
