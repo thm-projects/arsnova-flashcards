@@ -25,7 +25,7 @@ if (Meteor.isServer) {
       type: String
     },
     date: {
-      type: String
+      type: Date
     },
     read: {
       type: Boolean

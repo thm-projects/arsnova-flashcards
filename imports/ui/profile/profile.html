@@ -606,10 +606,15 @@
             {{#if getNotifications.count}}
                 <div class="list-group">
                     {{#each getNotifications}}
-                        <a href="/cardset/{{link_id}}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{type}}</h4>
-                            <p class="list-group-item-text">{{text}}</p>
-                        </a>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading pull-left">{{type}}</h4>
+                            <button id="deleteNotificationBtn" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
+                            <div class="clearfix"></div>
+                            <a href="/cardset/{{link_id}}" class="list-group-item-text">{{text}}</a>
+                            <hr>
+                            <small class="list-group-item-text pull-left">{{getTimestamp}}</small>
+                            <div class="clearfix"></div>
+                        </div>
                     {{/each}}
                 </div>
             {{else}}

@@ -1,17 +1,20 @@
-# ARSnova Flashcards
+# ARSnova Cards
 
-ARSnova Flashcards is a digital recreation of a classic learning tool. The service offers students a modern and intuitive access to one of the most successful proven learning methods. THMcards is being developed as a modern Single Page Application.
+ARSnova Cards is a digital recreation of a classic learning tool. The service offers students a modern and intuitive access to one of the most successful proven learning methods.
 
 ## Getting Started
 
-To start ARSnova Flashcards on localhost use `meteor --settings dev.json` inside the repository. You can then access ARSnova Flashcards from your host machine by opening http://localhost:3000.
+To start ARSnova Cards on localhost use `meteor --settings dev.json` inside the repository. You can then access ARSnova Cards from your host machine by opening http://localhost:3000.
 
 ## CI Pipeline
 
-- [Staging](http://cards2.mni.thm.de)
-- [Production](http://cards.thm.de)
+[![build status](https://git.thm.de/arsnova/flashcards/badges/staging/build.svg)](https://git.thm.de/arsnova/flashcards/commits/staging)
+
+
+- [Staging](http://cards-staging.mni.thm.de)
+- [Production](https://arsnova.cards)
 
 
 ## Credits
 
-ARSnova Flashcards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
+ARSnova Cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
