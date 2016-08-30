@@ -313,6 +313,10 @@ Template.profileBilling.helpers({
 Template.profileNotifications.helpers({
     getNotifications: function() {
       return Notifications.find();
+    },
+    getTimestamp: function() {
+      return moment(this.date).locale(getUserLanguage()).format('LLLL');
+
     }
 });
 

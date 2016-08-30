@@ -607,7 +607,9 @@
                 <div class="list-group">
                     {{#each getNotifications}}
                         <a href="/cardset/{{link_id}}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{type}}</h4>
+                            <h4 class="list-group-item-heading pull-left">{{type}}</h4>
+                            <p class="list-group-item-text pull-right">{{getTimestamp}}</p>
+                            <div class="clearfix"></div>
                             <p class="list-group-item-text">{{text}}</p>
                         </a>
                     {{/each}}
