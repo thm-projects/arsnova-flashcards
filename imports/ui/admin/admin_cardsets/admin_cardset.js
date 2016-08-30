@@ -18,7 +18,11 @@ import './admin_cardset.html';
 
 Template.admin_cardset.helpers({
   kindIsActive: function(kind) {
-    Session.set('kind', this.kind);
+    var sessionKind = Session.get('kind');
+
+    if (sessionKind === undefined) {
+      Session.set('kind', this.kind);
+    } 
     return kind === this.kind;
   },
   kindWithPrice: function(){
@@ -106,7 +110,7 @@ Template.admin_cardset.events({
       $('#helpEditCardsetDescriptionAdmin').html(TAPi18n.__('admin.cardset.description_required'));
       $('#helpEditCardsetDescriptionAdmin').css('color', '#b94a48');
     }
-    if ((Session.get('kind') === 'pro' || Session.get('kind') === 'edu' || Session.get('kind') === 'free') && this.quantity < 5) {
+    if (($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity < 5) {
       $('#editCardsetKindLabelAdmin').css('color', '#b94a48');
       $('#helpEditCardsetKindAdmin').html(TAPi18n.__('admin.cardset.noCards'));
       $('#helpEditCardsetKindAdmin').css('color', '#b94a48');
@@ -116,7 +120,7 @@ Template.admin_cardset.events({
       $('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
       $('#helpCC-modules-admin').css('color', '#b94a48');
     }
-    else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && (Session.get('kind') === 'personal' || (Session.get('kind') === 'pro' || Session.get('kind') === 'edu' || Session.get('kind') === 'free') && this.quantity >= 5)) {
+    else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
       var name = tmpl.find('#editCardsetNameAdmin').value;
       var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
@@ -150,17 +154,6 @@ Template.admin_cardset.events({
       if (kind === 'personal') {
         visible = false;
       }
-      if (kind === 'pro') {
-        visible = false;
-        Meteor.call("makeProRequest", this._id);
-
-        var text = "Neuer Pro-Kartensatz zur Überprüfung freigegeben";
-        var type = "Pro-Überprüfung";
-        var target = "lecturer";
-
-        Meteor.call("addNotification", target, type, text);
-      }
-
       Meteor.call("publicateCardset", this._id, kind, price, visible);
       Meteor.call("updateCardset", this._id, name, category, description);
       window.history.go(-1);
@@ -227,7 +220,7 @@ Template.cardConfirmFormCardsetAdmin.events({
     var id = Session.get('cardId');
 
     $('#cardConfirmModalCardsetAdmin').on('hidden.bs.modal', function() {
-      Meteor.call("deleteCard", id);
+      Meteor.call("deleteCardAdmin", id);
     }).modal('hide');
   }
 });

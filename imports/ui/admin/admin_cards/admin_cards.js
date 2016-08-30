@@ -112,7 +112,7 @@ Template.cardConfirmFormAdmin.events({
     var id = Session.get('cardId');
 
     $('#cardConfirmModalAdmin').on('hidden.bs.modal', function() {
-      Meteor.call("deleteCard", id);
+      Meteor.call("deleteCardAdmin", id);
     }).modal('hide');
   }
 });

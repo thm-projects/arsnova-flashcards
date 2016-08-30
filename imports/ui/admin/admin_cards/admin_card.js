@@ -120,7 +120,7 @@ Template.admin_card.events({
   },
   'click #cardConfirmAdmin': function() {
     var id = this._id;
-    Meteor.call("deleteCard", id);
+    Meteor.call("deleteCardAdmin", id);
     window.history.go(-1);
   },
   'keyup #editCardFrontAdmin': function() {

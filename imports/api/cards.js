@@ -123,6 +123,30 @@ Meteor.methods({
       card_id: card_id
     });
   },
+  deleteCardAdmin: function(card_id) {
+    var card = Cards.findOne({ _id : card_id });
+
+    if (card !== undefined) {
+      var cardset = Cardsets.findOne(card.cardset_id);
+
+      if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+        if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+          throw new Meteor.Error("not-authorized");
+        }
+      }
+
+      Cards.remove(card_id);
+      Cardsets.update(card.cardset_id, {
+        $set: {
+          quantity: Cards.find({cardset_id: card.cardset_id}).count(),
+          dateUpdated: new Date()
+        }
+      });
+      Learned.remove({
+        card_id: card_id
+      });
+    }
+  },
   updateCard: function(card_id, front, back) {
     var card = Cards.findOne(card_id);
     var cardset = Cardsets.findOne(card.cardset_id);
