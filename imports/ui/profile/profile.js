@@ -105,15 +105,14 @@ Template.profileSettings.events({
   },
   "keyup #inputName": function(event, template) {
     var name = $(event.currentTarget).val();
+    var user_id = Meteor.userId();
 
-    Meteor.call("checkUsersName", name, this._id, function(error, result){
+    Meteor.call("checkUsersName", name, user_id, function(error, result){
       if(error){
-        console.log("error", error);
         $(event.currentTarget).parent().parent().addClass('has-error');
         $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
       }
       if(result){
-         console.log(result);
          if (result.length < 5) {
            $(event.currentTarget).parent().parent().addClass('has-error');
            $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
@@ -121,7 +120,8 @@ Template.profileSettings.events({
            $(event.currentTarget).parent().parent().removeClass('has-error');
            $(event.currentTarget).parent().parent().addClass('has-success');
            $('#errorName').html('');
-           Meteor.call("updateUsersName", result, this._id);
+
+           Meteor.call("updateUsersName", result, user_id);
          }
       }
     });
