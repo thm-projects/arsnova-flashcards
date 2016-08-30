@@ -153,67 +153,86 @@ Template.admin_user.helpers({
 
 Template.admin_user.events({
   'click #userSaveAdmin': function(event, tmpl) {
-    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    var email = $('#editUserEmailAdmin').val();
-    var check = re.test(email);
+    var name = $('#editUserNameAdmin').val();
+    var user_id = this._id;
 
-    if (check === false && email !== "") {
-      $('#editUserEmailLabelAdmin').css('color', '#b94a48');
-      $('#editUserEmailAdmin').css('border-color', '#b94a48');
-      $('#helpEditUserEmailAdmin').html(TAPi18n.__('admin.user.email_invalid'));
-      $('#helpEditUserEmailAdmin').css('color', '#b94a48');
-    }
-    if (check === true || email === "") {
-      var visible = null;
+    Meteor.call("checkUsersName", name, user_id, function(error, result){
+      if(error){
+        $('#editUserNameLabelAdmin').css('color', '#b94a48');
+        $('#editUserNameAdmin').css('border-color', '#b94a48');
+        $('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_exists'));
+        $('#helpEditUserNameAdmin').css('color', '#b94a48');
+      }
+      if(result){
+         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+         var email = $('#editUserEmailAdmin').val();
+         var check = re.test(email);
+         var visible = null;
+         var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
+         var lecturer = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
 
-      if ($('#profilepublicoption1Admin').hasClass('active')) {
-        visible = true;
-      } else if ($('#profilepublicoption2Admin').hasClass('active')) {
-        visible = false;
-      }
-      if ($('#editUserProAdmin').length) {
-        if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
-          Meteor.call('updateRoles', this._id, 'pro');
-        } else {
-          Meteor.call('updateRoles', this._id, 'standard');
-        }
-      }
-      if ($('#editUserEduAdmin').length) {
-        if ('true' === tmpl.find('#editUserEduAdmin > .active > input').value) {
-            Meteor.call('updateRoles', this._id, 'university');
-        } else {
-          Meteor.call('removeRoles', this._id, 'university');
-        }
-      }
-      if ($('#editUserLecturerAdmin').length)
-      {
-        if ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value) {
-            Meteor.call('updateRoles', this._id, 'lecturer');
-        } else {
-          Meteor.call('removeRoles', this._id, 'lecturer');
-        }
-      }
-      if ($('#editUserBlockedAdmin').length)
-      {
-        if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
-            Meteor.call('updateRoles', this._id, 'blocked');
-            Meteor.call('blockUser', this._id);
-        } else {
-          Meteor.call('removeRoles', this._id, 'blocked');
-          Meteor.call('standardUser', this._id, this.profile.name)
-        }
-      }
-      if ($('#editUserEditorAdmin').length) {
-        if ('true' === tmpl.find('#editUserEditorAdmin > .active > input').value) {
-            Meteor.call('updateRoles', this._id, 'editor');
-        } else {
-          Meteor.call('removeRoles', this._id, 'editor');
-        }
-      }
+         if ($('#profilepublicoption1Admin').hasClass('active')) {
+           visible = true;
+         } else if ($('#profilepublicoption2Admin').hasClass('active')) {
+           visible = false;
+         }
 
-      Meteor.call('updateUser', this._id, visible, email);
-      window.history.go(-1);
-    }
+         if (check === false && email !== "") {
+           $('#editUserEmailLabelAdmin').css('color', '#b94a48');
+           $('#editUserEmailAdmin').css('border-color', '#b94a48');
+           $('#helpEditUserEmailAdmin').html(TAPi18n.__('admin.user.email_invalid'));
+           $('#helpEditUserEmailAdmin').css('color', '#b94a48');
+         }
+         if (result.length < 5) {
+           $('#editUserNameLabelAdmin').css('color', '#b94a48');
+           $('#editUserNameAdmin').css('border-color', '#b94a48');
+           $('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toShort'));
+           $('#helpEditUserNameAdmin').css('color', '#b94a48');
+         }
+         if (pro && !visible || lecturer && !visible) {
+           $('#editUserVisibleLabelAdmin').css('color', '#b94a48');
+           $('#helpEditUserVisibleAdmin').html(TAPi18n.__('admin.user.visible_invalid'));
+           $('#helpEditUserVisibleAdmin').css('color', '#b94a48');
+         }
+         if ((check === true || email === "") && (result.length >= 5) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
+           if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
+             Meteor.call('updateRoles', user_id, 'pro');
+           } else  {
+             Meteor.call('updateRoles', user_id, 'standard');
+           }
+           if ('true' === tmpl.find('#editUserEduAdmin > .active > input').value) {
+             Meteor.call('updateRoles', user_id, 'university');
+           } else {
+             Meteor.call('removeRoles', user_id, 'university');
+           }
+           if ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value) {
+             Meteor.call('updateRoles', user_id, 'lecturer');
+           } else {
+             Meteor.call('removeRoles', user_id, 'lecturer');
+           }
+
+           if ($('#editUserBlockedAdmin').length)
+           {
+             if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
+               Meteor.call('updateRoles', user_id, 'blocked');
+             } else {
+               Meteor.call('removeRoles', user_id, 'blocked');
+             }
+           }
+           if ($('#editUserEditorAdmin').length) {
+             if ('true' === tmpl.find('#editUserEditorAdmin > .active > input').value) {
+               Meteor.call('updateRoles', user_id, 'editor');
+             } else {
+               Meteor.call('removeRoles', user_id, 'editor');
+             }
+           }
+
+           Meteor.call('updateUser', user_id, visible, email);
+           Meteor.call("updateUsersName", result, user_id);
+           window.history.go(-1);
+         }
+      }
+    });
   },
   'click #userCancelAdmin': function() {
     window.history.go(-1);
@@ -243,6 +262,15 @@ Template.admin_user.events({
     $('#editUserEmailLabelAdmin').css('color', '');
     $('#editUserEmailAdmin').css('border-color', '');
     $('#helpEditUserEmailAdmin').html('');
+  },
+  'keyup #editUserNameAdmin': function() {
+    $('#editUserNameLabelAdmin').css('color', '');
+    $('#editUserNameAdmin').css('border-color', '');
+    $('#helpEditUserNameAdmin').html('');
+  },
+  'change #editUserVisibleAdmin': function() {
+    $('#editUserVisibleLabelAdmin').css('color', '');
+    $('#helpEditUserVisibleAdmin').html('');
   }
 });
 

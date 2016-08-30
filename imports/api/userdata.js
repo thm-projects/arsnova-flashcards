@@ -39,21 +39,23 @@ Meteor.methods({
       }
     });
   },
-  updateUsersName: function(name) {
-    Meteor.users.update(Meteor.user()._id, {
+  updateUsersName: function(name, id) {
+    Meteor.users.update(id, {
       $set: {
         profile: {name: name}
       }
     });
-    Cardsets.update({ owner: Meteor.user()._id }, {
+    Cardsets.update({ owner: id }, {
       $set: {
         username: name
       }
     }, {multi:true});
   },
-  checkUsersName: function(name) {
+  checkUsersName: function(name, id) {
+    name = name.trim();
     var userExists = Meteor.users.findOne({"profile.name": name});
-    if (userExists && userExists._id !== this.userId) {
+
+    if (userExists && userExists._id !== id) {
       throw new Meteor.Error("username already exists");
     }
     return name;

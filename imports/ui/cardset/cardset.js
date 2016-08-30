@@ -541,9 +541,6 @@ Template.cardsetInfo.helpers({
     var reviewer = Meteor.users.findOne(this.reviewer);
     return (reviewer !== undefined) ? reviewer.profile.name: undefined;
   },
-  hasLicense: function() {
-    return this.license.length > 0
-  },
   getLicense: function() {
     var licenseString = "";
 
@@ -833,8 +830,12 @@ Template.cardsetPublicateForm.events({
  Template.selectLicenseForm.helpers({
    licenseIsActive: function(license) {
      var cardset = Cardsets.findOne(Session.get('cardsetId'));
-     var licenses = cardset.license;
+     if (cardset !== undefined) {
+       var licenses = cardset.license;
 
-     if (licenses.includes(license)) return true;
+       if (licenses.includes(license)) return true;
+     } else {
+       return null;
+     }
    }
  });
