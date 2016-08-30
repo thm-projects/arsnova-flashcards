@@ -106,7 +106,7 @@ Template.profileSettings.events({
   "keyup #inputName": function(event, template) {
     var name = $(event.currentTarget).val();
 
-    Meteor.call("checkUsersName", name, function(error, result){
+    Meteor.call("checkUsersName", name, this._id, function(error, result){
       if(error){
         console.log("error", error);
         $(event.currentTarget).parent().parent().addClass('has-error');
@@ -121,7 +121,7 @@ Template.profileSettings.events({
            $(event.currentTarget).parent().parent().removeClass('has-error');
            $(event.currentTarget).parent().parent().addClass('has-success');
            $('#errorName').html('');
-           Meteor.call("updateUsersName", result);
+           Meteor.call("updateUsersName", result, this._id);
          }
       }
     });

@@ -180,7 +180,7 @@
   	"profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
-    "nameToShort": "Benutzername muss aus mehr als 5 Buchstaben bestehen!",
+    "nameToShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
     "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
 
@@ -546,7 +546,10 @@
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
       "confirm": "Sicher?",
-      "email_invalid": "Ungültige Email-Adresse"
+      "email_invalid": "Ungültige Email-Adresse",
+      "name_exists": "Benutzername ist bereits vergeben!",
+      "name_toShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
+      "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     }
   },
 

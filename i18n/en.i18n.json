@@ -180,7 +180,7 @@
   	"profilepublicoption2": "No",
     "profileprivate": "Private profile",
     "emailInvalid": "Enter a valid e-mail address",
-    "nameToShort": "Username must consist more than 5 letters!",
+    "nameToShort": "Username must consist more than 4 letters!",
     "nameAlreadyExists": "Username is already taken!"
   },
 
@@ -547,7 +547,10 @@
       "save": "Save user",
       "delete": "Delete user",
       "confirm": "Sure?",
-      "email_invalid": "Invalid Email"
+      "email_invalid": "Invalid Email",
+      "name_exists": "Username is already taken!",
+      "name_toShort": "Username must consist more than 4 letters!",
+      "visible_invalid": "Profile must be public!"
     }
   },
 
