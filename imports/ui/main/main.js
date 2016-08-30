@@ -79,7 +79,7 @@ Template.main.helpers({
     return Notifications.find({read: false}).count();
   },
   getNotifications: function() {
-    return Notifications.find({cleared: false}, {sort: {date: -1}});
+    return Notifications.find({ cleared: false, type: { $not: 'Gemeldeter Kartensatz' } }, {sort: {date: -1}});
   },
   getLink: function() {
     if (this.type === 'Dozenten-Anfrage') {
