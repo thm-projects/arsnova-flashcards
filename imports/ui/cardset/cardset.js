@@ -846,27 +846,38 @@ Template.cardsetPublicateForm.events({
   */
 
   Template.reportCardsetForm.onRendered(function() {
-    $('#reportCardsetModal').on('hidden.bs.modal', function() {
+    $('#reportModal').on('hidden.bs.modal', function() {
       $('#helpReportCardsetText').html('');
       $('#reportCardsetTextLabel').css('color', '');
       $('#reportCardsetText').css('border-color', '');
       $('#reportCardsetText').val('');
+      $('#reportCardsetReason').val($('#reportCardsetReason option:first').val());
     });
   });
   Template.reportCardsetForm.events({
     'click #reportCardsetSave': function(evt, tmpl) {
-      if ($('#reportCardsetText').val().length < 100) {
+      if ($('#reportCardsetText').val().length < 50) {
         $('#reportCardsetTextLabel').css('color', '#b94a48');
         $('#reportCardsetText').css('border-color', '#b94a48');
         $('#helpReportCardsetText').html(TAPi18n.__('modal-dialog.text_chars'));
         $('#helpReportCardsetText').css('color', '#b94a48');
       } else {
         var text = $('#reportCardsetText').val();
-        var type = "Gemeldeter Kartensatz";
+        var type = null;
+        var link_id = null;
+
+        if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
+          type = "Gemeldeter Benutzer";
+          link_id = this.owner;
+        } else {
+          type = "Gemeldeter Kartensatz";
+          link_id = this._id
+        }
+
         var target = "admin";
 
-        Meteor.call("addNotification", target, type, text, this._id);
-         $('#reportCardsetModal').modal('hide');
+        Meteor.call("addNotification", target, type, text, link_id);
+         $('#reportModal').modal('hide');
       }
     },
     'keyup #reportCardsetText': function() {

@@ -132,7 +132,7 @@
       </div>
     </div>
     {{#unless isOwner}}
-      <a id="reportCardset" href="#" class="flag" data-toggle="modal" data-target="#reportCardsetModal">{{_ "report_button"}}</a>
+      <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_ "report"}}</a>
     {{/unless}}
   </div>
 </template>
@@ -557,26 +557,35 @@
 </template>
 
 <template name="reportCardsetForm">
-  <div class="modal fade" id="reportCardsetModal" tabindex="-1" role="dialog" aria-labelledby="reportCardsetModalTitle">
+  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="reportCardsetModalTitle" class="modal-title">{{_ "modal-dialog.reportCardset"}}</h4>
+          <h4 id="reportModalTitle" class="modal-title">{{_ "modal-dialog.report"}}</h4>
         </div>
         <div class="modal-body">
           <div class="form-horizontal">
-            <div class="form-group link_id">
-              <label id="reportCardsetLinkLabel" class="col-md-3 control-label">{{_ "modal-dialog.link"}}</label>
+            <div class="form-group">
+              <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetowner"}}</label>
               <p class="col-md-9">
-                {{_id}}
+                {{username}}
               </p>
             </div>
-            <div class="form-group cardsetname">
-              <label id="reportCardsetNameLabel" class="col-md-3 control-label">{{_ "modal-dialog.cardsetname"}}</label>
+            <div class="form-group">
+              <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetname"}}</label>
               <p class="col-md-9">
                 {{name}}
               </p>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">{{_ "modal-dialog.reason"}}</label>
+              <div class="input-group">
+                <select id="reportCardsetReason" class="form-control">
+                  <option>{{_ "modal-dialog.reportuser"}}</option>
+                  <option>{{_ "modal-dialog.reportcardset"}}</option>
+                </select>
+              </div>
             </div>
             <div class="form-group text">
               <label id="reportCardsetTextLabel" class="col-md-3 control-label" for="reportCardsetText">{{_ "modal-dialog.text"}}</label>
@@ -589,7 +598,7 @@
         </div>
         <div class="modal-footer">
           <button id="reportCardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.reportCardset"}}</button>
+          <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
         </div>
       </div>
     </div>
