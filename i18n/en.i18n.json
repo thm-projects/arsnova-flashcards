@@ -513,9 +513,12 @@
 
     "message": {
       "messageUser": "Message User",
+      "reason": "Reason",
+      "reportuser": "Complaint user",
+      "reportcardset": "Complaint cardset",
       "cardset": "Cardset",
       "noCardsets": "No cardsets",
-      "text": "Reason",
+      "text": "Further information",
       "cancel": "Cancel",
       "sendMessage": "Send message",
       "text_chars": "At least 50 chars required!"

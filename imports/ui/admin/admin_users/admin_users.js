@@ -71,7 +71,7 @@ Template.admin_users.helpers({
             return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><i class='fa fa-envelope'></i></a>");
           }
         }},
-        { key: 'dateString', label: TAPi18n.__('admin.created'), fn: function(value, object) {
+        { key: 'dateString', label: TAPi18n.__('admin.joined'), fn: function(value, object) {
           return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
         }},
         { key: '_id', label: TAPi18n.__('admin.blocked'), cellClass:'blocked', fn: function(value) {
@@ -140,7 +140,8 @@ Template.admin_users.events({
       $('#messageTextAdminLabel').css('color', '');
       $('#messageTextAdmin').css('border-color', '');
       $('#messageTextAdmin').val('');
-      $('#messageCardsetAdmin').val($('#messageCardsetAdmin option:first').val());
+      $('#messageReasonAdmin').val($('#messageReasonAdmin option:first').val());
+      Session.set('showCardset', false);
     });
   });
 
@@ -152,6 +153,15 @@ Template.admin_users.events({
           name: 1
         }
       });
+    },
+    isCardset: function() {
+      var showCardset = Session.get('showCardset');
+
+      if (showCardset) {
+        return true;
+      } else {
+        return false;
+      }
     }
   });
 
@@ -159,25 +169,30 @@ Template.admin_users.events({
     'click #messageTextSave': function(evt, tmpl) {
       var user_id = Session.get('userId');
 
-      if ($('#messageTextAdmin').val().length < 100) {
+      if ($('#messageTextAdmin').val().length < 50) {
         $('#messageTextAdminLabel').css('color', '#b94a48');
         $('#messageTextAdmin').css('border-color', '#b94a48');
         $('#helpMessageTextAdmin').html(TAPi18n.__('admin.message.text_chars'));
         $('#helpMessageTextAdmin').css('color', '#b94a48');
       } else {
         var text = $('#messageTextAdmin').val();
-        var type = "Benutzer benachrichtigen";
-        var target = user_id;
-        var cardset_id = "Kein Kartensatz";
+        var type = null;
+        var link_id = null;
 
-        if (tmpl.find('#messageCardsetAdmin')) {
-          var cardsetname = tmpl.find('#messageCardsetAdmin').value;
-          var cardset = Cardsets.findOne({ name: cardsetname });
-          cardset_id = cardset._id;
+        if ($('#messageReasonAdmin').val() === "Beschwerde Benutzer" || $('#messageReasonAdmin').val() === "Complaint user" || $('#messageReasonAdmin').html() === 'Beschwerde Benutzer' || $('#messageReasonAdmin').html() === 'Complaint user') {
+          type = "Benutzerbenachrichtigung (Beschwerde Benutzer)";
+          link_id = user_id;
+        } else {
+          type = "Benutzerbenachrichtigung (Beschwerde Kartensatz)";
+          var selectedCardset = tmpl.find('#messageCardsetAdmin').value;
+          var cardset = Cardsets.findOne({ name: selectedCardset });
+          link_id = cardset._id;
         }
 
-        Meteor.call("addNotification", target, type, text, cardset_id);
-        Meteor.call("addNotification", 'admin', type, text, cardset_id);
+        var target = user_id;
+
+        Meteor.call("addNotification", target, type, text, link_id);
+        Meteor.call("addNotification", 'admin', type, text, link_id);
         $('#messageModalAdmin').modal('hide');
       }
     },
@@ -185,5 +200,12 @@ Template.admin_users.events({
       $('#messageTextAdminLabel').css('color', '');
       $('#messageTextAdmin').css('border-color', '');
       $('#helpMessageTextAdmin').html('');
+    },
+    'change #messageReasonAdmin': function() {
+      if ($('#messageReasonAdmin').val() === "Beschwerde Benutzer" || $('#messageReasonAdmin').val() === "Complaint user") {
+        Session.set('showCardset', false);
+      } else {
+        Session.set('showCardset', true);
+      }
     }
   });

@@ -511,9 +511,12 @@
 
     "message": {
       "messageUser": "Benutzer benachrichtigen",
+      "reason": "Grund",
+      "reportuser": "Beschwerde Benutzer",
+      "reportcardset": "Beschwerde Kartensatz",
       "cardset": "Kartensatz",
       "noCardsets": "Keine Kartensätze",
-      "text": "Grund",
+      "text": "Weitere Informationen",
       "cancel": "Abbrechen",
       "sendMessage": "Benachrichtigung senden",
       "text_chars": "Es sind 50 Zeichen erforderlich!"
