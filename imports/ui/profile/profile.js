@@ -299,7 +299,7 @@ Template.profileBilling.helpers({
     getBalance: function() {
       Meteor.subscribe("privateUserData");
       var balance = Meteor.users.findOne(Meteor.userId).balance;
-      return (balance !== undefined) ? balance : 0;
+      return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
     },
     getPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){
