@@ -221,7 +221,7 @@ Template.profileMembership.events({
  * ############################################################################
  */
 
- Template.profileBilling.rendered = function(){
+ Template.profileBilling.onRendered(function(){
    var customerId = Meteor.user().customerId;
 
    if ($('#paymentMethodDropIn').length) {
@@ -251,7 +251,36 @@ Template.profileMembership.events({
       }
     });
    }
- }
+
+   if ($('#payoutDropIn').length) {
+       Meteor.call('getClientToken', customerId, function(error, clientToken) {
+           if (error) {
+               throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+           } else {
+               braintree.setup(clientToken, "dropin", {
+                   container: "payoutDropIn",
+                   onPaymentMethodReceived: function(response) {
+                       $('#payoutBtn').prop("disabled", true);
+                       Bert.alert(TAPi18n.__('billing.balance.progress'), 'info', 'growl-bottom-right');
+
+                       var nonce = response.nonce;
+
+                       Meteor.call('btCreateCredit', nonce, function(error, success) {
+                           if (error) {
+                               throw new Meteor.Error('transaction-creation-failed');
+                           } else if (success.name === "authorizationError") {
+                               Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
+                           } else {
+                               Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
+                               $('#payoutBtn').prop("disabled", false);
+                           }
+                       });
+                   }
+               });
+           }
+       });
+   }
+ });
 
 Template.profileBilling.helpers({
     getInvoices: function() {
