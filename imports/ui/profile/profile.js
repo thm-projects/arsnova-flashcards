@@ -199,7 +199,7 @@ Template.profileMembership.events({
         var type = "Dozenten-Anfrage";
         var target = "admin";
 
-        Meteor.call("addNotification", target, type, text, target);
+        Meteor.call("addNotification", target, type, text, Meteor.userId());
         Meteor.call("setLecturerRequest", Meteor.userId(), true);
         Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
     },
