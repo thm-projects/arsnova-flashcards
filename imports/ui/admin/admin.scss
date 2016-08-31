@@ -39,6 +39,15 @@ body {
       padding: 20px;
       float: left;
       width: 100%;
+      .modal {
+        .input-group {
+          padding-left: 15px;
+          margin-bottom: 10px;
+        }
+        p {
+          padding-top: 7px;
+        }
+      }
       .content-header {
         position: relative;
         padding-bottom: 20px;

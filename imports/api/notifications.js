@@ -35,6 +35,9 @@ if (Meteor.isServer) {
     },
     link_id: {
       type: String
+    },
+    target_type: {
+      type: String
     }
   });
 
@@ -47,24 +50,22 @@ Meteor.methods({
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-
     if (target === 'lecturer') {
       var lecturers = Roles.getUsersInRole('lecturer');
       lecturers.forEach(function (lecturer) {
-        Meteor.call("createNotification", lecturer._id, type, text, link_id);
+        Meteor.call("createNotification", lecturer._id, type, text, link_id, 'user');
       });
     } else if (target === 'admin') {
-      var admins = Roles.getUsersInRole('admin');
-      admins.push = Roles.getUsersInRole('editor');
+      var admins = Roles.getUsersInRole(['admin', 'editor']);
       admins.forEach(function (admin) {
-        Meteor.call("createNotification", admin._id, type, text, link_id);
+        Meteor.call("createNotification", admin._id, type, text, link_id, 'admin');
       });
     } else {
-      Meteor.call("createNotification", target, type, text, link_id);
+      Meteor.call("createNotification", target, type, text, link_id, 'user');
     }
   },
 
-  createNotification: function(target, type, text, link_id) {
+  createNotification: function(target, type, text, link_id, target_type) {
     Notifications.insert({
       target: target,
       origin: Meteor.userId(),
@@ -73,7 +74,8 @@ Meteor.methods({
       date: new Date(),
       read: false,
       cleared: false,
-      link_id: link_id
+      link_id: link_id,
+      target_type: target_type
     });
   },
 

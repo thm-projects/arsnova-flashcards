@@ -5,6 +5,8 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 import { allUsers } from '../../../api/allusers.js';
+import { Cardsets } from '../../../api/cardsets.js';
+import { Notifications } from '../../../api/notifications.js';
 
 import './admin_users.html';
 
@@ -64,8 +66,10 @@ Template.admin_users.helpers({
             return new Spacebars.SafeString("<i class='fa fa-check'></i>");
           }
         }},
-        { key: 'mailto', label: TAPi18n.__('admin.mail'), sortable: false, fn: function() {
-          return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "'><i class='fa fa-envelope'></i></a>");
+        { key: '_id', label: TAPi18n.__('admin.mail'), cellClass:'mailto', sortable: false, fn: function(value) {
+          if (Meteor.user()._id !== value) {
+            return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><i class='fa fa-envelope'></i></a>");
+          }
         }},
         { key: 'dateString', label: TAPi18n.__('admin.created'), fn: function(value, object) {
           return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
@@ -98,6 +102,9 @@ Template.admin_users.events({
     if (event.target.className == "deleteUserAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
       Session.set('userId', user._id);
     }
+    if (event.target.className == "mailtoUserAdmin btn btn-xs btn-default" || event.target.className == "fa fa-envelope") {
+      Session.set('userId', user._id);
+    }
   },
   'click #linkToAdminUser': function(event) {
     var userid = $(event.currentTarget).data("userid");
@@ -120,3 +127,63 @@ Template.admin_users.events({
      }).modal('hide');
    }
  });
+
+ /**
+  * ############################################################################
+  * messageFormAdmin
+  * ############################################################################
+  */
+
+  Template.messageFormAdmin.onRendered(function() {
+    $('#messageModalAdmin').on('hidden.bs.modal', function() {
+      $('#helpMessageTextAdmin').html('');
+      $('#messageTextAdminLabel').css('color', '');
+      $('#messageTextAdmin').css('border-color', '');
+      $('#messageTextAdmin').val('');
+      $('#messageCardsetAdmin').val($('#messageCardsetAdmin option:first').val());
+    });
+  });
+
+  Template.messageFormAdmin.helpers({
+    getCardsets: function() {
+      var user_id = Session.get('userId');
+      return Cardsets.find({ owner : user_id }, {
+        sort: {
+          name: 1
+        }
+      });
+    }
+  });
+
+  Template.messageFormAdmin.events({
+    'click #messageTextSave': function(evt, tmpl) {
+      var user_id = Session.get('userId');
+
+      if ($('#messageTextAdmin').val().length < 100) {
+        $('#messageTextAdminLabel').css('color', '#b94a48');
+        $('#messageTextAdmin').css('border-color', '#b94a48');
+        $('#helpMessageTextAdmin').html(TAPi18n.__('admin.message.text_chars'));
+        $('#helpMessageTextAdmin').css('color', '#b94a48');
+      } else {
+        var text = $('#messageTextAdmin').val();
+        var type = "Benutzer benachrichtigen";
+        var target = user_id;
+        var cardset_id = "Kein Kartensatz";
+
+        if (tmpl.find('#messageCardsetAdmin')) {
+          var cardsetname = tmpl.find('#messageCardsetAdmin').value;
+          var cardset = Cardsets.findOne({ name: cardsetname });
+          cardset_id = cardset._id;
+        }
+
+        Meteor.call("addNotification", target, type, text, cardset_id);
+        Meteor.call("addNotification", 'admin', type, text, cardset_id);
+        $('#messageModalAdmin').modal('hide');
+      }
+    },
+    'keyup #messageTextAdmin': function() {
+      $('#messageTextAdminLabel').css('color', '');
+      $('#messageTextAdmin').css('border-color', '');
+      $('#helpMessageTextAdmin').html('');
+    }
+  });
