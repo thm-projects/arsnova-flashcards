@@ -118,11 +118,15 @@
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
     "saveLicense": "Lizenz speichern",
     "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
-    "reportCardset": "Kartensatz melden",
-    "link": "Kartensatz-ID",
+    "report": "Kartensatz/Benutzer melden",
+    "cardsetowner": "Autor",
     "cardsetname": "Kartensatz",
-    "text": "Grund",
-    "text_chars": "Es sind 100 Zeichen erforderlich!"
+    "reason": "Grund",
+    "reportuser": "Benutzer melden",
+    "reportcardset": "Kartensatz melden",
+    "text": "Weitere Informationen",
+    "text_chars": "Es sind 50 Zeichen erforderlich!",
+    "submitcomplaint": "Beschwerde absenden"
   },
 
   "profile": {
@@ -384,8 +388,7 @@
   "learn":"Lernen",
   "learnfile":"Lernkartei",
   "memo":"Memo",
-  "report": "Diesen Kartensatz melden",
-  "report_button": "Kartensatz melden",
+  "report": "Kartensatz/Benutzer melden",
   "meteor":"Meteor",
   "play":"Spielen",
   "yourhighscore": "Dein Highscore:",
@@ -507,7 +510,7 @@
       "text": "Grund",
       "cancel": "Abbrechen",
       "sendMessage": "Benachrichtigung senden",
-      "text_chars": "Es sind 100 Zeichen erforderlich!"
+      "text_chars": "Es sind 50 Zeichen erforderlich!"
     },
 
     "cardset": {

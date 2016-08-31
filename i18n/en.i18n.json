@@ -118,12 +118,16 @@
     "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
     "saveLicense": "Save license",
     "wrongCombination": "This combination is not allowed!",
-    "reportCardset": "Report cardset",
-    "link": "Cardset ID",
+    "report": "Report cardset/user",
+    "cardsetowner": "Author",
     "cardsetname": "Cardset",
+    "reason": "Reason",
+    "reportuser": "Report user",
+    "reportcardset": "Report cardset",
     "date": "Date",
-    "text": "Reason",
-    "text_chars": "At least 100 chars required!"
+    "text": "Further information",
+    "text_chars": "At least 50 chars required!",
+    "submitcomplaint": "Submit complaint"
   },
 
   "profile": {
@@ -385,8 +389,7 @@
   "learn":"Learn",
   "learnfile":"Leitner's learning box",
   "memo":"Memo",
-  "report": "Report this cardset",
-  "report_button": "Report cardset",
+  "report": "Report cardset/user",
   "meteor":"Meteor",
   "play":"Play",
   "yourhighscore": "Your highscore:",
@@ -509,7 +512,7 @@
       "text": "Reason",
       "cancel": "Cancel",
       "sendMessage": "Send message",
-      "text_chars": "At least 100 chars required!"
+      "text_chars": "At least 50 chars required!"
     },
 
     "cardset": {
