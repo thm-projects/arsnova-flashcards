@@ -120,4 +120,11 @@ Meteor.methods({
       throw new Meteor.Error("Amount of money is too high");
     }
   },
+  resetUsersBalance: function(user_id) {
+    if (this.userId === user_id) {
+      Meteor.users.update(user_id, {balance: 0});
+    } else {
+      throw new Meteor.Error("not-authorized");
+    }
+  },
 });

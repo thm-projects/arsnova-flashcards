@@ -177,9 +177,15 @@
       "actual": "Your payment methods:",
       "add": "Add or choose payment methods:"
     },
+    "balance": {
+      "header": "Account balance",
+      "disburse": "payout",
+      "progress": "Disbursement processing",
+      "success": "Disbursement was carried out",
+      "failed": "Payout in Braintree not unlocked. Contact your administrator."
+    },
     "revenue": {
       "header": "Revenue History",
-      "balance": "Account balance",
       "empty": "You have not generated any revenue yet!",
       "boughtFrom": "Bought from",
       "for": "for",

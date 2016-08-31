@@ -176,9 +176,15 @@
       "actual": "Ihre Zahlungsmethoden:",
       "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
+    "balance": {
+      "header": "Kontostand",
+      "disburse": "auszahlen",
+      "progress": "Auszahlung wird bearbeitet",
+      "success": "Auszahlung wurde durchgeführt",
+      "failed": "Auszahlung nicht freigeschaltet. Wenden Sie sich an ihren Administrator."
+    },
     "revenue": {
       "header": "Umsatzhistorie",
-      "balance": "Kontostand",
       "empty": "Sie haben bisher noch keine Einnahmen generiert!",
       "boughtFrom": "Gekauft von",
       "for": "für",

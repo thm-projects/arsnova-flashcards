@@ -83,27 +83,80 @@ Meteor.methods({
 
         var btCreateTransaction = new Future();
 
-        gateway.transaction.sale({
-          amount: cardset.price,
-          paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
-          customer: {
-              id: user.customerId
-          },
-          options: {
-              submitForSettlement: true, // Payment is submitted for settlement immediatelly
-              storeInVaultOnSuccess: true // Store customer in Braintree's Vault
-          }
-        }, function (error, response) {
-            if (error) {
-                btCreateTransaction.return(error);
+        // Create our customer.
+        Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
+          if (error) {
+            console.log(error);
+          } else {
+            var customerId = '';
+            if (btCustomer === undefined) {
+              customerId = Meteor.user().customerId;
             } else {
-                Meteor.call('addPaid', cardset_id, cardset.price);
-                Meteor.call('increaseUsersBalance', cardset.owner, cardset.reviewer, cardset.price);
-                btCreateTransaction.return(response.clientToken);
+              customerId = btCustomer.customer.id;
             }
+
+            gateway.transaction.sale({
+              amount: cardset.price,
+              paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
+              customerId: customerId,
+              options: {
+                  submitForSettlement: true, // Payment is submitted for settlement immediatelly
+                  storeInVaultOnSuccess: true // Store customer in Braintree's Vault
+              }
+            }, function (error, response) {
+                if (error) {
+                    btCreateTransaction.return(error);
+                } else {
+                    Meteor.call('addPaid', cardset_id, cardset.price);
+                    Meteor.call('increaseUsersBalance', cardset.owner, cardset.reviewer, cardset.price);
+                    btCreateTransaction.return(response.clientToken);
+                }
+            });
+          }
         });
 
         return btCreateTransaction.wait();
+    },
+
+    btCreateCredit: function(nonceFromTheClient) {
+        var user = Meteor.users.findOne(this.userId);
+
+        var btCreateCredit = new Future();
+
+        // Create our customer.
+        Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
+          if (error) {
+            console.log(error);
+          } else {
+            var customerId = '';
+            if (btCustomer === undefined) {
+              customerId = Meteor.user().customerId;
+            } else {
+              customerId = btCustomer.customer.id;
+            }
+
+            // Make new credit
+            gateway.transaction.credit({
+              amount: user.balance,
+              paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
+              customer: customerId,
+              options: {
+                  submitForSettlement: true, // Payment is submitted for settlement immediatelly
+                  storeInVaultOnSuccess: true // Store customer in Braintree's Vault
+              }
+            }, function (error, response) {
+                if (error) {
+                    btCreateCredit.return(error);
+                } else {
+                    Meteor.call('resetUsersBalance', this.userId);
+                    btCreateCredit.return(response);
+                }
+            });
+
+          }
+        });
+
+        return btCreateCredit.wait();
     },
 
     btSubscribe: function(nonce, plan) {
