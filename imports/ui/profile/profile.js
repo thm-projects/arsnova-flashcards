@@ -266,9 +266,10 @@ Template.profileMembership.helpers({
                        Meteor.call('btCreateCredit', nonce, function(error, success) {
                            if (error) {
                                throw new Meteor.Error('transaction-creation-failed');
-                           } else if (success.name === "authorizationError") {
+                           } else if (success !== undefined && success.name === "authorizationError") {
                                Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
                            } else {
+                               Meteor.call("resetUsersBalance", Meteor.userId());
                                Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
                                $('#payoutBtn').prop("disabled", false);
                            }
@@ -298,6 +299,11 @@ Template.profileBilling.helpers({
       Meteor.subscribe("privateUserData");
       var balance = Meteor.users.findOne(Meteor.userId).balance;
       return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
+    },
+    hasBalance: function() {
+      Meteor.subscribe("privateUserData");
+      var balance = Meteor.users.findOne(Meteor.userId).balance;
+      return balance > 0;
     },
     getPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){

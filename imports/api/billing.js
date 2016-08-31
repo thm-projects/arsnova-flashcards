@@ -139,7 +139,7 @@ Meteor.methods({
             gateway.transaction.credit({
               amount: user.balance,
               paymentMethodNonce: nonceFromTheClient, // Generated nonce passed from client
-              customer: customerId,
+              customerId: customerId,
               options: {
                   submitForSettlement: true, // Payment is submitted for settlement immediatelly
                   storeInVaultOnSuccess: true // Store customer in Braintree's Vault
@@ -148,8 +148,7 @@ Meteor.methods({
                 if (error) {
                     btCreateCredit.return(error);
                 } else {
-                    Meteor.call('resetUsersBalance', this.userId);
-                    btCreateCredit.return(response);
+                    btCreateCredit.return(response.clientToken);
                 }
             });
 
