@@ -93,7 +93,7 @@ Template.profileSettings.events({
     var email = $(event.currentTarget).val();
     var check = re.test(email);
 
-    if (check === false && email !== "") {
+    if (check === false) {
       $(event.currentTarget).parent().parent().addClass('has-error');
       $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
     } else {
@@ -195,23 +195,21 @@ Template.profileMembership.events({
         }
     },
     "click #sendLecturerRequest": function() {
-        var name = $('#inputName').val();
-        var prename = $('#inputPrename').val();
+        var text = Meteor.user().profile.name + " möchte Dozent werden.";
+        var type = "Dozenten-Anfrage";
+        var target = "admin";
 
-        if (name === '' || prename === ''){
-          Bert.alert('Geben Sie Ihren Vor- und Nachnamen an', 'danger', 'growl-bottom-right');
-        }
-        else {
-          var text = prename + " " + name + " möchte Dozent werden.";
-          var type = "Dozenten-Anfrage";
-          var target = "admin";
-
-          Meteor.call("addNotification", target, type, text, target);
-          Meteor.call("setLecturerRequest", Meteor.userId(), true);
-          Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
-          document.getElementById("lecturerRequestForm").reset();
-        }
+        Meteor.call("addNotification", target, type, text, target);
+        Meteor.call("setLecturerRequest", Meteor.userId(), true);
+        Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
     },
+});
+
+Template.profileMembership.helpers({
+  hasUserData: function(){
+    email = Meteor.user().email;
+    return email !== "" && email !== undefined;
+  }
 });
 
 
@@ -284,14 +282,14 @@ Template.profileMembership.events({
 
 Template.profileBilling.helpers({
     getInvoices: function() {
-      return Paid.find({user_id: Meteor.userId()});
+      return Paid.find({user_id: Meteor.userId()}, {sort: {date: -1}});
     },
     getRevenue: function() {
       var cardsetsIds = Cardsets.find({
         owner: Meteor.userId()
       }).map(function (cardset) {return cardset._id; });
 
-      return Paid.find({cardset_id: {$in: cardsetsIds}});
+      return Paid.find({cardset_id: {$in: cardsetsIds}}, {sort: {date: -1}});
     },
     getCardsetName: function(cardset_id) {
       return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
