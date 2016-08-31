@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.0
+
+Implementation of a backend and sales platform
+
+#### Features
+* Different roles
+* Admin Panel with dashboard
+* Report user or cardsets
+* Ban users
+* Notifications
+* Introduction of billing plans
+* New cardset types
+* Benefits for students and lecturer
+* Sell and pay cardsets
+* Learn verified cardsets
+* Braintree integration
+* Choose creative commons license for your cardset
+
+#### UX
+* Better overview in pool and cardset view
+* Show alteration date of a cardset
+* Clean navbar
+* Reorder profile view
+
+#### Bugfixes
+* i18n
+
 ## 2.1.0
 
 Migration of THMcards to Meteor 1.3
@@ -8,21 +35,21 @@ Migration of THMcards to Meteor 1.3
 * Implementation of GitLab CI
 
 #### UX
-* Corporate design for welcome and impressum page 
+* Corporate design for welcome and imprint page
 
 #### Bugfixes
 * Changed sass to scss
 * Update package to fix routing
 * Fixed CAS login
-* Fixed end screen of SuperMemo 
+* Fixed end screen of SuperMemo
 
 ## 2.0.0
 
 Reimplementation of THMcards with the Meteor Framework
 
 #### Features
-* Responsive design 
-* Form Validation 
+* Responsive design
+* Form Validation
 
 #### Bugfixes
 * Added new routing system

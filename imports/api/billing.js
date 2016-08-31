@@ -62,9 +62,9 @@ Meteor.methods({
 
       Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
         if (error) {
-          console.log(error);
+          btUpdatePayment.return(error);
         } else {
-          var customerId = '';
+          var customerId;
           if (btCustomer === undefined) {
             customerId = Meteor.user().customerId;
           } else {
@@ -72,7 +72,7 @@ Meteor.methods({
           }
 
           gateway.paymentMethod.create({
-            customerId: user.customerId,
+            customerId: customerId,
             paymentMethodNonce: nonceFromTheClient,
             options: {
               makeDefault: true
@@ -91,7 +91,6 @@ Meteor.methods({
     },
 
     btCreateTransaction: function(nonceFromTheClient, cardset_id) {
-        var user = Meteor.users.findOne(this.userId);
         var cardset = Cardsets.findOne(cardset_id);
 
         var btCreateTransaction = new Future();
@@ -99,9 +98,9 @@ Meteor.methods({
         // Create our customer.
         Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
           if (error) {
-            console.log(error);
+            btCreateTransaction.return(error);
           } else {
-            var customerId = '';
+            var customerId;
             if (btCustomer === undefined) {
               customerId = Meteor.user().customerId;
             } else {
@@ -139,9 +138,9 @@ Meteor.methods({
         // Create our customer.
         Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
           if (error) {
-            console.log(error);
+            btCreateCredit.return(error);
           } else {
-            var customerId = '';
+            var customerId;
             if (btCustomer === undefined) {
               customerId = Meteor.user().customerId;
             } else {
@@ -177,9 +176,9 @@ Meteor.methods({
         // Create our customer.
         Meteor.call('btCreateCustomer', nonce, function(error, btCustomer){
           if (error) {
-            console.log(error);
+            thisCustomer.return(error);
           } else {
-            var customerId = '';
+            var customerId;
             if (btCustomer === undefined) {
               customerId = Meteor.user().customerId;
             } else {
@@ -189,7 +188,7 @@ Meteor.methods({
             // Setup a subscription for our customer.
             Meteor.call('btCreateSubscription', customerId, plan, function(error, response){
               if (error) {
-                console.log(error);
+                thisCustomer.return(error);
               } else {
                 try {
                   var customerSubscription = {
@@ -207,7 +206,7 @@ Meteor.methods({
                     $set: customerSubscription
                   }, function(error, response){
                     if (error){
-                      console.log(error);
+                      thisCustomer.return(error);
                     } else {
                       // Once the subscription data has been added, return to Future.
                       thisCustomer.return(Meteor.user());
@@ -273,7 +272,6 @@ Meteor.methods({
     },
 
     btFindCustomer: function(customerId) {
-        //check(customerId, String);
         var btCustomer = new Future();
 
         gateway.customer.find(customerId, function(error, result) {
@@ -288,8 +286,6 @@ Meteor.methods({
     },
 
     btCreateSubscription: function(customerId, plan) {
-        //check(customerId, String);
-        //check(plan, String);
         var btSubscription = new Future();
 
         // fetch customer data.
@@ -317,7 +313,6 @@ Meteor.methods({
     },
 
     btFindUserSubscription: function(customerId) {
-        //check(customerId, String);
         var btUserSubscription = new Future();
 
         // find customer
