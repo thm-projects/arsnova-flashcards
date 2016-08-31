@@ -56,28 +56,41 @@ Meteor.methods({
     },
 
     btUpdatePaymentMethod: function(nonceFromTheClient) {
-      var btUpdatePayment = new Future();
-
       var user = Meteor.users.findOne(this.userId);
 
-      gateway.paymentMethod.create({
-        customerId: user.customerId,
-        paymentMethodNonce: nonceFromTheClient,
-        options: {
-          makeDefault: true
-        }
-      }, function (error, result) {
+      var btUpdatePayment = new Future();
+
+      Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
         if (error) {
-            btUpdatePayment.return(error);
+          console.log(error);
         } else {
-            btUpdatePayment.return(result);
+          var customerId = '';
+          if (btCustomer === undefined) {
+            customerId = Meteor.user().customerId;
+          } else {
+            customerId = btCustomer.customer.id;
+          }
+
+          gateway.paymentMethod.create({
+            customerId: user.customerId,
+            paymentMethodNonce: nonceFromTheClient,
+            options: {
+              makeDefault: true
+            }
+          }, function (error, result) {
+            if (error) {
+                btUpdatePayment.return(error);
+            } else {
+                btUpdatePayment.return(result);
+            }
+          });
         }
       });
 
       return btUpdatePayment.wait();
     },
 
-    createTransaction: function(nonceFromTheClient, cardset_id) {
+    btCreateTransaction: function(nonceFromTheClient, cardset_id) {
         var user = Meteor.users.findOne(this.userId);
         var cardset = Cardsets.findOne(cardset_id);
 
