@@ -130,10 +130,6 @@ Router.route('/profile/:_id/requests', {
   name: 'profileRequests',
   template: 'profile'
 });
-Router.route('/profile/:_id/lecturer', {
-  name: 'profileLecturer',
-  template: 'profile'
-});
 
 Router.route('/admin/dashboard', {
   name: 'admin_dashboard',

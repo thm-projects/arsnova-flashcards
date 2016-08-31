@@ -352,18 +352,10 @@ Template.profileNotifications.helpers({
       return Notifications.find({ target_type: 'user' }, {sort: {date: -1}});
     },
     getLink: function() {
-      if (this.type === 'Dozenten-Anfrage') {
-        return "/profile/" + this.origin + "/overview";
-      } else {
-        return "/cardset/" + this.link_id;
-      }
+      return "/cardset/" + this.link_id;
     },
     getStatus: function() {
-      if (this.type === 'Dozenten-Anfrage') {
-        var user = Meteor.users.findOne(this.origin);
-        return (user.roles.includes('lecturer')) ? TAPi18n.__('notifications.approved'): TAPi18n.__('notifications.pending');
-      }
-      else if (this.type === 'Kartensatz-Freigabe') {
+      if (this.type === 'Kartensatz-Freigabe') {
         var cardset = Cardsets.findOne(this.link_id);
         return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
       }
@@ -384,28 +376,6 @@ Template.profileRequests.helpers({
       return Cardsets.find({request: true});
     }
 });
-
-/**
- * ############################################################################
- * profileLecturer
- * ############################################################################
- */
-
- Template.profileLecturer.events({
-   "click #acceptLecturerBtn": function(){
-     Meteor.call("setUserAsLecturer", this._id);
-   },
-   "click #declineLecturerBtn": function(){
-     Meteor.call("setLecturerRequest", this._id, false);
-   }
- });
-
-Template.profileLecturer.helpers({
-    getLecturerRequests: function() {
-      return Meteor.users.find({request: true});
-    }
-});
-
 
 /**
  * ############################################################################
