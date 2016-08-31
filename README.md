@@ -4,7 +4,7 @@ ARSnova Cards is a digital recreation of a classic learning tool. The service of
 
 ## Getting Started
 
-To start ARSnova Cards on localhost use `meteor --settings dev.json` inside the repository. You can then access ARSnova Cards from your host machine by opening http://localhost:3000.
+To start ARSnova Cards on localhost use `meteor --settings settings.json` inside the repository. You can then access ARSnova Cards from your host machine by opening http://localhost:3000.
 
 ## CI Pipeline
 
