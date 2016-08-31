@@ -53,17 +53,11 @@ Session.setDefault('cardSort', {
 
             var nonce = response.nonce;
 
-            Meteor.call('btCreateCustomer', function(error, success) {
+            Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
               if (error) {
-                throw new Meteor.Error('customer-creation-failed');
+                throw new Meteor.Error('transaction-creation-failed');
               } else {
-                Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
-                  if (error) {
-                    throw new Meteor.Error('transaction-creation-failed');
-                  } else {
-                    Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
-                  }
-                });
+                Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
               }
             });
           }
