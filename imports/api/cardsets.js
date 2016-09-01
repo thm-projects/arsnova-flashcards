@@ -218,10 +218,7 @@ Meteor.methods({
     }
 
     Meteor.call("updateRelevance", id, function(error, relevance){
-      if(error){
-        console.log("error", error);
-      }
-      else {
+      if(!error){
         Cardsets.update(id, {
           $set: {
             kind: kind,

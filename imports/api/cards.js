@@ -24,11 +24,8 @@ if (Meteor.isServer) {
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Cards.find();
     }
-    else if (isOwner || Roles.userIsInRole(this.userId, ['lecturer']))
-    {
-      return Cards.find({cardset_id: cardset_id});
-    }
-    else if (isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro'])))
+    else if ((isOwner || Roles.userIsInRole(this.userId, ['lecturer'])) ||
+		(isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro']))))
     {
       return Cards.find({cardset_id: cardset_id});
     }

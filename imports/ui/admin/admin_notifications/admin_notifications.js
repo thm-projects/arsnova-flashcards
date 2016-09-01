@@ -347,8 +347,8 @@ Template.messageFormNotificationAdmin.events({
       $('#helpMessageNotificationTextAdmin').css('color', '#b94a48');
     } else {
       var text = $('#messageNotificationTextAdmin').val();
-      var type = null;
-      var link_id = null;
+      var type;
+      var link_id;
 
       if ($('#messageNotificationReasonAdmin').html() === "Beschwerde Benutzer" || $('#messageNotificationReasonAdmin').html() === "Complaint user") {
         type = "Adminbenachrichtigung (Beschwerde Benutzer)";
@@ -399,7 +399,6 @@ Template.notificationLecturerFormAdmin.helpers({
 Template.notificationLecturerFormAdmin.events({
   'click #lecturerrequestNoAdmin': function() {
    var user_id = Session.get('request_id');
-   console.log(user_id);
    $('#notificationLecturerModalAdmin').on('hidden.bs.modal', function() {
      Meteor.call("setLecturerRequest", user_id, false);
    }).modal('hide');

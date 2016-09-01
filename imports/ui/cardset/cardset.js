@@ -90,19 +90,11 @@ Template.cardset.helpers({
     var cardsetKind = this.kind;
 
     var hasRole = false;
-    if (Roles.userIsInRole(userId, 'pro')) {
-      hasRole = true;
-    }
-    else if (Roles.userIsInRole(userId, 'lecturer')) {
-      hasRole = true;
-    }
-    else if (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) {
-      hasRole = true;
-    }
-    else if (cardsetKind === 'free') {
-      hasRole = true;
-    }
-    else if (Paid.find({cardset_id:this._id, user_id:userId}).count() === 1) {
+    if (Roles.userIsInRole(userId, 'pro') ||
+       (Roles.userIsInRole(userId, 'lecturer')) ||
+       (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) ||
+       (cardsetKind === 'free') ||
+       (Paid.find({cardset_id:this._id, user_id:userId}).count() === 1)) {
       hasRole = true;
     }
 
@@ -863,8 +855,8 @@ Template.cardsetPublicateForm.events({
         $('#helpReportCardsetText').css('color', '#b94a48');
       } else {
         var text = $('#reportCardsetText').val();
-        var type = null;
-        var link_id = null;
+        var type;
+        var link_id;
 
         if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
           type = "Gemeldeter Benutzer";

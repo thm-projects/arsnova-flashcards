@@ -41,7 +41,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    var roles = [];
+    var roles;
 
     if (newRole === 'pro' && !Roles.userIsInRole(user_id, 'pro')) {
       Roles.removeUsersFromRoles(user_id, 'standard'),

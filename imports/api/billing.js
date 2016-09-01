@@ -56,8 +56,6 @@ Meteor.methods({
     },
 
     btUpdatePaymentMethod: function(nonceFromTheClient) {
-      var user = Meteor.users.findOne(this.userId);
-
       var btUpdatePayment = new Future();
 
       Meteor.call('btCreateCustomer', nonceFromTheClient, function(error, btCustomer){
