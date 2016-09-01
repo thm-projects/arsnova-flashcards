@@ -24,24 +24,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-                {{#if currentUser}}
-                  <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
-                {{/if}}
-                <li class="dropdown">
+                <li id="notificationsBtn_admin" class="dropdown">
                     <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell"></i> <span class="badge">{{getNotifications.count}}</span>
+                        <i class="fa fa-bell"></i> {{#if countNotifications}}<span class="badge">{{countNotifications}}</span>{{/if}}
                     </a>
 
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        <div class="notification-heading">
+                            <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                            <button id="clearBtn_admin" type="button" class="btn btn-default pull-right">{{_ "notifications.clearAll"}}</button>
+                        </div>
+                        <li class="divider"></li>
                         {{#if getNotifications.count}}
-                            <div class="notification-heading">
-                                <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                <h4 class="menu-title pull-right">{{_ "notifications.clearAll"}} <i class="fa fa-trash"></i></h4>
-                            </div>
-                            <li class="divider"></li>
                             <div class="notifications-wrapper">
                                 {{#each getNotifications}}
-                                    <a class="content">
+                                    <a href="{{getLink _id}}" class="content">
                                         <div class="notification-item">
                                             <h4 class="item-title">{{type}}</h4>
                                             <p class="item-info">{{text}}</p>
@@ -49,16 +46,22 @@
                                     </a>
                                 {{/each}}
                             </div>
-                            <li class="divider"></li>
-                            <div class="notification-footer">
-                                <h4 class="menu-title"><a href="{{pathFor 'profileNotifications' _id=currentUser._id}}">{{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4></div>
                         {{else}}
                             <div class="notification-heading">
                                 <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
                             </div>
                         {{/if}}
+                        <li class="divider"></li>
+                        <div class="notification-footer">
+                            <a href="{{pathFor route='admin_notifications'}}" type="button" class="btn btn-info">
+                              {{_ "notifications.viewAll"}} <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                            </a>
+                        </div>
                     </ul>
                 </li>
+                {{#if currentUser}}
+                  <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}" id="usr-profile-admin">{{getUsername}}</a></li>
+                {{/if}}
                 <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_ "navbar-collapse.logout"}}</a></li>
               </ul>
             </div>

@@ -28,6 +28,18 @@ Template.admin_main.events({
     event.preventDefault();
     Meteor.logout();
     Router.go('home');
+  },
+  'click #notificationsBtn_admin': function() {
+    var notifications = Notifications.find({read: false});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsRead", notification._id);
+    });
+  },
+  'click #clearBtn_admin': function() {
+    var notifications = Notifications.find({cleared: false});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsCleared", notification._id);
+    });
   }
 });
 
@@ -37,7 +49,18 @@ Template.admin_main.helpers({
       return Meteor.user().profile.name;
     }
   },
+  countNotifications: function() {
+    return Notifications.find({read: false, target_type: 'admin' }).count();
+  },
   getNotifications: function() {
-    return Notifications.find({ target_type: 'admin' }, {sort: {date: -1}});
+    return Notifications.find({ cleared: false, target_type: 'admin' }, {sort: {date: -1}});
+  },
+  getLink: function() {
+
+    if (this.type === "Adminbenachrichtigung (Gemeldeter Kartensatz)" || this.type === "Gemeldeter Kartensatz") {
+      return "/admin/cardset/" + this.link_id;
+    } else {
+      return "/admin/user/" + this.link_id;
+    }
   }
 });
