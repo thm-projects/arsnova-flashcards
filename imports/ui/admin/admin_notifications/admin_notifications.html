@@ -18,7 +18,7 @@
       </div>
       <div id="lecturerMessages" class="tab-pane fade">
         <div class="admin_table">
-          <!--{{> reactiveTable collection=lecturerMessagesListAdmin settings=tableSettingsLecturer}}-->
+          {{> reactiveTable collection=lecturerMessagesListAdmin settings=tableSettingsLecturer}}
         </div>
       </div>
       <div id="sendMessages" class="tab-pane fade">
@@ -30,6 +30,7 @@
   </div>
   {{> notificationConfirmFormAdmin}}
   {{> messageFormNotificationAdmin}}
+  {{> notificationLecturerFormAdmin}}
 </template>
 
 <template name="notificationConfirmFormAdmin">
@@ -100,4 +101,36 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="notificationLecturerFormAdmin">
+  <div class="modal fade" id="notificationLecturerModalAdmin" tabindex="-1" role="dialog" aria-labelledby="notificationLecturerModalTitleAdmin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="notificationLecturerModalTitleAdmin" class="modal-title">{{_ "admin.lecturerrequest.title"}}</h4>
+        </div>
+        <div class="modal-body">
+          {{#if isRequest}}
+            <p>{{getRequesttext}}</p>
+          {{else}}
+            <p>{{_ "admin.lecturerrequest.text"}}</p>
+          {{/if}}
+          <br />
+          <hr />
+          {{#if isRequest}}
+            <button id="lecturerrequestNoAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.lecturerrequest.no"}}</button>
+            <button id="lecturerrequestYesAdmin" class="btn btn-primary" style="width:150px">{{_ "admin.lecturerrequest.yes"}}</button>
+            <button id="lecturerrequestCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
+          {{else}}
+            <button id="lecturerrequestCancelAdmin" class="btn btn-default" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
+          {{/if}}
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>

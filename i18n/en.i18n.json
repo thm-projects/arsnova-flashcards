@@ -501,8 +501,10 @@
     "reason": "Reason",
     "text": "Further information",
     "date": "Date",
-    "replyreceiver": "Mail complaint",
-    "replyrsender": "Mail sender",
+    "receiver": "Receiver",
+    "replyreceiver": "Mail to complaint",
+    "replyrsender": "Mail to sender",
+    "request": "Request",
 
     "confirm-form": {
       "cardsets": {
@@ -537,6 +539,14 @@
       "sendMessage": "Send message",
       "text_chars": "At least 50 chars required!",
       "to": "To"
+    },
+
+    "lecturerrequest": {
+      "title": "Lecturer request",
+      "no": "Deny request",
+      "yes": "Agree request",
+      "text": "Request processed",
+      "cancel": "Cancel"
     },
 
     "cardset": {

@@ -499,8 +499,10 @@
     "reason": "Grund",
     "text": "Weitere Informationen",
     "date": "Datum",
-    "replyreceiver": "Mail Beschuldigten",
-    "replyrsender": "Mail Absender",
+    "receiver": "Empfänger",
+    "replyreceiver": "Mail an Beschuldigten",
+    "replyrsender": "Mail an Absender",
+    "request": "Anfrage",
 
     "confirm-form": {
       "cardsets": {
@@ -535,6 +537,14 @@
       "sendMessage": "Benachrichtigung senden",
       "text_chars": "Es sind 50 Zeichen erforderlich!",
       "to": "An"
+    },
+
+    "lecturerrequest": {
+      "title": "Dozenten-Anfrage",
+      "no": "Anfrage ablehnen",
+      "yes": "Anfrage zustimmen",
+      "text": "Anfrage wurde bearbeitet",
+      "cancel": "Abbrechen"
     },
 
     "cardset": {

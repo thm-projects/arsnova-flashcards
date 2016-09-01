@@ -5,6 +5,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 import { allUsers } from '../../../api/allusers.js';
+import { userData } from '../../../api/allusers.js';
 import { Cardsets } from '../../../api/cardsets.js';
 import { Notifications } from '../../../api/notifications.js';
 
@@ -83,6 +84,54 @@ import './admin_notifications.html';
            if (Meteor.user()._id !== value) {
              return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='sender-fa fa fa-envelope'></i></a>");
            }
+         }},
+         { key: '_id', label: TAPi18n.__('admin.delete'), cellClass:'delete', sortable: false, fn: function(value) {
+           return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+         }}
+       ]
+     }
+   },
+   lecturerMessagesListAdmin: function() {
+     var notifications = Notifications.find({ target_type: 'admin', type: 'Dozenten-Anfrage' });
+     var fields = [];
+     var dateString = null;
+     var date = null;
+     var sender = null;
+     var request = null;
+
+     notifications.forEach(function(notification) {
+       dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');;
+       date = moment(notification.date).format("YYYY-MM-DD-h-mm");
+
+       sender = Meteor.users.findOne({ _id: notification.origin });
+
+       if (sender !== undefined) {
+         request = sender.request;
+         sender = sender.profile.name;
+       }
+
+       fields.push({"_id": notification._id, "type": notification.type, "sender_id": notification.origin, "sender": sender, "text": notification.text, "request": request, "dateString": dateString, "date": date});
+     });
+
+     return fields;
+   },
+   tableSettingsLecturer: function() {
+     return {
+       showNavigationRowsPerPage: false,
+       rowsPerPage: 20,
+       fields: [
+         { key: 'type', label: TAPi18n.__('admin.type') },
+         { key: 'sender', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
+           return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
+         }},
+         { key: 'text', label: TAPi18n.__('admin.text'), sortable: false },
+         { key: 'sender_id', label: TAPi18n.__('admin.request'), cellClass:'mailtoLecturer', sortable: false, fn: function(value) {
+           if (Meteor.user()._id !== value) {
+             return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><i class='fa fa-university'></i></a>");
+           }
+         }},
+         { key: 'dateString', label: TAPi18n.__('admin.date'), fn: function(value, object) {
+           return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
          }},
          { key: '_id', label: TAPi18n.__('admin.delete'), cellClass:'delete', sortable: false, fn: function(value) {
            return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
@@ -198,6 +247,11 @@ Template.admin_notifications.events({
       Session.set('receiverId', notification.receiver_id);
       Session.set('isReceiver', false);
     }
+    if (event.target.className == 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className == "fa fa-university") {
+      Session.set('lecturerrequest', notification.request);
+      Session.set('request_id', notification.sender_id);
+      Session.set('requesttext', notification.text);
+    }
   },
   'click #linkToSenderComplaint': function(event) {
     var sender_id = $(event.currentTarget).data("senderid");
@@ -233,6 +287,10 @@ Template.admin_notifications.events({
     var receiver_id = $(event.currentTarget).data("receiveridsend");
     Router.go('admin_user', { _id: receiver_id });
   },
+  'click #linkToSenderLecturer': function(event) {
+    var sender_id = $(event.currentTarget).data("senderidlecturer");
+    Router.go('admin_user', { _id: sender_id });
+  }
 });
 
 /**
@@ -312,5 +370,45 @@ Template.messageFormNotificationAdmin.events({
       Meteor.call("addNotification", 'admin', type, text, link_id);
       $('#messageModalNotificationAdmin').modal('hide');
     }
+  }
+});
+
+/**
+ * ############################################################################
+ * notificationLecturerFormAdmin
+ * ############################################################################
+ */
+
+Template.notificationLecturerFormAdmin.helpers({
+  isRequest: function() {
+    var isRequest = Session.get('lecturerrequest');
+    var user_id = Session.get('request_id');
+
+    if (!isRequest && Roles.userIsInRole(user_id, 'lecturer') || !isRequest) {
+      return false;
+    } else {
+      return true;
+    }
+  },
+  getRequesttext: function() {
+    var text = Session.get('requesttext');
+    return text;
+  }
+});
+
+Template.notificationLecturerFormAdmin.events({
+  'click #lecturerrequestNoAdmin': function() {
+   var user_id = Session.get('request_id');
+   console.log(user_id);
+   $('#notificationLecturerModalAdmin').on('hidden.bs.modal', function() {
+     Meteor.call("setLecturerRequest", user_id, false);
+   }).modal('hide');
+  },
+  'click #lecturerrequestYesAdmin': function() {
+   var user_id = Session.get('request_id');
+
+   $('#notificationLecturerModalAdmin').on('hidden.bs.modal', function() {
+     Meteor.call('setUserAsLecturer', user_id);
+   }).modal('hide');
   }
 });
