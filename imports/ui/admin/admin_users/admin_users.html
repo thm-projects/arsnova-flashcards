@@ -49,6 +49,10 @@
         <div class="modal-body">
           <div class="form-horizontal">
             <div class="form-group">
+              <label class="col-md-3 control-label">{{_ "admin.message.to"}}</label>
+              <p class="col-md-9">{{getUsername}}</p>
+            </div>
+            <div class="form-group">
               <label class="col-md-3 control-label">{{_ "admin.message.reason"}}</label>
               {{#if getCardsets.count}}
                 <div class="input-group">
@@ -67,7 +71,7 @@
                 <div class="input-group">
                   <select id="messageCardsetAdmin" class="form-control">
                     {{#each getCardsets}}
-                      <option>{{name}}</option>
+                      <option id='{{_id}}'>{{name}}</option>
                     {{/each}}
                   </select>
                 </div>

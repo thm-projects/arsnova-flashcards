@@ -104,6 +104,7 @@ Template.admin_users.events({
     }
     if (event.target.className == "mailtoUserAdmin btn btn-xs btn-default" || event.target.className == "fa fa-envelope") {
       Session.set('userId', user._id);
+      Session.set('getUsername', user.profilename);
     }
   },
   'click #linkToAdminUser': function(event) {
@@ -146,6 +147,10 @@ Template.admin_users.events({
   });
 
   Template.messageFormAdmin.helpers({
+    getUsername: function() {
+      var username = Session.get('getUsername');
+      return username;
+    },
     getCardsets: function() {
       var user_id = Session.get('userId');
       return Cardsets.find({ owner : user_id }, {
@@ -184,9 +189,8 @@ Template.admin_users.events({
           link_id = user_id;
         } else {
           type = "Adminbenachrichtigung (Beschwerde Kartensatz)";
-          var selectedCardset = tmpl.find('#messageCardsetAdmin').value;
-          var cardset = Cardsets.findOne({ name: selectedCardset });
-          link_id = cardset._id;
+          var selectedCardset = $('#messageCardsetAdmin').children(":selected").attr("id");
+          link_id = selectedCardset;
         }
 
         var target = user_id;
