@@ -31,7 +31,6 @@ import './admin_notifications.html';
      var user = null;
 
      notifications.forEach(function(notification) {
-
        dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');;
        date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
@@ -90,44 +89,46 @@ import './admin_notifications.html';
          }}
        ]
      }
-   }
-  /* sendMessagesListAdmin: function() {
-     var notifications = Notifications.find({ target_type: 'admin', type: 'Benutzerbenachrichtigung' });
+   },
+   sendMessagesListAdmin: function() {
+     var notifications = Notifications.find({ target_type: 'admin', type: { $in: ["Adminbenachrichtigung (Beschwerde Benutzer)", "Adminbenachrichtigung (Beschwerde Kartensatz)"] } });
      var fields = [];
      var dateString = null;
      var date = null;
+     var sender = null;
+     var complaint = null;
+     var complaint_id = null;
+     var receiver = null;
+     var receiver_id = null;
      var cardset = null;
-     var cardsetname = null;
-     var cardsetowner_id = null;
-     var cardsetowner = null;
-     var originUser = null;
-     var originUsername = null;
+     var user = null;
 
      notifications.forEach(function(notification) {
        dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');;
        date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
+       sender = Meteor.users.findOne({ _id: notification.origin });
+       receiver = Meteor.users.findOne({ _id: notification.target });
+
+       if (sender !== undefined) { sender = sender.profile.name; }
+       if (receiver !== undefined) { receiver = receiver.profile.name; }
+
        cardset = Cardsets.findOne({ _id: notification.link_id });
+       user = Meteor.users.findOne({ _id: notification.link_id });
 
        if (cardset !== undefined) {
-         cardsetname = cardset.name;
+         complaint_id = cardset._id;
+         complaint = cardset.name;
          receiver_id = cardset.owner;
          receiver = cardset.username;
-       } else {
-         cardsetOwner_id = notification.link_id;
-         var owner = Meteor.users.findOne({ _id: cardsetOwner_id });
-         if (owner !== undefined) {
-           cardsetowner = owner.profile.name;
-         }
+       } else if (user !== undefined){
+         complaint_id = user._id;
+         complaint = user.profile.name;
+         receiver_id = user._id;
+         receiver = user.profile.name;
        }
 
-       originUser = Meteor.users.findOne({ _id: notification.origin });
-
-       if (originUser !== undefined) {
-         originUsername = originUser.profile.name;
-       }
-
-       fields.push({"_id": notification._id, "type": notification.type, "text": notification.text, "dateString": dateString, "date": date, "link_id": notification.link_id, "cardsetname": cardsetname, "origin_id": notification.origin, "originUser": originUsername, "cardsetowner_id": cardsetowner_id, "cardsetowner": cardsetowner});
+       fields.push({"_id": notification._id, "type": notification.type, "sender_id": notification.origin, "sender": sender, "complaint_id": complaint_id, "complaint": complaint, "text": notification.text, "dateString": dateString, "date": date, "receiver_id": receiver_id, "receiver": receiver});
      });
 
      return fields;
@@ -137,22 +138,26 @@ import './admin_notifications.html';
        showNavigationRowsPerPage: false,
        rowsPerPage: 20,
        fields: [
-         { key: 'type', label: TAPi18n.__('admin.type'), fn: function(value) {
-           return new Spacebars.SafeString("<span name='" + value + "'><a id='receivedMessageType' class='data-toggle='modal' data-target='#receivedMessageModalAdmin'>" + value + "</a></span>");
+         { key: 'type', label: TAPi18n.__('admin.type') },
+         { key: 'sender', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
+           return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
          }},
-         { key: 'originUser', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
-           return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminUserOriginSend href='#' data-userid='" + object.origin_id + "'>" + value + "</a></span>");;
+         { key: 'complaint', label: TAPi18n.__('admin.reason'), fn: function(value, object) {
+           return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintSend' data-complaintidsend='" + object.complaint_id + "'>" + value + "</a></span>");
          }},
-         { key: 'cardsetowner', label: TAPi18n.__('admin.receiver'), fn: function(value, object) {
-           return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetownerSend href='#' data-userid='" + object.cardsetowner_id + "'>" + value + "</a></span>");;
+         { key: 'text', label: TAPi18n.__('admin.text'), sortable: false },
+         { key: 'receiver', label: TAPi18n.__('admin.receiver'), fn: function(value, object) {
+           return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
          }},
-         { key: 'text', label: TAPi18n.__('admin.reason') },
          { key: 'dateString', label: TAPi18n.__('admin.date'), fn: function(value, object) {
            return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+         }},
+         { key: '_id', label: TAPi18n.__('admin.delete'), cellClass:'delete', sortable: false, fn: function(value) {
+           return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
          }}
        ]
      }
-   }*/
+   }
 });
 
 Template.admin_notifications.events({
@@ -179,9 +184,6 @@ Template.admin_notifications.events({
       Session.set('getUsername', receiver);
       Session.set('targetId', notification.receiver_id);
       Session.set('isReceiver', true);
-    }
-    if (event.target.className == "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
-      Session.set('notificationId', notification._id);
     }
     if (event.target.className == "mailToSenderAdmin btn btn-xs btn-default" || event.target.className == "sender-fa fa fa-envelope") {
       if (cardset !== undefined) {
@@ -211,7 +213,26 @@ Template.admin_notifications.events({
     } else if (user !== undefined){
       Router.go('admin_user', { _id: complaint_id });
     }
-  }
+  },
+  'click #linkToSenderSend': function(event) {
+    var sender_id = $(event.currentTarget).data("senderidsend");
+    Router.go('admin_user', { _id: sender_id });
+  },
+  'click #linkToComplaintSend': function(event) {
+    var complaint_id = $(event.currentTarget).data("complaintidsend");
+    var cardset = Cardsets.findOne({ _id: complaint_id });
+    var user = Meteor.users.findOne({ _id: complaint_id });
+
+    if (cardset !== undefined) {
+      Router.go('admin_cardset', { _id: complaint_id });
+    } else if (user !== undefined){
+      Router.go('admin_user', { _id: complaint_id });
+    }
+  },
+  'click #linkToReceiverSend': function(event) {
+    var receiver_id = $(event.currentTarget).data("receiveridsend");
+    Router.go('admin_user', { _id: receiver_id });
+  },
 });
 
 /**
