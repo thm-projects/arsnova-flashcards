@@ -863,8 +863,8 @@ Template.cardsetPublicateForm.events({
         $('#helpReportCardsetText').css('color', '#b94a48');
       } else {
         var text = $('#reportCardsetText').val();
-        var type = null;
-        var link_id = null;
+        var type;
+        var link_id;
 
         if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
           type = "Gemeldeter Benutzer";
