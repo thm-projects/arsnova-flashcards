@@ -98,7 +98,7 @@ Template.admin_user.helpers({
     }
   },
   'isVisible': function(id) {
-    if (id) {
+    if (Meteor.users.findOne(id)) {
       return Meteor.users.findOne(id).visible;
     } else {
       return null;
