@@ -176,8 +176,8 @@ Template.admin_users.events({
         $('#helpMessageTextAdmin').css('color', '#b94a48');
       } else {
         var text = $('#messageTextAdmin').val();
-        var type = null;
-        var link_id = null;
+        var type;
+        var link_id;
 
         if ($('#messageReasonAdmin').val() === "Beschwerde Benutzer" || $('#messageReasonAdmin').val() === "Complaint user" || $('#messageReasonAdmin').html() === 'Beschwerde Benutzer' || $('#messageReasonAdmin').html() === 'Complaint user') {
           type = "Adminbenachrichtigung (Beschwerde Benutzer)";
