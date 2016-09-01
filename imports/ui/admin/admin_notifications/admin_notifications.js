@@ -347,8 +347,8 @@ Template.messageFormNotificationAdmin.events({
       $('#helpMessageNotificationTextAdmin').css('color', '#b94a48');
     } else {
       var text = $('#messageNotificationTextAdmin').val();
-      var type = null;
-      var link_id = null;
+      var type;
+      var link_id;
 
       if ($('#messageNotificationReasonAdmin').html() === "Beschwerde Benutzer" || $('#messageNotificationReasonAdmin').html() === "Complaint user") {
         type = "Adminbenachrichtigung (Beschwerde Benutzer)";
