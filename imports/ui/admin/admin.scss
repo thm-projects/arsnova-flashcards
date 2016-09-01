@@ -79,6 +79,9 @@ body {
           }
           table {
             border-bottom: 1px solid #ddd;
+            .getpointer {
+              cursor: pointer;
+            }
           }
           .reactive-table-navigation {
             .page-number {

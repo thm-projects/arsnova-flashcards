@@ -493,6 +493,16 @@
     "notifyuser": "Notify user",
     "view": "View",
     "deleted": "Deleted",
+    "complaint": "User complaints",
+    "lecturermessages": "Lecturer request",
+    "send": "Send messages",
+    "type": "Type",
+    "sender": "Sender",
+    "reason": "Reason",
+    "text": "Further information",
+    "date": "Date",
+    "replyreceiver": "Mail complaint",
+    "replyrsender": "Mail sender",
 
     "confirm-form": {
       "cardsets": {
@@ -506,6 +516,10 @@
       "users": {
         "title": "Delete user",
         "text": "Do you really want to delete this user?"
+      },
+      "notifications": {
+        "title": "Delete notification",
+        "text": "Do you really want to delete this notification?"
       },
 
       "cancel": "Cancel"
@@ -521,7 +535,8 @@
       "text": "Further information",
       "cancel": "Cancel",
       "sendMessage": "Send message",
-      "text_chars": "At least 50 chars required!"
+      "text_chars": "At least 50 chars required!",
+      "to": "To"
     },
 
     "cardset": {

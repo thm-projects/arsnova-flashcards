@@ -180,10 +180,10 @@ Template.admin_users.events({
         var link_id = null;
 
         if ($('#messageReasonAdmin').val() === "Beschwerde Benutzer" || $('#messageReasonAdmin').val() === "Complaint user" || $('#messageReasonAdmin').html() === 'Beschwerde Benutzer' || $('#messageReasonAdmin').html() === 'Complaint user') {
-          type = "Benutzerbenachrichtigung (Beschwerde Benutzer)";
+          type = "Adminbenachrichtigung (Beschwerde Benutzer)";
           link_id = user_id;
         } else {
-          type = "Benutzerbenachrichtigung (Beschwerde Kartensatz)";
+          type = "Adminbenachrichtigung (Beschwerde Kartensatz)";
           var selectedCardset = tmpl.find('#messageCardsetAdmin').value;
           var cardset = Cardsets.findOne({ name: selectedCardset });
           link_id = cardset._id;

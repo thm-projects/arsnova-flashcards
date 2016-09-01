@@ -491,6 +491,16 @@
     "notifyuser": "Benutzer benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
+    "complaint": "Benutzerbeschwerden",
+    "lecturermessages": "Dozentenanfragen",
+    "send": "Gesendete Nachrichten",
+    "type": "Typ",
+    "sender": "Absender",
+    "reason": "Grund",
+    "text": "Weitere Informationen",
+    "date": "Datum",
+    "replyreceiver": "Mail Beschuldigten",
+    "replyrsender": "Mail Absender",
 
     "confirm-form": {
       "cardsets": {
@@ -504,6 +514,10 @@
       "users": {
         "title": "Benutzer löschen",
         "text": "Wollen Sie diesen Benutzer wirklich löschen?"
+      },
+      "notifications": {
+        "title": "Nachricht löschen",
+        "text": "Wollen Sie diese Nachricht wirklich löschen?"
       },
 
       "cancel": "Abbrechen"
@@ -519,7 +533,8 @@
       "text": "Weitere Informationen",
       "cancel": "Abbrechen",
       "sendMessage": "Benachrichtigung senden",
-      "text_chars": "Es sind 50 Zeichen erforderlich!"
+      "text_chars": "Es sind 50 Zeichen erforderlich!",
+      "to": "An"
     },
 
     "cardset": {
