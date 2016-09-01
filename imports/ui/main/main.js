@@ -82,11 +82,7 @@ Template.main.helpers({
     return Notifications.find({ cleared: false, target_type: 'user' }, {sort: {date: -1}});
   },
   getLink: function() {
-    if (this.type === 'Dozenten-Anfrage') {
-      return "/profile/" + this.origin + "/overview";
-    } else {
-      return "/cardset/" + this.link_id;
-    }
+    return "/cardset/" + this.link_id;
   },
 });
 

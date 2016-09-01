@@ -53,7 +53,7 @@ Session.setDefault('cardSort', {
 
             var nonce = response.nonce;
 
-            Meteor.call('createTransaction', nonce, Session.get('cardsetId'), function(error, success) {
+            Meteor.call('btCreateTransaction', nonce, Session.get('cardsetId'), function(error, success) {
               if (error) {
                 throw new Meteor.Error('transaction-creation-failed');
               } else {

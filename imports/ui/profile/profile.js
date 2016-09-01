@@ -199,7 +199,7 @@ Template.profileMembership.events({
         var type = "Dozenten-Anfrage";
         var target = "admin";
 
-        Meteor.call("addNotification", target, type, text, target);
+        Meteor.call("addNotification", target, type, text, Meteor.userId());
         Meteor.call("setLecturerRequest", Meteor.userId(), true);
         Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
     },
@@ -266,9 +266,10 @@ Template.profileMembership.helpers({
                        Meteor.call('btCreateCredit', nonce, function(error, success) {
                            if (error) {
                                throw new Meteor.Error('transaction-creation-failed');
-                           } else if (success.name === "authorizationError") {
+                           } else if (success !== undefined && success.name === "authorizationError") {
                                Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
                            } else {
+                               Meteor.call("resetUsersBalance", Meteor.userId());
                                Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
                                $('#payoutBtn').prop("disabled", false);
                            }
@@ -298,6 +299,11 @@ Template.profileBilling.helpers({
       Meteor.subscribe("privateUserData");
       var balance = Meteor.users.findOne(Meteor.userId).balance;
       return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
+    },
+    hasBalance: function() {
+      Meteor.subscribe("privateUserData");
+      var balance = Meteor.users.findOne(Meteor.userId).balance;
+      return balance > 0;
     },
     getPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){
@@ -346,18 +352,10 @@ Template.profileNotifications.helpers({
       return Notifications.find({ target_type: 'user' }, {sort: {date: -1}});
     },
     getLink: function() {
-      if (this.type === 'Dozenten-Anfrage') {
-        return "/profile/" + this.origin + "/overview";
-      } else {
-        return "/cardset/" + this.link_id;
-      }
+      return "/cardset/" + this.link_id;
     },
     getStatus: function() {
-      if (this.type === 'Dozenten-Anfrage') {
-        var user = Meteor.users.findOne(this.origin);
-        return (user.roles.includes('lecturer')) ? TAPi18n.__('notifications.approved'): TAPi18n.__('notifications.pending');
-      }
-      else if (this.type === 'Kartensatz-Freigabe') {
+      if (this.type === 'Kartensatz-Freigabe') {
         var cardset = Cardsets.findOne(this.link_id);
         return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
       }
@@ -378,28 +376,6 @@ Template.profileRequests.helpers({
       return Cardsets.find({request: true});
     }
 });
-
-/**
- * ############################################################################
- * profileLecturer
- * ############################################################################
- */
-
- Template.profileLecturer.events({
-   "click #acceptLecturerBtn": function(){
-     Meteor.call("setUserAsLecturer", this._id);
-   },
-   "click #declineLecturerBtn": function(){
-     Meteor.call("setLecturerRequest", this._id, false);
-   }
- });
-
-Template.profileLecturer.helpers({
-    getLecturerRequests: function() {
-      return Meteor.users.find({request: true});
-    }
-});
-
 
 /**
  * ############################################################################
