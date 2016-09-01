@@ -24,6 +24,8 @@ Router.route('/home', {
 });
 
 Router.route('impressum');
+Router.route('agb');
+Router.route('datenschutz');
 
 Router.route('/created', {
   name: 'created',
@@ -208,7 +210,7 @@ var goToCreated = function() {
 };
 
 Router.onBeforeAction(isSignedIn, {
-  except: ['home', 'impressum']
+  except: ['home', 'impressum', 'agb', 'datenschutz']
 });
 
 Router.onBeforeAction(goToCreated, {

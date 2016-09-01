@@ -31,7 +31,9 @@
   },
 
   "footer": {
-  	"impressum": "Legal Notice"
+  	"impressum": "Legal Notice",
+    "datenschutz": "Data protection",
+    "agb": "GTC"
   },
 
   "notifications": {

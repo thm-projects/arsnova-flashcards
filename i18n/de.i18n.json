@@ -31,7 +31,9 @@
   },
 
   "footer": {
-  	"impressum": "Impressum"
+  	"impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "agb": "AGB"
   },
 
   "notifications": {
