@@ -134,7 +134,7 @@ Template.category.events({
     }
   },
   'change #filterCheckbox': function() {
-    var filter = new Array();
+    var filter = [];
     $("#filterCheckbox input:checkbox:checked").each(function(){
       filter.push($(this).val());
     });
