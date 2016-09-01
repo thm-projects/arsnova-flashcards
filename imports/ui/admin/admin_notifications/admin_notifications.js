@@ -399,7 +399,6 @@ Template.notificationLecturerFormAdmin.helpers({
 Template.notificationLecturerFormAdmin.events({
   'click #lecturerrequestNoAdmin': function() {
    var user_id = Session.get('request_id');
-   console.log(user_id);
    $('#notificationLecturerModalAdmin').on('hidden.bs.modal', function() {
      Meteor.call("setLecturerRequest", user_id, false);
    }).modal('hide');
