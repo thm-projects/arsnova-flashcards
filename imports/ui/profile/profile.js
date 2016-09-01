@@ -148,14 +148,14 @@ Template.profileSettings.events({
           onPaymentMethodReceived: function (response) {
             $('#upgrade').prop( "disabled", true );
 
-            Bert.alert('In progress!', 'info', 'growl-bottom-right');
+            Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
             var nonce = response.nonce;
             var plan = Session.get('plan');
             Meteor.call('btSubscribe', nonce, plan, function(error, success) {
               if (error) {
                 throw new Meteor.Error(error.message, 'error');
               } else {
-                Bert.alert('Thank you for your subscription!', 'success', 'growl-bottom-right');
+                Bert.alert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-bottom-right');
               }
             });
           }
@@ -170,11 +170,11 @@ Template.profileMembership.events({
         Session.set('plan', 'pro');
     },
     "click #downgrade": function() {
-        var hasPro = Cardsets.find({owner: Meteor.userId()}).count();
+        var hasPro = Cardsets.find({owner: Meteor.userId(), kind: 'pro'}).count();
         if (hasPro > 0) {
-          Bert.alert('You can not downgrade if you have pro-cardsets!', 'danger', 'growl-bottom-right');
+          Bert.alert(TAPi18n.__('membership.downgrade.error'), 'danger', 'growl-bottom-right');
         } else {
-          var confirmCancel = confirm("Are you sure you want to cancel? This means your subscription will no longer be active and your account will be disabled on the cancellation date. If you'd like, you can resubscribe later.");
+          var confirmCancel = confirm(TAPi18n.__('membership.downgrade.confirm'));
           if (confirmCancel){
             $('#downgrade').prop( "disabled", true );
             Session.set('plan', 'standard');
@@ -187,7 +187,7 @@ Template.profileMembership.events({
                   Bert.alert(response.error.message, "danger", 'growl-bottom-right');
                 } else {
                   Session.set('currentUserPlan_' + Meteor.userId(), null);
-                  Bert.alert('Subscription successfully canceled!', 'success', 'growl-bottom-right');
+                  Bert.alert(TAPi18n.__('membership.downgrade.canceled'), 'success', 'growl-bottom-right');
                 }
               }
             });

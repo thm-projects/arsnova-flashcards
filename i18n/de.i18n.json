@@ -150,6 +150,18 @@
   	"hallo": "Einstellungen"
   },
 
+  "membership": {
+    "upgrade": {
+      "progress": "In Bearbeitung!",
+      "subscribed": "Vielen Dank für Ihr Abonnement!"
+    },
+    "downgrade": {
+      "error": "Sie können Ihr Konto nicht herunterstufen solange Sie Pro-Kartensätze haben!",
+      "confirm": "Sind Sie sicher ihr Konto zurückzustufen? Dies bedeutet, dass Ihr Abonnement nicht länger aktiv ist. Sie können später jederzeit Ihr Konto wieder hochstufen.",
+      "canceled": "Abonnement erfolgreich beendet!"
+    }
+  },
+
   "billing": {
     "plan": {
       "header": "Mitgliedschaft",

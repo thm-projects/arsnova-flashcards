@@ -151,6 +151,18 @@
   	"hallo": "Settings"
   },
 
+  "membership": {
+    "upgrade": {
+      "progress": "In progress!",
+      "subscribed": "Thank you for your subscription!"
+    },
+    "downgrade": {
+      "error": "You can not downgrade if you have pro-cardsets!",
+      "confirm": "Are you sure you want to cancel? This means your subscription will no longer be active. If you'd like, you can resubscribe later.",
+      "canceled": "Subscription successfully canceled!"
+    }
+  },
+
   "billing": {
     "plan": {
       "header": "Plan",
