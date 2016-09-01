@@ -505,6 +505,7 @@
     "replyreceiver": "Mail to complaint",
     "replyrsender": "Mail to sender",
     "request": "Request",
+    "deleteallnotifications": "Delete all notifications",
 
     "confirm-form": {
       "cardsets": {
@@ -521,7 +522,10 @@
       },
       "notifications": {
         "title": "Delete notification",
-        "text": "Do you really want to delete this notification?"
+        "text": "Do you really want to delete this notification?",
+        "title_all": "Delete all notifications",
+        "text_all": "Do you really want to delete all notifications?",
+        "delete_all": "Delete notifications"
       },
 
       "cancel": "Cancel"

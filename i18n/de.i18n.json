@@ -503,6 +503,7 @@
     "replyreceiver": "Mail an Beschuldigten",
     "replyrsender": "Mail an Absender",
     "request": "Anfrage",
+    "deleteallnotifications": "Alle Nachrichten löschen",
 
     "confirm-form": {
       "cardsets": {
@@ -519,7 +520,10 @@
       },
       "notifications": {
         "title": "Nachricht löschen",
-        "text": "Wollen Sie diese Nachricht wirklich löschen?"
+        "text": "Wollen Sie diese Nachricht wirklich löschen?",
+        "title_all": "Alle Nachrichten löschen",
+        "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
+        "delete_all": "Nachrichten löschen"
       },
 
       "cancel": "Abbrechen"

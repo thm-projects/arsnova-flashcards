@@ -412,3 +412,20 @@ Template.notificationLecturerFormAdmin.events({
    }).modal('hide');
   }
 });
+
+/**
+ * ############################################################################
+ * allNotificationsConfirmFormAdmin
+ * ############################################################################
+ */
+
+ Template.allNotificationsConfirmFormAdmin.events({
+   'click #allNotificationsDeleteAdmin': function() {
+     $('#allNotificationsConfirmModalAdmin').on('hidden.bs.modal', function() {
+       var notifications = Notifications.find();
+       notifications.forEach(function (notification) {
+         Meteor.call("deleteNotification", notification);
+       });
+     }).modal('hide');
+   }
+ });

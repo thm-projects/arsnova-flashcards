@@ -8,6 +8,7 @@
     <li class="active"><a data-toggle="tab" href="#complaintMessages">{{_ "admin.complaint"}}</a></li>
     <li><a data-toggle="tab" href="#lecturerMessages">{{_ "admin.lecturermessages"}}</a></li>
     <li><a data-toggle="tab" href="#sendMessages">{{_ "admin.send"}}</a></li>
+    <li class="pull-right"><button type="button" class="deleteNotifications btn btn-danger" data-toggle='modal' data-target='#allNotificationsConfirmModalAdmin'>{{_ "admin.deleteallnotifications"}}</button></li>
   </ul>
   <div class="content">
     <div class="tab-content">
@@ -31,6 +32,31 @@
   {{> notificationConfirmFormAdmin}}
   {{> messageFormNotificationAdmin}}
   {{> notificationLecturerFormAdmin}}
+  {{> allNotificationsConfirmFormAdmin}}
+</template>
+
+<template name="allNotificationsConfirmFormAdmin">
+  <div class="modal fade" id="allNotificationsConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="allNotificationsConfirmModalTitleAdmin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="allNotificationsConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.notifications.title_all"}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{_ "admin.confirm-form.notifications.text_all"}}</p>
+          <br />
+          <hr />
+
+          <button id="allNotificationsDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.notifications.delete_all"}}</button>
+          <button id="allNotificationsCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </template>
 
 <template name="notificationConfirmFormAdmin">
