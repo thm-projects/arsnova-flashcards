@@ -519,7 +519,7 @@ function getLvl() {
 function xpForLevel(level) {
   var points = 0;
 
-  for (i = 1; i < level; i++) {
+  for (var i = 1; i < level; i++) {
     points += Math.floor(i + 30 * Math.pow(2, i / 10));
   }
   return Math.floor(points / 4);
