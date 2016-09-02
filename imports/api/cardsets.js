@@ -265,11 +265,8 @@ Meteor.methods({
   },
   declineProRequest: function(cardset_id) {
     var cardset = Cardsets.findOne(cardset_id);
-
-    if (!Roles.userIsInRole(this.userId, 'lecturer')) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+    if ((!Roles.userIsInRole(this.userId, 'lecturer'))&&(!Meteor.userId() || cardset.owner !== Meteor.userId())) {
         throw new Meteor.Error("not-authorized");
-      }
     }
 
     Cardsets.update(cardset_id, {

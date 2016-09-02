@@ -94,7 +94,9 @@ Template.category.helpers({
 
     if (this.license.length > 0) {
       if (this.license.includes('by')) { licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />'); }
-      if (this.license.includes('nc')) { licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />'); }
+      if (this.license.includes('nc')) { 
+          licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />'); 
+      }
       if (this.license.includes('nd')) { licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
       if (this.license.includes('sa')) { licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
       

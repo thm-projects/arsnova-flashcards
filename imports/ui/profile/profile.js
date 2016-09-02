@@ -234,7 +234,7 @@ Template.profileMembership.helpers({
             $('#savePaymentBtn').prop( "disabled", true );
 
             Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
-            console.log(response);
+            
             var nonce = response.nonce;
             Meteor.call('btUpdatePaymentMethod', nonce, function(error, success) {
               if (error) {
@@ -307,9 +307,7 @@ Template.profileBilling.helpers({
     },
     getPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){
-        if(error){
-          console.log("error", error);
-        }
+        
         if(result){
            Session.set("paymentMethods", result);
         }
@@ -318,9 +316,7 @@ Template.profileBilling.helpers({
     },
     hasPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){
-        if(error){
-          console.log("error", error);
-        }
+        
         if(result){
            Session.set("hasPaymentMethods", !jQuery.isEmptyObject(result));
         }
@@ -523,7 +519,7 @@ function getLvl() {
 function xpForLevel(level) {
   var points = 0;
 
-  for (i = 1; i < level; i++) {
+  for (var i = 1; i < level; i++) {
     points += Math.floor(i + 30 * Math.pow(2, i / 10));
   }
   return Math.floor(points / 4);
