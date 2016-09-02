@@ -6,7 +6,7 @@ ARSnova Cards is a digital recreation of a classic learning tool. The service of
 ## Initial setup
 
 1. [Install Meteor](https://www.meteor.com/install)
-2. Clone this repo `git clone https://git.thm.de/arsnova/flashcards.git`
+2. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
 
 ### Settings
 
