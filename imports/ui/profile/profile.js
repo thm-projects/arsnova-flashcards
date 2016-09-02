@@ -307,9 +307,7 @@ Template.profileBilling.helpers({
     },
     getPaymentMethod: function() {
       Meteor.call("btGetPaymentMethod", function(error, result){
-        if(error){
-          console.log("error", error);
-        }
+        
         if(result){
            Session.set("paymentMethods", result);
         }
