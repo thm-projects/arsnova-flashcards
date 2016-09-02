@@ -2,7 +2,7 @@ import { Session } from 'meteor/session';
 
 //------------------------ GET LANGUAGE FROM USER
 
-var getUserLanguage = function () {
+getUserLanguage = function () {
   return navigator.language.substr(0,2);
 };
 
