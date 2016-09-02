@@ -53,7 +53,7 @@ Session.setDefault('cardSort', {
 
             var nonce = response.nonce;
 
-            Meteor.call('btCreateTransaction', nonce, Session.get('cardsetId'), function(error, success) {
+            Meteor.call('btCreateTransaction', nonce, Session.get('cardsetId'), function(error) {
               if (error) {
                 throw new Meteor.Error('transaction-creation-failed');
               } else {
@@ -104,6 +104,21 @@ Template.cardset.helpers({
     return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
   }
 });
+
+function ifCardset(){
+  if ($(".cardfront-symbol").css('display') === 'none') {
+    $(".cardfront-symbol").css('display', "");
+    $(".cardback-symbol").css('display', "none");
+    $(".cardfront").css('display', "");
+    $(".cardback").css('display', "none");
+  }
+  else if ($(".cardback-symbol").css('display') === 'none') {
+    $(".cardfront-symbol").css('display', "none");
+    $(".cardback-symbol").css('display', "");
+    $(".cardfront").css('display', "none");
+    $(".cardback").css('display', "");
+  }
+}
 
 Template.cardset.events({
   'click #cardSetSave': function(evt, tmpl) {
@@ -296,8 +311,10 @@ Template.cardsetDetails.helpers({
   cardCountOne: function(cardset_id) {
     var count = Cardsets.find({
       _id: cardset_id
-    }).quantity;
-    return count !== 1;  },
+    }).quantity;
+
+    return count !== 1;
+  },
   cardDetailsMarkdown: function(front, back, index) {
     Meteor.promise("convertMarkdown", front)
       .then(function(html) {
@@ -322,25 +339,10 @@ Template.cardsetDetails.helpers({
 
 Template.cardsetDetails.events({
   "click .box": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    } else if ($(".cardback-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "none");
-      $(".cardback-symbol").css('display', "");
-      $(".cardfront").css('display', "none");
-      $(".cardback").css('display', "");
-    }
+    ifCardset();
   },
   "click #leftCarouselControl, click #rightCarouselControl": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    }
+    ifCardset();
   },
   'click .item.active .block a': function() {
     evt.stopPropagation();
@@ -410,25 +412,12 @@ Template.cardsetPreview.helpers({
 
 Template.cardsetPreview.events({
   "click .box": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    } else if ($(".cardback-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "none");
-      $(".cardback-symbol").css('display', "");
-      $(".cardfront").css('display', "none");
-      $(".cardback").css('display', "");
-    }
+    ifCardset();
+
   },
   "click #leftCarouselControl, click #rightCarouselControl": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    }
+    ifCardset();
+
   },
   'click .item.active .block a': function() {
     evt.stopPropagation();
@@ -794,7 +783,7 @@ Template.cardsetPublicateForm.events({
  });
 
  Template.selectLicenseForm.events({
-   'click #licenseSave': function(evt, tmpl) {
+   'click #licenseSave': function() {
      if ($("#cc-option2").hasClass('active') && $("#cc-option3").hasClass('active') || $("#cc-modules").children().hasClass('active') && !($("#cc-option0").hasClass('active'))) {
        $('#modulesLabel').css('color', '#b94a48');
        $('#helpCC-modules').html(TAPi18n.__('modal-dialog.wrongCombination'));
