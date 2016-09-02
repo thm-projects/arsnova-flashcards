@@ -105,6 +105,21 @@ Template.cardset.helpers({
   }
 });
 
+function ifCardset(){
+  if ($(".cardfront-symbol").css('display') === 'none') {
+    $(".cardfront-symbol").css('display', "");
+    $(".cardback-symbol").css('display', "none");
+    $(".cardfront").css('display', "");
+    $(".cardback").css('display', "none");
+  }
+  else if ($(".cardback-symbol").css('display') === 'none') {
+    $(".cardfront-symbol").css('display', "none");
+    $(".cardback-symbol").css('display', "");
+    $(".cardfront").css('display', "none");
+    $(".cardback").css('display', "");
+  }
+}
+
 Template.cardset.events({
   'click #cardSetSave': function(evt, tmpl) {
     if ($('#editSetName').val() === "") {
@@ -324,25 +339,10 @@ Template.cardsetDetails.helpers({
 
 Template.cardsetDetails.events({
   "click .box": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    } else if ($(".cardback-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "none");
-      $(".cardback-symbol").css('display', "");
-      $(".cardfront").css('display', "none");
-      $(".cardback").css('display', "");
-    }
+    ifCardset();
   },
   "click #leftCarouselControl, click #rightCarouselControl": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    }
+    ifCardset();
   },
   'click .item.active .block a': function() {
     evt.stopPropagation();
@@ -412,25 +412,12 @@ Template.cardsetPreview.helpers({
 
 Template.cardsetPreview.events({
   "click .box": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    } else if ($(".cardback-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "none");
-      $(".cardback-symbol").css('display', "");
-      $(".cardfront").css('display', "none");
-      $(".cardback").css('display', "");
-    }
+    ifCardset();
+
   },
   "click #leftCarouselControl, click #rightCarouselControl": function() {
-    if ($(".cardfront-symbol").css('display') === 'none') {
-      $(".cardfront-symbol").css('display', "");
-      $(".cardback-symbol").css('display', "none");
-      $(".cardfront").css('display', "");
-      $(".cardback").css('display', "none");
-    }
+    ifCardset();
+
   },
   'click .item.active .block a': function() {
     evt.stopPropagation();
