@@ -171,7 +171,7 @@ Template.admin_users.events({
   });
 
   Template.messageFormAdmin.events({
-    'click #messageTextSave': function(evt, tmpl) {
+    'click #messageTextSave': function(evt) {
       var user_id = Session.get('userId');
 
       if ($('#messageTextAdmin').val().length < 50) {

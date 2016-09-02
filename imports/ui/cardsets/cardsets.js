@@ -121,7 +121,7 @@ Template.cardsets.events({
     $('#newSetCategory').text(categoryName);
     tmpl.find('#newSetCategory').value = categoryId;
   },
-  'click #newSetModal .save': function(evt, tmpl) {
+  'click #newSetModal .save': function(evt) {
     if ($('#newSetName').val() === "") {
       $('#newSetNameLabel').css('color', '#b94a48');
       $('#newSetName').css('border-color', '#b94a48');

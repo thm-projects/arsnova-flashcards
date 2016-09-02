@@ -23,7 +23,7 @@ Template.btnCard.helpers({
 });
 
 Template.btnCard.events({
-  "click #cardSave": function(evt, tmpl) {
+  "click #cardSave": function(evt) {
     if ($('#frontEditor').val() === '') {
       $('#fronttext .md-editor').css('border-color', '#b94a48');
       $('#helpNewFronttext').html(TAPi18n.__('fronttext_required'));

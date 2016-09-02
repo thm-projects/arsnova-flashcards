@@ -20,12 +20,10 @@ Template.admin_user.helpers({
     var userId = Router.current().params._id;
     if (userId !== undefined) {
       var user = Meteor.users.findOne(userId);
-      if (user !== undefined) {
-        if (user.services !== undefined){
+      if (user !== undefined && user.services !== undefined) {
           var service = _.keys(user.services)[0];
           service = service.charAt(0).toUpperCase() + service.slice(1);
           return service;
-        }
       }
     }
     return null;

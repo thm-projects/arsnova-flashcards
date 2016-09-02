@@ -63,12 +63,10 @@ Template.profileSidebar.helpers({
     var userId = Router.current().params._id;
     if (userId !== undefined) {
       var user = Meteor.users.findOne(userId);
-      if (user !== undefined) {
-        if (user.services !== undefined){
+      if (user !== undefined && user.services !== undefined) {
           var service = _.keys(user.services)[0];
           service = service.charAt(0).toUpperCase() + service.slice(1);
           return service;
-        }
       }
     }
     return null;
@@ -82,10 +80,10 @@ Template.profileSidebar.helpers({
  */
 
 Template.profileSettings.events({
-  "click #profilepublicoption1": function(event, template) {
+  "click #profilepublicoption1": function(event) {
     Meteor.call("updateUsersVisibility", true);
   },
-  "click #profilepublicoption2": function(event, template) {
+  "click #profilepublicoption2": function(event) {
     Meteor.call("updateUsersVisibility", false);
   },
   "keyup #inputEmail": function(event, template) {
@@ -103,7 +101,7 @@ Template.profileSettings.events({
       Meteor.call("updateUsersEmail", email);
     }
   },
-  "keyup #inputName": function(event, template) {
+  "keyup #inputName": function(event) {
     var name = $(event.currentTarget).val();
     var user_id = Meteor.userId();
 
@@ -151,7 +149,7 @@ Template.profileSettings.events({
             Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
             var nonce = response.nonce;
             var plan = Session.get('plan');
-            Meteor.call('btSubscribe', nonce, plan, function(error, success) {
+            Meteor.call('btSubscribe', nonce, plan, function(error) {
               if (error) {
                 throw new Meteor.Error(error.message, 'error');
               } else {
@@ -236,7 +234,7 @@ Template.profileMembership.helpers({
             Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
             console.log(response);
             var nonce = response.nonce;
-            Meteor.call('btUpdatePaymentMethod', nonce, function(error, success) {
+            Meteor.call('btUpdatePaymentMethod', nonce, function(error) {
               if (error) {
                 throw new Meteor.Error(error.message, 'error');
               } else {
