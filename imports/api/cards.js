@@ -24,8 +24,8 @@ if (Meteor.isServer) {
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       return Cards.find();
     }
-    else if ((isOwner || Roles.userIsInRole(this.userId, ['lecturer'])) ||
-		(isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro']))))
+    else if ((isOwner || Roles.userIsInRole(this.userId, ['lecturer'])) || //checks if the user is an owner or a lecturer
+		(isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro'])))) //or if it's visible and free, bought or the user is a pro user
     {
       return Cards.find({cardset_id: cardset_id});
     }
