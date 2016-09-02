@@ -181,10 +181,14 @@ Template.admin_user.events({
            $('#helpEditUserEmailAdmin').html(TAPi18n.__('admin.user.email_invalid'));
            $('#helpEditUserEmailAdmin').css('color', '#b94a48');
          }
-         if (result.length < 5) {
+         if (result.length < 5 || result.length > 25) {
+           if (result.length < 5) {
+             $('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toShort'));
+           } else if (result.length > 25) {
+             $('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toLong'));
+           }
            $('#editUserNameLabelAdmin').css('color', '#b94a48');
            $('#editUserNameAdmin').css('border-color', '#b94a48');
-           $('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toShort'));
            $('#helpEditUserNameAdmin').css('color', '#b94a48');
          }
          if (pro && !visible || lecturer && !visible) {
@@ -192,7 +196,7 @@ Template.admin_user.events({
            $('#helpEditUserVisibleAdmin').html(TAPi18n.__('admin.user.visible_invalid'));
            $('#helpEditUserVisibleAdmin').css('color', '#b94a48');
          }
-         if ((check === true || email === "") && (result.length >= 5) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
+         if ((check === true || email === "") && (result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
            if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
              Meteor.call('updateRoles', user_id, 'pro');
            } else  {

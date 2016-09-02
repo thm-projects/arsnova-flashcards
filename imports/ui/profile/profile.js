@@ -114,6 +114,9 @@ Template.profileSettings.events({
          if (result.length < 5) {
            $(event.currentTarget).parent().parent().addClass('has-error');
            $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+         } else if (result.length > 25) {
+           $(event.currentTarget).parent().parent().addClass('has-error');
+           $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
          } else {
            $(event.currentTarget).parent().parent().removeClass('has-error');
            $(event.currentTarget).parent().parent().addClass('has-success');

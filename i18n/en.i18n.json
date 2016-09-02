@@ -223,6 +223,7 @@
     "profileprivate": "Private profile",
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
+    "nameToLong": "Username must consist less than 26 letters!",
     "nameAlreadyExists": "Username is already taken!"
   },
 
@@ -636,6 +637,7 @@
       "email_invalid": "Invalid Email!",
       "name_exists": "Username is already taken!",
       "name_toShort": "Username must consist more than 4 letters!",
+      "name_toLong": "Username must consist less than 26 letters!",
       "visible_invalid": "Profile must be public!"
     }
   },
