@@ -3,7 +3,26 @@ import { Categories } from '../../api/categories.js';
 import { Badges } from '../../api/badges.js';
 
 Meteor.startup(function() {
-  var categories = [{
+  var categories = initCategories();
+  var badges = initBadges();
+  if (Categories.find().count() === 0) {
+    for (var category in categories) {
+      if (categories.hasOwnProperty(category)) {
+        Categories.insert(categories[category]);
+      }
+    }
+  }
+  if (Badges.find().count() === 0) {
+    for (var badge in badges) {
+      if (badges.hasOwnProperty(badge)) {
+        Badges.insert(badges[badge]);
+      }
+    }
+  }
+});
+
+var initCategories = function() {
+  return [{
     "_id": "01",
     "name": "Agricultural and Forestry Sciences",
     "i18n": {
@@ -108,8 +127,10 @@ Meteor.startup(function() {
       }
     }
   }];
+};
 
-  var badges = [{
+var initBadges = function() {
+  return [{
     "_id": "1",
     "name": "Reviewer",
     "desc": "Criticism is the highest form of affection. Users will be rewarded with this badge if they deal with cardsets of others and give constructive feedback.",
@@ -206,20 +227,4 @@ Meteor.startup(function() {
       }
     }
   }];
-
-
-  if (Categories.find().count() === 0) {
-    for (var category in categories) {
-      if (categories.hasOwnProperty(category)) {
-        Categories.insert(categories[category]);
-      }
-    }
-  }
-  if (Badges.find().count() === 0) {
-    for (var badge in badges) {
-      if (badges.hasOwnProperty(badge)) {
-        Badges.insert(badges[badge]);
-      }
-    }
-  }
-});
+};
