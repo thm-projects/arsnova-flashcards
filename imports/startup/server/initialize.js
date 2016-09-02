@@ -22,111 +22,102 @@ Meteor.startup(function() {
 });
 
 var initCategories = function() {
-  return [{
-    "_id": "01",
-    "name": "Agricultural and Forestry Sciences",
-    "i18n": {
-      "de": {
+  var categoryNames = [
+    "Agricultural and Forestry Sciences",//1
+    "Information and Telecommunications Technology",//2
+    "Engineering Sciences",//3
+    "Cultural and Social Sciences",//4
+    "Art and Music",//5
+    "Mathematics and Natural Sciences",//6
+    "Media",//7
+    "Medicine and Health",//8
+    "Education and Teaching",//9
+    "Jurisprudence",//10
+    "Foreign Languages and Literatures",//11
+    "Social and Behavioral Sciences",//12
+    "Economics and Management"//13
+  ];
+  
+  var categoryI18n = [
+    {//1
+	  "de": {
         "name": "Agrar- und Forstwissenschaften"
       }
-    }
-  }, {
-    "_id": "02",
-    "name": "Information and Telecommunications Technology",
-    "i18n": {
-      "de": {
+    },
+    {//2
+	  "de": {
         "name": "Informations- und Telekommunikationstechnik"
       }
-    }
-  }, {
-    "_id": "03",
-    "name": "Engineering Sciences",
-    "i18n": {
-      "de": {
+    },
+    {//3
+	  "de": {
         "name": "Ingeniuerswissenschaften"
       }
-    }
-  }, {
-    "_id": "04",
-    "name": "Cultural and Social Sciences",
-    "i18n": {
-      "de": {
+    },
+    {//4
+	  "de": {
         "name": "Kultur- und Gesellschaftswissenschften"
       }
-    }
-  }, {
-    "_id": "05",
-    "name": "Art and Music",
-    "i18n": {
-      "de": {
+    },
+    {//5
+	  "de": {
         "name": "Kunst und Musik"
       }
-    }
-  }, {
-    "_id": "06",
-    "name": "Mathematics and Natural Sciences",
-    "i18n": {
-      "de": {
+    },
+    {//6
+	  "de": {
         "name": "Mathematik und Naturwissenschaften"
       }
-    }
-  }, {
-    "_id": "07",
-    "name": "Media",
-    "i18n": {
-      "de": {
+    },
+    {//7
+	  "de": {
         "name": "Medien"
       }
-    }
-  }, {
-    "_id": "08",
-    "name": "Medicine and Health",
-    "i18n": {
-      "de": {
+    },
+    {//8
+  	  "de": {
         "name": "Medizin und Gesundheit"
       }
-    }
-  }, {
-    "_id": "09",
-    "name": "Education and Teaching",
-    "i18n": {
-      "de": {
+    },
+    {//9
+  	  "de": {
         "name": "Pädagogik und Lehre"
       }
-    }
-  }, {
-    "_id": "10",
-    "name": "Jurisprudence",
-    "i18n": {
-      "de": {
+    },
+    {//10
+  	  "de": {
         "name": "Rechtswissenschaften"
       }
-    }
-  }, {
-    "_id": "11",
-    "name": "Foreign Languages and Literatures",
-    "i18n": {
-      "de": {
+    },
+    {//11
+  	  "de": {
         "name": "Sprach- und Literaturwissenschaften"
       }
-    }
-  }, {
-    "_id": "12",
-    "name": "Social and Behavioral Sciences",
-    "i18n": {
-      "de": {
+    },
+    {//12
+  	  "de": {
         "name": "Sozial- und Verhaltenswissenschaften"
       }
-    }
-  }, {
-    "_id": "13",
-    "name": "Economics and Management",
-    "i18n": {
-      "de": {
+    },
+    {//13
+  	  "de": {
         "name": "Wirtschaft und Management"
       }
     }
-  }];
+  ];
+  
+  var categories = [];
+  for(var i = 0; i < categoryNames.length; ++i) {
+	categories.push(
+	  {
+		"_id": (i<9 ? "0" : "") + (i+1),
+		"name": categoryNames[i],
+		"i18n": categoryI18n[i]
+	  }
+	);
+  }
+  
+  return categories;
 };
 
 var initBadges = function() {
