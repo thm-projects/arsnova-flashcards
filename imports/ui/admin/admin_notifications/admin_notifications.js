@@ -222,30 +222,30 @@ Template.admin_notifications.events({
     if (event.target.className == "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
       Session.set('notificationId', notification._id);
     }
-    if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" || event.target.className == "receiver-fa fa fa-envelope") {
+    if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
+		event.target.className == "receiver-fa fa fa-envelope" ||
+		event.target.className == "mailToSenderAdmin btn btn-xs btn-default" ||
+		event.target.className == "sender-fa fa fa-envelope") {
       if (cardset !== undefined) {
         Session.set('isCardset', true);
         Session.set('getCardset', cardset);
-      } else if (user !== undefined){
+      }
+	  else if (user !== undefined) {
         Session.set('isCardset', false);
       }
-
-      Session.set('getUsername', receiver);
-      Session.set('targetId', notification.receiver_id);
-      Session.set('isReceiver', true);
-    }
-    if (event.target.className == "mailToSenderAdmin btn btn-xs btn-default" || event.target.className == "sender-fa fa fa-envelope") {
-      if (cardset !== undefined) {
-        Session.set('isCardset', true);
-        Session.set('getCardset', cardset);
-      } else if (user !== undefined){
-        Session.set('isCardset', false);
-      }
-
-      Session.set('getUsername', sender);
-      Session.set('targetId', notification.sender_id);
-      Session.set('receiverId', notification.receiver_id);
-      Session.set('isReceiver', false);
+      
+	  if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
+		  event.target.className == "receiver-fa fa fa-envelope") {
+		Session.set('getUsername', receiver);
+		Session.set('targetId', notification.receiver_id);
+		Session.set('isReceiver', true);
+	  }
+	  else {
+		Session.set('getUsername', sender);
+		Session.set('targetId', notification.sender_id);
+		Session.set('receiverId', notification.receiver_id);
+		Session.set('isReceiver', false);
+	  }
     }
     if (event.target.className == 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className == "fa fa-university") {
       Session.set('lecturerrequest', notification.request);

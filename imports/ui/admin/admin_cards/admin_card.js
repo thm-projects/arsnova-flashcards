@@ -83,25 +83,27 @@ Template.admin_card.helpers({
 
 Template.admin_card.events({
   "click #cardSaveAdmin": function(evt, tmpl) {
-    if ($('#editCardFrontAdmin').val() === '') {
+    if ($('#editCardFrontAdmin').val().length <= 0 ||
+		$('#editCardFrontAdmin').val().length > 10000) {
       $('#frontAdmin .md-editor').css('border-color', '#b94a48');
-      $('#helpEditCardFrontAdmin').html(TAPi18n.__('admin.card.front_required'));
       $('#helpEditCardFrontAdmin').css('color', '#b94a48');
+      if ($('#editCardFrontAdmin').val().length > 10000) {
+    	$('#helpEditCardFrontAdmin').html(TAPi18n.__('text_max'));
+      }
+      else {
+    	$('#helpEditCardFrontAdmin').html(TAPi18n.__('admin.card.front_required'));
+      }
     }
-    if ($('#editCardBackAdmin').val() === '') {
+    if ($('#editCardBackAdmin').val().length <= 0 ||
+		$('#editCardBackAdmin').val().length > 10000) {
       $('#backAdmin .md-editor').css('border-color', '#b94a48');
-      $('#helpEditCardBackAdmin').html(TAPi18n.__('admin.card.back_required'));
       $('#helpEditCardBackAdmin').css('color', '#b94a48');
-    }
-    if ($('#editCardFrontAdmin').val().length > 10000) {
-      $('#frontAdmin .md-editor').css('border-color', '#b94a48');
-      $('#helpEditCardFrontAdmin').html(TAPi18n.__('text_max'));
-      $('#helpEditCardFrontAdmin').css('color', '#b94a48');
-    }
-    if ($('#editCardBackAdmin').val().length > 10000) {
-      $('#backAdmin .md-editor').css('border-color', '#b94a48');
-      $('#helpEditCardBackAdmin').html(TAPi18n.__('text_max'));
-      $('#helpEditCardBackAdmin').css('color', '#b94a48');
+      if ($('#editCardBackAdmin').val().length > 10000) {
+    	$('#helpEditCardBackAdmin').html(TAPi18n.__('text_max'));
+  	  }
+  	  else {
+  		$('#helpEditCardBackAdmin').html(TAPi18n.__('admin.card.back_required'));
+  	  }
     }
     if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000)
     {
@@ -134,22 +136,7 @@ Template.admin_card.events({
 });
 
 Template.admin_card.rendered = function() {
-  $("#editCardFrontAdmin").markdown({
-    autofocus: false,
-    hiddenButtons: ["cmdPreview", "cmdImage"],
-    fullscreen: false,
-    footer: "<p></p>",
-    onChange: function(e) {
-      var content = e.getContent();
-      Session.set('frontText', content);
-      if (content !== "") {
-        Meteor.promise("convertMarkdown", content)
-          .then(function(rendered) {
-            $("#frontAdmin .md-footer").html(rendered);
-          });
-      }
-    },
-    additionalButtons: [
+  var additBtn = [
       [{
         name: "groupCustom",
         data: [{
@@ -164,41 +151,33 @@ Template.admin_card.rendered = function() {
           callback: tex
         }]
       }]
-    ]
-  });
+    ];
+    
+    var templateMarkdown = function(side) {
+  	return {
+  	  autofocus: false,
+  	  hiddenButtons: ["cmdPreview", "cmdImage"],
+  	  fullscreen: false,
+  	  footer: "<p></p>",
+  	  onChange: function(e) {
+    	var content = e.getContent();
+    	console.log(content);
+    	Session.set(side + "Text", content);
+    	console.log(Session.get("frontText"));
+    	if (content !== "") {
+      	  Meteor.promise("convertMarkdown", content)
+        	.then(function(rendered) {
+          	  $("#" + side + "Admin .md-footer").html(rendered);
+        	});
+    	}
+  	  },
+  	  additionalButtons: additBtn
+    }
+  };
+    
+  $("#editCardFrontAdmin").markdown(templateMarkdown("front"));
 
-  $("#editCardBackAdmin").markdown({
-    autofocus: false,
-    hiddenButtons: ["cmdPreview", "cmdImage"],
-    fullscreen: false,
-    footer: "<p></p>",
-    onChange: function(e) {
-      var content = e.getContent();
-      Session.set('backText', content);
-      if (content !== "") {
-        Meteor.promise("convertMarkdown", content)
-          .then(function(rendered) {
-            $("#backAdmin .md-footer").html(rendered);
-          });
-      }
-    },
-    additionalButtons: [
-      [{
-        name: "groupCustom",
-        data: [{
-          name: 'cmdPics',
-          title: 'Image',
-          icon: 'glyphicon glyphicon-picture',
-          callback: image
-        }, {
-          name: "cmdTex",
-          title: "Tex",
-          icon: "glyphicon glyphicon-usd",
-          callback: tex
-        }]
-      }]
-    ]
-  });
+  $("#editCardBackAdmin").markdown(templateMarkdown("back"));
 };
 
 /**

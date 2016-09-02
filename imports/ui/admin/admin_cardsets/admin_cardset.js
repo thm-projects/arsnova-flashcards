@@ -119,7 +119,8 @@ Template.admin_cardset.events({
       $('#helpEditCardsetKindAdmin').html(TAPi18n.__('admin.cardset.noCards'));
       $('#helpEditCardsetKindAdmin').css('color', '#b94a48');
     }
-    if (("#cc-modules-admin").length && $("#cc-option2-admin").hasClass('active') && $("#cc-option3-admin").hasClass('active') || $("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) {
+    if ($("#cc-modules-admin").length && $("#cc-option2-admin").hasClass('active') && $("#cc-option3-admin").hasClass('active') || //checks if cc-modules-admin is !empty and if cc-option-2 and 3-admin are active
+		$("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) { //or if the children of cc-modules-admin and option-0 are active
       $('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
       $('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
       $('#helpCC-modules-admin').css('color', '#b94a48');
