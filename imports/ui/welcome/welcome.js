@@ -8,7 +8,7 @@ import './welcome.html';
 //------------------------ LOGIN EVENT
 
 Template.welcome.events({
-    'click #facebook': function(event) {
+    'click #facebook': function() {
         Meteor.loginWithFacebook({}, function(err){
             if (err) {
                 throw new Meteor.Error("Facebook login failed");
@@ -16,7 +16,7 @@ Template.welcome.events({
         });
     },
 
-    'click #twitter': function(event) {
+    'click #twitter': function() {
         Meteor.loginWithTwitter({}, function(err){
             if (err) {
                 throw new Meteor.Error("Twitter login failed");
@@ -24,7 +24,7 @@ Template.welcome.events({
         });
     },
 
-    'click #google': function(event) {
+    'click #google': function() {
         Meteor.loginWithGoogle({}, function(err){
             if (err) {
                 throw new Meteor.Error("Google login failed");
@@ -32,7 +32,7 @@ Template.welcome.events({
         });
     },
 
-    'click #cas': function(event) {
+    'click #cas': function() {
         Meteor.loginWithCas({}, function(err){
             if (err) {
                 throw new Meteor.Error("CAS login failed");
