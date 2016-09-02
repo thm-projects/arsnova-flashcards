@@ -234,7 +234,7 @@ Template.profileMembership.helpers({
             $('#savePaymentBtn').prop( "disabled", true );
 
             Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
-            console.log(response);
+            
             var nonce = response.nonce;
             Meteor.call('btUpdatePaymentMethod', nonce, function(error, success) {
               if (error) {
