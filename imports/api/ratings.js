@@ -26,10 +26,7 @@ Meteor.methods({
     });
 
     Meteor.call("updateRelevance", cardset_id, function(error, relevance){
-      if(error){
-        console.log("error", error);
-      }
-      else {
+      if(!error) {
         Cardsets.update(cardset_id, {
           $set: {
             relevance: Number(relevance)
