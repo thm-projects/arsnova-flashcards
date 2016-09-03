@@ -44,7 +44,12 @@
     "deleteAll": "Delete all",
     "approved": "Approved",
     "pending": "Pending approval",
-    "progress": "In progress"
+    "progress": "In progress",
+    "reporteduser": "Reported user",
+    "reportedcardset": "Reported cardset",
+    "reporteduseradmin": "Admin notification (Reported user)",
+    "reportedcardsetadmin": "Admin notification (Reported cardset)",
+    "lecturer": "Lecturer request"
   },
 
   "input-group": {

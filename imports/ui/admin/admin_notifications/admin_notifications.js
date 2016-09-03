@@ -64,7 +64,9 @@ import './admin_notifications.html';
        showNavigationRowsPerPage: false,
        rowsPerPage: 20,
        fields: [
-         { key: 'type', label: TAPi18n.__('admin.type') },
+         { key: 'type', label: TAPi18n.__('admin.type'), fn: function(value) {
+           return getTypeAdmin(value);
+         }},
          { key: 'sender', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
            return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderComplaint' data-senderid='" + object.sender_id + "'>" + value + "</a></span>");
          }},
@@ -120,7 +122,9 @@ import './admin_notifications.html';
        showNavigationRowsPerPage: false,
        rowsPerPage: 20,
        fields: [
-         { key: 'type', label: TAPi18n.__('admin.type') },
+         { key: 'type', label: TAPi18n.__('admin.type'), fn: function(value) {
+           return getTypeAdmin(value);
+         }},
          { key: 'sender', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
            return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
          }},
@@ -187,7 +191,9 @@ import './admin_notifications.html';
        showNavigationRowsPerPage: false,
        rowsPerPage: 20,
        fields: [
-         { key: 'type', label: TAPi18n.__('admin.type') },
+         { key: 'type', label: TAPi18n.__('admin.type'), fn: function(value) {
+           return getTypeAdmin(value);
+         }},
          { key: 'sender', label: TAPi18n.__('admin.sender'), fn: function(value, object) {
            return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
          }},
@@ -233,7 +239,7 @@ Template.admin_notifications.events({
 	  else if (user !== undefined) {
         Session.set('isCardset', false);
       }
-      
+
 	  if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
 		  event.target.className == "receiver-fa fa fa-envelope") {
 		Session.set('getUsername', receiver);
@@ -428,3 +434,25 @@ Template.notificationLecturerFormAdmin.events({
      }).modal('hide');
    }
  });
+
+ /**
+  * ############################################################################
+  * function getTypeAdmin
+  * ############################################################################
+  */
+
+  function getTypeAdmin(type) {
+    if (type === 'Gemeldeter Benutzer') {
+      type = TAPi18n.__('notifications.reporteduser');
+    } else if (type === 'Gemeldeter Kartensatz') {
+      type = TAPi18n.__('notifications.reportedcardset');
+    } else if (type === 'Adminbenachrichtigung (Beschwerde Benutzer)') {
+      type = TAPi18n.__('notifications.reporteduseradmin');
+    } else if (type === 'Adminbenachrichtigung (Beschwerde Kartensatz)') {
+      type = TAPi18n.__('notifications.reportedcardsetadmin');
+    } else if (type === 'Dozenten-Anfrage') {
+      type = TAPi18n.__('notifications.lecturer');
+    }
+
+    return type;
+  }
