@@ -697,7 +697,14 @@ Template.cardsetPublicateForm.onRendered(function() {
     $('#publicateKind > label > input').filter(function() {
         return this.value === cardset.kind
     }).parent().addClass('active');
-    Session.set('kind', cardset.kind);
+
+    $('#publicateKind > label > input').filter(function() {
+        return this.value === cardset.kind
+    }).prop('checked', true);
+
+    var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
+    Session.set('kindWithPrice', kindWithPrice);
+
 
     $('#publicatePrice').val(cardset.price);
   });
@@ -705,11 +712,7 @@ Template.cardsetPublicateForm.onRendered(function() {
 
 Template.cardsetPublicateForm.helpers({
   kindWithPrice: function(){
-    if (Session.get('kind') === undefined) {
-      return (this.kind === 'edu' || this.kind === 'pro');
-    } else {
-      return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
-    }
+    return Session.get('kindWithPrice');
   },
   kindIsActive: function(kind) {
     return kind === this.kind;
@@ -755,8 +758,9 @@ Template.cardsetPublicateForm.events({
     $('#publicateModal').modal('hide');
   },
   'change #publicateKind': function(evt, tmpl){
-    var kind = tmpl.find('#publicateKind > .active > input').value;
-    Session.set('kind', kind);
+    var kind = $('#publicateKind input[name=kind]:checked').val();
+    var kindWithPrice = (kind === 'edu' || kind === 'pro');
+    Session.set('kindWithPrice', kindWithPrice);
   }
 });
 
