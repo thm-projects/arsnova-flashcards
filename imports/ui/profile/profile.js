@@ -75,58 +75,71 @@ Template.profileSidebar.helpers({
 
 /**
  * ############################################################################
- * profileInfo
+ * profileSettings
  * ############################################################################
  */
 
 Template.profileSettings.events({
-  "click #profilepublicoption1": function(event) {
-    Meteor.call("updateUsersVisibility", true);
-  },
-  "click #profilepublicoption2": function(event) {
-    Meteor.call("updateUsersVisibility", false);
-  },
-  "keyup #inputEmail": function(event, template) {
-    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    var email = $(event.currentTarget).val();
-    var check = re.test(email);
+    "click #profilepublicoption1": function(event) {
+        Meteor.call("updateUsersVisibility", true);
+    },
+    "click #profilepublicoption2": function(event) {
+        Meteor.call("updateUsersVisibility", false);
+    },
+    "click #profileSave": function() {
+        // Email validation
+        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        var email = $('#inputEmail').val();
+        var validEmail = re.test(email);
 
-    if (check === false) {
-      $(event.currentTarget).parent().parent().addClass('has-error');
-      $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
-    } else {
-      $(event.currentTarget).parent().parent().removeClass('has-error');
-      $(event.currentTarget).parent().parent().addClass('has-success');
-      $('#errorEmail').html('');
-      Meteor.call("updateUsersEmail", email);
+        if (validEmail === false) {
+            $('#inputEmail').parent().parent().addClass('has-error');
+            $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+        } else {
+            $('#inputEmail').parent().parent().removeClass('has-error');
+            $('#inputEmail').parent().parent().addClass('has-success');
+            $('#errorEmail').html('');
+        }
+
+        // Name validation
+        var name = $('#inputName').val();
+        var user_id = Meteor.userId();
+
+        Meteor.call("checkUsersName", name, user_id, function(error, result) {
+            if (error) {
+                $('#inputName').parent().parent().addClass('has-error');
+                $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
+            } else if (result) {
+                var validName = false;
+                if (result.length < 5) {
+                    $('#inputName').parent().parent().addClass('has-error');
+                    $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+                } else if (result.length > 25) {
+                    $('#inputName').parent().parent().addClass('has-error');
+                    $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
+                } else {
+                    $('#inputName').parent().parent().removeClass('has-error');
+                    $('#inputName').parent().parent().addClass('has-success');
+                    $('#errorName').html('');
+                    validName = true;
+                }
+
+                if (validEmail && validName) {
+                  Meteor.call("updateUsersEmail", email);
+                  Meteor.call("updateUsersName", result, user_id);
+                  Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+                } else {
+                  Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
+                }
+            }
+        });
+    },
+    "click #profileCancel": function() {
+        var user = Meteor.users.findOne(Meteor.userId());
+        $('#inputEmail').val(user.email);
+        $('#inputName').val(user.profile.name);
+        Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
     }
-  },
-  "keyup #inputName": function(event) {
-    var name = $(event.currentTarget).val();
-    var user_id = Meteor.userId();
-
-    Meteor.call("checkUsersName", name, user_id, function(error, result){
-      if(error){
-        $(event.currentTarget).parent().parent().addClass('has-error');
-        $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-      }
-      if(result){
-         if (result.length < 5) {
-           $(event.currentTarget).parent().parent().addClass('has-error');
-           $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
-         } else if (result.length > 25) {
-           $(event.currentTarget).parent().parent().addClass('has-error');
-           $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
-         } else {
-           $(event.currentTarget).parent().parent().removeClass('has-error');
-           $(event.currentTarget).parent().parent().addClass('has-success');
-           $('#errorName').html('');
-
-           Meteor.call("updateUsersName", result, user_id);
-         }
-      }
-    });
-  }
 });
 
 /**

@@ -141,7 +141,12 @@
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
     "accept": "Akzeptieren",
-    "decline": "Ablehnen"
+    "decline": "Ablehnen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "saved": "Einstellungen wurden gespeichert!",
+    "canceled": "Änderungen wurden verworfen!",
+    "error": "Fehlerhafte Einträge!"
   },
 
   "profil-header": {

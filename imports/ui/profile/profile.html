@@ -149,6 +149,24 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     {{#if isUser}}
+                    {{#unless isInRole 'pro,lecturer'}}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
+                        <div class="col-md-8">
+                            <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                <label id="profilepublicoption1" class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}">
+                                    <input type="radio" name="visible" value="true">
+                                    <div>{{_ "panel-body.profilepublicoption1"}}</div>
+                                </label>
+                                <label id="profilepublicoption2" class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}">
+                                    <input type="radio" name="visible" value="false">
+                                    <div>{{_ "panel-body.profilepublicoption2"}}</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {{/unless}}
                     <div class="form-group">
                         <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
                         <div class="col-md-8">
@@ -163,23 +181,10 @@
                             <span id="errorName" class="help-block name"></span>
                         </div>
                     </div>
-                    {{#unless isInRole 'pro,lecturer'}}
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
-                        <div class="col-md-8">
-                            <div class="btn-group btn-group-justified" data-toggle="buttons">
-                                <label id="profilepublicoption1" class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}" disabled="{{#if isInRole 'pro,lecturer'}}disabled{{/if}}">
-                                    <input type="radio" name="options" value="private">
-                                    <div>{{_ "panel-body.profilepublicoption1"}}</div>
-                                </label>
-                                <label id="profilepublicoption2" class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}" disabled="{{#if isInRole 'pro,lecturer'}}disabled{{/if}}">
-                                    <input type="radio" name="options" value="public">
-                                    <div>{{_ "panel-body.profilepublicoption2"}}</div>
-                                </label>
-                            </div>
-                        </div>
+                    <div class="btn-group pull-right" role="group">
+                      <button id="profileCancel" type="button" class="btn btn-danger">{{_ "profile.cancel"}}</button>
+                      <button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
                     </div>
-                    {{/unless}}
                     {{/if}}
                 </form>
             </div>

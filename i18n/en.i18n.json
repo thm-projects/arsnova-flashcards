@@ -142,7 +142,12 @@
     "norequests": "No requests",
     "lecturer": "Lecturer approval",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "save": "Save",
+    "cancel": "Cancel",
+    "saved": "Settings saved!",
+    "canceled": "Amendments rejected!",
+    "error": "Incorrect entries!"
   },
 
   "profil-header": {
