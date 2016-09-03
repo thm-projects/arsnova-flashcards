@@ -279,7 +279,9 @@
             <a class="backdown" role="button">⇓</a>
             <a class="backup" role="button">⇑</a>
           </th>
+          {{#if isOwner}}
           <th>{{_ "options"}}</th>
+          {{/if}}
         </tr>
       </thead>
       <tbody>
@@ -289,16 +291,16 @@
               {{cardlistMarkdown this.front this.back @index}}
               <td class="front{{@index}}"></td>
               <td class="back{{@index}}"></td>
+              {{#if isOwner}}
               <td>
-                {{#if isOwner}}
                   <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
                     <i class="glyphicon glyphicon-pencil"></i>
                   </a>
                   <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                   </a>
-                {{/if}}
               </td>
+              {{/if}}
             </tr>
           {{/each}} {{else}}
           <tr class="empty-listitem">
