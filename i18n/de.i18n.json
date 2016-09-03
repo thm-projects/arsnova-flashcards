@@ -290,6 +290,9 @@
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
     "publicate": "Status",
+    "publicated": "Veröffentlicht",
+    "review": "In Überprüfung",
+    "private": "Privat",
     "license": " Lizenz wählen"
   },
 

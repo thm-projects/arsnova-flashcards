@@ -290,7 +290,10 @@
     "createcard": "Create a new card",
     "importcard": "Import cards",
     "exportcard": "Export cards",
-    "publicate": "Publicate cardset",
+    "publicate": "Status",
+    "publicated": "Publicated",
+    "review": "In review",
+    "private": "Private",
     "license": " Select license"
   },
 

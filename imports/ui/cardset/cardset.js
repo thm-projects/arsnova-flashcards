@@ -489,12 +489,12 @@ Template.cardsetInfo.helpers({
   getStatus: function() {
     if (this.visible) {
       var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-      return "Veröffentlicht (" + kind + ")";
+      return TAPi18n.__('sidebar-nav.publicated') + " (" + kind + ")";
     } else {
       if (this.kind === 'pro' && this.request === true) {
-        return "In Überprüfung (Pro)";
+        return TAPi18n.__('sidebar-nav.review') + " (Pro)";
       } else {
-        return "Private";
+        return TAPi18n.__('sidebar-nav.private');
       }
     }
   },
