@@ -402,8 +402,8 @@
   },
 
   "learn-endscreen": {
-    "success": "Learn unit done successfully",
-    "back": "Choose another box or go back to deck of cards",
+    "success": "Learn unit done successfully.",
+    "back": "Choose another box or go back to deck of cards.",
     "back2": "Back to deck of cards"
   },
 
@@ -637,7 +637,7 @@
       "roles": "User roles",
       "blocked": "Blocked user",
       "blockedtext": "Do you want to deny the access to THMcards for this user?",
-      "editortext": "Do you want to give this user editor rights? As an editor user the user can access the admin panel and is allowed to edit content of THMcards.",
+      "editortext": "Do you want to give this user admin rights? As an admin user the user can access the admin panel and is allowed to edit content of THMcards.",
       "cancel": "Cancel",
       "save": "Save user",
       "delete": "Delete user",
