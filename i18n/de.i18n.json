@@ -401,8 +401,8 @@
   },
 
   "learn-endscreen": {
-    "success": "Lerneinheit erfolgreich beendet",
-    "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz",
+    "success": "Lerneinheit erfolgreich beendet.",
+    "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz.",
     "back2": "Zurück zum Kartensatz"
   },
 

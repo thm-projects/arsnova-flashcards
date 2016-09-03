@@ -402,8 +402,8 @@
   },
 
   "learn-endscreen": {
-    "success": "Learn unit done successfully",
-    "back": "Choose another box or go back to deck of cards",
+    "success": "Learn unit done successfully.",
+    "back": "Choose another box or go back to deck of cards.",
     "back2": "Back to deck of cards"
   },
 
