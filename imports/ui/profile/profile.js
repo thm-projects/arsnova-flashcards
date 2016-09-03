@@ -344,7 +344,7 @@ Template.profileBilling.helpers({
 
  Template.profileNotifications.events({
    "click #clearBtn": function(){
-      var notifications = Notifications.find();
+      var notifications = Notifications.find({ target_type: 'user', target: Meteor.userId() });
       notifications.forEach(function (notification) {
         Meteor.call("deleteNotification", notification);
       });

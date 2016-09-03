@@ -18,6 +18,9 @@ import './admin_notifications.html';
  */
 
  Template.admin_notifications.helpers({
+   getNotifications: function() {
+     return Notifications.find({ target_type: 'admin', target: Meteor.userId() });
+   },
    complaintMessagesListAdmin: function() {
      var notifications = Notifications.find({ target_type: 'admin', type: { $in: ["Gemeldeter Benutzer", "Gemeldeter Kartensatz"] } });
      var fields = [];
@@ -427,7 +430,7 @@ Template.notificationLecturerFormAdmin.events({
  Template.allNotificationsConfirmFormAdmin.events({
    'click #allNotificationsDeleteAdmin': function() {
      $('#allNotificationsConfirmModalAdmin').on('hidden.bs.modal', function() {
-       var notifications = Notifications.find();
+       var notifications = Notifications.find({ target_type: 'admin', target: Meteor.userId() });
        notifications.forEach(function (notification) {
          Meteor.call("deleteNotification", notification);
        });
