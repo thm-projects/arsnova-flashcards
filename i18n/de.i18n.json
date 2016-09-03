@@ -635,7 +635,7 @@
       "roles": "Benutzerrollen",
       "blocked": "Benutzer blockieren",
       "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
-      "editortext": "Wollen Sie dem Benutzer Editor-Rechte geben? Als Editor User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "editortext": "Wollen Sie dem Benutzer Admin-Rechte geben? Als Admin User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
       "cancel": "Abbrechen",
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
