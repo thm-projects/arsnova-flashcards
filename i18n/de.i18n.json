@@ -44,7 +44,12 @@
     "deleteAll": "Alle löschen",
     "approved": "Freigegeben",
     "pending": "Freigabe ausstehend",
-    "progress": "In Bearbeitung"
+    "progress": "In Bearbeitung",
+    "reporteduser": "Gemeldeter Benutzer",
+    "reportedcardset": "Gemeldeter Kartensatz",
+    "reporteduseradmin": "Adminbenachrichtigung (Gemeldeter Benutzer)",
+    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
+    "lecturer": "Dozenten-Anfrage"
   },
 
   "input-group": {

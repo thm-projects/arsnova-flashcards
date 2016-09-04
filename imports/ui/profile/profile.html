@@ -623,7 +623,7 @@
                 <div class="list-group">
                     {{#each getNotifications}}
                         <div class="list-group-item">
-                            <h4 class="list-group-item-heading pull-left">{{type}}</h4>
+                            <h4 class="list-group-item-heading pull-left">{{getType type}}</h4>
                             <button id="deleteNotificationBtn" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
                             <div class="clearfix"></div>
                             <a href="{{getLink}}" class="list-group-item-text">{{text}}</a>

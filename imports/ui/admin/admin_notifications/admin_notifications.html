@@ -8,7 +8,9 @@
     <li class="active"><a data-toggle="tab" href="#complaintMessages">{{_ "admin.complaint"}}</a></li>
     <li><a data-toggle="tab" href="#lecturerMessages">{{_ "admin.lecturermessages"}}</a></li>
     <li><a data-toggle="tab" href="#sendMessages">{{_ "admin.send"}}</a></li>
-    <li class="pull-right"><button type="button" class="deleteNotifications btn btn-danger" data-toggle='modal' data-target='#allNotificationsConfirmModalAdmin'>{{_ "admin.deleteallnotifications"}}</button></li>
+    {{#if getNotifications.count}}
+      <li class="pull-right"><button type="button" class="deleteNotifications btn btn-danger" data-toggle='modal' data-target='#allNotificationsConfirmModalAdmin'>{{_ "admin.deleteallnotifications"}}</button></li>
+    {{/if}}
   </ul>
   <div class="content">
     <div class="tab-content">
