@@ -356,7 +356,7 @@ Template.profileBilling.helpers({
 
 Template.profileNotifications.helpers({
     getNotifications: function() {
-      return Notifications.find({ target_type: 'user' }, {sort: {date: -1}});
+      return Notifications.find({ target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
     },
     getLink: function() {
       return "/cardset/" + this.link_id;

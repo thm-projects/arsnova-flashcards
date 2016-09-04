@@ -615,7 +615,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
-            <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_ "notifications.deleteAll"}}</button>
+            {{#if getNotifications.count}}
+              <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_ "notifications.deleteAll"}}</button>
+            {{/if}}
             <div class="clearfix"></div>
         </div>
         <div class="panel-body">
