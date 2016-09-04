@@ -49,7 +49,8 @@ deploy_staging:
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
-
+  environment: staging
+  
 deploy_production:
   stage: deploy
   only:
@@ -64,6 +65,7 @@ deploy_production:
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_PRODUCTION_SSH_URL"
+  environment: production
 
 sync_mirror:
   stage: deploy
