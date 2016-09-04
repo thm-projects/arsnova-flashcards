@@ -30,7 +30,7 @@ Template.admin_main.events({
     Router.go('home');
   },
   'click #notificationsBtn_admin': function() {
-    var notifications = Notifications.find({read: false});
+    var notifications = Notifications.find({read: false, target_type: 'admin'});
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsRead", notification._id);
     });

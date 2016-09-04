@@ -39,7 +39,7 @@ Template.main.events({
     $('#input-search').val('');
   },
   'click #notificationsBtn': function() {
-    var notifications = Notifications.find({read: false});
+    var notifications = Notifications.find({read: false, target_type: 'user'});
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsRead", notification._id);
     });
