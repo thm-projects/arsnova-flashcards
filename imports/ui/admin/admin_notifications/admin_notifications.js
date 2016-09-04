@@ -324,6 +324,15 @@ Template.notificationConfirmFormAdmin.events({
  * ############################################################################
  */
 
+ Template.messageFormNotificationAdmin.onRendered(function() {
+   $('#messageModalNotificationAdmin').on('hidden.bs.modal', function() {
+     $('#helpMessageNotificationTextAdmin').html('');
+     $('#messageNotificationTextLabelAdmin').css('color', '');
+     $('#messageNotificationTextAdmin').css('border-color', '');
+     $('#messageNotificationTextAdmin').val('');
+   });
+ });
+
 Template.messageFormNotificationAdmin.helpers({
   isCardset: function() {
     var isCardset = Session.get('isCardset');
