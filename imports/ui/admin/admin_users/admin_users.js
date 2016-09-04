@@ -197,8 +197,8 @@ Template.admin_users.events({
 
         var target = user_id;
 
-        Meteor.call("addNotification", target, type, text, link_id);
-        Meteor.call("addNotification", 'admin', type, text, link_id);
+        Meteor.call("addNotification", target, type, text, link_id, target);
+        Meteor.call("addNotification", 'admin', type, text, link_id, target);
         $('#messageModalAdmin').modal('hide');
       }
     },

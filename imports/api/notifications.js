@@ -5,10 +5,7 @@ export const Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isServer) {
   Meteor.publish("notifications", function() {
-    if (this.userId)
-    {
-      return Notifications.find({target: this.userId});
-    }
+    return Notifications.find();
   });
 
   var NotificationSchema = new SimpleSchema({
@@ -38,6 +35,9 @@ if (Meteor.isServer) {
     },
     target_type: {
       type: String
+    },
+    receiver: {
+      type: String
     }
   });
 
@@ -45,7 +45,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  addNotification: function(target, type, text, link_id) {
+  addNotification: function(target, type, text, link_id, receiver) {
     // Make sure the user is logged in
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -53,19 +53,19 @@ Meteor.methods({
     if (target === 'lecturer') {
       var lecturers = Roles.getUsersInRole('lecturer');
       lecturers.forEach(function (lecturer) {
-        Meteor.call("createNotification", lecturer._id, type, text, link_id, 'user');
+        Meteor.call("createNotification", lecturer._id, type, text, link_id, 'user', receiver);
       });
     } else if (target === 'admin') {
       var admins = Roles.getUsersInRole(['admin', 'editor']);
       admins.forEach(function (admin) {
-        Meteor.call("createNotification", admin._id, type, text, link_id, 'admin');
+        Meteor.call("createNotification", admin._id, type, text, link_id, 'admin', receiver);
       });
     } else {
-      Meteor.call("createNotification", target, type, text, link_id, 'user');
+      Meteor.call("createNotification", target, type, text, link_id, 'user', receiver);
     }
   },
 
-  createNotification: function(target, type, text, link_id, target_type) {
+  createNotification: function(target, type, text, link_id, target_type, receiver) {
     Notifications.insert({
       target: target,
       origin: Meteor.userId(),
@@ -75,7 +75,8 @@ Meteor.methods({
       read: false,
       cleared: false,
       link_id: link_id,
-      target_type: target_type
+      target_type: target_type,
+      receiver: receiver
     });
   },
 

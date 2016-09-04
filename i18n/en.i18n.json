@@ -522,6 +522,7 @@
     "notifyuser": "Notify user",
     "view": "View",
     "deleted": "Deleted",
+    "deletedUser": "Deleted user",
     "complaint": "User complaints",
     "lecturermessages": "Lecturer request",
     "send": "Send messages",
@@ -535,6 +536,7 @@
     "replyrsender": "Mail to sender",
     "request": "Request",
     "deleteallnotifications": "Delete all notifications",
+    "optionNotPossible": "Not possible (User deleted)",
 
     "confirm-form": {
       "cardsets": {

@@ -30,13 +30,13 @@ Template.admin_main.events({
     Router.go('home');
   },
   'click #notificationsBtn_admin': function() {
-    var notifications = Notifications.find({read: false, target_type: 'admin'});
+    var notifications = Notifications.find({read: false, target_type: 'admin', target: Meteor.userId() });
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsRead", notification._id);
     });
   },
   'click #clearBtn_admin': function() {
-    var notifications = Notifications.find({cleared: false});
+    var notifications = Notifications.find({cleared: false, target_type: 'admin', target: Meteor.userId()});
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsCleared", notification._id);
     });
@@ -50,10 +50,10 @@ Template.admin_main.helpers({
     }
   },
   countNotifications: function() {
-    return Notifications.find({read: false, target_type: 'admin' }).count();
+    return Notifications.find({read: false, target_type: 'admin', target: Meteor.userId() }).count();
   },
   getNotifications: function() {
-    return Notifications.find({ cleared: false, target_type: 'admin' }, {sort: {date: -1}});
+    return Notifications.find({ cleared: false, target_type: 'admin', target: Meteor.userId() }, {sort: {date: -1}});
   },
   getLink: function() {
 
