@@ -13,10 +13,21 @@ Meteor.methods({
     for (var i = 0; i < data.length; i++) {
       var item = data[i];
 
+      var front, back;
+      try {
+          // If the string is UTF-8, this will work and not throw an error.
+          front = decodeURIComponent(escape(item.front));
+          back = decodeURIComponent(escape(item.back));
+      } catch (e) {
+          // If it isn't, an error will be thrown, and we can asume that we have an ISO string.
+          front = item.front;
+          back = item.back;
+      }
+
       if (item.front !== "") {
         Cards.insert({
-          front: item.front,
-          back: item.back,
+          front: front,
+          back: back,
           cardset_id: cardset_id
         });
         Cardsets.update(cardset_id, {
