@@ -230,6 +230,7 @@
   	"profilepublicoption1": "Ja",
   	"profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
+    "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
     "nameToShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
     "nameToLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",

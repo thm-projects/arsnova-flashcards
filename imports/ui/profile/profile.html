@@ -1,8 +1,8 @@
 <template name="profile">
-  {{#if isVisible}}
   <div id='profileSidebar' class="col-md-3">
     {{> profileSidebar}}
   </div>
+  {{#if isVisible}}
   <div class="col-md-9">
     {{#if isActiveRoute 'profileOverview'}}
       <div id="profileOverview">{{> profileOverview}}</div>
@@ -64,13 +64,18 @@
 
   </div>
   {{else}}
-  <div class="row profil-header">
-    <div class="col-md-12">
-      <h3 style="margin-bottom:20px">
-        <span>{{_ "panel-body.profileprivate"}}</span>
-      </h3>
+    <div class="col-md-9">
+      <div class="row">
+        <div id="profileprivate">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{_ "panel-body.profileprivate"}}</h3>
+            </div>
+            <div class="panel-body">{{_ "panel-body.profileprivatetext"}}</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
   {{/if}}
 </template>
 

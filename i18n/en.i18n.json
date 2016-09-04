@@ -231,6 +231,7 @@
   	"profilepublicoption1": "Yes",
   	"profilepublicoption2": "No",
     "profileprivate": "Private profile",
+    "profileprivatetext": "This profile is private and can not be seen by other user.",
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
