@@ -430,9 +430,9 @@ Template.cardsetPreview.events({
  * ############################################################################
  */
 
- Template.cardsetInfo.onRendered(function() {
-   $('[data-toggle="popover"]').popover({
-     placement: 'right'
+Template.cardsetInfo.onRendered(function() {
+   $('[data-toggle="tooltip"]').tooltip({
+     container: 'body'
    });
 });
 
