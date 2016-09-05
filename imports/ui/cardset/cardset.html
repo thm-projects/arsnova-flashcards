@@ -101,7 +101,7 @@
               </div>
               <div class="btn-group">
                 <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
-                <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="popover" data-container="body" data-trigger="click" title="Status eines Kartensatzes" data-content="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
+                <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip" title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
               </div>
               {{#if isPublished}}
                 <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal" data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}</button>
