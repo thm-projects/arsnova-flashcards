@@ -10,27 +10,42 @@ import { Paid } from './paid.js';
 export const Cards = new Mongo.Collection("cards");
 
 if (Meteor.isServer) {
-  Meteor.publish("cards", function(cardset_id) {
-    var cardset = Cardsets.findOne(cardset_id);
-
-    var owner = (cardset !== undefined) ? cardset.owner : undefined;
-    var isOwner = (this.userId === owner);
-
-    var hasBought = Paid.findOne({cardset_id: cardset_id, user_id:this.userId}) !== undefined;
-
-    var isFree = (cardset !== undefined) ? cardset.kind === 'free' : undefined;
-    var isVisible = (cardset !== undefined) ? cardset.visible : undefined;
-
-    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      return Cards.find();
+  Meteor.publish("cards", function() {
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+      if (Roles.userIsInRole(this.userId, ['admin', 'editor', 'lecturer'])) {
+        return Cards.find();
+      }
+      else if (Roles.userIsInRole(this.userId, 'pro')) {
+        return Cards.find({
+          cardset_id: {
+            $in: Cardsets.find({
+              $or: [
+                {owner: this.userId},
+                {visible: true}
+              ]}).map(function(cardset) {return cardset._id})
+            }
+          });
+      }
+      else {
+        return Cards.find({
+          $or: [
+            //is owner
+            {cardset_id: {$in: Cardsets.find({owner: this.userId}).map(function(cardset) {return cardset._id})}},
+            //is visible and is free
+            {cardset_id: {$in: Cardsets.find({visible: true, kind: 'free'}).map(function(cardset) {return cardset._id})}},
+            //is visible and has bought
+            {cardset_id: {$in: Paid.find({
+              user_id: this.userId,
+              cardset_id: {$in: Cardsets.find({visible: true}).map(function(cardset) {return cardset._id})}
+            }).map(function(paid) {return paid.cardset_id})}}
+          ]
+        });
+      }
     }
-    else if ((isOwner || Roles.userIsInRole(this.userId, ['lecturer'])) || //checks if the user is an owner or a lecturer
-		(isVisible && (hasBought || isFree || Roles.userIsInRole(this.userId, ['pro'])))) //or if it's visible and free, bought or the user is a pro user
-    {
-      return Cards.find({cardset_id: cardset_id});
-    }
-    else if (isVisible)
-    {
+  });
+
+  Meteor.publish("previewCards", function(cardset_id) {
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
       var count = Cards.find({cardset_id:cardset_id}).count();
       var limit = count * 0.1;
 
@@ -40,7 +55,7 @@ if (Meteor.isServer) {
         limit = 15;
       }
 
-      return Cards.find({cardset_id: cardset_id},{limit: limit});
+      return Cards.find({cardset_id: cardset_id}, {limit: limit});
     }
   });
 }

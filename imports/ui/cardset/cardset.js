@@ -36,7 +36,7 @@ Session.setDefault('cardSort', {
  */
 
  Template.cardset.rendered = function(){
-   Meteor.subscribe("cards", Router.current().params._id);
+   Meteor.subscribe("previewCards", Router.current().params._id);
    Session.set('cardsetId', Router.current().params._id);
 
    var customerId = Meteor.user().customerId;
@@ -360,11 +360,6 @@ Template.cardsetDetails.events({
     this.subscribe('cards', Router.current().params._id);
   });
 });
-
-
- Template.cardsetPreview.rendered = function(){
-    Meteor.subscribe("cards", Router.current().params._id);
-}
 
 Template.cardsetPreview.helpers({
   cardsIndex: function(index) {
