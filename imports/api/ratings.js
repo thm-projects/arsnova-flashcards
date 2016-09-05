@@ -8,14 +8,16 @@ export const Ratings = new Mongo.Collection("ratings");
 
 if (Meteor.isServer) {
   Meteor.publish("ratings", function() {
-    return Ratings.find();
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+      return Ratings.find();
+    }
   });
 }
 
 Meteor.methods({
   addRating: function(cardset_id, owner, rating) {
     // Make sure the user is logged in
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
 

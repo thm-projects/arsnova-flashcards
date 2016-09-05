@@ -80,7 +80,7 @@ Meteor.methods({
   addCard: function(cardset_id, front, back) {
     // Make sure the user is logged in and is authorized
     var cardset = Cardsets.findOne(cardset_id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
     Cards.insert({
@@ -106,10 +106,8 @@ Meteor.methods({
     var card = Cards.findOne(card_id);
     var cardset = Cardsets.findOne(card.cardset_id);
 
-    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-        throw new Meteor.Error("not-authorized");
-      }
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+      throw new Meteor.Error("not-authorized");
     }
 
     var countCards = Cards.find({cardset_id:cardset._id}).count();
@@ -142,9 +140,7 @@ Meteor.methods({
       var cardset = Cardsets.findOne(card.cardset_id);
 
       if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-        if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
-          throw new Meteor.Error("not-authorized");
-        }
+        throw new Meteor.Error("not-authorized");
       }
 
       Cards.remove(card_id);
@@ -165,7 +161,7 @@ Meteor.methods({
 
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       // Make sure the user is logged in and is authorized
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }

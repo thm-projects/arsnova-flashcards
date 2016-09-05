@@ -7,7 +7,7 @@ export const Learned = new Mongo.Collection("learned");
 
 if (Meteor.isServer) {
   Meteor.publish("learned", function() {
-    if (this.userId) {
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
       var cardsetsIds = Cardsets.find({
         owner: this.userId
       }).map(function (cardset) {return cardset._id; });
@@ -23,7 +23,7 @@ if (Meteor.isServer) {
 Meteor.methods({
   addLearned: function(cardset_id, card_id) {
     // Make sure the user is logged in
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
     Learned.upsert({
@@ -48,7 +48,7 @@ Meteor.methods({
   },
   updateLearned: function(learned_id, box) {
     // Make sure the user is logged in
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
     Learned.update(learned_id, {
@@ -60,7 +60,7 @@ Meteor.methods({
   },
   updateLearnedMemo: function(learned_id, grade) {
     // Make sure the user is logged in
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
 

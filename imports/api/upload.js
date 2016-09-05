@@ -6,7 +6,7 @@ import { Cards } from './cards.js';
 Meteor.methods({
   parseUpload: function(data, cardset_id) {
     var cardset = Cardsets.findOne(cardset_id);
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
 

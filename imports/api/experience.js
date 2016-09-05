@@ -5,7 +5,14 @@ export const Experience = new Mongo.Collection("experience");
 
 if (Meteor.isServer) {
   Meteor.publish("experience", function() {
-    return Experience.find();
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+      return Experience.find({
+        $or: [
+          {owner: this.userId},
+          {owner: {$in: Meteor.users.find({visible: true}).map(function(user) {return user._id})}}
+        ]
+      });
+    }
   });
 }
 
