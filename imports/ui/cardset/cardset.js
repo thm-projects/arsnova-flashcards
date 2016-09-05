@@ -866,7 +866,7 @@ Template.cardsetPublicateForm.events({
 
         var target = "admin";
 
-        Meteor.call("addNotification", target, type, text, link_id);
+        Meteor.call("addNotification", target, type, text, link_id, target);
          $('#reportModal').modal('hide');
       }
     },

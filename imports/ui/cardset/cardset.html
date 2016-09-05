@@ -587,7 +587,9 @@
               <label class="col-md-3 control-label">{{_ "modal-dialog.reason"}}</label>
               <div class="input-group">
                 <select id="reportCardsetReason" class="form-control">
-                  <option>{{_ "modal-dialog.reportuser"}}</option>
+                  {{#unless userDeleted}}
+                    <option>{{_ "modal-dialog.reportuser"}}</option>
+                  {{/unless}}
                   <option>{{_ "modal-dialog.reportcardset"}}</option>
                 </select>
               </div>

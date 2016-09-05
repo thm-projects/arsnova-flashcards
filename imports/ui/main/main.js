@@ -39,13 +39,13 @@ Template.main.events({
     $('#input-search').val('');
   },
   'click #notificationsBtn': function() {
-    var notifications = Notifications.find({read: false, target_type: 'user'});
+    var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsRead", notification._id);
     });
   },
   'click #clearBtn': function() {
-    var notifications = Notifications.find({cleared: false});
+    var notifications = Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()});
     notifications.forEach(function (notification) {
       Meteor.call("setNotificationAsCleared", notification._id);
     });
@@ -76,10 +76,10 @@ Template.main.helpers({
     return false;
   },
   countNotifications: function() {
-    return Notifications.find({read: false, target_type: 'user' }).count();
+    return Notifications.find({read: false, target_type: 'user', target: Meteor.userId() }).count();
   },
   getNotifications: function() {
-    return Notifications.find({ cleared: false, target_type: 'user' }, {sort: {date: -1}});
+    return Notifications.find({ cleared: false, target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
   },
   getLink: function() {
     return "/cardset/" + this.link_id;

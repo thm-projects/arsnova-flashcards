@@ -520,6 +520,7 @@
     "notifyuser": "Benutzer benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
+    "deletedUser": "Gelöschter Benutzer",
     "complaint": "Benutzerbeschwerden",
     "lecturermessages": "Dozentenanfragen",
     "send": "Gesendete Nachrichten",
@@ -533,6 +534,7 @@
     "replyrsender": "Mail an Absender",
     "request": "Anfrage",
     "deleteallnotifications": "Alle Nachrichten löschen",
+    "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
 
     "confirm-form": {
       "cardsets": {
