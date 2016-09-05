@@ -30,14 +30,6 @@ Template.access_denied.events({
   }
 });
 
-Template.access_denied.helpers({
-  getBlockedtext: function() {
-    if (Meteor.userId()) {
-      return Meteor.user().blockedtext;
-    }
-  }
-});
-
 /**
  * ############################################################################
  * access_denied_nav_admin

@@ -9,6 +9,8 @@ Meteor.publish("userData", function () {
     return Meteor.users.find(
       {$or: [{visible: true}, {_id: this.userId}]},
       {fields: {'profile.name': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'customerId': 1, 'blockedtext': 1}});
+  } else if (Roles.userIsInRole(this.userId, 'blocked')) {
+    return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
   } else {
     this.ready();
   }
