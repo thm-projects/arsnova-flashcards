@@ -646,6 +646,8 @@
       "blocked": "Blocked user",
       "blockedtext": "Do you want to deny the access to THMcards for this user?",
       "editortext": "Do you want to give this user admin rights? As an admin user the user can access the admin panel and is allowed to edit content of THMcards.",
+      "blocked_text": "Reason for block",
+      "blockedtext_invalid": "The \"Reason for block\" field is required!",
       "cancel": "Cancel",
       "save": "Save user",
       "delete": "Delete user",
@@ -660,6 +662,8 @@
 
   "access-denied": {
     "title": "Access Denied",
-    "text": "You don't have permission to open this page!"
+    "text": "You don't have permission to open this page!",
+    "button": "Close",
+    "reason": "Reason for block: "
   }
 }

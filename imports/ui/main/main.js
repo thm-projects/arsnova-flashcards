@@ -83,7 +83,7 @@ Template.main.helpers({
   },
   getLink: function() {
     return "/cardset/" + this.link_id;
-  },
+  }
 });
 
 Template.main.onRendered(function() {

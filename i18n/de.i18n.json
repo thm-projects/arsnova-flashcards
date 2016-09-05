@@ -644,6 +644,8 @@
       "blocked": "Benutzer blockieren",
       "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
       "editortext": "Wollen Sie dem Benutzer Admin-Rechte geben? Als Admin User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "blocked_text": "Grund der Sperrung",
+      "blockedtext_invalid": "Geben Sie einen Grund der Sperrung ein!",
       "cancel": "Abbrechen",
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
@@ -658,6 +660,8 @@
 
   "access-denied": {
     "title": "Zugriff verboten",
-    "text": "Sie haben keine Berechtigung diese Seite zu öffnen!"
+    "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
+    "button": "Schließen",
+    "reason": "Grund der Sperrung: "
   }
 }

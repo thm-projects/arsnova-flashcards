@@ -135,16 +135,23 @@
                     <div class="controls">
                       <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
                         <label id="blockedOption1Admin" class="btn btn-default blocked-true {{#if blockedUser true}}active{{/if}}" style="width:100px">
-                          <input type="radio" name="options" value="true">
+                          <input type="radio" name="blockedUser" value="true">
                             <span>{{_ "admin.user.option1"}}</span>
                         </label>
                         <label id="blockedOption2Admin" class="btn btn-default blocked-false {{#if blockedUser false}}active{{/if}}" style="width:100px">
-                            <input type="radio" name="options" value="false">
+                            <input type="radio" name="blockedUser" value="false">
                             <span>{{_ "admin.user.option2"}}</span>
                         </label>
                       </div>
                     </div>
                   </div>
+                  {{#if isUserBlocked}}
+                    <div class="form-group">
+                      <label id="editUserBlockedtextLabelAdmin">{{_ "admin.user.blocked_text"}}</label>
+                      <input class="form-control" type="text" id="editUserBlockedtextAdmin" value="{{blockedtext}}">
+                      <span id="helpEditUserBlockedtextAdmin" class="help-block blockedtext"></span>
+                    </div>
+                  {{/if}}
                   {{#if isInRole 'admin'}}
                     <div class="form-group" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
                       <label id="editUserEditorLabelAdmin">Admin User</label>

@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  updateUser: function(user_id, visible, email) {
+  updateUser: function(user_id, visible, email, blockedtext) {
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
       throw new Meteor.Error("not-authorized");
     }
@@ -20,7 +20,8 @@ Meteor.methods({
     Meteor.users.update(user_id, {
       $set: {
         visible: visible,
-        email: email
+        email: email,
+        blockedtext: blockedtext
       }
     });
   },

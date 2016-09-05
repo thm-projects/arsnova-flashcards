@@ -112,6 +112,7 @@ Template.admin_user.helpers({
     return Roles.userIsInRole(this._id, 'lecturer') === value;
   },
   blockedUser: function(value) {
+    Session.set('userBlocked', Roles.userIsInRole(this._id, 'blocked'));
     return Roles.userIsInRole(this._id, 'blocked') === value;
   },
   editorUser: function(value) {
@@ -146,6 +147,9 @@ Template.admin_user.helpers({
     } else {
       return null;
     }
+  },
+  isUserBlocked: function() {
+    return Session.get('userBlocked');
   }
 });
 
@@ -164,6 +168,7 @@ Template.admin_user.events({
       if(result){
          var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
          var email = $('#editUserEmailAdmin').val();
+         var blockedtext = $('#editUserBlockedtextAdmin').val();
          var check = re.test(email);
          var visible = null;
          var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
@@ -196,7 +201,15 @@ Template.admin_user.events({
            $('#helpEditUserVisibleAdmin').html(TAPi18n.__('admin.user.visible_invalid'));
            $('#helpEditUserVisibleAdmin').css('color', '#b94a48');
          }
-         if ((check === true || email === "") && (result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
+         if (Session.get('userBlocked')) {
+           if (blockedtext === "" && 'true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
+             $('#editUserBlockedtextLabelAdmin').css('color', '#b94a48');
+             $('#editUserBlockedtextAdmin').css('border-color', '#b94a48');
+             $('#helpEditUserBlockedtextAdmin').html(TAPi18n.__('admin.user.blockedtext_invalid'));
+             $('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
+           }
+         }
+         if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) && (check === true || email === "") && (result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
            if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
              Meteor.call('updateRoles', user_id, 'pro');
            } else  {
@@ -229,7 +242,7 @@ Template.admin_user.events({
              }
            }
 
-           Meteor.call('updateUser', user_id, visible, email);
+           Meteor.call('updateUser', user_id, visible, email, blockedtext);
            Meteor.call("updateUsersName", result, user_id);
            window.history.go(-1);
          }
@@ -273,6 +286,9 @@ Template.admin_user.events({
   'change #editUserVisibleAdmin': function() {
     $('#editUserVisibleLabelAdmin').css('color', '');
     $('#helpEditUserVisibleAdmin').html('');
+  },
+  'change #editUserBlockedAdmin': function() {
+    Session.set('userBlocked', $('#editUserBlockedAdmin input[name=blockedUser]:checked').val() === 'true');
   }
 });
 
