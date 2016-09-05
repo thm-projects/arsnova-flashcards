@@ -61,7 +61,7 @@
     "upload-title": "Import cards",
     "wait": "Uploading files...",
     "select-file": "Select file",
-    "success": "Upload complete!",
+    "success": "Cards successfully imported!",
     "wrong-template": "Wrong file structure",
     "wrong-file": "Wrong file extension"
   },

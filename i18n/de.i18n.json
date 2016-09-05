@@ -61,7 +61,7 @@
     "upload-title": "Karten importieren",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
-    "success": "Datei hochgeladen!",
+    "success": "Karten erfolgreich importiert!",
     "wrong-template": "Fehlerhafte Dateistruktur",
     "wrong-file": "Falsches Dateiformat"
   },

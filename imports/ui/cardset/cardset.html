@@ -414,9 +414,12 @@
               {{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
             </span>
             <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+            <div class="clearfix"></div>
           {{else}}
             <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
           {{/unless}}
+
+          <div id="uploadError"></div>
         </div>
       </div>
       <!-- /.modal-content -->

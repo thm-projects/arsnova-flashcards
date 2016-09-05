@@ -633,16 +633,20 @@ Template.cardsetImportForm.events({
     if (evt.target.files[0].name.match(/\.(json)$/)) {
       var reader = new FileReader();
       reader.onload = function() {
-        var res = $.parseJSON('[' + this.result + ']');
-        Meteor.call('parseUpload', res, cardset_id, function(error) {
-          if (error) {
+        try {
+          var res = $.parseJSON('[' + this.result + ']');
+          Meteor.call('parseUpload', res, cardset_id, function(error) {
+            if (!error) {
+              tmpl.uploading.set(false);
+              Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
+              $('#importModal').modal('toggle');
+            }
+          });
+        } catch (e) {
             tmpl.uploading.set(false);
-            Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
-          } else {
-            tmpl.uploading.set(false);
-            Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
-          }
-        });
+            $('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": "+ e.message + '</div>');
+        }
+
       };
       reader.readAsText(evt.target.files[0]);
     } else if (evt.target.files[0].name.match(/\.(csv)$/)) {
@@ -656,13 +660,14 @@ Template.cardsetImportForm.events({
             } else {
               tmpl.uploading.set(false);
               Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
+              $('#importModal').modal('toggle');
             }
           });
         }
       });
     } else {
       tmpl.uploading.set(false);
-      Bert.alert(TAPi18n.__('upload-form.wrong-file'), 'danger', 'growl-bottom-right');
+      $('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-file') + '</div>');
     }
   }
 });
