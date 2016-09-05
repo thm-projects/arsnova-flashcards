@@ -13,6 +13,17 @@ Meteor.methods({
     for (var i = 0; i < data.length; i++) {
       var item = data[i];
 
+      if (item.front === undefined || item.front === "") {
+        throw new Meteor.Error("entry number: " + i, "front missing");
+      }
+      else if (item.back === undefined || item.back === "") {
+        throw new Meteor.Error("entry number: " + i, "back missing");
+      }
+    }
+
+    for (var i = 0; i < data.length; i++) {
+      var item = data[i];
+
       var front, back;
       try {
           // If the string is UTF-8, this will work and not throw an error.

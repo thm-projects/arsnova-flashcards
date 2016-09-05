@@ -614,6 +614,12 @@ Template.cardsetImportForm.onCreated(function() {
   Template.instance().uploading = new ReactiveVar(false);
 });
 
+Template.cardsetImportForm.onRendered(function() {
+  $('#importModal').on('hidden.bs.modal', function() {
+    $('#uploadError').html('');
+  });
+});
+
 Template.cardsetImportForm.helpers({
   uploading: function() {
     return Template.instance().uploading.get();
@@ -630,8 +636,13 @@ Template.cardsetImportForm.events({
       reader.onload = function() {
         try {
           var res = $.parseJSON('[' + this.result + ']');
+
           Meteor.call('parseUpload', res, cardset_id, function(error) {
-            if (!error) {
+            if (error) {
+              tmpl.uploading.set(false);
+              $('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": "+ error.message + '</div>');
+            }
+            else {
               tmpl.uploading.set(false);
               Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
               $('#importModal').modal('toggle');
