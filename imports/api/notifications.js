@@ -5,7 +5,9 @@ export const Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isServer) {
   Meteor.publish("notifications", function() {
-    return Notifications.find();
+    if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+      return Notifications.find({target: this.userId});
+    }
   });
 
   var NotificationSchema = new SimpleSchema({
@@ -47,7 +49,7 @@ if (Meteor.isServer) {
 Meteor.methods({
   addNotification: function(target, type, text, link_id, receiver) {
     // Make sure the user is logged in
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
     if (target === 'lecturer') {

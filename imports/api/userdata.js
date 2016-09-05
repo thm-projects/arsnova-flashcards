@@ -5,7 +5,7 @@ import { Cardsets } from './cardsets.js';
 
 if (Meteor.isServer) {
 Meteor.publish("userData", function () {
-  if (this.userId) {
+  if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
     return Meteor.users.find(
       {$or: [{visible: true}, {_id: this.userId}]},
       {fields: {'profile.name': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'customerId': 1}});
@@ -14,7 +14,7 @@ Meteor.publish("userData", function () {
   }
 });
 Meteor.publish("privateUserData", function () {
-  if (this.userId) {
+  if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
     return Meteor.users.find(
       {_id: this.userId},
       {fields: {'profile.name': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'balance': 1}});
@@ -85,7 +85,7 @@ Meteor.methods({
     Roles.addUsersToRoles(id, 'lecturer');
   },
   setLecturerRequest: function(user_id, request) {
-    if (!this.userId) {
+    if (!this.userId || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
 

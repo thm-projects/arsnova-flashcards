@@ -15,7 +15,7 @@ if (Meteor.isServer) {
     else if (Roles.userIsInRole(this.userId, 'lecturer')) {
       return Cardsets.find({$or: [{visible: true}, {request: true}, {owner: this.userId}]});
     }
-    else if (this.userId)
+    else if (this.userId && !Roles.userIsInRole(this.userId, 'blocked'))
     {
       return Cardsets.find({$or: [{visible: true}, {owner: this.userId}]});
     }
@@ -111,7 +111,7 @@ CardsetsIndex = new EasySearch.Index({
 Meteor.methods({
   addCardset: function(name, category, description, visible, ratings, kind) {
     // Make sure the user is logged in before inserting a cardset
-    if (!Meteor.userId()) {
+    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
     Cardsets.insert({
@@ -147,7 +147,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(id);
 
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }
@@ -162,7 +162,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(id);
 
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }
@@ -212,7 +212,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(id);
 
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }
@@ -233,7 +233,7 @@ Meteor.methods({
   makeProRequest: function(cardset_id) {
     var cardset = Cardsets.findOne(cardset_id);
 
-    if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+    if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
     }
 
@@ -249,7 +249,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(cardset_id);
 
     if (!Roles.userIsInRole(this.userId, 'lecturer')) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }
@@ -265,7 +265,7 @@ Meteor.methods({
   },
   declineProRequest: function(cardset_id) {
     var cardset = Cardsets.findOne(cardset_id);
-    if ((!Roles.userIsInRole(this.userId, 'lecturer'))&&(!Meteor.userId() || cardset.owner !== Meteor.userId())) {
+    if ((!Roles.userIsInRole(this.userId, 'lecturer'))&&(!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
         throw new Meteor.Error("not-authorized");
     }
 
@@ -282,7 +282,7 @@ Meteor.methods({
     var cardset = Cardsets.findOne(id);
 
     if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-      if (!Meteor.userId() || cardset.owner !== Meteor.userId()) {
+      if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
         throw new Meteor.Error("not-authorized");
       }
     }
