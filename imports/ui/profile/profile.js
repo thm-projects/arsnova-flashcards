@@ -295,23 +295,18 @@ Template.profileSettings.events({
 
         Meteor.call("checkUsersGName", gname, function(error, result) {
       	  if (error) {
+      		console.log("Error: " + error);
       		$('#inputGName').parent().parent().addClass('has-error');
       		$('#errorGName').html(TAPi18n.__('panel-body.gnameEmpty'));
       	  }
       	  else if(result) {
-      		var validBName = false;
-      		if(result.length <= 0) {
-      		  $('#inputGName').parent().parent().addClass('has-error');
-      		  $('#errorGName').html(TAPi18n.__('panel-body.bnameEmpty'));
-      		}
-      		else {
-      		  $('#inputGName').parent().parent().removeClass('has-error');
-      		  $('#inputGName').parent().parent().addClass('has-success');
-      		  $('#errorGName').html('');
-      		  gname = result;
-      		  validgName = true;
-      		}
+      		$('#inputGName').parent().parent().removeClass('has-error');
+      		$('#inputGName').parent().parent().addClass('has-success');
+      		$('#errorGName').html('');
+      		gname = result;
+      		validgName = true;
       	  }
+      	  console.log("If vorbei");
         });
 
         Meteor.call("checkUsersName", name, user_id, function(error, result) {

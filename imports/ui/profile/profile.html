@@ -154,62 +154,56 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     {{#if isUser}}
-                        {{#unless isInRole 'pro,lecturer'}}
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
-                                <div class="col-md-8">
-                                    <div class="btn-group btn-group-justified" data-toggle="buttons">
-                                        <label id="profilepublicoption1" class="btn btn-default profile-public {{#if
-                                                getUser.visible}}active{{/if}}">
-                                            <input type="radio" name="visible" value="true">
-                                            <div>{{_ "panel-body.profilepublicoption1"}}</div>
-                                        </label>
-                                        <label id="profilepublicoption2"
-                                               class="btn btn-default profile-private {{#unless
-                                                       getUser.visible}}active{{/unless}}">
-                                            <input type="radio" name="visible" value="false">
-                                            <div>{{_ "panel-body.profilepublicoption2"}}</div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                        {{/unless}}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
-                            <div class="col-md-8">
-                                <input type="email" class="form-control" id="inputEmail"
-                                       placeholder="{{_ "panel-body.email"}}" value="{{getUser.email}}">
-                                <span id="errorEmail" class="help-block name"></span>
-                            </div>
+                  	  {{#unless isInRole 'pro,lecturer'}}
+                  		<div class="form-group">
+                      	  <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
+                      	  <div class="col-md-8">
+                          	<div class="btn-group btn-group-justified" data-toggle="buttons">
+                              <label id="profilepublicoption1" class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}">
+                              	<input type="radio" name="visible" value="true">
+                              	<div>{{_ "panel-body.profilepublicoption1"}}</div>
+                              </label>
+                              <label id="profilepublicoption2" class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}">
+                              	<input type="radio" name="visible" value="false">
+                                <div>{{_ "panel-body.profilepublicoption2"}}</div>
+                              </label>
+                          	</div>
+                      	  </div>
+                  		</div>
+                  		<hr>
+                  	  {{/unless}}
+                  	  <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
+                      	<div class="col-md-8">
+                          <input type="email" class="form-control" id="inputEmail" placeholder="{{_ "panel-body.email"}}" value="{{getUser.email}}">
+                          <span id="errorEmail" class="help-block name"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.name"}}</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputName"
-                                       placeholder="{{_ "panel-body.name"}}" value="{{getUser.profile.name}}">
-                                <span id="errorName" class="help-block name"></span>
-                            </div>
+                	  </div>
+                  	  <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.name"}}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" id="inputName" placeholder="{{_ "panel-body.name"}}" value="{{getUser.profile.name}}">
+                          <span id="errorName" class="help-block name"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.bname"}}</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputBName" placeholder="{{_ "panel-body.bname"}}" value="{{getUser.profile.bname}}">
-                                <span id="errorName" class="help-block name"></span>
-                            </div>
+                  	  </div>
+                  	  <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.bname"}}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" id="inputBName" placeholder="{{_ "panel-body.bname"}}" value="{{getUser.profile.bname}}">
+                          <span id="errorBName" class="help-block name"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.gname"}}</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputGName" placeholder="{{_ "panel-body.gname"}}" value="{{getUser.profile.gname}}">
-                                <span id="errorName" class="help-block name"></span>
-                            </div>
+                  	  </div>
+                  	  <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.gname"}}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" id="inputGName" placeholder="{{_ "panel-body.gname"}}" value="{{getUser.profile.gname}}">
+                          <span id="errorGName" class="help-block name"></span>
                         </div>
-                        <div class="btn-group pull-right" role="group">
-                            <button id="profileCancel" type="button" class="btn btn-danger">{{_
-                                    "profile.cancel"}}</button>
-                            <button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
-                        </div>
+                  	  </div>
+                  	  <div class="btn-group pull-right" role="group">
+                    	<button id="profileCancel" type="button" class="btn btn-danger">{{_ "profile.cancel"}}</button>
+                    	<button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
+                  	  </div>
                     {{/if}}
                 </form>
             </div>

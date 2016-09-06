@@ -92,11 +92,19 @@ Meteor.methods({
     }
     return name;
   },
-  checkUsersBName: function(name) {
-	return name.trim();
+  checkUsersBName: function(bname) {
+    bname = bname.trim();
+    if(bname.length() <= 0) {
+      throw new Meteor.Error("bname is empty");
+    }
+	return bname;
   },
-  checkUsersGName: function(name) {
-	return name.trim();
+  checkUsersGName: function(gname) {
+	gname = gname.trim();
+    if(gname.length() <= 0) {
+      throw new Meteor.Error("gname is empty");
+    }
+	return gname;
   },
   initUser: function() {
     Meteor.users.update(Meteor.user()._id, {
