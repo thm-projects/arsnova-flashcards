@@ -3,6 +3,10 @@ import {Categories} from '../../api/categories.js';
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
 
+import { Colleges } from '../../api/colleges.js';
+
+Meteor.subscribe("colleges");
+
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
@@ -65,6 +69,11 @@ Template.registerHelper("getCategories", function () {
 			_id: 1
 		}
 	});
+});
+
+//Returns all Colleges
+Template.registerHelper("getColleges", function() {
+  return Colleges.find();
 });
 
 // Return the name of a Category

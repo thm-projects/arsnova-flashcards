@@ -4,6 +4,7 @@ import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 
 
+import {Colleges} from '../../api/colleges.js';
 
 var initCategories = function () {
 	var categoryNames = [
@@ -212,6 +213,7 @@ var initBadges = function () {
 };
 
 Meteor.startup(function () {
+    var colleges   = initColleges();
 	var categories = initCategories();
 	var badges = initBadges();
 
@@ -237,4 +239,11 @@ Meteor.startup(function () {
 			}
 		}
 	}
+    if ( Colleges.find().count() === 0) {
+        for (var college in colleges) {
+            if (colleges.hasOwnProperty(college)) {
+                Colleges.insert(colleges[college]);
+            }
+        }
+    }
 });
