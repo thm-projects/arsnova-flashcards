@@ -94,6 +94,39 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	userDeleted: {
 		type: Boolean
+	},
+	modulLong: {
+		type: String
+	},
+	modulShort: {
+		type: String
+	},
+	modulNum: {
+		type: String
+	},
+	surname: {
+		type: String
+	},
+	degree: {
+		type: String
+	},
+	college: {
+		type: String
+	},
+	academicCourse: {
+		type: String
+	},
+	department: {
+		type: String
+	},
+	studyType: {
+		type: String
+	},
+	BachelorOrMaster: {
+		type: String
+	},
+	semester: {
+	type: String
 	}
 });
 
