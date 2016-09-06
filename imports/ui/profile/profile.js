@@ -350,6 +350,8 @@ Template.profileSettings.events({
         var user = Meteor.users.findOne(Meteor.userId());
         $('#inputEmail').val(user.email);
         $('#inputName').val(user.profile.name);
+    	$('#inputBName').val(user.profile.bname);
+    	$('#inputGName').val(user.profile.gname);
         Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
     }
 });
