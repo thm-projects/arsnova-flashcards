@@ -245,7 +245,9 @@
     "total": "Total",
     "today": "Heute",
     "yesterday": "Gestern",
-    "days": "7 Tage",
+    "month": "4 Wochen",
+    "threemonth": "3 Monate",
+
     "lastredeem": "Zuletzt für: "
   },
 
