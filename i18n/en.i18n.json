@@ -236,7 +236,9 @@
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
-    "nameAlreadyExists": "Username is already taken!"
+    "nameAlreadyExists": "Username is already taken!",
+    "bnameEmpty": "Birth name must not be empty!",
+    "gnameEmpty": "Given name must not be empty!"
   },
   "panel-heading-experience": {
     "experience": "Experience Points (XP)",
