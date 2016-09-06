@@ -3,108 +3,76 @@ import {Meteor} from 'meteor/meteor';
 import {Cardsets} from './cardsets.js';
 
 if (Meteor.isServer) {
-	Meteor.publish("userData", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({
-				$or: [
-					{visible: true},
-					{_id: this.userId}
-				]
-			}, {
-				fields: {
-					'profile.name': 1,
-					'email': 1,
-					'services': 1,
-					'lvl': 1,
-					'visible': 1,
-					'lastOnAt': 1,
-					'daysInRow': 1,
-					'customerId': 1,
-					'blockedtext': 1
-				}
-			});
-		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("privateUserData", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({_id: this.userId}, {
-				fields: {
-					'profile.name': 1,
-					'email': 1,
-					'services': 1,
-					'lvl': 1,
-					'visible': 1,
-					'lastOnAt': 1,
-					'daysInRow': 1,
-					'balance': 1
-				}
-			});
-		} else {
-			this.ready();
-		}
-	});
+Meteor.publish("userData", function () {
+  if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+    return Meteor.users.find(
+      {$or: [{visible: true}, {_id: this.userId}]},
+      {fields: {'profile.name': 1, 'profile.bname': 1, 'profile.gname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'customerId': 1, 'blockedtext': 1}});
+  } else if (Roles.userIsInRole(this.userId, 'blocked')) {
+    return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
+  } else {
+    this.ready();
+  }
+});
+Meteor.publish("privateUserData", function () {
+  if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+    return Meteor.users.find(
+      {_id: this.userId},
+      {fields: {'profile.name': 1, 'profile.bname': 1, 'profile.gname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'balance': 1}});
+  } else {
+    this.ready();
+  }
+});
 }
 
 Meteor.methods({
-	updateUsersVisibility: function (visible) {
-		Meteor.users.update(Meteor.user()._id, {
-			$set: {
-				visible: visible
-			}
-		});
-	},
-	updateUsersEmail: function (email) {
-		Meteor.users.update(Meteor.user()._id, {
-			$set: {
-				email: email
-			}
-		});
-	},
-	updateUsersName: function (name, id) {
-		Meteor.users.update(id, {
-			$set: {
-				"profile.firstName": name
-			}
-		});
-		Cardsets.update({owner: id}, {
-			$set: {
-				firstName: name
-			}
-		}, {multi: true});
-	},
-	updateUserGivenName: function (name, id) {
-		Meteor.users.update(id, {
-			$set: {
-				"profile.given_name": "my_given_name - neu"
-			}
-		});
-	},
-	checkUsersName: function (name, id) {
-		name = name.trim();
-		var userExists = Meteor.users.findOne({"profile.name": name});
-
+  updateUsersVisibility: function(visible) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        visible: visible
+      }
+    });
+  },
+  updateUsersEmail: function(email) {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        email: email
+      }
+    });
+  },
+  updateUsersName: function(name, id) {
+    Meteor.users.update(id, {
+      $set: {
+        "profile.name": name
+      }
+    });
+    Cardsets.update({ owner: id }, {
+      $set: {
+        username: name
+      }
+    }, {multi:true});
+  },
+  updateUsersBName: function(bname, id) {
+    Meteor.users.update(id, {
+      $set: {
+        "profile.bname": bname
+      }
+	});
+  },
+  updateUsersGName: function(gname, id) {
+    Meteor.users.update(id, {
+      $set: {
+        "profile.gname": gname
+      }
+    });
+  },
+  checkUsersName: function(name, id) {
+    name = name.trim();
+    var userExists = Meteor.users.findOne({"profile.name": name});
     if (userExists && userExists._id !== id) {
       throw new Meteor.Error("username already exists");
     }
     return name;
-  },
-  checkUsersBName: function(bname) {
-    bname = bname.trim();
-    if(bname.length <= 0) {
-      throw new Meteor.Error("bname is empty");
-    }
-	return bname;
-  },
-  checkUsersGName: function(gname) {
-	gname = gname.trim();
-    if(gname.length <= 0) {
-      throw new Meteor.Error("gname is empty");
-    }
-	return gname;
   },
   initUser: function() {
     Meteor.users.update(Meteor.user()._id, {

@@ -257,87 +257,80 @@ Template.profileSettings.events({
 		var email = $('#inputEmail').val();
 		var validEmail = re.test(email);
 
-		if (validEmail === false) {
-			$('#inputEmail').parent().parent().addClass('has-error');
-			$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
-		} else {
-			$('#inputEmail').parent().parent().removeClass('has-error');
-			$('#inputEmail').parent().parent().addClass('has-success');
-			$('#errorEmail').html('');
-		}
+        if (validEmail === false) {
+            $('#inputEmail').parent().parent().addClass('has-error');
+            $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+        } else {
+            $('#inputEmail').parent().parent().removeClass('has-error');
+            $('#inputEmail').parent().parent().addClass('has-success');
+            $('#errorEmail').html('');
+        }
+
+        // Birth Name validation
+        var bname = $('#inputBName').val().trim();
+        var validBName = false;
+
+        if (bname.length <= 0) {
+      	  $('#inputBName').parent().parent().addClass('has-error');
+      	  $('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
+      	}
+      	else {
+      	  $('#inputBName').parent().parent().removeClass('has-error');
+      	  $('#inputBName').parent().parent().addClass('has-success');
+      	  $('#errorBName').html('');
+      	  $('#inputBName').val(bname);
+      	  validBName = true;
+      	}
+
+        // Given Name validation
+        var gname = $('#inputGName').val().trim();
+        var validGName = false;
+
+		if (gname.length <= 0) {
+      		$('#inputGName').parent().parent().addClass('has-error');
+      		$('#errorGName').html(TAPi18n.__('panel-body.gnameEmpty'));
+      	}
+      	else {
+      		$('#inputGName').parent().parent().removeClass('has-error');
+      		$('#inputGName').parent().parent().addClass('has-success');
+      		$('#errorGName').html('');
+      	  $('#inputGName').val(gname);
+      		validGName = true;
+      	}
 
         // Name validation
         var name = $('#inputName').val();
         var user_id = Meteor.userId();
-        var bname = $('#inputBName').val();
-        var gname = $('#inputGName').val();
-
-        Meteor.call("checkUsersBName", bname, function(error, result) {
-      	  if (error) {
-      		$('#inputBName').parent().parent().addClass('has-error');
-      		$('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
-      	  }
-      	  else if(result) {
-      		var validBName = false;
-      		if(result.length <= 0) {
-      		  $('#inputBName').parent().parent().addClass('has-error');
-      		  $('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
-      		}
-      		else {
-      		  $('#inputBName').parent().parent().removeClass('has-error');
-      		  $('#inputBName').parent().parent().addClass('has-success');
-      		  $('#errorBName').html('');
-      		  bname = result;
-      		  validBName = true;
-      		}
-      	  }
-        });
-
-        Meteor.call("checkUsersGName", gname, function(error, result) {
-      	  if (error) {
-      		console.log("Error: " + error);
-      		$('#inputGName').parent().parent().addClass('has-error');
-      		$('#errorGName').html(TAPi18n.__('panel-body.gnameEmpty'));
-      	  }
-      	  else if(result) {
-      		$('#inputGName').parent().parent().removeClass('has-error');
-      		$('#inputGName').parent().parent().addClass('has-success');
-      		$('#errorGName').html('');
-      		gname = result;
-      		validgName = true;
-      	  }
-      	  console.log("If vorbei");
-        });
 
         Meteor.call("checkUsersName", name, user_id, function(error, result) {
-            if (error) {
+			if (error) {
                 $('#inputName').parent().parent().addClass('has-error');
                 $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-            } else if (result) {
-                var validName = false;
-                if (result.length < 5) {
-                    $('#inputName').parent().parent().addClass('has-error');
-                    $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
-                } else if (result.length > 25) {
-                    $('#inputName').parent().parent().addClass('has-error');
-                    $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
-                } else {
-                    $('#inputName').parent().parent().removeClass('has-error');
-                    $('#inputName').parent().parent().addClass('has-success');
-                    $('#errorName').html('');
-                    name = result;
-                    validName = true;
-                }
-
-                if (validEmail && validName && validBName && validGName) {
-                  Meteor.call("updateUsersEmail", email);
-                  Meteor.call("updateUsersName", name, user_id);
-                  Meteor.call("updateUsersBName", bname);
-                  Meteor.call("updateUsersGName", gname);
-                  Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
-                } else {
-                  Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
-                }
+            }
+			else if (result) {
+              var validName = false;
+              if (result.length < 5) {
+                  $('#inputName').parent().parent().addClass('has-error');
+                  $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+              } else if (result.length > 25) {
+                  $('#inputName').parent().parent().addClass('has-error');
+                  $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
+              } else {
+                  $('#inputName').parent().parent().removeClass('has-error');
+                  $('#inputName').parent().parent().addClass('has-success');
+                  $('#errorName').html('');
+                  name = result;
+                  validName = true;
+              }
+              if (validEmail && validName && validBName && validGName) {
+                Meteor.call("updateUsersEmail", email);
+                Meteor.call("updateUsersName", name, user_id);
+                Meteor.call("updateUsersBName", bname);
+                Meteor.call("updateUsersGName", gname);
+                Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+              } else {
+                Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
+              }
             }
         });
     },
