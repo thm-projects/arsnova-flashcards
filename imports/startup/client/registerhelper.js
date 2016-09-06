@@ -5,24 +5,29 @@ import { Cards } from '../../api/cards.js';
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function() {
-  return this.owner === Meteor.userId() || this.visible === true;
+  if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+    return this.owner === Meteor.userId() || this.visible === true || this.request === true;
+  }
+  else {
+    return this.owner === Meteor.userId() || this.visible === true;
+  }
 });
 
 // Check if user is owner of a cardset
 Template.registerHelper("isOwnerCard", function() {
     var owner;
     if(this._id) {
-	owner = Cardsets.findOne(Router.current().params._id).owner;
+	     owner = Cardsets.findOne(Router.current().params._id).owner;
     }
     return owner === Meteor.userId();
 });
 
 Template.registerHelper("isOwner", function() {
-  var owner;
+  var owner = undefined;
   if (this.owner) {
     owner = this.owner;
   }
-  if (owner === undefined) {
+  else if (Template.parentData(1)) {
     owner = Template.parentData(1).owner;
   }
   return owner === Meteor.userId();
@@ -30,9 +35,7 @@ Template.registerHelper("isOwner", function() {
 
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function(cardset_id) {
-  return Cards.find({
-    cardset_id: cardset_id
-  }).count();
+  return Cardsets.findOne({_id: cardset_id}).quantity;
 });
 
 // Returns all Cards of a Carddeck
@@ -47,24 +50,63 @@ Template.registerHelper("getDate", function() {
   return moment(this.date).locale(getUserLanguage()).format('LL');
 });
 
+// Returns the locale date
+Template.registerHelper("getDateUpdated", function() {
+  return moment(this.dateUpdated).locale(getUserLanguage()).format('LL');
+});
+
+// Returns the locale date with time
+Template.registerHelper("getTimestamp", function() {
+  return moment(this.date).locale(getUserLanguage()).format('LLLL');
+});
+
 // Returns all Categories
 Template.registerHelper("getCategories", function() {
   return Categories.find({}, {
     sort: {
-      name: 1
+      _id: 1
     }
   });
 });
 
 // Return the name of a Category
 Template.registerHelper("getCategory", function(value) {
-  var id = value.toString();
-  if (id.length === 1) {
-    id = "0" + id;
+  if(value !== null)
+  {
+    var id = value.toString();
+    if (id.length === 1) {
+      id = "0" + id;
+    }
+
+    var category = Categories.findOne(id);
+    if (category !== undefined) {
+      return category.name;
+    }
+  }
+});
+
+// Returns if user is deleted or not
+Template.registerHelper("userExists", function(userDeleted) {
+  if (userDeleted === true) {
+    return false;
+  } else {
+    return true;
+  }
+});
+
+// i18n type notifications
+Template.registerHelper("getType", function(type) {
+  if (type === 'Gemeldeter Benutzer') {
+    type = TAPi18n.__('notifications.reporteduser');
+  } else if (type === 'Gemeldeter Kartensatz') {
+    type = TAPi18n.__('notifications.reportedcardset');
+  } else if (type === 'Adminbenachrichtigung (Beschwerde Benutzer)') {
+    type = TAPi18n.__('notifications.reporteduseradmin');
+  } else if (type === 'Adminbenachrichtigung (Beschwerde Kartensatz)') {
+    type = TAPi18n.__('notifications.reportedcardsetadmin');
+  } else if (type === 'Dozenten-Anfrage') {
+    type = TAPi18n.__('notifications.lecturer');
   }
 
-  var category = Categories.findOne(id);
-  if (category !== undefined) {
-    return category.name;
-  }
+  return type;
 });

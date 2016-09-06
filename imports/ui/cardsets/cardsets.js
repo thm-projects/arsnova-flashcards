@@ -6,7 +6,6 @@ import { Session } from 'meteor/session';
 
 import { Cardsets } from '../../api/cardsets.js';
 import { Categories } from '../../api/categories.js';
-import { Cards } from '../../api/cards.js';
 import { Learned } from '../../api/learned.js';
 
 
@@ -16,7 +15,6 @@ import './cardsets.html';
 
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 
 
 Session.setDefault('cardsetSortCreated', {name: 1});
@@ -123,7 +121,7 @@ Template.cardsets.events({
     $('#newSetCategory').text(categoryName);
     tmpl.find('#newSetCategory').value = categoryId;
   },
-  'click #newSetModal .save': function(evt, tmpl) {
+  'click #newSetModal .save': function(evt) {
     if ($('#newSetName').val() === "") {
       $('#newSetNameLabel').css('color', '#b94a48');
       $('#newSetName').css('border-color', '#b94a48');
@@ -146,9 +144,8 @@ Template.cardsets.events({
       var name = $('#newSetName').val();
       var category = $('#newSetCategory').val();
       var description = $('#newSetDescription').val();
-      var visible = ('true' === $('#newCardSetVisibility > .active > input').val());
-      var ratings = ('true' === $('#newCardSetRating > .active > input').val());
-      Meteor.call("addCardset", name, category, description, visible, ratings);
+
+      Meteor.call("addCardset", name, category, description, false, true, 'personal');
       $('#newSetModal').modal('hide');
     }
   }
@@ -179,16 +176,6 @@ Template.cardsetsForm.onRendered(function() {
     $('#helpNewSetCategory').html('');
     $('#newSetCategoryDropdown').css('border-color', '');
     $('#newSetCategoryLabel').css('color', '');
-
-    if ($('#newCardSetVisibilityoption2').hasClass('active')) {
-      $('#newCardSetVisibilityoption2').removeClass('active');
-      $('#newCardSetVisibilityoption1').addClass('active');
-    }
-
-    if ($('#newCardSetRatingoption2').hasClass('active')) {
-      $('#newCardSetRatingoption2').removeClass('active');
-      $('#newCardSetRatingoption1').addClass('active');
-    }
   });
 });
 

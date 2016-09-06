@@ -3,11 +3,17 @@
   <link rel="icon" sizes="192x192" href="/img/icon192.png">
   <link rel="apple-touch-icon" href="/img/icon192.png">
   <title>THMcards</title>
+
+  <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+  <script>
+    window.cookieconsent_options = {
+      "message":"THMcards is a web app that uses cookies to ensure you get the best experience.",
+      "dismiss":"Got it!",
+      "learnMore":" More about data privacy",
+      "link": "/datenschutz",
+      "theme":"light-top"
+    };
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
 </head>
-
-
-<!------------------------AUSLAGERN----------------------------------
-<body>
- {{> bertAlert}}
-</body>
--------------------------------------------------------------------->

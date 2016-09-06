@@ -1,59 +1,90 @@
 <template name="pool">
-  <div class="col-md-12" id="pool-category-region">
-    <div class="list-group">
-      {{#each getCategories}}
-      <a class="list-group-item" href="pool/{{_id}}">
-        <span class="badge">{{getCount this._id}}</span> {{name}}</a>
-      {{/each}}
+    <div class="col-md-12" id="pool-category-region">
+        <div class="list-group">
+            {{#each getCategories}}
+                <a class="list-group-item" href="pool/{{_id}}">
+                    <span class="badge">{{getCount this._id}}</span> {{name}}</a>
+            {{/each}}
+        </div>
     </div>
-  </div>
 </template>
 
 <template name="category">
-  <div class="col-md-12">
-    <h4>{{name}}</h4>
-  </div>
-  <div class="col-md-12" id="pool-category-region">
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            <span>{{_ "pool.name"}}</span>
-            <a class="namedown" role="button">⇓</a>
-            <a class="nameup" role="button">⇑</a>
-          </th>
-          <th>
-            <span>{{_ "pool.description"}}</span>
-          </th>
-          <th>
-            <span>{{_ "pool.created"}}</span>
-            <a class="createddown" role="button">⇓</a>
-            <a class="createdup" role="button">⇑</a>
-          </th>
-        </tr>
-      </thead>
-      <tbody id="cardSetsPool">
+    <div class="categories">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <h4>{{name}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                      <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default active">
+                          <input type="checkbox" autocomplete="off" value="free" checked> Free
+                        </label>
+                        <label class="btn btn-success active">
+                          <input type="checkbox" autocomplete="off" value="edu" checked> Edu
+                        </label>
+                        <label class="btn btn-info active">
+                          <input type="checkbox" autocomplete="off" value="pro" checked> Pro
+                        </label>
+                      </div>
+                        <div class="btn-group pull-right">
+                            <button id="sortRelevance" class="btn btn-default" type="button">{{_ "pool.relevance"}} {{{getSortRelevanceIcon}}}</button>
+                            <button id="sortName" class="btn btn-default" type="button">{{_ "pool.name"}} {{{getSortNameIcon}}}</button>
+                            <button id="sortUser" class="btn btn-default" type="button">{{_ "pool.author"}} {{{getSortUserIcon}}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{#if getDecks.count}}
-          {{#each getDecks}}
-            <tr>
-              <td>
-                <a href="/cardset/{{_id}}" class="pool-category-set-details-link">{{name}}
-                  <span class="badge cardsetBadge">{{countCards this._id}}</span>
-                </a>
-              </td>
-              <td>{{description}}</td>
-              <td><a href="/profile/{{owner}}" class="pool-category-set-owner-link">{{username}}</a></td>
-            </tr>
-          {{/each}}
+            {{#each getDecks}}
+                <div class="col-md-12">
+                  <a href="/cardset/{{_id}}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-8">
+                                <div class="">
+                                    <h4>{{{getKind}}} {{name}}</h4>
+                                    <hr> {{description}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <strong class="left">{{_ "pool.rating"}}:</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                    <hr>
+                                    <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
+                                    <br>
+                                    <strong>{{_ "pool.author"}}:</strong>
+                                    {{#if userExists userDeleted}}
+                                      {{username}}
+                                    {{else}}
+                                      {{username}} ({{_ "pool.deleted"}})
+                                    {{/if}}
+                                    <br>
+                                    <strong>{{_ "pool.release"}}:</strong> {{getDate}}
+                                    <br>
+                                    <strong>{{_ "pool.dateUpdated"}}:</strong> {{getDateUpdated}}
+                                    <br>
+                                    <strong>{{_ "pool.license"}}:</strong>
+                                    <span id="pool_license">{{getLicense}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            {{/each}}
         {{else}}
-          <tr class="empty-list">
-            <td align="center" colspan="3" class="set-list-empty">
-              <span class="emptyTextList">{{_ "nocards"}}</span>
-              <br>
-            </td>
-          </tr>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span class="emptyTextList">{{_ "nocards"}}</span>
+                    </div>
+                </div>
+            </div>
         {{/if}}
-      </tbody>
-    </table>
-  </div>
+    </div>
 </template>

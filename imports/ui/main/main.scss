@@ -44,6 +44,41 @@ body {
 		color: $color_athens_gray_approx;
 	}
 	.navbar-nav {
+		.notifications {
+			min-width: 420px;
+			.notification-footer,
+			.notification-heading {
+				padding: 2px 10px;
+				.menu-title {
+					font-size: 1.5rem;
+					display: inline-block;
+				}
+			}
+			.divider {
+				margin: 5px 0;
+			}
+			.notifications-wrapper {
+				overflow: auto;
+				max-height: 250px;
+				.notification-item {
+					padding: 10px;
+					margin: 5px;
+					background: $color_athens_gray_approx;
+					border-radius: 4px;
+					.item-title {
+						font-size: 1.3rem;
+						color: #000;
+					}
+				}
+			}
+			a.content {
+				text-decoration: none;
+				background: #ccc;
+			}
+		}
+		.glyphicon {
+			margin-right: 5px;
+		}
 		> {
 			.active > a {
 				color: $white;
@@ -142,6 +177,12 @@ body {
 	> .container {
 		padding-right: 15px;
 		padding-left: 15px;
+		#impressum {
+			padding-right: 10px;
+		}
+		#datenschutz {
+			padding-right: 10px;
+		}
 	}
 }
 #searchResults {

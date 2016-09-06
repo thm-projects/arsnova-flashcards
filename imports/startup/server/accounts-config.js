@@ -27,3 +27,22 @@ ServiceConfiguration.configurations.insert({
     clientId: Meteor.settings.google.api,
     secret: Meteor.settings.google.secret
 });
+
+
+Meteor.users.after.insert(function (userId, doc) {
+  if(doc.services.cas)
+  {
+    if(doc.services.cas.id === Meteor.settings.admin.name)
+    {
+      Roles.addUsersToRoles(doc._id, ['standard', 'university', 'admin']);
+    }
+    else
+    {
+      Roles.addUsersToRoles(doc._id, ['standard', 'university']);
+    }
+  }
+  else
+  {
+    Roles.addUsersToRoles(doc._id, ['standard']);
+  }
+});

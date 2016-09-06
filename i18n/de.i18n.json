@@ -23,12 +23,33 @@
   	"carddecks": "Meine Kartensätze",
   	"pool": "Pool",
   	"myprofile": "Mein Profil",
+  	"billing": "Abrechnung",
   	"logout": "Logout",
-  	"search": "Suche"
+  	"search": "Suche",
+    "frontend": "Front-End",
+    "backend": "Back-End"
   },
 
   "footer": {
-  	"impressum": "Impressum"
+  	"impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "agb": "AGB"
+  },
+
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "clearAll": "Leeren",
+    "viewAll": "Zeige alle Benachrichtigungen",
+    "noNotification": "Keine neuen Benachrichtigungen vorhanden",
+    "deleteAll": "Alle löschen",
+    "approved": "Freigegeben",
+    "pending": "Freigabe ausstehend",
+    "progress": "In Bearbeitung",
+    "reporteduser": "Gemeldeter Benutzer",
+    "reportedcardset": "Gemeldeter Kartensatz",
+    "reporteduseradmin": "Adminbenachrichtigung (Gemeldeter Benutzer)",
+    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
+    "lecturer": "Dozenten-Anfrage"
   },
 
   "input-group": {
@@ -40,7 +61,7 @@
     "upload-title": "Karten importieren",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
-    "success": "Datei hochgeladen!",
+    "success": "Karten erfolgreich importiert!",
     "wrong-template": "Fehlerhafte Dateistruktur",
     "wrong-file": "Falsches Dateiformat"
   },
@@ -86,6 +107,7 @@
   	"rating": "Bewertungen",
   	"ratingoption1": "erlauben",
   	"ratingoption2": "abschalten",
+    "kind": "Art",
     "cancel": "Abbrechen",
     "createcarddeck": "Kartensatz anlegen",
     "delete": "Kartensatz löschen",
@@ -93,26 +115,126 @@
     "save": "Kartensatz speichern",
     "name_required": "Geben Sie einen Namen ein!",
     "description_required": "Geben Sie eine Beschreibung ein!",
-    "category_required": "Wählen Sie eine Kategorie!"
+    "category_required": "Wählen Sie eine Kategorie!",
+    "price": "Verkaufspreis",
+    "publicate": "Status speichern",
+    "modules": "Rechtemodule",
+    "by-desc": "Der Name des Urhebers muss genannt werden.",
+    "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
+    "nd-desc": "Das Werk darf nicht verändert werden.",
+    "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
+    "saveLicense": "Lizenz speichern",
+    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+    "report": "Kartensatz/Benutzer melden",
+    "cardsetowner": "Autor",
+    "cardsetname": "Kartensatz",
+    "reason": "Grund",
+    "reportuser": "Benutzer melden",
+    "reportcardset": "Kartensatz melden",
+    "text": "Weitere Informationen",
+    "text_chars": "Es sind 50 Zeichen erforderlich!",
+    "submitcomplaint": "Beschwerde absenden"
   },
 
+  "profile": {
+    "overview": "Lernfortschritt",
+    "billing": "Abrechnung",
+    "membership": "Mitgliedschaft",
+    "notifications": "Benachrichtigungen",
+    "settings": "Einstellungen",
+    "requests": "Pro-Freigabe",
+    "norequests": "Keine Anfragen vorhanden",
+    "lecturer": "Dozenten-Freigabe",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "saved": "Einstellungen wurden gespeichert!",
+    "canceled": "Änderungen wurden verworfen!",
+    "error": "Fehlerhafte Einträge!"
+  },
 
   "profil-header": {
   	"name": "Profil von "
   },
 
   "panel-heading": {
-  	"hallo": "Hallo!"
+  	"hallo": "Einstellungen"
+  },
+
+  "membership": {
+    "upgrade": {
+      "progress": "In Bearbeitung!",
+      "subscribed": "Vielen Dank für Ihr Abonnement!"
+    },
+    "downgrade": {
+      "error": "Sie können Ihr Konto nicht herunterstufen solange Sie Pro-Kartensätze haben!",
+      "confirm": "Sind Sie sicher ihr Konto zurückzustufen? Dies bedeutet, dass Ihr Abonnement nicht länger aktiv ist. Sie können später jederzeit Ihr Konto wieder hochstufen.",
+      "canceled": "Abonnement erfolgreich beendet!"
+    }
+  },
+
+  "billing": {
+    "plan": {
+      "header": "Mitgliedschaft",
+      "desc": "Wähle deine gewünschte Mitgliedsart aus.",
+      "actual": "Deine momentane Auswahl",
+      "free": "Create. Learn. Share",
+      "edu": "Edu-Kartensätze frei erhältlich",
+      "back": "Zurück zur kostenfreien Version",
+      "pro": "Erstelle und erhalte Pro-Kartensätze",
+      "month": "Monat",
+      "subscribe": "Abonniere die Pro-Version jetzt!",
+      "lecturer": "Dozent",
+      "send": "Anfrage versenden um alle Vorteile eines Dozenten zu erhalten.",
+      "lecturerActivatet": "Sie sind als Dozent freigeschaltet.",
+      "name": "Name",
+      "prename": "Vorname"
+    },
+    "payment": {
+      "header": "Zahlungsmethode",
+      "empty": "Sie haben bisher keine Zahlungsmethode hinzugefügt!",
+      "save": "Zahlungsmethode speichern",
+      "saveMsg": "Ihre Zahlungsmethode wurde gespeichert",
+      "progress": "Änderungen werden verarbeitet",
+      "actual": "Ihre Zahlungsmethoden:",
+      "add": "Zahlungsmethoden hinzufügen oder auswählen:"
+    },
+    "balance": {
+      "header": "Kontostand",
+      "disburse": "auszahlen",
+      "progress": "Auszahlung wird bearbeitet",
+      "success": "Auszahlung wurde durchgeführt",
+      "failed": "Auszahlung nicht freigeschaltet. Wenden Sie sich an ihren Administrator."
+    },
+    "revenue": {
+      "header": "Umsatzhistorie",
+      "empty": "Sie haben bisher noch keine Einnahmen generiert!",
+      "boughtFrom": "Gekauft von",
+      "for": "für",
+      "at": "am"
+    },
+    "purchases": {
+      "header": "Zahlungshistorie",
+      "empty": "Sie haben bisher noch keine Käufe abgeschlossen!",
+      "boughtFor": "Gekauft für",
+      "at": "am"
+    }
   },
 
   "panel-body": {
   	"name": "Benutzername",
-  	"login": "Angemeldet via",
+  	"login": "Registriert via",
   	"email": "Email",
   	"profilepublic": "Profil öffentlich",
   	"profilepublicoption1": "Ja",
   	"profilepublicoption2": "Nein",
-    "profileprivate": "Profil ist privat"
+    "profileprivate": "Profil ist privat",
+    "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
+    "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
+    "nameToShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
+    "nameToLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
+    "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
 
   "panel-heading-experience": {
@@ -172,13 +294,51 @@
     "viewlist": "Liste",
     "createcard": "Neue Karte erstellen",
     "importcard": "Karten importieren",
-    "exportcard": "Karten exportieren"
+    "exportcard": "Karten exportieren",
+    "publicate": "Status",
+    "publicated": "Veröffentlicht",
+    "review": "In Überprüfung",
+    "private": "Privat",
+    "license": " Lizenz wählen"
   },
 
   "pool": {
+    "relevance": "Relevanz",
     "name": "Name",
-    "description": "Beschreibung",
-    "created": "Erstellt von"
+    "author": "Autor",
+    "rating": "Bewertung",
+    "quantity": "Kartenanzahl",
+    "release": "Veröffentlicht",
+    "deleted": "Gelöscht",
+    "license": "Lizenz",
+    "dateUpdated": "Zuletzt aktualisiert"
+  },
+
+  "cardset": {
+    "info": {
+      "author": "Autor",
+      "rating": "Bewertung",
+      "quantity": "Kartenanzahl",
+      "release": "Veröffentlicht",
+      "reviewer": "Prüfer",
+      "amount": "Preis",
+      "bought": "Gekauft am",
+      "deleted": "Gelöscht",
+      "license": "Lizenz",
+      "dateUpdated": "Zuletzt aktualisiert"
+    },
+    "request": {
+      "accept": "Kartensatz freigeben",
+      "decline": "Kartensatz nicht freigeben",
+      "accepted": "Kartensatz freigegeben",
+      "declined": "Kartensatz nicht freigegeben",
+      "reason": "Geben Sie eine Begründung für die Ablehnung der Anfrage an"
+    },
+    "money": {
+      "buy": "Kartensatz kaufen für",
+      "pro": "Als Premium-Nutzer lernen",
+      "bought": "Vielen Dank für Ihren Kauf!"
+    }
   },
 
   "cardmemo": {
@@ -247,8 +407,8 @@
   },
 
   "learn-endscreen": {
-    "success": "Lerneinheit erfolgreich beendet",
-    "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz",
+    "success": "Lerneinheit erfolgreich beendet.",
+    "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz.",
     "back2": "Zurück zum Kartensatz"
   },
 
@@ -263,6 +423,7 @@
   "learn":"Lernen",
   "learnfile":"Lernkartei",
   "memo":"Memo",
+  "report": "Kartensatz/Benutzer melden",
   "meteor":"Meteor",
   "play":"Spielen",
   "yourhighscore": "Dein Highscore:",
@@ -327,5 +488,180 @@
   "newbadge": "Neuer Badge",
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
-  "badgetext3": " erhalten"
+  "badgetext3": " erhalten",
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "cardsets": "Kartensätze",
+    "cards": "Karten",
+    "users": "Benutzer",
+    "notifications": "Benachrichtigungen",
+    "see_all": "Alle ansehen",
+    "name": "Name",
+    "kind": "Art",
+    "front": "Vorderseite",
+    "back": "Rückseite",
+    "admin": "Admin",
+    "pro": "Pro",
+    "university": "Edu",
+    "lecturer": "Dozent",
+    "mail": "Mail",
+    "joined": "Beigetreten",
+    "blocked": "Blockiert",
+    "created": "Erstelldatum",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "edituser": "Benutzer bearbeiten",
+    "editcardset": "Kartensatz bearbeiten",
+    "editcard": "Karte bearbeiten",
+    "deleteuser": "Benutzer löschen",
+    "deletecard": "Karte löschen",
+    "deletecardset": "Kartensatz löschen",
+    "notifyuser": "Benutzer benachrichtigen",
+    "view": "Übersicht",
+    "deleted": "Gelöscht",
+    "deletedUser": "Gelöschter Benutzer",
+    "complaint": "Benutzerbeschwerden",
+    "lecturermessages": "Dozentenanfragen",
+    "send": "Gesendete Nachrichten",
+    "type": "Typ",
+    "sender": "Absender",
+    "reason": "Grund",
+    "text": "Weitere Informationen",
+    "date": "Datum",
+    "receiver": "Empfänger",
+    "replyreceiver": "Mail an Beschuldigten",
+    "replyrsender": "Mail an Absender",
+    "request": "Anfrage",
+    "deleteallnotifications": "Alle Nachrichten löschen",
+    "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
+
+    "confirm-form": {
+      "cardsets": {
+        "title": "Kartensatz löschen",
+        "text": "Wollen Sie diesen Kartensatz wirklich löschen?"
+      },
+      "cards": {
+        "title": "Karte löschen",
+        "text": "Wollen Sie diese Karte wirklich löschen?"
+      },
+      "users": {
+        "title": "Benutzer löschen",
+        "text": "Wollen Sie diesen Benutzer wirklich löschen?"
+      },
+      "notifications": {
+        "title": "Nachricht löschen",
+        "text": "Wollen Sie diese Nachricht wirklich löschen?",
+        "title_all": "Alle Nachrichten löschen",
+        "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
+        "delete_all": "Nachrichten löschen"
+      },
+
+      "cancel": "Abbrechen"
+    },
+
+    "message": {
+      "messageUser": "Benutzer benachrichtigen",
+      "reason": "Grund",
+      "reportuser": "Beschwerde Benutzer",
+      "reportcardset": "Beschwerde Kartensatz",
+      "cardset": "Kartensatz",
+      "noCardsets": "Keine Kartensätze",
+      "text": "Weitere Informationen",
+      "cancel": "Abbrechen",
+      "sendMessage": "Benachrichtigung senden",
+      "text_chars": "Es sind 50 Zeichen erforderlich!",
+      "to": "An"
+    },
+
+    "lecturerrequest": {
+      "title": "Dozenten-Anfrage",
+      "no": "Anfrage ablehnen",
+      "yes": "Anfrage zustimmen",
+      "text": "Anfrage wurde bearbeitet",
+      "cancel": "Abbrechen"
+    },
+
+    "cardset": {
+      "header": "Kartensatz",
+      "edit": "Bearbeite",
+      "username": "Benutzer:",
+      "date": "Erstelldatum:",
+      "info": "Kartensatz Informationen",
+      "settings": "Kartesatz Einstellungen",
+      "name": "Name",
+      "description": "Beschreibung",
+      "category": "Kategorie",
+      "kind": "Art",
+      "price": "Verkaufspreis",
+      "cancel": "Abbrechen",
+      "save": "Kartensatz speichern",
+      "delete": "Kartensatz löschen",
+      "confirm": "Sicher?",
+      "name_required": "Geben Sie einen Namen ein!",
+      "description_required": "Geben Sie eine Beschreibung ein!",
+      "dateUpdated": "Zuletzt aktualisiert:",
+      "license": "Lizenz",
+      "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!"
+    },
+
+    "card": {
+      "header": "Karte",
+      "edit": "Bearbeite",
+      "username": "Benutzer:",
+      "cardsetname": "Kartensatz:",
+      "info": "Karten Informationen",
+      "settings": "Karten Einstellungen",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "cancel": "Abbrechen",
+      "save": "Karte speichern",
+      "delete": "Karte löschen",
+      "confirm": "Sicher?",
+      "front_required":"Bitte Vorderseite ausfüllen!",
+      "back_required":"Bitte Rückseite ausfüllen!",
+      "text_max": "Es sind nur 10000 Zeichen erlaubt!"
+    },
+
+    "user": {
+      "header": "Benutzer",
+      "edit": "Bearbeite",
+      "info": "Benutzer Informationen",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Beigetreten:",
+      "lvl": "Level:",
+      "visible": "Profil öffentlich",
+      "option1": "Ja",
+      "option2": "Nein",
+      "email": "Email",
+      "status": "Benutzer Status",
+      "online": "Status:",
+      "lastLogin": "Letzter Login:",
+      "clock": " Uhr",
+      "roles": "Benutzerrollen",
+      "blocked": "Benutzer blockieren",
+      "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
+      "editortext": "Wollen Sie dem Benutzer Admin-Rechte geben? Als Admin User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "blocked_text": "Grund der Sperrung",
+      "blockedtext_invalid": "Geben Sie einen Grund der Sperrung ein!",
+      "cancel": "Abbrechen",
+      "save": "Benutzer speichern",
+      "delete": "Benutzer löschen",
+      "confirm": "Sicher?",
+      "email_invalid": "Ungültige Email-Adresse!",
+      "name_exists": "Benutzername ist bereits vergeben!",
+      "name_toShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
+      "name_toLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
+      "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
+    }
+  },
+
+  "access-denied": {
+    "title": "Zugriff verboten",
+    "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
+    "button": "Schließen",
+    "reason": "Grund der Sperrung: "
+  }
 }

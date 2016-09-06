@@ -172,7 +172,7 @@ Template.boxSide.events({
     Session.set('isFinish', false);
   },
   'click #cardsetUser': function() {
-    Router.go('profile', {
+    Router.go('profileOverview', {
       _id: Meteor.userId()
     });
   }

@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
+import { Notifications } from '../../api/notifications.js';
+
 import './main.html';
 
 import '../welcome/welcome.js';
@@ -11,9 +13,11 @@ import '../impressum/impressum.js';
 import '../cardsets/cardsets.js';
 import '../pool/pool.js';
 import '../profile/profile.js'
-
+import '../admin/admin.js';
+import '../access_denied/access_denied.js';
 
 Meteor.subscribe("Users");
+Meteor.subscribe("notifications");
 
 Template.main.events({
   'click #logout': function(event) {
@@ -34,9 +38,16 @@ Template.main.events({
     $('#searchDropdown').removeClass("open");
     $('#input-search').val('');
   },
-  'click #usr-profile': function() {
-    Router.go('profile', {
-      _id: Meteor.userId()
+  'click #notificationsBtn': function() {
+    var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsRead", notification._id);
+    });
+  },
+  'click #clearBtn': function() {
+    var notifications = Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()});
+    notifications.forEach(function (notification) {
+      Meteor.call("setNotificationAsCleared", notification._id);
     });
   }
 });
@@ -57,6 +68,21 @@ Template.main.helpers({
     } else {
       return undefined;
     }
+  },
+  isActiveProfile: function() {
+    if (ActiveRoute.name(/^profile/)) {
+      return Router.current().params._id === Meteor.userId();
+    }
+    return false;
+  },
+  countNotifications: function() {
+    return Notifications.find({read: false, target_type: 'user', target: Meteor.userId() }).count();
+  },
+  getNotifications: function() {
+    return Notifications.find({ cleared: false, target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
+  },
+  getLink: function() {
+    return "/cardset/" + this.link_id;
   }
 });
 

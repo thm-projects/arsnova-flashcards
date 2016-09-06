@@ -23,12 +23,33 @@
   	"carddecks": "My deck of cards",
   	"pool": "Pool",
   	"myprofile": "My profile",
+  	"billing": "Billing",
   	"logout": "Logout",
-  	"search": "Search"
+  	"search": "Search",
+    "frontend": "Front end",
+    "backend": "Back end"
   },
 
   "footer": {
-  	"impressum": "Legal Notice"
+  	"impressum": "Legal Notice",
+    "datenschutz": "Data protection",
+    "agb": "GTC"
+  },
+
+  "notifications": {
+    "title": "Notifications",
+    "clearAll": "Clear all",
+    "viewAll": "View all",
+    "noNotification": "No new notifications available",
+    "deleteAll": "Delete all",
+    "approved": "Approved",
+    "pending": "Pending approval",
+    "progress": "In progress",
+    "reporteduser": "Reported user",
+    "reportedcardset": "Reported cardset",
+    "reporteduseradmin": "Admin notification (Reported user)",
+    "reportedcardsetadmin": "Admin notification (Reported cardset)",
+    "lecturer": "Lecturer request"
   },
 
   "input-group": {
@@ -40,7 +61,7 @@
     "upload-title": "Import cards",
     "wait": "Uploading files...",
     "select-file": "Select file",
-    "success": "Upload complete!",
+    "success": "Cards successfully imported!",
     "wrong-template": "Wrong file structure",
     "wrong-file": "Wrong file extension"
   },
@@ -81,38 +102,140 @@
   	"description": "Description",
   	"category": "Category",
   	"visibility": "Visible for",
-  	"visibilityoption1": "me",
-  	"visibilityoption2": "all",
+  	"visibilityoption1": "Private",
+  	"visibilityoption2": "Public",
   	"rating": "Ratings",
   	"ratingoption1": "allow",
   	"ratingoption2": "disable",
+    "kind": "Kind",
     "cancel": "Cancel",
     "createcarddeck": "Create a deck of cards",
     "delete": "Delete deck of cards",
     "confirm": "Sure?",
-    "save": "Edit deck of cards",
+    "save": "Save deck of cards",
     "name_required": "The name field is required!",
     "description_required": "The decription field is required!",
-    "category_required": "The category field is required!"
+    "category_required": "The category field is required!",
+    "price": "Retail price",
+    "publicate": "Save state",
+    "modules": "Types of licenses",
+    "by-desc": "Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits (attribution) in the manner specified by these.",
+    "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
+    "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
+    "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
+    "saveLicense": "Save license",
+    "wrongCombination": "This combination is not allowed!",
+    "report": "Report cardset/user",
+    "cardsetowner": "Author",
+    "cardsetname": "Cardset",
+    "reason": "Reason",
+    "reportuser": "Report user",
+    "reportcardset": "Report cardset",
+    "date": "Date",
+    "text": "Further information",
+    "text_chars": "At least 50 chars required!",
+    "submitcomplaint": "Submit complaint"
   },
 
+  "profile": {
+    "overview": "Learning Progress",
+    "billing": "Billing",
+    "membership": "Membership",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "requests": "Pro approval",
+    "norequests": "No requests",
+    "lecturer": "Lecturer approval",
+    "accept": "Accept",
+    "decline": "Decline",
+    "save": "Save",
+    "cancel": "Cancel",
+    "saved": "Settings saved!",
+    "canceled": "Amendments rejected!",
+    "error": "Incorrect entries!"
+  },
 
   "profil-header": {
   	"name": "Profile of "
   },
 
   "panel-heading": {
-  	"hallo": "Hello!"
+  	"hallo": "Settings"
+  },
+
+  "membership": {
+    "upgrade": {
+      "progress": "In progress!",
+      "subscribed": "Thank you for your subscription!"
+    },
+    "downgrade": {
+      "error": "You can not downgrade if you have pro-cardsets!",
+      "confirm": "Are you sure you want to cancel? This means your subscription will no longer be active. If you'd like, you can resubscribe later.",
+      "canceled": "Subscription successfully canceled!"
+    }
+  },
+
+  "billing": {
+    "plan": {
+      "header": "Plan",
+      "desc": "Choose your plan below.",
+      "actual": "Your current plan!",
+      "free": "Create. Learn. Share",
+      "edu": "Get Edu-Flashcards for free",
+      "back": "Back to free plan",
+      "pro": "Create and get Pro-Flashcards",
+      "month": "month",
+      "subscribe": "Subscribe now!",
+      "lecturer": "Lecturer",
+      "send": "Send request now to get all the benefits of a lecturer",
+      "lecturerActivatet": "You are activated as a lecturer.",
+      "name": "Name",
+      "prename": "Prename"
+    },
+    "payment": {
+      "header": "Payment Methods",
+      "empty": "You have not added any payment method!",
+      "save": "Save payment method",
+      "saveMsg": "Your payment methode was saved",
+      "progress": "Changes are processed",
+      "actual": "Your payment methods:",
+      "add": "Add or choose payment methods:"
+    },
+    "balance": {
+      "header": "Account balance",
+      "disburse": "payout",
+      "progress": "Disbursement processing",
+      "success": "Disbursement was carried out",
+      "failed": "Payout in Braintree not unlocked. Contact your administrator."
+    },
+    "revenue": {
+      "header": "Revenue History",
+      "empty": "You have not generated any revenue yet!",
+      "boughtFrom": "Bought from",
+      "for": "for",
+      "at": "at"
+    },
+    "purchases": {
+      "header": "Payment History",
+      "empty": "You don't have any invoices yet!",
+      "boughtFor": "Bought for",
+      "at": "at"
+    }
   },
 
   "panel-body": {
   	"name": "User name",
-  	"login": "Login via",
+  	"login": "Registered via",
   	"email": "Email",
   	"profilepublic": "Public profile",
   	"profilepublicoption1": "Yes",
   	"profilepublicoption2": "No",
-    "profileprivate": "Private profile"
+    "profileprivate": "Private profile",
+    "profileprivatetext": "This profile is private and can not be seen by other user.",
+    "emailInvalid": "Enter a valid e-mail address",
+    "nameToShort": "Username must consist more than 4 letters!",
+    "nameToLong": "Username must consist less than 26 letters!",
+    "nameAlreadyExists": "Username is already taken!"
   },
 
   "panel-heading-experience": {
@@ -172,13 +295,51 @@
     "viewlist": "List",
     "createcard": "Create a new card",
     "importcard": "Import cards",
-    "exportcard": "Export cards"
+    "exportcard": "Export cards",
+    "publicate": "Status",
+    "publicated": "Publicated",
+    "review": "In review",
+    "private": "Private",
+    "license": " Select license"
   },
 
   "pool": {
+    "relevance": "Relevance",
     "name": "Name",
-    "description": "Description",
-    "created": "Created by"
+    "author": "Author",
+    "rating": "Rating",
+    "quantity": "Number of cards",
+    "release": "Published",
+    "deleted": "Deleted",
+    "license": "License",
+    "dateUpdated": "Last updated"
+  },
+
+  "cardset": {
+    "info": {
+      "author": "Author",
+      "rating": "Rating",
+      "quantity": "Number of cards",
+      "release": "Published",
+      "reviewer": "Reviewer",
+      "amount": "Price",
+      "bought": "Bought on",
+      "deleted": "Deleted",
+      "license": "License",
+      "dateUpdated": "Last updated"
+    },
+    "request": {
+      "accept": "Release cardset",
+      "decline": "Don't release cardset",
+      "accepted": "Cardset released",
+      "declined": "Cardset not released",
+      "reason": "Enter a reason for rejecting the request"
+    },
+    "money": {
+      "buy": "Buy cardset for",
+      "pro": "Learn as premium-user",
+      "bought": "Thank you for your payment!"
+    }
   },
 
   "cardmemo": {
@@ -247,8 +408,8 @@
   },
 
   "learn-endscreen": {
-    "success": "Learn unit done successfully",
-    "back": "Choose another box or go back to deck of cards",
+    "success": "Learn unit done successfully.",
+    "back": "Choose another box or go back to deck of cards.",
     "back2": "Back to deck of cards"
   },
 
@@ -263,6 +424,7 @@
   "learn":"Learn",
   "learnfile":"Leitner's learning box",
   "memo":"Memo",
+  "report": "Report cardset/user",
   "meteor":"Meteor",
   "play":"Play",
   "yourhighscore": "Your highscore:",
@@ -328,5 +490,180 @@
   "newbadge": "New Badge",
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
-  "badgetext3": ""
+  "badgetext3": "",
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "cardsets": "Cardsets",
+    "cards": "Cards",
+    "users": "Users",
+    "notifications": "Notifications",
+    "see_all": "See all",
+    "name": "Name",
+    "kind": "Kind",
+    "front": "Front",
+    "back": "Back",
+    "admin": "Admin",
+    "pro": "Pro",
+    "university": "Edu",
+    "lecturer": "Lecturer",
+    "mail": "Mail",
+    "joined": "Joined",
+    "blocked": "Blocked",
+    "created": "Created At",
+    "edit": "Edit",
+    "delete": "Delete",
+    "edituser": "Edit user",
+    "editcardset": "Edit cardset",
+    "editcard": "Edit card",
+    "deleteuser": "Delete user",
+    "deletecard": "Delete card",
+    "deletecardset": "Delete cardset",
+    "notifyuser": "Notify user",
+    "view": "View",
+    "deleted": "Deleted",
+    "deletedUser": "Deleted user",
+    "complaint": "User complaints",
+    "lecturermessages": "Lecturer request",
+    "send": "Send messages",
+    "type": "Type",
+    "sender": "Sender",
+    "reason": "Reason",
+    "text": "Further information",
+    "date": "Date",
+    "receiver": "Receiver",
+    "replyreceiver": "Mail to complaint",
+    "replyrsender": "Mail to sender",
+    "request": "Request",
+    "deleteallnotifications": "Delete all notifications",
+    "optionNotPossible": "Not possible (User deleted)",
+
+    "confirm-form": {
+      "cardsets": {
+        "title": "Delete cardset",
+        "text": "Do you really want to delete this cardset?"
+      },
+      "cards": {
+        "title": "Delete card",
+        "text": "Do you really want to delete this card?"
+      },
+      "users": {
+        "title": "Delete user",
+        "text": "Do you really want to delete this user?"
+      },
+      "notifications": {
+        "title": "Delete notification",
+        "text": "Do you really want to delete this notification?",
+        "title_all": "Delete all notifications",
+        "text_all": "Do you really want to delete all notifications?",
+        "delete_all": "Delete notifications"
+      },
+
+      "cancel": "Cancel"
+    },
+
+    "message": {
+      "messageUser": "Message User",
+      "reason": "Reason",
+      "reportuser": "Complaint user",
+      "reportcardset": "Complaint cardset",
+      "cardset": "Cardset",
+      "noCardsets": "No cardsets",
+      "text": "Further information",
+      "cancel": "Cancel",
+      "sendMessage": "Send message",
+      "text_chars": "At least 50 chars required!",
+      "to": "To"
+    },
+
+    "lecturerrequest": {
+      "title": "Lecturer request",
+      "no": "Deny request",
+      "yes": "Agree request",
+      "text": "Request processed",
+      "cancel": "Cancel"
+    },
+
+    "cardset": {
+      "header": "Cardset",
+      "edit": "Edit",
+      "username": "User:",
+      "date": "Created At:",
+      "info": "Cardset info",
+      "settings": "Cardset settings",
+      "name": "Name",
+      "description": "Description",
+    	"category": "Category",
+      "kind": "Kind",
+      "price": "Retail price",
+      "cancel": "Cancel",
+      "save": "Save deck of cards",
+      "delete": "Delete deck of cards",
+      "confirm": "Sure?",
+      "name_required": "The name field is required!",
+      "description_required": "The decription field is required!",
+      "dateUpdated": "Last updated:",
+      "license": "License",
+      "wrongCombination": "This combination is not allowed!",
+      "noCards": "You have to create at least 5 cards to publish this cardset!"
+    },
+
+    "card": {
+      "header": "Card",
+      "edit": "Edit",
+      "username": "User:",
+      "cardsetname": "Cardset:",
+      "info": "Card info",
+      "settings": "Card settings",
+      "front": "Front",
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save card",
+      "delete": "Delete card",
+      "confirm": "Sure?",
+      "front_required":"The front field is required!",
+      "backt_required":"The back field is required!",
+      "text_max": "No more than 10000 characters allowed!"
+    },
+
+    "user": {
+      "header": "User",
+      "edit": "Edit",
+      "info": "User info",
+      "username": "Name:",
+      "service": "Service:",
+      "date": "Joined:",
+      "lvl": "Level:",
+      "visible": "Public profile",
+      "option1": "Yes",
+      "option2": "No",
+      "email": "Email",
+      "status": "User status",
+      "online": "Status:",
+      "lastLogin": "Last login:",
+      "clock": "",
+      "roles": "User roles",
+      "blocked": "Blocked user",
+      "blockedtext": "Do you want to deny the access to THMcards for this user?",
+      "editortext": "Do you want to give this user admin rights? As an admin user the user can access the admin panel and is allowed to edit content of THMcards.",
+      "blocked_text": "Reason for block",
+      "blockedtext_invalid": "The \"Reason for block\" field is required!",
+      "cancel": "Cancel",
+      "save": "Save user",
+      "delete": "Delete user",
+      "confirm": "Sure?",
+      "email_invalid": "Invalid Email!",
+      "name_exists": "Username is already taken!",
+      "name_toShort": "Username must consist more than 4 letters!",
+      "name_toLong": "Username must consist less than 26 letters!",
+      "visible_invalid": "Profile must be public!"
+    }
+  },
+
+  "access-denied": {
+    "title": "Access Denied",
+    "text": "You don't have permission to open this page!",
+    "button": "Close",
+    "reason": "Reason for block: "
+  }
 }

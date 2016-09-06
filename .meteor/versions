@@ -5,12 +5,15 @@ accounts-oauth@1.1.13
 accounts-twitter@1.0.10
 accounts-ui@1.1.9
 accounts-ui-unstyled@1.1.12
+alanning:roles@1.2.15
 aldeed:collection2@2.9.1
 aldeed:collection2-core@1.1.1
 aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
+anti:i18n@0.4.3
+aslagle:reactive-table@0.8.34
 atoy40:accounts-cas@0.0.2
 autoupdate@1.2.10
 babel-compiler@6.8.3
@@ -68,6 +71,7 @@ less@2.6.3_1
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.13_1
+matb33:collection-hooks@0.8.1
 mdg:validation-error@0.2.0
 meteor@1.1.15_1
 meteor-base@1.0.4
@@ -91,6 +95,7 @@ oauth2@1.1.10
 observe-sequence@1.0.12
 okgrow:promise@0.9.5
 ordered-dict@1.0.8
+patrickml:braintree@1.32.0
 peerlibrary:assert@0.2.5
 peerlibrary:base-component@0.14.0
 peerlibrary:blaze-components@0.16.2
