@@ -124,7 +124,13 @@
     "reportcardset": "Kartensatz melden",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
-    "submitcomplaint": "Beschwerde absenden"
+    "submitcomplaint": "Beschwerde absenden",
+    "moduleLong": "Modul",
+    "module_required": "Wähle ein Modul",
+    "college": "Hochschule",
+    "college_required": "Wähle eine Hochschule",
+    "studyType": "Studiengang",
+    "studyType_required": "Wähle einen Studiengang"
   },
   "profile": {
     "overview": "Lernfortschritt",

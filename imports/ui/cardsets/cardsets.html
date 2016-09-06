@@ -145,61 +145,108 @@
 
 
 <template name="cardsetsForm">
-    <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="newSetModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="newSetModalTitle" class="modal-title">{{_ "modal-dialog.newcarddeck"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group setdetails name">
-                            <label id="newSetNameLabel" class="col-md-3 control-label" for="newSetName">{{_
-                                    "modal-dialog.name"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="newSetName"
-                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}">
-                                <span id="helpNewSetName" class="help-block name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group setdetails description">
-                            <label id="newSetDescriptionLabel" class="col-md-3 control-label"
-                                   for="newSetDescription">{{_ "modal-dialog.description"}}</label>
-                            <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="newSetDescription"
-                                          placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
-                                <span id="helpNewSetDescription" class="help-block description"></span>
-                            </div>
-                        </div>
-                        <div class="form-group setdetails categories">
-                            <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_
-                                    "modal-dialog.category"}}</label>
-                            <div class="col-md-9">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                        <span id="newSetCategory">{{_ "modal-dialog.categoryplaceholder"}}</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        {{#each getCategories}}
-                                            <li class="category" value="{{_id}}" data="{{name}}"><a
-                                                    href="#">{{name}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                </div>
-                                <span id="helpNewSetCategory" class="help-block category"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-                    <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
-                </div>
-            </div>
+  <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="newSetModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 id="newSetModalTitle" class="modal-title">{{_ "modal-dialog.newcarddeck"}}</h4>
         </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <div class="form-group setdetails name">
+              <label id="newSetNameLabel" class="col-md-3 control-label" for="newSetName">{{_ "modal-dialog.name"}}</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="newSetName" placeholder="{{_ "modal-dialog.nameplaceholder"}}">
+                <span id="helpNewSetName" class="help-block name"></span>
+              </div>
+            </div>
+            <div class="form-group setdetails description">
+              <label id="newSetDescriptionLabel" class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.description"}}</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="3" id="newSetDescription" placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+                <span id="helpNewSetDescription" class="help-block description"></span>
+              </div>
+            </div>
+            <div class="form-group setdetails categories">
+              <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
+              <div class="col-md-9">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="newSetCategory">{{_ "modal-dialog.categoryplaceholder"}}</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {{#each getCategories}}
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <span id="helpNewSetCategory" class="help-block category"></span>
+              </div>
+            </div>
+            <!-- start New Dropdown -->
+            <div class="form-group setdetails categories">
+              <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.moduleLong"}}</label>
+              <div class="col-md-9">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="newSetCategory">{{_ "modal-dialog.module_required"}}</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {{#each getCategories}}
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <span id="helpNewSetCategory" class="help-block category"></span>
+              </div>
+            </div> <!-- / new Dropdown -->
+            <!-- start New Dropdown -->
+            <div class="form-group setdetails categories">
+              <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.college"}}</label>
+              <div class="col-md-9">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="newSetCategory">{{_ "modal-dialog.college_required"}}</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {{#each getCategories}}
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <span id="helpNewSetCategory" class="help-block category"></span>
+              </div>
+            </div> <!-- / new Dropdown -->
+            <!-- start New Dropdown -->
+            <div class="form-group setdetails categories">
+              <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.studyType"}}</label>
+              <div class="col-md-9">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="newSetCategory">{{_ "modal-dialog.studyType_required"}}</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {{#each getCategories}}
+                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <span id="helpNewSetCategory" class="help-block category"></span>
+              </div>
+            </div> <!-- / new Dropdown -->
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+          <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
