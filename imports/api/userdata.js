@@ -94,14 +94,14 @@ Meteor.methods({
   },
   checkUsersBName: function(bname) {
     bname = bname.trim();
-    if(bname.length() <= 0) {
+    if(bname.length <= 0) {
       throw new Meteor.Error("bname is empty");
     }
 	return bname;
   },
   checkUsersGName: function(gname) {
 	gname = gname.trim();
-    if(gname.length() <= 0) {
+    if(gname.length <= 0) {
       throw new Meteor.Error("gname is empty");
     }
 	return gname;
