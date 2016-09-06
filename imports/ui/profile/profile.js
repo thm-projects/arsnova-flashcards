@@ -601,27 +601,65 @@ Template.profileXp.helpers({
 		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
-			owner: Router.current().params._id,
-			date: {
-				$gte: minDate,
-				$lte: maxDate
-			}
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		return result;
-	},
-	getLast: function () {
-		var last = Experience.findOne({
-			owner: Router.current().params._id
-		}, {
-			sort: {
-				date: -1
-			}
-		});
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpMonth: function() {
+        var minDate = new Date(new Date().getTime() - 28 * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpThreeMonth: function() {
+        var minDate = new Date(new Date().getTime() - 90 * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getLast: function() {
+        var last = Experience.findOne({
+            owner: Router.current().params._id
+        }, {
+            sort: {
+                date: -1
+            }
+        });
 
 		var name = '';
 		if (last !== undefined) {
@@ -677,6 +715,9 @@ Template.profileXp.helpers({
 		return res + "%";
 	}
 });
+
+
+
 
 /**
  * ############################################################################
