@@ -83,7 +83,8 @@
     "studyType": "Studienart"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+  	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+    "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
     "newset": "Kartensatz anlegen"
   },
   "set-list-learned-empty": {

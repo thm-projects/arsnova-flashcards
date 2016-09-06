@@ -157,12 +157,16 @@ Template.category.onDestroyed(function () {
  */
 
 Template.pool.helpers({
-	getCount: function (id) {
-		return Cardsets.find({
-			category: parseInt(id),
-			visible: true
-		}).count();
-	},
+  getCount: function(id) {
+    return Cardsets.find({
+      category: parseInt(id),
+      visible: true
+    }).count();
+  },
+  cardsetList: function() {
+    return Cardsets.find({
+    });
+  }
 });
 
 Template.pool.events({

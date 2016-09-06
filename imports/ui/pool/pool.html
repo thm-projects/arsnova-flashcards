@@ -68,9 +68,38 @@
             </tr>
             </thead>
             <tbody id="cardSetView">
+            {{#if cardsetList.count}}
+                {{#each cardsetList}}
+                    {{> poolCardsetRow}}
+                {{/each}}
+            {{else}}
+                {{> poolCardsetEmpty}}
+            {{/if}}
             </tbody>
         </table>
     </div>
+</template>
+
+<template name="poolCardsetRow">
+    <tr class="poolCardsetRow">
+        <td>{{moduleLong}}</td>
+        <td>{{lastName}}</td>
+        <td>{{degree}}</td>
+        <td>{{academicCourse}}</td>
+        <td>{{department}}</td>
+        <td>{{studyType}}</td>
+    </tr>
+</template>
+
+
+<template name="poolCardsetEmpty">
+    <tr class="empty-list">
+        <td align="center" height="60" colspan="6" class="emptyCellList set-list-empty">
+            <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
+            <br>
+            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+        </td>
+    </tr>
 </template>
 
 <template name="category">
