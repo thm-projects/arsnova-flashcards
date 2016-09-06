@@ -80,7 +80,8 @@
     "degree": "Akademischer Grad",
     "academicCourse": "Studiengang",
     "department": "Fachbereich",
-    "studyType": "Studienart"
+    "studyType": "Studienart",
+    "license": "Lizenz"
   },
   "set-list-empty": {
   	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",

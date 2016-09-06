@@ -80,7 +80,8 @@
     "degree": "Degree",
     "academicCourse": "Course of Study",
     "department": "Department",
-    "studyType": "Type of Study"
+    "studyType": "Type of Study",
+    "license": "License"
   },
   "set-list-empty": {
   	"emptytextlist": "You have not created any deck of cards yet",

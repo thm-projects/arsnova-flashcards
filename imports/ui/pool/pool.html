@@ -10,6 +10,12 @@
             <thead class="set-list">
             <tr>
                 <th>
+                    <button id="#sortName" class="btn btn-link" role="button" value="down">
+                        <span>{{_ "set-list.name"}}</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </button>
+                </th>
+                <th>
                     <div class="dropdown">
                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
                             {{_ "set-list.moduleLong"}}
@@ -20,7 +26,7 @@
                     </div>
                 </th>
                 <th>
-                    <button id="lastNameButton" class="btn btn-link" role="button" value="down">
+                    <button id="#sortLastName" class="btn btn-link" role="button" value="down">
                         <span>{{_ "set-list.lastName"}}</span>
                         <span class="glyphicon glyphicon-sort"></span>
                     </button>
@@ -65,6 +71,16 @@
                         </ul>
                     </div>
                 </th>
+                <th>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.license"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+                </th>
             </tr>
             </thead>
             <tbody id="cardSetView">
@@ -82,12 +98,28 @@
 
 <template name="poolCardsetRow">
     <tr class="poolCardsetRow">
+        <td>
+            <a href="/cardset/{{_id}}">{{name}}
+                <span class="badge cardsetBadge">{{countCards this._id}}</span>
+            </a>
+        </td>
         <td>{{moduleLong}}</td>
         <td>{{lastName}}</td>
         <td>{{degree}}</td>
         <td>{{academicCourse}}</td>
         <td>{{department}}</td>
         <td>{{studyType}}</td>
+        <td>
+            <label class="btn btn-default active">
+                Free
+            </label>
+            <label class="btn btn-success active">
+                Edu
+            </label>
+            <label class="btn btn-info active">
+                Pro
+            </label>
+        </td>
     </tr>
 </template>
 

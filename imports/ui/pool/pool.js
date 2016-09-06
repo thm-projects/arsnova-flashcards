@@ -13,7 +13,7 @@ import './pool.html';
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
-Session.setDefault('poolSort', {relevance: -1});
+Session.setDefault('poolSortName', {lastName: 1});
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -157,24 +157,22 @@ Template.category.onDestroyed(function () {
  */
 
 Template.pool.helpers({
-  getCount: function(id) {
-    return Cardsets.find({
-      category: parseInt(id),
-      visible: true
-    }).count();
-  },
   cardsetList: function() {
     return Cardsets.find({
+      owner: Meteor.userId()
+    }, {
+      sort: Session.get('poolSortName')
     });
   }
 });
 
 Template.pool.events({
-  'click #lastNameButton': function() {
-    if(document.getElementById("lastNameButton").value  == "down"){
-      Session.set('cardsetSortCreated', {lastName: 1});
+  'click #sortLastName': function() {
+    var lastNameFilter = Session.get('poolSortName');
+    if(lastNameFilter.lastName === 1){
+      Session.set('poolSortName', {lastName: 1});
     } else {
-      Session.set('cardsetSortCreated', {lastName: -1});
+      Session.set('poolSortName', {lastName: -1});
     }
   },
 });
