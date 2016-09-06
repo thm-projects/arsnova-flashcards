@@ -301,7 +301,7 @@ Template.profileSettings.events({
         // Name validation
         var name = $('#inputName').val();
         var user_id = Meteor.userId();
-
+        
         Meteor.call("checkUsersName", name, user_id, function(error, result) {
 			if (error) {
                 $('#inputName').parent().parent().addClass('has-error');

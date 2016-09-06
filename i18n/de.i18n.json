@@ -222,13 +222,9 @@
     }
   },
   "panel-body": {
-  	"name": "Kennung",
-  	"title": "Titel",
-  	"title-desc": "Akademischer Titel (öffentlich)",
+  	"name": "Benutzername",
   	"bname": "Nachname",
-  	"bname-desc": "Nachname (öffentlich)",
   	"gname": "Vorname",
-  	"gname-desc": "Vorname (öffentlich)",
   	"login": "Registriert via",
   	"email": "E-Mail",
   	"email-desc": "E-Mail-Adresse",
