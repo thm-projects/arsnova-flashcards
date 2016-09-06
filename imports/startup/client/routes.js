@@ -210,7 +210,7 @@ var isSignedIn = function () {
 
 var goToCreated = function () {
 	if (Meteor.user()) {
-		Router.go('created');
+		Router.go('pool');
 	} else {
 		this.next();
 	}
