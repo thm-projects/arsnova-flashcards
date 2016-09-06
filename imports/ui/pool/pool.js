@@ -162,5 +162,15 @@ Template.pool.helpers({
 			category: parseInt(id),
 			visible: true
 		}).count();
-	}
+	},
+});
+
+Template.pool.events({
+  'click #lastNameButton': function() {
+    if(document.getElementById("lastNameButton").value  == "down"){
+      Session.set('cardsetSortCreated', {lastName: 1});
+    } else {
+      Session.set('cardsetSortCreated', {lastName: -1});
+    }
+  },
 });

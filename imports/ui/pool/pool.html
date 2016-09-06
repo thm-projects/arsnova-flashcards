@@ -10,22 +10,60 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <span>{{_ "set-list.moduleLong"}}</span>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.moduleLong"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </th>
                 <th>
-                    <a class="lastnameupdown" role="button"> <span>{{_ "set-list.lastName"}}</span>⇓⇑</a>
+                    <button id="lastNameButton" class="btn btn-link" role="button" value="down">
+                        <span>{{_ "set-list.lastName"}}</span>
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </button>
                 </th>
                 <th>
-                    <span>{{_ "set-list.degree"}}</span>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.degree"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.academicCourse"}}</span>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.academicCourse"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.department"}}</span>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.department"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.studyType"}}</span>
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{_ "set-list.studyType"}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </th>
             </tr>
             </thead>
