@@ -87,35 +87,38 @@ Meteor.methods({
 		name = name.trim();
 		var userExists = Meteor.users.findOne({"profile.name": name});
 
-		if (userExists && userExists._id !== id) {
-			throw new Meteor.Error("username already exists");
-		}
-		return name;
-	},
-	initUser: function () {
-		Meteor.users.update(Meteor.user()._id, {
-			$set: {
-				visible: true,
-				email: "",
-				lvl: 1,
-				lastOnAt: new Date(),
-				daysInRow: 0
-			}
-		});
-	},
-	setUserAsLecturer: function (id) {
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-			throw new Meteor.Error("not-authorized");
-		}
-		Meteor.users.update(id, {
-			$set: {
-				visible: true,
-				request: false
-			}
-		});
+    if (userExists && userExists._id !== id) {
+      throw new Meteor.Error("username already exists");
+    }
+    return name;
+  },
+  checkUsersBName: function(name) {
+	return name.trim();
+  },
+  checkUsersGName: function(name) {
+	return name.trim();
+  },
+  initUser: function() {
+    Meteor.users.update(Meteor.user()._id, {
+      $set: {
+        visible: true,
+        email: "",
+        lvl: 1,
+        lastOnAt: new Date(),
+        daysInRow: 0
+      }
+    });
+  },
+  setUserAsLecturer: function(id) {
+    if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Meteor.users.update(id, {
+      $set: {
+        visible: true,
+        request: false
+      }
+    });
 
 		Roles.addUsersToRoles(id, 'lecturer');
 	},

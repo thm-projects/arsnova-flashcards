@@ -266,46 +266,92 @@ Template.profileSettings.events({
 			$('#errorEmail').html('');
 		}
 
-		// Name validation
-		var name = $('#inputName').val();
-		var user_id = Meteor.userId();
+        // Name validation
+        var name = $('#inputName').val();
+        var user_id = Meteor.userId();
+        var bname = $('#inputBName').val();
+        var gname = $('#inputGName').val();
 
-		Meteor.call("checkUsersName", name, user_id, function (error, result) {
-			if (error) {
-				$('#inputName').parent().parent().addClass('has-error');
-				$('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-			} else if (result) {
-				var validName = false;
-				if (result.length < 5) {
-					$('#inputName').parent().parent().addClass('has-error');
-					$('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
-				} else if (result.length > 25) {
-					$('#inputName').parent().parent().addClass('has-error');
-					$('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
-				} else {
-					$('#inputName').parent().parent().removeClass('has-error');
-					$('#inputName').parent().parent().addClass('has-success');
-					$('#errorName').html('');
-					validName = true;
-				}
+        Meteor.call("checkUsersBName", bname, function(error, result) {
+      	  if (error) {
+      		$('#inputBName').parent().parent().addClass('has-error');
+      		$('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
+      	  }
+      	  else if(result) {
+      		var validBName = false;
+      		if(result.length <= 0) {
+      		  $('#inputBName').parent().parent().addClass('has-error');
+      		  $('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
+      		}
+      		else {
+      		  $('#inputBName').parent().parent().removeClass('has-error');
+      		  $('#inputBName').parent().parent().addClass('has-success');
+      		  $('#errorBName').html('');
+      		  bname = result;
+      		  validBName = true;
+      		}
+      	  }
+        });
 
-				if (validEmail && validName) {
-					Meteor.call("updateUsersEmail", email);
+        Meteor.call("checkUsersGName", gname, function(error, result) {
+      	  if (error) {
+      		$('#inputGName').parent().parent().addClass('has-error');
+      		$('#errorGName').html(TAPi18n.__('panel-body.gnameEmpty'));
+      	  }
+      	  else if(result) {
+      		var validBName = false;
+      		if(result.length <= 0) {
+      		  $('#inputGName').parent().parent().addClass('has-error');
+      		  $('#errorGName').html(TAPi18n.__('panel-body.bnameEmpty'));
+      		}
+      		else {
+      		  $('#inputGName').parent().parent().removeClass('has-error');
+      		  $('#inputGName').parent().parent().addClass('has-success');
+      		  $('#errorGName').html('');
+      		  gname = result;
+      		  validgName = true;
+      		}
+      	  }
+        });
 
-					Meteor.call("updateUsersName", result, user_id);
-					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
-				} else {
-					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
-				}
-			}
-		});
-	},
-	"click #profileCancel": function () {
-		var user = Meteor.users.findOne(Meteor.userId());
-		$('#inputEmail').val(user.email);
-		$('#inputName').val(user.profile.name);
-		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
-	}
+        Meteor.call("checkUsersName", name, user_id, function(error, result) {
+            if (error) {
+                $('#inputName').parent().parent().addClass('has-error');
+                $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
+            } else if (result) {
+                var validName = false;
+                if (result.length < 5) {
+                    $('#inputName').parent().parent().addClass('has-error');
+                    $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+                } else if (result.length > 25) {
+                    $('#inputName').parent().parent().addClass('has-error');
+                    $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
+                } else {
+                    $('#inputName').parent().parent().removeClass('has-error');
+                    $('#inputName').parent().parent().addClass('has-success');
+                    $('#errorName').html('');
+                    name = result;
+                    validName = true;
+                }
+
+                if (validEmail && validName && validBName && validGName) {
+                  Meteor.call("updateUsersEmail", email);
+                  Meteor.call("updateUsersName", name, user_id);
+                  Meteor.call("updateUsersBName", bname);
+                  Meteor.call("updateUsersGName", gname);
+                  Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+                } else {
+                  Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
+                }
+            }
+        });
+    },
+    "click #profileCancel": function() {
+        var user = Meteor.users.findOne(Meteor.userId());
+        $('#inputEmail').val(user.email);
+        $('#inputName').val(user.profile.name);
+        Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
+    }
 });
 
 /**
