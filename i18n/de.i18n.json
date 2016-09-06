@@ -72,9 +72,15 @@
     "learned": "Gelernt"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Kategorie",
-    "description": "Beschreibung"
+  	"name": "Name",
+  	"category": "Kategorie",
+  	"description": "Beschreibung",
+  	"lastName": "Nachname",
+    "moduleLong": "Modul",
+    "degree": "Akademischer Grad",
+    "academicCourse": "Studiengang",
+    "department": "Fachbereich",
+    "studyType": "Studienart"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",

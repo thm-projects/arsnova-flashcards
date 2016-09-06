@@ -1,11 +1,37 @@
 <template name="pool">
     <div class="col-md-12" id="pool-category-region">
-        <div class="list-group">
+        <!--<div class="list-group">
             {{#each getCategories}}
                 <a class="list-group-item" href="pool/{{_id}}">
                     <span class="badge">{{getCount this._id}}</span> {{name}}</a>
             {{/each}}
-        </div>
+        </div>-->
+        <table class="table table-bordered table-hover">
+            <thead class="set-list">
+            <tr>
+                <th>
+                    <span>{{_ "set-list.moduleLong"}}</span>
+                </th>
+                <th>
+                    <a class="lastnameupdown" role="button"> <span>{{_ "set-list.lastName"}}</span>⇓⇑</a>
+                </th>
+                <th>
+                    <span>{{_ "set-list.degree"}}</span>
+                </th>
+                <th>
+                    <span>{{_ "set-list.academicCourse"}}</span>
+                </th>
+                <th>
+                    <span>{{_ "set-list.department"}}</span>
+                </th>
+                <th>
+                    <span>{{_ "set-list.studyType"}}</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="cardSetView">
+            </tbody>
+        </table>
     </div>
 </template>
 
