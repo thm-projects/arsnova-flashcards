@@ -79,6 +79,8 @@ Meteor.methods({
       $set: {
         visible: true,
         email: "",
+        bname: "",
+        gname: "",
         lvl: 1,
         lastOnAt: new Date(),
         daysInRow: 0

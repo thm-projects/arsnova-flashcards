@@ -294,7 +294,7 @@ Template.profileSettings.events({
       		$('#inputGName').parent().parent().removeClass('has-error');
       		$('#inputGName').parent().parent().addClass('has-success');
       		$('#errorGName').html('');
-      	  $('#inputGName').val(gname);
+      		$('#inputGName').val(gname);
       		validGName = true;
       	}
 
@@ -325,8 +325,8 @@ Template.profileSettings.events({
               if (validEmail && validName && validBName && validGName) {
                 Meteor.call("updateUsersEmail", email);
                 Meteor.call("updateUsersName", name, user_id);
-                Meteor.call("updateUsersBName", bname);
-                Meteor.call("updateUsersGName", gname);
+                Meteor.call("updateUsersBName", bname, user_id);
+                Meteor.call("updateUsersGName", gname, user_id);
                 Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
               } else {
                 Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
@@ -340,6 +340,18 @@ Template.profileSettings.events({
         $('#inputName').val(user.profile.name);
     	$('#inputBName').val(user.profile.bname);
     	$('#inputGName').val(user.profile.gname);
+        $('#inputName').parent().parent().removeClass('has-error');
+        $('#inputBName').parent().parent().removeClass('has-error');
+        $('#inputGName').parent().parent().removeClass('has-error');
+        $('#inputEmail').parent().parent().removeClass('has-error');
+        $('#inputName').parent().parent().removeClass('has-success');
+        $('#inputBName').parent().parent().removeClass('has-success');
+        $('#inputGName').parent().parent().removeClass('has-success');
+        $('#inputEmail').parent().parent().removeClass('has-success');
+        $('#errorName').html('');
+        $('#errorBName').html('');
+        $('#errorGName').html('');
+        $('#errorEmail').html('');
         Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
     }
 });
