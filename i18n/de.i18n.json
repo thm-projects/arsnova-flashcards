@@ -610,6 +610,8 @@
       "edit": "Bearbeite",
       "info": "Benutzer Informationen",
       "username": "Name:",
+      "bname": "Nachname:",
+      "gname": "Vorname:",
       "service": "Service:",
       "date": "Beigetreten:",
       "lvl": "Level:",
