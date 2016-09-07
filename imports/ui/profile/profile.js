@@ -399,7 +399,7 @@ var seqThree = 90; //90 tag
 Template.profileXp.helpers({
 
     startXp: function() {
-        console.log("bevor seq AssGoblins of Auschitz");
+        console.log("bevor seq ");
 
         if(Meteor.adminSettings.findOne({name: "seqSettings"})){
 

@@ -11,7 +11,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+    updateIntervall: function(){
 
+
+    }
 
 
 
