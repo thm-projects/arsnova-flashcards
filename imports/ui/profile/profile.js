@@ -551,12 +551,23 @@ Template.profileRequests.helpers({
  * profileXp
  * ############################################################################
  */
-var seq = AdminSettings.findOne({name: "seqSettings"});
-var seqOne = seq.seqOne; //7 tag
-var seqTwo = seq.seqTwo; //30 tag
-var seqThree = seq.seqTwo; //90 tag
+
+var seqOne = 7; //7 tag
+var seqTwo = 29; //30 tag
+var seqThree = 90; //90 tag
 
 Template.profileXp.helpers({
+
+    startXp: function() {
+        var seq = AdminSettings.findOne({name: "seqSettings"});
+        if(seq){
+             seqOne = seq.seqOne; //7 tag
+             seqTwo = seq.seqTwo; //30 tag
+             seqThree = seq.seqThree; //90 tag
+        } else {
+            //console.log("error could not find adminSettings");
+        }
+    },
     getDays1: function(){
         return seqOne;
     },

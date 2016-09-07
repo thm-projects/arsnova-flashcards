@@ -216,16 +216,24 @@
     "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte (XP)"
+      "experience": "Erfahrungspunkte (XP)",
+      "intervall": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
+      "preview": "Vorschau"
+
   },
+
   "panel-body-experience": {
+    "intervall1" : "Intervall 1",
+    "intervall2" : "Intervall 2",
+    "intervall3" : "Intervall 3",
     "total": "Total",
+    "twoDaysAgo": "Vorgestern",
     "today": "Heute",
+    "days": "Tage",
     "yesterday": "Gestern",
-    "days":"Tage",
-    "twoDaysAgo":"Vorgestern",
-    "month": "4 Wochen",
-    "threemonth": "3 Monate",
+    "month": "Wochen",
+    "threemonth": "Monate",
+
     "lastredeem": "Zuletzt für: "
   },
   "panel-body-last": {
@@ -442,6 +450,7 @@
     "cardsets": "Kartensätze",
     "cards": "Karten",
     "users": "Benutzer",
+    "intervall": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
     "see_all": "Alle ansehen",
     "name": "Name",

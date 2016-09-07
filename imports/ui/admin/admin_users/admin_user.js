@@ -4,10 +4,12 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
-import {Cardsets} from '../../../api/cardsets.js';
-
+import { allUsers } from '../../../api/allusers.js';
+import { Cardsets } from '../../../api/cardsets.js';
+import { AdminSettings} from '../../../api/adminSettings.js';
 import './admin_user.html';
 
+Meteor.subscribe("adminSettings");
 /**
  * ############################################################################
  * admin_user
@@ -160,6 +162,30 @@ Template.admin_user.helpers({
 	}
 });
 
+Template.admin_settings.events({
+  'click #saveIntervall': function() {
+    var inv1 = document.getElementById('inv1').value;
+    var inv2 = document.getElementById('inv2').value;
+    var inv3 = document.getElementById('inv3').value;
+
+    if(inv1 == 0){
+      inv1 = 1;
+    }
+
+    if(inv2 == 0){
+      inv2 = 30;
+    }
+    if(inv3 == 0){
+      inv3 = 90;
+    }
+    Meteor.call('updateIntervall', inv1,inv2,inv3);
+    console.log(inv1);
+    console.log(inv2);
+    console.log(inv3);
+
+  }
+    });
+
 Template.admin_user.events({
 	'click #userSaveAdmin': function (event, tmpl) {
 		var name    = $('#editUserNameAdmin').val();
@@ -248,28 +274,30 @@ Template.admin_user.events({
 						}
 					}
 
-					Meteor.call('updateUser', user_id, visible, email, blockedtext);
-					Meteor.call("updateUsersName", result, user_id);
-					window.history.go(-1);
-				}
-			}
-		});
-	},
-	'click #userCancelAdmin': function () {
-		window.history.go(-1);
-	},
-	'click #userDeleteAdmin': function () {
-		$("#userDeleteAdmin").css('display', "none");
-		$("#userConfirmAdmin").css('display', "");
-	},
-	'click #userConfirmAdmin': function () {
-		var id = this._id;
-		Meteor.call("deleteUser", id);
-		window.history.go(-1);
-	},
-	'click .reactive-table tbody tr': function (event) {
-		event.preventDefault();
-		var cardset = this;
+           Meteor.call('updateUser', user_id, visible, email, blockedtext);
+           Meteor.call("updateUsersName", result, user_id);
+           window.history.go(-1);
+         }
+      }
+    });
+  },
+  'click #userCancelAdmin': function() {
+    window.history.go(-1);
+  },
+
+
+  'click #userDeleteAdmin': function() {
+    $("#userDeleteAdmin").css('display', "none");
+    $("#userConfirmAdmin").css('display', "");
+  },
+  'click #userConfirmAdmin': function() {
+    var id = this._id;
+    Meteor.call("deleteUser", id);
+    window.history.go(-1);
+  },
+  'click .reactive-table tbody tr': function(event) {
+    event.preventDefault();
+    var cardset = this;
 
 		if (event.target.className == "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
 			Session.set('cardsetId', cardset._id);

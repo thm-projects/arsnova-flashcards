@@ -217,14 +217,18 @@
     "nameAlreadyExists": "Username is already taken!"
   },
   "panel-heading-experience": {
-    "experience": "Experience Points (XP)"
+      "experience": "Experience Points (XP)",
+      "intervall": "Set the learning period",
+      "preview": "Preview"
+
   },
+
   "panel-body-experience": {
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "twoDaysAgo": "before yesterday",
-    "days": "days",
+    "twoDaysAgo": "Day before yesterday",
+    "days": "7 days",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
@@ -441,6 +445,7 @@
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
+    "intervall": "Define learning period",
     "notifications": "Notifications",
     "see_all": "See all",
     "name": "Name",
