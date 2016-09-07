@@ -605,6 +605,8 @@
       "edit": "Edit",
       "info": "User info",
       "username": "Name:",
+      "bname": "Birth name:",
+      "gname": "Given name:",
       "service": "Service:",
       "date": "Joined:",
       "lvl": "Level:",
