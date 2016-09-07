@@ -14,12 +14,12 @@ import './pool.html';
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
-Session.setDefault('poolSortTopic', {name: -1});
-Session.setDefault('poolFilterAutor', "/.*.*/");
-Session.setDefault('poolFilterModule',  "/.*.*/");
-Session.setDefault('poolFilterCourse',  "/.*.*/");
-Session.setDefault('poolFilterDepartment',  "/.*.*/");
-Session.setDefault('poolFilterStudyType',  "/.*.*/");
+Session.setDefault('poolSortTopic', {name: 1} );
+Session.setDefault('poolFilterAutor');
+Session.setDefault('poolFilterModule');
+Session.setDefault('poolFilterCourse');
+Session.setDefault('poolFilterDepartment');
+Session.setDefault('poolFilterStudyType');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -28,45 +28,52 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
  * ############################################################################
  */
 
-function getCollection () {
-    return Cardsets.find({
-        visible: true,
-        /*kind: {$in: Session.get('poolFilter')},
-         lastName: {$in: Session.get('poolFilterAutor')},
-         moduleShort: {$in: Session.get('poolFilterModule')},
-         academicCourse: {$in: Session.get('poolFilterCourse')},
-         department: {$in: Session.get('poolFilterDepartment')},
-         studyType: {$in: Session.get('poolFilterStudyType')}*/
-    }, {
-        sort: Session.get('poolSortTopic', 'poolSortAutor')
-    });
+function getCollection (sortFilter, listType) {
+    //0 =
+    var query = {};
+    query.visible = true;
+    query.kind = {$in: Session.get('poolFilter')};
+    if(Session.get('poolFilterAutor'))
+        query.lastName = {$in: Session.get('poolFilterAutor')};
+    if(Session.get('poolFilterModule'))
+        query.moduleLong = {$in: Session.get('poolFilterModule')};
+    if(Session.get('poolFilterCourse'))
+        query.academicCourse = {$in: Session.get('poolFilterCourse')};
+    if(Session.get('poolFilterDepartment'))
+        query.department = {$in: Session.get('poolFilterDepartment')};
+    if(Session.get('poolFilterStudyType'))
+        query.studyType = {$in: Session.get('poolFilterStudyType')};
+    if(listType == 0)
+        return Cardsets.find(query, {sort: sortFilter});
+    else
+        return Cardsets.find(query, {sort: sortFilter}).fetch();
 }
 
 Template.category.helpers({
     getDecks: function() {
-        return getCollection();
+        return getCollection(Session.get('poolSortTopic'), 0);
+    },
+    getAutors: function() {
+        var Array = getCollection({lastName: 1}, 1);
+        return distinctArray = _.uniq(Array, false, function(d) {return (d.lastName)});
     },
     getModules: function() {
-        var Array = getCollection();
-        var distinctArray = _.uniq(Array, false, function(d) {return d.moduleLong});
-        var disctinctValues = _.pluck(distinctArray, 'moduleLong');
-        console.log(disctinctValues);
-        return disctinctValues;
+        var Array = getCollection({moduleLong: 1}, 1);
+        return distinctArray = _.uniq(Array, false, function(d) {return d.moduleLong});
     },
-    getCourse: function() {
-        var Array = getCollection();
+    getCourses: function() {
+        var Array = getCollection({academicCourse: 1}, 1);
         var distinctArray = _.uniq(Array, false, function(d) {return d.academicCourse});
-        return disctinctValues = _.pluck(distinctArray, 'academicCourse');
+        return _.pluck(distinctArray, 'academicCourse');
     },
     getDepartments: function() {
-        var Array = getCollection();
-        var distinctArray = _.uniq(Array, false, function(d) {return d.department});
-        return disctinctValues = _.pluck(distinctArray, 'department');
+        var Array = getCollection({department: 1}, 1);
+        return distinctArray = _.uniq(Array, false, function(d) {return d.department});
     },
     getTypes: function() {
-        var Array = getCollection();
+        var Array = getCollection({studyType: 1}, 1);
         var distinctArray = _.uniq(Array, false, function(d) {return d.studyType});
-        return disctinctValues = _.pluck(distinctArray, 'studyType');
+        return _.pluck(distinctArray, 'studyType');
     },
     getAverage: function() {
         var ratings = Ratings.find({

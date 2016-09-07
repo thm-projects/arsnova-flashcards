@@ -31,8 +31,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDecks}}
-                            <li><a href="#">{{degree}} {{firstName}} {{lastName}}</a></li>
+                        {{#each getAutors}}
+                            <li><a href="#">{{this.degree}}  {{this.firstName}} {{this.lastName}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -47,8 +47,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDecks}}
-                            <li><a href="#">{{moduleLong}}</a></li>
+                        {{#each getModules}}
+                            <li><a href="#">({{this.moduleShort}}) {{this.moduleLong}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -63,8 +63,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDecks}}
-                            <li><a href="#">{{academicCourse}}</a></li>
+                        {{#each getCourses}}
+                            <li><a href="#">{{this}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -79,8 +79,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDecks}}
-                            <li><a href="#">{{department}}</a></li>
+                        {{#each getDepartments}}
+                            <li><a href="#">({{this.department}}) {{this.departmentLong}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -95,8 +95,8 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDecks}}
-                            <li><a href="#">{{studyType}}</a></li>
+                        {{#each getTypes}}
+                            <li><a href="#">{{this}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
