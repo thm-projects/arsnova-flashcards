@@ -20,7 +20,7 @@
   "disallowSpacesInsideParentheses": true,
   "disallowTrailingComma": true,
   "disallowTrailingWhitespace": true,
-  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
   "requireCapitalizedConstructors": true,
   "requireCommaBeforeLineBreak": true,
   "requireDotNotation": true,

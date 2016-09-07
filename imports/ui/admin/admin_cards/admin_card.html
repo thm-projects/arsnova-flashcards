@@ -1,58 +1,58 @@
 <template name="admin_card">
-  <div class="content-header">
-    <h1>
-      {{_ "admin.card.header"}}
-      <small>{{_ "admin.card.edit"}} {{_id}}</small>
-    </h1>
-  </div>
-  <div class="content box-admin">
-    <div class="box-body-admin">
-      <form id="admin_card_update">
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.card.info"}}</div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label id="editCardUserLabelAdmin">{{_ "admin.card.username"}}</label>
-              {{#if userExistsCard cardset_id}}
-                <a href="/admin/user/{{getUserId cardset_id}}">{{getUsernameCard cardset_id}}</a>
-              {{else}}
-                {{getUsernameCard cardset_id}} ({{_ "admin.deleted"}})
-              {{/if}}
-            </div>
-            <div class="form-group">
-              <label id="editCardCardsetnameLabelAdmin">{{_ "admin.card.cardsetname"}}</label>
-              <a href="/admin/cardset/{{cardset_id}}">{{getCardsetname cardset_id}}</a>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.card.settings"}}</div>
-          <div class="panel-body">
-            <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12">
-              <div class="form-group">
-                <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
-                <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-                {{getFront front}}
-              <span id="helpEditCardFrontAdmin" class="help-block front"></span>
-              </div>
-            </div>
-            <div id="backAdmin" class="cardtext col-lg-6 col-xs-12">
-              <div class="form-group">
-                <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
-                <textarea id="editCardBackAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-                {{getBack back}}
-                <span id="helpEditCardBackAdmin" class="help-block back"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="box-button-admin">
-        <button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
-        <button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
-        <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.card.delete"}}</button>
-        <button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.card.confirm"}}</button>
-      </div>
-    </div>
-  </div>
+	<div class="content-header">
+		<h1>
+			{{_ "admin.card.header"}}
+			<small>{{_ "admin.card.edit"}} {{_id}}</small>
+		</h1>
+	</div>
+	<div class="content box-admin">
+		<div class="box-body-admin">
+			<form id="admin_card_update">
+				<div class="panel panel-default">
+					<div class="panel-heading">{{_ "admin.card.info"}}</div>
+					<div class="panel-body">
+					  <div class="form-group">
+							<label id="editCardUserLabelAdmin">{{_ "admin.card.username"}}</label>
+							{{#if userExistsCard cardset_id}}
+							  <a href="/admin/user/{{getUserId cardset_id}}">{{getUsernameCard cardset_id}}</a>
+							{{else}}
+							  {{getUsernameCard cardset_id}} ({{_ "admin.deleted"}})
+							{{/if}}
+					  </div>
+					  <div class="form-group">
+							<label id="editCardCardsetnameLabelAdmin">{{_ "admin.card.cardsetname"}}</label>
+							<a href="/admin/cardset/{{cardset_id}}">{{getCardsetname cardset_id}}</a>
+					  </div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">{{_ "admin.card.settings"}}</div>
+					<div class="panel-body">
+					  <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12">
+							<div class="form-group">
+							  <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
+							  <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
+							  {{getFront front}}
+							<span id="helpEditCardFrontAdmin" class="help-block front"></span>
+							</div>
+					  </div>
+					  <div id="backAdmin" class="cardtext col-lg-6 col-xs-12">
+							<div class="form-group">
+							  <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
+							  <textarea id="editCardBackAdmin" class="form-control" type="text" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
+							  {{getBack back}}
+							  <span id="helpEditCardBackAdmin" class="help-block back"></span>
+							</div>
+					  </div>
+					</div>
+				</div>
+			</form>
+			<div class="box-button-admin">
+				<button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
+				<button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
+				<button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.card.delete"}}</button>
+				<button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.card.confirm"}}</button>
+			</div>
+		</div>
+	</div>
 </template>

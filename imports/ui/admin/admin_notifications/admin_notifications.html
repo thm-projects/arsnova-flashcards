@@ -1,164 +1,164 @@
 <template name="admin_notifications">
-  <div class="content-header">
-    <h1>
-      {{_ "admin.notifications"}}
-    </h1>
-  </div>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#complaintMessages">{{_ "admin.complaint"}}</a></li>
-    <li><a data-toggle="tab" href="#lecturerMessages">{{_ "admin.lecturermessages"}}</a></li>
-    <li><a data-toggle="tab" href="#sendMessages">{{_ "admin.send"}}</a></li>
-    {{#if getNotifications.count}}
-      <li class="pull-right"><button type="button" class="deleteNotifications btn btn-danger" data-toggle='modal' data-target='#allNotificationsConfirmModalAdmin'>{{_ "admin.deleteallnotifications"}}</button></li>
-    {{/if}}
-  </ul>
-  <div class="content">
-    <div class="tab-content">
-      <div id="complaintMessages" class="tab-pane fade in active">
-        <div class="admin_table">
-          {{> reactiveTable collection=complaintMessagesListAdmin settings=tableSettingsComplaint}}
-        </div>
-      </div>
-      <div id="lecturerMessages" class="tab-pane fade">
-        <div class="admin_table">
-          {{> reactiveTable collection=lecturerMessagesListAdmin settings=tableSettingsLecturer}}
-        </div>
-      </div>
-      <div id="sendMessages" class="tab-pane fade">
-        <div class="admin_table">
-          {{> reactiveTable collection=sendMessagesListAdmin settings=tableSettingsSend}}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{> notificationConfirmFormAdmin}}
-  {{> messageFormNotificationAdmin}}
-  {{> notificationLecturerFormAdmin}}
-  {{> allNotificationsConfirmFormAdmin}}
+	<div class="content-header">
+		<h1>
+			{{_ "admin.notifications"}}
+		</h1>
+	</div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#complaintMessages">{{_ "admin.complaint"}}</a></li>
+		<li><a data-toggle="tab" href="#lecturerMessages">{{_ "admin.lecturermessages"}}</a></li>
+		<li><a data-toggle="tab" href="#sendMessages">{{_ "admin.send"}}</a></li>
+		{{#if getNotifications.count}}
+			<li class="pull-right"><button type="button" class="deleteNotifications btn btn-danger" data-toggle='modal' data-target='#allNotificationsConfirmModalAdmin'>{{_ "admin.deleteallnotifications"}}</button></li>
+		{{/if}}
+	</ul>
+	<div class="content">
+		<div class="tab-content">
+			<div id="complaintMessages" class="tab-pane fade in active">
+				<div class="admin_table">
+					{{> reactiveTable collection=complaintMessagesListAdmin settings=tableSettingsComplaint}}
+				</div>
+			</div>
+			<div id="lecturerMessages" class="tab-pane fade">
+				<div class="admin_table">
+					{{> reactiveTable collection=lecturerMessagesListAdmin settings=tableSettingsLecturer}}
+				</div>
+			</div>
+			<div id="sendMessages" class="tab-pane fade">
+				<div class="admin_table">
+					{{> reactiveTable collection=sendMessagesListAdmin settings=tableSettingsSend}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{> notificationConfirmFormAdmin}}
+	{{> messageFormNotificationAdmin}}
+	{{> notificationLecturerFormAdmin}}
+	{{> allNotificationsConfirmFormAdmin}}
 </template>
 
 <template name="allNotificationsConfirmFormAdmin">
-  <div class="modal fade" id="allNotificationsConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="allNotificationsConfirmModalTitleAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="allNotificationsConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.notifications.title_all"}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{_ "admin.confirm-form.notifications.text_all"}}</p>
-          <br />
-          <hr />
+	<div class="modal fade" id="allNotificationsConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="allNotificationsConfirmModalTitleAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="allNotificationsConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.notifications.title_all"}}</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{_ "admin.confirm-form.notifications.text_all"}}</p>
+					<br />
+					<hr />
 
-          <button id="allNotificationsDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.notifications.delete_all"}}</button>
-          <button id="allNotificationsCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+					<button id="allNotificationsDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.notifications.delete_all"}}</button>
+					<button id="allNotificationsCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </template>
 
 <template name="notificationConfirmFormAdmin">
-  <div class="modal fade" id="notificationConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="notificationConfirmModalTitleAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="userConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.notifications.title"}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{_ "admin.confirm-form.notifications.text"}}</p>
-          <br />
-          <hr />
+	<div class="modal fade" id="notificationConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="notificationConfirmModalTitleAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="userConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.notifications.title"}}</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{_ "admin.confirm-form.notifications.text"}}</p>
+					<br />
+					<hr />
 
-          <button id="notificationDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.notifications.title"}}</button>
-          <button id="notificationCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+					<button id="notificationDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.notifications.title"}}</button>
+					<button id="notificationCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </template>
 
 <template name="messageFormNotificationAdmin">
-  <div class="modal fade" id="messageModalNotificationAdmin" tabindex="-1" role="dialog" aria-labelledby="messageModalNotificationTitleAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="messageModalNotificationTitleAdmin" class="modal-title">{{_ "admin.message.messageUser"}}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "admin.message.to"}}</label>
-              <p class="col-md-9">{{getUsername}}</p>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "admin.message.reason"}}</label>
-              {{#if isCardset}}
-                <p id="messageNotificationReasonAdmin" class="col-md-9">{{_ "admin.message.reportcardset"}}</p>
-              {{else}}
-                <p id="messageNotificationReasonAdmin" class="col-md-9">{{_ "admin.message.reportuser"}}</p>
-              {{/if}}
-            </div>
-            {{#if isCardset}}
-              <div class="form-group">
-                <label class="col-md-3 control-label">{{_ "admin.message.cardset"}}</label>
-                <p id="messageNotificationCardsetAdmin" class="col-md-9">{{getCardset}}</p>
-              </div>
-            {{/if}}
-            <div class="form-group text">
-              <label id="messageNotificationTextLabelAdmin" class="col-md-3 control-label">{{_ "admin.message.text"}}</label>
-              <div class="col-md-9">
-                <textarea class="form-control" rows="6" id="messageNotificationTextAdmin"></textarea>
-                <span id="helpMessageNotificationTextAdmin" class="help-block text"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="messageNotificationCancel" class="btn btn-default" data-dismiss="modal">{{_ "admin.message.cancel"}}</button>
-          <button id="messageNotificationSave" class="btn btn-primary">{{_ "admin.message.sendMessage"}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="modal fade" id="messageModalNotificationAdmin" tabindex="-1" role="dialog" aria-labelledby="messageModalNotificationTitleAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="messageModalNotificationTitleAdmin" class="modal-title">{{_ "admin.message.messageUser"}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-horizontal">
+					  <div class="form-group">
+							<label class="col-md-3 control-label">{{_ "admin.message.to"}}</label>
+							<p class="col-md-9">{{getUsername}}</p>
+					  </div>
+					  <div class="form-group">
+							<label class="col-md-3 control-label">{{_ "admin.message.reason"}}</label>
+							{{#if isCardset}}
+							  <p id="messageNotificationReasonAdmin" class="col-md-9">{{_ "admin.message.reportcardset"}}</p>
+							{{else}}
+							  <p id="messageNotificationReasonAdmin" class="col-md-9">{{_ "admin.message.reportuser"}}</p>
+							{{/if}}
+					  </div>
+					  {{#if isCardset}}
+							<div class="form-group">
+							  <label class="col-md-3 control-label">{{_ "admin.message.cardset"}}</label>
+							  <p id="messageNotificationCardsetAdmin" class="col-md-9">{{getCardset}}</p>
+							</div>
+					  {{/if}}
+					  <div class="form-group text">
+							<label id="messageNotificationTextLabelAdmin" class="col-md-3 control-label">{{_ "admin.message.text"}}</label>
+							<div class="col-md-9">
+							  <textarea class="form-control" rows="6" id="messageNotificationTextAdmin"></textarea>
+							  <span id="helpMessageNotificationTextAdmin" class="help-block text"></span>
+							</div>
+					  </div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="messageNotificationCancel" class="btn btn-default" data-dismiss="modal">{{_ "admin.message.cancel"}}</button>
+					<button id="messageNotificationSave" class="btn btn-primary">{{_ "admin.message.sendMessage"}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="notificationLecturerFormAdmin">
-  <div class="modal fade" id="notificationLecturerModalAdmin" tabindex="-1" role="dialog" aria-labelledby="notificationLecturerModalTitleAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="notificationLecturerModalTitleAdmin" class="modal-title">{{_ "admin.lecturerrequest.title"}}</h4>
-        </div>
-        <div class="modal-body">
-          {{#if isRequest}}
-            <p>{{getRequesttext}}</p>
-          {{else}}
-            <p>{{_ "admin.lecturerrequest.text"}}</p>
-          {{/if}}
-          <br />
-          <hr />
-          {{#if isRequest}}
-            <button id="lecturerrequestNoAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.lecturerrequest.no"}}</button>
-            <button id="lecturerrequestYesAdmin" class="btn btn-primary" style="width:150px">{{_ "admin.lecturerrequest.yes"}}</button>
-            <button id="lecturerrequestCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
-          {{else}}
-            <button id="lecturerrequestCancelAdmin" class="btn btn-default" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
-          {{/if}}
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+	<div class="modal fade" id="notificationLecturerModalAdmin" tabindex="-1" role="dialog" aria-labelledby="notificationLecturerModalTitleAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="notificationLecturerModalTitleAdmin" class="modal-title">{{_ "admin.lecturerrequest.title"}}</h4>
+				</div>
+				<div class="modal-body">
+					{{#if isRequest}}
+					  <p>{{getRequesttext}}</p>
+					{{else}}
+					  <p>{{_ "admin.lecturerrequest.text"}}</p>
+					{{/if}}
+					<br />
+					<hr />
+					{{#if isRequest}}
+					  <button id="lecturerrequestNoAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.lecturerrequest.no"}}</button>
+					  <button id="lecturerrequestYesAdmin" class="btn btn-primary" style="width:150px">{{_ "admin.lecturerrequest.yes"}}</button>
+					  <button id="lecturerrequestCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
+					{{else}}
+					  <button id="lecturerrequestCancelAdmin" class="btn btn-default" data-dismiss="modal">{{_ "admin.lecturerrequest.cancel"}}</button>
+					{{/if}}
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </template>

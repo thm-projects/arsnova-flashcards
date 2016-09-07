@@ -1,679 +1,679 @@
 <template name="profile">
-  <div id='profileSidebar' class="col-md-3">
-    {{> profileSidebar}}
-  </div>
-  {{#if isVisible}}
-  <div class="col-md-9">
-    {{#if isActiveRoute 'profileOverview'}}
-      <div id="profileOverview">{{> profileOverview}}</div>
-    {{/if}}
+	<div id='profileSidebar' class="col-md-3">
+		{{> profileSidebar}}
+	</div>
+	{{#if isVisible}}
+	<div class="col-md-9">
+		{{#if isActiveRoute 'profileOverview'}}
+			<div id="profileOverview">{{> profileOverview}}</div>
+		{{/if}}
 
-    {{#if isActiveRoute 'profileBilling'}}
-      <div id="profileBilling">
-        {{#if isUser}}
-        {{> profileBilling}}
-        {{else}}
-        <h3>{{_ "permission"}}</h3>
-        {{/if}}
-      </div>
-    {{/if}}
+		{{#if isActiveRoute 'profileBilling'}}
+			<div id="profileBilling">
+				{{#if isUser}}
+				{{> profileBilling}}
+				{{else}}
+				<h3>{{_ "permission"}}</h3>
+				{{/if}}
+			</div>
+		{{/if}}
 
-    {{#if isActiveRoute 'profileMembership'}}
-      <div id="profileMembership">
-        {{#if isUser}}
-        {{> profileMembership}}
-        {{else}}
-        <h3>{{_ "permission"}}</h3>
-        {{/if}}
-      </div>
-    {{/if}}
+		{{#if isActiveRoute 'profileMembership'}}
+			<div id="profileMembership">
+				{{#if isUser}}
+				{{> profileMembership}}
+				{{else}}
+				<h3>{{_ "permission"}}</h3>
+				{{/if}}
+			</div>
+		{{/if}}
 
-    {{#if isActiveRoute 'profileNotifications'}}
-      <div id="profileNotifications">
-        {{#if isUser}}
-        {{> profileNotifications}}
-        {{else}}
-        <h3>{{_ "permission"}}</h3>
-        {{/if}}
-      </div>
-    {{/if}}
+		{{#if isActiveRoute 'profileNotifications'}}
+			<div id="profileNotifications">
+				{{#if isUser}}
+				{{> profileNotifications}}
+				{{else}}
+				<h3>{{_ "permission"}}</h3>
+				{{/if}}
+			</div>
+		{{/if}}
 
-    {{#if isActiveRoute 'profileSettings'}}
-      <div id="profileSettings">
-        {{#if isUser}}
-        {{> profileSettings}}
-        {{else}}
-        <h3>{{_ "permission"}}</h3>
-        {{/if}}
-      </div>
-    {{/if}}
+		{{#if isActiveRoute 'profileSettings'}}
+			<div id="profileSettings">
+				{{#if isUser}}
+				{{> profileSettings}}
+				{{else}}
+				<h3>{{_ "permission"}}</h3>
+				{{/if}}
+			</div>
+		{{/if}}
 
-    {{#if isActiveRoute 'profileRequests'}}
-      <div id="profileRequests">
-        {{#if isUser}}
-          {{#if isInRole 'lecturer'}}
-            {{> profileRequests}}
-          {{else}}
-            <h3>{{_ "permission"}}</h3>
-          {{/if}}
-        {{else}}
-          <h3>{{_ "permission"}}</h3>
-        {{/if}}
-      </div>
-    {{/if}}
+		{{#if isActiveRoute 'profileRequests'}}
+			<div id="profileRequests">
+				{{#if isUser}}
+					{{#if isInRole 'lecturer'}}
+					  {{> profileRequests}}
+					{{else}}
+					  <h3>{{_ "permission"}}</h3>
+					{{/if}}
+				{{else}}
+					<h3>{{_ "permission"}}</h3>
+				{{/if}}
+			</div>
+		{{/if}}
 
-  </div>
-  {{else}}
-    <div class="col-md-9">
-      <div class="row">
-        <div id="profileprivate">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{_ "panel-body.profileprivate"}}</h3>
-            </div>
-            <div class="panel-body">{{_ "panel-body.profileprivatetext"}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  {{/if}}
+	</div>
+	{{else}}
+		<div class="col-md-9">
+			<div class="row">
+				<div id="profileprivate">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+							<h3 class="panel-title">{{_ "panel-body.profileprivate"}}</h3>
+					  </div>
+					  <div class="panel-body">{{_ "panel-body.profileprivatetext"}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{/if}}
 </template>
 
 
 <template name="profileSidebar">
-    <div class="well well-sm sidebar-nav">
-        <div class="input-group">
-            <h5>{{_ "profil-header.name"}} {{getUser.profile.name}}</h5>
-        </div>
+		<div class="well well-sm sidebar-nav">
+				<div class="input-group">
+					  <h5>{{_ "profil-header.name"}} {{getUser.profile.name}}</h5>
+				</div>
 
-        <div >
-            <p>{{_ "panel-body.login"}} {{getService}}</p>
-        </div>
+				<div >
+					  <p>{{_ "panel-body.login"}} {{getService}}</p>
+				</div>
 
-        {{#if isUser}}
-        <hr />
+				{{#if isUser}}
+				<hr />
 
-        <ul class="nav nav-pills nav-stacked">
-          <li role="presentation" class="{{#if isActiveRoute 'profileOverview'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/overview">
-              <i class="fa fa-trophy"></i>{{_ "profile.overview"}}
-            </a>
-          </li>
-          <li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/membership">
-              <i class="fa fa-user"></i>{{_ "profile.membership"}}
-            </a>
-          </li>
-          <li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/billing">
-              <i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
-            </a>
-          </li>
-          <li role="presentation" class="{{#if isActiveRoute 'profileNotifications'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/notifications">
-              <i class="fa fa-bell"></i>{{_ "profile.notifications"}}
-            </a>
-          </li>
-          <li role="presentation" class="{{#if isActiveRoute 'profileSettings'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/settings">
-              <i class="fa fa-cog"></i>{{_ "profile.settings"}}
-            </a>
-          </li>
-          {{#if isInRole 'lecturer'}}
-          <hr>
-          <li role="presentation" class="{{#if isActiveRoute 'profileRequests'}}active{{/if}}">
-            <a href="/profile/{{currentUser._id}}/requests">
-              <i class="fa fa-check"></i>{{_ "profile.requests"}}
-            </a>
-          </li>
-          {{/if}}
-        </ul>
-        {{/if}}
-    </div>
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation" class="{{#if isActiveRoute 'profileOverview'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/overview">
+							<i class="fa fa-trophy"></i>{{_ "profile.overview"}}
+					  </a>
+					</li>
+					<li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/membership">
+							<i class="fa fa-user"></i>{{_ "profile.membership"}}
+					  </a>
+					</li>
+					<li role="presentation" class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/billing">
+							<i class="fa fa-credit-card"></i>{{_ "profile.billing"}}
+					  </a>
+					</li>
+					<li role="presentation" class="{{#if isActiveRoute 'profileNotifications'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/notifications">
+							<i class="fa fa-bell"></i>{{_ "profile.notifications"}}
+					  </a>
+					</li>
+					<li role="presentation" class="{{#if isActiveRoute 'profileSettings'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/settings">
+							<i class="fa fa-cog"></i>{{_ "profile.settings"}}
+					  </a>
+					</li>
+					{{#if isInRole 'lecturer'}}
+					<hr>
+					<li role="presentation" class="{{#if isActiveRoute 'profileRequests'}}active{{/if}}">
+					  <a href="/profile/{{currentUser._id}}/requests">
+							<i class="fa fa-check"></i>{{_ "profile.requests"}}
+					  </a>
+					</li>
+					{{/if}}
+				</ul>
+				{{/if}}
+		</div>
 </template>
 
 
 <template name="profileOverview">
-  <div class="row">
-      {{> profileXp}}
-  </div>
-  <div class="row">
-      {{> profileBadges}}
-  </div>
+	<div class="row">
+			{{> profileXp}}
+	</div>
+	<div class="row">
+			{{> profileBadges}}
+	</div>
 </template>
 
 <!--##################################################################-->
 <!--profileSettings-->
 <!--##################################################################-->
 <template name="profileSettings">
-    <div id="profile-info">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{_ "panel-heading.hallo"}}</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                    {{#if isUser}}
-                    {{#unless isInRole 'pro,lecturer'}}
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
-                        <div class="col-md-8">
-                            <div class="btn-group btn-group-justified" data-toggle="buttons">
-                                <label id="profilepublicoption1" class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}">
-                                    <input type="radio" name="visible" value="true">
-                                    <div>{{_ "panel-body.profilepublicoption1"}}</div>
-                                </label>
-                                <label id="profilepublicoption2" class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}">
-                                    <input type="radio" name="visible" value="false">
-                                    <div>{{_ "panel-body.profilepublicoption2"}}</div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    {{/unless}}
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
-                        <div class="col-md-8">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="{{_ "panel-body.email"}}" value="{{getUser.email}}">
-                            <span id="errorEmail" class="help-block name"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">{{_ "panel-body.name"}}</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="inputName" placeholder="{{_ "panel-body.name"}}" value="{{getUser.profile.name}}">
-                            <span id="errorName" class="help-block name"></span>
-                        </div>
-                    </div>
-                    <div class="btn-group pull-right" role="group">
-                      <button id="profileCancel" type="button" class="btn btn-danger">{{_ "profile.cancel"}}</button>
-                      <button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
-                    </div>
-                    {{/if}}
-                </form>
-            </div>
-        </div>
-    </div>
+		<div id="profile-info">
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+							  <h3 class="panel-title">{{_ "panel-heading.hallo"}}</h3>
+					  </div>
+					  <div class="panel-body">
+							  <form class="form-horizontal" role="form">
+									  {{#if isUser}}
+									  {{#unless isInRole 'pro,lecturer'}}
+									  <div class="form-group">
+											  <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
+											  <div class="col-md-8">
+													  <div class="btn-group btn-group-justified" data-toggle="buttons">
+															  <label id="profilepublicoption1" class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}">
+																	  <input type="radio" name="visible" value="true">
+																	  <div>{{_ "panel-body.profilepublicoption1"}}</div>
+															  </label>
+															  <label id="profilepublicoption2" class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}">
+																	  <input type="radio" name="visible" value="false">
+																	  <div>{{_ "panel-body.profilepublicoption2"}}</div>
+															  </label>
+													  </div>
+											  </div>
+									  </div>
+									  <hr>
+									  {{/unless}}
+									  <div class="form-group">
+											  <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
+											  <div class="col-md-8">
+													  <input type="email" class="form-control" id="inputEmail" placeholder="{{_ "panel-body.email"}}" value="{{getUser.email}}">
+													  <span id="errorEmail" class="help-block name"></span>
+											  </div>
+									  </div>
+									  <div class="form-group">
+											  <label class="col-md-4 control-label">{{_ "panel-body.name"}}</label>
+											  <div class="col-md-8">
+													  <input type="text" class="form-control" id="inputName" placeholder="{{_ "panel-body.name"}}" value="{{getUser.profile.name}}">
+													  <span id="errorName" class="help-block name"></span>
+											  </div>
+									  </div>
+									  <div class="btn-group pull-right" role="group">
+											<button id="profileCancel" type="button" class="btn btn-danger">{{_ "profile.cancel"}}</button>
+											<button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
+									  </div>
+									  {{/if}}
+							  </form>
+					  </div>
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileXp-->
 <!--##################################################################-->
 <template name="profileXp">
-    <div class="col-md-12" id="profile-xp">
-        <div class="panel panel-default">
-            <div class="panel-heading panel-heading-experience">
-                <h3 class="panel-title">{{_ "panel-heading-experience.experience"}}</h3>
-            </div>
-            <div class="panel-body panel-body-experience">
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-3">
-                        <div class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row">
-                                <span style="display:inline-block; height:50px; font-size:40px">
-                  {{getXpTotal}}
-                </span>
-                            </div>
-                            <div class="row">
-                                <span class="text-muted" style="font-size:12px">
-                  {{_ "panel-body-experience.total"}}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:30px; margin-top:12px">
-                  {{getXpToday}}
-                </span>
-                            </div>
-                            <div class="row">
-                                <span class="text-muted" style="font-size:12px">
-                  {{_ "panel-body-experience.today"}}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:25px; margin-top:17px; height:25px;">
-                  {{getXpYesterday}}
-                </span>
-                            </div>
-                            <div class="row">
-                                <span class="text-muted" style="font-size:12px">
-                  {{_ "panel-body-experience.yesterday"}}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
-                  {{getXpWeek}}
-                </span>
-                            </div>
-                            <div class="row">
-                                <span class="text-muted" style="font-size:12px">
-                  {{_ "panel-body-experience.days"}}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		<div class="col-md-12" id="profile-xp">
+				<div class="panel panel-default">
+					  <div class="panel-heading panel-heading-experience">
+							  <h3 class="panel-title">{{_ "panel-heading-experience.experience"}}</h3>
+					  </div>
+					  <div class="panel-body panel-body-experience">
+							  <div class="row" style="margin-bottom:15px">
+									  <div class="col-md-3">
+											  <div class="well well-sm" style="margin:0; text-align:center">
+													  <div class="row">
+															  <span style="display:inline-block; height:50px; font-size:40px">
+									{{getXpTotal}}
+							  </span>
+													  </div>
+													  <div class="row">
+															  <span class="text-muted" style="font-size:12px">
+									{{_ "panel-body-experience.total"}}
+							  </span>
+													  </div>
+											  </div>
+									  </div>
+									  <div class="col-md-3">
+											  <div class="well well-sm" style="margin:0; text-align:center">
+													  <div class="row" style="height:50px;">
+															  <span style="display:inline-block; font-size:30px; margin-top:12px">
+									{{getXpToday}}
+							  </span>
+													  </div>
+													  <div class="row">
+															  <span class="text-muted" style="font-size:12px">
+									{{_ "panel-body-experience.today"}}
+							  </span>
+													  </div>
+											  </div>
+									  </div>
+									  <div class="col-md-3">
+											  <div class="well well-sm" style="margin:0; text-align:center">
+													  <div class="row" style="height:50px;">
+															  <span style="display:inline-block; font-size:25px; margin-top:17px; height:25px;">
+									{{getXpYesterday}}
+							  </span>
+													  </div>
+													  <div class="row">
+															  <span class="text-muted" style="font-size:12px">
+									{{_ "panel-body-experience.yesterday"}}
+							  </span>
+													  </div>
+											  </div>
+									  </div>
+									  <div class="col-md-3">
+											  <div class="well well-sm" style="margin:0; text-align:center">
+													  <div class="row" style="height:50px;">
+															  <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+									{{getXpWeek}}
+							  </span>
+													  </div>
+													  <div class="row">
+															  <span class="text-muted" style="font-size:12px">
+									{{_ "panel-body-experience.days"}}
+							  </span>
+													  </div>
+											  </div>
+									  </div>
+							  </div>
 
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-12">
-                        <span class="text-muted">{{_ "panel-body-experience.lastredeem"}}</span>
-                        <span class="pull-right text-muted">
-              {{getLast}}
-            </span>
-                    </div>
-                </div>
-                <hr>
+							  <div class="row" style="margin-bottom:15px">
+									  <div class="col-md-12">
+											  <span class="text-muted">{{_ "panel-body-experience.lastredeem"}}</span>
+											  <span class="pull-right text-muted">
+							{{getLast}}
+					  </span>
+									  </div>
+							  </div>
+							  <hr>
 
-                <div class="row" style="margin-top:15px">
-                    <div class="col-md-2" style="text-align:center;">
-                        <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36.png')">
-                            <span style="font-weight:bold; color: #000; font-size:13px; padding-top:5px; display:inline-block">
-                {{getLvl}}
-              </span>
-                        </div>
-                    </div>
-                    <div class="col-md-8" style="text-align:center">
-                        <div class="progress" style="margin:0">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{getXpPercent}};">
-                            </div>
-                        </div>
-                        <small class="text-muted">
-              <span>{{_ "pointslvl1"}}</span>
-              <em>
-                <span>{{getXp}}</span>
-                <span>{{_ "pointslvl2"}}</span>
-              </em>
-              <span>{{_ "pointslvl3"}}</span>
-            </small>
-                    </div>
-                    <div class="col-md-2" style="text-align:center;">
-                        <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36_gray.png')">
-                            <span style="font-weight:bold; color: #fff; font-size:13px; padding-top:5px; display:inline-block">
-                {{getNextLvl}}
-              </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+							  <div class="row" style="margin-top:15px">
+									  <div class="col-md-2" style="text-align:center;">
+											  <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36.png')">
+													  <span style="font-weight:bold; color: #000; font-size:13px; padding-top:5px; display:inline-block">
+							  {{getLvl}}
+							</span>
+											  </div>
+									  </div>
+									  <div class="col-md-8" style="text-align:center">
+											  <div class="progress" style="margin:0">
+													  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{getXpPercent}};">
+													  </div>
+											  </div>
+											  <small class="text-muted">
+							<span>{{_ "pointslvl1"}}</span>
+							<em>
+							  <span>{{getXp}}</span>
+							  <span>{{_ "pointslvl2"}}</span>
+							</em>
+							<span>{{_ "pointslvl3"}}</span>
+					  </small>
+									  </div>
+									  <div class="col-md-2" style="text-align:center;">
+											  <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36_gray.png')">
+													  <span style="font-weight:bold; color: #fff; font-size:13px; padding-top:5px; display:inline-block">
+							  {{getNextLvl}}
+							</span>
+											  </div>
+									  </div>
+							  </div>
+					  </div>
 
-        </div>
-    </div>
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileBadges-->
 <!--##################################################################-->
 <template name="profileBadges">
-    <div class="col-md-12" id="profile-badge-region">
-        <div class="panel panel-default">
-            <div class="panel-heading panel-heading-badges">
-                <h3 class="panel-title">{{_ "panel-heading-badges.badges"}}</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    {{#each badge in getBadges}}
+		<div class="col-md-12" id="profile-badge-region">
+				<div class="panel panel-default">
+					  <div class="panel-heading panel-heading-badges">
+							  <h3 class="panel-title">{{_ "panel-heading-badges.badges"}}</h3>
+					  </div>
+					  <div class="panel-body">
+							  <div class="row">
+									  {{#each badge in getBadges}}
 
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{badge.name}}</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
+									  <div class="col-md-6">
+											  <div class="panel panel-default">
+													  <div class="panel-heading">
+															  <h3 class="panel-title">{{badge.name}}</h3>
+													  </div>
+													  <div class="panel-body">
+															  <div class="row">
+																	  <div class="col-md-12">
+																			  <div class="row">
 
-                                            <div class="col-md-4">
-                                                <div class="well well-sm badgeWell">
-                                                    <div class="row">
-                                                        <img src="/badges/{{badge.badge}}_3{{#unless isGained @index 3}}_gray{{/unless}}.png" height="60">
-                                                    </div>
-                                                    <div class="row">
-                                                        <strong>{{_ "bronze"}}</strong>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p>{{badge.rank3}} {{badge.unit}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="progress badgeFooterProgress">
-                                                                <div class="progress-bar {{#if isGained @index 3}}progress-bar-success{{/if}}" role="progressbar" style="width: {{ getPercent @index 3}}%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="well well-sm badgeWell">
-                                                    <div class="row">
-                                                        <img src="/badges/{{badge.badge}}_2{{#unless isGained @index 2}}_gray{{/unless}}.png" height="60">
-                                                    </div>
-                                                    <div class="row">
-                                                        <strong>{{_ "silver"}}</strong>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p>{{badge.rank2}} {{badge.unit}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="progress badgeFooterProgress">
-                                                                <div class="progress-bar {{#if isGained @index 2}}progress-bar-success{{/if}}" role="progressbar" style="width: {{ getPercent @index 2}}%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="well well-sm badgeWell">
-                                                    <div class="row">
-                                                        <img src="/badges/{{badge.badge}}_1{{#unless isGained @index 1}}_gray{{/unless}}.png" height="60">
-                                                    </div>
-                                                    <div class="row">
-                                                        <strong>{{_ "gold"}}</strong>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p>{{badge.rank1}} {{badge.unit}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="progress badgeFooterProgress">
-                                                                <div class="progress-bar {{#if isGained @index 1}}progress-bar-success{{/if}}" role="progressbar" style="width: {{ getPercent @index 1}}%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+																					  <div class="col-md-4">
+																							  <div class="well well-sm badgeWell">
+																									  <div class="row">
+																											  <img src="/badges/{{badge.badge}}_3{{#unless isGained @index 3}}_gray{{/unless}}.png" height="60">
+																									  </div>
+																									  <div class="row">
+																											  <strong>{{_ "bronze"}}</strong>
+																									  </div>
+																									  <div class="row">
+																											  <p>{{badge.rank3}} {{badge.unit}}</p>
+																									  </div>
+																									  <div class="row">
+																											  <div class="col-md-12">
+																													  <div class="progress badgeFooterProgress">
+																															  <div class="progress-bar {{#if isGained @index 3}}progress-bar-success{{/if}}" role="progressbar" style="width: {{getPercent @index 3}}%"></div>
+																													  </div>
+																											  </div>
+																									  </div>
+																							  </div>
+																					  </div>
+																					  <div class="col-md-4">
+																							  <div class="well well-sm badgeWell">
+																									  <div class="row">
+																											  <img src="/badges/{{badge.badge}}_2{{#unless isGained @index 2}}_gray{{/unless}}.png" height="60">
+																									  </div>
+																									  <div class="row">
+																											  <strong>{{_ "silver"}}</strong>
+																									  </div>
+																									  <div class="row">
+																											  <p>{{badge.rank2}} {{badge.unit}}</p>
+																									  </div>
+																									  <div class="row">
+																											  <div class="col-md-12">
+																													  <div class="progress badgeFooterProgress">
+																															  <div class="progress-bar {{#if isGained @index 2}}progress-bar-success{{/if}}" role="progressbar" style="width: {{getPercent @index 2}}%"></div>
+																													  </div>
+																											  </div>
+																									  </div>
+																							  </div>
+																					  </div>
+																					  <div class="col-md-4">
+																							  <div class="well well-sm badgeWell">
+																									  <div class="row">
+																											  <img src="/badges/{{badge.badge}}_1{{#unless isGained @index 1}}_gray{{/unless}}.png" height="60">
+																									  </div>
+																									  <div class="row">
+																											  <strong>{{_ "gold"}}</strong>
+																									  </div>
+																									  <div class="row">
+																											  <p>{{badge.rank1}} {{badge.unit}}</p>
+																									  </div>
+																									  <div class="row">
+																											  <div class="col-md-12">
+																													  <div class="progress badgeFooterProgress">
+																															  <div class="progress-bar {{#if isGained @index 1}}progress-bar-success{{/if}}" role="progressbar" style="width: {{getPercent @index 1}}%"></div>
+																													  </div>
+																											  </div>
+																									  </div>
+																							  </div>
+																					  </div>
+																			  </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-md-12">
+																	  </div>
+															  </div>
+													  </div>
+													  <div class="panel-footer">
+															  <div class="row">
+																	  <div class="col-md-12">
 
-                                        <p>{{badge.desc}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-    </div>
+																			  <p>{{badge.desc}}</p>
+																	  </div>
+															  </div>
+													  </div>
+											  </div>
+									  </div>
+									  {{/each}}
+							  </div>
+					  </div>
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileBilling-->
 <!--##################################################################-->
 <template name="profileBilling">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{_ "profile.billing"}}</h3>
-        </div>
-        <div class="panel-body">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#payment">{{_ "billing.payment.header"}}</a></li>
-                <li><a data-toggle="tab" href="#balance">{{_ "billing.balance.header"}}</a></li>
-                <li><a data-toggle="tab" href="#revenue">{{_ "billing.revenue.header"}}</a></li>
-                <li><a data-toggle="tab" href="#purchases">{{_ "billing.purchases.header"}}</a></li>
-            </ul>
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					  <h3 class="panel-title">{{_ "profile.billing"}}</h3>
+				</div>
+				<div class="panel-body">
+					  <ul class="nav nav-tabs">
+							  <li class="active"><a data-toggle="tab" href="#payment">{{_ "billing.payment.header"}}</a></li>
+							  <li><a data-toggle="tab" href="#balance">{{_ "billing.balance.header"}}</a></li>
+							  <li><a data-toggle="tab" href="#revenue">{{_ "billing.revenue.header"}}</a></li>
+							  <li><a data-toggle="tab" href="#purchases">{{_ "billing.purchases.header"}}</a></li>
+					  </ul>
 
-            <div class="tab-content">
-                <div id="payment" class="tab-pane fade in active">
-                    <h5>{{_ "billing.payment.actual"}}</h5>
-                    {{#if hasPaymentMethod}}
-                        <div class="list-group">
-                            {{#each getPaymentMethod}}
-                                <div class="list-group-item {{#if default}}list-group-item-success{{/if}}">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <img class="media-object" src="{{imageUrl}}" alt="...">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">{{#if cardType}}{{cardType}}{{else}}PayPal{{/if}}</h4>
-                                            {{#if cardType}}
-                                                {{maskedNumber}} - {{expirationDate}}
-                                            {{else}}
-                                                {{email}}
-                                            {{/if}}
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/each}}
-                        </div>
-                    {{else}}
-                        <p class="alert alert-info">{{_ "billing.payment.empty"}}</p>
-                    {{/if}}
-                    <br>
-                    <h5>{{_ "billing.payment.add"}}</h5>
-                    <form role="form">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="paymentMethodDropIn"></div>
-                                <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_ "billing.payment.save"}}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+					  <div class="tab-content">
+							  <div id="payment" class="tab-pane fade in active">
+									  <h5>{{_ "billing.payment.actual"}}</h5>
+									  {{#if hasPaymentMethod}}
+											  <div class="list-group">
+													  {{#each getPaymentMethod}}
+															  <div class="list-group-item {{#if default}}list-group-item-success{{/if}}">
+																	  <div class="media">
+																			  <div class="media-left media-middle">
+																					  <img class="media-object" src="{{imageUrl}}" alt="...">
+																			  </div>
+																			  <div class="media-body">
+																					  <h4 class="media-heading">{{#if cardType}}{{cardType}}{{else}}PayPal{{/if}}</h4>
+																					  {{#if cardType}}
+																							  {{maskedNumber}} - {{expirationDate}}
+																					  {{else}}
+																							  {{email}}
+																					  {{/if}}
+																			  </div>
+																	  </div>
+															  </div>
+													  {{/each}}
+											  </div>
+									  {{else}}
+											  <p class="alert alert-info">{{_ "billing.payment.empty"}}</p>
+									  {{/if}}
+									  <br>
+									  <h5>{{_ "billing.payment.add"}}</h5>
+									  <form role="form">
+											  <div class="row">
+													  <div class="col-md-12">
+															  <div id="paymentMethodDropIn"></div>
+															  <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_ "billing.payment.save"}}</button>
+													  </div>
+											  </div>
+									  </form>
+							  </div>
 
-                <div id="balance" class="tab-pane fade">
-                    <br>
-                    <strong class="pull-left">{{_ "billing.balance.header"}}: {{getBalance}}€</strong>
-                    {{#if hasBalance}}
-                    <br><br>
-                    <form role="form">
-                      <div class="">
-                        <div class="">
-                          <div id="payoutDropIn"></div>
-                          <button id="payoutBtn" type="submit" class="btn btn-info btn-block">{{getBalance}}€ {{_ "billing.balance.disburse"}}</button>
-                        </div>
-                      </div>
-                    </form>
-                    {{/if}}
-                </div>
+							  <div id="balance" class="tab-pane fade">
+									  <br>
+									  <strong class="pull-left">{{_ "billing.balance.header"}}: {{getBalance}}€</strong>
+									  {{#if hasBalance}}
+									  <br><br>
+									  <form role="form">
+											<div class="">
+											  <div class="">
+													<div id="payoutDropIn"></div>
+													<button id="payoutBtn" type="submit" class="btn btn-info btn-block">{{getBalance}}€ {{_ "billing.balance.disburse"}}</button>
+											  </div>
+											</div>
+									  </form>
+									  {{/if}}
+							  </div>
 
-                <div id="revenue" class="tab-pane fade">
-                    <br>
-                    {{#if getRevenue.count}}
-                        <div class="list-group">
-                            {{#each getRevenue}}
-                                <a href="/cardset/{{cardset_id}}" class="list-group-item">
-                                    <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
-                                    <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_ "billing.revenue.for"}} {{amount}}€ {{_ "billing.revenue.at"}} {{getDate}}</p>
-                                </a>
-                            {{/each}}
-                        </div>
-                    {{else}}
-                        <p class="alert alert-info">{{_ "billing.revenue.empty"}}</p>
-                    {{/if}}
-                </div>
+							  <div id="revenue" class="tab-pane fade">
+									  <br>
+									  {{#if getRevenue.count}}
+											  <div class="list-group">
+													  {{#each getRevenue}}
+															  <a href="/cardset/{{cardset_id}}" class="list-group-item">
+																	  <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
+																	  <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_ "billing.revenue.for"}} {{amount}}€ {{_ "billing.revenue.at"}} {{getDate}}</p>
+															  </a>
+													  {{/each}}
+											  </div>
+									  {{else}}
+											  <p class="alert alert-info">{{_ "billing.revenue.empty"}}</p>
+									  {{/if}}
+							  </div>
 
-                <div id="purchases" class="tab-pane fade">
-                    <br>
-                    {{#if getInvoices.count}}
-                        <div class="list-group">
-                            {{#each getInvoices}}
-                                <a href="/cardset/{{cardset_id}}" class="list-group-item">
-                                    <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
-                                    <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_ "billing.purchases.at"}} {{getDate}}</p>
-                                </a>
-                            {{/each}}
-                        </div>
-                    {{else}}
-                        <p class="alert alert-info">{{_ "billing.purchases.empty"}}</p>
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-    </div>
+							  <div id="purchases" class="tab-pane fade">
+									  <br>
+									  {{#if getInvoices.count}}
+											  <div class="list-group">
+													  {{#each getInvoices}}
+															  <a href="/cardset/{{cardset_id}}" class="list-group-item">
+																	  <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
+																	  <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_ "billing.purchases.at"}} {{getDate}}</p>
+															  </a>
+													  {{/each}}
+											  </div>
+									  {{else}}
+											  <p class="alert alert-info">{{_ "billing.purchases.empty"}}</p>
+									  {{/if}}
+							  </div>
+					  </div>
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileMembership-->
 <!--##################################################################-->
 <template name="profileMembership">
-    <div id="profile-info">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{_ "billing.plan.header"}}</h3>
-            </div>
-            <div class="panel-body">
-                <div>{{_ "billing.plan.desc"}}</div>
-                <br>
-                <div class="col-md-6">
-                    <div class="panel price {{#if isInRole 'standard'}}panel-success{{else}}panel-default{{/if}}">
-                        <div class="panel-heading  text-center">
-                            <h3>STANDARD</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead">
-                                <h2>0€</h2></p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-                            {{#if isInRole 'university'}}
-                                <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-                            {{/if}}
-                        </ul>
-                        <div class="panel-footer">
-                            {{#if isInRole 'pro'}}
-                                <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
-                            {{else}}
-                                <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
-                            {{/if}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel price {{#if isInRole 'pro'}}panel-success{{else}}panel-default{{/if}}">
-                        <div class="panel-heading  text-center">
-                            <h3>PRO</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead">
-                                <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-                            <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-                            <li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
-                        </ul>
-                        <div class="panel-footer">
-                            {{#if isInRole 'pro'}}
-                                <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
-                            {{else}}
-                                <form role="form">
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div id="subscribe-form"></div>
-                                        <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
-                                    </div>
-                                  </div>
-                                </form>
-                            {{/if}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">{{_ "billing.plan.lecturer"}}</h4>
-            </div>
-            <div class="panel-body">
-              {{#if isInRole 'lecturer'}}
-                  {{_ "billing.plan.lecturerActivatet"}}
-              {{else}}
-                {{#if hasUserData}}
-                  <form class="form-horizontal" id="lecturerRequestForm">
-                      <button type="button" id="sendLecturerRequest" class="btn btn-info pull-right">{{_ "billing.plan.send"}}</button>
-                  </form>
-                  {{else}}
-                  Geben Sie zuerst Ihre Kontaktdaten an um eine Anfrage zu stellen.
-                  <a class="btn btn-default btn-xs pull-right" href="/profile/{{currentUser._id}}/settings">Kontaktdaten angeben</a>
-                {{/if}}
-              {{/if}}
-            </div>
-        </div>
-    </div>
+		<div id="profile-info">
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+							  <h3 class="panel-title">{{_ "billing.plan.header"}}</h3>
+					  </div>
+					  <div class="panel-body">
+							  <div>{{_ "billing.plan.desc"}}</div>
+							  <br>
+							  <div class="col-md-6">
+									  <div class="panel price {{#if isInRole 'standard'}}panel-success{{else}}panel-default{{/if}}">
+											  <div class="panel-heading  text-center">
+													  <h3>STANDARD</h3>
+											  </div>
+											  <div class="panel-body text-center">
+													  <p class="lead">
+															  <h2>0€</h2></p>
+											  </div>
+											  <ul class="list-group list-group-flush text-center">
+													  <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+													  {{#if isInRole 'university'}}
+															  <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+													  {{/if}}
+											  </ul>
+											  <div class="panel-footer">
+													  {{#if isInRole 'pro'}}
+															  <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_ "billing.plan.back"}}</button>
+													  {{else}}
+															  <button class="btn btn-block btn-success disabled" href="#">{{_ "billing.plan.actual"}}</button>
+													  {{/if}}
+											  </div>
+									  </div>
+							  </div>
+							  <div class="col-md-6">
+									  <div class="panel price {{#if isInRole 'pro'}}panel-success{{else}}panel-default{{/if}}">
+											  <div class="panel-heading  text-center">
+													  <h3>PRO</h3>
+											  </div>
+											  <div class="panel-body text-center">
+													  <p class="lead">
+															  <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
+											  </div>
+											  <ul class="list-group list-group-flush text-center">
+													  <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+													  <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+													  <li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
+											  </ul>
+											  <div class="panel-footer">
+													  {{#if isInRole 'pro'}}
+															  <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
+													  {{else}}
+															  <form role="form">
+																	<div class="row">
+																	  <div class="col-md-12">
+																			<div id="subscribe-form"></div>
+																			  <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_ "billing.plan.subscribe"}}</button>
+																	  </div>
+																	</div>
+															  </form>
+													  {{/if}}
+											  </div>
+									  </div>
+							  </div>
+					  </div>
+				</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+							  <h4 class="panel-title">{{_ "billing.plan.lecturer"}}</h4>
+					  </div>
+					  <div class="panel-body">
+							{{#if isInRole 'lecturer'}}
+									{{_ "billing.plan.lecturerActivatet"}}
+							{{else}}
+							  {{#if hasUserData}}
+									<form class="form-horizontal" id="lecturerRequestForm">
+											<button type="button" id="sendLecturerRequest" class="btn btn-info pull-right">{{_ "billing.plan.send"}}</button>
+									</form>
+									{{else}}
+									Geben Sie zuerst Ihre Kontaktdaten an um eine Anfrage zu stellen.
+									<a class="btn btn-default btn-xs pull-right" href="/profile/{{currentUser._id}}/settings">Kontaktdaten angeben</a>
+							  {{/if}}
+							{{/if}}
+					  </div>
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileNotifications-->
 <!--##################################################################-->
 <template name="profileNotifications">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
-            {{#if getNotifications.count}}
-              <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_ "notifications.deleteAll"}}</button>
-            {{/if}}
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-            {{#if getNotifications.count}}
-                <div class="list-group">
-                    {{#each getNotifications}}
-                        <div class="list-group-item">
-                            <h4 class="list-group-item-heading pull-left">{{getType type}}</h4>
-                            <button id="deleteNotificationBtn" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
-                            <div class="clearfix"></div>
-                            <a href="{{getLink}}" class="list-group-item-text">{{text}}</a>
-                            <hr>
-                            <small class="list-group-item-text pull-left">{{getTimestamp}}</small>
-                            <small class="list-group-item-text pull-right"><p>Status: {{getStatus}}
-                            </p></small>
-                            <div class="clearfix"></div>
-                        </div>
-                    {{/each}}
-                </div>
-            {{else}}
-                <div class="notification-heading">
-                    <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
-                </div>
-            {{/if}}
-        </div>
-    </div>
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					  <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
+					  {{#if getNotifications.count}}
+							<button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_ "notifications.deleteAll"}}</button>
+					  {{/if}}
+					  <div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					  {{#if getNotifications.count}}
+							  <div class="list-group">
+									  {{#each getNotifications}}
+											  <div class="list-group-item">
+													  <h4 class="list-group-item-heading pull-left">{{getType type}}</h4>
+													  <button id="deleteNotificationBtn" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
+													  <div class="clearfix"></div>
+													  <a href="{{getLink}}" class="list-group-item-text">{{text}}</a>
+													  <hr>
+													  <small class="list-group-item-text pull-left">{{getTimestamp}}</small>
+													  <small class="list-group-item-text pull-right"><p>Status: {{getStatus}}
+													  </p></small>
+													  <div class="clearfix"></div>
+											  </div>
+									  {{/each}}
+							  </div>
+					  {{else}}
+							  <div class="notification-heading">
+									  <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+							  </div>
+					  {{/if}}
+				</div>
+		</div>
 </template>
 
 <!--##################################################################-->
 <!--profileRequests-->
 <!--##################################################################-->
 <template name="profileRequests">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{_ "profile.requests"}}</h3>
-        </div>
-        <div class="panel-body">
-            {{#if getRequests.count}}
-                <div class="list-group">
-                    {{#each getRequests}}
-                        <a href="/cardset/{{_id}}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{name}}</h4>
-                            <p class="list-group-item-text">{{description}}</p>
-                        </a>
-                    {{/each}}
-                </div>
-            {{else}}
-                <div class="notification-heading">
-                    <h4 class="menu-title">{{_ "profile.norequests"}}</h4>
-                </div>
-            {{/if}}
-        </div>
-    </div>
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					  <h3 class="panel-title">{{_ "profile.requests"}}</h3>
+				</div>
+				<div class="panel-body">
+					  {{#if getRequests.count}}
+							  <div class="list-group">
+									  {{#each getRequests}}
+											  <a href="/cardset/{{_id}}" class="list-group-item">
+													  <h4 class="list-group-item-heading">{{name}}</h4>
+													  <p class="list-group-item-text">{{description}}</p>
+											  </a>
+									  {{/each}}
+							  </div>
+					  {{else}}
+							  <div class="notification-heading">
+									  <h4 class="menu-title">{{_ "profile.norequests"}}</h4>
+							  </div>
+					  {{/if}}
+				</div>
+		</div>
 </template>

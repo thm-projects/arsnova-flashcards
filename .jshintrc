@@ -28,6 +28,8 @@
     "console": false,
     "closeSplashscreen": true,
     "showSplashscreen": true,
-    "closeAndRedirectTo": true
+    "closeAndRedirectTo": true,
+    "Braintree": true,
+    "BrainTreeConnect": true
   }
 }

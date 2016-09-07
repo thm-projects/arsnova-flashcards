@@ -1,38 +1,38 @@
 <template name="admin_cardsets">
-  <div class="content-header">
-    <h1>
-      {{_ "admin.cardsets"}}
-      <small>{{_ "admin.view"}}</small>
-    </h1>
-  </div>
-  <div class="content">
-    <div class="admin_table">
-      {{> reactiveTable collection=cardsetListAdmin settings=tableSettings}}
-    </div>
-  </div>
-  {{> cardsetConfirmFormAdmin}}
+	<div class="content-header">
+		<h1>
+			{{_ "admin.cardsets"}}
+			<small>{{_ "admin.view"}}</small>
+		</h1>
+	</div>
+	<div class="content">
+		<div class="admin_table">
+			{{> reactiveTable collection=cardsetListAdmin settings=tableSettings}}
+		</div>
+	</div>
+	{{> cardsetConfirmFormAdmin}}
 </template>
 
 <template name="cardsetConfirmFormAdmin">
-  <div class="modal fade" id="cardsetConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="cardsetConfirmModalTitleAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="cardsetConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.cardsets.title"}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{_ "admin.confirm-form.cardsets.text"}}</p>
-          <br />
-          <hr />
+	<div class="modal fade" id="cardsetConfirmModalAdmin" tabindex="-1" role="dialog" aria-labelledby="cardsetConfirmModalTitleAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="cardsetConfirmModalTitleAdmin" class="modal-title">{{_ "admin.confirm-form.cardsets.title"}}</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{_ "admin.confirm-form.cardsets.text"}}</p>
+					<br />
+					<hr />
 
-          <button id="cardetDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.cardsets.title"}}</button>
-          <button id="cardetCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+					<button id="cardetDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.cardsets.title"}}</button>
+					<button id="cardetCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </template>
