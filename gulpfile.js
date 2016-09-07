@@ -1,5 +1,5 @@
 /*
- * This file is part of ARSnova Click.
+ * This file is part of ARSnova Cards.
  * Copyright (C) 2016 The ARSnova Team
  *
  * ARSnova Click is free software: you can redistribute it and/or modify
