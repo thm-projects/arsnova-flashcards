@@ -1,48 +1,43 @@
 ServiceConfiguration.configurations.remove({
-		service: 'facebook'
+	service: 'facebook'
 });
 
 ServiceConfiguration.configurations.remove({
-		service: 'twitter'
+	service: 'twitter'
 });
 
 ServiceConfiguration.configurations.remove({
-		service: 'google'
+	service: 'google'
 });
 
 ServiceConfiguration.configurations.insert({
-		service: 'facebook',
-		appId: Meteor.settings.facebook.api,
-		secret: Meteor.settings.facebook.secret
+	service: 'facebook',
+	appId: Meteor.settings.facebook.api,
+	secret: Meteor.settings.facebook.secret
 });
 
 ServiceConfiguration.configurations.insert({
-		service: 'twitter',
-		consumerKey: Meteor.settings.twitter.api,
-		secret: Meteor.settings.twitter.secret
+	service: 'twitter',
+	consumerKey: Meteor.settings.twitter.api,
+	secret: Meteor.settings.twitter.secret
 });
 
 ServiceConfiguration.configurations.insert({
-		service: 'google',
-		clientId: Meteor.settings.google.api,
-		secret: Meteor.settings.google.secret
+	service: 'google',
+	clientId: Meteor.settings.google.api,
+	secret: Meteor.settings.google.secret
 });
 
 
 Meteor.users.after.insert(function (userId, doc) {
-	if(doc.services.cas)
-	{
-		if(doc.services.cas.id === Meteor.settings.admin.name)
+	if (doc.services.cas)	{
+		if (doc.services.cas.id === Meteor.settings.admin.name)
 		{
 			Roles.addUsersToRoles(doc._id, ['standard', 'university', 'admin']);
-		}
-		else
-		{
+		}	else {
 			Roles.addUsersToRoles(doc._id, ['standard', 'university']);
 		}
-	}
-	else
-	{
+	}	else {
 		Roles.addUsersToRoles(doc._id, ['standard']);
 	}
 });

@@ -40,37 +40,37 @@ var initCategories = function () {
 
 	var categoryI18n = [
 		{//1
-		"de": {
+			"de": {
 				"name": "Agrar- und Forstwissenschaften"
 			}
 		},
 		{//2
-		"de": {
+			"de": {
 				"name": "Informations- und Telekommunikationstechnik"
 			}
 		},
 		{//3
-		"de": {
+			"de": {
 				"name": "Ingeniuerswissenschaften"
 			}
 		},
 		{//4
-		"de": {
+			"de": {
 				"name": "Kultur- und Gesellschaftswissenschften"
 			}
 		},
 		{//5
-		"de": {
+			"de": {
 				"name": "Kunst und Musik"
 			}
 		},
 		{//6
-		"de": {
+			"de": {
 				"name": "Mathematik und Naturwissenschaften"
 			}
 		},
 		{//7
-		"de": {
+			"de": {
 				"name": "Medien"
 			}
 		},
@@ -107,14 +107,14 @@ var initCategories = function () {
 	];
 
 	var categories = [];
-	for(var i = 0; i < categoryNames.length; ++i) {
-	categories.push(
-		{
-		"_id": (i<9 ? "0" : "") + (i+1),
-		"name": categoryNames[i],
-		"i18n": categoryI18n[i]
-		}
-	);
+	for (var i = 0; i < categoryNames.length; ++i) {
+		categories.push(
+			{
+				"_id": (i < 9 ? "0" : "") + (i + 1),
+				"name": categoryNames[i],
+				"i18n": categoryI18n[i]
+			}
+		);
 	}
 
 	return categories;
