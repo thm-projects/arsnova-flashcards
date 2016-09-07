@@ -84,7 +84,9 @@
     "license": "Lizenz",
     "topic": "Thema",
     "autor": "Autor/in",
-    "title": "Aktuell werden folgende Kartensätze angeboten:"
+    "title": "Aktuell werden folgende Kartensätze angeboten:",
+    "everyone": "Alle",
+    "everything": "Alles"
   },
   "set-list-empty": {
   	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",

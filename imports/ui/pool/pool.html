@@ -23,80 +23,87 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="filterAutor btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.autor"}}</button>
-                    <button type="button" class="filterAutor btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
+                            <li><a href="#" class="filterAutor" data-id="">{{_ "set-list.everyone"}}</a></li>
                         {{#each getAutors}}
-                            <li><a href="#">{{this.degree}}  {{this.firstName}} {{this.lastName}}</a></li>
+                            <li><a href="#" class="filterAutor" data-id="{{this.owner}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="filterModule btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.moduleLong"}}</button>
-                    <button type="button" class="filterModule btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a href="#" class="filterModule" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getModules}}
-                            <li><a href="#">({{this.moduleShort}}) {{this.moduleLong}}</a></li>
+                            <li><a href="#" class="filterModule" data-id="{{this.moduleShort}}">({{this.moduleShort}})
+                                {{this.moduleLong}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="filterCourse btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.academicCourse"}}</button>
-                    <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a href="#" class="filterCourse" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getCourses}}
-                            <li><a href="#">{{this}}</a></li>
+                            <li><a href="#" class="filterCourse" data-id="{{this}}">{{this}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="filterDepartment btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.department"}}</button>
-                    <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a href="#" class="filterDepartment" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getDepartments}}
-                            <li><a href="#">({{this.department}}) {{this.departmentLong}}</a></li>
+                            <li><a href="#" class="filterDepartment" data-id="{{this.department}}">({{this.department}})
+                                {{this.departmentLong}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="filterType btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.studyType"}}</button>
-                    <button type="button" class="filterType btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a href="#" class="filterType" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getTypes}}
-                            <li><a href="#">{{this}}</a></li>
+                            <li><a href="#" class="filterType" data-id="{{this}}">{{this}}</a></li>
                         {{/each}}
                     </ul>
                 </div>

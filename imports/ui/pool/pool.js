@@ -34,7 +34,7 @@ function getCollection (sortFilter, listType) {
     query.visible = true;
     query.kind = {$in: Session.get('poolFilter')};
     if(Session.get('poolFilterAutor'))
-        query.lastName = {$in: Session.get('poolFilterAutor')};
+        query.owner = {$in: Session.get('poolFilterAutor')};
     if(Session.get('poolFilterModule'))
         query.moduleLong = {$in: Session.get('poolFilterModule')};
     if(Session.get('poolFilterCourse'))
@@ -161,20 +161,20 @@ Template.category.events({
             Session.set('poolSortTopic', {name: 1});
         }
     },
-    'click .filterAutor': function() {
-        Session.set('poolFilterAutor', "");
+    'click .filterAutor': function(event) {
+        Session.set('poolFilterAutor', $(event.target).data('id'));
     },
-    'click .filterModule': function() {
-        Session.set('poolFilterModule', "");
+    'click .filterModule': function(event) {
+        Session.set('poolFilterModule', $(event.target).data('id'));
     },
-    'click .filterStudy': function() {
-        Session.set('poolFilterCourse', "");
+    'click .filterStudy': function(event) {
+        Session.set('poolFilterCourse', $(event.target).data('id'));
     },
-    'click .filterDepartment': function() {
-        Session.set('poolFilterDepartment', "");
+    'click .filterDepartment': function(event) {
+        Session.set('poolFilterDepartment', $(event.target).data('id'));
     },
-    'click .filterType': function() {
-        Session.set('poolFilterStudyType', "");
+    'click .filterType': function(event) {
+        Session.set('poolFilterStudyType', $(event.target).data('id'));
     },
     'change #filterCheckbox': function() {
         var filter = [];
