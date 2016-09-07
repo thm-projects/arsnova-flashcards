@@ -38,6 +38,7 @@
     "getUserLanguage": true,
     "moment": true,
     "ServiceConfiguration": true,
-    "ActiveRoute": true
+    "ActiveRoute": true,
+    "prompt": true
   }
 }
