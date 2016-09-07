@@ -173,7 +173,7 @@
                   		<hr>
                   	  {{/unless}}
                   	  <div class="form-group">
-                        <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
+                        <label class="col-md-4 control-label">{{_ "panel-body.email"}} <a href="mailto:{{getUser.email}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></label>
                       	<div class="col-md-8">
                           <input type="email" class="form-control" id="inputEmail" placeholder="{{_ "panel-body.email-desc"}}" value="{{getUser.email}}">
                           <span id="errorEmail" class="help-block name"></span>
