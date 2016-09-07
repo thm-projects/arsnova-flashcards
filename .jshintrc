@@ -34,6 +34,10 @@
     "Npm": true,
     "EasySearch": true,
     "CardsetsIndex": true,
-    "kramed": true
+    "kramed": true,
+    "getUserLanguage": true,
+    "moment": true,
+    "ServiceConfiguration": true,
+    "ActiveRoute": true
   }
 }

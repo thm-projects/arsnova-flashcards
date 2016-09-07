@@ -1,11 +1,10 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Notifications } from '../../api/notifications.js';
-import {userData } from '../../api/userdata.js';
+import {Notifications} from '../../api/notifications.js';
 
 import './access_denied.html';
 
@@ -36,9 +35,9 @@ Template.access_denied.events({
  * ############################################################################
  */
 
- Template.access_denied_nav_admin.onRendered(function () {
-	 Session.set("searchValue", undefined);
- });
+Template.access_denied_nav_admin.onRendered(function () {
+	Session.set("searchValue", undefined);
+});
 
 Template.access_denied_nav_admin.helpers({
 	getUsername: function () {
@@ -47,12 +46,7 @@ Template.access_denied_nav_admin.helpers({
 		}
 	},
 	searchCategories: function () {
-		if (Session.get("searchValue")) {
-			results = CardsetsIndex.search(Session.get("searchValue")).fetch();
-			return results;
-		} else {
-			return undefined;
-		}
+		return Session.get("searchValue") ? CardsetsIndex.search(Session.get("searchValue")).fetch() : undefined;
 	},
 	isActiveProfile: function () {
 		if (ActiveRoute.name(/^profile/)) {
@@ -61,10 +55,18 @@ Template.access_denied_nav_admin.helpers({
 		return false;
 	},
 	countNotifications: function () {
-		return Notifications.find({read: false, target_type: 'user', target: Meteor.userId() }).count();
+		return Notifications.find({
+			read: false,
+			target_type: 'user',
+			target: Meteor.userId()
+		}).count();
 	},
 	getNotifications: function () {
-		return Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
+		return Notifications.find({
+			cleared: false,
+			target_type: 'user',
+			target: Meteor.userId()
+		}, {sort: {date: -1}});
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
@@ -86,13 +88,21 @@ Template.access_denied_nav_admin.events({
 		$('#input-search').val('');
 	},
 	'click #notificationsBtn': function () {
-		var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
+		var notifications = Notifications.find({
+			read: false,
+			target_type: 'user',
+			target: Meteor.userId()
+		});
 		notifications.forEach(function (notification) {
 			Meteor.call("setNotificationAsRead", notification._id);
 		});
 	},
 	'click #clearBtn': function () {
-		var notifications = Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()});
+		var notifications = Notifications.find({
+			cleared: false,
+			target_type: 'user',
+			target: Meteor.userId()
+		});
 		notifications.forEach(function (notification) {
 			Meteor.call("setNotificationAsCleared", notification._id);
 		});
