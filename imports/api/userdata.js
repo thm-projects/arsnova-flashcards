@@ -1,7 +1,6 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
 
-import {Cardsets } from './cardsets.js';
+import {Cardsets} from './cardsets.js';
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
@@ -166,5 +165,5 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-	},
+	}
 });

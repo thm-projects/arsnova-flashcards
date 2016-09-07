@@ -181,7 +181,7 @@ Meteor.methods({
 									billingDate: response.subscription.nextBillingDate
 								},
 								visible: true
-							}
+							};
 							// Perform an update on this user.
 							Meteor.users.update(Meteor.user(), {
 								$set: customerSubscription
@@ -321,7 +321,7 @@ Meteor.methods({
 				btCancelSubscription.return(error);
 			} else {
 				// cancel the active subscription
-				gateway.subscription.cancel(customerSubscription.id, function (error, result) {
+				gateway.subscription.cancel(customerSubscription.id, function (error) {
 					if (error) {
 						btCancelSubscription.return(error);
 					} else {

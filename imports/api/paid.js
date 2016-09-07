@@ -1,7 +1,7 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
 
-import {Cardsets } from './cardsets.js';
+import {Cardsets} from './cardsets.js';
 
 export const Paid = new Mongo.Collection("paid");
 
@@ -14,7 +14,7 @@ if (Meteor.isServer) {
 					{
 						cardset_id: {
 							$in: Cardsets.find({owner: this.userId}).map(function (doc) {
-								return doc._id
+								return doc._id;
 							})
 						}
 					}

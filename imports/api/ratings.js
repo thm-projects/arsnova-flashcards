@@ -1,8 +1,8 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
 
-import {Experience } from './experience.js';
-import {Cardsets } from './cardsets.js';
+import {Experience} from './experience.js';
+import {Cardsets} from './cardsets.js';
 
 export const Ratings = new Mongo.Collection("ratings");
 

@@ -30,6 +30,10 @@
     "showSplashscreen": true,
     "closeAndRedirectTo": true,
     "Braintree": true,
-    "BrainTreeConnect": true
+    "BrainTreeConnect": true,
+    "Npm": true,
+    "EasySearch": true,
+    "CardsetsIndex": true,
+    "kramed": true
   }
 }

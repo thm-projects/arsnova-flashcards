@@ -1,5 +1,5 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
 
 import {Cardsets } from './cardsets.js';
 
@@ -75,6 +75,7 @@ Meteor.methods({
 		//				(4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
 		var learned = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
+		var interval = 0;
 
 		if (grade < 3) {
 			reps = 0;
@@ -85,7 +86,6 @@ Meteor.methods({
 				ef = 1.3;
 			}
 			reps = reps + 1;
-			var interval = 0;
 			if (grade === 3) {
 				interval = 0;
 			} else {
