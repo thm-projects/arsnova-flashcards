@@ -14,7 +14,8 @@ import './pool.html';
 Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
-Session.setDefault('poolFilterLastName', {lastName: -1});
+Session.setDefault('poolSortTopic', {name: -1});
+Session.setDefault('poolFilterAutor', {lastName: -1});
 Session.setDefault('poolFilterModule', {moduleShort: -1});;
 Session.setDefault('poolFilterCourse', {academicCourse: -1});
 Session.setDefault('poolFilterDepartment', {department: -1});
@@ -34,8 +35,28 @@ Template.category.helpers({
             visible: true,
             kind: {$in: Session.get('poolFilter')}
         }, {
-            sort: Session.get('poolSort')
+            sort: Session.get('poolSortTopic', 'poolSortAutor')
         });
+    },
+    getModules: function() {
+        var Array = Cardsets.find( {visible: true} ).fetch();
+        var distinctArray = _.uniq(Array, false, function(d) {return d.moduleLong});
+        return disctinctValues = _.pluck(distinctArray, 'moduleLong');
+    },
+    getCourse: function() {
+        var Array = Cardsets.find( {visible: true} ).fetch();
+        var distinctArray = _.uniq(Array, false, function(d) {return d.academicCourse});
+        return disctinctValues = _.pluck(distinctArray, 'academicCourse');
+    },
+    getDepartments: function() {
+        var Array = Cardsets.find( {visible: true} ).fetch();
+        var distinctArray = _.uniq(Array, false, function(d) {return d.department});
+        return disctinctValues = _.pluck(distinctArray, 'department');
+    },
+    getTypes: function() {
+        var Array = Cardsets.find( {visible: true} ).fetch();
+        var distinctArray = _.uniq(Array, false, function(d) {return d.studyType});
+        return disctinctValues = _.pluck(distinctArray, 'studyType');
     },
     getAverage: function() {
         var ratings = Ratings.find({
@@ -111,22 +132,22 @@ Template.category.helpers({
 });
 
 Template.category.events({
-    'click .sortTopic': function(value) {
-        var sort = Session.get('poolSort');
+    'click .sortTopic': function() {
+        var sort = Session.get('poolSortTopic');
         if (sort.name === 1) {
-            Session.set('poolSort', {lastName: value});
+            Session.set('poolSortTopic', {name: -1});
         }
         else {
-            Session.set('poolSort', {name: 1});
+            Session.set('poolSortTopic', {name: 1});
         }
     },
     'click .filterAutor': function() {
         var sort = Session.get('poolSort');
         if (sort.name === 1) {
-            Session.set('poolSort', {name: -1});
+            Session.set('poolSortAutor', {lastName: -1});
         }
         else {
-            Session.set('poolSort', {name: 1});
+            Session.set('poolSortAutor', {lastName: 1});
         }
     },
     'click .filterModule': function() {
@@ -165,6 +186,13 @@ Template.category.events({
             Session.set('poolSort', {name: 1});
         }
     },
+    'change #filterCheckbox': function() {
+        var filter = [];
+        $("#filterCheckbox input:checkbox:checked").each(function(){
+            filter.push($(this).val());
+        });
+        Session.set('poolFilter', filter);
+    }
 });
 
 Template.category.onDestroyed(function() {
