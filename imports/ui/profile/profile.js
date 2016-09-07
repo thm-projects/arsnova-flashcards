@@ -4,14 +4,18 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
-import {Experience} from '../../api/experience.js';
-import {Badges} from '../../api/badges.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {Notifications} from '../../api/notifications.js';
+import { Experience } from '../../api/experience.js';
+import { Badges } from '../../api/badges.js';
+import { Cardsets } from '../../api/cardsets.js';
+import { Cards } from '../../api/cards.js';
+import { Learned } from '../../api/learned.js';
+import { Ratings } from '../../api/ratings.js';
+import { Paid } from '../../api/paid.js';
+import { Notifications } from '../../api/notifications.js';
+import { AdminSettings } from '../../api/adminSettings';
+
+import { userData } from '../../api/userdata.js';
+
 import './profile.html';
 
 
@@ -547,22 +551,35 @@ Template.profileRequests.helpers({
  * profileXp
  * ############################################################################
  */
+var seq = AdminSettings.findOne({name: "seqSettings"});
+var seqOne = seq.seqOne; //7 tag
+var seqTwo = seq.seqTwo; //30 tag
+var seqThree = seq.seqTwo; //90 tag
 
 Template.profileXp.helpers({
-	getXpTotal: function () {
-		var allXp  = Experience.find({
-			owner: Router.current().params._id
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		Session.set("totalXp", result);
-		return result;
-	},
-	getXpToday: function () {
-		var date = new Date();
-		date.setHours(0, 0, 0, 0);
+    getDays1: function(){
+        return seqOne;
+    },
+    getDays2: function(){
+        return seqTwo;
+    },
+    getDays3: function(){
+        return seqThree;
+    },
+    getXpTotal: function() {
+        var allXp = Experience.find({
+            owner: Router.current().params._id
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        Session.set("totalXp", result);
+        return result;
+    },
+    getXpToday: function() {
+        var date = new Date();
+        date.setHours(0, 0, 0, 0);
 
 		var allXp  = Experience.find({
 			owner: Router.current().params._id,
@@ -582,24 +599,43 @@ Template.profileXp.helpers({
 		var maxDate = new Date();
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
-			owner: Router.current().params._id,
-			date: {
-				$gte: minDate,
-				$lte: maxDate
-			}
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		return result;
-	},
-	getXpWeek: function () {
-		var minDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
-		minDate.setHours(0, 0, 0, 0);
-		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		maxDate.setHours(0, 0, 0, 0);
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpTwoDaysAgo: function() {
+        var minDate = new Date(new Date().getTime() - 48 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date();
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpWeek: function() {
+        var minDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
 
         var allXp = Experience.find({
             owner: Router.current().params._id,
@@ -633,6 +669,7 @@ Template.profileXp.helpers({
         });
         return result;
     },
+
     getXpThreeMonth: function() {
         var minDate = new Date(new Date().getTime() - 90 * 24 * 60 * 60 * 1000);
         minDate.setHours(0, 0, 0, 0);
@@ -652,6 +689,64 @@ Template.profileXp.helpers({
         });
         return result;
     },
+    getXpSeq1: function() {
+        var minDate = new Date(new Date().getTime() - seqOne * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpSeq2: function() {
+        var minDate = new Date(new Date().getTime() - seqTwo * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+    getXpSeq3: function() {
+        var minDate = new Date(new Date().getTime() - seqThree * 24 * 60 * 60 * 1000);
+        minDate.setHours(0, 0, 0, 0);
+        var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        maxDate.setHours(0, 0, 0, 0);
+
+        var allXp = Experience.find({
+            owner: Router.current().params._id,
+            date: {
+                $gte: minDate,
+                $lte: maxDate
+            }
+        });
+        var result = 0;
+        allXp.forEach(function(xp) {
+            result = result + xp.value;
+        });
+        return result;
+    },
+
     getLast: function() {
         var last = Experience.findOne({
             owner: Router.current().params._id

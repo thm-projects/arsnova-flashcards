@@ -12,6 +12,7 @@ import '../imports/api/experience.js';
 import '../imports/api/ratings.js';
 import '../imports/api/notifications.js';
 import '../imports/api/paid.js';
+import '../imports/api/adminSettings.js';
 
 // SERVER METHODS ------------------------------------------------
 import '../imports/api/userdata.js';

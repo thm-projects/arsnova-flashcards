@@ -222,7 +222,10 @@
     "total": "Total",
     "today": "Heute",
     "yesterday": "Gestern",
-    "days": "7 Tage",
+    "days":"Tage",
+    "twoDaysAgo":"Vorgestern",
+    "month": "4 Wochen",
+    "threemonth": "3 Monate",
     "lastredeem": "Zuletzt für: "
   },
   "panel-body-last": {
