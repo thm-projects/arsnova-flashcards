@@ -1,180 +1,180 @@
 <template name="box">
-  {{#if hasPermission}}
+    {{#if hasPermission}}
 
-    <!-- Sidebar -->
-    <div class="col-md-3">{{> boxSide}}</div>
+        <!-- Sidebar -->
+        <div class="col-md-3">{{> boxSide}}</div>
 
-    <!-- Main -->
-    <div class="col-md-9">
-      {{#if isFinish}}
-        {{> boxEnd}}
-      {{else}}
-        {{#if boxSelected}}
-          {{#if isNotEmpty}}
-            {{> boxMain}}
-          {{else}}
-            {{> boxEmpty}}
-          {{/if}}
-        {{else}}
-          {{> boxStart}}
-        {{/if}}
-      {{/if}}
-    </div>
+        <!-- Main -->
+        <div class="col-md-9">
+            {{#if isFinish}}
+                {{> boxEnd}}
+            {{else}}
+                {{#if boxSelected}}
+                    {{#if isNotEmpty}}
+                        {{> boxMain}}
+                    {{else}}
+                        {{> boxEmpty}}
+                    {{/if}}
+                {{else}}
+                    {{> boxStart}}
+                {{/if}}
+            {{/if}}
+        </div>
 
-    <!-- Permission denied -->
-  {{else}}
-    <h4>{{_ "permission"}}</h4>
-  {{/if}}
+        <!-- Permission denied -->
+    {{else}}
+        <h4>{{_ "permission"}}</h4>
+    {{/if}}
 </template>
 
 <!-- Sidebar -->
 <template name="boxSide">
-  <div id="set-learn-sideBar-region">
-    <div class="well well-sm sidebar-nav">
-      <h4 id="cardsetName">{{name}}</h4>
-      <hr>
-      <span id="cardsetDesc">{{description}}</span>
-      <hr>
-      <span class="nav-header" id="cardsetCreated">{{_ "createdof2"}}</span>
-      <span id="cardsetWrap">
-        <a role="button" id="cardsetUser">{{username}}</a>
-        <br>
-        <span>{{_ "sidebar-nav.at"}}</span>
-        <span>{{getDate}}</span>
-      </span>
+    <div id="set-learn-sideBar-region">
+        <div class="well well-sm sidebar-nav">
+            <h4 id="cardsetName">{{name}}</h4>
+            <hr>
+            <span id="cardsetDesc">{{description}}</span>
+            <hr>
+            <span class="nav-header" id="cardsetCreated">{{_ "createdof2"}}</span>
+            <span id="cardsetWrap">
+				<a role="button" id="cardsetUser">{{username}}</a>
+				<br>
+				<span>{{_ "sidebar-nav.at"}}</span>
+				<span>{{getDate}}</span>
+			</span>
+        </div>
     </div>
-  </div>
 
-  <div id="set-learn-controls-region">
-    <div class="well well-sm sidebar-nav">
-      <button class="btn btn-default learn-box {{selectedBox 1}}" id="subject1" value="1">
-        <span class="pull-left">{{_ "subject1"}}</span>
-        <span class="badge pull-right one">{{countBox 1}}</span>
-      </button>
-      <button class="btn btn-default learn-box {{selectedBox 2}}" id="subject2" value="2">
-        <span class="pull-left">{{_ "subject2"}}</span>
-        <span class="badge pull-right two">{{countBox 2}}</span>
-      </button>
-      <button class="btn btn-default learn-box {{selectedBox 3}}" id="subject3" value="3">
-        <span class="pull-left">{{_ "subject3"}}</span>
-        <span class="badge pull-right three">{{countBox 3}}</span>
-      </button>
-      <button class="btn btn-default learn-box {{selectedBox 4}}" id="subject4" value="4">
-        <span class="pull-left">{{_ "subject4"}}</span>
-        <span class="badge pull-right four">{{countBox 4}}</span>
-      </button>
-      <button class="btn btn-default learn-box {{selectedBox 5}}" id="subject5" value="5">
-        <span class="pull-left">{{_ "subject5"}}</span>
-        <span class="badge pull-right five">{{countBox 5}}</span>
-      </button>
+    <div id="set-learn-controls-region">
+        <div class="well well-sm sidebar-nav">
+            <button class="btn btn-default learn-box {{selectedBox 1}}" id="subject1" value="1">
+                <span class="pull-left">{{_ "subject1"}}</span>
+                <span class="badge pull-right one">{{countBox 1}}</span>
+            </button>
+            <button class="btn btn-default learn-box {{selectedBox 2}}" id="subject2" value="2">
+                <span class="pull-left">{{_ "subject2"}}</span>
+                <span class="badge pull-right two">{{countBox 2}}</span>
+            </button>
+            <button class="btn btn-default learn-box {{selectedBox 3}}" id="subject3" value="3">
+                <span class="pull-left">{{_ "subject3"}}</span>
+                <span class="badge pull-right three">{{countBox 3}}</span>
+            </button>
+            <button class="btn btn-default learn-box {{selectedBox 4}}" id="subject4" value="4">
+                <span class="pull-left">{{_ "subject4"}}</span>
+                <span class="badge pull-right four">{{countBox 4}}</span>
+            </button>
+            <button class="btn btn-default learn-box {{selectedBox 5}}" id="subject5" value="5">
+                <span class="pull-left">{{_ "subject5"}}</span>
+                <span class="badge pull-right five">{{countBox 5}}</span>
+            </button>
+        </div>
     </div>
-  </div>
 </template>
 
 <!-- Startscreen -->
 <template name="boxStart">
-  <div class=" box">
-    <div class="block">
-      <div class="centered front">
-        <p>{{_ "choosesubject"}}</p>
-      </div>
+    <div class=" box">
+        <div class="block">
+            <div class="centered front">
+                <p>{{_ "choosesubject"}}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <!-- Empty -->
 <template name="boxEmpty">
-  <div class=" box">
-    <div class="block">
-      <div class="centered front">
-        <p>{{_ "nocards"}}</p>
-      </div>
+    <div class=" box">
+        <div class="block">
+            <div class="centered front">
+                <p>{{_ "nocards"}}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <!-- Mainscreen -->
 <template name="boxMain">
-  <div class="carousel slide" id="cardCarousel">
-    <div class="carousel-indicators">
-      <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
-    </div>
-    <div class="carousel-inner">
-      {{#each getCardsByBox}}
-        <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-          <div class="box">
-            <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-            {{#if isFront}}
-              {{boxMarkdownFront this.front @index}}
-              <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-              <div class="block">
-                <div class="cardContent centered front{{@index}} active">
-                  <!--<p>{{front}}</p>-->
-                </div>
-              </div>
-            {{else}}
-              {{boxMarkdownBack this.back @index}}
-              <img class="cardside cardback-symbol" src="/img/icon_back.png">
-              <div class="block">
-                <div class="cardContent centered back{{@index}} active">
-                  <!--<p>{{back}}</p>-->
-                </div>
-              </div>
-            {{/if}}
-
-          </div>
+    <div class="carousel slide" id="cardCarousel">
+        <div class="carousel-indicators">
+            <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
         </div>
-      {{/each}}
-    </div>
-  </div>
+        <div class="carousel-inner">
+            {{#each getCardsByBox}}
+                <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
+                    <div class="box">
+                        <span class="clicktoflip" id="clicktoflip">Click to flip</span>
+                        {{#if isFront}}
+                            {{boxMarkdownFront this.front @index}}
+                            <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                            <div class="block">
+                                <div class="cardContent centered front{{@index}} active">
+                                    <!--<p>{{front}}</p>-->
+                                </div>
+                            </div>
+                        {{else}}
+                            {{boxMarkdownBack this.back @index}}
+                            <img class="cardside cardback-symbol" src="/img/icon_back.png">
+                            <div class="block">
+                                <div class="cardContent centered back{{@index}} active">
+                                    <!--<p>{{back}}</p>-->
+                                </div>
+                            </div>
+                        {{/if}}
 
-  {{#if isFront}}
-    <!-- Helptext -->
-    <div class="learn-cardHelptext">
-      <span>{{_ "clickcart"}}</span>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     </div>
-  {{else}}
-    <!-- Navigation -->
-    <br>
-    <div id="learn-navigation" class="btn-group btn-group-justified">
-      <div class="btn-group" role="group">
-        <button class="btn btn-primary answer card-success" id="known">{{_ "know"}}</button>
-      </div>
-      <div class="btn-group" role="group">
-        <button class="btn btn-default answer card-fail" id="notknown">{{_ "notknow"}}</button>
-      </div>
-    </div>
-  {{/if}}
-  {{> boxPictureForm}}
+
+    {{#if isFront}}
+        <!-- Helptext -->
+        <div class="learn-cardHelptext">
+            <span>{{_ "clickcart"}}</span>
+        </div>
+    {{else}}
+        <!-- Navigation -->
+        <br>
+        <div id="learn-navigation" class="btn-group btn-group-justified">
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary answer card-success" id="known">{{_ "know"}}</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button class="btn btn-default answer card-fail" id="notknown">{{_ "notknow"}}</button>
+            </div>
+        </div>
+    {{/if}}
+    {{> boxPictureForm}}
 </template>
 
 <!-- Endscreen -->
 <template name="boxEnd">
-  <div class="box learn-endscreen">
-    <div class="block">
-      <div class="centered front learnbox-success">{{_ "learn-endscreen.success"}}</div>
-      <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
-      <br>
-      <a class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
-        <span>{{_ "learn-endscreen.back2"}}</span>
-      </a>
+    <div class="box learn-endscreen">
+        <div class="block">
+            <div class="centered front learnbox-success">{{_ "learn-endscreen.success"}}</div>
+            <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
+            <br>
+            <a class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
+                <span>{{_ "learn-endscreen.back2"}}</span>
+            </a>
+        </div>
     </div>
-  </div>
 </template>
 
 <template name="boxPictureForm">
-  <div class="modal fade" id="boxPictureModal" tabindex="-1" role="dialog" aria-labelledby="boxPictureModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="boxPictureModalTitle" class="modal-title"></h4>
+    <div class="modal fade" id="boxPictureModal" tabindex="-1" role="dialog" aria-labelledby="boxPictureModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="boxPictureModalTitle" class="modal-title"></h4>
+                </div>
+                <div class="modal-body" id="setdetails-boxPictureModal-body"></div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="modal-body" id="setdetails-boxPictureModal-body"></div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>

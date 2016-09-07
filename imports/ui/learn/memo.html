@@ -1,116 +1,132 @@
 <template name="memo">
-  {{#if hasPermission}}
-    <div class="col-md-12">
-      <h4>{{name}}</h4>
-    </div>
-    <div class="col-md-12">
-      <div id="set-memo-region">
-        <div>
-          <div class="memo-endscreen">
-            <div class="row twosided">
-              <div class="col-md-6">
-                <div class="box">
-                  <span class="memo-site">
-                    <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "frontside"}}
-                  </span>
-                  <div class="block memocontent-block frontblock">
-                    {{#if isFinish}}
-                      <span>{{_ "memo-empty.text"}}</span>
-                      <a id="memoEndBtn" class="btn-back btn btn-default btn-s" onclick="history.go(-1)">
-                        <span>{{_ "memo-endscreen.back"}}</span>
-                      </a>
-                    {{else}}
-                      {{memoMarkdownFront getMemoCard.front}}
-                      <span>{{getMemoCard.front}}</span>
-                    {{/if}}
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="box">
-                  <span class="memo-site">
-                    <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "backside"}}
-                  </span>
-                  <div class="block memocontent-block backblock">
-                    {{#if showAnswer}}
-                      {{#unless isFinish}}
-                        <span>{{getMemoCard.back}}</span>
-                        {{memoMarkdownBack getMemoCard.back}}
-                      {{/unless}}
-                    {{/if}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          {{#unless isEmpty}}
-            {{#unless isFinish}}
-              {{#if showAnswer}}
-                {{> memoRate}}
-              {{else}}
-                <div class="btn-group btn-group-justified">
-                  <div class="btn-group">
-                    <button id="memoShowAnswer" class="btn btn-primary answer show-answer" title="success">{{_ "cardmemo.showanswer"}}</button>
-                  </div>
-                </div>
-              {{/if}}
-            {{/unless}}
-          {{/unless}}
-
+    {{#if hasPermission}}
+        <div class="col-md-12">
+            <h4>{{name}}</h4>
         </div>
-      </div>
-    </div>
-    <!-- Permission denied -->
-  {{else}}
-    <h4>{{_ "permission"}}</h4>
-  {{/if}}
-  {{> memoPictureForm}}
+        <div class="col-md-12">
+            <div id="set-memo-region">
+                <div>
+                    <div class="memo-endscreen">
+                        <div class="row twosided">
+                            <div class="col-md-6">
+                                <div class="box">
+									<span class="memo-site">
+									  <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_
+                                            "frontside"}}
+									</span>
+                                    <div class="block memocontent-block frontblock">
+                                        {{#if isFinish}}
+                                            <span>{{_ "memo-empty.text"}}</span>
+                                            <a id="memoEndBtn" class="btn-back btn btn-default btn-s"
+                                               onclick="history.go(-1)">
+                                                <span>{{_ "memo-endscreen.back"}}</span>
+                                            </a>
+                                        {{else}}
+                                            {{memoMarkdownFront getMemoCard.front}}
+                                            <span>{{getMemoCard.front}}</span>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box">
+									<span class="memo-site">
+									  <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "backside"}}
+									</span>
+                                    <div class="block memocontent-block backblock">
+                                        {{#if showAnswer}}
+                                            {{#unless isFinish}}
+                                                <span>{{getMemoCard.back}}</span>
+                                                {{memoMarkdownBack getMemoCard.back}}
+                                            {{/unless}}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    {{#unless isEmpty}}
+                        {{#unless isFinish}}
+                            {{#if showAnswer}}
+                                {{> memoRate}}
+                            {{else}}
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
+                                                title="success">{{_ "cardmemo.showanswer"}}</button>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        {{/unless}}
+                    {{/unless}}
+
+                </div>
+            </div>
+        </div>
+        <!-- Permission denied -->
+    {{else}}
+        <h4>{{_ "permission"}}</h4>
+    {{/if}}
+    {{> memoPictureForm}}
 </template>
 
 <template name="memoRate">
-  <div class="btn-group btn-group-justified memo-rating">
-    <div class="btn-group">
-      <button id="memoRate0" class="btn btn-default btn-danger rate-answer wrong" data-id="0" data-toggle="tooltip" title="{{_ "cardmemo.rate0"}}">0</button>
+    <div class="btn-group btn-group-justified memo-rating">
+        <div class="btn-group">
+            <button id="memoRate0" class="btn btn-default btn-danger rate-answer wrong" data-id="0"
+                    data-toggle="tooltip" title="{{_ "cardmemo.rate0"}}">0
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memoRate1" class="btn btn-default rate-answer wrong" data-id="1" data-toggle="tooltip"
+                    title="{{_ "cardmemo.rate1"}}">1
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memoRate2" class="btn btn-default rate-answer" data-id="2" data-toggle="tooltip"
+                    title="{{_ "cardmemo.rate2"}}">2
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memoRate3" class="btn btn-default rate-answer" data-id="3" data-toggle="tooltip"
+                    title="{{_ "cardmemo.rate3"}}">3
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memoRate4" class="btn btn-default rate-answer" data-id="4" data-toggle="tooltip"
+                    title="{{_ "cardmemo.rate4"}}">4
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memoRate5" class="btn btn-default btn-success rate-answer" data-id="5" data-toggle="tooltip"
+                    title="{{_ "cardmemo.rate5"}}">5
+            </button>
+        </div>
+        <div class="btn-group">
+            <button id="memetext" class="btn btn-default btn-info memo-helptext" data-toggle="popover" title="Info"
+                    data-container="body" data-content="{{_ "cardmemo.memotext"}}">
+                <i class="glyphicon glyphicon-question-sign"></i>
+            </button>
+        </div>
     </div>
-    <div class="btn-group">
-      <button id="memoRate1" class="btn btn-default rate-answer wrong" data-id="1" data-toggle="tooltip" title="{{_ "cardmemo.rate1"}}">1</button>
-    </div>
-    <div class="btn-group">
-      <button id="memoRate2" class="btn btn-default rate-answer" data-id="2" data-toggle="tooltip" title="{{_ "cardmemo.rate2"}}">2</button>
-    </div>
-    <div class="btn-group">
-      <button id="memoRate3" class="btn btn-default rate-answer" data-id="3" data-toggle="tooltip" title="{{_ "cardmemo.rate3"}}">3</button>
-    </div>
-    <div class="btn-group">
-      <button id="memoRate4" class="btn btn-default rate-answer" data-id="4" data-toggle="tooltip" title="{{_ "cardmemo.rate4"}}">4</button>
-    </div>
-    <div class="btn-group">
-      <button id="memoRate5" class="btn btn-default btn-success rate-answer" data-id="5" data-toggle="tooltip" title="{{_ "cardmemo.rate5"}}">5</button>
-    </div>
-    <div class="btn-group">
-      <button id="memetext" class="btn btn-default btn-info memo-helptext" data-toggle="popover" title="Info" data-container="body" data-content="{{_ "cardmemo.memotext"}}">
-        <i class="glyphicon glyphicon-question-sign"></i>
-      </button>
-    </div>
-  </div>
 </template>
 
 <template name="memoPictureForm">
-  <div class="modal fade" id="memoPictureModal" tabindex="-1" role="dialog" aria-labelledby="memoPictureModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="memoPictureModalTitle" class="modal-title"></h4>
+    <div class="modal fade" id="memoPictureModal" tabindex="-1" role="dialog" aria-labelledby="memoPictureModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="memoPictureModalTitle" class="modal-title"></h4>
+                </div>
+                <div class="modal-body" id="setdetails-memoPictureModal-body"></div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="modal-body" id="setdetails-memoPictureModal-body"></div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>

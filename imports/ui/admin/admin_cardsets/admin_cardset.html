@@ -1,172 +1,200 @@
 <template name="admin_cardset">
-  <div class="content-header">
-    <h1>
-      {{_ "admin.cardset.header"}}
-      <small>{{_ "admin.cardset.edit"}} {{_id}}</small>
-    </h1>
-  </div>
-  <div class="content box-admin">
-    <div class="box-body-admin">
-      <form id="admin_cardset_update">
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.cardset.info"}}</div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
-              {{#if userExists userDeleted}}
-                <a href="/admin/user/{{owner}}">{{username}}</a>
-              {{else}}
-                {{username}} ({{_ "admin.deleted"}})
-              {{/if}}
-            </div>
-            <div class="form-group">
-              <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
-              {{getDate}}
-            </div>
-            <div class="form-group">
-              <label id="editCardsetDateUpdatedLabelAdmin">{{_ "admin.cardset.dateUpdated"}}</label>
-              {{getDateUpdated}}
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.cardset.settings"}}</div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label id="editCardsetNameLabelAdmin">{{_ "admin.cardset.name"}}</label>
-              <input class="form-control" type="text" id="editCardsetNameAdmin" value="{{name}}">
-              <span id="helpEditCardsetNameAdmin" class="help-block name"></span>
-            </div>
-            <div class="form-group">
-              <label id="editCardsetDescriptionLabelAdmin">{{_ "admin.cardset.description"}}</label>
-              <textarea class="form-control" type="text" id="editCardsetDescriptionAdmin" value="{{description}}" rows="5"></textarea>
-              <span id="helpEditCardsetDescriptionAdmin" class="help-block description"></span>
-            </div>
-            <div class="form-group">
-              <label id="editCardsetCategoryLabelAdmin">{{_ "admin.cardset.category"}}</label>
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="editCardsetCategoryDropdownAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <span id="editCardsetCategoryAdmin">{{getCategory this.category}}</span>
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  {{#each getCategories}}
-                    <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
-                  {{/each}}
-                </ul>
-              </div>
-            </div>
-            <div class="form-group">
-              <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_ "admin.cardset.kind"}}</label>
-              <div class="controls">
-                <div id="publicateKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
-                  <label id="kindoption0Admin" class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="personal" id="kind_private_admin">
-                    <div>Private</div>
-                  </label>
-                  <label id="kindoption1Admin" class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="free" id="kind_free_admin">
-                    <div>Free</div>
-                  </label>
-                  <label id="kindoption2Admin" class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="edu" id="kind_edu_admin">
-                    <div>Edu</div>
-                  </label>
-                  <label id="kindoption3Admin" class="btn btn-info {{#if kindIsActive 'pro'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="pro" id="kind_pro_admin">
-                    <div>Pro</div>
-                  </label>
-                </div>
-              </div>
-              <span id="helpEditCardsetKindAdmin" class="help-block kind"></span>
-            </div>
-            {{#if kindWithPrice}}
-              <div class="form-group">
-                <label id="publicatePriceLabelAdmin" for="publicatePrice">{{_ "admin.cardset.price"}} (€)</label>
-                <div class="input-group">
-                  <select id="publicatePriceAdmin" class="form-control">
-                    <option {{priceIsSelected 0.99}}>0.99</option>
-                    <option {{priceIsSelected 1.99}}>1.99</option>
-                    <option {{priceIsSelected 2.99}}>2.99</option>
-                    <option {{priceIsSelected 3.99}}>3.99</option>
-                    <option {{priceIsSelected 4.99}}>4.99</option>
-                    <option {{priceIsSelected 5.99}}>5.99</option>
-                    <option {{priceIsSelected 6.99}}>6.99</option>
-                    <option {{priceIsSelected 7.99}}>7.99</option>
-                    <option {{priceIsSelected 8.99}}>8.99</option>
-                    <option {{priceIsSelected 9.99}}>9.99</option>
-                  </select>
-                </div>
-              </div>
-            {{/if}}
-            {{#if isPublished}}
-              <div class="form-group">
-                <label id="editCardsetLicenseLabelAdmin">{{_ "admin.cardset.license"}}</label>
-                <div class="controls">
-                  <div id="cc-modules-admin" class="btn-group" data-toggle="buttons">
-                    <label id="cc-option0-admin" class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}" style="width:100px">
-                      <input type="checkbox" autocomplete="off" value="by" id="cc-by-admin">
-                      <img src="/img/by.large.png" alt="Namensnennung" />
-                    </label>
-                    <label id="cc-option1-admin" class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}" style="width:100px">
-                      <input type="checkbox" autocomplete="off" value="nc" id="cc-nc-admin">
-                      <img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />
-                    </label>
-                    <label id="cc-option2-admin" class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}" style="width:100px">
-                      <input type="checkbox" autocomplete="off" value="nd" id="cc-nd-admin">
-                      <img src="/img/nd.large.png" alt="Keine Bearbeitung" />
-                    </label>
-                    <label id="cc-option3-admin" class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}" style="width:100px">
-                      <input type="checkbox" autocomplete="off" value="sa" id="cc-sa-admin">
-                      <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />
-                    </label>
-                  </div>
-                  <span id="helpCC-modules-admin" class="help-block cc-modules"></span>
-                </div>
-              </div>
-            {{/if}}
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">{{_ "admin.cards"}}</div>
-          <div class="panel-body">
-            <div class="admin_table_cards">
-              {{> reactiveTable collection=cardListCardsetAdmin settings=tableSettings}}
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="box-button-admin">
-        <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
-        <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
-        <button id="cardsetDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_ "admin.cardset.delete"}}</button>
-        <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
-      </div>
+    <div class="content-header">
+        <h1>
+            {{_ "admin.cardset.header"}}
+            <small>{{_ "admin.cardset.edit"}} {{_id}}</small>
+        </h1>
     </div>
-  </div>
-  {{> cardConfirmFormCardsetAdmin}}
+    <div class="content box-admin">
+        <div class="box-body-admin">
+            <form id="admin_cardset_update">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{_ "admin.cardset.info"}}</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
+                            {{#if userExists userDeleted}}
+                                <a href="/admin/user/{{owner}}">{{username}}</a>
+                            {{else}}
+                                {{username}} ({{_ "admin.deleted"}})
+                            {{/if}}
+                        </div>
+                        <div class="form-group">
+                            <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
+                            {{getDate}}
+                        </div>
+                        <div class="form-group">
+                            <label id="editCardsetDateUpdatedLabelAdmin">{{_ "admin.cardset.dateUpdated"}}</label>
+                            {{getDateUpdated}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{_ "admin.cardset.settings"}}</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label id="editCardsetNameLabelAdmin">{{_ "admin.cardset.name"}}</label>
+                            <input class="form-control" type="text" id="editCardsetNameAdmin" value="{{name}}">
+                            <span id="helpEditCardsetNameAdmin" class="help-block name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label id="editCardsetDescriptionLabelAdmin">{{_ "admin.cardset.description"}}</label>
+                            <textarea class="form-control" type="text" id="editCardsetDescriptionAdmin"
+                                      value="{{description}}" rows="5"></textarea>
+                            <span id="helpEditCardsetDescriptionAdmin" class="help-block description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label id="editCardsetCategoryLabelAdmin">{{_ "admin.cardset.category"}}</label>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button"
+                                        id="editCardsetCategoryDropdownAdmin" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
+                                    <span id="editCardsetCategoryAdmin">{{getCategory this.category}}</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    {{#each getCategories}}
+                                        <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_
+                                    "admin.cardset.kind"}}</label>
+                            <div class="controls">
+                                <div id="publicateKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
+                                    <label id="kindoption0Admin"
+                                           class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="personal" id="kind_private_admin">
+                                        <div>Private</div>
+                                    </label>
+                                    <label id="kindoption1Admin"
+                                           class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="free" id="kind_free_admin">
+                                        <div>Free</div>
+                                    </label>
+                                    <label id="kindoption2Admin"
+                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="edu" id="kind_edu_admin">
+                                        <div>Edu</div>
+                                    </label>
+                                    <label id="kindoption3Admin"
+                                           class="btn btn-info {{#if kindIsActive 'pro'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="pro" id="kind_pro_admin">
+                                        <div>Pro</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <span id="helpEditCardsetKindAdmin" class="help-block kind"></span>
+                        </div>
+                        {{#if kindWithPrice}}
+                            <div class="form-group">
+                                <label id="publicatePriceLabelAdmin" for="publicatePrice">{{_ "admin.cardset.price"}}
+                                    (€)</label>
+                                <div class="input-group">
+                                    <select id="publicatePriceAdmin" class="form-control">
+                                        <option {{priceIsSelected 0.99}}>0.99</option>
+                                        <option {{priceIsSelected 1.99}}>1.99</option>
+                                        <option {{priceIsSelected 2.99}}>2.99</option>
+                                        <option {{priceIsSelected 3.99}}>3.99</option>
+                                        <option {{priceIsSelected 4.99}}>4.99</option>
+                                        <option {{priceIsSelected 5.99}}>5.99</option>
+                                        <option {{priceIsSelected 6.99}}>6.99</option>
+                                        <option {{priceIsSelected 7.99}}>7.99</option>
+                                        <option {{priceIsSelected 8.99}}>8.99</option>
+                                        <option {{priceIsSelected 9.99}}>9.99</option>
+                                    </select>
+                                </div>
+                            </div>
+                        {{/if}}
+                        {{#if isPublished}}
+                            <div class="form-group">
+                                <label id="editCardsetLicenseLabelAdmin">{{_ "admin.cardset.license"}}</label>
+                                <div class="controls">
+                                    <div id="cc-modules-admin" class="btn-group" data-toggle="buttons">
+                                        <label id="cc-option0-admin"
+                                               class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="checkbox" autocomplete="off" value="by" id="cc-by-admin">
+                                            <img src="/img/by.large.png" alt="Namensnennung"/>
+                                        </label>
+                                        <label id="cc-option1-admin"
+                                               class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="checkbox" autocomplete="off" value="nc" id="cc-nc-admin">
+                                            <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                        </label>
+                                        <label id="cc-option2-admin"
+                                               class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="checkbox" autocomplete="off" value="nd" id="cc-nd-admin">
+                                            <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                        </label>
+                                        <label id="cc-option3-admin"
+                                               class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="checkbox" autocomplete="off" value="sa" id="cc-sa-admin">
+                                            <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/>
+                                        </label>
+                                    </div>
+                                    <span id="helpCC-modules-admin" class="help-block cc-modules"></span>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{_ "admin.cards"}}</div>
+                    <div class="panel-body">
+                        <div class="admin_table_cards">
+                            {{> reactiveTable collection=cardListCardsetAdmin settings=tableSettings}}
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="box-button-admin">
+                <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
+                <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
+                <button id="cardsetDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
+                        "admin.cardset.delete"}}</button>
+                <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right"
+                        style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
+            </div>
+        </div>
+    </div>
+    {{> cardConfirmFormCardsetAdmin}}
 </template>
 
 <template name="cardConfirmFormCardsetAdmin">
-  <div class="modal fade" id="cardConfirmModalCardsetAdmin" tabindex="-1" role="dialog" aria-labelledby="cardConfirmModalTitleCardsetAdmin">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="cardConfirmModalTitleCardsetAdmin" class="modal-title">{{_ "admin.confirm-form.cards.title"}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{_ "admin.confirm-form.cards.text"}}</p>
-          <br />
-          <hr />
+    <div class="modal fade" id="cardConfirmModalCardsetAdmin" tabindex="-1" role="dialog"
+         aria-labelledby="cardConfirmModalTitleCardsetAdmin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="cardConfirmModalTitleCardsetAdmin" class="modal-title">{{_
+                            "admin.confirm-form.cards.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "admin.confirm-form.cards.text"}}</p>
+                    <br/>
+                    <hr/>
 
-          <button id="cardDeleteCardsetAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "admin.confirm-form.cards.title"}}</button>
-          <button id="cardCancelCardsetAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
+                    <button id="cardDeleteCardsetAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
+                            "admin.confirm-form.cards.title"}}</button>
+                    <button id="cardCancelCardsetAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                            "admin.confirm-form.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>

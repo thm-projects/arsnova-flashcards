@@ -1,25 +1,25 @@
-import { Session } from 'meteor/session';
+import {Session} from 'meteor/session';
 
 //------------------------ GET LANGUAGE FROM USER
 
 getUserLanguage = function () {
-  return navigator.language.substr(0,2);
+	return navigator.language.substr(0, 2);
 };
 
 
 //------------------------ LOADING I18N
 
 Meteor.startup(function () {
-  Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
+	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
 
-  Session.set("showLoadingIndicator", true);
+	Session.set("showLoadingIndicator", true);
 
-  TAPi18n.setLanguage(getUserLanguage())
-    .done(function () {
-      Session.set("showLoadingIndicator", false);
-    })
-    .fail(function (error_message) {
-      // Handle the situation
-      throw new Meteor.Error(error_message, "Can't get User Language");
-    });
+	TAPi18n.setLanguage(getUserLanguage())
+		.done(function () {
+			Session.set("showLoadingIndicator", false);
+		})
+		.fail(function (error_message) {
+			// Handle the situation
+			throw new Meteor.Error(error_message, "Can't get User Language");
+		});
 });

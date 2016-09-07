@@ -18,18 +18,18 @@ $font_5: sans-serif;
 
 .cardsetInfo {
 	h3 {
-			margin-top: 0;
+		margin-top: 0;
 	}
 	.well {
-			margin-bottom: 0;
+		margin-bottom: 0;
 	}
 	.left {
-			float: left;
+		float: left;
 	}
 	#ratingLocked {
-			margin-top: 2px;
-			margin-left: 6px;
-			left: 6px;
+		margin-top: 2px;
+		margin-left: 6px;
+		left: 6px;
 	}
 }
 
@@ -43,10 +43,10 @@ $font_5: sans-serif;
 	margin-bottom: 40px;
 }
 
-
 .carousel-inner {
 	min-height: 278px;
 }
+
 .box {
 	border: 1px solid $color_alto_approx;
 	font-family: $font_0, $font_1;
@@ -59,17 +59,20 @@ $font_5: sans-serif;
 	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 	box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
 }
+
 .btn-editCard {
 	position: absolute;
 	left: 12px;
 	top: 11px;
 }
+
 .btn-showPictureDetails {
 	position: absolute;
 	left: 45px;
 	top: 11px;
 	font-family: $font_2, $font_3, $font_4, $font_5;
 }
+
 .clicktoflip {
 	color: $color_storm_dust_approx;
 	position: absolute;
@@ -77,6 +80,7 @@ $font_5: sans-serif;
 	top: 13px;
 	font-style: italic;
 }
+
 .block {
 	height: 100%;
 	&:before {
@@ -90,6 +94,7 @@ $font_5: sans-serif;
 		text-align: left;
 	}
 }
+
 .centered {
 	display: inline-block;
 	vertical-align: middle;
@@ -98,6 +103,7 @@ $font_5: sans-serif;
 		max-width: 370px;
 	}
 }
+
 .carousel-control {
 	color: $black;
 	width: 7%;
@@ -109,6 +115,7 @@ $font_5: sans-serif;
 		@extend %extend_1;
 	}
 }
+
 .cardNumber {
 	color: $color_mountain_mist_approx;
 	font-family: $font_2, $font_3, $font_4, $font_5;
@@ -118,6 +125,7 @@ $font_5: sans-serif;
 	top: 14px;
 	margin-left: -16px;
 }
+
 .meteorBox {
 	line-height: 32px;
 	font-family: $font_0, $font_1;
@@ -125,9 +133,11 @@ $font_5: sans-serif;
 	display: inline-table;
 	width: 100%;
 }
+
 #editSetDescription {
 	resize: none;
 }
+
 .nav-header-cardset {
 	display: block;
 	padding-left: 0;
@@ -140,23 +150,28 @@ $font_5: sans-serif;
 	text-shadow: 0 1px 0 $white_50;
 	text-transform: uppercase;
 }
+
 .ratingStars {
 	margin-left: -33px;
 	padding-left: 50%;
 }
+
 .ratingText {
 	display: inline-block;
 	font-size: 11px;
 	text-align: center;
 	width: 100%;
 }
+
 .button-group-content {
 	margin-bottom: 20px;
 }
+
 .btn-editCardset {
 	float: left;
 	margin-right: 7px;
 }
+
 .btn-file {
 	position: relative;
 	overflow: hidden;
@@ -176,29 +191,36 @@ $font_5: sans-serif;
 		display: block;
 	}
 }
+
 img.cardside {
 	position: absolute;
 	right: 88px;
 	top: 13px;
 }
+
 #pictureModal .modal-header {
 	min-height: 50px;
 }
+
 #setdetails-pictureModal-body img {
 	max-width: 100%;
 	width: auto;
 	margin: auto;
 	display: block;
 }
+
 #ratingLocked .stars {
 	cursor: auto;
 }
+
 #importModal hr {
 	margin: 20px 0;
 }
+
 #set-details-region {
 	margin-bottom: 20px;
 }
+
 #selectLicenseModal {
 	#cc-modules img {
 		width: 30px;
@@ -213,9 +235,11 @@ img.cardside {
 		}
 	}
 }
+
 #info_license img {
 	width: 20px;
 }
+
 #reportModal {
 	p {
 		padding-top: 7px;

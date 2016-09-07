@@ -10,6 +10,7 @@ html {
 	position: relative;
 	min-height: 100%;
 }
+
 body {
 	margin-bottom: 60px;
 	background-color: $color_mercury_approx;
@@ -17,12 +18,14 @@ body {
 		padding: 80px 15px 0;
 	}
 }
+
 .table {
 	background-color: $white;
 	img {
 		max-width: 370px;
 	}
 }
+
 .navbar-default {
 	background-color: $color_la_palma_approx;
 	border-color: $color_bilbao_approx;
@@ -140,6 +143,7 @@ body {
 		}
 	}
 }
+
 @media(max-width: 767px) {
 	.navbar-default .navbar-nav .open .dropdown-menu {
 		> li > a {
@@ -165,6 +169,7 @@ body {
 		}
 	}
 }
+
 .footer {
 	position: absolute;
 	bottom: 0;
@@ -185,6 +190,7 @@ body {
 		}
 	}
 }
+
 #searchResults {
 	min-width: 210px;
 	padding-top: 0;

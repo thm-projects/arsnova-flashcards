@@ -18,21 +18,24 @@
                         <h4>{{name}}</h4>
                     </div>
                     <div class="col-md-6">
-                      <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                          <input type="checkbox" autocomplete="off" value="free" checked> Free
-                        </label>
-                        <label class="btn btn-success active">
-                          <input type="checkbox" autocomplete="off" value="edu" checked> Edu
-                        </label>
-                        <label class="btn btn-info active">
-                          <input type="checkbox" autocomplete="off" value="pro" checked> Pro
-                        </label>
-                      </div>
+                        <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="checkbox" autocomplete="off" value="free" checked> Free
+                            </label>
+                            <label class="btn btn-success active">
+                                <input type="checkbox" autocomplete="off" value="edu" checked> Edu
+                            </label>
+                            <label class="btn btn-info active">
+                                <input type="checkbox" autocomplete="off" value="pro" checked> Pro
+                            </label>
+                        </div>
                         <div class="btn-group pull-right">
-                            <button id="sortRelevance" class="btn btn-default" type="button">{{_ "pool.relevance"}} {{{getSortRelevanceIcon}}}</button>
-                            <button id="sortName" class="btn btn-default" type="button">{{_ "pool.name"}} {{{getSortNameIcon}}}</button>
-                            <button id="sortUser" class="btn btn-default" type="button">{{_ "pool.author"}} {{{getSortUserIcon}}}</button>
+                            <button id="sortRelevance" class="btn btn-default" type="button">{{_
+                                    "pool.relevance"}} {{{getSortRelevanceIcon}}}</button>
+                            <button id="sortName" class="btn btn-default" type="button">{{_
+                                    "pool.name"}} {{{getSortNameIcon}}}</button>
+                            <button id="sortUser" class="btn btn-default" type="button">{{_
+                                    "pool.author"}} {{{getSortUserIcon}}}</button>
                         </div>
                     </div>
                 </div>
@@ -42,39 +45,40 @@
         {{#if getDecks.count}}
             {{#each getDecks}}
                 <div class="col-md-12">
-                  <a href="/cardset/{{_id}}">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="col-sm-8">
-                                <div class="">
-                                    <h4>{{{getKind}}} {{name}}</h4>
-                                    <hr> {{description}}
+                    <a href="/cardset/{{_id}}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-sm-8">
+                                    <div class="">
+                                        <h4>{{{getKind}}} {{name}}</h4>
+                                        <hr> {{description}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="well">
-                                    <strong class="left">{{_ "pool.rating"}}:</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                                    <hr>
-                                    <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
-                                    <br>
-                                    <strong>{{_ "pool.author"}}:</strong>
-                                    {{#if userExists userDeleted}}
-                                      {{username}}
-                                    {{else}}
-                                      {{username}} ({{_ "pool.deleted"}})
-                                    {{/if}}
-                                    <br>
-                                    <strong>{{_ "pool.release"}}:</strong> {{getDate}}
-                                    <br>
-                                    <strong>{{_ "pool.dateUpdated"}}:</strong> {{getDateUpdated}}
-                                    <br>
-                                    <strong>{{_ "pool.license"}}:</strong>
-                                    <span id="pool_license">{{getLicense}}</span>
+                                <div class="col-sm-4">
+                                    <div class="well">
+                                        <strong class="left">{{_ "pool.rating"}}
+                                            :</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                        <hr>
+                                        <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
+                                        <br>
+                                        <strong>{{_ "pool.author"}}:</strong>
+                                        {{#if userExists userDeleted}}
+                                            {{username}}
+                                        {{else}}
+                                            {{username}} ({{_ "pool.deleted"}})
+                                        {{/if}}
+                                        <br>
+                                        <strong>{{_ "pool.release"}}:</strong> {{getDate}}
+                                        <br>
+                                        <strong>{{_ "pool.dateUpdated"}}:</strong> {{getDateUpdated}}
+                                        <br>
+                                        <strong>{{_ "pool.license"}}:</strong>
+                                        <span id="pool_license">{{getLicense}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                  </a>
+                    </a>
                 </div>
             {{/each}}
         {{else}}
