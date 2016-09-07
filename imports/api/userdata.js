@@ -66,6 +66,13 @@ Meteor.methods({
       }
     });
   },
+  updateUsersProfileState: function(completed, id) {
+    Meteor.users.update(id, {
+      $set: {
+        "profile.completed": completed
+      }
+    });
+  },
   checkUsersName: function(name, id) {
     name = name.trim();
     var userExists = Meteor.users.findOne({"profile.name": name});

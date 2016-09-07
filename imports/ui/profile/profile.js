@@ -327,6 +327,7 @@ Template.profileSettings.events({
                 Meteor.call("updateUsersName", name, user_id);
                 Meteor.call("updateUsersBName", bname, user_id);
                 Meteor.call("updateUsersGName", gname, user_id);
+                Meteor.call("updateUsersProfileState", true, user_id);
                 Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
               } else {
                 Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
