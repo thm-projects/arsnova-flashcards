@@ -1,7 +1,7 @@
-import {Meteor } from 'meteor/meteor';
-import {Categories } from '../../api/categories.js';
-import {Cardsets } from '../../api/cardsets.js';
-import {Cards } from '../../api/cards.js';
+import {Meteor} from 'meteor/meteor';
+import {Categories} from '../../api/categories.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
@@ -22,10 +22,10 @@ Template.registerHelper("isOwnerCard", function () {
 });
 
 Template.registerHelper("isOwner", function () {
-	var owner = undefined;
+	var owner;
 	if (this.owner) {
 		owner = this.owner;
-	}	else if (Template.parentData(1)) {
+	} else if (Template.parentData(1)) {
 		owner = Template.parentData(1).owner;
 	}
 	return owner === Meteor.userId();
@@ -85,11 +85,7 @@ Template.registerHelper("getCategory", function (value) {
 
 // Returns if user is deleted or not
 Template.registerHelper("userExists", function (userDeleted) {
-	if (userDeleted === true) {
-		return false;
-	} else {
-		return true;
-	}
+	return userDeleted !== true;
 });
 
 // i18n type notifications

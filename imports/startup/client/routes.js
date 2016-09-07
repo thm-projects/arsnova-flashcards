@@ -1,6 +1,6 @@
-import {Cardsets } from '../../api/cardsets.js';
-import {Cards } from '../../api/cards.js';
-import {Categories } from '../../api/categories.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
+import {Categories} from '../../api/categories.js';
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -210,7 +210,12 @@ var goToCreated = function () {
 };
 
 Router.onBeforeAction(isSignedIn, {
-	except: ['home', 'impressum', 'agb', 'datenschutz']
+	except: [
+		'home',
+		'impressum',
+		'agb',
+		'datenschutz'
+	]
 });
 
 Router.onBeforeAction(goToCreated, {
