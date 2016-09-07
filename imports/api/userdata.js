@@ -7,7 +7,7 @@ Meteor.publish("userData", function () {
   if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
     return Meteor.users.find(
       {$or: [{visible: true}, {_id: this.userId}]},
-      {fields: {'profile.name': 1, 'profile.bname': 1, 'profile.gname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'customerId': 1, 'blockedtext': 1}});
+      {fields: {'profile.name': 1, 'profile.birthname': 1, 'profile.givenname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'customerId': 1, 'blockedtext': 1}});
   } else if (Roles.userIsInRole(this.userId, 'blocked')) {
     return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
   } else {
@@ -18,7 +18,7 @@ Meteor.publish("privateUserData", function () {
   if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
     return Meteor.users.find(
       {_id: this.userId},
-      {fields: {'profile.name': 1, 'profile.bname': 1, 'profile.gname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'balance': 1}});
+      {fields: {'profile.name': 1, 'profile.birthname': 1, 'profile.givenname': 1, 'email': 1, 'services': 1, 'lvl': 1, 'visible': 1, 'lastOnAt': 1, 'daysInRow': 1, 'balance': 1}});
   } else {
     this.ready();
   }
@@ -59,17 +59,17 @@ Meteor.methods({
       }
 	});
   },
-  updateUsersBName: function(bname, id) {
+  updateUsersBirthName: function(birthname, id) {
     Meteor.users.update(id, {
       $set: {
-        "profile.bname": bname
+        "profile.birthname": birthname
       }
 	});
   },
-  updateUsersGName: function(gname, id) {
+  updateUsersGivenName: function(givenname, id) {
     Meteor.users.update(id, {
       $set: {
-        "profile.gname": gname
+        "profile.givenname": givenname
       }
     });
   },
@@ -93,8 +93,8 @@ Meteor.methods({
       $set: {
         visible: true,
         email: "",
-        bname: "",
-        gname: "",
+        birthname: "",
+        givenname: "",
         lvl: 1,
         lastOnAt: new Date(),
         daysInRow: 0

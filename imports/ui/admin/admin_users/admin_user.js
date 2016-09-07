@@ -231,8 +231,8 @@ Template.admin_user.events({
          var email = $('#editUserEmailAdmin').val();
          var blockedtext = $('#editUserBlockedtextAdmin').val();
          var title = $('#editUserTitleAdmin').val();
-         var bname = $('#editUserBNameAdmin').val();
-         var gname = $('#editUserGNameAdmin').val();
+         var birthname = $('#editUserBirthNameAdmin').val();
+         var givenname = $('#editUserGivenNameAdmin').val();
          var check = re.test(email);
          var visible = null;
          var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
@@ -312,10 +312,10 @@ Template.admin_user.events({
            Meteor.call('updateUser', user_id, visible, email, blockedtext);
            Meteor.call('updateUsersName', result, user_id);
            Meteor.call('updateUsersTitle', title, user_id);
-           Meteor.call('updateUsersBName', bname, user_id);
-           Meteor.call('updateUsersGName', gname, user_id);
+           Meteor.call('updateUsersBirthName', birthname, user_id);
+           Meteor.call('updateUsersGivenName', givenname, user_id);
            Meteor.call('updateUsersProfileState',
-            (email != "" && result != "" && bname != "" && gname != "") ? true : false,
+            (email != "" && result != "" && birthname != "" && givenname != "") ? true : false,
             user_id);
            window.history.go(-1);
          }

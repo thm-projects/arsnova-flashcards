@@ -267,35 +267,35 @@ Template.profileSettings.events({
         }
 
         // Birth Name validation
-        var bname = $('#inputBName').val().trim();
-        var validBName = false;
-
-        if (bname.length <= 0) {
-      	  $('#inputBName').parent().parent().addClass('has-error');
-      	  $('#errorBName').html(TAPi18n.__('panel-body.bnameEmpty'));
+        var birthname = $('#inputBirthName').val().trim();
+        var validBirthName = false;
+        
+        if (birthname.length <= 0) {
+      	  $('#inputBirthName').parent().parent().addClass('has-error');
+      	  $('#errorBirthName').html(TAPi18n.__('panel-body.birthnameEmpty'));
       	}
       	else {
-      	  $('#inputBName').parent().parent().removeClass('has-error');
-      	  $('#inputBName').parent().parent().addClass('has-success');
-      	  $('#errorBName').html('');
-      	  $('#inputBName').val(bname);
-      	  validBName = true;
+      	  $('#inputBirthName').parent().parent().removeClass('has-error');
+      	  $('#inputBirthName').parent().parent().addClass('has-success');
+      	  $('#errorBirthName').html('');
+      	  $('#inputBirthName').val(birthname);
+      	  validBirthName = true;
       	}
 
         // Given Name validation
-        var gname = $('#inputGName').val().trim();
-        var validGName = false;
-
-		if (gname.length <= 0) {
-      		$('#inputGName').parent().parent().addClass('has-error');
-      		$('#errorGName').html(TAPi18n.__('panel-body.gnameEmpty'));
+        var givenname = $('#inputGivenName').val().trim();
+        var validGivenName = false;
+        
+		if (givenname.length <= 0) {
+      		$('#inputGivenName').parent().parent().addClass('has-error');
+      		$('#errorGivenName').html(TAPi18n.__('panel-body.givennameEmpty'));
       	}
       	else {
-      		$('#inputGName').parent().parent().removeClass('has-error');
-      		$('#inputGName').parent().parent().addClass('has-success');
-      		$('#errorGName').html('');
-      		$('#inputGName').val(gname);
-      		validGName = true;
+      		$('#inputGivenName').parent().parent().removeClass('has-error');
+      		$('#inputGivenName').parent().parent().addClass('has-success');
+      		$('#errorGivenName').html('');
+      		$('#inputGivenName').val(givenname);
+      		validGivenName = true;
       	}
 
         // Name validation
@@ -322,11 +322,11 @@ Template.profileSettings.events({
                   name = result;
                   validName = true;
               }
-              if (validEmail && validName && validBName && validGName) {
+              if (validEmail && validName && validBirthName && validGivenName) {
                 Meteor.call("updateUsersEmail", email);
                 Meteor.call("updateUsersName", name, user_id);
-                Meteor.call("updateUsersBName", bname, user_id);
-                Meteor.call("updateUsersGName", gname, user_id);
+                Meteor.call("updateUsersBirthName", birthname, user_id);
+                Meteor.call("updateUsersGivenName", givenname, user_id);
                 Meteor.call("updateUsersProfileState", true, user_id);
                 Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
               } else {
@@ -339,19 +339,19 @@ Template.profileSettings.events({
         var user = Meteor.users.findOne(Meteor.userId());
         $('#inputEmail').val(user.email);
         $('#inputName').val(user.profile.name);
-    	$('#inputBName').val(user.profile.bname);
-    	$('#inputGName').val(user.profile.gname);
+    	$('#inputBirthName').val(user.profile.birthname);
+    	$('#inputGivenName').val(user.profile.givenname);
         $('#inputName').parent().parent().removeClass('has-error');
-        $('#inputBName').parent().parent().removeClass('has-error');
-        $('#inputGName').parent().parent().removeClass('has-error');
+        $('#inputBirthName').parent().parent().removeClass('has-error');
+        $('#inputGivenName').parent().parent().removeClass('has-error');
         $('#inputEmail').parent().parent().removeClass('has-error');
         $('#inputName').parent().parent().removeClass('has-success');
-        $('#inputBName').parent().parent().removeClass('has-success');
-        $('#inputGName').parent().parent().removeClass('has-success');
+        $('#inputBirthName').parent().parent().removeClass('has-success');
+        $('#inputGivenName').parent().parent().removeClass('has-success');
         $('#inputEmail').parent().parent().removeClass('has-success');
         $('#errorName').html('');
-        $('#errorBName').html('');
-        $('#errorGName').html('');
+        $('#errorBirthName').html('');
+        $('#errorGivenName').html('');
         $('#errorEmail').html('');
         Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
     }
