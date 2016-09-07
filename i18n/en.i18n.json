@@ -575,7 +575,7 @@
       "settings": "Cardset settings",
       "name": "Name",
       "description": "Description",
-    	"category": "Category",
+  	  "category": "Category",
       "kind": "Kind",
       "price": "Retail price",
       "cancel": "Cancel",
