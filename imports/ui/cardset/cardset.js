@@ -30,42 +30,42 @@ Session.setDefault('cardSort', {
 });
 
 /**
- * ############################################################################
- * cardset
- * ############################################################################
- */
+* ############################################################################
+* cardset
+* ############################################################################
+*/
 
- Template.cardset.rendered = function (){
-	 Meteor.subscribe("previewCards", Router.current().params._id);
-	 Session.set('cardsetId', Router.current().params._id);
+Template.cardset.rendered = function () {
+	Meteor.subscribe("previewCards", Router.current().params._id);
+	Session.set('cardsetId', Router.current().params._id);
 
-	 var customerId = Meteor.user().customerId;
+	var customerId = Meteor.user().customerId;
 
-	 if ($('#payment-form').length) {
-		 Meteor.call('getClientToken', customerId, function (error, clientToken) {
+	if ($('#payment-form').length) {
+		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
 			} else {
 				braintree.setup(clientToken, "dropin", {
 					container: "payment-form",
 					onPaymentMethodReceived: function (response) {
-					  $('#buyCardsetBtn').prop( "disabled", true );
+						$('#buyCardsetBtn').prop("disabled", true);
 
-					  var nonce = response.nonce;
+						var nonce = response.nonce;
 
-					  Meteor.call('btCreateTransaction', nonce, Session.get('cardsetId'), function (error) {
+						Meteor.call('btCreateTransaction', nonce, Session.get('cardsetId'), function (error) {
 							if (error) {
-							  throw new Meteor.Error('transaction-creation-failed');
+								throw new Meteor.Error('transaction-creation-failed');
 							} else {
-							  Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
 							}
-					  });
+						});
 					}
 				});
 			}
 		});
 	}
- }
+}
 
 Template.cardset.helpers({
 	'onEditmodalClose': function (id) {
@@ -77,7 +77,7 @@ Template.cardset.helpers({
 		var categoryId = previousCategory.toString();
 
 		if (categoryId.length === 1) {
-			 categoryId = "0" + categoryId;
+			categoryId = "0" + categoryId;
 		}
 
 		var category = Categories.findOne(categoryId);
@@ -91,10 +91,10 @@ Template.cardset.helpers({
 
 		var hasRole = false;
 		if (Roles.userIsInRole(userId, 'pro') ||
-			 (Roles.userIsInRole(userId, 'lecturer')) ||
-			 (Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) ||
-			 (cardsetKind === 'free') ||
-			 (Paid.find({cardset_id:this._id, user_id:userId}).count() === 1)) {
+		(Roles.userIsInRole(userId, 'lecturer')) ||
+		(Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) ||
+		(cardsetKind === 'free') ||
+		(Paid.find({cardset_id: this._id, user_id: userId}).count() === 1)) {
 			hasRole = true;
 		}
 
@@ -105,14 +105,13 @@ Template.cardset.helpers({
 	}
 });
 
-function ifCardset(){
+function ifCardset() {
 	if ($(".cardfront-symbol").css('display') === 'none') {
 		$(".cardfront-symbol").css('display', "");
 		$(".cardback-symbol").css('display', "none");
 		$(".cardfront").css('display', "");
 		$(".cardback").css('display', "none");
-	}
-	else if ($(".cardback-symbol").css('display') === 'none') {
+	} else if ($(".cardback-symbol").css('display') === 'none') {
 		$(".cardfront-symbol").css('display', "none");
 		$(".cardback-symbol").css('display', "");
 		$(".cardfront").css('display', "none");
@@ -186,10 +185,10 @@ Template.cardset.events({
 });
 
 /**
- * ############################################################################
- * cardsetForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetForm
+* ############################################################################
+*/
 
 Template.cardsetForm.onRendered(function () {
 	$('#editSetModal').on('hidden.bs.modal', function () {
@@ -230,21 +229,21 @@ Template.cardsetForm.events({
 });
 
 /**
- * ############################################################################
- * cardsetList
- * ############################################################################
- */
+* ############################################################################
+* cardsetList
+* ############################################################################
+*/
 
 Template.cardsetList.helpers({
 	cardlistMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".front" + index).html(html);
-			});
+		.then(function (html) {
+			$(".front" + index).html(html);
+		});
 		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".back" + index).html(html);
-			});
+		.then(function (html) {
+			$(".back" + index).html(html);
+		});
 	},
 	cardList: function () {
 		return Cards.find({
@@ -289,12 +288,12 @@ Template.cardsetList.onDestroyed(function () {
 
 
 /**
- * ############################################################################
- * cardsetDetails
- * ############################################################################
- */
+* ############################################################################
+* cardsetDetails
+* ############################################################################
+*/
 
- Template.cardsetDetails.onCreated(function () {
+Template.cardsetDetails.onCreated(function () {
 	this.autorun(() => {
 		this.subscribe('cards', Router.current().params._id);
 	});
@@ -317,13 +316,13 @@ Template.cardsetDetails.helpers({
 	},
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".detailfront" + index).html(html);
-			});
+		.then(function (html) {
+			$(".detailfront" + index).html(html);
+		});
 		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".detailback" + index).html(html);
-			});
+		.then(function (html) {
+			$(".detailback" + index).html(html);
+		});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});
@@ -350,12 +349,12 @@ Template.cardsetDetails.events({
 });
 
 /**
- * ############################################################################
- * cardsetPreview
- * ############################################################################
- */
+* ############################################################################
+* cardsetPreview
+* ############################################################################
+*/
 
- Template.cardsetPreview.onCreated(function () {
+Template.cardsetPreview.onCreated(function () {
 	this.autorun(() => {
 		this.subscribe('cards', Router.current().params._id);
 	});
@@ -384,13 +383,13 @@ Template.cardsetPreview.helpers({
 	},
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".detailfront" + index).html(html);
-			});
+		.then(function (html) {
+			$(".detailfront" + index).html(html);
+		});
 		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".detailback" + index).html(html);
-			});
+		.then(function (html) {
+			$(".detailback" + index).html(html);
+		});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});
@@ -408,11 +407,9 @@ Template.cardsetPreview.helpers({
 Template.cardsetPreview.events({
 	"click .box": function () {
 		ifCardset();
-
 	},
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		ifCardset();
-
 	},
 	'click .item.active .block a': function () {
 		evt.stopPropagation();
@@ -420,15 +417,15 @@ Template.cardsetPreview.events({
 });
 
 /**
- * ############################################################################
- * cardsetInfo
- * ############################################################################
- */
+* ############################################################################
+* cardsetInfo
+* ############################################################################
+*/
 
 Template.cardsetInfo.onRendered(function () {
-	 $('[data-toggle="tooltip"]').tooltip({
-		 container: 'body'
-	 });
+	$('[data-toggle="tooltip"]').tooltip({
+		container: 'body'
+	});
 });
 
 Template.cardsetInfo.helpers({
@@ -479,7 +476,7 @@ Template.cardsetInfo.helpers({
 				return '<span class="label label-info">Pro</span>';
 			default:
 				return '<span class="label label-danger">Undefined!</span>';
-			}
+		}
 	},
 	getStatus: function () {
 		if (this.visible) {
@@ -503,14 +500,14 @@ Template.cardsetInfo.helpers({
 		return this.price + '€';
 	},
 	isPurchased: function () {
-		return Paid.findOne({cardset_id:this._id}) !== undefined;
+		return Paid.findOne({cardset_id: this._id}) !== undefined;
 	},
 	getDateOfPurchase: function () {
-		return moment(Paid.findOne({cardset_id:this._id}).date).locale(getUserLanguage()).format('LL');
+		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
 	},
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
-		return (reviewer !== undefined) ? reviewer.profile.name: undefined;
+		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
 	},
 	getLicense: function () {
 		var licenseString = "";
@@ -587,10 +584,10 @@ Template.cardsetInfo.events({
 });
 
 /**
- * ############################################################################
- * cardsetSidebar
- * ############################################################################
- */
+* ############################################################################
+* cardsetSidebar
+* ############################################################################
+*/
 Template.cardsetSidebar.events({
 	"click #learnBox": function () {
 		Router.go('box', {
@@ -605,10 +602,10 @@ Template.cardsetSidebar.events({
 });
 
 /**
- * ############################################################################
- * cardsetImportForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetImportForm
+* ############################################################################
+*/
 
 Template.cardsetImportForm.onCreated(function () {
 	Template.instance().uploading = new ReactiveVar(false);
@@ -638,21 +635,19 @@ Template.cardsetImportForm.events({
 					var res = $.parseJSON('[' + this.result + ']');
 
 					Meteor.call('parseUpload', res, cardset_id, function (error) {
-					  if (error) {
+						if (error) {
 							tmpl.uploading.set(false);
-							$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": "+ error.message + '</div>');
-					  }
-					  else {
+							$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
+						}	else {
 							tmpl.uploading.set(false);
 							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
 							$('#importModal').modal('toggle');
-					  }
+						}
 					});
 				} catch (e) {
-					  tmpl.uploading.set(false);
-					  $('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": "+ e.message + '</div>');
+					tmpl.uploading.set(false);
+					$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + e.message + '</div>');
 				}
-
 			};
 			reader.readAsText(evt.target.files[0]);
 		} else if (evt.target.files[0].name.match(/\.(csv)$/)) {
@@ -660,14 +655,14 @@ Template.cardsetImportForm.events({
 				header: true,
 				complete: function (results) {
 					Meteor.call('parseUpload', results.data, cardset_id, function (error) {
-					if (error) {
+						if (error) {
 							tmpl.uploading.set(false);
 							Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
-					  } else {
+						} else {
 							tmpl.uploading.set(false);
 							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
 							$('#importModal').modal('toggle');
-					  }
+						}
 					});
 				}
 			});
@@ -679,10 +674,10 @@ Template.cardsetImportForm.events({
 });
 
 /**
- * ############################################################################
- * cardsetConfirmForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetConfirmForm
+* ############################################################################
+*/
 
 Template.cardsetConfirmForm.events({
 	'click #cardDelete': function () {
@@ -695,10 +690,10 @@ Template.cardsetConfirmForm.events({
 });
 
 /**
- * ############################################################################
- * cardsetPublicateForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetPublicateForm
+* ############################################################################
+*/
 
 Template.cardsetPublicateForm.onRendered(function () {
 	$('#publicateModal').on('hidden.bs.modal', function () {
@@ -706,11 +701,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 
 		$('#publicateKind > label').removeClass('active');
 		$('#publicateKind > label > input').filter(function () {
-				return this.value === cardset.kind
+			return this.value === cardset.kind
 		}).parent().addClass('active');
 
 		$('#publicateKind > label > input').filter(function () {
-				return this.value === cardset.kind
+			return this.value === cardset.kind
 		}).prop('checked', true);
 
 		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
@@ -722,7 +717,7 @@ Template.cardsetPublicateForm.onRendered(function () {
 });
 
 Template.cardsetPublicateForm.helpers({
-	kindWithPrice: function (){
+	kindWithPrice: function () {
 		return Session.get('kindWithPrice');
 	},
 	kindIsActive: function (kind) {
@@ -744,8 +739,7 @@ Template.cardsetPublicateForm.events({
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publicatePrice') !== null) {
 				price = tmpl.find('#publicatePrice').value;
-			}
-			else {
+			}	else {
 				price = this.price;
 			}
 		}
@@ -768,7 +762,7 @@ Template.cardsetPublicateForm.events({
 		Meteor.call("publicateCardset", id, kind, price, visible);
 		$('#publicateModal').modal('hide');
 	},
-	'change #publicateKind': function (evt, tmpl){
+	'change #publicateKind': function (evt, tmpl) {
 		var kind = $('#publicateKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
@@ -776,109 +770,108 @@ Template.cardsetPublicateForm.events({
 });
 
 /**
- * ############################################################################
- * selectLicenseForm
- * ############################################################################
- */
+* ############################################################################
+* selectLicenseForm
+* ############################################################################
+*/
 
- Template.selectLicenseForm.onRendered(function () {
-	 $('#selectLicenseModal').on('hidden.bs.modal', function () {
-		 var cardset = Cardsets.findOne(Session.get('cardsetId'));
-		 var license = cardset.license;
+Template.selectLicenseForm.onRendered(function () {
+	$('#selectLicenseModal').on('hidden.bs.modal', function () {
+		var cardset = Cardsets.findOne(Session.get('cardsetId'));
+		var license = cardset.license;
 
-		 $('#cc-modules > label').removeClass('active');
-		 $('#modulesLabel').css('color', '');
-		 $('#helpCC-modules').html('');
+		$('#cc-modules > label').removeClass('active');
+		$('#modulesLabel').css('color', '');
+		$('#helpCC-modules').html('');
 
-		 if (license.includes('by')) {$('#cc-option0').addClass('active'); }
-		 if (license.includes('nc')) {$('#cc-option1').addClass('active'); }
-		 if (license.includes('nd')) {$('#cc-option2').addClass('active'); }
-		 if (license.includes('sa')) {$('#cc-option3').addClass('active'); }
-	 });
- });
-
- Template.selectLicenseForm.events({
-	 'click #licenseSave': function () {
-		 if ($("#cc-option2").hasClass('active') && $("#cc-option3").hasClass('active') || $("#cc-modules").children().hasClass('active') && !($("#cc-option0").hasClass('active'))) {
-			 $('#modulesLabel').css('color', '#b94a48');
-			 $('#helpCC-modules').html(TAPi18n.__('modal-dialog.wrongCombination'));
-			 $('#helpCC-modules').css('color', '#b94a48');
-		 }
-		 else {
-			 var license = [];
-
-			 if ($("#cc-option0").hasClass('active')) {license.push("by"); }
-			 if ($("#cc-option1").hasClass('active')) {license.push("nc"); }
-			 if ($("#cc-option2").hasClass('active')) {license.push("nd"); }
-			 if ($("#cc-option3").hasClass('active')) {license.push("sa"); }
-
-			 Meteor.call('updateLicense', this._id, license);
-			 $('#selectLicenseModal').modal('hide');
-		 }
-	 },
-	 'change #cc-modules': function () {
-		 $('#modulesLabel').css('color', '');
-		 $('#helpCC-modules').html('');
-	 }
- });
-
- Template.selectLicenseForm.helpers({
-	 licenseIsActive: function (license) {
-		 var cardset = Cardsets.findOne(Session.get('cardsetId'));
-		 if (cardset !== undefined) {
-			 var licenses = cardset.license;
-
-			 if (licenses.includes(license)) return true;
-		 } else {
-			 return null;
-		 }
-	 }
- });
-
- /**
-	* ############################################################################
-	* reportCardsetForm
-	* ############################################################################
-	*/
-
-	Template.reportCardsetForm.onRendered(function () {
-		$('#reportModal').on('hidden.bs.modal', function () {
-			$('#helpReportCardsetText').html('');
-			$('#reportCardsetTextLabel').css('color', '');
-			$('#reportCardsetText').css('border-color', '');
-			$('#reportCardsetText').val('');
-			$('#reportCardsetReason').val($('#reportCardsetReason option:first').val());
-		});
+		if (license.includes('by')) {$('#cc-option0').addClass('active'); }
+		if (license.includes('nc')) {$('#cc-option1').addClass('active'); }
+		if (license.includes('nd')) {$('#cc-option2').addClass('active'); }
+		if (license.includes('sa')) {$('#cc-option3').addClass('active'); }
 	});
-	Template.reportCardsetForm.events({
-		'click #reportCardsetSave': function (evt, tmpl) {
-			if ($('#reportCardsetText').val().length < 50) {
-				$('#reportCardsetTextLabel').css('color', '#b94a48');
-				$('#reportCardsetText').css('border-color', '#b94a48');
-				$('#helpReportCardsetText').html(TAPi18n.__('modal-dialog.text_chars'));
-				$('#helpReportCardsetText').css('color', '#b94a48');
-			} else {
-				var text = $('#reportCardsetText').val();
-				var type;
-				var link_id;
+});
 
-				if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
-					type = "Gemeldeter Benutzer";
-					link_id = this.owner;
-				} else {
-					type = "Gemeldeter Kartensatz";
-					link_id = this._id
-				}
+Template.selectLicenseForm.events({
+	'click #licenseSave': function () {
+		if ($("#cc-option2").hasClass('active') && $("#cc-option3").hasClass('active') || $("#cc-modules").children().hasClass('active') && !($("#cc-option0").hasClass('active'))) {
+			$('#modulesLabel').css('color', '#b94a48');
+			$('#helpCC-modules').html(TAPi18n.__('modal-dialog.wrongCombination'));
+			$('#helpCC-modules').css('color', '#b94a48');
+		}	else {
+			var license = [];
 
-				var target = "admin";
+			if ($("#cc-option0").hasClass('active')) {license.push("by"); }
+			if ($("#cc-option1").hasClass('active')) {license.push("nc"); }
+			if ($("#cc-option2").hasClass('active')) {license.push("nd"); }
+			if ($("#cc-option3").hasClass('active')) {license.push("sa"); }
 
-				Meteor.call("addNotification", target, type, text, link_id, target);
-				 $('#reportModal').modal('hide');
-			}
-		},
-		'keyup #reportCardsetText': function () {
-			$('#reportCardsetTextLabel').css('color', '');
-			$('#reportCardsetText').css('border-color', '');
-			$('#helpReportCardsetText').html('');
+			Meteor.call('updateLicense', this._id, license);
+			$('#selectLicenseModal').modal('hide');
 		}
+	},
+	'change #cc-modules': function () {
+		$('#modulesLabel').css('color', '');
+		$('#helpCC-modules').html('');
+	}
+});
+
+Template.selectLicenseForm.helpers({
+	licenseIsActive: function (license) {
+		var cardset = Cardsets.findOne(Session.get('cardsetId'));
+		if (cardset !== undefined) {
+			var licenses = cardset.license;
+
+			if (licenses.includes(license)) return true;
+		} else {
+			return null;
+		}
+	}
+});
+
+/**
+* ############################################################################
+* reportCardsetForm
+* ############################################################################
+*/
+
+Template.reportCardsetForm.onRendered(function () {
+	$('#reportModal').on('hidden.bs.modal', function () {
+		$('#helpReportCardsetText').html('');
+		$('#reportCardsetTextLabel').css('color', '');
+		$('#reportCardsetText').css('border-color', '');
+		$('#reportCardsetText').val('');
+		$('#reportCardsetReason').val($('#reportCardsetReason option:first').val());
 	});
+});
+Template.reportCardsetForm.events({
+	'click #reportCardsetSave': function (evt, tmpl) {
+		if ($('#reportCardsetText').val().length < 50) {
+			$('#reportCardsetTextLabel').css('color', '#b94a48');
+			$('#reportCardsetText').css('border-color', '#b94a48');
+			$('#helpReportCardsetText').html(TAPi18n.__('modal-dialog.text_chars'));
+			$('#helpReportCardsetText').css('color', '#b94a48');
+		} else {
+			var text = $('#reportCardsetText').val();
+			var type;
+			var link_id;
+
+			if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
+				type = "Gemeldeter Benutzer";
+				link_id = this.owner;
+			} else {
+				type = "Gemeldeter Kartensatz";
+				link_id = this._id
+			}
+
+			var target = "admin";
+
+			Meteor.call("addNotification", target, type, text, link_id, target);
+			$('#reportModal').modal('hide');
+		}
+	},
+	'keyup #reportCardsetText': function () {
+		$('#reportCardsetTextLabel').css('color', '');
+		$('#reportCardsetText').css('border-color', '');
+		$('#helpReportCardsetText').html('');
+	}
+});
