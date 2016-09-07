@@ -15,11 +15,11 @@ Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
 Session.setDefault('poolSortTopic', {name: -1});
-Session.setDefault('poolFilterAutor', {lastName: -1});
-Session.setDefault('poolFilterModule', {moduleShort: -1});;
-Session.setDefault('poolFilterCourse', {academicCourse: -1});
-Session.setDefault('poolFilterDepartment', {department: -1});
-Session.setDefault('poolFilterStudyType', {studyType: -1});
+Session.setDefault('poolFilterAutor', "/.*.*/");
+Session.setDefault('poolFilterModule',  "/.*.*/");
+Session.setDefault('poolFilterCourse',  "/.*.*/");
+Session.setDefault('poolFilterDepartment',  "/.*.*/");
+Session.setDefault('poolFilterStudyType',  "/.*.*/");
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -33,28 +33,35 @@ Template.category.helpers({
         var id = parseInt(this._id);
         return Cardsets.find({
             visible: true,
-            kind: {$in: Session.get('poolFilter')}
+            /*kind: {$in: Session.get('poolFilter')},
+            lastName: {$in: Session.get('poolFilterAutor')},
+            moduleShort: {$in: Session.get('poolFilterModule')},
+            academicCourse: {$in: Session.get('poolFilterCourse')},
+            department: {$in: Session.get('poolFilterDepartment')},
+            studyType: {$in: Session.get('poolFilterStudyType')}*/
         }, {
             sort: Session.get('poolSortTopic', 'poolSortAutor')
         });
     },
     getModules: function() {
-        var Array = Cardsets.find( {visible: true} ).fetch();
+        var Array = getDecks;
         var distinctArray = _.uniq(Array, false, function(d) {return d.moduleLong});
-        return disctinctValues = _.pluck(distinctArray, 'moduleLong');
+        var disctinctValues = _.pluck(distinctArray, 'moduleLong');
+        console.log(disctinctValues);
+        return disctinctValues;
     },
     getCourse: function() {
-        var Array = Cardsets.find( {visible: true} ).fetch();
+        var Array = getDecks;
         var distinctArray = _.uniq(Array, false, function(d) {return d.academicCourse});
         return disctinctValues = _.pluck(distinctArray, 'academicCourse');
     },
     getDepartments: function() {
-        var Array = Cardsets.find( {visible: true} ).fetch();
+        var Array = getDecks;
         var distinctArray = _.uniq(Array, false, function(d) {return d.department});
         return disctinctValues = _.pluck(distinctArray, 'department');
     },
     getTypes: function() {
-        var Array = Cardsets.find( {visible: true} ).fetch();
+        var Array = getDecks;
         var distinctArray = _.uniq(Array, false, function(d) {return d.studyType});
         return disctinctValues = _.pluck(distinctArray, 'studyType');
     },
@@ -98,18 +105,7 @@ Template.category.helpers({
             return '<i class="fa fa-sort-desc"></i>';
         }
     },
-    getKind: function() {
-        switch (this.kind) {
-            case "free":
-                return '<span class="label label-default">Free</span>';
-            case "edu":
-                return '<span class="label label-success">Edu</span>';
-            case "pro":
-                return '<span class="label label-info">Pro</span>';
-            default:
-                return '<span class="label label-danger">Undefined!</span>';
-        }
-    },
+
     getAuthor: function() {
         return Meteor.users.findOne(this.owner).profile.name;
     },
@@ -131,6 +127,20 @@ Template.category.helpers({
     }
 });
 
+Template.poolCardsetRow.helpers({
+    getKind: function() {
+        switch (this.kind) {
+            case "free":
+                return '<span class="label label-default">Free</span>';
+            case "edu":
+                return '<span class="label label-success">Edu</span>';
+            case "pro":
+                return '<span class="label label-info">Pro</span>';
+            default:
+                return '<span class="label label-danger">Undefined!</span>';
+        }
+    }
+});
 Template.category.events({
     'click .sortTopic': function() {
         var sort = Session.get('poolSortTopic');
@@ -142,49 +152,19 @@ Template.category.events({
         }
     },
     'click .filterAutor': function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            Session.set('poolSortAutor', {lastName: -1});
-        }
-        else {
-            Session.set('poolSortAutor', {lastName: 1});
-        }
+        Session.set('poolFilterAutor', "");
     },
     'click .filterModule': function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            Session.set('poolSort', {name: -1});
-        }
-        else {
-            Session.set('poolSort', {name: 1});
-        }
+        Session.set('poolFilterModule', "");
     },
     'click .filterStudy': function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            Session.set('poolSort', {name: -1});
-        }
-        else {
-            Session.set('poolSort', {name: 1});
-        }
+        Session.set('poolFilterCourse', "");
     },
     'click .filterDepartment': function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            Session.set('poolSort', {name: -1});
-        }
-        else {
-            Session.set('poolSort', {name: 1});
-        }
+        Session.set('poolFilterDepartment', "");
     },
     'click .filterType': function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            Session.set('poolSort', {name: -1});
-        }
-        else {
-            Session.set('poolSort', {name: 1});
-        }
+        Session.set('poolFilterStudyType', "");
     },
     'change #filterCheckbox': function() {
         var filter = [];
