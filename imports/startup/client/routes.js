@@ -193,6 +193,13 @@ Router.route('/admin/notifications', {
   layoutTemplate: 'admin_main'
 });
 
+Router.route('/admin/intervalls', {
+  name: 'admin_intervall',
+  template: 'admin_settings',
+  layoutTemplate: 'admin_main'
+});
+
+
 var isSignedIn = function() {
   if (!(Meteor.user() || Meteor.loggingIn())) {
     Router.go('home');

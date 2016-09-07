@@ -6,9 +6,10 @@ import { Session } from 'meteor/session';
 
 import { allUsers } from '../../../api/allusers.js';
 import { Cardsets } from '../../../api/cardsets.js';
-
+import { AdminSettings} from '../../../api/adminSettings.js';
 import './admin_user.html';
 
+Meteor.subscribe("adminSettings");
 /**
  * ############################################################################
  * admin_user
@@ -153,6 +154,30 @@ Template.admin_user.helpers({
   }
 });
 
+Template.admin_settings.events({
+  'click #saveIntervall': function() {
+    var inv1 = document.getElementById('inv1').value;
+    var inv2 = document.getElementById('inv2').value;
+    var inv3 = document.getElementById('inv3').value;
+
+    if(inv1 == 0){
+      inv1 = 1;
+    }
+
+    if(inv2 == 0){
+      inv2 = 30;
+    }
+    if(inv3 == 0){
+      inv3 = 90;
+    }
+    Meteor.call('updateIntervall', inv1,inv2,inv3);
+    console.log(inv1);
+    console.log(inv2);
+    console.log(inv3);
+
+  }
+    });
+
 Template.admin_user.events({
   'click #userSaveAdmin': function(event, tmpl) {
     var name = $('#editUserNameAdmin').val();
@@ -252,6 +277,8 @@ Template.admin_user.events({
   'click #userCancelAdmin': function() {
     window.history.go(-1);
   },
+
+
   'click #userDeleteAdmin': function() {
     $("#userDeleteAdmin").css('display', "none");
     $("#userConfirmAdmin").css('display', "");
