@@ -17,6 +17,8 @@ Meteor.subscribe("adminSettings");
  */
 
 Template.admin_user.helpers({
+
+
   getService: function() {
     var userId = Router.current().params._id;
     if (userId !== undefined) {
@@ -159,9 +161,9 @@ Template.admin_settings.events({
     var inv1 = document.getElementById('inv1').value;
     var inv2 = document.getElementById('inv2').value;
     var inv3 = document.getElementById('inv3').value;
-
+    console.log(inv1);
     if(inv1 == 0){
-      inv1 = 1;
+      inv1 = 7;
     }
 
     if(inv2 == 0){
@@ -170,11 +172,22 @@ Template.admin_settings.events({
     if(inv3 == 0){
       inv3 = 90;
     }
-    Meteor.call('updateIntervall', inv1,inv2,inv3);
-    console.log(inv1);
-    console.log(inv2);
-    console.log(inv3);
+    if(inv1 == 0 || inv2 == 0 || inv3 == 0){
+      //Bitte alle Felder ausfüllen
+    }else{
+      if (inv1 < inv2 && inv2 < inv3 && inv1 < inv3) {
+        Meteor.call('updateIntervall', inv1, inv2, inv3);
+        console.log(inv1);
+        console.log(inv2);
+        console.log(inv3);
+      } else {
+        //Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+      }
+    }
+  },
 
+  'click #resetIntervall': function() {
+    Meteor.call('updateIntervall', 7, 30, 90);
   }
     });
 
@@ -334,3 +347,31 @@ Template.admin_user.events({
      }).modal('hide');
    }
  });
+
+var seqOne = 7; //7 tag
+var seqTwo = 29; //30 tag
+var seqThree = 90; //90 tag
+
+Template.preview.helpers({
+
+  startXp: function () {
+    var seq = AdminSettings.findOne({name: "seqSettings"});
+    if(seq){
+      seqOne = seq.seqOne; //7 tag
+      seqTwo = seq.seqTwo; //30 tag
+      seqThree = seq.seqThree; //90 tag
+    } else {
+      //console.log("error could not find adminSettings");
+    }
+  },
+  getDays1: function (){
+    return seqOne;
+  },
+  getDays2: function(){
+    return seqTwo;
+  },
+  getDays3: function(){
+    return seqThree;
+  }
+
+});

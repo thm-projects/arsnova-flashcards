@@ -8,7 +8,7 @@ Meteor.startup(function() {
   var badges = initBadges();
 
   if(!AdminSettings.findOne({name: "seqSettings"})){
-    AdminSettings.insert({// TODO wegen insecure erlauben
+    AdminSettings.insert({
       name: "seqSettings",
       seqOne:7,
       seqTwo: 30,
