@@ -86,8 +86,8 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-  	"name": "Titel",
-  	"nameplaceholder": "Titel des Kartensatzes",
+  	"name": "Thema",
+  	"nameplaceholder": "Thema des Kartensatzes",
   	"descriptionplaceholder": "Beschreibung",
   	"categoryplaceholder": "Wähle eine Kategorie",
   	"description": "Beschreibung",
@@ -130,8 +130,11 @@
     "studyType": "Studiengang",
     "studyType_required": "Wähle einen Studiengang",
     "modulLong":"Modul Langname",
+    "modulLong_required": "Geben Sie den vollen Namen des Moduls an!",
     "modulShort":"Modul Kurzname",
+    "modulShort_required": "Geben Sie eine Abkürzung des Moduls an!",
     "modulNum": "Modul Nummer",
+    "modulShort_required": "Geben Sie eine Modulnummer ein!",
     "modulLongplaceholder":"Ausgeschriebener Name des Moduls",
     "modulShortplaceholder":"Abkürzung des Moduls",
     "modulNumplaceholder":"Nummer des Moduls"
@@ -323,7 +326,12 @@
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
       "license": "Lizenz",
-      "dateUpdated": "Zuletzt aktualisiert"
+      "dateUpdated": "Zuletzt aktualisiert",
+      "modulLong": "Kursname",
+      "modulShort": "Abkürzung",
+      "modulNum": "Kurs Nummer",
+      "college": "Hochschule",
+      "studyType": "Studienfach"
     },
     "request": {
       "accept": "Kartensatz freigeben",

@@ -146,11 +146,55 @@ Template.cardsets.events({
 			var name = $('#newSetName').val();
 			var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
+  'click #newCardSet': function() {
+    var inputValue = $('#new-set-input').val();
+    $('#newSetName').val(inputValue);
+    $('#new-set-input').val('');
+  },
+  'click .category': function(evt, tmpl) {
+    var categoryName = $(evt.currentTarget).attr("data");
+    var categoryId = $(evt.currentTarget).val();
+    $('#newSetCategory').text(categoryName);
+    tmpl.find('#newSetCategory').value = categoryId;
+  },
+  'click #newSetModal .save': function(evt) {
+    if ($('#newSetName').val() === "") {
+      $('#newSetNameLabel').css('color', '#b94a48');
+      $('#newSetName').css('border-color', '#b94a48');
+      $('#helpNewSetName').html(TAPi18n.__('modal-dialog.name_required'));
+      $('#helpNewSetName').css('color', '#b94a48');
+    }
+    if ($('#newSetDescription').val() === "") {
+      $('#newSetDescriptionLabel').css('color', '#b94a48');
+      $('#newSetDescription').css('border-color', '#b94a48');
+      $('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
+      $('#helpNewSetDescription').css('color', '#b94a48');
+    }
+    if ($('#newSetCategory').val() === "") {
+      $('#newSetCategoryLabel').css('color', '#b94a48');
+      $('#newSetCategoryDropdown').css('border-color', '#b94a48');
+      $('#helpNewSetCategory').html(TAPi18n.__('modal-dialog.category_required'));
+      $('#helpNewSetCategory').css('color', '#b94a48');
+    }
 
-			Meteor.call("addCardset", name, category, description, false, true, 'personal');
-			$('#newSetModal').modal('hide');
-		}
-	}
+    if ($('#newSetModulLong').val() === "") {
+      $('#newSetModulLongLabel').css('color', '#b94a48');
+      $('#newSetModulLong').css('border-color', '#b94a48');
+      $('#helpNewSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
+      $('#helpNewSetModulLong').css('color', '#b94a48');
+    }
+    if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
+      var name = $('#newSetName').val();
+      var category = $('#newSetCategory').val();
+      var description = $('#newSetDescription').val();
+      var modulLong = $('#newSetModulLong').val();
+      var modulShort = $('#newSetModulShort').val();
+      var modulNum = $('#newSetModulNum').val();
+
+      Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum);
+      $('#newSetModal').modal('hide');
+    }
+  }
 });
 
 /**

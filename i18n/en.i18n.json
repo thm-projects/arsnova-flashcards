@@ -131,8 +131,11 @@
     "studyType": "Study type",
     "studyType_required": "Choose a study type",
     "modulLong":"Modul longname",
+    "modulLong_required": "The full name of the module is required!",
     "modulShort":"Modul shortname",
+    "modulShort_required": "The short name of the module is required!",
     "modulNum": "Modul number",
+    "modulShort_required": "The module number is required!",
     "modulLongplaceholder":"Full name of the module",
     "modulShortplaceholder":"Short module name",
     "modulNumplaceholder":"Number of the module"
@@ -318,7 +321,12 @@
       "bought": "Bought on",
       "deleted": "Deleted",
       "license": "License",
-      "dateUpdated": "Last updated"
+      "dateUpdated": "Last updated",
+      "modulLong": "Course name",
+      "modulShort": "Short name",
+      "modulNum": "Course Number",
+      "college": "college",
+      "studyType": "Study type"
     },
     "request": {
       "accept": "Release cardset",
