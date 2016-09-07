@@ -5,17 +5,16 @@ import {Template } from 'meteor/templating';
 import {Session } from 'meteor/session';
 
 import {Cardsets } from '../../../api/cardsets.js';
-import {allUsers } from '../../../api/allusers.js';
 
 import './admin_cardsets.html';
 
 import './admin_cardset.js';
 
 /**
- * ############################################################################
- * admin_cardsets
- * ############################################################################
- */
+* ############################################################################
+* admin_cardsets
+* ############################################################################
+*/
 
 Template.admin_cardsets.helpers({
 	cardsetListAdmin: function () {
@@ -38,7 +37,7 @@ Template.admin_cardsets.helpers({
 				kind = 'Pro';
 			}
 
-			fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind,  "username": cardset.username, "owner": cardset.owner, "userDeleted": cardset.userDeleted, "dateString": dateString, "date": date})
+			fields.push({"_id": cardset._id, "name": cardset.name, "kind": kind,  "username": cardset.username, "owner": cardset.owner, "userDeleted": cardset.userDeleted, "dateString": dateString, "date": date});
 		});
 
 		return fields;
@@ -48,13 +47,13 @@ Template.admin_cardsets.helpers({
 			showNavigationRowsPerPage: false,
 			rowsPerPage: 20,
 			fields: [
-				{key: 'name', label: TAPi18n.__('admin.name') },
-				{key: 'kind', label: TAPi18n.__('admin.kind') },
+				{key: 'name', label: TAPi18n.__('admin.name')},
+				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{key: 'username', label: TAPi18n.__('admin.users'), fn: function (value, object) {
 					if (object.userDeleted) {
-					  return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
+						return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
 					} else {
-					  return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
+						return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
 					}
 				}},
 				{key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
@@ -67,7 +66,7 @@ Template.admin_cardsets.helpers({
 					return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 				}}
 			]
-		}
+		};
 	}
 });
 
@@ -82,19 +81,19 @@ Template.admin_cardsets.events({
 	},
 	'click #linkToAdminCardset': function (event) {
 		var cardsetid = $(event.currentTarget).data("cardsetid");
-		Router.go('admin_cardset', {_id: cardsetid });
+		Router.go('admin_cardset', {_id: cardsetid});
 	},
 	'click #linkToAdminCardsetUser': function (event) {
 		var userid = $(event.currentTarget).data("userid");
-		Router.go('admin_user', {_id: userid });
+		Router.go('admin_user', {_id: userid});
 	}
 });
 
 /**
- * ############################################################################
- * cardsetConfirmFormAdmin
- * ############################################################################
- */
+* ############################################################################
+* cardsetConfirmFormAdmin
+* ############################################################################
+*/
 
 Template.cardsetConfirmFormAdmin.events({
 	'click #cardetDeleteAdmin': function () {

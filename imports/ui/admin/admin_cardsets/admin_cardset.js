@@ -6,15 +6,14 @@ import {Session } from 'meteor/session';
 
 import {Cardsets } from '../../../api/cardsets.js';
 import {Cards } from '../../../api/cards.js';
-import {Categories } from '../../../api/categories.js';
 
 import './admin_cardset.html';
 
 /**
- * ############################################################################
- * admin_cardset
- * ############################################################################
- */
+* ############################################################################
+* admin_cardset
+* ############################################################################
+*/
 
 Template.admin_cardset.onDestroyed(function () {
 	Session.set('kind', undefined);
@@ -29,7 +28,7 @@ Template.admin_cardset.helpers({
 		}
 		return kind === this.kind;
 	},
-	kindWithPrice: function (){
+	kindWithPrice: function () {
 		if (Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
 			return true;
 		} else {
@@ -41,7 +40,9 @@ Template.admin_cardset.helpers({
 	},
 	licenseIsActive: function (license) {
 		if (this.license !== undefined) {
-			if (this.license.includes(license)) return true;
+			if (this.license.includes(license)) {
+				return true;
+			}
 		} else {
 			return null;
 		}
@@ -54,50 +55,67 @@ Template.admin_cardset.helpers({
 		}
 	},
 	cardListCardsetAdmin: function () {
-		return Cards.find({cardset_id: this._id });
+		return Cards.find({cardset_id: this._id});
 	},
 	tableSettings: function () {
 		return {
 			rowsPerPage: 5,
 			showNavigationRowsPerPage: false,
 			fields: [
-				{key: 'front', label: TAPi18n.__('admin.front'), sortable: false,
+				{
+					key: 'front',
+					label: TAPi18n.__('admin.front'),
+					sortable: false,
 					cellClass: function (value, object) {
-					  var css = 'front_' + object._id;
-					  return css;
+						var css = 'front_' + object._id;
+						return css;
 					},
 					fn: function (front, object) {
-					  Meteor.promise("convertMarkdown", front)
+						Meteor.promise("convertMarkdown", front)
 							.then(function (html) {
-							  $(".front_" + object._id).html(html);
+								$(".front_" + object._id).html(html);
 							});
 					}
 				},
-				{key: 'back', label: TAPi18n.__('admin.back'), sortable: false,
+				{
+					key: 'back',
+					label: TAPi18n.__('admin.back'),
+					sortable: false,
 					cellClass: function (value, object) {
-					  var css = 'back_' + object._id;
-					  return css;
+						var css = 'back_' + object._id;
+						return css;
 					},
 					fn: function (front, object) {
-					  Meteor.promise("convertMarkdown", front)
-							.then(function (html) {
-							  $(".back_" + object._id).html(html);
-							});
+						Meteor.promise("convertMarkdown", front)
+						.then(function (html) {
+							$(".back_" + object._id).html(html);
+						});
 					}
 				},
-				{key: '_id', label: TAPi18n.__('admin.edit'), sortable: false, cellClass: 'edit', fn: function (value) {
-					return new Spacebars.SafeString("<a id='linkToAdminCardsetCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
-				}},
-				{key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-					return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-				}}
+				{
+					key: '_id',
+					label: TAPi18n.__('admin.edit'),
+					sortable: false,
+					cellClass: 'edit',
+					fn: function (value) {
+						return new Spacebars.SafeString("<a id='linkToAdminCardsetCard' class='editCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcard') + "' data-cardid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+					}
+				},
+				{
+					key: 'delete',
+					label: TAPi18n.__('admin.delete'),
+					sortable: false,
+					fn: function () {
+						return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+					}
+				}
 			]
-		}
+		};
 	}
 });
 
 Template.admin_cardset.events({
-	'change #publicateKindAdmin': function (evt, tmpl){
+	'change #publicateKindAdmin': function (evt, tmpl) {
 		var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
 		Session.set('kind', kind);
 	},
@@ -124,8 +142,7 @@ Template.admin_cardset.events({
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		}
-		else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+		}	else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
 			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
@@ -151,8 +168,7 @@ Template.admin_cardset.events({
 			if (kind === 'edu' || kind === 'pro') {
 				if (tmpl.find('#publicatePriceAdmin') !== null) {
 					price = tmpl.find('#publicatePriceAdmin').value;
-				}
-				else {
+				}	else {
 					price = this.price;
 				}
 			}
@@ -192,7 +208,7 @@ Template.admin_cardset.events({
 	},
 	'click #linkToAdminCardsetCard': function (event) {
 		var cardid = $(event.currentTarget).data("cardid");
-		Router.go('adminCard', {_id: cardid });
+		Router.go('adminCard', {_id: cardid});
 	},
 	'keyup #editCardsetNameAdmin': function () {
 		$('#editCardsetNameLabelAdmin').css('color', '');
@@ -215,10 +231,10 @@ Template.admin_cardset.events({
 });
 
 /**
- * ############################################################################
- * cardConfirmFormCardsetAdmin
- * ############################################################################
- */
+* ############################################################################
+* cardConfirmFormCardsetAdmin
+* ############################################################################
+*/
 
 Template.cardConfirmFormCardsetAdmin.events({
 	'click #cardDeleteCardsetAdmin': function () {
