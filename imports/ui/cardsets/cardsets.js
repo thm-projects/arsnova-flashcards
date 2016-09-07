@@ -5,7 +5,6 @@ import {Template } from 'meteor/templating';
 import {Session } from 'meteor/session';
 
 import {Cardsets } from '../../api/cardsets.js';
-import {Categories } from '../../api/categories.js';
 import {Learned } from '../../api/learned.js';
 
 
@@ -70,8 +69,9 @@ Template.learned.helpers({
 
 		var learnedCardsets = [];
 		learnedCards.forEach(function (learnedCard) {
-			if ($.inArray(learnedCard.cardset_id, learnedCardsets) === -1)
-			learnedCardsets.push(learnedCard.cardset_id);
+			if ($.inArray(learnedCard.cardset_id, learnedCardsets) === -1) {
+				learnedCardsets.push(learnedCard.cardset_id);
+			}
 		});
 
 		return Cardsets.find({
@@ -121,7 +121,7 @@ Template.cardsets.events({
 		$('#newSetCategory').text(categoryName);
 		tmpl.find('#newSetCategory').value = categoryId;
 	},
-	'click #newSetModal .save': function (evt) {
+	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
 			$('#newSetNameLabel').css('color', '#b94a48');
 			$('#newSetName').css('border-color', '#b94a48');

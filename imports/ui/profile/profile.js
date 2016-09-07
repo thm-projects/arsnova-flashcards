@@ -12,9 +12,6 @@ import {Learned } from '../../api/learned.js';
 import {Ratings } from '../../api/ratings.js';
 import {Paid } from '../../api/paid.js';
 import {Notifications } from '../../api/notifications.js';
-
-import {userData } from '../../api/userdata.js';
-
 import './profile.html';
 
 
@@ -23,6 +20,162 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+
+function getLvl() {
+	var user = Meteor.users.findOne(Router.current().params._id);
+	if (user === undefined) {
+		return null;
+	}
+	return user.lvl;
+}
+
+function xpForLevel(level) {
+	var points = 0;
+
+	for (var i = 1; i < level; i++) {
+		points += Math.floor(i + 30 * Math.pow(2, i / 10));
+	}
+	return Math.floor(points / 4);
+}
+
+function kritiker(rank) {
+	var ratings = Ratings.find({
+		user: Meteor.userId()
+	}).count();
+
+	var badge = Badges.findOne("1");
+	switch (rank) {
+		case 3:
+			return ratings / badge.rank3 * 100;
+		case 2:
+			return ratings / badge.rank2 * 100;
+		case 1:
+			return ratings / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
+
+function krone(rank) {
+	var cardsets = Cardsets.find({
+		owner: Meteor.userId()
+	});
+
+	var count = 0;
+
+	cardsets.forEach(function (cardset) {
+		var ratings = Ratings.find({
+			cardset_id: cardset._id
+		});
+		if (ratings.count() > 1) {
+			var total = 0;
+			ratings.forEach(function (rating) {
+				total += rating.rating;
+			});
+			if (total / ratings.count() >= 4.5) {
+				count++;
+			}
+		}
+	});
+
+	var badge = Badges.findOne("2");
+	switch (rank) {
+		case 3:
+			return count / badge.rank3 * 100;
+		case 2:
+			return count / badge.rank2 * 100;
+		case 1:
+			return count / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
+
+function stammgast(rank) {
+	var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
+
+	var badge = Badges.findOne("3");
+	switch (rank) {
+		case 3:
+			return user / badge.rank3 * 100;
+		case 2:
+			return user / badge.rank2 * 100;
+		case 1:
+			return user / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
+
+function streber(rank) {
+	var learned = Learned.find({
+		user_id: Meteor.userId()
+	}).count();
+
+	var badge = Badges.findOne("4");
+	switch (rank) {
+		case 3:
+			return learned / badge.rank3 * 100;
+		case 2:
+			return learned / badge.rank2 * 100;
+		case 1:
+			return learned / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
+
+function wohltaeter(rank) {
+	var cardsets = Cardsets.find({
+		owner: Meteor.userId(),
+		visible: true
+	});
+
+	var count = 0;
+
+	cardsets.forEach(function (cardset) {
+		var cards = Cards.find({
+			cardset_id: cardset._id
+		});
+		if (cards.count() >= 5) {
+			count++;
+		}
+	});
+
+	var badge = Badges.findOne("5");
+	switch (rank) {
+		case 3:
+			return count / badge.rank3 * 100;
+		case 2:
+			return count / badge.rank2 * 100;
+		case 1:
+			return count / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
+
+function bestseller(rank) {
+	var cardsetsIds = Cardsets.find({
+		owner: Meteor.userId()
+	}).map(function (cardset) {return cardset._id; });
+
+	var learner = Learned.find({
+		cardset_id: {$in: cardsetsIds}
+	}).count();
+
+	var badge = Badges.findOne("6");
+	switch (rank) {
+		case 3:
+			return learner / badge.rank3 * 100;
+		case 2:
+			return learner / badge.rank2 * 100;
+		case 1:
+			return learner / badge.rank1 * 100;
+		default:
+			return 0;
+	}
+}
 
 Template.registerHelper("getUser", function () {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -80,10 +233,10 @@ Template.profileSidebar.helpers({
 */
 
 Template.profileSettings.events({
-	"click #profilepublicoption1": function (event) {
+	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true);
 	},
-	"click #profilepublicoption2": function (event) {
+	"click #profilepublicoption2": function () {
 		Meteor.call("updateUsersVisibility", false);
 	},
 	"click #profileSave": function () {
@@ -156,7 +309,7 @@ Template.profileMembership.rendered = function () {
 	if ($('#subscribe-form').length) {
 		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
-				throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
 			} else {
 				braintree.setup(clientToken, "dropin", {
 					container: "subscribe-form",
@@ -179,7 +332,7 @@ Template.profileMembership.rendered = function () {
 			}
 		});
 	}
-}
+};
 
 Template.profileMembership.events({
 	"click #upgrade": function () {
@@ -241,7 +394,7 @@ Template.profileBilling.onRendered(function () {
 	if ($('#paymentMethodDropIn').length) {
 		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
-				throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
+				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
 			} else {
 				braintree.setup(clientToken, "dropin", {
 					container: "paymentMethodDropIn",
@@ -487,8 +640,7 @@ Template.profileXp.helpers({
 			}
 		}
 
-		if (last === undefined)
-		return null;
+		if (last === undefined)	{return null;}
 
 		return name + " (+" + last.value + ")";
 	},
@@ -519,23 +671,6 @@ Template.profileXp.helpers({
 		return res + "%";
 	}
 });
-
-function getLvl() {
-	var user = Meteor.users.findOne(Router.current().params._id);
-	if (user === undefined) {
-		return null;
-	}
-	return user.lvl;
-}
-
-function xpForLevel(level) {
-	var points = 0;
-
-	for (var i = 1; i < level; i++) {
-		points += Math.floor(i + 30 * Math.pow(2, i / 10));
-	}
-	return Math.floor(points / 4);
-}
 
 /**
 * ############################################################################
@@ -584,142 +719,3 @@ Template.profileBadges.helpers({
 		}
 	}
 });
-
-function kritiker(rank) {
-	var ratings = Ratings.find({
-		user: Meteor.userId()
-	}).count();
-
-	var badge = Badges.findOne("1");
-	switch (rank) {
-		case 3:
-			return ratings / badge.rank3 * 100;
-		case 2:
-			return ratings / badge.rank2 * 100;
-		case 1:
-			return ratings / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}
-
-function krone(rank) {
-	var cardsets = Cardsets.find({
-		owner: Meteor.userId()
-	});
-
-	var count = 0;
-
-	cardsets.forEach(function (cardset) {
-		var ratings = Ratings.find({
-			cardset_id: cardset._id
-		});
-		if (ratings.count() > 1) {
-			var total = 0;
-			ratings.forEach(function (rating) {
-				total += rating.rating;
-			});
-			if (total / ratings.count() >= 4.5) {
-				count++;
-			}
-		}
-	});
-
-	var badge = Badges.findOne("2");
-	switch (rank) {
-		case 3:
-			return count / badge.rank3 * 100;
-		case 2:
-			return count / badge.rank2 * 100;
-		case 1:
-			return count / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}
-
-function stammgast(rank) {
-	var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
-
-	var badge = Badges.findOne("3");
-	switch (rank) {
-		case 3:
-			return user / badge.rank3 * 100;
-		case 2:
-			return user / badge.rank2 * 100;
-		case 1:
-			return user / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}
-
-function streber(rank) {
-	var learned = Learned.find({
-		user_id: Meteor.userId()
-	}).count();
-
-	var badge = Badges.findOne("4");
-	switch (rank) {
-		case 3:
-			return learned / badge.rank3 * 100;
-		case 2:
-			return learned / badge.rank2 * 100;
-		case 1:
-			return learned / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}
-
-function wohltaeter(rank) {
-	var cardsets = Cardsets.find({
-		owner: Meteor.userId(),
-		visible: true
-	});
-
-	var count = 0;
-
-	cardsets.forEach(function (cardset) {
-		var cards = Cards.find({
-			cardset_id: cardset._id
-		});
-		if (cards.count() >= 5) {
-			count++;
-		}
-	});
-
-	var badge = Badges.findOne("5");
-	switch (rank) {
-		case 3:
-			return count / badge.rank3 * 100;
-		case 2:
-			return count / badge.rank2 * 100;
-		case 1:
-			return count / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}
-
-function bestseller(rank) {
-	var cardsetsIds = Cardsets.find({
-		owner: Meteor.userId()
-	}).map(function (cardset) {return cardset._id; });
-
-	var learner = Learned.find({
-		cardset_id: {$in: cardsetsIds}
-	}).count();
-
-	var badge = Badges.findOne("6");
-	switch (rank) {
-		case 3:
-			return learner / badge.rank3 * 100;
-		case 2:
-			return learner / badge.rank2 * 100;
-		case 1:
-			return learner / badge.rank1 * 100;
-		default:
-			return 0;
-	}
-}

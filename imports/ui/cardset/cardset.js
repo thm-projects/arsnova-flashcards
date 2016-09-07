@@ -9,7 +9,7 @@ import {Cards } from '../../api/cards.js';
 import {Categories } from '../../api/categories.js';
 import {Ratings } from '../../api/ratings.js';
 import {Paid } from '../../api/paid.js';
-import {Notifications } from '../../api/notifications.js';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import '../card/card.js';
 import '../learn/box.js';
@@ -65,7 +65,7 @@ Template.cardset.rendered = function () {
 			}
 		});
 	}
-}
+};
 
 Template.cardset.helpers({
 	'onEditmodalClose': function (id) {
@@ -101,7 +101,7 @@ Template.cardset.helpers({
 		return this.owner === Meteor.userId() || hasRole;
 	},
 	'isLecturerAndHasRequest': function () {
-		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
+		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	}
 });
 
@@ -343,7 +343,7 @@ Template.cardsetDetails.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		ifCardset();
 	},
-	'click .item.active .block a': function () {
+	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	}
 });
@@ -411,7 +411,7 @@ Template.cardsetPreview.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		ifCardset();
 	},
-	'click .item.active .block a': function () {
+	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	}
 });
@@ -518,7 +518,7 @@ Template.cardsetInfo.helpers({
 			if (this.license.includes('nd')) {licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
 			if (this.license.includes('sa')) {licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
 
-			return new Spacebars.SafeString(licenseString)
+			return new Spacebars.SafeString(licenseString);
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
@@ -556,7 +556,8 @@ Template.cardsetInfo.events({
 		}
 	},
 	'click #exportCardsBtn': function () {
-		var cardset = Cardsets.findOne(this._id);
+		//TODO: linked to todo below
+		/*var cardset = Cardsets.findOne(this._id);
 		var cards = Cards.find({
 			cardset_id: this._id
 		}, {
@@ -568,18 +569,19 @@ Template.cardsetInfo.events({
 		}).fetch();
 		var cardsString = '';
 
-		for (var card in cards) {
-			cardsString += JSON.stringify(cards[card]);
+		for (var i = 0; i < cards.length; i++) {
+			cardsString += JSON.stringify(cards[i]);
 
-			if (cards.length - 1 > card) {
+			if (cards.length - 1 > cards[i]) {
 				cardsString += ", ";
 			}
 		}
 
 		var exportData = new Blob([cardsString], {
 			type: "application/json"
-		});
-		saveAs(exportData, cardset.name + ".json");
+		});*/
+		//TODO: This function is not defined... do something!
+		//saveAs(exportData, cardset.name + ".json");
 	}
 });
 
@@ -701,11 +703,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 
 		$('#publicateKind > label').removeClass('active');
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind
+			return this.value === cardset.kind;
 		}).parent().addClass('active');
 
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind
+			return this.value === cardset.kind;
 		}).prop('checked', true);
 
 		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
@@ -762,7 +764,7 @@ Template.cardsetPublicateForm.events({
 		Meteor.call("publicateCardset", id, kind, price, visible);
 		$('#publicateModal').modal('hide');
 	},
-	'change #publicateKind': function (evt, tmpl) {
+	'change #publicateKind': function () {
 		var kind = $('#publicateKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
@@ -821,7 +823,9 @@ Template.selectLicenseForm.helpers({
 		if (cardset !== undefined) {
 			var licenses = cardset.license;
 
-			if (licenses.includes(license)) return true;
+			if (licenses.includes(license)) {
+				return true;
+			}
 		} else {
 			return null;
 		}
@@ -844,7 +848,7 @@ Template.reportCardsetForm.onRendered(function () {
 	});
 });
 Template.reportCardsetForm.events({
-	'click #reportCardsetSave': function (evt, tmpl) {
+	'click #reportCardsetSave': function () {
 		if ($('#reportCardsetText').val().length < 50) {
 			$('#reportCardsetTextLabel').css('color', '#b94a48');
 			$('#reportCardsetText').css('border-color', '#b94a48');
@@ -860,7 +864,7 @@ Template.reportCardsetForm.events({
 				link_id = this.owner;
 			} else {
 				type = "Gemeldeter Kartensatz";
-				link_id = this._id
+				link_id = this._id;
 			}
 
 			var target = "admin";

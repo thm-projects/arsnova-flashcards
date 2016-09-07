@@ -5,7 +5,6 @@ import {Template } from 'meteor/templating';
 import {Session } from 'meteor/session';
 
 import {Cardsets } from '../../api/cardsets.js';
-import {Categories } from '../../api/categories.js';
 import {Ratings } from '../../api/ratings.js';
 
 import './pool.html';
@@ -50,7 +49,7 @@ Template.category.helpers({
 			return 0;
 		}
 	},
-	getSortUserIcon: function (val) {
+	getSortUserIcon: function () {
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {
 			return '<i class="fa fa-sort-asc"></i>';
@@ -100,7 +99,7 @@ Template.category.helpers({
 			if (this.license.includes('nd')) {licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
 			if (this.license.includes('sa')) {licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
 
-			return new Spacebars.SafeString(licenseString)
+			return new Spacebars.SafeString(licenseString);
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}

@@ -12,7 +12,7 @@ import '../welcome/welcome.js';
 import '../impressum/impressum.js';
 import '../cardsets/cardsets.js';
 import '../pool/pool.js';
-import '../profile/profile.js'
+import '../profile/profile.js';
 import '../admin/admin.js';
 import '../access_denied/access_denied.js';
 
@@ -63,8 +63,7 @@ Template.main.helpers({
 	},
 	searchCategories: function () {
 		if (Session.get("searchValue")) {
-			results = CardsetsIndex.search(Session.get("searchValue")).fetch();
-			return results;
+			return CardsetsIndex.search(Session.get("searchValue")).fetch();
 		} else {
 			return undefined;
 		}
