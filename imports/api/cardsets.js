@@ -221,14 +221,14 @@ Meteor.methods({
 			}
 		}
 
-		Cardsets.remove(id);
-		Cards.remove({
-			cardset_id: id
-		});
-	},
-	updateCardset: function (id, name, category, description) {
-		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
+    Cardsets.remove(id);
+    Cards.remove({
+      cardset_id: id
+    });
+  },
+  updateCardset: function(id, name, category, description, modulLong, modulShort, modulNum) {
+    // Make sure only the task owner can make a task private
+    var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
@@ -239,17 +239,20 @@ Meteor.methods({
 			}
 		}
 
-		Cardsets.update(id, {
-			$set: {
-				name: name,
-				category: category,
-				description: description,
-				dateUpdated: new Date()
-			}
-		});
-	},
-	updateRelevance: function (cardset_id) {
-		var relevance = 0;
+    Cardsets.update(id, {
+      $set: {
+        name: name,
+        category: category,
+        description: description,
+        dateUpdated: new Date(),
+        modulLong: modulLong,
+        modulShort: modulShort,
+        modulNum: modulNum
+      }
+    });
+  },
+  updateRelevance: function(cardset_id) {
+    var relevance = 0;
 
 		var ratings = Ratings.find({cardset_id: cardset_id});
 		var count = ratings.count();

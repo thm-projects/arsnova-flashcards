@@ -195,7 +195,25 @@ Template.cardsets.events({
       $('#helpNewSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
       $('#helpNewSetModulShort').css('color', '#b94a48');
     }
-    if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
+    if ($('#newSetModulNum').val() === "") {
+      $('#newSetModulNumLabel').css('color', '#b94a48');
+      $('#newSetModulNum').css('border-color', '#b94a48');
+      $('#helpNewSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
+      $('#helpNewSetModulNum').css('color', '#b94a48');
+    }
+    if ($('#newSetCollege').val() === "") {
+      $('#newSetCollegeLabel').css('color', '#b94a48');
+      $('#newSetCollegeDropdown').css('border-color', '#b94a48');
+      $('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+      $('#helpNewSetCollege').css('color', '#b94a48');
+    }
+    if ($('#newSetName').val() !== "" &&
+        $('#newSetDescription').val() !== "" &&
+        $('#newSetCategory').val() !== "" &&
+        $('#newSetModulLong').val() !== "" &&
+        $('#newSetModulShort').val() !== "" &&
+        $('#newSetModulNum').val() !== "" &&
+        $('#newSetCollege').val() !== "") {
       var name = $('#newSetName').val();
       var category = $('#newSetCategory').val();
       var description = $('#newSetDescription').val();

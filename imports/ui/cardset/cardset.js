@@ -120,34 +120,57 @@ function ifCardset() {
 }
 
 Template.cardset.events({
-	'click #cardSetSave': function (evt, tmpl) {
-		if ($('#editSetName').val() === "") {
-			$('#editSetNameLabel').css('color', '#b94a48');
-			$('#editSetName').css('border-color', '#b94a48');
-			$('#helpEditSetName').html(TAPi18n.__('modal-dialog.name_required'));
-			$('#helpEditSetName').css('color', '#b94a48');
-		}
-		if ($('#editSetDescription').val() === "") {
-			$('#editSetDescriptionLabel').css('color', '#b94a48');
-			$('#editSetDescription').css('border-color', '#b94a48');
-			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
-			$('#helpEditSetDescription').css('color', '#b94a48');
-		}
-		if ($('#editSetName').val() !== "" && $('#editSetDescription').val() !== "") {
-			var name = tmpl.find('#editSetName').value;
-			if (tmpl.find('#editSetCategory').value === undefined) {
-				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
-			}
-			var category = tmpl.find('#editSetCategory').value;
-			var description = tmpl.find('#editSetDescription').value;
+  'click #cardSetSave': function(evt, tmpl) {
+    if ($('#editSetName').val() === "") {
+      $('#editSetNameLabel').css('color', '#b94a48');
+      $('#editSetName').css('border-color', '#b94a48');
+      $('#helpEditSetName').html(TAPi18n.__('modal-dialog.name_required'));
+      $('#helpEditSetName').css('color', '#b94a48');
+    }
+    if ($('#editSetDescription').val() === "") {
+      $('#editSetDescriptionLabel').css('color', '#b94a48');
+      $('#editSetDescription').css('border-color', '#b94a48');
+      $('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
+      $('#helpEditSetDescription').css('color', '#b94a48');
+    }
+    if ($('#editSetModulLong').val() === "") {
+      $('#editSetModulLongLabel').css('color', '#b94a48');
+      $('#editSetModulLong').css('border-color', '#b94a48');
+      $('#helpEditSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
+      $('#helpEditSetModulLong').css('color', '#b94a48');
+    }
+    if ($('#editSetModulShort').val() === "") {
+      $('#editSetModulShortLabel').css('color', '#b94a48');
+      $('#editSetModulShort').css('border-color', '#b94a48');
+      $('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
+      $('#helpEditSetModulShort').css('color', '#b94a48');
+    }
+    if ($('#editSetModulNum').val() === "") {
+      $('#editSetModulNumLabel').css('color', '#b94a48');
+      $('#editSetModulNum').css('border-color', '#b94a48');
+      $('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
+      $('#helpEditSetModulNum').css('color', '#b94a48');
+    }
 
-			Meteor.call("updateCardset", this._id, name, category, description);
-			$('#editSetModal').modal('hide');
-		}
-	},
-	'click #cardSetDelete': function () {
-		$("#cardSetDelete").css('display', "none");
-		$("#cardSetConfirm").css('display', "");
+    if ($('#editSetName').val() !== "" &&
+        $('#editSetDescription').val() !== "" &&
+        $('#editSetModulLong').val() !== "" &&
+        $('#editSetModulShort').val() !== "" &&
+        $('#editSetModulNum').val() !== ""){
+      var name = tmpl.find('#editSetName').value;
+      if (tmpl.find('#editSetCategory').value === undefined) {
+        tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+      }
+      var category = tmpl.find('#editSetCategory').value;
+      var description = tmpl.find('#editSetDescription').value;
+
+      Meteor.call("updateCardset", this._id, name, category, description, modulLong, modulShort, modulNum);
+      $('#editSetModal').modal('hide');
+    }
+  },
+  'click #cardSetDelete': function() {
+    $("#cardSetDelete").css('display', "none");
+    $("#cardSetConfirm").css('display', "");
 
 		$('#editSetModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");

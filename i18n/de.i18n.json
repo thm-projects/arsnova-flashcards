@@ -134,7 +134,7 @@
     "modulShort":"Modul Kurzname",
     "modulShort_required": "Geben Sie eine Abkürzung des Moduls an!",
     "modulNum": "Modul Nummer",
-    "modulShort_required": "Geben Sie eine Modulnummer ein!",
+    "modulNum_required": "Geben Sie eine Modulnummer ein!",
     "modulLongplaceholder":"Ausgeschriebener Name des Moduls",
     "modulShortplaceholder":"Abkürzung des Moduls",
     "modulNumplaceholder":"Nummer des Moduls"
