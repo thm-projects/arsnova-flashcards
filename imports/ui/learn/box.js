@@ -141,7 +141,6 @@ Template.boxMain.events({
 			Session.set('isFinish', true);
 		}
 		Session.set('isFront', true);
-
 	},
 	"click #notknown": function () {
 		var currentCard = $('.carousel-inner > .active').attr('data');

@@ -16,10 +16,10 @@ Meteor.subscribe("cards");
 Meteor.subscribe("learned");
 
 /**
- * ############################################################################
- * memo
- * ############################################################################
- */
+* ############################################################################
+* memo
+* ############################################################################
+*/
 
 Template.memo.onCreated(function () {
 	var cardset_id = Router.current().params._id;
@@ -79,16 +79,16 @@ Template.memo.helpers({
 	},
 	memoMarkdownFront: function (front) {
 		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".box .frontblock span").html(html);
-				$('table').addClass('table');
+		.then(function (html) {
+			$(".box .frontblock span").html(html);
+			$('table').addClass('table');
 		});
 	},
 	memoMarkdownBack: function (back) {
 		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".box .backblock span").html(html);
-				$('table').addClass('table');
+		.then(function (html) {
+			$(".box .backblock span").html(html);
+			$('table').addClass('table');
 		});
 	}
 });
@@ -111,10 +111,10 @@ Template.memo.events({
 });
 
 /**
- * ############################################################################
- * memoRate
- * ############################################################################
- */
+* ############################################################################
+* memoRate
+* ############################################################################
+*/
 
 Template.memoRate.onRendered(function () {
 	$('[data-toggle="tooltip"]').tooltip({

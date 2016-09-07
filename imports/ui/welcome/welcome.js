@@ -8,62 +8,58 @@ import './welcome.html';
 //------------------------ LOGIN EVENT
 
 Template.welcome.events({
-		'click #facebook': function () {
-				Meteor.loginWithFacebook({}, function (err){
-					  if (err) {
-							  throw new Meteor.Error("Facebook login failed");
-					  }
-				});
-		},
+	'click #facebook': function () {
+		Meteor.loginWithFacebook({}, function (err) {
+			if (err) {
+				throw new Meteor.Error("Facebook login failed");
+			}
+		});
+	},
 
-		'click #twitter': function () {
-				Meteor.loginWithTwitter({}, function (err){
-					  if (err) {
-							  throw new Meteor.Error("Twitter login failed");
-					  }
-				});
-		},
+	'click #twitter': function () {
+		Meteor.loginWithTwitter({}, function (err) {
+			if (err) {
+				throw new Meteor.Error("Twitter login failed");
+			}
+		});
+	},
 
-		'click #google': function () {
-				Meteor.loginWithGoogle({}, function (err){
-					  if (err) {
-							  throw new Meteor.Error("Google login failed");
-					  }
-				});
-		},
+	'click #google': function () {
+		Meteor.loginWithGoogle({}, function (err) {
+			if (err) {
+				throw new Meteor.Error("Google login failed");
+			}
+		});
+	},
 
-		'click #cas': function () {
-				Meteor.loginWithCas({}, function (err){
-					  if (err) {
-							  throw new Meteor.Error("CAS login failed");
-					  }
-				});
-		},
+	'click #cas': function () {
+		Meteor.loginWithCas({}, function (err) {
+			if (err) {
+				throw new Meteor.Error("CAS login failed");
+			}
+		});
+	},
 
-		'click #logout': function () {
-				Meteor.logout(function (err){
-					  if (err) {
-							  throw new Meteor.Error("Logout failed");
-					  }
-				});
-		}
+	'click #logout': function () {
+		Meteor.logout(function (err) {
+			if (err) {
+				throw new Meteor.Error("Logout failed");
+			}
+		});
+	}
 });
 
 Template.welcome.onRendered(function () {
-	if(Meteor.settings.public.displayLoginButtons.displayFacebook)
-	{
+	if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
 		$('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" /></a>');
 	}
-	if(Meteor.settings.public.displayLoginButtons.displayTwitter)
-	{
+	if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
 		$('.panel-footer').append('<a id="twitter" href=""><img src="img/social_twitter_box_white.png" /></a>');
 	}
-	if(Meteor.settings.public.displayLoginButtons.displayGoogle)
-	{
+	if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
 		$('.panel-footer').append('<a id="google" href=""><img src="img/social_google_box_white.png" /></a>');
 	}
-	if(Meteor.settings.public.displayLoginButtons.displayCas)
-	{
+	if (Meteor.settings.public.displayLoginButtons.displayCas) {
 		$('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" /></a>');
 	}
 });

@@ -34,10 +34,10 @@ Template.registerHelper("isUser", function () {
 });
 
 /**
- * ############################################################################
- * profile
- * ############################################################################
- */
+* ############################################################################
+* profile
+* ############################################################################
+*/
 
 Template.profile.helpers({
 	isVisible: function () {
@@ -53,10 +53,10 @@ Template.profile.helpers({
 });
 
 /**
- * ############################################################################
- * profileSidebar
- * ############################################################################
- */
+* ############################################################################
+* profileSidebar
+* ############################################################################
+*/
 
 Template.profileSidebar.helpers({
 	getService: function () {
@@ -64,9 +64,9 @@ Template.profileSidebar.helpers({
 		if (userId !== undefined) {
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
-					var service = _.keys(user.services)[0];
-					service = service.charAt(0).toUpperCase() + service.slice(1);
-					return service;
+				var service = _.keys(user.services)[0];
+				service = service.charAt(0).toUpperCase() + service.slice(1);
+				return service;
 			}
 		}
 		return null;
@@ -74,87 +74,87 @@ Template.profileSidebar.helpers({
 });
 
 /**
- * ############################################################################
- * profileSettings
- * ############################################################################
- */
+* ############################################################################
+* profileSettings
+* ############################################################################
+*/
 
 Template.profileSettings.events({
-		"click #profilepublicoption1": function (event) {
-				Meteor.call("updateUsersVisibility", true);
-		},
-		"click #profilepublicoption2": function (event) {
-				Meteor.call("updateUsersVisibility", false);
-		},
-		"click #profileSave": function () {
-				Meteor.call("updateUserGivenName", "istehwurst", Meteor.userId());
-				// Email validation
-				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-				var email = $('#inputEmail').val();
-				var validEmail = re.test(email);
+	"click #profilepublicoption1": function (event) {
+		Meteor.call("updateUsersVisibility", true);
+	},
+	"click #profilepublicoption2": function (event) {
+		Meteor.call("updateUsersVisibility", false);
+	},
+	"click #profileSave": function () {
+		Meteor.call("updateUserGivenName", "istehwurst", Meteor.userId());
+		// Email validation
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var email = $('#inputEmail').val();
+		var validEmail = re.test(email);
 
-				if (validEmail === false) {
-					  $('#inputEmail').parent().parent().addClass('has-error');
-					  $('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+		if (validEmail === false) {
+			$('#inputEmail').parent().parent().addClass('has-error');
+			$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+		} else {
+			$('#inputEmail').parent().parent().removeClass('has-error');
+			$('#inputEmail').parent().parent().addClass('has-success');
+			$('#errorEmail').html('');
+		}
+
+		// Name validation
+		var name = $('#inputName').val();
+		var user_id = Meteor.userId();
+
+		Meteor.call("checkUsersName", name, user_id, function (error, result) {
+			if (error) {
+				$('#inputName').parent().parent().addClass('has-error');
+				$('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
+			} else if (result) {
+				var validName = false;
+				if (result.length < 5) {
+					$('#inputName').parent().parent().addClass('has-error');
+					$('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
+				} else if (result.length > 25) {
+					$('#inputName').parent().parent().addClass('has-error');
+					$('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
 				} else {
-					  $('#inputEmail').parent().parent().removeClass('has-error');
-					  $('#inputEmail').parent().parent().addClass('has-success');
-					  $('#errorEmail').html('');
+					$('#inputName').parent().parent().removeClass('has-error');
+					$('#inputName').parent().parent().addClass('has-success');
+					$('#errorName').html('');
+					validName = true;
 				}
 
-				// Name validation
-				var name = $('#inputName').val();
-				var user_id = Meteor.userId();
+				if (validEmail && validName) {
+					Meteor.call("updateUsersEmail", email);
 
-				Meteor.call("checkUsersName", name, user_id, function (error, result) {
-					  if (error) {
-							  $('#inputName').parent().parent().addClass('has-error');
-							  $('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-					  } else if (result) {
-							  var validName = false;
-							  if (result.length < 5) {
-									  $('#inputName').parent().parent().addClass('has-error');
-									  $('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
-							  } else if (result.length > 25) {
-									  $('#inputName').parent().parent().addClass('has-error');
-									  $('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
-							  } else {
-									  $('#inputName').parent().parent().removeClass('has-error');
-									  $('#inputName').parent().parent().addClass('has-success');
-									  $('#errorName').html('');
-									  validName = true;
-							  }
-
-							  if (validEmail && validName) {
-									Meteor.call("updateUsersEmail", email);
-
-									Meteor.call("updateUsersName", result, user_id);
-									Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
-							  } else {
-									Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
-							  }
-					  }
-				});
-		},
-		"click #profileCancel": function () {
-				var user = Meteor.users.findOne(Meteor.userId());
-				$('#inputEmail').val(user.email);
-				$('#inputName').val(user.profile.name);
-				Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
-		}
+					Meteor.call("updateUsersName", result, user_id);
+					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+				} else {
+					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
+				}
+			}
+		});
+	},
+	"click #profileCancel": function () {
+		var user = Meteor.users.findOne(Meteor.userId());
+		$('#inputEmail').val(user.email);
+		$('#inputName').val(user.profile.name);
+		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
+	}
 });
 
 /**
- * ############################################################################
- * profileMembership
- * ############################################################################
- */
+* ############################################################################
+* profileMembership
+* ############################################################################
+*/
 
- Template.profileMembership.rendered = function (){
-	 var customerId = Meteor.user().customerId;
+Template.profileMembership.rendered = function () {
+	var customerId = Meteor.user().customerId;
 
-	 if ($('#subscribe-form').length) {
-		 Meteor.call('getClientToken', customerId, function (error, clientToken) {
+	if ($('#subscribe-form').length) {
+		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
 				throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
 			} else {
@@ -162,67 +162,67 @@ Template.profileSettings.events({
 					container: "subscribe-form",
 					defaultFirst: true,
 					onPaymentMethodReceived: function (response) {
-					  $('#upgrade').prop( "disabled", true );
+						$('#upgrade').prop("disabled", true);
 
-					  Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
-					  var nonce = response.nonce;
-					  var plan = Session.get('plan');
-					  Meteor.call('btSubscribe', nonce, plan, function (error) {
+						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
+						var nonce = response.nonce;
+						var plan = Session.get('plan');
+						Meteor.call('btSubscribe', nonce, plan, function (error) {
 							if (error) {
-							  throw new Meteor.Error(error.message, 'error');
+								throw new Meteor.Error(error.message, 'error');
 							} else {
-							  Bert.alert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-bottom-right');
 							}
-					  });
+						});
 					}
 				});
 			}
 		});
-	 }
- }
+	}
+}
 
 Template.profileMembership.events({
-		"click #upgrade": function () {
-				Session.set('plan', 'pro');
-		},
-		"click #downgrade": function () {
-				var hasPro = Cardsets.find({owner: Meteor.userId(), kind: 'pro'}).count();
-				if (hasPro > 0) {
-					Bert.alert(TAPi18n.__('membership.downgrade.error'), 'danger', 'growl-bottom-right');
-				} else {
-					var confirmCancel = confirm(TAPi18n.__('membership.downgrade.confirm'));
-					if (confirmCancel){
-					  $('#downgrade').prop( "disabled", true );
-					  Session.set('plan', 'standard');
+	"click #upgrade": function () {
+		Session.set('plan', 'pro');
+	},
+	"click #downgrade": function () {
+		var hasPro = Cardsets.find({owner: Meteor.userId(), kind: 'pro'}).count();
+		if (hasPro > 0) {
+			Bert.alert(TAPi18n.__('membership.downgrade.error'), 'danger', 'growl-bottom-right');
+		} else {
+			var confirmCancel = confirm(TAPi18n.__('membership.downgrade.confirm'));
+			if (confirmCancel) {
+				$('#downgrade').prop("disabled", true);
+				Session.set('plan', 'standard');
 
-					  Meteor.call('btCancelSubscription', function (error, response){
-							if (error){
-							  Bert.alert(error.reason, "danger", 'growl-bottom-right');
-							} else {
-							  if (response.error){
-									Bert.alert(response.error.message, "danger", 'growl-bottom-right');
-							  } else {
-									Session.set('currentUserPlan_' + Meteor.userId(), null);
-									Bert.alert(TAPi18n.__('membership.downgrade.canceled'), 'success', 'growl-bottom-right');
-							  }
-							}
-					  });
+				Meteor.call('btCancelSubscription', function (error, response) {
+					if (error) {
+						Bert.alert(error.reason, "danger", 'growl-bottom-right');
+					} else {
+						if (response.error) {
+							Bert.alert(response.error.message, "danger", 'growl-bottom-right');
+						} else {
+							Session.set('currentUserPlan_' + Meteor.userId(), null);
+							Bert.alert(TAPi18n.__('membership.downgrade.canceled'), 'success', 'growl-bottom-right');
+						}
 					}
-				}
-		},
-		"click #sendLecturerRequest": function () {
-				var text = Meteor.user().profile.name + " möchte Dozent werden.";
-				var type = "Dozenten-Anfrage";
-				var target = "admin";
+				});
+			}
+		}
+	},
+	"click #sendLecturerRequest": function () {
+		var text = Meteor.user().profile.name + " möchte Dozent werden.";
+		var type = "Dozenten-Anfrage";
+		var target = "admin";
 
-				Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
-				Meteor.call("setLecturerRequest", Meteor.userId(), true);
-				Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
-		},
+		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
+		Meteor.call("setLecturerRequest", Meteor.userId(), true);
+		Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
+	}
 });
 
 Template.profileMembership.helpers({
-	hasUserData: function (){
+	hasUserData: function () {
 		email = Meteor.user().email;
 		return email !== "" && email !== undefined;
 	}
@@ -230,16 +230,16 @@ Template.profileMembership.helpers({
 
 
 /**
- * ############################################################################
- * profileBilling
- * ############################################################################
- */
+* ############################################################################
+* profileBilling
+* ############################################################################
+*/
 
- Template.profileBilling.onRendered(function (){
-	 var customerId = Meteor.user().customerId;
+Template.profileBilling.onRendered(function () {
+	var customerId = Meteor.user().customerId;
 
-	 if ($('#paymentMethodDropIn').length) {
-		 Meteor.call('getClientToken', customerId, function (error, clientToken) {
+	if ($('#paymentMethodDropIn').length) {
+		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
 				throw new Meteor.Error(err.statusCode, 'Error getting client token from braintree');
 			} else {
@@ -247,150 +247,149 @@ Template.profileMembership.helpers({
 					container: "paymentMethodDropIn",
 					defaultFirst: true,
 					onPaymentMethodReceived: function (response) {
-					  $('#savePaymentBtn').prop( "disabled", true );
+						$('#savePaymentBtn').prop("disabled", true);
 
-					  Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
-					  var nonce = response.nonce;
-					  Meteor.call('btUpdatePaymentMethod', nonce, function (error) {
+						Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
+						var nonce = response.nonce;
+						Meteor.call('btUpdatePaymentMethod', nonce, function (error) {
 							if (error) {
-							  throw new Meteor.Error(error.message, 'error');
+								throw new Meteor.Error(error.message, 'error');
 							} else {
-							  Bert.alert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-bottom-right');
-							  $('#savePaymentBtn').prop( "disabled", false );
+								Bert.alert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-bottom-right');
+								$('#savePaymentBtn').prop("disabled", false);
 							}
-					  });
+						});
 					}
 				});
 			}
 		});
-	 }
+	}
 
-	 if ($('#payoutDropIn').length) {
-			 Meteor.call('getClientToken', customerId, function (error, clientToken) {
-					 if (error) {
-							 throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
-					 } else {
-							 braintree.setup(clientToken, "dropin", {
-									 container: "payoutDropIn",
-									 onPaymentMethodReceived: function (response) {
-											 $('#payoutBtn').prop("disabled", true);
-											 Bert.alert(TAPi18n.__('billing.balance.progress'), 'info', 'growl-bottom-right');
+	if ($('#payoutDropIn').length) {
+		Meteor.call('getClientToken', customerId, function (error, clientToken) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+			} else {
+				braintree.setup(clientToken, "dropin", {
+					container: "payoutDropIn",
+					onPaymentMethodReceived: function (response) {
+						$('#payoutBtn').prop("disabled", true);
+						Bert.alert(TAPi18n.__('billing.balance.progress'), 'info', 'growl-bottom-right');
 
-											 var nonce = response.nonce;
+						var nonce = response.nonce;
 
-											 Meteor.call('btCreateCredit', nonce, function (error, success) {
-													 if (error) {
-															 throw new Meteor.Error('transaction-creation-failed');
-													 } else if (success !== undefined && success.name === "authorizationError") {
-															 Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
-													 } else {
-															 Meteor.call("resetUsersBalance", Meteor.userId());
-															 Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
-															 $('#payoutBtn').prop("disabled", false);
-													 }
-											 });
-									 }
-							 });
-					 }
-			 });
-	 }
- });
+						Meteor.call('btCreateCredit', nonce, function (error, success) {
+							if (error) {
+								throw new Meteor.Error('transaction-creation-failed');
+							} else if (success !== undefined && success.name === "authorizationError") {
+								Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
+							} else {
+								Meteor.call("resetUsersBalance", Meteor.userId());
+								Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
+								$('#payoutBtn').prop("disabled", false);
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+});
 
 Template.profileBilling.helpers({
-		getInvoices: function () {
-			return Paid.find({user_id: Meteor.userId()}, {sort: {date: -1}});
-		},
-		getRevenue: function () {
-			var cardsetsIds = Cardsets.find({
-				owner: Meteor.userId()
-			}).map(function (cardset) {return cardset._id; });
+	getInvoices: function () {
+		return Paid.find({user_id: Meteor.userId()}, {sort: {date: -1}});
+	},
+	getRevenue: function () {
+		var cardsetsIds = Cardsets.find({
+			owner: Meteor.userId()
+		}).map(function (cardset) {return cardset._id;});
 
-			return Paid.find({cardset_id: {$in: cardsetsIds}}, {sort: {date: -1}});
-		},
-		getCardsetName: function (cardset_id) {
-			return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
-		},
-		getBalance: function () {
-			Meteor.subscribe("privateUserData");
-			var balance = Meteor.users.findOne(Meteor.userId).balance;
-			return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
-		},
-		hasBalance: function () {
-			Meteor.subscribe("privateUserData");
-			var balance = Meteor.users.findOne(Meteor.userId).balance;
-			return balance > 0;
-		},
-		getPaymentMethod: function () {
-			Meteor.call("btGetPaymentMethod", function (error, result){
-				if(result){
-					 Session.set("paymentMethods", result);
-				}
-			});
-			return Session.get('paymentMethods');
-		},
-		hasPaymentMethod: function () {
-			Meteor.call("btGetPaymentMethod", function (error, result){
-				if(result){
-					 Session.set("hasPaymentMethods", !jQuery.isEmptyObject(result));
-				}
-			});
-			return Session.get('hasPaymentMethods');
-		}
+		return Paid.find({cardset_id: {$in: cardsetsIds}}, {sort: {date: -1}});
+	},
+	getCardsetName: function (cardset_id) {
+		return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
+	},
+	getBalance: function () {
+		Meteor.subscribe("privateUserData");
+		var balance = Meteor.users.findOne(Meteor.userId).balance;
+		return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
+	},
+	hasBalance: function () {
+		Meteor.subscribe("privateUserData");
+		var balance = Meteor.users.findOne(Meteor.userId).balance;
+		return balance > 0;
+	},
+	getPaymentMethod: function () {
+		Meteor.call("btGetPaymentMethod", function (error, result) {
+			if (result) {
+				Session.set("paymentMethods", result);
+			}
+		});
+		return Session.get('paymentMethods');
+	},
+	hasPaymentMethod: function () {
+		Meteor.call("btGetPaymentMethod", function (error, result) {
+			if (result) {
+				Session.set("hasPaymentMethods", !jQuery.isEmptyObject(result));
+			}
+		});
+		return Session.get('hasPaymentMethods');
+	}
 });
 
 /**
- * ############################################################################
- * profileNotifications
- * ############################################################################
- */
+* ############################################################################
+* profileNotifications
+* ############################################################################
+*/
 
- Template.profileNotifications.events({
-	 "click #clearBtn": function (){
-			var notifications = Notifications.find({target_type: 'user', target: Meteor.userId() });
-			notifications.forEach(function (notification) {
-				Meteor.call("deleteNotification", notification);
-			});
-	 },
-	 "click #deleteNotificationBtn": function () {
-		 Meteor.call("deleteNotification", this._id);
-	 }
- });
+Template.profileNotifications.events({
+	"click #clearBtn": function () {
+		var notifications = Notifications.find({target_type: 'user', target: Meteor.userId()});
+		notifications.forEach(function (notification) {
+			Meteor.call("deleteNotification", notification);
+		});
+	},
+	"click #deleteNotificationBtn": function () {
+		Meteor.call("deleteNotification", this._id);
+	}
+});
 
 Template.profileNotifications.helpers({
-		getNotifications: function () {
-			return Notifications.find({target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
-		},
-		getLink: function () {
-			return "/cardset/" + this.link_id;
-		},
-		getStatus: function () {
-			if (this.type === 'Kartensatz-Freigabe') {
-				var cardset = Cardsets.findOne(this.link_id);
-				return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
-			}
-			else {
-				return TAPi18n.__('notifications.progress');
-			}
+	getNotifications: function () {
+		return Notifications.find({target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
+	},
+	getLink: function () {
+		return "/cardset/" + this.link_id;
+	},
+	getStatus: function () {
+		if (this.type === 'Kartensatz-Freigabe') {
+			var cardset = Cardsets.findOne(this.link_id);
+			return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
+		}	else {
+			return TAPi18n.__('notifications.progress');
 		}
+	}
 });
 
 /**
- * ############################################################################
- * profileRequests
- * ############################################################################
- */
+* ############################################################################
+* profileRequests
+* ############################################################################
+*/
 
 Template.profileRequests.helpers({
-		getRequests: function () {
-			return Cardsets.find({request: true});
-		}
+	getRequests: function () {
+		return Cardsets.find({request: true});
+	}
 });
 
 /**
- * ############################################################################
- * profileXp
- * ############################################################################
- */
+* ############################################################################
+* profileXp
+* ############################################################################
+*/
 
 Template.profileXp.helpers({
 	getXpTotal: function () {
@@ -489,7 +488,7 @@ Template.profileXp.helpers({
 		}
 
 		if (last === undefined)
-			return null;
+		return null;
 
 		return name + " (+" + last.value + ")";
 	},
@@ -539,10 +538,10 @@ function xpForLevel(level) {
 }
 
 /**
- * ############################################################################
- * profileBadges
- * ############################################################################
- */
+* ############################################################################
+* profileBadges
+* ############################################################################
+*/
 
 Template.profileBadges.helpers({
 	getBadges: function () {
@@ -624,7 +623,7 @@ function krone(rank) {
 				count++;
 			}
 		}
-	}); 
+	});
 
 	var badge = Badges.findOne("2");
 	switch (rank) {
@@ -640,19 +639,19 @@ function krone(rank) {
 }
 
 function stammgast(rank) {
-		var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
+	var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
 
-		var badge = Badges.findOne("3");
-		switch (rank) {
-			case 3:
-				return user / badge.rank3 * 100;
-			case 2:
-				return user / badge.rank2 * 100;
-			case 1:
-				return user / badge.rank1 * 100;
-			default:
-				return 0;
-		}
+	var badge = Badges.findOne("3");
+	switch (rank) {
+		case 3:
+			return user / badge.rank3 * 100;
+		case 2:
+			return user / badge.rank2 * 100;
+		case 1:
+			return user / badge.rank1 * 100;
+		default:
+			return 0;
+	}
 }
 
 function streber(rank) {
@@ -688,7 +687,7 @@ function wohltaeter(rank) {
 		if (cards.count() >= 5) {
 			count++;
 		}
-	}); 
+	});
 
 	var badge = Badges.findOne("5");
 	switch (rank) {

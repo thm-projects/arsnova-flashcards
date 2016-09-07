@@ -76,10 +76,10 @@ Template.main.helpers({
 		return false;
 	},
 	countNotifications: function () {
-		return Notifications.find({read: false, target_type: 'user', target: Meteor.userId() }).count();
+		return Notifications.find({read: false, target_type: 'user', target: Meteor.userId()}).count();
 	},
 	getNotifications: function () {
-		return Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId() }, {sort: {date: -1}});
+		return Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
@@ -96,7 +96,7 @@ Template.main.onRendered(function () {
 		}
 	});
 
-	if (user !== undefined){
+	if (user !== undefined) {
 		Meteor.call("initUser");
 	}
 });
