@@ -3,6 +3,11 @@
         <table class="table table-bordered table-hover">
             <thead class="set-list">
             <tr>
+                <th id="poolTitle" colspan="7">
+                    {{_ "set-list.title"}}
+                </th>
+            </tr>
+            <tr>
                 <th>
                     <div class ="btn-group">
                         <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
@@ -84,15 +89,17 @@
                     </div>
                 </th>
                 <th>
-                    <label class="btn btn-default active">
-                        Free
-                    </label>
-                    <label class="btn btn-success active">
-                        Edu
-                    </label>
-                    <label class="btn btn-info active">
-                        Pro
-                    </label>
+                    <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default active">
+                            <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+                        </label>
+                        <label class="btn btn-success active">
+                            <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+                        </label>
+                        <label class="btn btn-info active">
+                            <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+                        </label>
+                    </div>
                 </th>
             </tr>
             </thead>

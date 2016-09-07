@@ -83,7 +83,8 @@
     "studyType": "Studienart",
     "license": "Lizenz",
     "topic": "Thema",
-    "autor": "Autor/in"
+    "autor": "Autor/in",
+    "title": "Aktuell werden folgende Kartensätze angeboten:"
   },
   "set-list-empty": {
   	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",

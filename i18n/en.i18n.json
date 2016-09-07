@@ -83,7 +83,8 @@
     "studyType": "Type of Study",
     "license": "License",
     "topic": "Topic",
-    "autor": "Autor"
+    "autor": "Autor",
+    "title": "Following cardsets are available:"
   },
   "set-list-empty": {
   	"emptytextlist": "You have not created any deck of cards yet",
