@@ -17,10 +17,14 @@
     "MathJax": false,
     "buzz": false,
     "Router": false,
+		"TAPi18n": false,
+		"Bert": false,
+		"SpaceBars": false,
+		"Meteor": false,
+		"Template": false,
     "ReactiveCountdown": false,
     "App": false,
     "console": false,
-
     "closeSplashscreen": true,
     "showSplashscreen": true,
     "closeAndRedirectTo": true
