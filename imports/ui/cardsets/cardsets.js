@@ -189,6 +189,12 @@ Template.cardsets.events({
       $('#helpNewSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
       $('#helpNewSetModulLong').css('color', '#b94a48');
     }
+    if ($('#newSetModulShort').val() === "") {
+      $('#newSetModulShortLabel').css('color', '#b94a48');
+      $('#newSetModulShort').css('border-color', '#b94a48');
+      $('#helpNewSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
+      $('#helpNewSetModulShort').css('color', '#b94a48');
+    }
     if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
       var name = $('#newSetName').val();
       var category = $('#newSetCategory').val();
@@ -196,8 +202,10 @@ Template.cardsets.events({
       var modulLong = $('#newSetModulLong').val();
       var modulShort = $('#newSetModulShort').val();
       var modulNum = $('#newSetModulNum').val();
+      console.log($('#newSetCollege').val());
+      var college = $('#newSetCollege').val();
 
-      Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum);
+      Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum, college);
       $('#newSetModal').modal('hide');
     }
   }

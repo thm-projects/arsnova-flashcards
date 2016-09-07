@@ -164,43 +164,7 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-	addCardset: function (name, category, description, visible, ratings, kind) {
-		// Make sure the user is logged in before inserting a cardset
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
-			throw new Meteor.Error("not-authorized");
-		}
-		Cardsets.insert({
-			name: name,
-			category: category,
-			description: description,
-			date: new Date(),
-			dateUpdated: new Date(),
-			owner: Meteor.userId(),
-			username: Meteor.user().profile.name,
-			visible: visible,
-			ratings: ratings,
-			kind: kind,
-			price: 0,
-			reviewed: false,
-			reviewer: 'undefined',
-			request: false,
-			relevance: 0,
-			quantity: 0,
-			license: [],
-			userDeleted: false
-		});
-		Experience.insert({
-			type: 2,
-			value: 3,
-			date: new Date(),
-			owner: Meteor.userId()
-		});
-		Meteor.call('checkLvl');
-	},
-	deleteCardset: function (id) {
-		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
-  addCardset: function(name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum) {
+  addCardset: function(name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college) {
     // Make sure the user is logged in before inserting a cardset
     if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
@@ -229,7 +193,7 @@ Meteor.methods({
       modulNum: modulNum,
       surname: 'undefined',
       degree: 'undefined',
-      college: 'undefined',
+      college: college,
       academicCourse: 'undefined',
       department: 'undefined',
       studyType: 'undefined',
