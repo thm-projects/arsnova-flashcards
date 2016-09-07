@@ -1,119 +1,123 @@
 <template name="pool">
     <div id="pool-category-region" class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="set-list">
-            <tr>
-                <th id="poolTitle" colspan="7">
-                    {{_ "set-list.title"}}
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <div class ="btn-group">
-                        <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
-                            {{_ "set-list.topic"}} </button>
-                        <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group">
-                        <button type="button" class="filterAutor btn btn-default" data-toggle="dropdown">
-                            {{_ "set-list.autor"}}</button>
-                        <button type="button" class="filterAutor btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group">
-                        <button type="button" class="filterModule btn btn-default" data-toggle="dropdown">
-                            {{_ "set-list.moduleLong"}}</button>
-                        <button type="button" class="filterModule btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group">
-                        <button type="button" class="filterCourse btn btn-default" data-toggle="dropdown">
-                            {{_ "set-list.academicCourse"}}</button>
-                        <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group">
-                        <button type="button" class="filterDepartment btn btn-default" data-toggle="dropdown">
-                            {{_ "set-list.department"}}</button>
-                        <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group">
-                        <button type="button" class="filterType btn btn-default" data-toggle="dropdown">
-                            {{_ "set-list.studyType"}}</button>
-                        <button type="button" class="filterType btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="checkbox" autocomplete="off" value="free" checked=""> Free
-                        </label>
-                        <label class="btn btn-success active">
-                            <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
-                        </label>
-                        <label class="btn btn-info active">
-                            <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
-                        </label>
-                    </div>
-                </th>
-            </tr>
-            </thead>
-            <tbody id="cardSetView">
-            {{#if cardsetList.count}}
-                {{#each cardsetList}}
-                    {{> poolCardsetRow}}
-                {{/each}}
-            {{else}}
-                {{> poolCardsetEmpty}}
-            {{/if}}
-            </tbody>
-        </table>
+        {{> category}}
     </div>
+</template>
+
+<template name="category">
+    <table class="table table-bordered table-hover">
+        <thead class="set-list">
+        <tr>
+            <th id="poolTitle" colspan="7">
+                {{_ "set-list.title"}}
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <div class ="btn-group">
+                    <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
+                        {{_ "set-list.topic"}} </button>
+                    <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </button>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <button type="button" class="filterAutor btn btn-default" data-toggle="dropdown">
+                        {{_ "set-list.autor"}}</button>
+                    <button type="button" class="filterAutor btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <button type="button" class="filterModule btn btn-default" data-toggle="dropdown">
+                        {{_ "set-list.moduleLong"}}</button>
+                    <button type="button" class="filterModule btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <button type="button" class="filterCourse btn btn-default" data-toggle="dropdown">
+                        {{_ "set-list.academicCourse"}}</button>
+                    <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <button type="button" class="filterDepartment btn btn-default" data-toggle="dropdown">
+                        {{_ "set-list.department"}}</button>
+                    <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <button type="button" class="filterType btn btn-default" data-toggle="dropdown">
+                        {{_ "set-list.studyType"}}</button>
+                    <button type="button" class="filterType btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default active">
+                        <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+                    </label>
+                    <label class="btn btn-success active">
+                        <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+                    </label>
+                    <label class="btn btn-info active">
+                        <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+                    </label>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="cardSetView">
+        {{#if getDecks.count}}
+            {{#each getDecks}}
+                {{> poolCardsetRow}}
+            {{/each}}
+        {{else}}
+            {{> poolCardsetEmpty}}
+        {{/if}}
+        </tbody>
+    </table>
 </template>
 
 <template name="poolCardsetRow">
@@ -129,7 +133,7 @@
         <td>{{department}}</td>
         <td>{{studyType}}</td>
         <td>
-
+            {{{getKind}}} {{name}}
         </td>
     </tr>
 </template>
@@ -137,7 +141,7 @@
 
 <template name="poolCardsetEmpty">
     <tr class="empty-list">
-        <td align="center" height="60" colspan="6" class="emptyCellList set-list-empty">
+        <td align="center" height="60" colspan="7" class="emptyCellList set-list-empty">
             <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
             <br>
             <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
