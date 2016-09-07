@@ -1,6 +1,4 @@
 import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
-
 import {Cardsets } from './cardsets.js';
 
 if (Meteor.isServer) {
@@ -57,10 +55,12 @@ Meteor.methods({
 		var roles;
 
 		if (newRole === 'pro' && !Roles.userIsInRole(user_id, 'pro')) {
-			Roles.removeUsersFromRoles(user_id, 'standard'), roles = Roles.getRolesForUser(user_id);
+			Roles.removeUsersFromRoles(user_id, 'standard');
+			roles = Roles.getRolesForUser(user_id);
 			roles.push('pro');
 		} else if (newRole === 'standard' && !Roles.userIsInRole(user_id, 'standard')) {
-			Roles.removeUsersFromRoles(user_id, 'pro'), roles = Roles.getRolesForUser(user_id);
+			Roles.removeUsersFromRoles(user_id, 'pro');
+			roles = Roles.getRolesForUser(user_id);
 			roles.push('standard');
 		} else if (!Roles.userIsInRole(user_id, newRole)) {
 			roles = Roles.getRolesForUser(user_id);

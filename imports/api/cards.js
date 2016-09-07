@@ -1,10 +1,12 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
 
-import {Cardsets } from './cardsets.js';
-import {Experience } from './experience.js';
-import {Learned } from './learned.js';
-import {Paid } from './paid.js';
+import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+
+import {Cardsets} from './cardsets.js';
+import {Experience} from './experience.js';
+import {Learned} from './learned.js';
+import {Paid} from './paid.js';
 
 
 export const Cards = new Mongo.Collection("cards");
@@ -27,7 +29,7 @@ if (Meteor.isServer) {
 								{visible: true}
 							]
 						}).map(function (cardset) {
-							return cardset._id
+							return cardset._id;
 						})
 					}
 				});
@@ -38,7 +40,7 @@ if (Meteor.isServer) {
 						{
 							cardset_id: {
 								$in: Cardsets.find({owner: this.userId}).map(function (cardset) {
-									return cardset._id
+									return cardset._id;
 								})
 							}
 						},
@@ -49,7 +51,7 @@ if (Meteor.isServer) {
 									visible: true,
 									kind: 'free'
 								}).map(function (cardset) {
-									return cardset._id
+									return cardset._id;
 								})
 							}
 						},
@@ -60,11 +62,11 @@ if (Meteor.isServer) {
 									user_id: this.userId,
 									cardset_id: {
 										$in: Cardsets.find({visible: true}).map(function (cardset) {
-											return cardset._id
+											return cardset._id;
 										})
 									}
 								}).map(function (paid) {
-									return paid.cardset_id
+									return paid.cardset_id;
 								})
 							}
 						}
@@ -165,10 +167,7 @@ Meteor.methods({
 	},
 	deleteCardAdmin: function (card_id) {
 		var card = Cards.findOne({_id: card_id});
-
 		if (card !== undefined) {
-			var cardset = Cardsets.findOne(card.cardset_id);
-
 			if (!Roles.userIsInRole(this.userId, [
 					'admin',
 					'editor'

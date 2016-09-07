@@ -1,28 +1,41 @@
-import {Meteor } from 'meteor/meteor';
-import {Mongo } from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
 
-import {Cards } from './cards.js';
-import {Experience } from './experience.js';
-import {Ratings } from './ratings.js';
+import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+
+import {Cards} from './cards.js';
+import {Experience} from './experience.js';
+import {Ratings} from './ratings.js';
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
 if (Meteor.isServer) {
 	Meteor.publish("cardsets", function () {
-		if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
 			return Cardsets.find();
-		}
-		else if (Roles.userIsInRole(this.userId, 'lecturer')) {
-			return Cardsets.find({$or: [{visible: true}, {request: true}, {owner: this.userId}]});
-		}
-		else if (this.userId && !Roles.userIsInRole(this.userId, 'blocked'))
-		{
-			return Cardsets.find({$or: [{visible: true}, {owner: this.userId}]});
+		} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
+			return Cardsets.find({
+				$or: [
+					{visible: true},
+					{request: true},
+					{owner: this.userId}
+				]
+			});
+		} else if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+			return Cardsets.find({
+				$or: [
+					{visible: true},
+					{owner: this.userId}
+				]
+			});
 		}
 	});
 }
 
-CardsetsSchema = new SimpleSchema({
+const CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
@@ -88,21 +101,30 @@ Cardsets.attachSchema(CardsetsSchema);
 
 CardsetsIndex = new EasySearch.Index({
 	collection: Cardsets,
-	fields: ['name', 'description'],
+	fields: [
+		'name',
+		'description'
+	],
 	engine: new EasySearch.Minimongo({
 		selector: function (searchObject, options, aggregation) {
 			// Default selector
-			defSelector = this.defaultConfiguration().selector(searchObject, options, aggregation);
+			const defSelector = this.defaultConfiguration().selector(searchObject, options, aggregation);
 
 			// Filter selector
-			selector = {};
-			selector.$and = [defSelector, {
-				$or: [{
-					owner: Meteor.userId()
-				}, {
-					visible: true
-				}]
-			}];
+			const selector = {};
+			selector.$and = [
+				defSelector,
+				{
+					$or: [
+						{
+							owner: Meteor.userId()
+						},
+						{
+							visible: true
+						}
+					]
+				}
+			];
 			return selector;
 		}
 	})
@@ -146,7 +168,10 @@ Meteor.methods({
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
-		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -161,7 +186,10 @@ Meteor.methods({
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
-		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -211,20 +239,23 @@ Meteor.methods({
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
-		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 				throw new Meteor.Error("not-authorized");
 			}
 		}
 
-		Meteor.call("updateRelevance", id, function (error, relevance){
-			if(!error){
+		Meteor.call("updateRelevance", id, function (error, relevance) {
+			if (!error) {
 				Cardsets.update(id, {
 					$set: {
-					  kind: kind,
-					  price: price,
-					  visible: visible,
-					  relevance: relevance
+						kind: kind,
+						price: price,
+						visible: visible,
+						relevance: relevance
 					}
 				});
 			}
@@ -265,8 +296,8 @@ Meteor.methods({
 	},
 	declineProRequest: function (cardset_id) {
 		var cardset = Cardsets.findOne(cardset_id);
-		if ((!Roles.userIsInRole(this.userId, 'lecturer'))&&(!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
-				throw new Meteor.Error("not-authorized");
+		if ((!Roles.userIsInRole(this.userId, 'lecturer')) && (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
+			throw new Meteor.Error("not-authorized");
 		}
 
 		Cardsets.update(cardset_id, {
@@ -281,7 +312,10 @@ Meteor.methods({
 	updateLicense: function (id, license) {
 		var cardset = Cardsets.findOne(id);
 
-		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 				throw new Meteor.Error("not-authorized");
 			}
