@@ -90,8 +90,8 @@ Template.admin_user.helpers({
 				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: '_id',
@@ -104,8 +104,8 @@ Template.admin_user.helpers({
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-					return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-				}
+						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+					}
 				}
 			]
 		};
@@ -138,11 +138,7 @@ Template.admin_user.helpers({
 			var currentUser = Meteor.user()._id;
 
 			if (Roles.userIsInRole(id, 'admin')) {
-				if (Roles.userIsInRole(currentUser, 'editor')) {
-					return false;
-				} else {
-					return true;
-				}
+				return !Roles.userIsInRole(currentUser, 'editor');
 			} else {
 				return true;
 			}
@@ -154,11 +150,7 @@ Template.admin_user.helpers({
 		if (id) {
 			var currentUser = Meteor.user()._id;
 
-			if (id === currentUser) {
-				return false;
-			} else {
-				return true;
-			}
+			return id !== currentUser;
 		} else {
 			return null;
 		}

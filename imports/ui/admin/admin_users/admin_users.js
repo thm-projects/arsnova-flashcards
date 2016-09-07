@@ -41,40 +41,40 @@ Template.admin_users.helpers({
 			fields: [
 				{
 					key: '_id', label: TAPi18n.__('admin.admin'), cellClass: 'admin', fn: function (value, object) {
-					if (Roles.userIsInRole(value, 'admin')) {
-						return new Spacebars.SafeString("<span name='Admin" + object.profilename + "'><i class='fa fa-check'></i> (Super Admin)</span>");
-					} else if (Roles.userIsInRole(value, 'editor')) {
-						return new Spacebars.SafeString("<span name='admin" + object.profilename + "'><i class='fa fa-check'></i></span>");
-					} else {
-						return new Spacebars.SafeString("<span name='normal" + object.profilename + "'></span>");
+						if (Roles.userIsInRole(value, 'admin')) {
+							return new Spacebars.SafeString("<span name='Admin" + object.profilename + "'><i class='fa fa-check'></i> (Super Admin)</span>");
+						} else if (Roles.userIsInRole(value, 'editor')) {
+							return new Spacebars.SafeString("<span name='admin" + object.profilename + "'><i class='fa fa-check'></i></span>");
+						} else {
+							return new Spacebars.SafeString("<span name='normal" + object.profilename + "'></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'profilename', label: TAPi18n.__('admin.users'), fn: function (value) {
-					return value;
-				}
+						return value;
+					}
 				},
 				{
 					key: '_id', label: TAPi18n.__('admin.pro'), cellClass: 'pro', fn: function (value) {
-					if (Roles.userIsInRole(value, 'pro')) {
-						return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						if (Roles.userIsInRole(value, 'pro')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
 					}
-				}
 				},
 				{
 					key: '_id', label: TAPi18n.__('admin.university'), cellClass: 'university', fn: function (value) {
-					if (Roles.userIsInRole(value, 'university')) {
-						return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						if (Roles.userIsInRole(value, 'university')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
 					}
-				}
 				},
 				{
 					key: '_id', label: TAPi18n.__('admin.lecturer'), cellClass: 'lecturer', fn: function (value) {
-					if (Roles.userIsInRole(value, 'lecturer')) {
-						return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						if (Roles.userIsInRole(value, 'lecturer')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
 					}
-				}
 				},
 				{
 					key: '_id',
@@ -89,15 +89,15 @@ Template.admin_users.helpers({
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.joined'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: '_id', label: TAPi18n.__('admin.blocked'), cellClass: 'blocked', fn: function (value) {
-					if (Roles.userIsInRole(value, 'blocked')) {
-						return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						if (Roles.userIsInRole(value, 'blocked')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
 					}
-				}
 				},
 				{
 					key: '_id',
