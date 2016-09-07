@@ -202,10 +202,10 @@ Template.cardsets.events({
       var modulLong = $('#newSetModulLong').val();
       var modulShort = $('#newSetModulShort').val();
       var modulNum = $('#newSetModulNum').val();
-      console.log($('#newSetCollege').val());
-      var college = $('#newSetCollege').val();
+      var college = $('#newSetCollege').text();
+      var studyType = $('#newSetCategory').text();
 
-      Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum, college);
+      Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum, college, studyType);
       $('#newSetModal').modal('hide');
     }
   }

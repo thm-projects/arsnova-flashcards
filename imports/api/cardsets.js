@@ -164,7 +164,7 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-  addCardset: function(name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college) {
+  addCardset: function(name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
     // Make sure the user is logged in before inserting a cardset
     if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
       throw new Meteor.Error("not-authorized");
@@ -196,7 +196,7 @@ Meteor.methods({
       college: college,
       academicCourse: 'undefined',
       department: 'undefined',
-      studyType: 'undefined',
+      studyType: studyType,
       BachelorOrMaster: 'undefined',
       semester: 'undefined'
     });
