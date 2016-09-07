@@ -18,6 +18,7 @@ import '../access_denied/access_denied.js';
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
+Meteor.subscribe("adminSettings");
 
 Template.main.events({
   'click #logout': function(event) {

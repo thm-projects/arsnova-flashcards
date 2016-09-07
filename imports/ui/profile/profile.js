@@ -12,7 +12,7 @@ import { Learned } from '../../api/learned.js';
 import { Ratings } from '../../api/ratings.js';
 import { Paid } from '../../api/paid.js';
 import { Notifications } from '../../api/notifications.js';
-import { AdminSettings } from '../../api/adminSettings';
+import { AdminSettings } from '../../api/adminSettings.js';
 
 import { userData } from '../../api/userdata.js';
 
@@ -24,6 +24,7 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("adminSettings");
 
 Template.registerHelper("getUser", function() {
     var user = Meteor.users.findOne(Router.current().params._id);
@@ -390,12 +391,27 @@ Template.profileRequests.helpers({
  * profileXp
  * ############################################################################
  */
-var seq = AdminSettings.findOne({name: "seqSettings"});
-var seqOne = seq.seqOne; //7 tag
-var seqTwo = seq.seqTwo; //30 tag
-var seqThree = seq.seqTwo; //90 tag
+
+var seqOne = 7; //7 tag
+var seqTwo = 30; //30 tag
+var seqThree = 90; //90 tag
 
 Template.profileXp.helpers({
+
+    startXp: function() {
+        console.log("bevor seq AssGoblins of Auschitz");
+
+        if(Meteor.adminSettings.findOne({name: "seqSettings"})){
+
+            var seq = Meteor.adminSettings.findOne({name: "seqSettings"});
+            console.log(seq);
+             seqOne = seq.seqOne; //7 tag
+             seqTwo = seq.seqTwo; //30 tag
+             seqThree = seq.seqThree; //90 tag
+        } else {
+            console.log("error could not finde adminSettings");
+        }
+    },
     getDays1: function(){
         return seqOne;
     },
