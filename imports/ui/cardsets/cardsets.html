@@ -196,20 +196,17 @@
             <div class="form-group setdetails categories">
               <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.studyType"}}</label>
               <div class="col-md-9">
-                <div class="dropdown">
+                <div class="dropup">
                   <div class="btn-group">
                     <button id="newSetCategory" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_ "modal-dialog.studyType_required"}}</button>
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="caret"></span>
                       <span class="sr-only"></span>
                     </button>
-
                     <ul class="dropdown-menu">
                       {{#each getCategories}}
                         <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
                       {{/each}}
-                      <li role="separator" class="divider"></li>
-                      <li>text</li>
                     </ul>
                   </div>
                 </div>
@@ -220,16 +217,20 @@
             <div class="form-group setdetails categories">
               <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.college"}}</label>
               <div class="col-md-9">
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span id="newSetCategory">{{_ "modal-dialog.college_required"}}</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    {{#each getColleges}}
-                      <li class="college" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
-                    {{/each}}
-                  </ul>
+                <div class="dropup">
+                  <div class="btn-group">
+                    <button id="newSetCollege" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{_ "modal-dialog.college_required"}}</button>
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      <span class="caret"></span>
+                      <span class="sr-only"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      {{#each getColleges}}
+                        <li class="college" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
+                      {{/each}}
+                    </ul>
+                  </div>
                 </div>
                 <span id="helpNewSetCategory" class="help-block category"></span>
               </div>

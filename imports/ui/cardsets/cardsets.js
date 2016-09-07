@@ -157,6 +157,12 @@ Template.cardsets.events({
     $('#newSetCategory').text(categoryName);
     tmpl.find('#newSetCategory').value = categoryId;
   },
+  'click .college': function(evt, tmpl) {
+    var categoryName = $(evt.currentTarget).attr("data");
+    var categoryId = $(evt.currentTarget).val();
+    $('#newSetCollege').text(categoryName);
+    tmpl.find('#newSetCollege').value = categoryId;
+  },
   'click #newSetModal .save': function(evt) {
     if ($('#newSetName').val() === "") {
       $('#newSetNameLabel').css('color', '#b94a48');
