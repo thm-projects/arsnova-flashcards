@@ -1,5 +1,5 @@
 <template name="pool">
-    <div id="pool-category-region" class="table-responsive table-reflow">
+    <div id="pool-category-region">
         {{> category}}
     </div>
 </template>
@@ -33,7 +33,7 @@
                     <ul class="dropdown-menu">
                             <li><a href="#" class="filterAutor" data-id="">{{_ "set-list.everyone"}}</a></li>
                         {{#each getAutors}}
-                            <li><a href="#" class="filterAutor" data-id="{{this.owner}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a></li>
+                            <li><a href="#" class="filterAutor" data-id="{{this.lastName}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a></li>
                         {{/each}}
                     </ul>
                 </div>

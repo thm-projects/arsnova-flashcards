@@ -33,16 +33,16 @@ function getCollection (sortFilter, listType) {
     var query = {};
     query.visible = true;
     query.kind = {$in: Session.get('poolFilter')};
-    if(Session.get('poolFilterAutor'))
-        query.owner = {$in: Session.get('poolFilterAutor')};
-    if(Session.get('poolFilterModule'))
-        query.moduleLong = {$in: Session.get('poolFilterModule')};
-    if(Session.get('poolFilterCourse'))
-        query.academicCourse = {$in: Session.get('poolFilterCourse')};
-    if(Session.get('poolFilterDepartment'))
-        query.department = {$in: Session.get('poolFilterDepartment')};
-    if(Session.get('poolFilterStudyType'))
-        query.studyType = {$in: Session.get('poolFilterStudyType')};
+    if(Session.get('poolFilterAutor') && listType == 0)
+        query.lastName = Session.get('poolFilterAutor');
+    if(Session.get('poolFilterModule') && listType == 0)
+        query.moduleLong = Session.get('poolFilterModule');
+    if(Session.get('poolFilterCourse') && listType == 0)
+        query.academicCourse = Session.get('poolFilterCourse');
+    if(Session.get('poolFilterDepartment') && listType == 0)
+        query.department = Session.get('poolFilterDepartment');
+    if(Session.get('poolFilterStudyType') && listType == 0)
+        query.studyType = Session.get('poolFilterStudyType');
     if(listType == 0)
         return Cardsets.find(query, {sort: sortFilter});
     else
@@ -167,7 +167,7 @@ Template.category.events({
     'click .filterModule': function(event) {
         Session.set('poolFilterModule', $(event.target).data('id'));
     },
-    'click .filterStudy': function(event) {
+    'click .filterCourse': function(event) {
         Session.set('poolFilterCourse', $(event.target).data('id'));
     },
     'click .filterDepartment': function(event) {
