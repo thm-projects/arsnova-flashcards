@@ -81,7 +81,9 @@
     "academicCourse": "Studiengang",
     "department": "Fachbereich",
     "studyType": "Studienart",
-    "license": "Lizenz"
+    "license": "Lizenz",
+    "topic": "Thema",
+    "autor": "Autor/in"
   },
   "set-list-empty": {
   	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",

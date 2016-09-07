@@ -4,76 +4,95 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <button id="#sortName" class="btn btn-link" role="button" value="down">
-                        <span>{{_ "set-list.name"}}</span>
-                        <span class="glyphicon glyphicon-sort"></span>
-                    </button>
+                    <div class ="btn-group">
+                        <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
+                            {{_ "set-list.topic"}} </button>
+                        <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                    </div>
                 </th>
                 <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.moduleLong"}}
-                            <span class="caret"></span></button>
+                    <div class="btn-group">
+                        <button type="button" class="filterAutor btn btn-default" data-toggle="dropdown">
+                            {{_ "set-list.autor"}}</button>
+                        <button type="button" class="filterAutor btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </th>
                 <th>
-                    <button id="#sortLastName" class="btn btn-link" role="button" value="down">
-                        <span>{{_ "set-list.lastName"}}</span>
-                        <span class="glyphicon glyphicon-sort"></span>
-                    </button>
-                </th>
-                <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.degree"}}
-                            <span class="caret"></span></button>
+                    <div class="btn-group">
+                        <button type="button" class="filterModule btn btn-default" data-toggle="dropdown">
+                            {{_ "set-list.moduleLong"}}</button>
+                        <button type="button" class="filterModule btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </th>
                 <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.academicCourse"}}
-                            <span class="caret"></span></button>
+                    <div class="btn-group">
+                        <button type="button" class="filterCourse btn btn-default" data-toggle="dropdown">
+                            {{_ "set-list.academicCourse"}}</button>
+                        <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </th>
                 <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.department"}}
-                            <span class="caret"></span></button>
+                    <div class="btn-group">
+                        <button type="button" class="filterDepartment btn btn-default" data-toggle="dropdown">
+                            {{_ "set-list.department"}}</button>
+                        <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </th>
                 <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.studyType"}}
-                            <span class="caret"></span></button>
+                    <div class="btn-group">
+                        <button type="button" class="filterType btn btn-default" data-toggle="dropdown">
+                            {{_ "set-list.studyType"}}</button>
+                        <button type="button" class="filterType btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </th>
                 <th>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{_ "set-list.license"}}
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
+                    <label class="btn btn-default active">
+                        Free
+                    </label>
+                    <label class="btn btn-success active">
+                        Edu
+                    </label>
+                    <label class="btn btn-info active">
+                        Pro
+                    </label>
                 </th>
             </tr>
             </thead>
@@ -97,22 +116,13 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-        <td>{{moduleLong}}</td>
-        <td>{{lastName}}</td>
-        <td>{{degree}}</td>
+        <td>{{degree}} {{firstName}} {{lastName}}</td>
         <td>{{academicCourse}}</td>
+        <td>{{moduleShort}}</td>
         <td>{{department}}</td>
         <td>{{studyType}}</td>
         <td>
-            <label class="btn btn-default active">
-                Free
-            </label>
-            <label class="btn btn-success active">
-                Edu
-            </label>
-            <label class="btn btn-info active">
-                Pro
-            </label>
+
         </td>
     </tr>
 </template>
