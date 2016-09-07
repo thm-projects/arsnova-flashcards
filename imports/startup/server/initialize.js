@@ -10,9 +10,9 @@ Meteor.startup(function() {
   if(!AdminSettings.findOne({name: "seqSettings"})){
     AdminSettings.insert({// TODO wegen insecure erlauben
       name: "seqSettings",
-      seqOne:"7",
-      seqTwo: "30",
-      seqThree: "90"
+      seqOne:7,
+      seqTwo: 30,
+      seqThree: 90
     });
   }
 

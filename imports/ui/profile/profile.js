@@ -392,19 +392,18 @@ Template.profileRequests.helpers({
  * ############################################################################
  */
 
-var seqOne = 7; //7 tag
-var seqTwo = 30; //30 tag
-var seqThree = 90; //90 tag
+var seqOne = 6; //7 tag
+var seqTwo = 29; //30 tag
+var seqThree = 89; //90 tag
 
 Template.profileXp.helpers({
 
     startXp: function() {
-        console.log("bevor seq ");
-
-        if(Meteor.adminSettings.findOne({name: "seqSettings"})){
-
-            var seq = Meteor.adminSettings.findOne({name: "seqSettings"});
-            console.log(seq);
+        //console.log("bevor seq ");
+        //console.log(AdminSettings.find().fetch());
+        var seq = AdminSettings.findOne({name: "seqSettings"});
+        if(seq){
+            //console.log(seq);
              seqOne = seq.seqOne; //7 tag
              seqTwo = seq.seqTwo; //30 tag
              seqThree = seq.seqThree; //90 tag
