@@ -227,8 +227,12 @@
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "twoDaysAgo": "Day before yesterday",
-    "days": "7 days",
+    "twoDaysAgo": "Two days ago",
+    "days": "days",
+    "reset" : "reset",
+    "default1" : "default 7 days",
+    "default2" : "default 30 days",
+    "default3" : "default 90 days",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
