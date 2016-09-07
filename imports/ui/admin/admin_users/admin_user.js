@@ -230,6 +230,7 @@ Template.admin_user.events({
          var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
          var email = $('#editUserEmailAdmin').val();
          var blockedtext = $('#editUserBlockedtextAdmin').val();
+         var title = $('#editUserTitleAdmin').val();
          var bname = $('#editUserBNameAdmin').val();
          var gname = $('#editUserGNameAdmin').val();
          var check = re.test(email);
@@ -310,6 +311,7 @@ Template.admin_user.events({
 
            Meteor.call('updateUser', user_id, visible, email, blockedtext);
            Meteor.call('updateUsersName', result, user_id);
+           Meteor.call('updateUsersTitle', title, user_id);
            Meteor.call('updateUsersBName', bname, user_id);
            Meteor.call('updateUsersGName', gname, user_id);
            Meteor.call('updateUsersProfileState',

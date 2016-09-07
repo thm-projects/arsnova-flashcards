@@ -224,6 +224,8 @@
   },
   "panel-body": {
   	"name": "User name",
+  	"title": "Title",
+  	"title-desc": "Academic title (public)",
   	"bname": "Birth name",
   	"bname-desc": "Birth name (public)",
   	"gname": "Given name",
@@ -609,6 +611,7 @@
       "edit": "Edit",
       "info": "User info",
       "username": "Name:",
+      "title": "Academic title (public):",
       "bname": "Birth name (public):",
       "gname": "Given name (public):",
       "service": "Service:",

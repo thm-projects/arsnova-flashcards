@@ -52,6 +52,13 @@ Meteor.methods({
       }
     }, {multi:true});
   },
+  updateUsersTitle: function(title, id) {
+    Meteor.users.update(id, {
+      $set: {
+        "profile.title": title
+      }
+	});
+  },
   updateUsersBName: function(bname, id) {
     Meteor.users.update(id, {
       $set: {

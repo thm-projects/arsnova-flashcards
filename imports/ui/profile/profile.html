@@ -187,6 +187,13 @@
                         </div>
                   	  </div>
                   	  <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.title"}}</label>
+                        <div class="col-md-8">
+                          <input disabled type="text" class="form-control" id="inputTitle" placeholder="{{_ "panel-body.title-desc"}}" value="{{getUser.profile.title}}">
+                          <span id="errorTitle" class="help-block name"></span>
+                        </div>
+                  	  </div>
+                  	  <div class="form-group">
                         <label class="col-md-4 control-label">{{_ "panel-body.bname"}}</label>
                         <div class="col-md-8">
                           <input type="text" class="form-control" id="inputBName" placeholder="{{_ "panel-body.bname-desc"}}" value="{{getUser.profile.bname}}">
