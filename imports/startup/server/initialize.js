@@ -208,7 +208,7 @@ var initBadges = function () {
 
 Meteor.startup(function () {
 	var categories = initCategories();
-	var badges = initBadges();
+	var badges     = initBadges();
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {
 			if (categories.hasOwnProperty(category)) {

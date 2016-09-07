@@ -1,21 +1,21 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cards } from '../../../api/cards.js';
-import {Cardsets } from '../../../api/cardsets.js';
+import {Cards} from '../../../api/cards.js';
+import {Cardsets} from '../../../api/cardsets.js';
 
 import './admin_cards.html';
 
 import './admin_card.js';
 
 /**
-* ############################################################################
-* admin_cards
-* ############################################################################
-*/
+ * ############################################################################
+ * admin_cards
+ * ############################################################################
+ */
 
 Template.admin_cards.helpers({
 	cardListAdmin: function () {
@@ -24,7 +24,16 @@ Template.admin_cards.helpers({
 
 		cards.forEach(function (card) {
 			var cardset = Cardsets.findOne({_id: card.cardset_id});
-			fields.push({"_id": card._id, "front": card.front, "back": card.back, "cardset_id": card.cardset_id, "cardsetname": cardset.name, "user_id": cardset.owner, "username": cardset.username, "userDeleted": cardset.userDeleted});
+			fields.push({
+				"_id": card._id,
+				"front": card.front,
+				"back": card.back,
+				"cardset_id": card.cardset_id,
+				"cardsetname": cardset.name,
+				"user_id": cardset.owner,
+				"username": cardset.username,
+				"userDeleted": cardset.userDeleted
+			});
 		});
 
 		return fields;
@@ -43,9 +52,9 @@ Template.admin_cards.helpers({
 					},
 					fn: function (front, object) {
 						Meteor.promise("convertMarkdown", front)
-						.then(function (html) {
-							$(".front_" + object._id).html(html);
-						});
+							.then(function (html) {
+								$(".front_" + object._id).html(html);
+							});
 					}
 				},
 				{
@@ -129,10 +138,10 @@ Template.admin_cards.events({
 });
 
 /**
-* ############################################################################
-* cardConfirmFormAdmin
-* ############################################################################
-*/
+ * ############################################################################
+ * cardConfirmFormAdmin
+ * ############################################################################
+ */
 
 Template.cardConfirmFormAdmin.events({
 	'click #cardDeleteAdmin': function () {

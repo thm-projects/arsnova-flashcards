@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Cardsets } from './cardsets.js';
+import {Cardsets} from './cardsets.js';
 
 var Future = Npm.require('fibers/future');
 
@@ -38,7 +38,7 @@ Meteor.methods({
 
 	btGetPaymentMethod: function () {
 		var btPayment = new Future();
-		var user = Meteor.users.findOne(this.userId);
+		var user      = Meteor.users.findOne(this.userId);
 		Meteor.call('btFindCustomer', user.customerId, function (error, customer) {
 			if (error) {
 				btPayment.return(error);
@@ -81,7 +81,7 @@ Meteor.methods({
 	},
 
 	btCreateTransaction: function (nonceFromTheClient, cardset_id) {
-		var cardset = Cardsets.findOne(cardset_id);
+		var cardset             = Cardsets.findOne(cardset_id);
 		var btCreateTransaction = new Future();
 		// Create our customer.
 		Meteor.call('btCreateCustomer', nonceFromTheClient, function (error, btCustomer) {
@@ -117,7 +117,7 @@ Meteor.methods({
 	},
 
 	btCreateCredit: function (nonceFromTheClient) {
-		var user = Meteor.users.findOne(this.userId);
+		var user           = Meteor.users.findOne(this.userId);
 		var btCreateCredit = new Future();
 		// Create our customer.
 		Meteor.call('btCreateCustomer', nonceFromTheClient, function (error, btCustomer) {
@@ -223,7 +223,7 @@ Meteor.methods({
 					email: user.email,
 					paymentMethodNonce: nonce
 				};
-				var btCustomer = new Future();
+				var btCustomer   = new Future();
 				// Calling the Braintree API to create our customer!
 				gateway.customer.create(customerData, function (error, result) {
 					if (error) {
@@ -295,7 +295,7 @@ Meteor.methods({
 			} else {
 				// get customer's last subscription
 				var subscriptionId = result.paymentMethods[0].subscriptions;
-				var last = subscriptionId.slice(-1)[0];
+				var last           = subscriptionId.slice(-1)[0];
 
 				btUserSubscription.return(last);
 			}
@@ -307,7 +307,7 @@ Meteor.methods({
 	btCancelSubscription: function () {
 		var btCancelSubscription = new Future();
 
-		var user = Meteor.userId();
+		var user    = Meteor.userId();
 		var getUser = Meteor.users.findOne({
 			"_id": user
 		}, {

@@ -1,19 +1,19 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cardsets } from '../../../api/cardsets.js';
-import {Cards } from '../../../api/cards.js';
+import {Cardsets} from '../../../api/cardsets.js';
+import {Cards} from '../../../api/cards.js';
 
 import './admin_cardset.html';
 
 /**
-* ############################################################################
-* admin_cardset
-* ############################################################################
-*/
+ * ############################################################################
+ * admin_cardset
+ * ############################################################################
+ */
 
 Template.admin_cardset.onDestroyed(function () {
 	Session.set('kind', undefined);
@@ -87,9 +87,9 @@ Template.admin_cardset.helpers({
 					},
 					fn: function (front, object) {
 						Meteor.promise("convertMarkdown", front)
-						.then(function (html) {
-							$(".back_" + object._id).html(html);
-						});
+							.then(function (html) {
+								$(".back_" + object._id).html(html);
+							});
 					}
 				},
 				{
@@ -138,12 +138,12 @@ Template.admin_cardset.events({
 			$('#helpEditCardsetKindAdmin').css('color', '#b94a48');
 		}
 		if ($("#cc-modules-admin").length && $("#cc-option2-admin").hasClass('active') && $("#cc-option3-admin").hasClass('active') || //checks if cc-modules-admin is !empty and if cc-option-2 and 3-admin are active
-		$("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) {//or if the children of cc-modules-admin and option-0 are active
+			$("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) {//or if the children of cc-modules-admin and option-0 are active
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		}	else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
-			var name = tmpl.find('#editCardsetNameAdmin').value;
+		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+			var name        = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
 			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
@@ -151,16 +151,24 @@ Template.admin_cardset.events({
 			}
 			var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
-			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
-			var price = 0;
+			var kind    = tmpl.find('#publicateKindAdmin > .active > input').value;
+			var price   = 0;
 			var visible = true;
 			var license = [];
 
 			if (("#cc-modules-admin").length) {
-				if ($("#cc-option0-admin").hasClass('active')) {license.push("by"); }
-				if ($("#cc-option1-admin").hasClass('active')) {license.push("nc"); }
-				if ($("#cc-option2-admin").hasClass('active')) {license.push("nd"); }
-				if ($("#cc-option3-admin").hasClass('active')) {license.push("sa"); }
+				if ($("#cc-option0-admin").hasClass('active')) {
+					license.push("by");
+				}
+				if ($("#cc-option1-admin").hasClass('active')) {
+					license.push("nc");
+				}
+				if ($("#cc-option2-admin").hasClass('active')) {
+					license.push("nd");
+				}
+				if ($("#cc-option3-admin").hasClass('active')) {
+					license.push("sa");
+				}
 			}
 
 			Meteor.call('updateLicense', this._id, license);
@@ -168,7 +176,7 @@ Template.admin_cardset.events({
 			if (kind === 'edu' || kind === 'pro') {
 				if (tmpl.find('#publicatePriceAdmin') !== null) {
 					price = tmpl.find('#publicatePriceAdmin').value;
-				}	else {
+				} else {
 					price = this.price;
 				}
 			}
@@ -194,7 +202,7 @@ Template.admin_cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
+		var categoryId   = $(evt.currentTarget).val();
 		$('#editCardsetCategoryAdmin').text(categoryName);
 		tmpl.find('#editCardsetCategoryAdmin').value = categoryId;
 	},
@@ -231,10 +239,10 @@ Template.admin_cardset.events({
 });
 
 /**
-* ############################################################################
-* cardConfirmFormCardsetAdmin
-* ############################################################################
-*/
+ * ############################################################################
+ * cardConfirmFormCardsetAdmin
+ * ############################################################################
+ */
 
 Template.cardConfirmFormCardsetAdmin.events({
 	'click #cardDeleteCardsetAdmin': function () {

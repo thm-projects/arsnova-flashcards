@@ -1,14 +1,14 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cardsets } from '../../api/cardsets.js';
-import {Cards } from '../../api/cards.js';
-import {Categories } from '../../api/categories.js';
-import {Ratings } from '../../api/ratings.js';
-import {Paid } from '../../api/paid.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
+import {Categories} from '../../api/categories.js';
+import {Ratings} from '../../api/ratings.js';
+import {Paid} from '../../api/paid.js';
 import {ReactiveVar} from 'meteor/reactive-var';
 
 import '../card/card.js';
@@ -30,10 +30,10 @@ Session.setDefault('cardSort', {
 });
 
 /**
-* ############################################################################
-* cardset
-* ############################################################################
-*/
+ * ############################################################################
+ * cardset
+ * ############################################################################
+ */
 
 Template.cardset.rendered = function () {
 	Meteor.subscribe("previewCards", Router.current().params._id);
@@ -74,7 +74,7 @@ Template.cardset.helpers({
 		Session.set('previousCategory', Cardsets.findOne(id).category);
 
 		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId = previousCategory.toString();
+		var categoryId       = previousCategory.toString();
 
 		if (categoryId.length === 1) {
 			categoryId = "0" + categoryId;
@@ -86,15 +86,15 @@ Template.cardset.helpers({
 		}
 	},
 	'hasCardsetPermission': function () {
-		var userId = Meteor.userId();
+		var userId      = Meteor.userId();
 		var cardsetKind = this.kind;
 
 		var hasRole = false;
 		if (Roles.userIsInRole(userId, 'pro') ||
-		(Roles.userIsInRole(userId, 'lecturer')) ||
-		(Roles.userIsInRole(userId, 'university') && (cardsetKind  === 'edu' || cardsetKind === 'free')) ||
-		(cardsetKind === 'free') ||
-		(Paid.find({cardset_id: this._id, user_id: userId}).count() === 1)) {
+			(Roles.userIsInRole(userId, 'lecturer')) ||
+			(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
+			(cardsetKind === 'free') ||
+			(Paid.find({cardset_id: this._id, user_id: userId}).count() === 1)) {
 			hasRole = true;
 		}
 
@@ -138,7 +138,7 @@ Template.cardset.events({
 			if (tmpl.find('#editSetCategory').value === undefined) {
 				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
 			}
-			var category = tmpl.find('#editSetCategory').value;
+			var category    = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
 
 			Meteor.call("updateCardset", this._id, name, category, description);
@@ -164,7 +164,7 @@ Template.cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
+		var categoryId   = $(evt.currentTarget).val();
 		$('#editSetCategory').text(categoryName);
 		tmpl.find('#editSetCategory').value = categoryId;
 	},
@@ -185,18 +185,18 @@ Template.cardset.events({
 });
 
 /**
-* ############################################################################
-* cardsetForm
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetForm
+ * ############################################################################
+ */
 
 Template.cardsetForm.onRendered(function () {
 	$('#editSetModal').on('hidden.bs.modal', function () {
 		$('#helpEditSetName').html('');
 		$('#helpEditSetDescription').html('');
 
-		var previousName = Session.get('previousName');
-		var previousDescription = Session.get('previousDescription');
+		var previousName         = Session.get('previousName');
+		var previousDescription  = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
 
 		if (previousName !== $('#editSetName').val()) {
@@ -229,21 +229,21 @@ Template.cardsetForm.events({
 });
 
 /**
-* ############################################################################
-* cardsetList
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetList
+ * ############################################################################
+ */
 
 Template.cardsetList.helpers({
 	cardlistMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-		.then(function (html) {
-			$(".front" + index).html(html);
-		});
+			.then(function (html) {
+				$(".front" + index).html(html);
+			});
 		Meteor.promise("convertMarkdown", back)
-		.then(function (html) {
-			$(".back" + index).html(html);
-		});
+			.then(function (html) {
+				$(".back" + index).html(html);
+			});
 	},
 	cardList: function () {
 		return Cards.find({
@@ -288,10 +288,10 @@ Template.cardsetList.onDestroyed(function () {
 
 
 /**
-* ############################################################################
-* cardsetDetails
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetDetails
+ * ############################################################################
+ */
 
 Template.cardsetDetails.onCreated(function () {
 	this.autorun(() => {
@@ -316,13 +316,13 @@ Template.cardsetDetails.helpers({
 	},
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-		.then(function (html) {
-			$(".detailfront" + index).html(html);
-		});
+			.then(function (html) {
+				$(".detailfront" + index).html(html);
+			});
 		Meteor.promise("convertMarkdown", back)
-		.then(function (html) {
-			$(".detailback" + index).html(html);
-		});
+			.then(function (html) {
+				$(".detailback" + index).html(html);
+			});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});
@@ -349,10 +349,10 @@ Template.cardsetDetails.events({
 });
 
 /**
-* ############################################################################
-* cardsetPreview
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetPreview
+ * ############################################################################
+ */
 
 Template.cardsetPreview.onCreated(function () {
 	this.autorun(() => {
@@ -383,13 +383,13 @@ Template.cardsetPreview.helpers({
 	},
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
-		.then(function (html) {
-			$(".detailfront" + index).html(html);
-		});
+			.then(function (html) {
+				$(".detailfront" + index).html(html);
+			});
 		Meteor.promise("convertMarkdown", back)
-		.then(function (html) {
-			$(".detailback" + index).html(html);
-		});
+			.then(function (html) {
+				$(".detailback" + index).html(html);
+			});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});
@@ -417,10 +417,10 @@ Template.cardsetPreview.events({
 });
 
 /**
-* ############################################################################
-* cardsetInfo
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetInfo
+ * ############################################################################
+ */
 
 Template.cardsetInfo.onRendered(function () {
 	$('[data-toggle="tooltip"]').tooltip({
@@ -433,7 +433,7 @@ Template.cardsetInfo.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count = ratings.count();
+		var count   = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
@@ -454,7 +454,7 @@ Template.cardsetInfo.helpers({
 		return this.ratings === true;
 	},
 	hasRated: function () {
-		var count = Ratings.find({
+		var count   = Ratings.find({
 			cardset_id: this._id,
 			user: Meteor.userId()
 		}).count();
@@ -513,10 +513,18 @@ Template.cardsetInfo.helpers({
 		var licenseString = "";
 
 		if (this.license.length > 0) {
-			if (this.license.includes('by')) {licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />'); }
-			if (this.license.includes('nc')) {licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />'); }
-			if (this.license.includes('nd')) {licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
-			if (this.license.includes('sa')) {licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
+			if (this.license.includes('by')) {
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+			}
+			if (this.license.includes('nc')) {
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+			}
+			if (this.license.includes('nd')) {
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+			}
+			if (this.license.includes('sa')) {
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+			}
 
 			return new Spacebars.SafeString(licenseString);
 		} else {
@@ -545,8 +553,8 @@ Template.cardsetInfo.events({
 	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
-		var rating = $('#rating').data('userrating');
-		var count = Ratings.find({
+		var rating     = $('#rating').data('userrating');
+		var count      = Ratings.find({
 			cardset_id: cardset_id,
 			user: Meteor.userId()
 		}).count();
@@ -558,38 +566,38 @@ Template.cardsetInfo.events({
 	'click #exportCardsBtn': function () {
 		//TODO: linked to todo below
 		/*var cardset = Cardsets.findOne(this._id);
-		var cards = Cards.find({
-			cardset_id: this._id
-		}, {
-			fields: {
-				'front': 1,
-				'back': 1,
-				'_id': 0
-			}
-		}).fetch();
-		var cardsString = '';
+		 var cards = Cards.find({
+		 cardset_id: this._id
+		 }, {
+		 fields: {
+		 'front': 1,
+		 'back': 1,
+		 '_id': 0
+		 }
+		 }).fetch();
+		 var cardsString = '';
 
-		for (var i = 0; i < cards.length; i++) {
-			cardsString += JSON.stringify(cards[i]);
+		 for (var i = 0; i < cards.length; i++) {
+		 cardsString += JSON.stringify(cards[i]);
 
-			if (cards.length - 1 > cards[i]) {
-				cardsString += ", ";
-			}
-		}
+		 if (cards.length - 1 > cards[i]) {
+		 cardsString += ", ";
+		 }
+		 }
 
-		var exportData = new Blob([cardsString], {
-			type: "application/json"
-		});*/
+		 var exportData = new Blob([cardsString], {
+		 type: "application/json"
+		 });*/
 		//TODO: This function is not defined... do something!
 		//saveAs(exportData, cardset.name + ".json");
 	}
 });
 
 /**
-* ############################################################################
-* cardsetSidebar
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetSidebar
+ * ############################################################################
+ */
 Template.cardsetSidebar.events({
 	"click #learnBox": function () {
 		Router.go('box', {
@@ -604,10 +612,10 @@ Template.cardsetSidebar.events({
 });
 
 /**
-* ############################################################################
-* cardsetImportForm
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetImportForm
+ * ############################################################################
+ */
 
 Template.cardsetImportForm.onCreated(function () {
 	Template.instance().uploading = new ReactiveVar(false);
@@ -631,7 +639,7 @@ Template.cardsetImportForm.events({
 		var cardset_id = Template.parentData(1)._id;
 
 		if (evt.target.files[0].name.match(/\.(json)$/)) {
-			var reader = new FileReader();
+			var reader    = new FileReader();
 			reader.onload = function () {
 				try {
 					var res = $.parseJSON('[' + this.result + ']');
@@ -640,7 +648,7 @@ Template.cardsetImportForm.events({
 						if (error) {
 							tmpl.uploading.set(false);
 							$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
-						}	else {
+						} else {
 							tmpl.uploading.set(false);
 							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
 							$('#importModal').modal('toggle');
@@ -676,10 +684,10 @@ Template.cardsetImportForm.events({
 });
 
 /**
-* ############################################################################
-* cardsetConfirmForm
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetConfirmForm
+ * ############################################################################
+ */
 
 Template.cardsetConfirmForm.events({
 	'click #cardDelete': function () {
@@ -692,10 +700,10 @@ Template.cardsetConfirmForm.events({
 });
 
 /**
-* ############################################################################
-* cardsetPublicateForm
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetPublicateForm
+ * ############################################################################
+ */
 
 Template.cardsetPublicateForm.onRendered(function () {
 	$('#publicateModal').on('hidden.bs.modal', function () {
@@ -732,16 +740,16 @@ Template.cardsetPublicateForm.helpers({
 
 Template.cardsetPublicateForm.events({
 	'click #cardsetPublicate': function (evt, tmpl) {
-		var id = this._id;
-		var kind = tmpl.find('#publicateKind > .active > input').value;
-		var price = 0;
+		var id      = this._id;
+		var kind    = tmpl.find('#publicateKind > .active > input').value;
+		var price   = 0;
 		var visible = true;
 		var license = [];
 
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publicatePrice') !== null) {
 				price = tmpl.find('#publicatePrice').value;
-			}	else {
+			} else {
 				price = this.price;
 			}
 		}
@@ -753,8 +761,8 @@ Template.cardsetPublicateForm.events({
 			visible = false;
 			Meteor.call("makeProRequest", id);
 
-			var text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
-			var type = "Kartensatz-Freigabe";
+			var text   = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
+			var type   = "Kartensatz-Freigabe";
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
@@ -765,17 +773,17 @@ Template.cardsetPublicateForm.events({
 		$('#publicateModal').modal('hide');
 	},
 	'change #publicateKind': function () {
-		var kind = $('#publicateKind input[name=kind]:checked').val();
+		var kind          = $('#publicateKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
 	}
 });
 
 /**
-* ############################################################################
-* selectLicenseForm
-* ############################################################################
-*/
+ * ############################################################################
+ * selectLicenseForm
+ * ############################################################################
+ */
 
 Template.selectLicenseForm.onRendered(function () {
 	$('#selectLicenseModal').on('hidden.bs.modal', function () {
@@ -786,10 +794,18 @@ Template.selectLicenseForm.onRendered(function () {
 		$('#modulesLabel').css('color', '');
 		$('#helpCC-modules').html('');
 
-		if (license.includes('by')) {$('#cc-option0').addClass('active'); }
-		if (license.includes('nc')) {$('#cc-option1').addClass('active'); }
-		if (license.includes('nd')) {$('#cc-option2').addClass('active'); }
-		if (license.includes('sa')) {$('#cc-option3').addClass('active'); }
+		if (license.includes('by')) {
+			$('#cc-option0').addClass('active');
+		}
+		if (license.includes('nc')) {
+			$('#cc-option1').addClass('active');
+		}
+		if (license.includes('nd')) {
+			$('#cc-option2').addClass('active');
+		}
+		if (license.includes('sa')) {
+			$('#cc-option3').addClass('active');
+		}
 	});
 });
 
@@ -799,13 +815,21 @@ Template.selectLicenseForm.events({
 			$('#modulesLabel').css('color', '#b94a48');
 			$('#helpCC-modules').html(TAPi18n.__('modal-dialog.wrongCombination'));
 			$('#helpCC-modules').css('color', '#b94a48');
-		}	else {
+		} else {
 			var license = [];
 
-			if ($("#cc-option0").hasClass('active')) {license.push("by"); }
-			if ($("#cc-option1").hasClass('active')) {license.push("nc"); }
-			if ($("#cc-option2").hasClass('active')) {license.push("nd"); }
-			if ($("#cc-option3").hasClass('active')) {license.push("sa"); }
+			if ($("#cc-option0").hasClass('active')) {
+				license.push("by");
+			}
+			if ($("#cc-option1").hasClass('active')) {
+				license.push("nc");
+			}
+			if ($("#cc-option2").hasClass('active')) {
+				license.push("nd");
+			}
+			if ($("#cc-option3").hasClass('active')) {
+				license.push("sa");
+			}
 
 			Meteor.call('updateLicense', this._id, license);
 			$('#selectLicenseModal').modal('hide');
@@ -833,10 +857,10 @@ Template.selectLicenseForm.helpers({
 });
 
 /**
-* ############################################################################
-* reportCardsetForm
-* ############################################################################
-*/
+ * ############################################################################
+ * reportCardsetForm
+ * ############################################################################
+ */
 
 Template.reportCardsetForm.onRendered(function () {
 	$('#reportModal').on('hidden.bs.modal', function () {
@@ -860,10 +884,10 @@ Template.reportCardsetForm.events({
 			var link_id;
 
 			if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
-				type = "Gemeldeter Benutzer";
+				type    = "Gemeldeter Benutzer";
 				link_id = this.owner;
 			} else {
-				type = "Gemeldeter Kartensatz";
+				type    = "Gemeldeter Kartensatz";
 				link_id = this._id;
 			}
 

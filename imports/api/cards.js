@@ -135,7 +135,7 @@ Meteor.methods({
 		Meteor.call('checkLvl');
 	},
 	deleteCard: function (card_id) {
-		var card = Cards.findOne(card_id);
+		var card    = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
@@ -188,7 +188,7 @@ Meteor.methods({
 		}
 	},
 	updateCard: function (card_id, front, back) {
-		var card = Cards.findOne(card_id);
+		var card    = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
 		if (!Roles.userIsInRole(this.userId, [

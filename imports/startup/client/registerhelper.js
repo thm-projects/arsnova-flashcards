@@ -7,7 +7,7 @@ import {Cards} from '../../api/cards.js';
 Template.registerHelper("hasPermission", function () {
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
 		return this.owner === Meteor.userId() || this.visible === true || this.request === true;
-	}	else {
+	} else {
 		return this.owner === Meteor.userId() || this.visible === true;
 	}
 });
@@ -69,8 +69,7 @@ Template.registerHelper("getCategories", function () {
 
 // Return the name of a Category
 Template.registerHelper("getCategory", function (value) {
-	if (value !== null)
-	{
+	if (value !== null) {
 		var id = value.toString();
 		if (id.length === 1) {
 			id = "0" + id;

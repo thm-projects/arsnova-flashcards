@@ -1,11 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cardsets } from '../../api/cardsets.js';
-import {Learned } from '../../api/learned.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Learned} from '../../api/learned.js';
 
 
 import '../cardset/cardset.js';
@@ -21,10 +21,10 @@ Session.setDefault('cardsetSortLearned', {name: 1});
 
 
 /**
-* ############################################################################
-* created
-* ############################################################################
-*/
+ * ############################################################################
+ * created
+ * ############################################################################
+ */
 
 Template.created.helpers({
 	cardsetList: function () {
@@ -56,10 +56,10 @@ Template.created.onDestroyed(function () {
 });
 
 /**
-* ############################################################################
-* learned
-* ############################################################################
-*/
+ * ############################################################################
+ * learned
+ * ############################################################################
+ */
 
 Template.learned.helpers({
 	learnedList: function () {
@@ -104,10 +104,10 @@ Template.created.onDestroyed(function () {
 });
 
 /**
-* ############################################################################
-* cardsets
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsets
+ * ############################################################################
+ */
 
 Template.cardsets.events({
 	'click #newCardSet': function () {
@@ -117,7 +117,7 @@ Template.cardsets.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
+		var categoryId   = $(evt.currentTarget).val();
 		$('#newSetCategory').text(categoryName);
 		tmpl.find('#newSetCategory').value = categoryId;
 	},
@@ -141,8 +141,8 @@ Template.cardsets.events({
 			$('#helpNewSetCategory').css('color', '#b94a48');
 		}
 		if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
-			var name = $('#newSetName').val();
-			var category = $('#newSetCategory').val();
+			var name        = $('#newSetName').val();
+			var category    = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 
 			Meteor.call("addCardset", name, category, description, false, true, 'personal');
@@ -152,10 +152,10 @@ Template.cardsets.events({
 });
 
 /**
-* ############################################################################
-* cardsetsForm
-* ############################################################################
-*/
+ * ############################################################################
+ * cardsetsForm
+ * ############################################################################
+ */
 
 Template.cardsetsForm.onRendered(function () {
 	$('#newSetModal').on('hidden.bs.modal', function () {

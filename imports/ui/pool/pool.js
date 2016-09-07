@@ -1,11 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cardsets } from '../../api/cardsets.js';
-import {Ratings } from '../../api/ratings.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Ratings} from '../../api/ratings.js';
 
 import './pool.html';
 
@@ -17,10 +17,10 @@ Session.setDefault('poolSort', {relevance: -1});
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
-* ############################################################################
-* category
-* ############################################################################
-*/
+ * ############################################################################
+ * category
+ * ############################################################################
+ */
 
 Template.category.helpers({
 	getDecks: function () {
@@ -37,7 +37,7 @@ Template.category.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count = ratings.count();
+		var count   = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
@@ -92,12 +92,18 @@ Template.category.helpers({
 		var licenseString = "";
 
 		if (this.license.length > 0) {
-			if (this.license.includes('by')) {licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');}
+			if (this.license.includes('by')) {
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+			}
 			if (this.license.includes('nc')) {
 				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
 			}
-			if (this.license.includes('nd')) {licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
-			if (this.license.includes('sa')) {licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
+			if (this.license.includes('nd')) {
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+			}
+			if (this.license.includes('sa')) {
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+			}
 
 			return new Spacebars.SafeString(licenseString);
 		} else {
@@ -111,7 +117,7 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.name === 1) {
 			Session.set('poolSort', {name: -1});
-		}	else {
+		} else {
 			Session.set('poolSort', {name: 1});
 		}
 	},
@@ -119,7 +125,7 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {
 			Session.set('poolSort', {username: -1});
-		}	else {
+		} else {
 			Session.set('poolSort', {username: 1});
 		}
 	},
@@ -127,7 +133,7 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.relevance === 1) {
 			Session.set('poolSort', {relevance: -1});
-		}	else {
+		} else {
 			Session.set('poolSort', {relevance: 1});
 		}
 	},
@@ -145,10 +151,10 @@ Template.category.onDestroyed(function () {
 });
 
 /**
-* ############################################################################
-* helpers
-* ############################################################################
-*/
+ * ############################################################################
+ * helpers
+ * ############################################################################
+ */
 
 Template.pool.helpers({
 	getCount: function (id) {

@@ -1,23 +1,23 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cardsets } from '../../../api/cardsets.js';
+import {Cardsets} from '../../../api/cardsets.js';
 
 import './admin_card.html';
 
 /**
-* ############################################################################
-* Functions
-* ############################################################################
-*/
+ * ############################################################################
+ * Functions
+ * ############################################################################
+ */
 
 function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(),
-	content = e.getContent();
+		content                 = e.getContent();
 
 	if (selected.length === 0) {
 		// Give extra word
@@ -43,7 +43,7 @@ function tex(e) {
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(),
-	link;
+		link;
 
 	if (selected.length === 0) {
 		// Give extra word
@@ -67,10 +67,10 @@ function image(e) {
 }
 
 /**
-* ############################################################################
-* admin_card
-* ############################################################################
-*/
+ * ############################################################################
+ * admin_card
+ * ############################################################################
+ */
 
 Template.admin_card.helpers({
 	getUsernameCard: function (cardset_id) {
@@ -109,12 +109,12 @@ Template.admin_card.helpers({
 			Session.set('frontText', front);
 			if (front !== "") {
 				Meteor.promise("convertMarkdown", front)
-				.then(function (rendered) {
-					$("#frontAdmin .md-footer").html(rendered);
-				})
-				.catch(function (error) {
-					throw new Meteor.Error(error, "Can't convert to Markdown");
-				});
+					.then(function (rendered) {
+						$("#frontAdmin .md-footer").html(rendered);
+					})
+					.catch(function (error) {
+						throw new Meteor.Error(error, "Can't convert to Markdown");
+					});
 			}
 		} else {
 			return null;
@@ -125,12 +125,12 @@ Template.admin_card.helpers({
 			Session.set('backText', back);
 			if (back !== "") {
 				Meteor.promise("convertMarkdown", back)
-				.then(function (rendered) {
-					$("#backAdmin .md-footer").html(rendered);
-				})
-				.catch(function (error) {
-					throw new Meteor.Error(error, "Can't convert to Markdown");
-				});
+					.then(function (rendered) {
+						$("#backAdmin .md-footer").html(rendered);
+					})
+					.catch(function (error) {
+						throw new Meteor.Error(error, "Can't convert to Markdown");
+					});
 			}
 		} else {
 			return null;
@@ -141,29 +141,28 @@ Template.admin_card.helpers({
 Template.admin_card.events({
 	"click #cardSaveAdmin": function () {
 		if ($('#editCardFrontAdmin').val().length <= 0 ||
-		$('#editCardFrontAdmin').val().length > 10000) {
+			$('#editCardFrontAdmin').val().length > 10000) {
 			$('#frontAdmin .md-editor').css('border-color', '#b94a48');
 			$('#helpEditCardFrontAdmin').css('color', '#b94a48');
 			if ($('#editCardFrontAdmin').val().length > 10000) {
 				$('#helpEditCardFrontAdmin').html(TAPi18n.__('text_max'));
-			}	else {
+			} else {
 				$('#helpEditCardFrontAdmin').html(TAPi18n.__('admin.card.front_required'));
 			}
 		}
 		if ($('#editCardBackAdmin').val().length <= 0 ||
-		$('#editCardBackAdmin').val().length > 10000) {
+			$('#editCardBackAdmin').val().length > 10000) {
 			$('#backAdmin .md-editor').css('border-color', '#b94a48');
 			$('#helpEditCardBackAdmin').css('color', '#b94a48');
 			if ($('#editCardBackAdmin').val().length > 10000) {
 				$('#helpEditCardBackAdmin').html(TAPi18n.__('text_max'));
-			}	else {
+			} else {
 				$('#helpEditCardBackAdmin').html(TAPi18n.__('admin.card.back_required'));
 			}
 		}
-		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000)
-		{
+		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000) {
 			var front = Session.get('frontText');
-			var back = Session.get('backText');
+			var back  = Session.get('backText');
 			Meteor.call("updateCard", this._id, front, back);
 			window.history.go(-1);
 		}
@@ -221,9 +220,9 @@ Template.admin_card.rendered = function () {
 				console.log(Session.get("frontText"));
 				if (content !== "") {
 					Meteor.promise("convertMarkdown", content)
-					.then(function (rendered) {
-						$("#" + side + "Admin .md-footer").html(rendered);
-					});
+						.then(function (rendered) {
+							$("#" + side + "Admin .md-footer").html(rendered);
+						});
 				}
 			},
 			additionalButtons: additBtn

@@ -112,7 +112,7 @@ CardsetsIndex = new EasySearch.Index({
 
 			// Filter selector
 			const selector = {};
-			selector.$and = [
+			selector.$and  = [
 				defSelector,
 				{
 					$or: [
@@ -208,14 +208,14 @@ Meteor.methods({
 		var relevance = 0;
 
 		var ratings = Ratings.find({cardset_id: cardset_id});
-		var count = ratings.count();
+		var count   = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
 				amount = amount + rate.rating;
 			});
 			var result = (amount / count).toFixed(2);
-			relevance = Number(result);
+			relevance  = Number(result);
 		}
 
 		var kind = Cardsets.findOne(cardset_id).kind;

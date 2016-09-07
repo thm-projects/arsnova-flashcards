@@ -4,38 +4,31 @@
     "choose": "Wähle deinen Login:",
     "impressum": "Impressum"
   },
-
   "carousel-inner": {
-  	"carousel-header-0": "Deine digitalen Lernkarten",
-  	"carousel-paragraph-0": "Lerne oder erstelle deine eigenen digitalen Lernkarten.",
-
-  	"carousel-header-1": "THMcards spricht TeX",
-  	"carousel-paragraph-1": "Endlich ein einfacher Weg sperrige Matheformeln zu lernen.",
-
-  	"carousel-header-2": "Hello World!",
-  	"carousel-paragraph-2": "Lerne Programmcode einfacher - dank automatischem Syntaxhighlighting.",
-
-  	"carousel-header-3": "Sammel Badges",
-  	"carousel-paragraph-3": "Ausgewählte Aktionen und herausragende Leistungen werden mit Abzeichen belohnt. Hol' sie dir!"
+    "carousel-header-0": "Deine digitalen Lernkarten",
+    "carousel-paragraph-0": "Lerne oder erstelle deine eigenen digitalen Lernkarten.",
+    "carousel-header-1": "THMcards spricht TeX",
+    "carousel-paragraph-1": "Endlich ein einfacher Weg sperrige Matheformeln zu lernen.",
+    "carousel-header-2": "Hello World!",
+    "carousel-paragraph-2": "Lerne Programmcode einfacher - dank automatischem Syntaxhighlighting.",
+    "carousel-header-3": "Sammel Badges",
+    "carousel-paragraph-3": "Ausgewählte Aktionen und herausragende Leistungen werden mit Abzeichen belohnt. Hol' sie dir!"
   },
-
   "navbar-collapse": {
-  	"carddecks": "Meine Kartensätze",
-  	"pool": "Pool",
-  	"myprofile": "Mein Profil",
-  	"billing": "Abrechnung",
-  	"logout": "Logout",
-  	"search": "Suche",
+    "carddecks": "Meine Kartensätze",
+    "pool": "Pool",
+    "myprofile": "Mein Profil",
+    "billing": "Abrechnung",
+    "logout": "Logout",
+    "search": "Suche",
     "frontend": "Front-End",
     "backend": "Back-End"
   },
-
   "footer": {
-  	"impressum": "Impressum",
+    "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB"
   },
-
   "notifications": {
     "title": "Benachrichtigungen",
     "clearAll": "Leeren",
@@ -51,11 +44,9 @@
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
     "lecturer": "Dozenten-Anfrage"
   },
-
   "input-group": {
-  	"newcarddeck": "Neuer Kartensatz"
+    "newcarddeck": "Neuer Kartensatz"
   },
-
   "upload-form": {
     "popover-content": "Hier können bestehende Karten zum Kartensatz hochgeladen werden. Unterstützt werden die Formate JSON und CSV (Excel, kommagetrennt). Folgende Templates zeigen die nötige Struktur auf:",
     "upload-title": "Karten importieren",
@@ -65,48 +56,42 @@
     "wrong-template": "Fehlerhafte Dateistruktur",
     "wrong-file": "Falsches Dateiformat"
   },
-
   "confirm-form": {
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
-
   "nav-list": {
-  	"category": "Kategorie",
-  	"created": "Erstellt",
-  	"learned": "Gelernt"
+    "category": "Kategorie",
+    "created": "Erstellt",
+    "learned": "Gelernt"
   },
-
   "set-list": {
-  	"name": "Name",
-  	"category": "Kategorie",
-  	"description": "Beschreibung"
+    "name": "Name",
+    "category": "Kategorie",
+    "description": "Beschreibung"
   },
-
   "set-list-empty": {
-  	"emptytextlist": "Du hast noch keinen Kartensatz angelegt",
-  	"newset": "Kartensatz anlegen"
+    "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+    "newset": "Kartensatz anlegen"
   },
-
   "set-list-learned-empty": {
-  	"emptytextlist": "Du hast noch keinen Kartensatz gelernt"
+    "emptytextlist": "Du hast noch keinen Kartensatz gelernt"
   },
-
   "modal-dialog": {
-  	"newcarddeck": "Neuen Kartensatz anlegen",
+    "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-  	"name": "Name",
-  	"nameplaceholder": "Name",
-  	"descriptionplaceholder": "Beschreibung",
-  	"categoryplaceholder": "Wähle eine Kategorie",
-  	"description": "Beschreibung",
-  	"category": "Kategorie",
-  	"visibility": "Sichtbar für",
-  	"visibilityoption1": "mich",
-  	"visibilityoption2": "alle",
-  	"rating": "Bewertungen",
-  	"ratingoption1": "erlauben",
-  	"ratingoption2": "abschalten",
+    "name": "Name",
+    "nameplaceholder": "Name",
+    "descriptionplaceholder": "Beschreibung",
+    "categoryplaceholder": "Wähle eine Kategorie",
+    "description": "Beschreibung",
+    "category": "Kategorie",
+    "visibility": "Sichtbar für",
+    "visibilityoption1": "mich",
+    "visibilityoption2": "alle",
+    "rating": "Bewertungen",
+    "ratingoption1": "erlauben",
+    "ratingoption2": "abschalten",
     "kind": "Art",
     "cancel": "Abbrechen",
     "createcarddeck": "Kartensatz anlegen",
@@ -135,7 +120,6 @@
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden"
   },
-
   "profile": {
     "overview": "Lernfortschritt",
     "billing": "Abrechnung",
@@ -153,15 +137,12 @@
     "canceled": "Änderungen wurden verworfen!",
     "error": "Fehlerhafte Einträge!"
   },
-
   "profil-header": {
-  	"name": "Profil von "
+    "name": "Profil von "
   },
-
   "panel-heading": {
-  	"hallo": "Einstellungen"
+    "hallo": "Einstellungen"
   },
-
   "membership": {
     "upgrade": {
       "progress": "In Bearbeitung!",
@@ -173,7 +154,6 @@
       "canceled": "Abonnement erfolgreich beendet!"
     }
   },
-
   "billing": {
     "plan": {
       "header": "Mitgliedschaft",
@@ -200,7 +180,7 @@
       "actual": "Ihre Zahlungsmethoden:",
       "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
-    "balance": {
+    "balance": {
       "header": "Kontostand",
       "disburse": "auszahlen",
       "progress": "Auszahlung wird bearbeitet",
@@ -221,14 +201,13 @@
       "at": "am"
     }
   },
-
   "panel-body": {
-  	"name": "Benutzername",
-  	"login": "Registriert via",
-  	"email": "Email",
-  	"profilepublic": "Profil öffentlich",
-  	"profilepublicoption1": "Ja",
-  	"profilepublicoption2": "Nein",
+    "name": "Benutzername",
+    "login": "Registriert via",
+    "email": "Email",
+    "profilepublic": "Profil öffentlich",
+    "profilepublicoption1": "Ja",
+    "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
@@ -236,11 +215,9 @@
     "nameToLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
     "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
-
   "panel-heading-experience": {
-      "experience": "Erfahrungspunkte (XP)"
-    },
-
+    "experience": "Erfahrungspunkte (XP)"
+  },
   "panel-body-experience": {
     "total": "Total",
     "today": "Heute",
@@ -248,18 +225,15 @@
     "days": "7 Tage",
     "lastredeem": "Zuletzt für: "
   },
-
   "panel-body-last": {
     "login": "Login",
     "cardset": "Kartensatz angelegt",
     "card": "Karte angelegt",
     "rating": "Kartensatz bewertet"
   },
-
   "panel-heading-badges": {
     "badges": "Badges"
   },
-
   "panel-body-badges": {
     "text1": "Du hast die Möglichkeit, deine gesammelten Badges mit dem Mozilla Badge Backpack zu syncronisieren.",
     "text2": "Um deine Badges der ",
@@ -267,25 +241,21 @@
     "text4": " hinzuzufügen, klicke auf den folgenden Button:",
     "button": "Jetzt syncronisieren"
   },
-
   "panel-heading-meteor": {
     "meteor": "Meteor Statistiken"
   },
-
   "panel-body-meteor": {
     "points": "Gesamtpunktzahl",
     "played": "Gespielt",
     "games": "Spiele",
     "game": "Spiel"
   },
-
   "table-meteor": {
     "carddeck": "Kartensatz",
     "yourhighscore": "Dein Highscore",
     "position": "Pos.",
     "highscore": "Highscore"
   },
-
   "sidebar-nav": {
     "created": "Erstellt von",
     "at": "am",
@@ -301,7 +271,6 @@
     "private": "Privat",
     "license": " Lizenz wählen"
   },
-
   "pool": {
     "relevance": "Relevanz",
     "name": "Name",
@@ -313,7 +282,6 @@
     "license": "Lizenz",
     "dateUpdated": "Zuletzt aktualisiert"
   },
-
   "cardset": {
     "info": {
       "author": "Autor",
@@ -340,7 +308,6 @@
       "bought": "Vielen Dank für Ihren Kauf!"
     }
   },
-
   "cardmemo": {
     "showanswer": "Zeige Antwort",
     "rateanswer": "Bewerte deine Antwort",
@@ -352,17 +319,14 @@
     "rate5": "Perfekte Antwort",
     "memotext": "Vergleiche die obige Antwort mit der aus deiner Erinnerung und bewerte sie mit Hilfe der Skala. Anhand der Bewertung wird der Zeitpunkt für die nächste Wiederholung deiner Lernkarte berechnet."
   },
-
   "memo-endscreen": {
     "text": "Lerneinheit erfolgreich beendet",
     "back": "Zurück zum Kartensatz"
   },
-
   "memo-empty": {
     "text": "Aktuell keine nach Lernplan zu lernenden Karten",
     "back": "Zurück zum Kartensatz"
   },
-
   "meteorgame": {
     "description": "Zerstöre die Meteoriten bevor sie die Erde erreichen! Jeder Meteorit ist mit einer Seite deiner Lernkarten beschriftet - zerstöre ihn durch korrekte Eingabe der Rückseite!",
     "warning": "Bitte beachten! Meteor funktioniert am Besten mit Lernkarten, die kurze Stichwörter und prägnante Sätze beinhalten.",
@@ -376,7 +340,6 @@
     "insertanswer": "Korrekte Antwort eingeben",
     "answer3": "Lösen"
   },
-
   "meteorgame-gameover": {
     "gameover": "Game Over",
     "text1": "Du hast ",
@@ -388,7 +351,6 @@
     "back": "Zurück",
     "newgame": "Neues Spiel"
   },
-
   "rating-field": {
     "title": " bewerten",
     "stars": "Sterne",
@@ -399,97 +361,79 @@
     "cancel": "Abbrechen",
     "edit": "Kartensatz bewerten"
   },
-
-   "rating-table": {
+  "rating-table": {
     "name": "Name",
     "rating": "Bewertung",
     "comment": "Kommentar"
   },
-
   "learn-endscreen": {
     "success": "Lerneinheit erfolgreich beendet.",
     "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz.",
     "back2": "Zurück zum Kartensatz"
   },
-
   "carddeck-table": {
     "name": "Name",
     "category": "Kategorie",
     "description": "Beschreibung"
   },
-
-  "permission":"Zugriff verweigert",
-  "nocards":"Keine Karten vorhanden",
-  "learn":"Lernen",
-  "learnfile":"Lernkartei",
-  "memo":"Memo",
+  "permission": "Zugriff verweigert",
+  "nocards": "Keine Karten vorhanden",
+  "learn": "Lernen",
+  "learnfile": "Lernkartei",
+  "memo": "Memo",
   "report": "Kartensatz/Benutzer melden",
-  "meteor":"Meteor",
-  "play":"Spielen",
+  "meteor": "Meteor",
+  "play": "Spielen",
   "yourhighscore": "Dein Highscore:",
-  "points":"Punkte",
-
-  "frontside":"Vorderseite",
-  "backside":"Rückseite",
-  "options":"Optionen",
-  "fronttext_required":"Bitte Vorderseite ausfüllen!",
-  "backtext_required":"Bitte Rückseite ausfüllen!",
+  "points": "Punkte",
+  "frontside": "Vorderseite",
+  "backside": "Rückseite",
+  "options": "Optionen",
+  "fronttext_required": "Bitte Vorderseite ausfüllen!",
+  "backtext_required": "Bitte Rückseite ausfüllen!",
   "text_max": "Es sind nur 10000 Zeichen erlaubt!",
-
-  "newcard":"Neue Karte",
-  "editcard":"Karte bearbeiten",
-  "showpicture":"Bild anzeigen",
-  "linkorsearchitem":"Link oder Suchbegriff eingeben",
+  "newcard": "Neue Karte",
+  "editcard": "Karte bearbeiten",
+  "showpicture": "Bild anzeigen",
+  "linkorsearchitem": "Link oder Suchbegriff eingeben",
   "searchpicture": "Bildsuche",
-  "declinecard":"Abbrechen",
-  "deletecard":"Karte löschen",
-  "confirmcard":"Sicher?",
-  "savecard":"Karte speichern",
-  "insertpicture":"Bild einfügen",
+  "declinecard": "Abbrechen",
+  "deletecard": "Karte löschen",
+  "confirmcard": "Sicher?",
+  "savecard": "Karte speichern",
+  "insertpicture": "Bild einfügen",
   "insertpicture2": "Bild einfügen",
-
   "pointslvl1": "Noch",
   "pointslvl2": "Punkte",
   "pointslvl3": " bis zum nächsten Level",
-
   "meteortext": "Du hast bisher noch kein Spiel gespielt",
-
   "valuation": "Bewertung",
   "valuation2": "Sterne",
   "valuationtext": "bei",
   "valuationtext2": "Bewertungen",
-
   "norating": "Keine Bewertungen vorhanden",
   "createdof": "Erstellt von",
   "backcarddecks": "Zurück zum Kartensatz",
   "createdof2": "Erstellt von",
-
   "subject1": "Fach 1",
   "subject2": "Fach 2",
   "subject3": "Fach 3",
   "subject4": "Fach 4",
   "subject5": "Fach 5",
-
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
-
   "box_status": "Noch eine Karte im aktuellen Fach",
   "box_status_plural": "Noch __count__ Karten im aktuellen Fach",
-
   "clickcart": "Klicke auf die Karte um Sie zu drehen",
   "choosesubject": "Wähle ein Fach auf der linken Seite",
-
   "carddecks": "Kartensätze",
-
   "gold": "Gold",
   "silver": "Silber",
   "bronze": "Bronze",
-
   "newbadge": "Neuer Badge",
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
-
   "admin": {
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
@@ -535,7 +479,6 @@
     "request": "Anfrage",
     "deleteallnotifications": "Alle Nachrichten löschen",
     "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
-
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
@@ -556,10 +499,8 @@
         "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
         "delete_all": "Nachrichten löschen"
       },
-
       "cancel": "Abbrechen"
     },
-
     "message": {
       "messageUser": "Benutzer benachrichtigen",
       "reason": "Grund",
@@ -573,7 +514,6 @@
       "text_chars": "Es sind 50 Zeichen erforderlich!",
       "to": "An"
     },
-
     "lecturerrequest": {
       "title": "Dozenten-Anfrage",
       "no": "Anfrage ablehnen",
@@ -581,7 +521,6 @@
       "text": "Anfrage wurde bearbeitet",
       "cancel": "Abbrechen"
     },
-
     "cardset": {
       "header": "Kartensatz",
       "edit": "Bearbeite",
@@ -605,7 +544,6 @@
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!"
     },
-
     "card": {
       "header": "Karte",
       "edit": "Bearbeite",
@@ -619,11 +557,10 @@
       "save": "Karte speichern",
       "delete": "Karte löschen",
       "confirm": "Sicher?",
-      "front_required":"Bitte Vorderseite ausfüllen!",
-      "back_required":"Bitte Rückseite ausfüllen!",
+      "front_required": "Bitte Vorderseite ausfüllen!",
+      "back_required": "Bitte Rückseite ausfüllen!",
       "text_max": "Es sind nur 10000 Zeichen erlaubt!"
     },
-
     "user": {
       "header": "Benutzer",
       "edit": "Bearbeite",
@@ -657,7 +594,6 @@
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     }
   },
-
   "access-denied": {
     "title": "Zugriff verboten",
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",

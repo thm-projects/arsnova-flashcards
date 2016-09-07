@@ -1,17 +1,17 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Experience } from '../../api/experience.js';
-import {Badges } from '../../api/badges.js';
-import {Cardsets } from '../../api/cardsets.js';
-import {Cards } from '../../api/cards.js';
-import {Learned } from '../../api/learned.js';
-import {Ratings } from '../../api/ratings.js';
-import {Paid } from '../../api/paid.js';
-import {Notifications } from '../../api/notifications.js';
+import {Experience} from '../../api/experience.js';
+import {Badges} from '../../api/badges.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
+import {Learned} from '../../api/learned.js';
+import {Ratings} from '../../api/ratings.js';
+import {Paid} from '../../api/paid.js';
+import {Notifications} from '../../api/notifications.js';
 import './profile.html';
 
 
@@ -158,7 +158,9 @@ function wohltaeter(rank) {
 function bestseller(rank) {
 	var cardsetsIds = Cardsets.find({
 		owner: Meteor.userId()
-	}).map(function (cardset) {return cardset._id; });
+	}).map(function (cardset) {
+		return cardset._id;
+	});
 
 	var learner = Learned.find({
 		cardset_id: {$in: cardsetsIds}
@@ -187,10 +189,10 @@ Template.registerHelper("isUser", function () {
 });
 
 /**
-* ############################################################################
-* profile
-* ############################################################################
-*/
+ * ############################################################################
+ * profile
+ * ############################################################################
+ */
 
 Template.profile.helpers({
 	isVisible: function () {
@@ -206,10 +208,10 @@ Template.profile.helpers({
 });
 
 /**
-* ############################################################################
-* profileSidebar
-* ############################################################################
-*/
+ * ############################################################################
+ * profileSidebar
+ * ############################################################################
+ */
 
 Template.profileSidebar.helpers({
 	getService: function () {
@@ -218,7 +220,7 @@ Template.profileSidebar.helpers({
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
 				var service = _.keys(user.services)[0];
-				service = service.charAt(0).toUpperCase() + service.slice(1);
+				service     = service.charAt(0).toUpperCase() + service.slice(1);
 				return service;
 			}
 		}
@@ -227,10 +229,10 @@ Template.profileSidebar.helpers({
 });
 
 /**
-* ############################################################################
-* profileSettings
-* ############################################################################
-*/
+ * ############################################################################
+ * profileSettings
+ * ############################################################################
+ */
 
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
@@ -242,8 +244,8 @@ Template.profileSettings.events({
 	"click #profileSave": function () {
 		Meteor.call("updateUserGivenName", "istehwurst", Meteor.userId());
 		// Email validation
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		var email = $('#inputEmail').val();
+		var re         = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var email      = $('#inputEmail').val();
 		var validEmail = re.test(email);
 
 		if (validEmail === false) {
@@ -256,7 +258,7 @@ Template.profileSettings.events({
 		}
 
 		// Name validation
-		var name = $('#inputName').val();
+		var name    = $('#inputName').val();
 		var user_id = Meteor.userId();
 
 		Meteor.call("checkUsersName", name, user_id, function (error, result) {
@@ -298,10 +300,10 @@ Template.profileSettings.events({
 });
 
 /**
-* ############################################################################
-* profileMembership
-* ############################################################################
-*/
+ * ############################################################################
+ * profileMembership
+ * ############################################################################
+ */
 
 Template.profileMembership.rendered = function () {
 	var customerId = Meteor.user().customerId;
@@ -319,7 +321,7 @@ Template.profileMembership.rendered = function () {
 
 						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
 						var nonce = response.nonce;
-						var plan = Session.get('plan');
+						var plan  = Session.get('plan');
 						Meteor.call('btSubscribe', nonce, plan, function (error) {
 							if (error) {
 								throw new Meteor.Error(error.message, 'error');
@@ -364,8 +366,8 @@ Template.profileMembership.events({
 		}
 	},
 	"click #sendLecturerRequest": function () {
-		var text = Meteor.user().profile.name + " möchte Dozent werden.";
-		var type = "Dozenten-Anfrage";
+		var text   = Meteor.user().profile.name + " möchte Dozent werden.";
+		var type   = "Dozenten-Anfrage";
 		var target = "admin";
 
 		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
@@ -383,10 +385,10 @@ Template.profileMembership.helpers({
 
 
 /**
-* ############################################################################
-* profileBilling
-* ############################################################################
-*/
+ * ############################################################################
+ * profileBilling
+ * ############################################################################
+ */
 
 Template.profileBilling.onRendered(function () {
 	var customerId = Meteor.user().customerId;
@@ -456,7 +458,9 @@ Template.profileBilling.helpers({
 	getRevenue: function () {
 		var cardsetsIds = Cardsets.find({
 			owner: Meteor.userId()
-		}).map(function (cardset) {return cardset._id;});
+		}).map(function (cardset) {
+			return cardset._id;
+		});
 
 		return Paid.find({cardset_id: {$in: cardsetsIds}}, {sort: {date: -1}});
 	},
@@ -492,10 +496,10 @@ Template.profileBilling.helpers({
 });
 
 /**
-* ############################################################################
-* profileNotifications
-* ############################################################################
-*/
+ * ############################################################################
+ * profileNotifications
+ * ############################################################################
+ */
 
 Template.profileNotifications.events({
 	"click #clearBtn": function () {
@@ -520,17 +524,17 @@ Template.profileNotifications.helpers({
 		if (this.type === 'Kartensatz-Freigabe') {
 			var cardset = Cardsets.findOne(this.link_id);
 			return (cardset.visible === true) ? TAPi18n.__('notifications.approved') : TAPi18n.__('notifications.pending');
-		}	else {
+		} else {
 			return TAPi18n.__('notifications.progress');
 		}
 	}
 });
 
 /**
-* ############################################################################
-* profileRequests
-* ############################################################################
-*/
+ * ############################################################################
+ * profileRequests
+ * ############################################################################
+ */
 
 Template.profileRequests.helpers({
 	getRequests: function () {
@@ -539,14 +543,14 @@ Template.profileRequests.helpers({
 });
 
 /**
-* ############################################################################
-* profileXp
-* ############################################################################
-*/
+ * ############################################################################
+ * profileXp
+ * ############################################################################
+ */
 
 Template.profileXp.helpers({
 	getXpTotal: function () {
-		var allXp = Experience.find({
+		var allXp  = Experience.find({
 			owner: Router.current().params._id
 		});
 		var result = 0;
@@ -560,7 +564,7 @@ Template.profileXp.helpers({
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
 
-		var allXp = Experience.find({
+		var allXp  = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: date
@@ -578,7 +582,7 @@ Template.profileXp.helpers({
 		var maxDate = new Date();
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp = Experience.find({
+		var allXp  = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -597,7 +601,7 @@ Template.profileXp.helpers({
 		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp = Experience.find({
+		var allXp  = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -640,7 +644,9 @@ Template.profileXp.helpers({
 			}
 		}
 
-		if (last === undefined)	{return null;}
+		if (last === undefined) {
+			return null;
+		}
 
 		return name + " (+" + last.value + ")";
 	},
@@ -653,18 +659,18 @@ Template.profileXp.helpers({
 	getXp: function () {
 		Meteor.call('checkLvl');
 
-		var level = getLvl() + 1;
-		var points = xpForLevel(level);
+		var level    = getLvl() + 1;
+		var points   = xpForLevel(level);
 		var required = points - Session.get("totalXp");
 
 		return required;
 	},
 	getXpPercent: function () {
-		var points = Session.get("totalXp");
-		var currentLevel = getLvl();
-		var nextLevel = getLvl() + 1;
+		var points        = Session.get("totalXp");
+		var currentLevel  = getLvl();
+		var nextLevel     = getLvl() + 1;
 		var currentPoints = xpForLevel(currentLevel);
-		var nextPoints = xpForLevel(nextLevel);
+		var nextPoints    = xpForLevel(nextLevel);
 
 		var res = (points - currentPoints) / (nextPoints - currentPoints) * 100;
 
@@ -673,10 +679,10 @@ Template.profileXp.helpers({
 });
 
 /**
-* ############################################################################
-* profileBadges
-* ############################################################################
-*/
+ * ############################################################################
+ * profileBadges
+ * ############################################################################
+ */
 
 Template.profileBadges.helpers({
 	getBadges: function () {

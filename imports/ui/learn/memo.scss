@@ -13,6 +13,7 @@ $color_storm_dust_approx: rgb(102, 102, 102);
 		top: 0;
 	}
 }
+
 .memocontent-block {
 	span {
 		display: inline-block;
@@ -23,9 +24,11 @@ $color_storm_dust_approx: rgb(102, 102, 102);
 		max-width: 370px;
 	}
 }
+
 #memoPictureModal .modal-header {
 	min-height: 50px;
 }
+
 #setdetails-memoPictureModal-body img {
 	max-width: 100%;
 	width: auto;

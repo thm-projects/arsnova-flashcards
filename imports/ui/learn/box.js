@@ -1,11 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor } from 'meteor/meteor';
-import {Template } from 'meteor/templating';
-import {Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-import {Cards } from '../../api/cards.js';
-import {Learned } from '../../api/learned.js';
+import {Cards} from '../../api/cards.js';
+import {Learned} from '../../api/learned.js';
 
 import './box.html';
 
@@ -27,7 +27,7 @@ Session.set('isFinish', false);
 
 Template.box.onCreated(function () {
 	var cardset_id = Router.current().params._id;
-	var cards = Cards.find({
+	var cards      = Cards.find({
 		cardset_id: cardset_id
 	});
 	cards.forEach(function (card) {
@@ -125,7 +125,7 @@ Template.boxMain.events({
 		}
 	},
 	"click #known": function () {
-		var currentCard = $('.carousel-inner > .active').attr('data');
+		var currentCard    = $('.carousel-inner > .active').attr('data');
 		var currentLearned = Learned.findOne({
 			card_id: currentCard,
 			user_id: Meteor.userId()
@@ -142,7 +142,7 @@ Template.boxMain.events({
 		Session.set('isFront', true);
 	},
 	"click #notknown": function () {
-		var currentCard = $('.carousel-inner > .active').attr('data');
+		var currentCard    = $('.carousel-inner > .active').attr('data');
 		var currentLearned = Learned.findOne({
 			card_id: currentCard,
 			user_id: Meteor.userId()
