@@ -18,10 +18,10 @@ Session.setDefault('poolSort', {relevance: -1});
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
- * ############################################################################
- * category
- * ############################################################################
- */
+* ############################################################################
+* category
+* ############################################################################
+*/
 
 Template.category.helpers({
 	getDecks: function () {
@@ -54,7 +54,7 @@ Template.category.helpers({
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {
 			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.username === -1){
+		} else if (sort.username === -1) {
 			return '<i class="fa fa-sort-desc"></i>';
 		}
 	},
@@ -62,7 +62,7 @@ Template.category.helpers({
 		var sort = Session.get('poolSort');
 		if (sort.name === 1) {
 			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.name === -1){
+		} else if (sort.name === -1) {
 			return '<i class="fa fa-sort-desc"></i>';
 		}
 	},
@@ -70,7 +70,7 @@ Template.category.helpers({
 		var sort = Session.get('poolSort');
 		if (sort.relevance === 1) {
 			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.relevance === -1){
+		} else if (sort.relevance === -1) {
 			return '<i class="fa fa-sort-desc"></i>';
 		}
 	},
@@ -84,7 +84,7 @@ Template.category.helpers({
 				return '<span class="label label-info">Pro</span>';
 			default:
 				return '<span class="label label-danger">Undefined!</span>';
-			}
+		}
 	},
 	getAuthor: function () {
 		return Meteor.users.findOne(this.owner).profile.name;
@@ -93,9 +93,9 @@ Template.category.helpers({
 		var licenseString = "";
 
 		if (this.license.length > 0) {
-			if (this.license.includes('by')) {licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />'); }
+			if (this.license.includes('by')) {licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');}
 			if (this.license.includes('nc')) {
-					licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
 			}
 			if (this.license.includes('nd')) {licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
 			if (this.license.includes('sa')) {licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
@@ -112,8 +112,7 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.name === 1) {
 			Session.set('poolSort', {name: -1});
-		}
-		else {
+		}	else {
 			Session.set('poolSort', {name: 1});
 		}
 	},
@@ -121,8 +120,7 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {
 			Session.set('poolSort', {username: -1});
-		}
-		else {
+		}	else {
 			Session.set('poolSort', {username: 1});
 		}
 	},
@@ -130,14 +128,13 @@ Template.category.events({
 		var sort = Session.get('poolSort');
 		if (sort.relevance === 1) {
 			Session.set('poolSort', {relevance: -1});
-		}
-		else {
+		}	else {
 			Session.set('poolSort', {relevance: 1});
 		}
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];
-		$("#filterCheckbox input:checkbox:checked").each(function (){
+		$("#filterCheckbox input:checkbox:checked").each(function () {
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
@@ -149,10 +146,10 @@ Template.category.onDestroyed(function () {
 });
 
 /**
- * ############################################################################
- * helpers
- * ############################################################################
- */
+* ############################################################################
+* helpers
+* ############################################################################
+*/
 
 Template.pool.helpers({
 	getCount: function (id) {
