@@ -28,40 +28,43 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
  * ############################################################################
  */
 
+function getCollection () {
+    return Cardsets.find({
+        visible: true,
+        /*kind: {$in: Session.get('poolFilter')},
+         lastName: {$in: Session.get('poolFilterAutor')},
+         moduleShort: {$in: Session.get('poolFilterModule')},
+         academicCourse: {$in: Session.get('poolFilterCourse')},
+         department: {$in: Session.get('poolFilterDepartment')},
+         studyType: {$in: Session.get('poolFilterStudyType')}*/
+    }, {
+        sort: Session.get('poolSortTopic', 'poolSortAutor')
+    });
+}
+
 Template.category.helpers({
     getDecks: function() {
-        var id = parseInt(this._id);
-        return Cardsets.find({
-            visible: true,
-            /*kind: {$in: Session.get('poolFilter')},
-            lastName: {$in: Session.get('poolFilterAutor')},
-            moduleShort: {$in: Session.get('poolFilterModule')},
-            academicCourse: {$in: Session.get('poolFilterCourse')},
-            department: {$in: Session.get('poolFilterDepartment')},
-            studyType: {$in: Session.get('poolFilterStudyType')}*/
-        }, {
-            sort: Session.get('poolSortTopic', 'poolSortAutor')
-        });
+        return getCollection();
     },
     getModules: function() {
-        var Array = getDecks;
+        var Array = getCollection();
         var distinctArray = _.uniq(Array, false, function(d) {return d.moduleLong});
         var disctinctValues = _.pluck(distinctArray, 'moduleLong');
         console.log(disctinctValues);
         return disctinctValues;
     },
     getCourse: function() {
-        var Array = getDecks;
+        var Array = getCollection();
         var distinctArray = _.uniq(Array, false, function(d) {return d.academicCourse});
         return disctinctValues = _.pluck(distinctArray, 'academicCourse');
     },
     getDepartments: function() {
-        var Array = getDecks;
+        var Array = getCollection();
         var distinctArray = _.uniq(Array, false, function(d) {return d.department});
         return disctinctValues = _.pluck(distinctArray, 'department');
     },
     getTypes: function() {
-        var Array = getDecks;
+        var Array = getCollection();
         var distinctArray = _.uniq(Array, false, function(d) {return d.studyType});
         return disctinctValues = _.pluck(distinctArray, 'studyType');
     },

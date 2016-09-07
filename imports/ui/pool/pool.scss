@@ -20,20 +20,25 @@
 }
 
 .set-list{
-  .glyphicon-sort{
-    font-size: 11px;
-  }
+    .glyphicon{
+        font-size: 11px;
+    }
 
-  .btn {
-    font-weight: bold;
-  }
-
-    #poolTitle{
-      color: #ffffff;
-      background-color: $color_la_palma_approx;
+    .btn {
+        font-weight: bold;
     }
 }
 
 #pool_license img {
   width: 20px;
+}
+
+.kind-label {
+  text-align: center;
+}
+
+#poolCaption {
+    padding-left: 8px;
+    font-weight: bold;
+    background-color: $color_wild_sand_approx;
 }

@@ -1,17 +1,15 @@
 <template name="pool">
-    <div id="pool-category-region" class="table-responsive">
+    <div id="pool-category-region" class="table-responsive table-reflow">
         {{> category}}
     </div>
 </template>
 
 <template name="category">
     <table class="table table-bordered table-striped table-hover">
+        <caption id="poolCaption">
+            {{_ "set-list.title"}}
+        </caption>
         <thead class="set-list">
-        <tr>
-            <th id="poolTitle" colspan="7">
-                {{_ "set-list.title"}}
-            </th>
-        </tr>
         <tr>
             <th>
                 <div class ="btn-group">
@@ -29,7 +27,7 @@
                         {{_ "set-list.autor"}}</button>
                     <button type="button" class="filterAutor btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
+                        <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
@@ -45,12 +43,12 @@
                         {{_ "set-list.moduleLong"}}</button>
                     <button type="button" class="filterModule btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
+                        <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getModules}}
-                            <li><a href="#">{{getModules}}</a></li>
+                        {{#each getDecks}}
+                            <li><a href="#">{{moduleLong}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -61,12 +59,12 @@
                         {{_ "set-list.academicCourse"}}</button>
                     <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
+                        <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getCourse}}
-                            <li><a href="#">{{getCourse}}</a></li>
+                        {{#each getDecks}}
+                            <li><a href="#">{{academicCourse}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -77,12 +75,12 @@
                         {{_ "set-list.department"}}</button>
                     <button type="button" class="filterCourse btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
+                        <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getDepartments}}
-                            <li><a href="#">{{getDepartments}}</a></li>
+                        {{#each getDecks}}
+                            <li><a href="#">{{department}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -93,12 +91,12 @@
                         {{_ "set-list.studyType"}}</button>
                     <button type="button" class="filterType btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
+                        <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#each getTypes}}
-                            <li><a href="#">{{getTypes}}</a></li>
+                        {{#each getDecks}}
+                            <li><a href="#">{{studyType}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -142,7 +140,7 @@
         <td>{{academicCourse}}</td>
         <td>{{department}}</td>
         <td>{{studyType}}</td>
-        <td>
+        <td class ="kind-label">
             {{{getKind}}}
         </td>
     </tr>
