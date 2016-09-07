@@ -245,9 +245,10 @@
     "total": "Total",
     "today": "Heute",
     "yesterday": "Gestern",
+    "days":"Tage",
+    "twoDaysAgo":"Vorgestern",
     "month": "4 Wochen",
     "threemonth": "3 Monate",
-
     "lastredeem": "Zuletzt für: "
   },
 

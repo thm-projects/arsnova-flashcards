@@ -246,7 +246,8 @@
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "days": "7 days",
+    "twoDaysAgo": "before yesterday",
+    "days": "days",
     "lastredeem": "At last for: "
   },
 

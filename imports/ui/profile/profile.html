@@ -208,8 +208,8 @@
             </div>
             <div class="panel-body panel-body-experience">
                 <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                    <div class="col-md-12">
+                        <div class="well well-sm" style="margin:0; margin-bottom:15px; text-align:center">
                             <div class="row">
                                 <span style="display:inline-block; height:50px; font-size:40px">
                                     {{getXpTotal}}
@@ -251,47 +251,62 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- vorgestern 1 -->
                     <div class="col-md-2">
                         <div class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
-                                    {{getXpWeek}}
+                                    {{getXpTwoDaysAgo}}
                                 </span>
                             </div>
                             <div class="row">
                                 <span class="text-muted" style="font-size:12px">
-                                    {{_ "panel-body-experience.days"}}
+                                    {{_ "panel-body-experience.twoDaysAgo"}}
                                 </span>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Secquencer 1 -->
                     <div class="col-md-2">
                         <div class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
-                                    {{getXpMonth}}
+                                    {{getXpSeq1}}
                                 </span>
                             </div>
                             <div class="row">
                                 <span class="text-muted" style="font-size:12px">
-                                    {{_ "panel-body-experience.month"}}
+                                    {{getDays1}} {{_ "panel-body-experience.days"}}
                                 </span>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Secquencer 2 -->
                     <div class="col-md-2">
                         <div class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
-                                    {{getXpThreeMonth}}
+                                    {{getXpSeq2}}
                                 </span>
                             </div>
                             <div class="row">
                                 <span class="text-muted" style="font-size:12px">
-                                    {{_ "panel-body-experience.threemonth"}}
+                                   {{getDays2}} {{_ "panel-body-experience.days"}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Secquencer 3 -->
+                    <div class="col-md-2">
+                        <div class="well well-sm" style="margin:0; text-align:center">
+                            <div class="row" style="height:50px;">
+                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                                    {{getXpSeq3}}
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="text-muted" style="font-size:12px">
+                                   {{getDays3}} {{_ "panel-body-experience.days"}}
                                 </span>
                             </div>
                         </div>
