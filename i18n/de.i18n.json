@@ -223,6 +223,8 @@
   },
   "panel-body": {
   	"name": "Kennung",
+  	"title": "Titel",
+  	"title-desc": "Akademischer Titel (öffentlich)",
   	"bname": "Nachname",
   	"bname-desc": "Nachname (öffentlich)",
   	"gname": "Vorname",
