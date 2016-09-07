@@ -302,6 +302,7 @@
     "importcard": "Import cards",
     "exportcard": "Export cards",
     "publicate": "Status",
+    "tooltip": "Create atleast 5 Cards in this set and complete your profile before publicating this set. Pro Cardsets can't be demoted!"
     "publicated": "Publicated",
     "review": "In review",
     "private": "Private",

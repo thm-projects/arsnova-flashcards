@@ -307,6 +307,7 @@
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
     "publicate": "Status",
+    "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
     "publicated": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
