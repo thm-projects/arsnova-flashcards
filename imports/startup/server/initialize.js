@@ -6,13 +6,14 @@ import { AdminSettings } from '../../api/adminSettings';
 Meteor.startup(function() {
   var categories = initCategories();
   var badges = initBadges();
-  if(AdminSettings.findOne({name: "seqSettings"})){
-   AdminSettings.insert({// TODO wegen insecure erlauben
-    name: "seqSettings",
-    seqOne:"7",
-    seqTwo: "30",
-    seqThree: "90"
-  });
+
+  if(!AdminSettings.findOne({name: "seqSettings"})){
+    AdminSettings.insert({// TODO wegen insecure erlauben
+      name: "seqSettings",
+      seqOne:7,
+      seqTwo: 30,
+      seqThree: 90
+    });
   }
   if (Categories.find().count() === 0) {
     for (var category in categories) {
