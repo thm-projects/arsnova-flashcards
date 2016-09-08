@@ -52,7 +52,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#" class="filterModule" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getModules}}
-                            <li><a href="#" class="filterModule" data-id="{{this.moduleShort}}">({{this.moduleShort}})
+                            <li><a href="#" class="filterModule" data-id="{{this.moduleShort}}">{{this.moduleShort}}:
                                 {{this.moduleLong}}</a></li>
                         {{/each}}
                     </ul>
@@ -87,7 +87,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#" class="filterDepartment" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getDepartments}}
-                            <li><a href="#" class="filterDepartment" data-id="{{this.department}}">({{this.department}})
+                            <li><a href="#" class="filterDepartment" data-id="{{this.department}}">{{this.department}}:
                                 {{this.departmentLong}}</a></li>
                         {{/each}}
                     </ul>

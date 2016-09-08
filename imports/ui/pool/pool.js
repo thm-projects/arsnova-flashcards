@@ -35,7 +35,7 @@ function getCollection(sortFilter, listType) {
 		query.lastName = Session.get('poolFilterAutor');
 	}
 	if (Session.get('poolFilterModule') && listType === 0) {
-		query.moduleLong = Session.get('poolFilterModule');
+		query.moduleShort = Session.get('poolFilterModule');
 	}
 	if (Session.get('poolFilterCourse') && listType === 0) {
 		query.academicCourse = Session.get('poolFilterCourse');
