@@ -254,7 +254,7 @@ Template.profileSettings.events({
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		var email = $('#inputEmail').val();
 		var validEmail = re.test(email);
-		
+
 		//E-Mail wasn't changed
 		if($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
@@ -267,7 +267,7 @@ Template.profileSettings.events({
 			$('#profileSave')[0].disabled = true;
 			$('#profileCancel')[0].disabled = true;
 		}
-		
+
 		if (validEmail === false) {
 			$('#inputEmail').parent().parent().addClass('has-error');
 			$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
@@ -279,7 +279,7 @@ Template.profileSettings.events({
 		}
 	},
 	"keyup #inputEmailValidation": function () {
-		if($('#inputEmail').val() === $('#inputEmailValidation').val()) {
+		if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
 			$('#inputEmailValidation').parent().parent().removeClass('has-error');
@@ -295,11 +295,11 @@ Template.profileSettings.events({
 	},
 	"keyup #inputName": function () {
 		//E-Mail wasn't changed
-		if($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
-		} else if($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
@@ -309,11 +309,11 @@ Template.profileSettings.events({
 	},
 	"keyup #inputBirthName": function () {
 		//E-Mail wasn't changed
-		if($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
-		} else if($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
@@ -323,11 +323,11 @@ Template.profileSettings.events({
 	},
 	"keyup #inputGivenName": function () {
 		//E-Mail wasn't changed
-		if($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
-		} else if($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
