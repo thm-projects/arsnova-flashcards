@@ -162,7 +162,7 @@
     "name": "Profile of "
   },
   "panel-heading": {
-  	"hallo": "Profile"
+    "hallo": "Profile"
   },
   "membership": {
     "upgrade": {
@@ -223,19 +223,19 @@
     }
   },
   "panel-body": {
-  	"name": "User name",
-  	"title": "Title",
-  	"title-desc": "Academic title (public)",
-  	"birthname": "Birth name",
-  	"birthname-desc": "Birth name (public)",
-  	"givenname": "Given name",
-  	"givenname-desc": "Given name (public)",
-  	"login": "Registered via",
-  	"email": "E-Mail",
-  	"email-desc": "E-Mail-Address",
-  	"profilepublic": "Public profile",
-  	"profilepublicoption1": "Yes",
-  	"profilepublicoption2": "No",
+    "name": "User name",
+    "title": "Title",
+    "title-desc": "Academic title (public)",
+    "birthname": "Birth name",
+    "birthname-desc": "Birth name (public)",
+    "givenname": "Given name",
+    "givenname-desc": "Given name (public)",
+    "login": "Registered via",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Address",
+    "profilepublic": "Public profile",
+    "profilepublicoption1": "Yes",
+    "profilepublicoption2": "No",
     "profileprivate": "Private profile",
     "profileprivatetext": "This profile is private and can not be seen by other user.",
     "emailInvalid": "Enter a valid e-mail address",
@@ -575,7 +575,7 @@
       "settings": "Cardset settings",
       "name": "Name",
       "description": "Description",
-  	  "category": "Category",
+      "category": "Category",
       "kind": "Kind",
       "price": "Retail price",
       "cancel": "Cancel",

@@ -161,7 +161,7 @@
     "name": "Profil von "
   },
   "panel-heading": {
-  	"hallo": "Profil"
+    "hallo": "Profil"
   },
   "membership": {
     "upgrade": {
@@ -222,19 +222,19 @@
     }
   },
   "panel-body": {
-  	"name": "Kennung",
-  	"title": "Titel",
-  	"title-desc": "Akademischer Titel (öffentlich)",
-  	"birthname": "Nachname",
-  	"birthname-desc": "Nachname (öffentlich)",
-  	"givenname": "Vorname",
-  	"givenname-desc": "Vorname (öffentlich)",
-  	"login": "Registriert via",
-  	"email": "E-Mail",
-  	"email-desc": "E-Mail-Adresse",
-  	"profilepublic": "Profil öffentlich",
-  	"profilepublicoption1": "Ja",
-  	"profilepublicoption2": "Nein",
+    "name": "Kennung",
+    "title": "Titel",
+    "title-desc": "Akademischer Titel (öffentlich)",
+    "birthname": "Nachname",
+    "birthname-desc": "Nachname (öffentlich)",
+    "givenname": "Vorname",
+    "givenname-desc": "Vorname (öffentlich)",
+    "login": "Registriert via",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Adresse",
+    "profilepublic": "Profil öffentlich",
+    "profilepublicoption1": "Ja",
+    "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
