@@ -276,8 +276,7 @@ Template.profileSettings.events({
 		if (birthname.length <= 0) {
 			$('#inputBirthName').parent().parent().addClass('has-error');
 			$('#errorBirthName').html(TAPi18n.__('panel-body.birthnameEmpty'));
-		}
-		else {
+		} else {
 			$('#inputBirthName').parent().parent().removeClass('has-error');
 			$('#inputBirthName').parent().parent().addClass('has-success');
 			$('#errorBirthName').html('');
@@ -292,8 +291,7 @@ Template.profileSettings.events({
 		if (givenname.length <= 0) {
 			$('#inputGivenName').parent().parent().addClass('has-error');
 			$('#errorGivenName').html(TAPi18n.__('panel-body.givennameEmpty'));
-		}
-		else {
+		} else {
 			$('#inputGivenName').parent().parent().removeClass('has-error');
 			$('#inputGivenName').parent().parent().addClass('has-success');
 			$('#errorGivenName').html('');
@@ -309,8 +307,7 @@ Template.profileSettings.events({
 			if (error) {
 				$('#inputName').parent().parent().addClass('has-error');
 				$('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-			}
-			else if (result) {
+			} else if (result) {
 				var validName = false;
 				if (result.length < 5) {
 					$('#inputName').parent().parent().addClass('has-error');
