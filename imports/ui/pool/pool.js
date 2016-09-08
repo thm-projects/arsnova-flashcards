@@ -5,8 +5,6 @@ import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
 import {Cardsets} from '../../api/cardsets.js';
-import {Categories} from '../../api/categories.js';
-import {Ratings} from '../../api/ratings.js';
 
 import './pool.html';
 
@@ -33,20 +31,27 @@ function getCollection(sortFilter, listType) {
 	var query = {};
 	query.visible = true;
 	query.kind = {$in: Session.get('poolFilter')};
-	if (Session.get('poolFilterAutor') && listType == 0)
+	if (Session.get('poolFilterAutor') && listType === 0) {
 		query.lastName = Session.get('poolFilterAutor');
-	if (Session.get('poolFilterModule') && listType == 0)
+	}
+	if (Session.get('poolFilterModule') && listType === 0) {
 		query.moduleLong = Session.get('poolFilterModule');
-	if (Session.get('poolFilterCourse') && listType == 0)
+	}
+	if (Session.get('poolFilterCourse') && listType === 0) {
 		query.academicCourse = Session.get('poolFilterCourse');
-	if (Session.get('poolFilterDepartment') && listType == 0)
+	}
+	if (Session.get('poolFilterDepartment') && listType === 0) {
 		query.department = Session.get('poolFilterDepartment');
-	if (Session.get('poolFilterStudyType') && listType == 0)
+	}
+	if (Session.get('poolFilterStudyType') && listType === 0) {
 		query.studyType = Session.get('poolFilterStudyType');
-	if (listType == 0)
+	}
+	if (listType === 0) {
 		return Cardsets.find(query, {sort: sortFilter});
-	else
+	}
+	else {
 		return Cardsets.find(query, {sort: sortFilter}).fetch();
+	}
 }
 
 Template.category.helpers({
@@ -55,33 +60,33 @@ Template.category.helpers({
 	},
 	getAutors: function () {
 		var Array = getCollection({lastName: 1}, 1);
-		return distinctArray = _.uniq(Array, false, function (d) {
-			return (d.lastName)
+		return _.uniq(Array, false, function (d) {
+			return (d.lastName);
 		});
 	},
 	getModules: function () {
 		var Array = getCollection({moduleLong: 1}, 1);
-		return distinctArray = _.uniq(Array, false, function (d) {
-			return d.moduleLong
+		return _.uniq(Array, false, function (d) {
+			return d.moduleLong;
 		});
 	},
 	getCourses: function () {
 		var Array = getCollection({academicCourse: 1}, 1);
 		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.academicCourse
+			return d.academicCourse;
 		});
 		return _.pluck(distinctArray, 'academicCourse');
 	},
 	getDepartments: function () {
 		var Array = getCollection({department: 1}, 1);
-		return distinctArray = _.uniq(Array, false, function (d) {
-			return d.department
+		return _.uniq(Array, false, function (d) {
+			return d.department;
 		});
 	},
 	getTypes: function () {
 		var Array = getCollection({studyType: 1}, 1);
 		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.studyType
+			return d.studyType;
 		});
 		return _.pluck(distinctArray, 'studyType');
 	}
