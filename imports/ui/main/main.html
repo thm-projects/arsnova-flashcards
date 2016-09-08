@@ -26,13 +26,13 @@
                             <ul id="navbar" class="nav navbar-nav">
 
                                 <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
-                                    <a href="{{pathFor route='pool'}}" id="pool">
+                                    <a href="{{pathFor route='home'}}" id="pool">
                                         {{_ "navbar-collapse.pool"}}
                                     </a>
                                 </li>
                                 <li id="navbar-ownsets"
                                     class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}">
-                                    <a href="{{pathFor route='home'}}" id="cardsets">
+                                    <a href="{{pathFor route='cardset'}}" id="cardsets">
                                         {{_ "navbar-collapse.carddecks"}}
                                     </a>
                                 </li>
