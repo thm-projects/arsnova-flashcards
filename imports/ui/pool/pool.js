@@ -105,6 +105,7 @@ Template.poolCardsetRow.helpers({
 		}
 	}
 });
+
 Template.category.events({
 	'click .sortTopic': function () {
 		var sort = Session.get('poolSortTopic');
@@ -140,15 +141,6 @@ Template.category.events({
 			button.addClass('active');
 		}
 		Session.set('poolFilterCourse', $(event.target).data('id'));
-	},
-	'click .filterDepartment': function (event) {
-		var button = $(".filterDepartmentGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterDepartment', $(event.target).data('id'));
 	},
 	'click .filterType': function (event) {
 		var button = $(".filterTypeGroup");

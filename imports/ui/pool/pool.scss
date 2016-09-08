@@ -1,4 +1,14 @@
 .categories {
+  .table {
+    table-layout: fixed;
+  }
+
+  .table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -23,7 +33,9 @@
   .glyphicon {
     font-size: 11px;
   }
-
+  .btn-group {
+    display: flex;
+  }
   .btn {
     font-weight: bold;
   }
