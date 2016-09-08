@@ -126,7 +126,7 @@ const CardsetsSchema = new SimpleSchema({
 		type: String
 	},
 	semester: {
-	type: String
+		type: String
 	}
 });
 
@@ -164,53 +164,53 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-  addCardset: function(name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
-    // Make sure the user is logged in before inserting a cardset
-    if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
-      throw new Meteor.Error("not-authorized");
-    }
-    Cardsets.insert({
-      name: name,
-      category: category,
-      description: description,
-      date: new Date(),
-      dateUpdated: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().profile.name,
-      visible: visible,
-      ratings: ratings,
-      kind: kind,
-      price: 0,
-      reviewed: false,
-      reviewer: 'undefined',
-      request: false,
-      relevance: 0,
-      quantity: 0,
-      license: [],
-      userDeleted: false,
-      modulLong: modulLong,
-      modulShort: modulShort,
-      modulNum: modulNum,
-      surname: 'undefined',
-      degree: 'undefined',
-      college: college,
-      academicCourse: 'undefined',
-      department: 'undefined',
-      studyType: studyType,
-      BachelorOrMaster: 'undefined',
-      semester: 'undefined'
-    });
-    Experience.insert({
-      type: 2,
-      value: 3,
-      date: new Date(),
-      owner: Meteor.userId()
-    });
-    Meteor.call('checkLvl');
-  },
-  deleteCardset: function(id) {
-    // Make sure only the task owner can make a task private
-    var cardset = Cardsets.findOne(id);
+	addCardset: function (name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
+		// Make sure the user is logged in before inserting a cardset
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Cardsets.insert({
+			name: name,
+			category: category,
+			description: description,
+			date: new Date(),
+			dateUpdated: new Date(),
+			owner: Meteor.userId(),
+			username: Meteor.user().profile.name,
+			visible: visible,
+			ratings: ratings,
+			kind: kind,
+			price: 0,
+			reviewed: false,
+			reviewer: 'undefined',
+			request: false,
+			relevance: 0,
+			quantity: 0,
+			license: [],
+			userDeleted: false,
+			modulLong: modulLong,
+			modulShort: modulShort,
+			modulNum: modulNum,
+			surname: 'undefined',
+			degree: 'undefined',
+			college: college,
+			academicCourse: 'undefined',
+			department: 'undefined',
+			studyType: studyType,
+			BachelorOrMaster: 'undefined',
+			semester: 'undefined'
+		});
+		Experience.insert({
+			type: 2,
+			value: 3,
+			date: new Date(),
+			owner: Meteor.userId()
+		});
+		Meteor.call('checkLvl');
+	},
+	deleteCardset: function (id) {
+		// Make sure only the task owner can make a task private
+		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
@@ -221,14 +221,14 @@ Meteor.methods({
 			}
 		}
 
-    Cardsets.remove(id);
-    Cards.remove({
-      cardset_id: id
-    });
-  },
-  updateCardset: function(id, name, category, description, modulLong, modulShort, modulNum) {
-    // Make sure only the task owner can make a task private
-    var cardset = Cardsets.findOne(id);
+		Cardsets.remove(id);
+		Cards.remove({
+			cardset_id: id
+		});
+	},
+	updateCardset: function (id, name, category, description, modulLong, modulShort, modulNum) {
+		// Make sure only the task owner can make a task private
+		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
@@ -239,20 +239,20 @@ Meteor.methods({
 			}
 		}
 
-    Cardsets.update(id, {
-      $set: {
-        name: name,
-        category: category,
-        description: description,
-        dateUpdated: new Date(),
-        modulLong: modulLong,
-        modulShort: modulShort,
-        modulNum: modulNum
-      }
-    });
-  },
-  updateRelevance: function(cardset_id) {
-    var relevance = 0;
+		Cardsets.update(id, {
+			$set: {
+				name: name,
+				category: category,
+				description: description,
+				dateUpdated: new Date(),
+				modulLong: modulLong,
+				modulShort: modulShort,
+				modulNum: modulNum
+			}
+		});
+	},
+	updateRelevance: function (cardset_id) {
+		var relevance = 0;
 
 		var ratings = Ratings.find({cardset_id: cardset_id});
 		var count = ratings.count();
