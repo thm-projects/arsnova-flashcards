@@ -143,7 +143,7 @@ Template.admin_cardset.events({
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
 		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
-			var name        = tmpl.find('#editCardsetNameAdmin').value;
+			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
 			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
@@ -151,8 +151,8 @@ Template.admin_cardset.events({
 			}
 			var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
-			var kind    = tmpl.find('#publicateKindAdmin > .active > input').value;
-			var price   = 0;
+			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+			var price = 0;
 			var visible = true;
 			var license = [];
 
@@ -202,7 +202,7 @@ Template.admin_cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#editCardsetCategoryAdmin').text(categoryName);
 		tmpl.find('#editCardsetCategoryAdmin').value = categoryId;
 	},

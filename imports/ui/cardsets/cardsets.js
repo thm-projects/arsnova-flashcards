@@ -117,7 +117,7 @@ Template.cardsets.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#newSetCategory').text(categoryName);
 		tmpl.find('#newSetCategory').value = categoryId;
 	},
@@ -141,8 +141,8 @@ Template.cardsets.events({
 			$('#helpNewSetCategory').css('color', '#b94a48');
 		}
 		if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
-			var name        = $('#newSetName').val();
-			var category    = $('#newSetCategory').val();
+			var name = $('#newSetName').val();
+			var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 
 			Meteor.call("addCardset", name, category, description, false, true, 'personal');

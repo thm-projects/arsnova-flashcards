@@ -74,7 +74,7 @@ Template.cardset.helpers({
 		Session.set('previousCategory', Cardsets.findOne(id).category);
 
 		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId       = previousCategory.toString();
+		var categoryId = previousCategory.toString();
 
 		if (categoryId.length === 1) {
 			categoryId = "0" + categoryId;
@@ -86,7 +86,7 @@ Template.cardset.helpers({
 		}
 	},
 	'hasCardsetPermission': function () {
-		var userId      = Meteor.userId();
+		var userId = Meteor.userId();
 		var cardsetKind = this.kind;
 
 		var hasRole = false;
@@ -138,7 +138,7 @@ Template.cardset.events({
 			if (tmpl.find('#editSetCategory').value === undefined) {
 				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
 			}
-			var category    = tmpl.find('#editSetCategory').value;
+			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
 
 			Meteor.call("updateCardset", this._id, name, category, description);
@@ -164,7 +164,7 @@ Template.cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#editSetCategory').text(categoryName);
 		tmpl.find('#editSetCategory').value = categoryId;
 	},
@@ -195,8 +195,8 @@ Template.cardsetForm.onRendered(function () {
 		$('#helpEditSetName').html('');
 		$('#helpEditSetDescription').html('');
 
-		var previousName         = Session.get('previousName');
-		var previousDescription  = Session.get('previousDescription');
+		var previousName = Session.get('previousName');
+		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
 
 		if (previousName !== $('#editSetName').val()) {
@@ -433,7 +433,7 @@ Template.cardsetInfo.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count   = ratings.count();
+		var count = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
@@ -454,7 +454,7 @@ Template.cardsetInfo.helpers({
 		return this.ratings === true;
 	},
 	hasRated: function () {
-		var count   = Ratings.find({
+		var count = Ratings.find({
 			cardset_id: this._id,
 			user: Meteor.userId()
 		}).count();
@@ -553,8 +553,8 @@ Template.cardsetInfo.events({
 	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
-		var rating     = $('#rating').data('userrating');
-		var count      = Ratings.find({
+		var rating = $('#rating').data('userrating');
+		var count = Ratings.find({
 			cardset_id: cardset_id,
 			user: Meteor.userId()
 		}).count();
@@ -639,7 +639,7 @@ Template.cardsetImportForm.events({
 		var cardset_id = Template.parentData(1)._id;
 
 		if (evt.target.files[0].name.match(/\.(json)$/)) {
-			var reader    = new FileReader();
+			var reader = new FileReader();
 			reader.onload = function () {
 				try {
 					var res = $.parseJSON('[' + this.result + ']');
@@ -740,9 +740,9 @@ Template.cardsetPublicateForm.helpers({
 
 Template.cardsetPublicateForm.events({
 	'click #cardsetPublicate': function (evt, tmpl) {
-		var id      = this._id;
-		var kind    = tmpl.find('#publicateKind > .active > input').value;
-		var price   = 0;
+		var id = this._id;
+		var kind = tmpl.find('#publicateKind > .active > input').value;
+		var price = 0;
 		var visible = true;
 		var license = [];
 
@@ -761,8 +761,8 @@ Template.cardsetPublicateForm.events({
 			visible = false;
 			Meteor.call("makeProRequest", id);
 
-			var text   = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
-			var type   = "Kartensatz-Freigabe";
+			var text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
+			var type = "Kartensatz-Freigabe";
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
@@ -773,7 +773,7 @@ Template.cardsetPublicateForm.events({
 		$('#publicateModal').modal('hide');
 	},
 	'change #publicateKind': function () {
-		var kind          = $('#publicateKind input[name=kind]:checked').val();
+		var kind = $('#publicateKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
 	}
@@ -884,10 +884,10 @@ Template.reportCardsetForm.events({
 			var link_id;
 
 			if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
-				type    = "Gemeldeter Benutzer";
+				type = "Gemeldeter Benutzer";
 				link_id = this.owner;
 			} else {
-				type    = "Gemeldeter Kartensatz";
+				type = "Gemeldeter Kartensatz";
 				link_id = this._id;
 			}
 

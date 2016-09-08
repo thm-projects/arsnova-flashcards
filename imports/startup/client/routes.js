@@ -194,18 +194,18 @@ Router.route('/admin/notifications', {
 });
 
 Router.route('/admin/intervalls', {
-  name: 'admin_intervall',
-  template: 'admin_settings',
-  layoutTemplate: 'admin_main'
+	name: 'admin_intervall',
+	template: 'admin_settings',
+	layoutTemplate: 'admin_main'
 });
 
 
-var isSignedIn = function() {
-  if (!(Meteor.user() || Meteor.loggingIn())) {
-    Router.go('home');
-  } else {
-    this.next();
-  }
+var isSignedIn = function () {
+	if (!(Meteor.user() || Meteor.loggingIn())) {
+		Router.go('home');
+	} else {
+		this.next();
+	}
 };
 
 var goToCreated = function () {

@@ -1,133 +1,133 @@
-import { Meteor } from 'meteor/meteor';
-import { Categories } from '../../api/categories.js';
-import { Badges } from '../../api/badges.js';
-import { AdminSettings } from '../../api/adminSettings';
+import {Meteor} from 'meteor/meteor';
+import {Categories} from '../../api/categories.js';
+import {Badges} from '../../api/badges.js';
+import {AdminSettings} from '../../api/adminSettings';
 
-Meteor.startup(function() {
-  var categories = initCategories();
-  var badges = initBadges();
+Meteor.startup(function () {
+	var categories = initCategories();
+	var badges = initBadges();
 
-  if(!AdminSettings.findOne({name: "seqSettings"})){
-    AdminSettings.insert({
-      name: "seqSettings",
-      seqOne:7,
-      seqTwo: 30,
-      seqThree: 90
-    });
-  }
-  if (Categories.find().count() === 0) {
-    for (var category in categories) {
-      if (categories.hasOwnProperty(category)) {
-        Categories.insert(categories[category]);
-      }
-    }
-  }
-  if (Badges.find().count() === 0) {
-    for (var badge in badges) {
-      if (badges.hasOwnProperty(badge)) {
-        Badges.insert(badges[badge]);
-      }
-    }
-  }
+	if (!AdminSettings.findOne({name: "seqSettings"})) {
+		AdminSettings.insert({
+			name: "seqSettings",
+			seqOne: 7,
+			seqTwo: 30,
+			seqThree: 90
+		});
+	}
+	if (Categories.find().count() === 0) {
+		for (var category in categories) {
+			if (categories.hasOwnProperty(category)) {
+				Categories.insert(categories[category]);
+			}
+		}
+	}
+	if (Badges.find().count() === 0) {
+		for (var badge in badges) {
+			if (badges.hasOwnProperty(badge)) {
+				Badges.insert(badges[badge]);
+			}
+		}
+	}
 });
 
-var initCategories = function() {
-  var categoryNames = [
-    "Agricultural and Forestry Sciences",//1
-    "Information and Telecommunications Technology",//2
-    "Engineering Sciences",//3
-    "Cultural and Social Sciences",//4
-    "Art and Music",//5
-    "Mathematics and Natural Sciences",//6
-    "Media",//7
-    "Medicine and Health",//8
-    "Education and Teaching",//9
-    "Jurisprudence",//10
-    "Foreign Languages and Literatures",//11
-    "Social and Behavioral Sciences",//12
-    "Economics and Management"//13
-  ];
+var initCategories = function () {
+	var categoryNames = [
+		"Agricultural and Forestry Sciences",//1
+		"Information and Telecommunications Technology",//2
+		"Engineering Sciences",//3
+		"Cultural and Social Sciences",//4
+		"Art and Music",//5
+		"Mathematics and Natural Sciences",//6
+		"Media",//7
+		"Medicine and Health",//8
+		"Education and Teaching",//9
+		"Jurisprudence",//10
+		"Foreign Languages and Literatures",//11
+		"Social and Behavioral Sciences",//12
+		"Economics and Management"//13
+	];
 
-  var categoryI18n = [
-    {//1
-	  "de": {
-        "name": "Agrar- und Forstwissenschaften"
-      }
-    },
-    {//2
-	  "de": {
-        "name": "Informations- und Telekommunikationstechnik"
-      }
-    },
-    {//3
-	  "de": {
-        "name": "Ingeniuerswissenschaften"
-      }
-    },
-    {//4
-	  "de": {
-        "name": "Kultur- und Gesellschaftswissenschften"
-      }
-    },
-    {//5
-	  "de": {
-        "name": "Kunst und Musik"
-      }
-    },
-    {//6
-	  "de": {
-        "name": "Mathematik und Naturwissenschaften"
-      }
-    },
-    {//7
-	  "de": {
-        "name": "Medien"
-      }
-    },
-    {//8
-  	  "de": {
-        "name": "Medizin und Gesundheit"
-      }
-    },
-    {//9
-  	  "de": {
-        "name": "Pädagogik und Lehre"
-      }
-    },
-    {//10
-  	  "de": {
-        "name": "Rechtswissenschaften"
-      }
-    },
-    {//11
-  	  "de": {
-        "name": "Sprach- und Literaturwissenschaften"
-      }
-    },
-    {//12
-  	  "de": {
-        "name": "Sozial- und Verhaltenswissenschaften"
-      }
-    },
-    {//13
-  	  "de": {
-        "name": "Wirtschaft und Management"
-      }
-    }
-  ];
+	var categoryI18n = [
+		{//1
+			"de": {
+				"name": "Agrar- und Forstwissenschaften"
+			}
+		},
+		{//2
+			"de": {
+				"name": "Informations- und Telekommunikationstechnik"
+			}
+		},
+		{//3
+			"de": {
+				"name": "Ingeniuerswissenschaften"
+			}
+		},
+		{//4
+			"de": {
+				"name": "Kultur- und Gesellschaftswissenschften"
+			}
+		},
+		{//5
+			"de": {
+				"name": "Kunst und Musik"
+			}
+		},
+		{//6
+			"de": {
+				"name": "Mathematik und Naturwissenschaften"
+			}
+		},
+		{//7
+			"de": {
+				"name": "Medien"
+			}
+		},
+		{//8
+			"de": {
+				"name": "Medizin und Gesundheit"
+			}
+		},
+		{//9
+			"de": {
+				"name": "Pädagogik und Lehre"
+			}
+		},
+		{//10
+			"de": {
+				"name": "Rechtswissenschaften"
+			}
+		},
+		{//11
+			"de": {
+				"name": "Sprach- und Literaturwissenschaften"
+			}
+		},
+		{//12
+			"de": {
+				"name": "Sozial- und Verhaltenswissenschaften"
+			}
+		},
+		{//13
+			"de": {
+				"name": "Wirtschaft und Management"
+			}
+		}
+	];
 
-  var categories = [];
-  for(var i = 0; i < categoryNames.length; ++i) {
-	categories.push(
-	  {
-		"_id": (i<9 ? "0" : "") + (i+1),
-		"name": categoryNames[i],
-		"i18n": categoryI18n[i]
-	  }
-	);
-  }
+	var categories = [];
+	for (var i = 0; i < categoryNames.length; ++i) {
+		categories.push(
+			{
+				"_id": (i < 9 ? "0" : "") + (i + 1),
+				"name": categoryNames[i],
+				"i18n": categoryI18n[i]
+			}
+		);
+	}
 
-  return categories;
+	return categories;
 };
 
 var initBadges = function () {
@@ -239,7 +239,7 @@ var initBadges = function () {
 
 Meteor.startup(function () {
 	var categories = initCategories();
-	var badges     = initBadges();
+	var badges = initBadges();
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {
 			if (categories.hasOwnProperty(category)) {

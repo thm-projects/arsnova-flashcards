@@ -271,37 +271,42 @@
                 <div class="row" style="margin-bottom:10px; margin-left: 5px">
                     <div class="panel-body">
 
-                    <form class="form-inline" role="form">
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall1">Intervall 1 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv1" placeholder="{{_ "panel-body-experience.default1"}}">
-                            <label for="intervall1">{{_ "panel-body-experience.days"}}</label>
+                        <form class="form-inline" role="form">
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall1">Intervall 1 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv1"
+                                       placeholder="{{_ "panel-body-experience.default1"}}">
+                                <label for="intervall1">{{_ "panel-body-experience.days"}}</label>
 
-                        </div>
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall2">Intervall 2 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv2" placeholder="{{_ "panel-body-experience.default2"}}">
-                            <label for="intervall2">{{_ "panel-body-experience.days"}}</label>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall2">Intervall 2 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv2"
+                                       placeholder="{{_ "panel-body-experience.default2"}}">
+                                <label for="intervall2">{{_ "panel-body-experience.days"}}</label>
 
-                        </div>
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall3">Intervall 3 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv3" placeholder="{{_ "panel-body-experience.default3"}}">
-                            <label for="intervall3">{{_ "panel-body-experience.days"}}</label>
-                        </div>
-                        <div class="col-xs-12 btn-group ">
-                            <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_ "panel-body-experience.reset"}}</button>
-                            <button id="saveIntervall" type="button" class="btn btn-success pull-right">{{startXp}} {{_ "profile.save"}}</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall3">Intervall 3 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv3"
+                                       placeholder="{{_ "panel-body-experience.default3"}}">
+                                <label for="intervall3">{{_ "panel-body-experience.days"}}</label>
+                            </div>
+                            <div class="col-xs-12 btn-group ">
+                                <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_
+                                        "panel-body-experience.reset"}}</button>
+                                <button id="saveIntervall" type="button"
+                                        class="btn btn-success pull-right">{{startXp}} {{_ "profile.save"}}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
 
         </div>
@@ -363,14 +368,14 @@
 
                 </div> <!-- div row experience -->
 
-                </div>
+            </div>
 
         </div>
     </div>
 </template>
 
 
-<template name="admin_settings">
+<template name="admin_settings1">
     <div class="col-md-12" id="profile-xp">
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-experience">
@@ -381,37 +386,42 @@
                 <div class="row" style="margin-bottom:10px; margin-left: 5px">
                     <div class="panel-body">
 
-                    <form class="form-inline" role="form">
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall1">Intervall 1 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv1" placeholder="{{_ "panel-body-experience.default1"}}">
-                            <label for="intervall1">{{_ "panel-body-experience.days"}}</label>
+                        <form class="form-inline" role="form">
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall1">Intervall 1 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv1"
+                                       placeholder="{{_ "panel-body-experience.default1"}}">
+                                <label for="intervall1">{{_ "panel-body-experience.days"}}</label>
 
-                        </div>
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall2">Intervall 2 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv2" placeholder="{{_ "panel-body-experience.default2"}}">
-                            <label for="intervall2">{{_ "panel-body-experience.days"}}</label>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall2">Intervall 2 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv2"
+                                       placeholder="{{_ "panel-body-experience.default2"}}">
+                                <label for="intervall2">{{_ "panel-body-experience.days"}}</label>
 
-                        </div>
-                        <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
-                            <label for="intervall3">Intervall 3 </label>
-                            <input type="number" min="0" data-bind="value:replyNumber"
-                                   onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                   class="form-control" id="inv3" placeholder="{{_ "panel-body-experience.default3"}}">
-                            <label for="intervall3">{{_ "panel-body-experience.days"}}</label>
-                        </div>
-                        <div class="col-xs-12 btn-group ">
-                            <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_ "panel-body-experience.reset"}}</button>
-                            <button id="saveIntervall" type="button" class="btn btn-success pull-right">{{startXp}} {{_ "profile.save"}}</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 5px">
+                                <label for="intervall3">Intervall 3 </label>
+                                <input type="number" min="0" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv3"
+                                       placeholder="{{_ "panel-body-experience.default3"}}">
+                                <label for="intervall3">{{_ "panel-body-experience.days"}}</label>
+                            </div>
+                            <div class="col-xs-12 btn-group ">
+                                <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_
+                                        "panel-body-experience.reset"}}</button>
+                                <button id="saveIntervall" type="button"
+                                        class="btn btn-success pull-right">{{startXp}} {{_ "profile.save"}}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
 
         </div>
@@ -419,7 +429,7 @@
     {{> preview}}
 </template>
 
-<template name="preview">
+<template name="preview1">
     <div class="col-md-12" id="profile-xp">
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-experience">
@@ -473,7 +483,7 @@
 
                 </div> <!-- div row experience -->
 
-                </div>
+            </div>
 
         </div>
     </div>

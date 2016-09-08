@@ -37,7 +37,7 @@ Template.category.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count   = ratings.count();
+		var count = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {

@@ -9,47 +9,47 @@ $font_0: Georgia;
 $font_1: serif;
 
 hr {
-	margin: 10px 0;
+  margin: 10px 0;
 }
 
 .nav-header {
-	display: block;
-	padding: 3px 15px;
-	font-size: 11px;
-	font-weight: bold;
-	line-height: 20px;
-	color: $color_mountain_mist_approx;
-	text-shadow: 0 1px 0 $black_50;
-	text-transform: uppercase;
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: $color_mountain_mist_approx;
+  text-shadow: 0 1px 0 $black_50;
+  text-transform: uppercase;
 }
 
 .emptyCellList {
-	padding-top: 33px !important;
+  padding-top: 33px !important;
 }
 
 .emptyTextList {
-	color: $color_storm_dust_approx;
-	font-family: $font_0, $font_1;
-	font-style: italic;
+  color: $color_storm_dust_approx;
+  font-family: $font_0, $font_1;
+  font-style: italic;
 }
 
 .btn-newSet {
-	margin-bottom: 27px;
-	margin-top: 20px;
+  margin-bottom: 27px;
+  margin-top: 20px;
 }
 
 .cardsetBadge {
-	float: right;
+  float: right;
 }
 
 #newSetDescription {
-	resize: none;
+  resize: none;
 }
 
 .table th {
-	background-color: $white;
+  background-color: $white;
 }
 
 ul.nav-list li.active {
-	font-weight: bold;
+  font-weight: bold;
 }

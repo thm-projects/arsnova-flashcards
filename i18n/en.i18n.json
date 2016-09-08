@@ -217,22 +217,20 @@
     "nameAlreadyExists": "Username is already taken!"
   },
   "panel-heading-experience": {
-      "experience": "Experience Points (XP)",
-      "intervall": "Set the learning period",
-      "preview": "Preview"
-
+    "experience": "Experience Points (XP)",
+    "intervall": "Set the learning period",
+    "preview": "Preview"
   },
-
   "panel-body-experience": {
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
     "twoDaysAgo": "Two days ago",
     "days": "days",
-    "reset" : "reset",
-    "default1" : "default 7 days",
-    "default2" : "default 30 days",
-    "default3" : "default 90 days",
+    "reset": "reset",
+    "default1": "default 7 days",
+    "default2": "default 30 days",
+    "default3": "default 90 days",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
