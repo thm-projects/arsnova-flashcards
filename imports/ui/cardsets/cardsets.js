@@ -112,40 +112,6 @@ Template.created.onDestroyed(function () {
  */
 
 Template.cardsets.events({
-	'click #newCardSet': function () {
-		var inputValue = $('#new-set-input').val();
-		$('#newSetName').val(inputValue);
-		$('#new-set-input').val('');
-	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#newSetCategory').text(categoryName);
-		tmpl.find('#newSetCategory').value = categoryId;
-	},
-	'click #newSetModal .save': function () {
-		if ($('#newSetName').val() === "") {
-			$('#newSetNameLabel').css('color', '#b94a48');
-			$('#newSetName').css('border-color', '#b94a48');
-			$('#helpNewSetName').html(TAPi18n.__('modal-dialog.name_required'));
-			$('#helpNewSetName').css('color', '#b94a48');
-		}
-		if ($('#newSetDescription').val() === "") {
-			$('#newSetDescriptionLabel').css('color', '#b94a48');
-			$('#newSetDescription').css('border-color', '#b94a48');
-			$('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
-			$('#helpNewSetDescription').css('color', '#b94a48');
-		}
-		if ($('#newSetCategory').val() === "") {
-			$('#newSetCategoryLabel').css('color', '#b94a48');
-			$('#newSetCategoryDropdown').css('border-color', '#b94a48');
-			$('#helpNewSetCategory').html(TAPi18n.__('modal-dialog.category_required'));
-			$('#helpNewSetCategory').css('color', '#b94a48');
-		}
-		if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
-			var name = $('#newSetName').val();
-			var category = $('#newSetCategory').val();
-			var description = $('#newSetDescription').val();
   'click #newCardSet': function() {
     var inputValue = $('#new-set-input').val();
     $('#newSetName').val(inputValue);
