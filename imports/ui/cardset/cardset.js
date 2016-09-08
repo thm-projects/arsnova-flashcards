@@ -317,10 +317,9 @@ Template.cardsetList.onDestroyed(function () {
  */
 
 Template.cardsetDetails.onCreated(function () {
-	this.autorun(() = > {
+	this.autorun(() => {
 		this.subscribe('cards', Router.current().params._id);
-})
-	;
+	});
 });
 
 
@@ -379,10 +378,9 @@ Template.cardsetDetails.events({
  */
 
 Template.cardsetPreview.onCreated(function () {
-	this.autorun(() = > {
+	this.autorun(() => {
 		this.subscribe('cards', Router.current().params._id);
-})
-	;
+	});
 });
 
 Template.cardsetPreview.helpers({

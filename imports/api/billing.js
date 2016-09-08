@@ -194,18 +194,13 @@ Meteor.methods({
 								}
 							});
 							const currentRoles = Roles.getRolesForUser(Meteor.userId());
-							currentRoles.forEach((role) = > {
-								if (role === plan
-						)
-							{
-								throw new Meteor.Error('400', 'User already subscribed to this plan');
-							}
-						else
-							if (role === 'standard' || role === 'pro') {
-								Roles.removeUsersFromRoles(Meteor.userId(), role);
-							}
-						})
-							;
+							currentRoles.forEach((role) => {
+								if (role === plan) {
+									throw new Meteor.Error('400', 'User already subscribed to this plan');
+								} else if (role === 'standard' || role === 'pro') {
+									Roles.removeUsersFromRoles(Meteor.userId(), role);
+								}
+							});
 							// add new subscription
 							Roles.addUsersToRoles(Meteor.userId(), plan);
 						} catch (exception) {
