@@ -88,7 +88,7 @@
     "editcard": "Kartensatz editieren",
   	"name": "Thema",
   	"nameplaceholder": "Thema des Kartensatzes",
-  	"descriptionplaceholder": "Beschreibung",
+  	"descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
   	"categoryplaceholder": "Wähle eine Kategorie",
   	"description": "Beschreibung",
   	"category": "Kategorie",
@@ -137,7 +137,8 @@
     "modulNum_required": "Geben Sie eine Modulnummer ein!",
     "modulLongplaceholder":"Ausgeschriebener Name des Moduls",
     "modulShortplaceholder":"Abkürzung des Moduls",
-    "modulNumplaceholder":"Nummer des Moduls"
+    "modulNumplaceholder":"Nummer des Moduls",
+    "module": "Namen des Moduls"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -327,9 +328,9 @@
       "deleted": "Gelöscht",
       "license": "Lizenz",
       "dateUpdated": "Zuletzt aktualisiert",
-      "modulLong": "Kursname",
-      "modulShort": "Abkürzung",
-      "modulNum": "Kurs Nummer",
+      "modulLong": "Modul-Langname",
+      "modulShort": "Modul-Kurzname",
+      "modulNum": "Modul-Nummer",
       "college": "Hochschule",
       "studyType": "Studienfach"
     },

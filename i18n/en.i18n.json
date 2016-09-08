@@ -90,7 +90,7 @@
   	"nameplaceholder": "Title of the cardset",
   	"descriptionplaceholder": "Description",
   	"categoryplaceholder": "Choose a category",
-  	"description": "Description",
+  	"description": "Description for the content of this cardset" ,
   	"category": "Category",
   	"visibility": "Visible for",
   	"visibilityoption1": "Private",
@@ -138,7 +138,8 @@
     "modulShort_required": "The module number is required!",
     "modulLongplaceholder":"Full name of the module",
     "modulShortplaceholder":"Short module name",
-    "modulNumplaceholder":"Number of the module"
+    "modulNumplaceholder":"Number of the module",
+    "module": "Names of the Module"
   },
   "profile": {
     "overview": "Learning Progress",
@@ -322,9 +323,9 @@
       "deleted": "Deleted",
       "license": "License",
       "dateUpdated": "Last updated",
-      "modulLong": "Course name",
-      "modulShort": "Short name",
-      "modulNum": "Course Number",
+      "modulLong": "Module-Longname",
+      "modulShort": "Module-Shortname",
+      "modulNum": "Module-Number",
       "college": "college",
       "studyType": "Study type"
     },
