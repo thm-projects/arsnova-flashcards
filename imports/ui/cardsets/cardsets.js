@@ -7,8 +7,6 @@ import {Session} from 'meteor/session';
 import {Cardsets} from '../../api/cardsets.js';
 import {Learned} from '../../api/learned.js';
 
-import {Colleges} from '../../api/colleges.js';
-
 
 import '../cardset/cardset.js';
 
@@ -129,7 +127,7 @@ Template.cardsets.events({
 		$('#newSetCollege').text(categoryName);
 		tmpl.find('#newSetCollege').value = categoryId;
 	},
-	'click #newSetModal .save': function (evt) {
+	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
 			$('#newSetNameLabel').css('color', '#b94a48');
 			$('#newSetName').css('border-color', '#b94a48');

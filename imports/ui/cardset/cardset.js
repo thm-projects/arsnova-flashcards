@@ -163,6 +163,9 @@ Template.cardset.events({
 			}
 			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
+			var modulLong = 'undefined';
+			var modulShort = 'undefined';
+			var modulNum = 'undefined';
 
 			Meteor.call("updateCardset", this._id, name, category, description, modulLong, modulShort, modulNum);
 			$('#editSetModal').modal('hide');
