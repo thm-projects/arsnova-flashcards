@@ -315,7 +315,7 @@ Template.admin_user.events({
            Meteor.call('updateUsersBirthName', birthname, user_id);
            Meteor.call('updateUsersGivenName', givenname, user_id);
            Meteor.call('updateUsersProfileState',
-            (email != "" && result != "" && birthname != "" && givenname != "") ? true : false,
+            (email !== "" && result !== "" && birthname !== "" && givenname !== "") ? true : false,
             user_id);
            window.history.go(-1);
          }
