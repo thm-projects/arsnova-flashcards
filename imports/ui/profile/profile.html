@@ -185,10 +185,10 @@
                             </div>
                         </div>
                         <div class="form-group hidden" id="inputEmailValidationForm">
-                            <label class="col-md-4 control-label">{{_ "panel-body.emailvalid"}} </label>
+                            <label class="col-md-4 control-label">{{_ "panel-body.emailValidation"}} </label>
                             <div class="col-md-8">
                                 <input type="email" class="form-control" id="inputEmailValidation"
-                                       placeholder="{{_ "panel-body.emailvalidation-desc"}}" value="">
+                                       placeholder="{{_ "panel-body.emailValidation-desc"}}" value="">
                                 <span id="errorEmailValidation" class="help-block name"></span>
                             </div>
                         </div>
@@ -227,11 +227,11 @@
                             </div>
                         </div>
                         <div class="btn-group pull-left" role="group">
-                            <button id="profileCancel" type="button"
+                            <button disabled id="profileCancel" type="button"
                                     class="btn btn-danger">{{_ "profile.cancel"}}</button>
                         </div>
                         <div class="btn-group pull-right" role="group">
-                            <button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
+                            <button disabled id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
                         </div>
                     {{/if}}
                 </form>
