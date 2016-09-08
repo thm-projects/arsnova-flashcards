@@ -26,6 +26,17 @@ To get your merge request accepted faster, you should follow our review process 
 
 This is a no-brainer. Keep your branches up to date so that merges will never end up conflicting. Always test-merge your branches before submitting your pull requests. Ideally, your branches are fast-forwardable, but this is not a requirement.
 
+### Code Style
+
+This project makes use of both jscs and jshint. You can review your code with the defined rules by using gulp. Install:
+
+```
+npm install -g gulp
+npm install
+```
+
+Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
+
 ### Project structure
 
 Since Meteor is supporting ES6 (ES2015) we use the import/export statements to modularize the application.
