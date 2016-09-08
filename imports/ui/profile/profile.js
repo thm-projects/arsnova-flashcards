@@ -555,6 +555,14 @@ Template.profileRequests.helpers({
 var seqOne = 7; //7 tag
 var seqTwo = 29; //30 tag
 var seqThree = 90; //90 tag
+var i = 1;
+$('#well1').css("background-color", "lightblue");
+$('#well2').css("background-color", "lightblue");
+$('#well3').css("background-color", "lightblue");
+$('#well4').css("background-color", "lightblue");
+$('#well5').css("background-color", "lightblue");
+$('#well6').css("background-color", "lightblue");
+
 
 Template.profileXp.helpers({
 
@@ -569,12 +577,18 @@ Template.profileXp.helpers({
 		}
 	},
 	getDays1: function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqOne = seq.seqOne;
 		return seqOne;
 	},
 	getDays2: function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqTwo = seq.seqTwo;
 		return seqTwo;
 	},
 	getDays3: function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqThree = seq.seqThree;
 		return seqThree;
 	},
 	getXpTotal: function () {
@@ -821,6 +835,19 @@ Template.profileXp.helpers({
 		return res + "%";
 	}
 });
+
+/*
+Template.profileXp.events({
+	'onload': setInterval(function () {
+		console.log('it works' + i);
+		$('#well' + i).css("background-color", "lightblue");
+		i = i + 1;
+		if (i <= 6) {
+			i = 1;
+		}
+	}, 1000)
+});
+*/
 
 
 /**

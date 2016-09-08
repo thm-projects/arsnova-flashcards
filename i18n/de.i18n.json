@@ -1,4 +1,8 @@
 {
+  "admin-intervall":{
+    "errorAllFields" : "Bitte alle Felder ausfüllen",
+    "errorBiggerThan" : "Intervall 1 muss 1 größer als 2 sein & 2 muss größer 3 sein."
+  },
   "intro": {
     "about": "Was ist THMcards?",
     "choose": "Wähle deinen Login:",

@@ -1,5 +1,4 @@
-//------------------------ IMPORTS
-
+//------------------------IMPORTS
 import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
@@ -167,32 +166,29 @@ Template.admin_settings.events({
 		var inv1 = document.getElementById('inv1').value;
 		var inv2 = document.getElementById('inv2').value;
 		var inv3 = document.getElementById('inv3').value;
-		console.log(inv1);
-		if (inv1 === 0) {
-			inv1 = 7;
-		}
-		if (inv2 === 0) {
-			inv2 = 30;
-		}
-		if (inv3 === 0) {
-			inv3 = 90;
-		}
-		if (inv1 === 0 || inv2 === 0 || inv3 === 0) {
+
+		if (inv1 === "" || inv2 === "" || inv3 === "") {
 			//Bitte alle Felder ausfüllen
+			//$('#inputbody1').addClass('has-error');
+			Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 		} else {
 			if (inv1 < inv2 && inv2 < inv3 && inv1 < inv3) {
 				Meteor.call('updateIntervall', inv1, inv2, inv3);
-				console.log(inv1);
-				console.log(inv2);
-				console.log(inv3);
+				Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
+				//console.log(inv1);
+				//console.log(inv2);
+				//console.log(inv3);
 			} else {
 				//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+				Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
 			}
 		}
+		return true;
 	},
 
 	'click #resetIntervall': function () {
 		Meteor.call('updateIntervall', 7, 30, 90);
+		Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
 	}
 });
 
@@ -369,13 +365,17 @@ Template.preview.helpers({
 		}
 	},
 	getDays1: function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqOne = seq.seqOne;
 		return seqOne;
 	},
 	getDays2: function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqTwo = seq.seqTwo;
 		return seqTwo;
 	},
 	getDays3: function () {
-		return seqThree;
+		return AdminSettings.findOne({name: "seqSettings"}).seqThree;
 	}
 
 });

@@ -214,6 +214,7 @@
             </div>
             <div class="panel-body panel-body-experience">
                 <div class="row" style="margin-bottom:15px">
+                    {{startXp}}
                     <div class="col-md-12">
                         <div class="well well-sm" style="margin:0; margin-bottom:15px; text-align:center">
                             <div class="row">
@@ -229,7 +230,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well1" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:30px; margin-top:12px">
                                     {{getXpToday}}
@@ -244,7 +245,7 @@
                     </div>
 
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well2" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:25px; margin-top:17px; height:25px;">
                                     {{getXpYesterday}}
@@ -259,7 +260,7 @@
                     </div>
                     <!-- vorgestern 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well3" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
                                     {{getXpTwoDaysAgo}}
@@ -274,7 +275,7 @@
                     </div>
                     <!-- Secquencer 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well4" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
                                     {{getXpSeq1}}
@@ -289,7 +290,7 @@
                     </div>
                     <!-- Secquencer 2 -->
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well5" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
                                     {{getXpSeq2}}
@@ -304,7 +305,7 @@
                     </div>
                     <!-- Secquencer 3 -->
                     <div class="col-md-2 col-xs-2">
-                        <div class="well well-sm" style="margin:0; text-align:center">
+                        <div id="well6" class="well well-sm" style="margin:0; text-align:center">
                             <div class="row" style="height:50px;">
                                 <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
                                     {{getXpSeq3}}
