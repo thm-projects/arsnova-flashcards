@@ -71,24 +71,23 @@ Template.registerHelper("getCategories", function () {
 });
 
 //Returns all Colleges
-Template.registerHelper("getColleges", function() {
-  return Colleges.find();
+Template.registerHelper("getColleges", function () {
+	return Colleges.find();
 });
 
 // Return the name of a College
-Template.registerHelper("getCollege", function(value) {
-  if(value !== null)
-  {
-    var id = value.toString();
-    if (id.length === 1) {
-      id = "0" + id;
-    }
+Template.registerHelper("getCollege", function (value) {
+	if (value !== null) {
+		var id = value.toString();
+		if (id.length === 1) {
+			id = "0" + id;
+		}
 
-    var college = Colleges.findOne(id);
-    if (college !== undefined) {
-      return college.name;
-    }
-  }
+		var college = Colleges.findOne(id);
+		if (college !== undefined) {
+			return college.name;
+		}
+	}
 });
 
 // Return the name of a Category
