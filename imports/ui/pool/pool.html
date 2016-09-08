@@ -1,5 +1,5 @@
 <template name="pool">
-    <div id="pool-category-region">
+    <div id="pool-category-region table-responsive table-reflow">
         {{> category}}
     </div>
 </template>
@@ -23,9 +23,10 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="filterAutorGroup btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.autor"}}</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="filterAutorGroup btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -42,9 +43,10 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="filterModuleGroup btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.moduleLong"}}</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="filterModuleGroup btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -60,9 +62,10 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="filterCourseGroup btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.academicCourse"}}</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="filterCourseGroup btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -77,9 +80,10 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="filterDepartmentGroup btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.department"}}</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="filterDepartmentGroup btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -95,15 +99,15 @@
             </th>
             <th>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <button type="button" class="filterTypeGroup btn btn-default" data-toggle="dropdown">
                         {{_ "set-list.studyType"}}</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="filterTypeGroup btn btn-default dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-filter"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="filterType" data-id="">{{_ "set-list.everything"}}</a></li>
+                        <li><a href="#" class="filterType active" data-id="">{{_ "set-list.everything"}}</a></li>
                         {{#each getTypes}}
                             <li><a href="#" class="filterType" data-id="{{this}}">{{this}}</a></li>
                         {{/each}}

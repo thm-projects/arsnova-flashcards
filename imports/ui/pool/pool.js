@@ -115,18 +115,48 @@ Template.category.events({
 		}
 	},
 	'click .filterAutor': function (event) {
+		var button = $(".filterAutorGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
 		Session.set('poolFilterAutor', $(event.target).data('id'));
 	},
 	'click .filterModule': function (event) {
+		var button = $(".filterModuleGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
 	},
 	'click .filterCourse': function (event) {
+		var button = $(".filterCourseGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
 		Session.set('poolFilterCourse', $(event.target).data('id'));
 	},
 	'click .filterDepartment': function (event) {
+		var button = $(".filterDepartmentGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
 		Session.set('poolFilterDepartment', $(event.target).data('id'));
 	},
 	'click .filterType': function (event) {
+		var button = $(".filterTypeGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
 		Session.set('poolFilterStudyType', $(event.target).data('id'));
 	},
 	'change #filterCheckbox': function () {
