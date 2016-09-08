@@ -256,11 +256,11 @@ Template.profileSettings.events({
 		var validEmail = re.test(email);
 
 		//E-Mail wasn't changed
-		if($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
-		} else if($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
 			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
