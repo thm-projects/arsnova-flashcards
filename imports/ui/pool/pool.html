@@ -12,7 +12,7 @@
         <thead class="set-list">
         <tr>
             <th>
-                <div class ="btn-group">
+                <div class="btn-group">
                     <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
                         {{_ "set-list.topic"}} </button>
                     <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
@@ -31,9 +31,11 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                            <li><a href="#" class="filterAutor" data-id="">{{_ "set-list.everyone"}}</a></li>
+                        <li><a href="#" class="filterAutor" data-id="">{{_ "set-list.everyone"}}</a></li>
                         {{#each getAutors}}
-                            <li><a href="#" class="filterAutor" data-id="{{this.lastName}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a></li>
+                            <li><a href="#" class="filterAutor"
+                                   data-id="{{this.lastName}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a>
+                            </li>
                         {{/each}}
                     </ul>
                 </div>
@@ -147,7 +149,7 @@
         <td>{{academicCourse}}</td>
         <td>{{department}}</td>
         <td>{{studyType}}</td>
-        <td class ="kind-label">
+        <td class="kind-label">
             {{{getKind}}}
         </td>
     </tr>
@@ -159,7 +161,8 @@
         <td align="center" height="60" colspan="7" class="emptyCellList set-list-empty">
             <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
             <br>
-            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal" data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
+                    data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
         </td>
     </tr>
 </template>
