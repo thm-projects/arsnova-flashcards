@@ -74,66 +74,6 @@ Template.category.helpers({
         var Array = getCollection({studyType: 1}, 1);
         var distinctArray = _.uniq(Array, false, function(d) {return d.studyType});
         return _.pluck(distinctArray, 'studyType');
-    },
-    getAverage: function() {
-        var ratings = Ratings.find({
-            cardset_id: this._id
-        });
-        var count = ratings.count();
-        if (count !== 0) {
-            var amount = 0;
-            ratings.forEach(function(rate) {
-                amount = amount + rate.rating;
-            });
-            var result = (amount / count).toFixed(2);
-            return result;
-        } else {
-            return 0;
-        }
-    },
-    getSortUserIcon: function(val) {
-        var sort = Session.get('poolSort');
-        if (sort.username === 1) {
-            return '<i class="fa fa-sort-asc"></i>';
-        } else if (sort.username === -1){
-            return '<i class="fa fa-sort-desc"></i>';
-        }
-    },
-    getSortNameIcon: function() {
-        var sort = Session.get('poolSort');
-        if (sort.name === 1) {
-            return '<i class="fa fa-sort-asc"></i>';
-        } else if (sort.name === -1){
-            return '<i class="fa fa-sort-desc"></i>';
-        }
-    },
-    getSortRelevanceIcon: function() {
-        var sort = Session.get('poolSort');
-        if (sort.relevance === 1) {
-            return '<i class="fa fa-sort-asc"></i>';
-        } else if (sort.relevance === -1){
-            return '<i class="fa fa-sort-desc"></i>';
-        }
-    },
-
-    getAuthor: function() {
-        return Meteor.users.findOne(this.owner).profile.name;
-    },
-    getLicense: function() {
-        var licenseString = "";
-
-        if (this.license.length > 0) {
-            if (this.license.includes('by')) { licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />'); }
-            if (this.license.includes('nc')) {
-                licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
-            }
-            if (this.license.includes('nd')) { licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />'); }
-            if (this.license.includes('sa')) { licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />'); }
-
-            return new Spacebars.SafeString(licenseString)
-        } else {
-            return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
-        }
     }
 });
 
