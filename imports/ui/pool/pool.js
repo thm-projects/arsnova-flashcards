@@ -48,8 +48,7 @@ function getCollection(sortFilter, listType) {
 	}
 	if (listType === 0) {
 		return Cardsets.find(query, {sort: sortFilter});
-	}
-	else {
+	} else {
 		return Cardsets.find(query, {sort: sortFilter}).fetch();
 	}
 }
@@ -111,8 +110,7 @@ Template.category.events({
 		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
 			Session.set('poolSortTopic', {name: -1});
-		}
-		else {
+		} else {
 			Session.set('poolSortTopic', {name: 1});
 		}
 	},
