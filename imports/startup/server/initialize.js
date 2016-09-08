@@ -3,33 +3,7 @@ import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 
-Meteor.startup(function () {
-	var categories = initCategories();
-	var badges = initBadges();
 
-	if (!AdminSettings.findOne({name: "seqSettings"})) {
-		AdminSettings.insert({
-			name: "seqSettings",
-			seqOne: 7,
-			seqTwo: 30,
-			seqThree: 90
-		});
-	}
-	if (Categories.find().count() === 0) {
-		for (var category in categories) {
-			if (categories.hasOwnProperty(category)) {
-				Categories.insert(categories[category]);
-			}
-		}
-	}
-	if (Badges.find().count() === 0) {
-		for (var badge in badges) {
-			if (badges.hasOwnProperty(badge)) {
-				Badges.insert(badges[badge]);
-			}
-		}
-	}
-});
 
 var initCategories = function () {
 	var categoryNames = [
@@ -240,6 +214,15 @@ var initBadges = function () {
 Meteor.startup(function () {
 	var categories = initCategories();
 	var badges = initBadges();
+
+	if (!AdminSettings.findOne({name: "seqSettings"})) {
+		AdminSettings.insert({
+			name: "seqSettings",
+			seqOne: 7,
+			seqTwo: 30,
+			seqThree: 90
+		});
+	}
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {
 			if (categories.hasOwnProperty(category)) {

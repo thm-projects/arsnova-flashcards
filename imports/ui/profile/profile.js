@@ -14,7 +14,7 @@ import {Paid} from '../../api/paid.js';
 import {Notifications} from '../../api/notifications.js';
 import {AdminSettings} from '../../api/adminSettings';
 
-import {userData} from '../../api/userdata.js';
+//import {userData} from '../../api/userdata.js';
 
 import './profile.html';
 

@@ -4,7 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
-import {allUsers} from '../../../api/allusers.js';
+//import {allUsers} from '../../../api/allusers.js';
 import {Cardsets} from '../../../api/cardsets.js';
 import {AdminSettings} from '../../../api/adminSettings.js';
 import './admin_user.html';
@@ -168,17 +168,16 @@ Template.admin_settings.events({
 		var inv2 = document.getElementById('inv2').value;
 		var inv3 = document.getElementById('inv3').value;
 		console.log(inv1);
-		if (inv1 == 0) {
+		if (inv1 === 0) {
 			inv1 = 7;
 		}
-
-		if (inv2 == 0) {
+		if (inv2 === 0) {
 			inv2 = 30;
 		}
-		if (inv3 == 0) {
+		if (inv3 === 0) {
 			inv3 = 90;
 		}
-		if (inv1 == 0 || inv2 == 0 || inv3 == 0) {
+		if (inv1 === 0 || inv2 === 0 || inv3 === 0) {
 			//Bitte alle Felder ausfüllen
 		} else {
 			if (inv1 < inv2 && inv2 < inv3 && inv1 < inv3) {
