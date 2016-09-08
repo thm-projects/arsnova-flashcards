@@ -555,7 +555,7 @@ Template.profileRequests.helpers({
 var seqOne = 7; //7 tag
 var seqTwo = 29; //30 tag
 var seqThree = 90; //90 tag
-var i = 1;
+//var i = 1;
 $('#well1').css("background-color", "lightblue");
 $('#well2').css("background-color", "lightblue");
 $('#well3').css("background-color", "lightblue");
