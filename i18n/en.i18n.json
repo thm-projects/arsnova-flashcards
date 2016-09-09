@@ -233,7 +233,7 @@
     "day": "day",
     "days" : "days",
     "day_plural" : "days",
-    "reset": "reset",
+    "reset": "Reset",
     "default1": "default 7 days",
     "default2": "default 30 days",
     "default3": "default 90 days",
