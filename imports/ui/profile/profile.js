@@ -555,13 +555,8 @@ Template.profileRequests.helpers({
 var seqOne = 7; //7 tag
 var seqTwo = 29; //30 tag
 var seqThree = 90; //90 tag
-//var i = 1;
-$('#well1').css("background-color", "lightblue");
-$('#well2').css("background-color", "lightblue");
-$('#well3').css("background-color", "lightblue");
-$('#well4').css("background-color", "lightblue");
-$('#well5').css("background-color", "lightblue");
-$('#well6').css("background-color", "lightblue");
+var i = 1;
+var i2 = 0;
 
 
 Template.profileXp.helpers({
@@ -836,18 +831,23 @@ Template.profileXp.helpers({
 	}
 });
 
-/*
+
 Template.profileXp.events({
 	'onload': setInterval(function () {
-		console.log('it works' + i);
+		console.log('Wert von I : ' + i);
 		$('#well' + i).css("background-color", "lightblue");
 		i = i + 1;
-		if (i <= 6) {
+		i2 = i2 + 1;
+		if (i >= 7) {
 			i = 1;
 		}
-	}, 1000)
+		if (i2 >= 7) {
+			i2 = 0;
+		}
+		$('#well' + i2).css("background-color","lightgreen");
+	}, 500)
 });
-*/
+
 
 
 /**
