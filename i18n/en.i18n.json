@@ -1,7 +1,7 @@
 {
   "admin-intervall":{
     "errorAllFields" : "Please fill all fields.",
-    "errorBiggerThan" : "Intervall 1 must be bigger than Intervall 2 & 2 must be smaller than 3."
+    "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3."
   },
   "intro": {
     "about": "About THMcards",
@@ -230,7 +230,9 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "twoDaysAgo": "Two days ago",
-    "days": "days",
+    "day": "day",
+    "days" : "days",
+    "day_plural" : "days",
     "reset": "reset",
     "default1": "default 7 days",
     "default2": "default 30 days",

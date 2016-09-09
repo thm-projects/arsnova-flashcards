@@ -552,40 +552,37 @@ Template.profileRequests.helpers({
  * ############################################################################
  */
 
-var seqOne = 7; //7 tag
-var seqTwo = 29; //30 tag
-var seqThree = 90; //90 tag
-var i = 1;
-var i2 = 0;
+export var seqOne = 7; //7 tag
+export var seqTwo = 29; //30 tag
+export var seqThree = 90; //90 tag
+var backgroundColorBox1 = 1;
+var backgroundColorBox2 = 0;
+
+
+export function getDays1() {
+	var seq = AdminSettings.findOne({name: "seqSettings"});
+	seqOne = seq.seqOne;
+	return seqOne;
+}
+
+export function getDays2() {
+	var seq = AdminSettings.findOne({name: "seqSettings"});
+	seqTwo = seq.seqTwo;
+	return seqTwo;
+}
+
+export function getDays3() {
+	var seq = AdminSettings.findOne({name: "seqSettings"});
+	seqThree = seq.seqThree;
+	return seqThree;
+}
+
 
 
 Template.profileXp.helpers({
-
-	startXp: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		if (seq) {
-			seqOne = seq.seqOne; //7 tag
-			seqTwo = seq.seqTwo; //30 tag
-			seqThree = seq.seqThree; //90 tag
-		} else {
-			//console.log("error could not find adminSettings");
-		}
-	},
-	getDays1: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		seqOne = seq.seqOne;
-		return seqOne;
-	},
-	getDays2: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		seqTwo = seq.seqTwo;
-		return seqTwo;
-	},
-	getDays3: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		seqThree = seq.seqThree;
-		return seqThree;
-	},
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3,
 	getXpTotal: function () {
 		var allXp = Experience.find({
 			owner: Router.current().params._id
@@ -636,64 +633,6 @@ Template.profileXp.helpers({
 		var minDate = new Date(new Date().getTime() - 48 * 60 * 60 * 1000);
 		minDate.setHours(0, 0, 0, 0);
 		var maxDate = new Date();
-		maxDate.setHours(0, 0, 0, 0);
-
-		var allXp = Experience.find({
-			owner: Router.current().params._id,
-			date: {
-				$gte: minDate,
-				$lte: maxDate
-			}
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		return result;
-	},
-	getXpWeek: function () {
-		var minDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
-		minDate.setHours(0, 0, 0, 0);
-		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		maxDate.setHours(0, 0, 0, 0);
-
-		var allXp = Experience.find({
-			owner: Router.current().params._id,
-			date: {
-				$gte: minDate,
-				$lte: maxDate
-			}
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		return result;
-	},
-	getXpMonth: function () {
-		var minDate = new Date(new Date().getTime() - 28 * 24 * 60 * 60 * 1000);
-		minDate.setHours(0, 0, 0, 0);
-		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		maxDate.setHours(0, 0, 0, 0);
-
-		var allXp = Experience.find({
-			owner: Router.current().params._id,
-			date: {
-				$gte: minDate,
-				$lte: maxDate
-			}
-		});
-		var result = 0;
-		allXp.forEach(function (xp) {
-			result = result + xp.value;
-		});
-		return result;
-	},
-
-	getXpThreeMonth: function () {
-		var minDate = new Date(new Date().getTime() - 90 * 24 * 60 * 60 * 1000);
-		minDate.setHours(0, 0, 0, 0);
-		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
 
 		var allXp = Experience.find({
@@ -834,17 +773,17 @@ Template.profileXp.helpers({
 
 Template.profileXp.events({
 	'onload': setInterval(function () {
-		console.log('Wert von I : ' + i);
-		$('#well' + i).css("background-color", "lightblue");
-		i = i + 1;
-		i2 = i2 + 1;
-		if (i >= 7) {
-			i = 1;
+		//console.log('Wert von I : ' + i);
+		$('#well' + backgroundColorBox1).css("background-color", "lightblue");
+		backgroundColorBox1 = backgroundColorBox1 + 1;
+		backgroundColorBox2 = backgroundColorBox2 + 1;
+		if (backgroundColorBox1 >= 7) {
+			backgroundColorBox1 = 1;
 		}
-		if (i2 >= 7) {
-			i2 = 0;
+		if (backgroundColorBox2 >= 7) {
+			backgroundColorBox2 = 0;
 		}
-		$('#well' + i2).css("background-color","lightgreen");
+		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
 	}, 500)
 });
 

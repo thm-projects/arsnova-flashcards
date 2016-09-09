@@ -194,8 +194,8 @@ Router.route('/admin/notifications', {
 });
 
 Router.route('/admin/intervalls', {
-	name: 'admin_intervall',
-	template: 'admin_settings',
+	name: 'admin_interval',
+	template: 'admin_interval',
 	layoutTemplate: 'admin_main'
 });
 

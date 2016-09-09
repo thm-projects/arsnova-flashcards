@@ -6,6 +6,8 @@ import {Session} from 'meteor/session';
 //import {allUsers} from '../../../api/allusers.js';
 import {Cardsets} from '../../../api/cardsets.js';
 import {AdminSettings} from '../../../api/adminSettings.js';
+import {getDays1,getDays2,getDays3, seqOne, seqTwo,seqThree } from '../../profile/profile.js';
+
 import './admin_user.html';
 
 Meteor.subscribe("adminSettings");
@@ -161,8 +163,8 @@ Template.admin_user.helpers({
 	}
 });
 
-Template.admin_settings.events({
-	'click #saveIntervall': function () {
+Template.admin_interval.events({
+	'click #saveInterval': function () {
 		var inv1 = document.getElementById('inv1').value;
 		var inv2 = document.getElementById('inv2').value;
 		var inv3 = document.getElementById('inv3').value;
@@ -348,34 +350,10 @@ Template.cardsetConfirmFormUserAdmin.events({
 	}
 });
 
-var seqOne = 7; //7 tag
-var seqTwo = 29; //30 tag
-var seqThree = 90; //90 tag
+
 
 Template.preview.helpers({
-
-	startXp: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		if (seq) {
-			seqOne = seq.seqOne; //7 tag
-			seqTwo = seq.seqTwo; //30 tag
-			seqThree = seq.seqThree; //90 tag
-		} else {
-			//console.log("error could not find adminSettings");
-		}
-	},
-	getDays1: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		seqOne = seq.seqOne;
-		return seqOne;
-	},
-	getDays2: function () {
-		var seq = AdminSettings.findOne({name: "seqSettings"});
-		seqTwo = seq.seqTwo;
-		return seqTwo;
-	},
-	getDays3: function () {
-		return AdminSettings.findOne({name: "seqSettings"}).seqThree;
-	}
-
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3
 });
