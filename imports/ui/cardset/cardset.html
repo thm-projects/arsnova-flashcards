@@ -67,14 +67,15 @@
                             {{/if}}
                             <hr>
                         {{/if}}
-                        <strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
+                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                        <span id="info_license">{{getLicense}}</span>
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
                         <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
                         <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
-                        <br><strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                        <br>
-                        <strong>{{_ "cardset.info.author"}}:</strong>
+                        <br><strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
                             <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
                         {{else}}
@@ -91,13 +92,20 @@
                         {{#if isPurchased}}
                             <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
                         {{/if}}
-                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
-                        <span id="info_license">{{getLicense}}</span>
+
                     </div>
                 </div>
             </div>
             {{#if isOwner}}
                 <div class="panel-footer">
+                    <div class="btn-group">
+                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
+                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
+                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
+                            <i class="fa fa-question"></i></button>
+                    </div>
                     <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
                             data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                     </button>
@@ -113,14 +121,7 @@
                                     "sidebar-nav.exportcard"}}</a></li>
                         </ul>
                     </div>
-                    <div class="btn-group">
-                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
-                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
-                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
-                            <i class="fa fa-question"></i></button>
-                    </div>
+
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
