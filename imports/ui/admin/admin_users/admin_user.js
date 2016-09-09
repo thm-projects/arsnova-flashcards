@@ -170,16 +170,12 @@ Template.admin_interval.events({
 		var inv3 = document.getElementById('inv3').value;
 
 		if (inv1 === "" || inv2 === "" || inv3 === "") {
-			//Bitte alle Felder ausfüllen
-			//$('#inputbody1').addClass('has-error');
 			Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 		} else {
 			if (inv1 < inv2 && inv2 < inv3 && inv1 < inv3) {
 				Meteor.call('updateIntervall', inv1, inv2, inv3);
 				Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
-				//console.log(inv1);
-				//console.log(inv2);
-				//console.log(inv3);
+				$('#inv1, #inv2, #inv3').val("");
 			} else {
 				//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
 				Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
@@ -189,8 +185,17 @@ Template.admin_interval.events({
 	},
 
 	'click #resetIntervall': function () {
-		Meteor.call('updateIntervall', 7, 30, 90);
-		Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		if (!($('#inv1').val() === seq.seqOne &&
+			$('#inv2').val() === seq.seqTwo &&
+			$('#inv3').val() === seq.seqThree) &&
+			!($('#inv1').val() === '' &&
+			$('#inv2').val() === '' &&
+			$('#inv3').val() === '')) {
+			Meteor.call('updateIntervall', 7, 30, 90);
+			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+			$('#inv1, #inv2, #inv3').val("");
+		}
 	}
 });
 

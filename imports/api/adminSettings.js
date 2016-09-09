@@ -27,6 +27,4 @@ Meteor.methods({
 				}
 			});
 	}
-
-
 });
