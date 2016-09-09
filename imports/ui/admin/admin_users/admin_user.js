@@ -164,11 +164,16 @@ Template.admin_user.helpers({
 });
 
 Template.admin_interval.events({
+
 	'click #saveInterval': function () {
 		var inv1 = document.getElementById('inv1').value;
 		var inv2 = document.getElementById('inv2').value;
 		var inv3 = document.getElementById('inv3').value;
 
+		if (inv1 > 999 || inv2 > 999 || inv3 > 999 || inv1 > 999 && inv2 > 999 || inv1 && inv3 > 999 || inv1 && inv3 > 999) {
+			Bert.alert(TAPi18n.__('admin-intervall.errorBigger999'),'danger','growl-bottom-right');
+			return;
+		}
 		if (inv1 === "" || inv2 === "" || inv3 === "") {
 			Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 		} else {

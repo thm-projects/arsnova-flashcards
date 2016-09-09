@@ -1,7 +1,9 @@
 {
   "admin-intervall":{
     "errorAllFields" : "Bitte alle Felder ausfüllen",
-    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3."
+    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorBigger999" : "Bitte wähle eine Zahl kleiner als 999"
+
   },
   "intro": {
     "about": "Was ist THMcards?",
