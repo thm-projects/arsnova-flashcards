@@ -115,17 +115,17 @@ Template.cardsets.events({
 		$('#newSetName').val(inputValue);
 		$('#new-set-input').val('');
 	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#newSetCategory').text(categoryName);
-		tmpl.find('#newSetCategory').value = categoryId;
-	},
 	'click .college': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
 		var categoryId = $(evt.currentTarget).val();
 		$('#newSetCollege').text(categoryName);
 		tmpl.find('#newSetCollege').value = categoryId;
+	},
+	'click .course': function (evt, tmpl) {
+		var courseName = $(evt.currentTarget).attr("data");
+		var courseId = $(evt.currentTarget).val();
+		$('#newSetCourse').text(courseName);
+		tmpl.find('#newSetCourse').value = courseId;
 	},
 	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
@@ -140,13 +140,6 @@ Template.cardsets.events({
 			$('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpNewSetDescription').css('color', '#b94a48');
 		}
-		if ($('#newSetCategory').val() === "") {
-			$('#newSetCategoryLabel').css('color', '#b94a48');
-			$('#newSetCategoryDropdown').css('border-color', '#b94a48');
-			$('#helpNewSetCategory').html(TAPi18n.__('modal-dialog.category_required'));
-			$('#helpNewSetCategory').css('color', '#b94a48');
-		}
-
 		if ($('#newSetModulLong').val() === "") {
 			$('#newSetModulLongLabel').css('color', '#b94a48');
 			$('#newSetModulLong').css('border-color', '#b94a48');
@@ -171,6 +164,12 @@ Template.cardsets.events({
 			$('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
 			$('#helpNewSetCollege').css('color', '#b94a48');
 		}
+		if ($('#newSetCourse').val() === "") {
+			$('#newSetCourseLabel').css('color', '#b94a48');
+			$('#newSetCourseDropdown').css('border-color', '#b94a48');
+			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.studyType_required'));
+			$('#helpNewSetCourse').css('color', '#b94a48');
+		}
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
 			$('#newSetCategory').val() !== "" &&
@@ -179,15 +178,15 @@ Template.cardsets.events({
 			$('#newSetModulNum').val() !== "" &&
 			$('#newSetCollege').val() !== "") {
 			var name = $('#newSetName').val();
-			var category = $('#newSetCategory').val();
+			//var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 			var modulLong = $('#newSetModulLong').val();
 			var modulShort = $('#newSetModulShort').val();
 			var modulNum = $('#newSetModulNum').val();
 			var college = $('#newSetCollege').text();
-			var studyType = $('#newSetCategory').text();
+			var course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, category, description, false, true, 'personal', modulLong, modulShort, modulNum, college, studyType);
+			Meteor.call("addCardset", name, description, false, true, 'personal', modulLong, modulShort, modulNum, college, course);
 			$('#newSetModal').modal('hide');
 		}
 	}

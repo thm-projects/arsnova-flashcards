@@ -7,6 +7,7 @@ import {Session} from 'meteor/session';
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
 import {Categories} from '../../api/categories.js';
+import {Colleges} from '../../api/colleges.js';
 import {Ratings} from '../../api/ratings.js';
 import {Paid} from '../../api/paid.js';
 import {ReactiveVar} from 'meteor/reactive-var';
@@ -151,23 +152,18 @@ Template.cardset.events({
 			$('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
 			$('#helpEditSetModulNum').css('color', '#b94a48');
 		}
-
 		if ($('#editSetName').val() !== "" &&
 			$('#editSetDescription').val() !== "" &&
 			$('#editSetModulLong').val() !== "" &&
 			$('#editSetModulShort').val() !== "" &&
 			$('#editSetModulNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
-			if (tmpl.find('#editSetCategory').value === undefined) {
-				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
-			}
-			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
-			var modulLong = 'undefined';
-			var modulShort = 'undefined';
-			var modulNum = 'undefined';
+			var modulLong = tmpl.find('#editSetModulLong').value;
+			var modulShort = tmpl.find('#editSetModulShort').value;
+			var modulNum = tmpl.find('#editSetModulNum').value;
 
-			Meteor.call("updateCardset", this._id, name, category, description, modulLong, modulShort, modulNum);
+			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum);
 			$('#editSetModal').modal('hide');
 		}
 	},

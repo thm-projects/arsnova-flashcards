@@ -3,8 +3,10 @@ import {Categories} from '../../api/categories.js';
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
 import {Colleges} from '../../api/colleges.js';
+import {Course} from '../../api/course.js';
 
 Meteor.subscribe("colleges");
+Meteor.subscribe("course");
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
@@ -68,6 +70,11 @@ Template.registerHelper("getCategories", function () {
 			_id: 1
 		}
 	});
+});
+
+// Returns all Courses
+Template.registerHelper("getCourses", function () {
+	return Course.find();
 });
 
 //Returns all Colleges

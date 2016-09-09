@@ -2,9 +2,9 @@ import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
-
-
 import {Colleges} from '../../api/colleges.js';
+import {Course} from '../../api/course.js';
+
 
 var initCategories = function () {
 	var categoryNames = [
@@ -213,6 +213,7 @@ var initBadges = function () {
 };
 
 Meteor.startup(function () {
+	var course = initCourse();
 	var colleges = initColleges();
 	var categories = initCategories();
 	var badges = initBadges();
@@ -243,6 +244,13 @@ Meteor.startup(function () {
 		for (var college in colleges) {
 			if (colleges.hasOwnProperty(college)) {
 				Colleges.insert(colleges[college]);
+			}
+		}
+	}
+	if (Course.find().count() === 0) {
+		for (var courses in course) {
+			if (course.hasOwnProperty(courses)) {
+				Course.insert(course[courses]);
 			}
 		}
 	}

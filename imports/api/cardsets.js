@@ -39,11 +39,6 @@ const CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
-	category: {
-		type: Number,
-		min: 1,
-		max: 13
-	},
 	description: {
 		type: String
 	},
@@ -164,14 +159,13 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-	addCardset: function (name, category, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
+	addCardset: function (name, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Cardsets.insert({
 			name: name,
-			category: category,
 			description: description,
 			date: new Date(),
 			dateUpdated: new Date(),
@@ -226,7 +220,7 @@ Meteor.methods({
 			cardset_id: id
 		});
 	},
-	updateCardset: function (id, name, category, description, modulLong, modulShort, modulNum) {
+	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -242,7 +236,6 @@ Meteor.methods({
 		Cardsets.update(id, {
 			$set: {
 				name: name,
-				category: category,
 				description: description,
 				dateUpdated: new Date(),
 				modulLong: modulLong,

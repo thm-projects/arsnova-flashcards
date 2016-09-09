@@ -206,14 +206,14 @@
                                 </div>
                             </div><!-- / module textfield -->
                         </div>
-                        <!-- start studyType Dropdown -->
+                        <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
-                            <label id="newSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_
+                            <label id="newSetCourseLabel" class="col-md-3 control-label" for="newSetCourse">{{_
                                     "modal-dialog.studyType"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="newSetCategory" type="button" class="btn btn-default"
+                                        <button id="newSetCourse" type="button" class="btn btn-default"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_
                                                 "modal-dialog.studyType_required"}}</button>
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
@@ -222,16 +222,16 @@
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            {{#each getCategories}}
-                                                <li class="category" value="{{_id}}" data="{{name}}"><a
+                                            {{#each getCourses}}
+                                                <li class="course"  value="{{_id}}" data="{{name}}"><a
                                                         href="#">{{name}}</a></li>
                                             {{/each}}
                                         </ul>
                                     </div>
                                 </div>
-                                <span id="helpNewSetCategory" class="help-block category"></span>
+                                <span id="helpNewSetCourse" class="help-block course"></span>
                             </div>
-                        </div> <!-- / studyType Dropdown -->
+                        </div> <!-- / course Dropdown -->
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
