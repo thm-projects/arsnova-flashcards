@@ -186,12 +186,14 @@ Template.admin_interval.events({
 
 	'click #resetIntervall': function () {
 		var seq = AdminSettings.findOne({name: "seqSettings"});
-		if (!($('#inv1').val() === seq.seqOne &&
+		/*if (!($('#inv1').val() === seq.seqOne &&
 			$('#inv2').val() === seq.seqTwo &&
 			$('#inv3').val() === seq.seqThree) &&
 			!($('#inv1').val() === '' &&
 			$('#inv2').val() === '' &&
-			$('#inv3').val() === '')) {
+			$('#inv3').val() === ''))*/
+		if (!(($('#inv1').val() === seq.seqOne && $('#inv2').val() === seq.seqTwo && $('#inv3').val() === seq.seqThree) ||
+			(7 === seq.seqOne && 30 === seq.seqTwo && 90 === seq.seqThree))) {
 			Meteor.call('updateIntervall', 7, 30, 90);
 			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 			$('#inv1, #inv2, #inv3').val("");
