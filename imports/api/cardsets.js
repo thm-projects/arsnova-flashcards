@@ -99,7 +99,7 @@ const CardsetsSchema = new SimpleSchema({
 	modulNum: {
 		type: String
 	},
-	surname: {
+	lastName: {
 		type: String
 	},
 	degree: {
@@ -185,7 +185,7 @@ Meteor.methods({
 			modulLong: modulLong,
 			modulShort: modulShort,
 			modulNum: modulNum,
-			surname: 'undefined',
+			lastName: 'undefined',
 			degree: 'undefined',
 			college: college,
 			academicCourse: 'undefined',
