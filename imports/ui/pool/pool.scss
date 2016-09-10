@@ -32,6 +32,12 @@ h3 {
   font-weight: bold;
 }
 
+.panel {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+}
+
 #pool_license img {
   width: 20px;
 }
@@ -42,10 +48,8 @@ h3 {
   background-color: $color_wild_sand_approx;
 }
 
-.panel {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 0px;
+#pool-category-region {
+  margin-bottom: 35px;
 }
 
 .poolHeaderTop {
@@ -73,6 +77,12 @@ h3 {
   .panel {
     margin-top: 3px;
     margin-bottom: 3px;
+  }
+}
+
+@media (min-width: 992px) {
+  .altPanel {
+    background-color: $color_wild_sand_approx;
   }
 }
 

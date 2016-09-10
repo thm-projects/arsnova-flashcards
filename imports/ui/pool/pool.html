@@ -1,5 +1,5 @@
 <template name="pool">
-    <div id="pool-category-region" class="table-responsive">
+    <div id="pool-category-region" class="container">
         {{> category}}
     </div>
 </template>
@@ -131,7 +131,12 @@
     </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
-            {{> poolCardsetRow}}
+            <a href="/cardset/{{_id}}">
+                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                        odd @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                    {{> poolCardsetRow}}
+                </div>
+            </a>
         {{/each}}
     {{else}}
         {{> poolCardsetEmpty}}
@@ -139,34 +144,30 @@
 </template>
 
 <template name="poolCardsetRow">
-    <a href="/cardset/{{_id}}">
-        <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default cardsetInfo responsive-utilities-test visible-on">
-            <span class="col-xs-3 col-sm-4 col-md-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
-            <span class="cell col-xs-9 col-sm-8 col-md-3">
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
+    <span class="cell col-xs-9 col-sm-8 col-md-3">
                 {{name}}
-                <span class="badge cardsetBadge">{{countCards this._id}}</span>
+        <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </span>
-            <span class="col-xs-3 col-sm-4 col-md-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-2">{{degree}} {{firstName}} {{lastName}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-1 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-1">{{moduleShort}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-2">{{discipline}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-1 visible-xs visible-sm poolLabel">{{_ "set-list.section"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-1">{{section}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-2">{{major}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-11 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
-            <span class="kind-label cell col-xs-9 col-sm-8 col-md-1 kind-label">
-                {{{getKind}}}
-            </span>
-        </div>
-    </a>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
+    <span class="col-xs-9 col-sm-8 col-md-2">{{degree}} {{firstName}} {{lastName}}</span>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
+    <span class="col-xs-9 col-sm-8 col-md-1">{{moduleShort}}</span>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
+    <span class="col-xs-9 col-sm-8 col-md-2">{{discipline}}</span>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.section"}}:</span>
+    <span class="col-xs-9 col-sm-8 col-md-1">{{section}}</span>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
+    <span class="col-xs-9 col-sm-8 col-md-2">{{major}}</span>
+    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
+    <span class="kind-label cell col-xs-9 col-sm-8 col-md-1 kind-label">
+        {{{getKind}}}
+    </span>
 </template>
 
 
 <template name="poolCardsetEmpty">
-    <div class="empty-list panel panel-default cardsetInfo ">
+    <div class="col-sm-12 col-md-12 empty-list panel panel-default cardsetInfo ">
         <br>
         <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
         <br>

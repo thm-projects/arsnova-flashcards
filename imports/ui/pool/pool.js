@@ -87,6 +87,9 @@ Template.category.helpers({
 			return d.major;
 		});
 		return _.pluck(distinctArray, 'major');
+	},
+	odd: function (index) {
+		return !(index % 2 === 0);
 	}
 });
 
