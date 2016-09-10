@@ -13,11 +13,11 @@ Meteor.subscribe("categories");
 Meteor.subscribe("cardsets");
 
 Session.setDefault('poolSortTopic', {name: 1});
-Session.setDefault('poolFilterAutor');
+Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterModule');
-Session.setDefault('poolFilterCourse');
-Session.setDefault('poolFilterDepartment');
-Session.setDefault('poolFilterStudyType');
+Session.setDefault('poolFilterDiscipline');
+Session.setDefault('poolFilterSection');
+Session.setDefault('poolFilterMajor');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -26,28 +26,27 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
  * ############################################################################
  */
 
-function getCollection(sortFilter, listType) {
-	//0 =
+function getCollection(sortFilter, filterList, limit) {
 	var query = {};
 	query.visible = true;
 	query.kind = {$in: Session.get('poolFilter')};
-	if (Session.get('poolFilterAutor') && listType === 0) {
-		query.lastName = Session.get('poolFilterAutor');
+	if (Session.get('poolFilterAuthor') && !filterList) {
+		query.lastName = Session.get('poolFilterAuthor');
 	}
-	if (Session.get('poolFilterModule') && listType === 0) {
+	if (Session.get('poolFilterModule') && !filterList) {
 		query.moduleShort = Session.get('poolFilterModule');
 	}
-	if (Session.get('poolFilterCourse') && listType === 0) {
-		query.academicCourse = Session.get('poolFilterCourse');
+	if (Session.get('poolFilterDiscipline') && !filterList) {
+		query.discipline = Session.get('poolFilterDiscipline');
 	}
-	if (Session.get('poolFilterDepartment') && listType === 0) {
-		query.department = Session.get('poolFilterDepartment');
+	if (Session.get('poolFilterSection') && !filterList) {
+		query.section = Session.get('poolFilterSection');
 	}
-	if (Session.get('poolFilterStudyType') && listType === 0) {
-		query.studyType = Session.get('poolFilterStudyType');
+	if (Session.get('poolFilterMajor') && !filterList) {
+		query.major = Session.get('poolFilterMajor');
 	}
-	if (listType === 0) {
-		return Cardsets.find(query, {sort: sortFilter});
+	if (!filterList) {
+		return Cardsets.find(query, {sort: sortFilter}, {limit: limit});
 	} else {
 		return Cardsets.find(query, {sort: sortFilter}).fetch();
 	}
@@ -57,7 +56,7 @@ Template.category.helpers({
 	getDecks: function () {
 		return getCollection(Session.get('poolSortTopic'), 0);
 	},
-	getAutors: function () {
+	getAuthors: function () {
 		var Array = getCollection({lastName: 1}, 1);
 		return _.uniq(Array, false, function (d) {
 			return (d.lastName);
@@ -69,25 +68,25 @@ Template.category.helpers({
 			return d.moduleLong;
 		});
 	},
-	getCourses: function () {
-		var Array = getCollection({academicCourse: 1}, 1);
+	getDisciplines: function () {
+		var Array = getCollection({discipline: 1}, 1);
 		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.academicCourse;
+			return d.discipline;
 		});
-		return _.pluck(distinctArray, 'academicCourse');
+		return _.pluck(distinctArray, 'discipline');
 	},
-	getDepartments: function () {
-		var Array = getCollection({department: 1}, 1);
+	getSections: function () {
+		var Array = getCollection({section: 1}, 1);
 		return _.uniq(Array, false, function (d) {
-			return d.department;
+			return d.section;
 		});
 	},
-	getTypes: function () {
-		var Array = getCollection({studyType: 1}, 1);
+	getMajors: function () {
+		var Array = getCollection({major: 1}, 1);
 		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.studyType;
+			return d.major;
 		});
-		return _.pluck(distinctArray, 'studyType');
+		return _.pluck(distinctArray, 'major');
 	}
 });
 
@@ -115,14 +114,14 @@ Template.category.events({
 			Session.set('poolSortTopic', {name: 1});
 		}
 	},
-	'click .filterAutor': function (event) {
-		var button = $(".filterAutorGroup");
+	'click .filterAuthor': function (event) {
+		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
 		} else {
 			button.addClass('active');
 		}
-		Session.set('poolFilterAutor', $(event.target).data('id'));
+		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
 	'click .filterModule': function (event) {
 		var button = $(".filterModuleGroup");
@@ -133,23 +132,32 @@ Template.category.events({
 		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
 	},
-	'click .filterCourse': function (event) {
-		var button = $(".filterCourseGroup");
+	'click .filterDiscipline': function (event) {
+		var button = $(".filterDisciplineGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
 		} else {
 			button.addClass('active');
 		}
-		Session.set('poolFilterCourse', $(event.target).data('id'));
+		Session.set('poolFilterDiscipline', $(event.target).data('id'));
 	},
-	'click .filterType': function (event) {
-		var button = $(".filterTypeGroup");
+	'click .filterSection': function (event) {
+		var button = $(".filterSectionGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
 		} else {
 			button.addClass('active');
 		}
-		Session.set('poolFilterStudyType', $(event.target).data('id'));
+		Session.set('poolFilterSection', $(event.target).data('id'));
+	},
+	'click .filterMajor': function (event) {
+		var button = $(".filterMajorGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterMajor', $(event.target).data('id'));
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];

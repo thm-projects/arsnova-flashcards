@@ -15,19 +15,19 @@
             </button>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Autor group">
-            <button type="button" class="filterAutorGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.autor"}}</button>
-            <button type="button" class="filterAutorGroup btn btn-default dropdown-toggle"
+        <div class="btn-group" role="group" aria-label="Author group">
+            <button type="button" class="filterAuthorGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.author"}}</button>
+            <button type="button" class="filterAuthorGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-filter"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterAutor" data-id="">{{_ "set-list.everyone"}}</a></li>
-                {{#each getAutors}}
-                    <li><a href="#" class="filterAutor"
+                <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
+                {{#each getAuthors}}
+                    <li><a href="#" class="filterAuthor"
                            data-id="{{this.lastName}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a>
                     </li>
                 {{/each}}
@@ -44,7 +44,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterModule" data-id="">{{_ "set-list.everything"}}</a></li>
+                <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getModules}}
                     <li><a href="#" class="filterModule" data-id="{{this.moduleShort}}">{{this.moduleShort}}:
                         {{this.moduleLong}}</a></li>
@@ -52,53 +52,54 @@
             </ul>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Course group">
-            <button type="button" class="filterCourseGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.academicCourse"}}</button>
-            <button type="button" class="filterCourseGroup btn btn-default dropdown-toggle"
+        <div class="btn-group" role="group" aria-label="Discipline group">
+            <button type="button" class="filterDisciplineGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.discipline"}}</button>
+            <button type="button" class="filterDisciplineGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-filter"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterCourse" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getCourses}}
-                    <li><a href="#" class="filterCourse" data-id="{{this}}">{{this}}</a></li>
+                <li><a href="#" class="filterDiscipline active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getDisciplines}}
+                    <li><a href="#" class="filterDiscipline" data-id="{{this}}">{{this}}</a>
+                    </li>
                 {{/each}}
             </ul>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Department group">
-            <button type="button" class="filterDepartmentGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.department"}}</button>
-            <button type="button" class="filterDepartmentGroup btn btn-default dropdown-toggle"
+        <div class="btn-group" role="group" aria-label="Section group">
+            <button type="button" class="filterSectionGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.section"}}</button>
+            <button type="button" class="filterSectionGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-filter"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterDepartment" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getDepartments}}
-                    <li><a href="#" class="filterDepartment" data-id="{{this.department}}">{{this.department}}:
-                        {{this.departmentLong}}</a></li>
+                <li><a href="#" class="filterSection active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getSections}}
+                    <li><a href="#" class="filterSection" data-id="{{this.section}}">{{this.section}}
+                        :{{this.sectionLong}}</a></li>
                 {{/each}}
             </ul>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Type group">
-            <button type="button" class="filterTypeGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.studyType"}}</button>
-            <button type="button" class="filterTypeGroup btn btn-default dropdown-toggle" data-toggle="dropdown"
+        <div class="btn-group" role="group" aria-label="Major group">
+            <button type="button" class="filterMajorGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.major"}}</button>
+            <button type="button" class="filterMajorGroup btn btn-default dropdown-toggle" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-filter"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterType active" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getTypes}}
-                    <li><a href="#" class="filterType" data-id="{{this}}">{{this}}</a></li>
+                <li><a href="#" class="filterMajor active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getMajors}}
+                    <li><a href="#" class="filterMajor" data-id="{{this}}">{{this}}</a></li>
                 {{/each}}
             </ul>
         </div>
@@ -121,11 +122,11 @@
     </div>
     <div class="col-sm-12 col-md-12 poolHeaderBottom responsive-utilities-test visible-on">
         <span class="col-md-3 visible-md visible-lg visible-xl">{{_ "set-list.topic"}}:</span>
-        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.autor"}}:</span>
+        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.author"}}:</span>
         <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.moduleLong"}}:</span>
-        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.academicCourse"}}:</span>
-        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.department"}}:</span>
-        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.studyType"}}:</span>
+        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.discipline"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.section"}}:</span>
+        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.major"}}:</span>
         <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.license"}}:</span>
     </div>
     {{#if getDecks.count}}
@@ -145,16 +146,16 @@
                 {{name}}
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </span>
-            <span class="col-xs-3 col-sm-4 col-md-3 visible-xs visible-sm poolLabel">{{_ "set-list.autor"}}:</span>
+            <span class="col-xs-3 col-sm-4 col-md-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
             <span class="col-xs-9 col-sm-8 col-md-2">{{degree}} {{firstName}} {{lastName}}</span>
             <span class="col-xs-3 col-sm-4 col-md-1 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
             <span class="col-xs-9 col-sm-8 col-md-1">{{moduleShort}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.academicCourse"}}
-                :</span> <span class="col-xs-9 col-sm-8 col-md-2">{{academicCourse}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-1 visible-xs visible-sm poolLabel">{{_ "set-list.department"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-1">{{department}}</span>
-            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.studyType"}}:</span>
-            <span class="col-xs-9 col-sm-8 col-md-2">{{studyType}}</span>
+            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
+            <span class="col-xs-9 col-sm-8 col-md-2">{{discipline}}</span>
+            <span class="col-xs-3 col-sm-4 col-md-1 visible-xs visible-sm poolLabel">{{_ "set-list.section"}}:</span>
+            <span class="col-xs-9 col-sm-8 col-md-1">{{section}}</span>
+            <span class="col-xs-3 col-sm-4 col-md-2 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
+            <span class="col-xs-9 col-sm-8 col-md-2">{{major}}</span>
             <span class="col-xs-3 col-sm-4 col-md-11 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
             <span class="kind-label cell col-xs-9 col-sm-8 col-md-1 kind-label">
                 {{{getKind}}}
@@ -165,12 +166,11 @@
 
 
 <template name="poolCardsetEmpty">
-    <tr class="empty-list">
-        <td align="center" height="60" colspan="7" class="emptyCellList set-list-empty">
-            <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
-            <br>
-            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
-                    data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
-        </td>
-    </tr>
+    <div class="empty-list panel panel-default cardsetInfo ">
+        <br>
+        <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
+        <br>
+        <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
+                data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+    </div>
 </template>
