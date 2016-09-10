@@ -185,13 +185,15 @@ function saveInterval() {
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 	} else {
-		if (inv1 < inv2 && inv2 < inv3 && inv1 < inv3) {
+		console.log(typeof(inv1));
+		if (Number(inv1) > Number(inv2) || Number(inv2) > Number(inv3)) {
+			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
+
+		} else {
 			Meteor.call('updateIntervall', inv1, inv2, inv3);
 			Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
 			$('#inv1, #inv2, #inv3').val("");
-		} else {
-			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
-			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
 		}
 	}
 	return true;
@@ -200,7 +202,6 @@ function saveInterval() {
 Template.admin_interval.events({//TODO
 	'keypress input': function (event) {
 		if (event.keyCode == 13) {
-			console.log("Peter");
 			saveInterval();
 		}
 	},
