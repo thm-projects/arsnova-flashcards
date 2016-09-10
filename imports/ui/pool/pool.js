@@ -4,19 +4,30 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
+import {Authors} from '../../api/authors.js';
 import {Cardsets} from '../../api/cardsets.js';
+import {Categories} from '../../api/categories.js';
+import {Disciplines} from '../../api/disciplines.js';
+import {Majors} from '../../api/majors.js';
+import {Modules} from '../../api/modules.js';
 
 import './pool.html';
 
+var ITEMS_INCREMENT = 20;
+Session.setDefault('itemsLimit', ITEMS_INCREMENT);
 
-Meteor.subscribe("categories");
+Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("categories");
+Meteor.subscribe("disciplines");
+Meteor.subscribe("majors");
+Meteor.subscribe("modules");
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterDiscipline');
-Session.setDefault('poolFilterSection');
+Session.setDefault('poolFilterCategory');
 Session.setDefault('poolFilterMajor');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
@@ -26,74 +37,70 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
  * ############################################################################
  */
 
-function getCollection(sortFilter, filterList, limit) {
-	var query = {};
-	query.visible = true;
-	query.kind = {$in: Session.get('poolFilter')};
-	if (Session.get('poolFilterAuthor') && !filterList) {
-		query.lastName = Session.get('poolFilterAuthor');
-	}
-	if (Session.get('poolFilterModule') && !filterList) {
-		query.moduleShort = Session.get('poolFilterModule');
-	}
-	if (Session.get('poolFilterDiscipline') && !filterList) {
-		query.discipline = Session.get('poolFilterDiscipline');
-	}
-	if (Session.get('poolFilterSection') && !filterList) {
-		query.section = Session.get('poolFilterSection');
-	}
-	if (Session.get('poolFilterMajor') && !filterList) {
-		query.major = Session.get('poolFilterMajor');
-	}
-	if (!filterList) {
-		return Cardsets.find(query, {sort: sortFilter}, {limit: limit});
-	} else {
-		return Cardsets.find(query, {sort: sortFilter}).fetch();
-	}
-}
-
 Template.category.helpers({
 	getDecks: function () {
-		return getCollection(Session.get('poolSortTopic'), 0);
+		var query = {};
+		query.visible = true;
+		query.kind = {$in: Session.get('poolFilter')};
+		if (Session.get('poolFilterAuthor')) {
+			query.lastName = Session.get('poolFilterAuthor');
+		}
+		if (Session.get('poolFilterModule')) {
+			query.moduleShort = Session.get('poolFilterModule');
+		}
+		if (Session.get('poolFilterDiscipline')) {
+			query.discipline = Session.get('poolFilterDiscipline');
+		}
+		if (Session.get('poolFilterCategory')) {
+			query.category = Session.get('poolFilterCategory');
+		}
+		if (Session.get('poolFilterMajor')) {
+			query.major = Session.get('poolFilterMajor');
+		}
+		return Cardsets.find(query, {sort: Session.set('poolSortTopic')});
 	},
 	getAuthors: function () {
-		var Array = getCollection({lastName: 1}, 1);
-		return _.uniq(Array, false, function (d) {
-			return (d.lastName);
-		});
+		return Authors.find({}, {sort: {lastName: 1}});
 	},
 	getModules: function () {
-		var Array = getCollection({moduleLong: 1}, 1);
-		return _.uniq(Array, false, function (d) {
-			return d.moduleLong;
-		});
+		return Modules.find({}, {sort: {name: 1}});
 	},
 	getDisciplines: function () {
-		var Array = getCollection({discipline: 1}, 1);
-		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.discipline;
-		});
-		return _.pluck(distinctArray, 'discipline');
+		return Disciplines.find({}, {sort: {name: 1}});
 	},
-	getSections: function () {
-		var Array = getCollection({section: 1}, 1);
-		return _.uniq(Array, false, function (d) {
-			return d.section;
-		});
+	getCategories: function () {
+		return Categories.find({}, {sort: {name: 1}});
 	},
 	getMajors: function () {
-		var Array = getCollection({major: 1}, 1);
-		var distinctArray = _.uniq(Array, false, function (d) {
-			return d.major;
-		});
-		return _.pluck(distinctArray, 'major');
+		return Majors.find({}, {sort: {name: 1}});
 	},
-	odd: function (index) {
+	oddRow: function (index) {
 		return !(index % 2 === 0);
 	}
 });
 
+
 Template.poolCardsetRow.helpers({
+	getAuthorName: function () {
+		var author = Authors.findOne({owner: this.owner});
+		return author.degree + " " + author.firstName + " " + author.lastName;
+	},
+	getModuleToken: function () {
+		var module = Modules.findOne({_id: this.module});
+		return module.token;
+	},
+	getDisciplineName: function () {
+		var discipline = Disciplines.findOne({_id: this.discipline});
+		return discipline.name;
+	},
+	getCategoryToken: function () {
+		var category = Categories.findOne({_id: this.category});
+		return category.token;
+	},
+	getMajorToken: function () {
+		var major = Majors.findOne({_id: this.major});
+		return major.token;
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -144,14 +151,14 @@ Template.category.events({
 		}
 		Session.set('poolFilterDiscipline', $(event.target).data('id'));
 	},
-	'click .filterSection': function (event) {
-		var button = $(".filterSectionGroup");
+	'click .filterCategory': function (event) {
+		var button = $(".filterCategoryGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
 		} else {
 			button.addClass('active');
 		}
-		Session.set('poolFilterSection', $(event.target).data('id'));
+		Session.set('poolFilterCategory', $(event.target).data('id'));
 	},
 	'click .filterMajor': function (event) {
 		var button = $(".filterMajorGroup");

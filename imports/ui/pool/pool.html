@@ -28,7 +28,7 @@
                 <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
                 {{#each getAuthors}}
                     <li><a href="#" class="filterAuthor"
-                           data-id="{{this.lastName}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a>
+                           data-id="{{this.owner}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a>
                     </li>
                 {{/each}}
             </ul>
@@ -46,8 +46,9 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getModules}}
-                    <li><a href="#" class="filterModule" data-id="{{this.moduleShort}}">{{this.moduleShort}}:
-                        {{this.moduleLong}}</a></li>
+                    <li><a href="#" class="filterModule" data-id="{{this._id}}">
+                        {{this.token}}({{this.number}}):
+                        {{this.name}}</a></li>
                 {{/each}}
             </ul>
         </div>
@@ -64,26 +65,26 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterDiscipline active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getDisciplines}}
-                    <li><a href="#" class="filterDiscipline" data-id="{{this}}">{{this}}</a>
+                    <li><a href="#" class="filterDiscipline" data-id="{{this._id}}">{{this.name}}</a>
                     </li>
                 {{/each}}
             </ul>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Section group">
-            <button type="button" class="filterSectionGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.section"}}</button>
-            <button type="button" class="filterSectionGroup btn btn-default dropdown-toggle"
+        <div class="btn-group" role="group" aria-label="Category group">
+            <button type="button" class="filterCategoryGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.category"}}</button>
+            <button type="button" class="filterCategoryGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-filter"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" class="filterSection active" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getSections}}
-                    <li><a href="#" class="filterSection" data-id="{{this.section}}">{{this.section}}
-                        :{{this.sectionLong}}</a></li>
+                <li><a href="#" class="filterCategory active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getCategories}}
+                    <li><a href="#" class="filterSection" data-id="{{this._id}}">{{this.token}}
+                        :{{this.name}}</a></li>
                 {{/each}}
             </ul>
         </div>
@@ -99,7 +100,7 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterMajor active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getMajors}}
-                    <li><a href="#" class="filterMajor" data-id="{{this}}">{{this}}</a></li>
+                    <li><a href="#" class="filterMajor" data-id="{{this._id}}">{{this.token}}:{{this.name}}</a></li>
                 {{/each}}
             </ul>
         </div>
@@ -122,45 +123,51 @@
     </div>
     <div class="col-sm-12 col-md-12 poolHeaderBottom responsive-utilities-test visible-on">
         <span class="col-md-3 visible-md visible-lg visible-xl">{{_ "set-list.topic"}}:</span>
-        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.author"}}:</span>
+        <span class="col-md-3 visible-md visible-lg visible-xl">{{_ "set-list.author"}}:</span>
         <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.moduleLong"}}:</span>
         <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.discipline"}}:</span>
-        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.section"}}:</span>
-        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.major"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.category"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.major"}}:</span>
         <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.license"}}:</span>
     </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
             <a href="/cardset/{{_id}}">
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
-                        odd @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                        oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
                     {{> poolCardsetRow}}
                 </div>
             </a>
         {{/each}}
+        {{#if moreResults}}
+            <div id="showMoreResults" style="margin-left: 25px;">
+                <span class="loading">Loading...</span>
+                {{showMoreVisible}}
+            </div>
+        {{/if}}
     {{else}}
         {{> poolCardsetEmpty}}
     {{/if}}
 </template>
 
 <template name="poolCardsetRow">
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
-    <span class="cell col-xs-9 col-sm-8 col-md-3">
-                {{name}}
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
+    <span class="cell col-xs-9 col-sm-9 col-md-3">
+                {{this.name}}
         <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
-    <span class="col-xs-9 col-sm-8 col-md-2">{{degree}} {{firstName}} {{lastName}}</span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
-    <span class="col-xs-9 col-sm-8 col-md-1">{{moduleShort}}</span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
-    <span class="col-xs-9 col-sm-8 col-md-2">{{discipline}}</span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.section"}}:</span>
-    <span class="col-xs-9 col-sm-8 col-md-1">{{section}}</span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
-    <span class="col-xs-9 col-sm-8 col-md-2">{{major}}</span>
-    <span class="col-xs-3 col-sm-4 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
-    <span class="kind-label cell col-xs-9 col-sm-8 col-md-1 kind-label">
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
+    <span class="col-xs-9 col-sm-9 col-md-3">{{{getAuthorName}}}</span>
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
+    <span class="col-xs-9 col-sm-9 col-md-1">{{{getModuleToken}}}</span>
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
+    <span class="col-xs-9 col-sm-9 col-md-2">{{{getDisciplineName}}}</span>
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.category"}}:</span>
+    <span class="col-xs-9 col-sm-9 col-md-1">{{{getCategoryToken}}}</span>
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
+    <span class="col-xs-9 col-sm-9 col-md-1">{{{getMajorToken}}}</span>
+    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
+    <span class="kind-label cell col-xs-9 col-sm-9 col-md-1 kind-label">
         {{{getKind}}}
     </span>
 </template>
@@ -171,7 +178,6 @@
         <br>
         <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
         <br>
-        <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
-                data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+        <br>
     </div>
 </template>
