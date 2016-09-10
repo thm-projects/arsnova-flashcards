@@ -17,6 +17,9 @@ Meteor.subscribe("adminSettings");
  * ############################################################################
  */
 
+
+
+
 Template.admin_user.helpers({
 	getService: function () {
 		var userId = Router.current().params._id;
@@ -163,6 +166,12 @@ Template.admin_user.helpers({
 	}
 });
 
+function onKey(e) {
+	if (e == 13) {
+		console.log("Test");
+	}
+}
+
 
 function saveInterval() {
 	var inv1 = document.getElementById('inv1').value;
@@ -189,9 +198,10 @@ function saveInterval() {
 }
 
 Template.admin_interval.events({//TODO
-	'keydown #inv3': function (ev) {
-		if (ev.which.keyCode === 13) {
-			saveInterval;
+	'keypress input': function (event) {
+		if (event.keyCode == 13) {
+			console.log("Peter");
+			saveInterval();
 		}
 	},
 	'click #saveInterval': saveInterval,
@@ -365,7 +375,6 @@ Template.cardsetConfirmFormUserAdmin.events({
 
 
 Template.preview.helpers({
-
 	getDays1: getDays1,
 	getDays2: getDays2,
 	getDays3: getDays3
