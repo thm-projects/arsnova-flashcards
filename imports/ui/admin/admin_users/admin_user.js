@@ -365,6 +365,7 @@ Template.cardsetConfirmFormUserAdmin.events({
 
 
 Template.preview.helpers({
+
 	getDays1: getDays1,
 	getDays2: getDays2,
 	getDays3: getDays3
