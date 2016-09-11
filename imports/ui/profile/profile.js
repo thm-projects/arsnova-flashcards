@@ -24,6 +24,10 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe('default_db_data', function() {
+	//Set the reactive session as true to indicate that the data have been loaded
+	Session.set('data_loaded', true);
+});
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -560,21 +564,27 @@ var backgroundColorBox2 = 0;
 
 
 export function getDays1() {
-	var seq = AdminSettings.findOne({name: "seqSettings"});
-	seqOne = seq.seqOne;
-	return seqOne;
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqOne = seq.seqOne;
+		return seqOne;
+	}
 }
 
 export function getDays2() {
-	var seq = AdminSettings.findOne({name: "seqSettings"});
-	seqTwo = seq.seqTwo;
-	return seqTwo;
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqTwo = seq.seqTwo;
+		return seqTwo;
+	}
 }
 
 export function getDays3() {
-	var seq = AdminSettings.findOne({name: "seqSettings"});
-	seqThree = seq.seqThree;
-	return seqThree;
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqThree = seq.seqThree;
+		return seqThree;
+	}
 }
 
 
