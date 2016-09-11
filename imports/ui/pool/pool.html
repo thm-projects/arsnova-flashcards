@@ -83,8 +83,7 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterCategory active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getCategories}}
-                    <li><a href="#" class="filterSection" data-id="{{this._id}}">{{this.token}}
-                        :{{this.name}}</a></li>
+                    <li><a href="#" class="filterCategory" data-id="{{this._id}}">{{this.token}}:{{this.name}}</a></li>
                 {{/each}}
             </ul>
         </div>
@@ -151,23 +150,23 @@
 </template>
 
 <template name="poolCardsetRow">
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
-    <span class="cell col-xs-9 col-sm-9 col-md-3">
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
+    <span class="cell col-xs-8 col-sm-9 col-md-3">
                 {{this.name}}
         <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
-    <span class="col-xs-9 col-sm-9 col-md-3">{{{getAuthorName}}}</span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
-    <span class="col-xs-9 col-sm-9 col-md-1">{{{getModuleToken}}}</span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
-    <span class="col-xs-9 col-sm-9 col-md-2">{{{getDisciplineName}}}</span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.category"}}:</span>
-    <span class="col-xs-9 col-sm-9 col-md-1">{{{getCategoryToken}}}</span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
-    <span class="col-xs-9 col-sm-9 col-md-1">{{{getMajorToken}}}</span>
-    <span class="col-xs-3 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
-    <span class="kind-label cell col-xs-9 col-sm-9 col-md-1 kind-label">
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-3">{{{getAuthorName}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getModuleToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-2">{{{getDisciplineName}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.category"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getCategoryToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getMajorToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
+    <span class="kind-label cell col-xs-8 col-sm-9 col-md-1 kind-label">
         {{{getKind}}}
     </span>
 </template>

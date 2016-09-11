@@ -43,10 +43,10 @@ Template.category.helpers({
 		query.visible = true;
 		query.kind = {$in: Session.get('poolFilter')};
 		if (Session.get('poolFilterAuthor')) {
-			query.lastName = Session.get('poolFilterAuthor');
+			query.owner = Session.get('poolFilterAuthor');
 		}
 		if (Session.get('poolFilterModule')) {
-			query.moduleShort = Session.get('poolFilterModule');
+			query.module = Session.get('poolFilterModule');
 		}
 		if (Session.get('poolFilterDiscipline')) {
 			query.discipline = Session.get('poolFilterDiscipline');
@@ -57,7 +57,7 @@ Template.category.helpers({
 		if (Session.get('poolFilterMajor')) {
 			query.major = Session.get('poolFilterMajor');
 		}
-		return Cardsets.find(query, {sort: Session.set('poolSortTopic')});
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
 	},
 	getAuthors: function () {
 		return Authors.find({}, {sort: {lastName: 1}});
@@ -83,23 +83,33 @@ Template.category.helpers({
 Template.poolCardsetRow.helpers({
 	getAuthorName: function () {
 		var author = Authors.findOne({owner: this.owner});
-		return author.degree + " " + author.firstName + " " + author.lastName;
+		if (typeof author !== 'undefined') {
+			return author.degree + " " + author.firstName + " " + author.lastName;
+		}
 	},
 	getModuleToken: function () {
 		var module = Modules.findOne({_id: this.module});
-		return module.token;
+		if (typeof module !== 'undefined') {
+			return module.token;
+		}
 	},
 	getDisciplineName: function () {
 		var discipline = Disciplines.findOne({_id: this.discipline});
-		return discipline.name;
+		if (typeof discipline !== 'undefined') {
+			return discipline.name;
+		}
 	},
 	getCategoryToken: function () {
 		var category = Categories.findOne({_id: this.category});
-		return category.token;
+		if (typeof category !== 'undefined') {
+			return category.token;
+		}
 	},
 	getMajorToken: function () {
 		var major = Majors.findOne({_id: this.major});
-		return major.token;
+		if (typeof major !== 'undefined') {
+			return major.token;
+		}
 	},
 	getKind: function () {
 		switch (this.kind) {
