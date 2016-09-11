@@ -1,12 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Notifications} from '../../api/notifications.js';
-
-import './access_denied.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Notifications} from "../../api/notifications.js";
+import {userData} from "../../api/userdata.js";
+import "./access_denied.html";
 
 Meteor.subscribe("notifications");
 

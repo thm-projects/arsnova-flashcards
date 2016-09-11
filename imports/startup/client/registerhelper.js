@@ -1,7 +1,7 @@
-import {Meteor} from 'meteor/meteor';
-import {Categories} from '../../api/categories.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
+import {Meteor} from "meteor/meteor";
+import {Categories} from "../../api/categories.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {

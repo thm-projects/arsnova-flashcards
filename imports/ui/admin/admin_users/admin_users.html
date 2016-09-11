@@ -28,10 +28,10 @@
                     <br/>
                     <hr/>
 
-                    <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                            "admin.confirm-form.users.title"}}</button>
-                    <button id="userCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                            "admin.confirm-form.cancel"}}</button>
+                    <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete"
+                            style="width:150px">{{_ "admin.confirm-form.users.title"}}</button>
+                    <button id="userCancelAdmin" class="btn btn-default pull-right"
+                            data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -70,8 +70,8 @@
                         </div>
                         {{#if isCardset}}
                             <div class="form-group">
-                                <label id="messageCardsetLabelAdmin" class="col-md-3 control-label">{{_
-                                        "admin.message.cardset"}}</label>
+                                <label id="messageCardsetLabelAdmin"
+                                       class="col-md-3 control-label">{{_ "admin.message.cardset"}}</label>
                                 <div class="input-group">
                                     <select id="messageCardsetAdmin" class="form-control">
                                         {{#each getCardsets}}
@@ -82,8 +82,8 @@
                             </div>
                         {{/if}}
                         <div class="form-group text">
-                            <label id="messageTextLabelAdmin" class="col-md-3 control-label">{{_
-                                    "admin.message.text"}}</label>
+                            <label id="messageTextLabelAdmin"
+                                   class="col-md-3 control-label">{{_ "admin.message.text"}}</label>
                             <div class="col-md-9">
                                 <textarea class="form-control" rows="6" id="messageTextAdmin"></textarea>
                                 <span id="helpMessageTextAdmin" class="help-block text"></span>
@@ -92,8 +92,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="messageTextCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "admin.message.cancel"}}</button>
+                    <button id="messageTextCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "admin.message.cancel"}}</button>
                     <button id="messageTextSave" class="btn btn-primary">{{_ "admin.message.sendMessage"}}</button>
                 </div>
             </div>

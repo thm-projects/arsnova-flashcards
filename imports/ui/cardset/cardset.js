@@ -1,21 +1,17 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Categories} from '../../api/categories.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {ReactiveVar} from 'meteor/reactive-var';
-
-import '../card/card.js';
-import '../learn/box.js';
-import '../learn/memo.js';
-
-import './cardset.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Categories} from "../../api/categories.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import "../card/card.js";
+import "../learn/box.js";
+import "../learn/memo.js";
+import "./cardset.html";
 
 
 Meteor.subscribe("cardsets");
@@ -74,7 +70,7 @@ Template.cardset.helpers({
 		Session.set('previousCategory', Cardsets.findOne(id).category);
 
 		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId       = previousCategory.toString();
+		var categoryId = previousCategory.toString();
 
 		if (categoryId.length === 1) {
 			categoryId = "0" + categoryId;
@@ -86,7 +82,7 @@ Template.cardset.helpers({
 		}
 	},
 	'hasCardsetPermission': function () {
-		var userId      = Meteor.userId();
+		var userId = Meteor.userId();
 		var cardsetKind = this.kind;
 
 		var hasRole = false;
@@ -101,7 +97,7 @@ Template.cardset.helpers({
 		return this.owner === Meteor.userId() || hasRole;
 	},
 	'isLecturerAndHasRequest': function () {
-		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
+		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
 	}
 });
 
@@ -111,7 +107,8 @@ function ifCardset() {
 		$(".cardback-symbol").css('display', "none");
 		$(".cardfront").css('display', "");
 		$(".cardback").css('display', "none");
-	} else if ($(".cardback-symbol").css('display') === 'none') {
+	}
+	else if ($(".cardback-symbol").css('display') === 'none') {
 		$(".cardfront-symbol").css('display', "none");
 		$(".cardback-symbol").css('display', "");
 		$(".cardfront").css('display', "none");
@@ -138,7 +135,7 @@ Template.cardset.events({
 			if (tmpl.find('#editSetCategory').value === undefined) {
 				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
 			}
-			var category    = tmpl.find('#editSetCategory').value;
+			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
 
 			Meteor.call("updateCardset", this._id, name, category, description);
@@ -164,7 +161,7 @@ Template.cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#editSetCategory').text(categoryName);
 		tmpl.find('#editSetCategory').value = categoryId;
 	},
@@ -195,8 +192,8 @@ Template.cardsetForm.onRendered(function () {
 		$('#helpEditSetName').html('');
 		$('#helpEditSetDescription').html('');
 
-		var previousName         = Session.get('previousName');
-		var previousDescription  = Session.get('previousDescription');
+		var previousName = Session.get('previousName');
+		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
 
 		if (previousName !== $('#editSetName').val()) {
@@ -343,7 +340,7 @@ Template.cardsetDetails.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		ifCardset();
 	},
-	'click .item.active .block a': function (evt) {
+	'click .item.active .block a': function () {
 		evt.stopPropagation();
 	}
 });
@@ -433,7 +430,7 @@ Template.cardsetInfo.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count   = ratings.count();
+		var count = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
@@ -454,7 +451,7 @@ Template.cardsetInfo.helpers({
 		return this.ratings === true;
 	},
 	hasRated: function () {
-		var count   = Ratings.find({
+		var count = Ratings.find({
 			cardset_id: this._id,
 			user: Meteor.userId()
 		}).count();
@@ -526,7 +523,7 @@ Template.cardsetInfo.helpers({
 				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
 			}
 
-			return new Spacebars.SafeString(licenseString);
+			return new Spacebars.SafeString(licenseString)
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
@@ -639,7 +636,7 @@ Template.cardsetImportForm.events({
 		var cardset_id = Template.parentData(1)._id;
 
 		if (evt.target.files[0].name.match(/\.(json)$/)) {
-			var reader    = new FileReader();
+			var reader = new FileReader();
 			reader.onload = function () {
 				try {
 					var res = $.parseJSON('[' + this.result + ']');
@@ -711,11 +708,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 
 		$('#publicateKind > label').removeClass('active');
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind;
+			return this.value === cardset.kind
 		}).parent().addClass('active');
 
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind;
+			return this.value === cardset.kind
 		}).prop('checked', true);
 
 		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
@@ -740,9 +737,9 @@ Template.cardsetPublicateForm.helpers({
 
 Template.cardsetPublicateForm.events({
 	'click #cardsetPublicate': function (evt, tmpl) {
-		var id      = this._id;
-		var kind    = tmpl.find('#publicateKind > .active > input').value;
-		var price   = 0;
+		var id = this._id;
+		var kind = tmpl.find('#publicateKind > .active > input').value;
+		var price = 0;
 		var visible = true;
 		var license = [];
 

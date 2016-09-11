@@ -440,6 +440,7 @@
     "cards": "Karten",
     "users": "Benutzer",
     "notifications": "Benachrichtigungen",
+    "settings": "Einstellungen",
     "see_all": "Alle ansehen",
     "name": "Name",
     "kind": "Art",
@@ -498,6 +499,13 @@
         "title_all": "Alle Nachrichten löschen",
         "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
         "delete_all": "Nachrichten löschen"
+      },
+      "settings": {
+        "new_entry": "Neuer Eintrag",
+        "college": "Hochschule",
+        "course_of_studies": "Studiengang",
+        "required": "Pflichtfeld",
+        "create": "Erstellen"
       },
       "cancel": "Abbrechen"
     },

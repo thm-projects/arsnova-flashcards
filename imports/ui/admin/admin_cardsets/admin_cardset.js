@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-import {Cards} from '../../../api/cards.js';
-
-import './admin_cardset.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import {Cards} from "../../../api/cards.js";
+import "./admin_cardset.html";
 
 /**
  * ############################################################################
@@ -40,9 +38,7 @@ Template.admin_cardset.helpers({
 	},
 	licenseIsActive: function (license) {
 		if (this.license !== undefined) {
-			if (this.license.includes(license)) {
-				return true;
-			}
+			if (this.license.includes(license)) return true;
 		} else {
 			return null;
 		}
@@ -63,9 +59,7 @@ Template.admin_cardset.helpers({
 			showNavigationRowsPerPage: false,
 			fields: [
 				{
-					key: 'front',
-					label: TAPi18n.__('admin.front'),
-					sortable: false,
+					key: 'front', label: TAPi18n.__('admin.front'), sortable: false,
 					cellClass: function (value, object) {
 						var css = 'front_' + object._id;
 						return css;
@@ -78,9 +72,7 @@ Template.admin_cardset.helpers({
 					}
 				},
 				{
-					key: 'back',
-					label: TAPi18n.__('admin.back'),
-					sortable: false,
+					key: 'back', label: TAPi18n.__('admin.back'), sortable: false,
 					cellClass: function (value, object) {
 						var css = 'back_' + object._id;
 						return css;
@@ -102,15 +94,12 @@ Template.admin_cardset.helpers({
 					}
 				},
 				{
-					key: 'delete',
-					label: TAPi18n.__('admin.delete'),
-					sortable: false,
-					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-					}
+					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
+					return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+				}
 				}
 			]
-		};
+		}
 	}
 });
 
@@ -138,12 +127,13 @@ Template.admin_cardset.events({
 			$('#helpEditCardsetKindAdmin').css('color', '#b94a48');
 		}
 		if ($("#cc-modules-admin").length && $("#cc-option2-admin").hasClass('active') && $("#cc-option3-admin").hasClass('active') || //checks if cc-modules-admin is !empty and if cc-option-2 and 3-admin are active
-			$("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) {//or if the children of cc-modules-admin and option-0 are active
+			$("#cc-modules-admin").children().hasClass('active') && !($("#cc-option0-admin").hasClass('active'))) { //or if the children of cc-modules-admin and option-0 are active
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
-			var name        = tmpl.find('#editCardsetNameAdmin').value;
+		}
+		else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
 			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
@@ -151,8 +141,8 @@ Template.admin_cardset.events({
 			}
 			var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
-			var kind    = tmpl.find('#publicateKindAdmin > .active > input').value;
-			var price   = 0;
+			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+			var price = 0;
 			var visible = true;
 			var license = [];
 
@@ -176,7 +166,8 @@ Template.admin_cardset.events({
 			if (kind === 'edu' || kind === 'pro') {
 				if (tmpl.find('#publicatePriceAdmin') !== null) {
 					price = tmpl.find('#publicatePriceAdmin').value;
-				} else {
+				}
+				else {
 					price = this.price;
 				}
 			}
@@ -202,7 +193,7 @@ Template.admin_cardset.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#editCardsetCategoryAdmin').text(categoryName);
 		tmpl.find('#editCardsetCategoryAdmin').value = categoryId;
 	},

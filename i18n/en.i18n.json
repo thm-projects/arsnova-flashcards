@@ -441,6 +441,7 @@
     "cards": "Cards",
     "users": "Users",
     "notifications": "Notifications",
+    "settings": "Settings",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
@@ -499,6 +500,13 @@
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
         "delete_all": "Delete notifications"
+      },
+      "settings": {
+        "new_entry": "New Entry",
+        "college": "University",
+        "course_of_studies": "Course of Studies",
+        "required": "Required",
+        "create": "Create"
       },
       "cancel": "Cancel"
     },
@@ -602,3 +610,4 @@
     "reason": "Reason for block: "
   }
 }
+

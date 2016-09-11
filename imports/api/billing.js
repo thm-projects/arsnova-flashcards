@@ -295,7 +295,7 @@ Meteor.methods({
 			} else {
 				// get customer's last subscription
 				var subscriptionId = result.paymentMethods[0].subscriptions;
-				var last           = subscriptionId.slice(-1)[0];
+				var last = subscriptionId.slice(-1)[0];
 
 				btUserSubscription.return(last);
 			}
@@ -307,7 +307,7 @@ Meteor.methods({
 	btCancelSubscription: function () {
 		var btCancelSubscription = new Future();
 
-		var user    = Meteor.userId();
+		var user = Meteor.userId();
 		var getUser = Meteor.users.findOne({
 			"_id": user
 		}, {
@@ -321,7 +321,7 @@ Meteor.methods({
 				btCancelSubscription.return(error);
 			} else {
 				// cancel the active subscription
-				gateway.subscription.cancel(customerSubscription.id, function (error) {
+				gateway.subscription.cancel(customerSubscription.id, function (error, result) {
 					if (error) {
 						btCancelSubscription.return(error);
 					} else {

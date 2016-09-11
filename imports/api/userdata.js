@@ -1,6 +1,6 @@
-import {Meteor} from 'meteor/meteor';
-
-import {Cardsets} from './cardsets.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
@@ -146,7 +146,7 @@ Meteor.methods({
 	},
 	increaseUsersBalance: function (user_id, lecturer_id, amount) {
 		if (amount < 10) {
-			var user_amount     = Math.round((amount * 0.7) * 100) / 100;
+			var user_amount = Math.round((amount * 0.7) * 100) / 100;
 			var lecturer_amount = Math.round((amount * 0.05) * 100) / 100;
 
 			Meteor.users.update(user_id, {$inc: {balance: user_amount}});
@@ -165,5 +165,5 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-	}
+	},
 });

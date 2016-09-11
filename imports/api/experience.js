@@ -1,5 +1,5 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 
 export const Experience = new Mongo.Collection("experience");
 
@@ -24,10 +24,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	checkLvl: function () {
-		var pts    = 0;
+		var pts = 0;
 		var points = 0;
 		var output = 0;
-		var lvl    = 1;
+		var lvl = 1;
 
 		var allXp = Experience.find({
 			owner: Meteor.userId()

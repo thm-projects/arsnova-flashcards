@@ -1,10 +1,10 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 
-export const Categories = new TAPi18n.Collection("categories");
+export const Categories = new TAPi18n.Collection("settings");
 
 if (Meteor.isServer) {
-	Meteor.publish("categories", function () {
+	Meteor.publish("settings", function () {
 		return Categories.find();
 	});
 }

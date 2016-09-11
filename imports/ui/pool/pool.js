@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Ratings} from '../../api/ratings.js';
-
-import './pool.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Ratings} from "../../api/ratings.js";
+import "./pool.html";
 
 
 Meteor.subscribe("categories");
@@ -37,7 +35,7 @@ Template.category.helpers({
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
-		var count   = ratings.count();
+		var count = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
@@ -49,7 +47,7 @@ Template.category.helpers({
 			return 0;
 		}
 	},
-	getSortUserIcon: function () {
+	getSortUserIcon: function (val) {
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {
 			return '<i class="fa fa-sort-asc"></i>';
@@ -105,7 +103,7 @@ Template.category.helpers({
 				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
 			}
 
-			return new Spacebars.SafeString(licenseString);
+			return new Spacebars.SafeString(licenseString)
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}

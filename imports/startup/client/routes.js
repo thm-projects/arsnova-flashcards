@@ -1,6 +1,6 @@
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Categories} from '../../api/categories.js';
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Categories} from "../../api/categories.js";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -190,6 +190,12 @@ Router.route('/admin/user/:_id', {
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
+	layoutTemplate: 'admin_main'
+});
+
+Router.route('/admin/settings', {
+	name: 'admin_settings',
+	template: 'admin_settings',
 	layoutTemplate: 'admin_main'
 });
 

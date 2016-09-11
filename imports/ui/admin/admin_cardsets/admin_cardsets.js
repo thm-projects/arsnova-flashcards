@@ -1,14 +1,12 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_cardsets.html';
-
-import './admin_cardset.js';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import {allUsers} from "../../../api/allusers.js";
+import "./admin_cardsets.html";
+import "./admin_cardset.js";
 
 /**
  * ############################################################################
@@ -18,15 +16,15 @@ import './admin_cardset.js';
 
 Template.admin_cardsets.helpers({
 	cardsetListAdmin: function () {
-		var cardsets   = Cardsets.find();
-		var fields     = [];
+		var cardsets = Cardsets.find();
+		var fields = [];
 		var dateString = null;
-		var date       = null;
-		var kind       = null;
+		var date = null;
+		var kind = null;
 
 		cardsets.forEach(function (cardset) {
 			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
-			date       = moment(cardset.date).format("YYYY-MM-DD");
+			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
 			} else if (cardset.kind === 'free') {
@@ -46,7 +44,7 @@ Template.admin_cardsets.helpers({
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,
 				"date": date
-			});
+			})
 		});
 
 		return fields;
@@ -60,17 +58,17 @@ Template.admin_cardsets.helpers({
 				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{
 					key: 'username', label: TAPi18n.__('admin.users'), fn: function (value, object) {
-						if (object.userDeleted) {
-							return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
-						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
-						}
+					if (object.userDeleted) {
+						return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
+					} else {
+						return new Spacebars.SafeString("<span name='" + value + "'><a id='linkToAdminCardsetUser' href='#' data-userid='" + object.owner + "'>" + value + "</a></span>");
 					}
+				}
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
-						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-					}
+					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+				}
 				},
 				{
 					key: '_id',
@@ -83,11 +81,11 @@ Template.admin_cardsets.helpers({
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-					}
+					return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+				}
 				}
 			]
-		};
+		}
 	}
 });
 

@@ -36,15 +36,13 @@
                                     <div class="controls">
                                         <div id="editUserVisibleAdmin" class="btn-group" data-toggle="buttons">
                                             <label id="profilepublicoption1Admin"
-                                                   class="btn btn-default profile-public {{#if isVisible
-                                                                                               _id}}active{{/if}}"
+                                                   class="btn btn-default profile-public {{#if isVisible _id}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="public">
                                                 <span>{{_ "admin.user.option1"}}</span>
                                             </label>
                                             <label id="profilepublicoption2Admin"
-                                                   class="btn btn-default profile-private {{#unless isVisible
-                                                                                                    _id}}active{{/unless}}"
+                                                   class="btn btn-default profile-private {{#unless isVisible _id}}active{{/unless}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="private">
                                                 <span>{{_ "admin.user.option2"}}</span>
@@ -133,15 +131,13 @@
                                     <div class="controls">
                                         <div id="editUserLecturerAdmin" class="btn-group" data-toggle="buttons">
                                             <label id="lecturerOption1Admin"
-                                                   class="btn btn-default lecturer-true {{#if lecturerUser
-                                                                                              true}}active{{/if}}"
+                                                   class="btn btn-default lecturer-true {{#if lecturerUser true}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="true">
                                                 <span>{{_ "admin.user.option1"}}</span>
                                             </label>
                                             <label id="lecturerOption2Admin"
-                                                   class="btn btn-default lecturer-false {{#if lecturerUser
-                                                                                               false}}active{{/if}}"
+                                                   class="btn btn-default lecturer-false {{#if lecturerUser false}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="false">
                                                 <span>{{_ "admin.user.option2"}}</span>
@@ -157,15 +153,13 @@
                                         <div class="controls">
                                             <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
                                                 <label id="blockedOption1Admin"
-                                                       class="btn btn-default blocked-true {{#if blockedUser
-                                                                                                 true}}active{{/if}}"
+                                                       class="btn btn-default blocked-true {{#if blockedUser true}}active{{/if}}"
                                                        style="width:100px">
                                                     <input type="radio" name="blockedUser" value="true">
                                                     <span>{{_ "admin.user.option1"}}</span>
                                                 </label>
                                                 <label id="blockedOption2Admin"
-                                                       class="btn btn-default blocked-false {{#if blockedUser
-                                                                                                  false}}active{{/if}}"
+                                                       class="btn btn-default blocked-false {{#if blockedUser false}}active{{/if}}"
                                                        style="width:100px">
                                                     <input type="radio" name="blockedUser" value="false">
                                                     <span>{{_ "admin.user.option2"}}</span>
@@ -175,8 +169,7 @@
                                     </div>
                                     {{#if isUserBlocked}}
                                         <div class="form-group">
-                                            <label id="editUserBlockedtextLabelAdmin">{{_
-                                                    "admin.user.blocked_text"}}</label>
+                                            <label id="editUserBlockedtextLabelAdmin">{{_ "admin.user.blocked_text"}}</label>
                                             <input class="form-control" type="text" id="editUserBlockedtextAdmin"
                                                    value="{{blockedtext}}">
                                             <span id="helpEditUserBlockedtextAdmin"
@@ -191,15 +184,13 @@
                                             <div class="controls">
                                                 <div id="editUserEditorAdmin" class="btn-group" data-toggle="buttons">
                                                     <label id="editorOption1Admin"
-                                                           class="btn btn-default editor-true {{#if editorUser
-                                                                                                    true}}active{{/if}}"
+                                                           class="btn btn-default editor-true {{#if editorUser true}}active{{/if}}"
                                                            style="width:100px">
                                                         <input type="radio" name="options" value="true">
                                                         <span>{{_ "admin.user.option1"}}</span>
                                                     </label>
                                                     <label id="editorOption2Admin"
-                                                           class="btn btn-default editor-false {{#if editorUser
-                                                                                                     false}}active{{/if}}"
+                                                           class="btn btn-default editor-false {{#if editorUser false}}active{{/if}}"
                                                            style="width:100px">
                                                         <input type="radio" name="options" value="false">
                                                         <span>{{_ "admin.user.option2"}}</span>
@@ -238,18 +229,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="cardsetConfirmModalTitleUserAdmin" class="modal-title">{{_
-                            "admin.confirm-form.cardsets.title"}}</h4>
+                    <h4 id="cardsetConfirmModalTitleUserAdmin"
+                        class="modal-title">{{_ "admin.confirm-form.cardsets.title"}}</h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "admin.confirm-form.cardsets.text"}}</p>
                     <br/>
                     <hr/>
 
-                    <button id="cardsetDeleteUserAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                            "admin.confirm-form.cardsets.title"}}</button>
-                    <button id="cardsetCancelUserAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                            "admin.confirm-form.cancel"}}</button>
+                    <button id="cardsetDeleteUserAdmin" class="btn btn-danger btn-setDelete"
+                            style="width:150px">{{_ "admin.confirm-form.cardsets.title"}}</button>
+                    <button id="cardsetCancelUserAdmin" class="btn btn-default pull-right"
+                            data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

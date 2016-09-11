@@ -1,18 +1,18 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Experience} from '../../api/experience.js';
-import {Badges} from '../../api/badges.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {Notifications} from '../../api/notifications.js';
-import './profile.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Experience} from "../../api/experience.js";
+import {Badges} from "../../api/badges.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {Notifications} from "../../api/notifications.js";
+import {userData} from "../../api/userdata.js";
+import "./profile.html";
 
 
 Meteor.subscribe("experience");
@@ -220,7 +220,7 @@ Template.profileSidebar.helpers({
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
 				var service = _.keys(user.services)[0];
-				service     = service.charAt(0).toUpperCase() + service.slice(1);
+				service = service.charAt(0).toUpperCase() + service.slice(1);
 				return service;
 			}
 		}
@@ -258,7 +258,7 @@ Template.profileSettings.events({
 		}
 
 		// Name validation
-		var name    = $('#inputName').val();
+		var name = $('#inputName').val();
 		var user_id = Meteor.userId();
 
 		Meteor.call("checkUsersName", name, user_id, function (error, result) {
@@ -282,7 +282,6 @@ Template.profileSettings.events({
 
 				if (validEmail && validName) {
 					Meteor.call("updateUsersEmail", email);
-
 					Meteor.call("updateUsersName", result, user_id);
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				} else {
@@ -321,7 +320,7 @@ Template.profileMembership.rendered = function () {
 
 						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
 						var nonce = response.nonce;
-						var plan  = Session.get('plan');
+						var plan = Session.get('plan');
 						Meteor.call('btSubscribe', nonce, plan, function (error) {
 							if (error) {
 								throw new Meteor.Error(error.message, 'error');
@@ -334,7 +333,7 @@ Template.profileMembership.rendered = function () {
 			}
 		});
 	}
-};
+}
 
 Template.profileMembership.events({
 	"click #upgrade": function () {
@@ -366,14 +365,14 @@ Template.profileMembership.events({
 		}
 	},
 	"click #sendLecturerRequest": function () {
-		var text   = Meteor.user().profile.name + " möchte Dozent werden.";
-		var type   = "Dozenten-Anfrage";
+		var text = Meteor.user().profile.name + " möchte Dozent werden.";
+		var type = "Dozenten-Anfrage";
 		var target = "admin";
 
 		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
 		Meteor.call("setLecturerRequest", Meteor.userId(), true);
 		Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
-	}
+	},
 });
 
 Template.profileMembership.helpers({
@@ -550,7 +549,7 @@ Template.profileRequests.helpers({
 
 Template.profileXp.helpers({
 	getXpTotal: function () {
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id
 		});
 		var result = 0;
@@ -564,7 +563,7 @@ Template.profileXp.helpers({
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: date
@@ -582,7 +581,7 @@ Template.profileXp.helpers({
 		var maxDate = new Date();
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -601,7 +600,7 @@ Template.profileXp.helpers({
 		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -644,9 +643,8 @@ Template.profileXp.helpers({
 			}
 		}
 
-		if (last === undefined) {
+		if (last === undefined)
 			return null;
-		}
 
 		return name + " (+" + last.value + ")";
 	},
@@ -659,24 +657,41 @@ Template.profileXp.helpers({
 	getXp: function () {
 		Meteor.call('checkLvl');
 
-		var level    = getLvl() + 1;
-		var points   = xpForLevel(level);
+		var level = getLvl() + 1;
+		var points = xpForLevel(level);
 		var required = points - Session.get("totalXp");
 
 		return required;
 	},
 	getXpPercent: function () {
-		var points        = Session.get("totalXp");
-		var currentLevel  = getLvl();
-		var nextLevel     = getLvl() + 1;
+		var points = Session.get("totalXp");
+		var currentLevel = getLvl();
+		var nextLevel = getLvl() + 1;
 		var currentPoints = xpForLevel(currentLevel);
-		var nextPoints    = xpForLevel(nextLevel);
+		var nextPoints = xpForLevel(nextLevel);
 
 		var res = (points - currentPoints) / (nextPoints - currentPoints) * 100;
 
 		return res + "%";
 	}
 });
+
+function getLvl() {
+	var user = Meteor.users.findOne(Router.current().params._id);
+	if (user === undefined) {
+		return null;
+	}
+	return user.lvl;
+}
+
+function xpForLevel(level) {
+	var points = 0;
+
+	for (var i = 1; i < level; i++) {
+		points += Math.floor(i + 30 * Math.pow(2, i / 10));
+	}
+	return Math.floor(points / 4);
+}
 
 /**
  * ############################################################################

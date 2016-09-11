@@ -1,7 +1,6 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {Cardsets} from './cardsets.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
 
 export const Learned = new Mongo.Collection("learned");
 
@@ -71,14 +70,16 @@ Meteor.methods({
 
 		// EF (easiness factor) is a rating for how difficult the card is.
 		// Grade: (0-2) Set reps and interval to 0, keep current EF (repeat card today)
-		//				(3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
-		//				(4-5) Reps + 1, interval is calculated using EF, increasing in time.
+		//        (3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
+		//        (4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-		var learned  = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
-		var interval = 0;
+		var learned = Learned.findOne(learned_id),
+			ef = learned.ef,
+			reps = learned.reps,
+			nextDate = new Date();
 
 		if (grade < 3) {
-			reps     = 0;
+			reps = 0;
 			interval = 0;
 		} else {
 			ef = ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));

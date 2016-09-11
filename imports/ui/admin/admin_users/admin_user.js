@@ -1,12 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_user.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {allUsers} from "../../../api/allusers.js";
+import {Cardsets} from "../../../api/cardsets.js";
+import "./admin_user.html";
 
 /**
  * ############################################################################
@@ -21,7 +20,7 @@ Template.admin_user.helpers({
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
 				var service = _.keys(user.services)[0];
-				service     = service.charAt(0).toUpperCase() + service.slice(1);
+				service = service.charAt(0).toUpperCase() + service.slice(1);
 				return service;
 			}
 		}
@@ -52,15 +51,15 @@ Template.admin_user.helpers({
 		}
 	},
 	cardsetListUserAdmin: function () {
-		var cardsets   = Cardsets.find({owner: this._id});
-		var fields     = [];
+		var cardsets = Cardsets.find({owner: this._id});
+		var fields = [];
 		var dateString = null;
-		var date       = null;
-		var kind       = null;
+		var date = null;
+		var kind = null;
 
 		cardsets.forEach(function (cardset) {
 			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
-			date       = moment(cardset.date).format("YYYY-MM-DD");
+			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
 			} else if (cardset.kind === 'free') {
@@ -77,7 +76,7 @@ Template.admin_user.helpers({
 				"kind": kind,
 				"dateString": dateString,
 				"date": date
-			});
+			})
 		});
 
 		return fields;
@@ -90,8 +89,8 @@ Template.admin_user.helpers({
 				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
-						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-					}
+					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+				}
 				},
 				{
 					key: '_id',
@@ -104,11 +103,11 @@ Template.admin_user.helpers({
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-					}
+					return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+				}
 				}
 			]
-		};
+		}
 	},
 	'isVisible': function (id) {
 		if (Meteor.users.findOne(id)) {
@@ -162,7 +161,7 @@ Template.admin_user.helpers({
 
 Template.admin_user.events({
 	'click #userSaveAdmin': function (event, tmpl) {
-		var name    = $('#editUserNameAdmin').val();
+		var name = $('#editUserNameAdmin').val();
 		var user_id = this._id;
 
 		Meteor.call("checkUsersName", name, user_id, function (error, result) {
@@ -173,13 +172,13 @@ Template.admin_user.events({
 				$('#helpEditUserNameAdmin').css('color', '#b94a48');
 			}
 			if (result) {
-				var re          = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-				var email       = $('#editUserEmailAdmin').val();
+				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+				var email = $('#editUserEmailAdmin').val();
 				var blockedtext = $('#editUserBlockedtextAdmin').val();
-				var check       = re.test(email);
-				var visible     = null;
-				var pro         = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
-				var lecturer    = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
+				var check = re.test(email);
+				var visible = null;
+				var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
+				var lecturer = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
 
 				if ($('#profilepublicoption1Admin').hasClass('active')) {
 					visible = true;

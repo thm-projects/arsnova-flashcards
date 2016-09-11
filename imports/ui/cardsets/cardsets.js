@@ -1,16 +1,12 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Learned} from '../../api/learned.js';
-
-
-import '../cardset/cardset.js';
-
-import './cardsets.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Learned} from "../../api/learned.js";
+import "../cardset/cardset.js";
+import "./cardsets.html";
 
 
 Meteor.subscribe("cardsets");
@@ -117,11 +113,11 @@ Template.cardsets.events({
 	},
 	'click .category': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId   = $(evt.currentTarget).val();
+		var categoryId = $(evt.currentTarget).val();
 		$('#newSetCategory').text(categoryName);
 		tmpl.find('#newSetCategory').value = categoryId;
 	},
-	'click #newSetModal .save': function () {
+	'click #newSetModal .save': function (evt) {
 		if ($('#newSetName').val() === "") {
 			$('#newSetNameLabel').css('color', '#b94a48');
 			$('#newSetName').css('border-color', '#b94a48');
@@ -141,8 +137,8 @@ Template.cardsets.events({
 			$('#helpNewSetCategory').css('color', '#b94a48');
 		}
 		if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
-			var name        = $('#newSetName').val();
-			var category    = $('#newSetCategory').val();
+			var name = $('#newSetName').val();
+			var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 
 			Meteor.call("addCardset", name, category, description, false, true, 'personal');

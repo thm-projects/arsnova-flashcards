@@ -1,12 +1,9 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-
-import {Cardsets} from './cardsets.js';
-import {Experience} from './experience.js';
-import {Learned} from './learned.js';
-import {Paid} from './paid.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
+import {Experience} from "./experience.js";
+import {Learned} from "./learned.js";
+import {Paid} from "./paid.js";
 
 
 export const Cards = new Mongo.Collection("cards");
@@ -135,7 +132,7 @@ Meteor.methods({
 		Meteor.call('checkLvl');
 	},
 	deleteCard: function (card_id) {
-		var card    = Cards.findOne(card_id);
+		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
@@ -188,7 +185,7 @@ Meteor.methods({
 		}
 	},
 	updateCard: function (card_id, front, back) {
-		var card    = Cards.findOne(card_id);
+		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
 		if (!Roles.userIsInRole(this.userId, [

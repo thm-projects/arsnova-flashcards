@@ -1,11 +1,8 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-
-import {Cards} from './cards.js';
-import {Experience} from './experience.js';
-import {Ratings} from './ratings.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cards} from "./cards.js";
+import {Experience} from "./experience.js";
+import {Ratings} from "./ratings.js";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -35,7 +32,7 @@ if (Meteor.isServer) {
 	});
 }
 
-const CardsetsSchema = new SimpleSchema({
+CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
@@ -208,14 +205,14 @@ Meteor.methods({
 		var relevance = 0;
 
 		var ratings = Ratings.find({cardset_id: cardset_id});
-		var count   = ratings.count();
+		var count = ratings.count();
 		if (count !== 0) {
 			var amount = 0;
 			ratings.forEach(function (rate) {
 				amount = amount + rate.rating;
 			});
 			var result = (amount / count).toFixed(2);
-			relevance  = Number(result);
+			relevance = Number(result);
 		}
 
 		var kind = Cardsets.findOne(cardset_id).kind;

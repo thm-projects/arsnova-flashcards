@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-
-import './memo.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import "./memo.html";
 
 
 Meteor.subscribe("cardsets");
@@ -22,7 +20,7 @@ Meteor.subscribe("learned");
 
 Template.memo.onCreated(function () {
 	var cardset_id = Router.current().params._id;
-	var cards      = Cards.find({
+	var cards = Cards.find({
 		cardset_id: cardset_id
 	});
 	cards.forEach(function (card) {

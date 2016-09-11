@@ -1,20 +1,17 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Notifications} from '../../api/notifications.js';
-
-import './main.html';
-
-import '../welcome/welcome.js';
-import '../impressum/impressum.js';
-import '../cardsets/cardsets.js';
-import '../pool/pool.js';
-import '../profile/profile.js';
-import '../admin/admin.js';
-import '../access_denied/access_denied.js';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Notifications} from "../../api/notifications.js";
+import "./main.html";
+import "../welcome/welcome.js";
+import "../impressum/impressum.js";
+import "../cardsets/cardsets.js";
+import "../pool/pool.js";
+import "../profile/profile.js";
+import "../admin/admin.js";
+import "../access_denied/access_denied.js";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
