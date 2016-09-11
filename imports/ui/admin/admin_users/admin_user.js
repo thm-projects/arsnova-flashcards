@@ -177,8 +177,7 @@ function saveInterval() {
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 	} else {
-		console.log(typeof(inv1));
-		if (Number(inv1) > Number(inv2) || Number(inv2) > Number(inv3)) {
+		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
 			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
 			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
 
