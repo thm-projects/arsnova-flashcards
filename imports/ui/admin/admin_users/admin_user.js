@@ -177,13 +177,11 @@ function saveInterval() {
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
 	} else {
-		console.log(typeof(inv1));
 		if (Number(inv1) > Number(inv2) || Number(inv2) > Number(inv3)) {
 			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
 			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
-
 		} else {
-			Meteor.call('updateIntervall', inv1, inv2, inv3);
+			Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
 			Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
 			$('#inv1, #inv2, #inv3').val("");
 		}
