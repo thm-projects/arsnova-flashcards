@@ -75,7 +75,7 @@ Template.category.helpers({
 		return Majors.find({}, {sort: {name: 1}});
 	},
 	oddRow: function (index) {
-		return !(index % 2 === 0);
+		return (index % 2 === 1);
 	}
 });
 
