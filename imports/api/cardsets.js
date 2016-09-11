@@ -165,16 +165,8 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		var nameTitle = 'undefined';
-		var firstName = Meteor.user().profile.name;
-		var lastName = 'undefined';
-		if (Meteor.user().profile.title !== "") {
+		if (Meteor.user().profile.title === "") {
 			nameTitle = Meteor.user().profile.title;
-		}
-		if (Meteor.user().profil.givenname !== "") {
-			firstName = Meteor.user().profil.givenname;
-		}
-		if (Meteor.user().profil.birthname) {
-			lastName = Meteor.user().profil.birthname;
 		}
 		Cardsets.insert({
 			name: name,
@@ -182,7 +174,7 @@ Meteor.methods({
 			date: new Date(),
 			dateUpdated: new Date(),
 			owner: Meteor.userId(),
-			firstName: firstName,
+			firstName: Meteor.user().profile.name,
 			visible: visible,
 			ratings: ratings,
 			kind: kind,
@@ -197,7 +189,7 @@ Meteor.methods({
 			modulLong: modulLong,
 			modulShort: modulShort,
 			modulNum: modulNum,
-			lastName: lastName,
+			lastName: 'undefined',
 			degree: nameTitle,
 			college: college,
 			academicCourse: 'undefined',
