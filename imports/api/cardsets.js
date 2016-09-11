@@ -51,7 +51,7 @@ const CardsetsSchema = new SimpleSchema({
 	owner: {
 		type: String
 	},
-	username: {
+	firstName: {
 		type: String
 	},
 	visible: {
@@ -164,13 +164,25 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
 		}
+		var nameTitle = 'undefined';
+		var firstName = Meteor.user().profile.name;
+		var lastName = 'undefined';
+		if (Meteor.user().profile.title !== "") {
+			nameTitle = Meteor.user().profile.title;
+		}
+		if (Meteor.user().profil.givenname !== "") {
+			firstName = Meteor.user().profil.givenname;
+		}
+		if (Meteor.user().profil.birthname) {
+			lastName = Meteor.user().profil.birthname;
+		}
 		Cardsets.insert({
 			name: name,
 			description: description,
 			date: new Date(),
 			dateUpdated: new Date(),
 			owner: Meteor.userId(),
-			username: Meteor.user().profile.name,
+			firstName: firstName,
 			visible: visible,
 			ratings: ratings,
 			kind: kind,
@@ -185,8 +197,8 @@ Meteor.methods({
 			modulLong: modulLong,
 			modulShort: modulShort,
 			modulNum: modulNum,
-			lastName: 'undefined',
-			degree: 'undefined',
+			lastName: lastName,
+			degree: nameTitle,
 			college: college,
 			academicCourse: 'undefined',
 			department: 'undefined',
