@@ -39,6 +39,9 @@ const CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
+	category: {
+		type: String
+	},
 	description: {
 		type: String
 	},
@@ -51,7 +54,7 @@ const CardsetsSchema = new SimpleSchema({
 	owner: {
 		type: String
 	},
-	firstName: {
+	username: {
 		type: String
 	},
 	visible: {
