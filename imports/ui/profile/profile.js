@@ -24,7 +24,7 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
-Meteor.subscribe('default_db_data', function() {
+Meteor.subscribe('default_db_data', function () {
 	//Set the reactive session as true to indicate that the data have been loaded
 	Session.set('data_loaded', true);
 });

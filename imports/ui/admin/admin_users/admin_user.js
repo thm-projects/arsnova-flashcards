@@ -6,7 +6,7 @@ import {Session} from 'meteor/session';
 //import {allUsers} from '../../../api/allusers.js';
 import {Cardsets} from '../../../api/cardsets.js';
 import {AdminSettings} from '../../../api/adminSettings.js';
-import {getDays1,getDays2,getDays3, seqOne, seqTwo,seqThree } from '../../profile/profile.js';
+import {getDays1,getDays2,getDays3} from '../../profile/profile.js';
 
 import './admin_user.html';
 

@@ -5,7 +5,7 @@ import {Mongo} from 'meteor/mongo';
 export const AdminSettings = new Mongo.Collection("adminSettings");
 
 if (Meteor.isServer) {
-	Meteor.publish('default_db_data', function(){
+	Meteor.publish('default_db_data', function () {
 		return AdminSettings.find({});
 	});
 }
