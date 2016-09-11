@@ -183,9 +183,13 @@ function saveInterval() {
 			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
 			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
 		} else {
-			Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
-			Bert.alert(TAPi18n.__('profile.saved'),'success','growl-bottom-right');
-			$('#inv1, #inv2, #inv3').val("");
+			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
+				Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
+				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+				$('#inv1, #inv2, #inv3').val("");
+			} else {
+				Bert.alert(TAPi18n.__('admin-intervall.biggerNull'), 'danger', 'growl-bottom-right');
+			}
 		}
 	}
 	return true;
