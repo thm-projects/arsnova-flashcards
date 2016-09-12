@@ -2,7 +2,7 @@ import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
-
+import {MailNotifier} from '../../../server/sendmail.js';
 
 var initCategories = function () {
 	var categoryNames = [
@@ -236,4 +236,18 @@ Meteor.startup(function () {
 			}
 		}
 	}
+	const mailAgent = new MailNotifier()
+	let mails = "";
+	Meteor.users.find({}, {email:1}).fetch().forEach(function (item) {
+		mails += item.email + ",";
+	});
+	mailAgent.addTask({
+		details : {
+			from: '',
+			to: mails,
+			subject: "Die Lernrunde läuft!",
+			html: "<p>Sehr geehrte Teilnehmer der aktuellen THMCards-Lernphase, <br><br>ein neuer Tag hat begonnen, Ihre Leitners-Box erwartet Sie!<br> Bitte denken Sie daran Ihren täglichen Aufgaben nachzukommen.<br><br>Ihr THMCards-Team</p>",
+		}
+	});
+	mailAgent.startCron();
 });
