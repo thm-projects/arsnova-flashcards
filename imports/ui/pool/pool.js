@@ -5,6 +5,8 @@ import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 import {Authors} from '../../api/authors.js';
 import {Cardsets} from '../../api/cardsets.js';
+import {Learned} from '../../api/learned.js';
+import {Ratings} from '../../api/ratings.js';
 import {Categories} from '../../api/categories.js';
 import {Disciplines} from '../../api/disciplines.js';
 import {Majors} from '../../api/majors.js';
@@ -16,6 +18,8 @@ import {Colleges_Courses} from '../../api/colleges_courses.js';
 import './pool.html';
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("allLearned");
+
 Meteor.subscribe("allLearned");
 Meteor.subscribe("categories");
 Meteor.subscribe("disciplines");
