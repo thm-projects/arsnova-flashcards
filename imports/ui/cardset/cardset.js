@@ -639,7 +639,17 @@ Template.cardsetSidebar.events({
 		if(Cardsets.findOne(this._id).learningActive) {
 			Meteor.call("deactivateLearning", this._id);
 		}
-		else {
+	},
+});
+
+/**
+ * ############################################################################
+ * cardsetSidebar
+ * ############################################################################
+ */
+Template.cardsetStartLearnForm.events({
+	"click #confirmLearn": function() {
+		if(!Cardsets.findOne(this._id).learningActive) {
 			Meteor.call("activateLearning", this._id);
 		}
 	},

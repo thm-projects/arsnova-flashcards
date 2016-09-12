@@ -67,6 +67,12 @@
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
+  "confirmLearn-form": {
+    "title": "Lernphase starten",
+    "text": "Wollen Sie die Lernphase wirklich starten?",
+    "confirm": "Starten",
+    "cancel": "Abbrechen"
+  },
   "nav-list": {
     "category": "Kategorie",
     "created": "Erstellt",
@@ -324,7 +330,9 @@
     "publicated": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
-    "license": " Lizenz wählen"
+    "license": " Lizenz wählen",
+    "startLearning": "Starte Lernphase",
+    "stopLearning": "Beende Lernphase"
   },
   "pool": {
     "relevance": "Relevanz",
