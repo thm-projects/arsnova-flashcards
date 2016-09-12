@@ -13,7 +13,6 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import '../card/card.js';
 import '../learn/box.js';
 import '../learn/memo.js';
-import '../learn/statistics.js';
 
 import './cardset.html';
 
@@ -572,11 +571,6 @@ Template.cardsetInfo.events({
 			_id: this._id
 		});
 	},
-	"click #learnStatistics": function () {
-		Router.go('statistics', {
-			_id: this._id
-		});
-	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');
@@ -635,9 +629,20 @@ Template.cardsetSidebar.events({
 			_id: this._id
 		});
 	},
-	"click #learnStatistics": function () {
-		Router.go('statistics', {
-			_id: this._id
+	'click #exportCSV': function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		console.log(cardset_id);
+		Meteor.call("getCSVContent", cardset_id, Meteor.userId(), function (error, result) {
+			if (error) {
+				return;
+			}
+			hiddenElement.href = 'data:attachment/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+			hiddenElement.target = '_blank';
+			hiddenElement.download = (cardset[0].name + " Statistics " + new Date() + ".csv");
+			document.body.appendChild(hiddenElement);
+			hiddenElement.click();
 		});
 	}
 });
