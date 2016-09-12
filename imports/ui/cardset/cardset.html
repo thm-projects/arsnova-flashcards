@@ -163,6 +163,23 @@
                 <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
             </div>
         </div>
+        {{#if isOwner}}
+		{{#if isInRole 'lecturer'}}
+			<div class="well well-sm sidebar-nav">
+				<button id="startStopLearning" class="btn btn-default startStopLearn btn-block">
+					{{#if learningActive}}
+						{{_ "stopLearning"}}
+					{{else}}
+						{{_ "startLearning"}}
+					{{/if}}
+				</button>
+            		</div>
+            	{{/if}}
+        {{/if}}
+        {{#unless isOwner}}
+            <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_
+                    "report"}}</a>
+        {{/unless}}
         {{#if isLecturer}}
             <div id="set-details-learn-region">
                 <div class="well well-sm sidebar-nav">

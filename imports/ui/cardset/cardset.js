@@ -635,6 +635,14 @@ Template.cardsetSidebar.events({
 			_id: this._id
 		});
 	},
+	"click #startStopLearning": function () {
+		if(Cardsets.findOne(this._id).learningActive) {
+			Meteor.call("deactivateLearning", this._id);
+		}
+		else {
+			Meteor.call("activateLearning", this._id);
+		}
+	},
 	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;
 		var cardset = Cardsets.find({"_id": cardset_id}).fetch();

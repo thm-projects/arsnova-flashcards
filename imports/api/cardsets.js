@@ -105,7 +105,16 @@ var CardsetsSchema = new SimpleSchema({
 	},
 	studyType: {
 		type: String
-	}
+	},
+	BachelorOrMaster: {
+		type: String
+	},
+	semester: {
+		type: String
+	},
+	learningActive: {
+		type: Boolean
+	},
 });
 
 Cardsets.attachSchema(CardsetsSchema);
@@ -200,6 +209,20 @@ Meteor.methods({
 		Cardsets.remove(id);
 		Cards.remove({
 			cardset_id: id
+		});
+	},
+	deactivateLearning: function (id) {
+		Cardsets.update(id, {
+			$set: {
+				learningActive: false
+			}
+		});
+	},
+	activateLearning: function (id) {
+		Cardsets.update(id, {
+			$set: {
+				learningActive: true
+			}
 		});
 	},
 	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
