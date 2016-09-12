@@ -65,6 +65,7 @@
                             {{else}}
                                 {{> starsRating id='rating' rating=0 mutable=true}}
                             {{/if}}
+                            <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                             <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
