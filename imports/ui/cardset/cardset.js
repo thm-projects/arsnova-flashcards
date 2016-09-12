@@ -794,6 +794,7 @@ Template.cardsetPublicateForm.events({
 		var price = 0;
 		var visible = true;
 		var license = [];
+
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publicatePrice') !== null) {
 				price = tmpl.find('#publicatePrice').value;

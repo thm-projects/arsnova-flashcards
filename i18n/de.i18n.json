@@ -354,6 +354,8 @@
       "college": "Hochschule",
       "studyType": "Studienfach"
       "activeLearners": "Aktive Lerner"
+      "dateUpdated": "Zuletzt aktualisiert",
+      "activeLearners": "Aktive Lerner"
     },
     "request": {
       "accept": "Kartensatz freigeben",
