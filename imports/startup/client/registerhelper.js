@@ -17,6 +17,13 @@ Template.registerHelper("hasPermission", function () {
 	}
 });
 
+// Check if user has is lecturer
+Template.registerHelper("isLecturer", function () {
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+		return true;
+	}
+});
+
 // Check if user is owner of a cardset
 Template.registerHelper("isOwnerCard", function () {
 	var owner;
