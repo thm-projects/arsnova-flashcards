@@ -118,6 +118,13 @@
                                 <span>{{_ "admin.notifications"}}</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="{{#if isActiveRoute regex='admin_interval'}}active{{/if}}"
+                               href="{{pathFor route='admin_interval'}}">
+                                <i class="fa fa-cog"></i>
+                                <span>{{_ "admin.intervall"}}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /#sidebar-wrapper -->

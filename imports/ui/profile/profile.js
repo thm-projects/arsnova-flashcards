@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 
+
 import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
@@ -12,6 +13,10 @@ import {Learned} from '../../api/learned.js';
 import {Ratings} from '../../api/ratings.js';
 import {Paid} from '../../api/paid.js';
 import {Notifications} from '../../api/notifications.js';
+import {AdminSettings} from '../../api/adminSettings';
+
+//import {userData} from '../../api/userdata.js';
+
 import './profile.html';
 
 
@@ -20,6 +25,10 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe('default_db_data', function () {
+	//Set the reactive session as true to indicate that the data have been loaded
+	Session.set('data_loaded', true);
+});
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -220,7 +229,7 @@ Template.profileSidebar.helpers({
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
 				var service = _.keys(user.services)[0];
-				service     = service.charAt(0).toUpperCase() + service.slice(1);
+				service = service.charAt(0).toUpperCase() + service.slice(1);
 				return service;
 			}
 		}
@@ -244,8 +253,8 @@ Template.profileSettings.events({
 	"click #profileSave": function () {
 		Meteor.call("updateUserGivenName", "istehwurst", Meteor.userId());
 		// Email validation
-		var re         = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		var email      = $('#inputEmail').val();
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var email = $('#inputEmail').val();
 		var validEmail = re.test(email);
 
 		if (validEmail === false) {
@@ -258,7 +267,7 @@ Template.profileSettings.events({
 		}
 
 		// Name validation
-		var name    = $('#inputName').val();
+		var name = $('#inputName').val();
 		var user_id = Meteor.userId();
 
 		Meteor.call("checkUsersName", name, user_id, function (error, result) {
@@ -321,7 +330,7 @@ Template.profileMembership.rendered = function () {
 
 						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
 						var nonce = response.nonce;
-						var plan  = Session.get('plan');
+						var plan = Session.get('plan');
 						Meteor.call('btSubscribe', nonce, plan, function (error) {
 							if (error) {
 								throw new Meteor.Error(error.message, 'error');
@@ -366,8 +375,8 @@ Template.profileMembership.events({
 		}
 	},
 	"click #sendLecturerRequest": function () {
-		var text   = Meteor.user().profile.name + " möchte Dozent werden.";
-		var type   = "Dozenten-Anfrage";
+		var text = Meteor.user().profile.name + " möchte Dozent werden.";
+		var type = "Dozenten-Anfrage";
 		var target = "admin";
 
 		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
@@ -548,9 +557,45 @@ Template.profileRequests.helpers({
  * ############################################################################
  */
 
+export var seqOne = 7; //7 tag
+export var seqTwo = 29; //30 tag
+export var seqThree = 90; //90 tag
+var backgroundColorBox1 = 1;
+var backgroundColorBox2 = 0;
+
+
+export function getDays1() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqOne = seq.seqOne;
+		return seqOne;
+	}
+}
+
+export function getDays2() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqTwo = seq.seqTwo;
+		return seqTwo;
+	}
+}
+
+export function getDays3() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqThree = seq.seqThree;
+		return seqThree;
+	}
+}
+
+
+
 Template.profileXp.helpers({
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3,
 	getXpTotal: function () {
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id
 		});
 		var result = 0;
@@ -564,7 +609,7 @@ Template.profileXp.helpers({
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: date
@@ -582,7 +627,7 @@ Template.profileXp.helpers({
 		var maxDate = new Date();
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -595,13 +640,32 @@ Template.profileXp.helpers({
 		});
 		return result;
 	},
-	getXpWeek: function () {
-		var minDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+	getXpTwoDaysAgo: function () {
+		var minDate = new Date(new Date().getTime() - 48 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date();
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+	getXpSeq1: function () {
+		var minDate = new Date(new Date().getTime() - seqOne * 24 * 60 * 60 * 1000);
 		minDate.setHours(0, 0, 0, 0);
 		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
 
-		var allXp  = Experience.find({
+		var allXp = Experience.find({
 			owner: Router.current().params._id,
 			date: {
 				$gte: minDate,
@@ -614,6 +678,45 @@ Template.profileXp.helpers({
 		});
 		return result;
 	},
+	getXpSeq2: function () {
+		var minDate = new Date(new Date().getTime() - seqTwo * 24 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+	getXpSeq3: function () {
+		var minDate = new Date(new Date().getTime() - seqThree * 24 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+
 	getLast: function () {
 		var last = Experience.findOne({
 			owner: Router.current().params._id
@@ -659,24 +762,43 @@ Template.profileXp.helpers({
 	getXp: function () {
 		Meteor.call('checkLvl');
 
-		var level    = getLvl() + 1;
-		var points   = xpForLevel(level);
+		var level = getLvl() + 1;
+		var points = xpForLevel(level);
 		var required = points - Session.get("totalXp");
 
 		return required;
 	},
 	getXpPercent: function () {
-		var points        = Session.get("totalXp");
-		var currentLevel  = getLvl();
-		var nextLevel     = getLvl() + 1;
+		var points = Session.get("totalXp");
+		var currentLevel = getLvl();
+		var nextLevel = getLvl() + 1;
 		var currentPoints = xpForLevel(currentLevel);
-		var nextPoints    = xpForLevel(nextLevel);
+		var nextPoints = xpForLevel(nextLevel);
 
 		var res = (points - currentPoints) / (nextPoints - currentPoints) * 100;
 
 		return res + "%";
 	}
 });
+
+
+Template.profileXp.events({
+	'onload': setInterval(function () {
+		//console.log('Wert von I : ' + i);
+		$('#well' + backgroundColorBox1).css("background-color", "lightblue");
+		backgroundColorBox1 = backgroundColorBox1 + 1;
+		backgroundColorBox2 = backgroundColorBox2 + 1;
+		if (backgroundColorBox1 >= 7) {
+			backgroundColorBox1 = 1;
+		}
+		if (backgroundColorBox2 >= 7) {
+			backgroundColorBox2 = 0;
+		}
+		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
+	}, 500)
+});
+
+
 
 /**
  * ############################################################################

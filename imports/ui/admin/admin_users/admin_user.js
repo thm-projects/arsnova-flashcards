@@ -1,18 +1,27 @@
-//------------------------ IMPORTS
+//------------------------IMPORTS
 
 import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
+//import {allUsers} from '../../../api/allusers.js';
 import {Cardsets} from '../../../api/cardsets.js';
+import {AdminSettings} from '../../../api/adminSettings.js';
+import {getDays1,getDays2,getDays3} from '../../profile/profile.js';
 
 import './admin_user.html';
 
-/**
+Meteor.subscribe('adminSettings', function () {
+	//Set the reactive session as true to indicate that the data have been loaded
+	Session.set('data_loaded', true);
+});/**
  * ############################################################################
  * admin_user
  * ############################################################################
  */
+
+
+
 
 Template.admin_user.helpers({
 	getService: function () {
@@ -21,7 +30,7 @@ Template.admin_user.helpers({
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
 				var service = _.keys(user.services)[0];
-				service     = service.charAt(0).toUpperCase() + service.slice(1);
+				service = service.charAt(0).toUpperCase() + service.slice(1);
 				return service;
 			}
 		}
@@ -52,15 +61,15 @@ Template.admin_user.helpers({
 		}
 	},
 	cardsetListUserAdmin: function () {
-		var cardsets   = Cardsets.find({owner: this._id});
-		var fields     = [];
+		var cardsets = Cardsets.find({owner: this._id});
+		var fields = [];
 		var dateString = null;
-		var date       = null;
-		var kind       = null;
+		var date = null;
+		var kind = null;
 
 		cardsets.forEach(function (cardset) {
 			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
-			date       = moment(cardset.date).format("YYYY-MM-DD");
+			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
 			} else if (cardset.kind === 'free') {
@@ -160,9 +169,54 @@ Template.admin_user.helpers({
 	}
 });
 
+
+
+
+function saveInterval() {
+	var inv1 = document.getElementById('inv1').value;
+	var inv2 = document.getElementById('inv2').value;
+	var inv3 = document.getElementById('inv3').value;
+
+	if (inv1 === "" || inv2 === "" || inv3 === "") {
+		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
+	} else {
+		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
+			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
+		} else {
+			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
+				Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
+				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+				$('#inv1, #inv2, #inv3').val("");
+			} else {
+				Bert.alert(TAPi18n.__('admin-intervall.biggerNull'), 'danger', 'growl-bottom-right');
+			}
+		}
+	}
+	return true;
+}
+
+Template.admin_interval.events({//TODO
+	'keypress input': function (event) {
+		if (event.keyCode == 13) {
+			saveInterval();
+		}
+	},
+	'click #saveInterval': saveInterval,
+	'click #resetIntervall': function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		if (!(($('#inv1').val() === seq.seqOne && $('#inv2').val() === seq.seqTwo && $('#inv3').val() === seq.seqThree) ||
+			(7 === seq.seqOne && 30 === seq.seqTwo && 90 === seq.seqThree))) {
+			Meteor.call('updateIntervall', 7, 30, 90);
+			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+			$('#inv1, #inv2, #inv3').val("");
+		}
+	}
+});
+
 Template.admin_user.events({
 	'click #userSaveAdmin': function (event, tmpl) {
-		var name    = $('#editUserNameAdmin').val();
+		var name = $('#editUserNameAdmin').val();
 		var user_id = this._id;
 
 		Meteor.call("checkUsersName", name, user_id, function (error, result) {
@@ -173,13 +227,13 @@ Template.admin_user.events({
 				$('#helpEditUserNameAdmin').css('color', '#b94a48');
 			}
 			if (result) {
-				var re          = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-				var email       = $('#editUserEmailAdmin').val();
+				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+				var email = $('#editUserEmailAdmin').val();
 				var blockedtext = $('#editUserBlockedtextAdmin').val();
-				var check       = re.test(email);
-				var visible     = null;
-				var pro         = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
-				var lecturer    = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
+				var check = re.test(email);
+				var visible = null;
+				var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
+				var lecturer = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
 
 				if ($('#profilepublicoption1Admin').hasClass('active')) {
 					visible = true;
@@ -258,6 +312,8 @@ Template.admin_user.events({
 	'click #userCancelAdmin': function () {
 		window.history.go(-1);
 	},
+
+
 	'click #userDeleteAdmin': function () {
 		$("#userDeleteAdmin").css('display', "none");
 		$("#userConfirmAdmin").css('display', "");
@@ -312,4 +368,12 @@ Template.cardsetConfirmFormUserAdmin.events({
 			Meteor.call("deleteCardset", id);
 		}).modal('hide');
 	}
+});
+
+
+
+Template.preview.helpers({
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3
 });

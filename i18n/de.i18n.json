@@ -1,4 +1,10 @@
 {
+  "admin-intervall":{
+    "errorAllFields" : "Bitte alle Felder ausfüllen",
+    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorBigger999" : "Bitte wähle eine Zahl kleiner als 999",
+    "biggerNull" : "Bitte wähle eine Zahl größer als 0"
+  },
   "intro": {
     "about": "Was ist THMcards?",
     "choose": "Wähle deinen Login:",
@@ -216,13 +222,27 @@
     "nameAlreadyExists": "Benutzername ist bereits vergeben!"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte (XP)"
+    "experience": "Erfahrungspunkte (XP)",
+    "intervall": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
+    "preview": "Vorschau"
   },
   "panel-body-experience": {
+    "intervall1": "Intervall 1",
+    "intervall2": "Intervall 2",
+    "intervall3": "Intervall 3",
     "total": "Total",
+    "twoDaysAgo": "Vorgestern",
     "today": "Heute",
+    "days" : "Tage",
+    "day": "Tag",
+    "day_plural" : "Tage",
     "yesterday": "Gestern",
-    "days": "7 Tage",
+    "month": "Wochen",
+    "threemonth": "Monate",
+    "default1": "Standard 7 Tage",
+    "default2": "Standard 30 Tage",
+    "default3": "Standard 90 Tage",
+    "reset": "Zurücksetzen",
     "lastredeem": "Zuletzt für: "
   },
   "panel-body-last": {
@@ -439,6 +459,7 @@
     "cardsets": "Kartensätze",
     "cards": "Karten",
     "users": "Benutzer",
+    "intervall": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
     "see_all": "Alle ansehen",
     "name": "Name",

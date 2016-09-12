@@ -1,4 +1,10 @@
 {
+  "admin-intervall":{
+    "errorAllFields" : "Please fill all fields.",
+    "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
+    "errorBigger999" : "Please choose a number less then 999",
+    "biggerNull" : "Please choose a number bigger then 0"
+  },
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
@@ -217,13 +223,21 @@
     "nameAlreadyExists": "Username is already taken!"
   },
   "panel-heading-experience": {
-    "experience": "Experience Points (XP)"
+    "experience": "Experience Points (XP)",
+    "intervall": "Set the learning period",
+    "preview": "Preview"
   },
   "panel-body-experience": {
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "days": "7 days",
+    "twoDaysAgo": "Two days ago",
+    "day": "day",
+    "day_plural" : "days",
+    "reset": "Reset",
+    "default1": "default 7 days",
+    "default2": "default 30 days",
+    "default3": "default 90 days",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
@@ -440,6 +454,7 @@
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
+    "intervall": "Define learning period",
     "notifications": "Notifications",
     "see_all": "See all",
     "name": "Name",

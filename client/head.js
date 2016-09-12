@@ -1,4 +1,4 @@
-// STARTUP IMPORTS --------------------------------------------------------
+// STARTUP IMPORTS
 
 import '../imports/startup/client/i18n.js';
 import '../imports/startup/client/registerhelper.js';

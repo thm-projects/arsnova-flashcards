@@ -84,7 +84,7 @@ Meteor.methods({
 		});
 	},
 	checkUsersName: function (name, id) {
-		name           = name.trim();
+		name = name.trim();
 		var userExists = Meteor.users.findOne({"profile.name": name});
 
 		if (userExists && userExists._id !== id) {
@@ -146,7 +146,7 @@ Meteor.methods({
 	},
 	increaseUsersBalance: function (user_id, lecturer_id, amount) {
 		if (amount < 10) {
-			var user_amount     = Math.round((amount * 0.7) * 100) / 100;
+			var user_amount = Math.round((amount * 0.7) * 100) / 100;
 			var lecturer_amount = Math.round((amount * 0.05) * 100) / 100;
 
 			Meteor.users.update(user_id, {$inc: {balance: user_amount}});

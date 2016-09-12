@@ -21,14 +21,14 @@ Meteor.subscribe('allUsers');
 
 Template.admin_users.helpers({
 	userListAdmin: function () {
-		var users      = Meteor.users.find();
-		var fields     = [];
+		var users = Meteor.users.find();
+		var fields = [];
 		var dateString = null;
-		var date       = null;
+		var date = null;
 
 		users.forEach(function (user) {
 			dateString = moment(user.createdAt).locale(getUserLanguage()).format('LL');
-			date       = moment(user.createdAt).format("YYYY-MM-DD");
+			date = moment(user.createdAt).format("YYYY-MM-DD");
 			fields.push({"_id": user._id, "profilename": user.profile.name, "dateString": dateString, "date": date});
 		});
 
@@ -40,7 +40,8 @@ Template.admin_users.helpers({
 			rowsPerPage: 20,
 			fields: [
 				{
-					key: '_id', label: TAPi18n.__('admin.admin'), cellClass: 'admin', fn: function (value, object) {
+					key: '_id', label: TAPi18n.__('admin.admin'), cellClass: 'admin',
+					fn: function (value, object) {
 						if (Roles.userIsInRole(value, 'admin')) {
 							return new Spacebars.SafeString("<span name='Admin" + object.profilename + "'><i class='fa fa-check'></i> (Super Admin)</span>");
 						} else if (Roles.userIsInRole(value, 'editor')) {
@@ -51,26 +52,30 @@ Template.admin_users.helpers({
 					}
 				},
 				{
-					key: 'profilename', label: TAPi18n.__('admin.users'), fn: function (value) {
+					key: 'profilename', label: TAPi18n.__('admin.users'),
+					fn: function (value) {
 						return value;
 					}
 				},
 				{
-					key: '_id', label: TAPi18n.__('admin.pro'), cellClass: 'pro', fn: function (value) {
+					key: '_id', label: TAPi18n.__('admin.pro'), cellClass: 'pro',
+					fn: function (value) {
 						if (Roles.userIsInRole(value, 'pro')) {
 							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
 						}
 					}
 				},
 				{
-					key: '_id', label: TAPi18n.__('admin.university'), cellClass: 'university', fn: function (value) {
+					key: '_id', label: TAPi18n.__('admin.university'), cellClass: 'university',
+					fn: function (value) {
 						if (Roles.userIsInRole(value, 'university')) {
 							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
 						}
 					}
 				},
 				{
-					key: '_id', label: TAPi18n.__('admin.lecturer'), cellClass: 'lecturer', fn: function (value) {
+					key: '_id', label: TAPi18n.__('admin.lecturer'), cellClass: 'lecturer',
+					fn: function (value) {
 						if (Roles.userIsInRole(value, 'lecturer')) {
 							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
 						}
@@ -88,12 +93,14 @@ Template.admin_users.helpers({
 					}
 				},
 				{
-					key: 'dateString', label: TAPi18n.__('admin.joined'), fn: function (value, object) {
+					key: 'dateString', label: TAPi18n.__('admin.joined'),
+					fn: function (value, object) {
 						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
 					}
 				},
 				{
-					key: '_id', label: TAPi18n.__('admin.blocked'), cellClass: 'blocked', fn: function (value) {
+					key: '_id', label: TAPi18n.__('admin.blocked'), cellClass: 'blocked',
+					fn: function (value) {
 						if (Roles.userIsInRole(value, 'blocked')) {
 							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
 						}
@@ -217,12 +224,12 @@ Template.messageFormAdmin.events({
 			var link_id;
 
 			if ($('#messageReasonAdmin').val() === "Beschwerde Benutzer" || $('#messageReasonAdmin').val() === "Complaint user" || $('#messageReasonAdmin').html() === 'Beschwerde Benutzer' || $('#messageReasonAdmin').html() === 'Complaint user') {
-				type    = "Adminbenachrichtigung (Beschwerde Benutzer)";
+				type = "Adminbenachrichtigung (Beschwerde Benutzer)";
 				link_id = user_id;
 			} else {
-				type                = "Adminbenachrichtigung (Beschwerde Kartensatz)";
+				type = "Adminbenachrichtigung (Beschwerde Kartensatz)";
 				var selectedCardset = $('#messageCardsetAdmin').children(":selected").attr("id");
-				link_id             = selectedCardset;
+				link_id = selectedCardset;
 			}
 
 			var target = user_id;

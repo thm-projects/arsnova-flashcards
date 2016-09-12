@@ -74,11 +74,11 @@ Meteor.methods({
 		//				(3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
 		//				(4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-		var learned  = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
+		var learned = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
 		var interval = 0;
 
 		if (grade < 3) {
-			reps     = 0;
+			reps = 0;
 			interval = 0;
 		} else {
 			ef = ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));

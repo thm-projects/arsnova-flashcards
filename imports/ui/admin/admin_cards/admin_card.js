@@ -17,7 +17,7 @@ import './admin_card.html';
 function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(),
-		content                 = e.getContent();
+		content = e.getContent();
 
 	if (selected.length === 0) {
 		// Give extra word
@@ -162,7 +162,7 @@ Template.admin_card.events({
 		}
 		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000) {
 			var front = Session.get('frontText');
-			var back  = Session.get('backText');
+			var back = Session.get('backText');
 			Meteor.call("updateCard", this._id, front, back);
 			window.history.go(-1);
 		}

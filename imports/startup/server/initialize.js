@@ -1,6 +1,9 @@
 import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
+import {AdminSettings} from '../../api/adminSettings';
+
+
 
 var initCategories = function () {
 	var categoryNames = [
@@ -89,11 +92,13 @@ var initCategories = function () {
 
 	var categories = [];
 	for (var i = 0; i < categoryNames.length; ++i) {
-		categories.push({
-			"_id": (i < 9 ? "0" : "") + (i + 1),
-			"name": categoryNames[i],
-			"i18n": categoryI18n[i]
-		});
+		categories.push(
+			{
+				"_id": (i < 9 ? "0" : "") + (i + 1),
+				"name": categoryNames[i],
+				"i18n": categoryI18n[i]
+			}
+		);
 	}
 
 	return categories;
@@ -208,7 +213,16 @@ var initBadges = function () {
 
 Meteor.startup(function () {
 	var categories = initCategories();
-	var badges     = initBadges();
+	var badges = initBadges();
+
+	if (!AdminSettings.findOne({name: "seqSettings"})) {
+		AdminSettings.insert({
+			name: "seqSettings",
+			seqOne: 7,
+			seqTwo: 30,
+			seqThree: 90
+		});
+	}
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {
 			if (categories.hasOwnProperty(category)) {

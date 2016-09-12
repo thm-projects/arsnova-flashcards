@@ -18,15 +18,15 @@ import './admin_cardset.js';
 
 Template.admin_cardsets.helpers({
 	cardsetListAdmin: function () {
-		var cardsets   = Cardsets.find();
-		var fields     = [];
+		var cardsets = Cardsets.find();
+		var fields = [];
 		var dateString = null;
-		var date       = null;
-		var kind       = null;
+		var date = null;
+		var kind = null;
 
 		cardsets.forEach(function (cardset) {
 			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
-			date       = moment(cardset.date).format("YYYY-MM-DD");
+			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
 			} else if (cardset.kind === 'free') {
