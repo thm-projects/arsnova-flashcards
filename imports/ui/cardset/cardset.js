@@ -72,8 +72,7 @@ Template.cardset.helpers({
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
-		Session.set('previousCategory', Cardsets.findOne(id).category);
-
+		/*
 		var previousCategory = Cardsets.findOne(id).category;
 		var categoryId = previousCategory.toString();
 
@@ -85,6 +84,7 @@ Template.cardset.helpers({
 		if (category !== undefined) {
 			Session.set('previousCategoryName', category.name);
 		}
+		*/
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
