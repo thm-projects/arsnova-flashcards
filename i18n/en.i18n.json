@@ -74,10 +74,22 @@
   "set-list": {
     "name": "Name",
     "category": "Category",
-    "description": "Description"
+    "description": "Description",
+    "lastName": "Surname",
+    "moduleLong": "Module",
+    "degree": "Degree",
+    "discipline": "Discipline",
+    "major": "Major",
+    "license": "License",
+    "topic": "Topic",
+    "author": "Author",
+    "title": "Following decks of cards are available:",
+    "everyone": "Everyone",
+    "everything": "Everything"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
+    "emptypooltextlist": "There aren't any decks of cards yet",
     "newset": "Create a deck of cards"
   },
   "set-list-learned-empty": {

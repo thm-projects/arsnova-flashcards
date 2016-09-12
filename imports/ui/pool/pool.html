@@ -1,94 +1,182 @@
 <template name="pool">
-    <div class="col-md-12" id="pool-category-region">
-        <div class="list-group">
-            {{#each getCategories}}
-                <a class="list-group-item" href="pool/{{_id}}">
-                    <span class="badge">{{getCount this._id}}</span> {{name}}</a>
-            {{/each}}
-        </div>
+    <div id="pool-category-region" class="container">
+        {{> category}}
     </div>
 </template>
 
 <template name="category">
-    <div class="categories">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-md-6">
-                        <h4>{{name}}</h4>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="filterCheckbox" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default active">
-                                <input type="checkbox" autocomplete="off" value="free" checked> Free
-                            </label>
-                            <label class="btn btn-success active">
-                                <input type="checkbox" autocomplete="off" value="edu" checked> Edu
-                            </label>
-                            <label class="btn btn-info active">
-                                <input type="checkbox" autocomplete="off" value="pro" checked> Pro
-                            </label>
-                        </div>
-                        <div class="btn-group pull-right">
-                            <button id="sortRelevance" class="btn btn-default" type="button">{{_
-                                    "pool.relevance"}} {{{getSortRelevanceIcon}}}</button>
-                            <button id="sortName" class="btn btn-default" type="button">{{_
-                                    "pool.name"}} {{{getSortNameIcon}}}</button>
-                            <button id="sortUser" class="btn btn-default" type="button">{{_
-                                    "pool.author"}} {{{getSortUserIcon}}}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="btn-group" role="group" aria-label="Topic group">
+            <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
+                {{_ "set-list.topic"}} </button>
+            <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-sort"></span>
+            </button>
         </div>
 
-        {{#if getDecks.count}}
-            {{#each getDecks}}
-                <div class="col-md-12">
-                    <a href="/cardset/{{_id}}">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-sm-8">
-                                    <div class="">
-                                        <h4>{{{getKind}}} {{name}}</h4>
-                                        <hr> {{description}}
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="well">
-                                        <strong class="left">{{_ "pool.rating"}}
-                                            :</strong> {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                                        <hr>
-                                        <strong>{{_ "pool.quantity"}}:</strong> {{countCards this._id}}
-                                        <br>
-                                        <strong>{{_ "pool.author"}}:</strong>
-                                        {{#if userExists userDeleted}}
-                                            {{username}}
-                                        {{else}}
-                                            {{username}} ({{_ "pool.deleted"}})
-                                        {{/if}}
-                                        <br>
-                                        <strong>{{_ "pool.release"}}:</strong> {{getDate}}
-                                        <br>
-                                        <strong>{{_ "pool.dateUpdated"}}:</strong> {{getDateUpdated}}
-                                        <br>
-                                        <strong>{{_ "pool.license"}}:</strong>
-                                        <span id="pool_license">{{getLicense}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+        <div class="btn-group" role="group" aria-label="Author group">
+            <button type="button" class="filterAuthorGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.author"}}</button>
+            <button type="button" class="filterAuthorGroup btn btn-default dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-filter"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
+                {{#each getAuthors}}
+                    <li><a href="#" class="filterAuthor"
+                           data-id="{{this.owner}}">{{this.degree}} {{this.firstName}} {{this.lastName}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Module group">
+            <button type="button" class="filterModuleGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.moduleLong"}}</button>
+            <button type="button" class="filterModuleGroup btn btn-default dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-filter"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getModules}}
+                    <li><a href="#" class="filterModule" data-id="{{this._id}}">
+                        {{this.token}}:
+                        {{this.name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Discipline group">
+            <button type="button" class="filterDisciplineGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.discipline"}}</button>
+            <button type="button" class="filterDisciplineGroup btn btn-default dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-filter"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="filterDiscipline active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getDisciplines}}
+                    <li><a href="#" class="filterDiscipline" data-id="{{this._id}}">{{this.name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Category group">
+            <button type="button" class="filterCategoryGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.category"}}</button>
+            <button type="button" class="filterCategoryGroup btn btn-default dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-filter"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="filterCategory active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getCategories}}
+                    <li><a href="#" class="filterCategory" data-id="{{this._id}}">{{this.token}}:{{this.name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Major group">
+            <button type="button" class="filterMajorGroup btn btn-default" data-toggle="dropdown">
+                {{_ "set-list.major"}}</button>
+            <button type="button" class="filterMajorGroup btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-filter"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" class="filterMajor active" data-id="">{{_ "set-list.everything"}}</a></li>
+                {{#each getMajors}}
+                    <li><a href="#" class="filterMajor" data-id="{{this._id}}">{{this.token}}:{{this.name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
+             aria-label="License group">
+            <label class="btn btn-default active">
+                <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+            </label>
+            <label class="btn btn-default active">
+                <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+            </label>
+            <label class="btn btn-default active">
+                <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 poolHeaderTop">
+        {{_ "set-list.title"}}
+    </div>
+    <div class="col-sm-12 col-md-12 poolHeaderBottom responsive-utilities-test visible-on">
+        <span class="col-md-3 visible-md visible-lg visible-xl">{{_ "set-list.topic"}}:</span>
+        <span class="col-md-3 visible-md visible-lg visible-xl">{{_ "set-list.author"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.moduleLong"}}:</span>
+        <span class="col-md-2 visible-md visible-lg visible-xl">{{_ "set-list.discipline"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.category"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.major"}}:</span>
+        <span class="col-md-1 visible-md visible-lg visible-xl">{{_ "set-list.license"}}:</span>
+    </div>
+    {{#if getDecks.count}}
+        {{#each getDecks}}
+            <a href="/cardset/{{_id}}">
+                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                        oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                    {{> poolCardsetRow}}
                 </div>
-            {{/each}}
-        {{else}}
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <span class="emptyTextList">{{_ "nocards"}}</span>
-                    </div>
-                </div>
+            </a>
+        {{/each}}
+        {{#if moreResults}}
+            <div id="showMoreResults" style="margin-left: 25px;">
+                <span class="loading">Loading...</span>
+                {{showMoreVisible}}
             </div>
         {{/if}}
+    {{else}}
+        {{> poolCardsetEmpty}}
+    {{/if}}
+</template>
+
+<template name="poolCardsetRow">
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
+    <span class="cell col-xs-8 col-sm-9 col-md-3">
+                {{this.name}}
+        <span class="badge cardsetBadge">{{countCards this._id}}</span>
+            </span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.author"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-3">{{{getAuthorName}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.moduleLong"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getModuleToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.discipline"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-2">{{{getDisciplineName}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.category"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getCategoryToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.major"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1">{{{getMajorToken}}}</span>
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.license"}}:</span>
+    <span class="kind-label cell col-xs-8 col-sm-9 col-md-1 kind-label">
+        {{{getKind}}}
+    </span>
+</template>
+
+
+<template name="poolCardsetEmpty">
+    <div class="col-sm-12 col-md-12 empty-list panel panel-default cardsetInfo ">
+        <br>
+        <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
+        <br>
+        <br>
     </div>
 </template>

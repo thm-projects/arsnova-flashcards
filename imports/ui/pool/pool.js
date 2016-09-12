@@ -4,16 +4,31 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
+import {Authors} from '../../api/authors.js';
 import {Cardsets} from '../../api/cardsets.js';
-import {Ratings} from '../../api/ratings.js';
+import {Categories} from '../../api/categories.js';
+import {Disciplines} from '../../api/disciplines.js';
+import {Majors} from '../../api/majors.js';
+import {Modules} from '../../api/modules.js';
 
 import './pool.html';
 
+var ITEMS_INCREMENT = 20;
+Session.setDefault('itemsLimit', ITEMS_INCREMENT);
 
-Meteor.subscribe("categories");
+Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("categories");
+Meteor.subscribe("disciplines");
+Meteor.subscribe("majors");
+Meteor.subscribe("modules");
 
-Session.setDefault('poolSort', {relevance: -1});
+Session.setDefault('poolSortTopic', {name: 1});
+Session.setDefault('poolFilterAuthor');
+Session.setDefault('poolFilterModule');
+Session.setDefault('poolFilterDiscipline');
+Session.setDefault('poolFilterCategory');
+Session.setDefault('poolFilterMajor');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -24,53 +39,76 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 Template.category.helpers({
 	getDecks: function () {
-		var id = parseInt(this._id);
-		return Cardsets.find({
-			category: id,
-			visible: true,
-			kind: {$in: Session.get('poolFilter')}
-		}, {
-			sort: Session.get('poolSort')
-		});
+		var query = {};
+		query.visible = true;
+		query.kind = {$in: Session.get('poolFilter')};
+		if (Session.get('poolFilterAuthor')) {
+			query.owner = Session.get('poolFilterAuthor');
+		}
+		if (Session.get('poolFilterModule')) {
+			query.module = Session.get('poolFilterModule');
+		}
+		if (Session.get('poolFilterDiscipline')) {
+			query.discipline = Session.get('poolFilterDiscipline');
+		}
+		if (Session.get('poolFilterCategory')) {
+			query.category = Session.get('poolFilterCategory');
+		}
+		if (Session.get('poolFilterMajor')) {
+			query.major = Session.get('poolFilterMajor');
+		}
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
 	},
-	getAverage: function () {
-		var ratings = Ratings.find({
-			cardset_id: this._id
-		});
-		var count = ratings.count();
-		if (count !== 0) {
-			var amount = 0;
-			ratings.forEach(function (rate) {
-				amount = amount + rate.rating;
-			});
-			var result = (amount / count).toFixed(2);
-			return result;
-		} else {
-			return 0;
+	getAuthors: function () {
+		return Authors.find({}, {sort: {lastName: 1}});
+	},
+	getModules: function () {
+		return Modules.find({}, {sort: {name: 1}});
+	},
+	getDisciplines: function () {
+		return Disciplines.find({}, {sort: {name: 1}});
+	},
+	getCategories: function () {
+		return Categories.find({}, {sort: {name: 1}});
+	},
+	getMajors: function () {
+		return Majors.find({}, {sort: {name: 1}});
+	},
+	oddRow: function (index) {
+		return (index % 2 === 1);
+	}
+});
+
+
+Template.poolCardsetRow.helpers({
+	getAuthorName: function () {
+		var author = Authors.findOne({owner: this.owner});
+		if (typeof author !== 'undefined') {
+			return author.degree + " " + author.firstName + " " + author.lastName;
 		}
 	},
-	getSortUserIcon: function () {
-		var sort = Session.get('poolSort');
-		if (sort.username === 1) {
-			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.username === -1) {
-			return '<i class="fa fa-sort-desc"></i>';
+	getModuleToken: function () {
+		var module = Modules.findOne({_id: this.module});
+		if (typeof module !== 'undefined') {
+			return module.token;
 		}
 	},
-	getSortNameIcon: function () {
-		var sort = Session.get('poolSort');
-		if (sort.name === 1) {
-			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.name === -1) {
-			return '<i class="fa fa-sort-desc"></i>';
+	getDisciplineName: function () {
+		var discipline = Disciplines.findOne({_id: this.discipline});
+		if (typeof discipline !== 'undefined') {
+			return discipline.name;
 		}
 	},
-	getSortRelevanceIcon: function () {
-		var sort = Session.get('poolSort');
-		if (sort.relevance === 1) {
-			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.relevance === -1) {
-			return '<i class="fa fa-sort-desc"></i>';
+	getCategoryToken: function () {
+		var category = Categories.findOne({_id: this.category});
+		if (typeof category !== 'undefined') {
+			return category.token;
+		}
+	},
+	getMajorToken: function () {
+		var major = Majors.findOne({_id: this.major});
+		if (typeof major !== 'undefined') {
+			return major.token;
 		}
 	},
 	getKind: function () {
@@ -84,58 +122,62 @@ Template.category.helpers({
 			default:
 				return '<span class="label label-danger">Undefined!</span>';
 		}
-	},
-	getAuthor: function () {
-		return Meteor.users.findOne(this.owner).profile.name;
-	},
-	getLicense: function () {
-		var licenseString = "";
-
-		if (this.license.length > 0) {
-			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
-			}
-			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
-			}
-			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
-			}
-			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
-			}
-
-			return new Spacebars.SafeString(licenseString);
-		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
-		}
 	}
 });
 
 Template.category.events({
-	'click #sortName': function () {
-		var sort = Session.get('poolSort');
+	'click .sortTopic': function () {
+		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
-			Session.set('poolSort', {name: -1});
+			Session.set('poolSortTopic', {name: -1});
 		} else {
-			Session.set('poolSort', {name: 1});
+			Session.set('poolSortTopic', {name: 1});
 		}
 	},
-	'click #sortUser': function () {
-		var sort = Session.get('poolSort');
-		if (sort.username === 1) {
-			Session.set('poolSort', {username: -1});
+	'click .filterAuthor': function (event) {
+		var button = $(".filterAuthorGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
 		} else {
-			Session.set('poolSort', {username: 1});
+			button.addClass('active');
 		}
+		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
-	'click #sortRelevance': function () {
-		var sort = Session.get('poolSort');
-		if (sort.relevance === 1) {
-			Session.set('poolSort', {relevance: -1});
+	'click .filterModule': function (event) {
+		var button = $(".filterModuleGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
 		} else {
-			Session.set('poolSort', {relevance: 1});
+			button.addClass('active');
 		}
+		Session.set('poolFilterModule', $(event.target).data('id'));
+	},
+	'click .filterDiscipline': function (event) {
+		var button = $(".filterDisciplineGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterDiscipline', $(event.target).data('id'));
+	},
+	'click .filterCategory': function (event) {
+		var button = $(".filterCategoryGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterCategory', $(event.target).data('id'));
+	},
+	'click .filterMajor': function (event) {
+		var button = $(".filterMajorGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterMajor', $(event.target).data('id'));
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];
@@ -148,19 +190,4 @@ Template.category.events({
 
 Template.category.onDestroyed(function () {
 	Session.set('poolSort', {relevance: -1});
-});
-
-/**
- * ############################################################################
- * helpers
- * ############################################################################
- */
-
-Template.pool.helpers({
-	getCount: function (id) {
-		return Cardsets.find({
-			category: parseInt(id),
-			visible: true
-		}).count();
-	}
 });

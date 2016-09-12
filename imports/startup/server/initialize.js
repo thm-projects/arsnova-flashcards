@@ -2,8 +2,6 @@ import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
-import {Colleges} from '../../api/colleges.js';
-import {Course} from '../../api/course.js';
 
 
 var initCategories = function () {
@@ -214,6 +212,7 @@ var initBadges = function () {
 
 Meteor.startup(function () {
 	var badges = initBadges();
+	var cat = initCategories();
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
@@ -224,9 +223,9 @@ Meteor.startup(function () {
 		});
 	}
 	if (Categories.find().count() === 0) {
-		for (var category in categories) {
-			if (categories.hasOwnProperty(category)) {
-				Categories.insert(categories[category]);
+		for (var category in cat.categories) {
+			if (cat.categories.hasOwnProperty(category)) {
+				Categories.insert(cat.categories[category]);
 			}
 		}
 	}

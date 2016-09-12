@@ -73,11 +73,23 @@
   },
   "set-list": {
     "name": "Name",
-    "category": "Kategorie",
-    "description": "Beschreibung"
+    "category": "Fachbereich",
+    "description": "Beschreibung",
+    "lastName": "Nachname",
+    "moduleLong": "Modul",
+    "degree": "Akademischer Grad",
+    "discipline": "Studiengang",
+    "major": "Major",
+    "license": "Lizenz",
+    "topic": "Thema",
+    "author": "Autor/in",
+    "title": "Aktuell werden folgende Kartensätze angeboten:",
+    "everyone": "Alle",
+    "everything": "Alles"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+    "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
     "newset": "Kartensatz anlegen"
   },
   "set-list-learned-empty": {

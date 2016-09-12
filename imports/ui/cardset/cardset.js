@@ -6,8 +6,6 @@ import {Session} from 'meteor/session';
 
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
-import {Categories} from '../../api/categories.js';
-import {Colleges} from '../../api/colleges.js';
 import {Ratings} from '../../api/ratings.js';
 import {Paid} from '../../api/paid.js';
 import {ReactiveVar} from 'meteor/reactive-var';
