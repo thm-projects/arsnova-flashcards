@@ -46,6 +46,7 @@ Template.admin_settings.events({
 		deleteButton.setAttribute("value", "delete");
 		var delete_Button = document.getElementById("deleteRow");
 		Meteor.call("updateColleges_Courses", college, course);
+		document.getElementById("newEntry").reset();
 	}/*,
 	 'click #deleteRow': function (event) {
 	 document.getElementById("deleteRow").deleteRow(-1);
