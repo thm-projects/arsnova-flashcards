@@ -160,7 +160,7 @@
         {{#if isOwner}}
             {{#if isInRole 'lecturer'}}
                 <div class="well well-sm sidebar-nav">
-                    <button id="startStopLearning" class="btn btn-default startStopLearn btn-block" type="button"
+                    <button id="startStopLearning" class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}" type="button"
                             data-toggle="modal"
                             data-target="{{#unless learningActive}}#confirmLearnModal{{/unless}}">
                         {{#if learningActive}}
@@ -191,7 +191,6 @@
 
     </div>
 </template>
-
 
 <template name="cardsetPreview">
     <div class="col-md-4">
@@ -512,7 +511,7 @@
                             <div class="col-md-9">
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control" id="inputmaxOverrun"
+                                       class="form-control" id="inputMaxOverrun"
                                        placeholder="{{_ "confirmLearn-form.maxOverrunDesc"}}" value="">
                                 <span id="errorMaxOverrun" class="help-block name"></span>
                             </div>

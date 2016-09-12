@@ -644,13 +644,15 @@ Template.cardsetSidebar.events({
 
 /**
  * ############################################################################
- * cardsetSidebar
+ * cardsetStartLearnForm
  * ############################################################################
  */
 Template.cardsetStartLearnForm.events({
 	"click #confirmLearn": function() {
 		if(!Cardsets.findOne(this._id).learningActive) {
-			Meteor.call("activateLearning", this._id);
+			var maxCards = $('#inputMaxCards').val();
+			var maxOverrun = $('#inputMaxOverrun').val();
+			Meteor.call("activateLearning", this._id, maxCards, maxOverrun);
 		}
 	},
 	"click #exportCSV": function () {

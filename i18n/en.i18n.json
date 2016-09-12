@@ -68,6 +68,16 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
+  "confirmLearn-form": {
+    "title": "Start Learn-Phase",
+    "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
+    "confirm": "Start",
+    "cancel": "Cancel",
+    "maxCards": "Daily workload",
+    "maxCardsDesc": "Maximum number of daily learnable cards",
+    "maxOverrun": "Overrun",
+    "maxOverrunDesc": "Maximum overrun"
+  },
   "nav-list": {
     "category": "Category",
     "created": "Created",
@@ -321,7 +331,9 @@
     "publicated": "Publicated",
     "review": "In review",
     "private": "Private",
-    "license": " Select license"
+    "license": " Select license",
+    "startLearning": "Start Learning-Phase",
+    "stopLearning": "Stop Lerning-Phase"
   },
   "pool": {
     "relevance": "Relevance",

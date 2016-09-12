@@ -115,6 +115,12 @@ var CardsetsSchema = new SimpleSchema({
 	learningActive: {
 		type: Boolean
 	},
+	maxCards: {
+		type: Number
+	},
+	maxOverrun: {
+		type: Number
+	}
 });
 
 Cardsets.attachSchema(CardsetsSchema);
@@ -218,10 +224,18 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLearning: function (id) {
+	activateLearning: function (id, maxCards, maxOverrun) {
+		if(!maxCards) {
+			maxCards = 0;
+		}
+		if(!maxOverrun) {
+			maxOverrun = 0;
+		}
 		Cardsets.update(id, {
 			$set: {
-				learningActive: true
+				learningActive: true,
+				maxCards: maxCards,
+				maxOverrun: maxOverrun
 			}
 		});
 	},
