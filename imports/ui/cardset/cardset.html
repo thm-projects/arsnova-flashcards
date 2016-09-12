@@ -488,89 +488,46 @@
 </template>
 
 <template name="cardsetStartLearnForm">
-    <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
+    <div class="modal fade" id="confirmLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="editSetModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}</h4>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                        <div class="form-group setdetails name">
-                            <label id="editSetNameLabel" class="col-md-3 control-label" for="editSetName">{{_
-                            "modal-dialog.name"}}</label>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_"confirmLearn-form.maxCards"}}</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" id="inputMaxCards"
+                                <input type="number" min="1" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputMaxCards"
                                        placeholder="{{_ "confirmLearn-form.maxCardsDesc"}}" value="">
                                 <span id="errorMaxCards" class="help-block name"></span>
                             </div>
                         </div>
-                        <div class="form-group setdetails description">
-                            <label id="editSetDescriptionLabel" class="col-md-3 control-label"
-                                   for="editSetDescription">{{_ "confirmLearn-form.maxCards"}}</label>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxOverrun"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="inputMaxCards"
-                                          value=""></textarea>
-                                <span id="helpEditSetDescription" class="help-block description"></span>
-                            </div>
-                        </div>
-                        <div class="form-group setdetails categories">
-                            <label id="editSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_
-                            "modal-dialog.category"}}</label>
-                            <div class="col-md-9">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="editSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                        <span id="editSetCategory">{{getCategory this.category}}</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        {{#each getCategories}}
-                                            <li class="category" value="{{_id}}" data="{{name}}"><a
-                                                    href="#">{{name}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                </div>
+                                <input type="number" min="1" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputmaxOverrun"
+                                       placeholder="{{_ "confirmLearn-form.maxOverrunDesc"}}" value="">
+                                <span id="errorMaxOverrun" class="help-block name"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal">{{_
-                    "modal-dialog.cancel"}}</button>
-                    <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
-                    "modal-dialog.delete"}}</button>
-                    <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
-                    "modal-dialog.confirm"}}</button>
-                    <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
+		    <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                            style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
+                    <button id="confirmLearn" class="btn btn-success pull-right" data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
                 </div>
             </div>
         </div>
     </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "confirmLearn-form.maxOverrun"}}</label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" id="inputmaxOverrun"
-                                       placeholder="{{_ "confirmLearn-form.maxOverrunDesc"}}" value="">
-                                <span id="errorMaxOverrun" class="help-block name"></span>
-                            </div>
-                        </div><!-- /form group -->
-		    </form>
-                    <div class="col-md-12">
-                        <p>{{_ "confirmLearn-form.text"}}</p>
-                    </div>
-                    <br/>
-                    <hr/>
-
-                    <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
-                            style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
-                    <button id="confirmLearn" class="btn btn-success pull-right" data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
-                </div> <!-- /body -->
-            </div> <!-- /content -->
-        </div> <!-- /dialog -->
-    </div> <!-- /fade -->
+<!-- /form group -->
 </template>
 
 <template name="cardsetConfirmForm">
