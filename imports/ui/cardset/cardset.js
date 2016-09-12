@@ -561,12 +561,6 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
-	"click #testbtn": function () {//TODO only for testing will be deleted by merge with Issue#84
-		console.log("Activate Lerning Period");
-		var cardset_id = Template.parentData(1)._id;
-		Meteor.call("activateLerningPeriod",cardset_id);
-		Meteor.call("activateLerningPeriodSetEdu",cardset_id);
-	},
 	"click #learnBox": function () {
 		Router.go('box', {
 			_id: this._id
@@ -652,8 +646,42 @@ Template.cardsetStartLearnForm.events({
 		if(!Cardsets.findOne(this._id).learningActive) {
 			var maxCards = $('#inputMaxCards').val();
 			var maxOverrun = $('#inputMaxOverrun').val();
-			Meteor.call("activateLearning", this._id, maxCards, maxOverrun);
+			var learningStart = $('#inputLearningStart').val();
+			var learningEnd = $('#inputLearningEnd').val();
+			var learningInterval = [];
+			learningInterval[0] = $('#inputLearningInterval1').val();
+			learningInterval[1] = $('#inputLearningInterval2').val();
+			learningInterval[2] = $('#inputLearningInterval3').val();
+			learningInterval[3] = $('#inputLearningInterval4').val();
+			learningInterval[4] = $('#inputLearningInterval5').val();
+			Meteor.call("activateLearning", this._id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval);
 		}
+	},
+	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function() {
+		var error = false;
+		for(var i = 1; i < 5; ++i) {
+			if(parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i+1)).val())) {
+				error = true;
+			}
+		}
+		if(error) {
+			for(var i = 1; i <= 5; ++i) {
+				$('#inputLearningInterval' + i).parent().parent().addClass('has-warning');
+				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
+			}
+		}
+		else {
+			for(var i = 1; i <= 5; ++i) {
+				$('#inputLearningInterval' + i).parent().parent().removeClass('has-warning');
+				$('#errorInputLearningInterval').html('');
+			}
+		}
+	},
+	"focus #inputLearningStart": function() {
+		$('#inputLearningStart').datepicker();
+	},
+	"focus #inputLearningEnd": function() {
+		$('#inputLearningEnd').datepicker();
 	},
 	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;

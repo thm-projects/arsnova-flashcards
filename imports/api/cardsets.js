@@ -120,6 +120,15 @@ var CardsetsSchema = new SimpleSchema({
 	},
 	maxOverrun: {
 		type: Number
+	},
+	learningStart: {
+		type: Date
+	},
+	learningEnd: {
+		type: Date
+	},
+	learningInterval: {
+		type: [Number]
 	}
 });
 
@@ -236,10 +245,19 @@ Meteor.methods({
 		}
 		if(!learningEnd) {
 			learningEnd = new Date();
+			var day = 1000*60*60*24;
+			var week = 7*day;
+			var month = 4*week;
+			learningEnd.setTime(learningEnd.getTime()+3*month);
 		}
 		if(!learningInterval) {
-			learningInterval = ;
+			learningInterval = [1, 3, 7, 4*7, 3*4*7];
 		}
+		learningInterval = learningInterval.sort(
+			function(a, b) {
+				return a - b;
+			}
+		);
 		Cardsets.update(id, {
 			$set: {
 				learningActive: true,
@@ -250,6 +268,8 @@ Meteor.methods({
 				learningInterval: learningInterval
 			}
 		});
+        	Meteor.call("activateLerningPeriod", id);
+        	Meteor.call("activateLerningPeriodSetEdu", id);
 	},
 	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
 		// Make sure only the task owner can make a task private

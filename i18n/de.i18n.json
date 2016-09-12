@@ -75,7 +75,13 @@
     "maxCards": "Täglich lernbar",
     "maxCardsDesc": "Maximal an einem Tag zu lernende Karten",
     "maxOverrun": "Verzug",
-    "maxOverrunDesc": "Maximaler Verzug in Tagen"
+    "maxOverrunDesc": "Maximaler Verzug in Tagen",
+    "learningStart": "Beginn der Lernphase",
+    "learningStartDesc": "Heute",
+    "learningEnd": "Ende der Lernphase",
+    "learningEndDesc": "In 3 Monaten",
+    "learningInterval": "Intervall",
+    "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert."
   },
   "nav-list": {
     "category": "Kategorie",

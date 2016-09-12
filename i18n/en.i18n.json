@@ -76,7 +76,13 @@
     "maxCards": "Daily workload",
     "maxCardsDesc": "Maximum number of daily learnable cards",
     "maxOverrun": "Overrun",
-    "maxOverrunDesc": "Maximum overrun in days"
+    "maxOverrunDesc": "Maximum overrun in days",
+    "learningStart": "Start of Learning-Phase",
+    "learningStartDesc": "Today",
+    "learningEnd": "End of Learning-Phase",
+    "learningEndDesc": "In 3 months",
+    "learningInterval": "Interval",
+    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically."
   },
   "nav-list": {
     "category": "Category",
