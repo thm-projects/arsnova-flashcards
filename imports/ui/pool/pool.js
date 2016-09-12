@@ -5,11 +5,23 @@ import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 
 import {Cardsets} from '../../api/cardsets.js';
+import {Learned} from '../../api/learned.js';
+import {Ratings} from '../../api/ratings.js';
+import {Categories} from '../../api/categories.js';
+import {Disciplines} from '../../api/disciplines.js';
+import {Majors} from '../../api/majors.js';
+import {Modules} from '../../api/modules.js';
 import {Colleges_Courses} from '../../api/colleges_courses.js';
 
 import './pool.html';
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("allLearned");
+
+Meteor.subscribe("categories");
+Meteor.subscribe("disciplines");
+Meteor.subscribe("majors");
+Meteor.subscribe("modules");
 Meteor.subscribe("colleges_courses");
 
 Session.setDefault('poolSortTopic', {name: 1});
@@ -93,6 +105,36 @@ Template.poolCardsetRow.helpers({
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}
+	},
+	getAuthor: function () {
+		return Meteor.users.findOne(this.owner).profile.name;
+	},
+	getLicense: function () {
+		var licenseString = "";
+
+		if (this.license.length > 0) {
+			if (this.license.includes('by')) {
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+			}
+			if (this.license.includes('nc')) {
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+			}
+			if (this.license.includes('nd')) {
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+			}
+			if (this.license.includes('sa')) {
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+			}
+
+			return new Spacebars.SafeString(licenseString);
+		} else {
+			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
+		}
+	},
+	getActiveLearner: function () {
+		var data = Learned.find({box: {$gt:1}}).fetch();
+		var distinctData = _.uniq(data, false, function(d) {return d.user_id});
+		return (_.pluck(distinctData, "user_id").length);
 	}
 });
 
