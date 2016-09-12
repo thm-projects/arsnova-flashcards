@@ -5,7 +5,7 @@ import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 import {Authors} from '../../api/authors.js';
 import {Cardsets} from '../../api/cardsets.js';
-import {Learned} from '../../api/learned.js';
+//import {Learned} from '../../api/learned.js';
 import {Ratings} from '../../api/ratings.js';
 import {getActiveLearner} from '../../ui/cardset/cardset.js';
 
