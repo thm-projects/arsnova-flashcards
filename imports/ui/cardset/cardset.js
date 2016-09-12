@@ -31,8 +31,8 @@ Session.setDefault('cardSort', {
 });
 
 export function getActiveLearner() {
-	var data = Learned.find({box: {$gt:1}}).fetch();
-	var distinctData = _.uniq(data, false, function(d) {return d.user_id});
+	var data = Learned.find({box: {$gt: 1}}).fetch();
+	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
 	return (_.pluck(distinctData, "user_id").length);
 }
 
