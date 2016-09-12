@@ -353,6 +353,7 @@
       "modulNum": "Modul-Nummer",
       "college": "Hochschule",
       "studyType": "Studienfach"
+      "activeLearners": "Aktive Lerner"
     },
     "request": {
       "accept": "Kartensatz freigeben",

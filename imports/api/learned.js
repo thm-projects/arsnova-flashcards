@@ -23,6 +23,11 @@ if (Meteor.isServer) {
 			return learned;
 		}
 	});
+	Meteor.publish("allLearned", function () {
+			var learned = Learned.find({});
+			return learned;
+		}
+	);
 }
 
 Meteor.methods({

@@ -330,7 +330,8 @@
     "release": "Published",
     "deleted": "Deleted",
     "license": "License",
-    "dateUpdated": "Last updated"
+    "dateUpdated": "Last updated",
+    "activeLearners": "Active learners"
   },
   "cardset": {
     "info": {

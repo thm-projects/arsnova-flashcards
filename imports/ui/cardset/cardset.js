@@ -7,6 +7,7 @@ import {Session} from 'meteor/session';
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
 import {Ratings} from '../../api/ratings.js';
+import {Learned} from '../../api/learned.js';
 import {Paid} from '../../api/paid.js';
 import {ReactiveVar} from 'meteor/reactive-var';
 
@@ -19,6 +20,7 @@ import './cardset.html';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
+Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
 Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
@@ -557,6 +559,11 @@ Template.cardsetInfo.helpers({
 		} else {
 			return true;
 		}
+	},
+	getActiveLearner: function () {
+		var data = Learned.find({box: {$gt:1}}).fetch();
+		var distinctData = _.uniq(data, false, function(d) {return d.user_id});
+		return (_.pluck(distinctData, "user_id").length);
 	}
 });
 
@@ -778,12 +785,19 @@ Template.cardsetPublicateForm.helpers({
 });
 
 Template.cardsetPublicateForm.events({
+
 	'click #cardsetPublicate': function (evt, tmpl) {
 		var id = this._id;
 		var kind = tmpl.find('#publicateKind > .active > input').value;
 		var price = 0;
 		var visible = true;
 		var license = [];
+
+		var data = Learned.find({box: {$gt: 1}}).fetch();
+		var distinctData = _.uniq(data, false, function(d) {return d.user_id});
+		console.log(_.pluck(distinctData, "user_id"));
+
+
 
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publicatePrice') !== null) {
