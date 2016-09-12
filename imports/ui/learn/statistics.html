@@ -2,8 +2,10 @@
     <div class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
-                <button id="exportCSV" class="col-md-2 btn btn-default btn-success export btn-block">{{_
-                        "exportCSV"}}</button>
+                {{#if isOwner}}
+                    <button id="exportCSV" class="col-md-2 btn btn-default btn-success export btn-block">{{_
+                            "exportCSV"}}</button>
+                {{/if}}
             </div>
         </div>
     </div>
