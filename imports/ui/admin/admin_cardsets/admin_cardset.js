@@ -149,7 +149,6 @@ Template.admin_cardset.events({
 			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
 				tmpl.find('#editCardsetCategoryAdmin').value = Cardsets.findOne(this._id).category;
 			}
-			var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
 			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
 			var price = 0;
