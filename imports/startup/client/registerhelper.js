@@ -2,6 +2,11 @@ import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Cardsets} from '../../api/cardsets.js';
 import {Cards} from '../../api/cards.js';
+import {Colleges} from '../../api/colleges.js';
+import {Course} from '../../api/course.js';
+
+Meteor.subscribe("colleges");
+Meteor.subscribe("course");
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
@@ -65,6 +70,31 @@ Template.registerHelper("getCategories", function () {
 			_id: 1
 		}
 	});
+});
+
+// Returns all Courses
+Template.registerHelper("getCourses", function () {
+	return Course.find();
+});
+
+//Returns all Colleges
+Template.registerHelper("getColleges", function () {
+	return Colleges.find();
+});
+
+// Return the name of a College
+Template.registerHelper("getCollege", function (value) {
+	if (value !== null) {
+		var id = value.toString();
+		if (id.length === 1) {
+			id = "0" + id;
+		}
+
+		var college = Colleges.findOne(id);
+		if (college !== undefined) {
+			return college.name;
+		}
+	}
 });
 
 // Return the name of a Category

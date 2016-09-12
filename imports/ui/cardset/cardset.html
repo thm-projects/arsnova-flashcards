@@ -68,12 +68,18 @@
                             <hr>
                         {{/if}}
                         <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                        <br>
-                        <strong>{{_ "cardset.info.author"}}:</strong>
+                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                        <span id="info_license">{{getLicense}}</span>
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
+                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
+                        <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
+                        <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
+                        <br><strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
+                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{degree}} {{firstName}} {{lastName}} </a>
                         {{else}}
-                            {{username}} ({{_ "cardset.info.deleted"}})
+                            {{firstName}} {{lastName}} ({{_ "cardset.info.deleted"}})
                         {{/if}}
                         <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
                         <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
@@ -86,13 +92,20 @@
                         {{#if isPurchased}}
                             <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
                         {{/if}}
-                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
-                        <span id="info_license">{{getLicense}}</span>
+
                     </div>
                 </div>
             </div>
             {{#if isOwner}}
                 <div class="panel-footer">
+                    <div class="btn-group">
+                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
+                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
+                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
+                            <i class="fa fa-question"></i></button>
+                    </div>
                     <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
                             data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                     </button>
@@ -108,14 +121,7 @@
                                     "sidebar-nav.exportcard"}}</a></li>
                         </ul>
                     </div>
-                    <div class="btn-group">
-                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
-                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
-                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
-                            <i class="fa fa-question"></i></button>
-                    </div>
+
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
@@ -375,30 +381,71 @@
                                 <span id="helpEditSetDescription" class="help-block description"></span>
                             </div>
                         </div>
-                        <div class="form-group setdetails categories">
-                            <label id="editSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_
-                                    "modal-dialog.category"}}</label>
-                            <div class="col-md-9">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="editSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                        <span id="editSetCategory">{{getCategory this.category}}</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        {{#each getCategories}}
-                                            <li class="category" value="{{_id}}" data="{{name}}"><a
-                                                    href="#">{{name}}</a></li>
-                                        {{/each}}
-                                    </ul>
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{_ "modal-dialog.module"}}</div>
+                            <br>
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModulLongLabel" class="col-md-3 control-label"
+                                       for="editSetModulLong">{{_ "modal-dialog.modulLong"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModulLong"
+                                           value="{{modulLong}}">
+                                    <span id="helpEditSetModulLong" class="help-block name"></span>
                                 </div>
-                            </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModulShortLabel" class="col-md-3 control-label"
+                                       for="editSetModulShort">{{_ "modal-dialog.modulShort"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModulShort"
+                                           value="{{modulShort}}">
+                                    <span id="helpEditSetModulShort" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModulNumLabel" class="col-md-3 control-label"
+                                       for="editSetModulNum">{{_ "modal-dialog.modulNum"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModulNum"
+                                           value="{{modulNum}}">
+                                    <span id="helpEditSetModulNum" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
                         </div>
+                        <!-- start studyType Dropdown
+                        <div class="form-group setdetails categories">
+                            <label id="editSetCategoryLabel" class="col-md-3 control-label" for="editSetCategory">{{_
+                                    "modal-dialog.studyType"}}</label>
+                            <div class="col-md-9">
+                                <div class="dropup">
+                                    <div class="btn-group">
+                                        <button id="editSetCategory" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{getCategory this.category}}</button>
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {{#each getCategories}}
+                                                <li class="category" value="{{_id}}" data="{{name}}"><a
+                                                        href="#">{{name}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span id="helpEditSetCategory" class="help-block category"></span>
+                            </div>
+                        </div> / studyType Dropdown -->
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal">{{_
+                    <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
                             "modal-dialog.delete"}}</button>

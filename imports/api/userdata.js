@@ -67,12 +67,12 @@ Meteor.methods({
 	updateUsersName: function (name, id) {
 		Meteor.users.update(id, {
 			$set: {
-				"profile.name": name
+				"profile.firstName": name
 			}
 		});
 		Cardsets.update({owner: id}, {
 			$set: {
-				username: name
+				firstName: name
 			}
 		}, {multi: true});
 	},

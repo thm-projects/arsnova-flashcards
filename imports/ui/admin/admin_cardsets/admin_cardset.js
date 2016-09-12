@@ -184,7 +184,7 @@ Template.admin_cardset.events({
 				visible = false;
 			}
 			Meteor.call("publicateCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, category, description);
+			Meteor.call("updateCardset", this._id, name, description);
 			window.history.go(-1);
 		}
 	},

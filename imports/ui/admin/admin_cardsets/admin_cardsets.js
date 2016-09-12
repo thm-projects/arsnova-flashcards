@@ -41,7 +41,7 @@ Template.admin_cardsets.helpers({
 				"_id": cardset._id,
 				"name": cardset.name,
 				"kind": kind,
-				"username": cardset.username,
+				"firstName": cardset.firstName,
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,

@@ -360,7 +360,6 @@ Template.admin_notifications.helpers({
 				{
 					key: 'receiver', label: TAPi18n.__('admin.receiver'), fn: function (value, object) {
 						var user = Meteor.users.findOne({_id: object.receiver_id});
-
 						if (user === undefined) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {

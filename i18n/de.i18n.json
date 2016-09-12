@@ -86,9 +86,9 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-    "name": "Name",
-    "nameplaceholder": "Name",
-    "descriptionplaceholder": "Beschreibung",
+    "name": "Thema",
+    "nameplaceholder": "Thema des Kartensatzes",
+    "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "category": "Kategorie",
@@ -124,7 +124,21 @@
     "reportcardset": "Kartensatz melden",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
-    "submitcomplaint": "Beschwerde absenden"
+    "submitcomplaint": "Beschwerde absenden",
+    "college": "Hochschule",
+    "college_required": "Wähle eine Hochschule",
+    "studyType": "Studiengang",
+    "studyType_required": "Wähle einen Studiengang",
+    "modulLong": "Modul-Langname",
+    "modulLong_required": "Geben Sie den vollen Namen des Moduls an!",
+    "modulShort": "Modul-Kurzname",
+    "modulShort_required": "Geben Sie eine Abkürzung des Moduls an!",
+    "modulNum": "Modul-Nummer",
+    "modulNum_required": "Geben Sie eine Modulnummer ein!",
+    "modulLongplaceholder": "Ausgeschriebener Name des Moduls",
+    "modulShortplaceholder": "Abkürzung des Moduls",
+    "modulNumplaceholder": "Nummer des Moduls",
+    "module": "Namen des Moduls"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -313,7 +327,12 @@
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
       "license": "Lizenz",
-      "dateUpdated": "Zuletzt aktualisiert"
+      "dateUpdated": "Zuletzt aktualisiert",
+      "modulLong": "Modul-Langname",
+      "modulShort": "Modul-Kurzname",
+      "modulNum": "Modul-Nummer",
+      "college": "Hochschule",
+      "studyType": "Studienfach"
     },
     "request": {
       "accept": "Kartensatz freigeben",
