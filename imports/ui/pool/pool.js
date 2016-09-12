@@ -7,6 +7,8 @@ import {Authors} from '../../api/authors.js';
 import {Cardsets} from '../../api/cardsets.js';
 import {Learned} from '../../api/learned.js';
 import {Ratings} from '../../api/ratings.js';
+import {getActiveLearner} from '../../ui/cardset/cardset.js';
+
 import {Categories} from '../../api/categories.js';
 import {Disciplines} from '../../api/disciplines.js';
 import {Majors} from '../../api/majors.js';
