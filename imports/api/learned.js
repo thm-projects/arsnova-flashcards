@@ -30,7 +30,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		Learned.update({
-			cartset_id: cartset_id
+			cardset_id: cartset_id
 		}, {
 			$set: {
 				box: 1,

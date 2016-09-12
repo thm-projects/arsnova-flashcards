@@ -561,6 +561,12 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
+	"click #testbtn": function () {//TODO only for testing will be deleted by merge with Issue#84
+		console.log("Activate Lerning Period");
+		var cardset_id = Template.parentData(1)._id;
+		Meteor.call("activateLerningPeriod",cardset_id);
+		Meteor.call("activateLerningPeriodSetEdu",cardset_id);
+	},
 	"click #learnBox": function () {
 		Router.go('box', {
 			_id: this._id

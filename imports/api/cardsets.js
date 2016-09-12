@@ -226,12 +226,12 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLerningPeriodCardset: function (cartset_id) {
+	activateLerningPeriodSetEdu: function (cartset_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Cardsets.update({
-			cartset_id: cartset_id
+			_id: cartset_id
 		}, {
 			$set: {
 				kind: "edu"
