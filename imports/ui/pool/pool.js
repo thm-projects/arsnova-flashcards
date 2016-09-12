@@ -11,6 +11,7 @@ import {Categories} from '../../api/categories.js';
 import {Disciplines} from '../../api/disciplines.js';
 import {Majors} from '../../api/majors.js';
 import {Modules} from '../../api/modules.js';
+import {getActiveLearner} from '../../ui/cardset/cardset.js';
 import {Colleges_Courses} from '../../api/colleges_courses.js';
 
 import './pool.html';
@@ -131,11 +132,7 @@ Template.poolCardsetRow.helpers({
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
 	},
-	getActiveLearner: function () {
-		var data = Learned.find({box: {$gt:1}}).fetch();
-		var distinctData = _.uniq(data, false, function(d) {return d.user_id});
-		return (_.pluck(distinctData, "user_id").length);
-	}
+	getActiveLearner: getActiveLearner
 });
 
 Template.category.events({

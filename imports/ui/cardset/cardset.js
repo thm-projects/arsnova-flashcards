@@ -30,6 +30,12 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+export function getActiveLearner() {
+	var data = Learned.find({box: {$gt:1}}).fetch();
+	var distinctData = _.uniq(data, false, function(d) {return d.user_id});
+	return (_.pluck(distinctData, "user_id").length);
+}
+
 /**
  * ############################################################################
  * cardset
@@ -560,11 +566,7 @@ Template.cardsetInfo.helpers({
 			return true;
 		}
 	},
-	getActiveLearner: function () {
-		var data = Learned.find({box: {$gt:1}}).fetch();
-		var distinctData = _.uniq(data, false, function(d) {return d.user_id});
-		return (_.pluck(distinctData, "user_id").length);
-	}
+	getActiveLearner
 });
 
 Template.cardsetInfo.events({
