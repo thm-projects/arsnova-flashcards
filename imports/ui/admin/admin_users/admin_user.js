@@ -230,6 +230,9 @@ Template.admin_user.events({
 				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 				var email = $('#editUserEmailAdmin').val();
 				var blockedtext = $('#editUserBlockedtextAdmin').val();
+				var title = $('#editUserTitleAdmin').val();
+				var birthname = $('#editUserBirthNameAdmin').val();
+				var givenname = $('#editUserGivenNameAdmin').val();
 				var check = re.test(email);
 				var visible = null;
 				var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
@@ -270,7 +273,10 @@ Template.admin_user.events({
 						$('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
 					}
 				}
-				if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) && (check === true || email === "") && (result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
+				if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) &&
+					(check === true || email === "") &&
+					(result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) &&
+					(lecturer && visible || !lecturer)) {
 					if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
 						Meteor.call('updateRoles', user_id, 'pro');
 					} else {
@@ -303,7 +309,13 @@ Template.admin_user.events({
 					}
 
 					Meteor.call('updateUser', user_id, visible, email, blockedtext);
-					Meteor.call("updateUsersName", result, user_id);
+					Meteor.call('updateUsersName', result, user_id);
+					Meteor.call('updateUsersTitle', title, user_id);
+					Meteor.call('updateUsersBirthName', birthname, user_id);
+					Meteor.call('updateUsersGivenName', givenname, user_id);
+					Meteor.call('updateUsersProfileState',
+						(email !== "" && result !== "" && birthname !== "" && givenname !== "") ? true : false,
+						user_id);
 					window.history.go(-1);
 				}
 			}
@@ -312,8 +324,6 @@ Template.admin_user.events({
 	'click #userCancelAdmin': function () {
 		window.history.go(-1);
 	},
-
-
 	'click #userDeleteAdmin': function () {
 		$("#userDeleteAdmin").css('display', "none");
 		$("#userConfirmAdmin").css('display', "");

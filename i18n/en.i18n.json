@@ -146,7 +146,7 @@
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
-    "settings": "Settings",
+    "settings": "Profile",
     "requests": "Pro approval",
     "norequests": "No requests",
     "lecturer": "Lecturer approval",
@@ -162,7 +162,7 @@
     "name": "Profile of "
   },
   "panel-heading": {
-    "hallo": "Settings"
+    "hallo": "Profile"
   },
   "membership": {
     "upgrade": {
@@ -224,8 +224,18 @@
   },
   "panel-body": {
     "name": "User name",
+    "title": "Title",
+    "title-desc": "Academic title (public)",
+    "birthname": "Birth name",
+    "birthname-desc": "Birth name (public)",
+    "givenname": "Given name",
+    "givenname-desc": "Given name (public)",
     "login": "Registered via",
-    "email": "Email",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Address",
+    "emailValidation": "E-Mail confirmation",
+    "emailValidation-desc": "Please confirm your E-Mail-Address",
+    "emailValidationError": "E-Mail-Addresses don't match",
     "profilepublic": "Public profile",
     "profilepublicoption1": "Yes",
     "profilepublicoption2": "No",
@@ -234,7 +244,9 @@
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
-    "nameAlreadyExists": "Username is already taken!"
+    "nameAlreadyExists": "Username is already taken!",
+    "birthnameEmpty": "Birth name must not be empty!",
+    "givennameEmpty": "Given name must not be empty!"
   },
   "panel-heading-experience": {
     "experience": "Experience Points (XP)",
@@ -295,6 +307,7 @@
     "importcard": "Import cards",
     "exportcard": "Export cards",
     "publicate": "Status",
+    "tooltip": "Create at least 5 Cards in this set and complete your profile before publishing this set. Pro Cardsets can't be demoted!",
     "publicated": "Publicated",
     "review": "In review",
     "private": "Private",
@@ -601,6 +614,9 @@
       "edit": "Edit",
       "info": "User info",
       "username": "Name:",
+      "title": "Academic title (public):",
+      "birthname": "Birth name (public):",
+      "givenname": "Given name (public):",
       "service": "Service:",
       "date": "Joined:",
       "lvl": "Level:",

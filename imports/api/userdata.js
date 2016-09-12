@@ -5,24 +5,23 @@ import {Cardsets} from './cardsets.js';
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({
-				$or: [
-					{visible: true},
-					{_id: this.userId}
-				]
-			}, {
-				fields: {
-					'profile.name': 1,
-					'email': 1,
-					'services': 1,
-					'lvl': 1,
-					'visible': 1,
-					'lastOnAt': 1,
-					'daysInRow': 1,
-					'customerId': 1,
-					'blockedtext': 1
-				}
-			});
+			return Meteor.users.find(
+				{$or: [{visible: true}, {_id: this.userId}]},
+				{
+					fields: {
+						'profile.name': 1,
+						'profile.birthname': 1,
+						'profile.givenname': 1,
+						'email': 1,
+						'services': 1,
+						'lvl': 1,
+						'visible': 1,
+						'lastOnAt': 1,
+						'daysInRow': 1,
+						'customerId': 1,
+						'blockedtext': 1
+					}
+				});
 		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
 			return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
 		} else {
@@ -31,18 +30,22 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("privateUserData", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({_id: this.userId}, {
-				fields: {
-					'profile.name': 1,
-					'email': 1,
-					'services': 1,
-					'lvl': 1,
-					'visible': 1,
-					'lastOnAt': 1,
-					'daysInRow': 1,
-					'balance': 1
-				}
-			});
+			return Meteor.users.find(
+				{_id: this.userId},
+				{
+					fields: {
+						'profile.name': 1,
+						'profile.birthname': 1,
+						'profile.givenname': 1,
+						'email': 1,
+						'services': 1,
+						'lvl': 1,
+						'visible': 1,
+						'lastOnAt': 1,
+						'daysInRow': 1,
+						'balance': 1
+					}
+				});
 		} else {
 			this.ready();
 		}
@@ -67,26 +70,46 @@ Meteor.methods({
 	updateUsersName: function (name, id) {
 		Meteor.users.update(id, {
 			$set: {
-				"profile.firstName": name
+				"profile.name": name
 			}
 		});
 		Cardsets.update({owner: id}, {
 			$set: {
-				firstName: name
+				username: name
 			}
 		}, {multi: true});
 	},
-	updateUserGivenName: function (name, id) {
+	updateUsersTitle: function (title, id) {
 		Meteor.users.update(id, {
 			$set: {
-				"profile.given_name": "my_given_name - neu"
+				"profile.title": title
+			}
+		});
+	},
+	updateUsersBirthName: function (birthname, id) {
+		Meteor.users.update(id, {
+			$set: {
+				"profile.birthname": birthname
+			}
+		});
+	},
+	updateUsersGivenName: function (givenname, id) {
+		Meteor.users.update(id, {
+			$set: {
+				"profile.givenname": givenname
+			}
+		});
+	},
+	updateUsersProfileState: function (completed, id) {
+		Meteor.users.update(id, {
+			$set: {
+				"profile.completed": completed
 			}
 		});
 	},
 	checkUsersName: function (name, id) {
 		name = name.trim();
 		var userExists = Meteor.users.findOne({"profile.name": name});
-
 		if (userExists && userExists._id !== id) {
 			throw new Meteor.Error("username already exists");
 		}
@@ -97,6 +120,8 @@ Meteor.methods({
 			$set: {
 				visible: true,
 				email: "",
+				birthname: "",
+				givenname: "",
 				lvl: 1,
 				lastOnAt: new Date(),
 				daysInRow: 0
@@ -104,10 +129,7 @@ Meteor.methods({
 		});
 	},
 	setUserAsLecturer: function (id) {
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Meteor.users.update(id, {

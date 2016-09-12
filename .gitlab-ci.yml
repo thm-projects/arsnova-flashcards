@@ -43,7 +43,6 @@ build:
   script:
     - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
     - printf "browser\nserver\n" > .meteor/platforms
-    - mv gulpfile.js .gulpfile.js
     - meteor --verbose build --directory --server "$STAGING_HTTP_URL" build
     - mv /opt/meteor/package-metadata "$CI_PROJECT_DIR/"
   cache:
@@ -69,7 +68,7 @@ deploy_staging:
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
   environment: staging
-  
+
 deploy_production:
   stage: deploy
   only:

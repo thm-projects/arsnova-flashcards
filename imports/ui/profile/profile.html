@@ -159,14 +159,13 @@
                                 <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
                                 <div class="col-md-8">
                                     <div class="btn-group btn-group-justified" data-toggle="buttons">
-                                        <label id="profilepublicoption1" class="btn btn-default profile-public {{#if
-                                                getUser.visible}}active{{/if}}">
+                                        <label id="profilepublicoption1"
+                                               class="btn btn-default profile-public {{#if getUser.visible}}active{{/if}}">
                                             <input type="radio" name="visible" value="true">
                                             <div>{{_ "panel-body.profilepublicoption1"}}</div>
                                         </label>
                                         <label id="profilepublicoption2"
-                                               class="btn btn-default profile-private {{#unless
-                                                       getUser.visible}}active{{/unless}}">
+                                               class="btn btn-default profile-private {{#unless getUser.visible}}active{{/unless}}">
                                             <input type="radio" name="visible" value="false">
                                             <div>{{_ "panel-body.profilepublicoption2"}}</div>
                                         </label>
@@ -176,11 +175,21 @@
                             <hr>
                         {{/unless}}
                         <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
+                            <label class="col-md-4 control-label">{{_ "panel-body.email"}} <a
+                                    href="mailto:{{getUser.email}}"><span class="glyphicon glyphicon-envelope"
+                                                                          aria-hidden="true"></span></a></label>
                             <div class="col-md-8">
                                 <input type="email" class="form-control" id="inputEmail"
-                                       placeholder="{{_ "panel-body.email"}}" value="{{getUser.email}}">
+                                       placeholder="{{_ "panel-body.email-desc"}}" value="{{getUser.email}}">
                                 <span id="errorEmail" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group hidden" id="inputEmailValidationForm">
+                            <label class="col-md-4 control-label">{{_ "panel-body.emailValidation"}} </label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" id="inputEmailValidation"
+                                       placeholder="{{_ "panel-body.emailValidation-desc"}}" value="">
+                                <span id="errorEmailValidation" class="help-block name"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -191,10 +200,38 @@
                                 <span id="errorName" class="help-block name"></span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.title"}}</label>
+                            <div class="col-md-8">
+                                <input disabled type="text" class="form-control" id="inputTitle"
+                                       placeholder="{{_ "panel-body.title-desc"}}" value="{{getUser.profile.title}}">
+                                <span id="errorTitle" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.birthname"}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputBirthName"
+                                       placeholder="{{_ "panel-body.birthname-desc"}}"
+                                       value="{{getUser.profile.birthname}}">
+                                <span id="errorBirthName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.givenname"}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputGivenName"
+                                       placeholder="{{_ "panel-body.givenname-desc"}}"
+                                       value="{{getUser.profile.givenname}}">
+                                <span id="errorGivenName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="btn-group pull-left" role="group">
+                            <button disabled id="profileCancel" type="button"
+                                    class="btn btn-danger">{{_ "profile.cancel"}}</button>
+                        </div>
                         <div class="btn-group pull-right" role="group">
-                            <button id="profileCancel" type="button" class="btn btn-danger">{{_
-                                    "profile.cancel"}}</button>
-                            <button id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
+                            <button disabled id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
                         </div>
                     {{/if}}
                 </form>
@@ -393,7 +430,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_3{{#unless isGained @index
-                                                                                                         3}}_gray{{/unless}}.png"
+                                                            3}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -406,7 +443,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                                                   3}}progress-bar-success{{/if}}"
+                                                                    3}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{getPercent @index 3}}%"></div>
                                                                 </div>
@@ -418,7 +455,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_2{{#unless isGained @index
-                                                                                                         2}}_gray{{/unless}}.png"
+                                                            2}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -431,7 +468,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                                                   2}}progress-bar-success{{/if}}"
+                                                                    2}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{getPercent @index 2}}%"></div>
                                                                 </div>
@@ -443,7 +480,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_1{{#unless isGained @index
-                                                                                                         1}}_gray{{/unless}}.png"
+                                                            1}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -456,7 +493,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                                                   1}}progress-bar-success{{/if}}"
+                                                                    1}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{getPercent @index 1}}%"></div>
                                                                 </div>
@@ -536,7 +573,7 @@
                             <div class="col-md-12">
                                 <div id="paymentMethodDropIn"></div>
                                 <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_
-                                        "billing.payment.save"}}</button>
+                                "billing.payment.save"}}</button>
                             </div>
                         </div>
                     </form>
@@ -567,8 +604,8 @@
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_
-                                            "billing.revenue.for"}} {{amount}}€ {{_
-                                            "billing.revenue.at"}} {{getDate}}</p>
+                                    "billing.revenue.for"}} {{amount}}€ {{_
+                                    "billing.revenue.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
                         </div>
@@ -585,7 +622,7 @@
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_
-                                            "billing.purchases.at"}} {{getDate}}</p>
+                                    "billing.purchases.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
                         </div>
@@ -629,10 +666,10 @@
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
                                 <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_
-                                        "billing.plan.back"}}</button>
+                                "billing.plan.back"}}</button>
                             {{else}}
                                 <button class="btn btn-block btn-success disabled" href="#">{{_
-                                        "billing.plan.actual"}}</button>
+                                "billing.plan.actual"}}</button>
                             {{/if}}
                         </div>
                     </div>
@@ -660,7 +697,7 @@
                                         <div class="col-md-12">
                                             <div id="subscribe-form"></div>
                                             <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_
-                                                    "billing.plan.subscribe"}}</button>
+                                            "billing.plan.subscribe"}}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -681,7 +718,7 @@
                     {{#if hasUserData}}
                         <form class="form-horizontal" id="lecturerRequestForm">
                             <button type="button" id="sendLecturerRequest" class="btn btn-info pull-right">{{_
-                                    "billing.plan.send"}}</button>
+                            "billing.plan.send"}}</button>
                         </form>
                     {{else}}
                         Geben Sie zuerst Ihre Kontaktdaten an um eine Anfrage zu stellen.
@@ -703,7 +740,7 @@
             <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
             {{#if getNotifications.count}}
                 <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_
-                        "notifications.deleteAll"}}</button>
+                "notifications.deleteAll"}}</button>
             {{/if}}
             <div class="clearfix"></div>
         </div>

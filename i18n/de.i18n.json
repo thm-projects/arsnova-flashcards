@@ -145,7 +145,7 @@
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "settings": "Einstellungen",
+    "settings": "Profil",
     "requests": "Pro-Freigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
@@ -161,7 +161,7 @@
     "name": "Profil von "
   },
   "panel-heading": {
-    "hallo": "Einstellungen"
+    "hallo": "Profil"
   },
   "membership": {
     "upgrade": {
@@ -222,18 +222,30 @@
     }
   },
   "panel-body": {
-    "name": "Benutzername",
+    "name": "Kennung",
+    "title": "Titel",
+    "title-desc": "Akademischer Titel (öffentlich)",
+    "birthname": "Nachname",
+    "birthname-desc": "Nachname (öffentlich)",
+    "givenname": "Vorname",
+    "givenname-desc": "Vorname (öffentlich)",
     "login": "Registriert via",
-    "email": "Email",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Adresse",
+    "emailValidation": "E-Mail bestätigen",
+    "emailValidation-desc": "E-Mail-Adresse wiederholen",
+    "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
     "profilepublic": "Profil öffentlich",
     "profilepublicoption1": "Ja",
     "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
-    "nameToShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
-    "nameToLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
-    "nameAlreadyExists": "Benutzername ist bereits vergeben!"
+    "nameToShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
+    "nameToLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
+    "nameAlreadyExists": "Kennung ist bereits vergeben!",
+    "birthnameEmpty": "Der Nachname darf nicht leer sein!",
+    "givennameEmpty": "Der Vorname darf nicht leer sein!"
   },
   "panel-heading-experience": {
     "experience": "Erfahrungspunkte (XP)",
@@ -300,6 +312,7 @@
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
     "publicate": "Status",
+    "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
     "publicated": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -605,14 +618,17 @@
       "header": "Benutzer",
       "edit": "Bearbeite",
       "info": "Benutzer Informationen",
-      "username": "Name:",
+      "username": "Kennung:",
+      "title": "Akademischer Titel (öffentlich):",
+      "birthname": "Nachname (öffentlich):",
+      "givenname": "Vorname (öffentlich):",
       "service": "Service:",
       "date": "Beigetreten:",
       "lvl": "Level:",
       "visible": "Profil öffentlich",
       "option1": "Ja",
       "option2": "Nein",
-      "email": "Email",
+      "email": "E-Mail",
       "status": "Benutzer Status",
       "online": "Status:",
       "lastLogin": "Letzter Login:",
@@ -627,10 +643,10 @@
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
       "confirm": "Sicher?",
-      "email_invalid": "Ungültige Email-Adresse!",
-      "name_exists": "Benutzername ist bereits vergeben!",
-      "name_toShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
-      "name_toLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
+      "email_invalid": "Ungültige E-Mail-Adresse!",
+      "name_exists": "Kennung ist bereits vergeben!",
+      "name_toShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
+      "name_toLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     }
   },
