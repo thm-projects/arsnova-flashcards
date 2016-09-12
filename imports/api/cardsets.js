@@ -224,18 +224,30 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLearning: function (id, maxCards, maxOverrun) {
+	activateLearning: function (id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval) {
 		if(!maxCards) {
 			maxCards = 0;
 		}
 		if(!maxOverrun) {
 			maxOverrun = 0;
 		}
+		if(!learningStart) {
+			learningStart = new Date();
+		}
+		if(!learningEnd) {
+			learningEnd = new Date();
+		}
+		if(!learningInterval) {
+			learningInterval = ;
+		}
 		Cardsets.update(id, {
 			$set: {
 				learningActive: true,
 				maxCards: maxCards,
-				maxOverrun: maxOverrun
+				maxOverrun: maxOverrun,
+				learningStart: learningStart,
+				learningEnd: learningEnd,
+				learningInterval: learningInterval
 			}
 		});
 	},
