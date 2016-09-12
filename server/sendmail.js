@@ -14,7 +14,6 @@ export class MailNotifier {
                return parser.recur().on('10:00:00').time();
             },
             job: function() {
-                //this.sendMail(details);
                 Email.send({
                     from: details.details.from,
                     to: details.details.to,
