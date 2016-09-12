@@ -76,7 +76,7 @@
     "maxCards": "Daily workload",
     "maxCardsDesc": "Maximum number of daily learnable cards",
     "maxOverrun": "Overrun",
-    "maxOverrunDesc": "Maximum overrun"
+    "maxOverrunDesc": "Maximum overrun in days"
   },
   "nav-list": {
     "category": "Category",
