@@ -13,6 +13,7 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import '../card/card.js';
 import '../learn/box.js';
 import '../learn/memo.js';
+import '../learn/statistics.js';
 
 import './cardset.html';
 
@@ -571,6 +572,11 @@ Template.cardsetInfo.events({
 			_id: this._id
 		});
 	},
+	"click #learnStatistics": function () {
+		Router.go('statistics', {
+			_id: this._id
+		});
+	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');
@@ -626,6 +632,11 @@ Template.cardsetSidebar.events({
 	},
 	"click #learnMemo": function () {
 		Router.go('memo', {
+			_id: this._id
+		});
+	},
+	"click #learnStatistics": function () {
+		Router.go('statistics', {
 			_id: this._id
 		});
 	}

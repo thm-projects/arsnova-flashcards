@@ -108,6 +108,15 @@ Router.route('/memo/:_id', {
 	}
 });
 
+Router.route('/statistics/:_id', {
+	name: 'statistics',
+	template: 'statistics',
+	data: function () {
+		var currentStatistics = this.params._id;
+		return Cardsets.findOne({_id: currentStatistics});
+	}
+});
+
 Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile'
