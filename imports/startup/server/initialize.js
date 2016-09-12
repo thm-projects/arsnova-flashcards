@@ -213,9 +213,6 @@ var initBadges = function () {
 };
 
 Meteor.startup(function () {
-	var course = initCourse();
-	var colleges = initColleges();
-	var categories = initCategories();
 	var badges = initBadges();
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
@@ -237,20 +234,6 @@ Meteor.startup(function () {
 		for (var badge in badges) {
 			if (badges.hasOwnProperty(badge)) {
 				Badges.insert(badges[badge]);
-			}
-		}
-	}
-	if (Colleges.find().count() === 0) {
-		for (var college in colleges) {
-			if (colleges.hasOwnProperty(college)) {
-				Colleges.insert(colleges[college]);
-			}
-		}
-	}
-	if (Course.find().count() === 0) {
-		for (var courses in course) {
-			if (course.hasOwnProperty(courses)) {
-				Course.insert(course[courses]);
 			}
 		}
 	}
