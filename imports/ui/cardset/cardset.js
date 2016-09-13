@@ -628,7 +628,7 @@ Template.cardsetSidebar.events({
 		Router.go('memo', {
 			_id: this._id
 		});
-	},
+	}
 });
 
 /**
@@ -725,8 +725,7 @@ Template.cardsetStartLearnForm.events({
 				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
 				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
 			}
-		}
-		else {
+		} else {
 			for (var k = 1; k <= 5; ++i) {
 				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
 				$('#errorInputLearningInterval').html('');
@@ -765,7 +764,7 @@ Template.cardsetEndLearnForm.events({
 		if (Cardsets.findOne(this._id).learningActive) {
 			Meteor.call("deactivateLearning", this._id);
 		}
-	},
+	}
 });
 
 /**
