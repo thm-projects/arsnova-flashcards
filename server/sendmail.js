@@ -11,7 +11,8 @@ export class MailNotifier {
         SyncedCron.add({
             name: id,
             schedule: function(parser) {
-               return parser.recur().on('10:00:00').time();
+               //return parser.recur().on('10:00:00').time();
+                return parser.recur().every().minute(1);
             },
             job: function() {
                 Email.send({

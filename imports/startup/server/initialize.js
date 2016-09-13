@@ -1,9 +1,10 @@
 import {Meteor} from 'meteor/meteor';
+import {Learned} from '../../api/learned.js';
+import {Cardsets} from '../../api/cardsets.js';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
-import {AdminSettings} from '../../api/adminSettings';
 
 var initCategories = function () {
 	var categoryNames = [
@@ -237,18 +238,35 @@ Meteor.startup(function () {
 			}
 		}
 	}
-	const mailAgent = new MailNotifier()
+	const mailAgent = new MailNotifier();
 	let mails = "";
-	Meteor.users.find({}, {email:1}).fetch().forEach(function (item) {
-		mails += item.email + ",";
-	});
-	mailAgent.addTask({
-		details : {
-			from: '',
-			to: mails,
-			subject: "Die Lernrunde läuft!",
-			html: "<p>Sehr geehrte Teilnehmer der aktuellen THMCards-Lernphase, <br><br>ein neuer Tag hat begonnen, Ihre Leitners-Box erwartet Sie!<br> Bitte denken Sie daran Ihren täglichen Aufgaben nachzukommen.<br><br>Ihr THMCards-Team</p>",
+
+	const ids = Meteor.users.find().fetch();
+	ids.forEach(function (user) {
+		if (Learned.find({user_id: user._id}).count() === 0) {
+			return;
 		}
+		mails += user.email + ",";
+		const courses = _.uniq(Learned.find({user_id: user._id}).fetch(), function (item) {
+			return item.cardset_id;
+		});
+
+		let content = "";
+
+		courses.forEach(function (item) {
+			content += Cardsets.findOne({_id: item.cardset_id}).name + ", ";
+		});
+
+		mailAgent.addTask({
+			details : {
+				from: '',
+				to: mails,
+				subject: "Die Lernrunde läuft!",
+				html: content + "<p>Sehr geehrte Teilnehmer der aktuellen THMCards-Lernphase, <br><br>ein neuer Tag hat begonnen, Ihre Leitners-Box erwartet Sie!<br> Bitte denken Sie daran Ihren täglichen Aufgaben nachzukommen.<br><br>Ihr THMCards-Team</p>",
+			}
+		});
 	});
+
 	mailAgent.startCron();
 });
+
