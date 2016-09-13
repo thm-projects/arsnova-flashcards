@@ -172,13 +172,12 @@ Template.cardsets.events({
 		}
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
-			$('#newSetCategory').val() !== "" &&
 			$('#newSetModulLong').val() !== "" &&
 			$('#newSetModulShort').val() !== "" &&
 			$('#newSetModulNum').val() !== "" &&
-			$('#newSetCollege').val() !== "") {
+			$('#newSetCollege').val() !== "" &&
+			$('#newSetCourse').val() !== "") {
 			var name = $('#newSetName').val();
-			//var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 			var modulLong = $('#newSetModulLong').val();
 			var modulShort = $('#newSetModulShort').val();

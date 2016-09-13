@@ -2,7 +2,8 @@ import {Meteor} from 'meteor/meteor';
 import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
-
+import {Colleges} from '../../api/colleges';
+import {Course} from '../../api/course';
 
 var initCategories = function () {
 	var categoryNames = [
@@ -209,10 +210,27 @@ var initBadges = function () {
 		}
 	];
 };
+	var initColleges = function () {
+		var collegeNames = [
+			"THM"
+		];
+		var colleges = [];
+		for (var i = 0; i < collegeNames.length; ++i) {
+			colleges.push(
+				{
+					"name": colleges[i]
+				}
+			);
+		}
+
+		return colleges;
+	};
+
 
 Meteor.startup(function () {
 	var badges = initBadges();
 	var cat = initCategories();
+	var coll = initColleges();
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
@@ -235,5 +253,11 @@ Meteor.startup(function () {
 				Badges.insert(badges[badge]);
 			}
 		}
+	}
+	if (Colleges.find().count() === 0) {
+				Colleges.insert({name:"thm"});
+	}
+	if (Course.find().count() === 0) {
+		Course.insert({name: "info"});
 	}
 });

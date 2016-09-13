@@ -231,12 +231,19 @@
                                     class="btn btn-danger">{{_ "profile.cancel"}}</button>
                         </div>
                         <div class="btn-group pull-right" role="group">
-                            <button disabled id="profileSave" type="button" class="btn btn-success">{{_ "profile.save"}}</button>
+                            <button disabled id="profileSave" type="button"
+                                    class="btn btn-success">{{_ "profile.save"}}</button>
                         </div>
                     {{/if}}
                 </form>
             </div>
         </div>
+    </div>
+</template>
+
+<template name="appLayout2">
+    <div class="container">
+        {{> yield}}
     </div>
 </template>
 
@@ -399,6 +406,20 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="template-chart">
+        <div class="col-md-12" id="profile-badge-region">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-badges">
+                    <h3 class="panel-title">Lernfortschritt als Stack-Chart</h3>
+                    <div class="panel-body">
+                        <div id="container" style="min-width: 310px;
+			max-width: 800px; height: 400px; margin: 0 auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
