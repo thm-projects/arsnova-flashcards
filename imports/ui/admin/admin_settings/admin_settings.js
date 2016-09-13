@@ -37,7 +37,17 @@ Template.admin_settings.events({
 		document.getElementById("newEntry").reset();
 	},
 	'click #deleteCollageCourse': function () {
-		Meteor.call("deleteColleges_Courses", college, course);
+		console.log(this.college);
+		console.log(this.course);
+		var result = confirm("Sind sie sich sicher?");
+		if (result) {
+			Meteor.call("deleteColleges_Courses", this.college, this.course);
+		}
+	},
+	'click #editCollageCourse': function () {
+		document.getElementById("college").value = this.college;
+		document.getElementById("courseOfStudies").value = this.course;
+		Meteor.call("deleteColleges_Courses", this.college, this.course);
 	},
 	'click #insertButton': function (event) {
 		var college = document.getElementById("college").value;
