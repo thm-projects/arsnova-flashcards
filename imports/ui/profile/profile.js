@@ -725,7 +725,6 @@ export function getDays3() {
 }
 
 
-
 Template.profileXp.helpers({
 	getDays1: getDays1,
 	getDays2: getDays2,
@@ -930,10 +929,9 @@ Template.profileXp.events({
 		if (backgroundColorBox2 >= 7) {
 			backgroundColorBox2 = 0;
 		}
-		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
+		$('#well' + backgroundColorBox2).css("background-color", "lightgreen");
 	}, 500)
 });
-
 
 
 /**

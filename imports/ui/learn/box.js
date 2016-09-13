@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-
-import './box.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import "./box.html";
 
 
 Meteor.subscribe("cardsets");
@@ -19,7 +17,7 @@ Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
 
-export function getId(){
+export function getId() {
 	console.log(Learned.find({}).fetch());
 }
 
@@ -226,8 +224,8 @@ Template.boxEnd.events({
 AppController = RouteController.extend({
 	layoutTemplate: 'appLayout5'
 });
-Template.boxSide.onRendered(function() {
-	$(function(){
+Template.boxSide.onRendered(function () {
+	$(function () {
 		var box1 = Learned.find({}).count();
 		console.log(Learned.find({
 			cardset_id: this._id,
@@ -242,7 +240,7 @@ Template.boxSide.onRendered(function() {
 				text: 'Lernfortschritt'
 			},
 			xAxis: {
-				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5','Gelernt']
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
 			},
 			yAxis: {
 				min: 0,
@@ -262,18 +260,18 @@ Template.boxSide.onRendered(function() {
 				name: 'HTML5',
 				data: [Learned.find().count(), 3, 4, 3, 5, 30]
 			}/*, {
-				name: 'Javascript',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Git',
-				data: [3, 4, 4, 2, 5]
-			}, {
-				name: 'Websocket',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Usability',
-				data: [2, 2, 3, 2, 5]
-			}*/]
+			 name: 'Javascript',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Git',
+			 data: [3, 4, 4, 2, 5]
+			 }, {
+			 name: 'Websocket',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Usability',
+			 data: [2, 2, 3, 2, 5]
+			 }*/]
 		});
 	});
 });
