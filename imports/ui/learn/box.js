@@ -224,16 +224,14 @@ Template.boxEnd.events({
 AppController = RouteController.extend({
 	layoutTemplate: 'appLayout5'
 });
-Template.boxSide.onRendered(function () {
-	$(function () {
-		if (Session.get('data_loaded')) {
-			var box1 = Learned.find({box: 1}).fetch().length;
-			var box2 = Learned.find({box: 2}).fetch().length;
-			var box3 = Learned.find({box: 3}).fetch().length;
-			var box4 = Learned.find({box: 4}).fetch().length;
-			var box5 = Learned.find({box: 5}).fetch().length;
-			var box6 = Learned.find({box: 6}).fetch().length;
-		}
+Template.boxSide.onRendered(function() {
+	$(function(){
+		var box1 = Learned.find({}).count();
+		console.log(Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			box: 1
+		}).count());
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
@@ -242,7 +240,7 @@ Template.boxSide.onRendered(function () {
 				text: 'Lernfortschritt'
 			},
 			xAxis: {
-				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5','Gelernt']
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
 			},
 			yAxis: {
 				min: 0,
@@ -261,18 +259,18 @@ Template.boxSide.onRendered(function () {
 			series: [{
 				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
 			}/*, {
-				name: 'Javascript',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Git',
-				data: [3, 4, 4, 2, 5]
-			}, {
-				name: 'Websocket',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Usability',
-				data: [2, 2, 3, 2, 5]
-			}*/]
+			 name: 'Javascript',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Git',
+			 data: [3, 4, 4, 2, 5]
+			 }, {
+			 name: 'Websocket',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Usability',
+			 data: [2, 2, 3, 2, 5]
+			 }*/]
 		});
 	});
 });

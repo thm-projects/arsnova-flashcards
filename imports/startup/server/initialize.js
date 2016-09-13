@@ -207,21 +207,21 @@ var initBadges = function () {
 		}
 	}];
 };
-	var initColleges = function () {
-		var collegeNames = [
-			"THM"
-		];
-		var colleges = [];
-		for (var i = 0; i < collegeNames.length; ++i) {
-			colleges.push(
-				{
-					"name": colleges[i]
-				}
-			);
-		}
+var initColleges = function () {
+	var collegeNames = [
+		"THM"
+	];
+	var colleges = [];
+	for (var i = 0; i < collegeNames.length; ++i) {
+		colleges.push(
+			{
+				"name": colleges[i]
+			}
+		);
+	}
 
-		return colleges;
-	};
+	return colleges;
+};
 
 
 Meteor.startup(function () {
