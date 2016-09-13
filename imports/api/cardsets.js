@@ -240,27 +240,27 @@ Meteor.methods({
 		});
 	},
 	activateLearning: function (id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
-		if(!maxCards) {
+		if (!maxCards) {
 			maxCards = 0;
 		}
-		if(!maxOverrun) {
+		if (!maxOverrun) {
 			maxOverrun = 0;
 		}
-		if(!learningStart) {
+		if (!learningStart) {
 			learningStart = new Date();
 		}
-		if(!learningEnd) {
+		if (!learningEnd) {
 			learningEnd = new Date();
-			var day = 1000*60*60*24;
-			var week = 7*day;
-			var month = 4*week;
-			learningEnd.setTime(learningEnd.getTime()+3*month);
+			var day = 1000 * 60 * 60 * 24;
+			var week = 7 * day;
+			var month = 4 * week;
+			learningEnd.setTime(learningEnd.getTime() + 3 * month);
 		}
-		if(!learningInterval) {
-			learningInterval = [1, 3, 7, 4*7, 3*4*7];
+		if (!learningInterval) {
+			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
 		}
 		learningInterval = learningInterval.sort(
-			function(a, b) {
+			function (a, b) {
 				return a - b;
 			}
 		);
@@ -276,8 +276,8 @@ Meteor.methods({
 				webNotification: webNotification
 			}
 		});
-        	Meteor.call("activateLerningPeriod", id);
-        	Meteor.call("activateLerningPeriodSetEdu", id);
+		Meteor.call("activateLerningPeriod", id);
+		Meteor.call("activateLerningPeriodSetEdu", id);
 	},
 	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
 		// Make sure only the task owner can make a task private

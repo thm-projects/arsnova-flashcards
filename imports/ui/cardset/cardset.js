@@ -639,38 +639,38 @@ Template.cardsetSidebar.events({
 Template.cardsetStartLearnForm.onRendered(function () {
 	var today = new Date();
 	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
+	var mm = today.getMonth() + 1; //January is 0!
 	var yyyy = today.getFullYear();
-	if(dd<10){
-		dd='0'+dd;
+	if (dd < 10) {
+		dd = '0' + dd;
 	}
-	if(mm<10){
-		mm='0'+mm;
+	if (mm < 10) {
+		mm = '0' + mm;
 	}
 	today = yyyy + "-" + mm + "-" + dd;
 
 	var tomorrow = new Date();
-	tomorrow.setDate(tomorrow.getDate()+7);
+	tomorrow.setDate(tomorrow.getDate() + 7);
 	var tdd = tomorrow.getDate();
-	var tmm = tomorrow.getMonth()+1; //January is 0!
+	var tmm = tomorrow.getMonth() + 1; //January is 0!
 	var tyyyy = tomorrow.getFullYear();
-	if(tdd<10){
+	if (tdd < 10) {
 		tdd = '0' + tdd;
 	}
-	if(tmm<10){
+	if (tmm < 10) {
 		tmm = '0' + tmm;
 	}
 	tomorrow = tyyyy + "-" + tmm + "-" + tdd;
 
 	var def = new Date();
-	def.setMonth(def.getMonth()+3);
+	def.setMonth(def.getMonth() + 3);
 	var ddd = def.getDate();
-	var dmm = def.getMonth()+1; //January is 0!
+	var dmm = def.getMonth() + 1; //January is 0!
 	var dyyyy = def.getFullYear();
-	if(ddd<10){
+	if (ddd < 10) {
 		ddd = '0' + ddd;
 	}
-	if(dmm<10){
+	if (dmm < 10) {
 		dmm = '0' + dmm;
 	}
 	def = dyyyy + "-" + dmm + "-" + ddd;
@@ -682,8 +682,8 @@ Template.cardsetStartLearnForm.onRendered(function () {
 });
 
 Template.cardsetStartLearnForm.events({
-	"click #confirmLearn": function() {
-		if(!Cardsets.findOne(this._id).learningActive) {
+	"click #confirmLearn": function () {
+		if (!Cardsets.findOne(this._id).learningActive) {
 			var maxCards = $('#inputMaxCards').val();
 			var maxOverrun = $('#inputMaxOverrun').val();
 			var learningStart = $('#inputLearningStart').val();
@@ -697,14 +697,14 @@ Template.cardsetStartLearnForm.events({
 
 			var mailNotification = document.getElementById('mailNotificationRadio').checked;
 			var webNotification = document.getElementById('webNotificationRadio').checked;
-			if(!mailNotification && !webNotification) {
+			if (!mailNotification && !webNotification) {
 				mailNotification = true;
 				webNotification = true;
 			}
 			Meteor.call("activateLearning", this._id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
 		}
 	},
-	"click #cancelLearn": function() {
+	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
 		$('#inputMaxOverrun').val(null);
 		$('#inputLearningStart').val(null);
@@ -713,22 +713,22 @@ Template.cardsetStartLearnForm.events({
 		document.getElementById('webNotificationRadio').checked = false;
 		document.getElementById('bothRadio').checked = true;
 	},
-	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function() {
+	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
 		var error = false;
-		for(var i = 1; i < 5; ++i) {
-			if(parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i+1)).val())) {
+		for (var i = 1; i < 5; ++i) {
+			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
 				error = true;
 			}
 		}
-		if(error) {
-			for(var i = 1; i <= 5; ++i) {
-				$('#inputLearningInterval' + i).parent().parent().addClass('has-warning');
+		if (error) {
+			for (var j = 1; j <= 5; ++i) {
+				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
 				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
 			}
 		}
 		else {
-			for(var i = 1; i <= 5; ++i) {
-				$('#inputLearningInterval' + i).parent().parent().removeClass('has-warning');
+			for (var k = 1; k <= 5; ++i) {
+				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
 				$('#errorInputLearningInterval').html('');
 			}
 		}
@@ -761,8 +761,8 @@ Template.cardsetStartLearnForm.events({
  */
 
 Template.cardsetEndLearnForm.events({
-	"click #confirmEndLearn": function() {
-		if(Cardsets.findOne(this._id).learningActive) {
+	"click #confirmEndLearn": function () {
+		if (Cardsets.findOne(this._id).learningActive) {
 			Meteor.call("deactivateLearning", this._id);
 		}
 	},
