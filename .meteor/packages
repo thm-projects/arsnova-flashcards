@@ -49,3 +49,5 @@ alanning:roles
 matb33:collection-hooks
 aslagle:reactive-table
 patrickml:braintree
+email
+percolate:synced-cron
