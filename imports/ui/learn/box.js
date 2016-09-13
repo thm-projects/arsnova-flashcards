@@ -10,16 +10,16 @@ import "./box.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe("learned");
+Meteor.subscribe('learned', function () {
+	Session.set('data_loaded', true);
+});
 
 Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
 
-export function getId(){
-	console.log(Learned.find({}).fetch());
-}
+
 
 /**
  * ############################################################################
@@ -224,11 +224,16 @@ Template.boxEnd.events({
 AppController = RouteController.extend({
 	layoutTemplate: 'appLayout5'
 });
-Template.boxSide.onRendered(function() {
-	$(function(){
-		var box1 = Learned.find({box: 1}).fetch().length;
-		setTimeout(console.log(box1),6000);
-
+Template.boxSide.onRendered(function () {
+	$(function () {
+		if (Session.get('data_loaded')) {
+			var box1 = Learned.find({box: 1}).fetch().length;
+			var box2 = Learned.find({box: 2}).fetch().length;
+			var box3 = Learned.find({box: 3}).fetch().length;
+			var box4 = Learned.find({box: 4}).fetch().length;
+			var box5 = Learned.find({box: 5}).fetch().length;
+			var box6 = Learned.find({box: 6}).fetch().length;
+		}
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
@@ -254,8 +259,7 @@ Template.boxSide.onRendered(function() {
 				}
 			},
 			series: [{
-				name: 'HTML5',
-				data: [Learned.find().count(), 3, 4, 3, 5, 30]
+				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
 			}/*, {
 				name: 'Javascript',
 				data: [2, 2, 3, 2, 5]
