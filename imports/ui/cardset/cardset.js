@@ -35,7 +35,6 @@ Session.setDefault('cardSort', {
 export function getActiveLearner() {
 	var data = Learned.find({box: {$gt: 1}}).fetch();
 	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
-	//console.log(Learned.find({}).fetch());
 	return (_.pluck(distinctData, "user_id").length);
 }
 
@@ -796,6 +795,7 @@ Template.cardsetPublicateForm.events({
 		var price = 0;
 		var visible = true;
 		var license = [];
+
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publicatePrice') !== null) {
 				price = tmpl.find('#publicatePrice').value;
