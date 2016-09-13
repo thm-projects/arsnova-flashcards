@@ -17,6 +17,10 @@ Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
 
+export function getId(){
+	console.log(Learned.find({}).fetch());
+}
+
 /**
  * ############################################################################
  * box
@@ -208,4 +212,66 @@ Template.boxEnd.events({
 			_id: this._id
 		});
 	}
+});
+
+/**
+ * ############################################################################
+ * Chart
+ * ############################################################################
+ */
+
+
+AppController = RouteController.extend({
+	layoutTemplate: 'appLayout5'
+});
+Template.boxSide.onRendered(function() {
+	$(function(){
+		var box1 = Learned.find({}).count();
+		console.log(Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			box: 1
+		}).count());
+		$('#container').highcharts({
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Lernfortschritt'
+			},
+			xAxis: {
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5','Gelernt']
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Karten pro Satz'
+				}
+			},
+			legend: {
+				reversed: true
+			},
+			plotOptions: {
+				series: {
+					stacking: 'normal'
+				}
+			},
+			series: [{
+				name: 'HTML5',
+				data: [Learned.find().count(), 3, 4, 3, 5, 30]
+			}/*, {
+				name: 'Javascript',
+				data: [2, 2, 3, 2, 5]
+			}, {
+				name: 'Git',
+				data: [3, 4, 4, 2, 5]
+			}, {
+				name: 'Websocket',
+				data: [2, 2, 3, 2, 5]
+			}, {
+				name: 'Usability',
+				data: [2, 2, 3, 2, 5]
+			}*/]
+		});
+	});
 });

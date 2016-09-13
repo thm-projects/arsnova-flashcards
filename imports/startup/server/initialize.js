@@ -6,6 +6,8 @@ import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
 import {Colleges_Courses} from "../../api/colleges_courses.js";
+import {Colleges} from '../../api/colleges';
+import {Course} from '../../api/course';
 
 var initCategories = function () {
 	var categoryNames = [
@@ -205,6 +207,22 @@ var initBadges = function () {
 		}
 	}];
 };
+	var initColleges = function () {
+		var collegeNames = [
+			"THM"
+		];
+		var colleges = [];
+		for (var i = 0; i < collegeNames.length; ++i) {
+			colleges.push(
+				{
+					"name": colleges[i]
+				}
+			);
+		}
+
+		return colleges;
+	};
+
 
 Meteor.startup(function () {
 	var categories = initCategories();
@@ -233,6 +251,7 @@ Meteor.startup(function () {
 Meteor.startup(function () {
 	var badges = initBadges();
 	var cat = initCategories();
+	var coll = initColleges();
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
