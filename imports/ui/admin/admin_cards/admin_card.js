@@ -15,7 +15,7 @@ import "./admin_card.html";
 function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(),
-		content                 = e.getContent();
+		content = e.getContent();
 
 	if (selected.length === 0) {
 		// Give extra word

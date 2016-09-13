@@ -131,15 +131,13 @@ Template.admin_cardset.events({
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		}
-		else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
 			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 
 			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
 				tmpl.find('#editCardsetCategoryAdmin').value = Cardsets.findOne(this._id).category;
 			}
-			var category = tmpl.find('#editCardsetCategoryAdmin').value;
 
 			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
 			var price = 0;
@@ -175,7 +173,7 @@ Template.admin_cardset.events({
 				visible = false;
 			}
 			Meteor.call("publicateCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, category, description);
+			Meteor.call("updateCardset", this._id, name, description);
 			window.history.go(-1);
 		}
 	},

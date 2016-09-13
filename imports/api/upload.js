@@ -26,11 +26,11 @@ Meteor.methods({
 			try {
 				// If the string is UTF-8, this will work and not throw an error.
 				front = decodeURIComponent(encodeURIComponent(item.front));
-				back  = decodeURIComponent(encodeURIComponent(item.back));
+				back = decodeURIComponent(encodeURIComponent(item.back));
 			} catch (e) {
 				// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
 				front = item.front;
-				back  = item.back;
+				back = item.back;
 			}
 
 			if (item.front !== "") {

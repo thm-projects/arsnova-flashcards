@@ -140,7 +140,7 @@ Template.boxMain.events({
 		Session.set('isFront', true);
 	},
 	"click #notknown": function () {
-		var currentCard    = $('.carousel-inner > .active').attr('data');
+		var currentCard = $('.carousel-inner > .active').attr('data');
 		var currentLearned = Learned.findOne({
 			card_id: currentCard,
 			user_id: Meteor.userId()

@@ -77,6 +77,7 @@ Meteor.methods({
 			ef = learned.ef,
 			reps = learned.reps,
 			nextDate = new Date();
+		var interval = 0;
 
 		if (grade < 3) {
 			reps = 0;

@@ -199,6 +199,13 @@ Router.route('/admin/settings', {
 	layoutTemplate: 'admin_main'
 });
 
+Router.route('/admin/intervalls', {
+	name: 'admin_interval',
+	template: 'admin_interval',
+	layoutTemplate: 'admin_main'
+});
+
+
 var isSignedIn = function () {
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
@@ -209,7 +216,7 @@ var isSignedIn = function () {
 
 var goToCreated = function () {
 	if (Meteor.user()) {
-		Router.go('created');
+		Router.go('pool');
 	} else {
 		this.next();
 	}

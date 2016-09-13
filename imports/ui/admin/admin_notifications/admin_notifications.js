@@ -1,4 +1,5 @@
-//------------------------ IMPORTS
+
+
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
@@ -58,7 +59,6 @@ Template.admin_notifications.helpers({
 
 		notifications.forEach(function (notification) {
 			dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');
-			;
 			date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
 			sender = Meteor.users.findOne({_id: notification.origin});
@@ -129,7 +129,9 @@ Template.admin_notifications.helpers({
 						}
 					}
 				},
-				{key: 'text', label: TAPi18n.__('admin.text'), sortable: false},
+				{
+					key: 'text', label: TAPi18n.__('admin.text'), sortable: false
+				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.date'), fn: function (value, object) {
 						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
@@ -189,7 +191,6 @@ Template.admin_notifications.helpers({
 
 		notifications.forEach(function (notification) {
 			dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');
-			;
 			date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
 			sender = Meteor.users.findOne({_id: notification.origin});
@@ -358,14 +359,13 @@ Template.admin_notifications.helpers({
 				{key: 'text', label: TAPi18n.__('admin.text'), sortable: false},
 				{
 					key: 'receiver', label: TAPi18n.__('admin.receiver'), fn: function (value, object) {
-					var user = Meteor.users.findOne({_id: object.receiver_id});
-
-					if (user === undefined) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
+						var user = Meteor.users.findOne({_id: object.receiver_id});
+						if (user === undefined) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.date'), fn: function (value, object) {
@@ -514,7 +514,7 @@ Template.messageFormNotificationAdmin.helpers({
 
 Template.messageFormNotificationAdmin.events({
 	'click #messageNotificationSave': function () {
-		var user_id    = Session.get('targetId');
+		var user_id = Session.get('targetId');
 		var isReceiver = Session.get('isReceiver');
 
 		if ($('#messageNotificationTextAdmin').val().length < 50) {

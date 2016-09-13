@@ -1,4 +1,10 @@
 {
+  "admin-intervall":{
+    "errorAllFields" : "Bitte alle Felder ausfüllen",
+    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorBigger999" : "Bitte wähle eine Zahl kleiner als 999",
+    "biggerNull" : "Bitte wähle eine Zahl größer als 0"
+  },
   "intro": {
     "about": "Was ist THMcards?",
     "choose": "Wähle deinen Login:",
@@ -67,11 +73,23 @@
   },
   "set-list": {
     "name": "Name",
-    "category": "Kategorie",
-    "description": "Beschreibung"
+    "category": "Fachbereich",
+    "description": "Beschreibung",
+    "lastName": "Nachname",
+    "moduleLong": "Modul",
+    "degree": "Akademischer Grad",
+    "discipline": "Studiengang",
+    "major": "Major",
+    "license": "Lizenz",
+    "topic": "Thema",
+    "author": "Autor/in",
+    "title": "Aktuell werden folgende Kartensätze angeboten:",
+    "everyone": "Alle",
+    "everything": "Alles"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
+    "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
     "newset": "Kartensatz anlegen"
   },
   "set-list-learned-empty": {
@@ -80,9 +98,9 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-    "name": "Name",
-    "nameplaceholder": "Name",
-    "descriptionplaceholder": "Beschreibung",
+    "name": "Thema",
+    "nameplaceholder": "Thema des Kartensatzes",
+    "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "category": "Kategorie",
@@ -118,14 +136,28 @@
     "reportcardset": "Kartensatz melden",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
-    "submitcomplaint": "Beschwerde absenden"
+    "submitcomplaint": "Beschwerde absenden",
+    "college": "Hochschule",
+    "college_required": "Wähle eine Hochschule",
+    "studyType": "Studiengang",
+    "studyType_required": "Wähle einen Studiengang",
+    "modulLong": "Modul-Langname",
+    "modulLong_required": "Geben Sie den vollen Namen des Moduls an!",
+    "modulShort": "Modul-Kurzname",
+    "modulShort_required": "Geben Sie eine Abkürzung des Moduls an!",
+    "modulNum": "Modul-Nummer",
+    "modulNum_required": "Geben Sie eine Modulnummer ein!",
+    "modulLongplaceholder": "Ausgeschriebener Name des Moduls",
+    "modulShortplaceholder": "Abkürzung des Moduls",
+    "modulNumplaceholder": "Nummer des Moduls",
+    "module": "Namen des Moduls"
   },
   "profile": {
     "overview": "Lernfortschritt",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "settings": "Einstellungen",
+    "settings": "Profil",
     "requests": "Pro-Freigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
@@ -141,7 +173,7 @@
     "name": "Profil von "
   },
   "panel-heading": {
-    "hallo": "Einstellungen"
+    "hallo": "Profil"
   },
   "membership": {
     "upgrade": {
@@ -202,27 +234,53 @@
     }
   },
   "panel-body": {
-    "name": "Benutzername",
+    "name": "Kennung",
+    "title": "Titel",
+    "title-desc": "Akademischer Titel (öffentlich)",
+    "birthname": "Nachname",
+    "birthname-desc": "Nachname (öffentlich)",
+    "givenname": "Vorname",
+    "givenname-desc": "Vorname (öffentlich)",
     "login": "Registriert via",
-    "email": "Email",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Adresse",
+    "emailValidation": "E-Mail bestätigen",
+    "emailValidation-desc": "E-Mail-Adresse wiederholen",
+    "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
     "profilepublic": "Profil öffentlich",
     "profilepublicoption1": "Ja",
     "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
     "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
-    "nameToShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
-    "nameToLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
-    "nameAlreadyExists": "Benutzername ist bereits vergeben!"
+    "nameToShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
+    "nameToLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
+    "nameAlreadyExists": "Kennung ist bereits vergeben!",
+    "birthnameEmpty": "Der Nachname darf nicht leer sein!",
+    "givennameEmpty": "Der Vorname darf nicht leer sein!"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte (XP)"
+    "experience": "Erfahrungspunkte (XP)",
+    "intervall": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
+    "preview": "Vorschau"
   },
   "panel-body-experience": {
+    "intervall1": "Intervall 1",
+    "intervall2": "Intervall 2",
+    "intervall3": "Intervall 3",
     "total": "Total",
+    "twoDaysAgo": "Vorgestern",
     "today": "Heute",
+    "days" : "Tage",
+    "day": "Tag",
+    "day_plural" : "Tage",
     "yesterday": "Gestern",
-    "days": "7 Tage",
+    "month": "Wochen",
+    "threemonth": "Monate",
+    "default1": "Standard 7 Tage",
+    "default2": "Standard 30 Tage",
+    "default3": "Standard 90 Tage",
+    "reset": "Zurücksetzen",
     "lastredeem": "Zuletzt für: "
   },
   "panel-body-last": {
@@ -266,6 +324,7 @@
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
     "publicate": "Status",
+    "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
     "publicated": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -293,7 +352,12 @@
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
       "license": "Lizenz",
-      "dateUpdated": "Zuletzt aktualisiert"
+      "dateUpdated": "Zuletzt aktualisiert",
+      "modulLong": "Modul-Langname",
+      "modulShort": "Modul-Kurzname",
+      "modulNum": "Modul-Nummer",
+      "college": "Hochschule",
+      "studyType": "Studienfach"
     },
     "request": {
       "accept": "Kartensatz freigeben",
@@ -439,6 +503,7 @@
     "cardsets": "Kartensätze",
     "cards": "Karten",
     "users": "Benutzer",
+    "intervall": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
     "see_all": "Alle ansehen",
@@ -573,14 +638,17 @@
       "header": "Benutzer",
       "edit": "Bearbeite",
       "info": "Benutzer Informationen",
-      "username": "Name:",
+      "username": "Kennung:",
+      "title": "Akademischer Titel (öffentlich):",
+      "birthname": "Nachname (öffentlich):",
+      "givenname": "Vorname (öffentlich):",
       "service": "Service:",
       "date": "Beigetreten:",
       "lvl": "Level:",
       "visible": "Profil öffentlich",
       "option1": "Ja",
       "option2": "Nein",
-      "email": "Email",
+      "email": "E-Mail",
       "status": "Benutzer Status",
       "online": "Status:",
       "lastLogin": "Letzter Login:",
@@ -595,10 +663,10 @@
       "save": "Benutzer speichern",
       "delete": "Benutzer löschen",
       "confirm": "Sicher?",
-      "email_invalid": "Ungültige Email-Adresse!",
-      "name_exists": "Benutzername ist bereits vergeben!",
-      "name_toShort": "Benutzername muss aus mehr als 4 Buchstaben bestehen!",
-      "name_toLong": "Benutzername muss aus weniger als 26 Buchstaben bestehen!",
+      "email_invalid": "Ungültige E-Mail-Adresse!",
+      "name_exists": "Kennung ist bereits vergeben!",
+      "name_toShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
+      "name_toLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     }
   },

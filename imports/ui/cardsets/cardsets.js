@@ -111,11 +111,17 @@ Template.cardsets.events({
 		$('#newSetName').val(inputValue);
 		$('#new-set-input').val('');
 	},
-	'click .category': function (evt, tmpl) {
+	'click .college': function (evt, tmpl) {
 		var categoryName = $(evt.currentTarget).attr("data");
 		var categoryId = $(evt.currentTarget).val();
-		$('#newSetCategory').text(categoryName);
-		tmpl.find('#newSetCategory').value = categoryId;
+		$('#newSetCollege').text(categoryName);
+		tmpl.find('#newSetCollege').value = categoryId;
+	},
+	'click .course': function (evt, tmpl) {
+		var courseName = $(evt.currentTarget).attr("data");
+		var courseId = $(evt.currentTarget).val();
+		$('#newSetCourse').text(courseName);
+		tmpl.find('#newSetCourse').value = courseId;
 	},
 	'click #newSetModal .save': function (evt) {
 		if ($('#newSetName').val() === "") {
@@ -130,18 +136,53 @@ Template.cardsets.events({
 			$('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpNewSetDescription').css('color', '#b94a48');
 		}
-		if ($('#newSetCategory').val() === "") {
-			$('#newSetCategoryLabel').css('color', '#b94a48');
-			$('#newSetCategoryDropdown').css('border-color', '#b94a48');
-			$('#helpNewSetCategory').html(TAPi18n.__('modal-dialog.category_required'));
-			$('#helpNewSetCategory').css('color', '#b94a48');
+		if ($('#newSetModulLong').val() === "") {
+			$('#newSetModulLongLabel').css('color', '#b94a48');
+			$('#newSetModulLong').css('border-color', '#b94a48');
+			$('#helpNewSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
+			$('#helpNewSetModulLong').css('color', '#b94a48');
 		}
-		if ($('#newSetName').val() !== "" && $('#newSetDescription').val() !== "" && $('#newSetCategory').val() !== "") {
+		if ($('#newSetModulShort').val() === "") {
+			$('#newSetModulShortLabel').css('color', '#b94a48');
+			$('#newSetModulShort').css('border-color', '#b94a48');
+			$('#helpNewSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
+			$('#helpNewSetModulShort').css('color', '#b94a48');
+		}
+		if ($('#newSetModulNum').val() === "") {
+			$('#newSetModulNumLabel').css('color', '#b94a48');
+			$('#newSetModulNum').css('border-color', '#b94a48');
+			$('#helpNewSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
+			$('#helpNewSetModulNum').css('color', '#b94a48');
+		}
+		if ($('#newSetCollege').val() === "") {
+			$('#newSetCollegeLabel').css('color', '#b94a48');
+			$('#newSetCollegeDropdown').css('border-color', '#b94a48');
+			$('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+			$('#helpNewSetCollege').css('color', '#b94a48');
+		}
+		if ($('#newSetCourse').val() === "") {
+			$('#newSetCourseLabel').css('color', '#b94a48');
+			$('#newSetCourseDropdown').css('border-color', '#b94a48');
+			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.studyType_required'));
+			$('#helpNewSetCourse').css('color', '#b94a48');
+		}
+		if ($('#newSetName').val() !== "" &&
+			$('#newSetDescription').val() !== "" &&
+			$('#newSetCategory').val() !== "" &&
+			$('#newSetModulLong').val() !== "" &&
+			$('#newSetModulShort').val() !== "" &&
+			$('#newSetModulNum').val() !== "" &&
+			$('#newSetCollege').val() !== "") {
 			var name = $('#newSetName').val();
-			var category = $('#newSetCategory').val();
+			//var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
+			var modulLong = $('#newSetModulLong').val();
+			var modulShort = $('#newSetModulShort').val();
+			var modulNum = $('#newSetModulNum').val();
+			var college = $('#newSetCollege').text();
+			var course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, category, description, false, true, 'personal');
+			Meteor.call("addCardset", name, description, false, true, 'personal', modulLong, modulShort, modulNum, college, course);
 			$('#newSetModal').modal('hide');
 		}
 	}

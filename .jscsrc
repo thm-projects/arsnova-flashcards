@@ -1,13 +1,29 @@
 {
-  "disallowKeywords": ["with"],
-  "disallowKeywordsOnNewLine": ["else"],
+  "disallowKeywords": [
+    "with"
+  ],
+  "disallowKeywordsOnNewLine": [
+    "else"
+  ],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineStrings": true,
   "disallowPaddingNewlinesInBlocks": true,
   "disallowSpaceAfterObjectKeys": true,
-  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-  "disallowSpaceBeforeBinaryOperators": [","],
-  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "disallowSpaceAfterPrefixUnaryOperators": [
+    "++",
+    "--",
+    "+",
+    "-",
+    "~",
+    "!"
+  ],
+  "disallowSpaceBeforeBinaryOperators": [
+    ","
+  ],
+  "disallowSpaceBeforePostfixUnaryOperators": [
+    "++",
+    "--"
+  ],
   "disallowSpacesInCallExpression": true,
   "disallowSpacesInFunctionDeclaration": {
     "beforeOpeningRoundBrace": true
@@ -26,10 +42,24 @@
   "requireDotNotation": true,
   "requireLineFeedAtFileEnd": true,
   "requireSpaceAfterBinaryOperators": true,
-  "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
+  "requireSpaceAfterKeywords": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "switch",
+    "return",
+    "try",
+    "catch"
+  ],
   "requireSpaceBeforeBinaryOperators": true,
   "requireSpaceBeforeBlockStatements": true,
-  "requireSpaceBeforeKeywords": ["else", "while", "catch"],
+  "requireSpaceBeforeKeywords": [
+    "else",
+    "while",
+    "catch"
+  ],
   "requireSpaceBeforeObjectValues": true,
   "requireSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true
@@ -45,5 +75,5 @@
   },
   "validateIndentation": "\t",
   "validateLineBreaks": "LF",
-	"maxErrors": Infinity
+  "maxErrors": Infinity
 }

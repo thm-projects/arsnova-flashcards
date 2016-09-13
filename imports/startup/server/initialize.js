@@ -1,13 +1,14 @@
-import {Meteor} from "meteor/meteor";
-import {Categories} from "../../api/categories.js";
-import {Badges} from "../../api/badges.js";
-import {Colleges_Course} from "../../api/colleges_course.js";
+import {Meteor} from 'meteor/meteor';
+import {Categories} from '../../api/categories.js';
+import {Badges} from '../../api/badges.js';
+import {AdminSettings} from '../../api/adminSettings';
+import {Colleges_Courses} from "../../api/colleges_courses.js";
 
 Meteor.startup(function () {
 	var categories = initCategories();
 	var badges = initBadges();
-	if (!Colleges_Course.findOne({name: "THM"})) {
-		Colleges_Course.insert({name: "THM"});
+	if (!Colleges_Courses.findOne({name: "THM"})) {
+		Colleges_Courses.insert({name: "THM"});
 	}
 
 	if (Categories.find().count() === 0) {
@@ -226,12 +227,21 @@ var initBadges = function () {
 };
 
 Meteor.startup(function () {
-	var categories = initCategories();
-	var badges     = initBadges();
+	var badges = initBadges();
+	var cat = initCategories();
+
+	if (!AdminSettings.findOne({name: "seqSettings"})) {
+		AdminSettings.insert({
+			name: "seqSettings",
+			seqOne: 7,
+			seqTwo: 30,
+			seqThree: 90
+		});
+	}
 	if (Categories.find().count() === 0) {
-		for (var category in categories) {
-			if (categories.hasOwnProperty(category)) {
-				Categories.insert(categories[category]);
+		for (var category in cat.categories) {
+			if (cat.categories.hasOwnProperty(category)) {
+				Categories.insert(cat.categories[category]);
 			}
 		}
 	}

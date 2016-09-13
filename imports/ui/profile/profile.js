@@ -1,18 +1,23 @@
 //------------------------ IMPORTS
 
-import {Meteor} from "meteor/meteor";
-import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
-import {Experience} from "../../api/experience.js";
-import {Badges} from "../../api/badges.js";
-import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import {Learned} from "../../api/learned.js";
-import {Ratings} from "../../api/ratings.js";
-import {Paid} from "../../api/paid.js";
-import {Notifications} from "../../api/notifications.js";
-import {userData} from "../../api/userdata.js";
-import "./profile.html";
+
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
+
+import {Experience} from '../../api/experience.js';
+import {Badges} from '../../api/badges.js';
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
+import {Learned} from '../../api/learned.js';
+import {Ratings} from '../../api/ratings.js';
+import {Paid} from '../../api/paid.js';
+import {Notifications} from '../../api/notifications.js';
+import {AdminSettings} from '../../api/adminSettings';
+
+import {userData} from '../../api/userdata.js';
+
+import './profile.html';
 
 
 Meteor.subscribe("experience");
@@ -20,6 +25,10 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe('default_db_data', function () {
+	//Set the reactive session as true to indicate that the data have been loaded
+	Session.set('data_loaded', true);
+});
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -241,11 +250,95 @@ Template.profileSettings.events({
 	"click #profilepublicoption2": function () {
 		Meteor.call("updateUsersVisibility", false);
 	},
+	"keyup #inputEmail": function () {
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var email = $('#inputEmail').val();
+		var validEmail = re.test(email);
+
+		//E-Mail wasn't changed
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+			$('#inputEmailValidationForm').addClass("hidden");
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else {//E-Mail was changed and is wrong
+			$('#profileSave')[0].disabled = true;
+			$('#profileCancel')[0].disabled = true;
+		}
+
+		if (validEmail === false) {
+			$('#inputEmail').parent().parent().addClass('has-error');
+			$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+		} else {
+			$('#inputEmail').parent().parent().removeClass('has-error');
+			$('#inputEmail').parent().parent().addClass('has-success');
+			$('#errorEmail').html('');
+			$('#inputEmailValidationForm').removeClass("hidden");
+		}
+	},
+	"keyup #inputEmailValidation": function () {
+		if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+			$('#inputEmailValidation').parent().parent().removeClass('has-error');
+			$('#inputEmailValidation').parent().parent().addClass('has-success');
+			$('#errorEmailValidation').html('');
+		} else {
+			$('#profileSave')[0].disabled = true;
+			$('#profileCancel')[0].disabled = true;
+			$('#inputEmailValidation').parent().parent().removeClass('has-success');
+			$('#inputEmailValidation').parent().parent().addClass('has-error');
+			$('#errorEmailValidation').html(TAPi18n.__('panel-body.emailValidationError'));
+		}
+	},
+	"keyup #inputName": function () {
+		//E-Mail wasn't changed
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+			$('#inputEmailValidationForm').addClass("hidden");
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else {//E-Mail was changed and is wrong
+			$('#profileSave')[0].disabled = true;
+			$('#profileCancel')[0].disabled = true;
+		}
+	},
+	"keyup #inputBirthName": function () {
+		//E-Mail wasn't changed
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+			$('#inputEmailValidationForm').addClass("hidden");
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else {//E-Mail was changed and is wrong
+			$('#profileSave')[0].disabled = true;
+			$('#profileCancel')[0].disabled = true;
+		}
+	},
+	"keyup #inputGivenName": function () {
+		//E-Mail wasn't changed
+		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
+			$('#inputEmailValidationForm').addClass("hidden");
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
+			$('#profileSave')[0].disabled = false;
+			$('#profileCancel')[0].disabled = false;
+		} else {//E-Mail was changed and is wrong
+			$('#profileSave')[0].disabled = true;
+			$('#profileCancel')[0].disabled = true;
+		}
+	},
 	"click #profileSave": function () {
-		Meteor.call("updateUserGivenName", "istehwurst", Meteor.userId());
 		// Email validation
-		var re         = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		var email      = $('#inputEmail').val();
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var email = $('#inputEmail').val();
 		var validEmail = re.test(email);
 
 		if (validEmail === false) {
@@ -257,6 +350,36 @@ Template.profileSettings.events({
 			$('#errorEmail').html('');
 		}
 
+		// Birth Name validation
+		var birthname = $('#inputBirthName').val().trim();
+		var validBirthName = false;
+
+		if (birthname.length <= 0) {
+			$('#inputBirthName').parent().parent().addClass('has-error');
+			$('#errorBirthName').html(TAPi18n.__('panel-body.birthnameEmpty'));
+		} else {
+			$('#inputBirthName').parent().parent().removeClass('has-error');
+			$('#inputBirthName').parent().parent().addClass('has-success');
+			$('#errorBirthName').html('');
+			$('#inputBirthName').val(birthname);
+			validBirthName = true;
+		}
+
+		// Given Name validation
+		var givenname = $('#inputGivenName').val().trim();
+		var validGivenName = false;
+
+		if (givenname.length <= 0) {
+			$('#inputGivenName').parent().parent().addClass('has-error');
+			$('#errorGivenName').html(TAPi18n.__('panel-body.givennameEmpty'));
+		} else {
+			$('#inputGivenName').parent().parent().removeClass('has-error');
+			$('#inputGivenName').parent().parent().addClass('has-success');
+			$('#errorGivenName').html('');
+			$('#inputGivenName').val(givenname);
+			validGivenName = true;
+		}
+
 		// Name validation
 		var name = $('#inputName').val();
 		var user_id = Meteor.userId();
@@ -265,7 +388,7 @@ Template.profileSettings.events({
 			if (error) {
 				$('#inputName').parent().parent().addClass('has-error');
 				$('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-			} else if (result) {
+			} else {
 				var validName = false;
 				if (result.length < 5) {
 					$('#inputName').parent().parent().addClass('has-error');
@@ -277,11 +400,18 @@ Template.profileSettings.events({
 					$('#inputName').parent().parent().removeClass('has-error');
 					$('#inputName').parent().parent().addClass('has-success');
 					$('#errorName').html('');
+					name = result;
 					validName = true;
 				}
-
-				if (validEmail && validName) {
+				if (validEmail && validName && validBirthName && validGivenName) {
+					$('#inputEmailValidation').val('');
+					$('#inputEmailValidationForm').addClass("hidden");
+					$('#profileSave')[0].disabled = true;
+					$('#profileCancel')[0].disabled = true;
 					Meteor.call("updateUsersEmail", email);
+					Meteor.call("updateUsersBirthName", birthname, user_id);
+					Meteor.call("updateUsersGivenName", givenname, user_id);
+					Meteor.call("updateUsersProfileState", true, user_id);
 					Meteor.call("updateUsersName", result, user_id);
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				} else {
@@ -294,6 +424,24 @@ Template.profileSettings.events({
 		var user = Meteor.users.findOne(Meteor.userId());
 		$('#inputEmail').val(user.email);
 		$('#inputName').val(user.profile.name);
+		$('#inputBirthName').val(user.profile.birthname);
+		$('#inputGivenName').val(user.profile.givenname);
+		$('#inputName').parent().parent().removeClass('has-error');
+		$('#inputBirthName').parent().parent().removeClass('has-error');
+		$('#inputGivenName').parent().parent().removeClass('has-error');
+		$('#inputEmail').parent().parent().removeClass('has-error');
+		$('#inputName').parent().parent().removeClass('has-success');
+		$('#inputBirthName').parent().parent().removeClass('has-success');
+		$('#inputGivenName').parent().parent().removeClass('has-success');
+		$('#inputEmail').parent().parent().removeClass('has-success');
+		$('#errorName').html('');
+		$('#errorBirthName').html('');
+		$('#errorGivenName').html('');
+		$('#errorEmail').html('');
+		$('#inputEmailValidation').val('');
+		$('#inputEmailValidationForm').addClass("hidden");
+		$('#profileSave')[0].disabled = true;
+		$('#profileCancel')[0].disabled = true;
 		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
 	}
 });
@@ -547,7 +695,43 @@ Template.profileRequests.helpers({
  * ############################################################################
  */
 
+export var seqOne = 7; //7 tag
+export var seqTwo = 29; //30 tag
+export var seqThree = 90; //90 tag
+var backgroundColorBox1 = 1;
+var backgroundColorBox2 = 0;
+
+
+export function getDays1() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqOne = seq.seqOne;
+		return seqOne;
+	}
+}
+
+export function getDays2() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqTwo = seq.seqTwo;
+		return seqTwo;
+	}
+}
+
+export function getDays3() {
+	if (Session.get('data_loaded')) {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		seqThree = seq.seqThree;
+		return seqThree;
+	}
+}
+
+
+
 Template.profileXp.helpers({
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3,
 	getXpTotal: function () {
 		var allXp = Experience.find({
 			owner: Router.current().params._id
@@ -594,8 +778,27 @@ Template.profileXp.helpers({
 		});
 		return result;
 	},
-	getXpWeek: function () {
-		var minDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+	getXpTwoDaysAgo: function () {
+		var minDate = new Date(new Date().getTime() - 48 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date();
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+	getXpSeq1: function () {
+		var minDate = new Date(new Date().getTime() - seqOne * 24 * 60 * 60 * 1000);
 		minDate.setHours(0, 0, 0, 0);
 		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		maxDate.setHours(0, 0, 0, 0);
@@ -613,6 +816,45 @@ Template.profileXp.helpers({
 		});
 		return result;
 	},
+	getXpSeq2: function () {
+		var minDate = new Date(new Date().getTime() - seqTwo * 24 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+	getXpSeq3: function () {
+		var minDate = new Date(new Date().getTime() - seqThree * 24 * 60 * 60 * 1000);
+		minDate.setHours(0, 0, 0, 0);
+		var maxDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		maxDate.setHours(0, 0, 0, 0);
+
+		var allXp = Experience.find({
+			owner: Router.current().params._id,
+			date: {
+				$gte: minDate,
+				$lte: maxDate
+			}
+		});
+		var result = 0;
+		allXp.forEach(function (xp) {
+			result = result + xp.value;
+		});
+		return result;
+	},
+
 	getLast: function () {
 		var last = Experience.findOne({
 			owner: Router.current().params._id
@@ -692,6 +934,25 @@ function xpForLevel(level) {
 	}
 	return Math.floor(points / 4);
 }
+
+
+Template.profileXp.events({
+	'onload': setInterval(function () {
+		//console.log('Wert von I : ' + i);
+		$('#well' + backgroundColorBox1).css("background-color", "lightblue");
+		backgroundColorBox1 = backgroundColorBox1 + 1;
+		backgroundColorBox2 = backgroundColorBox2 + 1;
+		if (backgroundColorBox1 >= 7) {
+			backgroundColorBox1 = 1;
+		}
+		if (backgroundColorBox2 >= 7) {
+			backgroundColorBox2 = 0;
+		}
+		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
+	}, 500)
+});
+
+
 
 /**
  * ############################################################################

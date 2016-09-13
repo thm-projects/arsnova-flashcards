@@ -1,17 +1,27 @@
-//------------------------ IMPORTS
+//------------------------IMPORTS
 
-import {Meteor} from "meteor/meteor";
-import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
-import {allUsers} from "../../../api/allusers.js";
-import {Cardsets} from "../../../api/cardsets.js";
-import "./admin_user.html";
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
 
-/**
+//import {allUsers} from '../../../api/allusers.js';
+import {Cardsets} from '../../../api/cardsets.js';
+import {AdminSettings} from '../../../api/adminSettings.js';
+import {getDays1,getDays2,getDays3} from '../../profile/profile.js';
+
+import './admin_user.html';
+
+Meteor.subscribe('adminSettings', function () {
+	//Set the reactive session as true to indicate that the data have been loaded
+	Session.set('data_loaded', true);
+});/**
  * ############################################################################
  * admin_user
  * ############################################################################
  */
+
+
+
 
 Template.admin_user.helpers({
 	getService: function () {
@@ -159,6 +169,51 @@ Template.admin_user.helpers({
 	}
 });
 
+
+
+
+function saveInterval() {
+	var inv1 = document.getElementById('inv1').value;
+	var inv2 = document.getElementById('inv2').value;
+	var inv3 = document.getElementById('inv3').value;
+
+	if (inv1 === "" || inv2 === "" || inv3 === "") {
+		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
+	} else {
+		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
+			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
+		} else {
+			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
+				Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
+				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+				$('#inv1, #inv2, #inv3').val("");
+			} else {
+				Bert.alert(TAPi18n.__('admin-intervall.biggerNull'), 'danger', 'growl-bottom-right');
+			}
+		}
+	}
+	return true;
+}
+
+Template.admin_interval.events({//TODO
+	'keypress input': function (event) {
+		if (event.keyCode == 13) {
+			saveInterval();
+		}
+	},
+	'click #saveInterval': saveInterval,
+	'click #resetIntervall': function () {
+		var seq = AdminSettings.findOne({name: "seqSettings"});
+		if (!(($('#inv1').val() === seq.seqOne && $('#inv2').val() === seq.seqTwo && $('#inv3').val() === seq.seqThree) ||
+			(7 === seq.seqOne && 30 === seq.seqTwo && 90 === seq.seqThree))) {
+			Meteor.call('updateIntervall', 7, 30, 90);
+			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+			$('#inv1, #inv2, #inv3').val("");
+		}
+	}
+});
+
 Template.admin_user.events({
 	'click #userSaveAdmin': function (event, tmpl) {
 		var name = $('#editUserNameAdmin').val();
@@ -175,6 +230,9 @@ Template.admin_user.events({
 				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 				var email = $('#editUserEmailAdmin').val();
 				var blockedtext = $('#editUserBlockedtextAdmin').val();
+				var title = $('#editUserTitleAdmin').val();
+				var birthname = $('#editUserBirthNameAdmin').val();
+				var givenname = $('#editUserGivenNameAdmin').val();
 				var check = re.test(email);
 				var visible = null;
 				var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
@@ -215,7 +273,10 @@ Template.admin_user.events({
 						$('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
 					}
 				}
-				if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) && (check === true || email === "") && (result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) && (lecturer && visible || !lecturer)) {
+				if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) &&
+					(check === true || email === "") &&
+					(result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) &&
+					(lecturer && visible || !lecturer)) {
 					if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
 						Meteor.call('updateRoles', user_id, 'pro');
 					} else {
@@ -248,7 +309,13 @@ Template.admin_user.events({
 					}
 
 					Meteor.call('updateUser', user_id, visible, email, blockedtext);
-					Meteor.call("updateUsersName", result, user_id);
+					Meteor.call('updateUsersName', result, user_id);
+					Meteor.call('updateUsersTitle', title, user_id);
+					Meteor.call('updateUsersBirthName', birthname, user_id);
+					Meteor.call('updateUsersGivenName', givenname, user_id);
+					Meteor.call('updateUsersProfileState',
+						(email !== "" && result !== "" && birthname !== "" && givenname !== "") ? true : false,
+						user_id);
 					window.history.go(-1);
 				}
 			}
@@ -311,4 +378,12 @@ Template.cardsetConfirmFormUserAdmin.events({
 			Meteor.call("deleteCardset", id);
 		}).modal('hide');
 	}
+});
+
+
+
+Template.preview.helpers({
+	getDays1: getDays1,
+	getDays2: getDays2,
+	getDays3: getDays3
 });

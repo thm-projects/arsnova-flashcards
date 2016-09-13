@@ -1,14 +1,14 @@
 import "./admin_settings.html";
-import {Colleges_Course} from "../../../api/colleges_course.js";
+import {Colleges_Courses} from "../../../api/colleges_courses.js";
 
 
-Meteor.subscribe("colleges_course");
+Meteor.subscribe("colleges_courses");
 
 Template.admin_settings.helpers({
 
 	'allColleges': function () {
 
-		return Colleges_Course.find({
+		return Colleges_Courses.find({
 			/*college: 1
 			 },
 			 {
@@ -23,11 +23,11 @@ Template.admin_settings.helpers({
 
 Template.admin_settings.rendered = function () {
 	var collegeA = new Array();
-	var amount = console.log(Colleges_Course.find().count());
+	var amount = console.log(Colleges_Courses.find().count());
 	//var name = document.getElementById("college").value;
 
 	for (var i = 0; i <= amount; i++) {
-		collegeA[i] = Colleges_Course.findOne().name;
+		collegeA[i] = Colleges_Courses.findOne().name;
 		console.log(collegeA[i]);
 	}
 	$("#collegeTable").dataTable();
@@ -45,7 +45,7 @@ Template.admin_settings.events({
 		deleteButton.setAttribute("id", "deleteRow");
 		deleteButton.setAttribute("value", "delete");
 		var delete_Button = document.getElementById("deleteRow");
-		Meteor.call("updateColleges_Courses", college, course);
+		Meteor.call("updateColleges_Coursess", college, course);
 		document.getElementById("newEntry").reset();
 	}/*,
 	 'click #deleteRow': function (event) {

@@ -78,7 +78,7 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-        <td>{{getCategory this.category }}</td>
+
         <td>{{description}}</td>
     </tr>
 </template>
@@ -125,7 +125,7 @@
                                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
                             </a>
                         </td>
-                        <td>{{getCategory this.category }}</td>
+
                         <td>{{description}}</td>
                     </tr>
                 {{/each}}
@@ -172,31 +172,99 @@
                                 <span id="helpNewSetDescription" class="help-block description"></span>
                             </div>
                         </div>
-                        <div class="form-group setdetails categories">
-                            <label id="newSetCategoryLabel" class="col-md-3 control-label"
-                                   for="newSetCategory">{{_ "modal-dialog.category"}}</label>
-                            <div class="col-md-9">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="newSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                        <span id="newSetCategory">{{_ "modal-dialog.categoryplaceholder"}}</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        {{#each getCategories}}
-                                            <li class="category" value="{{_id}}" data="{{name}}"><a
-                                                    href="#">{{name}}</a></li>
-                                        {{/each}}
-                                    </ul>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{_ "modal-dialog.module"}}</div>
+                            <br>
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="newSetModulLongLabel" class="col-md-3 control-label"
+                                       for="newSetModulLong">{{_ "modal-dialog.modulLong"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="newSetModulLong"
+                                           placeholder="{{_ "modal-dialog.modulLongplaceholder"}}">
+                                    <span id="helpNewSetModulLong" class="help-block name"></span>
                                 </div>
-                                <span id="helpNewSetCategory" class="help-block category"></span>
-                            </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="newSetModulShortLabel" class="col-md-3 control-label"
+                                       for="newSetModulShort">{{_ "modal-dialog.modulShort"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="newSetModulShort"
+                                           placeholder="{{_ "modal-dialog.modulShortplaceholder"}}">
+                                    <span id="helpNewSetModulShort" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="newSetModulNumLabel" class="col-md-3 control-label" for="newSetModulNum">{{_
+                                        "modal-dialog.modulNum"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="newSetModulNum"
+                                           placeholder="{{_ "modal-dialog.modulNumplaceholder"}}">
+                                    <span id="helpNewSetModulNum" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
                         </div>
+                        <!-- start college Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
+                                    "modal-dialog.college"}}</label>
+                            <div class="col-md-9">
+                                <div class="dropup">
+                                    <div class="btn-group">
+                                        <button id="newSetCollege" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{_ "modal-dialog.college_required"}}</button>
+                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {{#each getColleges}}
+                                                <li class="college" value="{{_id}}" data="{{this.college}}"><a
+                                                        href="#">{{this.college}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span id="helpNewSetCollege" class="help-block college"></span>
+                            </div>
+                        </div> <!-- / college Dropdown -->
+                        <!-- start course Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="newSetCourseLabel" class="col-md-3 control-label" for="newSetCourse">{{_
+                                    "modal-dialog.studyType"}}</label>
+                            <div class="col-md-9">
+                                <div class="dropup">
+                                    <div class="btn-group">
+                                        <button id="newSetCourse" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_
+                                                "modal-dialog.studyType_required"}}</button>
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {{#each getCourses}}
+                                                <li class="course"  value="{{_id}}" data="{{this.course}}"><a
+                                                        href="#">{{this.course}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span id="helpNewSetCourse" class="help-block course"></span>
+                            </div>
+                        </div> <!-- / course Dropdown -->
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-default cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <div class="pull-left">
+                        <button class="btn btn-danger cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    </div>
                     <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
                 </div>
             </div>

@@ -1,4 +1,10 @@
 {
+  "admin-intervall":{
+    "errorAllFields" : "Please fill all fields.",
+    "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
+    "errorBigger999" : "Please choose a number less then 999",
+    "biggerNull" : "Please choose a number bigger then 0"
+  },
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
@@ -68,10 +74,22 @@
   "set-list": {
     "name": "Name",
     "category": "Category",
-    "description": "Description"
+    "description": "Description",
+    "lastName": "Surname",
+    "moduleLong": "Module",
+    "degree": "Degree",
+    "discipline": "Discipline",
+    "major": "Major",
+    "license": "License",
+    "topic": "Topic",
+    "author": "Author",
+    "title": "Following decks of cards are available:",
+    "everyone": "Everyone",
+    "everything": "Everything"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
+    "emptypooltextlist": "There aren't any decks of cards yet",
     "newset": "Create a deck of cards"
   },
   "set-list-learned-empty": {
@@ -80,11 +98,11 @@
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
     "editcard": "Edit deck of cards",
-    "name": "Name",
-    "nameplaceholder": "Name",
+    "name": "Title",
+    "nameplaceholder": "Title of the cardset",
     "descriptionplaceholder": "Description",
     "categoryplaceholder": "Choose a category",
-    "description": "Description",
+    "description": "Description for the content of this cardset",
     "category": "Category",
     "visibility": "Visible for",
     "visibilityoption1": "Private",
@@ -99,7 +117,7 @@
     "confirm": "Sure?",
     "save": "Save deck of cards",
     "name_required": "The name field is required!",
-    "description_required": "The decription field is required!",
+    "description_required": "The description field is required!",
     "category_required": "The category field is required!",
     "price": "Retail price",
     "publicate": "Save state",
@@ -119,14 +137,28 @@
     "date": "Date",
     "text": "Further information",
     "text_chars": "At least 50 chars required!",
-    "submitcomplaint": "Submit complaint"
+    "submitcomplaint": "Submit complaint",
+    "college": "College",
+    "college_required": "Choose a college",
+    "studyType": "Study type",
+    "studyType_required": "Choose a study type",
+    "modulLong": "Module longname",
+    "modulLong_required": "The full name of the module is required!",
+    "modulShort": "Module shortname",
+    "modulShort_required": "The short name of the module is required!",
+    "modulNum": "Module number",
+    "modulNum_required": "The module number is required!",
+    "modulLongplaceholder": "Full name of the module",
+    "modulShortplaceholder": "Short module name",
+    "modulNumplaceholder": "Number of the module",
+    "module": "Names of the Module"
   },
   "profile": {
     "overview": "Learning Progress",
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
-    "settings": "Settings",
+    "settings": "Profile",
     "requests": "Pro approval",
     "norequests": "No requests",
     "lecturer": "Lecturer approval",
@@ -142,7 +174,7 @@
     "name": "Profile of "
   },
   "panel-heading": {
-    "hallo": "Settings"
+    "hallo": "Profile"
   },
   "membership": {
     "upgrade": {
@@ -204,8 +236,18 @@
   },
   "panel-body": {
     "name": "User name",
+    "title": "Title",
+    "title-desc": "Academic title (public)",
+    "birthname": "Birth name",
+    "birthname-desc": "Birth name (public)",
+    "givenname": "Given name",
+    "givenname-desc": "Given name (public)",
     "login": "Registered via",
-    "email": "Email",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Address",
+    "emailValidation": "E-Mail confirmation",
+    "emailValidation-desc": "Please confirm your E-Mail-Address",
+    "emailValidationError": "E-Mail-Addresses don't match",
     "profilepublic": "Public profile",
     "profilepublicoption1": "Yes",
     "profilepublicoption2": "No",
@@ -214,16 +256,26 @@
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
-    "nameAlreadyExists": "Username is already taken!"
+    "nameAlreadyExists": "Username is already taken!",
+    "birthnameEmpty": "Birth name must not be empty!",
+    "givennameEmpty": "Given name must not be empty!"
   },
   "panel-heading-experience": {
-    "experience": "Experience Points (XP)"
+    "experience": "Experience Points (XP)",
+    "intervall": "Set the learning period",
+    "preview": "Preview"
   },
   "panel-body-experience": {
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "days": "7 days",
+    "twoDaysAgo": "Two days ago",
+    "day": "day",
+    "day_plural" : "days",
+    "reset": "Reset",
+    "default1": "default 7 days",
+    "default2": "default 30 days",
+    "default3": "default 90 days",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
@@ -267,6 +319,7 @@
     "importcard": "Import cards",
     "exportcard": "Export cards",
     "publicate": "Status",
+    "tooltip": "Create at least 5 Cards in this set and complete your profile before publishing this set. Pro Cardsets can't be demoted!",
     "publicated": "Publicated",
     "review": "In review",
     "private": "Private",
@@ -294,7 +347,12 @@
       "bought": "Bought on",
       "deleted": "Deleted",
       "license": "License",
-      "dateUpdated": "Last updated"
+      "dateUpdated": "Last updated",
+      "modulLong": "Module longname",
+      "modulShort": "Module shortname",
+      "modulNum": "Module number",
+      "college": "college",
+      "studyType": "Study type"
     },
     "request": {
       "accept": "Release cardset",
@@ -440,6 +498,7 @@
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
+    "intervall": "Define learning period",
     "notifications": "Notifications",
     "settings": "Settings",
     "see_all": "See all",
@@ -575,6 +634,9 @@
       "edit": "Edit",
       "info": "User info",
       "username": "Name:",
+      "title": "Academic title (public):",
+      "birthname": "Birth name (public):",
+      "givenname": "Given name (public):",
       "service": "Service:",
       "date": "Joined:",
       "lvl": "Level:",

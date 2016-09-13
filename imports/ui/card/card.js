@@ -98,7 +98,7 @@ Template.btnCard.events({
 		}
 		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000) {
 			var front = Session.get('frontText');
-			var back  = Session.get('backText');
+			var back = Session.get('backText');
 			if (ActiveRoute.name('newCard')) {
 				Meteor.call("addCard", this._id, front, back);
 			} else {

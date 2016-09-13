@@ -17,20 +17,20 @@ $font_4: Arial;
 $font_5: sans-serif;
 
 .cardsetInfo {
-	h3 {
-		margin-top: 0;
-	}
-	.well {
-		margin-bottom: 0;
-	}
-	.left {
-		float: left;
-	}
-	#ratingLocked {
-		margin-top: 2px;
-		margin-left: 6px;
-		left: 6px;
-	}
+  h3 {
+    margin-top: 0;
+  }
+  .well {
+    margin-bottom: 0;
+  }
+  .left {
+    float: left;
+  }
+  #ratingLocked {
+    margin-top: 2px;
+    margin-left: 6px;
+    left: 6px;
+  }
 }
 
 //@extend-elements
@@ -96,24 +96,24 @@ $font_5: sans-serif;
 }
 
 .centered {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 1.2em;
-	img {
-		max-width: 370px;
-	}
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.2em;
+  img {
+    max-width: 370px;
+  }
 }
 
 .carousel-control {
-	color: $black;
-	width: 7%;
-	z-index: 5;
-	&.left {
-		@extend %extend_1;
-	}
-	&.right {
-		@extend %extend_1;
-	}
+  color: $black;
+  width: 7%;
+  z-index: 5;
+  &.left {
+    @extend %extend_1;
+  }
+  &.right {
+    @extend %extend_1;
+  }
 }
 
 .cardNumber {
@@ -173,23 +173,23 @@ $font_5: sans-serif;
 }
 
 .btn-file {
-	position: relative;
-	overflow: hidden;
-	input[type=file] {
-		position: absolute;
-		top: 0;
-		right: 0;
-		min-width: 100%;
-		min-height: 100%;
-		font-size: 100px;
-		text-align: right;
-		filter: alpha(opacity=0);
-		opacity: 0;
-		outline: none;
-		background: $white;
-		cursor: inherit;
-		display: block;
-	}
+  position: relative;
+  overflow: hidden;
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: $white;
+    cursor: inherit;
+    display: block;
+  }
 }
 
 img.cardside {
@@ -222,18 +222,18 @@ img.cardside {
 }
 
 #selectLicenseModal {
-	#cc-modules img {
-		width: 30px;
-	}
-	#cc-description {
-		padding-top: 10px;
-		img {
-			width: 58px;
-		}
-		p {
-			padding-bottom: 10px;
-		}
-	}
+  #cc-modules img {
+    width: 30px;
+  }
+  #cc-description {
+    padding-top: 10px;
+    img {
+      width: 58px;
+    }
+    p {
+      padding-bottom: 10px;
+    }
+  }
 }
 
 #info_license img {
@@ -248,4 +248,9 @@ img.cardside {
   .input-group {
     padding-left: 15px;
   }
+}
+
+#module {
+  margin-left: 0.1em;
+  margin-right: 0.1em;
 }

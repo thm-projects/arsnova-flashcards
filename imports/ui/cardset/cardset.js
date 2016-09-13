@@ -1,17 +1,20 @@
 //------------------------ IMPORTS
 
-import {Meteor} from "meteor/meteor";
-import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import {Categories} from "../../api/categories.js";
-import {Ratings} from "../../api/ratings.js";
-import {Paid} from "../../api/paid.js";
-import "../card/card.js";
-import "../learn/box.js";
-import "../learn/memo.js";
-import "./cardset.html";
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
+
+import {Cardsets} from '../../api/cardsets.js';
+import {Cards} from '../../api/cards.js';
+import {Ratings} from '../../api/ratings.js';
+import {Paid} from '../../api/paid.js';
+import {ReactiveVar} from 'meteor/reactive-var';
+
+import '../card/card.js';
+import '../learn/box.js';
+import '../learn/memo.js';
+
+import './cardset.html';
 
 
 Meteor.subscribe("cardsets");
@@ -67,8 +70,7 @@ Template.cardset.helpers({
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
-		Session.set('previousCategory', Cardsets.findOne(id).category);
-
+		/*
 		var previousCategory = Cardsets.findOne(id).category;
 		var categoryId = previousCategory.toString();
 
@@ -80,6 +82,7 @@ Template.cardset.helpers({
 		if (category !== undefined) {
 			Session.set('previousCategoryName', category.name);
 		}
+		*/
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
@@ -130,15 +133,40 @@ Template.cardset.events({
 			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpEditSetDescription').css('color', '#b94a48');
 		}
-		if ($('#editSetName').val() !== "" && $('#editSetDescription').val() !== "") {
+		if ($('#editSetModulLong').val() === "") {
+			$('#editSetModulLongLabel').css('color', '#b94a48');
+			$('#editSetModulLong').css('border-color', '#b94a48');
+			$('#helpEditSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
+			$('#helpEditSetModulLong').css('color', '#b94a48');
+		}
+		if ($('#editSetModulShort').val() === "") {
+			$('#editSetModulShortLabel').css('color', '#b94a48');
+			$('#editSetModulShort').css('border-color', '#b94a48');
+			$('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
+			$('#helpEditSetModulShort').css('color', '#b94a48');
+		}
+		if ($('#editSetModulNum').val() === "") {
+			$('#editSetModulNumLabel').css('color', '#b94a48');
+			$('#editSetModulNum').css('border-color', '#b94a48');
+			$('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
+			$('#helpEditSetModulNum').css('color', '#b94a48');
+		}
+		if ($('#editSetName').val() !== "" &&
+			$('#editSetDescription').val() !== "" &&
+			$('#editSetModulLong').val() !== "" &&
+			$('#editSetModulShort').val() !== "" &&
+			$('#editSetModulNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
 			if (tmpl.find('#editSetCategory').value === undefined) {
 				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
 			}
 			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
+			var modulLong = tmpl.find('#editSetModulLong').value;
+			var modulShort = tmpl.find('#editSetModulShort').value;
+			var modulNum = tmpl.find('#editSetModulNum').value;
 
-			Meteor.call("updateCardset", this._id, name, category, description);
+			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum);
 			$('#editSetModal').modal('hide');
 		}
 	},
@@ -550,8 +578,8 @@ Template.cardsetInfo.events({
 	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
-		var rating     = $('#rating').data('userrating');
-		var count      = Ratings.find({
+		var rating = $('#rating').data('userrating');
+		var count = Ratings.find({
 			cardset_id: cardset_id,
 			user: Meteor.userId()
 		}).count();
@@ -758,8 +786,8 @@ Template.cardsetPublicateForm.events({
 			visible = false;
 			Meteor.call("makeProRequest", id);
 
-			var text   = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
-			var type   = "Kartensatz-Freigabe";
+			var text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
+			var type = "Kartensatz-Freigabe";
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
@@ -770,7 +798,7 @@ Template.cardsetPublicateForm.events({
 		$('#publicateModal').modal('hide');
 	},
 	'change #publicateKind': function () {
-		var kind          = $('#publicateKind input[name=kind]:checked').val();
+		var kind = $('#publicateKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
 	}
@@ -881,10 +909,10 @@ Template.reportCardsetForm.events({
 			var link_id;
 
 			if ($('#reportCardsetReason').val() === "Benutzer melden" || $('#reportCardsetReason').val() === "Report user") {
-				type    = "Gemeldeter Benutzer";
+				type = "Gemeldeter Benutzer";
 				link_id = this.owner;
 			} else {
-				type    = "Gemeldeter Kartensatz";
+				type = "Gemeldeter Kartensatz";
 				link_id = this._id;
 			}
 
