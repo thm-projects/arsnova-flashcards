@@ -3,7 +3,8 @@
     "errorAllFields" : "Please fill all fields.",
     "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
     "errorBigger999" : "Please choose a number less then 999",
-    "biggerNull" : "Please choose a number bigger then 0"
+    "biggerNull" : "Please choose a number bigger then 0",
+    "existingCourse" : "This entry already exists."
   },
   "intro": {
     "about": "About THMcards",
@@ -17,6 +18,7 @@
     "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
+    "carousel-header-3": "Collect badges",
     "carousel-header-3": "Collect badges",
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
@@ -501,11 +503,13 @@
     "intervall": "Define learning period",
     "notifications": "Notifications",
     "settings": "Settings",
+    "manage": "Manage college and course",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
     "front": "Front",
     "back": "Back",
+    "manageS": "College manager",
     "admin": "Admin",
     "pro": "Pro",
     "university": "Edu",
