@@ -1,9 +1,8 @@
-import {Meteor} from 'meteor/meteor';
-import {Tracker} from 'meteor/tracker';
-import {Categories} from '../../api/categories.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Colleges_Courses} from '../../api/colleges_courses.js';
+import {Meteor} from "meteor/meteor";
+import {Categories} from "../../api/categories.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Colleges_Courses} from "../../api/colleges_courses.js";
 
 
 Meteor.subscribe("colleges_courses");

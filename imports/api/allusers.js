@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets.js";
 
 if (Meteor.isServer) {

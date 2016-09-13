@@ -1,5 +1,5 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 
 export const Course = new Mongo.Collection("course");
 

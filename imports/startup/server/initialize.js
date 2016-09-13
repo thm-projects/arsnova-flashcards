@@ -1,7 +1,7 @@
-import {Meteor} from 'meteor/meteor';
-import {Categories} from '../../api/categories.js';
-import {Badges} from '../../api/badges.js';
-import {AdminSettings} from '../../api/adminSettings';
+import {Meteor} from "meteor/meteor";
+import {Categories} from "../../api/categories.js";
+import {Badges} from "../../api/badges.js";
+import {AdminSettings} from "../../api/adminSettings";
 import {Colleges_Courses} from "../../api/colleges_courses.js";
 
 Meteor.startup(function () {

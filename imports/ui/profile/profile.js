@@ -1,23 +1,20 @@
 //------------------------ IMPORTS
 
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Experience} from '../../api/experience.js';
-import {Badges} from '../../api/badges.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {Notifications} from '../../api/notifications.js';
-import {AdminSettings} from '../../api/adminSettings';
-
-import {userData} from '../../api/userdata.js';
-
-import './profile.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Experience} from "../../api/experience.js";
+import {Badges} from "../../api/badges.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {Notifications} from "../../api/notifications.js";
+import {AdminSettings} from "../../api/adminSettings";
+import {userData} from "../../api/userdata.js";
+import "./profile.html";
 
 
 Meteor.subscribe("experience");
@@ -727,7 +724,6 @@ export function getDays3() {
 }
 
 
-
 Template.profileXp.helpers({
 	getDays1: getDays1,
 	getDays2: getDays2,
@@ -948,10 +944,9 @@ Template.profileXp.events({
 		if (backgroundColorBox2 >= 7) {
 			backgroundColorBox2 = 0;
 		}
-		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
+		$('#well' + backgroundColorBox2).css("background-color", "lightgreen");
 	}, 500)
 });
-
 
 
 /**

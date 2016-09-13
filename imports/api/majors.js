@@ -1,4 +1,4 @@
-import {Meteor} from 'meteor/meteor';
+import {Meteor} from "meteor/meteor";
 
 export const Majors = new TAPi18n.Collection("majors");
 

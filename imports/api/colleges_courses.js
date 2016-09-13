@@ -19,6 +19,16 @@ Meteor.methods({
 			"course": course
 
 		});
+	},
+	"deleteColleges_Courses": function (college, course) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Colleges_Courses.remove({
+			"college": college,
+			"course": course
+
+		});
 	}
 
 });

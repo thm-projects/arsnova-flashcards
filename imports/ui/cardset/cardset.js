@@ -1,20 +1,17 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {ReactiveVar} from 'meteor/reactive-var';
-
-import '../card/card.js';
-import '../learn/box.js';
-import '../learn/memo.js';
-
-import './cardset.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {ReactiveVar} from "meteor/reactive-var";
+import "../card/card.js";
+import "../learn/box.js";
+import "../learn/memo.js";
+import "./cardset.html";
 
 
 Meteor.subscribe("cardsets");
@@ -71,18 +68,18 @@ Template.cardset.helpers({
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		/*
-		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId = previousCategory.toString();
+		 var previousCategory = Cardsets.findOne(id).category;
+		 var categoryId = previousCategory.toString();
 
-		if (categoryId.length === 1) {
-			categoryId = "0" + categoryId;
-		}
+		 if (categoryId.length === 1) {
+		 categoryId = "0" + categoryId;
+		 }
 
-		var category = Categories.findOne(categoryId);
-		if (category !== undefined) {
-			Session.set('previousCategoryName', category.name);
-		}
-		*/
+		 var category = Categories.findOne(categoryId);
+		 if (category !== undefined) {
+		 Session.set('previousCategoryName', category.name);
+		 }
+		 */
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
