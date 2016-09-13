@@ -228,12 +228,9 @@ AppController = RouteController.extend({
 });
 Template.boxSide.onRendered(function() {
 	$(function(){
-		var box1 = Learned.find({}).count();
-		console.log(Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			box: 1
-		}).count());
+		var box1 = Learned.find({box: 1}).fetch().length;
+		setTimeout(console.log(box1),6000);
+
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
