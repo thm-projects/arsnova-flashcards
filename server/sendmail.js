@@ -11,15 +11,14 @@ export class MailNotifier {
         SyncedCron.add({
             name: id,
             schedule: function(parser) {
-               //return parser.recur().on('10:00:00').time();
-                return parser.recur().every().minute(1);
+               return parser.recur().on('01:00:00').time();
             },
             job: function() {
                 Email.send({
                     from: details.details.from,
                     to: details.details.to,
                     subject: details.details.subject,
-                    html: details.details.html
+                    text: details.details.text
                 });
                 FutureTasks.remove(id);
                 SyncedCron.remove(id);

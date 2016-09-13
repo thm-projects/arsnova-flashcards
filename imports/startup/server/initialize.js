@@ -238,6 +238,7 @@ Meteor.startup(function () {
 			}
 		}
 	}
+
 	const mailAgent = new MailNotifier();
 	let mails = "";
 
@@ -254,15 +255,23 @@ Meteor.startup(function () {
 		let content = "";
 
 		courses.forEach(function (item) {
-			content += Cardsets.findOne({_id: item.cardset_id}).name + ", ";
+			const cardset = Cardsets.findOne({_id: item.cardset_id, mailNotification: true});
+			if (typeof cardset !== "undefined") {
+				content += cardset.name + ", ";
+			}
 		});
+
+		if (content === "") {
+			return;
+		}
+
 
 		mailAgent.addTask({
 			details : {
 				from: '',
 				to: mails,
-				subject: "Die Lernrunde läuft!",
-				html: content + "<p>Sehr geehrte Teilnehmer der aktuellen THMCards-Lernphase, <br><br>ein neuer Tag hat begonnen, Ihre Leitners-Box erwartet Sie!<br> Bitte denken Sie daran Ihren täglichen Aufgaben nachzukommen.<br><br>Ihr THMCards-Team</p>",
+				subject: "THMcards: Heute sind nur () Karten aus () Kartensets zu lernen",
+				text: "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\nein neuer Tag hat begonnen und folgende Kartensätze erwarten dich:\n\n" + content + "\n\nBitte denke daran deinen täglichen Aufgaben nachzukommen.\nIhr THMCards-Team"
 			}
 		});
 	});
