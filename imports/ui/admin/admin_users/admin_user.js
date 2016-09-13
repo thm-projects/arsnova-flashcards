@@ -14,7 +14,8 @@ import './admin_user.html';
 Meteor.subscribe('adminSettings', function () {
 	//Set the reactive session as true to indicate that the data have been loaded
 	Session.set('data_loaded', true);
-});/**
+});
+/**
  * ############################################################################
  * admin_user
  * ############################################################################
