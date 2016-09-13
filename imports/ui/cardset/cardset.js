@@ -30,9 +30,12 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+
+
 export function getActiveLearner() {
 	var data = Learned.find({box: {$gt: 1}}).fetch();
 	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
+	//console.log(Learned.find({}).fetch());
 	return (_.pluck(distinctData, "user_id").length);
 }
 
@@ -787,7 +790,6 @@ Template.cardsetPublicateForm.helpers({
 });
 
 Template.cardsetPublicateForm.events({
-
 	'click #cardsetPublicate': function (evt, tmpl) {
 		var id = this._id;
 		var kind = tmpl.find('#publicateKind > .active > input').value;
