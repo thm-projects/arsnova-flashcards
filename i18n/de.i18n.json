@@ -87,6 +87,13 @@
     "webNotificationRadio": "Browser",
     "bothRadio": "Beides"
   },
+  "confirmEndLearn-form": {
+    "title": "Lernphase beenden",
+    "warnTitle": "Sie sind im Begriff die Lernphase zu beenden!",
+    "warning": "Wenn Sie den Vorgang fortsetzen, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Wollen Sie wirklich fortfahren?",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen"
+  },
   "nav-list": {
     "category": "Kategorie",
     "created": "Erstellt",

@@ -88,6 +88,13 @@
     "webNotificationRadio": "Browser",
     "bothRadio": "Both"
   },
+  "confirmEndLearn-form": {
+    "title": "Stop Learn-Phase",
+    "warnTitle": "You are about to stop the Learn-Phase!",
+    "warning": "If you continue, the Learn-Phase will be stopped. After that, you won't be able to get any results anymore! Do you really wish to continue?",
+    "cancel": "Abort",
+    "confirm": "Continue"
+  },
   "nav-list": {
     "category": "Category",
     "created": "Created",

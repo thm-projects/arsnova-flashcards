@@ -6,6 +6,7 @@
         {{> cardsetImportForm}}
         {{> cardsetPublicateForm}}
         {{> cardsetStartLearnForm}}
+        {{> cardsetEndLearnForm}}
         {{> selectLicenseForm}}
         {{> reportCardsetForm}}
         {{onEditmodalClose this._id}}
@@ -164,7 +165,7 @@
                             class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}"
                             type="button"
                             data-toggle="modal"
-                            data-target="{{#unless learningActive}}#confirmLearnModal{{/unless}}">
+                            data-target="{{#unless learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
                         {{#if learningActive}}
                             {{_ "sidebar-nav.stopLearning"}}
                         {{else}}
@@ -220,7 +221,6 @@
     </div>
     <div class="col-md-8" id="set-details-region">
         <div>
-
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
@@ -599,6 +599,31 @@
                                 style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
                         <button id="confirmLearn" class="btn btn-success pull-right"
                                 data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>
+<template name="cardsetEndLearnForm">
+    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmEndLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                    	<h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
+                    	<p>{{_ "confirmEndLearn-form.warning"}}</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="cancelEndLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_"confirmEndLearn-form.cancel"}}</button>
+                        <button id="confirmEndLearn" class="btn btn-warning pull-right"
+                                data-dismiss="modal">{{_"confirmEndLearn-form.confirm"}}</button>
                     </div>
                 </div>
             </div>

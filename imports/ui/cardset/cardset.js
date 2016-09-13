@@ -629,11 +629,6 @@ Template.cardsetSidebar.events({
 			_id: this._id
 		});
 	},
-	"click #startStopLearning": function () {
-		if(Cardsets.findOne(this._id).learningActive) {
-			Meteor.call("deactivateLearning", this._id);
-		}
-	},
 });
 
 /**
@@ -715,7 +710,7 @@ Template.cardsetStartLearnForm.events({
 		$('#inputLearningStart').val(null);
 		$('#inputLearningEnd').val(null);
 		document.getElementById('mailNotificationRadio').checked = false;
-		document.getElementById('webNotificationRdaio').checked = false;
+		document.getElementById('webNotificationRadio').checked = false;
 		document.getElementById('bothRadio').checked = true;
 	},
 	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function() {
@@ -757,6 +752,20 @@ Template.cardsetStartLearnForm.events({
 			}
 		});
 	}
+});
+
+/**
+ * ############################################################################
+ * cardsetImportForm
+ * ############################################################################
+ */
+
+Template.cardsetEndLearnForm.events({
+	"click #confirmEndLearn": function() {
+		if(Cardsets.findOne(this._id).learningActive) {
+			Meteor.call("deactivateLearning", this._id);
+		}
+	},
 });
 
 /**
