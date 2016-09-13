@@ -129,6 +129,12 @@ var CardsetsSchema = new SimpleSchema({
 	},
 	learningInterval: {
 		type: [Number]
+	},
+	mailNotification: {
+		type: Boolean
+	},
+	webNotification: {
+		type: Boolean
 	}
 });
 
@@ -233,7 +239,7 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLearning: function (id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval) {
+	activateLearning: function (id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
 		if(!maxCards) {
 			maxCards = 0;
 		}
@@ -265,7 +271,9 @@ Meteor.methods({
 				maxOverrun: maxOverrun,
 				learningStart: learningStart,
 				learningEnd: learningEnd,
-				learningInterval: learningInterval
+				learningInterval: learningInterval,
+				mailNotification: mailNotification,
+				webNotification: webNotification
 			}
 		});
         	Meteor.call("activateLerningPeriod", id);

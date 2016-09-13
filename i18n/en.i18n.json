@@ -82,7 +82,11 @@
     "learningEnd": "End of Learning-Phase",
     "learningEndDesc": "In 3 months",
     "learningInterval": "Interval",
-    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically."
+    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically.",
+    "notification": "Notifications",
+    "mailNotificationRadio": "E-Mail",
+    "webNotificationRadio": "Browser",
+    "bothRadio": "Both"
   },
   "nav-list": {
     "category": "Category",

@@ -641,6 +641,51 @@ Template.cardsetSidebar.events({
  * cardsetStartLearnForm
  * ############################################################################
  */
+Template.cardsetStartLearnForm.onRendered(function () {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+	if(dd<10){
+		dd='0'+dd;
+	}
+	if(mm<10){
+		mm='0'+mm;
+	}
+	today = yyyy + "-" + mm + "-" + dd;
+
+	var tomorrow = new Date();
+	tomorrow.setDate(tomorrow.getDate()+7);
+	var tdd = tomorrow.getDate();
+	var tmm = tomorrow.getMonth()+1; //January is 0!
+	var tyyyy = tomorrow.getFullYear();
+	if(tdd<10){
+		tdd = '0' + tdd;
+	}
+	if(tmm<10){
+		tmm = '0' + tmm;
+	}
+	tomorrow = tyyyy + "-" + tmm + "-" + tdd;
+
+	var def = new Date();
+	def.setMonth(def.getMonth()+3);
+	var ddd = def.getDate();
+	var dmm = def.getMonth()+1; //January is 0!
+	var dyyyy = def.getFullYear();
+	if(ddd<10){
+		ddd = '0' + ddd;
+	}
+	if(dmm<10){
+		dmm = '0' + dmm;
+	}
+	def = dyyyy + "-" + dmm + "-" + ddd;
+
+	document.getElementById('inputLearningStart').setAttribute("min", today);
+	$('#inputLearningStart').val(today);
+	document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+	$('#inputLearningEnd').val(def);
+});
+
 Template.cardsetStartLearnForm.events({
 	"click #confirmLearn": function() {
 		if(!Cardsets.findOne(this._id).learningActive) {
@@ -654,8 +699,24 @@ Template.cardsetStartLearnForm.events({
 			learningInterval[2] = $('#inputLearningInterval3').val();
 			learningInterval[3] = $('#inputLearningInterval4').val();
 			learningInterval[4] = $('#inputLearningInterval5').val();
-			Meteor.call("activateLearning", this._id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval);
+
+			var mailNotification = document.getElementById('mailNotificationRadio').checked;
+			var webNotification = document.getElementById('webNotificationRadio').checked;
+			if(!mailNotification && !webNotification) {
+				mailNotification = true;
+				webNotification = true;
+			}
+			Meteor.call("activateLearning", this._id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
 		}
+	},
+	"click #cancelLearn": function() {
+		$('#inputMaxCards').val(null);
+		$('#inputMaxOverrun').val(null);
+		$('#inputLearningStart').val(null);
+		$('#inputLearningEnd').val(null);
+		document.getElementById('mailNotificationRadio').checked = false;
+		document.getElementById('webNotificationRdaio').checked = false;
+		document.getElementById('bothRadio').checked = true;
 	},
 	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function() {
 		var error = false;
@@ -676,12 +737,6 @@ Template.cardsetStartLearnForm.events({
 				$('#errorInputLearningInterval').html('');
 			}
 		}
-	},
-	"focus #inputLearningStart": function() {
-		$('#inputLearningStart').datepicker();
-	},
-	"focus #inputLearningEnd": function() {
-		$('#inputLearningEnd').datepicker();
 	},
 	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;

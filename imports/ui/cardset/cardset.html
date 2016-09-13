@@ -102,7 +102,7 @@
                     <div class="btn-group">
                         <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                        "sidebar-nav.publicate"}}: {{getStatus}}</button>
                         <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
                             <i class="fa fa-question"></i></button>
@@ -160,7 +160,9 @@
         {{#if isOwner}}
             {{#if isInRole 'lecturer'}}
                 <div class="well well-sm sidebar-nav">
-                    <button id="startStopLearning" class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}" type="button"
+                    <button id="startStopLearning"
+                            class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                            type="button"
                             data-toggle="modal"
                             data-target="{{#unless learningActive}}#confirmLearnModal{{/unless}}">
                         {{#if learningActive}}
@@ -474,7 +476,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
                     "modal-dialog.delete"}}</button>
                     <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
@@ -519,14 +521,14 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
                             <div class="col-md-9">
-                                <input type="date" min="1" class="form-control" id="inputLearningStart"
+                                <input type="date" class="form-control" id="inputLearningStart"
                                        placeholder="{{_ "confirmLearn-form.learningStartDesc"}}" value="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
                             <div class="col-md-9">
-                                <input type="date" min="1" class="form-control" id="inputLearningEnd"
+                                <input type="date" class="form-control" id="inputLearningEnd"
                                        placeholder="{{_ "confirmLearn-form.learningEndDesc"}}" value="">
                             </div>
                         </div>
@@ -537,25 +539,25 @@
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval1"
                                        placeholder="1" value="1">
-			    </div>
+                            </div>
                             <div class="col-md-2">
-				<input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval2"
                                        placeholder="3" value="3">
-			    </div>
+                            </div>
                             <div class="col-md-2">
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval3"
                                        placeholder="7" value="7">
-			    </div>
+                            </div>
                             <div class="col-md-2">
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval4"
                                        placeholder="28" value="28">
-			    </div>
+                            </div>
                             <div class="col-md-2">
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
@@ -563,20 +565,45 @@
                                        placeholder="84" value="84">
                             </div>
                             <div class="col-md-12">
-                            	<span id="errorInputLearningInterval" class="help-block name"></span>
+                                <span id="errorInputLearningInterval" class="help-block name"></span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_"confirmLearn-form.notification"}}</label>
+                            <form>
+                                <fieldset>
+                                    <div class="col-md-4">
+                                        <div class="col-md-4">
+                                            <input type="radio" name="notification" id="mailNotificationRadio">
+                                            <label for="mailNotificationRadio">{{_ "confirmLearn-form.mailNotificationRadio"}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    	<div class="col-md-4">
+                                            <input type="radio" name="notification" id="webNotificationRadio">
+                                            <label for="webNotificationRadio">{{_ "confirmLearn-form.webNotificationRadio"}}</label>
+      					</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    	<div class="col-md-4">
+                                            <input type="radio" name="notification" id="bothRadio" checked>
+                                            <label for="bothRadio">{{_ "confirmLearn-form.bothRadio"}}</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-		    <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
-                            style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
-                    <button id="confirmLearn" class="btn btn-success pull-right" data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
+                    <div class="modal-footer">
+                        <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
+                        <button id="confirmLearn" class="btn btn-success pull-right"
+                                data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<!-- /form group -->
+    </div><!-- /form group -->
 </template>
 
 <template name="cardsetConfirmForm">
