@@ -1,7 +1,6 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {Cardsets} from './cardsets.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
 
 export const Learned = new Mongo.Collection("learned");
 

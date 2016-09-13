@@ -1,6 +1,6 @@
-import {Meteor} from 'meteor/meteor';
-import {Cardsets} from './cardsets.js';
-import {Cards} from './cards.js';
+import {Meteor} from "meteor/meteor";
+import {Cardsets} from "./cardsets.js";
+import {Cards} from "./cards.js";
 
 Meteor.methods({
 	parseUpload: function (data, cardset_id) {

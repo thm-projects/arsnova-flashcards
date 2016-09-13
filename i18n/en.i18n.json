@@ -1,9 +1,9 @@
 {
-  "admin-intervall":{
-    "errorAllFields" : "Please fill all fields.",
-    "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
-    "errorBigger999" : "Please choose a number less then 999",
-    "biggerNull" : "Please choose a number bigger then 0"
+  "admin-intervall": {
+    "errorAllFields": "Please fill all fields.",
+    "errorBiggerThan": "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
+    "errorBigger999": "Please choose a number less then 999",
+    "biggerNull": "Please choose a number bigger then 0"
   },
   "intro": {
     "about": "About THMcards",
@@ -271,7 +271,7 @@
     "yesterday": "Yesterday",
     "twoDaysAgo": "Two days ago",
     "day": "day",
-    "day_plural" : "days",
+    "day_plural": "days",
     "reset": "Reset",
     "default1": "default 7 days",
     "default2": "default 30 days",

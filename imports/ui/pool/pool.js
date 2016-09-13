@@ -1,17 +1,15 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Authors} from '../../api/authors.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Categories} from '../../api/categories.js';
-import {Disciplines} from '../../api/disciplines.js';
-import {Majors} from '../../api/majors.js';
-import {Modules} from '../../api/modules.js';
-
-import './pool.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Authors} from "../../api/authors.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Categories} from "../../api/categories.js";
+import {Disciplines} from "../../api/disciplines.js";
+import {Majors} from "../../api/majors.js";
+import {Modules} from "../../api/modules.js";
+import "./pool.html";
 
 var ITEMS_INCREMENT = 20;
 Session.setDefault('itemsLimit', ITEMS_INCREMENT);

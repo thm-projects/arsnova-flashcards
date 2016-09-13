@@ -1,9 +1,8 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-
-import './welcome.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import "./welcome.html";
 
 //------------------------ LOGIN EVENT
 

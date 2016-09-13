@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-
-import './box.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import "./box.html";
 
 
 Meteor.subscribe("cardsets");
@@ -244,7 +242,7 @@ Template.boxSide.onRendered(function () {
 				text: 'Lernfortschritt'
 			},
 			xAxis: {
-				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5','Gelernt']
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
 			},
 			yAxis: {
 				min: 0,
@@ -257,24 +255,25 @@ Template.boxSide.onRendered(function () {
 			},
 			plotOptions: {
 				series: {
+					name: "Lernstand",
 					stacking: 'normal'
 				}
 			},
 			series: [{
 				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
 			}/*, {
-				name: 'Javascript',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Git',
-				data: [3, 4, 4, 2, 5]
-			}, {
-				name: 'Websocket',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Usability',
-				data: [2, 2, 3, 2, 5]
-			}*/]
+			 name: 'Javascript',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Git',
+			 data: [3, 4, 4, 2, 5]
+			 }, {
+			 name: 'Websocket',
+			 data: [2, 2, 3, 2, 5]
+			 }, {
+			 name: 'Usability',
+			 data: [2, 2, 3, 2, 5]
+			 }*/]
 		});
 	});
 });
