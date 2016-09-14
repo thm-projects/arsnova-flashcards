@@ -172,7 +172,6 @@ Template.cardsets.events({
 		}
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
-			$('#newSetCategory').val() !== "" &&
 			$('#newSetModulLong').val() !== "" &&
 			$('#newSetModulShort').val() !== "" &&
 			$('#newSetModulNum').val() !== "" &&

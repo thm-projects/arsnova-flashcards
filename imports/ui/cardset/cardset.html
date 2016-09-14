@@ -70,9 +70,9 @@
                         <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                         <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
-                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
-                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.module}}
+                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.moduleToken}}
+                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.moduleNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
                         <br><strong>{{_ "cardset.info.author"}}:</strong>
@@ -400,7 +400,7 @@
                                        for="editSetModulLong">{{_ "modal-dialog.modulLong"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulLong"
-                                           value="{{modulLong}}">
+                                           value="{{module}}">
                                     <span id="helpEditSetModulLong" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -410,7 +410,7 @@
                                        for="editSetModulShort">{{_ "modal-dialog.modulShort"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulShort"
-                                           value="{{modulShort}}">
+                                           value="{{moduleToken}}">
                                     <span id="helpEditSetModulShort" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -420,7 +420,7 @@
                                        for="editSetModulNum">{{_ "modal-dialog.modulNum"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulNum"
-                                           value="{{modulNum}}">
+                                           value="{{moduleNum}}">
                                     <span id="helpEditSetModulNum" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
