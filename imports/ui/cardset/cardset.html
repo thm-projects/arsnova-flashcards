@@ -117,11 +117,18 @@
                         <ul class="dropdown-menu">
                             <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
                                     class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                            <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_
-                                    "sidebar-nav.exportcard"}}</a></li>
+                            <li><a href="#" id="exportCardsBtn"><i
+                                    class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                         </ul>
                     </div>
-
+                    <div class="btn-group">
+                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#publicateModal" {{isDisabled}}><i
+                                class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
+                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
+                            <i class="fa fa-question"></i></button>
+                    </div>
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
@@ -182,8 +189,8 @@
                         <div class="">
                             <div class="">
                                 <div id="payment-form"></div>
-                                <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">{{_
-                                        "cardset.money.buy"}} {{price}}€
+                                <button id="buyCardsetBtn" type="submit"
+                                        class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€
                                 </button>
                                 <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
                                    class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
@@ -374,8 +381,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group setdetails name">
-                            <label id="editSetNameLabel" class="col-md-3 control-label" for="editSetName">{{_
-                                    "modal-dialog.name"}}</label>
+                            <label id="editSetNameLabel" class="col-md-3 control-label"
+                                   for="editSetName">{{_ "modal-dialog.name"}}</label>
                             <div class="col-md-9">
                                 <input class="form-control" type="text" id="editSetName" value="{{name}}">
                                 <span id="helpEditSetName" class="help-block name"></span>
@@ -480,10 +487,10 @@
                     <br/>
                     <hr/>
 
-                    <button id="cardDelete" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                            "confirm-form.title"}}</button>
-                    <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="cardDelete" class="btn btn-danger btn-setDelete"
+                            style="width:150px">{{_ "confirm-form.title"}}</button>
+                    <button id="cardCancel" class="btn btn-default pull-right"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -540,8 +547,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="newSetDescription">{{_
-                                    "modal-dialog.kind"}}</label>
+                            <label class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
                             <div class="controls col-md-9">
                                 <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0"
@@ -577,8 +584,8 @@
                         </div>
                         {{#if kindWithPrice}}
                             <div class="form-group">
-                                <label id="publicatePriceLabel" class="col-md-3 control-label" for="publicatePrice">{{_
-                                        "modal-dialog.price"}} (€)</label>
+                                <label id="publicatePriceLabel" class="col-md-3 control-label"
+                                       for="publicatePrice">{{_ "modal-dialog.price"}} (€)</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
                                         <select id="publicatePrice" class="form-control">
@@ -600,10 +607,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardsetCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                    <button id="cardsetPublicate" class="btn btn-info pull-success">{{_
-                            "modal-dialog.publicate"}}</button>
+                    <button id="cardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="cardsetPublicate"
+                            class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -625,8 +632,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label id="modulesLabel" class="col-md-3 control-label" for="newSetDescription">{{_
-                                    "modal-dialog.modules"}}</label>
+                            <label id="modulesLabel" class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
                             <div class="controls col-md-9">
                                 <div id="cc-modules" class="btn-group" data-toggle="buttons">
                                     <label id="cc-option0"
@@ -673,8 +680,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="licenseCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="licenseCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="licenseSave" class="btn btn-info pull-success">{{_ "modal-dialog.saveLicense"}}</button>
                 </div>
             </div>
@@ -729,8 +736,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="reportCardsetCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="reportCardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
                 </div>
             </div>
