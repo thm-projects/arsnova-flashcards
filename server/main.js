@@ -4,6 +4,7 @@ import '../imports/startup/server/initialize.js';
 
 // DATABASE ------------------------------------------------------
 import '../imports/api/authors.js';
+import '../imports/api/cardset.js';
 import '../imports/api/cardsets.js';
 import '../imports/api/categories.js';
 import '../imports/api/cards.js';

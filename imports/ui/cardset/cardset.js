@@ -629,11 +629,11 @@ Template.cardsetSidebar.events({
 			_id: this._id
 		});
 	},
-	'click #exportCSV': function () {
+	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;
 		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
 		var hiddenElement = document.createElement('a');
-		Meteor.call("getCSVContent", cardset_id, Meteor.userId(), function (error, result) {
+		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
 			}

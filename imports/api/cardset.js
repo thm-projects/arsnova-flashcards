@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {Learned} from './learned.js';
 
 Meteor.methods({
-	getCSVContent: function (cardset_id, id) {
+	getCSVExport: function (cardset_id, id) {
 		if (Roles.userIsInRole(id, 'lecturer')) {
 			var colSep = ";"; // Separates columns
 			var newLine = "\r\n"; //Adds a new line
