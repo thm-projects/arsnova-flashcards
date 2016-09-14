@@ -7,8 +7,6 @@ import {Cardsets} from '../../api/cardsets.js';
 import {Categories} from '../../api/categories.js';
 import {Disciplines} from '../../api/disciplines.js';
 import {Majors} from '../../api/majors.js';
-import {Modules} from '../../api/modules.js';
-import {getActiveLearner} from '../../ui/cardset/cardset.js';
 import {Colleges_Courses} from '../../api/colleges_courses.js';
 import "./pool.html";
 

@@ -103,6 +103,8 @@
     "learned": "Learned"
   },
   "set-list": {
+    "name": "Name",
+    "category": "Category",
     "description": "Description",
     "module": "Module",
     "license": "License",
