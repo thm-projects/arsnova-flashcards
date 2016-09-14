@@ -266,11 +266,10 @@ Template.boxEnd.events({
  */
 
 AppController = RouteController.extend({
-	layoutTemplate: 'adminLayout'
+	layoutTemplate: 'appLayout5'
 });
 
-
-Template.admin_dashboard.onRendered(function () {
+Template.boxSide.onRendered(function () {
 	var self = this;
 	self.subscribe("learned", function () {
 		self.autorun(function () {
@@ -278,3 +277,4 @@ Template.admin_dashboard.onRendered(function () {
 		});
 	});
 });
+

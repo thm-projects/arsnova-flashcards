@@ -9,7 +9,6 @@ import "./admin_cardsets/admin_cardsets.js";
 import "./admin_cards/admin_cards.js";
 import "./admin_users/admin_users.js";
 import "./admin_notifications/admin_notifications.js";
-import "./admin_settings/admin_settings.js";
 
 
 Meteor.subscribe("notifications");
