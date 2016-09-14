@@ -29,6 +29,21 @@ Meteor.methods({
 			"course": course
 
 		});
+	},
+	"editColleges_Courses": function (college, course, newCollege, newCourse) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Colleges_Courses.update({
+			"college": college,
+			"course": course
+		},{
+			$set: {
+				"college": newCollege,
+				"course": newCourse
+			}
+		}
+		);
 	}
 
 });

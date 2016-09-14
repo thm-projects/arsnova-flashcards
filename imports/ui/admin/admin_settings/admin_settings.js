@@ -19,7 +19,7 @@ Template.admin_settings.helpers({
 	}
 
 });
-
+/*
 Template.admin_settings.rendered = function () {
 	var collegeA = [];
 	var amount = console.log(Colleges_Courses.find().count());
@@ -30,7 +30,7 @@ Template.admin_settings.rendered = function () {
 		//console.log(collegeA[i]);
 	}
 	$("#collegeTable").dataTable();
-};
+};*/
 
 function addCollegeAndCourse() {
 	var college = document.getElementById("college").value;
@@ -44,20 +44,20 @@ function addCollegeAndCourse() {
 	} else {
 		if (Colleges_Courses.findOne({college: college})) {
 			//Hochschule existiert
-			console.log("Hochschule existiert");
+			//console.log("Hochschule existiert");
 			const regexp = new RegExp(course, "i");
 			var countEverything = Colleges_Courses.find({college: college, course: {$in: [regexp]}}).count();
 			if (countEverything > 0) {
 				Bert.alert(TAPi18n.__('admin-intervall.existingCourse'), 'danger', 'growl-bottom-right');
 			} else {
-				console.log(Colleges_Courses.findOne({college: college}).course.toLowerCase());
+				//console.log(Colleges_Courses.findOne({college: college}).course.toLowerCase());
 				Meteor.call("updateColleges_Coursess", college, course);
 				document.getElementById("newEntry").reset();
 				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 			}
 		} else {
 			//Hochschule existiert noch nicht
-			console.log("Hoschule existiert nicht");
+			//console.log("Hoschule existiert nicht");
 			Meteor.call("updateColleges_Coursess", college, course);
 			document.getElementById("newEntry").reset();
 			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
@@ -83,7 +83,9 @@ Template.admin_settings.events({
 	'click #editCollageCourse': function () {
 		document.getElementById("college").value = this.college;
 		document.getElementById("courseOfStudies").value = this.course;
-		Meteor.call("deleteColleges_Courses", this.college, this.course);
+		var newCollege = document.getElementById("college").value;
+		var newCourse = document.getElementById("courseOfStudies").value;
+		Meteor.call("editColleges_Courses", this.college, this.course, newCollege, newCourse);
 	},
 	'click #insertButton': function () {
 		addCollegeAndCourse();

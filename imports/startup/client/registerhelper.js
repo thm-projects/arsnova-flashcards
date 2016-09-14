@@ -74,7 +74,9 @@ Template.registerHelper("getCategories", function () {
 
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return Colleges_Courses.find();
+	return _.uniq(Colleges_Courses.find().fetch(), function (item) {
+		return item.course;
+	});
 });
 
 //Returns all Colleges
