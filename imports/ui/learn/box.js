@@ -31,39 +31,32 @@ export function drawGraph() {
 		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
 		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
 		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
+		//[Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
-		$('#container').highcharts({
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Lernfortschritt'
-			},
-			xAxis: {
-				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: 'Karten pro Satz'
-				}
-			},
-			legend: {
-				reversed: true
-			},
-			plotOptions: {
-				series: {
-					name: "Lernstand",
-					stacking: 'normal'
-				}
-			},
-			series: [{
-				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
-			}]
 
+		var data = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+
+		var data = {
+				labels: ["Fach 1","Fach 2","Fach 3","Fach 4","Fach 5","Gelernt"],
+				datasets: [
+					{
+						fillColor: "rgba(242,169,0,0.5)",
+						strokeColor: "rgba(74,92,102,0.2)",
+						pointColor: "rgba(220,220,220,1)",
+						pointStrokeColor: "#fff",
+						data: data
+					}
+				]
+			}
+		var ctx = document.getElementById("boxChart").getContext("2d");
+		var myNewChart = new Chart(ctx).Bar(data,
+
+		{
+			responsive: true
 		});
 	}
 }
+
 
 
 /**
@@ -265,9 +258,6 @@ Template.boxEnd.events({
  * ############################################################################
  */
 
-AppController = RouteController.extend({
-	layoutTemplate: 'appLayout5'
-});
 
 Template.boxSide.onRendered(function () {
 	var self = this;

@@ -536,6 +536,7 @@
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
   "admin": {
+    "allLearnedCardsets": "Alle gelernten Kartensätze",
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
     "cards": "Karten",

@@ -26,35 +26,30 @@ export function drawGraph() {
 		var box4 = Learned.find({box: 4}).fetch().length;
 		var box5 = Learned.find({box: 5}).fetch().length;
 		var box6 = Learned.find({box: 6}).fetch().length;
-		$('#container').highcharts({
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Lernfortschritt'
-			},
-			xAxis: {
-				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
-			},
-			yAxis: {
-				min: 0,
+
+		var data = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+
+		var data = {
+			labels: ["Fach 1","Fach 2","Fach 3","Fach 4","Fach 5","Gelernt"],
+			datasets: [
+				{
+					fillColor: "rgba(242,169,0,0.5)",
+					strokeColor: "rgba(74,92,102,0.2)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					data: data
+				}
+			]
+		}
+		var ctx = document.getElementById("adminChart").getContext("2d");
+		var myNewChart = new Chart(ctx).Bar(data,
+			{
+				responsive: true,
 				title: {
-					text: 'Karten pro Satz'
+					display: true,
+					text: 'Custom Chart Title'
 				}
-			},
-			legend: {
-				reversed: true
-			},
-			plotOptions: {
-				series: {
-					name: "Lernstand aller Kartensätze	",
-					stacking: 'normal'
-				}
-			},
-			series: [{
-				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
-			}]
-		});
+			});
 	}
 }
 
@@ -73,9 +68,6 @@ Template.admin_dashboard.helpers({
 	}
 });
 
-AppController = RouteController.extend({
-	layoutTemplate: 'adminLayout'
-});
 
 
 Template.admin_dashboard.onRendered(function () {

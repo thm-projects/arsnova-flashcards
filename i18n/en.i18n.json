@@ -534,6 +534,7 @@
   "badgetext2": "denizen",
   "badgetext3": "",
   "admin": {
+    "allLearnedCardsets": "All learned cardsets",
     "dashboard": "Dashboard",
     "cardsets": "Cardsets",
     "cards": "Cards",
