@@ -267,7 +267,7 @@ Meteor.startup(function () {
 
 
 		mailAgent.addTask({
-			details : {
+			details: {
 				from: '',
 				to: mails,
 				subject: "THMcards: Heute sind nur () Karten aus () Kartensets zu lernen",
