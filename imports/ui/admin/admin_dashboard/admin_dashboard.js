@@ -27,7 +27,7 @@ export function drawGraph() {
 		var box5 = Learned.find({box: 5}).fetch().length;
 		var box6 = Learned.find({box: 6}).fetch().length;
 
-		var data = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
 			labels: ["Fach 1","Fach 2","Fach 3","Fach 4","Fach 5","Gelernt"],
@@ -37,10 +37,10 @@ export function drawGraph() {
 					strokeColor: "rgba(74,92,102,0.2)",
 					pointColor: "rgba(220,220,220,1)",
 					pointStrokeColor: "#fff",
-					data: data
+					data: userData
 				}
 			]
-		}
+		};
 		var ctx = document.getElementById("adminChart").getContext("2d");
 		var myNewChart = new Chart(ctx).Bar(data,
 			{

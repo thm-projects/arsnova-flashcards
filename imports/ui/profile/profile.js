@@ -30,17 +30,16 @@ Meteor.subscribe('learned', function () {
 
 export function drawGraph() {
 	if (Session.get('data_loaded')) {
-		var card_id = Router.current().params._id;
 		var user_id =  Meteor.userId();
 
-		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
-		var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
-		var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
-		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
-		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
-		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
+		var box1 = Learned.find({user_id: user_id, box: 1}).fetch().length;
+		var box2 = Learned.find({user_id: user_id, box: 2}).fetch().length;
+		var box3 = Learned.find({user_id: user_id, box: 3}).fetch().length;
+		var box4 = Learned.find({user_id: user_id, box: 4}).fetch().length;
+		var box5 = Learned.find({user_id: user_id, box: 5}).fetch().length;
+		var box6 = Learned.find({user_id: user_id, box: 6}).fetch().length;
 
-		var data = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
 			labels: ["Fach 1","Fach 2","Fach 3","Fach 4","Fach 5","Gelernt"],
@@ -50,11 +49,11 @@ export function drawGraph() {
 					strokeColor: "rgba(74,92,102,0.2)",
 					pointColor: "rgba(220,220,220,1)",
 					pointStrokeColor: "#fff",
-					data: data
+					data: userData
 				}
 			]
-		}
-		var ctx = document.getElementById("adminChart").getContext("2d");
+		};
+		var ctx = document.getElementById("profileChart").getContext("2d");
 		var myNewChart = new Chart(ctx).Bar(data,
 			{
 				responsive: true
@@ -1037,12 +1036,10 @@ Template.profileBadges.helpers({
 
 
 Template.profileXp.onRendered(function () {
-	Template.boxSide.onRendered(function () {
-		var self = this;
-		self.subscribe("learned", function () {
-			self.autorun(function () {
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
 				drawGraph();
 			});
-		});
 	});
 });
