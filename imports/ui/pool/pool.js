@@ -7,6 +7,8 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Categories} from "../../api/categories.js";
 import {Disciplines} from "../../api/disciplines.js";
 import {Majors} from "../../api/majors.js";
+import {Colleges_Courses} from "../../api/colleges_courses.js";
+
 import "./pool.html";
 
 var ITEMS_INCREMENT = 20;

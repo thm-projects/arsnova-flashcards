@@ -1059,6 +1059,4 @@ Template.profileXp.onRendered(function () {
 			});
 		});
 	});
-
-
 });

@@ -6,8 +6,7 @@ import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
 import {Colleges_Courses} from "../../api/colleges_courses.js";
-import {Colleges} from '../../api/colleges';
-import {Course} from '../../api/course';
+
 
 var initCategories = function () {
 	var categoryNames = [
