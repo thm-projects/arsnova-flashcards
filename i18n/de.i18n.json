@@ -1,9 +1,9 @@
 {
-  "admin-intervall":{
-    "errorAllFields" : "Bitte alle Felder ausfüllen",
-    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
-    "errorBigger999" : "Bitte wähle eine Zahl kleiner als 999",
-    "biggerNull" : "Bitte wähle eine Zahl größer als 0"
+  "admin-intervall": {
+    "errorAllFields": "Bitte alle Felder ausfüllen",
+    "errorBiggerThan": "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorBigger999": "Bitte wähle eine Zahl kleiner als 999",
+    "biggerNull": "Bitte wähle eine Zahl größer als 0"
   },
   "intro": {
     "about": "Was ist THMcards?",
@@ -72,16 +72,11 @@
     "learned": "Gelernt"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Fachbereich",
-    "description": "Beschreibung",
-    "lastName": "Nachname",
-    "moduleLong": "Modul",
-    "degree": "Akademischer Grad",
-    "discipline": "Studiengang",
-    "major": "Major",
+    "module": "Modul",
     "license": "Lizenz",
     "topic": "Thema",
+    "college": "College",
+    "course": "Kurs",
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
@@ -271,9 +266,9 @@
     "total": "Total",
     "twoDaysAgo": "Vorgestern",
     "today": "Heute",
-    "days" : "Tage",
+    "days": "Tage",
     "day": "Tag",
-    "day_plural" : "Tage",
+    "day_plural": "Tage",
     "yesterday": "Gestern",
     "month": "Wochen",
     "threemonth": "Monate",
@@ -505,6 +500,7 @@
     "users": "Benutzer",
     "intervall": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
+    "settings": "Einstellungen",
     "see_all": "Alle ansehen",
     "name": "Name",
     "kind": "Art",
@@ -563,6 +559,13 @@
         "title_all": "Alle Nachrichten löschen",
         "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
         "delete_all": "Nachrichten löschen"
+      },
+      "settings": {
+        "new_entry": "Neuer Eintrag",
+        "college": "Hochschule",
+        "course_of_studies": "Studiengang",
+        "required": "Pflichtfeld",
+        "create": "Erstellen"
       },
       "cancel": "Abbrechen"
     },
