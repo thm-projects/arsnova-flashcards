@@ -257,7 +257,7 @@ Meteor.startup(function () {
 		courses.forEach(function (item) {
 			const cardset = Cardsets.findOne({_id: item.cardset_id, mailNotification: true});
 			if (typeof cardset !== "undefined") {
-				content += cardset.name + ", ";
+				content += "- " + cardset.name + "\n";
 			}
 		});
 
@@ -271,11 +271,10 @@ Meteor.startup(function () {
 				from: '',
 				to: mails,
 				subject: "THMcards: Heute sind nur () Karten aus () Kartensets zu lernen",
-				text: "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\nein neuer Tag hat begonnen und folgende Kartensätze erwarten dich:\n\n" + content + "\n\nBitte denke daran deinen täglichen Aufgaben nachzukommen.\nIhr THMCards-Team"
+				text: "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\nein neuer Tag hat begonnen und folgende Kartensätze erwarten dich:\n\n" + content + "\nBitte denke daran deinen täglichen Aufgaben nachzukommen.\nIhr THMCards-Team"
 			}
 		});
 	});
 
 	mailAgent.startCron();
 });
-
