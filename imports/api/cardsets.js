@@ -106,12 +106,6 @@ var CardsetsSchema = new SimpleSchema({
 	studyType: {
 		type: String
 	},
-	BachelorOrMaster: {
-		type: String
-	},
-	semester: {
-		type: String
-	},
 	learningActive: {
 		type: Boolean
 	},
