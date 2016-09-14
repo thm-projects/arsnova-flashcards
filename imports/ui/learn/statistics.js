@@ -10,16 +10,6 @@
 
 import "./statistics.html";
 
-
-var AppController = RouteController.extend({
-	layoutTemplate: 'appLayout'
-});
-
-AppController.events({
-	'click [data-action=logout]': function () {
-		AccountsTemplates.logout();
-	}
-});
 Template.statistics.rendered = function () {
 	$(function () {
 		$('#container').highcharts({
