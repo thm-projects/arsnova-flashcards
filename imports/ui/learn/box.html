@@ -19,6 +19,7 @@
                     {{> boxStart}}
                 {{/if}}
             {{/if}}
+            {{> graph}}
         </div>
 
         <!-- Permission denied -->
@@ -75,13 +76,7 @@
         </div>
     </div>
 
-    <div class="template-chart">
-        <div class="well well-sm sidebar-nav">
-            <div id="container" style="min-width: 100%;
-			max-width: 100%; height: 500px; margin: 0 auto">
-            </div>
-        </div>
-    </div>
+
 </template>
 
 
@@ -110,7 +105,6 @@
 
 <!-- Mainscreen -->
 <template name="boxMain">
-
     <div class="carousel slide" id="cardCarousel">
         <div class="carousel-indicators">
             <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
@@ -162,7 +156,19 @@
         </div>
     {{/if}}
     {{> boxPictureForm}}
+
 </template>
+
+<template name="graph">
+    <div class="template-chart" style="margin-top: 50px">
+        <div class="well well-sm sidebar-nav">
+            <div id="container" style="min-width: 100%;
+			max-width: 100%; height: 500px; margin: 0 auto">
+            </div>
+        </div>
+    </div>
+</template>
+
 
 <template name="appLayout5">
     <div class="container">
@@ -199,4 +205,5 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
 </template>
