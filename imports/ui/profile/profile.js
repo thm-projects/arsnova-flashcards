@@ -15,8 +15,6 @@ import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
-//import {userData} from '../../api/userdata.js';
-
 
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
@@ -409,10 +407,10 @@ Template.profileSettings.events({
 					$('#profileSave')[0].disabled = true;
 					$('#profileCancel')[0].disabled = true;
 					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersName", name, user_id);
 					Meteor.call("updateUsersBirthName", birthname, user_id);
 					Meteor.call("updateUsersGivenName", givenname, user_id);
 					Meteor.call("updateUsersProfileState", true, user_id);
+					Meteor.call("updateUsersName", result, user_id);
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
@@ -887,7 +885,6 @@ Template.profileXp.helpers({
 		if (last === undefined) {
 			return null;
 		}
-
 		return name + " (+" + last.value + ")";
 	},
 	getLvl: function () {
@@ -917,6 +914,23 @@ Template.profileXp.helpers({
 		return res + "%";
 	}
 });
+
+function getLvl() {
+	var user = Meteor.users.findOne(Router.current().params._id);
+	if (user === undefined) {
+		return null;
+	}
+	return user.lvl;
+}
+
+function xpForLevel(level) {
+	var points = 0;
+
+	for (var i = 1; i < level; i++) {
+		points += Math.floor(i + 30 * Math.pow(2, i / 10));
+	}
+	return Math.floor(points / 4);
+}
 
 
 Template.profileXp.events({

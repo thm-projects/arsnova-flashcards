@@ -13,8 +13,8 @@
                     <p>{{_ "access-denied.reason"}}{{currentUser.blockedtext}}</p>
                     <br/>
                     <hr/>
-                    <button id="logout_access_denied_blocked" type="button" class="btn btn-default">{{_
-                    "access-denied.button"}}</button>
+                    <button id="logout_access_denied_blocked" type="button"
+                            class="btn btn-default">{{_ "access-denied.button"}}</button>
                 {{else}}
                     <p>{{_ "access-denied.text"}}</p>
                 {{/if}}
@@ -123,8 +123,8 @@
                             {{/if}}
                             <li id="notificationsBtn" class="dropdown">
                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell"></i> {{#if countNotifications}}
-                                    <span class="badge">{{countNotifications}}</span>{{/if}}
+                                    <i class="fa fa-bell"></i> {{#if countNotifications}}<span
+                                        class="badge">{{countNotifications}}</span>{{/if}}
                                 </a>
 
                                 <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">

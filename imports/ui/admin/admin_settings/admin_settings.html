@@ -1,0 +1,57 @@
+<template name="admin_settings">
+    <div class="content-header">
+        <h1>{{_ "admin.manage"}}</h1>
+    </div>
+    <div class="well well-sm">
+        <table class="table table-bordered table-hover table-striped" id="collegeTable">
+            <thead class="set-list">
+            <tr>
+                <th><span>{{_ "admin.confirm-form.settings.college"}}</span>
+                    <a class="collegedown" role="button">⇓</a>
+                    <a class="collegeup" role="button">⇑</a>
+                </th>
+                <th><span>{{_ "admin.confirm-form.settings.course_of_studies"}}</span>
+                    <a class="coursedown" role="button">⇓</a>
+                    <a class="courseup" role="button">⇑</a>
+                </th>
+                <th><span class="glyphicon glyphicon-remove"></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each allColleges}}
+                <tr>
+                    <td id="tblCollege">{{college}}</td>
+                    <td id="tblCourse">{{course}}</td>
+                    <td>
+                        <button class="btn btn-danger" type="submit" id="deleteCollageCourse">x</button>
+                        <button class="btn btn-warning" type="submit" id="editCollageCourse">edit</button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="well well-sm">
+        <h3><span>{{_ "admin.confirm-form.settings.new_entry"}}</span></h3>
+        <hr>
+        <br>
+        <div class="form-group" id="bookTemplate">
+            <form class="form-inline" id="newEntry" name="validForm">
+                <label for="text">{{_ "admin.confirm-form.settings.college"}}:</label>
+                &nbsp;&ensp;<input type="text" class="form-control" id="college" name="valid"
+                                   placeholder="{{_ "admin.confirm-form.settings.college"}}"><br><br>
+
+                <label for="text">{{_ "admin.confirm-form.settings.course_of_studies"}}:</label>
+                &nbsp;<input type="text" class="form-control" id="courseOfStudies" name="valid"
+                             placeholder="{{_ "admin.confirm-form.settings.course_of_studies"}}">
+
+                <br><br>
+
+                <input value="{{_ "admin.confirm-form.cancel"}}" type="button" id="cancelButton"
+                       class="btn btn-default btn-danger pull-left">
+                <input value="{{_ "admin.confirm-form.settings.create"}}" type="button" id="insertButton"
+                       class="btn btn-default btn-success pull-right">&ensp;
+            </form>
+        </div>
+    </div>
+</template>

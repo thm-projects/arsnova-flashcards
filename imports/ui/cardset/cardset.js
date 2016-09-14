@@ -153,6 +153,9 @@ Template.cardset.events({
 			$('#editSetModulShort').val() !== "" &&
 			$('#editSetModulNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
+			if (tmpl.find('#editSetCategory').value === undefined) {
+				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+			}
 			var description = tmpl.find('#editSetDescription').value;
 			var modulLong = tmpl.find('#editSetModulLong').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
@@ -624,6 +627,25 @@ Template.cardsetSidebar.events({
 	"click #learnMemo": function () {
 		Router.go('memo', {
 			_id: this._id
+		});
+	},
+	"click #exportCSV": function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
+			if (result) {
+				var statistics = TAPi18n.__('box_export_statistics');
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.target = '_blank';
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
+				document.body.appendChild(hiddenElement);
+				hiddenElement.click();
+			}
 		});
 	}
 });

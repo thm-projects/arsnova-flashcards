@@ -70,10 +70,13 @@ Meteor.methods({
 
 		// EF (easiness factor) is a rating for how difficult the card is.
 		// Grade: (0-2) Set reps and interval to 0, keep current EF (repeat card today)
-		//				(3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
-		//				(4-5) Reps + 1, interval is calculated using EF, increasing in time.
+		//        (3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
+		//        (4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-		var learned = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
+		var learned = Learned.findOne(learned_id),
+			ef = learned.ef,
+			reps = learned.reps,
+			nextDate = new Date();
 		var interval = 0;
 
 		if (grade < 3) {

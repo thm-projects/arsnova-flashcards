@@ -3,7 +3,8 @@
     "errorAllFields": "Please fill all fields.",
     "errorBiggerThan": "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
     "errorBigger999": "Please choose a number less then 999",
-    "biggerNull": "Please choose a number bigger then 0"
+    "biggerNull": "Please choose a number bigger then 0",
+    "existingCourse": "This entry already exists."
   },
   "intro": {
     "about": "About THMcards",
@@ -17,6 +18,7 @@
     "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
+    "carousel-header-3": "Collect badges",
     "carousel-header-3": "Collect badges",
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
@@ -72,16 +74,12 @@
     "learned": "Learned"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Category",
     "description": "Description",
-    "lastName": "Surname",
-    "moduleLong": "Module",
-    "degree": "Degree",
-    "discipline": "Discipline",
-    "major": "Major",
+    "module": "Module",
     "license": "License",
     "topic": "Topic",
+    "college": "College",
+    "course": "Course",
     "author": "Author",
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
@@ -438,8 +436,10 @@
   "permission": "Permission denied",
   "nocards": "No cards available",
   "learn": "Learn",
+  "manage": "Manage",
   "learnfile": "Leitner's learning box",
   "memo": "Memo",
+  "statistics": "Deck statistics",
   "report": "Report cardset/user",
   "meteor": "Meteor",
   "play": "Play",
@@ -479,10 +479,16 @@
   "subject3": "Box 3",
   "subject4": "Box 4",
   "subject5": "Box 5",
+  "subject6": "Box 6",
   "know": "Known",
   "notknow": "Not known",
   "box_status": "Only one card in the current box",
   "box_status_plural": "Only __count__ cards in the current box",
+  "box_export": "export learn statistics",
+  "box_export_given_name": "Given name",
+  "box_export_birth_name": "Birth name",
+  "box_export_statistics": "Statistics",
+  "box_export_mail": "E-Mail",
   "clickcart": "Click on the card to turn it",
   "choosesubject": "Choose a box on the left side",
   "carddecks": "Deck of cards",
@@ -500,11 +506,14 @@
     "users": "Users",
     "intervall": "Define learning period",
     "notifications": "Notifications",
+    "settings": "Settings",
+    "manage": "Manage college and course",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
     "front": "Front",
     "back": "Back",
+    "manageS": "College manager",
     "admin": "Admin",
     "pro": "Pro",
     "university": "Edu",
@@ -558,6 +567,13 @@
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
         "delete_all": "Delete notifications"
+      },
+      "settings": {
+        "new_entry": "New Entry",
+        "college": "University",
+        "course_of_studies": "Course of Studies",
+        "required": "Required",
+        "create": "Create"
       },
       "cancel": "Cancel"
     },
@@ -664,3 +680,4 @@
     "reason": "Reason for block: "
   }
 }
+

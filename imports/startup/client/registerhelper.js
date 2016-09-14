@@ -2,11 +2,12 @@ import {Meteor} from "meteor/meteor";
 import {Categories} from "../../api/categories.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
+import {Colleges_Courses} from "../../api/colleges_courses.js";
 import {Colleges} from "../../api/colleges.js";
-import {Course} from "../../api/course.js";
 
-Meteor.subscribe("colleges");
-Meteor.subscribe("course");
+
+Meteor.subscribe("colleges_courses");
+
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
@@ -14,6 +15,13 @@ Template.registerHelper("hasPermission", function () {
 		return this.owner === Meteor.userId() || this.visible === true || this.request === true;
 	} else {
 		return this.owner === Meteor.userId() || this.visible === true;
+	}
+});
+
+// Check if user has is lecturer
+Template.registerHelper("isLecturer", function () {
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+		return true;
 	}
 });
 
@@ -74,12 +82,16 @@ Template.registerHelper("getCategories", function () {
 
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return Course.find();
+	return _.uniq(Colleges_Courses.find().fetch(), function (item) {
+		return item.course;
+	});
 });
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
-	return Colleges.find();
+	return _.uniq(Colleges_Courses.find().fetch(), function (item) {
+		return item.college;
+	});
 });
 
 // Return the name of a College
@@ -90,7 +102,7 @@ Template.registerHelper("getCollege", function (value) {
 			id = "0" + id;
 		}
 
-		var college = Colleges.findOne(id);
+		var college = Colleges_Courses.findOne(id);
 		if (college !== undefined) {
 			return college.name;
 		}

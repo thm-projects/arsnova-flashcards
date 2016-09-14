@@ -33,7 +33,7 @@ if (Meteor.isServer) {
 	});
 }
 
-const CardsetsSchema = new SimpleSchema({
+var CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
@@ -49,9 +49,6 @@ const CardsetsSchema = new SimpleSchema({
 	owner: {
 		type: String
 	},
-	//username: {
-	//type: String
-	//},
 	visible: {
 		type: Boolean
 	},
@@ -88,16 +85,13 @@ const CardsetsSchema = new SimpleSchema({
 	userDeleted: {
 		type: Boolean
 	},
-	modulLong: {
+	module: {
 		type: String
 	},
-	modulShort: {
+	moduleToken: {
 		type: String
 	},
-	modulNum: {
-		type: String
-	},
-	lastName: {
+	moduleNum: {
 		type: String
 	},
 	degree: {
@@ -106,19 +100,10 @@ const CardsetsSchema = new SimpleSchema({
 	college: {
 		type: String
 	},
-	academicCourse: {
-		type: String
-	},
 	department: {
 		type: String
 	},
 	studyType: {
-		type: String
-	},
-	BachelorOrMaster: {
-		type: String
-	},
-	semester: {
 		type: String
 	}
 });
@@ -172,7 +157,6 @@ Meteor.methods({
 			date: new Date(),
 			dateUpdated: new Date(),
 			owner: Meteor.userId(),
-			firstName: Meteor.user().profile.name,
 			visible: visible,
 			ratings: ratings,
 			kind: kind,
@@ -184,17 +168,13 @@ Meteor.methods({
 			quantity: 0,
 			license: [],
 			userDeleted: false,
-			modulLong: modulLong,
-			modulShort: modulShort,
-			modulNum: modulNum,
-			lastName: 'undefined',
+			module: modulLong,
+			moduleToken: modulShort,
+			moduleNum: modulNum,
 			degree: nameTitle,
 			college: college,
-			academicCourse: 'undefined',
 			department: 'undefined',
-			studyType: studyType,
-			BachelorOrMaster: 'undefined',
-			semester: 'undefined'
+			studyType: studyType
 		});
 		Experience.insert({
 			type: 2,
@@ -240,9 +220,9 @@ Meteor.methods({
 				name: name,
 				description: description,
 				dateUpdated: new Date(),
-				modulLong: modulLong,
-				modulShort: modulShort,
-				modulNum: modulNum
+				module: modulLong,
+				moduleToken: modulShort,
+				moduleNum: modulNum
 			}
 		});
 	},
