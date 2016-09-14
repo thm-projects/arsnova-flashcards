@@ -1,14 +1,13 @@
 //------------------------ IMPORTS
 
-import {Meteor} from "meteor/meteor";
-import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Categories} from "../../api/categories.js";
-import {Disciplines} from "../../api/disciplines.js";
-import {Majors} from "../../api/majors.js";
-import {Colleges_Courses} from "../../api/colleges_courses.js";
-
+import {Meteor} from 'meteor/meteor';
+import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session';
+import {Cardsets} from '../../api/cardsets.js';
+import {Categories} from '../../api/categories.js';
+import {Disciplines} from '../../api/disciplines.js';
+import {Majors} from '../../api/majors.js';
+import {Colleges_Courses} from '../../api/colleges_courses.js';
 import "./pool.html";
 
 var ITEMS_INCREMENT = 20;
@@ -16,7 +15,13 @@ Session.setDefault('itemsLimit', ITEMS_INCREMENT);
 
 Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("allLearned");
+Meteor.subscribe("categories");
+Meteor.subscribe("disciplines");
+Meteor.subscribe("majors");
+Meteor.subscribe("modules");
 Meteor.subscribe("colleges_courses");
+Meteor.subscribe("allLearned");
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');

@@ -103,6 +103,8 @@
     "learned": "Learned"
   },
   "set-list": {
+    "name": "Name",
+    "category": "Category",
     "description": "Description",
     "module": "Module",
     "license": "License",
@@ -363,7 +365,8 @@
     "release": "Published",
     "deleted": "Deleted",
     "license": "License",
-    "dateUpdated": "Last updated"
+    "dateUpdated": "Last updated",
+    "activeLearners": "Active learners"
   },
   "cardset": {
     "info": {
@@ -510,7 +513,7 @@
   "subject3": "Box 3",
   "subject4": "Box 4",
   "subject5": "Box 5",
-  "subject6": "Box 6",
+  "subject6": "Learned",
   "know": "Known",
   "notknow": "Not known",
   "box_status": "Only one card in the current box",

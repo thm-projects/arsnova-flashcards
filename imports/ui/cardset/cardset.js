@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
+import {Learned} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/box.js";
@@ -16,6 +17,7 @@ import "./cardset.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
+Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
 Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
@@ -24,6 +26,14 @@ Meteor.subscribe('ratings', function () {
 Session.setDefault('cardSort', {
 	front: 1
 });
+
+
+
+export function getActiveLearner() {
+	var data = Learned.find({box: {$gt: 1}}).fetch();
+	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
+	return (_.pluck(distinctData, "user_id").length);
+}
 
 /**
  * ############################################################################
@@ -557,7 +567,8 @@ Template.cardsetInfo.helpers({
 		} else {
 			return true;
 		}
-	}
+	},
+	getActiveLearner
 });
 
 Template.cardsetInfo.events({
