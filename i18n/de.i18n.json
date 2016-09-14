@@ -100,6 +100,8 @@
     "learned": "Gelernt"
   },
   "set-list": {
+    "name": "Name",
+    "category": "Kategorie",
     "module": "Modul",
     "license": "Lizenz",
     "topic": "Thema",
@@ -382,7 +384,9 @@
       "modulShort": "Modul-Kurzname",
       "modulNum": "Modul-Nummer",
       "college": "Hochschule",
-      "studyType": "Studienfach"
+      "studyType": "Studienfach",
+      "activeLearners": "Aktive Lerner/innen",
+      "dateUpdated": "Zuletzt aktualisiert"
     },
     "request": {
       "accept": "Kartensatz freigeben",

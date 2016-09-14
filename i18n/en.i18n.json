@@ -103,6 +103,8 @@
     "learned": "Learned"
   },
   "set-list": {
+    "name": "Name",
+    "category": "Category",
     "description": "Description",
     "module": "Module",
     "license": "License",
@@ -363,7 +365,8 @@
     "release": "Published",
     "deleted": "Deleted",
     "license": "License",
-    "dateUpdated": "Last updated"
+    "dateUpdated": "Last updated",
+    "activeLearners": "Active learners"
   },
   "cardset": {
     "info": {

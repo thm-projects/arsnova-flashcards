@@ -68,16 +68,19 @@
                                 {{> starsRating id='rating' rating=0 mutable=true}}
                             {{/if}}
                             <hr>
+                            <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
+                            <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
+                            <hr>
                         {{/if}}
-                        <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                        <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.module}}
-                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.moduleToken}}
-                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.moduleNum}}
+                        <strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
+                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
-                        <br><strong>{{_ "cardset.info.author"}}:</strong>
+                        <hr>
+                        <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
                             <a href="{{pathFor 'profileOverview' _id=owner}}">{{degree}} {{firstName}} {{lastName}} </a>
                         {{else}}
