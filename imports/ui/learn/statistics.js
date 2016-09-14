@@ -7,6 +7,7 @@
  });
  }*/
 
+
 import "./statistics.html";
 
 
@@ -20,7 +21,6 @@ AppController.events({
 	}
 });
 Template.statistics.rendered = function () {
-
 	$(function () {
 		$('#container').highcharts({
 			chart: {

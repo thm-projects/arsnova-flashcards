@@ -95,8 +95,8 @@ Template.admin_cardset.helpers({
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-					return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-				}
+						return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalCardsetAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+					}
 				}
 			]
 		}
@@ -164,8 +164,7 @@ Template.admin_cardset.events({
 			if (kind === 'edu' || kind === 'pro') {
 				if (tmpl.find('#publicatePriceAdmin') !== null) {
 					price = tmpl.find('#publicatePriceAdmin').value;
-				}
-				else {
+				} else {
 					price = this.price;
 				}
 			}

@@ -478,7 +478,7 @@ Template.profileMembership.rendered = function () {
 			}
 		});
 	}
-}
+};
 
 Template.profileMembership.events({
 	"click #upgrade": function () {
@@ -517,7 +517,7 @@ Template.profileMembership.events({
 		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
 		Meteor.call("setLecturerRequest", Meteor.userId(), true);
 		Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
-	},
+	}
 });
 
 Template.profileMembership.helpers({

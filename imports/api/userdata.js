@@ -186,5 +186,5 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-	},
+	}
 });

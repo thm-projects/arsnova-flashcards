@@ -144,8 +144,7 @@ Template.admin_card.events({
 			$('#helpEditCardFrontAdmin').css('color', '#b94a48');
 			if ($('#editCardFrontAdmin').val().length > 10000) {
 				$('#helpEditCardFrontAdmin').html(TAPi18n.__('text_max'));
-			}
-			else {
+			} else {
 				$('#helpEditCardFrontAdmin').html(TAPi18n.__('admin.card.front_required'));
 			}
 		}
@@ -155,8 +154,7 @@ Template.admin_card.events({
 			$('#helpEditCardBackAdmin').css('color', '#b94a48');
 			if ($('#editCardBackAdmin').val().length > 10000) {
 				$('#helpEditCardBackAdmin').html(TAPi18n.__('text_max'));
-			}
-			else {
+			} else {
 				$('#helpEditCardBackAdmin').html(TAPi18n.__('admin.card.back_required'));
 			}
 		}
