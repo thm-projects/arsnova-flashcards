@@ -198,7 +198,16 @@ Meteor.methods({
 			degree: nameTitle,
 			college: college,
 			department: 'undefined',
-			studyType: studyType
+			studyType: studyType,
+			learningActive: false,
+			maxCards: 0,
+			daysBeforeReset: 0,
+			learningStart : 0,
+			learningEnd : 0,
+			learningInterval : [],
+			mailNotification : true,
+			webNotification : true,
+			daysBeforeReset : 0
 		});
 		Experience.insert({
 			type: 2,
