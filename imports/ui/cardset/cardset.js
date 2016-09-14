@@ -721,12 +721,12 @@ Template.cardsetStartLearnForm.events({
 			}
 		}
 		if (error) {
-			for (var j = 1; j <= 5; ++i) {
+			for (var j = 1; j <= 5; ++j) {
 				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
 				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
 			}
 		} else {
-			for (var k = 1; k <= 5; ++i) {
+			for (var k = 1; k <= 5; ++k) {
 				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
 				$('#errorInputLearningInterval').html('');
 			}
