@@ -105,6 +105,36 @@ var CardsetsSchema = new SimpleSchema({
 	},
 	studyType: {
 		type: String
+	},
+	BachelorOrMaster: {
+		type: String
+	},
+	semester: {
+		type: String
+	},
+	learningActive: {
+		type: Boolean
+	},
+	maxCards: {
+		type: Number
+	},
+	daysBeforeReset: {
+		type: Number
+	},
+	learningStart: {
+		type: Date
+	},
+	learningEnd: {
+		type: Date
+	},
+	learningInterval: {
+		type: [Number]
+	},
+	mailNotification: {
+		type: Boolean
+	},
+	webNotification: {
+		type: Boolean
 	}
 });
 
@@ -202,6 +232,53 @@ Meteor.methods({
 			cardset_id: id
 		});
 	},
+	deactivateLearning: function (id) {
+		Cardsets.update(id, {
+			$set: {
+				learningActive: false
+			}
+		});
+	},
+	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
+		if (!maxCards) {
+			maxCards = 1;
+		}
+		if (!daysBeforeReset) {
+			daysBeforeReset = 1;
+		}
+		if (!learningStart) {
+			learningStart = new Date();
+		}
+		if (!learningEnd) {
+			learningEnd = new Date();
+			var day = 1000 * 60 * 60 * 24;
+			var week = 7 * day;
+			var month = 4 * week;
+			learningEnd.setTime(learningEnd.getTime() + 3 * month);
+		}
+		if (!learningInterval) {
+			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
+		}
+		learningInterval = learningInterval.sort(
+			function (a, b) {
+				return a - b;
+			}
+		);
+		Cardsets.update(id, {
+			$set: {
+				learningActive: true,
+				maxCards: maxCards,
+				daysBeforeReset: daysBeforeReset,
+				learningStart: learningStart,
+				learningEnd: learningEnd,
+				learningInterval: learningInterval,
+				mailNotification: mailNotification,
+				webNotification: webNotification
+			}
+		});
+		Meteor.call("activateLerningPeriod", id);
+		Meteor.call("activateLerningPeriodSetEdu", id);
+	},
 	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
@@ -224,6 +301,20 @@ Meteor.methods({
 				moduleToken: modulShort,
 				moduleNum: modulNum
 			}
+		});
+	},
+	activateLerningPeriodSetEdu: function (cartset_id) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Cardsets.update({
+			_id: cartset_id
+		}, {
+			$set: {
+				kind: "edu"
+			}
+		}, {
+			multi: true
 		});
 	},
 	updateRelevance: function (cardset_id) {
