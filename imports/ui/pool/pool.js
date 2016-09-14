@@ -21,6 +21,33 @@ Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
+ * Creates a browser-popup with defined content
+ * @param title Heading for notification
+ * @param message Body of notification
+ */
+export function notification(title, message) {
+	var messageIcon = "https://git.thm.de/uploads/project/avatar/374/cards_logo.png";
+	//source: https://developer.mozilla.org/de/docs/Web/API/notification
+	if (Notification.permission === "granted") {
+		var options = {
+			body: message,
+			icon: messageIcon
+		};
+		new Notification(title, options);
+	} else if (Notification.permission !== 'denied') {
+		Notification.requestPermission(function (permission) {
+			if (permission === "granted") {
+				var options = {
+					body: message,
+					icon: messageIcon
+				};
+				new Notification(title, options);
+			}
+		});
+	}
+}
+
+/**
  * ############################################################################
  * category
  * ############################################################################
@@ -204,4 +231,12 @@ Template.category.events({
 
 Template.category.onDestroyed(function () {
 	Session.set('poolSort', {relevance: -1});
+});
+
+Template.pool.onRendered(function () {
+	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
+	for (var i = 0; i < toLearn.length; ++i)
+	{
+		notification('Aufgaben warten!', toLearn[i].studyType);
+	}
 });
