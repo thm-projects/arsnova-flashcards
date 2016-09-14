@@ -13,8 +13,10 @@ import {Majors} from '../../api/majors.js';
 import {Modules} from '../../api/modules.js';
 import {getActiveLearner} from '../../ui/cardset/cardset.js';
 import {Colleges_Courses} from '../../api/colleges_courses.js';
-
-import './pool.html';
+import {Categories} from "../../api/categories.js";
+import {Disciplines} from "../../api/disciplines.js";
+import {Majors} from "../../api/majors.js";
+import "./pool.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
@@ -95,6 +97,32 @@ Template.poolCardsetRow.helpers({
 			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 		}
 	},
+	getSortUserIcon: function () {
+		var sort = Session.get('poolSort');
+		if (sort.username === 1) {
+			return '<i class="fa fa-sort-asc"></i>';
+		} else if (sort.username === -1) {
+			return '<i class="fa fa-sort-desc"></i>';
+		}
+	},
+	getDisciplineName: function () {
+		var discipline = Disciplines.findOne({_id: this.discipline});
+		if (typeof discipline !== 'undefined') {
+			return discipline.name;
+		}
+	},
+	getCategoryToken: function () {
+		var category = Categories.findOne({_id: this.category});
+		if (typeof category !== 'undefined') {
+			return category.token;
+		}
+	},
+	getMajorToken: function () {
+		var major = Majors.findOne({_id: this.major});
+		if (typeof major !== 'undefined') {
+			return major.token;
+		}
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -131,8 +159,7 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
-	},
-	getActiveLearner: getActiveLearner
+	}
 });
 
 Template.category.events({

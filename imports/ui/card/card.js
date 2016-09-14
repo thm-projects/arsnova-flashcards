@@ -1,10 +1,9 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import './card.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import "./card.html";
 
 
 /**
@@ -127,10 +126,7 @@ Template.btnCard.events({
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: true,
-		hiddenButtons: [
-			"cmdPreview",
-			"cmdImage"
-		],
+		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
 		footer: "<p></p>",
 		onChange: function (e) {
@@ -144,25 +140,20 @@ Template.frontEditor.rendered = function () {
 			}
 		},
 		additionalButtons: [
-			[
-				{
-					name: "groupCustom",
-					data: [
-						{
-							name: 'cmdPics',
-							title: 'Image',
-							icon: 'glyphicon glyphicon-picture',
-							callback: image
-						},
-						{
-							name: "cmdTex",
-							title: "Tex",
-							icon: "glyphicon glyphicon-usd",
-							callback: tex
-						}
-					]
-				}
-			]
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'glyphicon glyphicon-picture',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "glyphicon glyphicon-usd",
+					callback: tex
+				}]
+			}]
 		]
 	});
 
@@ -199,10 +190,7 @@ Template.frontEditor.events({
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
-		hiddenButtons: [
-			"cmdPreview",
-			"cmdImage"
-		],
+		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
 		footer: "<p></p>",
 		onChange: function (e) {
@@ -216,25 +204,20 @@ Template.backEditor.rendered = function () {
 			}
 		},
 		additionalButtons: [
-			[
-				{
-					name: "groupCustom",
-					data: [
-						{
-							name: 'cmdPics',
-							title: 'Image',
-							icon: 'glyphicon glyphicon-picture',
-							callback: image
-						},
-						{
-							name: "cmdTex",
-							title: "Tex",
-							icon: "glyphicon glyphicon-usd",
-							callback: tex
-						}
-					]
-				}
-			]
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'glyphicon glyphicon-picture',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "glyphicon glyphicon-usd",
+					callback: tex
+				}]
+			}]
 		]
 	});
 	if (ActiveRoute.name('editCard')) {
@@ -260,3 +243,61 @@ Template.backEditor.events({
 		$('#helpNewBacktext').html('');
 	}
 });
+
+/**
+ * ############################################################################
+ * Functions
+ * ############################################################################
+ */
+
+function tex(e) {
+	// Give/remove ** surround the selection
+	var chunk, cursor, selected = e.getSelection(),
+		content = e.getContent();
+
+	if (selected.length === 0) {
+		// Give extra word
+		chunk = e.__localize('tex');
+	} else {
+		chunk = selected.text;
+	}
+
+	// transform selection and set the cursor into chunked text
+	if (content.substr(selected.start - 2, 2) === '$$' && content.substr(selected.end, 2) === '$$') {
+		e.setSelection(selected.start - 2, selected.end + 2);
+		e.replaceSelection(chunk);
+		cursor = selected.start - 2;
+	} else {
+		e.replaceSelection('$$' + chunk + '$$');
+		cursor = selected.start + 2;
+	}
+
+	// Set the cursor
+	e.setSelection(cursor, cursor + chunk.length);
+}
+
+function image(e) {
+	// Give ![] surround the selection and prepend the image link
+	var chunk, cursor, selected = e.getSelection(),
+		link;
+
+	if (selected.length === 0) {
+		// Give extra word
+		chunk = e.__localize('enter image description here');
+	} else {
+		chunk = selected.text;
+	}
+
+	link = prompt(e.__localize('Insert Image Hyperlink'), 'http://');
+
+	if (link !== null && link !== '' && link !== 'http://' && link.substr(0, 4) === 'http') {
+		var sanitizedLink = $('<div>' + link + '</div>').text();
+
+		// transform selection and set the cursor into chunked text
+		e.replaceSelection('![' + chunk + '](' + sanitizedLink + ')');
+		cursor = selected.start + 2;
+
+		// Set the cursor
+		e.setSelection(cursor, cursor + chunk.length);
+	}
+}

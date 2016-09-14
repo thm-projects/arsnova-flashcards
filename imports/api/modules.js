@@ -1,4 +1,4 @@
-import {Meteor} from 'meteor/meteor';
+import {Meteor} from "meteor/meteor";
 
 export const Modules = new TAPi18n.Collection("modules");
 
