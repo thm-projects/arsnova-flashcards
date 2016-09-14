@@ -130,7 +130,7 @@ Template.boxMain.events({
 		});
 
 		var selectedBox = parseInt(Session.get('selectedBox'));
-		if (selectedBox < 5) {
+		if (selectedBox < 6) {
 			Meteor.call('updateLearned', currentLearned._id, selectedBox + 1);
 		}
 
