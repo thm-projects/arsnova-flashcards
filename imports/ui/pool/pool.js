@@ -28,9 +28,7 @@ Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 export function notification(title, message) {
 	var messageIcon = "https://git.thm.de/uploads/project/avatar/374/cards_logo.png";
 	//source: https://developer.mozilla.org/de/docs/Web/API/notification
-	if (!("Notification" in window)) {
-		alert("This browser does not support desktop notification");
-	} else if (Notification.permission === "granted") {
+	if (Notification.permission === "granted") {
 		var options = {
 			body: message,
 			icon: messageIcon
