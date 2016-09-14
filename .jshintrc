@@ -44,6 +44,8 @@
     "moment": true,
     "ServiceConfiguration": true,
     "ActiveRoute": true,
-    "prompt": true
+    "prompt": true,
+    "RouteController": true,
+    "AppController": true
   }
 }
