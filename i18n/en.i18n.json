@@ -72,16 +72,12 @@
     "learned": "Learned"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Category",
     "description": "Description",
-    "lastName": "Surname",
-    "moduleLong": "Module",
-    "degree": "Degree",
-    "discipline": "Discipline",
-    "major": "Major",
+    "module": "Module",
     "license": "License",
     "topic": "Topic",
+    "college": "College",
+    "course": "Course",
     "author": "Author",
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
@@ -500,6 +496,7 @@
     "users": "Users",
     "intervall": "Define learning period",
     "notifications": "Notifications",
+    "settings": "Settings",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
@@ -558,6 +555,13 @@
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
         "delete_all": "Delete notifications"
+      },
+      "settings": {
+        "new_entry": "New Entry",
+        "college": "University",
+        "course_of_studies": "Course of Studies",
+        "required": "Required",
+        "create": "Create"
       },
       "cancel": "Cancel"
     },
@@ -664,3 +668,4 @@
     "reason": "Reason for block: "
   }
 }
+
