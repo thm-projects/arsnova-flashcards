@@ -4,29 +4,6 @@ import {Badges} from "../../api/badges.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {Colleges_Courses} from "../../api/colleges_courses.js";
 
-Meteor.startup(function () {
-	var categories = initCategories();
-	var badges = initBadges();
-	if (!Colleges_Courses.findOne({name: "THM"})) {
-		Colleges_Courses.insert({name: "THM"});
-	}
-
-	if (Categories.find().count() === 0) {
-		for (var category in categories) {
-			if (categories.hasOwnProperty(category)) {
-				Categories.insert(categories[category]);
-			}
-		}
-	}
-	if (Badges.find().count() === 0) {
-		for (var badge in badges) {
-			if (badges.hasOwnProperty(badge)) {
-				Badges.insert(badges[badge]);
-			}
-		}
-	}
-});
-
 var initCategories = function () {
 	var categoryNames = [
 		"Agricultural and Forestry Sciences",//1
@@ -225,6 +202,30 @@ var initBadges = function () {
 		}
 	}];
 };
+
+Meteor.startup(function () {
+	var categories = initCategories();
+	var badges = initBadges();
+	if (!Colleges_Courses.findOne({name: "THM"})) {
+		Colleges_Courses.insert({name: "THM"});
+	}
+
+	if (Categories.find().count() === 0) {
+		for (var category in categories) {
+			if (categories.hasOwnProperty(category)) {
+				Categories.insert(categories[category]);
+			}
+		}
+	}
+	if (Badges.find().count() === 0) {
+		for (var badge in badges) {
+			if (badges.hasOwnProperty(badge)) {
+				Badges.insert(badges[badge]);
+			}
+		}
+	}
+});
+
 
 Meteor.startup(function () {
 	var badges = initBadges();

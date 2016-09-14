@@ -123,7 +123,7 @@ Template.cardsets.events({
 		$('#newSetCourse').text(courseName);
 		tmpl.find('#newSetCourse').value = courseId;
 	},
-	'click #newSetModal .save': function (evt) {
+	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
 			$('#newSetNameLabel').css('color', '#b94a48');
 			$('#newSetName').css('border-color', '#b94a48');

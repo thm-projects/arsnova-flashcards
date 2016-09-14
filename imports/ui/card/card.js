@@ -279,7 +279,6 @@ function tex(e) {
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(),
-		content = e.getContent(),
 		link;
 
 	if (selected.length === 0) {

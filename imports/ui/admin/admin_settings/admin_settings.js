@@ -21,7 +21,7 @@ Template.admin_settings.helpers({
 });
 
 Template.admin_settings.rendered = function () {
-	var collegeA = new Array();
+	var collegeA = [];
 	var amount = console.log(Colleges_Courses.find().count());
 	//var name = document.getElementById("college").value;
 
@@ -39,7 +39,6 @@ function addCollegeAndCourse() {
 	deleteButton.setAttribute("type", "button");
 	deleteButton.setAttribute("id", "deleteRow");
 	deleteButton.setAttribute("value", "delete");
-	var delete_Button = document.getElementById("deleteRow");
 	if (college === "" || course === "") {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
 	} else {
@@ -72,7 +71,7 @@ Template.admin_settings.events({
 			addCollegeAndCourse();
 		}
 	},
-	'click #cancelButton': function (event) {
+	'click #cancelButton': function () {
 		document.getElementById("newEntry").reset();
 	},
 	'click #deleteCollageCourse': function () {
@@ -86,7 +85,7 @@ Template.admin_settings.events({
 		document.getElementById("courseOfStudies").value = this.course;
 		Meteor.call("deleteColleges_Courses", this.college, this.course);
 	},
-	'click #insertButton': function (event) {
+	'click #insertButton': function () {
 		addCollegeAndCourse();
 	}/*,
 	 'click #deleteRow': function (event) {

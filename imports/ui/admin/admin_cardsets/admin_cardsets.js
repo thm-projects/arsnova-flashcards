@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {allUsers} from "../../../api/allusers.js";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
 
@@ -44,7 +43,7 @@ Template.admin_cardsets.helpers({
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,
 				"date": date
-			})
+			});
 		});
 
 		return fields;
@@ -85,7 +84,7 @@ Template.admin_cardsets.helpers({
 					}
 				}
 			]
-		}
+		};
 	}
 });
 

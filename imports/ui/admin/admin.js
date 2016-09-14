@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/notifications.js";
-import {Settings} from "../../api/settings.js";
 import "./admin.html";
 import "./admin_dashboard/admin_dashboard.js";
 import "./admin_cardsets/admin_cardsets.js";

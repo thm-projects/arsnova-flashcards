@@ -86,7 +86,7 @@ Template.admin_user.helpers({
 				"kind": kind,
 				"dateString": dateString,
 				"date": date
-			})
+			});
 		});
 
 		return fields;
@@ -117,7 +117,7 @@ Template.admin_user.helpers({
 					}
 				}
 			]
-		}
+		};
 	},
 	'isVisible': function (id) {
 		if (Meteor.users.findOne(id)) {

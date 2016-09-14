@@ -38,7 +38,9 @@ Template.admin_cardset.helpers({
 	},
 	licenseIsActive: function (license) {
 		if (this.license !== undefined) {
-			if (this.license.includes(license)) return true;
+			if (this.license.includes(license)) {
+				return true;
+			}
 		} else {
 			return null;
 		}
@@ -99,7 +101,7 @@ Template.admin_cardset.helpers({
 					}
 				}
 			]
-		}
+		};
 	}
 });
 

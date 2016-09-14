@@ -137,7 +137,7 @@ Template.admin_card.helpers({
 });
 
 Template.admin_card.events({
-	"click #cardSaveAdmin": function (evt, tmpl) {
+	"click #cardSaveAdmin": function () {
 		if ($('#editCardFrontAdmin').val().length <= 0 ||
 			$('#editCardFrontAdmin').val().length > 10000) {
 			$('#frontAdmin .md-editor').css('border-color', '#b94a48');
@@ -267,7 +267,6 @@ function tex(e) {
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(),
-		content = e.getContent(),
 		link;
 
 	if (selected.length === 0) {

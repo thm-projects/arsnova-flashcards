@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {allUsers} from "../../../api/allusers.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_users.html";
 import "./admin_user.js";
@@ -127,7 +126,7 @@ Template.admin_users.helpers({
 					}
 				}
 			]
-		}
+		};
 	}
 });
 

@@ -1,7 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {allUsers, userData} from "../../../api/allusers.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import {Notifications} from "../../../api/notifications.js";
 import "./admin_notifications.html";
@@ -167,12 +166,12 @@ Template.admin_notifications.helpers({
 					label: TAPi18n.__('admin.delete'),
 					cellClass: 'delete',
 					sortable: false,
-					fn: function (value) {
+					fn: function () {
 						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 					}
 				}
 			]
-		}
+		};
 	},
 	lecturerMessagesListAdmin: function () {
 		var notifications = Notifications.find({
@@ -254,12 +253,12 @@ Template.admin_notifications.helpers({
 					label: TAPi18n.__('admin.delete'),
 					cellClass: 'delete',
 					sortable: false,
-					fn: function (value) {
+					fn: function () {
 						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 					}
 				}
 			]
-		}
+		};
 	},
 	sendMessagesListAdmin: function () {
 		var notifications = Notifications.find({
@@ -373,12 +372,12 @@ Template.admin_notifications.helpers({
 					label: TAPi18n.__('admin.delete'),
 					cellClass: 'delete',
 					sortable: false,
-					fn: function (value) {
+					fn: function () {
 						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 					}
 				}
 			]
-		}
+		};
 	}
 });
 

@@ -97,7 +97,7 @@ Template.cardset.helpers({
 		return this.owner === Meteor.userId() || hasRole;
 	},
 	'isLecturerAndHasRequest': function () {
-		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId())
+		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	}
 });
 
@@ -156,7 +156,6 @@ Template.cardset.events({
 			if (tmpl.find('#editSetCategory').value === undefined) {
 				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
 			}
-			var category = tmpl.find('#editSetCategory').value;
 			var description = tmpl.find('#editSetDescription').value;
 			var modulLong = tmpl.find('#editSetModulLong').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
@@ -547,7 +546,7 @@ Template.cardsetInfo.helpers({
 				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
 			}
 
-			return new Spacebars.SafeString(licenseString)
+			return new Spacebars.SafeString(licenseString);
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
@@ -732,11 +731,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 
 		$('#publicateKind > label').removeClass('active');
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind
+			return this.value === cardset.kind;
 		}).parent().addClass('active');
 
 		$('#publicateKind > label > input').filter(function () {
-			return this.value === cardset.kind
+			return this.value === cardset.kind;
 		}).prop('checked', true);
 
 		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
