@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
+import { ReactiveVar } from 'meteor/reactive-var';
 import "./box.html";
 
 
@@ -220,20 +221,24 @@ Template.boxEnd.events({
  * ############################################################################
  */
 
-
 AppController = RouteController.extend({
 	layoutTemplate: 'appLayout5'
 });
+
 Template.boxSide.onRendered(function () {
 	$(function () {
+		var card_id = Router.current().params._id;
+		var user_id =  Meteor.userId();
+
 		if (Session.get('data_loaded')) {
-			var box1 = Learned.find({box: 1}).fetch().length;
-			var box2 = Learned.find({box: 2}).fetch().length;
-			var box3 = Learned.find({box: 3}).fetch().length;
-			var box4 = Learned.find({box: 4}).fetch().length;
-			var box5 = Learned.find({box: 5}).fetch().length;
-			var box6 = Learned.find({box: 6}).fetch().length;
+			var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
+			var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
+			var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
+			var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
+			var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
+			var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
 		}
+
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
