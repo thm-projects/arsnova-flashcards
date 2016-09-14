@@ -632,13 +632,17 @@ Template.cardsetSidebar.events({
 	'click #exportCSV': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
 		Meteor.call("getCSVContent", cardset_id, Meteor.userId(), function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
 			if (result) {
 				var statistics = TAPi18n.__('box_export_statistics');
-				var hiddenElement = document.createElement('a');
-				hiddenElement.href = 'data:attachment/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
 				hiddenElement.target = '_blank';
-				hiddenElement.download = (cardset[0].name + " " + statistics + " " + new Date() + ".csv");
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
 				document.body.appendChild(hiddenElement);
 				hiddenElement.click();
 			}
