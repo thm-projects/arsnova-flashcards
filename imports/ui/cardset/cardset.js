@@ -726,6 +726,11 @@ Template.cardsetStartLearnForm.events({
 		$('#inputDaysBeforeReset').val(null);
 		$('#inputLearningStart').val(null);
 		$('#inputLearningEnd').val(null);
+		$('#inputLearningInterval1').val(1);
+		$('#inputLearningInterval2').val(3);
+		$('#inputLearningInterval3').val(7);
+		$('#inputLearningInterval4').val(28);
+		$('#inputLearningInterval5').val(84);
 		document.getElementById('mailNotificationCheckbox').checked = true;
 		document.getElementById('webNotificationCheckbox').checked = true;
 	},
