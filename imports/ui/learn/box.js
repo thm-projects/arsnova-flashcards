@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
-import { ReactiveVar } from 'meteor/reactive-var';
+//import { ReactiveVar } from 'meteor/reactive-var';
 import "./box.html";
 
 
@@ -20,6 +20,50 @@ Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
 
+export function drawGraph() {
+	var card_id = Router.current().params._id;
+	var user_id =  Meteor.userId();
+
+	if (Session.get('data_loaded')) {
+		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
+		var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
+		var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
+		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
+		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
+		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
+
+		$('#container').highcharts({
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Lernfortschritt'
+			},
+			xAxis: {
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Karten pro Satz'
+				}
+			},
+			legend: {
+				reversed: true
+			},
+			plotOptions: {
+				series: {
+					name: "Lernstand",
+					stacking: 'normal'
+				}
+			},
+			series: [{
+				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
+			}]
+
+		});
+	}
+}
 
 
 /**
@@ -226,14 +270,18 @@ AppController = RouteController.extend({
 });
 Template.boxSide.onRendered(function () {
 	$(function () {
+		var card_id = Router.current().params._id;
+		var user_id =  Meteor.userId();
+
 		if (Session.get('data_loaded')) {
-			var box1 = Learned.find({box: 1}).fetch().length;
-			var box2 = Learned.find({box: 2}).fetch().length;
-			var box3 = Learned.find({box: 3}).fetch().length;
-			var box4 = Learned.find({box: 4}).fetch().length;
-			var box5 = Learned.find({box: 5}).fetch().length;
-			var box6 = Learned.find({box: 6}).fetch().length;
+			var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
+			var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
+			var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
+			var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
+			var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
+			var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
 		}
+
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
@@ -255,6 +303,7 @@ Template.boxSide.onRendered(function () {
 			},
 			plotOptions: {
 				series: {
+					name: "Lernstand",
 					stacking: 'normal'
 				}
 			},
@@ -276,3 +325,4 @@ Template.boxSide.onRendered(function () {
 		});
 	});
 });
+
