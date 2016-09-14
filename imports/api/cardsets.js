@@ -206,7 +206,7 @@ Meteor.methods({
 			learningEnd: 0,
 			learningInterval: [],
 			mailNotification: true,
-			webNotification: true,
+			webNotification: true
 		});
 		Experience.insert({
 			type: 2,
