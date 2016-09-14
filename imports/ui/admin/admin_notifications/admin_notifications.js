@@ -1,14 +1,9 @@
-
-
-
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-import {Notifications} from '../../../api/notifications.js';
-
-import './admin_notifications.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import {Notifications} from "../../../api/notifications.js";
+import "./admin_notifications.html";
 
 /**
  * ############################################################################
@@ -604,3 +599,25 @@ Template.allNotificationsConfirmFormAdmin.events({
 		}).modal('hide');
 	}
 });
+
+/**
+ * ############################################################################
+ * function getTypeAdmin
+ * ############################################################################
+ */
+
+function getTypeAdmin(type) {
+	if (type === 'Gemeldeter Benutzer') {
+		type = TAPi18n.__('notifications.reporteduser');
+	} else if (type === 'Gemeldeter Kartensatz') {
+		type = TAPi18n.__('notifications.reportedcardset');
+	} else if (type === 'Adminbenachrichtigung (Beschwerde Benutzer)') {
+		type = TAPi18n.__('notifications.reporteduseradmin');
+	} else if (type === 'Adminbenachrichtigung (Beschwerde Kartensatz)') {
+		type = TAPi18n.__('notifications.reportedcardsetadmin');
+	} else if (type === 'Dozenten-Anfrage') {
+		type = TAPi18n.__('notifications.lecturer');
+	}
+
+	return type;
+}

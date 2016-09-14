@@ -1,11 +1,9 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-
-import {Cards} from './cards.js';
-import {Experience} from './experience.js';
-import {Ratings} from './ratings.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cards} from "./cards.js";
+import {Experience} from "./experience.js";
+import {Ratings} from "./ratings.js";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -35,7 +33,7 @@ if (Meteor.isServer) {
 	});
 }
 
-const CardsetsSchema = new SimpleSchema({
+var CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},

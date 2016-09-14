@@ -1,23 +1,19 @@
 //------------------------ IMPORTS
 
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Experience} from '../../api/experience.js';
-import {Badges} from '../../api/badges.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {Notifications} from '../../api/notifications.js';
-import {AdminSettings} from '../../api/adminSettings';
-
-//import {userData} from '../../api/userdata.js';
-
-import './profile.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Experience} from "../../api/experience.js";
+import {Badges} from "../../api/badges.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {Notifications} from "../../api/notifications.js";
+import {AdminSettings} from "../../api/adminSettings";
+import "./profile.html";
 
 
 Meteor.subscribe("experience");
@@ -409,10 +405,10 @@ Template.profileSettings.events({
 					$('#profileSave')[0].disabled = true;
 					$('#profileCancel')[0].disabled = true;
 					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersName", name, user_id);
 					Meteor.call("updateUsersBirthName", birthname, user_id);
 					Meteor.call("updateUsersGivenName", givenname, user_id);
 					Meteor.call("updateUsersProfileState", true, user_id);
+					Meteor.call("updateUsersName", result, user_id);
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
@@ -727,7 +723,6 @@ export function getDays3() {
 }
 
 
-
 Template.profileXp.helpers({
 	getDays1: getDays1,
 	getDays2: getDays2,
@@ -888,7 +883,6 @@ Template.profileXp.helpers({
 		if (last === undefined) {
 			return null;
 		}
-
 		return name + " (+" + last.value + ")";
 	},
 	getLvl: function () {
@@ -919,6 +913,23 @@ Template.profileXp.helpers({
 	}
 });
 
+function getLvl() {
+	var user = Meteor.users.findOne(Router.current().params._id);
+	if (user === undefined) {
+		return null;
+	}
+	return user.lvl;
+}
+
+function xpForLevel(level) {
+	var points = 0;
+
+	for (var i = 1; i < level; i++) {
+		points += Math.floor(i + 30 * Math.pow(2, i / 10));
+	}
+	return Math.floor(points / 4);
+}
+
 
 Template.profileXp.events({
 	'onload': setInterval(function () {
@@ -932,10 +943,9 @@ Template.profileXp.events({
 		if (backgroundColorBox2 >= 7) {
 			backgroundColorBox2 = 0;
 		}
-		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
+		$('#well' + backgroundColorBox2).css("background-color", "lightgreen");
 	}, 500)
 });
-
 
 
 /**

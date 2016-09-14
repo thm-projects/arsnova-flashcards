@@ -1,12 +1,10 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-
-import {Cardsets} from './cardsets.js';
-import {Experience} from './experience.js';
-import {Learned} from './learned.js';
-import {Paid} from './paid.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
+import {Experience} from "./experience.js";
+import {Learned} from "./learned.js";
+import {Paid} from "./paid.js";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 
 export const Cards = new Mongo.Collection("cards");

@@ -1,4 +1,4 @@
-import {check} from 'meteor/check';
+import {check} from "meteor/check";
 
 Meteor.methods({
 	convertMarkdown: function (markdown) {

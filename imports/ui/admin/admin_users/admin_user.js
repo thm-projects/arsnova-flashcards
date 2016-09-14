@@ -1,20 +1,20 @@
 //------------------------IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import {AdminSettings} from "../../../api/adminSettings.js";
+import {getDays1, getDays2, getDays3} from "../../profile/profile.js";
+import "./admin_user.html";
 
 //import {allUsers} from '../../../api/allusers.js';
-import {Cardsets} from '../../../api/cardsets.js';
-import {AdminSettings} from '../../../api/adminSettings.js';
-import {getDays1,getDays2,getDays3} from '../../profile/profile.js';
-
-import './admin_user.html';
 
 Meteor.subscribe('adminSettings', function () {
 	//Set the reactive session as true to indicate that the data have been loaded
 	Session.set('data_loaded', true);
-});/**
+});
+/**
  * ############################################################################
  * admin_user
  * ############################################################################
@@ -170,19 +170,17 @@ Template.admin_user.helpers({
 });
 
 
-
-
 function saveInterval() {
 	var inv1 = document.getElementById('inv1').value;
 	var inv2 = document.getElementById('inv2').value;
 	var inv3 = document.getElementById('inv3').value;
 
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
-		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'),'danger','growl-bottom-right');
+		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
 	} else {
 		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
 			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
-			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'),'danger','growl-bottom-right');
+			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'), 'danger', 'growl-bottom-right');
 		} else {
 			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
 				Meteor.call('updateIntervall', parseInt(inv1), parseInt(inv2), parseInt(inv3));
@@ -379,7 +377,6 @@ Template.cardsetConfirmFormUserAdmin.events({
 		}).modal('hide');
 	}
 });
-
 
 
 Template.preview.helpers({
