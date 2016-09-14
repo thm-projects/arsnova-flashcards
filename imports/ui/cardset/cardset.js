@@ -689,27 +689,27 @@ Template.cardsetStartLearnForm.events({
 			var learningStart = $('#inputLearningStart').val();
 			var learningEnd = $('#inputLearningEnd').val();
 			var learningInterval = [];
-			for(let i = 0; i < 5; ++i) {
-				learningInterval[i] = $('#inputLearningInterval' + (i+1)).val();
+			for (let i = 0; i < 5; ++i) {
+				learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
 			}
-			if(!learningInterval[0]) {
+			if (!learningInterval[0]) {
 				learningInterval[0] = 1;
 			}
-			for(let i = 1; i < 5; ++i) {
-				if(!learningInterval[i]) {
-					learningInterval[i] = (parseInt(learningInterval[i-1]) + 1);
+			for (let i = 1; i < 5; ++i) {
+				if (!learningInterval[i]) {
+					learningInterval[i] = (parseInt(learningInterval[i - 1]) + 1);
 				}
 			}
 
 			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
 			var webNotification = document.getElementById('webNotificationCheckbox').checked;
-			if(mailNotification || webNotification) {
+			if (mailNotification || webNotification) {
 				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
 			}
 		}
 	},
-	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function() {
-		if(!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
+		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
 			document.getElementById('confirmLearn').disabled = true;
 			$('#mailNotificationCheckbox').parent().parent().parent().addClass('has-warning');
 			$('#webNotificationCheckbox').parent().parent().parent().addClass('has-warning');
@@ -730,16 +730,16 @@ Template.cardsetStartLearnForm.events({
 		document.getElementById('webNotificationCheckbox').checked = true;
 	},
 	"input #inputMaxCards": function () {
-		if(parseInt($('#inputMaxCards').val()) <= 0) {
+		if (parseInt($('#inputMaxCards').val()) <= 0) {
 			$('#inputMaxCards').val(1);
-		} else if(parseInt($('#inputMaxCards').val()) > 100) {
+		} else if (parseInt($('#inputMaxCards').val()) > 100) {
 			$('#inputMaxCards').val(100);
 		}
 	},
 	"input #inputDaysBeforeReset": function () {
-		if(parseInt($('#inputDaysBeforeReset').val()) <= 0) {
+		if (parseInt($('#inputDaysBeforeReset').val()) <= 0) {
 			$('#inputDaysBeforeReset').val(1);
-		} else if(parseInt($('#inputDaysBeforeReset').val()) > 100) {
+		} else if (parseInt($('#inputDaysBeforeReset').val()) > 100) {
 			$('#inputDaysBeforeReset').val(100);
 		}
 	},
@@ -748,8 +748,7 @@ Template.cardsetStartLearnForm.events({
 		for (let i = 1; i < 5; ++i) {
 			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
 				$('#inputLearningInterval' + i).val(1);
-			}
-			else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
+			} else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
 				$('#inputLearningInterval' + i).val(999);
 			}
 			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
