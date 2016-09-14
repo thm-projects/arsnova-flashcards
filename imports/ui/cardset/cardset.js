@@ -363,7 +363,7 @@ Template.cardsetDetails.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		ifCardset();
 	},
-	'click .item.active .block a': function () {
+	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	}
 });

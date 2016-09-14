@@ -11,7 +11,7 @@
 import "./statistics.html";
 
 
-AppController = RouteController.extend({
+var AppController = RouteController.extend({
 	layoutTemplate: 'appLayout'
 });
 

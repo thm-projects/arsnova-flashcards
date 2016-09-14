@@ -13,7 +13,6 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
-import {userData} from "../../api/userdata.js";
 import "./profile.html";
 
 
@@ -881,9 +880,9 @@ Template.profileXp.helpers({
 			}
 		}
 
-		if (last === undefined)
+		if (last === undefined) {
 			return null;
-
+		}
 		return name + " (+" + last.value + ")";
 	},
 	getLvl: function () {
