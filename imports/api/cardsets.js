@@ -118,7 +118,7 @@ var CardsetsSchema = new SimpleSchema({
 	maxCards: {
 		type: Number
 	},
-	maxOverrun: {
+	daysBeforeReset: {
 		type: Number
 	},
 	learningStart: {
@@ -239,12 +239,12 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLearning: function (id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
+	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
 		if (!maxCards) {
-			maxCards = 0;
+			maxCards = 1;
 		}
-		if (!maxOverrun) {
-			maxOverrun = 0;
+		if (!daysBeforeReset) {
+			daysBeforeReset = 1;
 		}
 		if (!learningStart) {
 			learningStart = new Date();
@@ -268,7 +268,7 @@ Meteor.methods({
 			$set: {
 				learningActive: true,
 				maxCards: maxCards,
-				maxOverrun: maxOverrun,
+				daysBeforeReset: daysBeforeReset,
 				learningStart: learningStart,
 				learningEnd: learningEnd,
 				learningInterval: learningInterval,

@@ -501,7 +501,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">{{_"confirmLearn-form.maxCards"}}</label>
                             <div class="col-md-9">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputMaxCards"
                                        placeholder="{{_ "confirmLearn-form.maxCardsDesc"}}" value="">
@@ -509,13 +509,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxOverrun"}}</label>
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
                             <div class="col-md-9">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control" id="inputMaxOverrun"
-                                       placeholder="{{_ "confirmLearn-form.maxOverrunDesc"}}" value="">
-                                <span id="errorMaxOverrun" class="help-block name"></span>
+                                       class="form-control" id="inputDaysBeforeReset"
+                                       placeholder="{{_ "confirmLearn-form.daysBeforeResetDesc"}}" value="">
+                                <span id="errorDaysBeforeReset" class="help-block name"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -533,33 +533,25 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
-                            <div class="col-md-2">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
+                            <div class="col-md-9 form-inline">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval1"
                                        placeholder="1" value="1">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval2"
                                        placeholder="3" value="3">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval3"
                                        placeholder="7" value="7">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval4"
                                        placeholder="28" value="28">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="number" min="1" data-bind="value:replyNumber"
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inputLearningInterval5"
                                        placeholder="84" value="84">
@@ -572,23 +564,22 @@
                             <label class="col-md-3 control-label">{{_"confirmLearn-form.notification"}}</label>
                             <form>
                                 <fieldset>
-                                    <div class="col-md-4">
-                                        <div class="col-md-4">
-                                            <input type="radio" name="notification" id="mailNotificationRadio">
-                                            <label for="mailNotificationRadio">{{_ "confirmLearn-form.mailNotificationRadio"}}</label>
+                                    <div class="col-md-9 form-group">
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                            	<input type="checkbox" name="notification" id="mailNotificationCheckbox" checked>
+						{{_ "confirmLearn-form.mailNotificationCheckbox"}}
+					   </label>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                    	<div class="col-md-4">
-                                            <input type="radio" name="notification" id="webNotificationRadio">
-                                            <label for="webNotificationRadio">{{_ "confirmLearn-form.webNotificationRadio"}}</label>
+                                    	<div class="col-md-6">
+                                            <label class="checkbox-inline" for="webNotificationCheckbox">
+                                            	<input type="checkbox" name="notification" id="webNotificationCheckbox" checked>
+						{{_ "confirmLearn-form.webNotificationCheckbox"}}
+					    </label>
       					</div>
-                                    </div>
-                                    <div class="col-md-4">
-                                    	<div class="col-md-4">
-                                            <input type="radio" name="notification" id="bothRadio" checked>
-                                            <label for="bothRadio">{{_ "confirmLearn-form.bothRadio"}}</label>
-                                        </div>
+      					<div class="col-md-12">
+                                		<span id="errorNotification" class="help-block name"></span>
+                                	</div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -605,6 +596,7 @@
         </div>
     </div><!-- /form group -->
 </template>
+
 <template name="cardsetEndLearnForm">
     <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmEndLearnModalTitle">
         <div class="modal-dialog">

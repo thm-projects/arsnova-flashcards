@@ -685,48 +685,84 @@ Template.cardsetStartLearnForm.events({
 	"click #confirmLearn": function () {
 		if (!Cardsets.findOne(this._id).learningActive) {
 			var maxCards = $('#inputMaxCards').val();
-			var maxOverrun = $('#inputMaxOverrun').val();
+			var daysBeforeReset = $('#inputDaysBeforeReset').val();
 			var learningStart = $('#inputLearningStart').val();
 			var learningEnd = $('#inputLearningEnd').val();
 			var learningInterval = [];
-			learningInterval[0] = $('#inputLearningInterval1').val();
-			learningInterval[1] = $('#inputLearningInterval2').val();
-			learningInterval[2] = $('#inputLearningInterval3').val();
-			learningInterval[3] = $('#inputLearningInterval4').val();
-			learningInterval[4] = $('#inputLearningInterval5').val();
-
-			var mailNotification = document.getElementById('mailNotificationRadio').checked;
-			var webNotification = document.getElementById('webNotificationRadio').checked;
-			if (!mailNotification && !webNotification) {
-				mailNotification = true;
-				webNotification = true;
+			for(let i = 0; i < 5; ++i) {
+				learningInterval[i] = $('#inputLearningInterval' + (i+1)).val();
 			}
-			Meteor.call("activateLearning", this._id, maxCards, maxOverrun, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
+			if(!learningInterval[0]) {
+				learningInterval[0] = 1;
+			}
+			for(let i = 1; i < 5; ++i) {
+				if(!learningInterval[i]) {
+					learningInterval[i] = (parseInt(learningInterval[i-1]) + 1);
+				}
+			}
+
+			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+			var webNotification = document.getElementById('webNotificationCheckbox').checked;
+			if(mailNotification || webNotification) {
+				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
+			}
+		}
+	},
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function() {
+		if(!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+			document.getElementById('confirmLearn').disabled = true;
+			$('#mailNotificationCheckbox').parent().parent().parent().addClass('has-warning');
+			$('#webNotificationCheckbox').parent().parent().parent().addClass('has-warning');
+			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
+		} else {
+			document.getElementById('confirmLearn').disabled = false;
+			$('#mailNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
+			$('#webNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
+			$('#errorNotification').html('');
 		}
 	},
 	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
-		$('#inputMaxOverrun').val(null);
+		$('#inputDaysBeforeReset').val(null);
 		$('#inputLearningStart').val(null);
 		$('#inputLearningEnd').val(null);
-		document.getElementById('mailNotificationRadio').checked = false;
-		document.getElementById('webNotificationRadio').checked = false;
-		document.getElementById('bothRadio').checked = true;
+		document.getElementById('mailNotificationCheckbox').checked = true;
+		document.getElementById('webNotificationCheckbox').checked = true;
+	},
+	"input #inputMaxCards": function () {
+		if(parseInt($('#inputMaxCards').val()) <= 0) {
+			$('#inputMaxCards').val(1);
+		} else if(parseInt($('#inputMaxCards').val()) > 100) {
+			$('#inputMaxCards').val(100);
+		}
+	},
+	"input #inputDaysBeforeReset": function () {
+		if(parseInt($('#inputDaysBeforeReset').val()) <= 0) {
+			$('#inputDaysBeforeReset').val(1);
+		} else if(parseInt($('#inputDaysBeforeReset').val()) > 100) {
+			$('#inputDaysBeforeReset').val(100);
+		}
 	},
 	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
 		var error = false;
-		for (var i = 1; i < 5; ++i) {
+		for (let i = 1; i < 5; ++i) {
+			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
+				$('#inputLearningInterval' + i).val(1);
+			}
+			else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
+				$('#inputLearningInterval' + i).val(999);
+			}
 			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
 				error = true;
 			}
 		}
 		if (error) {
-			for (var j = 1; j <= 5; ++j) {
+			for (let j = 1; j <= 5; ++j) {
 				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
 				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
 			}
 		} else {
-			for (var k = 1; k <= 5; ++k) {
+			for (let k = 1; k <= 5; ++k) {
 				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
 				$('#errorInputLearningInterval').html('');
 			}
@@ -755,7 +791,7 @@ Template.cardsetStartLearnForm.events({
 
 /**
  * ############################################################################
- * cardsetImportForm
+ * cardsetEndLearnForm
  * ############################################################################
  */
 
