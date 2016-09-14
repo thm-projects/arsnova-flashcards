@@ -24,6 +24,9 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe('default_db_data', function () {
 	Session.set('data_loaded', true);
 });
+Meteor.subscribe('learned', function () {
+	Session.set('data_ready', true);
+});
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -999,9 +1002,19 @@ AppController = RouteController.extend({
 	layoutTemplate: 'appLayout2'
 });
 
-Template.profileXp.rendered = function () {
-
+Template.profileXp.onRendered(function () {
 	$(function () {
+		var user_id =  Meteor.userId();
+		if (Session.get('data_loaded')) {
+			var box1 = Learned.find({user_id, box: 1}).fetch().length;
+			var box2 = Learned.find({user_id, box: 2}).fetch().length;
+			var box3 = Learned.find({user_id, box: 3}).fetch().length;
+			var box4 = Learned.find({user_id, box: 4}).fetch().length;
+			var box5 = Learned.find({user_id, box: 5}).fetch().length;
+			var box6 = Learned.find({user_id, box: 6}).fetch().length;
+			console.log(box1);
+		}
+
 		$('#container').highcharts({
 			chart: {
 				type: 'column'
@@ -1010,7 +1023,7 @@ Template.profileXp.rendered = function () {
 				text: 'Lernfortschritt'
 			},
 			xAxis: {
-				categories: ['Heute', 'Gestern', 'vor 3 Tagen', 'vor 7 Tagen', 'vor vor 4 Wochen']
+				categories: ['Fach 1', 'Fach 2', 'Fach 3', 'Fach 4', 'Fach 5', 'Gelernt']
 			},
 			yAxis: {
 				min: 0,
@@ -1023,25 +1036,13 @@ Template.profileXp.rendered = function () {
 			},
 			plotOptions: {
 				series: {
+					name: "Lernstand aller Kartensätze	",
 					stacking: 'normal'
 				}
 			},
 			series: [{
-				name: 'HTML5',
-				data: [5, 3, 4, 3, 5]
-			}, {
-				name: 'Javascript',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Git',
-				data: [3, 4, 4, 2, 5]
-			}, {
-				name: 'Websocket',
-				data: [2, 2, 3, 2, 5]
-			}, {
-				name: 'Usability',
-				data: [2, 2, 3, 2, 5]
+				data: [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)]
 			}]
 		});
 	});
-};
+});
