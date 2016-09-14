@@ -202,12 +202,11 @@ Meteor.methods({
 			learningActive: false,
 			maxCards: 0,
 			daysBeforeReset: 0,
-			learningStart : 0,
-			learningEnd : 0,
-			learningInterval : [],
-			mailNotification : true,
-			webNotification : true,
-			daysBeforeReset : 0
+			learningStart: 0,
+			learningEnd: 0,
+			learningInterval: [],
+			mailNotification: true,
+			webNotification: true
 		});
 		Experience.insert({
 			type: 2,
