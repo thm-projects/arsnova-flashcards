@@ -70,15 +70,15 @@
                             <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
                             <hr>
                         {{/if}}
-                        <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                        <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
                         <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
                         <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
                         <hr>
-                        <br><strong>{{_ "cardset.info.author"}}:</strong>
+                        <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
                             <a href="{{pathFor 'profileOverview' _id=owner}}">{{degree}} {{firstName}} {{lastName}} </a>
                         {{else}}
