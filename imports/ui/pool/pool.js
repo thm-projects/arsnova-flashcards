@@ -34,16 +34,16 @@ export function notification(title, message) {
 		var options = {
 			body: message,
 			icon: messageIcon
-		}
-		var notification = new Notification(title, options);
+		};
+		new Notification(title, options);
 	} else if (Notification.permission !== 'denied') {
 		Notification.requestPermission(function (permission) {
 			if (permission === "granted") {
 				var options = {
 					body: message,
 					icon: messageIcon
-				}
-				var notification = new Notification(title, options);
+				};
+				new Notification(title, options);
 			}
 		});
 	}
@@ -237,7 +237,7 @@ Template.category.onDestroyed(function () {
 
 Template.pool.onRendered(function () {
 	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for(var i = 0; i < toLearn.length; ++i)
+	for (var i = 0; i < toLearn.length; ++i)
 	{
 		notification('Aufgaben warten!', toLearn[i].studyType);
 	}
