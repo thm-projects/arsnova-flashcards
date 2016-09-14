@@ -1,7 +1,6 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {Cardsets} from './cardsets.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {Cardsets} from "./cardsets.js";
 
 export const Learned = new Mongo.Collection("learned");
 
@@ -26,6 +25,25 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+	activateLerningPeriod: function (cartset_id) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Learned.update({
+			cardset_id: cartset_id
+		}, {
+			$set: {
+				box: 1,
+				ef: 2.5,
+				reps: 0,
+				interval: 0,
+				nextDate: new Date(),
+				currentDate: new Date()
+			}
+		}, {
+			multi: true
+		});
+	},
 	addLearned: function (cardset_id, card_id) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
@@ -71,10 +89,13 @@ Meteor.methods({
 
 		// EF (easiness factor) is a rating for how difficult the card is.
 		// Grade: (0-2) Set reps and interval to 0, keep current EF (repeat card today)
-		//				(3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
-		//				(4-5) Reps + 1, interval is calculated using EF, increasing in time.
+		//        (3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
+		//        (4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-		var learned = Learned.findOne(learned_id), ef = learned.ef, reps = learned.reps, nextDate = new Date();
+		var learned = Learned.findOne(learned_id),
+			ef = learned.ef,
+			reps = learned.reps,
+			nextDate = new Date();
 		var interval = 0;
 
 		if (grade < 3) {

@@ -1,14 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_users.html';
-
-import './admin_user.js';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import "./admin_users.html";
+import "./admin_user.js";
 
 
 Meteor.subscribe('allUsers');

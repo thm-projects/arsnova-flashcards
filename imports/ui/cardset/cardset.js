@@ -1,20 +1,17 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {ReactiveVar} from 'meteor/reactive-var';
-
-import '../card/card.js';
-import '../learn/box.js';
-import '../learn/memo.js';
-
-import './cardset.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {ReactiveVar} from "meteor/reactive-var";
+import "../card/card.js";
+import "../learn/box.js";
+import "../learn/memo.js";
+import "./cardset.html";
 
 
 Meteor.subscribe("cardsets");
@@ -71,18 +68,18 @@ Template.cardset.helpers({
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		/*
-		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId = previousCategory.toString();
+		 var previousCategory = Cardsets.findOne(id).category;
+		 var categoryId = previousCategory.toString();
 
-		if (categoryId.length === 1) {
-			categoryId = "0" + categoryId;
-		}
+		 if (categoryId.length === 1) {
+		 categoryId = "0" + categoryId;
+		 }
 
-		var category = Categories.findOne(categoryId);
-		if (category !== undefined) {
-			Session.set('previousCategoryName', category.name);
-		}
-		*/
+		 var category = Categories.findOne(categoryId);
+		 if (category !== undefined) {
+		 Session.set('previousCategoryName', category.name);
+		 }
+		 */
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
@@ -156,6 +153,9 @@ Template.cardset.events({
 			$('#editSetModulShort').val() !== "" &&
 			$('#editSetModulNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
+			if (tmpl.find('#editSetCategory').value === undefined) {
+				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
+			}
 			var description = tmpl.find('#editSetDescription').value;
 			var modulLong = tmpl.find('#editSetModulLong').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
@@ -628,6 +628,182 @@ Template.cardsetSidebar.events({
 		Router.go('memo', {
 			_id: this._id
 		});
+	}
+});
+
+/**
+ * ############################################################################
+ * cardsetStartLearnForm
+ * ############################################################################
+ */
+Template.cardsetStartLearnForm.onRendered(function () {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; //January is 0!
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+	today = yyyy + "-" + mm + "-" + dd;
+
+	var tomorrow = new Date();
+	tomorrow.setDate(tomorrow.getDate() + 7);
+	var tdd = tomorrow.getDate();
+	var tmm = tomorrow.getMonth() + 1; //January is 0!
+	var tyyyy = tomorrow.getFullYear();
+	if (tdd < 10) {
+		tdd = '0' + tdd;
+	}
+	if (tmm < 10) {
+		tmm = '0' + tmm;
+	}
+	tomorrow = tyyyy + "-" + tmm + "-" + tdd;
+
+	var def = new Date();
+	def.setMonth(def.getMonth() + 3);
+	var ddd = def.getDate();
+	var dmm = def.getMonth() + 1; //January is 0!
+	var dyyyy = def.getFullYear();
+	if (ddd < 10) {
+		ddd = '0' + ddd;
+	}
+	if (dmm < 10) {
+		dmm = '0' + dmm;
+	}
+	def = dyyyy + "-" + dmm + "-" + ddd;
+
+	document.getElementById('inputLearningStart').setAttribute("min", today);
+	$('#inputLearningStart').val(today);
+	document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+	$('#inputLearningEnd').val(def);
+});
+
+Template.cardsetStartLearnForm.events({
+	"click #confirmLearn": function () {
+		if (!Cardsets.findOne(this._id).learningActive) {
+			var maxCards = $('#inputMaxCards').val();
+			var daysBeforeReset = $('#inputDaysBeforeReset').val();
+			var learningStart = $('#inputLearningStart').val();
+			var learningEnd = $('#inputLearningEnd').val();
+			var learningInterval = [];
+			for (let i = 0; i < 5; ++i) {
+				learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
+			}
+			if (!learningInterval[0]) {
+				learningInterval[0] = 1;
+			}
+			for (let i = 1; i < 5; ++i) {
+				if (!learningInterval[i]) {
+					learningInterval[i] = (parseInt(learningInterval[i - 1]) + 1);
+				}
+			}
+
+			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+			var webNotification = document.getElementById('webNotificationCheckbox').checked;
+			if (mailNotification || webNotification) {
+				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
+			}
+		}
+	},
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
+		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+			document.getElementById('confirmLearn').disabled = true;
+			$('#mailNotificationCheckbox').parent().parent().parent().addClass('has-warning');
+			$('#webNotificationCheckbox').parent().parent().parent().addClass('has-warning');
+			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
+		} else {
+			document.getElementById('confirmLearn').disabled = false;
+			$('#mailNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
+			$('#webNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
+			$('#errorNotification').html('');
+		}
+	},
+	"click #cancelLearn": function () {
+		$('#inputMaxCards').val(null);
+		$('#inputDaysBeforeReset').val(null);
+		$('#inputLearningStart').val(null);
+		$('#inputLearningEnd').val(null);
+		$('#inputLearningInterval1').val(1);
+		$('#inputLearningInterval2').val(3);
+		$('#inputLearningInterval3').val(7);
+		$('#inputLearningInterval4').val(28);
+		$('#inputLearningInterval5').val(84);
+		document.getElementById('mailNotificationCheckbox').checked = true;
+		document.getElementById('webNotificationCheckbox').checked = true;
+	},
+	"input #inputMaxCards": function () {
+		if (parseInt($('#inputMaxCards').val()) <= 0) {
+			$('#inputMaxCards').val(1);
+		} else if (parseInt($('#inputMaxCards').val()) > 100) {
+			$('#inputMaxCards').val(100);
+		}
+	},
+	"input #inputDaysBeforeReset": function () {
+		if (parseInt($('#inputDaysBeforeReset').val()) <= 0) {
+			$('#inputDaysBeforeReset').val(1);
+		} else if (parseInt($('#inputDaysBeforeReset').val()) > 100) {
+			$('#inputDaysBeforeReset').val(100);
+		}
+	},
+	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
+		var error = false;
+		for (let i = 1; i < 5; ++i) {
+			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
+				$('#inputLearningInterval' + i).val(1);
+			} else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
+				$('#inputLearningInterval' + i).val(999);
+			}
+			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
+				error = true;
+			}
+		}
+		if (error) {
+			for (let j = 1; j <= 5; ++j) {
+				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
+				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
+			}
+		} else {
+			for (let k = 1; k <= 5; ++k) {
+				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
+				$('#errorInputLearningInterval').html('');
+			}
+		}
+	},
+	"click #exportCSV": function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
+			if (result) {
+				var statistics = TAPi18n.__('box_export_statistics');
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.target = '_blank';
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
+				document.body.appendChild(hiddenElement);
+				hiddenElement.click();
+			}
+		});
+	}
+});
+
+/**
+ * ############################################################################
+ * cardsetEndLearnForm
+ * ############################################################################
+ */
+
+Template.cardsetEndLearnForm.events({
+	"click #confirmEndLearn": function () {
+		if (Cardsets.findOne(this._id).learningActive) {
+			Meteor.call("deactivateLearning", this._id);
+		}
 	}
 });
 

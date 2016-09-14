@@ -1,10 +1,12 @@
-<template name="cardset">
+<template name="cardset" xmlns="http://www.w3.org/1999/html">
     {{#if hasPermission}}
         {{> cardsetInfo}}
 
         {{> cardsetForm}}
         {{> cardsetImportForm}}
         {{> cardsetPublicateForm}}
+        {{> cardsetStartLearnForm}}
+        {{> cardsetEndLearnForm}}
         {{> selectLicenseForm}}
         {{> reportCardsetForm}}
         {{onEditmodalClose this._id}}
@@ -17,9 +19,9 @@
                             <div class="input-group has-error">
 											<span class="input-group-btn">
 											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
-                                                      "cardset.request.accept"}}</button>
+                                              "cardset.request.accept"}}</button>
 											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
-                                                      "cardset.request.decline"}}</button>
+                                              "cardset.request.decline"}}</button>
 											</span>
                                 <input id="declineRequestReason" type="text" class="form-control"
                                        placeholder="Begründung">
@@ -70,9 +72,9 @@
                         <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                         <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
-                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
-                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.module}}
+                        <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.moduleToken}}
+                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.moduleNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
                         <br><strong>{{_ "cardset.info.author"}}:</strong>
@@ -101,7 +103,7 @@
                     <div class="btn-group">
                         <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publicate"}}: {{getStatus}}</button>
+                        "sidebar-nav.publicate"}}: {{getStatus}}</button>
                         <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
                             <i class="fa fa-question"></i></button>
@@ -117,8 +119,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
                                     class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                            <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_
-                                    "sidebar-nav.exportcard"}}</a></li>
+                            <li><a href="#" id="exportCardsBtn"><i
+                                    class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
                         </ul>
                     </div>
 
@@ -156,13 +158,42 @@
                 <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
             </div>
         </div>
+        {{#if isOwner}}
+            {{#if isInRole 'lecturer'}}
+                <div class="well well-sm sidebar-nav">
+                    <button id="startStopLearning"
+                            class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="{{#unless learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                        {{#if learningActive}}
+                            {{_ "sidebar-nav.stopLearning"}}
+                        {{else}}
+                            {{_ "sidebar-nav.startLearning"}}
+                        {{/if}}
+                    </button>
+                </div>
+            {{/if}}
+        {{/if}}
         {{#unless isOwner}}
             <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_
-                    "report"}}</a>
+            "report"}}</a>
         {{/unless}}
+        {{#if isLecturer}}
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "manage"}}</span>
+                    <button id="exportCSV" class="btn btn-default btn-success">{{_ "box_export"}}</button>
+                    {{#unless isOwner}}
+                        <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_
+                                "report"}}</a>
+                    {{/unless}}
+                </div>
+            </div>
+        {{/if}}
+
     </div>
 </template>
-
 
 <template name="cardsetPreview">
     <div class="col-md-4">
@@ -173,8 +204,8 @@
                         <div class="">
                             <div class="">
                                 <div id="payment-form"></div>
-                                <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">{{_
-                                        "cardset.money.buy"}} {{price}}€
+                                <button id="buyCardsetBtn" type="submit"
+                                        class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€
                                 </button>
                                 <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
                                    class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
@@ -190,7 +221,6 @@
     </div>
     <div class="col-md-8" id="set-details-region">
         <div>
-
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
@@ -365,8 +395,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group setdetails name">
-                            <label id="editSetNameLabel" class="col-md-3 control-label" for="editSetName">{{_
-                                    "modal-dialog.name"}}</label>
+                            <label id="editSetNameLabel" class="col-md-3 control-label"
+                                   for="editSetName">{{_ "modal-dialog.name"}}</label>
                             <div class="col-md-9">
                                 <input class="form-control" type="text" id="editSetName" value="{{name}}">
                                 <span id="helpEditSetName" class="help-block name"></span>
@@ -391,7 +421,7 @@
                                        for="editSetModulLong">{{_ "modal-dialog.modulLong"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulLong"
-                                           value="{{modulLong}}">
+                                           value="{{module}}">
                                     <span id="helpEditSetModulLong" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -401,7 +431,7 @@
                                        for="editSetModulShort">{{_ "modal-dialog.modulShort"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulShort"
-                                           value="{{modulShort}}">
+                                           value="{{moduleToken}}">
                                     <span id="helpEditSetModulShort" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -411,7 +441,7 @@
                                        for="editSetModulNum">{{_ "modal-dialog.modulNum"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="editSetModulNum"
-                                           value="{{modulNum}}">
+                                           value="{{moduleNum}}">
                                     <span id="helpEditSetModulNum" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -419,7 +449,7 @@
                         <!-- start studyType Dropdown
                         <div class="form-group setdetails categories">
                             <label id="editSetCategoryLabel" class="col-md-3 control-label" for="editSetCategory">{{_
-                                    "modal-dialog.studyType"}}</label>
+                                "modal-dialog.studyType"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
@@ -446,16 +476,151 @@
                 </div>
                 <div class="modal-footer">
                     <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
-                            "modal-dialog.delete"}}</button>
+                    "modal-dialog.delete"}}</button>
                     <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
-                            "modal-dialog.confirm"}}</button>
+                    "modal-dialog.confirm"}}</button>
                     <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
                 </div>
             </div>
         </div>
     </div>
+</template>
+
+<template name="cardsetStartLearnForm">
+    <div class="modal fade" id="confirmLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_"confirmLearn-form.maxCards"}}</label>
+                            <div class="col-md-9">
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputMaxCards"
+                                       placeholder="{{_ "confirmLearn-form.maxCardsDesc"}}" value="">
+                                <span id="errorMaxCards" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
+                            <div class="col-md-9">
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputDaysBeforeReset"
+                                       placeholder="{{_ "confirmLearn-form.daysBeforeResetDesc"}}" value="">
+                                <span id="errorDaysBeforeReset" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="inputLearningStart"
+                                       placeholder="{{_ "confirmLearn-form.learningStartDesc"}}" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="inputLearningEnd"
+                                       placeholder="{{_ "confirmLearn-form.learningEndDesc"}}" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
+                            <div class="col-md-9 form-inline">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval1"
+                                       placeholder="1" value="1">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval2"
+                                       placeholder="3" value="3">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval3"
+                                       placeholder="7" value="7">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval4"
+                                       placeholder="28" value="28">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval5"
+                                       placeholder="84" value="84">
+                            </div>
+                            <div class="col-md-12">
+                                <span id="errorInputLearningInterval" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_"confirmLearn-form.notification"}}</label>
+                            <form>
+                                <fieldset>
+                                    <div class="col-md-9 form-group">
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                            	<input type="checkbox" name="notification" id="mailNotificationCheckbox" checked>
+						{{_ "confirmLearn-form.mailNotificationCheckbox"}}
+					   </label>
+                                        </div>
+                                    	<div class="col-md-6">
+                                            <label class="checkbox-inline" for="webNotificationCheckbox">
+                                            	<input type="checkbox" name="notification" id="webNotificationCheckbox" checked>
+						{{_ "confirmLearn-form.webNotificationCheckbox"}}
+					    </label>
+      					</div>
+      					<div class="col-md-12">
+                                		<span id="errorNotification" class="help-block name"></span>
+                                	</div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
+                        <button id="confirmLearn" class="btn btn-success pull-right"
+                                data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>
+
+<template name="cardsetEndLearnForm">
+    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmEndLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                    	<h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
+                    	<p>{{_ "confirmEndLearn-form.warning"}}</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="cancelEndLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_"confirmEndLearn-form.cancel"}}</button>
+                        <button id="confirmEndLearn" class="btn btn-warning pull-right"
+                                data-dismiss="modal">{{_"confirmEndLearn-form.confirm"}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
 </template>
 
 <template name="cardsetConfirmForm">
@@ -471,10 +636,10 @@
                     <br/>
                     <hr/>
 
-                    <button id="cardDelete" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                            "confirm-form.title"}}</button>
-                    <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="cardDelete" class="btn btn-danger btn-setDelete"
+                            style="width:150px">{{_ "confirm-form.title"}}</button>
+                    <button id="cardCancel" class="btn btn-default pull-right"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -504,7 +669,7 @@
 							{{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
 					  </span>
                         <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                                "modal-dialog.cancel"}}</button>
+                        "modal-dialog.cancel"}}</button>
                         <div class="clearfix"></div>
                     {{else}}
                         <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
@@ -531,8 +696,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="newSetDescription">{{_
-                                    "modal-dialog.kind"}}</label>
+                            <label class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
                             <div class="controls col-md-9">
                                 <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0"
@@ -568,8 +733,8 @@
                         </div>
                         {{#if kindWithPrice}}
                             <div class="form-group">
-                                <label id="publicatePriceLabel" class="col-md-3 control-label" for="publicatePrice">{{_
-                                        "modal-dialog.price"}} (€)</label>
+                                <label id="publicatePriceLabel" class="col-md-3 control-label"
+                                       for="publicatePrice">{{_ "modal-dialog.price"}} (€)</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
                                         <select id="publicatePrice" class="form-control">
@@ -591,10 +756,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardsetCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                    <button id="cardsetPublicate" class="btn btn-info pull-success">{{_
-                            "modal-dialog.publicate"}}</button>
+                    <button id="cardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="cardsetPublicate"
+                            class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -616,8 +781,8 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label id="modulesLabel" class="col-md-3 control-label" for="newSetDescription">{{_
-                                    "modal-dialog.modules"}}</label>
+                            <label id="modulesLabel" class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
                             <div class="controls col-md-9">
                                 <div id="cc-modules" class="btn-group" data-toggle="buttons">
                                     <label id="cc-option0"
@@ -664,8 +829,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="licenseCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="licenseCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="licenseSave" class="btn btn-info pull-success">{{_ "modal-dialog.saveLicense"}}</button>
                 </div>
             </div>
@@ -720,8 +885,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="reportCardsetCancel" class="btn btn-default" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="reportCardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
                 </div>
             </div>

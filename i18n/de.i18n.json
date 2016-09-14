@@ -1,9 +1,10 @@
 {
-  "admin-intervall":{
-    "errorAllFields" : "Bitte alle Felder ausfüllen",
-    "errorBiggerThan" : "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
-    "errorBigger999" : "Bitte wähle eine Zahl kleiner als 999",
-    "biggerNull" : "Bitte wähle eine Zahl größer als 0"
+  "admin-intervall": {
+    "errorAllFields": "Bitte alle Felder ausfüllen",
+    "errorBiggerThan": "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorBigger999": "Bitte wähle eine Zahl kleiner als 999",
+    "biggerNull": "Bitte wähle eine Zahl größer als 0",
+    "existingCourse": "Dieser Eintrag ist bereits vorhanden."
   },
   "intro": {
     "about": "Was ist THMcards?",
@@ -66,22 +67,44 @@
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
+  "confirmLearn-form": {
+    "title": "Lernphase starten",
+    "text": "Wollen Sie die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer des Kartensatzes geht hierbei verloren!",
+    "confirm": "Starten",
+    "cancel": "Abbrechen",
+    "maxCards": "Workload",
+    "maxCardsDesc": "Maximal an einem Tag zu lernende Karten",
+    "daysBeforeReset": "Terminüberschreitung",
+    "daysBeforeResetDesc": "Maximale Anzahl an Tagen, die der Termin überschritten werden darf",
+    "learningStart": "Beginn der Lernphase",
+    "learningStartDesc": "Heute",
+    "learningEnd": "Ende der Lernphase",
+    "learningEndDesc": "In 3 Monaten",
+    "learningInterval": "Lernintervalle in Tagen",
+    "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
+    "notification": "Benachrichtigungen",
+    "mailNotificationCheckbox": "E-Mail",
+    "webNotificationCheckbox": "Browser",
+    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
+  },
+  "confirmEndLearn-form": {
+    "title": "Lernphase beenden",
+    "warnTitle": "Sie sind im Begriff die Lernphase zu beenden!",
+    "warning": "Wenn Sie den Vorgang fortsetzen, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Wollen Sie wirklich fortfahren?",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen"
+  },
   "nav-list": {
     "category": "Kategorie",
     "created": "Erstellt",
     "learned": "Gelernt"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Fachbereich",
-    "description": "Beschreibung",
-    "lastName": "Nachname",
-    "moduleLong": "Modul",
-    "degree": "Akademischer Grad",
-    "discipline": "Studiengang",
-    "major": "Major",
+    "module": "Modul",
     "license": "Lizenz",
     "topic": "Thema",
+    "college": "College",
+    "course": "Kurs",
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
@@ -271,9 +294,9 @@
     "total": "Total",
     "twoDaysAgo": "Vorgestern",
     "today": "Heute",
-    "days" : "Tage",
+    "days": "Tage",
     "day": "Tag",
-    "day_plural" : "Tage",
+    "day_plural": "Tage",
     "yesterday": "Gestern",
     "month": "Wochen",
     "threemonth": "Monate",
@@ -328,7 +351,9 @@
     "publicated": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
-    "license": " Lizenz wählen"
+    "license": " Lizenz wählen",
+    "startLearning": "Starte Lernphase",
+    "stopLearning": "Beende Lernphase"
   },
   "pool": {
     "relevance": "Relevanz",
@@ -443,8 +468,10 @@
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learn": "Lernen",
+  "manage": "Verwalten",
   "learnfile": "Lernkartei",
   "memo": "Memo",
+  "statistics": "Kartensatz Statistik",
   "report": "Kartensatz/Benutzer melden",
   "meteor": "Meteor",
   "play": "Spielen",
@@ -484,10 +511,16 @@
   "subject3": "Fach 3",
   "subject4": "Fach 4",
   "subject5": "Fach 5",
+  "subject6": "Fach 6",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Noch eine Karte im aktuellen Fach",
   "box_status_plural": "Noch __count__ Karten im aktuellen Fach",
+  "box_export": "Exportiere Lernstatistik",
+  "box_export_birth_name": "Name",
+  "box_export_given_name": "Vorname",
+  "box_export_statistics": "Statistiken",
+  "box_export_mail": "E-Mail",
   "clickcart": "Klicke auf die Karte um Sie zu drehen",
   "choosesubject": "Wähle ein Fach auf der linken Seite",
   "carddecks": "Kartensätze",
@@ -505,6 +538,9 @@
     "users": "Benutzer",
     "intervall": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
+    "settings": "Einstellungen",
+    "manageS": "Hochschule verwalten",
+    "manage": "Hochschule und Studiengang verwalten",
     "see_all": "Alle ansehen",
     "name": "Name",
     "kind": "Art",
@@ -563,6 +599,13 @@
         "title_all": "Alle Nachrichten löschen",
         "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
         "delete_all": "Nachrichten löschen"
+      },
+      "settings": {
+        "new_entry": "Neuer Eintrag",
+        "college": "Hochschule",
+        "course_of_studies": "Studiengang",
+        "required": "Pflichtfeld",
+        "create": "Erstellen"
       },
       "cancel": "Abbrechen"
     },

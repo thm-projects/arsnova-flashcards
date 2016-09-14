@@ -1,34 +1,23 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Colleges_Courses} from '../../api/colleges_courses.js';
+import {Categories} from "../../api/categories.js";
+import {Disciplines} from "../../api/disciplines.js";
+import {Majors} from "../../api/majors.js";
+import "./pool.html";
 
-import {Authors} from '../../api/authors.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Categories} from '../../api/categories.js';
-import {Disciplines} from '../../api/disciplines.js';
-import {Majors} from '../../api/majors.js';
-import {Modules} from '../../api/modules.js';
-
-import './pool.html';
-
-var ITEMS_INCREMENT = 20;
-Session.setDefault('itemsLimit', ITEMS_INCREMENT);
-
-Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
-Meteor.subscribe("categories");
-Meteor.subscribe("disciplines");
-Meteor.subscribe("majors");
-Meteor.subscribe("modules");
+Meteor.subscribe("colleges_courses");
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
+Session.setDefault('poolFilterCollege');
+Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
-Session.setDefault('poolFilterDiscipline');
-Session.setDefault('poolFilterCategory');
-Session.setDefault('poolFilterMajor');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 
 /**
@@ -45,52 +34,61 @@ Template.category.helpers({
 		if (Session.get('poolFilterAuthor')) {
 			query.owner = Session.get('poolFilterAuthor');
 		}
+		if (Session.get('poolFilterCollege')) {
+			query.college = Session.get('poolFilterCollege');
+		}
+		if (Session.get('poolFilterCourse')) {
+			query.course = Session.get('poolFilterCourse');
+		}
 		if (Session.get('poolFilterModule')) {
 			query.module = Session.get('poolFilterModule');
-		}
-		if (Session.get('poolFilterDiscipline')) {
-			query.discipline = Session.get('poolFilterDiscipline');
-		}
-		if (Session.get('poolFilterCategory')) {
-			query.category = Session.get('poolFilterCategory');
-		}
-		if (Session.get('poolFilterMajor')) {
-			query.major = Session.get('poolFilterMajor');
 		}
 		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
 	},
 	getAuthors: function () {
-		return Authors.find({}, {sort: {lastName: 1}});
+		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}}).fetch();
+	},
+	getColleges: function () {
+		return _.uniq(Colleges_Courses.find({}, {sort: {"college": 1}}).fetch(), function (item) {
+			return item.college;
+		});
+	},
+	getCourses: function () {
+		return _.uniq(Colleges_Courses.find({}, {sort: {"course": 1}}).fetch(), function (item) {
+			return item.course;
+		});
 	},
 	getModules: function () {
-		return Modules.find({}, {sort: {name: 1}});
-	},
-	getDisciplines: function () {
-		return Disciplines.find({}, {sort: {name: 1}});
-	},
-	getCategories: function () {
-		return Categories.find({}, {sort: {name: 1}});
-	},
-	getMajors: function () {
-		return Majors.find({}, {sort: {name: 1}});
+		return _.uniq(Cardsets.find({}, {sort: {"module": 1}}).fetch(), function (item) {
+			return item.moduleNum;
+		});
 	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
 	}
 });
 
+Template.category.greeting = function () {
+	return Session.get('authors');
+};
 
 Template.poolCardsetRow.helpers({
 	getAuthorName: function () {
-		var author = Authors.findOne({owner: this.owner});
+		var author = Meteor.users.findOne({"_id": this.owner});
 		if (typeof author !== 'undefined') {
-			return author.degree + " " + author.firstName + " " + author.lastName;
+			var degree = "";
+			if (author.profile.degree != 'undefined') {
+				degree = author.profile.degree;
+			}
+			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 		}
 	},
-	getModuleToken: function () {
-		var module = Modules.findOne({_id: this.module});
-		if (typeof module !== 'undefined') {
-			return module.token;
+	getSortUserIcon: function () {
+		var sort = Session.get('poolSort');
+		if (sort.username === 1) {
+			return '<i class="fa fa-sort-asc"></i>';
+		} else if (sort.username === -1) {
+			return '<i class="fa fa-sort-desc"></i>';
 		}
 	},
 	getDisciplineName: function () {
@@ -114,13 +112,38 @@ Template.poolCardsetRow.helpers({
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
-				return '<span class="label label-default">Free</span>';
+				return '<span class="label label-info">Free</span>';
 			case "edu":
 				return '<span class="label label-success">Edu</span>';
 			case "pro":
-				return '<span class="label label-info">Pro</span>';
+				return '<span class="label label-danger">Pro</span>';
 			default:
-				return '<span class="label label-danger">Undefined!</span>';
+				return '<span class="label label-default">Undefined!</span>';
+		}
+	},
+	getAuthor: function () {
+		return Meteor.users.findOne(this.owner).profile.name;
+	},
+	getLicense: function () {
+		var licenseString = "";
+
+		if (this.license.length > 0) {
+			if (this.license.includes('by')) {
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+			}
+			if (this.license.includes('nc')) {
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+			}
+			if (this.license.includes('nd')) {
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+			}
+			if (this.license.includes('sa')) {
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+			}
+
+			return new Spacebars.SafeString(licenseString);
+		} else {
+			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
 	}
 });
@@ -143,6 +166,24 @@ Template.category.events({
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
+	'click .filterCollege': function (event) {
+		var button = $(".filterCollegeGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterCollege', $(event.target).data('id'));
+	},
+	'click .filterCourse': function (event) {
+		var button = $(".filterCourseGroup");
+		if (!$(event.target).data('id')) {
+			button.removeClass("active");
+		} else {
+			button.addClass('active');
+		}
+		Session.set('poolFilterCourse', $(event.target).data('id'));
+	},
 	'click .filterModule': function (event) {
 		var button = $(".filterModuleGroup");
 		if (!$(event.target).data('id')) {
@@ -151,33 +192,6 @@ Template.category.events({
 			button.addClass('active');
 		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
-	},
-	'click .filterDiscipline': function (event) {
-		var button = $(".filterDisciplineGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterDiscipline', $(event.target).data('id'));
-	},
-	'click .filterCategory': function (event) {
-		var button = $(".filterCategoryGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterCategory', $(event.target).data('id'));
-	},
-	'click .filterMajor': function (event) {
-		var button = $(".filterMajorGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterMajor', $(event.target).data('id'));
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];

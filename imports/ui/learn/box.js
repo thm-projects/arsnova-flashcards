@@ -1,13 +1,11 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-
-import './box.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import "./box.html";
 
 
 Meteor.subscribe("cardsets");

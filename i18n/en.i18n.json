@@ -1,9 +1,10 @@
 {
-  "admin-intervall":{
-    "errorAllFields" : "Please fill all fields.",
-    "errorBiggerThan" : "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
-    "errorBigger999" : "Please choose a number less then 999",
-    "biggerNull" : "Please choose a number bigger then 0"
+  "admin-intervall": {
+    "errorAllFields": "Please fill all fields.",
+    "errorBiggerThan": "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
+    "errorBigger999": "Please choose a number less then 999",
+    "biggerNull": "Please choose a number bigger then 0",
+    "existingCourse": "This entry already exists."
   },
   "intro": {
     "about": "About THMcards",
@@ -17,6 +18,7 @@
     "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
+    "carousel-header-3": "Collect badges",
     "carousel-header-3": "Collect badges",
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
@@ -66,22 +68,47 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
+  "confirmLearn-form": {
+    "title": "Start Learn-Phase",
+    "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
+    "confirm": "Start",
+    "cancel": "Cancel",
+    "maxCards": "Daily workload",
+    "maxCardsDesc": "Maximum number of daily learnable cards",
+    "daysBeforeReset": "Overrun",
+    "daysBeforeResetDesc": "Maximum overrun in days",
+    "learningStart": "Start of Learning-Phase",
+    "learningStartDesc": "Today",
+    "learningEnd": "End of Learning-Phase",
+    "learningEndDesc": "In 3 months",
+    "learningInterval": "Learning-Interval in days",
+    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically.",
+    "notification": "Notifications",
+    "mailNotificationRadio": "E-Mail",
+    "webNotificationRadio": "Browser",
+    "mailNotificationCheckbox": "E-Mail",
+    "webNotificationCheckbox": "Browser",
+    "notificationError": "Please choose at least one way of notification!"
+  },
+  "confirmEndLearn-form": {
+    "title": "Stop Learn-Phase",
+    "warnTitle": "You are about to stop the Learn-Phase!",
+    "warning": "If you continue, the Learn-Phase will be stopped. After that, you won't be able to get any results anymore! Do you really wish to continue?",
+    "cancel": "Abort",
+    "confirm": "Continue"
+  },
   "nav-list": {
     "category": "Category",
     "created": "Created",
     "learned": "Learned"
   },
   "set-list": {
-    "name": "Name",
-    "category": "Category",
     "description": "Description",
-    "lastName": "Surname",
-    "moduleLong": "Module",
-    "degree": "Degree",
-    "discipline": "Discipline",
-    "major": "Major",
+    "module": "Module",
     "license": "License",
     "topic": "Topic",
+    "college": "College",
+    "course": "Course",
     "author": "Author",
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
@@ -271,7 +298,7 @@
     "yesterday": "Yesterday",
     "twoDaysAgo": "Two days ago",
     "day": "day",
-    "day_plural" : "days",
+    "day_plural": "days",
     "reset": "Reset",
     "default1": "default 7 days",
     "default2": "default 30 days",
@@ -323,7 +350,9 @@
     "publicated": "Publicated",
     "review": "In review",
     "private": "Private",
-    "license": " Select license"
+    "license": " Select license",
+    "startLearning": "Start Learning-Phase",
+    "stopLearning": "Stop Lerning-Phase"
   },
   "pool": {
     "relevance": "Relevance",
@@ -438,8 +467,10 @@
   "permission": "Permission denied",
   "nocards": "No cards available",
   "learn": "Learn",
+  "manage": "Manage",
   "learnfile": "Leitner's learning box",
   "memo": "Memo",
+  "statistics": "Deck statistics",
   "report": "Report cardset/user",
   "meteor": "Meteor",
   "play": "Play",
@@ -479,10 +510,16 @@
   "subject3": "Box 3",
   "subject4": "Box 4",
   "subject5": "Box 5",
+  "subject6": "Box 6",
   "know": "Known",
   "notknow": "Not known",
   "box_status": "Only one card in the current box",
   "box_status_plural": "Only __count__ cards in the current box",
+  "box_export": "export learn statistics",
+  "box_export_given_name": "Given name",
+  "box_export_birth_name": "Birth name",
+  "box_export_statistics": "Statistics",
+  "box_export_mail": "E-Mail",
   "clickcart": "Click on the card to turn it",
   "choosesubject": "Choose a box on the left side",
   "carddecks": "Deck of cards",
@@ -500,11 +537,14 @@
     "users": "Users",
     "intervall": "Define learning period",
     "notifications": "Notifications",
+    "settings": "Settings",
+    "manage": "Manage college and course",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
     "front": "Front",
     "back": "Back",
+    "manageS": "College manager",
     "admin": "Admin",
     "pro": "Pro",
     "university": "Edu",
@@ -558,6 +598,13 @@
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
         "delete_all": "Delete notifications"
+      },
+      "settings": {
+        "new_entry": "New Entry",
+        "college": "University",
+        "course_of_studies": "Course of Studies",
+        "required": "Required",
+        "create": "Create"
       },
       "cancel": "Cancel"
     },
@@ -664,3 +711,4 @@
     "reason": "Reason for block: "
   }
 }
+
