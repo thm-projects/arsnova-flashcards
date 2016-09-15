@@ -152,11 +152,11 @@ Template.cardset.events({
 			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
 			$('#helpEditSetModule').css('color', '#b94a48');
 		}
-		if ($('#editSetModulShort').val() === "") {
-			$('#editSetModulShortLabel').css('color', '#b94a48');
-			$('#editSetModulShort').css('border-color', '#b94a48');
-			$('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
-			$('#helpEditSetModulShort').css('color', '#b94a48');
+		if ($('#editSetModuleShort').val() === "") {
+			$('#editSetModuleShortLabel').css('color', '#b94a48');
+			$('#editSetModuleShort').css('border-color', '#b94a48');
+			$('#helpEditSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpEditSetModuleShort').css('color', '#b94a48');
 		}
 		if ($('#editSetModuleNum').val() === "") {
 			$('#editSetModuleNumLabel').css('color', '#b94a48');
@@ -167,17 +167,17 @@ Template.cardset.events({
 		if ($('#editSetName').val() !== "" &&
 			$('#editSetDescription').val() !== "" &&
 			$('#editSetModule').val() !== "" &&
-			$('#editSetModulShort').val() !== "" &&
+			$('#editSetModuleShort').val() !== "" &&
 			$('#editSetModuleNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
 			var description = tmpl.find('#editSetDescription').value;
 			var module = tmpl.find('#editSetModule').value;
-			var modulShort = tmpl.find('#editSetModulShort').value;
+			var moduleShort = tmpl.find('#editSetModuleShort').value;
 			var moduleNum = tmpl.find('#editSetModuleNum').value;
 			var college = $('#editSetCollege').text();
 			var course = $('#editSetCourse').text();
 
-			Meteor.call("updateCardset", this._id, name, description, module, modulShort, moduleNum, college, course);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 			$('#editSetModal').modal('hide');
 		}
 	},

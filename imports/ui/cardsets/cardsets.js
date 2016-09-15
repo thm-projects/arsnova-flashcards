@@ -144,11 +144,11 @@ Template.cardsets.events({
 			$('#helpNewSetModule').html(TAPi18n.__('modal-dialog.module_required'));
 			$('#helpNewSetModule').css('color', '#b94a48');
 		}
-		if ($('#newSetModulShort').val() === "") {
-			$('#newSetModulShortLabel').css('color', '#b94a48');
-			$('#newSetModulShort').css('border-color', '#b94a48');
-			$('#helpNewSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
-			$('#helpNewSetModulShort').css('color', '#b94a48');
+		if ($('#newSetModuleShort').val() === "") {
+			$('#newSetModuleShortLabel').css('color', '#b94a48');
+			$('#newSetModuleShort').css('border-color', '#b94a48');
+			$('#helpNewSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpNewSetModuleShort').css('color', '#b94a48');
 		}
 		if ($('#newSetModuleNum').val() === "") {
 			$('#newSetModuleNumLabel').css('color', '#b94a48');
@@ -171,19 +171,19 @@ Template.cardsets.events({
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
 			$('#newSetModule').val() !== "" &&
-			$('#newSetModulShort').val() !== "" &&
+			$('#newSetModuleShort').val() !== "" &&
 			$('#newSetModuleNum').val() !== "" &&
 			$('#newSetCollege').val() !== "" &&
 			$('#newSetCourse').val() !== "") {
 			var name = $('#newSetName').val();
 			var description = $('#newSetDescription').val();
 			var module = $('#newSetModule').val();
-			var modulShort = $('#newSetModulShort').val();
+			var moduleShort = $('#newSetModuleShort').val();
 			var moduleNum = $('#newSetModuleNum').val();
 			var college = $('#newSetCollege').text();
 			var course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, modulShort, moduleNum, college, course);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course);
 			$('#newSetModal').modal('hide');
 		}
 	}
