@@ -176,7 +176,6 @@ Template.cardsets.events({
 			$('#newSetModulNum').val() !== "" &&
 			$('#newSetCollege').val() !== "") {
 			var name = $('#newSetName').val();
-			//var category = $('#newSetCategory').val();
 			var description = $('#newSetDescription').val();
 			var modulLong = $('#newSetModulLong').val();
 			var modulShort = $('#newSetModulShort').val();
