@@ -104,6 +104,12 @@ Template.boxMain.helpers({
 		var isFront = Session.get('isFront');
 		return isFront === true;
 	},
+	box: function(){
+		return Session.get("selectedBox");
+		
+	},
+	
+	
 	getCardsByBox: function () {
 		var selectedBox = parseInt(Session.get('selectedBox'));
 
