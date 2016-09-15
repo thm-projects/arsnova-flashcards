@@ -209,9 +209,9 @@ var initBadges = function () {
 Meteor.startup(function () {
 	var categories = initCategories();
 	var badges = initBadges();
-	if (!Colleges_Courses.findOne({name: "THM"})) {
+	/*if (!Colleges_Courses.findOne({name: "THM"})) {
 		Colleges_Courses.insert({name: "THM"});
-	}
+	}*/
 
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {

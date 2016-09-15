@@ -609,7 +609,8 @@
         "college": "Hochschule",
         "course_of_studies": "Studiengang",
         "required": "Pflichtfeld",
-        "create": "Erstellen"
+        "create": "Erstellen",
+        "save": "Speichern"
       },
       "cancel": "Abbrechen"
     },

@@ -607,7 +607,8 @@
         "college": "University",
         "course_of_studies": "Course of Studies",
         "required": "Required",
-        "create": "Create"
+        "create": "Create",
+        "save": "Save"
       },
       "cancel": "Cancel"
     },
