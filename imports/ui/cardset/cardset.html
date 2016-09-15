@@ -82,7 +82,7 @@
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{degree}} {{firstName}} {{lastName}} </a>
+                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{getAuthorName}}</a>
                         {{else}}
                             {{firstName}} {{lastName}} ({{_ "cardset.info.deleted"}})
                         {{/if}}
@@ -498,7 +498,7 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">{{_"confirmLearn-form.maxCards"}}</label>
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
                             <div class="col-md-9">
                                 <input type="number" min="1" max="100" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
@@ -560,7 +560,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">{{_"confirmLearn-form.notification"}}</label>
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.notification"}}</label>
                             <form>
                                 <fieldset>
                                     <div class="col-md-9 form-group">
@@ -586,9 +586,9 @@
                     </div>
                     <div class="modal-footer">
                         <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
-                                style="width:150px">{{_"confirmLearn-form.cancel"}}</button>
+                                style="width:150px">{{_ "confirmLearn-form.cancel"}}</button>
                         <button id="confirmLearn" class="btn btn-success pull-right"
-                                data-dismiss="modal">{{_"confirmLearn-form.confirm"}}</button>
+                                data-dismiss="modal">{{_ "confirmLearn-form.confirm"}}</button>
                     </div>
                 </div>
             </div>
@@ -612,9 +612,9 @@
 
                     <div class="modal-footer">
                         <button id="cancelEndLearn" class="btn btn-default pull-left" data-dismiss="modal"
-                                style="width:150px">{{_"confirmEndLearn-form.cancel"}}</button>
+                                style="width:150px">{{_ "confirmEndLearn-form.cancel"}}</button>
                         <button id="confirmEndLearn" class="btn btn-warning pull-right"
-                                data-dismiss="modal">{{_"confirmEndLearn-form.confirm"}}</button>
+                                data-dismiss="modal">{{_ "confirmEndLearn-form.confirm"}}</button>
                     </div>
                 </div>
             </div>

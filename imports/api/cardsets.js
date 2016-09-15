@@ -172,7 +172,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		var nameTitle = 'undefined';
-		if (Meteor.user().profile.title === "") {
+		if (Meteor.user().profile.title !== "") {
 			nameTitle = Meteor.user().profile.title;
 		}
 		Cardsets.insert({

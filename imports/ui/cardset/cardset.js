@@ -74,6 +74,7 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
+
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
@@ -450,6 +451,12 @@ Template.cardsetInfo.onRendered(function () {
 });
 
 Template.cardsetInfo.helpers({
+	getAuthorName: function () {
+		var author = Meteor.users.findOne({"_id": this.owner});
+		if (typeof author !== 'undefined') {
+			return author.profile.birthname + " "  + author.profile.givenname;
+		}
+	},
 	getAverage: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
