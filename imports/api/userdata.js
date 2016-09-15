@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./cardsets.js";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
