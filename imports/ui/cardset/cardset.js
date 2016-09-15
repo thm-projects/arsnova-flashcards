@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
+import {Colleges} from "../../api/colleges.js";
 import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
