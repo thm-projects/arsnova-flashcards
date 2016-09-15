@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
+import {Colleges} from "../../api/colleges.js";
 import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
@@ -78,6 +79,7 @@ Template.cardset.helpers({
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
+		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		/*
 		 var previousCategory = Cardsets.findOne(id).category;
 		 var categoryId = previousCategory.toString();
@@ -220,6 +222,7 @@ Template.cardsetForm.onRendered(function () {
 		var previousName = Session.get('previousName');
 		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
+		var previousCollegeName = Session.get('previousCollegeName');
 
 		if (previousName !== $('#editSetName').val()) {
 			$('#editSetName').val(previousName);
@@ -234,10 +237,19 @@ Template.cardsetForm.onRendered(function () {
 		if (previousCategoryName !== $('#editSetCategory').html()) {
 			$('#editSetCategory').html(previousCategoryName);
 		}
+		if (previousCollegeName !== $('#editSetCollege').html()) {
+			$('#editSetCollege').html(previousCollegeName);
+		}
 	});
 });
 
 Template.cardsetForm.events({
+	'click .college': function (evt, tmpl) {
+		var collegeName = $(evt.currentTarget).attr("data");
+		var collegeId = $(evt.currentTarget).val();
+		$('#editSetCollege').text(collegeName);
+		tmpl.find('#editSetCollege').value = collegeId;
+	},
 	'keyup #editSetName': function () {
 		$('#editSetNameLabel').css('color', '');
 		$('#editSetName').css('border-color', '');
