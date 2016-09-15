@@ -124,11 +124,11 @@ Template.poolCardsetRow.helpers({
 	getAuthorName: function () {
 		var author = Meteor.users.findOne({"_id": this.owner});
 		if (author) {
-			var degree = "";
-			if (author.profile.degree) {
-				degree = author.profile.degree;
+			var title = "";
+			if (author.profile.title) {
+				title = author.profile.title;
 			}
-			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+			return title + " " + author.profile.givenname + " " + author.profile.birthname;
 		}
 	},
 	getKind: function () {
