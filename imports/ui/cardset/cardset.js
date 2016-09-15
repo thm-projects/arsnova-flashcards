@@ -480,7 +480,7 @@ Template.cardsetInfo.helpers({
 	getAuthorName: function () {
 		var author = Meteor.users.findOne({"_id": this.owner});
 		if (typeof author !== 'undefined') {
-			return author.profile.birthname + " "  + author.profile.givenname;
+			return author.profile.birthname + ", "  + author.profile.givenname;
 		}
 	},
 	getAverage: function () {
