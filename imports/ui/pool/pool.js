@@ -125,33 +125,6 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
-	getAuthorName,
-	getSortUserIcon: function () {
-		var sort = Session.get('poolSort');
-		if (sort.username === 1) {
-			return '<i class="fa fa-sort-asc"></i>';
-		} else if (sort.username === -1) {
-			return '<i class="fa fa-sort-desc"></i>';
-		}
-	},
-	getDisciplineName: function () {
-		var discipline = Disciplines.findOne({_id: this.discipline});
-		if (typeof discipline !== 'undefined') {
-			return discipline.name;
-		}
-	},
-	getCategoryToken: function () {
-		var category = Categories.findOne({_id: this.category});
-		if (typeof category !== 'undefined') {
-			return category.token;
-		}
-	},
-	getMajorToken: function () {
-		var major = Majors.findOne({_id: this.major});
-		if (typeof major !== 'undefined') {
-			return major.token;
-		}
-	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -164,8 +137,10 @@ Template.poolCardsetRow.helpers({
 				return '<span class="label label-default">Undefined!</span>';
 		}
 	},
-	getAuthor: function () {
-		return Meteor.users.findOne(this.owner).profile.name;
+	getPrice: function () {
+		if (this.price !== 0) {
+			return this.price + '€';
+		}
 	},
 	getLicense: function () {
 		var licenseString = "";
@@ -251,8 +226,7 @@ Template.category.onDestroyed(function () {
 
 Template.pool.onRendered(function () {
 	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for (var i = 0; i < toLearn.length; ++i)
-	{
+	for (var i = 0; i < toLearn.length; ++i) {
 		notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
 	}
 });

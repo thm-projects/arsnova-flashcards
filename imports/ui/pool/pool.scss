@@ -99,20 +99,10 @@
 
   .licenseInfo, .topicName {
     padding-left: 0px;
+    padding-right: 0px;
   }
 
-  .selectLicenseModal {
-    .cc-modules img {
-      width: 30px;
-    }
-    .cc-description {
-      padding-top: 10px;
-      img {
-        width: 58px;
-      }
-      p {
-        padding-bottom: 10px;
-      }
-    }
+  #info_license img {
+    width: 20px;
   }
 }

@@ -130,7 +130,7 @@
         {{#each getDecks}}
             <a href="/cardset/{{_id}}">
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
-                oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                        oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
                     {{> poolCardsetRow}}
                 </div>
             </a>
@@ -153,21 +153,21 @@
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.author"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{{getAuthorName}}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.college"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{{this.college}}}</span>
+    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.college}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.course"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{{this.course}}}</span>
+    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.course}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.module"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{{this.moduleToken}}}</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.license"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 kind-label poolInfo">
-        <span class="kind-label col-xs-3 col-sm-2 col-md-4 licenseInfo">
+        <span class="kind-label col-xs-3 col-sm-3 col-md-3 licenseInfo">
             {{{getKind}}}
         </span>
-        <span class="col-xs-3 col-sm-2 col-md-4 licenseInfo">
-
+        <span class="col-xs-3 col-sm-3 col-md-4 licenseInfo">
+            {{{getPrice}}}
         </span>
-        <span class="col-xs-6 col-sm-2 col-md-4 licenseInfo">
-
+        <span id="info_license" class="col-xs-6 col-sm-6 col-md-5 licenseInfo">
+            {{getLicense}}
         </span>
     </span>
 </template>
