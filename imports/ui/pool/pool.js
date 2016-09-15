@@ -4,19 +4,9 @@ import {Meteor} from 'meteor/meteor';
 import {Template} from 'meteor/templating';
 import {Session} from 'meteor/session';
 import {Cardsets} from '../../api/cardsets.js';
-import {Categories} from '../../api/categories.js';
-import {Disciplines} from '../../api/disciplines.js';
-import {Majors} from '../../api/majors.js';
-import {CollegesCourses} from '../../api/colleges_courses.js';
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("allLearned");
-Meteor.subscribe("categories");
-Meteor.subscribe("disciplines");
-Meteor.subscribe("majors");
-Meteor.subscribe("modules");
-Meteor.subscribe("collegesCourses");
 Meteor.subscribe("allLearned");
 
 Session.setDefault('poolSortTopic', {name: 1});
@@ -68,6 +58,26 @@ export function getAuthorName() {
 	}
 }
 
+var query = {};
+
+function prepareQuery() {
+	query = {};
+	query.visible = true;
+	query.kind = {$in: Session.get('poolFilter')};
+	if (Session.get('poolFilterAuthor')) {
+		query.owner = Session.get('poolFilterAuthor');
+	}
+	if (Session.get('poolFilterCollege')) {
+		query.college = Session.get('poolFilterCollege');
+	}
+	if (Session.get('poolFilterCourse')) {
+		query.course = Session.get('poolFilterCourse');
+	}
+	if (Session.get('poolFilterModule')) {
+		query.module = Session.get('poolFilterModule');
+	}
+}
+
 /**
  * ############################################################################
  * category
@@ -75,39 +85,33 @@ export function getAuthorName() {
  */
 
 Template.category.helpers({
+	filterAuthors: function () {
+		prepareQuery();
+		query.owner = this._id;
+		return Cardsets.findOne(query);
+	},
 	getDecks: function () {
-		var query = {};
-		query.visible = true;
-		query.kind = {$in: Session.get('poolFilter')};
-		if (Session.get('poolFilterAuthor')) {
-			query.owner = Session.get('poolFilterAuthor');
-		}
-		if (Session.get('poolFilterCollege')) {
-			query.college = Session.get('poolFilterCollege');
-		}
-		if (Session.get('poolFilterCourse')) {
-			query.course = Session.get('poolFilterCourse');
-		}
-		if (Session.get('poolFilterModule')) {
-			query.module = Session.get('poolFilterModule');
-		}
+		prepareQuery();
 		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
 	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}}).fetch();
 	},
 	getColleges: function () {
-		return _.uniq(CollegesCourses.find({}, {sort: {"college": 1}}).fetch(), function (item) {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"college": 1}}).fetch(), function (item) {
 			return item.college;
 		});
 	},
 	getCourses: function () {
-		return _.uniq(CollegesCourses.find({}, {sort: {"course": 1}}).fetch(), function (item) {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"course": 1}}).fetch(), function (item) {
 			return item.course;
 		});
 	},
 	getModules: function () {
-		return _.uniq(Cardsets.find({}, {sort: {"module": 1}}).fetch(), function (item) {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"module": 1}}).fetch(), function (item) {
 			return item.moduleNum;
 		});
 	},

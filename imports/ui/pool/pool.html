@@ -27,9 +27,11 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
                 {{#each getAuthors}}
-                    <li><a href="#" class="filterAuthor"
-                           data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
-                    </li>
+                    {{#if filterAuthors}}
+                        <li><a href="#" class="filterAuthor"
+                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+                        </li>
+                    {{/if}}
                 {{/each}}
             </ul>
         </div>
