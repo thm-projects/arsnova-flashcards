@@ -38,11 +38,6 @@ export function getActiveLearner() {
 	return (_.pluck(distinctData, "user_id").length);
 }
 
-export function getUser() {
-	var userId = Meteor.userId();
-	var name = Meteor.users.find({_id: userId}).fetch();
-	console.log(name);
-}
 
 /**
  * ############################################################################

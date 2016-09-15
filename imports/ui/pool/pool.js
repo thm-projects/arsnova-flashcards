@@ -60,7 +60,6 @@ export function getAuthorName() {
 		if (author.profile.title) {
 			degree = author.profile.title;
 		}
-		console.log(author.profile.title);
 		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 	}
 }
