@@ -49,7 +49,7 @@ export function drawGraph() {
 				]
 		};
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		var myNewChart = new Chart(ctx).Bar(data,
+		new Chart(ctx).Bar(data,
 
 		{
 			responsive: true

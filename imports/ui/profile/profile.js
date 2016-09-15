@@ -54,7 +54,7 @@ export function drawGraph() {
 			]
 		};
 		var ctx = document.getElementById("profileChart").getContext("2d");
-		var myNewChart = new Chart(ctx).Bar(data,
+		new Chart(ctx).Bar(data,
 			{
 				responsive: true
 			});

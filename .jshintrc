@@ -45,7 +45,6 @@
     "ServiceConfiguration": true,
     "ActiveRoute": true,
     "prompt": true,
-    "RouteController": true,
-    "AppController": true
+    "Chart": true
   }
 }
