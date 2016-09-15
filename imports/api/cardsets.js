@@ -94,13 +94,7 @@ var CardsetsSchema = new SimpleSchema({
 	moduleNum: {
 		type: String
 	},
-	degree: {
-		type: String
-	},
 	college: {
-		type: String
-	},
-	department: {
 		type: String
 	},
 	course: {
@@ -195,9 +189,7 @@ Meteor.methods({
 			module: module,
 			moduleToken: modulShort,
 			moduleNum: moduleNum,
-			degree: nameTitle,
 			college: college,
-			department: 'undefined',
 			course: course,
 			learningActive: false,
 			maxCards: 0,
