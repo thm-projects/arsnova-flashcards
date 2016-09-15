@@ -200,6 +200,9 @@ Template.admin_interval.events({//TODO
 			saveInterval();
 		}
 	},
+	'click #cancelIntervall': function () {
+		$('#inv1, #inv2, #inv3').val("");
+	},
 	'click #saveInterval': saveInterval,
 	'click #resetIntervall': function () {
 		var seq = AdminSettings.findOne({name: "seqSettings"});
