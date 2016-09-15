@@ -19,7 +19,6 @@
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
     "carousel-header-3": "Collect badges",
-    "carousel-header-3": "Collect badges",
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
   "navbar-collapse": {
@@ -448,7 +447,6 @@
     "rating": "Rating",
     "minchars": "At least 60 chars",
     "chars": "Chars",
-    "minchars": "At least 60 chars",
     "cancel": "Cancel",
     "edit": "Rate deck of cards"
   },
