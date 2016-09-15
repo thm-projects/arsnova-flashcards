@@ -44,6 +44,7 @@
     "moment": true,
     "ServiceConfiguration": true,
     "ActiveRoute": true,
-    "prompt": true
+    "prompt": true,
+    "Chart": true
   }
 }

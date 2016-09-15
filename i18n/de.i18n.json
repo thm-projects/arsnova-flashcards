@@ -105,7 +105,7 @@
     "module": "Modul",
     "license": "Lizenz",
     "topic": "Thema",
-    "college": "College",
+    "college": "Hochschule",
     "course": "Kurs",
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
@@ -536,6 +536,8 @@
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
   "admin": {
+    "allLearnedCardsets": "Alle gelernten Kartensätze",
+    "learnedCardsets": "Lernfortschritt des Kartensatzes",
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
     "cards": "Karten",

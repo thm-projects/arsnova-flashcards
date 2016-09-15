@@ -7,6 +7,7 @@ import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
 import {Colleges_Courses} from "../../api/colleges_courses.js";
 
+
 var initCategories = function () {
 	var categoryNames = [
 		"Agricultural and Forestry Sciences",//1

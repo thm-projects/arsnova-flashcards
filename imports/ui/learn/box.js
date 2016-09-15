@@ -5,17 +5,59 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
+//import { ReactiveVar } from 'meteor/reactive-var';
 import "./box.html";
 
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe("learned");
+Meteor.subscribe('learned', function () {
+	Session.set('data_loaded', true);
+});
 
 Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
+
+export function drawGraph() {
+	var card_id = Router.current().params._id;
+	var user_id =  Meteor.userId();
+
+	if (Session.get('data_loaded')) {
+		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
+		var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
+		var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
+		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
+		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
+		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
+		//[Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+
+
+		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+
+		var data = {
+			labels: [TAPi18n.__('subject1'),TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			datasets: [
+					{
+						fillColor: "rgba(242,169,0,0.5)",
+						strokeColor: "rgba(74,92,102,0.2)",
+						pointColor: "rgba(220,220,220,1)",
+						pointStrokeColor: "#fff",
+						data: userData
+					}
+				]
+		};
+		var ctx = document.getElementById("boxChart").getContext("2d");
+		new Chart(ctx).Bar(data,
+
+		{
+			responsive: true
+		});
+	}
+}
+
+
 
 /**
  * ############################################################################
@@ -209,3 +251,20 @@ Template.boxEnd.events({
 		});
 	}
 });
+
+/**
+ * ############################################################################
+ * Chart
+ * ############################################################################
+ */
+
+
+Template.boxSide.onRendered(function () {
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			drawGraph();
+		});
+	});
+});
+

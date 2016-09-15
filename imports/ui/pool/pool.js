@@ -10,6 +10,10 @@ import {Majors} from '../../api/majors.js';
 import {Colleges_Courses} from '../../api/colleges_courses.js';
 import "./pool.html";
 
+var ITEMS_INCREMENT = 20;
+Session.setDefault('itemsLimit', ITEMS_INCREMENT);
+
+Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("categories");

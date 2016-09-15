@@ -19,6 +19,7 @@
                     {{> boxStart}}
                 {{/if}}
             {{/if}}
+            {{> graph}}
         </div>
 
         <!-- Permission denied -->
@@ -74,7 +75,10 @@
 
         </div>
     </div>
+
+
 </template>
+
 
 <!-- Startscreen -->
 <template name="boxStart">
@@ -97,6 +101,7 @@
         </div>
     </div>
 </template>
+
 
 <!-- Mainscreen -->
 <template name="boxMain">
@@ -151,6 +156,24 @@
         </div>
     {{/if}}
     {{> boxPictureForm}}
+
+</template>
+
+<template name="graph">
+        <div class="well well-sm sidebar-nav" style="margin-top: 50px">
+            <div id="container" style="min-width: 100%;
+			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
+                <h3 class="panel-title">{{_ "admin.learnedCardsets"}}</h3>
+                <canvas id="boxChart" width="800" height="470"></canvas>
+            </div>
+    </div>
+</template>
+
+
+<template name="appLayout5">
+    <div class="container">
+        {{> yield}}
+    </div>
 </template>
 
 <!-- Endscreen -->
@@ -182,4 +205,5 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
 </template>
