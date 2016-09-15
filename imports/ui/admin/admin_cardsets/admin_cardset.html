@@ -64,7 +64,7 @@
                             <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_
                                     "admin.cardset.kind"}}</label>
                             <div class="controls">
-                                <div id="publicateKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
+                                <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0Admin"
                                            class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}"
                                            style="width:100px">
@@ -95,10 +95,10 @@
                         </div>
                         {{#if kindWithPrice}}
                             <div class="form-group">
-                                <label id="publicatePriceLabelAdmin" for="publicatePrice">{{_ "admin.cardset.price"}}
+                                <label id="publishPriceLabelAdmin" for="publishPrice">{{_ "admin.cardset.price"}}
                                     (€)</label>
                                 <div class="input-group">
-                                    <select id="publicatePriceAdmin" class="form-control">
+                                    <select id="publishPriceAdmin" class="form-control">
                                         <option {{priceIsSelected 0.99}}>0.99</option>
                                         <option {{priceIsSelected 1.99}}>1.99</option>
                                         <option {{priceIsSelected 2.99}}>2.99</option>
