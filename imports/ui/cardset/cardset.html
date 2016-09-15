@@ -186,8 +186,9 @@
                     <button id="exportCSV" class="btn btn-default btn-block btn-success">{{_ "box_export"}}</button>
                 {{/if}}
                 {{#unless isOwner}}
-                    <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_
-                            "report"}}</a>
+                    <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
+                            data-toggle="modal" data-target="#reportModal">{{_
+                            "report"}}</button>
                 {{/unless}}
             </div>
         </div>

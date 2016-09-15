@@ -517,13 +517,13 @@ Template.cardsetInfo.helpers({
 			case "personal":
 				return '<span class="label label-warning">Private</span>';
 			case "free":
-				return '<span class="label label-default">Free</span>';
+				return '<span class="label label-info">Free</span>';
 			case "edu":
 				return '<span class="label label-success">Edu</span>';
 			case "pro":
-				return '<span class="label label-info">Pro</span>';
+				return '<span class="label label-danger">Pro</span>';
 			default:
-				return '<span class="label label-danger">Undefined!</span>';
+				return '<span class="label label-default">Undefined!</span>';
 		}
 	},
 	getStatus: function () {
