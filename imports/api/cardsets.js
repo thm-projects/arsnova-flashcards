@@ -253,10 +253,7 @@ Meteor.methods({
 		}
 		if (!learningEnd) {
 			learningEnd = new Date();
-			var day = 1000 * 60 * 60 * 24;
-			var week = 7 * day;
-			var month = 4 * week;
-			learningEnd.setTime(learningEnd.getTime() + 3 * month);
+			learningEnd.setMonth(learningEnd.getMonth() + 3);
 		}
 		if (!learningInterval) {
 			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
@@ -350,7 +347,7 @@ Meteor.methods({
 
 		return relevance;
 	},
-	publicateCardset: function (id, kind, price, visible) {
+	publishCardset: function (id, kind, price, visible) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
