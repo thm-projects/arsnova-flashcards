@@ -108,9 +108,9 @@ Template.category.greeting = function () {
 Template.poolCardsetRow.helpers({
 	getAuthorName: function () {
 		var author = Meteor.users.findOne({"_id": this.owner});
-		if (typeof author !== 'undefined') {
+		if (author) {
 			var degree = "";
-			if (author.profile.degree != 'undefined') {
+			if (author.profile.degree) {
 				degree = author.profile.degree;
 			}
 			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
