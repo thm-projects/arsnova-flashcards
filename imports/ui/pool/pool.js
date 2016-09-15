@@ -10,10 +10,6 @@ import {Majors} from '../../api/majors.js';
 import {CollegesCourses} from '../../api/colleges_courses.js';
 import "./pool.html";
 
-var ITEMS_INCREMENT = 20;
-Session.setDefault('itemsLimit', ITEMS_INCREMENT);
-
-Meteor.subscribe("authors");
 Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("categories");
@@ -125,6 +121,16 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
+	getAuthorName: function () {
+		var author = Meteor.users.findOne({"_id": this.owner});
+		if (author) {
+			var degree = "";
+			if (author.profile.degree) {
+				degree = author.profile.degree;
+			}
+			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+		}
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
