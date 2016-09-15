@@ -600,7 +600,9 @@
         "text": "Do you really want to delete this notification?",
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
-        "delete_all": "Delete notifications"
+        "delete_all": "Delete notifications",
+        "heading": "Tasks are waiting!",
+        "content": "In cardset: "
       },
       "settings": {
         "new_entry": "New Entry",
