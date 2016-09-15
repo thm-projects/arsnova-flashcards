@@ -302,9 +302,9 @@
     "day": "day",
     "day_plural": "days",
     "reset": "Reset",
-    "default1": "default 7 days",
-    "default2": "default 30 days",
-    "default3": "default 90 days",
+    "default1": "default 7",
+    "default2": "default 30",
+    "default3": "default 90",
     "lastredeem": "At last for: "
   },
   "panel-body-last": {
@@ -538,7 +538,7 @@
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
-    "intervall": "Define learning period",
+    "intervall": "Learning period",
     "notifications": "Notifications",
     "settings": "Settings",
     "manage": "Manage college and course",

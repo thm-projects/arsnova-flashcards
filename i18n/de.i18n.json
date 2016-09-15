@@ -302,9 +302,9 @@
     "yesterday": "Gestern",
     "month": "Wochen",
     "threemonth": "Monate",
-    "default1": "Standard 7 Tage",
-    "default2": "Standard 30 Tage",
-    "default3": "Standard 90 Tage",
+    "default1": "Standard 7",
+    "default2": "Standard 30",
+    "default3": "Standard 90",
     "reset": "Zurücksetzen",
     "lastredeem": "Zuletzt für: "
   },
