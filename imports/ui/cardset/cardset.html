@@ -69,12 +69,12 @@
                             {{/if}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                            <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
+                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearner}}
                             <hr>
                         {{/if}}
                         <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
                         <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
                         <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
@@ -82,9 +82,9 @@
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{degree}} {{firstName}} {{lastName}} </a>
+                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{getAuthorName}} {{this.firstName}} {{this.lastName}} </a>
                         {{else}}
-                            {{firstName}} {{lastName}} ({{_ "cardset.info.deleted"}})
+                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
                         {{/if}}
                         <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
                         <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}

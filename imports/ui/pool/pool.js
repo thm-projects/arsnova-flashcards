@@ -53,6 +53,18 @@ export function notification(title, message) {
 	}
 }
 
+export function getAuthorName() {
+	var author = Meteor.users.findOne({"_id": this.owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		}
+		console.log(author.profile.title);
+		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+	}
+}
+
 /**
  * ############################################################################
  * category
@@ -106,16 +118,7 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
-	getAuthorName: function () {
-		var author = Meteor.users.findOne({"_id": this.owner});
-		if (author) {
-			var degree = "";
-			if (author.profile.degree) {
-				degree = author.profile.degree;
-			}
-			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-		}
-	},
+	getAuthorName,
 	getSortUserIcon: function () {
 		var sort = Session.get('poolSort');
 		if (sort.username === 1) {

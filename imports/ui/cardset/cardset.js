@@ -8,6 +8,8 @@ import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Learned} from "../../api/learned.js";
+import {getAuthorName} from "../pool/pool.js";
+
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/box.js";
@@ -16,6 +18,7 @@ import "./cardset.html";
 
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("userData");
 Meteor.subscribe("paid");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
@@ -33,6 +36,12 @@ export function getActiveLearner() {
 	var data = Learned.find({box: {$gt: 1}}).fetch();
 	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
 	return (_.pluck(distinctData, "user_id").length);
+}
+
+export function getUser() {
+	var userId = Meteor.userId();
+	var name = Meteor.users.find({_id: userId}).fetch();
+	console.log(name);
 }
 
 /**
@@ -568,6 +577,7 @@ Template.cardsetInfo.helpers({
 			return true;
 		}
 	},
+	getAuthorName,
 	getActiveLearner
 });
 
