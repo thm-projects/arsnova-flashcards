@@ -43,18 +43,14 @@ export function drawGraph() {
 		};
 		var canvas = document.getElementById("adminChart");
 		var ctx = document.getElementById("adminChart").getContext("2d");
-		var myNewChart = new Chart(ctx).Bar(data,
+		new Chart(ctx).Bar(data,
 			{
-				responsive: true,
-				title: {
-					display: true,
-					text: 'Custom Chart Title'
-				}
+				responsive: true
 			});
-			canvas.style.width='100%';
-			canvas.style.height='100%';
-			canvas.width  = canvas.offsetWidth;
-			canvas.height = canvas.offsetHeight;
+		canvas.style.width = '100%';
+		canvas.style.height = '100%';
+		canvas.width  = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
 	}
 }
 
