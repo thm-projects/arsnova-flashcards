@@ -82,7 +82,7 @@
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName}}</a>
+                            <a href="{{pathFor 'profileOverview' _id=owner}}">{{getAuthorName}}</a>
                         {{else}}
                             {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
                         {{/if}}
