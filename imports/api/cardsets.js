@@ -350,7 +350,7 @@ Meteor.methods({
 
 		return relevance;
 	},
-	publicateCardset: function (id, kind, price, visible) {
+	publishCardset: function (id, kind, price, visible) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 

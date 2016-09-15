@@ -4,7 +4,7 @@
 
         {{> cardsetForm}}
         {{> cardsetImportForm}}
-        {{> cardsetPublicateForm}}
+        {{> cardsetPublishForm}}
         {{> cardsetStartLearnForm}}
         {{> cardsetEndLearnForm}}
         {{> selectLicenseForm}}
@@ -104,11 +104,11 @@
             {{#if isOwner}}
                 <div class="panel-footer">
                     <div class="btn-group">
-                        <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                        "sidebar-nav.publicate"}}: {{getStatus}}</button>
-                        <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
-                                title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!">
+                        <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
+                        "sidebar-nav.publish"}}: {{getStatus}}</button>
+                        <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
+                                title="{{_ "sidebar-nav.tooltip"}}">
                             <i class="fa fa-question"></i></button>
                     </div>
                     <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
@@ -688,13 +688,13 @@
     <!-- /.modal -->
 </template>
 
-<template name="cardsetPublicateForm">
-    <div class="modal fade" id="publicateModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+<template name="cardsetPublishForm">
+    <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publicate"}}</h4>
+                    <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -702,7 +702,7 @@
                             <label class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
                             <div class="controls col-md-9">
-                                <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
+                                <div id="publishKind" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0"
                                            class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
                                            style="width:100px">
@@ -736,11 +736,11 @@
                         </div>
                         {{#if kindWithPrice}}
                             <div class="form-group">
-                                <label id="publicatePriceLabel" class="col-md-3 control-label"
-                                       for="publicatePrice">{{_ "modal-dialog.price"}} (€)</label>
+                                <label id="publishPriceLabel" class="col-md-3 control-label"
+                                       for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <select id="publicatePrice" class="form-control">
+                                        <select id="publishPrice" class="form-control">
                                             <option {{priceIsSelected 0.99}}>0.99</option>
                                             <option {{priceIsSelected 1.99}}>1.99</option>
                                             <option {{priceIsSelected 2.99}}>2.99</option>
@@ -761,8 +761,8 @@
                 <div class="modal-footer">
                     <button id="cardsetCancel" class="btn btn-default"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-                    <button id="cardsetPublicate"
-                            class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
+                    <button id="cardsetPublish"
+                            class="btn btn-info pull-success">{{_ "modal-dialog.publish"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

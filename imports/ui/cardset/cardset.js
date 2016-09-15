@@ -511,7 +511,7 @@ Template.cardsetInfo.helpers({
 	getStatus: function () {
 		if (this.visible) {
 			var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-			return TAPi18n.__('sidebar-nav.publicated') + " (" + kind + ")";
+			return TAPi18n.__('sidebar-nav.published') + " (" + kind + ")";
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
 				return TAPi18n.__('sidebar-nav.review') + " (Pro)";
@@ -908,20 +908,20 @@ Template.cardsetConfirmForm.events({
 
 /**
  * ############################################################################
- * cardsetPublicateForm
+ * cardsetPublishForm
  * ############################################################################
  */
 
-Template.cardsetPublicateForm.onRendered(function () {
-	$('#publicateModal').on('hidden.bs.modal', function () {
+Template.cardsetPublishForm.onRendered(function () {
+	$('#publishModal').on('hidden.bs.modal', function () {
 		var cardset = Cardsets.findOne(Session.get('cardsetId'));
 
-		$('#publicateKind > label').removeClass('active');
-		$('#publicateKind > label > input').filter(function () {
+		$('#publishKind > label').removeClass('active');
+		$('#publishKind > label > input').filter(function () {
 			return this.value === cardset.kind;
 		}).parent().addClass('active');
 
-		$('#publicateKind > label > input').filter(function () {
+		$('#publishKind > label > input').filter(function () {
 			return this.value === cardset.kind;
 		}).prop('checked', true);
 
@@ -929,11 +929,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 		Session.set('kindWithPrice', kindWithPrice);
 
 
-		$('#publicatePrice').val(cardset.price);
+		$('#publishPrice').val(cardset.price);
 	});
 });
 
-Template.cardsetPublicateForm.helpers({
+Template.cardsetPublishForm.helpers({
 	kindWithPrice: function () {
 		return Session.get('kindWithPrice');
 	},
@@ -945,17 +945,17 @@ Template.cardsetPublicateForm.helpers({
 	}
 });
 
-Template.cardsetPublicateForm.events({
-	'click #cardsetPublicate': function (evt, tmpl) {
+Template.cardsetPublishForm.events({
+	'click #cardsetPublish': function (evt, tmpl) {
 		var id = this._id;
-		var kind = tmpl.find('#publicateKind > .active > input').value;
+		var kind = tmpl.find('#publishKind > .active > input').value;
 		var price = 0;
 		var visible = true;
 		var license = [];
 
 		if (kind === 'edu' || kind === 'pro') {
-			if (tmpl.find('#publicatePrice') !== null) {
-				price = tmpl.find('#publicatePrice').value;
+			if (tmpl.find('#publishPrice') !== null) {
+				price = tmpl.find('#publishPrice').value;
 			} else {
 				price = this.price;
 			}
@@ -976,11 +976,11 @@ Template.cardsetPublicateForm.events({
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 
-		Meteor.call("publicateCardset", id, kind, price, visible);
-		$('#publicateModal').modal('hide');
+		Meteor.call("publishCardset", id, kind, price, visible);
+		$('#publishModal').modal('hide');
 	},
-	'change #publicateKind': function () {
-		var kind = $('#publicateKind input[name=kind]:checked').val();
+	'change #publishKind': function () {
+		var kind = $('#publishKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
 	}

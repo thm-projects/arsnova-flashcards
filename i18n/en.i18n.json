@@ -69,7 +69,7 @@
     "text": "Do you really want to delete this card?"
   },
   "confirmLearn-form": {
-    "title": "Start Learn-Phase",
+    "title": "Start Learning-Phase",
     "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
     "confirm": "Start",
     "cancel": "Cancel",
@@ -149,7 +149,7 @@
     "description_required": "The description field is required!",
     "category_required": "The category field is required!",
     "price": "Retail price",
-    "publicate": "Save state",
+    "publish": "Save state",
     "modules": "Types of licenses",
     "by-desc": "Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits (attribution) in the manner specified by these.",
     "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
@@ -286,8 +286,8 @@
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
     "nameAlreadyExists": "Username is already taken!",
-    "birthnameEmpty": "Birth name must not be empty!",
-    "givennameEmpty": "Given name must not be empty!"
+    "birthnameEmpty": "Birth name required!",
+    "givennameEmpty": "Given name required!"
   },
   "panel-heading-experience": {
     "experience": "Experience Points (XP)",
@@ -347,9 +347,9 @@
     "createcard": "Create a new card",
     "importcard": "Import cards",
     "exportcard": "Export cards",
-    "publicate": "Status",
+    "publish": "Status",
     "tooltip": "Create at least 5 Cards in this set and complete your profile before publishing this set. Pro Cardsets can't be demoted!",
-    "publicated": "Publicated",
+    "published": "Published",
     "review": "In review",
     "private": "Private",
     "license": " Select license",
