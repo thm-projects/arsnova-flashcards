@@ -687,18 +687,42 @@ Template.cardsetStartLearnForm.onRendered(function () {
 	def = dyyyy + "-" + dmm + "-" + ddd;
 
 	document.getElementById('inputLearningStart').setAttribute("min", today);
+	document.getElementById('inputLearningStart').setAttribute("max", def);
 	$('#inputLearningStart').val(today);
 	document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
 	$('#inputLearningEnd').val(def);
 });
 
 Template.cardsetStartLearnForm.events({
+	"input #inputLearningStart": function () {
+		let start = new Date($('#inputLearningStart').val());
+		let end = new Date($('#inputLearningEnd').val());
+		if (isNaN(start.getTime()) || start < new Date()) {
+			let today = new Date();
+			$('#inputLearningStart').val(today.getFullYear() + "-" + ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + "-" + (today.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		if (start >= end) {
+			end.setDate(end.getDate() - 1);
+			$('#inputLearningStart').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		document.getElementById('inputLearningEnd').setAttribute("min", (start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate()));
+	},
+	"input #inputLearningEnd": function () {
+		let start = new Date($('#inputLearningStart').val());
+		let end = new Date($('#inputLearningEnd').val());
+		if (isNaN(end.getTime()) || start >= end) {
+			end = start;
+			end.setDate(end.getDate() + 1);
+			$('#inputLearningEnd').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		document.getElementById('inputLearningStart').setAttribute("max", (end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + (end.getDate() - 1)));
+	},
 	"click #confirmLearn": function () {
 		if (!Cardsets.findOne(this._id).learningActive) {
 			var maxCards = $('#inputMaxCards').val();
 			var daysBeforeReset = $('#inputDaysBeforeReset').val();
-			var learningStart = $('#inputLearningStart').val();
-			var learningEnd = $('#inputLearningEnd').val();
+			var learningStart = new Date($('#inputLearningStart').val());
+			var learningEnd = new Date($('#inputLearningEnd').val());
 			var learningInterval = [];
 			for (let i = 0; i < 5; ++i) {
 				learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
@@ -735,8 +759,49 @@ Template.cardsetStartLearnForm.events({
 	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
 		$('#inputDaysBeforeReset').val(null);
-		$('#inputLearningStart').val(null);
-		$('#inputLearningEnd').val(null);
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth() + 1; //January is 0!
+		var yyyy = today.getFullYear();
+		if (dd < 10) {
+			dd = '0' + dd;
+		}
+		if (mm < 10) {
+			mm = '0' + mm;
+		}
+		today = yyyy + "-" + mm + "-" + dd;
+
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 7);
+		var tdd = tomorrow.getDate();
+		var tmm = tomorrow.getMonth() + 1; //January is 0!
+		var tyyyy = tomorrow.getFullYear();
+		if (tdd < 10) {
+			tdd = '0' + tdd;
+		}
+		if (tmm < 10) {
+			tmm = '0' + tmm;
+		}
+		tomorrow = tyyyy + "-" + tmm + "-" + tdd;
+
+		var def = new Date();
+		def.setMonth(def.getMonth() + 3);
+		var ddd = def.getDate();
+		var dmm = def.getMonth() + 1; //January is 0!
+		var dyyyy = def.getFullYear();
+		if (ddd < 10) {
+			ddd = '0' + ddd;
+		}
+		if (dmm < 10) {
+			dmm = '0' + dmm;
+		}
+		def = dyyyy + "-" + dmm + "-" + ddd;
+
+		document.getElementById('inputLearningStart').setAttribute("min", today);
+		document.getElementById('inputLearningStart').setAttribute("max", def);
+		$('#inputLearningStart').val(today);
+		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+		$('#inputLearningEnd').val(def);
 		$('#inputLearningInterval1').val(1);
 		$('#inputLearningInterval2').val(3);
 		$('#inputLearningInterval3').val(7);
