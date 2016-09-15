@@ -74,11 +74,11 @@
                         {{/if}}
                         <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.module}}
+                        <br><strong>{{_ "cardset.info.module"}}:</strong> {{this.module}}
                         <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.moduleToken}}
-                        <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.moduleNum}}
+                        <br><strong>{{_ "cardset.info.moduleNum"}}:</strong> {{this.moduleNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
-                        <br><strong>{{_ "cardset.info.studyType"}}:</strong> {{this.studyType}}
+                        <br><strong>{{_ "cardset.info.course"}}:</strong> {{this.course}}
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
@@ -416,12 +416,12 @@
                             <br>
                             <!-- start module textfield -->
                             <div class="form-group setdetails name" id="module">
-                                <label id="editSetModulLongLabel" class="col-md-3 control-label"
-                                       for="editSetModulLong">{{_ "modal-dialog.modulLong"}}</label>
+                                <label id="editSetModuleLabel" class="col-md-3 control-label"
+                                       for="editSetModule">{{_ "modal-dialog.module"}}</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" id="editSetModulLong"
+                                    <input class="form-control" type="text" id="editSetModule"
                                            value="{{module}}">
-                                    <span id="helpEditSetModulLong" class="help-block name"></span>
+                                    <span id="helpEditSetModule" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
                             <!-- start module textfield -->
@@ -436,12 +436,12 @@
                             </div><!-- / module textfield -->
                             <!-- start module textfield -->
                             <div class="form-group setdetails name" id="module">
-                                <label id="editSetModulNumLabel" class="col-md-3 control-label"
-                                       for="editSetModulNum">{{_ "modal-dialog.modulNum"}}</label>
+                                <label id="editSetModuleNumLabel" class="col-md-3 control-label"
+                                       for="editSetModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" id="editSetModulNum"
+                                    <input class="form-control" type="text" id="editSetModuleNum"
                                            value="{{moduleNum}}">
-                                    <span id="helpEditSetModulNum" class="help-block name"></span>
+                                    <span id="helpEditSetModuleNum" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
                         </div>
@@ -473,12 +473,12 @@
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
-                                    "modal-dialog.studyType"}}</label>
+                                    "modal-dialog.course"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
                                         <button id="editSetCourse" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{studyType}}</button>
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{course}}</button>
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>

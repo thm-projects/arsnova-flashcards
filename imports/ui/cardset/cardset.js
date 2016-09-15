@@ -83,7 +83,7 @@ Template.cardset.helpers({
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
-		Session.set('previousCourseName', Cardsets.findOne(id).studyType);
+		Session.set('previousCourseName', Cardsets.findOne(id).course);
 		/*
 		 var previousCategory = Cardsets.findOne(id).category;
 		 var categoryId = previousCategory.toString();
@@ -146,11 +146,11 @@ Template.cardset.events({
 			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpEditSetDescription').css('color', '#b94a48');
 		}
-		if ($('#editSetModulLong').val() === "") {
-			$('#editSetModulLongLabel').css('color', '#b94a48');
-			$('#editSetModulLong').css('border-color', '#b94a48');
-			$('#helpEditSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
-			$('#helpEditSetModulLong').css('color', '#b94a48');
+		if ($('#editSetModule').val() === "") {
+			$('#editSetModuleLabel').css('color', '#b94a48');
+			$('#editSetModule').css('border-color', '#b94a48');
+			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
+			$('#helpEditSetModule').css('color', '#b94a48');
 		}
 		if ($('#editSetModulShort').val() === "") {
 			$('#editSetModulShortLabel').css('color', '#b94a48');
@@ -158,26 +158,26 @@ Template.cardset.events({
 			$('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
 			$('#helpEditSetModulShort').css('color', '#b94a48');
 		}
-		if ($('#editSetModulNum').val() === "") {
-			$('#editSetModulNumLabel').css('color', '#b94a48');
-			$('#editSetModulNum').css('border-color', '#b94a48');
-			$('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
-			$('#helpEditSetModulNum').css('color', '#b94a48');
+		if ($('#editSetModuleNum').val() === "") {
+			$('#editSetModuleNumLabel').css('color', '#b94a48');
+			$('#editSetModuleNum').css('border-color', '#b94a48');
+			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
+			$('#helpEditSetModuleNum').css('color', '#b94a48');
 		}
 		if ($('#editSetName').val() !== "" &&
 			$('#editSetDescription').val() !== "" &&
-			$('#editSetModulLong').val() !== "" &&
+			$('#editSetModule').val() !== "" &&
 			$('#editSetModulShort').val() !== "" &&
-			$('#editSetModulNum').val() !== "") {
+			$('#editSetModuleNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
 			var description = tmpl.find('#editSetDescription').value;
-			var modulLong = tmpl.find('#editSetModulLong').value;
+			var module = tmpl.find('#editSetModule').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
-			var modulNum = tmpl.find('#editSetModulNum').value;
+			var moduleNum = tmpl.find('#editSetModuleNum').value;
 			var college = $('#editSetCollege').text();
 			var course = $('#editSetCourse').text();
 
-			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum, college, course);
+			Meteor.call("updateCardset", this._id, name, description, module, modulShort, moduleNum, college, course);
 			$('#editSetModal').modal('hide');
 		}
 	},

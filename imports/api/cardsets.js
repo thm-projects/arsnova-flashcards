@@ -103,7 +103,7 @@ var CardsetsSchema = new SimpleSchema({
 	department: {
 		type: String
 	},
-	studyType: {
+	course: {
 		type: String
 	},
 	learningActive: {
@@ -166,7 +166,7 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-	addCardset: function (name, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
+	addCardset: function (name, description, visible, ratings, kind, module, modulShort, moduleNum, college, course) {
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
@@ -192,13 +192,13 @@ Meteor.methods({
 			quantity: 0,
 			license: [],
 			userDeleted: false,
-			module: modulLong,
+			module: module,
 			moduleToken: modulShort,
-			moduleNum: modulNum,
+			moduleNum: moduleNum,
 			degree: nameTitle,
 			college: college,
 			department: 'undefined',
-			studyType: studyType,
+			course: course,
 			learningActive: false,
 			maxCards: 0,
 			daysBeforeReset: 0,
@@ -278,7 +278,7 @@ Meteor.methods({
 		Meteor.call("activateLerningPeriod", id);
 		Meteor.call("activateLerningPeriodSetEdu", id);
 	},
-	updateCardset: function (id, name, description, modulLong, modulShort, modulNum, college, course) {
+	updateCardset: function (id, name, description, module, modulShort, moduleNum, college, course) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -296,11 +296,11 @@ Meteor.methods({
 				name: name,
 				description: description,
 				dateUpdated: new Date(),
-				module: modulLong,
+				module: module,
 				moduleToken: modulShort,
-				moduleNum: modulNum,
+				moduleNum: moduleNum,
 				college: college,
-				studyType: course
+				course: course
 			}
 		});
 	},
