@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./cardsets.js";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
@@ -72,11 +71,6 @@ Meteor.methods({
 				"profile.name": name
 			}
 		});
-		Cardsets.update({owner: id}, {
-			$set: {
-				username: name
-			}
-		}, {multi: true});
 	},
 	updateUsersTitle: function (title, id) {
 		Meteor.users.update(id, {
