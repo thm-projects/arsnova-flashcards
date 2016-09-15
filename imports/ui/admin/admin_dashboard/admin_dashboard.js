@@ -41,6 +41,7 @@ export function drawGraph() {
 				}
 			]
 		};
+		var canvas = document.getElementById("adminChart");
 		var ctx = document.getElementById("adminChart").getContext("2d");
 		var myNewChart = new Chart(ctx).Bar(data,
 			{
@@ -50,6 +51,10 @@ export function drawGraph() {
 					text: 'Custom Chart Title'
 				}
 			});
+			canvas.style.width='100%';
+			canvas.style.height='100%';
+			canvas.width  = canvas.offsetWidth;
+			canvas.height = canvas.offsetHeight;
 	}
 }
 
@@ -78,4 +83,3 @@ Template.admin_dashboard.onRendered(function () {
 		});
 	});
 });
-
