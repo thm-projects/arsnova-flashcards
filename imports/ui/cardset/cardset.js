@@ -80,6 +80,7 @@ Template.cardset.helpers({
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
+		Session.set('previousCourseName', Cardsets.findOne(id).studyType);
 		/*
 		 var previousCategory = Cardsets.findOne(id).category;
 		 var categoryId = previousCategory.toString();
@@ -170,8 +171,10 @@ Template.cardset.events({
 			var modulLong = tmpl.find('#editSetModulLong').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
 			var modulNum = tmpl.find('#editSetModulNum').value;
+			var college = $('#editSetCollege').text();
+			var course = $('#editSetCourse').text();
 
-			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum);
+			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum, college, course);
 			$('#editSetModal').modal('hide');
 		}
 	},
@@ -223,6 +226,7 @@ Template.cardsetForm.onRendered(function () {
 		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
 		var previousCollegeName = Session.get('previousCollegeName');
+		var previousCourseName = Session.get('previousCourseName');
 
 		if (previousName !== $('#editSetName').val()) {
 			$('#editSetName').val(previousName);
@@ -240,15 +244,22 @@ Template.cardsetForm.onRendered(function () {
 		if (previousCollegeName !== $('#editSetCollege').html()) {
 			$('#editSetCollege').html(previousCollegeName);
 		}
+		if (previousCourseName !== $('#editSetCourse').html()) {
+			$('#editSetCourse').html(previousCourseName);
+		}
 	});
 });
 
 Template.cardsetForm.events({
 	'click .college': function (evt, tmpl) {
 		var collegeName = $(evt.currentTarget).attr("data");
-		var collegeId = $(evt.currentTarget).val();
 		$('#editSetCollege').text(collegeName);
-		tmpl.find('#editSetCollege').value = collegeId;
+		tmpl.find('#editSetCollege').value = collegeName;
+	},
+	'click .course': function (evt, tmpl) {
+		var courseName = $(evt.currentTarget).attr("data");
+		$('#editSetCourse').text(courseName);
+		tmpl.find('#editSetCourse').value = courseName;
 	},
 	'keyup #editSetName': function () {
 		$('#editSetNameLabel').css('color', '');
