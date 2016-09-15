@@ -167,9 +167,6 @@ Template.cardset.events({
 			$('#editSetModulShort').val() !== "" &&
 			$('#editSetModulNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
-			if (tmpl.find('#editSetCategory').value === undefined) {
-				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
-			}
 			var description = tmpl.find('#editSetDescription').value;
 			var modulLong = tmpl.find('#editSetModulLong').value;
 			var modulShort = tmpl.find('#editSetModulShort').value;
@@ -195,12 +192,6 @@ Template.cardset.events({
 			Meteor.call("deleteCardset", id);
 			Router.go('created');
 		}).modal('hide');
-	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#editSetCategory').text(categoryName);
-		tmpl.find('#editSetCategory').value = categoryId;
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
