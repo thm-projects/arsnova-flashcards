@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Colleges_Courses} from "../../api/colleges_courses.js";
 import {Learned} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./cardsets.html";
