@@ -453,8 +453,7 @@
                                 <div class="dropup">
                                     <div class="btn-group">
                                         <button id="editSetCollege" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{college}}</button>
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{college}}</button>
                                         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true">
                                             <span class="caret"></span>
@@ -471,32 +470,31 @@
                                 <span id="helpEditSetCollege" class="help-block college"></span>
                             </div>
                         </div> <!-- / college Dropdown -->
-                        <!-- start studyType Dropdown
+                        <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
-                            <label id="editSetCategoryLabel" class="col-md-3 control-label" for="editSetCategory">{{_
+                            <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
                                     "modal-dialog.studyType"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="editSetCategory" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{getCategory this.category}}</button>
+                                        <button id="editSetCourse" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{studyType}}</button>
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            {{#each getCategories}}
-                                                <li class="category" value="{{_id}}" data="{{name}}"><a
-                                                        href="#">{{name}}</a></li>
+                                            {{#each getCourses}}
+                                                <li class="course" value="{{_id}}" data="{{this.course}}"><a
+                                                        href="#">{{this.course}}</a></li>
                                             {{/each}}
                                         </ul>
                                     </div>
                                 </div>
-                                <span id="helpEditSetCategory" class="help-block category"></span>
+                                <span id="helpEditSetCourse" class="help-block course"></span>
                             </div>
-                        </div> / studyType Dropdown -->
+                        </div> <!-- / course Dropdown -->
                     </div>
                 </div>
                 <div class="modal-footer">

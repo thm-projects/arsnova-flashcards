@@ -278,7 +278,7 @@ Meteor.methods({
 		Meteor.call("activateLerningPeriod", id);
 		Meteor.call("activateLerningPeriodSetEdu", id);
 	},
-	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
+	updateCardset: function (id, name, description, modulLong, modulShort, modulNum, college, course) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -298,7 +298,9 @@ Meteor.methods({
 				dateUpdated: new Date(),
 				module: modulLong,
 				moduleToken: modulShort,
-				moduleNum: modulNum
+				moduleNum: modulNum,
+				college: college,
+				studyType: course
 			}
 		});
 	},
