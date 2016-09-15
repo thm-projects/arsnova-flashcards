@@ -72,11 +72,6 @@ Meteor.methods({
 				"profile.name": name
 			}
 		});
-		Cardsets.update({owner: id}, {
-			$set: {
-				username: name
-			}
-		}, {multi: true});
 	},
 	updateUsersTitle: function (title, id) {
 		Meteor.users.update(id, {
