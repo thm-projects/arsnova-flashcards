@@ -670,6 +670,11 @@ Template.cardsetSidebar.events({
 	}
 });
 
+Template.cardsetSidebar.helpers({
+	isDisabled: function () {
+		return (this.learningActive) ? '' : 'disabled';
+	}
+});
 /**
  * ############################################################################
  * cardsetStartLearnForm

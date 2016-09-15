@@ -183,7 +183,10 @@
                     {{/if}}
                 {{/if}}
                 {{#if isLecturer}}
-                    <button id="exportCSV" class="btn btn-default btn-block btn-success">{{_ "box_export"}}</button>
+                    <button id="exportCSV" class="btn btn-default btn-block{{#if
+                            learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
+                            "box_export"}}</button>
+
                 {{/if}}
                 {{#unless isOwner}}
                     <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
