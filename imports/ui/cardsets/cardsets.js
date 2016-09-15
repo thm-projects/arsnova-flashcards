@@ -118,10 +118,12 @@ Template.cardsets.events({
 		tmpl.find('#newSetCollege').value = categoryId;
 	},
 	'click .course': function (evt, tmpl) {
-		var courseName = $(evt.currentTarget).attr("data");
-		var courseId = $(evt.currentTarget).val();
-		$('#newSetCourse').text(courseName);
-		tmpl.find('#newSetCourse').value = courseId;
+		if ($('#newSetCollege').val() !== "") {
+			var courseName = $(evt.currentTarget).attr("data");
+			var courseId = $(evt.currentTarget).val();
+			$('#newSetCourse').text(courseName);
+			tmpl.find('#newSetCourse').value = courseId;
+		}
 	},
 	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
