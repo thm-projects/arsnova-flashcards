@@ -5,6 +5,7 @@ import {Categories} from '../../api/categories.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
+import {Colleges_Courses} from "../../api/colleges_courses.js";
 
 var initCategories = function () {
 	var categoryNames = [
@@ -208,9 +209,9 @@ var initBadges = function () {
 Meteor.startup(function () {
 	var categories = initCategories();
 	var badges = initBadges();
-	/*if (!Colleges_Courses.findOne({name: "THM"})) {
-		Colleges_Courses.insert({name: "THM"});
-	}*/
+	if (!Colleges_Courses.findOne()) {
+		Colleges_Courses.insert({college: "THM", course: "Informatik"});
+	}
 
 	if (Categories.find().count() === 0) {
 		for (var category in categories) {
