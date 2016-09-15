@@ -68,13 +68,13 @@
                                 {{> starsRating id='rating' rating=0 mutable=true}}
                             {{/if}}
                             <hr>
-                            <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                            <br><strong>{{_ "cardset.info.activeLearners"}}:</strong> {{getActiveLearner}}
+                            <br><strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
+                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearner}}
                             <hr>
                         {{/if}}
                         <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
                         <span id="info_license">{{getLicense}}</span>
-                        <strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
+                        <br><strong>{{_ "cardset.info.modulLong"}}:</strong> {{this.modulLong}}
                         <br><strong>{{_ "cardset.info.modulShort"}}:</strong> {{this.modulShort}}
                         <br><strong>{{_ "cardset.info.modulNum"}}:</strong> {{this.modulNum}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}

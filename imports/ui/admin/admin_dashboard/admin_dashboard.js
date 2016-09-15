@@ -30,7 +30,7 @@ export function drawGraph() {
 		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
-			labels: ["Fach 1","Fach 2","Fach 3","Fach 4","Fach 5","Gelernt"],
+			labels: [TAPi18n.__('subject1'),TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
 				{
 					fillColor: "rgba(242,169,0,0.5)",
@@ -51,10 +51,10 @@ export function drawGraph() {
 					text: 'Custom Chart Title'
 				}
 			});
-			canvas.style.width='100%';
-			canvas.style.height='100%';
-			canvas.width  = canvas.offsetWidth;
-			canvas.height = canvas.offsetHeight;
+		canvas.style.width = '100%';
+		canvas.style.height = '100%';
+		canvas.width  = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
 	}
 }
 

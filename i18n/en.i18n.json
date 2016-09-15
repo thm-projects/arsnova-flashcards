@@ -535,6 +535,7 @@
   "badgetext3": "",
   "admin": {
     "allLearnedCardsets": "All learned cardsets",
+    "learnedCardsets": "Learning progress of the cardset",
     "dashboard": "Dashboard",
     "cardsets": "Cardsets",
     "cards": "Cards",
