@@ -106,8 +106,8 @@ Template.admin_cardset.helpers({
 });
 
 Template.admin_cardset.events({
-	'change #publicateKindAdmin': function (evt, tmpl) {
-		var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+	'change #publishKindAdmin': function (evt, tmpl) {
+		var kind = tmpl.find('#publishKindAdmin > .active > input').value;
 		Session.set('kind', kind);
 	},
 	'click #cardsetSaveAdmin ': function (evt, tmpl) {
@@ -141,7 +141,7 @@ Template.admin_cardset.events({
 				tmpl.find('#editCardsetCategoryAdmin').value = Cardsets.findOne(this._id).category;
 			}
 
-			var kind = tmpl.find('#publicateKindAdmin > .active > input').value;
+			var kind = tmpl.find('#publishKindAdmin > .active > input').value;
 			var price = 0;
 			var visible = true;
 			var license = [];
@@ -164,8 +164,8 @@ Template.admin_cardset.events({
 			Meteor.call('updateLicense', this._id, license);
 
 			if (kind === 'edu' || kind === 'pro') {
-				if (tmpl.find('#publicatePriceAdmin') !== null) {
-					price = tmpl.find('#publicatePriceAdmin').value;
+				if (tmpl.find('#publishPriceAdmin') !== null) {
+					price = tmpl.find('#publishPriceAdmin').value;
 				} else {
 					price = this.price;
 				}
@@ -173,7 +173,7 @@ Template.admin_cardset.events({
 			if (kind === 'personal') {
 				visible = false;
 			}
-			Meteor.call("publicateCardset", this._id, kind, price, visible);
+			Meteor.call("publishCardset", this._id, kind, price, visible);
 			Meteor.call("updateCardset", this._id, name, description);
 			window.history.go(-1);
 		}
@@ -222,7 +222,7 @@ Template.admin_cardset.events({
 		$('#editCardsetLicenseLabelAdmin').css('color', '');
 		$('#helpCC-modules-admin').html('');
 	},
-	'click #publicateKindAdmin': function () {
+	'click #publishKindAdmin': function () {
 		$('#editCardsetKindLabelAdmin').css('color', '');
 		$('#helpEditCardsetKindAdmin').html('');
 	}
