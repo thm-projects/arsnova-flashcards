@@ -27,11 +27,9 @@
             <ul class="dropdown-menu">
                 <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
                 {{#each getAuthors}}
-                    {{#if filterAuthors}}
-                        <li><a href="#" class="filterAuthor"
-                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
-                        </li>
-                    {{/if}}
+                    <li><a href="#" class="filterAuthor"
+                           data-id="{{this._id}}">{{this.profile.degree}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+                    </li>
                 {{/each}}
             </ul>
         </div>
@@ -83,7 +81,7 @@
                 <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
                 {{#each getModules}}
                     <li><a href="#" class="filterModule" data-id="{{this.module}}">
-                        {{this.token}}[{{this.moduleNum}}]:
+                        {{this.moduleToken}} [{{this.moduleNum}}]:
                         {{this.module}}</a></li>
                 {{/each}}
             </ul>
@@ -165,7 +163,7 @@
         <span class="kind-label col-xs-3 col-sm-3 col-md-3 licenseInfo">
             {{{getKind}}}
         </span>
-        <span class="col-xs-3 col-sm-3 col-md-4 licenseInfo">
+        <span class="col-xs-3 col-sm-3 col-md- licenseInfo">
             {{{getPrice}}}
         </span>
         <span id="info_license" class="col-xs-6 col-sm-6 col-md-5 licenseInfo">
