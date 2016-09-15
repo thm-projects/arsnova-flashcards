@@ -243,6 +243,6 @@ Template.pool.onRendered(function () {
 	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
 	for (var i = 0; i < toLearn.length; ++i)
 	{
-		notification('Aufgaben warten!', toLearn[i].studyType);
+		notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
 	}
 });

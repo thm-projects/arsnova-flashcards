@@ -49,7 +49,9 @@
     "reportedcardset": "Gemeldeter Kartensatz",
     "reporteduseradmin": "Adminbenachrichtigung (Gemeldeter Benutzer)",
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
-    "lecturer": "Dozenten-Anfrage"
+    "lecturer": "Dozenten-Anfrage",
+    "heading": "Aufgaben warten!",
+    "content": "Im Kartensatz: "
   },
   "input-group": {
     "newcarddeck": "Neuer Kartensatz"
