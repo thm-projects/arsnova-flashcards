@@ -253,7 +253,7 @@ Meteor.methods({
 		}
 		if (!learningEnd) {
 			learningEnd = new Date();
-			learningEnd.setMonth(learningEnd.getMonth() + 3)
+			learningEnd.setMonth(learningEnd.getMonth() + 3);
 		}
 		if (!learningInterval) {
 			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
