@@ -20,6 +20,7 @@ import "../imports/api/adminSettings.js";
 import '../imports/api/cardset.js';
 import '../imports/api/cardsets.js';
 import '../imports/api/cards.js';
+import "../imports/api/colleges_courses.js";
 import '../imports/api/learned.js';
 import '../imports/api/badges.js';
 import '../imports/api/experience.js';
