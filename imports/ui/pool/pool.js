@@ -43,21 +43,6 @@ export function notification(title, message) {
 	}
 }
 
-export function getAuthorName() {
-	var author = Meteor.users.findOne({"_id": this.owner});
-	if (author) {
-		var degree = "";
-		if (author.profile.title) {
-			degree = author.profile.title;
-		}
-		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-			return author.profile.givenname;
-		}
-		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-	}
-}
-
 var query = {};
 
 function prepareQuery() {
@@ -128,11 +113,15 @@ Template.poolCardsetRow.helpers({
 	getAuthorName: function () {
 		var author = Meteor.users.findOne({"_id": this.owner});
 		if (author) {
-			var title = "";
+			var degree = "";
 			if (author.profile.title) {
-				title = author.profile.title;
+				degree = author.profile.title;
 			}
-			return title + " " + author.profile.givenname + " " + author.profile.birthname;
+			if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+				author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+				return author.profile.givenname;
+			}
+			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 		}
 	},
 	getKind: function () {
