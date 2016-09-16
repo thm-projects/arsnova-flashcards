@@ -6,7 +6,7 @@ var FutureTasks = new Meteor.Collection('future_tasks');
 
 export class MailNotifier {
 
-	addTask(details) {
+	addTask (details) {
 		var id = FutureTasks.insert(details);
 		SyncedCron.add({
 			name: id,
@@ -27,11 +27,11 @@ export class MailNotifier {
 		});
 	}
 
-	startCron() {
+	startCron () {
 		SyncedCron.start();
 	}
 
-	stopCron() {
+	stopCron () {
 		SyncedCron.stop();
 	}
 }
