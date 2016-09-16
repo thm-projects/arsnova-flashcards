@@ -732,7 +732,6 @@ export var seqOne = 7; //7 tag
 export var seqTwo = 29; //30 tag
 export var seqThree = 90; //90 tag
 var backgroundColorBox1 = 1;
-//var backgroundColorBox2 = 0;
 
 
 export function getDays1() {
@@ -970,17 +969,11 @@ function xpForLevel(level) {
 
 Template.profileXp.events({
 	'onload': setInterval(function () {
-		//console.log('Wert von I : ' + i);
 		$('#well' + backgroundColorBox1).css("background-color", "lightblue");
 		backgroundColorBox1 = backgroundColorBox1 + 1;
-		/*backgroundColorBox2 = backgroundColorBox2 + 1;*/
 		if (backgroundColorBox1 >= 7) {
 			backgroundColorBox1 = 1;
-		}/*
-		if (backgroundColorBox2 >= 7) {
-			backgroundColorBox2 = 0;
 		}
-		$('#well' + backgroundColorBox2).css("background-color", "lightgreen");*/
 	}, 50)
 });
 
