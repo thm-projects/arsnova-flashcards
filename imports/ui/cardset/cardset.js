@@ -30,8 +30,6 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
-
-
 export function getActiveLearner() {
 	var data = Learned.find({box: {$gt: 1}}).fetch();
 	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
@@ -573,7 +571,6 @@ Template.cardsetInfo.helpers({
 			return true;
 		}
 	},
-	getAuthorName,
 	getActiveLearner
 });
 
