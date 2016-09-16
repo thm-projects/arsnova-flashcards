@@ -382,6 +382,7 @@
       "module": "Module longname",
       "moduleShort": "Module shortname",
       "moduleNum": "Module number",
+      "undefinedAuthor": "Please complete your profile",
       "college": "College",
       "course": "Study type"
     },

@@ -368,6 +368,7 @@
     "release": "Veröffentlicht",
     "deleted": "Gelöscht",
     "license": "Lizenz",
+    "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Zuletzt aktualisiert"
   },
   "cardset": {
@@ -387,7 +388,7 @@
       "moduleNum": "Modul-Nummer",
       "college": "Hochschule",
       "course": "Studienfach",
-      "activeLearners": "Aktive Lerner/innen",
+      "undefinedAuthor": "Bitte füll dein Profil aus",
       "dateUpdated": "Zuletzt aktualisiert"
     },
     "request": {

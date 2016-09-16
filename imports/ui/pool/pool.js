@@ -64,6 +64,11 @@ export function getAuthorName() {
 		if (author.profile.title) {
 			degree = author.profile.title;
 		}
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		console.log(author.profile.givenname);
 		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 	}
 }
