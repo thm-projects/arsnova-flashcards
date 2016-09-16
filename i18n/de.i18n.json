@@ -590,6 +590,11 @@
     "request": "Anfrage",
     "deleteallnotifications": "Alle Nachrichten löschen",
     "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
+    "reportedUser": "Gemeldeter Benutzer",
+    "reportedCardSet": "Gemeldeter Kartensatz",
+    "adminNotificationComplaintUser": "Admin-Benachrichtigung (Beschwerde Benutzer)",
+    "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
+    "lecturerRequest": "Dozenten-Anfrage",
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",

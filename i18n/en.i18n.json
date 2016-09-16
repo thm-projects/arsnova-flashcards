@@ -584,6 +584,11 @@
     "request": "Request",
     "deleteallnotifications": "Delete all notifications",
     "optionNotPossible": "Not possible (User deleted)",
+    "reportedUser": "Reported User",
+    "reportedCardSet": "Reported Cardset",
+    "adminNotificationComplaintUser": "Admin-Notification (Complaint User)",
+    "adminNotificationComplaintCardSet": "Admin-Notification (Complaint Cardset)",
+    "lecturerRequest": "Lecturer Request",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
