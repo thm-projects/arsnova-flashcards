@@ -2,10 +2,10 @@ import {Meteor} from "meteor/meteor";
 import {Categories} from "../../api/categories.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
-import {Colleges_Courses} from "../../api/colleges_courses.js";
+import {CollegesCourses} from "../../api/colleges_courses.js";
 
 
-Meteor.subscribe("colleges_courses");
+Meteor.subscribe("collegesCourses");
 
 
 // Check if user has permission to look at a cardset
@@ -81,14 +81,14 @@ Template.registerHelper("getCategories", function () {
 
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return _.uniq(Colleges_Courses.find().fetch(), function (item) {
+	return _.uniq(CollegesCourses.find().fetch(), function (item) {
 		return item.course;
 	});
 });
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
-	return _.uniq(Colleges_Courses.find().fetch(), function (item) {
+	return _.uniq(CollegesCourses.find().fetch(), function (item) {
 		return item.college;
 	});
 });
@@ -101,7 +101,7 @@ Template.registerHelper("getCollege", function (value) {
 			id = "0" + id;
 		}
 
-		var college = Colleges_Courses.findOne(id);
+		var college = CollegesCourses.findOne(id);
 		if (college !== undefined) {
 			return college.name;
 		}

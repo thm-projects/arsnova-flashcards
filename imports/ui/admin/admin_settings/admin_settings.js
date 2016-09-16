@@ -1,9 +1,9 @@
 import "./admin_settings.html";
-import {Colleges_Courses} from "../../../api/colleges_courses.js";
+import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 
-Meteor.subscribe("colleges_courses");
+Meteor.subscribe("collegesCourses");
 
 var edit = false;
 var editCollege = "";
@@ -14,7 +14,7 @@ Session.setDefault('adminSortCreated', {college: 1});
 Template.admin_settings.helpers({
 
 	'allColleges': function () {
-		return Colleges_Courses.find({
+		return CollegesCourses.find({
 			/*sort: Session.get('adminSortCreated')*/
 		});
 	}
@@ -23,11 +23,11 @@ Template.admin_settings.helpers({
 /*
  Template.admin_settings.rendered = function () {
  var collegeA = [];
- var amount = console.log(Colleges_Courses.find().count());
+ var amount = console.log(CollegesCourses.find().count());
  //var name = document.getElementById("college").value;
 
  for (var i = 0; i <= amount; i++) {
- collegeA[i] = Colleges_Courses.findOne().name;
+ collegeA[i] = CollegesCourses.findOne().name;
  //console.log(collegeA[i]);
  }
  $("#collegeTable").dataTable();
@@ -41,7 +41,7 @@ function addCollegeAndCourse() {
 	deleteButton.setAttribute("id", "deleteRow");
 	deleteButton.setAttribute("value", "delete");
 	if (edit === true) {
-		Meteor.call("editColleges_Courses", editCollege, editCourse, college, course);
+		Meteor.call("editCollegesCourses", editCollege, editCourse, college, course);
 		document.getElementById("newEntry").reset();
 		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 		edit = false;
@@ -49,23 +49,23 @@ function addCollegeAndCourse() {
 		if (college === "" || course === "") {
 			Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
 		} else {
-			if (Colleges_Courses.findOne({college: college})) {
+			if (CollegesCourses.findOne({college: college})) {
 				//Hochschule existiert
 				//console.log("Hochschule existiert");
 				const regexp = new RegExp(course, "i");
-				var countEverything = Colleges_Courses.find({college: college, course: {$in: [regexp]}}).count();
+				var countEverything = CollegesCourses.find({college: college, course: {$in: [regexp]}}).count();
 				if (countEverything > 0) {
 					Bert.alert(TAPi18n.__('admin-intervall.existingCourse'), 'danger', 'growl-bottom-right');
 				} else {
-					//console.log(Colleges_Courses.findOne({college: college}).course.toLowerCase());
-					Meteor.call("updateColleges_Coursess", college, course);
+					//console.log(CollegesCourses.findOne({college: college}).course.toLowerCase());
+					Meteor.call("updateCollegesCoursess", college, course);
 					document.getElementById("newEntry").reset();
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				}
 			} else {
 				//Hochschule existiert noch nicht
 				//console.log("Hoschule existiert nicht");
-				Meteor.call("updateColleges_Coursess", college, course);
+				Meteor.call("updateCollegesCoursess", college, course);
 				document.getElementById("newEntry").reset();
 				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 			}
@@ -86,7 +86,7 @@ Template.admin_settings.events({
 	'click #deleteCollageCourse': function () {
 		var result = confirm("Sind sie sich sicher?");
 		if (result) {
-			Meteor.call("deleteColleges_Courses", this.college, this.course);
+			Meteor.call("deleteCollegesCourses", this.college, this.course);
 		}
 	},
 	'click #editCollageCourse': function () {

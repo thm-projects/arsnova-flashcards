@@ -2,40 +2,40 @@ import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 
 
-export const Colleges_Courses = new Mongo.Collection("colleges_courses");
+export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
 if (Meteor.isServer) {
-	Meteor.publish("colleges_courses", function () {
-		return Colleges_Courses.find();
+	Meteor.publish("collegesCourses", function () {
+		return CollegesCourses.find();
 	});
 }
 
 Meteor.methods({
-	"updateColleges_Coursess": function (college, course) {
+	"updateCollegesCoursess": function (college, course) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Colleges_Courses.insert({
+		CollegesCourses.insert({
 			"college": college,
 			"course": course
 
 		});
 	},
-	"deleteColleges_Courses": function (college, course) {
+	"deleteCollegesCourses": function (college, course) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Colleges_Courses.remove({
+		CollegesCourses.remove({
 			"college": college,
 			"course": course
 
 		});
 	},
-	"editColleges_Courses": function (college, course, newCollege, newCourse) {
+	"editCollegesCourses": function (college, course, newCollege, newCourse) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Colleges_Courses.update({
+		CollegesCourses.update({
 			"college": college,
 			"course": course
 		},{

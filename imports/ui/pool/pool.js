@@ -7,7 +7,7 @@ import {Cardsets} from '../../api/cardsets.js';
 import {Categories} from '../../api/categories.js';
 import {Disciplines} from '../../api/disciplines.js';
 import {Majors} from '../../api/majors.js';
-import {Colleges_Courses} from '../../api/colleges_courses.js';
+import {CollegesCourses} from '../../api/colleges_courses.js';
 import "./pool.html";
 
 var ITEMS_INCREMENT = 20;
@@ -20,7 +20,7 @@ Meteor.subscribe("categories");
 Meteor.subscribe("disciplines");
 Meteor.subscribe("majors");
 Meteor.subscribe("modules");
-Meteor.subscribe("colleges_courses");
+Meteor.subscribe("collegesCourses");
 Meteor.subscribe("allLearned");
 
 Session.setDefault('poolSortTopic', {name: 1});
@@ -101,12 +101,12 @@ Template.category.helpers({
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}}).fetch();
 	},
 	getColleges: function () {
-		return _.uniq(Colleges_Courses.find({}, {sort: {"college": 1}}).fetch(), function (item) {
+		return _.uniq(CollegesCourses.find({}, {sort: {"college": 1}}).fetch(), function (item) {
 			return item.college;
 		});
 	},
 	getCourses: function () {
-		return _.uniq(Colleges_Courses.find({}, {sort: {"course": 1}}).fetch(), function (item) {
+		return _.uniq(CollegesCourses.find({}, {sort: {"course": 1}}).fetch(), function (item) {
 			return item.course;
 		});
 	},
