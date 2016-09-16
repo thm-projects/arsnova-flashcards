@@ -110,20 +110,6 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
-	getAuthorName: function () {
-		var author = Meteor.users.findOne({"_id": this.owner});
-		if (author) {
-			var degree = "";
-			if (author.profile.title) {
-				degree = author.profile.title;
-			}
-			if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-				author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-				return author.profile.givenname;
-			}
-			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-		}
-	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":

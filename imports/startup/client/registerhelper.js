@@ -98,6 +98,21 @@ Template.registerHelper("getCollege", function (value) {
 	}
 });
 
+Template.registerHelper("getAuthorName", function (owner) {
+	var author = Meteor.users.findOne({"_id": owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		}
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+	}
+});
+
 // Return the cardset license
 Template.registerHelper("getLicense", function () {
 	var licenseString = "";
