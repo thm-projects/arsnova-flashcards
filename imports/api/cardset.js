@@ -3,13 +3,13 @@ import {Match} from 'meteor/check';
 import {Learned} from './learned.js';
 import {Cardsets} from './cardsets.js';
 
-var content;
-var colSep = ";"; // Separates columns
-var newLine = "\r\n"; //Adds a new line
 
 Meteor.methods({
 	getCSVExport: function (cardset_id, id, header) {
 		if ((Roles.userIsInRole(id, 'lecturer')) && (Match.test(header, [String]))) {
+			var content;
+			var colSep = ";"; // Separates columns
+			var newLine = "\r\n"; //Adds a new line
 			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
 			var cardset = Cardsets.findOne({"_id": cardset_id});
 			for (var i = 0; i <= 4; i++) {
