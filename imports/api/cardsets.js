@@ -33,7 +33,7 @@ if (Meteor.isServer) {
 	});
 }
 
-var CardsetsSchema = new SimpleSchema({
+const CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
