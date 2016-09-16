@@ -658,6 +658,18 @@ Template.cardsetSidebar.events({
 		Router.go('memo', {
 			_id: this._id
 		});
+	},
+	"click #startStopLearning": function () {
+		var now = new Date();
+		var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+		var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+		var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+
+		document.getElementById('inputLearningStart').setAttribute("min", today);
+		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
+		$('#inputLearningStart').val(today);
+		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+		$('#inputLearningEnd').val(threeMonths);
 	}
 });
 
@@ -666,18 +678,6 @@ Template.cardsetSidebar.events({
  * cardsetStartLearnForm
  * ############################################################################
  */
-Template.cardsetStartLearnForm.onRendered(function () {
-	var now = new Date();
-	var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-	var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-	var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-
-	document.getElementById('inputLearningStart').setAttribute("min", today);
-	document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-	$('#inputLearningStart').val(today);
-	document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-	$('#inputLearningEnd').val(threeMonths);
-});
 
 Template.cardsetStartLearnForm.events({
 	"input #inputLearningStart": function () {
@@ -745,16 +745,7 @@ Template.cardsetStartLearnForm.events({
 	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
 		$('#inputDaysBeforeReset').val(null);
-		var now = new Date();
-		var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-		var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-		var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 
-		document.getElementById('inputLearningStart').setAttribute("min", today);
-		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-		$('#inputLearningStart').val(today);
-		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-		$('#inputLearningEnd').val(threeMonths);
 		$('#inputLearningInterval1').val(1);
 		$('#inputLearningInterval2').val(3);
 		$('#inputLearningInterval3').val(7);
