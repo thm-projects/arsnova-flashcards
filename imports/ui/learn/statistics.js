@@ -1,12 +1,3 @@
-/*if(Meteor.isClient) {
- Meta.config({
- options: {
- title: 'Stacked-Chart',
- suffix: 'Stacked'
- }
- });
- }*/
-
 
 import "./statistics.html";
 

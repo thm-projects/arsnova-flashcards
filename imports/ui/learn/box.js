@@ -31,9 +31,6 @@ export function drawGraph() {
 		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
 		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
 		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
-		//[Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
-
-
 		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
@@ -103,6 +100,9 @@ Template.boxMain.helpers({
 	isFront: function () {
 		var isFront = Session.get('isFront');
 		return isFront === true;
+	},
+	box: function () {
+		return Session.get("selectedBox");
 	},
 	getCardsByBox: function () {
 		var selectedBox = parseInt(Session.get('selectedBox'));
