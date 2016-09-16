@@ -114,7 +114,8 @@
                 <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
                     <div class="box">
                         <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-						<h3>Box {{box}}</h3>
+						<h3>{{_ "subject"}} {{box}}</h3>
+                        <br>
 						{{#if isFront}}
                             {{boxMarkdownFront this.front @index}}
                             <img class="cardside cardfront-symbol" src="/img/icon_front.png">
