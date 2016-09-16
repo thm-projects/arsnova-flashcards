@@ -78,9 +78,12 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
+
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
+		Session.set('previousCollegeName', Cardsets.findOne(id).college);
+		Session.set('previousCourseName', Cardsets.findOne(id).course);
 		/*
 		 var previousCategory = Cardsets.findOne(id).category;
 		 var categoryId = previousCategory.toString();
@@ -143,39 +146,38 @@ Template.cardset.events({
 			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpEditSetDescription').css('color', '#b94a48');
 		}
-		if ($('#editSetModulLong').val() === "") {
-			$('#editSetModulLongLabel').css('color', '#b94a48');
-			$('#editSetModulLong').css('border-color', '#b94a48');
-			$('#helpEditSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
-			$('#helpEditSetModulLong').css('color', '#b94a48');
+		if ($('#editSetModule').val() === "") {
+			$('#editSetModuleLabel').css('color', '#b94a48');
+			$('#editSetModule').css('border-color', '#b94a48');
+			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
+			$('#helpEditSetModule').css('color', '#b94a48');
 		}
-		if ($('#editSetModulShort').val() === "") {
-			$('#editSetModulShortLabel').css('color', '#b94a48');
-			$('#editSetModulShort').css('border-color', '#b94a48');
-			$('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
-			$('#helpEditSetModulShort').css('color', '#b94a48');
+		if ($('#editSetModuleShort').val() === "") {
+			$('#editSetModuleShortLabel').css('color', '#b94a48');
+			$('#editSetModuleShort').css('border-color', '#b94a48');
+			$('#helpEditSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpEditSetModuleShort').css('color', '#b94a48');
 		}
-		if ($('#editSetModulNum').val() === "") {
-			$('#editSetModulNumLabel').css('color', '#b94a48');
-			$('#editSetModulNum').css('border-color', '#b94a48');
-			$('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
-			$('#helpEditSetModulNum').css('color', '#b94a48');
+		if ($('#editSetModuleNum').val() === "") {
+			$('#editSetModuleNumLabel').css('color', '#b94a48');
+			$('#editSetModuleNum').css('border-color', '#b94a48');
+			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
+			$('#helpEditSetModuleNum').css('color', '#b94a48');
 		}
 		if ($('#editSetName').val() !== "" &&
 			$('#editSetDescription').val() !== "" &&
-			$('#editSetModulLong').val() !== "" &&
-			$('#editSetModulShort').val() !== "" &&
-			$('#editSetModulNum').val() !== "") {
+			$('#editSetModule').val() !== "" &&
+			$('#editSetModuleShort').val() !== "" &&
+			$('#editSetModuleNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
-			if (tmpl.find('#editSetCategory').value === undefined) {
-				tmpl.find('#editSetCategory').value = Cardsets.findOne(this._id).category;
-			}
 			var description = tmpl.find('#editSetDescription').value;
-			var modulLong = tmpl.find('#editSetModulLong').value;
-			var modulShort = tmpl.find('#editSetModulShort').value;
-			var modulNum = tmpl.find('#editSetModulNum').value;
+			var module = tmpl.find('#editSetModule').value;
+			var moduleShort = tmpl.find('#editSetModuleShort').value;
+			var moduleNum = tmpl.find('#editSetModuleNum').value;
+			var college = $('#editSetCollege').text();
+			var course = $('#editSetCourse').text();
 
-			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 			$('#editSetModal').modal('hide');
 		}
 	},
@@ -195,12 +197,6 @@ Template.cardset.events({
 			Meteor.call("deleteCardset", id);
 			Router.go('created');
 		}).modal('hide');
-	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#editSetCategory').text(categoryName);
-		tmpl.find('#editSetCategory').value = categoryId;
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
@@ -232,6 +228,8 @@ Template.cardsetForm.onRendered(function () {
 		var previousName = Session.get('previousName');
 		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
+		var previousCollegeName = Session.get('previousCollegeName');
+		var previousCourseName = Session.get('previousCourseName');
 
 		if (previousName !== $('#editSetName').val()) {
 			$('#editSetName').val(previousName);
@@ -246,10 +244,26 @@ Template.cardsetForm.onRendered(function () {
 		if (previousCategoryName !== $('#editSetCategory').html()) {
 			$('#editSetCategory').html(previousCategoryName);
 		}
+		if (previousCollegeName !== $('#editSetCollege').html()) {
+			$('#editSetCollege').html(previousCollegeName);
+		}
+		if (previousCourseName !== $('#editSetCourse').html()) {
+			$('#editSetCourse').html(previousCourseName);
+		}
 	});
 });
 
 Template.cardsetForm.events({
+	'click .college': function (evt, tmpl) {
+		var collegeName = $(evt.currentTarget).attr("data");
+		$('#editSetCollege').text(collegeName);
+		tmpl.find('#editSetCollege').value = collegeName;
+	},
+	'click .course': function (evt, tmpl) {
+		var courseName = $(evt.currentTarget).attr("data");
+		$('#editSetCourse').text(courseName);
+		tmpl.find('#editSetCourse').value = courseName;
+	},
 	'keyup #editSetName': function () {
 		$('#editSetNameLabel').css('color', '');
 		$('#editSetName').css('border-color', '');
@@ -463,6 +477,12 @@ Template.cardsetInfo.onRendered(function () {
 });
 
 Template.cardsetInfo.helpers({
+	getAuthorName: function () {
+		var author = Meteor.users.findOne({"_id": this.owner});
+		if (typeof author !== 'undefined') {
+			return author.profile.birthname + ", "  + author.profile.givenname;
+		}
+	},
 	getAverage: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id

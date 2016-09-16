@@ -118,10 +118,12 @@ Template.cardsets.events({
 		tmpl.find('#newSetCollege').value = categoryId;
 	},
 	'click .course': function (evt, tmpl) {
-		var courseName = $(evt.currentTarget).attr("data");
-		var courseId = $(evt.currentTarget).val();
-		$('#newSetCourse').text(courseName);
-		tmpl.find('#newSetCourse').value = courseId;
+		if ($('#newSetCollege').val() !== "") {
+			var courseName = $(evt.currentTarget).attr("data");
+			var courseId = $(evt.currentTarget).val();
+			$('#newSetCourse').text(courseName);
+			tmpl.find('#newSetCourse').value = courseId;
+		}
 	},
 	'click #newSetModal .save': function () {
 		if ($('#newSetName').val() === "") {
@@ -136,23 +138,23 @@ Template.cardsets.events({
 			$('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpNewSetDescription').css('color', '#b94a48');
 		}
-		if ($('#newSetModulLong').val() === "") {
-			$('#newSetModulLongLabel').css('color', '#b94a48');
-			$('#newSetModulLong').css('border-color', '#b94a48');
-			$('#helpNewSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
-			$('#helpNewSetModulLong').css('color', '#b94a48');
+		if ($('#newSetModule').val() === "") {
+			$('#newSetModuleLabel').css('color', '#b94a48');
+			$('#newSetModule').css('border-color', '#b94a48');
+			$('#helpNewSetModule').html(TAPi18n.__('modal-dialog.module_required'));
+			$('#helpNewSetModule').css('color', '#b94a48');
 		}
-		if ($('#newSetModulShort').val() === "") {
-			$('#newSetModulShortLabel').css('color', '#b94a48');
-			$('#newSetModulShort').css('border-color', '#b94a48');
-			$('#helpNewSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
-			$('#helpNewSetModulShort').css('color', '#b94a48');
+		if ($('#newSetModuleShort').val() === "") {
+			$('#newSetModuleShortLabel').css('color', '#b94a48');
+			$('#newSetModuleShort').css('border-color', '#b94a48');
+			$('#helpNewSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpNewSetModuleShort').css('color', '#b94a48');
 		}
-		if ($('#newSetModulNum').val() === "") {
-			$('#newSetModulNumLabel').css('color', '#b94a48');
-			$('#newSetModulNum').css('border-color', '#b94a48');
-			$('#helpNewSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
-			$('#helpNewSetModulNum').css('color', '#b94a48');
+		if ($('#newSetModuleNum').val() === "") {
+			$('#newSetModuleNumLabel').css('color', '#b94a48');
+			$('#newSetModuleNum').css('border-color', '#b94a48');
+			$('#helpNewSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
+			$('#helpNewSetModuleNum').css('color', '#b94a48');
 		}
 		if ($('#newSetCollege').val() === "") {
 			$('#newSetCollegeLabel').css('color', '#b94a48');
@@ -163,25 +165,25 @@ Template.cardsets.events({
 		if ($('#newSetCourse').val() === "") {
 			$('#newSetCourseLabel').css('color', '#b94a48');
 			$('#newSetCourseDropdown').css('border-color', '#b94a48');
-			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.studyType_required'));
+			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 			$('#helpNewSetCourse').css('color', '#b94a48');
 		}
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
-			$('#newSetModulLong').val() !== "" &&
-			$('#newSetModulShort').val() !== "" &&
-			$('#newSetModulNum').val() !== "" &&
+			$('#newSetModule').val() !== "" &&
+			$('#newSetModuleShort').val() !== "" &&
+			$('#newSetModuleNum').val() !== "" &&
 			$('#newSetCollege').val() !== "" &&
 			$('#newSetCourse').val() !== "") {
 			var name = $('#newSetName').val();
 			var description = $('#newSetDescription').val();
-			var modulLong = $('#newSetModulLong').val();
-			var modulShort = $('#newSetModulShort').val();
-			var modulNum = $('#newSetModulNum').val();
+			var module = $('#newSetModule').val();
+			var moduleShort = $('#newSetModuleShort').val();
+			var moduleNum = $('#newSetModuleNum').val();
 			var college = $('#newSetCollege').text();
 			var course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, description, false, true, 'personal', modulLong, modulShort, modulNum, college, course);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course);
 			$('#newSetModal').modal('hide');
 		}
 	}

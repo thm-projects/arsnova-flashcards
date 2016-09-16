@@ -19,7 +19,6 @@
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
     "carousel-header-3": "Collect badges",
-    "carousel-header-3": "Collect badges",
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
   "navbar-collapse": {
@@ -169,17 +168,17 @@
     "submitcomplaint": "Submit complaint",
     "college": "College",
     "college_required": "Choose a college",
-    "studyType": "Study type",
-    "studyType_required": "Choose a study type",
-    "modulLong": "Module longname",
-    "modulLong_required": "The full name of the module is required!",
-    "modulShort": "Module shortname",
-    "modulShort_required": "The short name of the module is required!",
-    "modulNum": "Module number",
-    "modulNum_required": "The module number is required!",
-    "modulLongplaceholder": "Full name of the module",
-    "modulShortplaceholder": "Short module name",
-    "modulNumplaceholder": "Number of the module",
+    "course": "Study type",
+    "course_required": "Choose a study type",
+    "module": "Module longname",
+    "module_required": "The full name of the module is required!",
+    "moduleShort": "Module shortname",
+    "moduleShort_required": "The short name of the module is required!",
+    "moduleNum": "Module number",
+    "moduleNum_required": "The module number is required!",
+    "moduleplaceholder": "Full name of the module",
+    "moduleShortplaceholder": "Short module name",
+    "moduleNumplaceholder": "Number of the module",
     "module": "Names of the Module"
   },
   "profile": {
@@ -380,11 +379,11 @@
       "deleted": "Deleted",
       "license": "License",
       "dateUpdated": "Last updated",
-      "modulLong": "Module longname",
-      "modulShort": "Module shortname",
-      "modulNum": "Module number",
-      "college": "college",
-      "studyType": "Study type"
+      "module": "Module longname",
+      "moduleShort": "Module shortname",
+      "moduleNum": "Module number",
+      "college": "College",
+      "course": "Study type"
     },
     "request": {
       "accept": "Release cardset",
@@ -448,7 +447,6 @@
     "rating": "Rating",
     "minchars": "At least 60 chars",
     "chars": "Chars",
-    "minchars": "At least 60 chars",
     "cancel": "Cancel",
     "edit": "Rate deck of cards"
   },
@@ -602,7 +600,9 @@
         "text": "Do you really want to delete this notification?",
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
-        "delete_all": "Delete notifications"
+        "delete_all": "Delete notifications",
+        "heading": "Tasks are waiting!",
+        "content": "In cardset: "
       },
       "settings": {
         "new_entry": "New Entry",
@@ -717,4 +717,3 @@
     "reason": "Reason for block: "
   }
 }
-
