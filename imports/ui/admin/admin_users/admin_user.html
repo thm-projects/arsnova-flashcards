@@ -55,14 +55,14 @@
                                         <div id="editUserVisibleAdmin" class="btn-group" data-toggle="buttons">
                                             <label id="profilepublicoption1Admin"
                                                    class="btn btn-default profile-public {{#if isVisible
-                                                                                               _id}}active{{/if}}"
+                                                   _id}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="public">
                                                 <span>{{_ "admin.user.option1"}}</span>
                                             </label>
                                             <label id="profilepublicoption2Admin"
                                                    class="btn btn-default profile-private {{#unless isVisible
-                                                                                                    _id}}active{{/unless}}"
+                                                   _id}}active{{/unless}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="private">
                                                 <span>{{_ "admin.user.option2"}}</span>
@@ -152,14 +152,14 @@
                                         <div id="editUserLecturerAdmin" class="btn-group" data-toggle="buttons">
                                             <label id="lecturerOption1Admin"
                                                    class="btn btn-default lecturer-true {{#if lecturerUser
-                                                                                              true}}active{{/if}}"
+                                                   true}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="true">
                                                 <span>{{_ "admin.user.option1"}}</span>
                                             </label>
                                             <label id="lecturerOption2Admin"
                                                    class="btn btn-default lecturer-false {{#if lecturerUser
-                                                                                               false}}active{{/if}}"
+                                                   false}}active{{/if}}"
                                                    style="width:100px">
                                                 <input type="radio" name="options" value="false">
                                                 <span>{{_ "admin.user.option2"}}</span>
@@ -176,14 +176,14 @@
                                             <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
                                                 <label id="blockedOption1Admin"
                                                        class="btn btn-default blocked-true {{#if blockedUser
-                                                                                                 true}}active{{/if}}"
+                                                       true}}active{{/if}}"
                                                        style="width:100px">
                                                     <input type="radio" name="blockedUser" value="true">
                                                     <span>{{_ "admin.user.option1"}}</span>
                                                 </label>
                                                 <label id="blockedOption2Admin"
                                                        class="btn btn-default blocked-false {{#if blockedUser
-                                                                                                  false}}active{{/if}}"
+                                                       false}}active{{/if}}"
                                                        style="width:100px">
                                                     <input type="radio" name="blockedUser" value="false">
                                                     <span>{{_ "admin.user.option2"}}</span>
@@ -194,7 +194,7 @@
                                     {{#if isUserBlocked}}
                                         <div class="form-group">
                                             <label id="editUserBlockedtextLabelAdmin">{{_
-                                                    "admin.user.blocked_text"}}</label>
+                                            "admin.user.blocked_text"}}</label>
                                             <input class="form-control" type="text" id="editUserBlockedtextAdmin"
                                                    value="{{blockedtext}}">
                                             <span id="helpEditUserBlockedtextAdmin"
@@ -210,14 +210,14 @@
                                                 <div id="editUserEditorAdmin" class="btn-group" data-toggle="buttons">
                                                     <label id="editorOption1Admin"
                                                            class="btn btn-default editor-true {{#if editorUser
-                                                                                                    true}}active{{/if}}"
+                                                           true}}active{{/if}}"
                                                            style="width:100px">
                                                         <input type="radio" name="options" value="true">
                                                         <span>{{_ "admin.user.option1"}}</span>
                                                     </label>
                                                     <label id="editorOption2Admin"
                                                            class="btn btn-default editor-false {{#if editorUser
-                                                                                                     false}}active{{/if}}"
+                                                           false}}active{{/if}}"
                                                            style="width:100px">
                                                         <input type="radio" name="options" value="false">
                                                         <span>{{_ "admin.user.option2"}}</span>
@@ -322,7 +322,7 @@
                             </div>
                             <div class="col-xs-12 " style="margin-top:20px;">
                                 <button id="cancelIntervall" type="button" class="btn btn-danger pull-left">{{_
-                                        "profile.cancel"}}</button>
+                                "profile.cancel"}}</button>
                                 <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_
                                 "panel-body-experience.reset"}}</button>
                                 <button id="saveInterval" type="button"

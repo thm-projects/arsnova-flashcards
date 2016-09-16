@@ -19,9 +19,9 @@
                             <div class="input-group has-error">
 											<span class="input-group-btn">
 											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
-                                                      "cardset.request.accept"}}</button>
+                                              "cardset.request.accept"}}</button>
 											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
-                                                      "cardset.request.decline"}}</button>
+                                              "cardset.request.decline"}}</button>
 											</span>
                                 <input id="declineRequestReason" type="text" class="form-control"
                                        placeholder="Begründung">
@@ -106,7 +106,7 @@
                     <div class="btn-group">
                         <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publish"}}: {{getStatus}}</button>
+                        "sidebar-nav.publish"}}: {{getStatus}}</button>
                         <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="{{_ "sidebar-nav.tooltip"}}">
                             <i class="fa fa-question"></i></button>
@@ -169,11 +169,11 @@
                     {{#if isInRole 'lecturer'}}
                         <button id="startStopLearning"
                                 class="btn btn-default startStopLearn btn-block {{#if
-                                        learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                                learningActive}} btn-warning {{else}} btn-success {{/if}}"
                                 type="button"
                                 data-toggle="modal"
                                 data-target="{{#unless
-                                        learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
                             {{#if learningActive}}
                                 {{_ "sidebar-nav.stopLearning"}}
                             {{else}}
@@ -184,14 +184,14 @@
                 {{/if}}
                 {{#if isLecturer}}
                     <button id="exportCSV" class="btn btn-default btn-block{{#if
-                            learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
-                            "box_export"}}</button>
+                    learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
+                    "box_export"}}</button>
 
                 {{/if}}
                 {{#unless isOwner}}
                     <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
                             data-toggle="modal" data-target="#reportModal">{{_
-                            "report"}}</button>
+                    "report"}}</button>
                 {{/unless}}
             </div>
         </div>
@@ -454,12 +454,13 @@
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
-                                    "modal-dialog.college"}}</label>
+                            "modal-dialog.college"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
                                         <button id="editSetCollege" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{college}}</button>
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">{{college}}</button>
                                         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true">
                                             <span class="caret"></span>
@@ -479,12 +480,13 @@
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
-                                    "modal-dialog.course"}}</label>
+                            "modal-dialog.course"}}</label>
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
                                         <button id="editSetCourse" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{course}}</button>
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">{{course}}</button>
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>
@@ -505,11 +507,11 @@
                 </div>
                 <div class="modal-footer">
                     <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
-                            "modal-dialog.delete"}}</button>
+                    "modal-dialog.delete"}}</button>
                     <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
-                            "modal-dialog.confirm"}}</button>
+                    "modal-dialog.confirm"}}</button>
                     <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
                 </div>
             </div>
@@ -701,7 +703,7 @@
 							{{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
 					  </span>
                         <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                                "modal-dialog.cancel"}}</button>
+                        "modal-dialog.cancel"}}</button>
                         <div class="clearfix"></div>
                     {{else}}
                         <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>

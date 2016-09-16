@@ -30,7 +30,7 @@ Meteor.subscribe('learned', function () {
 
 export function drawGraph() {
 	if (Session.get('data_loaded')) {
-		var user_id =  Meteor.userId();
+		var user_id = Meteor.userId();
 
 		var box1 = Learned.find({user_id: user_id, box: 1}).fetch().length;
 		var box2 = Learned.find({user_id: user_id, box: 2}).fetch().length;
@@ -42,7 +42,7 @@ export function drawGraph() {
 		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
-			labels: [TAPi18n.__('subject1'),TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
 				{
 					fillColor: "rgba(242,169,0,0.5)",
@@ -60,8 +60,6 @@ export function drawGraph() {
 			});
 	}
 }
-
-
 
 
 function getLvl() {
@@ -1031,7 +1029,7 @@ Template.profileXp.onRendered(function () {
 	var self = this;
 	self.subscribe("learned", function () {
 		self.autorun(function () {
-				drawGraph();
-			});
+			drawGraph();
+		});
 	});
 });

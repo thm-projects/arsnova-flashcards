@@ -68,7 +68,7 @@
                 <span class="pull-left">{{_ "subject5"}}</span>
                 <span class="badge pull-right five">{{countBox 5}}</span>
             </button>
-			<button class="btn btn-success learn-box {{selectedBox 6}} disabled" id="learned_card" value="6" disabled>
+            <button class="btn btn-success learn-box {{selectedBox 6}} disabled" id="learned_card" value="6" disabled>
                 <span class="pull-left">{{_ "subject6"}}</span>
                 <span class="badge pull-right six">{{countBox 6}}</span>
             </button>
@@ -114,9 +114,9 @@
                 <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
                     <div class="box">
                         <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-						<h3>{{_ "subject"}} {{box}}</h3>
+                        <h3>{{_ "subject"}} {{box}}</h3>
                         <br>
-						{{#if isFront}}
+                        {{#if isFront}}
                             {{boxMarkdownFront this.front @index}}
                             <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                             <div class="block">
@@ -162,12 +162,12 @@
 </template>
 
 <template name="graph">
-        <div class="well well-sm sidebar-nav" style="margin-top: 50px">
-            <div id="container" style="min-width: 100%;
+    <div class="well well-sm sidebar-nav" style="margin-top: 50px">
+        <div id="container" style="min-width: 100%;
 			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
-                <h3 class="panel-title">{{_ "admin.learnedCardsets"}}</h3>
-                <canvas id="boxChart" width="800" height="470"></canvas>
-            </div>
+            <h3 class="panel-title">{{_ "admin.learnedCardsets"}}</h3>
+            <canvas id="boxChart" width="800" height="470"></canvas>
+        </div>
     </div>
 </template>
 

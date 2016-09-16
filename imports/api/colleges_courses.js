@@ -1,5 +1,5 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 
 
 export const CollegesCourses = new Mongo.Collection("collegesCourses");
@@ -36,14 +36,14 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		CollegesCourses.update({
-			"college": college,
-			"course": course
-		},{
-			$set: {
-				"college": newCollege,
-				"course": newCourse
+				"college": college,
+				"course": course
+			}, {
+				$set: {
+					"college": newCollege,
+					"course": newCourse
+				}
 			}
-		}
 		);
 	}
 

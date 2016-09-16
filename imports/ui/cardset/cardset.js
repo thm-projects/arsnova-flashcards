@@ -8,7 +8,7 @@ import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Learned} from "../../api/learned.js";
-
+import {getAuthorName} from "../pool/pool.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/box.js";
@@ -31,7 +31,9 @@ Session.setDefault('cardSort', {
 
 export function getActiveLearner() {
 	var data = Learned.find({box: {$gt: 1}}).fetch();
-	var distinctData = _.uniq(data, false, function (d) { return d.user_id; });
+	var distinctData = _.uniq(data, false, function (d) {
+		return d.user_id;
+	});
 	return (_.pluck(distinctData, "user_id").length);
 }
 
@@ -655,7 +657,7 @@ Template.cardsetSidebar.events({
 				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
 				hiddenElement.target = '_blank';
 				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
-				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
+				hiddenElement.download = str.replace(/ /g, "_").replace(/:/g, "_");
 				document.body.appendChild(hiddenElement);
 				hiddenElement.click();
 			}

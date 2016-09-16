@@ -1,2 +1,1 @@
 import "./impressum.html";
-

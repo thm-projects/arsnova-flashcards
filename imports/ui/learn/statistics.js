@@ -1,4 +1,3 @@
-
 import "./statistics.html";
 
 Template.statistics.rendered = function () {

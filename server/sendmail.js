@@ -1,12 +1,12 @@
-import {Email} from 'meteor/email';
-import {SyncedCron} from 'meteor/percolate:synced-cron';
+import {Email} from "meteor/email";
+import {SyncedCron} from "meteor/percolate:synced-cron";
 
 
 var FutureTasks = new Meteor.Collection('future_tasks');
 
 export class MailNotifier {
 
-	addTask (details) {
+	addTask(details) {
 		var id = FutureTasks.insert(details);
 		SyncedCron.add({
 			name: id,
@@ -27,11 +27,11 @@ export class MailNotifier {
 		});
 	}
 
-	startCron () {
+	startCron() {
 		SyncedCron.start();
 	}
 
-	stopCron () {
+	stopCron() {
 		SyncedCron.stop();
 	}
 }

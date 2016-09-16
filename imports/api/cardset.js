@@ -1,7 +1,7 @@
-import {Meteor} from 'meteor/meteor';
-import {Match} from 'meteor/check';
-import {Learned} from './learned.js';
-import {Cardsets} from './cardsets.js';
+import {Meteor} from "meteor/meteor";
+import {Match} from "meteor/check";
+import {Learned} from "./learned.js";
+import {Cardsets} from "./cardsets.js";
 
 
 Meteor.methods({

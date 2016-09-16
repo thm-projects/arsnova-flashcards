@@ -1,9 +1,9 @@
-import {Meteor} from 'meteor/meteor';
-import {Learned} from '../../api/learned.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Badges} from '../../api/badges.js';
-import {AdminSettings} from '../../api/adminSettings';
-import {MailNotifier} from '../../../server/sendmail.js';
+import {Meteor} from "meteor/meteor";
+import {Learned} from "../../api/learned.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Badges} from "../../api/badges.js";
+import {AdminSettings} from "../../api/adminSettings";
+import {MailNotifier} from "../../../server/sendmail.js";
 
 var initBadges = function () {
 	return [{
