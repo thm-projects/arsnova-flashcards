@@ -11,15 +11,15 @@ import "./admin_notifications.html";
  * ############################################################################
  */
 function getTypeAdmin(type) {
-	if (type === 'Gemeldeter Benutzer') {
+	if (type === '{{_ "admin.reportedUser"}}') {
 		type = TAPi18n.__('notifications.reporteduser');
-	} else if (type === 'Gemeldeter Kartensatz') {
+	} else if (type === '{{_ "admin.reportedCardSet"}}') {
 		type = TAPi18n.__('notifications.reportedcardset');
-	} else if (type === 'Adminbenachrichtigung (Beschwerde Benutzer)') {
+	} else if (type === '{{_ "admin.adminNotificationComplaintUser"}}') {
 		type = TAPi18n.__('notifications.reporteduseradmin');
-	} else if (type === 'Adminbenachrichtigung (Beschwerde Kartensatz)') {
+	} else if (type === '{{_ "admin.adminNotificationComplaintCardSet"}}') {
 		type = TAPi18n.__('notifications.reportedcardsetadmin');
-	} else if (type === 'Dozenten-Anfrage') {
+	} else if (type === '{{_ "admin.lecturerRequest"}}') {
 		type = TAPi18n.__('notifications.lecturer');
 	}
 
@@ -599,25 +599,3 @@ Template.allNotificationsConfirmFormAdmin.events({
 		}).modal('hide');
 	}
 });
-
-/**
- * ############################################################################
- * function getTypeAdmin
- * ############################################################################
- */
-
-function getTypeAdmin(type) {
-	if (type === '{{_ "admin.reportedUser"}}') {
-		type = TAPi18n.__('notifications.reporteduser');
-	} else if (type === '{{_ "admin.reportedCardSet"}}') {
-		type = TAPi18n.__('notifications.reportedcardset');
-	} else if (type === '{{_ "admin.adminNotificationComplaintUser"}}') {
-		type = TAPi18n.__('notifications.reporteduseradmin');
-	} else if (type === '{{_ "admin.adminNotificationComplaintCardSet"}}') {
-		type = TAPi18n.__('notifications.reportedcardsetadmin');
-	} else if (type === 'Dozenten-Anfrage{{_ "admin.lecturerRequest"}}') {
-		type = TAPi18n.__('notifications.lecturer');
-	}
-
-	return type;
-}
