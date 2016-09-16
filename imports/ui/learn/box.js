@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
-//import { ReactiveVar } from 'meteor/reactive-var';
 import "./box.html";
 
 
