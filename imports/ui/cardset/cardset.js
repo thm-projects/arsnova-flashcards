@@ -502,13 +502,13 @@ Template.cardsetInfo.helpers({
 			case "personal":
 				return '<span class="label label-warning">Private</span>';
 			case "free":
-				return '<span class="label label-default">Free</span>';
+				return '<span class="label label-info">Free</span>';
 			case "edu":
 				return '<span class="label label-success">Edu</span>';
 			case "pro":
-				return '<span class="label label-info">Pro</span>';
+				return '<span class="label label-danger">Pro</span>';
 			default:
-				return '<span class="label label-danger">Undefined!</span>';
+				return '<span class="label label-default">Undefined!</span>';
 		}
 	},
 	getStatus: function () {
@@ -541,28 +541,6 @@ Template.cardsetInfo.helpers({
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
-	},
-	getLicense: function () {
-		var licenseString = "";
-
-		if (this.license.length > 0) {
-			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
-			}
-			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
-			}
-			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
-			}
-			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
-			}
-
-			return new Spacebars.SafeString(licenseString);
-		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
-		}
 	},
 	isPublished: function () {
 		if (this.kind === 'personal') {
@@ -654,9 +632,43 @@ Template.cardsetSidebar.events({
 		$('#inputLearningStart').val(today);
 		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
 		$('#inputLearningEnd').val(threeMonths);
+	},
+	"click #exportCSV": function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		var header = [];
+		header[0] = TAPi18n.__('subject1');
+		header[1] = TAPi18n.__('subject2');
+		header[2] = TAPi18n.__('subject3');
+		header[3] = TAPi18n.__('subject4');
+		header[4] = TAPi18n.__('subject5');
+		header[5] = TAPi18n.__('subject6');
+		header[6] = TAPi18n.__('box_export_given_name');
+		header[7] = TAPi18n.__('box_export_birth_name');
+		header[8] = TAPi18n.__('box_export_mail');
+		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), header, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
+			if (result) {
+				var statistics = TAPi18n.__('box_export_statistics');
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.target = '_blank';
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
+				document.body.appendChild(hiddenElement);
+				hiddenElement.click();
+			}
+		});
 	}
 });
 
+Template.cardsetSidebar.helpers({
+	isDisabled: function () {
+		return (this.learningActive) ? '' : 'disabled';
+	}
+});
 /**
  * ############################################################################
  * cardsetStartLearnForm
@@ -775,25 +787,6 @@ Template.cardsetStartLearnForm.events({
 				$('#errorInputLearningInterval').html('');
 			}
 		}
-	},
-	"click #exportCSV": function () {
-		var cardset_id = Template.parentData(1)._id;
-		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
-		var hiddenElement = document.createElement('a');
-		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), function (error, result) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
-			}
-			if (result) {
-				var statistics = TAPi18n.__('box_export_statistics');
-				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
-				hiddenElement.target = '_blank';
-				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
-				hiddenElement.download = str.replace(/ /g,"_").replace(/:/g,"_");
-				document.body.appendChild(hiddenElement);
-				hiddenElement.click();
-			}
-		});
 	}
 });
 

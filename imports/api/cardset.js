@@ -1,36 +1,34 @@
 import {Meteor} from 'meteor/meteor';
-
+import {Match} from 'meteor/check';
 import {Learned} from './learned.js';
+import {Cardsets} from './cardsets.js';
+
 
 Meteor.methods({
-	getCSVExport: function (cardset_id, id) {
-		if (Roles.userIsInRole(id, 'lecturer')) {
+	getCSVExport: function (cardset_id, id, header) {
+		if ((Roles.userIsInRole(id, 'lecturer')) && (Match.test(header, [String]))) {
+			var content;
 			var colSep = ";"; // Separates columns
 			var newLine = "\r\n"; //Adds a new line
-			var birthName = TAPi18n.__('box_export_birth_name');
-			var givenName = TAPi18n.__('box_export_given_name');
-			var eMail = TAPi18n.__('box_export_mail');
-			var boxOne = TAPi18n.__('subject1');
-			var boxTwo = TAPi18n.__('subject2');
-			var boxThree = TAPi18n.__('subject3');
-			var boxFour = TAPi18n.__('subject4');
-			var boxFive = TAPi18n.__('subject5');
-			var boxSix = TAPi18n.__('subject6');
-			var content = givenName + colSep + birthName + colSep + eMail + colSep + boxOne + colSep + boxTwo +
-				colSep + boxThree + colSep + boxFour + colSep + boxFive + colSep + boxSix + newLine;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
+			var cardset = Cardsets.findOne({"_id": cardset_id});
+			for (var i = 0; i <= 4; i++) {
+				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
+			}
+			content += header[5] + colSep + newLine;
 			var data = Learned.find({"cardset_id": cardset_id}).fetch();
 			var distinctData = _.uniq(data, false, function (d) {
 				return d.user_id;
 			});
-			for (var i = 0; i < distinctData.length; i++) {
-				var user = Meteor.users.find({"_id": distinctData[i].user_id}).fetch();
-				content += user[0].givenname + colSep + user[0].birthname + colSep + user[0].email + colSep;
-				data = Learned.find({"cardset_id": cardset_id, "user_id": distinctData[i].user_id}).fetch();
-				for (var k = 1; k < 6; k++) {
+			for (var k = 0; k < distinctData.length; k++) {
+				var user = Meteor.users.find({"_id": distinctData[k].user_id}).fetch();
+				content += user[0].profile.givenname + colSep + user[0].profile.birthname + colSep + user[0].email + colSep;
+				data = Learned.find({"cardset_id": cardset_id, "user_id": distinctData[k].user_id}).fetch();
+				for (var l = 1; l <= 6; l++) {
 					content += Learned.find({
 							"cardset_id": cardset_id,
-							"user_id": distinctData[i].user_id,
-							"box": k
+							"user_id": distinctData[k].user_id,
+							"box": l
 						}).count() + colSep;
 				}
 				content += newLine;

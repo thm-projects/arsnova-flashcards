@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Categories} from "../../api/categories.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
@@ -70,15 +69,6 @@ Template.registerHelper("getTimestamp", function () {
 	return moment(this.date).locale(getUserLanguage()).format('LLLL');
 });
 
-// Returns all Categories
-Template.registerHelper("getCategories", function () {
-	return Categories.find({}, {
-		sort: {
-			_id: 1
-		}
-	});
-});
-
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
 	return _.uniq(CollegesCourses.find().fetch(), function (item) {
@@ -108,18 +98,42 @@ Template.registerHelper("getCollege", function (value) {
 	}
 });
 
-// Return the name of a Category
-Template.registerHelper("getCategory", function (value) {
-	if (value !== null) {
-		var id = value.toString();
-		if (id.length === 1) {
-			id = "0" + id;
+Template.registerHelper("getAuthorName", function (owner) {
+	var author = Meteor.users.findOne({"_id": owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		}
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+	}
+});
+
+// Return the cardset license
+Template.registerHelper("getLicense", function () {
+	var licenseString = "";
+
+	if (this.license.length > 0) {
+		if (this.license.includes('by')) {
+			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+		}
+		if (this.license.includes('nc')) {
+			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+		}
+		if (this.license.includes('nd')) {
+			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+		}
+		if (this.license.includes('sa')) {
+			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
 		}
 
-		var category = Categories.findOne(id);
-		if (category !== undefined) {
-			return category.name;
-		}
+		return new Spacebars.SafeString(licenseString);
+	} else {
+		return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 	}
 });
 

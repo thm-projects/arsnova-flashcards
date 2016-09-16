@@ -19,9 +19,9 @@
                             <div class="input-group has-error">
 											<span class="input-group-btn">
 											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
-                                              "cardset.request.accept"}}</button>
+                                                      "cardset.request.accept"}}</button>
 											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
-                                              "cardset.request.decline"}}</button>
+                                                      "cardset.request.decline"}}</button>
 											</span>
                                 <input id="declineRequestReason" type="text" class="form-control"
                                        placeholder="Begründung">
@@ -82,7 +82,7 @@
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
                         {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName}}</a>
+                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
                         {{else}}
                             {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
                         {{/if}}
@@ -106,7 +106,7 @@
                     <div class="btn-group">
                         <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
                                 data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                        "sidebar-nav.publish"}}: {{getStatus}}</button>
+                                "sidebar-nav.publish"}}: {{getStatus}}</button>
                         <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="{{_ "sidebar-nav.tooltip"}}">
                             <i class="fa fa-question"></i></button>
@@ -161,35 +161,41 @@
                 <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
             </div>
         </div>
-        {{#if isOwner}}
-            {{#if isInRole 'lecturer'}}
-                <div class="well well-sm sidebar-nav">
-                    <button id="startStopLearning"
-                            class="btn btn-default startStopLearn btn-block {{#if learningActive}} btn-warning {{else}} btn-success {{/if}}"
-                            type="button"
-                            data-toggle="modal"
-                            data-target="{{#unless learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
-                        {{#if learningActive}}
-                            {{_ "sidebar-nav.stopLearning"}}
-                        {{else}}
-                            {{_ "sidebar-nav.startLearning"}}
-                        {{/if}}
-                    </button>
-                </div>
-            {{/if}}
-        {{/if}}
-        {{#if isLecturer}}
-            <div id="set-details-learn-region">
-                <div class="well well-sm sidebar-nav">
-                    <span class="nav-header-cardset">{{_ "manage"}}</span>
-                    <button id="exportCSV" class="btn btn-default btn-success">{{_ "box_export"}}</button>
-                    {{#unless isOwner}}
-                        <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_
-                                "report"}}</a>
-                    {{/unless}}
-                </div>
+
+        <div id="set-details-learn-region">
+            <div class="well well-sm sidebar-nav">
+                <span class="nav-header-cardset">{{_ "manage"}}</span>
+                {{#if isOwner}}
+                    {{#if isInRole 'lecturer'}}
+                        <button id="startStopLearning"
+                                class="btn btn-default startStopLearn btn-block {{#if
+                                        learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="{{#unless
+                                        learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                            {{#if learningActive}}
+                                {{_ "sidebar-nav.stopLearning"}}
+                            {{else}}
+                                {{_ "sidebar-nav.startLearning"}}
+                            {{/if}}
+                        </button>
+                    {{/if}}
+                {{/if}}
+                {{#if isLecturer}}
+                    <button id="exportCSV" class="btn btn-default btn-block{{#if
+                            learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
+                            "box_export"}}</button>
+
+                {{/if}}
+                {{#unless isOwner}}
+                    <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
+                            data-toggle="modal" data-target="#reportModal">{{_
+                            "report"}}</button>
+                {{/unless}}
             </div>
-        {{/if}}
+        </div>
+
 
     </div>
 </template>
@@ -499,11 +505,11 @@
                 </div>
                 <div class="modal-footer">
                     <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
-                    "modal-dialog.cancel"}}</button>
+                            "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
-                    "modal-dialog.delete"}}</button>
+                            "modal-dialog.delete"}}</button>
                     <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
-                    "modal-dialog.confirm"}}</button>
+                            "modal-dialog.confirm"}}</button>
                     <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
                 </div>
             </div>
@@ -590,19 +596,21 @@
                                     <div class="col-md-9 form-group">
                                         <div class="col-md-6">
                                             <label class="checkbox-inline" for="mailNotificationCheckbox">
-                                            	<input type="checkbox" name="notification" id="mailNotificationCheckbox" checked>
-						{{_ "confirmLearn-form.mailNotificationCheckbox"}}
-					   </label>
+                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
+                                            </label>
                                         </div>
-                                    	<div class="col-md-6">
+                                        <div class="col-md-6">
                                             <label class="checkbox-inline" for="webNotificationCheckbox">
-                                            	<input type="checkbox" name="notification" id="webNotificationCheckbox" checked>
-						{{_ "confirmLearn-form.webNotificationCheckbox"}}
-					    </label>
-      					</div>
-      					<div class="col-md-12">
-                                		<span id="errorNotification" class="help-block name"></span>
-                                	</div>
+                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span id="errorNotification" class="help-block name"></span>
+                                        </div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -621,7 +629,8 @@
 </template>
 
 <template name="cardsetEndLearnForm">
-    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmEndLearnModalTitle">
+    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmEndLearnModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -630,8 +639,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                    	<h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
-                    	<p>{{_ "confirmEndLearn-form.warning"}}</p>
+                        <h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
+                        <p>{{_ "confirmEndLearn-form.warning"}}</p>
                     </div>
 
                     <div class="modal-footer">
@@ -692,7 +701,7 @@
 							{{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
 					  </span>
                         <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                        "modal-dialog.cancel"}}</button>
+                                "modal-dialog.cancel"}}</button>
                         <div class="clearfix"></div>
                     {{else}}
                         <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>

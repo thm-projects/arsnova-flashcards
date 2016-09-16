@@ -518,7 +518,7 @@
   "notknow": "Not known",
   "box_status": "Only one card in the current box",
   "box_status_plural": "Only __count__ cards in the current box",
-  "box_export": "export learn statistics",
+  "box_export": "Export learning Statistics",
   "box_export_given_name": "Given name",
   "box_export_birth_name": "Birth name",
   "box_export_statistics": "Statistics",

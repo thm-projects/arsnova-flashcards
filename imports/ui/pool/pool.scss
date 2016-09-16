@@ -1,6 +1,7 @@
 #pool-category-region {
   margin-bottom: 35px;
   $color_orange_pool: rgb(255, 153, 51);
+  text-align: left;
 
   h3 {
     margin-top: 0;
@@ -12,10 +13,6 @@
 
   .sortText {
     line-height: 34px;
-  }
-
-  .left {
-    float: left;
   }
 
   #ratingLocked {
@@ -39,6 +36,8 @@
   .panel {
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-bottom: 0px;
   }
 
@@ -96,5 +95,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .licenseInfo, .topicName {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #info_license img {
+    width: 20px;
   }
 }
