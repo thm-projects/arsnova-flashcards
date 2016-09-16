@@ -33,12 +33,11 @@ Template.admin_cardsets.helpers({
 			} else if (cardset.kind === 'pro') {
 				kind = 'Pro';
 			}
-
 			fields.push({
 				"_id": cardset._id,
 				"name": cardset.name,
 				"kind": kind,
-				"firstName": cardset.firstName,
+				"firstName": cardset.name,
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,
@@ -56,7 +55,7 @@ Template.admin_cardsets.helpers({
 				{key: 'name', label: TAPi18n.__('admin.name')},
 				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{
-					key: 'username', label: TAPi18n.__('admin.users'), fn: function (value, object) {
+					key: 'firstname', label: TAPi18n.__('admin.users'), fn: function (value, object) {
 						if (object.userDeleted) {
 							return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
 						} else {
