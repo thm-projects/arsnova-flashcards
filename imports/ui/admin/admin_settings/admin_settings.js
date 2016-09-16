@@ -20,18 +20,6 @@ Template.admin_settings.helpers({
 	}
 
 });
-/*
- Template.admin_settings.rendered = function () {
- var collegeA = [];
- var amount = console.log(CollegesCourses.find().count());
- //var name = document.getElementById("college").value;
-
- for (var i = 0; i <= amount; i++) {
- collegeA[i] = CollegesCourses.findOne().name;
- //console.log(collegeA[i]);
- }
- $("#collegeTable").dataTable();
- };*/
 
 function addCollegeAndCourse() {
 	var college = document.getElementById("college").value;

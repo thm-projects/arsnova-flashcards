@@ -84,19 +84,6 @@ Template.cardset.helpers({
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
-		/*
-		 var previousCategory = Cardsets.findOne(id).category;
-		 var categoryId = previousCategory.toString();
-
-		 if (categoryId.length === 1) {
-		 categoryId = "0" + categoryId;
-		 }
-
-		 var category = Categories.findOne(categoryId);
-		 if (category !== undefined) {
-		 Session.set('previousCategoryName', category.name);
-		 }
-		 */
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
