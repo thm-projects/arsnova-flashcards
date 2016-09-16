@@ -4,8 +4,6 @@ import {Cardsets} from '../../api/cardsets.js';
 import {Badges} from '../../api/badges.js';
 import {AdminSettings} from '../../api/adminSettings';
 import {MailNotifier} from '../../../server/sendmail.js';
-import {CollegesCourses} from "../../api/colleges_courses.js";
-
 
 var initBadges = function () {
 	return [{
