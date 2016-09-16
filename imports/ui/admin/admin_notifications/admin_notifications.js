@@ -245,8 +245,8 @@ Template.admin_notifications.helpers({
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.date'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: '_id',
