@@ -34,22 +34,16 @@ export function drawGraph() {
 
 		var data = {
 			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
-			datasets: [
-				{
-					fillColor: "rgba(242,169,0,0.5)",
-					strokeColor: "rgba(74,92,102,0.2)",
-					pointColor: "rgba(220,220,220,1)",
-					pointStrokeColor: "#fff",
-					data: userData
-				}
-			]
+			datasets: [{
+				fillColor: "rgba(242,169,0,0.5)",
+				strokeColor: "rgba(74,92,102,0.2)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				data: userData
+			}]
 		};
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		new Chart(ctx).Bar(data,
-
-			{
-				responsive: true
-			});
+		new Chart(ctx).Bar(data, {responsive: true});
 	}
 }
 
