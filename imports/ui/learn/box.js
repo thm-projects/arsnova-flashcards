@@ -25,12 +25,12 @@ export function drawGraph() {
 	var user_id =  Meteor.userId();
 
 	if (Session.get('data_loaded')) {
-		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).fetch().length;
-		var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).fetch().length;
-		var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).fetch().length;
-		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).fetch().length;
-		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).fetch().length;
-		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).fetch().length;
+		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).count();
+		var box2 = Learned.find({user_id, cardset_id: card_id, box: 2}).count();
+		var box3 = Learned.find({user_id, cardset_id: card_id, box: 3}).count();
+		var box4 = Learned.find({user_id, cardset_id: card_id, box: 4}).count();
+		var box5 = Learned.find({user_id, cardset_id: card_id, box: 5}).count();
+		var box6 = Learned.find({user_id, cardset_id: card_id, box: 6}).count();
 		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
