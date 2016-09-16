@@ -732,13 +732,13 @@ Template.cardsetStartLearnForm.events({
 	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
 		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
 			document.getElementById('confirmLearn').disabled = true;
-			$('#mailNotificationCheckbox').parent().parent().parent().addClass('has-warning');
-			$('#webNotificationCheckbox').parent().parent().parent().addClass('has-warning');
+			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
 			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
 		} else {
 			document.getElementById('confirmLearn').disabled = false;
-			$('#mailNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
-			$('#webNotificationCheckbox').parent().parent().parent().removeClass('has-warning');
+			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
 			$('#errorNotification').html('');
 		}
 	},
