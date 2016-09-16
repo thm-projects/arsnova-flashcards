@@ -99,8 +99,8 @@ Template.admin_user.helpers({
 				{key: 'kind', label: TAPi18n.__('admin.kind')},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: '_id',
@@ -113,8 +113,8 @@ Template.admin_user.helpers({
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-					return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
-				}
+						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+					}
 				}
 			]
 		};

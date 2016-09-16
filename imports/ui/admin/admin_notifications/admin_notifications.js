@@ -104,34 +104,34 @@ Template.admin_notifications.helpers({
 			fields: [
 				{
 					key: 'type', label: TAPi18n.__('admin.type'), fn: function (value) {
-					return getTypeAdmin(value);
-				}
+						return getTypeAdmin(value);
+					}
 				},
 				{
 					key: 'sender', label: TAPi18n.__('admin.sender'), fn: function (value, object) {
-					if (value === null) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderComplaint' data-senderid='" + object.sender_id + "'>" + value + "</a></span>");
+						if (value === null) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderComplaint' data-senderid='" + object.sender_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'complaint', label: TAPi18n.__('admin.reason'), fn: function (value, object) {
-					if (value === null) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintComplaint' data-complaintid='" + object.complaint_id + "'>" + value + "</a></span>");
+						if (value === null) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintComplaint' data-complaintid='" + object.complaint_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'text', label: TAPi18n.__('admin.text'), sortable: false
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.date'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: 'receiver_id',
@@ -217,17 +217,17 @@ Template.admin_notifications.helpers({
 			fields: [
 				{
 					key: 'type', label: TAPi18n.__('admin.type'), fn: function (value) {
-					return getTypeAdmin(value);
-				}
+						return getTypeAdmin(value);
+					}
 				},
 				{
 					key: 'sender', label: TAPi18n.__('admin.sender'), fn: function (value, object) {
-					if (value === null) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
+						if (value === null) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{key: 'text', label: TAPi18n.__('admin.text'), sortable: false},
 				{
@@ -330,42 +330,42 @@ Template.admin_notifications.helpers({
 			fields: [
 				{
 					key: 'type', label: TAPi18n.__('admin.type'), fn: function (value) {
-					return getTypeAdmin(value);
-				}
+						return getTypeAdmin(value);
+					}
 				},
 				{
 					key: 'sender', label: TAPi18n.__('admin.sender'), fn: function (value, object) {
-					if (value === null) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
+						if (value === null) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'complaint', label: TAPi18n.__('admin.reason'), fn: function (value, object) {
-					if (value === null) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintSend' data-complaintidsend='" + object.complaint_id + "'>" + value + "</a></span>");
+						if (value === null) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintSend' data-complaintidsend='" + object.complaint_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{key: 'text', label: TAPi18n.__('admin.text'), sortable: false},
 				{
 					key: 'receiver', label: TAPi18n.__('admin.receiver'), fn: function (value, object) {
-					var user = Meteor.users.findOne({_id: object.receiver_id});
-					if (user === undefined) {
-						return TAPi18n.__('admin.deletedUser');
-					} else {
-						return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
+						var user = Meteor.users.findOne({_id: object.receiver_id});
+						if (user === undefined) {
+							return TAPi18n.__('admin.deletedUser');
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
+						}
 					}
-				}
 				},
 				{
 					key: 'dateString', label: TAPi18n.__('admin.date'), fn: function (value, object) {
-					return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
-				}
+						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
+					}
 				},
 				{
 					key: '_id',
