@@ -667,49 +667,16 @@ Template.cardsetSidebar.events({
  * ############################################################################
  */
 Template.cardsetStartLearnForm.onRendered(function () {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth() + 1; //January is 0!
-	var yyyy = today.getFullYear();
-	if (dd < 10) {
-		dd = '0' + dd;
-	}
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
-	today = yyyy + "-" + mm + "-" + dd;
-
-	var tomorrow = new Date();
-	tomorrow.setDate(tomorrow.getDate() + 7);
-	var tdd = tomorrow.getDate();
-	var tmm = tomorrow.getMonth() + 1; //January is 0!
-	var tyyyy = tomorrow.getFullYear();
-	if (tdd < 10) {
-		tdd = '0' + tdd;
-	}
-	if (tmm < 10) {
-		tmm = '0' + tmm;
-	}
-	tomorrow = tyyyy + "-" + tmm + "-" + tdd;
-
-	var def = new Date();
-	def.setMonth(def.getMonth() + 3);
-	var ddd = def.getDate();
-	var dmm = def.getMonth() + 1; //January is 0!
-	var dyyyy = def.getFullYear();
-	if (ddd < 10) {
-		ddd = '0' + ddd;
-	}
-	if (dmm < 10) {
-		dmm = '0' + dmm;
-	}
-	def = dyyyy + "-" + dmm + "-" + ddd;
+	var now = new Date();
+	var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+	var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+	var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 
 	document.getElementById('inputLearningStart').setAttribute("min", today);
-	document.getElementById('inputLearningStart').setAttribute("max", def);
+	document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
 	$('#inputLearningStart').val(today);
 	document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-	$('#inputLearningEnd').val(def);
+	$('#inputLearningEnd').val(threeMonths);
 });
 
 Template.cardsetStartLearnForm.events({
@@ -778,49 +745,16 @@ Template.cardsetStartLearnForm.events({
 	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
 		$('#inputDaysBeforeReset').val(null);
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth() + 1; //January is 0!
-		var yyyy = today.getFullYear();
-		if (dd < 10) {
-			dd = '0' + dd;
-		}
-		if (mm < 10) {
-			mm = '0' + mm;
-		}
-		today = yyyy + "-" + mm + "-" + dd;
-
-		var tomorrow = new Date();
-		tomorrow.setDate(tomorrow.getDate() + 7);
-		var tdd = tomorrow.getDate();
-		var tmm = tomorrow.getMonth() + 1; //January is 0!
-		var tyyyy = tomorrow.getFullYear();
-		if (tdd < 10) {
-			tdd = '0' + tdd;
-		}
-		if (tmm < 10) {
-			tmm = '0' + tmm;
-		}
-		tomorrow = tyyyy + "-" + tmm + "-" + tdd;
-
-		var def = new Date();
-		def.setMonth(def.getMonth() + 3);
-		var ddd = def.getDate();
-		var dmm = def.getMonth() + 1; //January is 0!
-		var dyyyy = def.getFullYear();
-		if (ddd < 10) {
-			ddd = '0' + ddd;
-		}
-		if (dmm < 10) {
-			dmm = '0' + dmm;
-		}
-		def = dyyyy + "-" + dmm + "-" + ddd;
+		var now = new Date();
+		var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+		var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+		var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 
 		document.getElementById('inputLearningStart').setAttribute("min", today);
-		document.getElementById('inputLearningStart').setAttribute("max", def);
+		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
 		$('#inputLearningStart').val(today);
 		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-		$('#inputLearningEnd').val(def);
+		$('#inputLearningEnd').val(threeMonths);
 		$('#inputLearningInterval1').val(1);
 		$('#inputLearningInterval2').val(3);
 		$('#inputLearningInterval3').val(7);
