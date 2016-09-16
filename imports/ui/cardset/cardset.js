@@ -83,7 +83,7 @@ Template.cardset.helpers({
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
-		Session.set('previousCourseName', Cardsets.findOne(id).studyType);
+		Session.set('previousCourseName', Cardsets.findOne(id).course);
 		/*
 		 var previousCategory = Cardsets.findOne(id).category;
 		 var categoryId = previousCategory.toString();
