@@ -22,7 +22,7 @@ Session.set('isFinish', false);
 
 export function drawGraph() {
 	var card_id = Router.current().params._id;
-	var user_id =  Meteor.userId();
+	var user_id = Meteor.userId();
 
 	if (Session.get('data_loaded')) {
 		var box1 = Learned.find({user_id, cardset_id: card_id, box: 1}).count();
@@ -34,26 +34,25 @@ export function drawGraph() {
 		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 		var data = {
-			labels: [TAPi18n.__('subject1'),TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
-					{
-						fillColor: "rgba(242,169,0,0.5)",
-						strokeColor: "rgba(74,92,102,0.2)",
-						pointColor: "rgba(220,220,220,1)",
-						pointStrokeColor: "#fff",
-						data: userData
-					}
-				]
+				{
+					fillColor: "rgba(242,169,0,0.5)",
+					strokeColor: "rgba(74,92,102,0.2)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					data: userData
+				}
+			]
 		};
 		var ctx = document.getElementById("boxChart").getContext("2d");
 		new Chart(ctx).Bar(data,
 
-		{
-			responsive: true
-		});
+			{
+				responsive: true
+			});
 	}
 }
-
 
 
 /**
@@ -267,4 +266,3 @@ Template.boxSide.onRendered(function () {
 		});
 	});
 });
-
