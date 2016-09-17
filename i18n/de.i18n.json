@@ -168,16 +168,15 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
-    "module": "Modul-Langname",
+    "module": "Modul",
     "module_required": "Geben Sie den vollen Namen des Moduls an!",
-    "moduleShort": "Modul-Kurzname",
+    "moduleShort": "Initialien",
     "moduleShort_required": "Geben Sie eine Abkürzung des Moduls an!",
-    "moduleNum": "Modul-Nummer",
+    "moduleNum": "ID",
     "moduleNum_required": "Geben Sie eine Modulnummer ein!",
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
     "moduleShortplaceholder": "Abkürzung des Moduls",
-    "moduleNumplaceholder": "Nummer des Moduls",
-    "module": "Namen des Moduls"
+    "moduleNumplaceholder": "Nummer des Moduls"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -388,8 +387,7 @@
       "moduleNum": "Modul-Nummer",
       "college": "Hochschule",
       "course": "Studienfach",
-      "undefinedAuthor": "Bitte füll dein Profil aus",
-      "dateUpdated": "Zuletzt aktualisiert"
+      "undefinedAuthor": "Bitte füll dein Profil aus"
     },
     "request": {
       "accept": "Kartensatz freigeben",
@@ -451,7 +449,6 @@
     "title": " bewerten",
     "stars": "Sterne",
     "rating": "Bewertung",
-    "minchars": "Mindestens 60 Zeichen",
     "chars": "Zeichen",
     "minchars": "Mindestens 60 Zeichen",
     "cancel": "Abbrechen",
