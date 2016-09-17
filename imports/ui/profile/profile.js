@@ -13,6 +13,7 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
+import {Graph} from "../../api/graph.js";
 import "./profile.html";
 
 
@@ -30,31 +31,8 @@ Meteor.subscribe('learned', function () {
 
 export function drawGraph() {
 	if (Session.get('data_loaded')) {
-		var user_id = Meteor.userId();
-
-		var box1 = Learned.find({user_id: user_id, box: 1}).fetch().length;
-		var box2 = Learned.find({user_id: user_id, box: 2}).fetch().length;
-		var box3 = Learned.find({user_id: user_id, box: 3}).fetch().length;
-		var box4 = Learned.find({user_id: user_id, box: 4}).fetch().length;
-		var box5 = Learned.find({user_id: user_id, box: 5}).fetch().length;
-		var box6 = Learned.find({user_id: user_id, box: 6}).fetch().length;
-
-		var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
-
-		var data = {
-			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
-			datasets: [
-				{
-					fillColor: "rgba(242,169,0,0.5)",
-					strokeColor: "rgba(74,92,102,0.2)",
-					pointColor: "rgba(220,220,220,1)",
-					pointStrokeColor: "#fff",
-					data: userData
-				}
-			]
-		};
 		var ctx = document.getElementById("profileChart").getContext("2d");
-		new Chart(ctx).Bar(data,
+		new Chart(ctx).Bar(Graph(Meteor.userId(), undefined),
 			{
 				responsive: true
 			});
