@@ -1,23 +1,34 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-
-import './box.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import {Graph} from "../../api/graph.js";
+import "./box.html";
 
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe("learned");
+
 
 Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', false);
+
+Meteor.subscribe('learned', function () {
+	Session.set('data_loaded', true);
+});
+
+function drawGraph() {
+	if (Session.get('data_loaded')) {
+		var ctx = document.getElementById("boxChart").getContext("2d");
+		new Chart(ctx).Bar(Graph(Meteor.userId(), Router.current().params._id), {responsive: true});
+	}
+}
+
 
 /**
  * ############################################################################
@@ -63,6 +74,9 @@ Template.boxMain.helpers({
 	isFront: function () {
 		var isFront = Session.get('isFront');
 		return isFront === true;
+	},
+	box: function () {
+		return Session.get("selectedBox");
 	},
 	getCardsByBox: function () {
 		var selectedBox = parseInt(Session.get('selectedBox'));
@@ -132,7 +146,7 @@ Template.boxMain.events({
 		});
 
 		var selectedBox = parseInt(Session.get('selectedBox'));
-		if (selectedBox < 5) {
+		if (selectedBox < 6) {
 			Meteor.call('updateLearned', currentLearned._id, selectedBox + 1);
 		}
 
@@ -210,4 +224,20 @@ Template.boxEnd.events({
 			_id: this._id
 		});
 	}
+});
+
+/**
+ * ############################################################################
+ * Chart
+ * ############################################################################
+ */
+
+
+Template.boxSide.onRendered(function () {
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			drawGraph();
+		});
+	});
 });

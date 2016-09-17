@@ -1,23 +1,20 @@
 //------------------------ IMPORTS
 
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Experience} from '../../api/experience.js';
-import {Badges} from '../../api/badges.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Learned} from '../../api/learned.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {Notifications} from '../../api/notifications.js';
-import {AdminSettings} from '../../api/adminSettings';
-
-//import {userData} from '../../api/userdata.js';
-
-import './profile.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Experience} from "../../api/experience.js";
+import {Badges} from "../../api/badges.js";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {Notifications} from "../../api/notifications.js";
+import {AdminSettings} from "../../api/adminSettings";
+import {Graph} from "../../api/graph.js";
+import "./profile.html";
 
 
 Meteor.subscribe("experience");
@@ -26,9 +23,22 @@ Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
 Meteor.subscribe('default_db_data', function () {
-	//Set the reactive session as true to indicate that the data have been loaded
 	Session.set('data_loaded', true);
 });
+Meteor.subscribe('learned', function () {
+	Session.set('data_ready', true);
+});
+
+export function drawGraph() {
+	if (Session.get('data_loaded')) {
+		var ctx = document.getElementById("profileChart").getContext("2d");
+		new Chart(ctx).Bar(Graph(Meteor.userId(), undefined),
+			{
+				responsive: true
+			});
+	}
+}
+
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -254,18 +264,16 @@ Template.profileSettings.events({
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		var email = $('#inputEmail').val();
 		var validEmail = re.test(email);
+		$('#profileCancel')[0].disabled = false;
 
 		//E-Mail wasn't changed
 		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
-			$('#profileCancel')[0].disabled = false;
 		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
-			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
 			$('#profileSave')[0].disabled = true;
-			$('#profileCancel')[0].disabled = true;
 		}
 
 		if (validEmail === false) {
@@ -279,35 +287,33 @@ Template.profileSettings.events({
 		}
 	},
 	"keyup #inputEmailValidation": function () {
+		$('#profileCancel')[0].disabled = false;
 		if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {
 			$('#profileSave')[0].disabled = false;
-			$('#profileCancel')[0].disabled = false;
 			$('#inputEmailValidation').parent().parent().removeClass('has-error');
 			$('#inputEmailValidation').parent().parent().addClass('has-success');
 			$('#errorEmailValidation').html('');
 		} else {
 			$('#profileSave')[0].disabled = true;
-			$('#profileCancel')[0].disabled = true;
 			$('#inputEmailValidation').parent().parent().removeClass('has-success');
 			$('#inputEmailValidation').parent().parent().addClass('has-error');
 			$('#errorEmailValidation').html(TAPi18n.__('panel-body.emailValidationError'));
 		}
 	},
 	"keyup #inputName": function () {
+		$('#profileCancel')[0].disabled = false;
 		//E-Mail wasn't changed
 		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
 			$('#profileSave')[0].disabled = false;
-			$('#profileCancel')[0].disabled = false;
 		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
 			$('#profileSave')[0].disabled = false;
-			$('#profileCancel')[0].disabled = false;
 		} else {//E-Mail was changed and is wrong
 			$('#profileSave')[0].disabled = true;
-			$('#profileCancel')[0].disabled = true;
 		}
 	},
 	"keyup #inputBirthName": function () {
+		$('#profileCancel')[0].disabled = false;
 		//E-Mail wasn't changed
 		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
@@ -322,6 +328,7 @@ Template.profileSettings.events({
 		}
 	},
 	"keyup #inputGivenName": function () {
+		$('#profileCancel')[0].disabled = false;
 		//E-Mail wasn't changed
 		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
 			$('#inputEmailValidationForm').addClass("hidden");
@@ -409,10 +416,10 @@ Template.profileSettings.events({
 					$('#profileSave')[0].disabled = true;
 					$('#profileCancel')[0].disabled = true;
 					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersName", name, user_id);
 					Meteor.call("updateUsersBirthName", birthname, user_id);
 					Meteor.call("updateUsersGivenName", givenname, user_id);
 					Meteor.call("updateUsersProfileState", true, user_id);
+					Meteor.call("updateUsersName", result, user_id);
 					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
@@ -440,6 +447,8 @@ Template.profileSettings.events({
 		$('#errorEmail').html('');
 		$('#inputEmailValidation').val('');
 		$('#inputEmailValidationForm').addClass("hidden");
+		$('#profileSave')[0].disabled = true;
+		$('#profileCancel')[0].disabled = true;
 		$('#profileSave')[0].disabled = true;
 		$('#profileCancel')[0].disabled = true;
 		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
@@ -699,7 +708,6 @@ export var seqOne = 7; //7 tag
 export var seqTwo = 29; //30 tag
 export var seqThree = 90; //90 tag
 var backgroundColorBox1 = 1;
-var backgroundColorBox2 = 0;
 
 
 export function getDays1() {
@@ -725,7 +733,6 @@ export function getDays3() {
 		return seqThree;
 	}
 }
-
 
 
 Template.profileXp.helpers({
@@ -888,7 +895,6 @@ Template.profileXp.helpers({
 		if (last === undefined) {
 			return null;
 		}
-
 		return name + " (+" + last.value + ")";
 	},
 	getLvl: function () {
@@ -919,23 +925,33 @@ Template.profileXp.helpers({
 	}
 });
 
+function getLvl() {
+	var user = Meteor.users.findOne(Router.current().params._id);
+	if (user === undefined) {
+		return null;
+	}
+	return user.lvl;
+}
+
+function xpForLevel(level) {
+	var points = 0;
+
+	for (var i = 1; i < level; i++) {
+		points += Math.floor(i + 30 * Math.pow(2, i / 10));
+	}
+	return Math.floor(points / 4);
+}
+
 
 Template.profileXp.events({
 	'onload': setInterval(function () {
-		//console.log('Wert von I : ' + i);
 		$('#well' + backgroundColorBox1).css("background-color", "lightblue");
 		backgroundColorBox1 = backgroundColorBox1 + 1;
-		backgroundColorBox2 = backgroundColorBox2 + 1;
 		if (backgroundColorBox1 >= 7) {
 			backgroundColorBox1 = 1;
 		}
-		if (backgroundColorBox2 >= 7) {
-			backgroundColorBox2 = 0;
-		}
-		$('#well' + backgroundColorBox2).css("background-color","lightgreen");
-	}, 500)
+	}, 50)
 });
-
 
 
 /**
@@ -984,4 +1000,14 @@ Template.profileBadges.helpers({
 				return 0;
 		}
 	}
+});
+
+
+Template.profileXp.onRendered(function () {
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			drawGraph();
+		});
+	});
 });

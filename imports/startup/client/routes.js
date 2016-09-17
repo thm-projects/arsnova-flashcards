@@ -1,6 +1,5 @@
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Categories} from '../../api/categories.js';
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -80,15 +79,6 @@ Router.route('/cardset/:_id/editcard/:cardid', {
 });
 
 Router.route('pool');
-
-Router.route('/pool/:_id', {
-	name: 'category',
-	template: 'category',
-	data: function () {
-		var currentPool = this.params._id;
-		return Categories.findOne({_id: currentPool});
-	}
-});
 
 Router.route('/box/:_id', {
 	name: 'box',
@@ -190,6 +180,12 @@ Router.route('/admin/user/:_id', {
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
+	layoutTemplate: 'admin_main'
+});
+
+Router.route('/admin/settings', {
+	name: 'admin_settings',
+	template: 'admin_settings',
 	layoutTemplate: 'admin_main'
 });
 

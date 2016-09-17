@@ -1,12 +1,10 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_card.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import "./admin_card.html";
 
 /**
  * ############################################################################
@@ -42,8 +40,7 @@ function tex(e) {
 
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
-	var chunk, cursor, selected = e.getSelection(),
-		link;
+	var chunk, cursor, selected = e.getSelection(), link;
 
 	if (selected.length === 0) {
 		// Give extra word

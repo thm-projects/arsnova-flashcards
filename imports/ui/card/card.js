@@ -1,10 +1,9 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import './card.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import "./card.html";
 
 
 /**
@@ -127,10 +126,7 @@ Template.btnCard.events({
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: true,
-		hiddenButtons: [
-			"cmdPreview",
-			"cmdImage"
-		],
+		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
 		footer: "<p></p>",
 		onChange: function (e) {
@@ -144,25 +140,20 @@ Template.frontEditor.rendered = function () {
 			}
 		},
 		additionalButtons: [
-			[
-				{
-					name: "groupCustom",
-					data: [
-						{
-							name: 'cmdPics',
-							title: 'Image',
-							icon: 'glyphicon glyphicon-picture',
-							callback: image
-						},
-						{
-							name: "cmdTex",
-							title: "Tex",
-							icon: "glyphicon glyphicon-usd",
-							callback: tex
-						}
-					]
-				}
-			]
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'glyphicon glyphicon-picture',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "glyphicon glyphicon-usd",
+					callback: tex
+				}]
+			}]
 		]
 	});
 
@@ -199,10 +190,7 @@ Template.frontEditor.events({
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
-		hiddenButtons: [
-			"cmdPreview",
-			"cmdImage"
-		],
+		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
 		footer: "<p></p>",
 		onChange: function (e) {
@@ -216,25 +204,20 @@ Template.backEditor.rendered = function () {
 			}
 		},
 		additionalButtons: [
-			[
-				{
-					name: "groupCustom",
-					data: [
-						{
-							name: 'cmdPics',
-							title: 'Image',
-							icon: 'glyphicon glyphicon-picture',
-							callback: image
-						},
-						{
-							name: "cmdTex",
-							title: "Tex",
-							icon: "glyphicon glyphicon-usd",
-							callback: tex
-						}
-					]
-				}
-			]
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'glyphicon glyphicon-picture',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "glyphicon glyphicon-usd",
+					callback: tex
+				}]
+			}]
 		]
 	});
 	if (ActiveRoute.name('editCard')) {

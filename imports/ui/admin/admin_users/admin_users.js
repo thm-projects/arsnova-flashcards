@@ -1,17 +1,55 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_users.html';
-
-import './admin_user.js';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
+import {Graph} from "../../../api/graph.js";
+import "./admin_users.html";
+import "./admin_user.js";
 
 
 Meteor.subscribe('allUsers');
+Meteor.subscribe('learned', function () {
+	Session.set('data_loaded', true);
+});
+
+/**
+ * ############################################################################
+ * admin_dashboard
+ * ############################################################################
+ */
+
+export function drawGraph() {
+	if (Session.get('data_loaded')) {
+		var canvas = document.getElementById("adminChart");
+		var ctx = document.getElementById("adminChart").getContext("2d");
+		new Chart(ctx).Bar(Graph(undefined, undefined),
+			{
+				responsive: true,
+				options: {
+					scales: {
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		canvas.style.width = '100%';
+		canvas.style.height = '100%';
+		canvas.width = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
+	}
+}
+
+Template.messageFormAdmin.onRendered(function () {
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			drawGraph();
+		});
+	});
+});
 
 /**
  * ############################################################################

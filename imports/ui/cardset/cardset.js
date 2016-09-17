@@ -1,24 +1,24 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Ratings} from '../../api/ratings.js';
-import {Paid} from '../../api/paid.js';
-import {ReactiveVar} from 'meteor/reactive-var';
-
-import '../card/card.js';
-import '../learn/box.js';
-import '../learn/memo.js';
-
-import './cardset.html';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Ratings} from "../../api/ratings.js";
+import {Paid} from "../../api/paid.js";
+import {Learned} from "../../api/learned.js";
+import {ReactiveVar} from "meteor/reactive-var";
+import "../card/card.js";
+import "../learn/box.js";
+import "../learn/memo.js";
+import "./cardset.html";
 
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("userData");
 Meteor.subscribe("paid");
+Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
 Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
@@ -27,6 +27,15 @@ Meteor.subscribe('ratings', function () {
 Session.setDefault('cardSort', {
 	front: 1
 });
+
+export function getActiveLearner() {
+	var data = Learned.find({box: {$gt: 1}}).fetch();
+	var distinctData = _.uniq(data, false, function (d) {
+		return d.user_id;
+	});
+	return (_.pluck(distinctData, "user_id").length);
+}
+
 
 /**
  * ############################################################################
@@ -67,22 +76,12 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
+
 	'onEditmodalClose': function (id) {
 		Session.set('previousName', Cardsets.findOne(id).name);
 		Session.set('previousDescription', Cardsets.findOne(id).description);
-		/*
-		var previousCategory = Cardsets.findOne(id).category;
-		var categoryId = previousCategory.toString();
-
-		if (categoryId.length === 1) {
-			categoryId = "0" + categoryId;
-		}
-
-		var category = Categories.findOne(categoryId);
-		if (category !== undefined) {
-			Session.set('previousCategoryName', category.name);
-		}
-		*/
+		Session.set('previousCollegeName', Cardsets.findOne(id).college);
+		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
@@ -132,36 +131,38 @@ Template.cardset.events({
 			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpEditSetDescription').css('color', '#b94a48');
 		}
-		if ($('#editSetModulLong').val() === "") {
-			$('#editSetModulLongLabel').css('color', '#b94a48');
-			$('#editSetModulLong').css('border-color', '#b94a48');
-			$('#helpEditSetModulLong').html(TAPi18n.__('modal-dialog.modulLong_required'));
-			$('#helpEditSetModulLong').css('color', '#b94a48');
+		if ($('#editSetModule').val() === "") {
+			$('#editSetModuleLabel').css('color', '#b94a48');
+			$('#editSetModule').css('border-color', '#b94a48');
+			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
+			$('#helpEditSetModule').css('color', '#b94a48');
 		}
-		if ($('#editSetModulShort').val() === "") {
-			$('#editSetModulShortLabel').css('color', '#b94a48');
-			$('#editSetModulShort').css('border-color', '#b94a48');
-			$('#helpEditSetModulShort').html(TAPi18n.__('modal-dialog.modulShort_required'));
-			$('#helpEditSetModulShort').css('color', '#b94a48');
+		if ($('#editSetModuleShort').val() === "") {
+			$('#editSetModuleShortLabel').css('color', '#b94a48');
+			$('#editSetModuleShort').css('border-color', '#b94a48');
+			$('#helpEditSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpEditSetModuleShort').css('color', '#b94a48');
 		}
-		if ($('#editSetModulNum').val() === "") {
-			$('#editSetModulNumLabel').css('color', '#b94a48');
-			$('#editSetModulNum').css('border-color', '#b94a48');
-			$('#helpEditSetModulNum').html(TAPi18n.__('modal-dialog.modulNum_required'));
-			$('#helpEditSetModulNum').css('color', '#b94a48');
+		if ($('#editSetModuleNum').val() === "") {
+			$('#editSetModuleNumLabel').css('color', '#b94a48');
+			$('#editSetModuleNum').css('border-color', '#b94a48');
+			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
+			$('#helpEditSetModuleNum').css('color', '#b94a48');
 		}
 		if ($('#editSetName').val() !== "" &&
 			$('#editSetDescription').val() !== "" &&
-			$('#editSetModulLong').val() !== "" &&
-			$('#editSetModulShort').val() !== "" &&
-			$('#editSetModulNum').val() !== "") {
+			$('#editSetModule').val() !== "" &&
+			$('#editSetModuleShort').val() !== "" &&
+			$('#editSetModuleNum').val() !== "") {
 			var name = tmpl.find('#editSetName').value;
 			var description = tmpl.find('#editSetDescription').value;
-			var modulLong = tmpl.find('#editSetModulLong').value;
-			var modulShort = tmpl.find('#editSetModulShort').value;
-			var modulNum = tmpl.find('#editSetModulNum').value;
+			var module = tmpl.find('#editSetModule').value;
+			var moduleShort = tmpl.find('#editSetModuleShort').value;
+			var moduleNum = tmpl.find('#editSetModuleNum').value;
+			var college = $('#editSetCollege').text();
+			var course = $('#editSetCourse').text();
 
-			Meteor.call("updateCardset", this._id, name, description, modulLong, modulShort, modulNum);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 			$('#editSetModal').modal('hide');
 		}
 	},
@@ -181,12 +182,6 @@ Template.cardset.events({
 			Meteor.call("deleteCardset", id);
 			Router.go('created');
 		}).modal('hide');
-	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#editSetCategory').text(categoryName);
-		tmpl.find('#editSetCategory').value = categoryId;
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
@@ -218,6 +213,8 @@ Template.cardsetForm.onRendered(function () {
 		var previousName = Session.get('previousName');
 		var previousDescription = Session.get('previousDescription');
 		var previousCategoryName = Session.get('previousCategoryName');
+		var previousCollegeName = Session.get('previousCollegeName');
+		var previousCourseName = Session.get('previousCourseName');
 
 		if (previousName !== $('#editSetName').val()) {
 			$('#editSetName').val(previousName);
@@ -232,10 +229,26 @@ Template.cardsetForm.onRendered(function () {
 		if (previousCategoryName !== $('#editSetCategory').html()) {
 			$('#editSetCategory').html(previousCategoryName);
 		}
+		if (previousCollegeName !== $('#editSetCollege').html()) {
+			$('#editSetCollege').html(previousCollegeName);
+		}
+		if (previousCourseName !== $('#editSetCourse').html()) {
+			$('#editSetCourse').html(previousCourseName);
+		}
 	});
 });
 
 Template.cardsetForm.events({
+	'click .college': function (evt, tmpl) {
+		var collegeName = $(evt.currentTarget).attr("data");
+		$('#editSetCollege').text(collegeName);
+		tmpl.find('#editSetCollege').value = collegeName;
+	},
+	'click .course': function (evt, tmpl) {
+		var courseName = $(evt.currentTarget).attr("data");
+		$('#editSetCourse').text(courseName);
+		tmpl.find('#editSetCourse').value = courseName;
+	},
 	'keyup #editSetName': function () {
 		$('#editSetNameLabel').css('color', '');
 		$('#editSetName').css('border-color', '');
@@ -489,19 +502,19 @@ Template.cardsetInfo.helpers({
 			case "personal":
 				return '<span class="label label-warning">Private</span>';
 			case "free":
-				return '<span class="label label-default">Free</span>';
+				return '<span class="label label-info">Free</span>';
 			case "edu":
 				return '<span class="label label-success">Edu</span>';
 			case "pro":
-				return '<span class="label label-info">Pro</span>';
+				return '<span class="label label-danger">Pro</span>';
 			default:
-				return '<span class="label label-danger">Undefined!</span>';
+				return '<span class="label label-default">Undefined!</span>';
 		}
 	},
 	getStatus: function () {
 		if (this.visible) {
 			var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-			return TAPi18n.__('sidebar-nav.publicated') + " (" + kind + ")";
+			return TAPi18n.__('sidebar-nav.published') + " (" + kind + ")";
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
 				return TAPi18n.__('sidebar-nav.review') + " (Pro)";
@@ -529,35 +542,14 @@ Template.cardsetInfo.helpers({
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
 	},
-	getLicense: function () {
-		var licenseString = "";
-
-		if (this.license.length > 0) {
-			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
-			}
-			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
-			}
-			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
-			}
-			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
-			}
-
-			return new Spacebars.SafeString(licenseString);
-		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
-		}
-	},
 	isPublished: function () {
 		if (this.kind === 'personal') {
 			return false;
 		} else {
 			return true;
 		}
-	}
+	},
+	getActiveLearner
 });
 
 Template.cardsetInfo.events({
@@ -628,6 +620,187 @@ Template.cardsetSidebar.events({
 		Router.go('memo', {
 			_id: this._id
 		});
+	},
+	"click #startStopLearning": function () {
+		var now = new Date();
+		var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+		var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+		var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+
+		document.getElementById('inputLearningStart').setAttribute("min", today);
+		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
+		$('#inputLearningStart').val(today);
+		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+		$('#inputLearningEnd').val(threeMonths);
+	},
+	"click #exportCSV": function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		var header = [];
+		header[0] = TAPi18n.__('subject1');
+		header[1] = TAPi18n.__('subject2');
+		header[2] = TAPi18n.__('subject3');
+		header[3] = TAPi18n.__('subject4');
+		header[4] = TAPi18n.__('subject5');
+		header[5] = TAPi18n.__('subject6');
+		header[6] = TAPi18n.__('box_export_given_name');
+		header[7] = TAPi18n.__('box_export_birth_name');
+		header[8] = TAPi18n.__('box_export_mail');
+		Meteor.call("getCSVExport", cardset_id, Meteor.userId(), header, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
+			if (result) {
+				var statistics = TAPi18n.__('box_export_statistics');
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.target = '_blank';
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g, "_").replace(/:/g, "_");
+				document.body.appendChild(hiddenElement);
+				hiddenElement.click();
+			}
+		});
+	}
+});
+
+Template.cardsetSidebar.helpers({
+	isDisabled: function () {
+		return (this.learningActive) ? '' : 'disabled';
+	}
+});
+/**
+ * ############################################################################
+ * cardsetStartLearnForm
+ * ############################################################################
+ */
+
+Template.cardsetStartLearnForm.events({
+	"input #inputLearningStart": function () {
+		let start = new Date($('#inputLearningStart').val());
+		let end = new Date($('#inputLearningEnd').val());
+		if (isNaN(start.getTime()) || start < new Date()) {
+			let today = new Date();
+			$('#inputLearningStart').val(today.getFullYear() + "-" + ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + "-" + (today.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		if (start >= end) {
+			end.setDate(end.getDate() - 1);
+			$('#inputLearningStart').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		document.getElementById('inputLearningEnd').setAttribute("min", (start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate()));
+	},
+	"input #inputLearningEnd": function () {
+		let start = new Date($('#inputLearningStart').val());
+		let end = new Date($('#inputLearningEnd').val());
+		if (isNaN(end.getTime()) || start >= end) {
+			end = start;
+			end.setDate(end.getDate() + 1);
+			$('#inputLearningEnd').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
+		}
+		document.getElementById('inputLearningStart').setAttribute("max", (end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + (end.getDate() - 1)));
+	},
+	"click #confirmLearn": function () {
+		if (!Cardsets.findOne(this._id).learningActive) {
+			var maxCards = $('#inputMaxCards').val();
+			var daysBeforeReset = $('#inputDaysBeforeReset').val();
+			var learningStart = new Date($('#inputLearningStart').val());
+			var learningEnd = new Date($('#inputLearningEnd').val());
+			var learningInterval = [];
+			for (let i = 0; i < 5; ++i) {
+				learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
+			}
+			if (!learningInterval[0]) {
+				learningInterval[0] = 1;
+			}
+			for (let i = 1; i < 5; ++i) {
+				if (!learningInterval[i]) {
+					learningInterval[i] = (parseInt(learningInterval[i - 1]) + 1);
+				}
+			}
+
+			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+			var webNotification = document.getElementById('webNotificationCheckbox').checked;
+			if (mailNotification || webNotification) {
+				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
+			}
+		}
+	},
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
+		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+			document.getElementById('confirmLearn').disabled = true;
+			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
+		} else {
+			document.getElementById('confirmLearn').disabled = false;
+			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#errorNotification').html('');
+		}
+	},
+	"click #cancelLearn": function () {
+		$('#inputMaxCards').val(null);
+		$('#inputDaysBeforeReset').val(null);
+
+		$('#inputLearningInterval1').val(1);
+		$('#inputLearningInterval2').val(3);
+		$('#inputLearningInterval3').val(7);
+		$('#inputLearningInterval4').val(28);
+		$('#inputLearningInterval5').val(84);
+		document.getElementById('mailNotificationCheckbox').checked = true;
+		document.getElementById('webNotificationCheckbox').checked = true;
+	},
+	"input #inputMaxCards": function () {
+		if (parseInt($('#inputMaxCards').val()) <= 0) {
+			$('#inputMaxCards').val(1);
+		} else if (parseInt($('#inputMaxCards').val()) > 100) {
+			$('#inputMaxCards').val(100);
+		}
+	},
+	"input #inputDaysBeforeReset": function () {
+		if (parseInt($('#inputDaysBeforeReset').val()) <= 0) {
+			$('#inputDaysBeforeReset').val(1);
+		} else if (parseInt($('#inputDaysBeforeReset').val()) > 100) {
+			$('#inputDaysBeforeReset').val(100);
+		}
+	},
+	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
+		var error = false;
+		for (let i = 1; i < 5; ++i) {
+			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
+				$('#inputLearningInterval' + i).val(1);
+			} else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
+				$('#inputLearningInterval' + i).val(999);
+			}
+			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
+				error = true;
+			}
+		}
+		if (error) {
+			for (let j = 1; j <= 5; ++j) {
+				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
+				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
+			}
+		} else {
+			for (let k = 1; k <= 5; ++k) {
+				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
+				$('#errorInputLearningInterval').html('');
+			}
+		}
+	}
+});
+
+/**
+ * ############################################################################
+ * cardsetEndLearnForm
+ * ############################################################################
+ */
+
+Template.cardsetEndLearnForm.events({
+	"click #confirmEndLearn": function () {
+		if (Cardsets.findOne(this._id).learningActive) {
+			Meteor.call("deactivateLearning", this._id);
+		}
 	}
 });
 
@@ -721,20 +894,20 @@ Template.cardsetConfirmForm.events({
 
 /**
  * ############################################################################
- * cardsetPublicateForm
+ * cardsetPublishForm
  * ############################################################################
  */
 
-Template.cardsetPublicateForm.onRendered(function () {
-	$('#publicateModal').on('hidden.bs.modal', function () {
+Template.cardsetPublishForm.onRendered(function () {
+	$('#publishModal').on('hidden.bs.modal', function () {
 		var cardset = Cardsets.findOne(Session.get('cardsetId'));
 
-		$('#publicateKind > label').removeClass('active');
-		$('#publicateKind > label > input').filter(function () {
+		$('#publishKind > label').removeClass('active');
+		$('#publishKind > label > input').filter(function () {
 			return this.value === cardset.kind;
 		}).parent().addClass('active');
 
-		$('#publicateKind > label > input').filter(function () {
+		$('#publishKind > label > input').filter(function () {
 			return this.value === cardset.kind;
 		}).prop('checked', true);
 
@@ -742,11 +915,11 @@ Template.cardsetPublicateForm.onRendered(function () {
 		Session.set('kindWithPrice', kindWithPrice);
 
 
-		$('#publicatePrice').val(cardset.price);
+		$('#publishPrice').val(cardset.price);
 	});
 });
 
-Template.cardsetPublicateForm.helpers({
+Template.cardsetPublishForm.helpers({
 	kindWithPrice: function () {
 		return Session.get('kindWithPrice');
 	},
@@ -758,17 +931,17 @@ Template.cardsetPublicateForm.helpers({
 	}
 });
 
-Template.cardsetPublicateForm.events({
-	'click #cardsetPublicate': function (evt, tmpl) {
+Template.cardsetPublishForm.events({
+	'click #cardsetPublish': function (evt, tmpl) {
 		var id = this._id;
-		var kind = tmpl.find('#publicateKind > .active > input').value;
+		var kind = tmpl.find('#publishKind > .active > input').value;
 		var price = 0;
 		var visible = true;
 		var license = [];
 
 		if (kind === 'edu' || kind === 'pro') {
-			if (tmpl.find('#publicatePrice') !== null) {
-				price = tmpl.find('#publicatePrice').value;
+			if (tmpl.find('#publishPrice') !== null) {
+				price = tmpl.find('#publishPrice').value;
 			} else {
 				price = this.price;
 			}
@@ -789,11 +962,11 @@ Template.cardsetPublicateForm.events({
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 
-		Meteor.call("publicateCardset", id, kind, price, visible);
-		$('#publicateModal').modal('hide');
+		Meteor.call("publishCardset", id, kind, price, visible);
+		$('#publishModal').modal('hide');
 	},
-	'change #publicateKind': function () {
-		var kind = $('#publicateKind input[name=kind]:checked').val();
+	'change #publishKind': function () {
+		var kind = $('#publishKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
 	}

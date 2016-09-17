@@ -1,11 +1,9 @@
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
-
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-
-import {Cards} from './cards.js';
-import {Experience} from './experience.js';
-import {Ratings} from './ratings.js';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {Cards} from "./cards.js";
+import {Experience} from "./experience.js";
+import {Ratings} from "./ratings.js";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -39,9 +37,6 @@ const CardsetsSchema = new SimpleSchema({
 	name: {
 		type: String
 	},
-	category: {
-		type: String
-	},
 	description: {
 		type: String
 	},
@@ -52,9 +47,6 @@ const CardsetsSchema = new SimpleSchema({
 		type: Date
 	},
 	owner: {
-		type: String
-	},
-	username: {
 		type: String
 	},
 	visible: {
@@ -93,38 +85,44 @@ const CardsetsSchema = new SimpleSchema({
 	userDeleted: {
 		type: Boolean
 	},
-	modulLong: {
+	module: {
 		type: String
 	},
-	modulShort: {
+	moduleToken: {
 		type: String
 	},
-	modulNum: {
-		type: String
-	},
-	lastName: {
-		type: String
-	},
-	degree: {
+	moduleNum: {
 		type: String
 	},
 	college: {
 		type: String
 	},
-	academicCourse: {
+	course: {
 		type: String
 	},
-	department: {
-		type: String
+	learningActive: {
+		type: Boolean
 	},
-	studyType: {
-		type: String
+	maxCards: {
+		type: Number
 	},
-	BachelorOrMaster: {
-		type: String
+	daysBeforeReset: {
+		type: Number
 	},
-	semester: {
-		type: String
+	learningStart: {
+		type: Date
+	},
+	learningEnd: {
+		type: Date
+	},
+	learningInterval: {
+		type: [Number]
+	},
+	mailNotification: {
+		type: Boolean
+	},
+	webNotification: {
+		type: Boolean
 	}
 });
 
@@ -162,13 +160,13 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-	addCardset: function (name, description, visible, ratings, kind, modulLong, modulShort, modulNum, college, studyType) {
+	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, college, course) {
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
 		}
 		var nameTitle = 'undefined';
-		if (Meteor.user().profile.title === "") {
+		if (Meteor.user().profile.title) {
 			nameTitle = Meteor.user().profile.title;
 		}
 		Cardsets.insert({
@@ -177,7 +175,6 @@ Meteor.methods({
 			date: new Date(),
 			dateUpdated: new Date(),
 			owner: Meteor.userId(),
-			firstName: Meteor.user().profile.name,
 			visible: visible,
 			ratings: ratings,
 			kind: kind,
@@ -189,17 +186,19 @@ Meteor.methods({
 			quantity: 0,
 			license: [],
 			userDeleted: false,
-			modulLong: modulLong,
-			modulShort: modulShort,
-			modulNum: modulNum,
-			lastName: 'undefined',
-			degree: nameTitle,
+			module: module,
+			moduleToken: moduleShort,
+			moduleNum: moduleNum,
 			college: college,
-			academicCourse: 'undefined',
-			department: 'undefined',
-			studyType: studyType,
-			BachelorOrMaster: 'undefined',
-			semester: 'undefined'
+			course: course,
+			learningActive: false,
+			maxCards: 0,
+			daysBeforeReset: 0,
+			learningStart: 0,
+			learningEnd: 0,
+			learningInterval: [],
+			mailNotification: true,
+			webNotification: true
 		});
 		Experience.insert({
 			type: 2,
@@ -227,7 +226,51 @@ Meteor.methods({
 			cardset_id: id
 		});
 	},
-	updateCardset: function (id, name, description, modulLong, modulShort, modulNum) {
+	deactivateLearning: function (id) {
+		Cardsets.update(id, {
+			$set: {
+				learningActive: false
+			}
+		});
+	},
+	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
+		if (!maxCards) {
+			maxCards = 1;
+		}
+		if (!daysBeforeReset) {
+			daysBeforeReset = 1;
+		}
+		if (!learningStart) {
+			learningStart = new Date();
+		}
+		if (!learningEnd) {
+			learningEnd = new Date();
+			learningEnd.setMonth(learningEnd.getMonth() + 3);
+		}
+		if (!learningInterval) {
+			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
+		}
+		learningInterval = learningInterval.sort(
+			function (a, b) {
+				return a - b;
+			}
+		);
+		Cardsets.update(id, {
+			$set: {
+				learningActive: true,
+				maxCards: maxCards,
+				daysBeforeReset: daysBeforeReset,
+				learningStart: learningStart,
+				learningEnd: learningEnd,
+				learningInterval: learningInterval,
+				mailNotification: mailNotification,
+				webNotification: webNotification
+			}
+		});
+		Meteor.call("activateLerningPeriod", id);
+		Meteor.call("activateLerningPeriodSetEdu", id);
+	},
+	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -245,10 +288,26 @@ Meteor.methods({
 				name: name,
 				description: description,
 				dateUpdated: new Date(),
-				modulLong: modulLong,
-				modulShort: modulShort,
-				modulNum: modulNum
+				module: module,
+				moduleToken: moduleShort,
+				moduleNum: moduleNum,
+				college: college,
+				course: course
 			}
+		});
+	},
+	activateLerningPeriodSetEdu: function (cartset_id) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		Cardsets.update({
+			_id: cartset_id
+		}, {
+			$set: {
+				kind: "edu"
+			}
+		}, {
+			multi: true
 		});
 	},
 	updateRelevance: function (cardset_id) {
@@ -282,7 +341,7 @@ Meteor.methods({
 
 		return relevance;
 	},
-	publicateCardset: function (id, kind, price, visible) {
+	publishCardset: function (id, kind, price, visible) {
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 

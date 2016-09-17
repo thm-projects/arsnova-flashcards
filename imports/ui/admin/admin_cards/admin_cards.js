@@ -1,15 +1,12 @@
 //------------------------ IMPORTS
 
-import {Meteor} from 'meteor/meteor';
-import {Template} from 'meteor/templating';
-import {Session} from 'meteor/session';
-
-import {Cards} from '../../../api/cards.js';
-import {Cardsets} from '../../../api/cardsets.js';
-
-import './admin_cards.html';
-
-import './admin_card.js';
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cards} from "../../../api/cards.js";
+import {Cardsets} from "../../../api/cardsets.js";
+import "./admin_cards.html";
+import "./admin_card.js";
 
 /**
  * ############################################################################

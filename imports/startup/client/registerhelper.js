@@ -1,12 +1,11 @@
-import {Meteor} from 'meteor/meteor';
-import {Categories} from '../../api/categories.js';
-import {Cardsets} from '../../api/cardsets.js';
-import {Cards} from '../../api/cards.js';
-import {Colleges} from '../../api/colleges.js';
-import {Course} from '../../api/course.js';
+import {Meteor} from "meteor/meteor";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {CollegesCourses} from "../../api/colleges_courses.js";
 
-Meteor.subscribe("colleges");
-Meteor.subscribe("course");
+
+Meteor.subscribe("collegesCourses");
+
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
@@ -14,6 +13,13 @@ Template.registerHelper("hasPermission", function () {
 		return this.owner === Meteor.userId() || this.visible === true || this.request === true;
 	} else {
 		return this.owner === Meteor.userId() || this.visible === true;
+	}
+});
+
+// Check if user has is lecturer
+Template.registerHelper("isLecturer", function () {
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+		return true;
 	}
 });
 
@@ -63,23 +69,18 @@ Template.registerHelper("getTimestamp", function () {
 	return moment(this.date).locale(getUserLanguage()).format('LLLL');
 });
 
-// Returns all Categories
-Template.registerHelper("getCategories", function () {
-	return Categories.find({}, {
-		sort: {
-			_id: 1
-		}
-	});
-});
-
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return Course.find();
+	return _.uniq(CollegesCourses.find().fetch(), function (item) {
+		return item.course;
+	});
 });
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
-	return Colleges.find();
+	return _.uniq(CollegesCourses.find().fetch(), function (item) {
+		return item.college;
+	});
 });
 
 // Return the name of a College
@@ -90,25 +91,49 @@ Template.registerHelper("getCollege", function (value) {
 			id = "0" + id;
 		}
 
-		var college = Colleges.findOne(id);
+		var college = CollegesCourses.findOne(id);
 		if (college !== undefined) {
 			return college.name;
 		}
 	}
 });
 
-// Return the name of a Category
-Template.registerHelper("getCategory", function (value) {
-	if (value !== null) {
-		var id = value.toString();
-		if (id.length === 1) {
-			id = "0" + id;
+Template.registerHelper("getAuthorName", function (owner) {
+	var author = Meteor.users.findOne({"_id": owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		}
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+	}
+});
+
+// Return the cardset license
+Template.registerHelper("getLicense", function () {
+	var licenseString = "";
+
+	if (this.license.length > 0) {
+		if (this.license.includes('by')) {
+			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+		}
+		if (this.license.includes('nc')) {
+			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+		}
+		if (this.license.includes('nd')) {
+			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+		}
+		if (this.license.includes('sa')) {
+			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
 		}
 
-		var category = Categories.findOne(id);
-		if (category !== undefined) {
-			return category.name;
-		}
+		return new Spacebars.SafeString(licenseString);
+	} else {
+		return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 	}
 });
 
