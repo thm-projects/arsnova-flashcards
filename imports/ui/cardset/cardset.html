@@ -63,9 +63,9 @@
                         {{#if ratingEnabled}}
                             <strong class="left">{{_ "cardset.info.rating"}}:</strong>
                             {{#if hasRated}}
-                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
                             {{else}}
-                                {{> starsRating id='rating' rating=0 mutable=true}}
+                                {{> starsRating id='rating' rating=getAverage mutable=true}}
                             {{/if}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}

@@ -497,6 +497,17 @@ Template.cardsetInfo.helpers({
 			return count !== 0 || owner === Meteor.userId();
 		}
 	},
+	getUserRating: function () {
+		var userrating = Ratings.findOne({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		});
+		if (userrating) {
+			return userrating.rating;
+		} else {
+			return 0;
+		}
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "personal":
@@ -572,7 +583,7 @@ Template.cardsetInfo.events({
 		}).count();
 		if (count === 0) {
 			var cardset = Cardsets.findOne({_id: cardset_id});
-			Meteor.call("addRating", cardset_id, cardset.owner, rating);
+			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
 		}
 	},
 	'click #exportCardsBtn': function () {
