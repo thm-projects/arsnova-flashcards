@@ -7,10 +7,10 @@
 <template name="category">
     <div class="buttonHeader">
         <div class="btn-group" role="group" aria-label="Topic group">
-            <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown" id="namedown">
+            <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown">
                 {{_ "set-list.topic"}} </button>
             <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 150px">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-sort"></span>
             </button>
         </div>
@@ -110,29 +110,29 @@
     <div class="responsive-utilities-test visible-on">
 
         <span class="col-md-3 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.topic"}}:
+                "set-list.topic"}}:
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.author"}}:
+                "set-list.author"}}:
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.college"}}:
+                "set-list.college"}}:
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.course"}}:
+                "set-list.course"}}:
         </span>
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.module"}}:
+                "set-list.module"}}:
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-        "set-list.license"}}:
+                "set-list.license"}}:
         </span>
     </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
             <a href="/cardset/{{_id}}">
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
-                oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                        oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
                     {{> poolCardsetRow}}
                 </div>
             </a>
