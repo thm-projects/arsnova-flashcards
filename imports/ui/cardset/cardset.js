@@ -622,7 +622,7 @@ Template.cardsetSidebar.events({
 		});
 	},
 	"click #startStopLearning": function () {
-		if(Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
+		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
 			var now = new Date();
 			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
