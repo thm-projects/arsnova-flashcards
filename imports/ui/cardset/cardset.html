@@ -161,7 +161,7 @@
                 <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
             </div>
         </div>
-
+    {{#if isLecturerOrPro}}
         <div id="set-details-learn-region">
             <div class="well well-sm sidebar-nav">
                 <span class="nav-header-cardset">{{_ "manage"}}</span>
@@ -195,8 +195,7 @@
                 {{/unless}}
             </div>
         </div>
-
-
+        {{/if}}
     </div>
 </template>
 
