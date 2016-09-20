@@ -493,8 +493,7 @@ Template.cardsetInfo.helpers({
 		}).count();
 		var cardset = Cardsets.findOne(this._id);
 		if (cardset !== null) {
-			var owner = cardset.owner;
-			return count !== 0 || owner === Meteor.userId();
+			return count !== 0;
 		}
 	},
 	getUserRating: function () {
@@ -507,6 +506,9 @@ Template.cardsetInfo.helpers({
 		} else {
 			return 0;
 		}
+	},
+	isOwner: function () {
+		return Meteor.userId() === this.owner;
 	},
 	getKind: function () {
 		switch (this.kind) {

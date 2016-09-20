@@ -65,7 +65,11 @@
                             {{#if hasRated}}
                                 {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
                             {{else}}
-                                {{> starsRating id='rating' rating=getAverage mutable=true}}
+                            	{{#if isOwner}}
+                            	  {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                            	{{else}}
+                                  {{> starsRating id='rating' rating=getAverage mutable=true}}
+                                {{/if}}
                             {{/if}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
