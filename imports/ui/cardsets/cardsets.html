@@ -43,14 +43,24 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <span>{{_ "set-list.name"}}</span>
-                    <a class="namedown" role="button">⇓</a>
-                    <a class="nameup" role="button">⇑</a>
+                    <div class="btn-group" role="group" aria-label="Topic group">
+                        <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
+                            {{_ "set-list.name"}} </button>
+                        <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                    </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.category"}}</span>
-                    <a class="categorydown" role="button">⇓</a>
-                    <a class="categoryup" role="button">⇑</a>
+                    <div class="btn-group" role="group" aria-label="Topic group">
+                        <button class="sortCategory btn btn-default" role="button" value="down" data-toggle="dropdown">
+                            {{_ "set-list.category"}} </button>
+                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                    </div>
                 </th>
                 <th>
                     <span>{{_ "set-list.description"}}</span>
@@ -102,14 +112,24 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <span>{{_ "set-list.name"}}</span>
-                    <a class="namedown" role="button">⇓</a>
-                    <a class="nameup" role="button">⇑</a>
+                    <div class="btn-group" role="group" aria-label="Topic group">
+                        <button class="sortNameLearned btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
+                            {{_ "set-list.name"}} </button>
+                        <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                    </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.category"}}</span>
-                    <a class="categorydown" role="button">⇓</a>
-                    <a class="categoryup" role="button">⇑</a>
+                    <div class="btn-group" role="group" aria-label="Topic group">
+                        <button class="sortCategoryLearned btn btn-default" role="button" value="down" data-toggle="dropdown">
+                            {{_ "set-list.category"}} </button>
+                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                    </div>
                 </th>
                 <th>
                     <span>{{_ "set-list.description"}}</span>
