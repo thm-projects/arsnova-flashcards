@@ -227,48 +227,56 @@ Meteor.methods({
 		});
 	},
 	deactivateLearning: function (id) {
-		Cardsets.update(id, {
-			$set: {
-				learningActive: false
-			}
-		});
+		if(Roles.userIsInRole(Meteor.userId(), "lecturer") && id === Meteor.userId()) {
+			Cardsets.update(id, {
+				$set: {
+					learningActive: false
+				}
+			});
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
 	},
 	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
-		if (!maxCards) {
-			maxCards = 1;
-		}
-		if (!daysBeforeReset) {
-			daysBeforeReset = 1;
-		}
-		if (!learningStart) {
-			learningStart = new Date();
-		}
-		if (!learningEnd) {
-			learningEnd = new Date();
-			learningEnd.setMonth(learningEnd.getMonth() + 3);
-		}
-		if (!learningInterval) {
-			learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
-		}
-		learningInterval = learningInterval.sort(
-			function (a, b) {
-				return a - b;
+		if(Roles.userIsInRole(Meteor.userId(), "lecturer") && id === Meteor.userId()) {
+			if (!maxCards) {
+				maxCards = 1;
 			}
-		);
-		Cardsets.update(id, {
-			$set: {
-				learningActive: true,
-				maxCards: maxCards,
-				daysBeforeReset: daysBeforeReset,
-				learningStart: learningStart,
-				learningEnd: learningEnd,
-				learningInterval: learningInterval,
-				mailNotification: mailNotification,
-				webNotification: webNotification
+			if (!daysBeforeReset) {
+				daysBeforeReset = 1;
 			}
-		});
-		Meteor.call("activateLerningPeriod", id);
-		Meteor.call("activateLerningPeriodSetEdu", id);
+			if (!learningStart) {
+				learningStart = new Date();
+			}
+			if (!learningEnd) {
+				learningEnd = new Date();
+				learningEnd.setMonth(learningEnd.getMonth() + 3);
+			}
+			if (!learningInterval) {
+				learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
+			}
+			learningInterval = learningInterval.sort(
+				function (a, b) {
+					return a - b;
+				}
+			);
+			Cardsets.update(id, {
+				$set: {
+					learningActive: true,
+					maxCards: maxCards,
+					daysBeforeReset: daysBeforeReset,
+					learningStart: learningStart,
+					learningEnd: learningEnd,
+					learningInterval: learningInterval,
+					mailNotification: mailNotification,
+					webNotification: webNotification
+				}
+			});
+			Meteor.call("activateLerningPeriod", id);
+			Meteor.call("activateLerningPeriodSetEdu", id);
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
 	},
 	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
 		// Make sure only the task owner can make a task private
