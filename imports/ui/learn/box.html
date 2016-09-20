@@ -30,6 +30,7 @@
 
 <!-- Sidebar -->
 <template name="boxSide">
+
     <div id="set-learn-sideBar-region">
         <div class="well well-sm sidebar-nav">
             <h4 id="cardsetName">{{name}}</h4>
@@ -43,6 +44,9 @@
 				<span>{{_ "sidebar-nav.at"}}</span>
 				<span>{{getDate}}</span>
 			</span>
+        <button class="btn btn-danger back-button" id="back-button">
+            <span class="pull-left">{{_ "backbutton"}}</span>
+        </button>
         </div>
     </div>
 
@@ -72,10 +76,8 @@
                 <span class="pull-left">{{_ "subject6"}}</span>
                 <span class="badge pull-right six">{{countBox 6}}</span>
             </button>
-
         </div>
     </div>
-
 
 </template>
 

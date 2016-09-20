@@ -187,6 +187,10 @@ Template.boxSide.events({
 		Router.go('profileOverview', {
 			_id: Meteor.userId()
 		});
+	},
+	"click #back-button": function () {
+		console.log("test");
+		window.history.go(-1);
 	}
 });
 
