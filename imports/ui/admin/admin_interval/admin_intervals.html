@@ -1,0 +1,120 @@
+
+<template name="admin_interval">
+    <div class="col-md-12" id="profile-xp">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-experience">
+
+                <h3 class="panel-title">{{_ "panel-heading-experience.intervall"}}</h3>
+            </div>
+            <div class="panel-body panel-body-experience">
+                <div class="row" style="margin-bottom:10px; margin-left: 5px">
+                    <div class="panel-body" id="inputbody1">
+
+                        <form id="setIntervalForm" class="form-inline" role="form">
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
+                                <label for="intervall1">Intervall 1 </label><br/>
+                                <input type="number" min="1" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv1"
+                                       placeholder="{{_ "panel-body-experience.default1"}}"
+                                       style="max-width: 300px; width: 80%; min-width: 25px">
+                                <label for="intervall1">{{_ "panel-body-experience.day" count=2}}</label>
+
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
+
+                                <label for="intervall2">Intervall 2 </label><br/>
+                                <input type="number" min="1" data-bind="value:replyNumber"
+                                       onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv2"
+                                       placeholder="{{_ "panel-body-experience.default2"}}"
+                                       style="max-width: 300px; width: 80%; min-width: 25px">
+                                <label for="intervall2">{{_ "panel-body-experience.day" count=2}}</label>
+
+                            </div>
+                            <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
+                                <label for="intervall3">Intervall 3 </label><br/>
+                                <input type="number" min="1" data-bind="value:replyNumber"
+                                       onkeypress=" return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inv3"
+                                       placeholder="{{_ "panel-body-experience.default3"}}"
+                                       style="max-width: 300px; width: 80%; min-width: 25px">
+                                <label for="intervall3">{{_ "panel-body-experience.day" count=2}}</label>
+                            </div>
+                            <div class="col-xs-12 " style="margin-top:20px;">
+                                <button id="cancelIntervall" type="button" class="btn btn-danger pull-left">{{_
+                                "profile.cancel"}}</button>
+                                <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_
+                                "panel-body-experience.reset"}}</button>
+                                <button id="saveInterval" type="button"
+                                        class="btn btn-success pull-right"> {{_ "profile.save"}}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{> preview}}
+</template>
+
+<template name="preview">
+    <div class="col-md-12" id="profile-xp">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-experience">
+                <h3 class="panel-title">{{_ "panel-heading-experience.preview"}}</h3>
+            </div>
+            <div class="panel-body panel-body-experience">
+                <div class="row" style="margin-bottom:15px">
+                    <!-- Secquencer 1 -->
+                    <div class="col-md-4 col-xs-4">
+                        <div class="well well-sm" style="margin:0; text-align:center">
+                            <div class="row" style="height:50px;">
+                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="text-muted" style="font-size:12px">
+                                    {{getDays1}} {{_ "panel-body-experience.day"  count=getDays1}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Secquencer 2 -->
+                    <div class="col-md-4 col-xs-4">
+                        <div class="well well-sm" style="margin:0; text-align:center">
+                            <div class="row" style="height:50px;">
+                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="text-muted" style="font-size:12px">
+                                  {{getDays2}} {{_ "panel-body-experience.day" count=2 }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Secquencer 3 -->
+                    <div class="col-md-4 col-xs-4">
+                        <div class="well well-sm" style="margin:0; text-align:center">
+                            <div class="row" style="height:50px;">
+                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="text-muted" style="font-size:12px">
+                                    {{getDays3}}   {{_ "panel-body-experience.day" count=2}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- div row experience -->
+
+            </div>
+
+        </div>
+    </div>
+</template>
+

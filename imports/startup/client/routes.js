@@ -189,7 +189,7 @@ Router.route('/admin/settings', {
 	layoutTemplate: 'admin_main'
 });
 
-Router.route('/admin/intervalls', {
+Router.route('/admin/interval', {
 	name: 'admin_interval',
 	template: 'admin_interval',
 	layoutTemplate: 'admin_main'
