@@ -584,7 +584,6 @@ Template.cardsetInfo.events({
 			user: Meteor.userId()
 		}).count();
 		if (count === 0) {
-			var cardset = Cardsets.findOne({_id: cardset_id});
 			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
 		}
 	},
