@@ -258,6 +258,21 @@ Template.cardsetForm.events({
 		$('#editSetDescriptionLabel').css('color', '');
 		$('#editSetDescription').css('border-color', '');
 		$('#helpEditSetDescription').html('');
+	},
+	'keyup #editSetModule': function () {
+		$('#editSetModuleLabel').css('color', '');
+		$('#editSetModule').css('border-color', '');
+		$('#helpEditSetModule').html('');
+	},
+	'keyup #editSetModuleShort': function () {
+		$('#editSetModuleShortLabel').css('color', '');
+		$('#editSetModuleShort').css('border-color', '');
+		$('#helpEditSetModuleShort').html('');
+	},
+	'keyup #editSetModuleNum': function () {
+		$('#editSetModuleNumLabel').css('color', '');
+		$('#editSetModuleNum').css('border-color', '');
+		$('#helpEditSetModuleNum').html('');
 	}
 });
 
@@ -622,16 +637,20 @@ Template.cardsetSidebar.events({
 		});
 	},
 	"click #startStopLearning": function () {
-		var now = new Date();
-		var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-		var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-		var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
+			var now = new Date();
+			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+			var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 
-		document.getElementById('inputLearningStart').setAttribute("min", today);
-		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-		$('#inputLearningStart').val(today);
-		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-		$('#inputLearningEnd').val(threeMonths);
+			document.getElementById('inputLearningStart').setAttribute("min", today);
+			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
+			$('#inputLearningStart').val(today);
+			document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+			$('#inputLearningEnd').val(threeMonths);
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
 	},
 	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;
