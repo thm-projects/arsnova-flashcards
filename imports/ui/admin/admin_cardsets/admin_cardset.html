@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
                             {{#if userExists userDeleted}}
-                                <a href="/admin/user/{{owner}}">{{username}}</a>
+                                <a href="/admin/user/{{owner}}">{{getAuthorName this.owner}}</a>
                             {{else}}
                                 {{username}} ({{_ "admin.deleted"}})
                             {{/if}}
@@ -43,36 +43,107 @@
                                       value="{{description}}" rows="5"></textarea>
                             <span id="helpEditCardsetDescriptionAdmin" class="help-block description"></span>
                         </div>
-                        <div class="form-group">
-                            <label id="editCardsetCategoryLabelAdmin">{{_ "admin.cardset.category"}}</label>
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button"
-                                        id="editCardsetCategoryDropdownAdmin" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="true">
-
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    {{#each getCategories}}
-                                        <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a>
-                                        </li>
-                                    {{/each}}
-                                </ul>
-                            </div>
+                        <div class="panel panel-primary col-md-12">
+                            <div class="panel-heading row">{{_ "modal-dialog.module"}}</div>
+                            <br>
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name row" id="module">
+                                <label id="editCardsetModuleLabelAdmin" class="col-md-3 control-label"
+                                       for="editCardsetModuleAdmin">{{_ "modal-dialog.module"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editCardsetModuleAdmin"
+                                           value="{{module}}">
+                                    <span id="helpEditCardsetModuleAdmin" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name row" id="module">
+                                <label id="editCardsetModuleShortLabelAdmin" class="col-md-3 control-label"
+                                       for="editCardsetModuleShortAdmin">{{_ "modal-dialog.moduleShort"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editCardsetModuleShortAdmin"
+                                           value="{{moduleToken}}">
+                                    <span id="helpEditCardsetModuleShortAdmin" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name row" id="module">
+                                <label id="editCardsetModuleNumLabelAdmin" class="col-md-3 control-label"
+                                       for="editCardsetModuleNumAdmin">{{_ "modal-dialog.moduleNum"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editCardsetModuleNumAdmin"
+                                           value="{{moduleNum}}">
+                                    <span id="helpEditCardsetModuleNumAdmin" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
                         </div>
+                        <!-- start college Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
+                                   for="editCardsetCollegeAdmin">{{_
+                                    "modal-dialog.college"}}</label>
+                            <div class="col-md-9">
+                                <div class="dropup">
+                                    <div class="btn-group">
+                                        <button id="editCardsetCollegeAdmin" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">{{college}}</button>
+                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {{#each getColleges}}
+                                                <li class="collegeAdmin" value="{{_id}}" data="{{this.college}}"><a
+                                                        href="#">{{this.college}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span id="helpEditCardsetCollegeAdmin" class="help-block collegeAdmin"></span>
+                            </div>
+                        </div> <!-- / college Dropdown -->
+                        <!-- start course Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="editCardsetCourseLabelAdmin" class="col-md-3 control-label"
+                                   for="editCardsetCourseAdmin">{{_
+                                    "modal-dialog.course"}}</label>
+                            <div class="col-md-9">
+                                <div class="dropup">
+                                    <div class="btn-group">
+                                        <button id="editCardsetCourseAdmin" type="button" class="btn btn-default"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">{{course}}</button>
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {{#each getCourses}}
+                                                <li class="courseAdmin" value="{{_id}}" data="{{this.course}}"><a
+                                                        href="#">{{this.course}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span id="helpEditCardsetCourseAdmin" class="help-block courseAdmin"></span>
+                            </div>
+                        </div> <!-- / course Dropdown -->
                         <div class="form-group">
                             <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_
-                            "admin.cardset.kind"}}</label>
+                                    "admin.cardset.kind"}}</label>
                             <div class="controls">
                                 <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0Admin"
-                                           class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}"
+                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
                                            style="width:100px">
                                         <input type="radio" name="kind" value="personal" id="kind_private_admin">
                                         <div>Private</div>
                                     </label>
                                     <label id="kindoption1Admin"
-                                           class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}"
+                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}"
                                            style="width:100px">
                                         <input type="radio" name="kind" value="free" id="kind_free_admin">
                                         <div>Free</div>
@@ -84,7 +155,7 @@
                                         <div>Edu</div>
                                     </label>
                                     <label id="kindoption3Admin"
-                                           class="btn btn-info {{#if kindIsActive 'pro'}}active{{/if}}"
+                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}"
                                            style="width:100px">
                                         <input type="radio" name="kind" value="pro" id="kind_pro_admin">
                                         <div>Pro</div>
@@ -174,7 +245,7 @@
                 <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
                 <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
                 <button id="cardsetDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
-                "admin.cardset.delete"}}</button>
+                        "admin.cardset.delete"}}</button>
                 <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right"
                         style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
             </div>
@@ -191,7 +262,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="cardConfirmModalTitleCardsetAdmin" class="modal-title">{{_
-                    "admin.confirm-form.cards.title"}}</h4>
+                            "admin.confirm-form.cards.title"}}</h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "admin.confirm-form.cards.text"}}</p>
@@ -199,9 +270,9 @@
                     <hr/>
 
                     <button id="cardDeleteCardsetAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                    "admin.confirm-form.cards.title"}}</button>
+                            "admin.confirm-form.cards.title"}}</button>
                     <button id="cardCancelCardsetAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                    "admin.confirm-form.cancel"}}</button>
+                            "admin.confirm-form.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
