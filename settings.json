@@ -1,0 +1,42 @@
+{
+  "public": {
+    "rooturl": "http://localhost:3000",
+    "cas": {
+      "loginUrl": "https://cas.thm.de/cas/login",
+      "serviceParam": "service",
+      "popupWidth": 810,
+      "popupHeight": 610
+    },
+    "displayLoginButtons": {
+      "displayFacebook": true,
+      "displayTwitter": true,
+      "displayGoogle": true,
+      "displayCas": true
+    },
+    "env": "Sandbox",
+    "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
+    "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"
+  },
+  "private": {
+    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
+  },
+  "admin": {
+    "name": "hg13345"
+  },
+  "facebook": {
+    "api": "162760697401847",
+    "secret": "151daa9c4bc95310e9e1fb90accd70f8"
+  },
+  "twitter": {
+    "api": "I8LcQC0NetusL9c5F3EFJUXMl",
+    "secret": "2z0kNAtYcSU5lQKk6FDRR60gxuFawB4TM7tWvnU7yKk6EHHpYh"
+  },
+  "google": {
+    "api": "131328643116-j00jrgjupbbfeft1a9o0p5ling05vsus.apps.googleusercontent.com",
+    "secret": "2-P5Vy6VI0eOrKIlOCZZq8cR"
+  },
+  "cas": {
+    "baseUrl": "https://cas.thm.de/cas",
+    "autoClose": true
+  }
+}
