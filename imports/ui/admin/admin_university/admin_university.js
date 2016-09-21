@@ -1,4 +1,4 @@
-import "./admin_settings.html";
+import "./admin_university.html";
 import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
