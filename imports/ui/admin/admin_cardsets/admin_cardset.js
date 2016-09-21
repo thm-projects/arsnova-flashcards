@@ -140,6 +140,18 @@ Template.admin_cardset.events({
 			$('#helpEditCardsetModuleNumAdmin').html(TAPi18n.__('modal-dialog.moduleNum_required'));
 			$('#helpEditCardsetModuleNumAdmin').css('color', '#b94a48');
 		}
+		if ($('#editCardsetCollegeAdmin').val() === "") {
+			$('#editCardsetCollegeLabelAdmin').css('color', '#b94a48');
+			$('.editCardsetCollegeDropdownAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetCollegeAdmin').html(TAPi18n.__('modal-dialog.college_required'));
+			$('#helpEditCardsetCollegeAdmin').css('color', '#b94a48');
+		}
+		if ($('#editCardsetCourseAdmin').val() === "") {
+			$('#editCardsetCourseLabelAdmin').css('color', '#b94a48');
+			$('.editCardsetCourseDropdownAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetCourseAdmin').html(TAPi18n.__('modal-dialog.course_required'));
+			$('#helpEditCardsetCourseAdmin').css('color', '#b94a48');
+		}
 		if (($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity < 5) {
 			$('#editCardsetKindLabelAdmin').css('color', '#b94a48');
 			$('#helpEditCardsetKindAdmin').html(TAPi18n.__('admin.cardset.noCards'));
@@ -150,7 +162,19 @@ Template.admin_cardset.events({
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && $('#editCardsetModuleAdmin').val() !== "" && $('#editCardsetModuleShortAdmin').val() !== "" && $('#editCardsetModuleNumAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+		}
+		if ($('#editCardsetNameAdmin').val() !== "" &&
+			$('#editCardsetDescriptionAdmin').val() !== "" &&
+			$('#editCardsetModuleAdmin').val() !== "" &&
+			$('#editCardsetModuleShortAdmin').val() !== "" &&
+			$('#editCardsetModuleNumAdmin').val() !== "" &&
+			$('#editCardsetCollegeAdmin').val() !== "" &&
+			$('#editCardsetCourseAdmin').val() !== "" &&
+			($("#kindoption0Admin").hasClass('active') ||
+			($("#kindoption1Admin").hasClass('active') ||
+			$("#kindoption2Admin").hasClass('active') ||
+			$("#kindoption3Admin").hasClass('active')) &&
+			this.quantity >= 5)) {
 			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
 			var module = tmpl.find('#editCardsetModuleAdmin').value;
@@ -253,15 +277,24 @@ Template.admin_cardset.events({
 		$('#editCardsetModuleNumAdmin').css('border-color', '');
 		$('#helpEditCardsetModuleNumAdmin').html('');
 	},
-	'click .collegeAdmin': function (evt, tmpl) {
+	'click .collegeAdmin': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");
-		$('#editCardsetCollegeAdmin').text(collegeName);
-		tmpl.find('#editCardsetCollegeAdmin').value = collegeName;
+		$('#editCardsetCollegeAdmin').html(collegeName);
+		$('#editCardsetCollegeAdmin').val(collegeName);
+		Session.set('poolFilterCollege', collegeName);
+		$('#editCardsetCollegeLabelAdmin').css('color', '');
+		$('.editCardsetCollegeDropdownAdmin').css('border-color', '');
+		$('#helpEditCardsetCollegeAdmin').html('');
+		$('#editCardsetCourseAdmin').html(TAPi18n.__('modal-dialog.course_required'));
+		$('#editCardsetCourseAdmin').val("");
 	},
-	'click .courseAdmin': function (evt, tmpl) {
-		var courseName = $(evt.currentTarget).attr("data");
-		$('#editCardsetCourseAdmin').text(courseName);
-		tmpl.find('#editCardsetCourseAdmin').value = courseName;
+	'click .courseAdmin': function (evt) {
+		var courseName = ($(evt.currentTarget).attr("data"));
+		$('#editCardsetCourseAdmin').html(courseName);
+		$('#editCardsetCourseAdmin').val(courseName);
+		$('#editCardsetCourseLabelAdmin').css('color', '');
+		$('.editCardsetCourseDropdownAdmin').css('border-color', '');
+		$('#helpEditCardsetCourseAdmin').html('');
 	}
 });
 
@@ -279,4 +312,14 @@ Template.cardConfirmFormCardsetAdmin.events({
 			Meteor.call("deleteCardAdmin", id);
 		}).modal('hide');
 	}
+});
+
+/**
+ * ############################################################################
+ * cardFormOnRendered
+ * ############################################################################
+ */
+
+Template.admin_cardset.onRendered(function () {
+	Session.set('poolFilterCollege', $('#editCardsetCollegeAdmin').val());
 });

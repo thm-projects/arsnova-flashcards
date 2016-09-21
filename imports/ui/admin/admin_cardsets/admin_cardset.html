@@ -78,24 +78,27 @@
                             </div><!-- / module textfield -->
                         </div>
                         <!-- start college Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
+                        <div class="form-group setdetails categories row">
+                            <label id="editCardsetCollegeLabelAdmin" class="col-md-2 control-label"
                                    for="editCardsetCollegeAdmin">{{_
                                     "modal-dialog.college"}}</label>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="editCardsetCollegeAdmin" type="button" class="btn btn-default"
+                                        <button type="button" id="editCardsetCollegeAdmin"
+                                                class="btn btn-default editCardsetCollegeDropdownAdmin"
                                                 data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">{{college}}</button>
-                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                                                aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
+                                        <button class="btn dropdown-toggle editCardsetCollegeDropdownAdmin"
+                                                type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true">
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             {{#each getColleges}}
-                                                <li class="collegeAdmin" value="{{_id}}" data="{{this.college}}"><a
+                                                <li class="collegeAdmin" value="{{this.college}}"
+                                                    data="{{this.college}}"><a
                                                         href="#">{{this.college}}</a></li>
                                             {{/each}}
                                         </ul>
@@ -105,25 +108,28 @@
                             </div>
                         </div> <!-- / college Dropdown -->
                         <!-- start course Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="editCardsetCourseLabelAdmin" class="col-md-3 control-label"
+                        <div class="form-group setdetails categories row">
+                            <label id="editCardsetCourseLabelAdmin" class="col-md-2 control-label"
                                    for="editCardsetCourseAdmin">{{_
                                     "modal-dialog.course"}}</label>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="editCardsetCourseAdmin" type="button" class="btn btn-default"
+                                        <button type="button" id="editCardsetCourseAdmin"
+                                                class="btn btn-default editCardsetCourseDropdownAdmin"
                                                 data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">{{course}}</button>
-                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
+                                        <button type="button" class="btn dropdown-toggle editCardsetCourseDropdownAdmin"
+                                                data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             {{#each getCourses}}
-                                                <li class="courseAdmin" value="{{_id}}" data="{{this.course}}"><a
-                                                        href="#">{{this.course}}</a></li>
+                                                <li class="courseAdmin" value="{{this.course}}" data="{{this.course}}">
+                                                    <a
+                                                            href="#">{{this.course}}</a></li>
                                             {{/each}}
                                         </ul>
                                     </div>
@@ -217,16 +223,23 @@
                                     <span id="helpCC-modules-admin" class="help-block cc-modules"></span>
                                 </div>
                                 <div id=cc-description-admin class="col-md-12">
-                                    <hr>
-                                    <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
-                                    <p class="col-md-11">{{_ "modal-dialog.by-desc"}}</p>
-                                    <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
-                                    <p class="col-md-11">{{_ "modal-dialog.nc-desc"}}</p>
-                                    <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
-                                    <p class="col-md-11">{{_ "modal-dialog.nd-desc"}}</p>
-                                    <img class="col-md-2" src="/img/sa.large.png"
-                                         alt="Weitergabe unter gleichen Bedingungen"/>
-                                    <p class="col-md-11">{{_ "modal-dialog.sa-desc"}}</p>
+                                    <div class="row">
+                                        <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
+                                        <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                        <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                        <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <img class="col-md-2" src="/img/sa.large.png"
+                                             alt="Weitergabe unter gleichen Bedingungen"/>
+                                        <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
+                                    </div>
                                 </div>
                             </div>
                         {{/if}}
