@@ -168,8 +168,8 @@
     "submitcomplaint": "Submit complaint",
     "college": "College",
     "college_required": "Choose a college",
-    "course": "Study type",
-    "course_required": "Choose a study type",
+    "course": "Course",
+    "course_required": "Choose a course",
     "module": "Module",
     "module_required": "The full name of the module is required!",
     "moduleShort": "Initials",
@@ -383,7 +383,7 @@
       "moduleNum": "Module number",
       "undefinedAuthor": "Please complete your profile",
       "college": "College",
-      "course": "Study type"
+      "course": "Course"
     },
     "request": {
       "accept": "Release cardset",
@@ -613,7 +613,7 @@
       "settings": {
         "new_entry": "New Entry",
         "college": "University",
-        "course_of_studies": "Course of Studies",
+        "course_of_studies": "Course",
         "required": "Required",
         "create": "Create",
         "save": "Save"
