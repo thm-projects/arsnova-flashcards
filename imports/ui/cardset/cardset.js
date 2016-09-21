@@ -669,7 +669,7 @@ Template.cardsetSidebar.helpers({
 		return (this.learningActive) ? '' : 'disabled';
 	},
 	enableIfPublished: function () {
-		if(this.kind === 'personal') {
+		if (this.kind === 'personal') {
 			return "disabled";
 		} else {
 			return "";
