@@ -1,4 +1,4 @@
-import "./admin_settings.html";
+import "./admin_university.html";
 import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
@@ -11,7 +11,7 @@ var editCourse = "";
 
 Session.setDefault('adminSortCreated', {college: 1});
 
-Template.admin_settings.helpers({
+Template.admin_university.helpers({
 
 	'allColleges': function () {
 		return CollegesCourses.find({
@@ -52,7 +52,7 @@ function addCollegeAndCourse() {
 	}
 }
 
-Template.admin_settings.events({
+Template.admin_university.events({
 	'keypress input': function (event) {
 		if (event.keyCode == 13) {
 			addCollegeAndCourse();
@@ -92,6 +92,6 @@ Template.admin_settings.events({
 	}
 });
 
-Template.admin_settings.onDestroyed(function () {
+Template.admin_university.onDestroyed(function () {
 	Session.set('adminSortCreated', {college: 1});
 });
