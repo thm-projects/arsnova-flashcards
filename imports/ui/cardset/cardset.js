@@ -258,6 +258,21 @@ Template.cardsetForm.events({
 		$('#editSetDescriptionLabel').css('color', '');
 		$('#editSetDescription').css('border-color', '');
 		$('#helpEditSetDescription').html('');
+	},
+	'keyup #editSetModule': function () {
+		$('#editSetModuleLabel').css('color', '');
+		$('#editSetModule').css('border-color', '');
+		$('#helpEditSetModule').html('');
+	},
+	'keyup #editSetModuleShort': function () {
+		$('#editSetModuleShortLabel').css('color', '');
+		$('#editSetModuleShort').css('border-color', '');
+		$('#helpEditSetModuleShort').html('');
+	},
+	'keyup #editSetModuleNum': function () {
+		$('#editSetModuleNumLabel').css('color', '');
+		$('#editSetModuleNum').css('border-color', '');
+		$('#helpEditSetModuleNum').html('');
 	}
 });
 
