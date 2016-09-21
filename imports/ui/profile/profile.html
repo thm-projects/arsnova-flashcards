@@ -320,7 +320,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-2">
-                        <div id="well1" class="well well-sm">
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span2">
                                     {{getXpToday}}
@@ -335,7 +335,7 @@
                     </div>
 
                     <div class="col-md-2 col-xs-2">
-                        <div id="well2" class="well well-sm"> <!-- here -->
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span3">
                                     {{getXpYesterday}}
@@ -350,7 +350,7 @@
                     </div>
                     <!-- vorgestern 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well3" class="well well-sm">
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span4">
                                     {{getXpTwoDaysAgo}}
@@ -365,7 +365,7 @@
                     </div>
                     <!-- Secquencer 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well4" class="well well-sm">
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span5">
                                     {{getXpSeq1}}
@@ -380,7 +380,7 @@
                     </div>
                     <!-- Secquencer 2 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well5" class="well well-sm">
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span5">
                                     {{getXpSeq2}}
@@ -395,7 +395,7 @@
                     </div>
                     <!-- Secquencer 3 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well6" class="well well-sm">
+                        <div id="well" class="well well-sm">
                             <div id="row1" class="row">
                                 <span class="span5">
                                     {{getXpSeq3}}
@@ -421,14 +421,14 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col-md-2">
+                    <div id="column2" class="col-md-2">
                         <div class="divPic">
                             <span class="span6">
                                 {{getLvl}}
                             </span>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div id="column8" class="col-md-8">
                         <div class="progress">
                             <div id="bar" class="progress-bar progress-bar-warning" role="progressbar"
                                  style="width: {{getXpPercent}};">
@@ -443,7 +443,7 @@
                             <span>{{_ "pointslvl3"}}</span>
                         </small>
                     </div>
-                    <div class="col-md-2">
+                    <div id="column2" class="col-md-2">
                         <div class="divTrophy">
                             <span class="span7">
                                 {{getNextLvl}}
