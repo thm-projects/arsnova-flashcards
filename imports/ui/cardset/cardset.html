@@ -173,7 +173,8 @@
                                 type="button"
                                 data-toggle="modal"
                                 data-target="{{#unless
-                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}"
+				{{enableIfPublished}}>
                             {{#if learningActive}}
                                 {{_ "sidebar-nav.stopLearning"}}
                             {{else}}

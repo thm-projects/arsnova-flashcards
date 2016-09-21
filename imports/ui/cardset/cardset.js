@@ -686,6 +686,13 @@ Template.cardsetSidebar.events({
 Template.cardsetSidebar.helpers({
 	isDisabled: function () {
 		return (this.learningActive) ? '' : 'disabled';
+	},
+	enableIfPublished: function () {
+		if (this.kind === 'personal') {
+			return "disabled";
+		} else {
+			return "";
+		}
 	}
 });
 /**
