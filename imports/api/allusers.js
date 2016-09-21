@@ -62,6 +62,8 @@ Meteor.methods({
 			Roles.removeUsersFromRoles(user_id, 'pro');
 			roles = Roles.getRolesForUser(user_id);
 			roles.push('standard');
+		} else if (newRole === 'blocked' && Roles.userIsInRole(user_id, 'admin')) {
+			throw new Meteor.Error("not-authorized");
 		} else if (!Roles.userIsInRole(user_id, newRole)) {
 			roles = Roles.getRolesForUser(user_id);
 			roles.push(newRole);
