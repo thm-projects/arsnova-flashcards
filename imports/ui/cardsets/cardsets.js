@@ -207,13 +207,38 @@ Template.cardsetsForm.onRendered(function () {
 		$('#newSetDescription').css('border-color', '');
 		$('#newSetDescriptionLabel').css('color', '');
 
-		if ($('#newSetCategory').val() !== "") {
-			$('#newSetCategory').val('');
-			$('#newSetCategory').html(TAPi18n.__('modal-dialog.categoryplaceholder'));
+		$('#newSetModule').val('');
+		$('#helpNewSetModule').html('');
+		$('#newSetModule').css('border-color', '');
+		$('#newSetModuleLabel').css('color', '');
+
+		$('#newSetModuleShort').val('');
+		$('#helpNewSetModuleShort').html('');
+		$('#newSetModuleShort').css('border-color', '');
+		$('#newSetModuleShortLabel').css('color', '');
+
+		$('#newSetModuleNum').val('');
+		$('#helpNewSetModuleNum').html('');
+		$('#newSetModuleNum').css('border-color', '');
+		$('#newSetModuleNumLabel').css('color', '');
+
+		if ($('#newSetCollege').val() !== "") {
+			$('#newSetCollege').val('');
+			$('#newSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
 		}
-		$('#helpNewSetCategory').html('');
-		$('#newSetCategoryDropdown').css('border-color', '');
-		$('#newSetCategoryLabel').css('color', '');
+
+		$('#helpNewSetCollege').html('');
+		$('.newSetCollegeDropdown').css('border-color', '');
+		$('#newSetCollegeLabel').css('color', '');
+
+		if ($('#newSetCourse').val() !== "") {
+			$('#newSetCourse').val('');
+			$('#newSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
+		}
+
+		$('#helpNewSetCourse').html('');
+		$('.newSetCourseDropdown').css('border-color', '');
+		$('#newSetCourseLabel').css('color', '');
 	});
 });
 
@@ -228,9 +253,29 @@ Template.cardsetsForm.events({
 		$('#newSetDescription').css('border-color', '');
 		$('#helpNewSetDescription').html('');
 	},
-	'click .dropdown .category': function () {
-		$('#newSetCategoryLabel').css('color', '');
-		$('#newSetCategoryDropdown').css('border-color', '');
-		$('#helpNewSetCategory').html('');
+	'keyup #newSetModule': function () {
+		$('#newSetModuleLabel').css('color', '');
+		$('#newSetModule').css('border-color', '');
+		$('#helpNewSetModule').html('');
+	},
+	'keyup #newSetModuleShort': function () {
+		$('#newSetModuleShortLabel').css('color', '');
+		$('#newSetModuleShort').css('border-color', '');
+		$('#helpNewSetModuleShort').html('');
+	},
+	'keyup #newSetModuleNum': function () {
+		$('#newSetModuleNumLabel').css('color', '');
+		$('#newSetModuleNum').css('border-color', '');
+		$('#helpNewSetModuleShort').html('');
+	},
+	'click .dropup .college': function () {
+		$('#newSetCollegeLabel').css('color', '');
+		$('.newSetCollegeDropdown').css('border-color', '');
+		$('#helpNewSetCollege').html('');
+	},
+	'click .dropup .course': function () {
+		$('#newSetCourseLabel').css('color', '');
+		$('.newSetCourseDropdown').css('border-color', '');
+		$('#helpNewSetCourse').html('');
 	}
 });
