@@ -44,6 +44,7 @@ export function notification(title, message) {
 }
 
 var query = {};
+var popup = true;
 
 function prepareQuery() {
 	query = {};
@@ -210,8 +211,10 @@ Template.category.onDestroyed(function () {
 });
 
 Template.pool.onRendered(function () {
-	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for (var i = 0; i < toLearn.length; ++i) {
-		notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
+	if (popup) {
+		var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
+		for (var i = 0; i < toLearn.length; ++i) {
+			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
+		}
 	}
 });
