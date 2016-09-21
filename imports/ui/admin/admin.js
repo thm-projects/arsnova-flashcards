@@ -10,6 +10,7 @@ import "./admin_cards/admin_cards.js";
 import "./admin_users/admin_users.js";
 import "./admin_notifications/admin_notifications.js";
 import "./admin_settings/admin_settings.js";
+import "./admin_interval/admin_intervals.js";
 
 
 Meteor.subscribe("notifications");
