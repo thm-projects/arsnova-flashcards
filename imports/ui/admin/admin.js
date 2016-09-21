@@ -11,6 +11,7 @@ import "./admin_users/admin_users.js";
 import "./admin_notifications/admin_notifications.js";
 import "./admin_settings/admin_settings.js";
 import "./admin_interval/admin_intervals.js";
+import "./admin_university/admin_university.js";
 
 
 Meteor.subscribe("notifications");
