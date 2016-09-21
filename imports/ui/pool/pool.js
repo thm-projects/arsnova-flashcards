@@ -216,5 +216,6 @@ Template.pool.onRendered(function () {
 		for (var i = 0; i < toLearn.length; ++i) {
 			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
 		}
+		popup = false;
 	}
 });
