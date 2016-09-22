@@ -42,6 +42,13 @@ Template.registerHelper("isOwner", function () {
 	return owner === Meteor.userId();
 });
 
+Template.registerHelper("isLecturerOrPro", function () {
+	this.owner = Cardsets.findOne(Router.current().params._id).owner;
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
+		return true;
+	}
+});
+
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function (cardset_id) {
 	return Cardsets.findOne({_id: cardset_id}).quantity;
