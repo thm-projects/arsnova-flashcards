@@ -48,12 +48,12 @@
                     <a class="nameup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.category"}}</span>
-                    <a class="categorydown" role="button">⇓</a>
-                    <a class="categoryup" role="button">⇑</a>
+                    <span>{{_ "set-list.description"}}</span>
+                    <a class="descriptiondown" role="button">⇓</a>
+                    <a class="descriptionup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -78,8 +78,10 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-
         <td>{{description}}</td>
+        <td>
+            <span id="info_license">{{getLicense}}</span>
+        </td>
     </tr>
 </template>
 
@@ -112,7 +114,7 @@
                     <a class="categoryup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -127,6 +129,9 @@
                         </td>
 
                         <td>{{description}}</td>
+                        <td>
+                            <span id="info_license">{{getLicense}}</span>
+                        </td>
                     </tr>
                 {{/each}}
             {{else}}
@@ -214,10 +219,11 @@
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="newSetCollege" type="button" class="btn btn-default"
+                                        <button type="button" class="btn btn-default newSetCollegeDropdown"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{_ "modal-dialog.college_required"}}</button>
-                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                                            <span id="newSetCollege">{{_ "modal-dialog.college_required"}}</span>
+                                        </button>
+                                        <button class="btn dropdown-toggle newSetCollegeDropdown" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true">
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
@@ -240,10 +246,11 @@
                             <div class="col-md-9">
                                 <div class="dropup">
                                     <div class="btn-group">
-                                        <button id="newSetCourse" type="button" class="btn btn-default"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_
-                                        "modal-dialog.course_required"}}</button>
-                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                        <button type="button" class="btn btn-default newSetCourseDropdown"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span id="newSetCourse">{{_ "modal-dialog.course_required"}}</span>
+                                        </button>
+                                        <button type="button" class="btn dropdown-toggle newSetCourseDropdown" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>

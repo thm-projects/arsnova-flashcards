@@ -168,29 +168,31 @@
                                     </div>
                                 </div>
                                 {{#if isCurrentUser _id}}
-                                    <div class="form-group"
-                                         style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
-                                        <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
-                                        <p>{{_ "admin.user.blockedtext"}}</p>
-                                        <div class="controls">
-                                            <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
-                                                <label id="blockedOption1Admin"
-                                                       class="btn btn-default blocked-true {{#if blockedUser
-                                                       true}}active{{/if}}"
-                                                       style="width:100px">
-                                                    <input type="radio" name="blockedUser" value="true">
-                                                    <span>{{_ "admin.user.option1"}}</span>
-                                                </label>
-                                                <label id="blockedOption2Admin"
-                                                       class="btn btn-default blocked-false {{#if blockedUser
-                                                       false}}active{{/if}}"
-                                                       style="width:100px">
-                                                    <input type="radio" name="blockedUser" value="false">
-                                                    <span>{{_ "admin.user.option2"}}</span>
-                                                </label>
+                                    {{#if isAdminUser _id}}
+                                        <div class="form-group"
+                                             style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
+                                            <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
+                                            <p>{{_ "admin.user.blockedtext"}}</p>
+                                            <div class="controls">
+                                                <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
+                                                    <label id="blockedOption1Admin"
+                                                           class="btn btn-default blocked-true {{#if blockedUser
+                                                           true}}active{{/if}}"
+                                                           style="width:100px">
+                                                        <input type="radio" name="blockedUser" value="true">
+                                                        <span>{{_ "admin.user.option1"}}</span>
+                                                    </label>
+                                                    <label id="blockedOption2Admin"
+                                                           class="btn btn-default blocked-false {{#if blockedUser
+                                                           false}}active{{/if}}"
+                                                           style="width:100px">
+                                                        <input type="radio" name="blockedUser" value="false">
+                                                        <span>{{_ "admin.user.option2"}}</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {{/if}}
                                     {{#if isUserBlocked}}
                                         <div class="form-group">
                                             <label id="editUserBlockedtextLabelAdmin">{{_
@@ -320,7 +322,7 @@
                                        style="max-width: 300px; width: 80%; min-width: 25px">
                                 <label for="intervall3">{{_ "panel-body-experience.day" count=2}}</label>
                             </div>
-                            <div class="col-xs-12 " style="margin-top:20px;">
+                            <div class="col-xs-12" id="intervalMenu">
                                 <button id="cancelIntervall" type="button" class="btn btn-danger pull-left">{{_
                                 "profile.cancel"}}</button>
                                 <button id="resetIntervall" type="button" class="btn btn-warning pull-left">{{_

@@ -43,7 +43,7 @@
                     {{#if isUser}}
                         {{> profileSettings}}
                     {{else}}
-                        <h3>{{_ "permission"}}</h3>
+                        {{> profilePublic}}
                     {{/if}}
                 </div>
             {{/if}}
@@ -161,13 +161,13 @@
                                     <div class="btn-group btn-group-justified" data-toggle="buttons">
                                         <label id="profilepublicoption1"
                                                class="btn btn-default profile-public {{#if
-                                               getUser.visible}}active{{/if}}">
+                                                       getUser.visible}}active{{/if}}">
                                             <input type="radio" name="visible" value="true">
                                             <div>{{_ "panel-body.profilepublicoption1"}}</div>
                                         </label>
                                         <label id="profilepublicoption2"
                                                class="btn btn-default profile-private {{#unless
-                                               getUser.visible}}active{{/unless}}">
+                                                       getUser.visible}}active{{/unless}}">
                                             <input type="radio" name="visible" value="false">
                                             <div>{{_ "panel-body.profilepublicoption2"}}</div>
                                         </label>
@@ -234,9 +234,54 @@
                         </div>
                         <div class="btn-group pull-right" role="group">
                             <button disabled id="profileSave" type="button" class="btn btn-success">{{_
-                            "profile.save"}}</button>
+                                    "profile.save"}}</button>
                         </div>
                     {{/if}}
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!--##################################################################-->
+<!--profilePublic-->
+<!--##################################################################-->
+<template name="profilePublic">
+    <div id="profile-info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{_ "panel-heading.hallo"}}</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    {{#if getUser.profile.title}}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.title"}}</label>
+                            <div class="col-md-8">
+                                <input disabled type="text" class="form-control" id="inputTitle"
+                                       placeholder="{{_ "panel-body.title-desc"}}" value="{{getUser.profile.title}}">
+                                <span id="errorTitle" class="help-block name"></span>
+                            </div>
+                        </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.birthname"}}</label>
+                        <div class="col-md-8">
+                            <input disabled type="text" class="form-control" id="inputBirthName"
+                                   placeholder="{{_ "panel-body.birthname-desc"}}"
+                                   value="{{getUser.profile.birthname}}">
+                            <span id="errorBirthName" class="help-block name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.givenname"}}</label>
+                        <div class="col-md-8">
+                            <input disabled type="text" class="form-control" id="inputGivenName"
+                                   placeholder="{{_ "panel-body.givenname-desc"}}"
+                                   value="{{getUser.profile.givenname}}">
+                            <span id="errorGivenName" class="help-block name"></span>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -259,30 +304,30 @@
                 <h3 class="panel-title">{{_ "panel-heading-experience.experience"}}</h3>
             </div>
             <div class="panel-body panel-body-experience">
-                <div class="row" style="margin-bottom:15px">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="well well-sm" style="margin:0; margin-bottom:15px; text-align:center">
+                        <div id="well" class="well well-sm">
                             <div class="row">
-                                <span style="display:inline-block; height:50px; font-size:40px">
+                                <span class="span1">
                                     {{getXpTotal}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                     {{_ "panel-body-experience.total"}}
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-2">
-                        <div id="well1" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:30px; margin-top:12px">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span2">
                                     {{getXpToday}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                     {{_ "panel-body-experience.today"}}
                                 </span>
                             </div>
@@ -290,14 +335,14 @@
                     </div>
 
                     <div class="col-md-2 col-xs-2">
-                        <div id="well2" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:25px; margin-top:17px; height:25px;">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span3">
                                     {{getXpYesterday}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                     {{_ "panel-body-experience.yesterday"}}
                                 </span>
                             </div>
@@ -305,14 +350,14 @@
                     </div>
                     <!-- vorgestern 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well3" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span4">
                                     {{getXpTwoDaysAgo}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                     {{_ "panel-body-experience.twoDaysAgo"}}
                                 </span>
                             </div>
@@ -320,14 +365,14 @@
                     </div>
                     <!-- Secquencer 1 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well4" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span5">
                                     {{getXpSeq1}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                     {{getDays1}} {{_ "panel-body-experience.day" count=getDays1}}
                                 </span>
                             </div>
@@ -335,14 +380,14 @@
                     </div>
                     <!-- Secquencer 2 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well5" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span5">
                                     {{getXpSeq2}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                    {{getDays2}} {{_ "panel-body-experience.day" count=2}}
                                 </span>
                             </div>
@@ -350,14 +395,14 @@
                     </div>
                     <!-- Secquencer 3 -->
                     <div class="col-md-2 col-xs-2">
-                        <div id="well6" class="well well-sm" style="margin:0; text-align:center">
-                            <div class="row" style="height:50px;">
-                                <span style="display:inline-block; font-size:20px; margin-top:22px; height:20px">
+                        <div id="well" class="well well-sm">
+                            <div id="row1" class="row">
+                                <span class="span5">
                                     {{getXpSeq3}}
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="text-muted" style="font-size:12px">
+                                <span class="text-muted">
                                    {{getDays3}} {{_ "panel-body-experience.day" count=2}}
                                 </span>
                             </div>
@@ -365,7 +410,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-bottom:15px">
+                <div class="row">
                     <div class="col-md-12">
                         <span class="text-muted">{{_ "panel-body-experience.lastredeem"}}</span>
                         <span class="pull-right text-muted">
@@ -375,17 +420,17 @@
                 </div>
                 <hr>
 
-                <div class="row" style="margin-top:15px">
-                    <div class="col-md-2" style="text-align:center;">
-                        <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36.png')">
-                            <span style="font-weight:bold; color: #000; font-size:13px; padding-top:5px; display:inline-block">
+                <div class="row">
+                    <div id="column2" class="col-md-2">
+                        <div class="divPic">
+                            <span class="span6">
                                 {{getLvl}}
                             </span>
                         </div>
                     </div>
-                    <div class="col-md-8" style="text-align:center">
-                        <div class="progress" style="margin:0">
-                            <div class="progress-bar progress-bar-warning" role="progressbar"
+                    <div id="column8" class="col-md-8">
+                        <div class="progress">
+                            <div id="bar" class="progress-bar progress-bar-warning" role="progressbar"
                                  style="width: {{getXpPercent}};">
                             </div>
                         </div>
@@ -398,9 +443,9 @@
                             <span>{{_ "pointslvl3"}}</span>
                         </small>
                     </div>
-                    <div class="col-md-2" style="text-align:center;">
-                        <div style=" width:36px; height:36px; background-image:url('/img/trophy_36x36_gray.png')">
-                            <span style="font-weight:bold; color: #fff; font-size:13px; padding-top:5px; display:inline-block">
+                    <div id="column2" class="col-md-2">
+                        <div class="divTrophy">
+                            <span class="span7">
                                 {{getNextLvl}}
                             </span>
                         </div>
@@ -415,8 +460,7 @@
             <div class="panel-heading panel-heading-badges">
                 <h3 class="panel-title">{{_ "admin.allLearnedCardsets"}}</h3>
                 <div class="panel-body">
-                    <div id="container" style="min-width: 310px;
-			max-width: 800px; min-height: 100%; max-height: 100%; margin: 0 auto">
+                    <div id="container">
                         <canvas id="profileChart" width="600" height="170"></canvas>
                     </div>
                 </div>
@@ -452,7 +496,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_3{{#unless isGained @index
-                                                            3}}_gray{{/unless}}.png"
+                                                                                                         3}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -465,7 +509,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                    3}}progress-bar-success{{/if}}"
+                                                                                                   3}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{ getPercent @index 3}}%"></div>
                                                                 </div>
@@ -477,7 +521,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_2{{#unless isGained @index
-                                                            2}}_gray{{/unless}}.png"
+                                                                                                         2}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -490,7 +534,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                    2}}progress-bar-success{{/if}}"
+                                                                                                   2}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{ getPercent @index 2}}%"></div>
                                                                 </div>
@@ -502,7 +546,7 @@
                                                     <div class="well well-sm badgeWell">
                                                         <div class="row">
                                                             <img src="/badges/{{badge.badge}}_1{{#unless isGained @index
-                                                            1}}_gray{{/unless}}.png"
+                                                                                                         1}}_gray{{/unless}}.png"
                                                                  height="60">
                                                         </div>
                                                         <div class="row">
@@ -515,7 +559,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="progress badgeFooterProgress">
                                                                     <div class="progress-bar {{#if isGained @index
-                                                                    1}}progress-bar-success{{/if}}"
+                                                                                                   1}}progress-bar-success{{/if}}"
                                                                          role="progressbar"
                                                                          style="width: {{ getPercent @index 1}}%"></div>
                                                                 </div>
@@ -595,7 +639,7 @@
                             <div class="col-md-12">
                                 <div id="paymentMethodDropIn"></div>
                                 <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_
-                                "billing.payment.save"}}</button>
+                                        "billing.payment.save"}}</button>
                             </div>
                         </div>
                     </form>
@@ -626,8 +670,8 @@
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_
-                                    "billing.revenue.for"}} {{amount}}€ {{_
-                                    "billing.revenue.at"}} {{getDate}}</p>
+                                            "billing.revenue.for"}} {{amount}}€ {{_
+                                            "billing.revenue.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
                         </div>
@@ -644,7 +688,7 @@
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_
-                                    "billing.purchases.at"}} {{getDate}}</p>
+                                            "billing.purchases.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
                         </div>
@@ -688,10 +732,10 @@
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
                                 <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_
-                                "billing.plan.back"}}</button>
+                                        "billing.plan.back"}}</button>
                             {{else}}
                                 <button class="btn btn-block btn-success disabled" href="#">{{_
-                                "billing.plan.actual"}}</button>
+                                        "billing.plan.actual"}}</button>
                             {{/if}}
                         </div>
                     </div>
@@ -719,7 +763,7 @@
                                         <div class="col-md-12">
                                             <div id="subscribe-form"></div>
                                             <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_
-                                            "billing.plan.subscribe"}}</button>
+                                                    "billing.plan.subscribe"}}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -740,7 +784,7 @@
                     {{#if hasUserData}}
                         <form class="form-horizontal" id="lecturerRequestForm">
                             <button type="button" id="sendLecturerRequest" class="btn btn-info pull-right">{{_
-                            "billing.plan.send"}}</button>
+                                    "billing.plan.send"}}</button>
                         </form>
                     {{else}}
                         Geben Sie zuerst Ihre Kontaktdaten an um eine Anfrage zu stellen.
@@ -762,7 +806,7 @@
             <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
             {{#if getNotifications.count}}
                 <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_
-                "notifications.deleteAll"}}</button>
+                        "notifications.deleteAll"}}</button>
             {{/if}}
             <div class="clearfix"></div>
         </div>

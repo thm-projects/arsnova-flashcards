@@ -63,9 +63,13 @@
                         {{#if ratingEnabled}}
                             <strong class="left">{{_ "cardset.info.rating"}}:</strong>
                             {{#if hasRated}}
-                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
                             {{else}}
-                                {{> starsRating id='rating' rating=0 mutable=true}}
+                            	{{#if isOwner}}
+                            	  {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                            	{{else}}
+                                  {{> starsRating id='rating' rating=getAverage mutable=true}}
+                                {{/if}}
                             {{/if}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
@@ -173,7 +177,8 @@
                                 type="button"
                                 data-toggle="modal"
                                 data-target="{{#unless
-                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}"
+				{{enableIfPublished}}>
                             {{#if learningActive}}
                                 {{_ "sidebar-nav.stopLearning"}}
                             {{else}}
@@ -694,7 +699,7 @@
                 <div class="modal-body">
                     <p>{{_ "upload-form.popover-content"}}</p>
                     <a role='button' target='_blank' class='btn btn-default' href='/examples/example.json'>JSON</a>
-                    <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv'>CSV</a>
+                    <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv.txt'>CSV</a>
 
                     <hr/>
 
@@ -888,7 +893,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetowner"}}</label>
                             <p class="col-md-9">
-                                {{username}}
+                                {{getAuthorName this.owner}}
                             </p>
                         </div>
                         <div class="form-group">

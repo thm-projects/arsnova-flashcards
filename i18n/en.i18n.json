@@ -49,7 +49,8 @@
     "reportedcardset": "Reported cardset",
     "reporteduseradmin": "Admin notification (Reported user)",
     "reportedcardsetadmin": "Admin notification (Reported cardset)",
-    "lecturer": "Lecturer request"
+    "lecturer": "Lecturer request",
+    "admin": "You're an admin!"
   },
   "input-group": {
     "newcarddeck": "New deck of cards"
@@ -168,8 +169,8 @@
     "submitcomplaint": "Submit complaint",
     "college": "College",
     "college_required": "Choose a college",
-    "course": "Study type",
-    "course_required": "Choose a study type",
+    "course": "Course",
+    "course_required": "Choose a course",
     "module": "Module",
     "module_required": "The full name of the module is required!",
     "moduleShort": "Initials",
@@ -383,7 +384,7 @@
       "moduleNum": "Module number",
       "undefinedAuthor": "Please complete your profile",
       "college": "College",
-      "course": "Study type"
+      "course": "Course"
     },
     "request": {
       "accept": "Release cardset",
@@ -513,6 +514,7 @@
   "subject4": "Box 4",
   "subject5": "Box 5",
   "subject6": "Learned",
+  "backbutton": "Back to the cardset",
   "know": "Known",
   "notknow": "Not known",
   "box_status": "Only one card in the current box",
@@ -613,7 +615,7 @@
       "settings": {
         "new_entry": "New Entry",
         "college": "University",
-        "course_of_studies": "Course of Studies",
+        "course_of_studies": "Course",
         "required": "Required",
         "create": "Create",
         "save": "Save"
