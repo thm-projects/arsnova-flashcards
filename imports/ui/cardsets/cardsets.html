@@ -63,7 +63,7 @@
                     </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -88,8 +88,10 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-
         <td>{{description}}</td>
+        <td>
+            <span id="info_license">{{getLicense}}</span>
+        </td>
     </tr>
 </template>
 
@@ -132,7 +134,7 @@
                     </div>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -147,6 +149,9 @@
                         </td>
 
                         <td>{{description}}</td>
+                        <td>
+                            <span id="info_license">{{getLicense}}</span>
+                        </td>
                     </tr>
                 {{/each}}
             {{else}}

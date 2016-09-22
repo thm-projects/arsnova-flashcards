@@ -44,6 +44,7 @@ export function notification(title, message) {
 }
 
 var query = {};
+var popup = true;
 
 function prepareQuery() {
 	query = {};
@@ -210,8 +211,17 @@ Template.category.onDestroyed(function () {
 });
 
 Template.pool.onRendered(function () {
-	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for (var i = 0; i < toLearn.length; ++i) {
-		notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
+	if (popup) {
+		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
+				'admin',
+				'editor'
+			])) {
+			Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
+		}
+		var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
+		for (var i = 0; i < toLearn.length; ++i) {
+			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
+		}
+		popup = false;
 	}
 });

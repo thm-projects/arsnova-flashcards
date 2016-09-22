@@ -29,7 +29,8 @@ Session.setDefault('cardSort', {
 });
 
 export function getActiveLearner() {
-	var data = Learned.find({box: {$gt: 1}}).fetch();
+	var cardsetid = Router.current().params._id;
+	var data = Learned.find({cardset_id: cardsetid, box: {$gt: 1}}).fetch();
 	var distinctData = _.uniq(data, false, function (d) {
 		return d.user_id;
 	});
