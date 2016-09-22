@@ -6,7 +6,9 @@ export const AdminSettings = new Mongo.Collection("adminSettings");
 
 if (Meteor.isServer) {
 	Meteor.publish('default_db_data', function () {
-		return AdminSettings.find({});
+		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked') && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			return AdminSettings.find({});
+		}
 	});
 }
 
