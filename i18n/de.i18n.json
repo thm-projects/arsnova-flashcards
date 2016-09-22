@@ -51,7 +51,8 @@
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
     "lecturer": "Dozenten-Anfrage",
     "heading": "Aufgaben warten!",
-    "content": "Im Kartensatz: "
+    "content": "Im Kartensatz: ",
+    "admin": "Sie sind ein Admin!"
   },
   "input-group": {
     "newcarddeck": "Neuer Kartensatz"
@@ -105,6 +106,7 @@
     "name": "Name",
     "category": "Kategorie",
     "module": "Modul",
+    "description": "Beschreibung",
     "license": "Lizenz",
     "topic": "Thema",
     "college": "Hochschule",
