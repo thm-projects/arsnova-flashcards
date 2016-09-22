@@ -22,7 +22,7 @@ function saveInterval() {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
 	} else {
 		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
-			//Interval must be gibbter than 1, 2 must be bigger than 3
+			//Interval must be bigger than 1, 2 must be bigger than 3
 			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'), 'danger', 'growl-bottom-right');
 		} else {
 			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
@@ -37,7 +37,7 @@ function saveInterval() {
 	return true;
 }
 
-Template.admin_interval.events({//TODO
+Template.admin_interval.events({
 	'keypress input': function (event) {
 		if (event.keyCode == 13) {
 			saveInterval();
