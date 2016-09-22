@@ -105,6 +105,7 @@
     "name": "Name",
     "category": "Kategorie",
     "module": "Modul",
+    "description": "Beschreibung",
     "license": "Lizenz",
     "topic": "Thema",
     "college": "Hochschule",
