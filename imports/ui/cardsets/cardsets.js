@@ -106,23 +106,31 @@ Template.created.onDestroyed(function () {
  */
 
 Template.cardsets.events({
+
 	'click #newCardSet': function () {
 		var inputValue = $('#new-set-input').val();
 		$('#newSetName').val(inputValue);
 		$('#new-set-input').val('');
 	},
-	'click .college': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#newSetCollege').text(categoryName);
-		tmpl.find('#newSetCollege').value = categoryId;
+	'click .college': function (evt) {
+		var collegeName = $(evt.currentTarget).attr("data");
+		$('#newSetCollege').val(collegeName);
+		$('#newSetCollege').html(collegeName);
+		$('#newSetCourse').html((TAPi18n.__('modal-dialog.course_required')));
+		$('#newSetCourse').val('');
+		Session.set('poolFilterCollege', collegeName);
+		$('#newSetCollegeLabel').css('color', '');
+		$('.newSetCollege').css('border-color', '');
+		$('#helpNewSetCollege').html('');
 	},
-	'click .course': function (evt, tmpl) {
+	'click .course': function (evt) {
 		if ($('#newSetCollege').val() !== "") {
 			var courseName = $(evt.currentTarget).attr("data");
-			var courseId = $(evt.currentTarget).val();
 			$('#newSetCourse').text(courseName);
-			tmpl.find('#newSetCourse').value = courseId;
+			$('#newSetCourse').val(courseName);
+			$('#newSetCourseLabel').css('color', '');
+			$('.newSetCourse').css('border-color', '');
+			$('#helpNewSetCourse').html('');
 		}
 	},
 	'click #newSetModal .save': function () {
@@ -158,13 +166,13 @@ Template.cardsets.events({
 		}
 		if ($('#newSetCollege').val() === "") {
 			$('#newSetCollegeLabel').css('color', '#b94a48');
-			$('#newSetCollegeDropdown').css('border-color', '#b94a48');
+			$('.newSetCollegeDropdown').css('border-color', '#b94a48');
 			$('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
 			$('#helpNewSetCollege').css('color', '#b94a48');
 		}
 		if ($('#newSetCourse').val() === "") {
 			$('#newSetCourseLabel').css('color', '#b94a48');
-			$('#newSetCourseDropdown').css('border-color', '#b94a48');
+			$('.newSetCourseDropdown').css('border-color', '#b94a48');
 			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 			$('#helpNewSetCourse').css('color', '#b94a48');
 		}
@@ -239,6 +247,9 @@ Template.cardsetsForm.onRendered(function () {
 		$('#helpNewSetCourse').html('');
 		$('.newSetCourseDropdown').css('border-color', '');
 		$('#newSetCourseLabel').css('color', '');
+		$('.newSetCourseDropdown').attr('disabled', true);
+
+		Session.set('poolFilterCollege', undefined);
 	});
 });
 
@@ -266,9 +277,10 @@ Template.cardsetsForm.events({
 	'keyup #newSetModuleNum': function () {
 		$('#newSetModuleNumLabel').css('color', '');
 		$('#newSetModuleNum').css('border-color', '');
-		$('#helpNewSetModuleShort').html('');
+		$('#helpNewSetModuleNum').html('');
 	},
 	'click .dropup .college': function () {
+		$('.newSetCourseDropdown').attr('disabled', false);
 		$('#newSetCollegeLabel').css('color', '');
 		$('.newSetCollegeDropdown').css('border-color', '');
 		$('#helpNewSetCollege').html('');

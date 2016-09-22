@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
-
+import {Session} from "meteor/session";
 
 Meteor.subscribe("collegesCourses");
 
@@ -78,7 +78,11 @@ Template.registerHelper("getTimestamp", function () {
 
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return _.uniq(CollegesCourses.find().fetch(), function (item) {
+	var query = {};
+	if (Session.get('poolFilterCollege')) {
+		query.college = Session.get('poolFilterCollege');
+	}
+	return _.uniq(CollegesCourses.find(query).fetch(), function (item) {
 		return item.course;
 	});
 });

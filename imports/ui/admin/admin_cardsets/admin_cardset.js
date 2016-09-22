@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../../api/cardsets.js";
 import {Cards} from "../../../api/cards.js";
 import "./admin_cardset.html";
 
@@ -123,6 +122,36 @@ Template.admin_cardset.events({
 			$('#helpEditCardsetDescriptionAdmin').html(TAPi18n.__('admin.cardset.description_required'));
 			$('#helpEditCardsetDescriptionAdmin').css('color', '#b94a48');
 		}
+		if ($('#editCardsetModuleAdmin').val() === "") {
+			$('#editCardsetModuleLabelAdmin').css('color', '#b94a48');
+			$('#editCardsetModuleAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetModuleAdmin').html(TAPi18n.__('modal-dialog.module_required'));
+			$('#helpEditCardsetModuleAdmin').css('color', '#b94a48');
+		}
+		if ($('#editCardsetModuleShortAdmin').val() === "") {
+			$('#editCardsetModuleShortLabelAdmin').css('color', '#b94a48');
+			$('#editCardsetModuleShortAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetModuleShortAdmin').html(TAPi18n.__('modal-dialog.moduleShort_required'));
+			$('#helpEditCardsetModuleShortAdmin').css('color', '#b94a48');
+		}
+		if ($('#editCardsetModuleNumAdmin').val() === "") {
+			$('#editCardsetModuleNumLabelAdmin').css('color', '#b94a48');
+			$('#editCardsetModuleNumAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetModuleNumAdmin').html(TAPi18n.__('modal-dialog.moduleNum_required'));
+			$('#helpEditCardsetModuleNumAdmin').css('color', '#b94a48');
+		}
+		if ($('#editCardsetCollegeAdmin').val() === "") {
+			$('#editCardsetCollegeLabelAdmin').css('color', '#b94a48');
+			$('.editCardsetCollegeDropdownAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetCollegeAdmin').html(TAPi18n.__('modal-dialog.college_required'));
+			$('#helpEditCardsetCollegeAdmin').css('color', '#b94a48');
+		}
+		if ($('#editCardsetCourseAdmin').val() === "") {
+			$('#editCardsetCourseLabelAdmin').css('color', '#b94a48');
+			$('.editCardsetCourseDropdownAdmin').css('border-color', '#b94a48');
+			$('#helpEditCardsetCourseAdmin').html(TAPi18n.__('modal-dialog.course_required'));
+			$('#helpEditCardsetCourseAdmin').css('color', '#b94a48');
+		}
 		if (($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity < 5) {
 			$('#editCardsetKindLabelAdmin').css('color', '#b94a48');
 			$('#helpEditCardsetKindAdmin').html(TAPi18n.__('admin.cardset.noCards'));
@@ -133,13 +162,26 @@ Template.admin_cardset.events({
 			$('#editCardsetLicenseLabelAdmin').css('color', '#b94a48');
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
-		} else if ($('#editCardsetNameAdmin').val() !== "" && $('#editCardsetDescriptionAdmin').val() !== "" && ($("#kindoption0Admin").hasClass('active') || ($("#kindoption1Admin").hasClass('active') || $("#kindoption2Admin").hasClass('active') || $("#kindoption3Admin").hasClass('active')) && this.quantity >= 5)) {
+		}
+		if ($('#editCardsetNameAdmin').val() !== "" &&
+			$('#editCardsetDescriptionAdmin').val() !== "" &&
+			$('#editCardsetModuleAdmin').val() !== "" &&
+			$('#editCardsetModuleShortAdmin').val() !== "" &&
+			$('#editCardsetModuleNumAdmin').val() !== "" &&
+			$('#editCardsetCollegeAdmin').val() !== "" &&
+			$('#editCardsetCourseAdmin').val() !== "" &&
+			($("#kindoption0Admin").hasClass('active') ||
+			($("#kindoption1Admin").hasClass('active') ||
+			$("#kindoption2Admin").hasClass('active') ||
+			$("#kindoption3Admin").hasClass('active')) &&
+			this.quantity >= 5)) {
 			var name = tmpl.find('#editCardsetNameAdmin').value;
 			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
-
-			if (tmpl.find('#editCardsetCategoryAdmin').value === undefined) {
-				tmpl.find('#editCardsetCategoryAdmin').value = Cardsets.findOne(this._id).category;
-			}
+			var module = tmpl.find('#editCardsetModuleAdmin').value;
+			var moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
+			var moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
+			var college = $('#editCardsetCollegeAdmin').text();
+			var course = $('#editCardsetCourseAdmin').text();
 
 			var kind = tmpl.find('#publishKindAdmin > .active > input').value;
 			var price = 0;
@@ -174,7 +216,7 @@ Template.admin_cardset.events({
 				visible = false;
 			}
 			Meteor.call("publishCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, description);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 			window.history.go(-1);
 		}
 	},
@@ -189,12 +231,6 @@ Template.admin_cardset.events({
 		var id = this._id;
 		Meteor.call("deleteCardset", id);
 		window.history.go(-1);
-	},
-	'click .category': function (evt, tmpl) {
-		var categoryName = $(evt.currentTarget).attr("data");
-		var categoryId = $(evt.currentTarget).val();
-		$('#editCardsetCategoryAdmin').text(categoryName);
-		tmpl.find('#editCardsetCategoryAdmin').value = categoryId;
 	},
 	'click .reactive-table tbody tr': function (event) {
 		event.preventDefault();
@@ -225,6 +261,40 @@ Template.admin_cardset.events({
 	'click #publishKindAdmin': function () {
 		$('#editCardsetKindLabelAdmin').css('color', '');
 		$('#helpEditCardsetKindAdmin').html('');
+	},
+	'keyup #editCardsetModuleAdmin': function () {
+		$('#editCardsetModuleLabelAdmin').css('color', '');
+		$('#editCardsetModuleAdmin').css('border-color', '');
+		$('#helpEditCardsetModuleAdmin').html('');
+	},
+	'keyup #editCardsetModuleShortAdmin': function () {
+		$('#editCardsetModuleShortLabelAdmin').css('color', '');
+		$('#editCardsetModuleShortAdmin').css('border-color', '');
+		$('#helpEditCardsetModuleShortAdmin').html('');
+	},
+	'keyup #editCardsetModuleNumAdmin': function () {
+		$('#editCardsetModuleNumLabelAdmin').css('color', '');
+		$('#editCardsetModuleNumAdmin').css('border-color', '');
+		$('#helpEditCardsetModuleNumAdmin').html('');
+	},
+	'click .collegeAdmin': function (evt) {
+		var collegeName = $(evt.currentTarget).attr("data");
+		$('#editCardsetCollegeAdmin').html(collegeName);
+		$('#editCardsetCollegeAdmin').val(collegeName);
+		Session.set('poolFilterCollege', collegeName);
+		$('#editCardsetCollegeLabelAdmin').css('color', '');
+		$('.editCardsetCollegeDropdownAdmin').css('border-color', '');
+		$('#helpEditCardsetCollegeAdmin').html('');
+		$('#editCardsetCourseAdmin').html(TAPi18n.__('modal-dialog.course_required'));
+		$('#editCardsetCourseAdmin').val("");
+	},
+	'click .courseAdmin': function (evt) {
+		var courseName = ($(evt.currentTarget).attr("data"));
+		$('#editCardsetCourseAdmin').html(courseName);
+		$('#editCardsetCourseAdmin').val(courseName);
+		$('#editCardsetCourseLabelAdmin').css('color', '');
+		$('.editCardsetCourseDropdownAdmin').css('border-color', '');
+		$('#helpEditCardsetCourseAdmin').html('');
 	}
 });
 
@@ -242,4 +312,14 @@ Template.cardConfirmFormCardsetAdmin.events({
 			Meteor.call("deleteCardAdmin", id);
 		}).modal('hide');
 	}
+});
+
+/**
+ * ############################################################################
+ * cardFormOnRendered
+ * ############################################################################
+ */
+
+Template.admin_cardset.onRendered(function () {
+	Session.set('poolFilterCollege', $('#editCardsetCollegeAdmin').val());
 });
