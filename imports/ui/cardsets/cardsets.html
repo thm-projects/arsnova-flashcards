@@ -48,12 +48,12 @@
                     <a class="nameup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.category"}}</span>
-                    <a class="categorydown" role="button">⇓</a>
-                    <a class="categoryup" role="button">⇑</a>
+                    <span>{{_ "set-list.description"}}</span>
+                    <a class="descriptiondown" role="button">⇓</a>
+                    <a class="descriptionup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -78,8 +78,10 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-
         <td>{{description}}</td>
+        <td>
+            <span id="info_license">{{getLicense}}</span>
+        </td>
     </tr>
 </template>
 
@@ -112,7 +114,7 @@
                     <a class="categoryup" role="button">⇑</a>
                 </th>
                 <th>
-                    <span>{{_ "set-list.description"}}</span>
+                    <span>{{_ "set-list.license"}}</span>
                 </th>
             </tr>
             </thead>
@@ -127,6 +129,9 @@
                         </td>
 
                         <td>{{description}}</td>
+                        <td>
+                            <span id="info_license">{{getLicense}}</span>
+                        </td>
                     </tr>
                 {{/each}}
             {{else}}

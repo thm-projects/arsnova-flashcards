@@ -184,8 +184,8 @@ Router.route('/admin/notifications', {
 });
 
 Router.route('/admin/settings', {
-	name: 'admin_settings',
-	template: 'admin_settings',
+	name: 'admin_university',
+	template: 'admin_university',
 	layoutTemplate: 'admin_main'
 });
 
