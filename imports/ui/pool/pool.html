@@ -5,9 +5,10 @@
 </template>
 
 <template name="category">
+    <div class="col-lg-12 col-xs-12">
     <div class="buttonHeader">
         <div class="btn-group" role="group" aria-label="Topic group">
-            <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown" style="width: 250px">
+            <button class="sortTopic btn btn-default" role="button" value="down" data-toggle="dropdown" style="width: auto; max-width: 250px; min-width: 200px">
                 {{_ "set-list.topic"}} </button>
             <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,6 +102,7 @@
                 <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
             </label>
         </div>
+    </div>
     </div>
     <div class="poolHeader">
     <span class="col-xs-12 col-sm-12 col-md-12 poolHeaderTop">
