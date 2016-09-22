@@ -12,7 +12,7 @@
 
                         <form id="setIntervalForm" class="form-inline" role="form">
                             <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
-                                <label for="intervall1">Intervall 1 </label><br/>
+                                <label for="intervall1">{{_ "panel-body-experience.intervall1"}}</label><br/>
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inv1"
@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
 
-                                <label for="intervall2">Intervall 2 </label><br/>
+                                <label for="intervall2">{{_ "panel-body-experience.intervall2"}}</label><br/>
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inv2"
@@ -33,7 +33,7 @@
 
                             </div>
                             <div class="form-group col-xs-12 col-md-3" style="margin-right: 20px; margin-bottom: 20px">
-                                <label for="intervall3">Intervall 3 </label><br/>
+                                <label for="intervall3">{{_ "panel-body-experience.intervall3"}}</label><br/>
                                 <input type="number" min="1" data-bind="value:replyNumber"
                                        onkeypress=" return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                        class="form-control" id="inv3"

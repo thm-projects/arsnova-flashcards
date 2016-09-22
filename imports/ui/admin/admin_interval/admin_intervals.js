@@ -7,8 +7,6 @@ import {AdminSettings} from "../../../api/adminSettings.js";
 import {getDays1, getDays2, getDays3} from "../../profile/profile.js";
 import "./admin_intervals.html";
 
-//import {allUsers} from '../../../api/allusers.js';
-
 Meteor.subscribe('adminSettings', function () {
 	//Set the reactive session as true to indicate that the data have been loaded
 	Session.set('data_loaded', true);
@@ -24,7 +22,7 @@ function saveInterval() {
 		Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
 	} else {
 		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
-			//Intervall muss 1 größer als 2 sein & 2 muss größer 3 sein.
+			//Interval must be gibbter than 1, 2 must be bigger than 3
 			Bert.alert(TAPi18n.__('admin-intervall.errorBiggerThan'), 'danger', 'growl-bottom-right');
 		} else {
 			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {

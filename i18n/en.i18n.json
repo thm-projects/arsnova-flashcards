@@ -293,6 +293,9 @@
     "preview": "Preview"
   },
   "panel-body-experience": {
+    "intervall1": "Interval 1",
+    "intervall2": "Interval 2",
+    "intervall3": "Interval 3",
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
