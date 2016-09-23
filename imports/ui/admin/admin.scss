@@ -165,6 +165,26 @@ body {
         }
       }
     }
+    #module {
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+    }
+
+    .longButton {
+      text-align: left;
+      width: calc(100% - 25px);
+      margin-bottom: 7px;
+    }
+
+    .categories {
+      label {
+        padding-top: 7px;
+      }
+
+      .dropdown-menu {
+        margin-left: 12px;
+      }
+    }
   }
 }
 
