@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
-
+import {Session} from "meteor/session";
 
 Meteor.subscribe("collegesCourses");
 
@@ -42,6 +42,13 @@ Template.registerHelper("isOwner", function () {
 	return owner === Meteor.userId();
 });
 
+Template.registerHelper("isLecturerOrPro", function () {
+	this.owner = Cardsets.findOne(Router.current().params._id).owner;
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
+		return true;
+	}
+});
+
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function (cardset_id) {
 	return Cardsets.findOne({_id: cardset_id}).quantity;
@@ -71,7 +78,11 @@ Template.registerHelper("getTimestamp", function () {
 
 // Returns all Courses
 Template.registerHelper("getCourses", function () {
-	return _.uniq(CollegesCourses.find().fetch(), function (item) {
+	var query = {};
+	if (Session.get('poolFilterCollege')) {
+		query.college = Session.get('poolFilterCollege');
+	}
+	return _.uniq(CollegesCourses.find(query).fetch(), function (item) {
 		return item.course;
 	});
 });
