@@ -79,7 +79,7 @@ Template.admin_cards.helpers({
 				},
 				{
 					key: 'username',
-					label: TAPi18n.__('admin.users'),
+					label: TAPi18n.__('set-list.author'),
 					cellClass: 'username',
 					fn: function (value, object) {
 						if (object.userDeleted) {

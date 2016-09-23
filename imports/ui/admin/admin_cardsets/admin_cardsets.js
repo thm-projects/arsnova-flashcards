@@ -52,10 +52,10 @@ Template.admin_cardsets.helpers({
 			showNavigationRowsPerPage: false,
 			rowsPerPage: 20,
 			fields: [
-				{key: 'name', label: TAPi18n.__('admin.name')},
-				{key: 'kind', label: TAPi18n.__('admin.kind')},
+				{key: 'name', label: TAPi18n.__('set-list.topic')},
+				{key: 'kind', label: TAPi18n.__('set-list.availability')},
 				{
-					key: 'firstname', label: TAPi18n.__('admin.users'), fn: function (value, object) {
+					key: 'firstname', label: TAPi18n.__('set-list.author'), fn: function (value, object) {
 						if (object.userDeleted) {
 							return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
 						} else {
@@ -64,7 +64,7 @@ Template.admin_cardsets.helpers({
 					}
 				},
 				{
-					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
+					key: 'dateString', label: TAPi18n.__('nav-list.created'), fn: function (value, object) {
 						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
 					}
 				},
