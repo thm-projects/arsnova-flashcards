@@ -736,6 +736,13 @@ export function getDays3() {
 
 
 Template.profileXp.helpers({
+	getHeight: function () {
+		if ($(window).width() < 351) {
+			return parseInt(500);
+		} else {
+			return parseInt(270);
+		}
+	},
 	getDays1: getDays1,
 	getDays2: getDays2,
 	getDays3: getDays3,
