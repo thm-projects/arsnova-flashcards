@@ -20,19 +20,15 @@ function saveInterval() {
 
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
 		Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-bottom-right');
+	} else if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
+		//Interval must be bigger than 1, 2 must be bigger than 3
+		Bert.alert(TAPi18n.__('admin-interval.errorBiggerThan'), 'danger', 'growl-bottom-right');
+	} else if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
+		Meteor.call('updateInterval', parseInt(inv1), parseInt(inv2), parseInt(inv3));
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+		$('#inv1, #inv2, #inv3').val("");
 	} else {
-		if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
-			//Interval must be bigger than 1, 2 must be bigger than 3
-			Bert.alert(TAPi18n.__('admin-interval.errorBiggerThan'), 'danger', 'growl-bottom-right');
-		} else {
-			if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
-				Meteor.call('updateInterval', parseInt(inv1), parseInt(inv2), parseInt(inv3));
-				Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
-				$('#inv1, #inv2, #inv3').val("");
-			} else {
-				Bert.alert(TAPi18n.__('admin-interval.biggerNull'), 'danger', 'growl-bottom-right');
-			}
-		}
+		Bert.alert(TAPi18n.__('admin-interval.biggerNull'), 'danger', 'growl-bottom-right');
 	}
 	return true;
 }
