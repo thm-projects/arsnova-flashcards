@@ -4,6 +4,8 @@ export const Badges = new TAPi18n.Collection("badges");
 
 if (Meteor.isServer) {
 	Meteor.publish("badges", function () {
-		return Badges.find();
+		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+			return Badges.find();
+		}
 	});
 }

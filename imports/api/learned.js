@@ -23,8 +23,10 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("allLearned", function () {
-			var learned = Learned.find({});
-			return learned;
+			if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+				var learned = Learned.find({});
+				return learned;
+			}
 		}
 	);
 }
