@@ -33,17 +33,21 @@ Template.created.helpers({
 });
 
 Template.created.events({
-	'click #set-list-region .namedown': function () {
-		Session.set('cardsetSortCreated', {name: 1});
+	'click .sortName': function () {
+		var sort = Session.get('cardsetSortCreated');
+		if (sort.name === 1) {
+			Session.set('cardsetSortCreated', {name: -1});
+		} else {
+			Session.set('cardsetSortCreated', {name: 1});
+		}
 	},
-	'click #set-list-region .nameup': function () {
-		Session.set('cardsetSortCreated', {name: -1});
-	},
-	'click #set-list-region .categorydown': function () {
-		Session.set('cardsetSortCreated', {category: 1});
-	},
-	'click #set-list-region .categoryup': function () {
-		Session.set('cardsetSortCreated', {category: -1});
+	'click .sortCategory': function () {
+		var sort = Session.get('cardsetSortCreated');
+		if (sort.category === 1) {
+			Session.set('cardsetSortCreated', {category: -1});
+		} else {
+			Session.set('cardsetSortCreated', {category: 1});
+		}
 	}
 });
 
@@ -81,17 +85,21 @@ Template.learned.helpers({
 });
 
 Template.learned.events({
-	'click #learned-list-region .namedown': function () {
-		Session.set('cardsetSortLearned', {name: 1});
+	'click .sortNameLearned': function () {
+		var sort = Session.get('cardsetSortLearned');
+		if (sort.name === 1) {
+			Session.set('cardsetSortLearned', {name: -1});
+		} else {
+			Session.set('cardsetSortLearned', {name: 1});
+		}
 	},
-	'click #learned-list-region .nameup': function () {
-		Session.set('cardsetSortLearned', {name: -1});
-	},
-	'click #learned-list-region .categorydown': function () {
-		Session.set('cardsetSortLearned', {category: 1});
-	},
-	'click #learned-list-region .categoryup': function () {
-		Session.set('cardsetSortLearned', {category: -1});
+	'click .sortCategoryLearned': function () {
+		var sort = Session.get('cardsetSortLearned');
+		if (sort.category === 1) {
+			Session.set('cardsetSortLearned', {category: -1});
+		} else {
+			Session.set('cardsetSortLearned', {category: 1});
+		}
 	}
 });
 
