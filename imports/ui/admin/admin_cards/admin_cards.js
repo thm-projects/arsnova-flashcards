@@ -7,12 +7,14 @@ import {Cards} from "../../../api/cards.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_cards.html";
 import "./admin_card.js";
+import {getAuthorName} from "../../../api/cardset.js"
 
 /**
  * ############################################################################
  * admin_cards
  * ############################################################################
  */
+getAuthorName();
 
 Template.admin_cards.helpers({
 	cardListAdmin: function () {
@@ -28,7 +30,7 @@ Template.admin_cards.helpers({
 				"cardset_id": card.cardset_id,
 				"cardsetname": cardset.name,
 				"user_id": cardset.owner,
-				"username": cardset.username,
+ 				"username": getAuthorName(cardset.owner),
 				"userDeleted": cardset.userDeleted
 			});
 		});
