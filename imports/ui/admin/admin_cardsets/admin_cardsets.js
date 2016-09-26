@@ -6,7 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
-import {getAuthorName} from "../../../api/cardset.js"
+import {getAuthorName} from "../../../api/cardset.js";
 
 /**
  * ############################################################################

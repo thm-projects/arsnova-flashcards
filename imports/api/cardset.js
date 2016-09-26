@@ -16,7 +16,7 @@ export function getAuthorName(owner) {
 		}
 		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
 	}
-};
+}
 
 Meteor.methods({
 	getCSVExport: function (cardset_id, id, header) {
