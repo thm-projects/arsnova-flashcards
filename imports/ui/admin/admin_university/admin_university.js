@@ -35,11 +35,11 @@ function addCollegeAndCourse() {
 		edit = false;
 	} else {
 		if (college === "" || course === "") {
-			Bert.alert(TAPi18n.__('admin-intervall.errorAllFields'), 'danger', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-bottom-right');
 		} else {
 			if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}})) {
 				if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}, course: {$regex: course, $options: "i"}})) {
-					Bert.alert(TAPi18n.__('admin-intervall.existingCourse'), 'danger', 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-bottom-right');
 					return;
 				} else {
 					college = CollegesCourses.findOne({college: {$regex: college, $options: "i"}}).college;

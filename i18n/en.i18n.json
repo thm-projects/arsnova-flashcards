@@ -1,5 +1,5 @@
 {
-  "admin-intervall": {
+  "admin-interval": {
     "errorAllFields": "Please fill all fields.",
     "errorBiggerThan": "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
     "errorBigger999": "Please choose a number less then 999",
@@ -291,10 +291,13 @@
   },
   "panel-heading-experience": {
     "experience": "Experience Points (XP)",
-    "intervall": "Set the learning period",
+    "interval": "Set the learning period",
     "preview": "Preview"
   },
   "panel-body-experience": {
+    "interval1": "Interval 1",
+    "interval2": "Interval 2",
+    "interval3": "Interval 3",
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
@@ -542,7 +545,7 @@
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
-    "intervall": "Learning period",
+    "interval": "Learning period",
     "notifications": "Notifications",
     "settings": "Settings",
     "manage": "Manage college and course",
