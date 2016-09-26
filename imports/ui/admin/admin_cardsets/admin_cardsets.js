@@ -40,7 +40,7 @@ Template.admin_cardsets.helpers({
 				"_id": cardset._id,
 				"name": cardset.name,
 				"kind": kind,
- 				"username": getAuthorName(cardset.owner),
+				"username": getAuthorName(cardset.owner),
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,

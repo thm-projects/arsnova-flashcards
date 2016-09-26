@@ -30,7 +30,7 @@ Template.admin_cards.helpers({
 				"cardset_id": card.cardset_id,
 				"cardsetname": cardset.name,
 				"user_id": cardset.owner,
- 				"username": getAuthorName(cardset.owner),
+				"username": getAuthorName(cardset.owner),
 				"userDeleted": cardset.userDeleted
 			});
 		});
