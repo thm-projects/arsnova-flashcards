@@ -14,7 +14,6 @@ import {getAuthorName} from "../../../api/cardset.js";
  * admin_cards
  * ############################################################################
  */
-getAuthorName();
 
 Template.admin_cards.helpers({
 	cardListAdmin: function () {
