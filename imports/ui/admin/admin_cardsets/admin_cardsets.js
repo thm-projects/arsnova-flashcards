@@ -6,12 +6,15 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
+import {getAuthorName} from "../../../api/cardset.js";
 
 /**
  * ############################################################################
  * admin_cardsets
  * ############################################################################
  */
+
+getAuthorName();
 
 Template.admin_cardsets.helpers({
 	cardsetListAdmin: function () {
@@ -37,7 +40,7 @@ Template.admin_cardsets.helpers({
 				"_id": cardset._id,
 				"name": cardset.name,
 				"kind": kind,
-				"firstName": cardset.name,
+				"username": getAuthorName(cardset.owner),
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,
@@ -55,7 +58,7 @@ Template.admin_cardsets.helpers({
 				{key: 'name', label: TAPi18n.__('set-list.topic')},
 				{key: 'kind', label: TAPi18n.__('set-list.availability')},
 				{
-					key: 'firstname', label: TAPi18n.__('set-list.author'), fn: function (value, object) {
+					key: 'username', label: TAPi18n.__('set-list.author'), fn: function (value, object) {
 						if (object.userDeleted) {
 							return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
 						} else {
