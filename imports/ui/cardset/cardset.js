@@ -432,6 +432,11 @@ Template.cardsetDetails.events({
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
+	},
+	"click #learnBoxActive": function () {
+		Router.go('box', {
+			_id: this._id
+		});
 	}
 });
 
