@@ -11,14 +11,13 @@ export const Cards = new Mongo.Collection("cards");
 
 if (Meteor.isServer) {
 	Meteor.publish("cards", function () {
-		var maxCards = Meteor.call("leitnerCards");
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
 			if (Roles.userIsInRole(this.userId, [
 					'admin',
 					'editor',
 					'lecturer'
 				])) {
-				return Cards.find({}, {limit: maxCards});
+				return Cards.find({});
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
 				return Cards.find({
 					cardset_id: {
@@ -31,7 +30,7 @@ if (Meteor.isServer) {
 							return cardset._id;
 						})
 					}
-				}, {limit: maxCards});
+				});
 			} else {
 				return Cards.find({
 					$or: [
@@ -70,7 +69,7 @@ if (Meteor.isServer) {
 							}
 						}
 					]
-				}, {limit: maxCards});
+				});
 			}
 		}
 	});
@@ -211,19 +210,5 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
-	},
-	leitnerCards: function () {
-		var maxCards = Cards.find({
-			cardset_id: {
-				$in: Cardsets.find().map(function (cardset) {
-					return cardset.maxCards;
-				})
-			}
-		});
-		if (maxCards === 0) {
-			return 1000;
-		} else {
-			return maxCards;
-		}
 	}
 });

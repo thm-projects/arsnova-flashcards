@@ -44,6 +44,7 @@ Meteor.methods({
 				ef: 2.5,
 				reps: 0,
 				interval: 0,
+				active: false,
 				nextDate: new Date(),
 				currentDate: new Date()
 			}
@@ -71,6 +72,7 @@ Meteor.methods({
 				ef: 2.5,
 				reps: 0,
 				interval: 0,
+				active: false,
 				nextDate: new Date(),
 				currentDate: new Date()
 			}
