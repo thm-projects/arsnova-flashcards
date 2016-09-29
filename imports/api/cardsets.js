@@ -227,7 +227,7 @@ Meteor.methods({
 		});
 	},
 	deactivateLearning: function (id) {
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && id === Meteor.userId()) {
+		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -238,7 +238,7 @@ Meteor.methods({
 		}
 	},
 	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && id === Meteor.userId()) {
+		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			if (!maxCards) {
 				maxCards = 1;
 			}
