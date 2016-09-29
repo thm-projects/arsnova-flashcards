@@ -30,14 +30,18 @@ Meteor.methods({
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
 			content += header[5] + colSep + newLine;
-			var learners = Meteor.call("getLeitnerLearners", cardset_id);
-			for (var k = 0; k < learners.length; k++) {
-				var user = Meteor.users.find({"_id": learners[k].user_id}).fetch();
+			var data = Learned.find({"cardset_id": cardset_id}).fetch();
+			var distinctData = _.uniq(data, false, function (d) {
+				return d.user_id;
+			});
+			for (var k = 0; k < distinctData.length; k++) {
+				var user = Meteor.users.find({"_id": distinctData[k].user_id}).fetch();
 				content += user[0].profile.givenname + colSep + user[0].profile.birthname + colSep + user[0].email + colSep;
+				data = Learned.find({"cardset_id": cardset_id, "user_id": distinctData[k].user_id}).fetch();
 				for (var l = 1; l <= 6; l++) {
 					content += Learned.find({
 							"cardset_id": cardset_id,
-							"user_id": learners[k].user_id,
+							"user_id": distinctData[k].user_id,
 							"box": l
 						}).count() + colSep;
 				}

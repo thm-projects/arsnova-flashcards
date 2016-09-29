@@ -246,5 +246,4 @@ Template.boxSide.onRendered(function () {
 			drawGraph();
 		});
 	});
-	Meteor.call("checkLeitnerCards", this._id);
 });
