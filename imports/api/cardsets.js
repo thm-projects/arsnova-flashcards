@@ -240,10 +240,10 @@ Meteor.methods({
 	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			if (!maxCards) {
-				maxCards = 1;
+				maxCards = 5;
 			}
 			if (!daysBeforeReset) {
-				daysBeforeReset = 1;
+				daysBeforeReset = 7;
 			}
 			if (!learningStart) {
 				learningStart = new Date();
