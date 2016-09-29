@@ -5,11 +5,11 @@ import {Mongo} from "meteor/mongo";
 export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
 if (Meteor.isServer) {
-	if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-		Meteor.publish("collegesCourses", function () {
+	Meteor.publish("collegesCourses", function () {
+		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
 			return CollegesCourses.find();
-		});
-	}
+		}
+	});
 }
 
 Meteor.methods({
