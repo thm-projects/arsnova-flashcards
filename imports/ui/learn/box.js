@@ -206,6 +206,9 @@ Template.boxSide.helpers({
 			user_id: Meteor.userId(),
 			box: boxId
 		}).count();
+	},
+	isDisabled: function () {
+		return this.learningActive ? 'disabled' : '';
 	}
 });
 
