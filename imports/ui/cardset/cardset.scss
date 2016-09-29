@@ -268,3 +268,9 @@ img.cardside {
 .btn-learn {
   font-size: 1.75em;
 }
+
+@media (max-width: 420px) {
+  .btn-learn {
+    font-size: 1.0em;
+  }
+}
