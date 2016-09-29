@@ -246,4 +246,5 @@ Template.boxSide.onRendered(function () {
 			drawGraph();
 		});
 	});
+	Meteor.call("updateLeitnerCards", Router.current().params._id);
 });
