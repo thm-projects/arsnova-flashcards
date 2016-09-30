@@ -13,7 +13,7 @@ Meteor.methods({
 			SyncedCron.add({
 				name: id,
 				schedule: function (parser) {
-					return parser.recur().on('01:00:00').time();
+					return parser.text('every 24 hours');
 				},
 				job: function () {
 					Meteor.call("updateLeitnerCards", id);
@@ -28,17 +28,17 @@ Meteor.methods({
 			SyncedCron.remove(id);
 		}
 	},
-	addToLeitner: function (cardset_id) {
+	addToLeitner: function (cardset) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
-		} else if (!Learned.findOne({"cardset_id": cardset_id, "user_id": Meteor.userId()})) {
+		} else if (!Learned.findOne({"cardset_id": cardset._id, "user_id": Meteor.userId()})) {
 			var cards = Cards.find({
-				cardset_id: cardset_id
+				cardset_id: cardset._id
 			});
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset_id, Meteor.userId());
+			Meteor.call("setCards", cardset, Meteor.userId());
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
@@ -52,13 +52,13 @@ Meteor.methods({
 			});
 		}
 	},
-	getCardCount: function (cardset_id, user, box) {
+	getCardCount: function (cardset_id, user_id, box) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Learned.find({
 				"cardset_id": cardset_id,
-				"user_id": user,
+				"user_id": user_id,
 				"box": box,
 				"nextDate": {$lte: new Date()}
 			}).count();
@@ -92,21 +92,22 @@ Meteor.methods({
 	},
 	// i-loop: Get all cards that the user can learn right now
 	// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
-	// j-loop: Summate all percentages of boxes with cards to reach 100%
+	// j-loop: Scale all percentage values of boxes with cards to fill 100%
 	// l-loop: Mark the cards that the user has to learn next
-	setCards: function (cardset, user) {
+	setCards: function (cardset, user_id) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
 			var cardCount = [];
 			for (var i = 0; i < algorithm.length; i++) {
-				cardCount[i] = Meteor.call("getCardCount", cardset._id, user.user_id, i + 1);
+				cardCount[i] = Meteor.call("getCardCount", cardset._id, user_id, i + 1);
 			}
 
 			if (Meteor.call("noCardsLeft", cardCount) === 0) {
 				return;
 			}
+
 			for (var k = algorithm.length; k > 0; k--) {
 				if (cardCount[k] === 0 && k - 1 >= 0) {
 					algorithm[k - 1] += algorithm[k];
@@ -126,7 +127,7 @@ Meteor.methods({
 			for (var l = 0; l < algorithm.length; l++) {
 				Learned.update({
 					"cardset_id": cardset._id,
-					"user_id": user.user_id,
+					"user_id": user_id,
 					"box": (l + 1),
 					"nextDate": {$lte: new Date()}
 				}, {
@@ -138,11 +139,11 @@ Meteor.methods({
 			}
 		}
 	},
-	resetCards: function (cardset, user) {
+	resetCards: function (cardset, user_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			Learned.update({"cardset_id": cardset._id, "user_id": user.user_id}, {
+			Learned.update({"cardset_id": cardset._id, "user_id": user_id}, {
 				$set: {
 					"box": 1,
 					"active": false,
@@ -150,7 +151,7 @@ Meteor.methods({
 					"currentDate": new Date()
 				}
 			}, {multi: true});
-			Meteor.call("setCards", cardset, user);
+			Meteor.call("setCards", cardset, user_id);
 		}
 	},
 	updateLeitnerCards: function (cardset_id) {
@@ -162,9 +163,9 @@ Meteor.methods({
 			for (var i = 0; i < learners.length; i++) {
 				var activeCard = Meteor.call("getActiveCard", cardset._id, learners[i].user_id);
 				if (!activeCard) {
-					Meteor.call("setCards", cardset, learners[i]);
+					Meteor.call("setCards", cardset, learners[i].user_id);
 				} else if ((activeCard.currentDate.getTime() + cardset.daysBeforeReset * 86400000) < new Date().getTime()) {
-					Meteor.call("resetCards", cardset, learners[i]);
+					Meteor.call("resetCards", cardset, learners[i].user_id);
 				}
 			}
 		}

@@ -72,6 +72,9 @@ Template.box.helpers({
 		return notEmpty;
 	},
 	isFinish: function () {
+		if (this.learningActive && Learned.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
+			Session.set('isFinish', false);
+		}
 		return Session.get('isFinish');
 	}
 });

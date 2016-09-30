@@ -32,25 +32,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	activateLerningPeriod: function (cartset_id) {
+	clearLearningProgress: function (cardset_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Learned.update({
-			cardset_id: cartset_id
-		}, {
-			$set: {
-				box: 1,
-				ef: 2.5,
-				reps: 0,
-				interval: 0,
-				active: false,
-				nextDate: new Date(),
-				currentDate: new Date()
-			}
-		}, {
-			multi: true
-		});
+		Learned.remove({cardset_id: cardset_id});
 	},
 	addLearned: function (cardset_id, card_id) {
 		// Make sure the user is logged in

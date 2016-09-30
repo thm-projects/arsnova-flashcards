@@ -234,7 +234,7 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
-			Meteor.call("stopLeitnerCron", id);
+			Meteor.call("clearLearningProgress", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -274,9 +274,8 @@ Meteor.methods({
 					webNotification: webNotification
 				}
 			});
-			Meteor.call("activateLerningPeriod", id);
-			Meteor.call("activateLerningPeriodSetEdu", id);
-			Meteor.call("startLeitnerCron", id);
+			Meteor.call("clearLearningProgress", id);
+			Meteor.call("activateLearningPeriodSetEdu", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -307,7 +306,7 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLerningPeriodSetEdu: function (cartset_id) {
+	activateLearningPeriodSetEdu: function (cartset_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
