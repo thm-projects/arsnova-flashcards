@@ -347,7 +347,7 @@
                             <div class="block">
                                 <div class="centered front" style="font-size:2em">{{_ "learnPhaseActive"}}</div>
                                 <br><br>
-                                {{#if countCards this._id}}
+                                {{#if notEmpty}}
                                     <button id="learnBoxActive" class="btn btn-success learn btn-block btn-learn">{{_
                                             "cardsToLearn"}}</button>
                                 {{else}}

@@ -49,14 +49,26 @@ Template.box.onCreated(function () {
 Template.box.helpers({
 	boxSelected: function () {
 		var selectedBox = Session.get('selectedBox');
+		if (this.learningActive) {
+			return true;
+		}
 		return selectedBox !== null;
 	},
 	isNotEmpty: function () {
-		var notEmpty = Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			box: parseInt(Session.get('selectedBox'))
-		}).count();
+		var notEmpty;
+		if (this.learningActive) {
+			notEmpty = Learned.find({
+				cardset_id: this._id,
+				user_id: Meteor.userId(),
+				active: true
+			}).count();
+		} else {
+			notEmpty = Learned.find({
+				cardset_id: this._id,
+				user_id: Meteor.userId(),
+				box: parseInt(Session.get('selectedBox'))
+			}).count();
+		}
 		return notEmpty;
 	},
 	isFinish: function () {
@@ -71,6 +83,9 @@ Template.box.helpers({
  */
 
 Template.boxMain.helpers({
+	isLearningActive: function () {
+		return this.learningActive;
+	},
 	isFront: function () {
 		var isFront = Session.get('isFront');
 		return isFront === true;
@@ -101,6 +116,27 @@ Template.boxMain.helpers({
 
 		return cards;
 	},
+	getCardsByLeitner: function () {
+		var learnedCards = Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
+		}, {
+			sort: {
+				currentDate: 1
+			}
+		});
+
+		var cards = [];
+		learnedCards.forEach(function (learnedCard) {
+			var card = Cards.findOne({
+				_id: learnedCard.card_id
+			});
+			cards.push(card);
+		});
+
+		return cards;
+	},
 	cardActiveByBox: function (index) {
 		return 1 === index + 1;
 	},
@@ -109,6 +145,15 @@ Template.boxMain.helpers({
 			cardset_id: this._id,
 			user_id: Meteor.userId(),
 			box: parseInt(Session.get('selectedBox'))
+		}).count();
+		Session.set('maxIndex', maxIndex);
+		return maxIndex;
+	},
+	countLeitner: function () {
+		var maxIndex = Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;
@@ -145,9 +190,19 @@ Template.boxMain.events({
 			user_id: Meteor.userId()
 		});
 
-		var selectedBox = parseInt(Session.get('selectedBox'));
+		var selectedBox;
+		if (this.learningActive) {
+			selectedBox = currentLearned.box;
+		} else {
+			selectedBox = parseInt(Session.get('selectedBox'));
+		}
+
 		if (selectedBox < 6) {
-			Meteor.call('updateLearned', currentLearned._id, selectedBox + 1);
+			var date = new Date();
+			if (this.learningActive) {
+				date = new Date(date.getTime() + this.learningInterval[selectedBox] * 86400000);
+			}
+			Meteor.call('updateLearned', currentLearned._id, selectedBox + 1, date);
 		}
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
@@ -161,7 +216,8 @@ Template.boxMain.events({
 			card_id: currentCard,
 			user_id: Meteor.userId()
 		});
-		Meteor.call('updateLearned', currentLearned._id, 1);
+
+		Meteor.call('updateLearned', currentLearned._id, 1, new Date());
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
@@ -222,6 +278,12 @@ Template.boxSide.onDestroyed(function () {
  * ############################################################################
  */
 
+Template.boxEnd.helpers({
+	isLearningActive: function () {
+		return this.learningActive;
+	}
+});
+
 Template.boxEnd.events({
 	"click #endscreenBack": function () {
 		Session.set('selectedBox', null);
@@ -246,5 +308,4 @@ Template.boxSide.onRendered(function () {
 			drawGraph();
 		});
 	});
-	Meteor.call("updateLeitnerCards", Router.current().params._id);
 });

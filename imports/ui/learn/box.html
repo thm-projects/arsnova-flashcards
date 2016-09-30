@@ -109,38 +109,74 @@
 <!-- Mainscreen -->
 <template name="boxMain">
     <div class="carousel slide" id="cardCarousel">
-        <div class="carousel-indicators">
-            <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
-        </div>
-        <div class="carousel-inner">
-            {{#each getCardsByBox}}
-                <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-                    <div class="box">
-                        <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-                        <h3>{{_ "subject"}} {{box}}</h3>
-                        <br>
-                        {{#if isFront}}
-                            {{boxMarkdownFront this.front @index}}
-                            <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                            <div class="block">
-                                <div class="cardContent centered front{{@index}} active">
-                                    <!--<p>{{front}}</p>-->
+        {{#if isLearningActive }}
+            <div class="carousel-indicators">
+                <small class="text-muted card-indicator">{{_ "leitner_status" count=countLeitner}}</small>
+            </div>
+            <div class="carousel-inner">
+                {{#each getCardsByLeitner}}
+                    <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
+                        <div class="box">
+                            <span class="clicktoflip" id="clicktoflip">Click to flip</span>
+                            <h3>{{_ "leitnerCard"}}</h3>
+                            <br>
+                            {{#if isFront}}
+                                {{boxMarkdownFront this.front @index}}
+                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                <div class="block">
+                                    <div class="cardContent centered front{{@index}} active">
+                                        <!--<p>{{front}}</p>-->
+                                    </div>
                                 </div>
-                            </div>
-                        {{else}}
-                            {{boxMarkdownBack this.back @index}}
-                            <img class="cardside cardback-symbol" src="/img/icon_back.png">
-                            <div class="block">
-                                <div class="cardContent centered back{{@index}} active">
-                                    <!--<p>{{back}}</p>-->
+                            {{else}}
+                                {{boxMarkdownBack this.back @index}}
+                                <img class="cardside cardback-symbol" src="/img/icon_back.png">
+                                <div class="block">
+                                    <div class="cardContent centered back{{@index}} active">
+                                        <!--<p>{{back}}</p>-->
+                                    </div>
                                 </div>
-                            </div>
-                        {{/if}}
+                            {{/if}}
 
+                        </div>
                     </div>
-                </div>
-            {{/each}}
-        </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="carousel-indicators">
+                <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
+            </div>
+            <div class="carousel-inner">
+                {{#each getCardsByBox}}
+                    <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
+                        <div class="box">
+                            <span class="clicktoflip" id="clicktoflip">Click to flip</span>
+                            <h3>{{_ "subject"}} {{box}}</h3>
+                            <br>
+                            {{#if isFront}}
+                                {{boxMarkdownFront this.front @index}}
+                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                <div class="block">
+                                    <div class="cardContent centered front{{@index}} active">
+                                        <!--<p>{{front}}</p>-->
+                                    </div>
+                                </div>
+                            {{else}}
+                                {{boxMarkdownBack this.back @index}}
+                                <img class="cardside cardback-symbol" src="/img/icon_back.png">
+                                <div class="block">
+                                    <div class="cardContent centered back{{@index}} active">
+                                        <!--<p>{{back}}</p>-->
+                                    </div>
+                                </div>
+                            {{/if}}
+
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
     </div>
 
     {{#if isFront}}
@@ -186,11 +222,13 @@
     <div class="box learn-endscreen">
         <div class="block">
             <div class="centered front learnbox-success">{{_ "learn-endscreen.success"}}</div>
-            <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
-            <br>
-            <a class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
-                <span>{{_ "learn-endscreen.back2"}}</span>
-            </a>
+            {{#unless isLearningActive}}
+                <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
+                <br>
+                <a class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
+                    <span>{{_ "learn-endscreen.back2"}}</span>
+                </a>
+            {{/unless}}
         </div>
     </div>
 </template>

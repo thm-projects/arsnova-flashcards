@@ -420,6 +420,13 @@ Template.cardsetDetails.helpers({
 			}
 		});
 		return query;
+	},
+	notEmpty: function () {
+		return Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
+		}).count();
 	}
 });
 

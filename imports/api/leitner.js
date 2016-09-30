@@ -66,9 +66,15 @@ function setCards(cardset, user) {
 	}
 
 	for (var l = 0; l < algorithm.length; l++) {
-		Learned.update({"cardset_id": cardset._id, "user_id": user.user_id, "box": (l + 1)}, {
+		Learned.update({
+			"cardset_id": cardset._id,
+			"user_id": user.user_id,
+			"box": (l + 1),
+			"nextDate": {$lte: new Date()}
+		}, {
 			$set: {
-				"active": true
+				"active": true,
+				"currentDate": new Date()
 			}
 		}, {multi: true, limit: cardset.maxCards * algorithm[l]});
 	}
@@ -79,7 +85,8 @@ function resetCards(cardset, user) {
 		$set: {
 			"box": 1,
 			"active": false,
-			"nextDate": new Date()
+			"nextDate": new Date(),
+			"currentDate": new Date()
 		}
 	}, {multi: true});
 	setCards(cardset, user);

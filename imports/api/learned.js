@@ -78,7 +78,7 @@ Meteor.methods({
 			}
 		});
 	},
-	updateLearned: function (learned_id, box) {
+	updateLearned: function (learned_id, box, nextDate) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
@@ -86,6 +86,8 @@ Meteor.methods({
 		Learned.update(learned_id, {
 			$set: {
 				box: box,
+				active: false,
+				nextDate: nextDate,
 				currentDate: new Date()
 			}
 		});
