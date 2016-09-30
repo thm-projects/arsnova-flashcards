@@ -7,18 +7,26 @@ import {Learned} from "../imports/api/learned.js";
 
 Meteor.methods({
 	startLeitnerCron: function (id) {
-		SyncedCron.add({
-			name: id,
-			schedule: function (parser) {
-				return parser.recur().on('01:00:00').time();
-			},
-			job: function () {
-				Meteor.call("updateLeitnerCards", id);
-			}
-		});
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			SyncedCron.add({
+				name: id,
+				schedule: function (parser) {
+					return parser.recur().on('01:00:00').time();
+				},
+				job: function () {
+					Meteor.call("updateLeitnerCards", id);
+				}
+			});
+		}
 	},
 	stopLeitnerCron: function (id) {
-		SyncedCron.remove(id);
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			SyncedCron.remove(id);
+		}
 	},
 	addToLeitner: function (cardset_id) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
@@ -64,7 +72,7 @@ Meteor.methods({
 		}
 	},
 	getLearners: function (cardset_id) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var data = Learned.find({"cardset_id": cardset_id}).fetch();
@@ -131,7 +139,7 @@ Meteor.methods({
 		}
 	},
 	resetCards: function (cardset, user) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			Learned.update({"cardset_id": cardset._id, "user_id": user.user_id}, {
@@ -146,7 +154,7 @@ Meteor.methods({
 		}
 	},
 	updateLeitnerCards: function (cardset_id) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var cardset = Meteor.call("getCardset", cardset_id);

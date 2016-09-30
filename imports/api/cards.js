@@ -17,7 +17,7 @@ if (Meteor.isServer) {
 					'editor',
 					'lecturer'
 				])) {
-				return Cards.find({});
+				return Cards.find();
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
 				return Cards.find({
 					cardset_id: {
