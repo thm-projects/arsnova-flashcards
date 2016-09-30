@@ -5,6 +5,7 @@ import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
 import {Ratings} from "./ratings.js";
 
+
 export const Cardsets = new Mongo.Collection("cardsets");
 
 if (Meteor.isServer) {
@@ -233,6 +234,7 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
+			Meteor.call("stopLeitnerCron", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -274,6 +276,7 @@ Meteor.methods({
 			});
 			Meteor.call("activateLerningPeriod", id);
 			Meteor.call("activateLerningPeriodSetEdu", id);
+			Meteor.call("startLeitnerCron", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

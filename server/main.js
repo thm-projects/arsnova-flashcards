@@ -4,7 +4,7 @@ import "../imports/startup/server/initialize.js";
 import "../imports/api/cardsets.js";
 import "../imports/api/cards.js";
 import "../imports/api/learned.js";
-import "../imports/api/leitner.js";
+import "./leitner.js";
 import "../imports/api/badges.js";
 import "../imports/api/experience.js";
 import "../imports/api/ratings.js";

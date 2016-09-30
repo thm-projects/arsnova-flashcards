@@ -74,6 +74,9 @@ Template.cardset.rendered = function () {
 			}
 		});
 	}
+	if (this.learningActive) {
+		Meteor.call("addToLeitner", this._id);
+	}
 };
 
 Template.cardset.helpers({
