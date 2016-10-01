@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
+import {Learned} from "../../api/learned.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
@@ -44,7 +45,6 @@ export function notification(title, message) {
 }
 
 var query = {};
-var popup = true;
 
 function prepareQuery() {
 	query = {};
@@ -211,17 +211,16 @@ Template.category.onDestroyed(function () {
 });
 
 Template.pool.onRendered(function () {
-	if (popup) {
-		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
-				'admin',
-				'editor'
-			])) {
-			Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
-		}
-		var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-		for (var i = 0; i < toLearn.length; ++i) {
+	if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
+			'admin',
+			'editor'
+		])) {
+		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
+	}
+	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
+	for (var i = 0; i < toLearn.length; ++i) {
+		if (Learned.find({cardset_id: toLearn[i]._id, user_id: Meteor.userId(), active: true}).count() !== 0) {
 			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
 		}
-		popup = false;
 	}
 });
