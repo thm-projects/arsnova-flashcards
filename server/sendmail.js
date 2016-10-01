@@ -1,37 +1,47 @@
 import {Email} from "meteor/email";
-import {SyncedCron} from "meteor/percolate:synced-cron";
-
-
-var FutureTasks = new Meteor.Collection('future_tasks');
+//import {Cardsets} from "../imports/api/cardsets.js";
+//import {Learned} from "../imports/api/learned.js";
 
 export class MailNotifier {
 
-	addTask (details) {
-		var id = FutureTasks.insert(details);
-		SyncedCron.add({
-			name: id,
-			schedule: function (parser) {
-				return parser.recur().on('01:00:00').time();
-			},
-			job: function () {
-				Email.send({
-					from: details.details.from,
-					to: details.details.to,
-					subject: details.details.subject,
-					text: details.details.text
-				});
-				FutureTasks.remove(id);
-				SyncedCron.remove(id);
-				return id;
+	prepareMail () {
+		//WIP
+		/*
+		let mails = "";
+
+		const ids = Meteor.users.find().fetch();
+		ids.forEach(function (user) {
+			if (Learned.find({user_id: user._id}).count() === 0) {
+				return;
 			}
+			mails += user.email + ",";
+			const courses = _.uniq(Learned.find({user_id: user._id}).fetch(), function (item) {
+				return item.cardset_id;
+			});
+
+			let content = "";
+
+			courses.forEach(function (item) {
+				const cardset = Cardsets.findOne({_id: item.cardset_id, mailNotification: true});
+				if (typeof cardset !== "undefined") {
+					content += "- " + cardset.name + "\n";
+				}
+			});
+
+			if (content === "") {
+				return;
+			}
+			this.sendMail(mails, content);
 		});
+		*/
 	}
 
-	startCron () {
-		SyncedCron.start();
-	}
-
-	stopCron () {
-		SyncedCron.stop();
+	sendMail (mails, content) {
+		Email.send({
+			from: '',
+			to: mails,
+			subject: "THMcards: Heute sind nur () Karten aus () Kartensets zu lernen",
+			text: "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\nein neuer Tag hat begonnen und folgende Kartensätze erwarten dich:\n\n" + content + "\nBitte denke daran deinen täglichen Aufgaben nachzukommen.\nIhr THMCards-Team"
+		});
 	}
 }

@@ -1,37 +1,15 @@
 import {Meteor} from "meteor/meteor";
-import {SyncedCron} from "meteor/percolate:synced-cron";
 import {Cards} from "../imports/api/cards.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 import {Learned} from "../imports/api/learned.js";
+import {MailNotifier} from "./sendmail.js";
 
 
 Meteor.methods({
-	startLeitnerCron: function (id) {
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			SyncedCron.add({
-				name: id,
-				schedule: function (parser) {
-					return parser.text('every 24 hours');
-				},
-				job: function () {
-					Meteor.call("updateLeitnerCards", id);
-				}
-			});
-		}
-	},
-	stopLeitnerCron: function (id) {
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			SyncedCron.remove(id);
-		}
-	},
 	addToLeitner: function (cardset) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
-		} else if (!Learned.findOne({"cardset_id": cardset._id, "user_id": Meteor.userId()})) {
+		} else if (!Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId()})) {
 			var cards = Cards.find({
 				cardset_id: cardset._id
 			});
@@ -42,47 +20,47 @@ Meteor.methods({
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.connection !== null) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Learned.findOne({
-				"cardset_id": cardset_id,
-				"user_id": user,
-				"active": true
+				cardset_id: cardset_id,
+				user_id: user,
+				active: true
 			});
 		}
 	},
 	getCardCount: function (cardset_id, user_id, box) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Learned.find({
-				"cardset_id": cardset_id,
-				"user_id": user_id,
-				"box": box,
-				"nextDate": {$lte: new Date()}
+				cardset_id: cardset_id,
+				user_id: user_id,
+				box: box,
+				nextDate: {$lte: new Date()}
 			}).count();
 		}
 	},
-	getCardset: function (cardset_id) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+	getCardsets: function () {
+		if (this.connection !== null) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Cardsets.findOne({"_id": cardset_id});
+			return Cardsets.find({learningActive: true}).fetch();
 		}
 	},
 	getLearners: function (cardset_id) {
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+		if (this.connection !== null) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var data = Learned.find({"cardset_id": cardset_id}).fetch();
+			var data = Learned.find({cardset_id: cardset_id}).fetch();
 			return _.uniq(data, false, function (d) {
 				return d.user_id;
 			});
 		}
 	},
 	noCardsLeft: function (cardCount) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return cardCount.reduce(function (prev, cur) {
@@ -95,7 +73,7 @@ Meteor.methods({
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
 	// l-loop: Mark the cards that the user has to learn next
 	setCards: function (cardset, user_id) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
@@ -126,46 +104,52 @@ Meteor.methods({
 
 			for (var l = 0; l < algorithm.length; l++) {
 				Learned.update({
-					"cardset_id": cardset._id,
-					"user_id": user_id,
-					"box": (l + 1),
-					"nextDate": {$lte: new Date()}
+					cardset_id: cardset._id,
+					user_id: user_id,
+					box: (l + 1),
+					nextDate: {$lte: new Date()}
 				}, {
 					$set: {
-						"active": true,
-						"currentDate": new Date()
+						active: true,
+						currentDate: new Date()
 					}
 				}, {multi: true, limit: cardset.maxCards * algorithm[l]});
 			}
 		}
 	},
 	resetCards: function (cardset, user_id) {
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+		if (this.connection !== null) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			Learned.update({"cardset_id": cardset._id, "user_id": user_id}, {
+			Learned.update({cardset_id: cardset._id, user_id: user_id}, {
 				$set: {
-					"box": 1,
-					"active": false,
-					"nextDate": new Date(),
-					"currentDate": new Date()
+					box: 1,
+					active: false,
+					nextDate: new Date(),
+					currentDate: new Date()
 				}
 			}, {multi: true});
 			Meteor.call("setCards", cardset, user_id);
 		}
 	},
-	updateLeitnerCards: function (cardset_id) {
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+	updateLeitnerCards: function () {
+		if (this.connection !== null) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var cardset = Meteor.call("getCardset", cardset_id);
-			var learners = Meteor.call("getLearners", cardset._id);
-			for (var i = 0; i < learners.length; i++) {
-				var activeCard = Meteor.call("getActiveCard", cardset._id, learners[i].user_id);
-				if (!activeCard) {
-					Meteor.call("setCards", cardset, learners[i].user_id);
-				} else if ((activeCard.currentDate.getTime() + cardset.daysBeforeReset * 86400000) < new Date().getTime()) {
-					Meteor.call("resetCards", cardset, learners[i].user_id);
+			const mail = new MailNotifier();
+			var cardsets = Meteor.call("getCardsets");
+			for (var i = 0; i < cardsets.length; i++) {
+				var learners = Meteor.call("getLearners", cardsets[i]._id);
+				for (var k = 0; k < learners.length; k++) {
+					var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
+					if (!activeCard) {
+						Meteor.call("setCards", cardsets[i], learners[k].user_id);
+					} else if ((activeCard.currentDate.getTime() + cardsets[i].daysBeforeReset * 86400000) < new Date().getTime()) {
+						Meteor.call("resetCards", cardsets[i], learners[k].user_id);
+					}
+				}
+				if (cardsets[i].mailNotification) {
+					mail.prepareMail();
 				}
 			}
 		}
