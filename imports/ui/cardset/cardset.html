@@ -347,18 +347,31 @@
                         <div class="box">
                             <div class="block">
                                 {{#unless learningEnded}}
-                                    <div class="centered front" style="font-size:2em">{{_ "learnPhaseActive"}}</div>
-                                    <br><br>
+                                    <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
+                                        <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
+                                        <p>{{_ "learnPhaseActiveBody"}}</p>
+                                    </div>
                                     {{#if notEmpty}}
+                                        <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
+                                        <br><br>
                                         <button id="learnBoxActive"
                                                 class="btn btn-success learn btn-block btn-learn">{{_
                                                 "cardsToLearn"}}</button>
                                     {{else}}
-                                        <button id="learnBoxDisabled" class="btn btn-warning learn btn-block btn-learn"
-                                                disabled>{{_ "noCardsToLearn"}}</button>
+                                        {{#if allLearned}}
+                                            <br><br>
+                                            <div class="alert alert-success leitner-text" role="alert">{{_
+                                                    "learnedEverything"}}</div>
+                                        {{else}}
+                                            <br><br>
+                                            <button id="learnBoxDisabled"
+                                                    class="btn btn-warning learn btn-block btn-learn"
+                                                    disabled>{{_ "noCardsToLearn"}}</button>
+                                        {{/if}}
                                     {{/if}}
                                 {{else}}
-                                    <div class="centered front" style="font-size:2em">{{_ "learnPhaseEnded"}}</div>
+                                    <div class="alert alert-danger leitner-header" role="alert">{{_
+                                            "learnPhaseEnded"}}</div>
                                 {{/unless}}
                             </div>
                         </div>

@@ -394,6 +394,18 @@ Template.cardsetDetails.helpers({
 	learningEnded: function () {
 		return (this.learningEnd.getTime() < new Date().getTime());
 	},
+	allLearned: function () {
+		return (Learned.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
+	},
+	Deadline: function () {
+		var active = Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
+		var deadline = new Date(active.currentDate.getTime() + this.daysBeforeReset * 86400000);
+		if (deadline.getTime() > this.learningEnd.getTime()) {
+			return (TAPi18n.__('deadlinePrologue') + this.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
+		} else {
+			return (TAPi18n.__('deadlinePrologue') + deadline.toLocaleDateString() + TAPi18n.__('deadlineEpilogue2'));
+		}
+	},
 	cardsIndex: function (index) {
 		return index + 1;
 	},

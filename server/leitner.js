@@ -9,7 +9,7 @@ Meteor.methods({
 	addToLeitner: function (cardset) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
-		} else if (!Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId()})) {
+		} else if (!Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId()}) && cardset.learningEnd.getTime() < new Date().getTime()) {
 			var cards = Cards.find({
 				cardset_id: cardset._id
 			});
