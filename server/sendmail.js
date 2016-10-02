@@ -36,6 +36,10 @@ export class MailNotifier {
 		*/
 	}
 
+	prepareMailFinished () {
+		//Placeholder
+	}
+
 	sendMail (mails, content) {
 		Email.send({
 			from: '',

@@ -20,7 +20,7 @@ Meteor.methods({
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
-		if (this.connection !== null) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Learned.findOne({
@@ -31,7 +31,7 @@ Meteor.methods({
 		}
 	},
 	getCardCount: function (cardset_id, user_id, box) {
-		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
+		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Learned.find({
@@ -43,14 +43,14 @@ Meteor.methods({
 		}
 	},
 	getCardsets: function () {
-		if (this.connection !== null) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return Cardsets.find({learningActive: true}).fetch();
 		}
 	},
 	getLearners: function (cardset_id) {
-		if (this.connection !== null) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var data = Learned.find({cardset_id: cardset_id}).fetch();
@@ -60,7 +60,7 @@ Meteor.methods({
 		}
 	},
 	noCardsLeft: function (cardCount) {
-		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
+		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			return cardCount.reduce(function (prev, cur) {
@@ -73,7 +73,7 @@ Meteor.methods({
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
 	// l-loop: Mark the cards that the user has to learn next
 	setCards: function (cardset, user_id) {
-		if (this.connection !== null && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
+		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
@@ -115,10 +115,15 @@ Meteor.methods({
 					}
 				}, {multi: true, limit: cardset.maxCards * algorithm[l]});
 			}
+
+			if (Meteor.isServer && cardset.mailNotification) {
+				var mail = new MailNotifier();
+				mail.prepareMail();
+			}
 		}
 	},
 	resetCards: function (cardset, user_id) {
-		if (this.connection !== null) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			Learned.update({cardset_id: cardset._id, user_id: user_id}, {
@@ -133,24 +138,46 @@ Meteor.methods({
 		}
 	},
 	updateLeitnerCards: function () {
-		if (this.connection !== null) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			const mail = new MailNotifier();
 			var cardsets = Meteor.call("getCardsets");
 			for (var i = 0; i < cardsets.length; i++) {
 				var learners = Meteor.call("getLearners", cardsets[i]._id);
-				for (var k = 0; k < learners.length; k++) {
-					var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
-					if (!activeCard) {
-						Meteor.call("setCards", cardsets[i], learners[k].user_id);
-					} else if ((activeCard.currentDate.getTime() + cardsets[i].daysBeforeReset * 86400000) < new Date().getTime()) {
-						Meteor.call("resetCards", cardsets[i], learners[k].user_id);
+				if (cardsets[i].learningEnd.getTime() > new Date().getTime()) {
+					for (var k = 0; k < learners.length; k++) {
+						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
+						if (!activeCard) {
+							Meteor.call("setCards", cardsets[i], learners[k].user_id);
+						} else if ((activeCard.currentDate.getTime() + cardsets[i].daysBeforeReset * 86400000) < new Date().getTime()) {
+							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
+						}
 					}
+				} else {
+					Meteor.call("disableLearning", cardsets[i]);
 				}
-				if (cardsets[i].mailNotification) {
-					mail.prepareMail();
-				}
+			}
+		}
+	},
+	disableLearning: function (cardset) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			if (Learned.find({cardset_id: cardset._id, active: true}).count()) {
+				Learned.update({cardset_id: cardset._id}, {
+					$set: {
+						active: false
+					}
+				}, {multi: true});
+			}
+			if (cardset.mailNotification) {
+				var mail = new MailNotifier();
+				mail.prepareMailFinished();
+				Cardsets.update({_id: cardset._id}, {
+					$set: {
+						mailNotification: false
+					}
+				});
 			}
 		}
 	}

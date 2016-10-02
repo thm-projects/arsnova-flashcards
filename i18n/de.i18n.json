@@ -475,6 +475,7 @@
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActive": "Lernphase aktiv. Manuelles lernen ist deaktiviert.",
+  "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Derzeit gibt es keine neuen Karten zu lernen",
   "learn": "Lernen",

@@ -346,15 +346,20 @@
                     <div class="empty-item">
                         <div class="box">
                             <div class="block">
-                                <div class="centered front" style="font-size:2em">{{_ "learnPhaseActive"}}</div>
-                                <br><br>
-                                {{#if notEmpty}}
-                                    <button id="learnBoxActive" class="btn btn-success learn btn-block btn-learn">{{_
-                                            "cardsToLearn"}}</button>
+                                {{#unless learningEnded}}
+                                    <div class="centered front" style="font-size:2em">{{_ "learnPhaseActive"}}</div>
+                                    <br><br>
+                                    {{#if notEmpty}}
+                                        <button id="learnBoxActive"
+                                                class="btn btn-success learn btn-block btn-learn">{{_
+                                                "cardsToLearn"}}</button>
+                                    {{else}}
+                                        <button id="learnBoxDisabled" class="btn btn-warning learn btn-block btn-learn"
+                                                disabled>{{_ "noCardsToLearn"}}</button>
+                                    {{/if}}
                                 {{else}}
-                                    <button id="learnBoxDisabled" class="btn btn-warning learn btn-block btn-learn"
-                                            disabled>{{_ "noCardsToLearn"}}</button>
-                                {{/if}}
+                                    <div class="centered front" style="font-size:2em">{{_ "learnPhaseEnded"}}</div>
+                                {{/unless}}
                             </div>
                         </div>
                     </div>

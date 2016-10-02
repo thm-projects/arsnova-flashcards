@@ -391,6 +391,9 @@ Template.cardsetDetails.helpers({
 	addToLeitner: function () {
 		Meteor.call("addToLeitner", this);
 	},
+	learningEnded: function () {
+		return (this.learningEnd.getTime() < new Date().getTime());
+	},
 	cardsIndex: function (index) {
 		return index + 1;
 	},
