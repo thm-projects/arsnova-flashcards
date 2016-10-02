@@ -6,7 +6,13 @@
 
 <template name="category">
     <div class="buttonHeader">
-    <span class="col-xs-12 col-sm-12 col-md-12">
+        <div class="btn-group" role="group" aria-label="Reset group">
+            <span class="col-xs-12 col-sm-12 col-md-12">
+                    <button class="resetFilters btn btn-default" id="resetBtn" role="button">
+                        {{_ "set-list.reset"}} </button>
+            </span>
+        </div>
+        <span class="col-xs-12 col-sm-12 col-md-12">
         <div class="btn-group" role="group" aria-label="Topic group">
             <button class="sortTopic btn btn-default" id="topicBtn" role="button" value="down" data-toggle="dropdown">
                 {{_ "set-list.topic"}} </button>
@@ -55,7 +61,8 @@
         </div>
 
         <div class="btn-group" role="group" aria-label="Course group">
-            <button type="button" id="collegeBtn" class="filterCourseGroup btn btn-default" data-toggle="dropdown" style="width: 155px">
+            <button type="button" id="collegeBtn" class="filterCourseGroup btn btn-default" data-toggle="dropdown"
+                    style="width: 155px">
                 {{_ "set-list.course"}}</button>
             <button type="button" class="filterCourseGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
@@ -110,7 +117,7 @@
     </span>
     </div>
     <div class="responsive-utilities-test visible-on">
-        
+
         <span class="col-md-3 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.topic"}}
         </span>
