@@ -72,6 +72,10 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
+  "confirm-form-learned": {
+    "title": "Leave cardset",
+    "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
+  },
   "confirmLearn-form": {
     "title": "Start Learning-Phase",
     "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
@@ -744,6 +748,10 @@
     "text": "You don't have permission to open this page!",
     "button": "Close",
     "reason": "Reason for block: "
+  },
+  "first-login": {
+    "text": "I have read the general terms & conditions and the data protection terms and accept them.",
+    "button": "Accept"
   },
   "mailNotification": {
     "subjectTitle": "THMcards: Today ",

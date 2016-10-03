@@ -182,5 +182,12 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+	},
+	removeFirstLogin: function() {
+		if (!this.userId || Roles.userIsInRole(this.userId, 'blocked')) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
 	}
 });

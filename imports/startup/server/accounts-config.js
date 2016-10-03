@@ -35,15 +35,17 @@ Meteor.users.after.insert(function (userId, doc) {
 			Roles.addUsersToRoles(doc._id, [
 				'standard',
 				'university',
-				'admin'
+				'admin',
+				'firstLogin'
 			]);
 		} else {
 			Roles.addUsersToRoles(doc._id, [
 				'standard',
-				'university'
+				'university',
+				'firstLogin'
 			]);
 		}
 	} else {
-		Roles.addUsersToRoles(doc._id, ['standard']);
+		Roles.addUsersToRoles(doc._id, ['standard', 'firstLogin']);
 	}
 });

@@ -1,7 +1,22 @@
 <template name="cardsets">
-    {{> cardsetsForm}} {{> sidebarCardsets}}
-    {{#if isActiveRoute 'created'}} {{> created}} {{/if}}
-    {{#if isActiveRoute 'learned'}} {{> learned}} {{/if}}
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
+    {{else}}
+      {{> cardsetsForm}}
+      {{> sidebarCardsets}}
+
+      {{#if isActiveRoute 'created'}}
+        {{> created}}
+      {{/if}}
+
+      {{#if isActiveRoute 'learned'}}
+        {{> learned}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
 </template>
 
 

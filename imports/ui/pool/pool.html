@@ -1,7 +1,15 @@
 <template name="pool">
-    <div id="pool-category-region" class="container">
-        {{> category}}
-    </div>
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
+    {{else}}
+      <div id="pool-category-region" class="container">
+          {{> category}}
+      </div>
+    {{/if}}
+  {{/if}}
 </template>
 
 <template name="category">

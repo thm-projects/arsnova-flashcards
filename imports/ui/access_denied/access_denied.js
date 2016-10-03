@@ -106,3 +106,17 @@ Template.access_denied_nav_admin.events({
 		});
 	}
 });
+
+/**
+ * ############################################################################
+ * access_denied_content_only
+ * ############################################################################
+ */
+
+Template.access_denied_content_only.events({
+	'click #logout_access_denied_blocked': function (event) {
+		event.preventDefault();
+		Meteor.logout();
+		Router.go('home');
+	}
+});

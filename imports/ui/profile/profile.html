@@ -1,82 +1,90 @@
 <template name="profile">
-    <div id='profileSidebar' class="col-md-3">
-        {{> profileSidebar}}
-    </div>
-    {{#if isVisible}}
-        <div class="col-md-9">
-            {{#if isActiveRoute 'profileOverview'}}
-                <div id="profileOverview">{{> profileOverview}}</div>
-            {{/if}}
-
-            {{#if isActiveRoute 'profileBilling'}}
-                <div id="profileBilling">
-                    {{#if isUser}}
-                        {{> profileBilling}}
-                    {{else}}
-                        <h3>{{_ "permission"}}</h3>
-                    {{/if}}
-                </div>
-            {{/if}}
-
-            {{#if isActiveRoute 'profileMembership'}}
-                <div id="profileMembership">
-                    {{#if isUser}}
-                        {{> profileMembership}}
-                    {{else}}
-                        <h3>{{_ "permission"}}</h3>
-                    {{/if}}
-                </div>
-            {{/if}}
-
-            {{#if isActiveRoute 'profileNotifications'}}
-                <div id="profileNotifications">
-                    {{#if isUser}}
-                        {{> profileNotifications}}
-                    {{else}}
-                        <h3>{{_ "permission"}}</h3>
-                    {{/if}}
-                </div>
-            {{/if}}
-
-            {{#if isActiveRoute 'profileSettings'}}
-                <div id="profileSettings">
-                    {{#if isUser}}
-                        {{> profileSettings}}
-                    {{else}}
-                        {{> profilePublic}}
-                    {{/if}}
-                </div>
-            {{/if}}
-
-            {{#if isActiveRoute 'profileRequests'}}
-                <div id="profileRequests">
-                    {{#if isUser}}
-                        {{#if isInRole 'lecturer'}}
-                            {{> profileRequests}}
-                        {{else}}
-                            <h3>{{_ "permission"}}</h3>
-                        {{/if}}
-                    {{else}}
-                        <h3>{{_ "permission"}}</h3>
-                    {{/if}}
-                </div>
-            {{/if}}
-
-        </div>
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
     {{else}}
-        <div class="col-md-9">
-            <div class="row">
-                <div id="profileprivate">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{_ "panel-body.profileprivate"}}</h3>
-                        </div>
-                        <div class="panel-body">{{_ "panel-body.profileprivatetext"}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div id='profileSidebar' class="col-md-3">
+          {{> profileSidebar}}
+      </div>
+      {{#if isVisible}}
+          <div class="col-md-9">
+              {{#if isActiveRoute 'profileOverview'}}
+                  <div id="profileOverview">{{> profileOverview}}</div>
+              {{/if}}
+
+              {{#if isActiveRoute 'profileBilling'}}
+                  <div id="profileBilling">
+                      {{#if isUser}}
+                          {{> profileBilling}}
+                      {{else}}
+                          <h3>{{_ "permission"}}</h3>
+                      {{/if}}
+                  </div>
+              {{/if}}
+
+              {{#if isActiveRoute 'profileMembership'}}
+                  <div id="profileMembership">
+                      {{#if isUser}}
+                          {{> profileMembership}}
+                      {{else}}
+                          <h3>{{_ "permission"}}</h3>
+                      {{/if}}
+                  </div>
+              {{/if}}
+
+              {{#if isActiveRoute 'profileNotifications'}}
+                  <div id="profileNotifications">
+                      {{#if isUser}}
+                          {{> profileNotifications}}
+                      {{else}}
+                          <h3>{{_ "permission"}}</h3>
+                      {{/if}}
+                  </div>
+              {{/if}}
+
+              {{#if isActiveRoute 'profileSettings'}}
+                  <div id="profileSettings">
+                      {{#if isUser}}
+                          {{> profileSettings}}
+                      {{else}}
+                          {{> profilePublic}}
+                      {{/if}}
+                  </div>
+              {{/if}}
+
+              {{#if isActiveRoute 'profileRequests'}}
+                  <div id="profileRequests">
+                      {{#if isUser}}
+                          {{#if isInRole 'lecturer'}}
+                              {{> profileRequests}}
+                          {{else}}
+                              <h3>{{_ "permission"}}</h3>
+                          {{/if}}
+                      {{else}}
+                          <h3>{{_ "permission"}}</h3>
+                      {{/if}}
+                  </div>
+              {{/if}}
+
+          </div>
+      {{else}}
+          <div class="col-md-9">
+              <div class="row">
+                  <div id="profileprivate">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              <h3 class="panel-title">{{_ "panel-body.profileprivate"}}</h3>
+                          </div>
+                          <div class="panel-body">{{_ "panel-body.profileprivatetext"}}</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      {{/if}}
     {{/if}}
+  {{/if}}
 </template>
 
 

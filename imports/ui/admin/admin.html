@@ -1,4 +1,7 @@
 <template name="admin_main">
+  {{#if isInRole 'firstLogin'}}
+    {{>first_login}}
+  {{else}}
     {{#if isInRole 'blocked'}}
         {{> access_denied}}
     {{else}}
@@ -146,4 +149,5 @@
             {{> access_denied}}
         {{/if}}
     {{/if}}
+  {{/if}}
 </template>
