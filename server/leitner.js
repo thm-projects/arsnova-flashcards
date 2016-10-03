@@ -19,7 +19,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset, Meteor.userId(), false);
+			Meteor.call("setCards", cardset, Meteor.userId(), false, true);
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
@@ -77,7 +77,7 @@ Meteor.methods({
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
 	// l-loop: Mark the box of cards that needs to be updated
 	// c-loop: update one random card out of the l loop
-	setCards: function (cardset, user_id, isReset) {
+	setCards: function (cardset, user_id, isReset, isNewUser) {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -126,7 +126,7 @@ Meteor.methods({
 				}
 			}
 
-			if (Meteor.isServer && cardset.mailNotification) {
+			if (!isNewUser && cardset.mailNotification) {
 				var mail = new MailNotifier();
 				if (isReset) {
 					mail.prepareMailReset(cardset, user_id);
@@ -148,7 +148,7 @@ Meteor.methods({
 					currentDate: new Date()
 				}
 			}, {multi: true});
-			Meteor.call("setCards", cardset, user_id, true);
+			Meteor.call("setCards", cardset, user_id, true, false);
 		}
 	},
 	updateLeitnerCards: function () {
@@ -162,7 +162,7 @@ Meteor.methods({
 					for (var k = 0; k < learners.length; k++) {
 						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
 						if (!activeCard) {
-							Meteor.call("setCards", cardsets[i], learners[k].user_id, false);
+							Meteor.call("setCards", cardsets[i], learners[k].user_id, false, false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
 						}
