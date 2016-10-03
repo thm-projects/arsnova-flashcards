@@ -51,7 +51,9 @@
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
     "lecturer": "Dozenten-Anfrage",
     "heading": "Aufgaben warten!",
-    "content": "Im Kartensatz: ",
+    "content": "Kartensatz: ",
+    "deadline": "\nFrist: ",
+    "warning": "\n\nNicht bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
     "admin": "Sie sind ein Admin!"
   },
   "input-group": {

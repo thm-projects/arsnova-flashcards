@@ -50,6 +50,10 @@
     "reporteduseradmin": "Admin notification (Reported user)",
     "reportedcardsetadmin": "Admin notification (Reported cardset)",
     "lecturer": "Lecturer request",
+    "heading": "Tasks are waiting for you!",
+    "content": "Cardset: ",
+    "deadline": "\nDeadline: ",
+    "warning": "\n\nMissing the deadline will reset your learning-progress.",
     "admin": "You're an admin!"
   },
   "input-group": {

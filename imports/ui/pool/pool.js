@@ -64,6 +64,16 @@ function prepareQuery() {
 	}
 }
 
+function deadline(cardset) {
+	var active = Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), active: true});
+	var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
+	if (deadline.getTime() > cardset.learningEnd.getTime()) {
+		return (TAPi18n.__('notifications.deadline') + cardset.learningEnd.toLocaleDateString());
+	} else {
+		return (TAPi18n.__('notifications.deadline') + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning'));
+	}
+}
+
 /**
  * ############################################################################
  * category
@@ -220,7 +230,7 @@ Template.pool.onRendered(function () {
 	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
 	for (var i = 0; i < toLearn.length; ++i) {
 		if (Learned.find({cardset_id: toLearn[i]._id, user_id: Meteor.userId(), active: true}).count() !== 0) {
-			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name);
+			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name + deadline(toLearn[i]));
 		}
 	}
 });
