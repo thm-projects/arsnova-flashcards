@@ -41,6 +41,7 @@ Meteor.methods({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				box: box,
+				active: false,
 				nextDate: {$lte: new Date()}
 			}).count();
 		}
@@ -74,7 +75,8 @@ Meteor.methods({
 	// i-loop: Get all cards that the user can learn right now
 	// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
-	// l-loop: Mark the cards that the user has to learn next
+	// l-loop: Mark the box of cards that needs to be updated
+	// c-loop: update one random card out of the l loop
 	setCards: function (cardset, user_id, isReset) {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
@@ -106,17 +108,22 @@ Meteor.methods({
 			}
 
 			for (var l = 0; l < algorithm.length; l++) {
-				Learned.update({
-					cardset_id: cardset._id,
-					user_id: user_id,
-					box: (l + 1),
-					nextDate: {$lte: new Date()}
-				}, {
-					$set: {
-						active: true,
-						currentDate: new Date()
-					}
-				}, {multi: true, limit: cardset.maxCards * algorithm[l]});
+				var skip = cardCount[l];
+
+				for (var c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
+					Learned.update({
+						cardset_id: cardset._id,
+						user_id: user_id,
+						box: (l + 1),
+						active: false,
+						nextDate: {$lte: new Date()}
+					}, {
+						$set: {
+							active: true,
+							currentDate: new Date()
+						}
+					}, {$skip: Math.random() * (--skip)});
+				}
 			}
 
 			if (Meteor.isServer && cardset.mailNotification) {
@@ -156,7 +163,7 @@ Meteor.methods({
 						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
 						if (!activeCard) {
 							Meteor.call("setCards", cardsets[i], learners[k].user_id, false);
-						} else if ((activeCard.currentDate.getTime() + cardsets[i].daysBeforeReset * 86400000) < new Date().getTime()) {
+						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
 						}
 					}
