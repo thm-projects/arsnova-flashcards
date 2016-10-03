@@ -78,6 +78,16 @@ Meteor.methods({
 			}
 		});
 	},
+	deleteLearned: function (cardset_id) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		Learned.remove({
+			cardset_id: cardset_id,
+			user_id: Meteor.userId()
+		});
+	},
 	updateLearnedMemo: function (learned_id, grade) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {

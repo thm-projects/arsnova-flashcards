@@ -136,6 +136,7 @@
                 <th>
                     <span>{{_ "set-list.licence"}}</span>
                 </th>
+                <th>{{_ "options"}}</th>
             </tr>
             </thead>
             <tbody id="cardSetView">
@@ -152,11 +153,17 @@
                         <td>
                             <span id="info_license">{{getLicense}}</span>
                         </td>
+                        <td>
+                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned"
+                             title='{{_ "confirm-form-learned.title"}}' data-toggle="modal" data-target="#confirmLearnedModal">
+                              <i class="glyphicon glyphicon-ban-circle"></i>
+                          </a>
+                        </td>
                     </tr>
                 {{/each}}
             {{else}}
                 <tr class="empty-list">
-                    <td align="center" height="60" colspan="3" class="emptyCellList set-list-learned-empty">
+                    <td align="center" height="60" colspan="4" class="emptyCellList set-list-learned-empty">
                         <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
                         <br>
                         <br>
@@ -164,6 +171,7 @@
                 </tr>
             {{/if}}
             </tbody>
+            {{> cardsetsConfirmLearnedForm}}
         </table>
     </div>
 </template>
@@ -297,4 +305,30 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="cardsetsConfirmLearnedForm">
+    <div class="modal fade" id="confirmLearnedModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnedModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmLearnedModalTitle" class="modal-title">{{_ "confirm-form-learned.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-form-learned.text"}}</p>
+                    <br/>
+                    <hr/>
+
+                    <button id="learnedDelete" class="btn btn-danger btn-setDelete">{{_
+                            "confirm-form-learned.title"}}</button>
+                    <button id="learnedCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </template>
