@@ -739,5 +739,24 @@
     "text": "You don't have permission to open this page!",
     "button": "Close",
     "reason": "Reason for block: "
+  },
+  "mailNotification": {
+    "subjectTitle": "THMcards: Today ",
+    "subjectSingular1": "is ",
+    "subjectPlural1": "are ",
+    "subjectSingular2": " card ",
+    "subjectPlural2": " cards ",
+    "subjectCardset": "of the cardset ",
+    "subjectEnd": " to learn",
+    "textIntro": "Dear participant of the current THMCards-learning-phase,\n\n",
+    "newCards1": "a new day has begun and ",
+    "newCards2Singular": " card awaits you in the cardset ",
+    "newCards2Plural": " cards await you in the cardset ",
+    "greetings": "\n\nyour THMCards-Team",
+    "subjectEnding": "ends the learning-phase of the cardset ",
+    "textIntroEnding": "Dear participant,\n\n",
+    "textEnding": "Today ends the learning-phase of the cardset ",
+    "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
+    "textReset": "your learning-progress has been reset due to inactivity. "
   }
 }

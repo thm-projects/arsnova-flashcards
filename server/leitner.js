@@ -9,14 +9,17 @@ Meteor.methods({
 	addToLeitner: function (cardset) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
-		} else if (!Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId()}) && cardset.learningEnd.getTime() < new Date().getTime()) {
+		} else if (!Learned.findOne({
+				cardset_id: cardset._id,
+				user_id: Meteor.userId()
+			}) && cardset.learningEnd.getTime() > new Date().getTime()) {
 			var cards = Cards.find({
 				cardset_id: cardset._id
 			});
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset, Meteor.userId());
+			Meteor.call("setCards", cardset, Meteor.userId(), false);
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
@@ -72,7 +75,7 @@ Meteor.methods({
 	// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
 	// l-loop: Mark the cards that the user has to learn next
-	setCards: function (cardset, user_id) {
+	setCards: function (cardset, user_id, isReset) {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -118,7 +121,11 @@ Meteor.methods({
 
 			if (Meteor.isServer && cardset.mailNotification) {
 				var mail = new MailNotifier();
-				mail.prepareMail();
+				if (isReset) {
+					mail.prepareMailReset(cardset, user_id);
+				} else {
+					mail.prepareMail(cardset, user_id);
+				}
 			}
 		}
 	},
@@ -134,7 +141,7 @@ Meteor.methods({
 					currentDate: new Date()
 				}
 			}, {multi: true});
-			Meteor.call("setCards", cardset, user_id);
+			Meteor.call("setCards", cardset, user_id, true);
 		}
 	},
 	updateLeitnerCards: function () {
@@ -148,18 +155,18 @@ Meteor.methods({
 					for (var k = 0; k < learners.length; k++) {
 						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
 						if (!activeCard) {
-							Meteor.call("setCards", cardsets[i], learners[k].user_id);
+							Meteor.call("setCards", cardsets[i], learners[k].user_id, false);
 						} else if ((activeCard.currentDate.getTime() + cardsets[i].daysBeforeReset * 86400000) < new Date().getTime()) {
 							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
 						}
 					}
 				} else {
-					Meteor.call("disableLearning", cardsets[i]);
+					Meteor.call("disableLearning", cardsets[i], learners);
 				}
 			}
 		}
 	},
-	disableLearning: function (cardset) {
+	disableLearning: function (cardset, learners) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -172,7 +179,7 @@ Meteor.methods({
 			}
 			if (cardset.mailNotification) {
 				var mail = new MailNotifier();
-				mail.prepareMailFinished();
+				mail.prepareMailEnded(cardset, learners);
 				Cardsets.update({_id: cardset._id}, {
 					$set: {
 						mailNotification: false

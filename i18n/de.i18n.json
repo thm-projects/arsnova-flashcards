@@ -739,5 +739,24 @@
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: "
+  },
+  "mailNotification": {
+    "subjectTitle": "THMcards: Heute ",
+    "subjectSingular1": "ist ",
+    "subjectPlural1": "sind ",
+    "subjectSingular2": " Karte ",
+    "subjectPlural2": " Karten ",
+    "subjectCardset": "aus dem Kartensatz ",
+    "subjectEnd": " zu lernen",
+    "textIntro": "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\n",
+    "newCards1": "ein neuer Tag hat begonnen und ",
+    "newCards2Singular": " Karte erwartet dich im Kartensatz ",
+    "newCards2Plural": " Karten erwarten dich im Kartensatz ",
+    "greetings": "\n\nIhr THMCards-Team",
+    "subjectEnding": "endet die Lernphase des Kartensatzes ",
+    "textIntroEnding": "Sehr geehrter Teilnehmer,\n\n",
+    "textEnding": "Heute endet die Lernphase des Kartensatzes ",
+    "subjectReset": "THMcards: Ihr Lernfortschritt hat sich zurückgesetzt für den Kartensatz ",
+    "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. "
   }
 }
