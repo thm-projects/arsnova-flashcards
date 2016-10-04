@@ -5,6 +5,7 @@ import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
 import {Ratings} from "./ratings.js";
 
+
 export const Cardsets = new Mongo.Collection("cardsets");
 
 if (Meteor.isServer) {
@@ -233,6 +234,7 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
+			Meteor.call("clearLearningProgress", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -240,10 +242,10 @@ Meteor.methods({
 	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			if (!maxCards) {
-				maxCards = 1;
+				maxCards = 5;
 			}
 			if (!daysBeforeReset) {
-				daysBeforeReset = 1;
+				daysBeforeReset = 7;
 			}
 			if (!learningStart) {
 				learningStart = new Date();
@@ -272,8 +274,8 @@ Meteor.methods({
 					webNotification: webNotification
 				}
 			});
-			Meteor.call("activateLerningPeriod", id);
-			Meteor.call("activateLerningPeriodSetEdu", id);
+			Meteor.call("clearLearningProgress", id);
+			Meteor.call("activateLearningPeriodSetEdu", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -304,7 +306,7 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLerningPeriodSetEdu: function (cartset_id) {
+	activateLearningPeriodSetEdu: function (cartset_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}

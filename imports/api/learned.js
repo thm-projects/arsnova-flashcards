@@ -32,24 +32,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	activateLerningPeriod: function (cartset_id) {
+	clearLearningProgress: function (cardset_id) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Learned.update({
-			cardset_id: cartset_id
-		}, {
-			$set: {
-				box: 1,
-				ef: 2.5,
-				reps: 0,
-				interval: 0,
-				nextDate: new Date(),
-				currentDate: new Date()
-			}
-		}, {
-			multi: true
-		});
+		Learned.remove({cardset_id: cardset_id});
 	},
 	addLearned: function (cardset_id, card_id) {
 		// Make sure the user is logged in
@@ -71,12 +58,13 @@ Meteor.methods({
 				ef: 2.5,
 				reps: 0,
 				interval: 0,
+				active: false,
 				nextDate: new Date(),
 				currentDate: new Date()
 			}
 		});
 	},
-	updateLearned: function (learned_id, box) {
+	updateLearned: function (learned_id, box, nextDate) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
@@ -84,6 +72,8 @@ Meteor.methods({
 		Learned.update(learned_id, {
 			$set: {
 				box: box,
+				active: false,
+				nextDate: nextDate,
 				currentDate: new Date()
 			}
 		});

@@ -264,3 +264,38 @@ img.cardside {
 .dropdown-menu {
   margin-left: 12px;
 }
+
+.btn-learn {
+  font-size: 1.75em;
+}
+
+@media (max-width: 420px) {
+  .btn-learn {
+    font-size: 1.0em;
+  }
+}
+
+.bs-callout {
+  padding: 10px;
+  margin-top: -20px;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 1.1em;
+
+  .h4 {
+    font-size: 1.3em;
+  }
+}
+
+.leitner-header {
+  font-size: 1.5em;
+}
+
+.leitner-text {
+  font-size: 1.1em;
+}
+
+.bs-callout-info {
+  border-left-color: #1b809e;
+}

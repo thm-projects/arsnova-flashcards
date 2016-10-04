@@ -388,6 +388,24 @@ Template.cardsetDetails.onCreated(function () {
 
 
 Template.cardsetDetails.helpers({
+	addToLeitner: function () {
+		Meteor.call("addToLeitner", this);
+	},
+	learningEnded: function () {
+		return (this.learningEnd.getTime() < new Date().getTime());
+	},
+	allLearned: function () {
+		return (Learned.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
+	},
+	Deadline: function () {
+		var active = Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
+		var deadline = new Date(active.currentDate.getTime() + this.daysBeforeReset * 86400000);
+		if (deadline.getTime() > this.learningEnd.getTime()) {
+			return (TAPi18n.__('deadlinePrologue') + this.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
+		} else {
+			return (TAPi18n.__('deadlinePrologue') + deadline.toLocaleDateString() + TAPi18n.__('deadlineEpilogue2'));
+		}
+	},
 	cardsIndex: function (index) {
 		return index + 1;
 	},
@@ -420,6 +438,13 @@ Template.cardsetDetails.helpers({
 			}
 		});
 		return query;
+	},
+	notEmpty: function () {
+		return Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
+		}).count();
 	}
 });
 
@@ -432,6 +457,11 @@ Template.cardsetDetails.events({
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
+	},
+	"click #learnBoxActive": function () {
+		Router.go('box', {
+			_id: this._id
+		});
 	}
 });
 
@@ -690,10 +720,11 @@ Template.cardsetSidebar.events({
 	"click #startStopLearning": function () {
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
 			var now = new Date();
+			var end = new Date();
+			end.setMonth(end.getMonth() + 3);
 			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
 			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-			var threeMonths = now.getFullYear() + "-" + ((now.getMonth() + 4) < 10 ? "0" : "") + (now.getMonth() + 4) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-
+			var threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
 			document.getElementById('inputLearningStart').setAttribute("min", today);
 			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
 			$('#inputLearningStart').val(today);

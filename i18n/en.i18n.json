@@ -50,6 +50,10 @@
     "reporteduseradmin": "Admin notification (Reported user)",
     "reportedcardsetadmin": "Admin notification (Reported cardset)",
     "lecturer": "Lecturer request",
+    "heading": "Tasks are waiting for you!",
+    "content": "Cardset: ",
+    "deadline": "\nDeadline: ",
+    "warning": "\n\nMissing the deadline will reset your learning-progress.",
     "admin": "You're an admin!"
   },
   "input-group": {
@@ -357,7 +361,7 @@
     "private": "Private",
     "license": " Select license",
     "startLearning": "Start Learning-Phase",
-    "stopLearning": "Stop Lerning-Phase"
+    "stopLearning": "Stop Learning-Phase"
   },
   "pool": {
     "relevance": "Relevance",
@@ -472,6 +476,15 @@
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
+  "learnPhaseActiveHeader": "Learning-Phase active",
+  "learnPhaseActiveBody": "Manual learning of leitner and super-memo is deactivated.",
+  "learnPhaseEnded": "The Learning-Phase ended.",
+  "deadlinePrologue": "You've got time until ",
+  "deadlineEpilogue1": " , to learn the currently active cards.",
+  "deadlineEpilogue2": " , to learn the currently active cards, otherwise your entire learning progress will be reset for this cardset.",
+  "learnedEverything": "Congratulations, you've finished all flashcards from this cardset.",
+  "cardsToLearn": "Cards that I've got to learn",
+  "noCardsToLearn": "There are currently no new cards to learn",
   "learn": "Learn",
   "manage": "Manage",
   "learnfile": "Leitner's learning box",
@@ -518,11 +531,14 @@
   "subject4": "Box 4",
   "subject5": "Box 5",
   "subject6": "Learned",
+  "leitnerCard": "Card for current Learning-Phase",
   "backbutton": "Back to the cardset",
   "know": "Known",
   "notknow": "Not known",
   "box_status": "Only one card in the current box",
   "box_status_plural": "Only __count__ cards in the current box",
+  "leitner_status": "Only one card left for the current lesson plan",
+  "leitner_status_plural": "Only __count__ cards left for the current lesson plan",
   "box_export": "Export learning Statistics",
   "box_export_given_name": "Given name",
   "box_export_birth_name": "Birth name",
@@ -727,5 +743,24 @@
     "text": "You don't have permission to open this page!",
     "button": "Close",
     "reason": "Reason for block: "
+  },
+  "mailNotification": {
+    "subjectTitle": "THMcards: Today ",
+    "subjectSingular1": "is ",
+    "subjectPlural1": "are ",
+    "subjectSingular2": " card ",
+    "subjectPlural2": " cards ",
+    "subjectCardset": "of the cardset ",
+    "subjectEnd": " to learn",
+    "textIntro": "Dear participant of the current THMCards-learning-phase,\n\n",
+    "newCards1": "a new day has begun and ",
+    "newCards2Singular": " card awaits you in the cardset ",
+    "newCards2Plural": " cards await you in the cardset ",
+    "greetings": "\n\nyour THMCards-Team",
+    "subjectEnding": "ends the learning-phase of the cardset ",
+    "textIntroEnding": "Dear participant,\n\n",
+    "textEnding": "Today ends the learning-phase of the cardset ",
+    "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
+    "textReset": "your learning-progress has been reset due to inactivity. "
   }
 }

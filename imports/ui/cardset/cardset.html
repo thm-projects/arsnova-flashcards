@@ -144,63 +144,65 @@
 
 <template name="cardsetSidebar">
     <div class="col-md-3">
-        <div id="set-details-sideBar-region">
-            <div class="well well-sm sidebar-nav">
-                <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-                <div class="btn-group btn-group-xs btn-group-justified">
-                    <a id="btnToCardLayout"
-                       class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
-                       href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
-                    <a id="btnToListLayout"
-                       class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"
-                       href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
+        {{#unless learningActive}}
+            <div id="set-details-sideBar-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
+                    <div class="btn-group btn-group-xs btn-group-justified">
+                        <a id="btnToCardLayout"
+                           class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
+                           href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
+                        <a id="btnToListLayout"
+                           class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"
+                           href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="set-details-learn-region">
-            <div class="well well-sm sidebar-nav">
-                <span class="nav-header-cardset">{{_ "learn"}}</span>
-                <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
-                <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "learn"}}</span>
+                    <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
+                    <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
+                </div>
             </div>
-        </div>
+        {{/unless}}
 
-    {{#if isLecturerOrPro}}
-        <div id="set-details-learn-region">
-            <div class="well well-sm sidebar-nav">
-                <span class="nav-header-cardset">{{_ "manage"}}</span>
-                {{#if isOwner}}
-                    {{#if isInRole 'lecturer'}}
-                        <button id="startStopLearning"
-                                class="btn btn-default startStopLearn btn-block {{#if
-                                        learningActive}} btn-warning {{else}} btn-success {{/if}}"
-                                type="button"
-                                data-toggle="modal"
-                                data-target="{{#unless
-                                        learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}"
-                            {{enableIfPublished}}>
-                            {{#if learningActive}}
-                                {{_ "sidebar-nav.stopLearning"}}
-                            {{else}}
-                                {{_ "sidebar-nav.startLearning"}}
-                            {{/if}}
-                        </button>
+        {{#if isLecturerOrPro}}
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "manage"}}</span>
+                    {{#if isOwner}}
+                        {{#if isInRole 'lecturer'}}
+                            <button id="startStopLearning"
+                                    class="btn btn-default startStopLearn btn-block {{#if
+                                            learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="{{#unless
+                                            learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}"
+                                {{enableIfPublished}}>
+                                {{#if learningActive}}
+                                    {{_ "sidebar-nav.stopLearning"}}
+                                {{else}}
+                                    {{_ "sidebar-nav.startLearning"}}
+                                {{/if}}
+                            </button>
+                        {{/if}}
                     {{/if}}
-                {{/if}}
-                {{#if isLecturer}}
-                    <button id="exportCSV" class="btn btn-default btn-block{{#if
-                            learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
-                            "box_export"}}</button>
+                    {{#if isLecturer}}
+                        <button id="exportCSV" class="btn btn-default btn-block{{#if
+                                learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
+                                "box_export"}}</button>
 
-                {{/if}}
-                {{#unless isOwner}}
-                    <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
-                            data-toggle="modal" data-target="#reportModal">{{_
-                            "report"}}</button>
-                {{/unless}}
+                    {{/if}}
+                    {{#unless isOwner}}
+                        <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
+                                data-toggle="modal" data-target="#reportModal">{{_
+                                "report"}}</button>
+                    {{/unless}}
+                </div>
             </div>
-        </div>
 
 
         {{/if}}
@@ -275,67 +277,108 @@
 
 <template name="cardsetDetails">
     <div class="col-md-9" id="set-details-region">
-        <div>
-            {{#if countCards this._id}}
-                <div id="cardCarousel" class="carousel slide" data-interval="false">
-                    <div class="carousel-inner">
-                        {{#each getCardsCheckActive}}
-                            <div class="item {{#if cardActive @index}}active{{/if}}">
-                                <div class="box">
-                                    {{#if isOwner}}
-                                        <a id="editCard" class="btn-editCard btn btn-default btn-xs"
-                                           href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                    {{/if}}
-                                    <div class="cardNumber">
-                                        {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                                    </div>
-                                    <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                    <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                    <img class="cardside cardback-symbol" src="/img/icon_back.png"
-                                         style="display: none;">
-                                    <div class="block">
-                                        {{cardDetailsMarkdown this.front this.back @index}}
-                                        <div class="cardContent centered cardfront detailfront{{@index}}">
-                                            <p>{{front}}</p>
+        {{#unless learningActive}}
+            <div>
+                {{#if countCards this._id}}
+                    <div id="cardCarousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            {{#each getCardsCheckActive}}
+                                <div class="item {{#if cardActive @index}}active{{/if}}">
+                                    <div class="box">
+                                        {{#if isOwner}}
+                                            <a id="editCard" class="btn-editCard btn btn-default btn-xs"
+                                               href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        {{/if}}
+                                        <div class="cardNumber">
+                                            {{cardsIndex @index}}/{{countCards this.cardset_id}}
                                         </div>
-                                        <div class="cardContent centered cardback detailback{{@index}}"
-                                             style="display:none">
-                                            <p>{{back}}</p>
+                                        <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                             style="display: none;">
+                                        <div class="block">
+                                            {{cardDetailsMarkdown this.front this.back @index}}
+                                            <div class="cardContent centered cardfront detailfront{{@index}}">
+                                                <p>{{front}}</p>
+                                            </div>
+                                            <div class="cardContent centered cardback detailback{{@index}}"
+                                                 style="display:none">
+                                                <p>{{back}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {{/each}}
+                            {{/each}}
+                        </div>
+
+                        {{#if cardCountOne this._id}}
+                            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
+                               data-slide="prev">
+                                <span class="icon-prev"></span>
+                            </a>
+                            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
+                               data-slide="next">
+                                <span class="icon-next"></span>
+                            </a>
+                        {{/if}}
                     </div>
 
-                    {{#if cardCountOne this._id}}
-                        <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
-                           data-slide="prev">
-                            <span class="icon-prev"></span>
-                        </a>
-                        <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
-                           data-slide="next">
-                            <span class="icon-next"></span>
-                        </a>
-                    {{/if}}
-                </div>
-
-            {{else}}
-                <div id="cardCarousel" class="carousel slide" data-interval="false">
-                    <div class="carousel-inner">
-                        <div class="empty-item">
-                            <div class="box">
-                                <div class="block">
-                                    <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
+                {{else}}
+                    <div id="cardCarousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="empty-item">
+                                <div class="box">
+                                    <div class="block">
+                                        <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                {{/if}}
+            </div>
+        {{else}}
+            {{addToLeitner}}
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="empty-item">
+                        <div class="box">
+                            <div class="block">
+                                {{#unless learningEnded}}
+                                    <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
+                                        <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
+                                        <p>{{_ "learnPhaseActiveBody"}}</p>
+                                    </div>
+                                    {{#if notEmpty}}
+                                        <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
+                                        <br><br>
+                                        <button id="learnBoxActive"
+                                                class="btn btn-success learn btn-block btn-learn">{{_
+                                                "cardsToLearn"}}</button>
+                                    {{else}}
+                                        {{#if allLearned}}
+                                            <br><br>
+                                            <div class="alert alert-success leitner-text" role="alert">{{_
+                                                    "learnedEverything"}}</div>
+                                        {{else}}
+                                            <br><br>
+                                            <button id="learnBoxDisabled"
+                                                    class="btn btn-warning learn btn-block btn-learn"
+                                                    disabled>{{_ "noCardsToLearn"}}</button>
+                                        {{/if}}
+                                    {{/if}}
+                                {{else}}
+                                    <div class="alert alert-danger leitner-header" role="alert">{{_
+                                            "learnPhaseEnded"}}</div>
+                                {{/unless}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            {{/if}}
-        </div>
+            </div>
+        {{/unless}}
     </div>
 </template>
 
