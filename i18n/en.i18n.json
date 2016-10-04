@@ -1,41 +1,41 @@
 {
+  "admin-interval": {
+    "errorAllFields": "Please fill all fields.",
+    "errorBiggerThan": "Interval 1 must be bigger than interval 2 & 2 must be smaller than 3.",
+    "errorBigger999": "Please choose a number less then 999",
+    "biggerNull": "Please choose a number bigger then 0",
+    "existingCourse": "This entry already exists."
+  },
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
     "impressum": "Legal Notice"
   },
-
   "carousel-inner": {
-  	"carousel-header-0": " Your digital flashcards",
-  	"carousel-paragraph-0": "Create an learn your own digital flashcards.",
-
-  	"carousel-header-1": "THMcards speaks TeX",
-  	"carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
-
-  	"carousel-header-2": "Hello World!",
-  	"carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
-
-  	"carousel-header-3": "Collect badges",
-  	"carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
+    "carousel-header-0": " Your digital flashcards",
+    "carousel-paragraph-0": "Create an learn your own digital flashcards.",
+    "carousel-header-1": "THMcards speaks TeX",
+    "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
+    "carousel-header-2": "Hello World!",
+    "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
+    "carousel-header-3": "Collect badges",
+    "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
-
   "navbar-collapse": {
-  	"carddecks": "My deck of cards",
-  	"pool": "Pool",
-  	"myprofile": "My profile",
-  	"billing": "Billing",
-  	"logout": "Logout",
-  	"search": "Search",
+    "carddecks": "My deck of cards",
+    "pool": "Pool",
+    "myprofile": "My profile",
+    "billing": "Billing",
+    "logout": "Logout",
+    "search": "Search",
     "frontend": "Front end",
     "backend": "Back end"
   },
-
   "footer": {
-  	"impressum": "Legal Notice",
+    "impressum": "Legal Notice",
     "datenschutz": "Data protection",
     "agb": "GTC"
   },
-
   "notifications": {
     "title": "Notifications",
     "clearAll": "Clear all",
@@ -49,14 +49,17 @@
     "reportedcardset": "Reported cardset",
     "reporteduseradmin": "Admin notification (Reported user)",
     "reportedcardsetadmin": "Admin notification (Reported cardset)",
-    "lecturer": "Lecturer request"
+    "lecturer": "Lecturer request",
+    "heading": "Tasks are waiting for you!",
+    "content": "Cardset: ",
+    "deadline": "\nDeadline: ",
+    "warning": "\n\nMissing the deadline will reset your learning-progress.",
+    "admin": "You're an admin!"
   },
-
   "input-group": {
-  	"newcarddeck": "New deck of cards"
+    "newcarddeck": "New deck of cards"
   },
-
-  "upload-form":{
+  "upload-form": {
     "popover-content": "Here you can upload your own cards to the cardset. Currently the formats JSON and CSV (Excel, comma-separated) are supported. Please have a look at these templates:",
     "upload-title": "Import cards",
     "wait": "Uploading files...",
@@ -65,48 +68,83 @@
     "wrong-template": "Wrong file structure",
     "wrong-file": "Wrong file extension"
   },
-
   "confirm-form": {
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
-
+  "confirmLearn-form": {
+    "title": "Start Learning-Phase",
+    "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
+    "confirm": "Start",
+    "cancel": "Cancel",
+    "maxCards": "Daily workload",
+    "maxCardsDesc": "Maximum number of daily learnable cards",
+    "daysBeforeReset": "Overrun",
+    "daysBeforeResetDesc": "Maximum overrun in days",
+    "learningStart": "Start of Learning-Phase",
+    "learningStartDesc": "Today",
+    "learningEnd": "End of Learning-Phase",
+    "learningEndDesc": "In 3 months",
+    "learningInterval": "Learning-Interval in days",
+    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically.",
+    "notification": "Notifications",
+    "mailNotificationRadio": "E-Mail",
+    "webNotificationRadio": "Browser",
+    "mailNotificationCheckbox": "E-Mail",
+    "webNotificationCheckbox": "Browser",
+    "notificationError": "Please choose at least one way of notification!"
+  },
+  "confirmEndLearn-form": {
+    "title": "Stop Learn-Phase",
+    "warnTitle": "You are about to stop the Learn-Phase!",
+    "warning": "If you continue, the Learn-Phase will be stopped. After that, you won't be able to get any results anymore! Do you really wish to continue?",
+    "cancel": "Abort",
+    "confirm": "Continue"
+  },
   "nav-list": {
-  	"category": "Category",
-  	"created": "Created",
-  	"learned": "Learned"
+    "category": "Category",
+    "created": "Created",
+    "learned": "Learned"
   },
-
   "set-list": {
-  	"name": "Name",
-  	"category": "Category",
-  	"description": "Description"
+    "name": "Name",
+    "category": "Category",
+    "description": "Description",
+    "module": "Module",
+    "licence": "Licence",
+    "topic": "Topic",
+    "availability": "Availability",
+    "college": "College",
+    "course": "Course",
+    "author": "Author",
+    "title": "Following decks of cards are available:",
+    "everyone": "Everyone",
+    "everything": "Everything",
+    "reset": "Reset all filters"
   },
-
   "set-list-empty": {
-  	"emptytextlist": "You have not created any deck of cards yet",
-  	"newset": "Create a deck of cards"
+    "emptytextlist": "You have not created any deck of cards yet",
+    "emptypooltextlist": "There aren't any decks of cards yet",
+    "newset": "Create a deck of cards"
   },
-
   "set-list-learned-empty": {
-  	"emptytextlist": "You have not learned any deck of cards yet"
+    "emptytextlist": "You have not learned any deck of cards yet"
   },
-
   "modal-dialog": {
-  	"newcarddeck": "Create a new deck of cards",
+    "newcarddeck": "Create a new deck of cards",
     "editcard": "Edit deck of cards",
-  	"name": "Name",
-  	"nameplaceholder": "Name",
-  	"descriptionplaceholder": "Description",
-  	"categoryplaceholder": "Choose a category",
-  	"description": "Description",
-  	"category": "Category",
-  	"visibility": "Visible for",
-  	"visibilityoption1": "Private",
-  	"visibilityoption2": "Public",
-  	"rating": "Ratings",
-  	"ratingoption1": "allow",
-  	"ratingoption2": "disable",
+    "name": "Title",
+    "nameplaceholder": "Title of the cardset",
+    "descriptionplaceholder": "Description for the content of this cardset",
+    "categoryplaceholder": "Choose a category",
+    "description": "Description",
+    "category": "Category",
+    "visibility": "Visible for",
+    "visibilityoption1": "Private",
+    "visibilityoption2": "Public",
+    "rating": "Ratings",
+    "ratingoption1": "allow",
+    "ratingoption2": "disable",
     "kind": "Kind",
     "cancel": "Cancel",
     "createcarddeck": "Create a deck of cards",
@@ -114,10 +152,10 @@
     "confirm": "Sure?",
     "save": "Save deck of cards",
     "name_required": "The name field is required!",
-    "description_required": "The decription field is required!",
+    "description_required": "The description field is required!",
     "category_required": "The category field is required!",
     "price": "Retail price",
-    "publicate": "Save state",
+    "publish": "Save state",
     "modules": "Types of licenses",
     "by-desc": "Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits (attribution) in the manner specified by these.",
     "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
@@ -134,15 +172,27 @@
     "date": "Date",
     "text": "Further information",
     "text_chars": "At least 50 chars required!",
-    "submitcomplaint": "Submit complaint"
+    "submitcomplaint": "Submit complaint",
+    "college": "College",
+    "college_required": "Choose a college",
+    "course": "Course",
+    "course_required": "Choose a course",
+    "module": "Module",
+    "module_required": "The full name of the module is required!",
+    "moduleShort": "Initials",
+    "moduleShort_required": "The short name of the module is required!",
+    "moduleNum": "ID",
+    "moduleNum_required": "The module number is required!",
+    "moduleplaceholder": "Full name of the module",
+    "moduleShortplaceholder": "Short module name",
+    "moduleNumplaceholder": "Number of the module"
   },
-
   "profile": {
     "overview": "Learning Progress",
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
-    "settings": "Settings",
+    "settings": "Profile",
     "requests": "Pro approval",
     "norequests": "No requests",
     "lecturer": "Lecturer approval",
@@ -154,15 +204,12 @@
     "canceled": "Amendments rejected!",
     "error": "Incorrect entries!"
   },
-
   "profil-header": {
-  	"name": "Profile of "
+    "name": "Profile of "
   },
-
   "panel-heading": {
-  	"hallo": "Settings"
+    "hallo": "Profile"
   },
-
   "membership": {
     "upgrade": {
       "progress": "In progress!",
@@ -174,7 +221,6 @@
       "canceled": "Subscription successfully canceled!"
     }
   },
-
   "billing": {
     "plan": {
       "header": "Plan",
@@ -201,7 +247,7 @@
       "actual": "Your payment methods:",
       "add": "Add or choose payment methods:"
     },
-    "balance": {
+    "balance": {
       "header": "Account balance",
       "disburse": "payout",
       "progress": "Disbursement processing",
@@ -222,45 +268,62 @@
       "at": "at"
     }
   },
-
   "panel-body": {
-  	"name": "User name",
-  	"login": "Registered via",
-  	"email": "Email",
-  	"profilepublic": "Public profile",
-  	"profilepublicoption1": "Yes",
-  	"profilepublicoption2": "No",
+    "name": "User name",
+    "title": "Title",
+    "title-desc": "Academic title (public)",
+    "birthname": "Birth name",
+    "birthname-desc": "Birth name (public)",
+    "givenname": "Given name",
+    "givenname-desc": "Given name (public)",
+    "login": "Registered via",
+    "email": "E-Mail",
+    "email-desc": "E-Mail-Address",
+    "emailValidation": "E-Mail confirmation",
+    "emailValidation-desc": "Please confirm your E-Mail-Address",
+    "emailValidationError": "E-Mail-Addresses don't match",
+    "profilepublic": "Public profile",
+    "profilepublicoption1": "Yes",
+    "profilepublicoption2": "No",
     "profileprivate": "Private profile",
     "profileprivatetext": "This profile is private and can not be seen by other user.",
     "emailInvalid": "Enter a valid e-mail address",
     "nameToShort": "Username must consist more than 4 letters!",
     "nameToLong": "Username must consist less than 26 letters!",
-    "nameAlreadyExists": "Username is already taken!"
+    "nameAlreadyExists": "Username is already taken!",
+    "birthnameEmpty": "Birth name required!",
+    "givennameEmpty": "Given name required!"
   },
-
   "panel-heading-experience": {
-      "experience": "Experience Points (XP)"
-    },
-
+    "experience": "Experience Points (XP)",
+    "interval": "Set the learning period",
+    "preview": "Preview"
+  },
   "panel-body-experience": {
+    "interval1": "Interval 1",
+    "interval2": "Interval 2",
+    "interval3": "Interval 3",
     "total": "Total",
     "today": "Today",
     "yesterday": "Yesterday",
-    "days": "7 days",
+    "twoDaysAgo": "Two days ago",
+    "day": "day",
+    "day_plural": "days",
+    "reset": "Reset",
+    "default1": "default 7",
+    "default2": "default 30",
+    "default3": "default 90",
     "lastredeem": "At last for: "
   },
-
   "panel-body-last": {
     "login": "Login",
     "cardset": "Create cardset",
     "card": "Create card",
     "rating": "Rated cardset"
   },
-
   "panel-heading-badges": {
     "badges": "Badges"
   },
-
   "panel-body-badges": {
     "text1": "You have the possibility to synchronize your collected badges with the Mozilla Badge Backpack.",
     "text2": "To add the badges to the ",
@@ -268,25 +331,21 @@
     "text4": ", click the following button:",
     "button": "Synchronize now"
   },
-
   "panel-heading-meteor": {
     "meteor": "Meteor statistics"
   },
-
   "panel-body-meteor": {
     "points": "Total score",
     "played": "Played",
     "games": "Games",
     "game": "Game"
   },
-
   "table-meteor": {
     "carddeck": "Deck of cards",
     "yourhighscore": "Your highscore",
     "position": "Pos.",
     "highscore": "Highscore"
   },
-
   "sidebar-nav": {
     "created": "Created by",
     "at": "on",
@@ -296,13 +355,15 @@
     "createcard": "Create a new card",
     "importcard": "Import cards",
     "exportcard": "Export cards",
-    "publicate": "Status",
-    "publicated": "Publicated",
+    "publish": "Status",
+    "tooltip": "Create at least 5 Cards in this set and complete your profile before publishing this set. Pro Cardsets can't be demoted!",
+    "published": "Published",
     "review": "In review",
     "private": "Private",
-    "license": " Select license"
+    "license": " Select license",
+    "startLearning": "Start Learning-Phase",
+    "stopLearning": "Stop Learning-Phase"
   },
-
   "pool": {
     "relevance": "Relevance",
     "name": "Name",
@@ -312,9 +373,9 @@
     "release": "Published",
     "deleted": "Deleted",
     "license": "License",
-    "dateUpdated": "Last updated"
+    "dateUpdated": "Last updated",
+    "activeLearners": "Active learners"
   },
-
   "cardset": {
     "info": {
       "author": "Author",
@@ -326,7 +387,13 @@
       "bought": "Bought on",
       "deleted": "Deleted",
       "license": "License",
-      "dateUpdated": "Last updated"
+      "dateUpdated": "Last updated",
+      "module": "Module longname",
+      "moduleShort": "Module shortname",
+      "moduleNum": "Module number",
+      "undefinedAuthor": "Please complete your profile",
+      "college": "College",
+      "course": "Course"
     },
     "request": {
       "accept": "Release cardset",
@@ -341,7 +408,6 @@
       "bought": "Thank you for your payment!"
     }
   },
-
   "cardmemo": {
     "showanswer": "Show answer",
     "rateanswer": "Rate your answer",
@@ -353,17 +419,14 @@
     "rate5": "Perfect answer",
     "memotext": "Compare the answer above with the one out of your memory and rate it with the scale. The next point of revision of your flashcard is based on the rating."
   },
-
-   "memo-endscreen": {
+  "memo-endscreen": {
     "text": "Learning unit done successfully",
     "back": "Back to deck of cards"
   },
-
   "memo-empty": {
     "text": "After lesson plan there are no flashcards to learn at the moment",
     "back": "Back to deck of cards"
   },
-
   "meteorgame": {
     "description": "Destroy the meteorites before they reach the earth! Each meteorite is labelled with one page of one of your learn card - destroy it with the correct answer on the back!",
     "warning": "Attention! Meteor works best with flashcards, which contain short keywords and concised sentences.",
@@ -377,7 +440,6 @@
     "insertanswer": "Enter correct answer",
     "answer3": "Solve"
   },
-
   "meteorgame-gameover": {
     "gameover": "Game Over",
     "text1": "You reached ",
@@ -389,120 +451,127 @@
     "back": "Back",
     "newgame": "New Game"
   },
-
   "rating-field": {
     "title": " rate",
     "stars": "Stars",
     "rating": "Rating",
     "minchars": "At least 60 chars",
     "chars": "Chars",
-    "minchars": "At least 60 chars",
     "cancel": "Cancel",
     "edit": "Rate deck of cards"
   },
-
-   "rating-table": {
+  "rating-table": {
     "name": "Name",
     "rating": "Rating",
     "comment": "Comment"
   },
-
   "learn-endscreen": {
     "success": "Learn unit done successfully.",
     "back": "Choose another box or go back to deck of cards.",
     "back2": "Back to deck of cards"
   },
-
   "carddeck-table": {
     "name": "Name",
     "category": "Category",
     "description": "Rating"
   },
-
-  "permission":"Permission denied",
-  "nocards":"No cards available",
-  "learn":"Learn",
-  "learnfile":"Leitner's learning box",
-  "memo":"Memo",
+  "permission": "Permission denied",
+  "nocards": "No cards available",
+  "learnPhaseActiveHeader": "Learning-Phase active",
+  "learnPhaseActiveBody": "Manual learning of leitner and super-memo is deactivated.",
+  "learnPhaseEnded": "The Learning-Phase ended.",
+  "deadlinePrologue": "You've got time until ",
+  "deadlineEpilogue1": " , to learn the currently active cards.",
+  "deadlineEpilogue2": " , to learn the currently active cards, otherwise your entire learning progress will be reset for this cardset.",
+  "learnedEverything": "Congratulations, you've finished all flashcards from this cardset.",
+  "cardsToLearn": "Cards that I've got to learn",
+  "noCardsToLearn": "There are currently no new cards to learn",
+  "learn": "Learn",
+  "manage": "Manage",
+  "learnfile": "Leitner's learning box",
+  "memo": "Memo",
+  "statistics": "Deck statistics",
   "report": "Report cardset/user",
-  "meteor":"Meteor",
-  "play":"Play",
+  "meteor": "Meteor",
+  "play": "Play",
   "yourhighscore": "Your highscore:",
-  "points":"Points",
-
-  "frontside":"Front",
-  "backside":"Back",
-  "options":"Options",
-  "fronttext_required":"The front field is required!",
-  "backtext_required":"The back field is required!",
+  "points": "Points",
+  "frontside": "Front",
+  "backside": "Back",
+  "options": "Options",
+  "fronttext_required": "The front field is required!",
+  "backtext_required": "The back field is required!",
   "text_max": "No more than 10000 characters allowed!",
-
-
-  "newcard":"New card",
-  "editcard":"Edit card",
-  "showpicture":"Show image",
-  "linkorsearchitem":"Enter link or search item",
+  "newcard": "New card",
+  "editcard": "Edit card",
+  "showpicture": "Show image",
+  "linkorsearchitem": "Enter link or search item",
   "searchpicture": "Image search",
-  "declinecard":"Cancel",
-  "deletecard":"Delete card",
-  "confirmcard":"Sure?",
-  "savecard":"Save card",
-  "insertpicture":"Add image",
+  "declinecard": "Cancel",
+  "deletecard": "Delete card",
+  "confirmcard": "Sure?",
+  "savecard": "Save card",
+  "insertpicture": "Add image",
   "insertpicture2": "Add image",
-
   "pointslvl1": "",
   "pointslvl2": "points",
   "pointslvl3": " to the next level",
-
   "meteortext": "You have not played a game yet",
-
   "valuation": "Rating",
   "valuation2": "Stars",
   "valuationtext": "by",
   "valuationtext2": "ratings",
-
   "norating": "No ratings available",
   "createdof": "Created of",
   "backcarddecks": "Back to deck of cards",
   "createdof2": "Created of",
-
+  "subject": "Box",
   "subject1": "Box 1",
   "subject2": "Box 2",
   "subject3": "Box 3",
   "subject4": "Box 4",
   "subject5": "Box 5",
-
+  "subject6": "Learned",
+  "leitnerCard": "Card for current Learning-Phase",
+  "backbutton": "Back to the cardset",
   "know": "Known",
   "notknow": "Not known",
-
   "box_status": "Only one card in the current box",
   "box_status_plural": "Only __count__ cards in the current box",
-
+  "leitner_status": "Only one card left for the current lesson plan",
+  "leitner_status_plural": "Only __count__ cards left for the current lesson plan",
+  "box_export": "Export learning Statistics",
+  "box_export_given_name": "Given name",
+  "box_export_birth_name": "Birth name",
+  "box_export_statistics": "Statistics",
+  "box_export_mail": "E-Mail",
   "clickcart": "Click on the card to turn it",
   "choosesubject": "Choose a box on the left side",
-
   "carddecks": "Deck of cards",
-
   "gold": "Gold",
   "silver": "Silver",
   "bronze": "Bronze",
-
   "newbadge": "New Badge",
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
   "badgetext3": "",
-
   "admin": {
+    "allLearnedCardsets": "All learned cardsets",
+    "learnedCardsets": "Learning progress of the cardset",
     "dashboard": "Dashboard",
     "cardsets": "Cardsets",
     "cards": "Cards",
     "users": "Users",
+    "interval": "Learning period",
     "notifications": "Notifications",
+    "settings": "Settings",
+    "manage": "Manage college and course",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
     "front": "Front",
     "back": "Back",
+    "manageS": "College manager",
     "admin": "Admin",
     "pro": "Pro",
     "university": "Edu",
@@ -537,7 +606,11 @@
     "request": "Request",
     "deleteallnotifications": "Delete all notifications",
     "optionNotPossible": "Not possible (User deleted)",
-
+    "reportedUser": "Reported User",
+    "reportedCardSet": "Reported Cardset",
+    "adminNotificationComplaintUser": "Admin-Notification (Complaint User)",
+    "adminNotificationComplaintCardSet": "Admin-Notification (Complaint Cardset)",
+    "lecturerRequest": "Lecturer Request",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
@@ -556,12 +629,20 @@
         "text": "Do you really want to delete this notification?",
         "title_all": "Delete all notifications",
         "text_all": "Do you really want to delete all notifications?",
-        "delete_all": "Delete notifications"
+        "delete_all": "Delete notifications",
+        "heading": "Tasks are waiting!",
+        "content": "In cardset: "
       },
-
+      "settings": {
+        "new_entry": "New Entry",
+        "college": "University",
+        "course_of_studies": "Course",
+        "required": "Required",
+        "create": "Create",
+        "save": "Save"
+      },
       "cancel": "Cancel"
     },
-
     "message": {
       "messageUser": "Message User",
       "reason": "Reason",
@@ -575,7 +656,6 @@
       "text_chars": "At least 50 chars required!",
       "to": "To"
     },
-
     "lecturerrequest": {
       "title": "Lecturer request",
       "no": "Deny request",
@@ -583,7 +663,6 @@
       "text": "Request processed",
       "cancel": "Cancel"
     },
-
     "cardset": {
       "header": "Cardset",
       "edit": "Edit",
@@ -593,7 +672,7 @@
       "settings": "Cardset settings",
       "name": "Name",
       "description": "Description",
-    	"category": "Category",
+      "category": "Category",
       "kind": "Kind",
       "price": "Retail price",
       "cancel": "Cancel",
@@ -607,7 +686,6 @@
       "wrongCombination": "This combination is not allowed!",
       "noCards": "You have to create at least 5 cards to publish this cardset!"
     },
-
     "card": {
       "header": "Card",
       "edit": "Edit",
@@ -621,16 +699,18 @@
       "save": "Save card",
       "delete": "Delete card",
       "confirm": "Sure?",
-      "front_required":"The front field is required!",
-      "backt_required":"The back field is required!",
+      "front_required": "The front field is required!",
+      "backt_required": "The back field is required!",
       "text_max": "No more than 10000 characters allowed!"
     },
-
     "user": {
       "header": "User",
       "edit": "Edit",
       "info": "User info",
       "username": "Name:",
+      "title": "Academic title (public):",
+      "birthname": "Birth name (public):",
+      "givenname": "Given name (public):",
       "service": "Service:",
       "date": "Joined:",
       "lvl": "Level:",
@@ -659,11 +739,29 @@
       "visible_invalid": "Profile must be public!"
     }
   },
-
   "access-denied": {
     "title": "Access Denied",
     "text": "You don't have permission to open this page!",
     "button": "Close",
     "reason": "Reason for block: "
+  },
+  "mailNotification": {
+    "subjectTitle": "THMcards: Today ",
+    "subjectSingular1": "is ",
+    "subjectPlural1": "are ",
+    "subjectSingular2": " card ",
+    "subjectPlural2": " cards ",
+    "subjectCardset": "of the cardset ",
+    "subjectEnd": " to learn",
+    "textIntro": "Dear participant of the current THMCards-learning-phase,\n\n",
+    "newCards1": "a new day has begun and ",
+    "newCards2Singular": " card awaits you in the cardset ",
+    "newCards2Plural": " cards await you in the cardset ",
+    "greetings": "\n\nyour THMCards-Team",
+    "subjectEnding": "ends the learning-phase of the cardset ",
+    "textIntroEnding": "Dear participant,\n\n",
+    "textEnding": "Today ends the learning-phase of the cardset ",
+    "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
+    "textReset": "your learning-progress has been reset due to inactivity. "
   }
 }

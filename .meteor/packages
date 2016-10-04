@@ -11,6 +11,7 @@ blaze-html-templates    # Compile .html files into Meteor Blaze views
 reactive-var            # Reactive variable for tracker
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
+session
 
 standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
@@ -49,3 +50,7 @@ alanning:roles
 matb33:collection-hooks
 aslagle:reactive-table
 patrickml:braintree
+email
+percolate:synced-cron
+chart:chart
+jshint

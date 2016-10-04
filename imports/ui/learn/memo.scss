@@ -2,33 +2,36 @@
 $color_storm_dust_approx: rgb(102, 102, 102);
 
 .memo-site {
-	color: $color_storm_dust_approx;
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	font-style: italic;
-	img.cardside {
-		position: relative;
-		right: 5px;
-		top: 0;
-	}
+  color: $color_storm_dust_approx;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-style: italic;
+  img.cardside {
+    position: relative;
+    right: 5px;
+    top: 0;
+  }
 }
+
 .memocontent-block {
-	span {
-		display: inline-block;
-		vertical-align: middle;
-		font-size: 1.2em;
-	}
-	img {
-		max-width: 370px;
-	}
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.2em;
+  }
+  img {
+    max-width: 370px;
+  }
 }
+
 #memoPictureModal .modal-header {
-	min-height: 50px;
+  min-height: 50px;
 }
+
 #setdetails-memoPictureModal-body img {
-	max-width: 100%;
-	width: auto;
-	margin: auto;
-	display: block;
+  max-width: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
 }

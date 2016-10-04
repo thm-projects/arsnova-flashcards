@@ -17,211 +17,285 @@ $font_4: Arial;
 $font_5: sans-serif;
 
 .cardsetInfo {
-	h3 {
-			margin-top: 0;
-	}
-	.well {
-			margin-bottom: 0;
-	}
-	.left {
-			float: left;
-	}
-	#ratingLocked {
-			margin-top: 2px;
-			margin-left: 6px;
-			left: 6px;
-	}
+  h3 {
+    margin-top: 0;
+  }
+  .well {
+    margin-bottom: 0;
+  }
+  .left {
+    float: left;
+  }
+  #ratingLocked {
+    margin-top: 2px;
+    margin-left: 6px;
+    left: 6px;
+  }
 }
 
 //@extend-elements
 //original selectors
 //.carousel-control.left, .carousel-control.right
 %extend_1 {
-	background-image: none;
-	height: 320px;
-	margin-top: 40px;
-	margin-bottom: 40px;
+  background-image: none;
+  height: 320px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
-
 
 .carousel-inner {
-	min-height: 278px;
+  min-height: 278px;
 }
+
 .box {
-	border: 1px solid $color_alto_approx;
-	font-family: $font_0, $font_1;
-	min-height: 400px;
-	padding: 50px;
-	margin: 0 auto;
-	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-	border-radius: 4px;
-	background-color: $white;
-	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-	box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
+  border: 1px solid $color_alto_approx;
+  font-family: $font_0, $font_1;
+  min-height: 400px;
+  padding: 50px;
+  margin: 0 auto;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 4px;
+  background-color: $white;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
 }
+
 .btn-editCard {
-	position: absolute;
-	left: 12px;
-	top: 11px;
+  position: absolute;
+  left: 12px;
+  top: 11px;
 }
+
 .btn-showPictureDetails {
-	position: absolute;
-	left: 45px;
-	top: 11px;
-	font-family: $font_2, $font_3, $font_4, $font_5;
+  position: absolute;
+  left: 45px;
+  top: 11px;
+  font-family: $font_2, $font_3, $font_4, $font_5;
 }
+
 .clicktoflip {
-	color: $color_storm_dust_approx;
-	position: absolute;
-	right: 10px;
-	top: 13px;
-	font-style: italic;
+  color: $color_storm_dust_approx;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  font-style: italic;
 }
+
 .block {
-	height: 100%;
-	&:before {
-		content: "";
-		display: inline-block;
-		height: 100%;
-		vertical-align: middle;
-		margin-right: -0.25em;
-	}
-	pre {
-		text-align: left;
-	}
+  height: 100%;
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+  }
+  pre {
+    text-align: left;
+  }
 }
+
 .centered {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 1.2em;
-	img {
-		max-width: 370px;
-	}
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.2em;
+  img {
+    max-width: 370px;
+  }
 }
+
 .carousel-control {
-	color: $black;
-	width: 7%;
-	z-index: 5;
-	&.left {
-		@extend %extend_1;
-	}
-	&.right {
-		@extend %extend_1;
-	}
+  color: $black;
+  width: 7%;
+  z-index: 5;
+  &.left {
+    @extend %extend_1;
+  }
+  &.right {
+    @extend %extend_1;
+  }
 }
+
 .cardNumber {
-	color: $color_mountain_mist_approx;
-	font-family: $font_2, $font_3, $font_4, $font_5;
-	font-size: 85%;
-	position: absolute;
-	left: 50%;
-	top: 14px;
-	margin-left: -16px;
+  color: $color_mountain_mist_approx;
+  font-family: $font_2, $font_3, $font_4, $font_5;
+  font-size: 85%;
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  margin-left: -16px;
 }
+
 .meteorBox {
-	line-height: 32px;
-	font-family: $font_0, $font_1;
-	margin: 12px 0;
-	display: inline-table;
-	width: 100%;
+  line-height: 32px;
+  font-family: $font_0, $font_1;
+  margin: 12px 0;
+  display: inline-table;
+  width: 100%;
 }
+
 #editSetDescription {
-	resize: none;
+  resize: none;
 }
+
 .nav-header-cardset {
-	display: block;
-	padding-left: 0;
-	margin-bottom: 3px;
-	font-size: 11px;
-	font-weight: bold;
-	line-height: 20px;
-	color: $color_mountain_mist_approx;
-	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-	text-shadow: 0 1px 0 $white_50;
-	text-transform: uppercase;
+  display: block;
+  padding-left: 0;
+  margin-bottom: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: $color_mountain_mist_approx;
+  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  text-shadow: 0 1px 0 $white_50;
+  text-transform: uppercase;
 }
+
 .ratingStars {
-	margin-left: -33px;
-	padding-left: 50%;
+  margin-left: -33px;
+  padding-left: 50%;
 }
+
 .ratingText {
-	display: inline-block;
-	font-size: 11px;
-	text-align: center;
-	width: 100%;
+  display: inline-block;
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
 }
+
 .button-group-content {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
+
 .btn-editCardset {
-	float: left;
-	margin-right: 7px;
+  float: left;
+  margin-right: 7px;
 }
+
 .btn-file {
-	position: relative;
-	overflow: hidden;
-	input[type=file] {
-		position: absolute;
-		top: 0;
-		right: 0;
-		min-width: 100%;
-		min-height: 100%;
-		font-size: 100px;
-		text-align: right;
-		filter: alpha(opacity=0);
-		opacity: 0;
-		outline: none;
-		background: $white;
-		cursor: inherit;
-		display: block;
-	}
+  position: relative;
+  overflow: hidden;
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: $white;
+    cursor: inherit;
+    display: block;
+  }
 }
+
 img.cardside {
-	position: absolute;
-	right: 88px;
-	top: 13px;
+  position: absolute;
+  right: 88px;
+  top: 13px;
 }
+
 #pictureModal .modal-header {
-	min-height: 50px;
+  min-height: 50px;
 }
+
 #setdetails-pictureModal-body img {
-	max-width: 100%;
-	width: auto;
-	margin: auto;
-	display: block;
+  max-width: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
 }
+
 #ratingLocked .stars {
-	cursor: auto;
+  cursor: auto;
 }
+
 #importModal hr {
-	margin: 20px 0;
+  margin: 20px 0;
 }
+
 #set-details-region {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
+
 #selectLicenseModal {
-	#cc-modules img {
-		width: 30px;
-	}
-	#cc-description {
-		padding-top: 10px;
-		img {
-			width: 58px;
-		}
-		p {
-			padding-bottom: 10px;
-		}
-	}
+  #cc-modules img {
+    width: 30px;
+  }
+  #cc-description {
+    padding-top: 10px;
+    img {
+      width: 58px;
+    }
+    p {
+      padding-bottom: 10px;
+    }
+  }
 }
+
 #info_license img {
-	width: 20px;
+  width: 20px;
 }
+
 #reportModal {
-	p {
-		padding-top: 7px;
-		margin: 0;
-	}
-	.input-group {
-		padding-left: 15px;
-	}
+  p {
+    padding-top: 7px;
+    margin: 0;
+  }
+  .input-group {
+    padding-left: 15px;
+  }
+}
+
+#module {
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+}
+
+.longButton {
+  text-align: left;
+  width: calc(100% - 25px);
+  margin-bottom: 7px;
+}
+
+.dropdown-menu {
+  margin-left: 12px;
+}
+
+.btn-learn {
+  font-size: 1.75em;
+}
+
+@media (max-width: 420px) {
+  .btn-learn {
+    font-size: 1.0em;
+  }
+}
+
+.bs-callout {
+  padding: 10px;
+  margin-top: -20px;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  font-size: 1.1em;
+
+  .h4 {
+    font-size: 1.3em;
+  }
+}
+
+.leitner-header {
+  font-size: 1.5em;
+}
+
+.leitner-text {
+  font-size: 1.1em;
+}
+
+.bs-callout-info {
+  border-left-color: #1b809e;
 }

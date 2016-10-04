@@ -1,613 +1,976 @@
-<template name="cardset">
-  {{#if hasPermission}}
-    {{> cardsetInfo}}
+<template name="cardset" xmlns="http://www.w3.org/1999/html">
+    {{#if hasPermission}}
+        {{> cardsetInfo}}
 
-    {{> cardsetForm}}
-    {{> cardsetImportForm}}
-    {{> cardsetPublicateForm}}
-    {{> selectLicenseForm}}
-    {{> reportCardsetForm}}
-    {{onEditmodalClose this._id}}
+        {{> cardsetForm}}
+        {{> cardsetImportForm}}
+        {{> cardsetPublishForm}}
+        {{> cardsetStartLearnForm}}
+        {{> cardsetEndLearnForm}}
+        {{> selectLicenseForm}}
+        {{> reportCardsetForm}}
+        {{onEditmodalClose this._id}}
 
-    {{#if hasCardsetPermission}}
-      {{#if isLecturerAndHasRequest}}
-          <div class="col-md-12">
-            <div class="panel panel-default cardsetInfo">
-                <div class="panel-body">
-                    <div class="input-group has-error">
-                      <span class="input-group-btn">
-                        <button id="acceptRequest" class="btn btn-success" type="button">{{_ "cardset.request.accept"}}</button>
-                        <button id="declineRequest" class="btn btn-danger" type="button">{{_ "cardset.request.decline"}}</button>
-                      </span>
-                      <input id="declineRequestReason" type="text" class="form-control" placeholder="Begründung">
+        {{#if hasCardsetPermission}}
+            {{#if isLecturerAndHasRequest}}
+                <div class="col-md-12">
+                    <div class="panel panel-default cardsetInfo">
+                        <div class="panel-body">
+                            <div class="input-group has-error">
+											<span class="input-group-btn">
+											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
+                                                      "cardset.request.accept"}}</button>
+											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
+                                                      "cardset.request.decline"}}</button>
+											</span>
+                                <input id="declineRequestReason" type="text" class="form-control"
+                                       placeholder="Begründung">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-          </div>
-      {{/if}}
-      {{> cardsetSidebar}}
-      {{#if isActiveRoute 'cardsetdetailsid'}}
-        {{> cardsetDetails}}
-      {{/if}}
-      {{#if isActiveRoute 'cardsetlistid'}}
-        {{> cardsetList}}
-      {{/if}}
+            {{/if}}
+            {{> cardsetSidebar}}
+            {{#if isActiveRoute 'cardsetdetailsid'}}
+                {{> cardsetDetails}}
+            {{/if}}
+            {{#if isActiveRoute 'cardsetlistid'}}
+                {{> cardsetList}}
+            {{/if}}
+        {{else}}
+            {{> cardsetPreview}}
+        {{/if}}
     {{else}}
-      {{> cardsetPreview}}
+        <div class="col-md-12">
+            <h4>{{_ "permission"}}</h4>
+        </div>
     {{/if}}
-  {{else}}
-    <div class="col-md-12">
-      <h4>{{_ "permission"}}</h4>
-    </div>
-  {{/if}}
 </template>
 
 
 <template name="cardsetInfo">
-  <div class="col-md-12">
-      <div class="panel panel-default cardsetInfo">
-          <div class="panel-body">
-              <div class="col-sm-8">
-                  <div class="">
-                      <h4>{{{getKind}}} {{name}}</h4>
-                      <hr> {{description}}
-                  </div>
-              </div>
-              <div class="col-sm-4">
-                  <div class="well">
-                      {{#if ratingEnabled}}
-                        <strong class="left">{{_ "cardset.info.rating"}}:</strong>
-                        {{#if hasRated}}
-                          {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                        {{else}}
-                          {{> starsRating id='rating' rating=0 mutable=true}}
+    <div class="col-md-12">
+        <div class="panel panel-default cardsetInfo">
+            <div class="panel-body">
+                <div class="col-sm-8">
+                    <div class="">
+                        <h4>{{{getKind}}} {{name}}</h4>
+                        <hr> {{description}}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="well">
+                        {{#if ratingEnabled}}
+                            <strong class="left">{{_ "cardset.info.rating"}}:</strong>
+                            {{#if hasRated}}
+                                {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
+                            {{else}}
+                                {{#if isOwner}}
+                                    {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                                {{else}}
+                                    {{> starsRating id='rating' rating=getAverage mutable=true}}
+                                {{/if}}
+                            {{/if}}
+                            <hr>
+                            <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
+                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearner}}
+                            <hr>
                         {{/if}}
+                        <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
+                        <span id="info_license">{{getLicense}}</span>
+                        <br><strong>{{_ "cardset.info.module"}}:</strong> {{this.module}}
+                        <br><strong>{{_ "cardset.info.moduleShort"}}:</strong> {{this.moduleToken}}
+                        <br><strong>{{_ "cardset.info.moduleNum"}}:</strong> {{this.moduleNum}}
+                        <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
+                        <br><strong>{{_ "cardset.info.course"}}:</strong> {{this.course}}
                         <hr>
-                      {{/if}}
-                      <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                      <br>
-                      <strong>{{_ "cardset.info.author"}}:</strong>
-                      {{#if userExists userDeleted}}
-                        <a href="{{pathFor 'profileOverview' _id=owner}}">{{username}}</a>
-                      {{else}}
-                        {{username}} ({{_ "cardset.info.deleted"}})
-                      {{/if}}
-                      <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
-                      <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
-                      {{#if getReviewer}}
-                      <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
-                      {{/if}}
-                      {{#if hasAmount}}
-                        <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
-                      {{/if}}
-                      {{#if isPurchased}}
-                        <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
-                      {{/if}}
-                      <br><strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
-                      <span id="info_license">{{getLicense}}</span>
-                  </div>
-              </div>
-          </div>
-          {{#if isOwner}}
-            <div class="panel-footer">
-              <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}</button>
-              <div class="btn-group">
-                  <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
-                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                    <li><a href="#" id="exportCardsBtn"><i class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
-                  </ul>
-              </div>
-              <div class="btn-group">
-                <button id="publicateCardset" class="btn btn-default" type="button" data-toggle="modal" data-target="#publicateModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_ "sidebar-nav.publicate"}}: {{getStatus}}</button>
-                <button id="publicateTooltip" type="button" class="btn btn-default" data-toggle="tooltip" title="Erstelle mindestens 5 Karten in diesem Kartensatz um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!"><i class="fa fa-question"></i></button>
-              </div>
-              {{#if isPublished}}
-                <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal" data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}</button>
-              {{/if}}
+                        <strong>{{_ "cardset.info.author"}}:</strong>
+                        {{#if userExists userDeleted}}
+                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
+                        {{else}}
+                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
+                        {{/if}}
+                        <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
+                        <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
+                        {{#if getReviewer}}
+                            <br><strong>{{_ "cardset.info.reviewer"}}:</strong> {{getReviewer}}
+                        {{/if}}
+                        {{#if hasAmount}}
+                            <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
+                        {{/if}}
+                        {{#if isPurchased}}
+                            <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
+                        {{/if}}
+
+                    </div>
+                </div>
             </div>
-          {{/if}}
-      </div>
-  </div>
+            {{#if isOwner}}
+                <div class="panel-footer">
+                    <div class="btn-group">
+                        <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
+                                "sidebar-nav.publish"}}: {{getStatus}}</button>
+                        <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
+                                title="{{_ "sidebar-nav.tooltip"}}">
+                            <i class="fa fa-question"></i></button>
+                    </div>
+                    <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
+                            data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
+                    </button>
+                    <div class="btn-group">
+                        <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i
+                                class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span
+                                class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
+                                    class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
+                            <li><a href="#" id="exportCardsBtn"><i
+                                    class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
+                        </ul>
+                    </div>
+
+                    {{#if isPublished}}
+                        <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
+                                data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                        </button>
+                    {{/if}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
 </template>
 
 <template name="cardsetSidebar">
-  <div class="col-md-3">
-    <div id="set-details-sideBar-region">
-      <div class="well well-sm sidebar-nav">
-        <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-        <div class="btn-group btn-group-xs btn-group-justified">
-          <a id="btnToCardLayout" class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}" href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
-          <a id="btnToListLayout" class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}" href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
-        </div>
-      </div>
-    </div>
+    <div class="col-md-3">
+        {{#unless learningActive}}
+            <div id="set-details-sideBar-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
+                    <div class="btn-group btn-group-xs btn-group-justified">
+                        <a id="btnToCardLayout"
+                           class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
+                           href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
+                        <a id="btnToListLayout"
+                           class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"
+                           href="/cardsetlist/{{_id}}">{{_ "sidebar-nav.viewlist"}}</a>
+                    </div>
+                </div>
+            </div>
 
-    <div id="set-details-learn-region">
-      <div class="well well-sm sidebar-nav">
-        <span class="nav-header-cardset">{{_ "learn"}}</span>
-        <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
-        <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
-      </div>
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "learn"}}</span>
+                    <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
+                    <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
+                </div>
+            </div>
+        {{/unless}}
+
+        {{#if isLecturerOrPro}}
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "manage"}}</span>
+                    {{#if isOwner}}
+                        {{#if isInRole 'lecturer'}}
+                            <button id="startStopLearning"
+                                    class="btn btn-default startStopLearn btn-block {{#if
+                                            learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="{{#unless
+                                            learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}"
+                                {{enableIfPublished}}>
+                                {{#if learningActive}}
+                                    {{_ "sidebar-nav.stopLearning"}}
+                                {{else}}
+                                    {{_ "sidebar-nav.startLearning"}}
+                                {{/if}}
+                            </button>
+                            <button id="exportCSV" class="btn btn-default btn-block{{#if
+                                    learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
+                                    "box_export"}}</button>
+                        {{/if}}
+                    {{/if}}
+                    {{#unless isOwner}}
+                        <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
+                                data-toggle="modal" data-target="#reportModal">{{_
+                                "report"}}</button>
+                    {{/unless}}
+                </div>
+            </div>
+
+
+        {{/if}}
     </div>
-    {{#unless isOwner}}
-      <a id="report_button" href="#" class="flag" data-toggle="modal" data-target="#reportModal">{{_ "report"}}</a>
-    {{/unless}}
-  </div>
 </template>
 
-
 <template name="cardsetPreview">
-  <div class="col-md-4">
-    <div class="">
-      <div class="panel panel-default cardsetInfo">
-          <div class="panel-body">
-            <form role="form">
-              <div class="">
-                <div class="">
-                  <div id="payment-form"></div>
-                  <button id="buyCardsetBtn" type="submit" class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€</button>
-                  <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName" class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
+    <div class="col-md-4">
+        <div class="">
+            <div class="panel panel-default cardsetInfo">
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="">
+                            <div class="">
+                                <div id="payment-form"></div>
+                                <button id="buyCardsetBtn" type="submit"
+                                        class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€
+                                </button>
+                                <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
+                                   class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-            </form>
-          </div>
-      </div>
-    </div>
-    <div class="btn-group btn-group-justified" role="group">
-    </div>
-
-  </div>
-  <div class="col-md-8" id="set-details-region">
-    <div>
-
-        <div id="cardCarousel" class="carousel slide" data-interval="false">
-          <div class="carousel-inner">
-            {{#each getCardsCheckActive}}
-              <div class="item {{#if cardActive @index}}active{{/if}}">
-                <div class="box">
-                  <div class="cardNumber">
-                    {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
-                  </div>
-                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
-                  <div class="block">
-                    {{cardDetailsMarkdown this.front this.back @index}}
-                    <div class="cardContent centered cardfront detailfront{{@index}}">
-                      <p>{{front}}</p>
-                    </div>
-                    <div class="cardContent centered cardback detailback{{@index}}" style="display:none">
-                      <p>{{back}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {{/each}}
-          </div>
-
-          {{#if cardCountOne this._id}}
-            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
-              <span class="icon-prev"></span>
-            </a>
-            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
-              <span class="icon-next"></span>
-            </a>
-          {{/if}}
+            </div>
+        </div>
+        <div class="btn-group btn-group-justified" role="group">
         </div>
 
     </div>
-  </div>
+    <div class="col-md-8" id="set-details-region">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    {{#each getCardsCheckActive}}
+                        <div class="item {{#if cardActive @index}}active{{/if}}">
+                            <div class="box">
+                                <div class="cardNumber">
+                                    {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
+                                </div>
+                                <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
+                                <div class="block">
+                                    {{cardDetailsMarkdown this.front this.back @index}}
+                                    <div class="cardContent centered cardfront detailfront{{@index}}">
+                                        <p>{{front}}</p>
+                                    </div>
+                                    <div class="cardContent centered cardback detailback{{@index}}"
+                                         style="display:none">
+                                        <p>{{back}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+
+                {{#if cardCountOne this._id}}
+                    <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
+                        <span class="icon-prev"></span>
+                    </a>
+                    <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
+                        <span class="icon-next"></span>
+                    </a>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
 </template>
 
 <template name="cardsetDetails">
-  <div class="col-md-9" id="set-details-region">
-    <div>
-      {{#if countCards this._id}}
-        <div id="cardCarousel" class="carousel slide" data-interval="false">
-          <div class="carousel-inner">
-            {{#each getCardsCheckActive}}
-              <div class="item {{#if cardActive @index}}active{{/if}}">
-                <div class="box">
-                  {{#if isOwner}}
-                    <a id="editCard" class="btn-editCard btn btn-default btn-xs" href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
-                      <i class="glyphicon glyphicon-pencil"></i>
-                    </a>
-                  {{/if}}
-                  <div class="cardNumber">
-                    {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                  </div>
-                  <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                  <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                  <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
-                  <div class="block">
-                    {{cardDetailsMarkdown this.front this.back @index}}
-                    <div class="cardContent centered cardfront detailfront{{@index}}">
-                      <p>{{front}}</p>
-                    </div>
-                    <div class="cardContent centered cardback detailback{{@index}}" style="display:none">
-                      <p>{{back}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {{/each}}
-          </div>
+    <div class="col-md-9" id="set-details-region">
+        {{#unless learningActive}}
+            <div>
+                {{#if countCards this._id}}
+                    <div id="cardCarousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            {{#each getCardsCheckActive}}
+                                <div class="item {{#if cardActive @index}}active{{/if}}">
+                                    <div class="box">
+                                        {{#if isOwner}}
+                                            <a id="editCard" class="btn-editCard btn btn-default btn-xs"
+                                               href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        {{/if}}
+                                        <div class="cardNumber">
+                                            {{cardsIndex @index}}/{{countCards this.cardset_id}}
+                                        </div>
+                                        <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                             style="display: none;">
+                                        <div class="block">
+                                            {{cardDetailsMarkdown this.front this.back @index}}
+                                            <div class="cardContent centered cardfront detailfront{{@index}}">
+                                                <p>{{front}}</p>
+                                            </div>
+                                            <div class="cardContent centered cardback detailback{{@index}}"
+                                                 style="display:none">
+                                                <p>{{back}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
 
-          {{#if cardCountOne this._id}}
-            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
-              <span class="icon-prev"></span>
-            </a>
-            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
-              <span class="icon-next"></span>
-            </a>
-          {{/if}}
-        </div>
+                        {{#if cardCountOne this._id}}
+                            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
+                               data-slide="prev">
+                                <span class="icon-prev"></span>
+                            </a>
+                            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
+                               data-slide="next">
+                                <span class="icon-next"></span>
+                            </a>
+                        {{/if}}
+                    </div>
 
-      {{else}}
-        <div id="cardCarousel" class="carousel slide" data-interval="false">
-          <div class="carousel-inner">
-            <div class="empty-item">
-              <div class="box">
-                <div class="block">
-                  <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
-                </div>
-              </div>
+                {{else}}
+                    <div id="cardCarousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="empty-item">
+                                <div class="box">
+                                    <div class="block">
+                                        <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
             </div>
-          </div>
-        </div>
-      {{/if}}
+        {{else}}
+            {{addToLeitner}}
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="empty-item">
+                        <div class="box">
+                            <div class="block">
+                                {{#unless learningEnded}}
+                                    <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
+                                        <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
+                                        <p>{{_ "learnPhaseActiveBody"}}</p>
+                                    </div>
+                                    {{#if notEmpty}}
+                                        <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
+                                        <br><br>
+                                        <button id="learnBoxActive"
+                                                class="btn btn-success learn btn-block btn-learn">{{_
+                                                "cardsToLearn"}}</button>
+                                    {{else}}
+                                        {{#if allLearned}}
+                                            <br><br>
+                                            <div class="alert alert-success leitner-text" role="alert">{{_
+                                                    "learnedEverything"}}</div>
+                                        {{else}}
+                                            <br><br>
+                                            <button id="learnBoxDisabled"
+                                                    class="btn btn-warning learn btn-block btn-learn"
+                                                    disabled>{{_ "noCardsToLearn"}}</button>
+                                        {{/if}}
+                                    {{/if}}
+                                {{else}}
+                                    <div class="alert alert-danger leitner-header" role="alert">{{_
+                                            "learnPhaseEnded"}}</div>
+                                {{/unless}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/unless}}
     </div>
-  </div>
 </template>
 
 
 <template name="cardsetList">
-  <div class="col-md-9" id="set-details-region">
-    <table class="table table-bordered table-hover">
-      <div class="listhead"></div>
-      <thead>
-        <tr>
-          <th>
-            <span>{{_ "frontside"}}</span>
-            <a class="frontdown" role="button">⇓</a>
-            <a class="frontup" role="button">⇑</a>
-          </th>
-          <th>
-            <span>{{_ "backside"}}</span>
-            <a class="backdown" role="button">⇓</a>
-            <a class="backup" role="button">⇑</a>
-          </th>
-          {{#if isOwner}}
-          <th>{{_ "options"}}</th>
-          {{/if}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#if countCards this._id}}
-          {{#each cardList}}
-            <tr class="listitem">
-              {{cardlistMarkdown this.front this.back @index}}
-              <td class="front{{@index}}"></td>
-              <td class="back{{@index}}"></td>
-              {{#if isOwner}}
-              <td>
-                  <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}' href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                  </a>
-                  <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard" title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                  </a>
-              </td>
-              {{/if}}
+    <div class="col-md-9" id="set-details-region">
+        <table class="table table-bordered table-hover">
+            <div class="listhead"></div>
+            <thead>
+            <tr>
+                <th>
+                    <span>{{_ "frontside"}}</span>
+                    <a class="frontdown" role="button">⇓</a>
+                    <a class="frontup" role="button">⇑</a>
+                </th>
+                <th>
+                    <span>{{_ "backside"}}</span>
+                    <a class="backdown" role="button">⇓</a>
+                    <a class="backup" role="button">⇑</a>
+                </th>
+                {{#if isOwner}}
+                    <th>{{_ "options"}}</th>
+                {{/if}}
             </tr>
-          {{/each}} {{else}}
-          <tr class="empty-listitem">
-            <td colspan="3" align="center">
-              <span style="font-family:'Georgia'">{{_ "nocards"}}</span>
-            </td>
-          </tr>
-        {{/if}}
+            </thead>
+            <tbody>
+            {{#if countCards this._id}}
+                {{#each cardList}}
+                    <tr class="listitem">
+                        {{cardlistMarkdown this.front this.back @index}}
+                        <td class="front{{@index}}"></td>
+                        <td class="back{{@index}}"></td>
+                        {{#if isOwner}}
+                            <td>
+                                <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'
+                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                                <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
+                                   title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
+                                    <i class="glyphicon glyphicon-ban-circle"></i>
+                                </a>
+                            </td>
+                        {{/if}}
+                    </tr>
+                {{/each}} {{else}}
+                <tr class="empty-listitem">
+                    <td colspan="3" align="center">
+                        <span style="font-family:'Georgia'">{{_ "nocards"}}</span>
+                    </td>
+                </tr>
+            {{/if}}
 
-      </tbody>
-      {{> cardsetConfirmForm}}
-    </table>
-  </div>
+            </tbody>
+            {{> cardsetConfirmForm}}
+        </table>
+    </div>
 </template>
 
 
 <template name="cardsetForm">
-  <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="editSetModalTitle" class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-horizontal">
-            <div class="form-group setdetails name">
-              <label id="editSetNameLabel" class="col-md-3 control-label" for="editSetName">{{_ "modal-dialog.name"}}</label>
-              <div class="col-md-9">
-                <input class="form-control" type="text" id="editSetName" value="{{name}}">
-                <span id="helpEditSetName" class="help-block name"></span>
-              </div>
-            </div>
-            <div class="form-group setdetails description">
-              <label id="editSetDescriptionLabel" class="col-md-3 control-label" for="editSetDescription">{{_ "modal-dialog.description"}}</label>
-              <div class="col-md-9">
-                <textarea class="form-control" rows="3" id="editSetDescription" value="{{description}}"></textarea>
-                <span id="helpEditSetDescription" class="help-block description"></span>
-              </div>
-            </div>
-            <div class="form-group setdetails categories">
-              <label id="editSetCategoryLabel" class="col-md-3 control-label" for="newSetCategory">{{_ "modal-dialog.category"}}</label>
-              <div class="col-md-9">
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="editSetCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span id="editSetCategory">{{getCategory this.category}}</span>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    {{#each getCategories}}
-                      <li class="category" value="{{_id}}" data="{{name}}"><a href="#">{{name}}</a></li>
-                    {{/each}}
-                  </ul>
+    <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="editSetModalTitle" class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group setdetails name">
+                            <label id="editSetNameLabel" class="col-md-3 control-label"
+                                   for="editSetName">{{_ "modal-dialog.name"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="editSetName" value="{{name}}">
+                                <span id="helpEditSetName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group setdetails description">
+                            <label id="editSetDescriptionLabel" class="col-md-3 control-label"
+                                   for="editSetDescription">{{_ "modal-dialog.description"}}</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="3" id="editSetDescription"
+                                          value="{{description}}"></textarea>
+                                <span id="helpEditSetDescription" class="help-block description"></span>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{_ "modal-dialog.module"}}</div>
+                            <br>
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModuleLabel" class="col-md-3 control-label"
+                                       for="editSetModule">{{_ "modal-dialog.module"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModule"
+                                           value="{{module}}">
+                                    <span id="helpEditSetModule" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModuleShortLabel" class="col-md-3 control-label"
+                                       for="editSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModuleShort"
+                                           value="{{moduleToken}}">
+                                    <span id="helpEditSetModuleShort" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <!-- start module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModuleNumLabel" class="col-md-3 control-label"
+                                       for="editSetModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModuleNum"
+                                           value="{{moduleNum}}">
+                                    <span id="helpEditSetModuleNum" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                        </div>
+                        <!-- start college Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
+                                    "modal-dialog.college"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
+                                    <button id="editSetCollege" type="button"
+                                            class="btn btn-default editSetCollegeDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
+                                    <button class="btn dropdown-toggle editSetCollegeDropdown" type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        {{#each getColleges}}
+                                            <li class="college" value="{{_id}}" data="{{this.college}}"><a
+                                                    href="#">{{this.college}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                    <span id="helpEditSetCollege" class="help-block college"></span>
+                                </div>
+                            </div>
+                        </div><!-- / college Dropdown -->
+                        <!-- start course Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
+                                    "modal-dialog.course"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
+                                    <button id="editSetCourse" type="button"
+                                            class="btn btn-default editSetCourseDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
+                                    <button type="button" class="btn dropdown-toggle editSetCourseDropdown"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        {{#each getCourses}}
+                                            <li class="course" value="{{_id}}" data="{{this.course}}"><a
+                                                    href="#">{{this.course}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                    <span id="helpEditSetCourse" class="help-block course"></span>
+                                </div>
+                            </div>
+                        </div><!-- / course Dropdown -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                    <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
+                            "modal-dialog.delete"}}</button>
+                    <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
+                            "modal-dialog.confirm"}}</button>
+                    <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button id="cardSetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_ "modal-dialog.delete"}}</button>
-          <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_ "modal-dialog.confirm"}}</button>
-          <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
-        </div>
-      </div>
     </div>
-  </div>
+</template>
+
+<template name="cardsetStartLearnForm">
+    <div class="modal fade" id="confirmLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
+                            <div class="col-md-9">
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputMaxCards"
+                                       placeholder="{{_ "confirmLearn-form.maxCardsDesc"}}" value="">
+                                <span id="errorMaxCards" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
+                            <div class="col-md-9">
+                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputDaysBeforeReset"
+                                       placeholder="{{_ "confirmLearn-form.daysBeforeResetDesc"}}" value="">
+                                <span id="errorDaysBeforeReset" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="inputLearningStart"
+                                       placeholder="{{_ "confirmLearn-form.learningStartDesc"}}" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="inputLearningEnd"
+                                       placeholder="{{_ "confirmLearn-form.learningEndDesc"}}" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
+                            <div class="col-md-9 form-inline">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval1"
+                                       placeholder="1" value="1">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval2"
+                                       placeholder="3" value="3">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval3"
+                                       placeholder="7" value="7">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval4"
+                                       placeholder="28" value="28">
+                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                       class="form-control" id="inputLearningInterval5"
+                                       placeholder="84" value="84">
+                            </div>
+                            <div class="col-md-12">
+                                <span id="errorInputLearningInterval" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.notification"}}</label>
+                            <form>
+                                <fieldset>
+                                    <div class="col-md-9 form-group">
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="webNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span id="errorNotification" class="help-block name"></span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_ "confirmLearn-form.cancel"}}</button>
+                        <button id="confirmLearn" class="btn btn-success pull-right"
+                                data-dismiss="modal">{{_ "confirmLearn-form.confirm"}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>
+
+<template name="cardsetEndLearnForm">
+    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmEndLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
+                        <p>{{_ "confirmEndLearn-form.warning"}}</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="cancelEndLearn" class="btn btn-default pull-left" data-dismiss="modal"
+                                style="width:150px">{{_ "confirmEndLearn-form.cancel"}}</button>
+                        <button id="confirmEndLearn" class="btn btn-warning pull-right"
+                                data-dismiss="modal">{{_ "confirmEndLearn-form.confirm"}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
 </template>
 
 <template name="cardsetConfirmForm">
-  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="confirmModalTitle" class="modal-title">{{_ "confirm-form.title"}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{_ "confirm-form.text"}}</p>
-          <br />
-          <hr />
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmModalTitle" class="modal-title">{{_ "confirm-form.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-form.text"}}</p>
+                    <br/>
+                    <hr/>
 
-          <button id="cardDelete" class="btn btn-danger btn-setDelete" style="width:150px">{{_ "confirm-form.title"}}</button>
-          <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="cardDelete" class="btn btn-danger btn-setDelete" style="width:150px">{{_
+                            "confirm-form.title"}}</button>
+                    <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>
 
 <template name="cardsetImportForm">
-  <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}</h4>
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "upload-form.popover-content"}}</p>
+                    <a role='button' target='_blank' class='btn btn-default' href='/examples/example.json'>JSON</a>
+                    <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv.txt'>CSV</a>
+
+                    <hr/>
+
+                    {{#unless uploading}}
+                        <span class="btn btn-primary btn-file">
+							{{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
+					  </span>
+                        <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                                "modal-dialog.cancel"}}</button>
+                        <div class="clearfix"></div>
+                    {{else}}
+                        <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
+                    {{/unless}}
+
+                    <div id="uploadError"></div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="modal-body">
-          <p>{{_ "upload-form.popover-content"}}</p>
-          <a role='button' target='_blank' class='btn btn-default' href='/examples/example.json'>JSON</a>
-          <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv'>CSV</a>
-
-          <hr />
-
-          {{#unless uploading}}
-            <span class="btn btn-primary btn-file">
-              {{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
-            </span>
-            <button id="importCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-            <div class="clearfix"></div>
-          {{else}}
-            <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
-          {{/unless}}
-
-          <div id="uploadError"></div>
-        </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>
 
-<template name="cardsetPublicateForm">
-  <div class="modal fade" id="publicateModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publicate"}}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
-              <div class="controls col-md-9">
-                <div id="publicateKind" class="btn-group btn-group-kind" data-toggle="buttons">
-                  <label id="kindoption0" class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="personal" id="kind_private">
-                    <div>Private</div>
-                  </label>
-                  <label id="kindoption1" class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}" style="width:100px">
-                    <input type="radio" name="kind" value="free" id="free">
-                    <div>Free</div>
-                  </label>
-                  {{#if isInRole 'lecturer'}}
-                    <label id="kindoption2" class="btn btn-default {{#if kindIsActive 'edu'}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="kind" value="edu" id="kind_edu">
-                      <div>Edu</div>
-                    </label>
-                  {{/if}}
-                  {{#if isInRole 'pro'}}
-                    <label id="kindoption3" class="btn btn-default {{#if kindIsActive 'pro'}}active{{/if}}" style="width:100px">
-                      <input type="radio" name="kind" value="pro" id="kind_pro">
-                      <div>Pro</div>
-                    </label>
-                  {{/if}}
+<template name="cardsetPublishForm">
+    <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}</h4>
                 </div>
-              </div>
-            </div>
-            {{#if kindWithPrice}}
-            <div class="form-group">
-              <label id="publicatePriceLabel" class="col-md-3 control-label" for="publicatePrice">{{_ "modal-dialog.price"}} (€)</label>
-              <div class="col-md-9">
-                <div class="input-group">
-                  <select id="publicatePrice" class="form-control">
-                    <option {{priceIsSelected 0.99}}>0.99</option>
-                    <option {{priceIsSelected 1.99}}>1.99</option>
-                    <option {{priceIsSelected 2.99}}>2.99</option>
-                    <option {{priceIsSelected 3.99}}>3.99</option>
-                    <option {{priceIsSelected 4.99}}>4.99</option>
-                    <option {{priceIsSelected 5.99}}>5.99</option>
-                    <option {{priceIsSelected 6.99}}>6.99</option>
-                    <option {{priceIsSelected 7.99}}>7.99</option>
-                    <option {{priceIsSelected 8.99}}>8.99</option>
-                    <option {{priceIsSelected 9.99}}>9.99</option>
-                  </select>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
+                            <div class="controls col-md-9">
+                                <div id="publishKind" class="btn-group btn-group-kind" data-toggle="buttons">
+                                    <label id="kindoption0"
+                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="personal" id="kind_private">
+                                        <div>Private</div>
+                                    </label>
+                                    <label id="kindoption1"
+                                           class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="radio" name="kind" value="free" id="free">
+                                        <div>Free</div>
+                                    </label>
+                                    {{#if isInRole 'lecturer'}}
+                                        <label id="kindoption2"
+                                               class="btn btn-default {{#if kindIsActive 'edu'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="radio" name="kind" value="edu" id="kind_edu">
+                                            <div>Edu</div>
+                                        </label>
+                                    {{/if}}
+                                    {{#if isInRole 'pro'}}
+                                        <label id="kindoption3"
+                                               class="btn btn-default {{#if kindIsActive 'pro'}}active{{/if}}"
+                                               style="width:100px">
+                                            <input type="radio" name="kind" value="pro" id="kind_pro">
+                                            <div>Pro</div>
+                                        </label>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{#if kindWithPrice}}
+                            <div class="form-group">
+                                <label id="publishPriceLabel" class="col-md-3 control-label"
+                                       for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <select id="publishPrice" class="form-control">
+                                            <option {{priceIsSelected 0.99}}>0.99</option>
+                                            <option {{priceIsSelected 1.99}}>1.99</option>
+                                            <option {{priceIsSelected 2.99}}>2.99</option>
+                                            <option {{priceIsSelected 3.99}}>3.99</option>
+                                            <option {{priceIsSelected 4.99}}>4.99</option>
+                                            <option {{priceIsSelected 5.99}}>5.99</option>
+                                            <option {{priceIsSelected 6.99}}>6.99</option>
+                                            <option {{priceIsSelected 7.99}}>7.99</option>
+                                            <option {{priceIsSelected 8.99}}>8.99</option>
+                                            <option {{priceIsSelected 9.99}}>9.99</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button id="cardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="cardsetPublish"
+                            class="btn btn-info pull-success">{{_ "modal-dialog.publish"}}</button>
+                </div>
             </div>
-            {{/if}}
-          </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="modal-footer">
-          <button id="cardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button id="cardsetPublicate" class="btn btn-info pull-success">{{_ "modal-dialog.publicate"}}</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>
 
 <template name="selectLicenseForm">
-  <div class="modal fade" id="selectLicenseModal" tabindex="-1" role="dialog" aria-labelledby="selectLicenseModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label id="modulesLabel" class="col-md-3 control-label" for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
-              <div class="controls col-md-9">
-                <div id="cc-modules" class="btn-group" data-toggle="buttons">
-                  <label id="cc-option0" class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}" style="width:100px">
-                    <input type="checkbox" autocomplete="off" value="by" id="cc-by">
-                    <img src="/img/by.large.png" alt="Namensnennung" />
-                  </label>
-                  <label id="cc-option1" class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}" style="width:100px">
-                    <input type="checkbox" autocomplete="off" value="nc" id="cc-nc">
-                    <img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />
-                  </label>
-                  <label id="cc-option2" class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}" style="width:100px">
-                    <input type="checkbox" autocomplete="off" value="nd" id="cc-nd">
-                    <img src="/img/nd.large.png" alt="Keine Bearbeitung" />
-                  </label>
-                  <label id="cc-option3" class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}" style="width:100px">
-                    <input type="checkbox" autocomplete="off" value="sa" id="cc-sa">
-                    <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />
-                  </label>
+    <div class="modal fade" id="selectLicenseModal" tabindex="-1" role="dialog"
+         aria-labelledby="selectLicenseModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}</h4>
                 </div>
-                <span id="helpCC-modules" class="help-block cc-modules"></span>
-              </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label id="modulesLabel" class="col-md-3 control-label"
+                                   for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
+                            <div class="controls col-md-9">
+                                <div id="cc-modules" class="btn-group" data-toggle="buttons">
+                                    <label id="cc-option0"
+                                           class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="by" id="cc-by">
+                                        <img src="/img/by.large.png" alt="Namensnennung"/>
+                                    </label>
+                                    <label id="cc-option1"
+                                           class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="nc" id="cc-nc">
+                                        <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                    </label>
+                                    <label id="cc-option2"
+                                           class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="nd" id="cc-nd">
+                                        <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                    </label>
+                                    <label id="cc-option3"
+                                           class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="sa" id="cc-sa">
+                                        <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/>
+                                    </label>
+                                </div>
+                                <span id="helpCC-modules" class="help-block cc-modules"></span>
+                            </div>
 
-              <div id=cc-description class="col-md-12">
-                <hr>
-                <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung" />
-                <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
-                <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell" />
-                <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
-                <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung" />
-                <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
-                <img class="col-md-2" src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />
-                <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
-              </div>
+                            <div id=cc-description class="col-md-12">
+                                <hr>
+                                <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
+                                <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
+                                <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
+                                <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
+                                <img class="col-md-2" src="/img/sa.large.png"
+                                     alt="Weitergabe unter gleichen Bedingungen"/>
+                                <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="licenseCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="licenseSave" class="btn btn-info pull-success">{{_ "modal-dialog.saveLicense"}}</button>
+                </div>
             </div>
-          </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="modal-footer">
-          <button id="licenseCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button id="licenseSave" class="btn btn-info pull-success">{{_ "modal-dialog.saveLicense"}}</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 </template>
 
 <template name="reportCardsetForm">
-  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 id="reportModalTitle" class="modal-title">{{_ "modal-dialog.report"}}</h4>
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="reportModalTitle" class="modal-title">{{_ "modal-dialog.report"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetowner"}}</label>
+                            <p class="col-md-9">
+                                {{getAuthorName this.owner}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetname"}}</label>
+                            <p class="col-md-9">
+                                {{name}}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">{{_ "modal-dialog.reason"}}</label>
+                            <div class="input-group">
+                                <select id="reportCardsetReason" class="form-control">
+                                    {{#unless userDeleted}}
+                                        <option>{{_ "modal-dialog.reportuser"}}</option>
+                                    {{/unless}}
+                                    <option>{{_ "modal-dialog.reportcardset"}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group text">
+                            <label id="reportCardsetTextLabel" class="col-md-3 control-label"
+                                   for="reportCardsetText">{{_ "modal-dialog.text"}}</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="6" id="reportCardsetText"></textarea>
+                                <span id="helpReportCardsetText" class="help-block text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="reportCardsetCancel" class="btn btn-default"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                    <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetowner"}}</label>
-              <p class="col-md-9">
-                {{username}}
-              </p>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "modal-dialog.cardsetname"}}</label>
-              <p class="col-md-9">
-                {{name}}
-              </p>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">{{_ "modal-dialog.reason"}}</label>
-              <div class="input-group">
-                <select id="reportCardsetReason" class="form-control">
-                  {{#unless userDeleted}}
-                    <option>{{_ "modal-dialog.reportuser"}}</option>
-                  {{/unless}}
-                  <option>{{_ "modal-dialog.reportcardset"}}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group text">
-              <label id="reportCardsetTextLabel" class="col-md-3 control-label" for="reportCardsetText">{{_ "modal-dialog.text"}}</label>
-              <div class="col-md-9">
-                <textarea class="form-control" rows="6" id="reportCardsetText"></textarea>
-                <span id="helpReportCardsetText" class="help-block text"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="reportCardsetCancel" class="btn btn-default" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-          <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
-        </div>
-      </div>
     </div>
-  </div>
 </template>

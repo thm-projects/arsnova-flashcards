@@ -1,6 +1,24 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
 
+jshint:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install jshint@^2.9.0
+    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n
+
+jscs:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install jscs
+    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server}/
+
 sonar:
   stage: test
   only:
@@ -50,7 +68,7 @@ deploy_staging:
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
   environment: staging
-  
+
 deploy_production:
   stage: deploy
   only:

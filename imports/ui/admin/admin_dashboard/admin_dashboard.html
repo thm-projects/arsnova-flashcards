@@ -1,56 +1,56 @@
 <template name="admin_dashboard">
-  <div class="content-header">
-    <h1>
-      {{_ "admin.dashboard"}}
-    </h1>
-  </div>
-  <div class="content">
-    <div class="dashboard-box col-lg-3 col-xs-6">
-      <a href="{{pathFor route='admin_cardsets'}}">
-        <div class="small-box">
-          <div class="inner">
-            <h3>{{totalCardsets}}</h3>
-            <p>{{_ "admin.cardsets"}}</p>
-          </div>
-          <div class="small-box-footer">
-            {{_ "admin.see_all"}}
-            <i class="fa fa-arrow-circle-right"></i>
-          </div>
-        </div>
-      </a>
+    <div class="content-header">
+        <h1>
+            {{_ "admin.dashboard"}}
+        </h1>
     </div>
+    <div class="content">
+        <div class="dashboard-box col-lg-3 col-xs-6">
+            <a href="{{pathFor route='admin_cardsets'}}">
+                <div class="small-box">
+                    <div class="inner">
+                        <h3>{{totalCardsets}}</h3>
+                        <p>{{_ "admin.cardsets"}}</p>
+                    </div>
+                    <div class="small-box-footer">
+                        {{_ "admin.see_all"}}
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-    <div class="dashboard-box col-lg-3 col-xs-6">
-      <a href="{{pathFor route='adminCards'}}">
-        <div class="small-box">
-          <div class="inner">
-            <h3>{{totalCards}}</h3>
-            <p>{{_ "admin.cards"}}</p>
-          </div>
-          <div class="small-box-footer">
-            {{_ "admin.see_all"}}
-            <i class="fa fa-arrow-circle-right"></i>
-          </div>
+        <div class="dashboard-box col-lg-3 col-xs-6">
+            <a href="{{pathFor route='adminCards'}}">
+                <div class="small-box">
+                    <div class="inner">
+                        <h3>{{totalCards}}</h3>
+                        <p>{{_ "admin.cards"}}</p>
+                    </div>
+                    <div class="small-box-footer">
+                        {{_ "admin.see_all"}}
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
 
-    <div class="dashboard-box col-lg-3 col-xs-6">
-      <a href="{{pathFor route='admin_users'}}">
-        <div class="small-box">
-          <div class="inner">
-            <h3>
-              {{totalUser}}
-              <span>({{getOnlineStatusTotal}} Online)</span>
-            </h3>
-            <p>{{_ "admin.users"}}</p>
-          </div>
-          <div class="small-box-footer">
-            {{_ "admin.see_all"}}
-            <i class="fa fa-arrow-circle-right"></i>
-          </div>
+        <div class="dashboard-box col-lg-3 col-xs-6">
+            <a href="{{pathFor route='admin_users'}}">
+                <div class="small-box">
+                    <div class="inner">
+                        <h3>
+                            {{totalUser}}
+                            <span>({{getOnlineStatusTotal}} Online)</span>
+                        </h3>
+                        <p>{{_ "admin.users"}}</p>
+                    </div>
+                    <div class="small-box-footer">
+                        {{_ "admin.see_all"}}
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                </div>
+            </a>
         </div>
-      </a>
     </div>
-  </div>
 </template>

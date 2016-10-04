@@ -2,19 +2,114 @@
 $white: rgb(255, 255, 255);
 
 .badgeFooterProgress {
-	margin-top: 8px;
-	background-color: $white;
+  margin-top: 8px;
+  background-color: $white;
 }
+
 .badgeFooterImg {
-	text-align: center;
+  text-align: center;
 }
+
 .badgeWell {
-	text-align: center;
-	margin-bottom: 0;
+  text-align: center;
+  margin-bottom: 0;
 }
+
 .nav-pills {
-	.fa{
-		width: 24px;
-		text-align: center;
-	}
+  .fa {
+    width: 24px;
+    text-align: center;
+  }
+}
+
+.span1 {
+  display: inline-block;
+  height: 50px;
+  font-size: 40px;
+}
+
+.text-muted {
+  font-size: 12px;
+}
+
+.span2 {
+  display: inline-block;
+  font-size: 30px;
+  margin-top: 12px;
+}
+
+.span3 {
+  display: inline-block;
+  font-size: 25px;
+  margin-top: 17px;
+  height: 25px;
+}
+
+.span4 {
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 22px;
+  height: 20px;
+}
+
+.span5 {
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 22px;
+  height: 20px;
+}
+
+.span6{
+  font-weight: bold;
+  color: #000;
+  font-size: 13px;
+  padding-top: 5px;
+  display: inline-block;
+}
+
+.span7{
+  font-weight: bold;
+  color: #fff;
+  font-size: 13px;
+  padding-top: 5px;
+  display: inline-block;
+}
+
+#well {
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+#column2 {
+  text-align: center;
+}
+
+#column8 {
+  text-align: center;
+}
+
+.divPic {
+  width: 36px;
+  height:36px;
+  background-image:url('/img/trophy_36x36.png');
+}
+
+.progress{
+  margin: 0;
+}
+
+.divTrophy{
+  width: 36px;
+  height: 36px;
+  background-image: url('/img/trophy_36x36_gray.png');
+}
+
+#container{
+  min-width: 310px;
+  max-width: 800px;
+  min-height: 100%;
+  max-height: 100%;
+  margin: 0 auto
 }

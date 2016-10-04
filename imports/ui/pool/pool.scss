@@ -1,23 +1,127 @@
-.categories {
-    h3 {
-        margin-top: 0;
+#pool-category-region {
+  margin-bottom: 35px;
+  $color_orange_pool: rgb(255, 153, 51);
+  text-align: left;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .well {
+    margin-bottom: 0;
+  }
+
+  .sortText {
+    line-height: 34px;
+  }
+
+  #ratingLocked {
+    margin-top: 2px;
+    margin-left: 6px;
+    left: 6px;
+  }
+
+  .glyphicon {
+    font-size: 11px;
+  }
+
+  .btn-group {
+    padding-bottom: 15px;
+  }
+
+  .btn {
+    font-weight: bold;
+  }
+
+  .panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+  }
+
+  #pool_license img {
+    width: 20px;
+  }
+
+  #poolCaption {
+    padding-left: 8px;
+    font-weight: bold;
+    background-color: $color_wild_sand_approx;
+  }
+
+  .poolHeaderTop {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: $color_orange_pool;
+    color: $white;
+  }
+
+  .poolHeaderBottom {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    background-color: $color_orange_pool;
+    color: $white;
+  }
+
+  .poolLabel {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+  }
+
+  .empty-list {
+    text-align: center;
+  }
+
+  .poolText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .licenseInfo, .topicName {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #info_license img {
+    width: 20px;
+  }
+  #collegeBtn{
+    width: 160px;
+  }
+  #resetBtn{
+    width: 272px;
+  }
+  #topicBtn{
+    width: 245px;
+  }
+  #moduleBtn{
+    width: 70px;
+  }
+
+  @media (max-width: 992px) {
+    .panel {
+      margin-top: 3px;
+      margin-bottom: 3px;
     }
-    .well {
-        margin-bottom: 0;
+
+    #resetBtn{
+      width: 242px;
     }
-    .sortText {
-        line-height: 34px;
-        padding-right: 10px;
+    #topicBtn{
+      width: 215px;
     }
-    .left {
-        float: left;
+  }
+
+  @media (min-width: 992px) {
+    .altPanel {
+      background-color: $color_wild_sand_approx;
     }
-    #ratingLocked {
-        margin-top: 2px;
-        margin-left: 6px;
-        left: 6px;
-    }
-}
-#pool_license img {
-  width: 20px;
+  }
 }

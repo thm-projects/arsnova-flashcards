@@ -1,13 +1,117 @@
-{"_id": "01", "name": "Agricultural and Forestry Sciences", "i18n": { "de": { "name": "Agrar- und Forstwissenschaften"}}}
-{"_id": "02", "name": "Information and Telecommunications Technology", "i18n": { "de": { "name": "Informations- und Telekommunikationstechnik"}}}
-{"_id": "03", "name": "Engineering Sciences", "i18n": { "de": { "name": "Ingeniuerswissenschaften"}}}
-{"_id": "04", "name": "Cultural and Social Sciences", "i18n": { "de": { "name": "Kultur- und Gesellschaftswissenschften"}}}
-{"_id": "05", "name": "Art and Music", "i18n": { "de": { "name": "Kunst und Musik"}}}
-{"_id": "06", "name": "Mathematics and Natural Sciences", "i18n": { "de": { "name": "Mathematik und Naturwissenschaften"}}}
-{"_id": "07", "name": "Media", "i18n": { "de": { "name": "Medien"}}}
-{"_id": "08", "name": "Medicine and Health", "i18n": { "de": { "name": "Medizin und Gesundheit"}}}
-{"_id": "09", "name": "Education and Teaching", "i18n": { "de": { "name": "Pädagogik und Lehre"}}}
-{"_id": "10", "name": "Jurisprudence", "i18n": { "de": { "name": "Rechtswissenschaften"}}}
-{"_id": "11", "name": "Foreign Languages and Literatures", "i18n": { "de": { "name": "Sprach- und Literaturwissenschaften"}}}
-{"_id": "12", "name": "Social and Behavioral Sciences", "i18n": { "de": { "name": "Sozial- und Verhaltenswissenschaften"}}}
-{"_id": "13", "name": "Economics and Management", "i18n": { "de": { "name": "Wirtschaft und Management"}}}
+{
+  "_id": "01",
+  "name": "Agricultural and Forestry Sciences",
+  "i18n": {
+    "de": {
+      "name": "Agrar- und Forstwissenschaften"
+    }
+  }
+}
+{
+  "_id": "02",
+  "name": "Information and Telecommunications Technology",
+  "i18n": {
+    "de": {
+      "name": "Informations- und Telekommunikationstechnik"
+    }
+  }
+}
+{
+  "_id": "03",
+  "name": "Engineering Sciences",
+  "i18n": {
+    "de": {
+      "name": "Ingeniuerswissenschaften"
+    }
+  }
+}
+{
+  "_id": "04",
+  "name": "Cultural and Social Sciences",
+  "i18n": {
+    "de": {
+      "name": "Kultur- und Gesellschaftswissenschften"
+    }
+  }
+}
+{
+  "_id": "05",
+  "name": "Art and Music",
+  "i18n": {
+    "de": {
+      "name": "Kunst und Musik"
+    }
+  }
+}
+{
+  "_id": "06",
+  "name": "Mathematics and Natural Sciences",
+  "i18n": {
+    "de": {
+      "name": "Mathematik und Naturwissenschaften"
+    }
+  }
+}
+{
+  "_id": "07",
+  "name": "Media",
+  "i18n": {
+    "de": {
+      "name": "Medien"
+    }
+  }
+}
+{
+  "_id": "08",
+  "name": "Medicine and Health",
+  "i18n": {
+    "de": {
+      "name": "Medizin und Gesundheit"
+    }
+  }
+}
+{
+  "_id": "09",
+  "name": "Education and Teaching",
+  "i18n": {
+    "de": {
+      "name": "Pädagogik und Lehre"
+    }
+  }
+}
+{
+  "_id": "10",
+  "name": "Jurisprudence",
+  "i18n": {
+    "de": {
+      "name": "Rechtswissenschaften"
+    }
+  }
+}
+{
+  "_id": "11",
+  "name": "Foreign Languages and Literatures",
+  "i18n": {
+    "de": {
+      "name": "Sprach- und Literaturwissenschaften"
+    }
+  }
+}
+{
+  "_id": "12",
+  "name": "Social and Behavioral Sciences",
+  "i18n": {
+    "de": {
+      "name": "Sozial- und Verhaltenswissenschaften"
+    }
+  }
+}
+{
+  "_id": "13",
+  "name": "Economics and Management",
+  "i18n": {
+    "de": {
+      "name": "Wirtschaft und Management"
+    }
+  }
+}
