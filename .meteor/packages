@@ -54,3 +54,4 @@ email
 percolate:synced-cron
 chart:chart
 jshint
+audit-argument-checks
