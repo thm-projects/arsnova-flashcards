@@ -64,6 +64,38 @@ function prepareQuery() {
 	}
 }
 
+function checkFilters() {
+	if (Session.get('poolFilterAuthor')) {
+		$(".filterAuthorGroup").addClass('active');
+	} else {
+		$(".filterAuthorGroup").removeClass('active');
+	}
+	if (Session.get('poolFilterCollege')) {
+		$(".filterCollegeGroup").addClass('active');
+	} else {
+		$(".filterCollegeGroup").removeClass('active');
+	}
+	if (Session.get('poolFilterCourse')) {
+		$(".filterCourseGroup").addClass('active');
+	} else {
+		$(".filterCourseGroup").removeClass('active');
+	}
+	if (Session.get('poolFilterModule')) {
+		$(".filterModuleGroup").addClass('active');
+	} else {
+		$(".filterModuleGroup").removeClass('active');
+	}
+	$("#filterCheckbox input:checkbox").each(function () {
+		if (!Session.get('poolFilter').includes($(this).val())) {
+			$(this).prop('checked', false);
+			$(this).closest("label").removeClass('active');
+		} else {
+			$(this).prop('checked', true);
+			$(this).closest("label").addClass('active');
+		}
+	});
+}
+
 function deadline(cardset) {
 	var active = Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), active: true});
 	var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
@@ -163,6 +195,15 @@ Template.poolCardsetRow.helpers({
 });
 
 Template.category.events({
+	'click #resetBtn': function () {
+		Session.set('poolSortTopic', {name: 1});
+		Session.set('poolFilterAuthor');
+		Session.set('poolFilterCollege');
+		Session.set('poolFilterCourse');
+		Session.set('poolFilterModule');
+		Session.set('poolFilter', ["free", "edu", "pro"]);
+		checkFilters();
+	},
 	'click .sortTopic': function () {
 		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
@@ -233,4 +274,5 @@ Template.pool.onRendered(function () {
 			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name + deadline(toLearn[i]));
 		}
 	}
+	checkFilters();
 });

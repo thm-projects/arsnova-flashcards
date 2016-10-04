@@ -119,7 +119,8 @@
     "author": "Author",
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
-    "everything": "Everything"
+    "everything": "Everything",
+    "reset": "Reset all filters"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",

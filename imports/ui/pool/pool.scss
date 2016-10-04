@@ -74,19 +74,6 @@
     color: black;
   }
 
-  @media (max-width: 992px) {
-    .panel {
-      margin-top: 3px;
-      margin-bottom: 3px;
-    }
-  }
-
-  @media (min-width: 992px) {
-    .altPanel {
-      background-color: $color_wild_sand_approx;
-    }
-  }
-
   .empty-list {
     text-align: center;
   }
@@ -108,10 +95,33 @@
   #collegeBtn{
     width: 160px;
   }
+  #resetBtn{
+    width: 272px;
+  }
   #topicBtn{
     width: 245px;
   }
   #moduleBtn{
     width: 70px;
+  }
+
+  @media (max-width: 992px) {
+    .panel {
+      margin-top: 3px;
+      margin-bottom: 3px;
+    }
+
+    #resetBtn{
+      width: 242px;
+    }
+    #topicBtn{
+      width: 215px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .altPanel {
+      background-color: $color_wild_sand_approx;
+    }
   }
 }

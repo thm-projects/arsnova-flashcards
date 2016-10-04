@@ -117,7 +117,8 @@
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
-    "everything": "Alles"
+    "everything": "Alles",
+    "reset": "Alle Filter zurücksetzen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
