@@ -123,7 +123,7 @@ Template.category.helpers({
 		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
 	},
 	getAuthors: function () {
-		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}}).fetch();
+		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
 	},
 	getColleges: function () {
 		prepareQuery();
