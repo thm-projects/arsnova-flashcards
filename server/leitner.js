@@ -75,7 +75,7 @@ Meteor.methods({
 	// i-loop: Get all cards that the user can learn right now
 	// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
 	// j-loop: Scale all percentage values of boxes with cards to fill 100%
-	// l-loop: Mark the box of cards that needs to be updated
+	// l-loop: Get all cards from a box that match the leitner criteria
 	// c-loop: update one random card out of the l loop
 	setCards: function (cardset, user_id, isReset, isNewUser) {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
@@ -108,21 +108,29 @@ Meteor.methods({
 			}
 
 			for (var l = 0; l < algorithm.length; l++) {
-				var skip = cardCount[l];
-
+				var cards = Learned.find({
+					cardset_id: cardset._id,
+					user_id: user_id,
+					box: (l + 1),
+					active: false,
+					nextDate: {$lte: new Date()}
+				}).fetch();
 				for (var c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
-					Learned.update({
-						cardset_id: cardset._id,
-						user_id: user_id,
-						box: (l + 1),
-						active: false,
-						nextDate: {$lte: new Date()}
-					}, {
-						$set: {
-							active: true,
-							currentDate: new Date()
-						}
-					}, {$skip: Math.random() * (--skip)});
+					if (cards.length !== 0) {
+						var nextCardIndex = Math.floor(Math.random() * (cards.length));
+						var nextCard = cards[nextCardIndex];
+						cards.splice(nextCardIndex, 1);
+						Learned.update({
+							cardset_id: cardset._id,
+							user_id: user_id,
+							card_id: nextCard.card_id
+						}, {
+							$set: {
+								active: true,
+								currentDate: new Date()
+							}
+						});
+					}
 				}
 			}
 
