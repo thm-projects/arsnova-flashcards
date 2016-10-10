@@ -119,18 +119,20 @@
                     <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
                             data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                     </button>
-                    <div class="btn-group">
-                        <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i
-                                class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span
-                                class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
-                                    class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                            <li><a href="#" id="exportCardsBtn"><i
-                                    class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
-                        </ul>
-                    </div>
+                    {{#unless learningActive}}
+                        <div class="btn-group">
+                            <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i
+                                    class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span
+                                    class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
+                                        class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
+                                <li><a href="#" id="exportCardsBtn"><i
+                                        class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
+                            </ul>
+                        </div>
+                    {{/unless}}
 
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
