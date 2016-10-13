@@ -1026,7 +1026,7 @@ Template.profileXp.onRendered(function () {
  */
 
 Template.profileDeleteConfirmForm.events({
-	'click #profileDelete': function (event) {
+	'click #profileDelete': function () {
 		$('#profileDelteConfirmModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteUserProfile");
 			document.location.reload(true);
