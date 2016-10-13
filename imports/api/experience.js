@@ -5,7 +5,7 @@ export const Experience = new Mongo.Collection("experience");
 
 if (Meteor.isServer) {
 	Meteor.publish("experience", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			return Experience.find({
 				$or: [
 					{owner: this.userId},

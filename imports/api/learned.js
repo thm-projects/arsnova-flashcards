@@ -6,7 +6,7 @@ export const Learned = new Mongo.Collection("learned");
 
 if (Meteor.isServer) {
 	Meteor.publish("learned", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			var cardsetsIds = Cardsets.find({
 				owner: this.userId
 			}).map(function (cardset) {
@@ -23,7 +23,7 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("allLearned", function () {
-			if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+			if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				var learned = Learned.find({});
 				return learned;
 			}
@@ -40,7 +40,7 @@ Meteor.methods({
 	},
 	addLearned: function (cardset_id, card_id) {
 		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Learned.upsert({
@@ -66,7 +66,7 @@ Meteor.methods({
 	},
 	updateLearned: function (learned_id, box, nextDate) {
 		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Learned.update(learned_id, {
@@ -79,7 +79,7 @@ Meteor.methods({
 		});
 	},
 	deleteLearned: function (cardset_id) {
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 
@@ -90,7 +90,7 @@ Meteor.methods({
 	},
 	updateLearnedMemo: function (learned_id, grade) {
 		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 
