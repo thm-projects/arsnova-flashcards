@@ -124,7 +124,7 @@
                 </li>
                 <li role="presentation" class="{{#if isActiveRoute 'profileSettings'}}active{{/if}}">
                     <a href="/profile/{{currentUser._id}}/settings">
-                        <i class="fa fa-cog"></i>{{_ "profile.settings"}}
+                        <i class="fa fa-cog"></i>{{_ "profile.settings.name"}}
                     </a>
                 </li>
                 {{#if isInRole 'lecturer'}}
@@ -247,6 +247,17 @@
                     {{/if}}
                 </form>
             </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{_ "profile.settings.delete"}}</h4>
+            </div>
+            <div class="panel-body">
+              <p>{{_ "profile.settings.deleteText"}}</p>
+              <hr />
+              <button id="profileDelete" type="button" class="btn btn-danger" data-toggle="modal" data-target="#profileDelteConfirmModal">{{_ "profile.settings.delete"}}</button>
+            </div>
+            {{> profileDeleteConfirmForm}}
         </div>
     </div>
 </template>
@@ -873,4 +884,35 @@
             {{/if}}
         </div>
     </div>
+</template>
+
+<!--##################################################################-->
+<!--profileDeleteConfirmForm-->
+<!--##################################################################-->
+<template name="profileDeleteConfirmForm">
+    <div class="modal fade" id="profileDelteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="profileDelteConfirmModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="profileDelteConfirmModalTitle" class="modal-title">{{_ "confirm-form-profile.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-form-profile.text"}}</p>
+                    <br/>
+                    <p>{{_ "confirm-form-profile.text2"}}</p>
+                    <br/>
+                    <hr/>
+
+                    <button id="profileDelete" class="btn btn-danger btn-setDelete">{{_
+                            "confirm-form-profile.title"}}</button>
+                    <button id="profileCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </template>

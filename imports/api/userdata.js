@@ -1,4 +1,6 @@
 import {Meteor} from "meteor/meteor";
+import {Cardsets} from "./cardsets.js";
+import {Cards} from "./cards.js";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
@@ -137,7 +139,7 @@ Meteor.methods({
 		Roles.addUsersToRoles(id, 'lecturer');
 	},
 	setLecturerRequest: function (user_id, request) {
-		if (!this.userId || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!this.userId || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 
@@ -183,8 +185,43 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	removeFirstLogin: function() {
-		if (!this.userId || Roles.userIsInRole(this.userId, 'blocked')) {
+	deleteUserProfile: function () {
+		if (!this.userId || Roles.userIsInRole(this.userId, "blocked")) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		var cardsets = Cardsets.find({
+			owner: this.userId,
+			kind: 'personal'
+		});
+
+		cardsets.forEach(function (cardset) {
+			Cards.remove({
+				cardset_id: cardset._id
+			});
+		});
+
+		Cardsets.update({owner: this.userId}, {
+			$set: {
+				userDeleted: true
+			}
+		}, {multi: true});
+
+		Cardsets.remove({
+			owner: this.userId,
+			kind: 'personal'
+		});
+
+		Meteor.users.update(this.userId, {
+			$set: {
+				"services.resume.loginTokens": []
+			}
+		});
+
+		Meteor.users.remove(this.userId);
+	},
+	removeFirstLogin: function () {
+		if (!this.userId || Roles.userIsInRole(this.userId, "blocked")) {
 			throw new Meteor.Error("not-authorized");
 		}
 

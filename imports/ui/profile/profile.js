@@ -1018,3 +1018,18 @@ Template.profileXp.onRendered(function () {
 		});
 	});
 });
+
+/**
+ * ############################################################################
+ * profileDeleteConfirmForm
+ * ############################################################################
+ */
+
+Template.profileDeleteConfirmForm.events({
+	'click #profileDelete': function (event) {
+		$('#profileDelteConfirmModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteUserProfile");
+			document.location.reload(true);
+		}).modal('hide');
+	}
+});
