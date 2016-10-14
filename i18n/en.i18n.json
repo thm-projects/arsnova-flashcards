@@ -72,6 +72,16 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
+  "confirm-form-learned": {
+    "title": "Leave cardset",
+    "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
+  },
+  "confirm-form-profile": {
+    "title": "Delete user profile",
+    "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",
+    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards. 
+    Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
+  },
   "confirmLearn-form": {
     "title": "Start Learning-Phase",
     "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
@@ -192,7 +202,6 @@
     "billing": "Billing",
     "membership": "Membership",
     "notifications": "Notifications",
-    "settings": "Profile",
     "requests": "Pro approval",
     "norequests": "No requests",
     "lecturer": "Lecturer approval",
@@ -202,7 +211,13 @@
     "cancel": "Cancel",
     "saved": "Settings saved!",
     "canceled": "Amendments rejected!",
-    "error": "Incorrect entries!"
+    "error": "Incorrect entries!",
+
+    "settings": {
+      "name": "Profile",
+      "delete": "Delete user profile",
+      "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile."
+    }
   },
   "profil-header": {
     "name": "Profile of "
@@ -744,6 +759,10 @@
     "text": "You don't have permission to open this page!",
     "button": "Close",
     "reason": "Reason for block: "
+  },
+  "first-login": {
+    "text": "I have read the general terms & conditions and the data protection terms and accept them.",
+    "button": "Accept"
   },
   "mailNotification": {
     "subjectTitle": "THMcards: Today ",

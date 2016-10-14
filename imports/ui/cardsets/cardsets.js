@@ -100,6 +100,9 @@ Template.learned.events({
 		} else {
 			Session.set('cardsetSortLearned', {category: 1});
 		}
+	},
+	'click .deleteLearned': function () {
+		Session.set('cardsetId', this._id);
 	}
 });
 
@@ -297,5 +300,21 @@ Template.cardsetsForm.events({
 		$('#newSetCourseLabel').css('color', '');
 		$('.newSetCourseDropdown').css('border-color', '');
 		$('#helpNewSetCourse').html('');
+	}
+});
+
+/**
+ * ############################################################################
+ * cardsetsConfirmLearnedForm
+ * ############################################################################
+ */
+
+Template.cardsetsConfirmLearnedForm.events({
+	'click #learnedDelete': function () {
+		var id = Session.get('cardsetId');
+
+		$('#confirmLearnedModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLearned", id);
+		}).modal('hide');
 	}
 });

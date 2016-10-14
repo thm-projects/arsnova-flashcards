@@ -1,50 +1,58 @@
 <template name="cardset" xmlns="http://www.w3.org/1999/html">
-    {{#if hasPermission}}
-        {{> cardsetInfo}}
-
-        {{> cardsetForm}}
-        {{> cardsetImportForm}}
-        {{> cardsetPublishForm}}
-        {{> cardsetStartLearnForm}}
-        {{> cardsetEndLearnForm}}
-        {{> selectLicenseForm}}
-        {{> reportCardsetForm}}
-        {{onEditmodalClose this._id}}
-
-        {{#if hasCardsetPermission}}
-            {{#if isLecturerAndHasRequest}}
-                <div class="col-md-12">
-                    <div class="panel panel-default cardsetInfo">
-                        <div class="panel-body">
-                            <div class="input-group has-error">
-											<span class="input-group-btn">
-											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
-                                                      "cardset.request.accept"}}</button>
-											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
-                                                      "cardset.request.decline"}}</button>
-											</span>
-                                <input id="declineRequestReason" type="text" class="form-control"
-                                       placeholder="Begründung">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/if}}
-            {{> cardsetSidebar}}
-            {{#if isActiveRoute 'cardsetdetailsid'}}
-                {{> cardsetDetails}}
-            {{/if}}
-            {{#if isActiveRoute 'cardsetlistid'}}
-                {{> cardsetList}}
-            {{/if}}
-        {{else}}
-            {{> cardsetPreview}}
-        {{/if}}
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
     {{else}}
-        <div class="col-md-12">
-            <h4>{{_ "permission"}}</h4>
-        </div>
+      {{#if hasPermission}}
+          {{> cardsetInfo}}
+
+          {{> cardsetForm}}
+          {{> cardsetImportForm}}
+          {{> cardsetPublishForm}}
+          {{> cardsetStartLearnForm}}
+          {{> cardsetEndLearnForm}}
+          {{> selectLicenseForm}}
+          {{> reportCardsetForm}}
+          {{onEditmodalClose this._id}}
+
+          {{#if hasCardsetPermission}}
+              {{#if isLecturerAndHasRequest}}
+                  <div class="col-md-12">
+                      <div class="panel panel-default cardsetInfo">
+                          <div class="panel-body">
+                              <div class="input-group has-error">
+  											<span class="input-group-btn">
+  											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
+                                                        "cardset.request.accept"}}</button>
+  											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
+                                                        "cardset.request.decline"}}</button>
+  											</span>
+                                  <input id="declineRequestReason" type="text" class="form-control"
+                                         placeholder="Begründung">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              {{/if}}
+              {{> cardsetSidebar}}
+              {{#if isActiveRoute 'cardsetdetailsid'}}
+                  {{> cardsetDetails}}
+              {{/if}}
+              {{#if isActiveRoute 'cardsetlistid'}}
+                  {{> cardsetList}}
+              {{/if}}
+          {{else}}
+              {{> cardsetPreview}}
+          {{/if}}
+      {{else}}
+          <div class="col-md-12">
+              <h4>{{_ "permission"}}</h4>
+          </div>
+      {{/if}}
     {{/if}}
+  {{/if}}
 </template>
 
 

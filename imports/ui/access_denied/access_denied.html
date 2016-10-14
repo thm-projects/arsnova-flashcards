@@ -18,7 +18,6 @@
                 {{else}}
                     <p>{{_ "access-denied.text"}}</p>
                 {{/if}}
-
             </div>
         </div>
     </div>
@@ -176,4 +175,14 @@
             <!-- /.container-fluid -->
         </div>
     </nav>
+</template>
+
+<template name="access_denied_content_only">
+  <div class="text-left col-md-12" id="access-denied-admin">
+    <h2>{{_ "access-denied.title"}}</h2>
+    <p>{{_ "access-denied.reason"}}{{currentUser.blockedtext}}</p>
+    <br/>
+    <hr/>
+    <button id="logout_access_denied_blocked" type="button" class="btn btn-default">{{_ "access-denied.button"}}</button>
+  </div>
 </template>

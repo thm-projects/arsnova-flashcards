@@ -6,7 +6,7 @@ export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
 if (Meteor.isServer) {
 	Meteor.publish("collegesCourses", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			return CollegesCourses.find();
 		}
 	});
