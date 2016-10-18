@@ -5,7 +5,7 @@ ARSnova Cards is a digital recreation of a classic learning tool. The service of
 
 ## Initial setup
 
-1. [Install Meteor](https://www.meteor.com/install)
+1. Install Meteor version 1.3.5.1: `curl https://install.meteor.com/?release=1.3.5.1 | sh`
 2. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
 
 ### Settings
