@@ -12,6 +12,7 @@ import "../pool/pool.js";
 import "../profile/profile.js";
 import "../admin/admin.js";
 import "../access_denied/access_denied.js";
+import "../first_login/first_login.js";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");

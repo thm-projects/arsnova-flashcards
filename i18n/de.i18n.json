@@ -72,6 +72,15 @@
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
+  "confirm-form-learned": {
+    "title": "Kartensatz verlassen",
+    "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
+  },
+  "confirm-form-profile": {
+    "title": "Benutzerprofil löschen",
+    "text": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
+    "text2": "Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
+  },
   "confirmLearn-form": {
     "title": "Lernphase starten",
     "text": "Wollen Sie die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer des Kartensatzes geht hierbei verloren!",
@@ -189,7 +198,6 @@
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "settings": "Profil",
     "requests": "Pro-Freigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
@@ -199,7 +207,13 @@
     "cancel": "Abbrechen",
     "saved": "Einstellungen wurden gespeichert!",
     "canceled": "Änderungen wurden verworfen!",
-    "error": "Fehlerhafte Einträge!"
+    "error": "Fehlerhafte Einträge!",
+
+    "settings": {
+      "name": "Profil",
+      "delete": "Benutzerprofil löschen",
+      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen."
+    }
   },
   "profil-header": {
     "name": "Profil von "
@@ -742,6 +756,10 @@
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: "
+  }, 
+  "first-login": {
+    "text": "Ich habe die allgemeinen Geschäftsbedingungen und Datenschutzerklärung gelesen und bin damit einverstanden.",
+    "button": "Akzeptieren"
   },
   "mailNotification": {
     "subjectTitle": "THMcards: Heute ",

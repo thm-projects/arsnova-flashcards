@@ -6,7 +6,7 @@ export const Paid = new Mongo.Collection("paid");
 
 if (Meteor.isServer) {
 	Meteor.publish("paid", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			return Paid.find({
 				$or: [
 					{user_id: this.userId},
@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 Meteor.methods({
 	addPaid: function (cardset_id, amount) {
 		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 

@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
+import {Cards} from "./cards.js";
 
 if (Meteor.isServer) {
 	Meteor.publish("allUsers", function () {
@@ -37,11 +38,28 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
+		var cardsets = Cardsets.find({
+			owner: user_id,
+			kind: 'personal'
+		});
+
+		cardsets.forEach(function (cardset) {
+			Cards.remove({
+				cardset_id: cardset._id
+			});
+		});
+
 		Cardsets.update({owner: user_id}, {
 			$set: {
 				userDeleted: true
 			}
 		}, {multi: true});
+
+		Cardsets.remove({
+			owner: user_id,
+			kind: 'personal'
+		});
+
 		Meteor.users.remove(user_id);
 	},
 	updateRoles: function (user_id, newRole) {

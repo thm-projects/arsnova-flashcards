@@ -1,31 +1,39 @@
 <template name="box">
-    {{#if hasPermission}}
-
-        <!-- Sidebar -->
-        <div class="col-md-3">{{> boxSide}}</div>
-
-        <!-- Main -->
-        <div class="col-md-9">
-            {{#if isFinish}}
-                {{> boxEnd}}
-            {{else}}
-                {{#if boxSelected}}
-                    {{#if isNotEmpty}}
-                        {{> boxMain}}
-                    {{else}}
-                        {{> boxEmpty}}
-                    {{/if}}
-                {{else}}
-                    {{> boxStart}}
-                {{/if}}
-            {{/if}}
-            {{> graph}}
-        </div>
-
-        <!-- Permission denied -->
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
     {{else}}
-        <h4>{{_ "permission"}}</h4>
+      {{#if hasPermission}}
+
+          <!-- Sidebar -->
+          <div class="col-md-3">{{> boxSide}}</div>
+
+          <!-- Main -->
+          <div class="col-md-9">
+              {{#if isFinish}}
+                  {{> boxEnd}}
+              {{else}}
+                  {{#if boxSelected}}
+                      {{#if isNotEmpty}}
+                          {{> boxMain}}
+                      {{else}}
+                          {{> boxEmpty}}
+                      {{/if}}
+                  {{else}}
+                      {{> boxStart}}
+                  {{/if}}
+              {{/if}}
+              {{> graph}}
+          </div>
+
+          <!-- Permission denied -->
+      {{else}}
+          <h4>{{_ "permission"}}</h4>
+      {{/if}}
     {{/if}}
+  {{/if}}
 </template>
 
 <!-- Sidebar -->

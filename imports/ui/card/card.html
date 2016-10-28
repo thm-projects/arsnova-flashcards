@@ -1,27 +1,43 @@
 <template name="newCard">
-    {{#if isOwnerCard}}
-        <div class="container">
-            <div class="col-md-12">
-                <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
-            </div>
-            {{> editor}}
-        </div>
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
     {{else}}
-        <h4>{{_ "permission"}}</h4>
+      {{#if isOwnerCard}}
+          <div class="container">
+              <div class="col-md-12">
+                  <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
+              </div>
+              {{> editor}}
+          </div>
+      {{else}}
+          <h4>{{_ "permission"}}</h4>
+      {{/if}}
     {{/if}}
+  {{/if}}
 </template>
 
 <template name="editCard">
-    {{#if isOwnerCard}}
-        <div class="container">
-            <div class="col-md-12">
-                <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
-            </div>
-            {{> editor}}
-        </div>
+  {{#if isInRole 'firstLogin'}}
+    	{{> first_login_content_only}}
+  {{else}}
+    {{#if isInRole 'blocked'}}
+      {{> access_denied_content_only}}
     {{else}}
-        <h4>{{_ "permission"}}</h4>
+      {{#if isOwnerCard}}
+          <div class="container">
+              <div class="col-md-12">
+                  <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
+              </div>
+              {{> editor}}
+          </div>
+      {{else}}
+          <h4>{{_ "permission"}}</h4>
+      {{/if}}
     {{/if}}
+  {{/if}}
 </template>
 
 <template name="editor">
