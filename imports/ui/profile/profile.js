@@ -72,12 +72,12 @@ export function drawGraph() {
 					display: false
 				},
 				scales: {
-		      yAxes: [{
-		        ticks: {
-		          stepSize: 1
+					yAxes: [{
+						ticks: {
+							stepSize: 1
 						}
 					}]
-        }
+				}
 			}
 		});
 	}
