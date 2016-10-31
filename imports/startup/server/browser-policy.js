@@ -6,8 +6,9 @@ BrowserPolicy.content.disallowEval();
 BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
-var trusted = ['https://*.google-analytics.com', 'https://*.mxpnl.com', 'https://*.zendesk.com', 'https://*.braintreegateway.com', 'https://git.thm.de', 'http://*.cloudflare.com'];
-
-_.each(trusted, function (origin) {
-  BrowserPolicy.content.allowOriginForAll(origin);
-});
+BrowserPolicy.content.allowOriginForAll('https://*.google-analytics.com');
+BrowserPolicy.content.allowOriginForAll('https://*.mxpnl.com');
+BrowserPolicy.content.allowOriginForAll('https://*.zendesk.com');
+BrowserPolicy.content.allowOriginForAll('https://*.braintreegateway.com');
+BrowserPolicy.content.allowOriginForAll('http://*.cloudflare.com');
+BrowserPolicy.content.allowOriginForAll('https://git.thm.de');
