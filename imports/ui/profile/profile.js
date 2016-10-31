@@ -13,7 +13,6 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
-import {Graph} from "../../api/graph.js";
 import "./profile.html";
 
 
@@ -53,7 +52,7 @@ export function drawGraph() {
 
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("profileChart").getContext("2d");
-		var profileChart = new Chart(ctx, {
+		new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],

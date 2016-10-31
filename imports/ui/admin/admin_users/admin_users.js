@@ -4,8 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {Graph} from "../../../api/graph.js";
-import {Charts} from "chart.js";
 import {Learned} from "../../../api/learned.js";
 
 import "./admin_users.html";
@@ -47,7 +45,7 @@ export function drawGraph() {
 
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("adminChart").getContext("2d");
-	  var adminChart = new Chart(ctx, {
+		new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],

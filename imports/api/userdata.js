@@ -54,27 +54,26 @@ if (Meteor.isServer) {
 	});
 }
 
-
 Meteor.users.allow({
-  insert() {
+	insert() {
 		return false;
 	},
-  update() {
+	update() {
 		return false;
 	},
-  remove() {
+	remove() {
 		return false;
 	}
 });
 
 Meteor.users.deny({
-  insert() {
+	insert() {
 		return true;
 	},
-  update() {
+	update() {
 		return true;
 	},
-  remove() {
+	remove() {
 		return true;
 	}
 });

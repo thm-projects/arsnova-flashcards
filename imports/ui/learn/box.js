@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
-import {Graph} from "../../api/graph.js";
 import "./box.html";
 
 
@@ -46,7 +45,7 @@ function drawGraph() {
 
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		var boxChart = new Chart(ctx, {
+		new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
