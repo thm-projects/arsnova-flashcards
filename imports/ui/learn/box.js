@@ -72,7 +72,7 @@ function drawGraph() {
 								if (value % 1 === 0) {
 									return value;
 								}
-							}  
+							}
 						}
 					}]
 				}
