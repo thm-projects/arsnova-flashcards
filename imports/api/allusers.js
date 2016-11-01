@@ -15,6 +15,18 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	updateUser: function (user_id, visible, email, blockedtext) {
+		check(user_id, String);
+		check(visible, Boolean);
+
+		if (email !== " ") {
+			check(email, String);
+
+		}
+		if(blockedtext !== null)
+		{
+			check(blockedtext, String);
+		}
+
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'
@@ -31,6 +43,8 @@ Meteor.methods({
 		});
 	},
 	deleteUser: function (user_id) {
+		check(user_id, String);
+
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'
@@ -63,6 +77,9 @@ Meteor.methods({
 		Meteor.users.remove(user_id);
 	},
 	updateRoles: function (user_id, newRole) {
+		check(user_id, String);
+		check(newRole, String);
+
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'
@@ -93,6 +110,9 @@ Meteor.methods({
 	},
 
 	removeRoles: function (user_id, removeRole) {
+		check(user_id, String);
+		check(removeRole, String);
+
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'

@@ -49,6 +49,12 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	addNotification: function (target, type, text, link_id, receiver) {
+		check(target, String);
+		check(type, String);
+		check(text, String);
+		check(link_id, String);
+		check(receiver, String);
+
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -72,6 +78,13 @@ Meteor.methods({
 	},
 
 	createNotification: function (target, type, text, link_id, target_type, receiver) {
+		check(target, String);
+		check(type, String);
+		check(text, String);
+		check(link_id, String);
+		check(target_type, String);
+		check(receiver, String);
+
 		Notifications.insert({
 			target: target,
 			origin: Meteor.userId(),
@@ -87,6 +100,8 @@ Meteor.methods({
 	},
 
 	setNotificationAsRead: function (notification_id) {
+		check(notification_id, String);
+
 		Notifications.update(notification_id, {
 			$set: {
 				read: true
@@ -95,6 +110,8 @@ Meteor.methods({
 	},
 
 	setNotificationAsCleared: function (notification_id) {
+		check(notification_id, String);
+
 		Notifications.update(notification_id, {
 			$set: {
 				cleared: true

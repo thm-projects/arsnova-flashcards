@@ -49,6 +49,9 @@ Meteor.methods({
 		});
 	},
 	addExperience: function (type, value) {
+		check(type, Number);
+		check(value, Number);
+
 		Experience.insert({
 			type: type,
 			value: value,

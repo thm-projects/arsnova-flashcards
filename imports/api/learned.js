@@ -33,12 +33,17 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	clearLearningProgress: function (cardset_id) {
+		check(cardset_id, String);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Learned.remove({cardset_id: cardset_id});
 	},
 	addLearned: function (cardset_id, card_id) {
+		check(cardset_id, String);
+		check(card_id, String);
+
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -65,6 +70,10 @@ Meteor.methods({
 		});
 	},
 	updateLearned: function (learned_id, box, nextDate) {
+		check(learned_id, String);
+		check(box, Number);
+		check(nextDate, Date);
+
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -79,6 +88,8 @@ Meteor.methods({
 		});
 	},
 	deleteLearned: function (cardset_id) {
+		check(cardset_id, String);
+
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -89,6 +100,9 @@ Meteor.methods({
 		});
 	},
 	updateLearnedMemo: function (learned_id, grade) {
+		check(learned_id, String);
+		check(grade, Number);
+
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");

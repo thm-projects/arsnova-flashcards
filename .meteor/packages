@@ -54,3 +54,4 @@ email
 percolate:synced-cron
 jshint
 browser-policy
+check

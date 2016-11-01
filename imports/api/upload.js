@@ -4,6 +4,8 @@ import {Cards} from "./cards.js";
 
 Meteor.methods({
 	parseUpload: function (data, cardset_id) {
+		check(cardset_id, String);
+		
 		var cardset = Cardsets.findOne(cardset_id);
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");

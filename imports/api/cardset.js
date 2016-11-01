@@ -20,6 +20,9 @@ export function getAuthorName(owner) {
 
 Meteor.methods({
 	getCSVExport: function (cardset_id, header) {
+		check(cardset_id, String);
+		check(header, [String]);
+
 		var cardset = Cardsets.findOne({_id: cardset_id});
 		if ((Roles.userIsInRole(Meteor.userId(), 'lecturer')) && Meteor.userId() === cardset.owner && (Match.test(header, [String]))) {
 			var content;
