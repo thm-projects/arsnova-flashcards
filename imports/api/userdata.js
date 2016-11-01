@@ -109,7 +109,7 @@ Meteor.methods({
 		});
 	},
 	updateUsersTitle: function (title, id) {
-		check(title, String)
+		check(title, String);
 		check(id, String);
 
 		Meteor.users.update(id, {
@@ -173,7 +173,7 @@ Meteor.methods({
 		});
 	},
 	setUserAsLecturer: function (id) {
-		check(id, String)
+		check(id, String);
 
 		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
 			throw new Meteor.Error("not-authorized");
