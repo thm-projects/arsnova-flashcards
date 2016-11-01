@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
+import {check} from "meteor/check";
 
 if (Meteor.isServer) {
 	Meteor.publish("allUsers", function () {
@@ -20,9 +21,8 @@ Meteor.methods({
 
 		if (email !== " ") {
 			check(email, String);
-
 		}
-		if(blockedtext !== null)
+		if (blockedtext !== null)
 		{
 			check(blockedtext, String);
 		}

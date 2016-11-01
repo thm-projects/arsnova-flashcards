@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Match} from "meteor/check";
 import {Learned} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
+import {check} from "meteor/check";
 
 export function getAuthorName(owner) {
 	var author = Meteor.users.findOne({"_id": owner});

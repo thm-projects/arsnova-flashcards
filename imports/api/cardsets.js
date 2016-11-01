@@ -4,7 +4,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
 import {Ratings} from "./ratings.js";
-
+import {check} from "meteor/check";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 

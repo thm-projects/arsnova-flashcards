@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
+import {check} from "meteor/check";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {

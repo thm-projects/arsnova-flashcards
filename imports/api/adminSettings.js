@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-import {Check} from "meteor/check";
+import {check} from "meteor/check";
 
 export const AdminSettings = new Mongo.Collection("adminSettings");
 
