@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-
+import {check} from "meteor/check";
 
 export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
@@ -14,6 +14,9 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	"updateCollegesCoursess": function (college, course) {
+		check(college, String);
+		check(course, String);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -24,6 +27,9 @@ Meteor.methods({
 		});
 	},
 	"deleteCollegesCourses": function (college, course) {
+		check(college, String);
+		check(course, String);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -34,6 +40,11 @@ Meteor.methods({
 		});
 	},
 	"editCollegesCourses": function (college, course, newCollege, newCourse) {
+		check(college, String);
+		check(course, String);
+		check(newCollege, String);
+		check(newCourse, String);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}

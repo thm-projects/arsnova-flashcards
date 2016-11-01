@@ -13,7 +13,6 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
-import {Graph} from "../../api/graph.js";
 import "./profile.html";
 
 
@@ -30,15 +29,59 @@ Meteor.subscribe('learned', function () {
 });
 
 export function drawGraph() {
+	var query = {};
+	if (Meteor.userId() !== undefined) {
+		query.user_id = Meteor.userId();
+	}
+	if (undefined !== undefined) {
+		query.cardset_id = undefined;
+	}
+	query.box = 1;
+	var box1 = Learned.find(query).count();
+	query.box = 2;
+	var box2 = Learned.find(query).count();
+	query.box = 3;
+	var box3 = Learned.find(query).count();
+	query.box = 4;
+	var box4 = Learned.find(query).count();
+	query.box = 5;
+	var box5 = Learned.find(query).count();
+	query.box = 6;
+	var box6 = Learned.find(query).count();
+	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
+
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("profileChart").getContext("2d");
-		new Chart(ctx).Bar(Graph(Meteor.userId(), undefined),
-			{
-				responsive: true
-			});
+		new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+				datasets: [
+					{
+						backgroundColor: "rgba(242,169,0,0.5)",
+						borderColor: "rgba(74,92,102,0.2)",
+						borderWidth: 1,
+						data: userData,
+						label: 'Anzahl Karten'
+					}
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					display: false
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							stepSize: 1
+						}
+					}]
+				}
+			}
+		});
 	}
 }
-
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);

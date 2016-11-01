@@ -52,5 +52,6 @@ aslagle:reactive-table
 patrickml:braintree
 email
 percolate:synced-cron
-chart:chart
 jshint
+browser-policy
+check
