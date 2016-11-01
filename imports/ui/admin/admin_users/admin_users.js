@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import {Learned} from "../../../api/learned.js";
-//import {Chart} from "chart.js";
+import {Chart} from "chart.js";
 import "./admin_users.html";
 import "./admin_user.js";
 
