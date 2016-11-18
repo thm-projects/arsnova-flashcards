@@ -133,7 +133,8 @@ CardsetsIndex = new EasySearch.Index({
 	collection: Cardsets,
 	fields: [
 		'name',
-		'description'
+		'description',
+		'owner'
 	],
 	engine: new EasySearch.Minimongo({
 		selector: function (searchObject, options, aggregation) {
