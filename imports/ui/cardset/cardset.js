@@ -108,21 +108,29 @@ Template.cardset.helpers({
 	}
 });
 
+function flipBack() {
+	$(".cardfront-symbol").css('display', "none");
+	$(".cardback-symbol").css('display', "");
+	$(".cardfront").css('display', "none");
+	$(".cardback").css('display', "");
+	$(".box").addClass("flipped");
+	$(".innerBox").addClass("back");
+}
+
+function flipFront() {
+	$(".cardfront-symbol").css('display', "");
+	$(".cardback-symbol").css('display', "none");
+	$(".cardfront").css('display', "");
+	$(".cardback").css('display', "none");
+	$(".box").removeClass("flipped");
+	$(".innerBox").removeClass("back");
+}
+
 function ifCardset() {
 	if ($(".cardfront-symbol").css('display') === 'none') {
-		$(".cardfront-symbol").css('display', "");
-		$(".cardback-symbol").css('display', "none");
-		$(".cardfront").css('display', "");
-		$(".cardback").css('display', "none");
-		$(".box").removeClass("flipped");
-		$(".innerBox").removeClass("back");
+		flipFront();
 	} else if ($(".cardback-symbol").css('display') === 'none') {
-		$(".cardfront-symbol").css('display', "none");
-		$(".cardback-symbol").css('display', "");
-		$(".cardfront").css('display', "none");
-		$(".cardback").css('display', "");
-		$(".box").addClass("flipped");
-		$(".innerBox").addClass("back");
+		flipBack();
 	}
 }
 
@@ -473,7 +481,7 @@ Template.cardsetDetails.events({
 		ifCardset();
 	},
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		ifCardset();
+		flipFront();
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
@@ -546,7 +554,7 @@ Template.cardsetPreview.events({
 		ifCardset();
 	},
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		ifCardset();
+		flipFront();
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
