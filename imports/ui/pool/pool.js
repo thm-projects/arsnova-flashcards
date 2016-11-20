@@ -18,6 +18,7 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
+Session.setDefault('selectedCardset');
 
 /**
  * Creates a browser-popup with defined content
@@ -66,6 +67,18 @@ function prepareQuery() {
 	}
 }
 
+function filterCheckbox() {
+	$("#filterCheckbox input:checkbox").each(function () {
+		if (!Session.get('poolFilter').includes($(this).val())) {
+			$(this).prop('checked', false);
+			$(this).closest("label").removeClass('active');
+		} else {
+			$(this).prop('checked', true);
+			$(this).closest("label").addClass('active');
+		}
+	});
+}
+
 function checkFilters() {
 	if (Session.get('poolFilterAuthor')) {
 		$(".filterAuthorGroup").addClass('active');
@@ -87,15 +100,43 @@ function checkFilters() {
 	} else {
 		$(".filterModuleGroup").removeClass('active').first();
 	}
-	$("#filterCheckbox input:checkbox").each(function () {
-		if (!Session.get('poolFilter').includes($(this).val())) {
-			$(this).prop('checked', false);
-			$(this).closest("label").removeClass('active');
-		} else {
-			$(this).prop('checked', true);
-			$(this).closest("label").addClass('active');
-		}
-	});
+	filterCheckbox();
+}
+
+function filterCollege(event) {
+	var button = $(".filterCollegeGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterCollegeVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterCollegeVal', $(event.target).html());
+	}
+	Session.set('poolFilterCollege', $(event.target).data('id'));
+}
+
+function filterCourse(event) {
+	var button = $(".filterCourseGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterCourseVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterCourseVal', $(event.target).html());
+	}
+	Session.set('poolFilterCourse', $(event.target).data('id'));
+}
+
+function filterModule(event) {
+	var button = $(".filterModuleGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterModuleVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterModuleVal', $(event.target).html());
+	}
+	Session.set('poolFilterModule', $(event.target).data('id'));
 }
 
 function deadline(cardset) {
@@ -178,6 +219,35 @@ Template.category.greeting = function () {
 	return Session.get('authors');
 };
 
+Template.showLicense.helpers({
+	getTopic: function () {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			return item.name;
+		}
+	},
+	getLicenseCount: function () {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			if (item.license.length > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	},
+	getLicenseType: function (type) {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			if (item.license.includes(type)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+});
+
 Template.poolCardsetRow.helpers({
 	getAverageRating: function () {
 		var ratings = Ratings.find({
@@ -198,13 +268,13 @@ Template.poolCardsetRow.helpers({
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
-				return '<span class="label label-info">Free</span>';
+				return '<span class="label label-info panelUnitKind" data-id="free">Free</span>';
 			case "edu":
-				return '<span class="label label-success">Edu</span>';
+				return '<span class="label label-success panelUnitKind" data-id="edu">Edu</span>';
 			case "pro":
-				return '<span class="label label-danger">Pro</span>';
+				return '<span class="label label-danger panelUnitKind" data-id="pro">Pro</span>';
 			default:
-				return '<span class="label label-default">Undefined!</span>';
+				return '<span class="label label-default panelUnitKind">Undefined!</span>';
 		}
 	},
 	getPrice: function () {
@@ -217,21 +287,21 @@ Template.poolCardsetRow.helpers({
 
 		if (this.license.length > 0) {
 			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + this._id + '"/>');
 			}
 
 			return new Spacebars.SafeString(licenseString);
 		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
+			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
 		}
 	},
 	getMaximumText: function (text) {
@@ -244,6 +314,26 @@ Template.poolCardsetRow.helpers({
 	}
 });
 
+
+Template.poolCardsetRow.events({
+	'click .filterCollege': function (event) {
+		filterCollege(event);
+	},
+	'click .filterCourse': function (event) {
+		filterCourse(event);
+	},
+	'click .filterModule': function (event) {
+		filterModule(event);
+	},
+	'click .filterCheckbox': function (event) {
+		Session.set('poolFilter', [$(event.target).data('id')]);
+		filterCheckbox();
+	},
+	'click .showLicense': function (event) {
+		Session.set('selectedCardset', $(event.target).data('id'));
+	}
+});
+
 Template.category.events({
 	'click #resetBtn': function () {
 		Session.set('poolSortTopic', {name: 1});
@@ -252,10 +342,7 @@ Template.category.events({
 		Session.set('poolFilterCourse');
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
-		$(".filterAuthorGroup").removeClass('active').first();
-		$(".filterCollegeGroup").removeClass('active').first();
-		$(".filterCourseGroup").removeClass('active').first();
-		$(".filterModuleGroup").removeClass('active').first();
+		checkFilters();
 	},
 	'click .sortTopic': function () {
 		var sort = Session.get('poolSortTopic');
@@ -277,37 +364,13 @@ Template.category.events({
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
 	'click .filterCollege': function (event) {
-		var button = $(".filterCollegeGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-			Session.set('poolFilterCollegeVal', null);
-		} else {
-			button.addClass('active');
-			Session.set('poolFilterCollegeVal', $(event.target).html());
-		}
-		Session.set('poolFilterCollege', $(event.target).data('id'));
+		filterCollege(event);
 	},
 	'click .filterCourse': function (event) {
-		var button = $(".filterCourseGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-			Session.set('poolFilterCourseVal', null);
-		} else {
-			button.addClass('active');
-			Session.set('poolFilterCourseVal', $(event.target).html());
-		}
-		Session.set('poolFilterCourse', $(event.target).data('id'));
+		filterCourse(event);
 	},
 	'click .filterModule': function (event) {
-		var button = $(".filterModuleGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-			Session.set('poolFilterModuleVal', null);
-		} else {
-			button.addClass('active');
-			Session.set('poolFilterModuleVal', $(event.target).html());
-		}
-		Session.set('poolFilterModule', $(event.target).data('id'));
+		filterModule(event);
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];

@@ -170,6 +170,7 @@
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
+    "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
     "saveLicense": "Lizenz speichern",
     "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
     "report": "Kartensatz/Benutzer melden",
@@ -378,7 +379,8 @@
     "private": "Privat",
     "license": " Lizenz wählen",
     "startLearning": "Starte Lernphase",
-    "stopLearning": "Beende Lernphase"
+    "stopLearning": "Beende Lernphase",
+    "poolLicense": "Lizenz für "
   },
   "pool": {
     "relevance": "Relevanz",
@@ -759,7 +761,7 @@
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: "
-  }, 
+  },
   "first-login": {
     "text": "Ich habe die allgemeinen Geschäftsbedingungen und Datenschutzerklärung gelesen und bin damit einverstanden.",
     "button": "Akzeptieren"
