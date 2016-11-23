@@ -1067,6 +1067,10 @@ Template.cardsetPublishForm.events({
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
+
+			license.push("by");
+			license.push("nd");
+			Meteor.call("updateLicense", id, license);
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 
