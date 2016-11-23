@@ -1036,10 +1036,10 @@ Template.cardsetPublishForm.helpers({
 });
 
 Template.cardsetPublishForm.events({
-	'shown.bs.modal #publishModal': function(e){
+	'shown.bs.modal #publishModal': function(){
     Session.set('kindWithPrice', false);
   },
-	'hidden.bs.modal #publishModal': function(e){
+	'hidden.bs.modal #publishModal': function(){
     Session.set('kindWithPrice', false);
   },
 	'click #cardsetPublish': function (evt, tmpl) {
