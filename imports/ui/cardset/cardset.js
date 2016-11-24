@@ -387,10 +387,8 @@ Template.cardsetDetails.onCreated(function () {
 });
 
 function setLightBoxes(html) {
-	if( $(html).find('img').length !== 0) {
-
+	if ($(html).find('img').length !== 0) {
 		$(html).find('img').each(function () {
-
 			var imageDescription = $(this).attr('alt');
 			var imageUrl = $(this).attr('src');
 
