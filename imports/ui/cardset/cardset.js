@@ -422,10 +422,12 @@ Template.cardsetDetails.helpers({
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailfront" + index).html(html);
 			});
 		Meteor.promise("convertMarkdown", back)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailback" + index).html(html);
 			});
 	},
@@ -447,6 +449,28 @@ Template.cardsetDetails.helpers({
 		}).count();
 	}
 });
+
+
+function setLightBoxes(html) {
+	//Check if images are available
+	if($(html).find('img').length !== 0) {
+		//If yes iterate over every image
+		$(html).find('img').each(function(index, value) {
+			//Get image description
+			var imageDescription = $(this).attr('alt');
+			//Get image url
+			var imageUrl = $(this).attr('src');
+
+			//Wrap image tag with an anchor tag with specific attributes and set click function to show the light box
+			html = $(this).wrap('<a href="' + imageUrl + '" data-type="image" data-toggle="lightbox" data-title="' + imageDescription +'"></a>').parent().click(function(event) {
+				event.preventDefault();
+				return $(this).ekkoLightbox();
+			}).parent();
+		});
+	}
+
+	return html;
+}
 
 Template.cardsetDetails.events({
 	"click .box": function () {
