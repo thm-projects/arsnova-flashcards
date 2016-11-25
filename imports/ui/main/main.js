@@ -51,8 +51,7 @@ Template.main.events({
 	},
 	'click .lang': function (event) {
 		event.preventDefault();
-		choosenLang = $(event.target).data('lang')
-		TAPi18n.setLanguage(choosenLang)
+		TAPi18n.setLanguage($(event.target).data('lang'));
 	}
 });
 
@@ -94,9 +93,13 @@ Template.main.helpers({
 		const obj = TAPi18n.getLanguages();
 		const languages = [];
 		for (const key in obj) {
-			if (key) languages.push({ code: key, label: obj[key] });
+			if (key) {
+				languages.push({ code: key, label: obj[key] });
+			}
 		}
-		if (languages) return languages;
+		if (languages) {
+			return languages;
+		}
 	}
 });
 
