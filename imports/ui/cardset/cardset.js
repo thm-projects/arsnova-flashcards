@@ -121,7 +121,7 @@ function ifCardset() {
 		$(".cardfront").css('display', "none");
 		$(".cardback").css('display', "");
 		$(".box").addClass("flipped");
-		$(".innerBox").addClass("back")
+		$(".innerBox").addClass("back");
 	}
 }
 
