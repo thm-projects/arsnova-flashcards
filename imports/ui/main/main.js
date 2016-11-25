@@ -48,6 +48,11 @@ Template.main.events({
 		notifications.forEach(function (notification) {
 			Meteor.call("setNotificationAsCleared", notification._id);
 		});
+	},
+	'click .lang': function (event) {
+		event.preventDefault();
+		choosenLang = $(event.target).data('lang')
+		TAPi18n.setLanguage(choosenLang)
 	}
 });
 
@@ -81,6 +86,17 @@ Template.main.helpers({
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
+	},
+	getLanguage: function () {
+		return TAPi18n.getLanguage();
+	},
+	getLanguages: function () {
+		const obj = TAPi18n.getLanguages();
+		const languages = [];
+		for (const key in obj) {
+			if (key) languages.push({ code: key, label: obj[key] });
+		}
+		if (languages) return languages;
 	}
 });
 

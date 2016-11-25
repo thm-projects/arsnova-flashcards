@@ -56,6 +56,16 @@
                           </div>
 
                           <ul class="nav navbar-nav navbar-right">
+                              <li id="navbar-languagepanel">
+                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                      {{getLanguage}}
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                      {{#each getLanguages}}
+                                      <li><a role="menuitem" class="lang" data-lang={{code}}>{{label.name}}/{{label.en}} [{{code}}]</a></li>
+                                      {{/each}}
+                                  </ul>
+                              </li>
                               {{#if isInRole 'admin, editor'}}
                                   <li id="navbar-adminpanel">
                                       <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
