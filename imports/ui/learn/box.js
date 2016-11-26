@@ -159,18 +159,16 @@ Template.boxMain.helpers({
 		return maxIndex;
 	},
 	boxMarkdownFront: function (front, index) {
-		Meteor.promise("convertMarkdown", front)
-            .then(function (html) {
-	$(".front" + index).html(html);
-	$('table').addClass('table');
-            });
+		Meteor.promise("convertMarkdown", front).then(function (html) {
+			$(".front" + index).html(html);
+			$('table').addClass('table');
+		});
 	},
 	boxMarkdownBack: function (back, index) {
-		Meteor.promise("convertMarkdown", back)
-            .then(function (html) {
-	$(".back" + index).html(html);
-	$('table').addClass('table');
-            });
+		Meteor.promise("convertMarkdown", back).then(function (html) {
+			$(".back" + index).html(html);
+			$('table').addClass('table');
+		});
 	}
 });
 
@@ -351,8 +349,7 @@ function updateGraph() {
 	var i;
 	for (i = 0; i < 6; i++) {
 		query.box = (i + 1);
-		var learned = Learned.find(query).count()
-		chart.data.datasets[0].data[i] = learned;
+		chart.data.datasets[0].data[i] = Learned.find(query).count();
 	}
 
 	chart.update();
