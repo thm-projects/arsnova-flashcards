@@ -5,10 +5,12 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
+Meteor.subscribe('ratings');
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
@@ -153,6 +155,24 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
+  
+  getAverageRating: function () {
+		var ratings = Ratings.find({
+			cardset_id: this._id
+		});
+		var count = ratings.count();
+		if (count !== 0) {
+			var amount = 0;
+			ratings.forEach(function (rate) {
+				amount = amount + rate.rating;
+			});
+			var result = (amount / count).toFixed(2);
+			return result;
+		} else {
+			return 0;
+		}
+	},
+  
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -254,6 +274,14 @@ Template.category.events({
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
+	},
+	'click .sortTopic': function () {
+		var sort = Session.get('poolSortTopic');
+		if (sort.name === 1) {
+			Session.set('poolSortTopic', {name: -1});
+		} else {
+			Session.set('poolSortTopic', {name: 1});
+		}
 	}
 });
 

@@ -104,6 +104,7 @@
                 {{/each}}
             </ul>
         </div>
+        
 
         <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
              aria-label="License group">
@@ -132,7 +133,7 @@
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
-        <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
+        <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.college"}}
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
@@ -141,6 +142,11 @@
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.module"}}
         </span>
+        
+        <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
+                "set-list.rating"}}
+        </span>        
+        
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.availability"}}
         </span>
@@ -172,12 +178,18 @@
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.author"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{getAuthorName this.owner}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.college"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.college}}</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.college}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.course"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.course}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.module"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>
-    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.license"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>    
+    
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.rating"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">
+      {{> starsRating rating=getAverageRating mutable=false}}
+    </span>   
+    
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.availability"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 kind-label poolInfo">
         <span class="kind-label col-xs-3 col-sm-3 col-md-3 licenseInfo">
             {{{getKind}}}
@@ -189,6 +201,9 @@
             {{getLicense}}
         </span>
     </span>
+    
+ 
+    
 </template>
 
 
