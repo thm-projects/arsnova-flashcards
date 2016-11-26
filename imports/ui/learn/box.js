@@ -23,7 +23,6 @@ Meteor.subscribe('learned', function () {
 var chart;
 
 
-
 /**
  * ############################################################################
  * box
@@ -301,22 +300,22 @@ Template.boxEnd.events({
  * ############################################################################
  */
 
-function drawGraph(session) {
-	if (session) {
+function drawGraph() {
+	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		return new Chart(ctx, {
+		chart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 				datasets: [
-					{
-						backgroundColor: "rgba(242,169,0,0.5)",
-						borderColor: "rgba(74,92,102,0.2)",
-						borderWidth: 1,
-						data: [0, 0, 0, 0, 0, 0],
-						label: 'Anzahl Karten'
-					}
-				]
+                    {
+	backgroundColor: "rgba(242,169,0,0.5)",
+	borderColor: "rgba(74,92,102,0.2)",
+	borderWidth: 1,
+	data: [0, 0, 0, 0, 0, 0],
+	label: 'Anzahl Karten'
+                    }
+                ]
 			},
 			options: {
 				responsive: true,
@@ -340,7 +339,7 @@ function drawGraph(session) {
 	}
 }
 
-function updateGraph(chart) {
+function updateGraph() {
 	var query = {};
 	if (Meteor.userId() !== undefined) {
 		query.user_id = Meteor.userId();
@@ -360,11 +359,11 @@ function updateGraph(chart) {
 }
 
 Template.boxSide.onRendered(function () {
-	chart = drawGraph(Session.get('data_loaded'));
+	drawGraph();
 	var self = this;
 	self.subscribe("learned", function () {
 		self.autorun(function () {
-			updateGraph(chart);
+			updateGraph();
 		});
 	});
 });
