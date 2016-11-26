@@ -301,19 +301,19 @@ Template.boxEnd.events({
 function drawGraph() {
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		chart = new Chart(ctx, {
+		new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 				datasets: [
-                    {
-                        backgroundColor: "rgba(242,169,0,0.5)",
-                        borderColor: "rgba(74,92,102,0.2)",
-                        borderWidth: 1,
-                        data: [0, 0, 0, 0, 0, 0],
-                        label: 'Anzahl Karten'
-                    }
-                ]
+					{
+						backgroundColor: "rgba(242,169,0,0.5)",
+						borderColor: "rgba(74,92,102,0.2)",
+						borderWidth: 1,
+						data: userData,
+						label: 'Anzahl Karten'
+					}
+				]
 			},
 			options: {
 				responsive: true,
