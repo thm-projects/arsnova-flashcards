@@ -38,7 +38,8 @@ Template.admin_cards.helpers({
 	},
 	tableSettings: function () {
 		return {
-			showNavigationRowsPerPage: false,
+			showNavigationRowsPerPage: true,
+            showNavigation:true,
 			fields: [
 				{
 					key: 'front',
