@@ -301,7 +301,7 @@ Template.boxEnd.events({
 function drawGraph() {
 	if (Session.get('data_loaded')) {
 		var ctx = document.getElementById("boxChart").getContext("2d");
-		new Chart(ctx, {
+		chart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
@@ -310,7 +310,7 @@ function drawGraph() {
 						backgroundColor: "rgba(242,169,0,0.5)",
 						borderColor: "rgba(74,92,102,0.2)",
 						borderWidth: 1,
-						data: userData,
+						data: [0, 0, 0, 0, 0, 0],
 						label: 'Anzahl Karten'
 					}
 				]
