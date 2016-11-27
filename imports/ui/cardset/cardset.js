@@ -24,6 +24,7 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+// Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
 });
