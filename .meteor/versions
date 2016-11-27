@@ -74,6 +74,7 @@ less@2.6.5
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.14
+markdown@1.0.10
 matb33:collection-hooks@0.8.1
 mdg:validation-error@0.2.0
 meteor@1.1.16
