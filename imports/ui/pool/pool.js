@@ -274,14 +274,6 @@ Template.category.events({
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
-	},
-	'click .sortTopic': function () {
-		var sort = Session.get('poolSortTopic');
-		if (sort.name === 1) {
-			Session.set('poolSortTopic', {name: -1});
-		} else {
-			Session.set('poolSortTopic', {name: 1});
-		}
 	}
 });
 
