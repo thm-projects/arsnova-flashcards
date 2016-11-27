@@ -155,7 +155,6 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
-  
   getAverageRating: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
@@ -172,7 +171,6 @@ Template.poolCardsetRow.helpers({
 			return 0;
 		}
 	},
-  
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
