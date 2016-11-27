@@ -215,7 +215,7 @@ Template.category.events({
 	'click .filterAuthor': function (event) {
 		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
-			button.removeClass("active")
+			button.removeClass("active");
 			button.first().text(TAPi18n.__('set-list.author'));
 		} else {
 			button.addClass('active');
