@@ -344,33 +344,7 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .deleteCardList': function () {
 		Session.set('cardId', this._id);
-	},
-	'click #set-details-region .frontdown': function () {
-		Session.set('cardSort', {
-			front: 1
-		});
-	},
-	'click #set-details-region .frontup': function () {
-		Session.set('cardSort', {
-			front: -1
-		});
-	},
-	'click #set-details-region .backdown': function () {
-		Session.set('cardSort', {
-			back: 1
-		});
-	},
-	'click #set-details-region .backup': function () {
-		Session.set('cardSort', {
-			back: -1
-		});
 	}
-});
-
-Template.cardsetList.onDestroyed(function () {
-	Session.set('cardSort', {
-		front: 1
-	});
 });
 
 
