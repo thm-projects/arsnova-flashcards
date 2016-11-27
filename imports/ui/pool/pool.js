@@ -215,8 +215,8 @@ Template.category.events({
 	'click .filterAuthor': function (event) {
 		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-            button.first().text(TAPi18n.__('set-list.author'));
+			button.removeClass("active")
+			button.first().text(TAPi18n.__('set-list.author'));
 		} else {
 			button.addClass('active');
 			button.first().text($(event.target).html());
@@ -227,10 +227,10 @@ Template.category.events({
 		var button = $(".filterCollegeGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-            button.first().text(TAPi18n.__('set-list.college'));
+			button.first().text(TAPi18n.__('set-list.college'));
 		} else {
 			button.addClass('active');
-            button.first().text($(event.target).html());
+			button.first().text($(event.target).html());
 		}
 		Session.set('poolFilterCollege', $(event.target).data('id'));
 	},
@@ -238,10 +238,10 @@ Template.category.events({
 		var button = $(".filterCourseGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-            button.first().text(TAPi18n.__('set-list.course'));
+			button.first().text(TAPi18n.__('set-list.course'));
 		} else {
 			button.addClass('active');
-            button.first().text($(event.target).html());
+			button.first().text($(event.target).html());
 		}
 		Session.set('poolFilterCourse', $(event.target).data('id'));
 	},
@@ -249,10 +249,10 @@ Template.category.events({
 		var button = $(".filterModuleGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-            button.first().text(TAPi18n.__('set-list.module'));
+			button.first().text(TAPi18n.__('set-list.module'));
 		} else {
 			button.addClass('active');
-            button.first().text($(event.target).html());
+			button.first().text($(event.target).html());
 		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
 	},
