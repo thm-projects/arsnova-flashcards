@@ -155,7 +155,7 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
-  getAverageRating: function () {
+	getAverageRating: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
 		});
