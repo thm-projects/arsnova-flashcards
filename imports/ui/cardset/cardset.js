@@ -321,8 +321,8 @@ Template.cardsetForm.events({
  * ############################################################################
  */
 
-Template.descriptionEditorEdit.rendered = function() {
-    $("#editSetDescription").markdown({
+Template.descriptionEditorEdit.rendered = function () {
+	$("#editSetDescription").markdown({
         autofocus: true,
         hiddenButtons: ["cmdPreview", "cmdImage"],
         fullscreen: false,

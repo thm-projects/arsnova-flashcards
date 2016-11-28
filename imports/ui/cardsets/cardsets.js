@@ -214,8 +214,8 @@ Template.cardsets.events({
  * ############################################################################
  */
 
-Template.descriptionEditorNew.rendered = function() {
-    $("#newSetDescription").markdown({
+Template.descriptionEditorNew.rendered = function () {
+	$("#newSetDescription").markdown({
         autofocus: true,
         hiddenButtons: ["cmdPreview", "cmdImage"],
         fullscreen: false,
