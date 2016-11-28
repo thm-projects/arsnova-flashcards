@@ -216,20 +216,20 @@ Template.cardsets.events({
 
 Template.descriptionEditorNew.rendered = function () {
 	$("#newSetDescription").markdown({
-        autofocus: true,
-        hiddenButtons: ["cmdPreview", "cmdImage"],
-        fullscreen: false,
-        footer: "<p></p>",
-        onChange: function (e) {
-            var content = e.getContent();
-            if (content !== "") {
-                Meteor.promise("convertMarkdown", content)
-                    .then(function (rendered) {
-                        $(".md-footer").html(rendered);
-                    });
-            }
-        }
-    });
+		autofocus: true,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		footer: "<p></p>",
+		onChange: function (e) {
+			var content = e.getContent();
+			if (content !== "") {
+				Meteor.promise("convertMarkdown", content)
+					.then(function (rendered) {
+						$(".md-footer").html(rendered);
+					});
+			}
+		}
+	});
 };
 
 /**
