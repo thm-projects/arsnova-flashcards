@@ -446,6 +446,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorEdit">
+     <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
+               value="{{description}}"></textarea>
+</template>
 
 <template name="cardsetForm">
     <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
@@ -469,8 +473,7 @@
                             <label id="editSetDescriptionLabel" class="col-md-3 control-label"
                                    for="editSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="6" id="editSetDescription"
-                                          value="{{description}}"></textarea>
+                                {{>descriptionEditorEdit}}
                                 <span id="helpEditSetDescription" class="help-block description"></span>
                             </div>
                         </div>
