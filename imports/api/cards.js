@@ -5,7 +5,7 @@ import {Cardsets} from "./cardsets.js";
 import {Experience} from "./experience.js";
 import {Learned} from "./learned.js";
 import {Paid} from "./paid.js";
-
+import {check} from "meteor/check";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -75,6 +75,8 @@ if (Meteor.isServer) {
 	});
 
 	Meteor.publish("previewCards", function (cardset_id) {
+		check(cardset_id, String);
+
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			var count = Cards.find({cardset_id: cardset_id}).count();
 			var limit = count * 0.1;
@@ -108,6 +110,10 @@ Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
 	addCard: function (cardset_id, front, back) {
+		check(cardset_id, String);
+		check(front, String);
+		check(back, String);
+
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
@@ -133,6 +139,8 @@ Meteor.methods({
 		Meteor.call('checkLvl');
 	},
 	deleteCard: function (card_id) {
+		check(card_id, String);
+
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
@@ -164,6 +172,8 @@ Meteor.methods({
 		});
 	},
 	deleteCardAdmin: function (card_id) {
+		check(card_id, String);
+
 		var card = Cards.findOne({_id: card_id});
 		if (card !== undefined) {
 			if (!Roles.userIsInRole(this.userId, [
@@ -186,6 +196,10 @@ Meteor.methods({
 		}
 	},
 	updateCard: function (card_id, front, back) {
+		check(card_id, String);
+		check(front, String);
+		check(back, String);
+
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 

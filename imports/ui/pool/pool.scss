@@ -41,19 +41,6 @@
     margin-bottom: 0px;
   }
 
-  .floatLeft {
-    float: left;
-  }
-
-  .customPanelItem {
-    width: 100%;
-    float: left;
-  }
-
-  .tableHeader {
-    background-color: $color_orange_pool;
-  }
-
   #pool_license img {
     width: 20px;
   }
@@ -65,10 +52,12 @@
   }
 
   .poolHeaderTop {
+    padding-top: 10px;
     padding-bottom: 10px;
     font-size: 14px;
     font-weight: bold;
-    background-color: $white;
+    background-color: $color_orange_pool;
+    color: $white;
   }
 
   .poolHeaderBottom {

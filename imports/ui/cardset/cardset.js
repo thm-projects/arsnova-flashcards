@@ -1043,10 +1043,6 @@ Template.cardsetPublishForm.onRendered(function () {
 			return this.value === cardset.kind;
 		}).prop('checked', true);
 
-		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
-		Session.set('kindWithPrice', kindWithPrice);
-
-
 		$('#publishPrice').val(cardset.price);
 	});
 });
@@ -1064,6 +1060,12 @@ Template.cardsetPublishForm.helpers({
 });
 
 Template.cardsetPublishForm.events({
+	'shown.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
+	'hidden.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
 	'click #cardsetPublish': function (evt, tmpl) {
 		var id = this._id;
 		var kind = tmpl.find('#publishKind > .active > input').value;
@@ -1091,6 +1093,10 @@ Template.cardsetPublishForm.events({
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
+
+			license.push("by");
+			license.push("nd");
+			Meteor.call("updateLicense", id, license);
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 

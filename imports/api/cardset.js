@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Match} from "meteor/check";
 import {Learned} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
+import {check} from "meteor/check";
 
 export function getAuthorName(owner) {
 	var author = Meteor.users.findOne({"_id": owner});
@@ -20,6 +21,9 @@ export function getAuthorName(owner) {
 
 Meteor.methods({
 	getCSVExport: function (cardset_id, header) {
+		check(cardset_id, String);
+		check(header, [String]);
+
 		var cardset = Cardsets.findOne({_id: cardset_id});
 		if ((Roles.userIsInRole(Meteor.userId(), 'lecturer')) && Meteor.userId() === cardset.owner && (Match.test(header, [String]))) {
 			var content;
