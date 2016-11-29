@@ -86,9 +86,6 @@ Template.main.helpers({
 	getLink: function () {
 		return "/cardset/" + this.link_id;
 	},
-	getLanguage: function () {
-		return TAPi18n.getLanguage();
-	},
 	getLanguages: function () {
 		const obj = TAPi18n.getLanguages();
 		const languages = [];
