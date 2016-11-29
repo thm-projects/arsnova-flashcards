@@ -385,6 +385,21 @@ Template.cardsetDetails.onCreated(function () {
 	});
 });
 
+function setLightBoxes(html) {
+	if ($(html).find('img').length !== 0) {
+		$(html).find('img').each(function () {
+			var imageDescription = $(this).attr('alt');
+			var imageUrl = $(this).attr('src');
+
+			html = $(this).wrap('<a href="' + imageUrl + '" data-type="image" data-toggle="lightbox" data-title="' + imageDescription + '"></a>').parent().click(function (event) {
+				event.preventDefault();
+				return $(this).ekkoLightbox();
+			}).parent();
+		});
+	}
+
+	return html;
+}
 
 Template.cardsetDetails.helpers({
 	addToLeitner: function () {
@@ -421,10 +436,12 @@ Template.cardsetDetails.helpers({
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailfront" + index).html(html);
 			});
 		Meteor.promise("convertMarkdown", back)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailback" + index).html(html);
 			});
 	},
