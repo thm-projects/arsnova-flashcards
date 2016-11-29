@@ -125,24 +125,24 @@ Template.registerHelper("getAuthorName", function (owner) {
 });
 
 Template.registerHelper("getAuthor", function (owner) {
-    var author = Meteor.users.findOne({"_id": owner});
-    if (author) {
-        var degree = "";
-        if (author.profile.title) {
-            degree = author.profile.title;
-        } else {
-        	degree = TAPi18n.__('navbar-collapse.none');
+	var author = Meteor.users.findOne({"_id": owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		} else {
+			degree = TAPi18n.__('navbar-collapse.none');
 		}
-        if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-            author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-            return author.profile.givenname;
-        }
-        return {
-        	degree: degree,
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		return {
+			degree: degree,
 			givenname: author.profile.givenname,
 			birthname: author.profile.birthname
-		}
-    }
+		};
+	}
 });
 
 // Return the cardset license
