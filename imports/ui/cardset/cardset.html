@@ -63,7 +63,7 @@
                 <div class="col-sm-8">
                     <div class="">
                         <h4>{{{getKind}}} {{name}}</h4>
-                        <hr> {{description}}
+                        <hr> {{#markdown}}{{description}}{{/markdown}}
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -399,13 +399,9 @@
             <tr>
                 <th>
                     <span>{{_ "frontside"}}</span>
-                    <a class="frontdown" role="button">⇓</a>
-                    <a class="frontup" role="button">⇑</a>
                 </th>
                 <th>
                     <span>{{_ "backside"}}</span>
-                    <a class="backdown" role="button">⇓</a>
-                    <a class="backup" role="button">⇑</a>
                 </th>
                 {{#if isOwner}}
                     <th>{{_ "options"}}</th>
@@ -446,6 +442,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorEdit">
+     <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
+               value="{{description}}"></textarea>
+</template>
 
 <template name="cardsetForm">
     <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
@@ -469,8 +469,7 @@
                             <label id="editSetDescriptionLabel" class="col-md-3 control-label"
                                    for="editSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="editSetDescription"
-                                          value="{{description}}"></textarea>
+                                {{>descriptionEditorEdit}}
                                 <span id="helpEditSetDescription" class="help-block description"></span>
                             </div>
                         </div>

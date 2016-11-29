@@ -24,6 +24,7 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+// Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
 });
@@ -317,6 +318,30 @@ Template.cardsetForm.events({
 
 /**
  * ############################################################################
+ * descriptionEditorEdit
+ * ############################################################################
+ */
+
+Template.descriptionEditorEdit.rendered = function () {
+	$("#editSetDescription").markdown({
+		autofocus: true,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		footer: "<p></p>",
+		onChange: function (e) {
+			var content = e.getContent();
+			if (content !== "") {
+				Meteor.promise("convertMarkdown", content)
+					.then(function (rendered) {
+						$(".md-footer").html(rendered);
+					});
+			}
+		}
+	});
+};
+
+/**
+ * ############################################################################
  * cardsetList
  * ############################################################################
  */
@@ -344,33 +369,7 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .deleteCardList': function () {
 		Session.set('cardId', this._id);
-	},
-	'click #set-details-region .frontdown': function () {
-		Session.set('cardSort', {
-			front: 1
-		});
-	},
-	'click #set-details-region .frontup': function () {
-		Session.set('cardSort', {
-			front: -1
-		});
-	},
-	'click #set-details-region .backdown': function () {
-		Session.set('cardSort', {
-			back: 1
-		});
-	},
-	'click #set-details-region .backup': function () {
-		Session.set('cardSort', {
-			back: -1
-		});
 	}
-});
-
-Template.cardsetList.onDestroyed(function () {
-	Session.set('cardSort', {
-		front: 1
-	});
 });
 
 
