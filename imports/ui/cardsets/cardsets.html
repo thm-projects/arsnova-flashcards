@@ -68,14 +68,7 @@
                     </div>
                 </th>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
-                        <button class="sortCategory btn btn-default" role="button" value="down" data-toggle="dropdown">
-                            {{_ "set-list.description"}} </button>
-                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                    </div>
+                    <span>{{_ "set-list.description"}}</span>
                 </th>
                 <th>
                     <span>{{_ "set-list.licence"}}</span>
@@ -103,7 +96,7 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-        <td>{{description}}</td>
+        <td>{{#markdown}}{{description}}{{/markdown}}</td>
         <td>
             <span id="info_license">{{getLicense}}</span>
         </td>
@@ -139,14 +132,7 @@
                     </div>
                 </th>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
-                        <button class="sortCategoryLearned btn btn-default" role="button" value="down" data-toggle="dropdown">
-                            {{_ "set-list.description"}} </button>
-                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                    </div>
+                    <span>{{_ "set-list.description"}}</span>
                 </th>
                 <th>
                     <span>{{_ "set-list.licence"}}</span>
@@ -191,6 +177,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorNew">
+    <textarea class="form-control" data-provide="markdown" rows="6" id="newSetDescription"
+              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+</template>
 
 <template name="cardsetsForm">
     <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="newSetModalTitle">
@@ -215,8 +205,7 @@
                             <label id="newSetDescriptionLabel" class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="newSetDescription"
-                                          placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+                                {{>descriptionEditorNew}}
                                 <span id="helpNewSetDescription" class="help-block description"></span>
                             </div>
                         </div>
