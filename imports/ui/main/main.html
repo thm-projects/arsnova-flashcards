@@ -47,9 +47,14 @@
                                      placeholder="{{_ "navbar-collapse.search"}}">
                               <div id="searchResults" class="dropdown-menu list-group">
                                   {{#each searchCategories}}
-                                      <a href="/cardset/{{_id}}" class="list-group-item">
+                                      <a href="/cardset/{{_id}}" class="list-group-item clearfix">
                                           <h4 class="list-group-item-heading">{{name}}</h4>
                                           <p class="list-group-item-text">{{description}}</p>
+                                          <hr class="search-divide">
+                                          {{#with getAuthor this.owner}}
+                                              <p class="list-group-item-text">{{_ "cardset.info.author"}}: {{givenname}} {{birthname}}</p>
+                                              <p class="list-group-item-text">{{_ "panel-body.title"}}: {{degree}}</p>
+                                          {{/with}}
                                       </a>
                                   {{/each}}
                               </div>
