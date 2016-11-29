@@ -118,6 +118,8 @@
   }
   #collegeBtn{
     width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   #resetBtn{
     width: 272px;
@@ -127,6 +129,8 @@
   }
   #moduleBtn{
     width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .stars-rating{
