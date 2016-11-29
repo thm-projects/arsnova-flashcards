@@ -114,11 +114,15 @@ function ifCardset() {
 		$(".cardback-symbol").css('display', "none");
 		$(".cardfront").css('display', "");
 		$(".cardback").css('display', "none");
+		$(".box").removeClass("flipped");
+		$(".innerBox").removeClass("back");
 	} else if ($(".cardback-symbol").css('display') === 'none') {
 		$(".cardfront-symbol").css('display', "none");
 		$(".cardback-symbol").css('display', "");
 		$(".cardfront").css('display', "none");
 		$(".cardback").css('display', "");
+		$(".box").addClass("flipped");
+		$(".innerBox").addClass("back");
 	}
 }
 
