@@ -65,11 +65,7 @@ Template.box.helpers({
 		return notEmpty;
 	},
 	isFinish: function () {
-		if (this.learningActive && Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count()) {
+		if (this.learningActive && Learned.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
 			Session.set('isFinish', false);
 		}
 		return Session.get('isFinish');
@@ -159,16 +155,18 @@ Template.boxMain.helpers({
 		return maxIndex;
 	},
 	boxMarkdownFront: function (front, index) {
-		Meteor.promise("convertMarkdown", front).then(function (html) {
-			$(".front" + index).html(html);
-			$('table').addClass('table');
-		});
+		Meteor.promise("convertMarkdown", front)
+			.then(function (html) {
+				$(".front" + index).html(html);
+				$('table').addClass('table');
+			});
 	},
 	boxMarkdownBack: function (back, index) {
-		Meteor.promise("convertMarkdown", back).then(function (html) {
-			$(".back" + index).html(html);
-			$('table').addClass('table');
-		});
+		Meteor.promise("convertMarkdown", back)
+			.then(function (html) {
+				$(".back" + index).html(html);
+				$('table').addClass('table');
+			});
 	}
 });
 
