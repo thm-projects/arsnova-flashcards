@@ -7,7 +7,6 @@ import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import "./box.html";
 
-
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 
@@ -21,65 +20,7 @@ Meteor.subscribe('learned', function () {
 	Session.set('data_loaded', true);
 });
 
-function drawGraph() {
-	var query = {};
-	if (Meteor.userId() !== undefined) {
-		query.user_id = Meteor.userId();
-	}
-	if (Router.current().params._id !== undefined) {
-		query.cardset_id = Router.current().params._id;
-	}
-	query.box = 1;
-	var box1 = Learned.find(query).count();
-	query.box = 2;
-	var box2 = Learned.find(query).count();
-	query.box = 3;
-	var box3 = Learned.find(query).count();
-	query.box = 4;
-	var box4 = Learned.find(query).count();
-	query.box = 5;
-	var box5 = Learned.find(query).count();
-	query.box = 6;
-	var box6 = Learned.find(query).count();
-	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
-
-	if (Session.get('data_loaded')) {
-		var ctx = document.getElementById("boxChart").getContext("2d");
-		new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
-				datasets: [
-					{
-						backgroundColor: "rgba(242,169,0,0.5)",
-						borderColor: "rgba(74,92,102,0.2)",
-						borderWidth: 1,
-						data: userData,
-						label: 'Anzahl Karten'
-					}
-				]
-			},
-			options: {
-				responsive: true,
-				legend: {
-					display: false
-				},
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true,
-							callback: function (value) {
-								if (value % 1 === 0) {
-									return value;
-								}
-							}
-						}
-					}]
-				}
-			}
-		});
-	}
-}
+var chart;
 
 
 /**
@@ -355,12 +296,69 @@ Template.boxEnd.events({
  * ############################################################################
  */
 
+function drawGraph() {
+	if (Session.get('data_loaded')) {
+		var ctx = document.getElementById("boxChart").getContext("2d");
+		chart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+				datasets: [
+					{
+						backgroundColor: "rgba(242,169,0,0.5)",
+						borderColor: "rgba(74,92,102,0.2)",
+						borderWidth: 1,
+						data: [0, 0, 0, 0, 0, 0],
+						label: 'Anzahl Karten'
+					}
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					display: false
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							callback: function (value) {
+								if (value % 1 === 0) {
+									return value;
+								}
+							}
+						}
+					}]
+				}
+			}
+		});
+	}
+}
+
+function updateGraph() {
+	var query = {};
+	if (Meteor.userId() !== undefined) {
+		query.user_id = Meteor.userId();
+	}
+	if (Router.current().params._id !== undefined) {
+		query.cardset_id = Router.current().params._id;
+	}
+
+	var i;
+	for (i = 0; i < 6; i++) {
+		query.box = (i + 1);
+		chart.data.datasets[0].data[i] = Learned.find(query).count();
+	}
+
+	chart.update();
+}
 
 Template.boxSide.onRendered(function () {
+	drawGraph();
 	var self = this;
 	self.subscribe("learned", function () {
 		self.autorun(function () {
-			drawGraph();
+			updateGraph();
 		});
 	});
 });
