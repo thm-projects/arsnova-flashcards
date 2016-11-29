@@ -56,6 +56,16 @@
                           </div>
 
                           <ul class="nav navbar-nav navbar-right">
+                              <li id="navbar-languagepanel">
+                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                      {{#each getLanguages}}
+                                      <li><a href="#" role="menuitem" class="lang" data-lang={{code}}>{{label.name}}</a></li>
+                                      {{/each}}
+                                  </ul>
+                              </li>
                               {{#if isInRole 'admin, editor'}}
                                   <li id="navbar-adminpanel">
                                       <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
