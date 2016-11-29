@@ -168,7 +168,8 @@ Meteor.methods({
 				givenname: "",
 				lvl: 1,
 				lastOnAt: new Date(),
-				daysInRow: 0
+				daysInRow: 0,
+				earnedBadges: []
 			}
 		});
 	},
@@ -289,5 +290,11 @@ Meteor.methods({
 		}
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
+	},
+	updateEarnedBadges: function(index, rank) {
+		check(index, Number);
+		check(rank, Number);
+        Meteor.users.update(Meteor.user()._id,
+			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()} }});
 	}
 });
