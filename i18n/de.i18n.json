@@ -29,7 +29,8 @@
     "logout": "Logout",
     "search": "Suche",
     "frontend": "Front-End",
-    "backend": "Back-End"
+    "backend": "Back-End",
+    "none": "Ohne"
   },
   "footer": {
     "impressum": "Impressum",

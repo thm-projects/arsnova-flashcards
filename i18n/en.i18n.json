@@ -29,7 +29,8 @@
     "logout": "Logout",
     "search": "Search",
     "frontend": "Front end",
-    "backend": "Back end"
+    "backend": "Back end",
+    "none": "None"
   },
   "footer": {
     "impressum": "Legal Notice",
