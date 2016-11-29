@@ -113,13 +113,13 @@ function kritiker(rank) {
 	var badge = Badges.findOne("1");
 	switch (rank) {
 		case 3:
-			return ratings / badge.rank3 * 100;
+			return {max: badge.rank3, count: ratings};
 		case 2:
-			return ratings / badge.rank2 * 100;
+			return {max: badge.rank2, count: ratings};
 		case 1:
-			return ratings / badge.rank1 * 100;
+			return {max: badge.rank1, count: ratings};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -148,13 +148,13 @@ function krone(rank) {
 	var badge = Badges.findOne("2");
 	switch (rank) {
 		case 3:
-			return count / badge.rank3 * 100;
+			return {max: badge.rank3, count: count};
 		case 2:
-			return count / badge.rank2 * 100;
+			return {max: badge.rank2, count: count};
 		case 1:
-			return count / badge.rank1 * 100;
+			return {max: badge.rank1, count: count};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -164,13 +164,13 @@ function stammgast(rank) {
 	var badge = Badges.findOne("3");
 	switch (rank) {
 		case 3:
-			return user / badge.rank3 * 100;
+			return {max: badge.rank3, count: user};
 		case 2:
-			return user / badge.rank2 * 100;
+			return {max: badge.rank2, count: user};
 		case 1:
-			return user / badge.rank1 * 100;
+			return {max: badge.rank1, count: user};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -182,11 +182,11 @@ function streber(rank) {
 	var badge = Badges.findOne("4");
 	switch (rank) {
 		case 3:
-			return learned / badge.rank3 * 100;
+			return {max: badge.rank3, count: learned};
 		case 2:
-			return learned / badge.rank2 * 100;
+			return {max: badge.rank2, count: learned};
 		case 1:
-			return learned / badge.rank1 * 100;
+			return {max: badge.rank1, count: learned};
 		default:
 			return 0;
 	}
@@ -212,13 +212,13 @@ function wohltaeter(rank) {
 	var badge = Badges.findOne("5");
 	switch (rank) {
 		case 3:
-			return count / badge.rank3 * 100;
+			return {max: badge.rank3, count: count};
 		case 2:
-			return count / badge.rank2 * 100;
+			return {max: badge.rank2, count: count};
 		case 1:
-			return count / badge.rank1 * 100;
+			return {max: badge.rank1, count: count};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -236,13 +236,13 @@ function bestseller(rank) {
 	var badge = Badges.findOne("6");
 	switch (rank) {
 		case 3:
-			return learner / badge.rank3 * 100;
+			return {max: badge.rank3, count: learner};
 		case 2:
-			return learner / badge.rank2 * 100;
+			return {max: badge.rank2, count: learner};
 		case 1:
-			return learner / badge.rank1 * 100;
+			return {max: badge.rank1, count: learner};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -1020,37 +1020,71 @@ Template.profileBadges.helpers({
 		return Badges.find();
 	},
 	isGained: function (index, rank) {
+		var badge;
 		switch (index) {
 			case 0:
-				return kritiker(rank) >= 100;
+				badge = kritiker(rank);
+				break;
 			case 1:
-				return krone(rank) >= 100;
+				badge = krone(rank);
+				break;
 			case 2:
-				return stammgast(rank) >= 100;
+				badge = stammgast(rank);
+				break;
 			case 3:
-				return streber(rank) >= 100;
+				badge = streber(rank);
+				break;
 			case 4:
-				return wohltaeter(rank) >= 100;
+				badge = wohltaeter(rank);
+				break;
 			case 5:
-				return bestseller(rank) >= 100;
+				badge = bestseller(rank);
+				break;
 			default:
 				return false;
 		}
+		return badge.count >= badge.max;
 	},
 	getPercent: function (index, rank) {
+		var badge;
 		switch (index) {
 			case 0:
-				return kritiker(rank);
+				badge = kritiker(rank);
+				break;
 			case 1:
-				return krone(rank);
+				badge = krone(rank);
+				break;
 			case 2:
-				return stammgast(rank);
+				badge = stammgast(rank);
+				break;
 			case 3:
-				return streber(rank);
+				badge = streber(rank);
+				break;
 			case 4:
-				return wohltaeter(rank);
+				badge = wohltaeter(rank);
+				break;
 			case 5:
-				return bestseller(rank);
+				badge = bestseller(rank);
+				break;
+			default:
+				return 0;
+		}
+		return badge.count / badge.max * 100;
+	},
+	getCount: function (index, rank) {
+		switch (index) {
+			case 0:
+				return kritiker(rank).count;
+			case 1:
+				return krone(rank).count;
+			case 2:
+				return stammgast(rank).count;
+			case 3:
+				return streber(rank).count;
+			case 4:
+				return wohltaeter(rank).count;
+			case 5:
+				return bestseller(rank).count;
 			default:
 				return 0;
 		}
