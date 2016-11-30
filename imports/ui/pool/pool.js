@@ -70,22 +70,22 @@ function checkFilters() {
 	if (Session.get('poolFilterAuthor')) {
 		$(".filterAuthorGroup").addClass('active');
 	} else {
-		$(".filterAuthorGroup").removeClass('active').first().text(TAPi18n.__('set-list.author'));
+		$(".filterAuthorGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterCollege')) {
 		$(".filterCollegeGroup").addClass('active');
 	} else {
-		$(".filterCollegeGroup").removeClass('active').first().text(TAPi18n.__('set-list.college'));
+		$(".filterCollegeGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterCourse')) {
 		$(".filterCourseGroup").addClass('active');
 	} else {
-		$(".filterCourseGroup").removeClass('active').first().text(TAPi18n.__('set-list.course'));
+		$(".filterCourseGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterModule')) {
 		$(".filterModuleGroup").addClass('active');
 	} else {
-		$(".filterModuleGroup").removeClass('active').first().text(TAPi18n.__('set-list.module'));
+		$(".filterModuleGroup").removeClass('active').first();
 	}
 	$("#filterCheckbox input:checkbox").each(function () {
 		if (!Session.get('poolFilter').includes($(this).val())) {
@@ -147,6 +147,30 @@ Template.category.helpers({
 	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
+	},
+	hasAuthorFilter: function () {
+		return Session.get('poolFilterAuthor');
+	},
+	poolFilterAuthor: function () {
+		return Session.get('poolFilterAuthorVal');
+	},
+	hasCollegeFilter: function () {
+		return Session.get('poolFilterCollege');
+	},
+	poolFilterCollege: function () {
+		return Session.get('poolFilterCollegeVal');
+	},
+	hasCourseFilter: function () {
+		return Session.get('poolFilterCourse');
+	},
+	poolFilterCourse: function () {
+		return Session.get('poolFilterCourseVal');
+	},
+	hasModuleFilter: function () {
+		return Session.get('poolFilterModule');
+	},
+	poolFilterModule: function () {
+		return Session.get('poolFilterModuleVal');
 	}
 });
 
@@ -220,7 +244,10 @@ Template.category.events({
 		Session.set('poolFilterCourse');
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
-		checkFilters();
+		$(".filterAuthorGroup").removeClass('active').first();
+		$(".filterCollegeGroup").removeClass('active').first();
+		$(".filterCourseGroup").removeClass('active').first();
+		$(".filterModuleGroup").removeClass('active').first();
 	},
 	'click .sortTopic': function () {
 		var sort = Session.get('poolSortTopic');
@@ -234,10 +261,10 @@ Template.category.events({
 		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-			button.first().text(TAPi18n.__('set-list.author'));
+			Session.set('poolFilterAuthorVal', null);
 		} else {
 			button.addClass('active');
-			button.first().text($(event.target).html());
+			Session.set('poolFilterAuthorVal', $(event.target).html());
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
@@ -245,10 +272,10 @@ Template.category.events({
 		var button = $(".filterCollegeGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-			button.first().text(TAPi18n.__('set-list.college'));
+			Session.set('poolFilterCollegeVal', null);
 		} else {
 			button.addClass('active');
-			button.first().text($(event.target).html());
+			Session.set('poolFilterCollegeVal', $(event.target).html());
 		}
 		Session.set('poolFilterCollege', $(event.target).data('id'));
 	},
@@ -256,10 +283,10 @@ Template.category.events({
 		var button = $(".filterCourseGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-			button.first().text(TAPi18n.__('set-list.course'));
+			Session.set('poolFilterCourseVal', null);
 		} else {
 			button.addClass('active');
-			button.first().text($(event.target).html());
+			Session.set('poolFilterCourseVal', $(event.target).html());
 		}
 		Session.set('poolFilterCourse', $(event.target).data('id'));
 	},
@@ -267,10 +294,10 @@ Template.category.events({
 		var button = $(".filterModuleGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
-			button.first().text(TAPi18n.__('set-list.module'));
+			Session.set('poolFilterModuleVal', null);
 		} else {
 			button.addClass('active');
-			button.first().text($(event.target).html());
+			Session.set('poolFilterModuleVal', $(event.target).html());
 		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
 	},

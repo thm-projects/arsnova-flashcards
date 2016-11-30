@@ -32,7 +32,12 @@
 
         <div class="btn-group" role="group" aria-label="Author group">
             <button type="button" id="collegeBtn" class="filterAuthorGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.author"}}</button>
+                {{#if hasAuthorFilter}}
+                  {{poolFilterAuthor}}
+                {{else}}
+                  {{_ "set-list.author"}}
+                {{/if}}
+            </button>
             <button type="button" class="filterAuthorGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -53,7 +58,12 @@
 
         <div class="btn-group" role="group" aria-label="College group">
             <button type="button" id="collegeBtn" class="filterCollegeGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.college"}}</button>
+                {{#if hasCollegeFilter}}
+                  {{poolFilterCollege}}
+                {{else}}
+                  {{_ "set-list.college"}}
+                {{/if}}
+            </button>
             <button type="button" class="filterCollegeGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -71,7 +81,12 @@
         <div class="btn-group" role="group" aria-label="Course group">
             <button type="button" id="collegeBtn" class="filterCourseGroup btn btn-default" data-toggle="dropdown"
                     style="width: 155px">
-                {{_ "set-list.course"}}</button>
+                {{#if hasCourseFilter}}
+                  {{poolFilterCourse}}
+                {{else}}
+                  {{_ "set-list.course"}}
+                {{/if}}
+            </button>
             <button type="button" class="filterCourseGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -88,7 +103,12 @@
 
         <div class="btn-group" role="group" aria-label="Module group">
             <button type="button" id="moduleBtn" class="filterModuleGroup btn btn-default" data-toggle="dropdown">
-                {{_ "set-list.module"}}</button>
+                {{#if hasModuleFilter}}
+                  {{poolFilterModule}}
+                {{else}}
+                  {{_ "set-list.module"}}
+                {{/if}}
+            </button>
             <button type="button" class="filterModuleGroup btn btn-default dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -104,7 +124,7 @@
                 {{/each}}
             </ul>
         </div>
-        
+
 
         <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
              aria-label="License group">
@@ -137,11 +157,11 @@
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.module"}}
         </span>
-        
+
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.rating"}}
-        </span>        
-        
+        </span>
+
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
                 "set-list.availability"}}
         </span>
@@ -177,13 +197,13 @@
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.course"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.course}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.module"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>    
-    
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>
+
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.rating"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">
       {{> starsRating rating=getAverageRating mutable=false}}
-    </span>   
-    
+    </span>
+
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.availability"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 kind-label poolInfo">
         <span class="kind-label col-xs-3 col-sm-3 col-md-3 licenseInfo">
@@ -196,9 +216,9 @@
             {{getLicense}}
         </span>
     </span>
-    
- 
-    
+
+
+
 </template>
 
 
