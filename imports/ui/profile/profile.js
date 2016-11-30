@@ -1043,20 +1043,20 @@ Template.profileBadges.helpers({
             default:
                 return false;
         }
-        var earned = badge.count >= badge.max;
+        var gained = badge.count >= badge.max;
 
         index++; //index in DB starts at 1
 		var user = Meteor.users.findOne(Meteor.userId);
-		if(earned && user.earnedBadges != null){
+		if(gained && user.earnedBadges != null){
             for(var i in user.earnedBadges) {
                 if (index == user.earnedBadges[i].index && rank == user.earnedBadges[i].rank) {
-                    return earned;
+                    return gained;
                 }
             }
             Meteor.call("updateEarnedBadges", index, rank);
-            Bert.alert('Neue Badge: ' + Badges.findOne(index.toString()).name + ' (Rang ' + rank + ')', 'info', 'growl-bottom-right');
+            Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
 		}
-		return earned;
+		return gained;
 	},
 	getPercent: function (index, rank) {
 		var badge;
