@@ -1022,39 +1022,39 @@ Template.profileBadges.helpers({
 	isGained: function (index, rank) {
 		var badge;
 		switch (index) {
-            case 0:
-                badge = kritiker(rank);
-                break;
-            case 1:
-                badge = krone(rank);
-                break;
-            case 2:
-                badge = stammgast(rank);
-                break;
-            case 3:
-                badge = streber(rank);
-                break;
-            case 4:
-                badge = wohltaeter(rank);
-                break;
-            case 5:
-                badge = bestseller(rank);
-                break;
-            default:
-                return false;
-        }
-        var gained = badge.count >= badge.max;
+			case 0:
+				badge = kritiker(rank);
+				break;
+			case 1:
+				badge = krone(rank);
+				break;
+			case 2:
+				badge = stammgast(rank);
+				break;
+			case 3:
+				badge = streber(rank);
+				break;
+			case 4:
+				badge = wohltaeter(rank);
+				break;
+			case 5:
+				badge = bestseller(rank);
+				break;
+			default:
+				return false;
+		}
+		var gained = badge.count >= badge.max;
 
-        index++; //index in DB starts at 1
+		index++; //index in DB starts at 1
 		var user = Meteor.users.findOne(Meteor.userId);
-		if(gained && user.earnedBadges != null){
-            for(var i in user.earnedBadges) {
-                if (index == user.earnedBadges[i].index && rank == user.earnedBadges[i].rank) {
-                    return gained;
-                }
-            }
-            Meteor.call("updateEarnedBadges", index, rank);
-            Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
+		if (gained) {
+			for (var i in user.earnedBadges) {
+				if (index == user.earnedBadges[i].index && rank == user.earnedBadges[i].rank) {
+					return gained;
+				}
+			}
+			Meteor.call("updateEarnedBadges", index, rank);
+			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
 		}
 		return gained;
 	},
