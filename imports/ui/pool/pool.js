@@ -233,6 +233,14 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
+	},
+	getMaximumText: function (text) {
+		const maxLength = 15;
+		const textSplitted = text.split(" ");
+		if (textSplitted.length > maxLength) {
+			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+		}
+		return text;
 	}
 });
 
