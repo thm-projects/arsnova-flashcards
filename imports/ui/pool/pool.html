@@ -182,9 +182,10 @@
 
 <template name="poolCardsetRow">
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
-    <span class="cell col-xs-8 col-sm-9 col-md-3 poolText">
-            <span class="cell col-xs-10 col-sm-10 col-md-10 poolText topicName">
-                {{this.name}}
+    <span class="cell col-xs-8 col-sm-9 col-md-3">
+            <span class="cell col-xs-10 col-sm-10 col-md-10 topicName field-tip">
+                <p class="poolText"> {{this.name}}</p>
+                <div class="tip-content">{{#markdown}}{{getMaximumText this.description}}{{/markdown}}</div>
             </span>
             <span class="cell badge cardsetBadge">
                 {{countCards this._id}}
