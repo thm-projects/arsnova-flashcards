@@ -29,7 +29,8 @@
     "logout": "Logout",
     "search": "Suche",
     "frontend": "Front-End",
-    "backend": "Back-End"
+    "backend": "Back-End",
+    "none": "Ohne"
   },
   "footer": {
     "impressum": "Impressum",
@@ -127,7 +128,8 @@
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
     "everything": "Alles",
-    "reset": "Alle Filter zurücksetzen"
+    "reset": "Alle Filter zurücksetzen",
+    "rating": "Bewertung"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",

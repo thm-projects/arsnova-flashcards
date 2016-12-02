@@ -28,6 +28,10 @@ body {
   }
 }
 
+.search-divide {
+  margin: 5px 0 5px 0;
+}
+
 .navbar-default {
   background-color: $color_la_palma_approx;
   border-color: $color_bilbao_approx;
@@ -201,7 +205,7 @@ body {
 }
 
 #searchResults {
-  min-width: 210px;
+  min-width: 240px;
   padding-top: 0;
   padding-bottom: 0;
 }

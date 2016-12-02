@@ -24,6 +24,7 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+// Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
 });
@@ -113,11 +114,15 @@ function ifCardset() {
 		$(".cardback-symbol").css('display', "none");
 		$(".cardfront").css('display', "");
 		$(".cardback").css('display', "none");
+		$(".box").removeClass("flipped");
+		$(".innerBox").removeClass("back");
 	} else if ($(".cardback-symbol").css('display') === 'none') {
 		$(".cardfront-symbol").css('display', "none");
 		$(".cardback-symbol").css('display', "");
 		$(".cardfront").css('display', "none");
 		$(".cardback").css('display', "");
+		$(".box").addClass("flipped");
+		$(".innerBox").addClass("back");
 	}
 }
 
@@ -317,6 +322,30 @@ Template.cardsetForm.events({
 
 /**
  * ############################################################################
+ * descriptionEditorEdit
+ * ############################################################################
+ */
+
+Template.descriptionEditorEdit.rendered = function () {
+	$("#editSetDescription").markdown({
+		autofocus: true,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		footer: "<p></p>",
+		onChange: function (e) {
+			var content = e.getContent();
+			if (content !== "") {
+				Meteor.promise("convertMarkdown", content)
+					.then(function (rendered) {
+						$(".md-footer").html(rendered);
+					});
+			}
+		}
+	});
+};
+
+/**
+ * ############################################################################
  * cardsetList
  * ############################################################################
  */
@@ -344,33 +373,7 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .deleteCardList': function () {
 		Session.set('cardId', this._id);
-	},
-	'click #set-details-region .frontdown': function () {
-		Session.set('cardSort', {
-			front: 1
-		});
-	},
-	'click #set-details-region .frontup': function () {
-		Session.set('cardSort', {
-			front: -1
-		});
-	},
-	'click #set-details-region .backdown': function () {
-		Session.set('cardSort', {
-			back: 1
-		});
-	},
-	'click #set-details-region .backup': function () {
-		Session.set('cardSort', {
-			back: -1
-		});
 	}
-});
-
-Template.cardsetList.onDestroyed(function () {
-	Session.set('cardSort', {
-		front: 1
-	});
 });
 
 
@@ -386,6 +389,21 @@ Template.cardsetDetails.onCreated(function () {
 	});
 });
 
+function setLightBoxes(html) {
+	if ($(html).find('img').length !== 0) {
+		$(html).find('img').each(function () {
+			var imageDescription = $(this).attr('alt');
+			var imageUrl = $(this).attr('src');
+
+			html = $(this).wrap('<a href="' + imageUrl + '" data-type="image" data-toggle="lightbox" data-title="' + imageDescription + '"></a>').parent().click(function (event) {
+				event.preventDefault();
+				return $(this).ekkoLightbox();
+			}).parent();
+		});
+	}
+
+	return html;
+}
 
 Template.cardsetDetails.helpers({
 	addToLeitner: function () {
@@ -422,10 +440,12 @@ Template.cardsetDetails.helpers({
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailfront" + index).html(html);
 			});
 		Meteor.promise("convertMarkdown", back)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailback" + index).html(html);
 			});
 	},
@@ -1019,10 +1039,6 @@ Template.cardsetPublishForm.onRendered(function () {
 			return this.value === cardset.kind;
 		}).prop('checked', true);
 
-		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
-		Session.set('kindWithPrice', kindWithPrice);
-
-
 		$('#publishPrice').val(cardset.price);
 	});
 });
@@ -1040,6 +1056,12 @@ Template.cardsetPublishForm.helpers({
 });
 
 Template.cardsetPublishForm.events({
+	'shown.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
+	'hidden.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
 	'click #cardsetPublish': function (evt, tmpl) {
 		var id = this._id;
 		var kind = tmpl.find('#publishKind > .active > input').value;
@@ -1067,6 +1089,10 @@ Template.cardsetPublishForm.events({
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
+
+			license.push("by");
+			license.push("nd");
+			Meteor.call("updateLicense", id, license);
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 

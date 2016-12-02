@@ -63,7 +63,7 @@
                 <div class="col-sm-8">
                     <div class="">
                         <h4>{{{getKind}}} {{name}}</h4>
-                        <hr> {{description}}
+                        <hr> {{#markdown}}{{description}}{{/markdown}}
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -241,13 +241,13 @@
         </div>
 
     </div>
-    <div class="col-md-8" id="set-details-region">
+    <div class="col-md-8 flip-container" id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
                         <div class="item {{#if cardActive @index}}active{{/if}}">
-                            <div class="box">
+                            <div class="box flashcard">
                                 <div class="cardNumber">
                                     {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
                                 </div>
@@ -284,7 +284,7 @@
 </template>
 
 <template name="cardsetDetails">
-    <div class="col-md-9" id="set-details-region">
+    <div class="col-md-9 flip-container" id="set-details-region">
         {{#unless learningActive}}
             <div>
                 {{#if countCards this._id}}
@@ -292,7 +292,8 @@
                         <div class="carousel-inner">
                             {{#each getCardsCheckActive}}
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
-                                    <div class="box">
+                                    <div class="box flashcard">
+                                        <div class="innerBox">
                                         {{#if isOwner}}
                                             <a id="editCard" class="btn-editCard btn btn-default btn-xs"
                                                href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
@@ -315,6 +316,7 @@
                                                  style="display:none">
                                                 <p>{{back}}</p>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -399,13 +401,9 @@
             <tr>
                 <th>
                     <span>{{_ "frontside"}}</span>
-                    <a class="frontdown" role="button">⇓</a>
-                    <a class="frontup" role="button">⇑</a>
                 </th>
                 <th>
                     <span>{{_ "backside"}}</span>
-                    <a class="backdown" role="button">⇓</a>
-                    <a class="backup" role="button">⇑</a>
                 </th>
                 {{#if isOwner}}
                     <th>{{_ "options"}}</th>
@@ -446,6 +444,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorEdit">
+     <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
+               value="{{description}}"></textarea>
+</template>
 
 <template name="cardsetForm">
     <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
@@ -469,8 +471,7 @@
                             <label id="editSetDescriptionLabel" class="col-md-3 control-label"
                                    for="editSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="editSetDescription"
-                                          value="{{description}}"></textarea>
+                                {{>descriptionEditorEdit}}
                                 <span id="helpEditSetDescription" class="help-block description"></span>
                             </div>
                         </div>

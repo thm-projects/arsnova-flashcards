@@ -5,10 +5,12 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
+Meteor.subscribe('ratings');
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
@@ -68,22 +70,22 @@ function checkFilters() {
 	if (Session.get('poolFilterAuthor')) {
 		$(".filterAuthorGroup").addClass('active');
 	} else {
-		$(".filterAuthorGroup").removeClass('active');
+		$(".filterAuthorGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterCollege')) {
 		$(".filterCollegeGroup").addClass('active');
 	} else {
-		$(".filterCollegeGroup").removeClass('active');
+		$(".filterCollegeGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterCourse')) {
 		$(".filterCourseGroup").addClass('active');
 	} else {
-		$(".filterCourseGroup").removeClass('active');
+		$(".filterCourseGroup").removeClass('active').first();
 	}
 	if (Session.get('poolFilterModule')) {
 		$(".filterModuleGroup").addClass('active');
 	} else {
-		$(".filterModuleGroup").removeClass('active');
+		$(".filterModuleGroup").removeClass('active').first();
 	}
 	$("#filterCheckbox input:checkbox").each(function () {
 		if (!Session.get('poolFilter').includes($(this).val())) {
@@ -145,6 +147,30 @@ Template.category.helpers({
 	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
+	},
+	hasAuthorFilter: function () {
+		return Session.get('poolFilterAuthor');
+	},
+	poolFilterAuthor: function () {
+		return Session.get('poolFilterAuthorVal');
+	},
+	hasCollegeFilter: function () {
+		return Session.get('poolFilterCollege');
+	},
+	poolFilterCollege: function () {
+		return Session.get('poolFilterCollegeVal');
+	},
+	hasCourseFilter: function () {
+		return Session.get('poolFilterCourse');
+	},
+	poolFilterCourse: function () {
+		return Session.get('poolFilterCourseVal');
+	},
+	hasModuleFilter: function () {
+		return Session.get('poolFilterModule');
+	},
+	poolFilterModule: function () {
+		return Session.get('poolFilterModuleVal');
 	}
 });
 
@@ -153,6 +179,22 @@ Template.category.greeting = function () {
 };
 
 Template.poolCardsetRow.helpers({
+	getAverageRating: function () {
+		var ratings = Ratings.find({
+			cardset_id: this._id
+		});
+		var count = ratings.count();
+		if (count !== 0) {
+			var amount = 0;
+			ratings.forEach(function (rate) {
+				amount = amount + rate.rating;
+			});
+			var result = (amount / count).toFixed(2);
+			return result;
+		} else {
+			return 0;
+		}
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -191,6 +233,14 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
 		}
+	},
+	getMaximumText: function (text) {
+		const maxLength = 15;
+		const textSplitted = text.split(" ");
+		if (textSplitted.length > maxLength) {
+			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+		}
+		return text;
 	}
 });
 
@@ -202,7 +252,10 @@ Template.category.events({
 		Session.set('poolFilterCourse');
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
-		checkFilters();
+		$(".filterAuthorGroup").removeClass('active').first();
+		$(".filterCollegeGroup").removeClass('active').first();
+		$(".filterCourseGroup").removeClass('active').first();
+		$(".filterModuleGroup").removeClass('active').first();
 	},
 	'click .sortTopic': function () {
 		var sort = Session.get('poolSortTopic');
@@ -216,8 +269,10 @@ Template.category.events({
 		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
+			Session.set('poolFilterAuthorVal', null);
 		} else {
 			button.addClass('active');
+			Session.set('poolFilterAuthorVal', $(event.target).html());
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
 	},
@@ -225,8 +280,10 @@ Template.category.events({
 		var button = $(".filterCollegeGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
+			Session.set('poolFilterCollegeVal', null);
 		} else {
 			button.addClass('active');
+			Session.set('poolFilterCollegeVal', $(event.target).html());
 		}
 		Session.set('poolFilterCollege', $(event.target).data('id'));
 	},
@@ -234,8 +291,10 @@ Template.category.events({
 		var button = $(".filterCourseGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
+			Session.set('poolFilterCourseVal', null);
 		} else {
 			button.addClass('active');
+			Session.set('poolFilterCourseVal', $(event.target).html());
 		}
 		Session.set('poolFilterCourse', $(event.target).data('id'));
 	},
@@ -243,8 +302,10 @@ Template.category.events({
 		var button = $(".filterModuleGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
+			Session.set('poolFilterModuleVal', null);
 		} else {
 			button.addClass('active');
+			Session.set('poolFilterModuleVal', $(event.target).html());
 		}
 		Session.set('poolFilterModule', $(event.target).data('id'));
 	},
