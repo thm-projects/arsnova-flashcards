@@ -1,24 +1,23 @@
 <template name="pool">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      <div id="pool-category-region" class="container">
-          {{> category}}
-      </div>
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            <div id="pool-category-region" class="container">
+                {{> category}}
+            </div>
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 <template name="category">
     <div class="buttonHeader">
         <div class="btn-group" role="group" aria-label="Reset group">
             <span class="col-xs-12 col-sm-12 col-md-12">
-                <button class="resetFilters btn btn-default" id="resetBtn" role="button">
-                    {{_ "set-list.reset"}}
-                </button>
+                    <button class="resetFilters btn btn-default" id="resetBtn" role="button">
+                        {{_ "set-list.reset"}} </button>
             </span>
         </div>
         <nav class="navbar navbar-default">
@@ -34,43 +33,86 @@
                 <div class="collapse navbar-collapse" id="pool-nav">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">{{_ "set-list.topic"}}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
+                                {{_ "set-list.topic"}}
+                                <span class="caret"></span>
+                            </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">{{_ "set-list.author"}}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasAuthorFilter}}
+                                    {{poolFilterAuthor}}
+                                {{else}}
+                                    {{_ "set-list.author"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
+                                <li>
+                                    <a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+                                </li>
                                 {{#each getAuthors}}
                                     {{#if filterAuthors}}
-                                        <li><a href="#" class="filterAuthor"
-                                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+                                        <li>
+                                            <a href="#" class="filterAuthor" data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
                                         </li>
                                     {{/if}}
                                 {{/each}}
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">{{_ "set-list.college"}}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasCollegeFilter}}
+                                    {{poolFilterCollege}}
+                                {{else}}
+                                    {{_ "set-list.college"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a></li>
+                                <li>
+                                    <a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
                                 {{#each getColleges}}
-                                    <li><a href="#" class="filterCollege" data-id="{{this.college}}">{{this.college}}</a></li>
+                                    <li>
+                                        <a href="#" class="filterCollege" data-id="{{this.college}}">{{this.college}}</a>
+                                    </li>
                                 {{/each}}
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">{{_ "set-list.course"}}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasCourseFilter}}
+                                    {{poolFilterCourse}}
+                                {{else}}
+                                    {{_ "set-list.course"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a></li>
-                                {{#each getColleges}}
-                                    <li><a href="#" class="filterCollege" data-id="{{this.college}}">{{this.college}}</a></li>
+                                <li>
+                                    <a href="#" class="filterCourse active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
+                                {{#each getCourses}}
+                                    <li>
+                                        <a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}</a>
+                                    </li>
                                 {{/each}}
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">{{_ "set-list.module"}}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasModuleFilter}}
+                                    {{poolFilterModule}}
+                                {{else}}
+                                    {{_ "set-list.module"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
+                                <li>
+                                    <a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
                                 {{#each getModules}}
                                     <li><a href="#" class="filterModule" data-id="{{this.module}}">
                                         {{this.moduleToken}} [{{this.moduleNum}}]:
@@ -97,19 +139,15 @@
             </div>
         </nav>
     </div>
-    <div class="poolHeader">
-    <span class="col-xs-12 col-sm-12 col-md-12 poolHeaderTop">
-        {{_ "set-list.title"}}
-    </span>
-    </div>
     <div class="responsive-utilities-test visible-on">
+
         <span class="col-md-3 visible-md visible-lg visible-xl poolHeaderBottom">{{_
         "set-list.topic"}}
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
         "set-list.author"}}
         </span>
-        <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
+        <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
         "set-list.college"}}
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
@@ -118,6 +156,11 @@
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
         "set-list.module"}}
         </span>
+
+        <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
+        "set-list.rating"}}
+        </span>
+
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
         "set-list.availability"}}
         </span>
@@ -138,23 +181,30 @@
 
 <template name="poolCardsetRow">
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel">{{_ "set-list.topic"}}:</span>
-    <span class="cell col-xs-8 col-sm-9 col-md-3 poolText">
-        <span class="cell col-xs-10 col-sm-10 col-md-10 poolText topicName">
-            {{this.name}}
-        </span>
-        <span class="cell badge cardsetBadge">
-            {{countCards this._id}}
-        </span>
+    <span class="cell col-xs-8 col-sm-9 col-md-3">
+            <span class="cell col-xs-10 col-sm-10 col-md-10 topicName field-tip">
+                <p class="poolText"> {{this.name}}</p>
+                <div class="tip-content">{{#markdown}}{{getMaximumText this.description}}{{/markdown}}</div>
+            </span>
+            <span class="cell badge cardsetBadge">
+                {{countCards this._id}}
+            </span>
     </span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.author"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{getAuthorName this.owner}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.college"}}:</span>
-    <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.college}}</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.college}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.course"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 poolContent poolText">{{this.course}}</span>
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.module"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">{{this.moduleToken}}</span>
-    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.license"}}:</span>
+
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.rating"}}:</span>
+    <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">
+        {{> starsRating rating=getAverageRating mutable=false}}
+    </span>
+
+    <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.availability"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-2 kind-label poolInfo">
         <span class="kind-label col-xs-3 col-sm-3 col-md-3 licenseInfo">
             {{{getKind}}}
@@ -170,6 +220,7 @@
 
 
 </template>
+
 
 <template name="poolCardsetEmpty">
     <div class="col-sm-12 col-md-12 empty-list panel panel-default cardsetInfo ">
