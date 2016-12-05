@@ -80,7 +80,7 @@
   "confirm-form-profile": {
     "title": "Delete user profile",
     "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",
-    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards. 
+    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards.
     Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
@@ -122,7 +122,7 @@
     "category": "Category",
     "description": "Description",
     "module": "Module",
-    "licence": "Licence",
+    "licence": "License",
     "topic": "Topic",
     "availability": "Availability",
     "college": "College",
@@ -173,6 +173,7 @@
     "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
     "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
     "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
+    "zero-desc": "No license has been set for this cardset.",
     "saveLicense": "Save license",
     "wrongCombination": "This combination is not allowed!",
     "report": "Report cardset/user",
@@ -379,7 +380,8 @@
     "private": "Private",
     "license": " Select license",
     "startLearning": "Start Learning-Phase",
-    "stopLearning": "Stop Learning-Phase"
+    "stopLearning": "Stop Learning-Phase",
+    "poolLicense": "License for "
   },
   "pool": {
     "relevance": "Relevance",
