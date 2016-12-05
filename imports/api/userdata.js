@@ -20,6 +20,7 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
+						'earnedBadges': 1,
 						'customerId': 1,
 						'blockedtext': 1
 					}
@@ -46,6 +47,7 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
+						'earnedBadges': 1,
 						'balance': 1
 					}
 				});
@@ -168,7 +170,8 @@ Meteor.methods({
 				givenname: "",
 				lvl: 1,
 				lastOnAt: new Date(),
-				daysInRow: 0
+				daysInRow: 0,
+				earnedBadges: []
 			}
 		});
 	},
@@ -289,5 +292,11 @@ Meteor.methods({
 		}
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
+	},
+	updateEarnedBadges: function (index, rank) {
+		check(index, Number);
+		check(rank, Number);
+		Meteor.users.update(Meteor.user()._id,
+			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
 	}
 });
