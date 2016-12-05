@@ -1,15 +1,15 @@
 <template name="pool">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      <div id="pool-category-region" class="container">
-          {{> category}}
-      </div>
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            <div id="pool-category-region" class="container">
+                {{> category}}
+            </div>
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 <template name="category">
@@ -20,157 +20,156 @@
                         {{_ "set-list.reset"}} </button>
             </span>
         </div>
-        <span class="col-xs-12 col-sm-12 col-md-12">
-        <div class="btn-group" role="group" aria-label="Topic group">
-            <button class="sortTopic btn btn-default" id="topicBtn" role="button" value="down" data-toggle="dropdown">
-                {{_ "set-list.topic"}} </button>
-            <button type="button" class="sortTopic btn btn-default dropdown-toggle" value="down"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-sort"></span>
-            </button>
-        </div>
-
-        <div class="btn-group" role="group" aria-label="Author group">
-            <button type="button" id="collegeBtn" class="filterAuthorGroup btn btn-default" data-toggle="dropdown">
-                {{#if hasAuthorFilter}}
-                  {{poolFilterAuthor}}
-                {{else}}
-                  {{_ "set-list.author"}}
-                {{/if}}
-            </button>
-            <button type="button" class="filterAuthorGroup btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a></li>
-                {{#each getAuthors}}
-                    {{#if filterAuthors}}
-                        <li><a href="#" class="filterAuthor"
-                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="pool-nav">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
+                                {{_ "set-list.topic"}}
+                                <span class="caret"></span>
+                            </a>
                         </li>
-                    {{/if}}
-                {{/each}}
-            </ul>
-        </div>
-
-        <div class="btn-group" role="group" aria-label="College group">
-            <button type="button" id="collegeBtn" class="filterCollegeGroup btn btn-default" data-toggle="dropdown">
-                {{#if hasCollegeFilter}}
-                  {{poolFilterCollege}}
-                {{else}}
-                  {{_ "set-list.college"}}
-                {{/if}}
-            </button>
-            <button type="button" class="filterCollegeGroup btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getColleges}}
-                    <li><a href="#" class="filterCollege" data-id="{{this.college}}">{{this.college}}</a></li>
-                {{/each}}
-            </ul>
-        </div>
-
-        <div class="btn-group" role="group" aria-label="Course group">
-            <button type="button" id="collegeBtn" class="filterCourseGroup btn btn-default" data-toggle="dropdown"
-                    style="width: 155px">
-                {{#if hasCourseFilter}}
-                  {{poolFilterCourse}}
-                {{else}}
-                  {{_ "set-list.course"}}
-                {{/if}}
-            </button>
-            <button type="button" class="filterCourseGroup btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#" class="filterCourse active" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getCourses}}
-                    <li><a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}</a></li>
-                {{/each}}
-            </ul>
-        </div>
-
-        <div class="btn-group" role="group" aria-label="Module group">
-            <button type="button" id="moduleBtn" class="filterModuleGroup btn btn-default" data-toggle="dropdown">
-                {{#if hasModuleFilter}}
-                  {{poolFilterModule}}
-                {{else}}
-                  {{_ "set-list.module"}}
-                {{/if}}
-            </button>
-            <button type="button" class="filterModuleGroup btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a></li>
-                {{#each getModules}}
-                    <li><a href="#" class="filterModule" data-id="{{this.module}}">
-                        {{this.moduleToken}} [{{this.moduleNum}}]:
-                        {{this.module}}</a></li>
-                {{/each}}
-            </ul>
-        </div>
-
-
-        <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
-             aria-label="License group">
-            <label class="btn btn-default btn-filter-free active">
-                <input type="checkbox" autocomplete="off" value="free" checked=""> Free
-            </label>
-            <label class="btn btn-default btn-filter-edu active">
-                <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
-            </label>
-            <label class="btn btn-default btn-filter-pro active">
-                <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
-            </label>
-        </div>
-    </span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasAuthorFilter}}
+                                    {{poolFilterAuthor}}
+                                {{else}}
+                                    {{_ "set-list.author"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+                                </li>
+                                {{#each getAuthors}}
+                                    {{#if filterAuthors}}
+                                        <li>
+                                            <a href="#" class="filterAuthor" data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+                                        </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasCollegeFilter}}
+                                    {{poolFilterCollege}}
+                                {{else}}
+                                    {{_ "set-list.college"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
+                                {{#each getColleges}}
+                                    <li>
+                                        <a href="#" class="filterCollege" data-id="{{this.college}}">{{this.college}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasCourseFilter}}
+                                    {{poolFilterCourse}}
+                                {{else}}
+                                    {{_ "set-list.course"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="filterCourse active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
+                                {{#each getCourses}}
+                                    <li>
+                                        <a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{#if hasModuleFilter}}
+                                    {{poolFilterModule}}
+                                {{else}}
+                                    {{_ "set-list.module"}}
+                                {{/if}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a>
+                                </li>
+                                {{#each getModules}}
+                                    <li><a href="#" class="filterModule" data-id="{{this.module}}">
+                                        {{this.moduleToken}} [{{this.moduleNum}}]:
+                                        {{this.module}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
+                             aria-label="License group" style="padding-top: 10px;">
+                            <label class="btn btn-default btn-info active">
+                                <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+                            </label>
+                            <label class="btn btn-default btn-success active">
+                                <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+                            </label>
+                            <label class="btn btn-default btn-danger active">
+                                <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+                            </label>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
     <div class="responsive-utilities-test visible-on">
 
         <span class="col-md-3 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.topic"}}
+        "set-list.topic"}}
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.author"}}
+        "set-list.author"}}
         </span>
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.college"}}
+        "set-list.college"}}
         </span>
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.course"}}
+        "set-list.course"}}
         </span>
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.module"}}
+        "set-list.module"}}
         </span>
 
         <span class="col-md-1 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.rating"}}
+        "set-list.rating"}}
         </span>
 
         <span class="col-md-2 visible-md visible-lg visible-xl poolHeaderBottom">{{_
-                "set-list.availability"}}
+        "set-list.availability"}}
         </span>
     </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
             <a href="/cardset/{{_id}}">
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
-                        oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
+                oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
                     {{> poolCardsetRow}}
                 </div>
             </a>
@@ -202,7 +201,7 @@
 
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.rating"}}:</span>
     <span class="col-xs-8 col-sm-9 col-md-1 poolContent poolText">
-      {{> starsRating rating=getAverageRating mutable=false}}
+        {{> starsRating rating=getAverageRating mutable=false}}
     </span>
 
     <span class="col-xs-4 col-sm-3 visible-xs visible-sm poolLabel poolText">{{_ "set-list.availability"}}:</span>
