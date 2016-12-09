@@ -106,6 +106,7 @@ var initBadges = function () {
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	var badges = initBadges();
+    process.env.MAIL_URL = Meteor.settings.MAIL_URL;
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
