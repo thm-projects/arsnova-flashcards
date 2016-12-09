@@ -38,5 +38,6 @@
   "cas": {
     "baseUrl": "https://cas.thm.de/cas",
     "autoClose": true
-  }
+  },
+  "MAIL_URL": "smtp://postmaster%40sandboxcc4938befa8447ca8c857cdf4b968653.mailgun.org:d07ea9c40ccbb21d268bbda17e9aad9d@smtp.mailgun.org:587"
 }
