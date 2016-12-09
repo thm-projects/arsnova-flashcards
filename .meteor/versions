@@ -82,6 +82,7 @@ matb33:collection-hooks@0.8.4
 mdg:validation-error@0.5.1
 meteor@1.6.0
 meteor-base@1.0.4
+meteorhacks:ssr@2.2.0
 meteorspark:util@0.2.0
 minifier-css@1.2.15
 minifier-js@1.2.15
