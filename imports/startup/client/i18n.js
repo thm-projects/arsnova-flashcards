@@ -22,4 +22,8 @@ Meteor.startup(function () {
 			// Handle the situation
 			throw new Meteor.Error(error_message, "Can't get User Language");
 		});
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceWorker.js').then().catch(error => console.log(error));
+    }
 });
