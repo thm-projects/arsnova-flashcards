@@ -1,6 +1,15 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
   NODE_ENV: production
+  
+chimp:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install chimp
+    - node_modules/.bin/chimp --ddp=http://localhost:3000 --watch —path=tests
 
 jshint:
   stage: test
