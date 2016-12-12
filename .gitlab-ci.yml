@@ -9,7 +9,7 @@ chimp:
   dependencies: []
   script:
     - npm install chimp
-    - node_modules/.bin/chimp --ddp=http://localhost:3000 --watch —path=tests
+    - node_modules/.bin/chimp --ddp=http://localhost:3000 --watch --path=tests
 
 jshint:
   stage: test
