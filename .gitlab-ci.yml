@@ -8,8 +8,10 @@ chimp:
     - nodejs
   dependencies: []
   script:
-    - npm install chimp
-    - node_modules/.bin/chimp --ddp=http://localhost:3000 --watch --path=tests
+    - npm install
+    - meteor --allow-superuser --no-lint --no-release-check --settings settings.json &
+    - sleep 150
+    - chimp --ddp=http://localhost:3000 --path=tests
 
 jshint:
   stage: test
