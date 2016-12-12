@@ -9,7 +9,7 @@ chimp:
   dependencies: []
   script:
     - npm install
-    - meteor --allow-superuser --no-lint --no-release-check --settings settings.json &
+    - meteor --allow-superuser --no-lint --no-release-check --settings settings_test.json &
     - sleep 150
     - chimp --ddp=http://localhost:3000 --path=tests
 
