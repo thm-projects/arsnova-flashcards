@@ -1,0 +1,14 @@
+{ 
+    "_id" : "3yCQeX43Giq48aS6R", 
+    "name" : "seqSettings", 
+    "seqOne" : NumberInt(7), 
+    "seqTwo" : NumberInt(30), 
+    "seqThree" : NumberInt(90)
+}
+{ 
+    "_id" : "5KnF72ya8CCA7FrYT", 
+    "name" : "seqSettings", 
+    "seqOne" : NumberInt(7), 
+    "seqTwo" : NumberInt(30), 
+    "seqThree" : NumberInt(90)
+}

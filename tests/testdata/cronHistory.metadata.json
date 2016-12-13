@@ -1,0 +1,35 @@
+{ 
+    "_id" : ObjectId("58382e7e5f853137386dc4a3"), 
+    "options" : {
+        "flags" : NumberInt(1)
+    }, 
+    "indexes" : [
+        {
+            "v" : NumberInt(1), 
+            "name" : "_id_", 
+            "key" : {
+                "_id" : NumberInt(1)
+            }, 
+            "ns" : "meteor-staging.cronHistory"
+        }, 
+        {
+            "v" : NumberInt(1), 
+            "name" : "intendedAt_1_name_1", 
+            "key" : {
+                "intendedAt" : NumberInt(1), 
+                "name" : NumberInt(1)
+            }, 
+            "unique" : true, 
+            "ns" : "meteor-staging.cronHistory"
+        }, 
+        {
+            "v" : NumberInt(1), 
+            "name" : "startedAt_1", 
+            "key" : {
+                "startedAt" : NumberInt(1)
+            }, 
+            "ns" : "meteor-staging.cronHistory", 
+            "expireAfterSeconds" : NumberInt(172800)
+        }
+    ]
+}

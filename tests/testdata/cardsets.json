@@ -1,0 +1,72 @@
+{ 
+    "_id" : "2P6mg5iqCZ49QPPDz", 
+    "college" : "THM", 
+    "course" : "Informatik", 
+    "date" : ISODate("2016-09-18T13:30:16.679+0000"), 
+    "dateUpdated" : ISODate("2016-12-13T19:40:42.599+0000"), 
+    "daysBeforeReset" : NumberInt(0), 
+    "description" : "test-cards", 
+    "kind" : "pro", 
+    "learningActive" : false, 
+    "learningEnd" : ISODate("1970-01-01T00:00:00.000+0000"), 
+    "learningInterval" : [
+
+    ], 
+    "learningStart" : ISODate("1970-01-01T00:00:00.000+0000"), 
+    "license" : [
+
+    ], 
+    "mailNotification" : true, 
+    "maxCards" : NumberInt(0), 
+    "module" : "Internetbasierte Systeme", 
+    "moduleNum" : "CS1024", 
+    "moduleToken" : "IBS", 
+    "name" : "test-cards1", 
+    "owner" : "nktG8ntLru8kjhFyT", 
+    "price" : 0.99, 
+    "quantity" : NumberInt(3), 
+    "ratings" : true, 
+    "relevance" : 5.2, 
+    "request" : false, 
+    "reviewed" : true, 
+    "reviewer" : "nktG8ntLru8kjhFyT", 
+    "userDeleted" : false, 
+    "visible" : true, 
+    "webNotification" : true
+}
+{ 
+    "_id" : ObjectId("58504ed31eae3b129496c784"), 
+    "college" : "THM", 
+    "course" : "Informatik", 
+    "date" : ISODate("2016-09-18T13:30:16.679+0000"), 
+    "dateUpdated" : ISODate("2016-12-13T19:39:02.120+0000"), 
+    "daysBeforeReset" : NumberInt(0), 
+    "description" : "test-cards", 
+    "kind" : "pro", 
+    "learningActive" : false, 
+    "learningEnd" : ISODate("1970-01-01T00:00:00.000+0000"), 
+    "learningInterval" : [
+
+    ], 
+    "learningStart" : ISODate("1970-01-01T00:00:00.000+0000"), 
+    "license" : [
+
+    ], 
+    "mailNotification" : true, 
+    "maxCards" : NumberInt(0), 
+    "module" : "Internetbasierte Systeme", 
+    "moduleNum" : "CS1024", 
+    "moduleToken" : "IBS", 
+    "name" : "test-cards2", 
+    "owner" : "nktG8ntLru8kjhFyT", 
+    "price" : 0.99, 
+    "quantity" : NumberInt(2), 
+    "ratings" : true, 
+    "relevance" : 5.2, 
+    "request" : false, 
+    "reviewed" : true, 
+    "reviewer" : "nktG8ntLru8kjhFyT", 
+    "userDeleted" : false, 
+    "visible" : true, 
+    "webNotification" : true
+}

@@ -1,0 +1,13 @@
+{ 
+    "_id" : ObjectId("58382e7e5f853137386dc4a9"), 
+    "indexes" : [
+        {
+            "v" : NumberInt(1), 
+            "name" : "_id_", 
+            "key" : {
+                "_id" : NumberInt(1)
+            }, 
+            "ns" : "meteor-staging.notifications"
+        }
+    ]
+}

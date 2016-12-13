@@ -1,0 +1,24 @@
+{ 
+    "_id" : "AS2Yor6ArBdM8toKd", 
+    "front" : "question1", 
+    "back" : "answer1", 
+    "cardset_id" : "2P6mg5iqCZ49QPPDz"
+}
+{ 
+    "_id" : "N8wAgZuTXCW4xaTSq", 
+    "front" : "question2", 
+    "back" : "answer2", 
+    "cardset_id" : "2P6mg5iqCZ49QPPDz"
+}
+{ 
+    "_id" : ObjectId("58504eef1eae3b129496c785"), 
+    "front" : "question1", 
+    "back" : "answer1", 
+    "cardset_id" : "58504ed31eae3b129496c784"
+}
+{ 
+    "_id" : ObjectId("58504eef1eae3b129496c786"), 
+    "front" : "question2", 
+    "back" : "answer2", 
+    "cardset_id" : "58504ed31eae3b129496c784"
+}

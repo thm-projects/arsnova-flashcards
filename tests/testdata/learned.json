@@ -1,0 +1,1464 @@
+{ 
+    "_id" : "JHD9eZdsSSycPdtj6", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "bDwY7pa7vRFouw7bd", 
+    "user_id" : "BoDrFqoFG2qxv5rNh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T20:25:46.553+0000"), 
+    "currentDate" : ISODate("2016-09-18T20:25:46.553+0000")
+}
+{ 
+    "_id" : "Ja2nrNtCeKjz27XaG", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "REesCjxzcfpKX8EhM", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:07:48.417+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:08:13.275+0000")
+}
+{ 
+    "_id" : "Jj28ox5aNWoi9t58o", 
+    "cardset_id" : "tKESFxmcwnfpDSKfS", 
+    "card_id" : "YacmLZhKe3LfnFpML", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:38:33.445+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:38:33.445+0000")
+}
+{ 
+    "_id" : "JjFa5AwmFXxtWJ5rt", 
+    "cardset_id" : "KHqPwZoZnPBNauejZ", 
+    "card_id" : "mbjEQSs5bcwT6rCos", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T14:18:24.954+0000"), 
+    "currentDate" : ISODate("2016-09-19T14:18:24.954+0000")
+}
+{ 
+    "_id" : "KbiQFfh9iSEKCGTni", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "BSaCx5eGHAPEmuRe9", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(4), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T11:48:01.333+0000"), 
+    "currentDate" : ISODate("2016-09-19T11:49:09.029+0000")
+}
+{ 
+    "_id" : "Kdh5EkicrT4rCKQC7", 
+    "cardset_id" : "TSj2sYxZraECCaq74", 
+    "card_id" : "qZFw4PcribuReefiC", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.365+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:10:26.060+0000")
+}
+{ 
+    "_id" : "KgykzTFtE2EGak5HL", 
+    "cardset_id" : "oHDfp8Aw4bSs2cNnZ", 
+    "card_id" : "9pzG5wyQLfn36cCNA", 
+    "user_id" : "q2dL3uPFBmiHBiSPb", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:12:42.935+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:12:54.692+0000")
+}
+{ 
+    "_id" : "Kvhk7mgPPKLBkYykW", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "2dsWy73wzHo7oeDvq", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T13:11:55.988+0000"), 
+    "currentDate" : ISODate("2016-09-19T13:11:55.988+0000")
+}
+{ 
+    "_id" : "KxAN7MNfH2n6FQWuT", 
+    "cardset_id" : "PMxmgDcQ8jdexnPMF", 
+    "card_id" : "7HraTqdHLABz96pbf", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:16.607+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:58:16.607+0000")
+}
+{ 
+    "_id" : "L5vQjEKs7xdwwmNMS", 
+    "cardset_id" : "MKEiJGqSFcYvHCEsa", 
+    "card_id" : "PRh2nvjERS73F5bFE", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:17:34.911+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:17:34.911+0000")
+}
+{ 
+    "_id" : "LAz6kmEB8kSdDWcn7", 
+    "cardset_id" : "9MLpDgQbpupR4WJGi", 
+    "card_id" : "toaYAaoBgn7cx9oEf", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:18:47.972+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:18:47.972+0000")
+}
+{ 
+    "_id" : "Lhj4ZB4aa2uABkYYS", 
+    "cardset_id" : "oHDfp8Aw4bSs2cNnZ", 
+    "card_id" : "fm9YYMMcBE5nsuEi6", 
+    "user_id" : "q2dL3uPFBmiHBiSPb", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:12:42.983+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:12:42.983+0000")
+}
+{ 
+    "_id" : "MKba28wYj8rGkvvgG", 
+    "cardset_id" : "TSj2sYxZraECCaq74", 
+    "card_id" : "f3txhBfngCB3pftiE", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.365+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:10:24.768+0000")
+}
+{ 
+    "_id" : "MayCAHk6TN7Ar8BTx", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "ktZrknZ9hbTMAi292", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:07:48.427+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:08:44.414+0000")
+}
+{ 
+    "_id" : "NCPuBTL6iaErKz6sa", 
+    "cardset_id" : "JywNrmXJdtBRoFmie", 
+    "card_id" : "Mkohq3yqLACNNvErd", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:11:55.295+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:11:55.295+0000")
+}
+{ 
+    "_id" : "NL5uzRGjNc4kkYkEF", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "EKMMQscxFiwGHY5nJ", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T19:34:41.270+0000"), 
+    "currentDate" : ISODate("2016-09-18T19:34:41.270+0000")
+}
+{ 
+    "_id" : "NStLvQDuEmkWDDbFQ", 
+    "cardset_id" : "PghvdJrz3Qd8d9skt", 
+    "card_id" : "qdSzeAsHhMYtoZeTk", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:49:11.473+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:49:11.473+0000")
+}
+{ 
+    "_id" : "PSCWidBChvjYYLbya", 
+    "cardset_id" : "Z2qaWwyWCLTmTskEA", 
+    "card_id" : "m6Q5CD5NS78SmTyBQ", 
+    "user_id" : "SsBjiKbHv4hZrm38e", 
+    "box" : NumberInt(3), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:10:28.214+0000"), 
+    "currentDate" : ISODate("2016-09-19T05:08:54.691+0000")
+}
+{ 
+    "_id" : "QXeMajAQP6scLGnFk", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "ktZrknZ9hbTMAi292", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(4), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T11:48:01.419+0000"), 
+    "currentDate" : ISODate("2016-09-19T11:49:14.302+0000")
+}
+{ 
+    "_id" : "QZh3pZe3Hf4PtDmDA", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "vg2ktjvhZrYARh2Tv", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:09:15.286+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:09:15.286+0000")
+}
+{ 
+    "_id" : "QrjNzNcxgfQQG6Xpk", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "sPHAayKeR7iwdLwSM", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:09:15.291+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:09:15.291+0000")
+}
+{ 
+    "_id" : "R26owa3kAYc4qiMBf", 
+    "cardset_id" : "TSj2sYxZraECCaq74", 
+    "card_id" : "p6jB3CthYnJLrmCEe", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.365+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:10:20.113+0000")
+}
+{ 
+    "_id" : "R96pq4Kp4q5smboBb", 
+    "cardset_id" : "PghvdJrz3Qd8d9skt", 
+    "card_id" : "LXWHapcpRtqKuvf3j", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:49:11.456+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:49:11.456+0000")
+}
+{ 
+    "_id" : "RJpZghjogYSbKsQLA", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "2dsWy73wzHo7oeDvq", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:43:14.361+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:46:04.701+0000")
+}
+{ 
+    "_id" : "RJw9MijCkx89WTSzL", 
+    "cardset_id" : "PghvdJrz3Qd8d9skt", 
+    "card_id" : "5a2Wpc3mmMSffx4h8", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:49:11.437+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:49:11.437+0000")
+}
+{ 
+    "_id" : "RPoXArRtmnvBASfez", 
+    "cardset_id" : "Z2qaWwyWCLTmTskEA", 
+    "card_id" : "BpnkDeDEJFeFyRCa6", 
+    "user_id" : "SsBjiKbHv4hZrm38e", 
+    "box" : NumberInt(3), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:10:28.230+0000"), 
+    "currentDate" : ISODate("2016-09-19T05:08:58.793+0000")
+}
+{ 
+    "_id" : "RnAKuhNzmz4kix3CT", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "tQLz9u34ddYWx4y8Q", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:43:34.170+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:43:34.170+0000")
+}
+{ 
+    "_id" : "RuQBfizwr2fdbntRS", 
+    "cardset_id" : "oHDfp8Aw4bSs2cNnZ", 
+    "card_id" : "wekm5bW8f7ntisHZb", 
+    "user_id" : "q2dL3uPFBmiHBiSPb", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:12:42.978+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:12:42.978+0000")
+}
+{ 
+    "_id" : "S8enZF9JZBz2nyQAX", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "vg2ktjvhZrYARh2Tv", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T13:11:55.979+0000"), 
+    "currentDate" : ISODate("2016-09-19T13:12:03.615+0000")
+}
+{ 
+    "_id" : "Sqagbh8LknvvFojNJ", 
+    "cardset_id" : "tKESFxmcwnfpDSKfS", 
+    "card_id" : "phTfNYKg4tphzBBrb", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:38:33.484+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:38:33.484+0000")
+}
+{ 
+    "_id" : "T28Wnp9nqgnRfp9vr", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "bDwY7pa7vRFouw7bd", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T19:34:41.265+0000"), 
+    "currentDate" : ISODate("2016-09-18T19:34:41.265+0000")
+}
+{ 
+    "_id" : "TC9QSCHiRyBiPSRQe", 
+    "cardset_id" : "ntqRqRPDe6GKuCBbS", 
+    "card_id" : "Pj6tHyMiavG5YBfbf", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.489+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:09:08.489+0000")
+}
+{ 
+    "_id" : "TjL55j79Z9ansLvBa", 
+    "cardset_id" : "7TJpB5appcGGP5jnf", 
+    "card_id" : "28LDNKrFQ53M62m2L", 
+    "user_id" : "2EPaftFnu7GanWPs3", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:08:42.556+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:09:03.150+0000")
+}
+{ 
+    "_id" : "WJ8NkHPLwz3LyE4wb", 
+    "cardset_id" : "s6tEwhHmEaanSWA6s", 
+    "card_id" : "uwWdCHmQrBHdm3fYt", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T14:22:39.539+0000"), 
+    "currentDate" : ISODate("2016-09-18T14:22:39.539+0000")
+}
+{ 
+    "_id" : "WLiohXk9GdgRGGMpw", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "SeBBxsQTLMfRaNoWZ", 
+    "user_id" : "D4riure6GN3kN5fTr", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:47:35.488+0000")
+}
+{ 
+    "_id" : "WMbNJ6rCfEPgT7XA9", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "NL9br6kpPdEXJRdto", 
+    "user_id" : "NcuzZ7m3B3Edocnbt", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:51:51.887+0000")
+}
+{ 
+    "_id" : "WgtqdPRrDbNH7azpX", 
+    "cardset_id" : "v2yRjHyRzqWfYkfKF", 
+    "card_id" : "L7ThDZaeu9qFk3vL4", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:49:07.531+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:49:07.531+0000")
+}
+{ 
+    "_id" : "WhPjN87m2tGDj6QSh", 
+    "cardset_id" : "KHqPwZoZnPBNauejZ", 
+    "card_id" : "LumrbTShRbks5PZ7P", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T14:18:24.958+0000"), 
+    "currentDate" : ISODate("2016-09-19T14:18:24.958+0000")
+}
+{ 
+    "_id" : "WiPJdaxCJX9YksDYd", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "yFaeffZyKioJYs2i3", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:49:55.830+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:49:55.830+0000")
+}
+{ 
+    "_id" : "WsuR8ytdHEd8xgj2r", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "2dsWy73wzHo7oeDvq", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:09:15.296+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:09:15.296+0000")
+}
+{ 
+    "_id" : "WvHsY7r8AbP97QZHi", 
+    "cardset_id" : "ZKGEmtzNLziivWFcd", 
+    "card_id" : "9MKLybyGiG8QhKrSa", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:36:10.893+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:36:10.893+0000")
+}
+{ 
+    "_id" : "Xm29wXJRAy42NgH8W", 
+    "cardset_id" : "xsvorExGrkL3ThT8M", 
+    "card_id" : "WxAetCGmJLc9trDNs", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:17:29.922+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:17:29.922+0000")
+}
+{ 
+    "_id" : "YG27xCeCfogjMDkW5", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "sPHAayKeR7iwdLwSM", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T13:11:55.984+0000"), 
+    "currentDate" : ISODate("2016-09-19T13:11:55.984+0000")
+}
+{ 
+    "_id" : "YQ6mtYfWs5XmcaSzC", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "yFaeffZyKioJYs2i3", 
+    "user_id" : "BoDrFqoFG2qxv5rNh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T20:25:46.512+0000"), 
+    "currentDate" : ISODate("2016-09-18T20:25:46.512+0000")
+}
+{ 
+    "_id" : "YaR5ypgjpxfBkuYo7", 
+    "cardset_id" : "PMxmgDcQ8jdexnPMF", 
+    "card_id" : "NYvea2x5spDYqyNdt", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:16.582+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:58:16.582+0000")
+}
+{ 
+    "_id" : "YcHRnBsRjiW9fghZZ", 
+    "cardset_id" : "oHDfp8Aw4bSs2cNnZ", 
+    "card_id" : "yBjeS26Tv5iX5kBDk", 
+    "user_id" : "q2dL3uPFBmiHBiSPb", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:12:42.971+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:12:42.971+0000")
+}
+{ 
+    "_id" : "ZmMBmxTybuoAwo3Ez", 
+    "cardset_id" : "JywNrmXJdtBRoFmie", 
+    "card_id" : "RcP5uvKRqLq8Ndoh2", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:11:55.291+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:11:55.291+0000")
+}
+{ 
+    "_id" : "ZzNLdAYE2dSRAikkR", 
+    "cardset_id" : "tKESFxmcwnfpDSKfS", 
+    "card_id" : "JDEW9WvEMazjMdbSK", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:38:33.496+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:38:33.496+0000")
+}
+{ 
+    "_id" : "aMtmLi44sDvRJcJtp", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "BSaCx5eGHAPEmuRe9", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:38:52.530+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:42:13.548+0000")
+}
+{ 
+    "_id" : "aNswaW6JzHM9Cgp8x", 
+    "cardset_id" : "PghvdJrz3Qd8d9skt", 
+    "card_id" : "zzytS6rpnQgBfay2M", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:49:11.469+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:49:11.469+0000")
+}
+{ 
+    "_id" : "aZxgdmdLQ5dv4mWPE", 
+    "cardset_id" : "L2pioALZJ2TYWcbc2", 
+    "card_id" : "dNzrmqYhxCiNBGpa8", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:03:37.479+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:03:37.479+0000")
+}
+{ 
+    "_id" : "ai2t3AAatH2nrSTpD", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "JzDna8xSwpjnW5BCD", 
+    "user_id" : "NcuzZ7m3B3Edocnbt", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:51:48.424+0000")
+}
+{ 
+    "_id" : "apzYD2qMiTDoQ23BX", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "mipSLBeZcKnGK5yDx", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T23:09:15.280+0000"), 
+    "currentDate" : ISODate("2016-09-18T23:09:15.280+0000")
+}
+{ 
+    "_id" : "arajfxrzFMHzcYHdu", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "euQhsjGvvr92EeuhJ", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:43:14.327+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:46:00.928+0000")
+}
+{ 
+    "_id" : "be6gKyzpgJCbQekrp", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "JR3Cexi9AQjFErnjt", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:21:29.788+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:21:37.545+0000")
+}
+{ 
+    "_id" : "bvQGsTASfyAW4mMvC", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "5rrhsnhjqe8WK6Ym7", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:49:55.871+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:49:55.871+0000")
+}
+{ 
+    "_id" : "cGRof7AAxNRPnsaxe", 
+    "cardset_id" : "L2pioALZJ2TYWcbc2", 
+    "card_id" : "dArBrwfTt5R4CfhPs", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:03:37.490+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:03:37.490+0000")
+}
+{ 
+    "_id" : "d2HGEtfZcCHT3Y88a", 
+    "cardset_id" : "v2yRjHyRzqWfYkfKF", 
+    "card_id" : "Mc6kiPA3KHFA2dpkP", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:49:07.537+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:49:07.537+0000")
+}
+{ 
+    "_id" : "dSjuRCaiiiGzoaHNA", 
+    "cardset_id" : "PMxmgDcQ8jdexnPMF", 
+    "card_id" : "2AWx4Qdyfbi6Jw5tx", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:16.627+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:58:16.627+0000")
+}
+{ 
+    "_id" : "dTxaQ25nYAGNB6t6P", 
+    "cardset_id" : "KHqPwZoZnPBNauejZ", 
+    "card_id" : "YuQdm8PehJEKW5FgA", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T14:18:24.962+0000"), 
+    "currentDate" : ISODate("2016-09-19T14:18:24.962+0000")
+}
+{ 
+    "_id" : "dXrBt3cKhExDXiZ3v", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "vg2ktjvhZrYARh2Tv", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:55:57.621+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:55:57.621+0000")
+}
+{ 
+    "_id" : "dgepBGJJJCsm5CAbD", 
+    "cardset_id" : "tKESFxmcwnfpDSKfS", 
+    "card_id" : "gavY2k8vJTxTna7ju", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:38:33.469+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:38:33.469+0000")
+}
+{ 
+    "_id" : "eCHfCkp8HgqZofLAh", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "ktZrknZ9hbTMAi292", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:38:52.565+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:42:17.754+0000")
+}
+{ 
+    "_id" : "eaE7xgWiGaSTYnAa7", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "NL9br6kpPdEXJRdto", 
+    "user_id" : "D4riure6GN3kN5fTr", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:47:35.488+0000")
+}
+{ 
+    "_id" : "frd2ohqm5fY5ZKLgM", 
+    "cardset_id" : "v2yRjHyRzqWfYkfKF", 
+    "card_id" : "unTAiHanuMqoHGpow", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:49:07.541+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:49:07.541+0000")
+}
+{ 
+    "_id" : "g9Mr6mGCNzHx2nw7m", 
+    "cardset_id" : "oHDfp8Aw4bSs2cNnZ", 
+    "card_id" : "KyxRk7mmAkrx8BzG5", 
+    "user_id" : "q2dL3uPFBmiHBiSPb", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:12:42.954+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:12:42.954+0000")
+}
+{ 
+    "_id" : "h242iEH49hsj7sbS7", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "hQ5rwxHb9niPx8S5o", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:21:29.831+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:21:29.831+0000")
+}
+{ 
+    "_id" : "hBEgZhYbtK6B4tdAc", 
+    "cardset_id" : "KHqPwZoZnPBNauejZ", 
+    "card_id" : "sAGnQsQAuZ9AEMXjq", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T14:18:24.941+0000"), 
+    "currentDate" : ISODate("2016-09-19T14:18:24.941+0000")
+}
+{ 
+    "_id" : "jMa4NHvXYmmB9Wutu", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "LP2373GGGRGxXwYod", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T19:34:41.253+0000"), 
+    "currentDate" : ISODate("2016-09-18T19:34:41.253+0000")
+}
+{ 
+    "_id" : "jNNALiawxCKBj7QW4", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "wRjFMACdmmhFtmPaQ", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:38:52.561+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:42:16.882+0000")
+}
+{ 
+    "_id" : "jmEgbnvykhpr7jKB4", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "REesCjxzcfpKX8EhM", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:38:52.556+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:42:15.923+0000")
+}
+{ 
+    "_id" : "k7BwJYT3BG4pm4Tmb", 
+    "cardset_id" : "Z2qaWwyWCLTmTskEA", 
+    "card_id" : "WakZJwhcTYP7THEqd", 
+    "user_id" : "SDbgHrMNPZFX9iFom", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:26.240+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:59:17.384+0000")
+}
+{ 
+    "_id" : "k9mu8yB27ZvrRdnYp", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "euQhsjGvvr92EeuhJ", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:55:57.584+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:56:23.428+0000")
+}
+{ 
+    "_id" : "kNhugGQyQaHRzP9zn", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "KNwPGDJDenyooxdYa", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:43:34.139+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:43:34.139+0000")
+}
+{ 
+    "_id" : "kf3Fw3dqK2mzDnGCo", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "WGyaGkCfWRK7ioTmL", 
+    "user_id" : "D4riure6GN3kN5fTr", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:47:35.488+0000")
+}
+{ 
+    "_id" : "kvXzSt4Rxfc3jCHSv", 
+    "cardset_id" : "MKEiJGqSFcYvHCEsa", 
+    "card_id" : "NwrvfPhZLZ7EyrGyT", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:17:34.951+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:17:34.951+0000")
+}
+{ 
+    "_id" : "m5C5LaqRyXu3A5fye", 
+    "cardset_id" : "Z2qaWwyWCLTmTskEA", 
+    "card_id" : "BpnkDeDEJFeFyRCa6", 
+    "user_id" : "SDbgHrMNPZFX9iFom", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:26.228+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:59:15.012+0000")
+}
+{ 
+    "_id" : "m5scPQttBtd65QEdF", 
+    "cardset_id" : "vkf8ZXmsd6J87KBXf", 
+    "card_id" : "x6f3GmqgTDWBCJegz", 
+    "user_id" : "bFfX7bi5oxvJKJzLE", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:37:31.610+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:37:37.204+0000")
+}
+{ 
+    "_id" : "mG5WZnmraRxAma8jp", 
+    "cardset_id" : "dvTQdHs8xLReMdPe9", 
+    "card_id" : "4WziErazs9hKwtRdt", 
+    "user_id" : "W9Xa6gJdavRKgdNmh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:15:12.734+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:15:12.734+0000")
+}
+{ 
+    "_id" : "mTWbEaQfabtokRHGp", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "5rrhsnhjqe8WK6Ym7", 
+    "user_id" : "BoDrFqoFG2qxv5rNh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T20:25:46.547+0000"), 
+    "currentDate" : ISODate("2016-09-18T20:25:46.547+0000")
+}
+{ 
+    "_id" : "ma8XArZDL3cMcGvXB", 
+    "cardset_id" : "JywNrmXJdtBRoFmie", 
+    "card_id" : "e5AuatCYnNSDFZjNt", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:11:55.273+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:11:55.273+0000")
+}
+{ 
+    "_id" : "mbBCi4W6jNgBpFA9D", 
+    "cardset_id" : "TSj2sYxZraECCaq74", 
+    "card_id" : "kiBQM9aE7axTypyRd", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.365+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:10:23.444+0000")
+}
+{ 
+    "_id" : "nM8gdwqA3wAKGZWwW", 
+    "cardset_id" : "TSj2sYxZraECCaq74", 
+    "card_id" : "Z9HybMK6wACwogkjJ", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.365+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:10:22.015+0000")
+}
+{ 
+    "_id" : "nN4p7f7GRCPaazgoS", 
+    "cardset_id" : "MKEiJGqSFcYvHCEsa", 
+    "card_id" : "qWHjCo8agqj4zqmYr", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:17:34.945+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:17:34.945+0000")
+}
+{ 
+    "_id" : "nWaiFTJFBkiMNSJMS", 
+    "cardset_id" : "7TJpB5appcGGP5jnf", 
+    "card_id" : "JCZH7iMCLhNfzPT6N", 
+    "user_id" : "2EPaftFnu7GanWPs3", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:08:42.598+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:08:42.598+0000")
+}
+{ 
+    "_id" : "nvyrGRfe6Y7C7cmqY", 
+    "cardset_id" : "ntqRqRPDe6GKuCBbS", 
+    "card_id" : "PgDRknatPsmDFKrjL", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.349+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:09:12.873+0000")
+}
+{ 
+    "_id" : "oGFSmsozKyo6Gek8r", 
+    "cardset_id" : "s6tEwhHmEaanSWA6s", 
+    "card_id" : "yj4xNWAQEL5W74dad", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T14:22:39.516+0000"), 
+    "currentDate" : ISODate("2016-09-18T14:22:39.516+0000")
+}
+{ 
+    "_id" : "p6Ld93vPAwFWk4EFs", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "sPHAayKeR7iwdLwSM", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:55:57.625+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:55:57.625+0000")
+}
+{ 
+    "_id" : "pAEv6RRA2jwbv9taB", 
+    "cardset_id" : "v2yRjHyRzqWfYkfKF", 
+    "card_id" : "NiTNf5A5TdsPM2K3Q", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:49:07.504+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:49:07.504+0000")
+}
+{ 
+    "_id" : "pCRDP3ovrskAjtH5j", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "5rrhsnhjqe8WK6Ym7", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T19:34:41.260+0000"), 
+    "currentDate" : ISODate("2016-09-18T19:34:41.260+0000")
+}
+{ 
+    "_id" : "pHjsy5sdhgxg6CZoK", 
+    "cardset_id" : "vkf8ZXmsd6J87KBXf", 
+    "card_id" : "Nvg69BJRoQFMcYyhc", 
+    "user_id" : "bFfX7bi5oxvJKJzLE", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:37:32.042+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:37:32.042+0000")
+}
+{ 
+    "_id" : "pNuzwKZNf72BqBxYf", 
+    "cardset_id" : "s6tEwhHmEaanSWA6s", 
+    "card_id" : "MdG9aBCANmAbXYvR5", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T14:22:39.550+0000"), 
+    "currentDate" : ISODate("2016-09-18T14:22:39.550+0000")
+}
+{ 
+    "_id" : "pgmkuG9EKm6h5GHB6", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "mipSLBeZcKnGK5yDx", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:55:57.616+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:55:57.616+0000")
+}
+{ 
+    "_id" : "qJ7wsYtdhoNFbD5sj", 
+    "cardset_id" : "dvTQdHs8xLReMdPe9", 
+    "card_id" : "FA7SwLJX2gKZYMKHh", 
+    "user_id" : "W9Xa6gJdavRKgdNmh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:15:12.698+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:15:12.698+0000")
+}
+{ 
+    "_id" : "qW7CEv45RCiAKcKLe", 
+    "cardset_id" : "PMxmgDcQ8jdexnPMF", 
+    "card_id" : "9f4KJHKNMsSZWfWHE", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:16.616+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:58:16.616+0000")
+}
+{ 
+    "_id" : "qeCjrms4W8E6rQzHs", 
+    "cardset_id" : "KHqPwZoZnPBNauejZ", 
+    "card_id" : "8uhbFySRmigmh6LCQ", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T14:18:24.920+0000"), 
+    "currentDate" : ISODate("2016-09-19T14:18:24.920+0000")
+}
+{ 
+    "_id" : "qekwEkEoQzJDZekQ9", 
+    "cardset_id" : "ZKGEmtzNLziivWFcd", 
+    "card_id" : "hLdmMECKuv5RohGQ5", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:36:10.878+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:36:10.878+0000")
+}
+{ 
+    "_id" : "r5PX92szeXYDzLR8d", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "euQhsjGvvr92EeuhJ", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T13:11:55.943+0000"), 
+    "currentDate" : ISODate("2016-09-19T13:12:01.526+0000")
+}
+{ 
+    "_id" : "rk5D25AvsQyjyiphF", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "mipSLBeZcKnGK5yDx", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:43:14.344+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:46:02.221+0000")
+}
+{ 
+    "_id" : "rqdgJc8akSfWYNtL8", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "hQ5rwxHb9niPx8S5o", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:43:34.164+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:43:34.164+0000")
+}
+{ 
+    "_id" : "sCzKahtZR6gznWGfN", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "vg2ktjvhZrYARh2Tv", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:43:14.352+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:46:05.989+0000")
+}
+{ 
+    "_id" : "sQt5E355E4pv2t7Ev", 
+    "cardset_id" : "kSbQ72oFsg7FMPD3t", 
+    "card_id" : "mipSLBeZcKnGK5yDx", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(2), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T13:11:55.966+0000"), 
+    "currentDate" : ISODate("2016-09-19T13:12:02.654+0000")
+}
+{ 
+    "_id" : "sStoSeDxPWD57r7sP", 
+    "cardset_id" : "ntqRqRPDe6GKuCBbS", 
+    "card_id" : "QmwX8eAQrEn5MJprN", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.504+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:09:08.504+0000")
+}
+{ 
+    "_id" : "sc77FeDiCSy79okoJ", 
+    "cardset_id" : "Z2qaWwyWCLTmTskEA", 
+    "card_id" : "QCQejMqi9B2GyrKZJ", 
+    "user_id" : "SDbgHrMNPZFX9iFom", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T11:58:26.198+0000"), 
+    "currentDate" : ISODate("2016-09-18T11:59:13.387+0000")
+}
+{ 
+    "_id" : "scws74aFaojjmNpBz", 
+    "cardset_id" : "L2pioALZJ2TYWcbc2", 
+    "card_id" : "Ef7qR67BRSJ2gDYrk", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:03:37.495+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:03:37.495+0000")
+}
+{ 
+    "_id" : "sjL3ei3kcPcjSXaS4", 
+    "cardset_id" : "JywNrmXJdtBRoFmie", 
+    "card_id" : "9C5vCxjBbZQsyY4ka", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:11:55.255+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:11:55.255+0000")
+}
+{ 
+    "_id" : "sqyCpeHJTpfFwCiTD", 
+    "cardset_id" : "xsvorExGrkL3ThT8M", 
+    "card_id" : "sHASoSbczoDbh3sRc", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:17:29.963+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:17:29.963+0000")
+}
+{ 
+    "_id" : "tQjjcN6g4iM8ufSHB", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "tQLz9u34ddYWx4y8Q", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:21:29.837+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:21:29.837+0000")
+}
+{ 
+    "_id" : "tbwryJFg3nXdpwqnH", 
+    "cardset_id" : "JywNrmXJdtBRoFmie", 
+    "card_id" : "3M8dh576eXtCHXBcE", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:11:55.287+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:11:55.287+0000")
+}
+{ 
+    "_id" : "tfGZisipP7rAbL6Et", 
+    "cardset_id" : "7TJpB5appcGGP5jnf", 
+    "card_id" : "RkQFGhobaXa3fcyPk", 
+    "user_id" : "2EPaftFnu7GanWPs3", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:08:42.604+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:08:42.604+0000")
+}
+{ 
+    "_id" : "trjN84unh2tqeJ9A8", 
+    "cardset_id" : "S2BhSKppFe3id8yJh", 
+    "card_id" : "reLpchiYGiBFmKP5d", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:18:36.549+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:18:36.549+0000")
+}
+{ 
+    "_id" : "uTgk3WYPZPX3FTDxX", 
+    "cardset_id" : "v2yRjHyRzqWfYkfKF", 
+    "card_id" : "joT3JHshmyCvh5dhT", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:49:07.520+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:49:07.520+0000")
+}
+{ 
+    "_id" : "uZtEC34JP5TuagLdX", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "LP2373GGGRGxXwYod", 
+    "user_id" : "BoDrFqoFG2qxv5rNh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T20:25:46.535+0000"), 
+    "currentDate" : ISODate("2016-09-18T20:25:46.535+0000")
+}
+{ 
+    "_id" : "vSZTbqc7uWwceSJke", 
+    "cardset_id" : "MZHefjXhchnjBbLF8", 
+    "card_id" : "WGyaGkCfWRK7ioTmL", 
+    "user_id" : "NcuzZ7m3B3Edocnbt", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T13:47:35.488+0000"), 
+    "currentDate" : ISODate("2016-09-18T13:52:11.930+0000")
+}
+{ 
+    "_id" : "wEXKx9eNjjxRRQTbR", 
+    "cardset_id" : "bAXNcyj9cA9mdA686", 
+    "card_id" : "KNwPGDJDenyooxdYa", 
+    "user_id" : "4jxmEEJPL6DGTbDB5", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T10:21:29.812+0000"), 
+    "currentDate" : ISODate("2016-09-19T10:21:29.812+0000")
+}
+{ 
+    "_id" : "wGrAj7fPZRkaQrz8J", 
+    "cardset_id" : "ntqRqRPDe6GKuCBbS", 
+    "card_id" : "uzS2E4STpX4Y8W8qu", 
+    "user_id" : "kJgkxR4ih9ZEf7Z6Y", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T09:09:08.499+0000"), 
+    "currentDate" : ISODate("2016-09-19T09:09:08.499+0000")
+}
+{ 
+    "_id" : "wH98scbqLxh39Zc3H", 
+    "cardset_id" : "L2pioALZJ2TYWcbc2", 
+    "card_id" : "o5agrXv2w2itCHfk3", 
+    "user_id" : "9hzBcmEZa2hDgcKRM", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:03:37.473+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:03:37.473+0000")
+}
+{ 
+    "_id" : "xWyHfz6CwsZ4EurNg", 
+    "cardset_id" : "ZKGEmtzNLziivWFcd", 
+    "card_id" : "oEP2Kcp8CTKd7NeGD", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:36:10.899+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:36:10.899+0000")
+}
+{ 
+    "_id" : "xXbX4uWXGFwdnf2ZD", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "ZFq5BzoWM73Tvxe53", 
+    "user_id" : "uxiGHrRw4t6cn7Han", 
+    "box" : NumberInt(6), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T08:38:52.550+0000"), 
+    "currentDate" : ISODate("2016-09-19T08:42:14.922+0000")
+}
+{ 
+    "_id" : "xfwigo58BMwZwaSeM", 
+    "cardset_id" : "hxEKpuhYtSpzA8RaJ", 
+    "card_id" : "wRjFMACdmmhFtmPaQ", 
+    "user_id" : "dDP5Zr9FwdhZCrz9K", 
+    "box" : NumberInt(4), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-19T11:48:01.383+0000"), 
+    "currentDate" : ISODate("2016-09-19T11:49:13.090+0000")
+}
+{ 
+    "_id" : "yWmBcok6xaMm8EfWb", 
+    "cardset_id" : "PtPm3agN4nQYGHXaG", 
+    "card_id" : "LP2373GGGRGxXwYod", 
+    "user_id" : "5hMwCNvoP4FC5iaKY", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:49:55.852+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:49:55.852+0000")
+}
+{ 
+    "_id" : "zsbrYw4ZCzzHk5dXa", 
+    "cardset_id" : "dvTQdHs8xLReMdPe9", 
+    "card_id" : "a59Mqzsmk8S6eRHvj", 
+    "user_id" : "W9Xa6gJdavRKgdNmh", 
+    "box" : NumberInt(1), 
+    "ef" : 2.5, 
+    "reps" : NumberInt(0), 
+    "interval" : NumberInt(0), 
+    "nextDate" : ISODate("2016-09-18T12:15:12.740+0000"), 
+    "currentDate" : ISODate("2016-09-18T12:15:12.740+0000")
+}

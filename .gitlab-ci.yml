@@ -11,6 +11,7 @@ chimp:
     - npm install
     - meteor --allow-superuser --no-lint --no-release-check --settings settings_test.json &
     - sleep 150
+    - mongorestore -h 127.0.0.1 --port 3001 -d meteor tests/dump/meteor
     - chimp --ddp=http://localhost:3000 --path=tests
 
 jshint:
