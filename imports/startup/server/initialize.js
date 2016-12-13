@@ -106,6 +106,8 @@ var initBadges = function () {
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	var badges = initBadges();
+	process.env.MAIL_URL = Meteor.settings.MAIL_URL;
+    SSR.compileTemplate("newletter", Assets.getText("newsletter/newsletter.html"));
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({

@@ -94,11 +94,12 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
+				var html = SSR.render("newletter", {message: text, title: subject});
 				Email.send({
 					from: '',
 					to: mail,
 					subject: subject,
-					text: text
+					html: html
 				});
 			}
 		}
