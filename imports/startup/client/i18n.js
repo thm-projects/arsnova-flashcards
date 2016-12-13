@@ -10,6 +10,9 @@ getUserLanguage = function () {
 //------------------------ LOADING I18N
 
 Meteor.startup(function () {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceWorker.js').then().catch(error => console.log(error));
+    }
 	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
 
 	Session.set("showLoadingIndicator", true);
