@@ -11,7 +11,7 @@ module.exports = function () {
 	var SetUsername = function (name) {
 	  $('#TestingBackdorUsername').val(name);
 	};
-	client.execute(SetUsername, "Karl Heinz2");
+	client.execute(SetUsername, "testuser");
 	browser.click('a[id="BackdoorLogin"]');
 	browser.click('a[id="BackdoorLogin"]');
        });
