@@ -1,0 +1,24 @@
+import {AdminSettings} from "./adminSettings.js";
+import {Badges} from "./badges.js";
+import {Cards} from "./cards.js";
+import {Cardsets} from "./cardsets.js";
+import {CollegesCourses} from "./colleges_courses.js";
+import {Experience} from "./experience.js";
+import {Learned} from "./learned.js";
+import {Notifications} from "./notifications.js";
+import {Paid} from "./paid.js";
+import {Ratings} from "./ratings.js";
+import {Categories} from "./settings.js";
+
+Ground.Collection(Meteor.users);
+Ground.Collection(AdminSettings);
+Ground.Collection(Badges);
+Ground.Collection(Cards);
+Ground.Collection(Cardsets);
+Ground.Collection(CollegesCourses);
+Ground.Collection(Experience);
+Ground.Collection(Learned);
+Ground.Collection(Notifications);
+Ground.Collection(Paid);
+Ground.Collection(Ratings);
+Ground.Collection(Categories);
