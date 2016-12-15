@@ -28,13 +28,15 @@
                       {{#if currentUser}}
                           <ul id="navbar" class="nav navbar-nav">
 
-                              <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
+                              <li id="navbar-pool" class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}"
+                                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                   <a href="{{pathFor route='home'}}" id="pool">
                                       {{_ "navbar-collapse.pool"}}
                                   </a>
                               </li>
                               <li id="navbar-ownsets"
-                                  class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}">
+                                  class="{{#if isActiveRoute regex='home|created|learned'}}active{{/if}}"
+                                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                   <a href="{{pathFor route='cardset'}}" id="cardsets">
                                       {{_ "navbar-collapse.carddecks"}}
                                   </a>
@@ -45,7 +47,8 @@
                               <input id="input-search" class="form-control typeahead" name="search" type="text"
                                      autocomplete="off" spellcheck="off" data-source="search" data-template="search"
                                      placeholder="{{_ "navbar-collapse.search"}}">
-                              <div id="searchResults" class="dropdown-menu list-group">
+                              <div id="searchResults" class="dropdown-menu list-group"
+                                   data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                   {{#each searchCategories}}
                                       <a href="/cardset/{{_id}}" class="list-group-item clearfix">
                                           <h4 class="list-group-item-heading">{{name}}</h4>
@@ -61,7 +64,8 @@
                           </div>
 
                           <ul class="nav navbar-nav navbar-right">
-                              <li id="navbar-languagepanel">
+                              <li id="navbar-languagepanel"
+                                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                   <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                                   </a>
@@ -113,14 +117,16 @@
                                       <li class="divider"></li>
                                       <div class="notification-footer">
                                           <a href="{{pathFor 'profileNotifications' _id=currentUser._id}}"
-                                             type="button" class="btn btn-info">
+                                             type="button" class="btn btn-info"
+                                             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                               {{_ "notifications.viewAll"}} <i
                                                   class="glyphicon glyphicon-circle-arrow-right"></i>
                                           </a>
                                       </div>
                                   </ul>
                               </li>
-                              <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}">
+                              <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}"
+                                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                   <a href="{{pathFor 'profileOverview' _id=currentUser._id}}"
                                      id="usr-profile">{{getUsername}}</a>
                               </li>
