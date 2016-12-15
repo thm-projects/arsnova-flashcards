@@ -40,7 +40,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list sorted by the choosen author$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -59,7 +59,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list sorted by the choosen college$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -78,7 +78,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list sorted by the choosen course$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -97,7 +97,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list sorted by the choosen module$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -112,7 +112,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list filtered by the unselected free license group$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -127,7 +127,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list filtered by the unselected edu license group$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).toEqual(cardsetListLength);
     });
 
 /** 
@@ -142,7 +142,7 @@ module.exports = function () {
 
     this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
-        expect(cardsetList.value.length == cardsetListLength);
+        expect(cardsetList.value.length).not.toEqual(cardsetListLength);
     });
 
  };
