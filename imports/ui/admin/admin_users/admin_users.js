@@ -43,52 +43,48 @@ export function drawGraph() {
 	var box6 = Learned.find(query).count();
 	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
-	if (Session.get('data_loaded')) {
-		var ctx = document.getElementById("adminChart").getContext("2d");
-		new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
-				datasets: [
-					{
-						backgroundColor: "rgba(242,169,0,0.5)",
-						borderColor: "rgba(74,92,102,0.2)",
-						borderWidth: 1,
-						data: userData,
-						label: 'Anzahl Karten'
-					}
-				]
+	var ctx = document.getElementById("adminChart").getContext("2d");
+	new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			datasets: [
+				{
+					backgroundColor: "rgba(242,169,0,0.5)",
+					borderColor: "rgba(74,92,102,0.2)",
+					borderWidth: 1,
+					data: userData,
+					label: 'Anzahl Karten'
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			legend: {
+				display: false
 			},
-			options: {
-				responsive: true,
-				legend: {
-					display: false
-				},
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true,
-							callback: function (value) {
-								if (value % 1 === 0) {
-									return value;
-								}
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						callback: function (value) {
+							if (value % 1 === 0) {
+								return value;
 							}
 						}
-					}]
-				}
+					}
+				}]
 			}
-		});
-	}
+		}
+	});
 }
 
 Template.messageFormAdmin.onRendered(function () {
-	var self = this;
-	self.subscribe("learned", function () {
-		self.autorun(function () {
-			drawGraph();
-		});
-	});
-});
+	if (Session.get('data_loaded') || !navigator.onLine) {
+		drawGraph();
+	}
+})
+;
 
 /**
  * ############################################################################
