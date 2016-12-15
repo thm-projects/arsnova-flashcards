@@ -1,7 +1,7 @@
 Feature: Sort cardsets at poolview
 
 Background:
-        Given User is on the poolview with username "Carl Heinz2"
+        Given User is on the poolview with username "testuser"
 
 @watch
 Scenario: User sorts by author
