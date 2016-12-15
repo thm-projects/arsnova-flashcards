@@ -6,7 +6,6 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
 import {Ratings} from "../../api/ratings.js";
-import "../../api/groundDB.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
