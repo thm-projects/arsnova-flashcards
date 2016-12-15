@@ -21,7 +21,7 @@ jshint:
   dependencies: []
   script:
     - npm install jshint@^2.9.0
-    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n
+    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n ./tests
 
 jscs:
   stage: test
@@ -30,7 +30,7 @@ jscs:
   dependencies: []
   script:
     - npm install jscs
-    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server}/
+    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server,tests}/
 
 sonar:
   stage: test
