@@ -1,5 +1,22 @@
+var login = function () {
+	var SetUsername = function (name) {
+		$('#TestingBackdorUsername').val(name);
+	};
+	client.execute(SetUsername, "testuser");
+	browser.click('a[id="BackdoorLogin"]');
+	browser.click('a[id="BackdoorLogin"]');
+};
+
+/* exported firstLogin */
+var firstLogin = function () {
+	login();
+	browser.waitForExist('#accept_checkbox', 5000);
+	browser.$('#accept_checkbox').click();
+	browser.click('button[id="accept_button"]');
+};
+
 module.exports = function () {
- 'use strict';
+	'use strict';
 
 	this.Given(/^I am on the site$/, function () {
 		// Write code here that turns the phrase above into concrete actions
@@ -59,23 +76,6 @@ module.exports = function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('#pool-category-region', 5000);
 	});
-
 };
-
-var firstLogin = function() {
-	login();
-	browser.waitForExist('#accept_checkbox', 5000);
-	browser.$('#accept_checkbox').click();
-	browser.click('button[id="accept_button"]');
-}
-
-var login = function() {
-	var SetUsername = function (name) {
-		$('#TestingBackdorUsername').val(name);
-	};
-	client.execute(SetUsername, "testuser");
-	browser.click('a[id="BackdoorLogin"]');
-	browser.click('a[id="BackdoorLogin"]');
-}
 
 // tests/features/login_steps.js

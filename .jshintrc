@@ -50,6 +50,9 @@
     "SSR": true,
     "process": true,
     "Assets": true,
-    "saveAs": false
+    "saveAs": false,
+    "browser": true,
+    "client": true,
+    "module": true
   }
 }
