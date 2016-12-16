@@ -30,7 +30,8 @@ module.exports = function () {
  * ---------------------------------------------------------------------
  */
 
-    this.When(/^user clicks on the filter by autor button$/, function () {
+    this.When(/^user clicks on the filter by author button$/, function () {
+        browser.waitForVisible('a[class="dropdown-toggle authorBtn"]');
         browser.click('a[class="dropdown-toggle authorBtn"]');
     });
 
@@ -50,6 +51,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by college button$/, function () {
+        browser.waitForVisible('a[class="dropdown-toggle collegeBtn"]');
         browser.click('a[class="dropdown-toggle collegeBtn"]');
     });
 
@@ -69,6 +71,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by course button$/, function () {
+        browser.waitForVisible('a[class="dropdown-toggle courseBtn"]');
         browser.click('a[class="dropdown-toggle courseBtn"]');
     });
 
@@ -88,6 +91,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by module button$/, function () {
+        browser.waitForVisible('a[class="dropdown-toggle moduleBtn"]');
         browser.click('a[class="dropdown-toggle moduleBtn"]');
     });
 
@@ -107,6 +111,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the free license group button$/, function () {
+        browser.waitForVisible('label[class="btn btn-default btn-info active"]');
         browser.click('label[class="btn btn-default btn-info active"]');
     });
 
@@ -122,6 +127,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the edu license group button$/, function () {
+        browser.waitForVisible('label[class="btn btn-default btn-success active"]');
         browser.click('label[class="btn btn-default btn-success active"]');
     });
 
@@ -137,6 +143,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the pro license group button$/, function () {
+        browser.waitForVisible('label[class="btn btn-default btn-danger active"]');
         browser.click('label[class="btn btn-default btn-danger active"]');
     });
 

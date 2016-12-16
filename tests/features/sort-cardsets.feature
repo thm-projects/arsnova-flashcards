@@ -5,7 +5,7 @@ Background:
 
 @watch
 Scenario: User sorts by author
-        When user clicks on the filter by autor button
+        When user clicks on the filter by author button
         Then he should choose an author
         Then he should see the cardset list sorted by the choosen author
 
