@@ -373,7 +373,7 @@ Template.category.events({
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		checkFilters();
 	},
-	'click .sortTopic': function () {
+	'click #topicBtn': function () {
 		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
 			Session.set('poolSortTopic', {name: -1});
