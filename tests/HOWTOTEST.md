@@ -1,5 +1,8 @@
 ## How to test the application with chimp and cucumber
 
+## Install chimp
+	npm install -g chimp
+
 ### Please follow the folling procedure
 #### Enter the project directory
 `cd flashcards`
@@ -16,5 +19,14 @@ Exit mongo shell
 `chimp --ddp=http://localhost:3000 --watch --path=tests`
 
 
-# Important
+## Important
 For the tests, please login with the user "testuser"
+
+
+
+## Useful links
+[General info about chimp](https://chimp.readme.io/docs/introduction)  
+[Chimp cheat sheet](https://chimp.readme.io/docs/cheat-sheet)  
+[Chimp github page](https://github.com/xolvio/chimp)  
+[Webdriver the API](http://webdriver.io/api.html)  
+
