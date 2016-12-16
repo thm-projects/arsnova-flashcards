@@ -1,19 +1,6 @@
-var login = function () {
-	var SetUsername = function (name) {
-		$('#TestingBackdorUsername').val(name);
-	};
-	client.execute(SetUsername, "testuser");
-	browser.click('a[id="BackdoorLogin"]');
-	browser.click('a[id="BackdoorLogin"]');
-};
+import {login, logout, agreeCookies} from "./helper_functions";
 
-/* exported firstLogin */
-var firstLogin = function () {
-	login();
-	browser.waitForExist('#accept_checkbox', 5000);
-	browser.$('#accept_checkbox').click();
-	browser.click('button[id="accept_button"]');
-};
+var username = "login_testuser";
 
 module.exports = function () {
 	'use strict';
@@ -21,16 +8,17 @@ module.exports = function () {
 	this.Given(/^I am on the site$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.url('http://localhost:3000');
+		agreeCookies();
 	});
 
 	this.Given(/^submit the login form$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		login();
+		login(username);
 	});
 
 	this.Then(/^he should see the AGB page$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#first_login_content');
+		browser.waitForExist('#first_login_content', 5000);
 	});
 
 	this.Then(/^he can decline it$/, function () {
@@ -45,7 +33,7 @@ module.exports = function () {
 
 	this.Then(/^he need to login again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		login();
+		login(username);
 	});
 
 	this.Then(/^he agree the AGBs$/, function () {
@@ -62,19 +50,23 @@ module.exports = function () {
 
 	this.Then(/^he log out$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#logout', 5000);
-		browser.$('#logout').click();
+		logout();
 	});
 
 	this.Then(/^he login again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('#welcome', 5000);
-		login();
+		login(username);
 	});
 
 	this.Then(/^he sees the pool directly$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#pool-category-region', 5000);
+		browser.waitForExist('#pool-category-region', 8000);
+	});
+
+	this.Then(/^he logs off$/, function () {
+		// Write code here that turns the phrase above into concrete actions
+		logout();
 	});
 };
 

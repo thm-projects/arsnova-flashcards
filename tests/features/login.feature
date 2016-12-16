@@ -17,6 +17,7 @@ Scenario: Visitor can login
   And he log out
   Then he login again
   And he sees the pool directly
+  Then he logs off
 
 # tests/features/login.feature
 

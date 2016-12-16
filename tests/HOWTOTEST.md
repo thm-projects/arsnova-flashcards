@@ -12,7 +12,7 @@
 Enter mongo shell with
 
     meteor mongo
-    
+
 Then
 
     use meteor
@@ -27,11 +27,19 @@ Exit mongo shell
 ## Important
 For the tests, please login with the user "testuser"
 
+## Helpers
+Include the **helper_functions.js** for common functions.  
 
+	import {login, logout} from "./helper_functions"  
+
+now you can use the helper functions:  
+
+	login("testuser");
+	...
+	logout();
 
 ## Useful links
 [General info about chimp](https://chimp.readme.io/docs/introduction)  
 [Chimp cheat sheet](https://chimp.readme.io/docs/cheat-sheet)  
 [Chimp github page](https://github.com/xolvio/chimp)  
 [Webdriver the API](http://webdriver.io/api.html)  
-
