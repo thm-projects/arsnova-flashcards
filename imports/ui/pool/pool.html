@@ -181,6 +181,11 @@
                 {{> poolCardsetRow}}
             </div>
         {{/each}}
+        {{#if moreResults}}
+            <div class="showMoreResults col-xs-12 col-sm-12 col-md-12 panel panel-default">
+                <span class="scrollArrow col-xs-12 col-sm-12 col-md-12 glyphicon glyphicon-chevron-down"></span>
+            </div>
+        {{/if}}
     {{else}}
         {{> poolCardsetEmpty}}
     {{/if}}

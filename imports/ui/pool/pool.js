@@ -12,6 +12,8 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
 Meteor.subscribe('ratings');
 
+var items_increment = 13;
+
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterCollege');
@@ -19,6 +21,7 @@ Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
+Session.setDefault("itemsLimit", items_increment);
 
 /**
  * Creates a browser-popup with defined content
@@ -46,6 +49,24 @@ export function notification(title, message) {
 		});
 	}
 }
+
+function showMoreVisible() {
+	var threshold, target = $(".showMoreResults");
+
+	threshold = $(window).scrollTop() + $(window).height() - target.height();
+
+	if (target.offset().top < threshold) {
+		if (!target.data("visible")) {
+			target.data("visible", true);
+			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		}
+	} else {
+		if (target.data("visible")) {
+			target.data("visible", false);
+		}
+	}
+}
+$(window).scroll(showMoreVisible);
 
 var query = {};
 
@@ -104,6 +125,7 @@ function checkFilters() {
 }
 
 function filterCollege(event) {
+	Session.set("itemsLimit", items_increment);
 	var button = $(".filterCollegeGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -116,6 +138,7 @@ function filterCollege(event) {
 }
 
 function filterCourse(event) {
+	Session.set("itemsLimit", items_increment);
 	var button = $(".filterCourseGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -128,6 +151,7 @@ function filterCourse(event) {
 }
 
 function filterModule(event) {
+	Session.set("itemsLimit", items_increment);
 	var button = $(".filterModuleGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -157,13 +181,14 @@ function deadline(cardset) {
 
 Template.category.helpers({
 	filterAuthors: function () {
+		Session.set("itemsLimit", items_increment);
 		prepareQuery();
 		query.owner = this._id;
 		return Cardsets.findOne(query);
 	},
 	getDecks: function () {
 		prepareQuery();
-		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
@@ -212,6 +237,9 @@ Template.category.helpers({
 	},
 	poolFilterModule: function () {
 		return Session.get('poolFilterModuleVal');
+	},
+	moreResults: function () {
+		return (Cardsets.find(query).count() > Session.get("itemsLimit"));
 	}
 });
 
@@ -336,6 +364,7 @@ Template.poolCardsetRow.events({
 
 Template.category.events({
 	'click #resetBtn': function () {
+		Session.set("itemsLimit", items_increment);
 		Session.set('poolSortTopic', {name: 1});
 		Session.set('poolFilterAuthor');
 		Session.set('poolFilterCollege');
