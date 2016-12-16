@@ -3,11 +3,11 @@ module.exports = function() {
 
 	var numberOfCardsets = 2;
 
-    this.Given(/^I am on the site$/, function () {
+    this.Given(/^User is on the site$/, function () {
         browser.url('http://localhost:3000');
     });
 
-    this.Given(/^I am logged in$/, function () {
+    this.Given(/^User is logged in$/, function () {
        var SetUsername = function (name) {
 		$('#TestingBackdorUsername').val(name);
 	};
@@ -16,25 +16,21 @@ module.exports = function() {
 	browser.click('a[id="BackdoorLogin"]');
     });
 
-
-    this.Given(/^I am in the back end$/, function () {
+    this.Given(/^User is in the back end$/, function () {
         browser.waitForExist("#adminpanel", 5000);
 	browser.url('http://localhost:3000/admin/dashboard');
     });
 
-
-    this.When(/^I go to the menu item cardsets$/, function () {
+    this.When(/^User goes to the menu item cardsets$/, function () {
         browser.url('http://localhost:3000/admin/cardsets');
     });
 
-
-    this.When(/^I click on the delete button$/, function () {
+    this.When(/^User clicks on the delete button$/, function () {
 	browser.waitForExist('.delete',5000);
 
         browser.click(".deleteCardsetAdmin");
 	browser.click("#cardetDeleteAdmin");
     });
-
 
     this.Then(/^the cardset should not be in the list anymore$/, function () {
 	browser.waitForVisible("#cardsetConfirmModalAdmin", 5000, true);    	
