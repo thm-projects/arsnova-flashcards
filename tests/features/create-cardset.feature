@@ -1,0 +1,23 @@
+Feature: Create new deck of cards
+
+As a user of the site,
+so that I can create and learn cards,
+I want to create a new deck of cards
+
+Background:
+    Given User is on the my cardset view
+    Given User is logged in as "testuser"
+
+@watch
+Scenario: User creates a new deck of cards
+    When User clicks on the create cardset button
+    Then he is redirected to the new cardset form
+    Then he should be able to edit the cardset title
+    And he should be able to edit the cardset description
+    And he should be able to edit the module name
+    And he should be able to edit the module initials
+    And he should be able to edit the module ID
+    And he should be able to choose a college
+    And he should be able to choose a course
+    And he should push the create new cardset button
+    And he should see the created cardset in the my cardset view with the correct values
