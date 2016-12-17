@@ -55,7 +55,7 @@ export class MailNotifier {
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset') + cardset.name + TAPi18n.__('mailNotification.subjectEnd');
 			text += cardset.name + ".\n\n" + this.getDeadline(cardset, user_id) + TAPi18n.__('mailNotification.greetings');
-			this.sendMail(this.getMail(user_id), subject, text);
+			this.sendMail(this.getMail(user_id), subject, text, cardset._id);
 		}
 	}
 
@@ -73,7 +73,7 @@ export class MailNotifier {
 				text += cards + TAPi18n.__('mailNotification.newCards2Plural');
 			}
 			text += cardset.name + ".\n\n" + this.getDeadline(cardset, user_id) + TAPi18n.__('mailNotification.greetings');
-			this.sendMail(this.getMail(user_id), subject, text);
+			this.sendMail(this.getMail(user_id), subject, text, cardset._id);
 		}
 	}
 
@@ -84,17 +84,17 @@ export class MailNotifier {
 			var subject = TAPi18n.__('mailNotification.subjectTitle') + TAPi18n.__('mailNotification.subjectEnding') + cardset.name;
 			var text = TAPi18n.__('mailNotification.textIntroEnding') + TAPi18n.__('mailNotification.textEnding') + cardset.name + TAPi18n.__('mailNotification.greetings');
 			for (var i = 0; i < learners.length; i++) {
-				this.sendMail(this.getMail(learners[i].user_id), subject, text);
+				this.sendMail(this.getMail(learners[i].user_id), subject, text, cardset._id);
 			}
 		}
 	}
 
-	sendMail (mail, subject, text) {
+	sendMail (mail, subject, text, cardsetId) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
-				var html = SSR.render("newsletter", {message: text, title: subject});
+				var html = SSR.render("newsletter", {message: text, title: subject, id: cardsetId, url: Meteor.settings.public.rooturl});
 				Email.send({
 					from: '',
 					to: mail,
