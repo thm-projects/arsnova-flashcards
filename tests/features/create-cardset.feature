@@ -9,7 +9,6 @@ Background:
     And User is logged in
     And User is on the my cardset view 
     
-
 @watch
 Scenario: User creates a new deck of cards
     When User clicks on the create cardset button
