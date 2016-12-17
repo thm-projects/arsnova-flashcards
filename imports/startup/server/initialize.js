@@ -108,11 +108,11 @@ Meteor.startup(function () {
 	var badges = initBadges();
 	process.env.MAIL_URL = Meteor.settings.MAIL_URL;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
-    Template.newsletter.helpers({
-    	getDocType: function() {
-    		return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
-    	}
-    });
+	Template.newsletter.helpers({
+		getDocType: function () {
+			return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+		}
+	});
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
