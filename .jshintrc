@@ -53,6 +53,7 @@
     "saveAs": false,
     "browser": true,
     "client": true,
-    "module": true
+    "module": true,
+    "expect": true
   }
 }
