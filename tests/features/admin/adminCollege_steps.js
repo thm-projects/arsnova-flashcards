@@ -1,6 +1,6 @@
 import {login, agreeCookies, logoutAdmin} from "../helper_functions";
-
-module.exports = function() {
+git status
+module.exports = function () {
 	'use strict';
 
 	this.Given(/^user is on the site$/, function () {
