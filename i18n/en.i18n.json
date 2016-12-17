@@ -575,6 +575,7 @@
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
   "badgetext3": "",
+  "youareoffline": "You are offline!",
   "admin": {
     "allLearnedCardsets": "All learned cardsets",
     "learnedCardsets": "Learning progress of the cardset",
