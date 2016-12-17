@@ -144,22 +144,6 @@
   #info_license img {
     width: 20px;
   }
-  #collegeBtn {
-    width: 160px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  #resetBtn {
-    width: 272px;
-  }
-  #topicBtn {
-    width: 245px;
-  }
-  #moduleBtn {
-    width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   .stars-rating {
     height: 20px;
@@ -242,10 +226,6 @@
       width: 242px;
     }
 
-    #topicBtn {
-      width: 215px;
-    }
-
     .field-tip .tip-content {
       bottom: 102%;
     }
@@ -265,6 +245,23 @@
       margin-right: -5px;
       padding-left: 10px;
       padding-right: 10px;
+    }
+
+    #collegeBtn {
+      width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #resetBtn {
+      width: 272px;
+    }
+    #topicBtn {
+      width: 245px;
+    }
+    #moduleBtn {
+      width: 70px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
