@@ -190,3 +190,8 @@ Template.registerHelper("getType", function (type) {
 
 	return type;
 });
+
+// detects if the app is offline or not
+Template.registerHelper("isOffline", function () {
+    return !Meteor.status().connected;
+});
