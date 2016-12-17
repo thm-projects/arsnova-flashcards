@@ -15,12 +15,16 @@ module.exports = function () {
 		agreeCookies();
 		browser.windowHandleSize();
 	});
-
 	this.Given(/^he is on the view of the cardset named \-\-test\-cards(\d+)\-\-$/, function (arg1) {
 		browser.url('http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz');
 		browser.waitForExist(".carousel-inner", 5000);
 		countBeforeCreated = browser.elements(".carousel-inner > div").value.length;
 	});
+	/**
+	 * ---------------------------------------------------------------------
+	 * Create a new card
+	 * ---------------------------------------------------------------------
+	 */
 	this.When(/^the user clicks on the \-\-create a new card\-\- button$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('#newCardBtn', 5000);
@@ -61,8 +65,24 @@ module.exports = function () {
 		var expectedFrontOfTheCard = "FRONTOFTHECARD";
 		var frontOfTheCard = browser.getText(selectorFront);
 		expect(expectedFrontOfTheCard).toEqual(frontOfTheCard);
-		logout();
 	});
+	this.Then(/^he can go back and delete the card$/, function () {
+		var editButton  = browser.elements('#editCard').value[countCards - 1];
+		editButton.waitForVisible(5000);
+		editButton.click();
+		var deleteButton = browser.element('#cardDelete');
+		deleteButton.click();
+	});
+	this.Then(/^he have to confirm the delete process$/, function () {
+		var confirmDeleteButton = browser.element('#cardConfirm');
+		confirmDeleteButton.waitForVisible(5000);
+		confirmDeleteButton.click();
+	});
+	/**
+	 * ---------------------------------------------------------------------
+	 * Cancel card creation
+	 * ---------------------------------------------------------------------
+	 */
 	this.Then(/^he can press on the \-\-Cancel\-\- button$/, function () {
 		browser.waitForVisible('#cardCancel');
 		browser.click('#cardCancel');
