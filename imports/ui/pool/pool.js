@@ -12,7 +12,7 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
 Meteor.subscribe('ratings');
 
-var items_increment = 13;
+var items_increment = 14;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
@@ -50,24 +50,6 @@ export function notification(title, message) {
 	}
 }
 
-function showMoreVisible() {
-	var threshold, target = $(".showMoreResults");
-
-	threshold = $(window).scrollTop() + $(window).height() - target.height();
-
-	if (target.offset().top < threshold) {
-		if (!target.data("visible")) {
-			target.data("visible", true);
-			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
-		}
-	} else {
-		if (target.data("visible")) {
-			target.data("visible", false);
-		}
-	}
-}
-$(window).scroll(showMoreVisible);
-
 var query = {};
 
 function prepareQuery() {
@@ -87,6 +69,34 @@ function prepareQuery() {
 		query.module = Session.get('poolFilterModule');
 	}
 }
+
+function checkRemainingCards() {
+	prepareQuery();
+	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+		$(".showMoreResults").data("visible", true);
+		return true;
+	} else {
+		$(".showMoreResults").data("visible", false);
+		return false;
+	}
+}
+
+function resetInfiniteBar() {
+	Session.set("itemsLimit", items_increment);
+	checkRemainingCards();
+}
+
+function showMoreVisible() {
+	var threshold, target = $(".showMoreResults");
+	if (target.data("visible")) {
+		threshold = $(window).scrollTop() + $(window).height() - target.height();
+		if (target.offset().top < threshold) {
+			target.data("visible", false);
+			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		}
+	}
+}
+$(window).scroll(showMoreVisible);
 
 function filterCheckbox() {
 	$("#filterCheckbox input:checkbox").each(function () {
@@ -125,7 +135,6 @@ function checkFilters() {
 }
 
 function filterCollege(event) {
-	Session.set("itemsLimit", items_increment);
 	var button = $(".filterCollegeGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -135,10 +144,10 @@ function filterCollege(event) {
 		Session.set('poolFilterCollegeVal', $(event.target).html());
 	}
 	Session.set('poolFilterCollege', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function filterCourse(event) {
-	Session.set("itemsLimit", items_increment);
 	var button = $(".filterCourseGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -148,10 +157,10 @@ function filterCourse(event) {
 		Session.set('poolFilterCourseVal', $(event.target).html());
 	}
 	Session.set('poolFilterCourse', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function filterModule(event) {
-	Session.set("itemsLimit", items_increment);
 	var button = $(".filterModuleGroup");
 	if (!$(event.target).data('id')) {
 		button.removeClass("active");
@@ -161,6 +170,7 @@ function filterModule(event) {
 		Session.set('poolFilterModuleVal', $(event.target).html());
 	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function deadline(cardset) {
@@ -181,7 +191,6 @@ function deadline(cardset) {
 
 Template.category.helpers({
 	filterAuthors: function () {
-		Session.set("itemsLimit", items_increment);
 		prepareQuery();
 		query.owner = this._id;
 		return Cardsets.findOne(query);
@@ -239,7 +248,7 @@ Template.category.helpers({
 		return Session.get('poolFilterModuleVal');
 	},
 	moreResults: function () {
-		return (Cardsets.find(query).count() > Session.get("itemsLimit"));
+		return checkRemainingCards();
 	}
 });
 
@@ -364,7 +373,6 @@ Template.poolCardsetRow.events({
 
 Template.category.events({
 	'click #resetBtn': function () {
-		Session.set("itemsLimit", items_increment);
 		Session.set('poolSortTopic', {name: 1});
 		Session.set('poolFilterAuthor');
 		Session.set('poolFilterCollege');
@@ -372,6 +380,7 @@ Template.category.events({
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		checkFilters();
+		resetInfiniteBar();
 	},
 	'click #topicBtn': function () {
 		var sort = Session.get('poolSortTopic');
@@ -391,6 +400,7 @@ Template.category.events({
 			Session.set('poolFilterAuthorVal', $(event.target).html());
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
+		resetInfiniteBar();
 	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);
@@ -402,7 +412,8 @@ Template.category.events({
 		filterModule(event);
 	},
 	'click .showMoreResults': function () {
-		showMoreVisible();
+		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		checkRemainingCards();
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];
