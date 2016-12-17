@@ -17,7 +17,7 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var user = Meteor.users.find({_id: user_id}).fetch();
-			return user[0].name;
+			return user[0].profile.name;
 		}
 	}
 
