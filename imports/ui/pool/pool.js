@@ -401,6 +401,9 @@ Template.category.events({
 	'click .filterModule': function (event) {
 		filterModule(event);
 	},
+	'click .showMoreResults': function () {
+		showMoreVisible();
+	},
 	'change #filterCheckbox': function () {
 		var filter = [];
 		$("#filterCheckbox input:checkbox:checked").each(function () {
