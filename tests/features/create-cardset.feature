@@ -5,8 +5,10 @@ so that I can create and learn cards,
 I want to create a new deck of cards
 
 Background:
-    Given User is on the my cardset view
-    Given User is logged in as "testuser"
+    Given User is on the site
+    And User is logged in
+    And User is on the my cardset view 
+    
 
 @watch
 Scenario: User creates a new deck of cards

@@ -3,12 +3,16 @@ import {login, logout, setResolution, agreeCookies} from "./helper_functions.js"
 module.exports = function (){
 	'use strict';
 
-	this.Given(/^User is on the my cardset view$/, function () {
-         // Write code here that turns the phrase above into concrete actions
-         return 'pending';
-       });
+  this.Given(/^User is on the site$/, function () {
+      browser.url('http://localhost:3000');
+  });
 
-	this.Given(/^User is logged in as "([^"]*)"$/, function (arg1) {
+  this.Given(/^User is logged in$/, function () {
+      login("testuser");
+      agreeCookies();
+  });
+
+  this.Given(/^User is on the my cardset view$/, function () {
          // Write code here that turns the phrase above into concrete actions
          return 'pending';
        });
