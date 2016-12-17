@@ -64,11 +64,6 @@ export class MailNotifier {
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset') + cardset.name + TAPi18n.__('mailNotification.subjectEnd');
 			text += cardset.name + TAPi18n.__('mailNotification.subjectEnd');
-			if (cards === 1) {
-				text += TAPi18n.__('mailNotification.subjectSingular3');
-			} else {
-				text += TAPi18n.__('mailNotification.subjectPlural3');
-			}
 			this.sendMail(this.getMail(user_id), subject, text);
 		}
 	}
