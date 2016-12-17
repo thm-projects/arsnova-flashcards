@@ -1,8 +1,11 @@
+import { login, logout, setResolution, agreeCookies } from "./helper_functions";
+
 module.exports = function () {
  'use strict';
 
     var cardsetListLength = 2;
     var isLoggedIn = false;
+    var username = "testuser";
 
 /** 
  * ---------------------------------------------------------------------
@@ -10,18 +13,14 @@ module.exports = function () {
  * ---------------------------------------------------------------------
  */
 
-    this.Given(/^User is on the poolview with username "([^"]*)"$/, function (arg1) {
+    this.Given(/^User is on the poolview$/, function () {
         browser.url('http://localhost:3000');
         if(!isLoggedIn) {
-            browser.setValue('#TestingBackdorUsername', arg1);
-            browser.click('a[id="BackdoorLogin"]');
+            login(username);
+            agreeCookies();
+            setResolution();
             isLoggedIn = true;
         }
-        browser.setViewportSize({
-            width: 1920,
-            height: 1080
-        });
-        browser.windowHandleSize();
     });
 
 /** 
@@ -31,7 +30,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by author button$/, function () {
-        browser.waitForVisible('a[class="dropdown-toggle authorBtn"]');
+        browser.waitForVisible('a[class="dropdown-toggle authorBtn"]', 5000);
         browser.click('a[class="dropdown-toggle authorBtn"]');
     });
 
@@ -51,7 +50,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by college button$/, function () {
-        browser.waitForVisible('a[class="dropdown-toggle collegeBtn"]');
+        browser.waitForVisible('a[class="dropdown-toggle collegeBtn"]', 5000);
         browser.click('a[class="dropdown-toggle collegeBtn"]');
     });
 
@@ -71,7 +70,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by course button$/, function () {
-        browser.waitForVisible('a[class="dropdown-toggle courseBtn"]');
+        browser.waitForVisible('a[class="dropdown-toggle courseBtn"]', 5000);
         browser.click('a[class="dropdown-toggle courseBtn"]');
     });
 
@@ -91,7 +90,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the filter by module button$/, function () {
-        browser.waitForVisible('a[class="dropdown-toggle moduleBtn"]');
+        browser.waitForVisible('a[class="dropdown-toggle moduleBtn"]', 5000);
         browser.click('a[class="dropdown-toggle moduleBtn"]');
     });
 
@@ -111,7 +110,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the free license group button$/, function () {
-        browser.waitForVisible('label[class="btn btn-default btn-info active"]');
+        browser.waitForVisible('label[class="btn btn-default btn-info active"]', 5000);
         browser.click('label[class="btn btn-default btn-info active"]');
     });
 
@@ -127,7 +126,7 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the edu license group button$/, function () {
-        browser.waitForVisible('label[class="btn btn-default btn-success active"]');
+        browser.waitForVisible('label[class="btn btn-default btn-success active"]', 5000);
         browser.click('label[class="btn btn-default btn-success active"]');
     });
 
@@ -143,13 +142,14 @@ module.exports = function () {
  */
 
     this.When(/^user clicks on the pro license group button$/, function () {
-        browser.waitForVisible('label[class="btn btn-default btn-danger active"]');
+        browser.waitForVisible('label[class="btn btn-default btn-danger active"]', 5000);
         browser.click('label[class="btn btn-default btn-danger active"]');
     });
 
     this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
         var cardsetList = browser.elements('.cardsetInfo');
         expect(cardsetList.value.length).not.toEqual(cardsetListLength);
+        logout();
     });
 
  };
