@@ -137,6 +137,11 @@
     {{/if}}
   {{/if}}
   <div id="main" class="container">
+      {{#if isOffline}}
+          <div class="alert alert-warning">
+              {{_ "youareoffline"}}
+          </div>
+      {{/if}}
       <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
       <div class="row">
           {{> yield}}
