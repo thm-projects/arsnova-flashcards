@@ -53,7 +53,7 @@ export class MailNotifier {
 		} else {
 			var cards = this.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectTitle');
-			var text = TAPi18n.__('mailNotification.textIntro') + this.getName + TAPi18n.__('mailNotification.textIntro1') + TAPi18n.__('mailNotification.newCards1');
+			var text = TAPi18n.__('mailNotification.textIntro') + this.getName(user_id) + TAPi18n.__('mailNotification.textIntro1') + TAPi18n.__('mailNotification.newCards1');
 
 			if (cards === 1) {
 				subject += TAPi18n.__('mailNotification.subjectSingular1') + cards + TAPi18n.__('mailNotification.subjectSingular2');
@@ -65,9 +65,9 @@ export class MailNotifier {
 			subject += TAPi18n.__('mailNotification.subjectCardset') + cardset.name + TAPi18n.__('mailNotification.subjectEnd');
 			text += cardset.name + TAPi18n.__('mailNotification.subjectEnd');
 			if (cards === 1) {
-				text += cards + TAPi18n.__('mailNotification.subjectSingular3');
+				text += TAPi18n.__('mailNotification.subjectSingular3');
 			} else {
-				text += cards + TAPi18n.__('mailNotification.subjectPlural3');
+				text += TAPi18n.__('mailNotification.subjectPlural3');
 			}
 			this.sendMail(this.getMail(user_id), subject, text);
 		}
