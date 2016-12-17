@@ -12,6 +12,15 @@ export class MailNotifier {
 		}
 	}
 
+	getName (user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			var user = Meteor.users.find({_id: user_id}).fetch();
+			return user[0].name;
+		}
+	}
+
 	getDeadline (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -21,7 +30,7 @@ export class MailNotifier {
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
 				return (TAPi18n.__('deadlinePrologue') + cardset.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
 			} else {
-				return (TAPi18n.__('deadlinePrologue') + deadline.toLocaleDateString() + TAPi18n.__('deadlineEpilogue2'));
+				return (TAPi18n.__('mailNotification.textDate1') + deadline.toLocaleDateString() + TAPi18n.__('mailNotification.textDate2'));
 			}
 		}
 	}
@@ -44,7 +53,7 @@ export class MailNotifier {
 		} else {
 			var cards = this.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectTitle');
-			var text = TAPi18n.__('mailNotification.textIntro') + TAPi18n.__('mailNotification.newCards1');
+			var text = TAPi18n.__('mailNotification.textIntro') + this.getName + TAPi18n.__('mailNotification.textIntro1') + TAPi18n.__('mailNotification.newCards1');
 
 			if (cards === 1) {
 				subject += TAPi18n.__('mailNotification.subjectSingular1') + cards + TAPi18n.__('mailNotification.subjectSingular2');
@@ -54,8 +63,13 @@ export class MailNotifier {
 				text += cards + TAPi18n.__('mailNotification.newCards2Plural');
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset') + cardset.name + TAPi18n.__('mailNotification.subjectEnd');
-			text += cardset.name + ".\n\n" + this.getDeadline(cardset, user_id) + TAPi18n.__('mailNotification.greetings');
-			this.sendMail(this.getMail(user_id), subject, text, cardset._id);
+			text += cardset.name + TAPi18n.__('mailNotification.subjectEnd');
+			if (cards === 1) {
+				text += cards + TAPi18n.__('mailNotification.subjectSingular3');
+			} else {
+				text += cards + TAPi18n.__('mailNotification.subjectPlural3');
+			}
+			this.sendMail(this.getMail(user_id), subject, text);
 		}
 	}
 
@@ -65,15 +79,9 @@ export class MailNotifier {
 		} else {
 			var cards = this.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectReset') + cardset.name;
-			var text = TAPi18n.__('mailNotification.textIntro') + TAPi18n.__('mailNotification.textReset');
-
-			if (cards === 1) {
-				text += cards + TAPi18n.__('mailNotification.newCards2Singular');
-			} else {
-				text += cards + TAPi18n.__('mailNotification.newCards2Plural');
-			}
-			text += cardset.name + ".\n\n" + this.getDeadline(cardset, user_id) + TAPi18n.__('mailNotification.greetings');
-			this.sendMail(this.getMail(user_id), subject, text, cardset._id);
+			var text = TAPi18n.__('mailNotification.textIntro') + this.getName + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
+			text += this.getDeadline(cardset, user_id);
+			this.sendMail(this.getMail(user_id), subject, text);
 		}
 	}
 
