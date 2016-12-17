@@ -118,21 +118,27 @@
                 <div class="panel-footer">
                     <div class="btn-group">
                         <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publish"}}: {{getStatus}}</button>
+                                data-target="#publishModal" {{isDisabled}} {{disableIfOffline}}>
+                            <i class="fa fa-eye"></i> {{_ "sidebar-nav.publish"}}: {{getStatus}}
+                        </button>
                         <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="{{_ "sidebar-nav.tooltip"}}">
                             <i class="fa fa-question"></i></button>
                     </div>
                     <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
-                            data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
+                            data-target="#editSetModal" {{disableIfOffline}}>
+                        <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                     </button>
                     {{#unless learningActive}}
                         <div class="btn-group">
-                            <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i
-                                    class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span
-                                    class="caret"></span></button>
+                            <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"
+                                {{disableIfOffline}}>
+                                <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
+                            </a>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                {{disableIfOffline}}>
+                                <span class="caret"></span>
+                            </button>
                             <ul class="dropdown-menu">
                                 <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
                                         class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
@@ -144,7 +150,8 @@
 
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                                data-target="#selectLicenseModal" {{disableIfOffline}}>
+                            <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
                         </button>
                     {{/if}}
                 </div>
