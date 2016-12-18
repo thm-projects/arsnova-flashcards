@@ -26,7 +26,7 @@ module.exports = function () {
 
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.url('http://localhost:3000/created');
-		var bool = browser.waitForVisible('#newCardSet', 10000);
+		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
 		cardsetsBeforeCreated = browser.elements('#cardSetView > tr').value.length;
 	});
@@ -102,7 +102,7 @@ module.exports = function () {
 		expect(browser.elements('#editSetModuleNum').getAttribute("value")).toBe(moduleID);
 
 		browser.click('#cardSetCancel');
-
+		browser.waitForVisible('#editSetName', 5000, true);
 		logout();
 	});
 };
