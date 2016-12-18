@@ -84,6 +84,9 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should select the created cardset$/, function () {
+		browser.waitUntil(function () {
+			return browser.isExisting('.modal-open') === false;
+		}, 5000, 'expected text to be different after 5s');
 		browser.waitForVisible('#cardSetView tr:nth-child(3) td a', 5000);
 		browser.click('#cardSetView tr:nth-child(3) td a');
 	});
