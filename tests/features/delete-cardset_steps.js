@@ -18,6 +18,7 @@ module.exports = function () {
 		expect(bool).toBe(true);
 	});
 	this.When(/^User clicks on a cardset that he owns$/, function () {
+		browser.waitForVisible('#cardSetView tr:nth-child(1) td a',5000);
 		browser.click('#cardSetView tr:nth-child(1) td a');
 	});
 	this.Then(/^he is shown the details of the cardset$/, function () {
