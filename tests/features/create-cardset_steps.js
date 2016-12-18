@@ -2,6 +2,16 @@ import {login, logout, setResolution, agreeCookies} from "./helper_functions.js"
 
 module.exports = function (){
 	'use strict';
+  var cardsetsBeforeCreated = 0;
+
+  var title = "title";
+  var description = "description";
+  var module = "module";
+  var moduleInitials = "short";
+  var moduleID = "42";
+  var college = "THM";
+  var course = "Informatik";
+
 
   this.Given(/^User is on the site$/, function () {
       browser.url('http://localhost:3000');
@@ -10,68 +20,86 @@ module.exports = function (){
   this.Given(/^User is logged in$/, function () {
       login("testuser");
       agreeCookies();
+      setResolution();
+      browser.windowHandleSize();
   });
 
   this.Given(/^User is on the my cardset view$/, function () {
-    browser.url('http://localhost:3000/created')
+      browser.url('http://localhost:3000/created')
+      var bool = browser.waitForVisible('#newCardSet',10000);
+      expect(bool).toBe(true);
+      cardsetsBeforeCreated = browser.elements('#cardSetView > tr').value.length;
   });
 
 	this.When(/^User clicks on the create cardset button$/, function () {
-      // newCardSet
-      browser.waitForVisible('#newCardSet',10000);
       browser.click('#newCardSet');
   });
 
 	this.Then(/^he is redirected to the new cardset form$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      var bool = browser.waitForVisible('#newSetModalTitle',10000);
+      expect(bool).toBe(true);
   });
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.setValue('#newSetName', title);
   });
 
 	this.Then(/^he should be able to edit the cardset description$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.setValue('#newSetDescription', description);
   });
 
 	this.Then(/^he should be able to edit the module name$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-         return 'pending';
+      browser.setValue('#newSetModule', module)
   });
 
 	this.Then(/^he should be able to edit the module initials$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.setValue('#newSetModuleShort', moduleInitials);
   });
 
 	this.Then(/^he should be able to edit the module ID$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.setValue('#newSetModuleNum',moduleID);
   });
 
 	this.Then(/^he should be able to choose a college$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.click('#newSetCollege');
+      browser.waitForVisible('li[data="'+college+'"] a',5000);
+      browser.click('li[data="'+college+'"] a');
   });
 
 	this.Then(/^he should be able to choose a course$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.click('#newSetCourse');
+      browser.waitForVisible('li[data="'+course+'"] a',5000);
+      browser.click('li[data="Informatik"] a');
   });
 
 	this.Then(/^he should push the create new cardset button$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      browser.click('button.save');
   });
 	
 	this.Then(/^he should see the created cardset in the my cardset view with the correct values$/, function () {
-      // Write code here that turns the phrase above into concrete actions
-      return 'pending';
+      var bool = browser.waitForVisible('#cardSetView tr:nth-child(3) td a',5000);
+      expect(bool).toBe(true);
+      var amountCardsSets = browser.elements('#cardSetView > tr').value.length;
+      expect(amountCardsSets).toBe(cardsetsBeforeCreated+1);
+
   });
 
+  this.Then(/^he should select the created cardset$/, function () {
+      browser.waitForVisible('#cardSetView tr:nth-child(3) td a',5000)
+      browser.click('#cardSetView tr:nth-child(3) td a');
+  });
+
+  this.Then(/^he should see the details of that cardset with the correct values$/, function () {
+      var bool = browser.waitForVisible('div.panel.cardsetInfo.panel-default',5000);
+      expect(bool).toBe(true);
+
+      console.log(browser.getText('div.cardsetInfo div.panel-body div div h4').split(" ")[1]);
+      expect(browser.getText('div.cardsetInfo div.panel-body div div h4').split(" ")[1]).toBe(title);
+      expect(browser.getText('div.panel-body div div p')).toBe(description);
+
+      
+      logout();
+  });
 
 
 
