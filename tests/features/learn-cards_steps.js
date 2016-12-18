@@ -1,7 +1,7 @@
 import {login, logout, setResolution, agreeCookies} from "./helper_functions.js";
 
 module.exports = function () {
-	'use strict';  
+	'use strict';
 
 	this.Given(/^User is on the site$/, function () {
 		browser.url('http://localhost:3000');
@@ -18,7 +18,7 @@ module.exports = function () {
 	/////////////////////////////////////////
 	//
 	// Scenario: Go to "Leitners memo box"
-	//	
+	//
 	/////////////////////////////////////////
 	this.Given(/^I am on the cardset view of the testcardset$/, function () {
 		browser.url('http://localhost:3000/created');
@@ -29,7 +29,7 @@ module.exports = function () {
 		expect(bool).toBe(true);
 	});
 
-	this.When(/^I click the Button "([^"]*)"$/, function (arg1) {
+	this.When(/^I click the Button "([^"]*)"$/, function () {
 		browser.click('#learnBox');
 	});
 
@@ -38,12 +38,12 @@ module.exports = function () {
 		expect(url).toBe("http://localhost:3000/box/2P6mg5iqCZ49QPPDz");
 	});
 
-	this.Then(/^Box (\d+) contains two cards$/, function (arg1) {
+	this.Then(/^Box (\d+) contains two cards$/, function () {
 		var cards = browser.getText('#subject1 span.badge');
 		expect(cards).toBe("2");
 	});
 
-	this.Then(/^Boxes (\d+)\-(\d+) contain zero cards$/, function (arg1, arg2) {
+	this.Then(/^Boxes (\d+)\-(\d+) contain zero cards$/, function () {
 		var cards = browser.getText('#subject2 span.badge');
 		expect(cards).toBe("0");
 		cards = browser.getText('#subject3 span.badge');
@@ -62,11 +62,10 @@ module.exports = function () {
 	});
 
 
-
 	/////////////////////////////////////////
 	//
 	// Scenario: Learn cards with "Leitners memo box"
-	//	
+	//
 	/////////////////////////////////////////
 	this.Given(/^I went to the box view of the testcardset$/, function () {
 		browser.url('http://localhost:3000/created');
@@ -80,7 +79,7 @@ module.exports = function () {
 		expect(url).toBe("http://localhost:3000/box/2P6mg5iqCZ49QPPDz");
 	});
 
-	this.When(/^I click on the Button "([^"]*)"$/, function (arg1) {
+	this.When(/^I click on the Button "([^"]*)"$/, function () {
 		browser.click('#subject1');
 	});
 
@@ -99,27 +98,25 @@ module.exports = function () {
 		expect(text).toBe("answer1");
 	});
 
-	this.Then(/^I can click on the button "([^"]*)"$/, function (arg1) {
+	this.Then(/^I can click on the button "([^"]*)"$/, function () {
 		browser.click('#known');
 	});
 
 
 	this.Then(/^Box (\d+) contains one card$/, function (arg1) {
-		var cards = browser.getText('#subject'+ arg1 + ' span.badge');
+		var cards = browser.getText('#subject' + arg1 + ' span.badge');
 		expect(cards).toBe("1");
 
-		if(arg1 == 2)
-		{
+		if (arg1 == 2) {
 			logout();
 		}
 	});
 
 
-
 	/////////////////////////////////////////
 	//
 	// Scenario: Go to "Memo"
-	//	
+	//
 	/////////////////////////////////////////
 
 	this.When(/^I click the Button Memo$/, function () {
@@ -132,7 +129,7 @@ module.exports = function () {
 		expect(url).toBe("http://localhost:3000/memo/2P6mg5iqCZ49QPPDz");
 	});
 
-	this.Then(/^The button "([^"]*)" is shown$/, function (arg1) {
+	this.Then(/^The button "([^"]*)" is shown$/, function () {
 		var button = browser.isExisting('#memoShowAnswer');
 		expect(button).toBe(true);
 
@@ -143,18 +140,18 @@ module.exports = function () {
 	/////////////////////////////////////////
 	//
 	// Scenario: Learn cards with "Memo"
-	//	
+	//
 	/////////////////////////////////////////
 
-	var oldVal ="";
+	var oldVal = "";
 
 
-	this.Then(/^I can click on the Button "([^"]*)"$/, function (arg1) {
+	this.Then(/^I can click on the Button "([^"]*)"$/, function () {
 		browser.click('#memoShowAnswer');
 	});
 
 
-	this.Then(/^The buttons (\d+)\-(\d+) are shown$/, function (arg1, arg2) {
+	this.Then(/^The buttons (\d+)\-(\d+) are shown$/, function () {
 		var button = browser.isExisting('#memoRate0');
 		expect(button).toBe(true);
 
@@ -174,7 +171,7 @@ module.exports = function () {
 		expect(button).toBe(true);
 	});
 
-	this.Then(/^I can click button (\d+)$/, function (arg1) {
+	this.Then(/^I can click button (\d+)$/, function () {
 		oldVal = browser.getText('.frontblock span p');
 		browser.click('#memoRate3');
 	});
@@ -185,10 +182,5 @@ module.exports = function () {
 
 		logout();
 	});
-
-
-
-
-
 };
 
