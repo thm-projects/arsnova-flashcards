@@ -21,7 +21,7 @@ Exit mongo shell
 #### Load the test data
     mongorestore -h 127.0.0.1 --port 3001 -d meteor tests/dump/meteor
 #### Run the tests
-    chimp --ddp=http://localhost:3000 --watch --path=tests
+    chimp --ddp=http://localhost:3000 --path=tests
 
 
 ## Important
