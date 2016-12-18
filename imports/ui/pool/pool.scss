@@ -168,7 +168,7 @@
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1199px) {
     .navbar-header {
       float: none;
     }
@@ -205,7 +205,7 @@
     }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1199px) {
     .panel {
       margin-top: 3px;
       margin-bottom: 3px;
@@ -237,7 +237,7 @@
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     .altPanel {
       background-color: $color_wild_sand_approx;
     }
