@@ -20,7 +20,7 @@
                 {{_ "set-list.reset"}} </button>
         </div>
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
@@ -31,22 +31,22 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="pool-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
+                    <ul class="nav navbar-nav col-lg-12">
+                        <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
                                 {{_ "set-list.topic"}}
                                 <span class="glyphicon glyphicon-sort"></span>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" id="collegeBtn">
-                                {{#if hasAuthorFilter}}
-                                    {{poolFilterAuthor}}
-                                {{else}}
-                                    {{_ "set-list.author"}}
-                                {{/if}}
+                               aria-haspopup="true" aria-expanded="false">
+                                    {{#if hasAuthorFilter}}
+                                        {{poolFilterAuthor}}
+                                    {{else}}
+                                        {{_ "set-list.author"}}
+                                    {{/if}}
                                 <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -63,9 +63,9 @@
                                 {{/each}}
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                               aria-haspopup="true" aria-expanded="false">
                                 {{#if hasCollegeFilter}}
                                     {{poolFilterCollege}}
                                 {{else}}
@@ -85,7 +85,7 @@
                                 {{/each}}
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" id="collegeBtn">
                                 {{#if hasCourseFilter}}
@@ -106,9 +106,9 @@
                                 {{/each}}
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                               aria-haspopup="true" aria-expanded="false">
                                 {{#if hasModuleFilter}}
                                     {{poolFilterModule}}
                                 {{else}}
@@ -127,20 +127,20 @@
                                 {{/each}}
                             </ul>
                         </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
-                             aria-label="License group" style="padding-top: 10px;">
-                            <label class="btn btn-default btn-info active">
-                                <input type="checkbox" autocomplete="off" value="free" checked=""> Free
-                            </label>
-                            <label class="btn btn-default btn-success active">
-                                <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
-                            </label>
-                            <label class="btn btn-default btn-danger active">
-                                <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
-                            </label>
-                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
+                                 aria-label="License group" style="padding-top: 10px;">
+                                <label class="btn btn-default btn-info active">
+                                    <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+                                </label>
+                                <label class="btn btn-default btn-success active">
+                                    <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+                                </label>
+                                <label class="btn btn-default btn-danger active">
+                                    <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+                                </label>
+                            </div>
+                        </ul>
                     </ul>
                 </div>
             </div>

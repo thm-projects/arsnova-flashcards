@@ -235,9 +235,25 @@
     .field-tip .tip-content {
       bottom: 102%;
     }
+
+    #filterCheckbox {
+      margin-left: 30px;
+    }
   }
 
   @media (min-width: 1200px) {
+    #pool-nav-wrapper, #pool-nav {
+      .dropdown {
+        padding: 0px;
+      }
+    }
+
+    #filterCheckbox {
+      margin-top: -2px;
+      padding-bottom: 0px;
+      padding-right: 30px;
+    }
+
     .altPanel {
       background-color: $color_wild_sand_approx;
     }
@@ -252,22 +268,17 @@
       padding-left: 10px;
       padding-right: 10px;
     }
+  }
 
-    #collegeBtn {
-      width: 160px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  @media (min-width: 768px) {
+    #pool-nav-wrapper, #pool-nav {
+      padding: 0px;
     }
-    #resetBtn {
-      width: 272px;
-    }
-    #topicBtn {
-      width: 245px;
-    }
-    #moduleBtn {
-      width: 70px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  }
+
+  @media (max-width: 767px) {
+    #filterCheckbox {
+      margin-left: 45px;
     }
   }
 }
