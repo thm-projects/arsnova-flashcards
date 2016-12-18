@@ -33,7 +33,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^he is shown the details of the cardset$/, function () {
-		browser.waitForVisible('#editCardset', 5000);	
+		browser.waitForVisible('#editCardset', 5000);
 	});
 
 	this.Then(/^he should push the edit cardset button$/, function () {
@@ -76,7 +76,6 @@ module.exports = function () {
 		browser.pause(3000);
 	});
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
-      
 		browser.click('#editCardset');
 		browser.waitForVisible('#editSetName', 5000);
 
@@ -89,6 +88,5 @@ module.exports = function () {
 		browser.click('#cardSetCancel');
 		browser.waitForVisible('#editSetName', 5000, true);
 		logout();
-    });
-
+	});
 };
