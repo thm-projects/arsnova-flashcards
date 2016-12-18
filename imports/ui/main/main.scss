@@ -32,12 +32,16 @@ body {
   margin: 5px 0 5px 0;
 }
 
+#input-search {
+  padding: 6px 6px;
+}
+
 .navbar-default {
   background-color: $color_la_palma_approx;
   border-color: $color_bilbao_approx;
   .navbar-brand {
     color: $color_athens_gray_approx;
-    padding: 10px 20px;
+    padding: 10px 19px;
     > img {
       height: 22px;
       margin-top: 5px;
