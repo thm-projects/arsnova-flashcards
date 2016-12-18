@@ -107,7 +107,83 @@ module.exports = function () {
 	this.Then(/^Box (\d+) contains one card$/, function (arg1) {
 		var cards = browser.getText('#subject'+ arg1 + ' span.badge');
 		expect(cards).toBe("1");
+
+		logout();
 	});
+
+
+
+	/////////////////////////////////////////
+	//
+	// Scenario: Go to "Memo"
+	//	
+	/////////////////////////////////////////
+
+	this.When(/^I click the Button Memo$/, function () {
+		browser.click('#learnMemo');
+	});
+
+
+	this.Then(/^I am on the memo view of the testcardset$/, function () {
+		var url = browser.getUrl();
+		expect(url).toBe("http://localhost:3000/memo/2P6mg5iqCZ49QPPDz");
+	});
+
+	this.Then(/^The button "([^"]*)" is shown$/, function (arg1) {
+		var button = browser.isExisting('#memoShowAnswer');
+		expect(button).toBe(true);
+
+		logout();
+	});
+
+
+	/////////////////////////////////////////
+	//
+	// Scenario: Learn cards with "Memo"
+	//	
+	/////////////////////////////////////////
+
+	var oldVal ="";
+
+
+	this.Then(/^I can click on the Button "([^"]*)"$/, function (arg1) {
+		browser.click('#memoShowAnswer');
+	});
+
+
+	this.Then(/^The buttons (\d+)\-(\d+) are shown$/, function (arg1, arg2) {
+		var button = browser.isExisting('#memoRate0');
+		expect(button).toBe(true);
+
+		button = browser.isExisting('#memoRate1');
+		expect(button).toBe(true);
+
+		button = browser.isExisting('#memoRate2');
+		expect(button).toBe(true);
+
+		button = browser.isExisting('#memoRate3');
+		expect(button).toBe(true);
+
+		button = browser.isExisting('#memoRate4');
+		expect(button).toBe(true);
+
+		button = browser.isExisting('#memoRate5');
+		expect(button).toBe(true);
+	});
+
+	this.Then(/^I can click button (\d+)$/, function (arg1) {
+		oldVal = browser.getText('.frontblock span p');
+		browser.click('#memoRate3');
+	});
+
+	this.Then(/^The next card is shown$/, function () {
+		var same = oldVal == browser.getText('.frontblock span p');
+		expect(same).toBe(false);
+
+		logout();
+	});
+
+
 
 
 
