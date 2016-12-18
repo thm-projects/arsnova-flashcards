@@ -141,7 +141,7 @@ function filterCollege(event) {
 		Session.set('poolFilterCollegeVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterCollegeVal', $(event.target).html());
+		Session.set('poolFilterCollegeVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterCollege', $(event.target).data('id'));
 	resetInfiniteBar();
@@ -154,7 +154,7 @@ function filterCourse(event) {
 		Session.set('poolFilterCourseVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterCourseVal', $(event.target).html());
+		Session.set('poolFilterCourseVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterCourse', $(event.target).data('id'));
 	resetInfiniteBar();
@@ -167,7 +167,7 @@ function filterModule(event) {
 		Session.set('poolFilterModuleVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterModuleVal', $(event.target).html());
+		Session.set('poolFilterModuleVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
 	resetInfiniteBar();
