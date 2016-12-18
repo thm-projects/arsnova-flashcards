@@ -82,6 +82,7 @@ module.exports = function (){
       var amountCardsSets = browser.elements('#cardSetView > tr').value.length;
       expect(amountCardsSets).toBe(cardsetsBeforeCreated+1);
 
+
   });
 
   this.Then(/^he should select the created cardset$/, function () {
@@ -90,13 +91,19 @@ module.exports = function (){
   });
 
   this.Then(/^he should see the details of that cardset with the correct values$/, function () {
-      var bool = browser.waitForVisible('div.panel.cardsetInfo.panel-default',5000);
+      var bool = browser.waitForVisible('#editCardset',5000);
       expect(bool).toBe(true);
 
-      console.log(browser.getText('div.cardsetInfo div.panel-body div div h4').split(" ")[1]);
-      expect(browser.getText('div.cardsetInfo div.panel-body div div h4').split(" ")[1]).toBe(title);
-      expect(browser.getText('div.panel-body div div p')).toBe(description);
+      browser.click('#editCardset');
+      browser.waitForVisible('#editSetName',5000);
 
+      expect(browser.elements('#editSetName').getAttribute("value")).toBe(title);
+      expect(browser.elements('#editSetDescription').getAttribute("value")).toBe(description);
+      expect(browser.elements('#editSetModule').getAttribute("value")).toBe(module);
+      expect(browser.elements('#editSetModuleShort').getAttribute("value")).toBe(moduleInitials);
+      expect(browser.elements('#editSetModuleNum').getAttribute("value")).toBe(moduleID);
+
+      browser.click('#cardSetCancel');
       
       logout();
   });
