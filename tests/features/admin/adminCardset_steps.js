@@ -24,7 +24,7 @@ module.exports = function () {
 	});
 
 	this.When(/^user clicks on the delete button$/, function () {
-		browser.waitForExist('.delete',5000);
+		browser.waitForExist('.delete', 5000);
 
 		browser.click(".deleteCardsetAdmin");
 		browser.waitForVisible("#cardsetConfirmModalAdmin", 5000);
