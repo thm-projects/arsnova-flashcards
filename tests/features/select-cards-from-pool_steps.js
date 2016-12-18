@@ -19,7 +19,7 @@ module.exports = function () {
 		browser.waitForVisible('#bs-example-navbar-collapse-1', 5000);
 	});
 
-	this.When(/^User clicks on a cardset$/, function () {		
+	this.When(/^User clicks on a cardset$/, function () {
 		browser.click('span.poolText');
 	});
 
