@@ -191,6 +191,14 @@ body {
   }
 }
 
+@media(max-width: 991px) {
+  .navbar-default {
+    .navbar-brand {
+      padding: 10px 5px;
+    }
+  }
+}
+
 .footer {
   position: absolute;
   left: 0;
