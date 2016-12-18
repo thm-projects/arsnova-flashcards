@@ -45,21 +45,39 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
-		browser.setValue('#editSetName', title);
+		// Warten bis Text eingetippt wird
+		browser.waitUntil(function () {
+			browser.setValue('#editSetName', title);
+			return browser.getValue('#editSetName') === title;
+		}, 5000, 'expected text to be different after 5s');
 	});
 
 	this.Then(/^he should be able to edit the cardset description$/, function () {
-		browser.setValue('#editSetDescription', description);
+		// Warten bis Beschreibung eingegeben wird eingetippt wird
+		browser.waitUntil(function () {
+			browser.setValue('#editSetDescription', description);
+			return browser.getValue('#editSetDescription') === description;
+		}, 5000, 'expected text to be different after 5s');
 	});
+
 	this.Then(/^he should be able to edit the module name$/, function () {
-		browser.setValue('#editSetModule', module);
+		browser.waitUntil(function () {
+			browser.setValue('#editSetModule', module);
+			return browser.getValue('#editSetModule') === module;
+		}, 5000, 'expected text to be different after 5s');
 	});
 	this.Then(/^he should be able to edit the module initials$/, function () {
-		browser.setValue('#editSetModuleShort', moduleInitials);
+		browser.waitUntil(function () {
+			browser.setValue('#editSetModuleShort', moduleInitials);
+			return browser.getValue('#editSetModuleShort') === moduleInitials;
+		}, 5000, 'expected text to be different after 5s');
 	});
 
 	this.Then(/^he should be able to edit the module ID$/, function () {
-		browser.setValue('#editSetModuleNum', moduleID);
+		browser.waitUntil(function () {
+			browser.setValue('#editSetModuleNum', moduleID);
+			return browser.getValue('#editSetModuleNum') === moduleID;
+		}, 5000, 'expected text to be different after 5s');
 	});
 	this.Then(/^he should be able to edit the college$/, function () {
 		browser.click('#editSetCollege');
@@ -73,9 +91,12 @@ module.exports = function () {
 	});
 	this.Then(/^he should press the save deck of cards button$/, function () {
 		browser.click('#cardSetSave');
-		browser.pause(3000);
 	});
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
+		browser.waitUntil(function () {
+			console.log(browser.isExisting('.modal-open'));
+			return browser.isExisting('.modal-open') === false;
+		}, 5000, 'expected text to be different after 5s');
 		browser.click('#editCardset');
 		browser.waitForVisible('#editSetName', 5000);
 
@@ -90,3 +111,4 @@ module.exports = function () {
 		logout();
 	});
 };
+
