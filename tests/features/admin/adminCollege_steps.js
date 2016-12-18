@@ -1,5 +1,4 @@
 import {login, agreeCookies, logoutAdmin} from "../helper_functions";
-git status
 module.exports = function () {
 	'use strict';
 
@@ -22,7 +21,7 @@ module.exports = function () {
 	});
 
 	this.When(/^user creates a new college and course$/, function () {
-		browser.waitForExist('#college',5000);
+		browser.waitForExist('#college', 5000);
 		browser.setValue('#college', 'THM');
 		browser.setValue('#courseOfStudies', 'MSP');
 		browser.click("#insertButton");
