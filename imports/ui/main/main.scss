@@ -180,6 +180,17 @@ body {
   }
 }
 
+@media(min-width: 768px) {
+  .thm-header {
+    .navbar-collapse, .navbar-collapse.collapse {
+      overflow: visible;
+    }
+    .navbar-toggle {
+      display: none;
+    }
+  }
+}
+
 .footer {
   position: absolute;
   left: 0;
