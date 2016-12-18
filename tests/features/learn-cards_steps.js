@@ -108,7 +108,10 @@ module.exports = function () {
 		var cards = browser.getText('#subject'+ arg1 + ' span.badge');
 		expect(cards).toBe("1");
 
-		logout();
+		if(arg1 == 2)
+		{
+			logout();
+		}
 	});
 
 
