@@ -50,7 +50,7 @@ for testDir in $searchDir; do
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		if ! chimp --ddp=http://localhost:3000 --path=$testDir ; then
+		if ! chimp --ddp=http://localhost:3000 --path=$testDir 2>&1 ; then
 			echo -e $RED"Chimp test failed!" $NC
 			exitVal=1
 		fi
