@@ -132,7 +132,8 @@
     "everyone": "Everyone",
     "everything": "Everything",
     "reset": "Reset all filters",
-    "rating": "Rating"
+    "rating": "Rating",
+    "moreResults": "Show more results"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -575,6 +576,7 @@
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
   "badgetext3": "",
+  "youareoffline": "You are offline!",
   "admin": {
     "allLearnedCardsets": "All learned cardsets",
     "learnedCardsets": "Learning progress of the cardset",

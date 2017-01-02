@@ -79,7 +79,9 @@
                         onclick="history.go(-1)">{{_ "declinecard"}}</button>
             </div>
             <div class="btn-group" role="group">
-                <button id="cardSave" class="btn btn-success btn-large save">{{_ "savecard"}}</button>
+                <button id="cardSave" class="btn btn-success btn-large save" {{disableIfOffline}}>
+                    {{_ "savecard"}}
+                </button>
             </div>
         </div>
     </div>

@@ -190,3 +190,14 @@ Template.registerHelper("getType", function (type) {
 
 	return type;
 });
+
+// detects if the app is offline or not
+Template.registerHelper("isOffline", function () {
+	return !Meteor.status().connected;
+});
+
+// Adds the "disabled" attribute to Elements if the app is offline
+// use it like this: <button {{disableIfOffline}}>...</button>
+Template.registerHelper("disableIfOffline", function () {
+	return Meteor.status().connected ? "" : "disabled";
+});

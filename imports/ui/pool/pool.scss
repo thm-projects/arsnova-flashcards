@@ -7,6 +7,7 @@
   $color_border_edu_filter_btn: #4cae4c;
   $color_background_pro_filter_btn: #d9534f;
   $color_border_pro_filter_btn: #d43f3a;
+  $color_btn_inactive: #9e9c9c;
   $color_item_separator: #b2b2b2;
   text-align: left;
 
@@ -40,22 +41,27 @@
     font-weight: bold;
   }
 
-  .btn-filter-free.active {
+  .btn-info.active {
     color: $white;
     background-color: $color_background_free_filter_btn;
     border-color: $color_border_free_filter_btn;
   }
 
-  .btn-filter-edu.active {
+  .btn-success.active {
     color: $white;
     background-color: $color_background_edu_filter_btn;
     border-color: $color_border_edu_filter_btn;
   }
 
-  .btn-filter-pro.active {
+  .btn-danger.active {
     color: $white;
     background-color: $color_background_pro_filter_btn;
     border-color: $color_border_pro_filter_btn;
+  }
+
+  .btn-info, .btn-success, .btn-danger {
+    background-color: $color_item_separator;
+    border-color: $color_btn_inactive;
   }
 
   .panel {
@@ -123,7 +129,7 @@
     text-align: center;
   }
 
-  .poolText {
+  .poolText, .topicName {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -134,24 +140,15 @@
     padding-right: 0px;
   }
 
+  .scrollArrow {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 35px;
+    text-align: center;
+  }
+
   #info_license img {
     width: 20px;
-  }
-  #collegeBtn {
-    width: 160px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  #resetBtn {
-    width: 272px;
-  }
-  #topicBtn {
-    width: 245px;
-  }
-  #moduleBtn {
-    width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .stars-rating {
@@ -171,7 +168,7 @@
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1199px) {
     .navbar-header {
       float: none;
     }
@@ -206,9 +203,7 @@
     .collapse.in {
       display: block !important;
     }
-  }
 
-  @media (max-width: 992px) {
     .panel {
       margin-top: 3px;
       margin-bottom: 3px;
@@ -232,19 +227,32 @@
     }
 
     #resetBtn {
-      width: 242px;
-    }
-
-    #topicBtn {
-      width: 215px;
+      margin-left: 15px;
+      margin-top: 8px;
     }
 
     .field-tip .tip-content {
       bottom: 102%;
     }
+
+    #filterCheckbox {
+      margin-left: 30px;
+    }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
+    #pool-nav-wrapper, #pool-nav {
+      .dropdown {
+        padding: 0px;
+      }
+    }
+
+    #filterCheckbox {
+      margin-top: -2px;
+      padding-bottom: 0px;
+      padding-right: 30px;
+    }
+
     .altPanel {
       background-color: $color_wild_sand_approx;
     }
@@ -258,6 +266,18 @@
       margin-right: -5px;
       padding-left: 10px;
       padding-right: 10px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #pool-nav-wrapper, #pool-nav {
+      padding: 0px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #filterCheckbox {
+      margin-left: 45px;
     }
   }
 }

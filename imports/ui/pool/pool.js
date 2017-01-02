@@ -12,6 +12,8 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("allLearned");
 Meteor.subscribe('ratings');
 
+var items_increment = 14;
+
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterCollege');
@@ -19,6 +21,7 @@ Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
+Session.setDefault("itemsLimit", items_increment);
 
 /**
  * Creates a browser-popup with defined content
@@ -67,6 +70,34 @@ function prepareQuery() {
 	}
 }
 
+function checkRemainingCards() {
+	prepareQuery();
+	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+		$(".showMoreResults").data("visible", true);
+		return true;
+	} else {
+		$(".showMoreResults").data("visible", false);
+		return false;
+	}
+}
+
+function resetInfiniteBar() {
+	Session.set("itemsLimit", items_increment);
+	checkRemainingCards();
+}
+
+function showMoreVisible() {
+	var threshold, target = $(".showMoreResults");
+	if (target.data("visible")) {
+		threshold = $(window).scrollTop() + $(window).height() - target.height();
+		if (target.offset().top < threshold) {
+			target.data("visible", false);
+			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		}
+	}
+}
+$(window).scroll(showMoreVisible);
+
 function filterCheckbox() {
 	$("#filterCheckbox input:checkbox").each(function () {
 		if (!Session.get('poolFilter').includes($(this).val())) {
@@ -110,9 +141,10 @@ function filterCollege(event) {
 		Session.set('poolFilterCollegeVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterCollegeVal', $(event.target).html());
+		Session.set('poolFilterCollegeVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterCollege', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function filterCourse(event) {
@@ -122,9 +154,10 @@ function filterCourse(event) {
 		Session.set('poolFilterCourseVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterCourseVal', $(event.target).html());
+		Session.set('poolFilterCourseVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterCourse', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function filterModule(event) {
@@ -134,9 +167,10 @@ function filterModule(event) {
 		Session.set('poolFilterModuleVal', null);
 	} else {
 		button.addClass('active');
-		Session.set('poolFilterModuleVal', $(event.target).html());
+		Session.set('poolFilterModuleVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
+	resetInfiniteBar();
 }
 
 function deadline(cardset) {
@@ -163,7 +197,7 @@ Template.category.helpers({
 	},
 	getDecks: function () {
 		prepareQuery();
-		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
@@ -212,6 +246,9 @@ Template.category.helpers({
 	},
 	poolFilterModule: function () {
 		return Session.get('poolFilterModuleVal');
+	},
+	moreResults: function () {
+		return checkRemainingCards();
 	}
 });
 
@@ -343,8 +380,9 @@ Template.category.events({
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		checkFilters();
+		resetInfiniteBar();
 	},
-	'click .sortTopic': function () {
+	'click #topicBtn': function () {
 		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
 			Session.set('poolSortTopic', {name: -1});
@@ -362,6 +400,7 @@ Template.category.events({
 			Session.set('poolFilterAuthorVal', $(event.target).html());
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
+		resetInfiniteBar();
 	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);
@@ -371,6 +410,10 @@ Template.category.events({
 	},
 	'click .filterModule': function (event) {
 		filterModule(event);
+	},
+	'click .showMoreResults': function () {
+		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		checkRemainingCards();
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];
