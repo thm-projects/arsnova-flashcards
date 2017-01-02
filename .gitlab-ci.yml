@@ -1,7 +1,7 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
   NODE_ENV: production
-  
+
 chimp:
   stage: test
   tags:
