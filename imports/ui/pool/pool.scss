@@ -203,9 +203,7 @@
     .collapse.in {
       display: block !important;
     }
-  }
 
-  @media (max-width: 1199px) {
     .panel {
       margin-top: 3px;
       margin-bottom: 3px;
@@ -229,7 +227,8 @@
     }
 
     #resetBtn {
-      width: 242px;
+      margin-left: 15px;
+      margin-top: 8px;
     }
 
     .field-tip .tip-content {
