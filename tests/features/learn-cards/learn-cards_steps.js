@@ -39,12 +39,12 @@ module.exports = function () {
 		expect(url).toBe("http://localhost:3000/box/2P6mg5iqCZ49QPPDz");
 	});
 
-	this.Then(/^Box (\d+) contains two cards$/, function (argv) {
+	this.Then(/^Box one contains two cards$/, function () {
 		var cards = browser.getText('#subject1 span.badge');
 		expect(cards).toBe("2");
 	});
 
-	this.Then(/^Boxes (\d+)\-(\d+) contain zero cards$/, function (argv, argv2) {
+	this.Then(/^Boxes two to five contain zero cards$/, function () {
 		var cards = browser.getText('#subject2 span.badge');
 		expect(cards).toBe("0");
 		cards = browser.getText('#subject3 span.badge');
@@ -78,7 +78,7 @@ module.exports = function () {
 		browser.click('#learnBox');
 	});
 
-	this.When(/^I click on the Button Box (\d+)$/, function (arg1) {
+	this.When(/^I click on the Button Box one$/, function () {
 		browser.click('#subject1');
 	});
 
@@ -127,7 +127,7 @@ module.exports = function () {
 		expect(url).toBe("http://localhost:3000/memo/2P6mg5iqCZ49QPPDz");
 	});
 
-	this.Then(/^The button "([^"]*)" is shown$/, function (argv) {
+	this.Then(/^The button Show answer is shown$/, function () {
 		var button = browser.isExisting('#memoShowAnswer');
 		expect(button).toBe(true);
 
@@ -149,7 +149,7 @@ module.exports = function () {
 	});
 
 
-	this.Then(/^The buttons (\d+)\-(\d+) are shown$/, function (argv1, argv2) {
+	this.Then(/^The buttons zero to five are shown$/, function () {
 		var button = browser.isExisting('#memoRate0');
 		expect(button).toBe(true);
 
@@ -169,7 +169,7 @@ module.exports = function () {
 		expect(button).toBe(true);
 	});
 
-	this.Then(/^I can click button (\d+)$/, function (argv1) {
+	this.Then(/^I can click button three$/, function () {
 		oldVal = browser.getText('.frontblock span p');
 		browser.click('#memoRate3');
 	});
