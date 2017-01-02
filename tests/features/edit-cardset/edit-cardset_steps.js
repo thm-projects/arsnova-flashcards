@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "./helper_functions.js";
+import {login, logout, setResolution, agreeCookies} from "../helper_functions.js";
 
 module.exports = function () {
 	'use strict';
