@@ -26,9 +26,10 @@ module.exports = function () {
 
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.url('http://localhost:3000/created');
-		var bool = browser.waitForVisible('#newCardSet', 15000);
-		expect(bool).toBe(true);
-		cardsetsBeforeCreated = browser.elements('#cardSetView > tr').value.length;
+		while (browser.elements('.cardsetRow').value.length === 0) {
+			browser.pause(500);
+		}
+		cardsetsBeforeCreated = browser.elements('.cardsetRow').value.length;
 	});
 
 	this.When(/^User clicks on the create cardset button$/, function () {
@@ -79,7 +80,7 @@ module.exports = function () {
 	this.Then(/^he should see the created cardset in the my cardset view with the correct values$/, function () {
 		var bool = browser.waitForVisible('#cardSetView tr:nth-child(3) td a', 5000);
 		expect(bool).toBe(true);
-		var amountCardsSets = browser.elements('#cardSetView > tr').value.length;
+		var amountCardsSets = browser.elements('.cardsetRow').value.length;
 		expect(amountCardsSets).toBe(cardsetsBeforeCreated + 1);
 	});
 
