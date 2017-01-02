@@ -50,7 +50,7 @@ for testDir in $searchDir; do
 
 		# drop the database
 		echo -e $GREEN"Dropping database ..." $NC
-		if ! echo "db.dropDatabase()" | meteor mongo ; then
+		if ! echo "db.dropDatabase()" | meteor mongo --allow-superuser ; then
 			echo -e $RED"error dropping meteor database" $NC
 			exit 3
 		fi
