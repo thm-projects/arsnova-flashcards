@@ -45,7 +45,7 @@ for testDir in $searchDir; do
 		
 		# Restore the database
 		echo -e $GREEN"Restoring database ..." $NC
-		if ! mongorestore -h 127.0.0.1 --port 3001 -d meteor $dumpDir ; then
+		if ! mongorestore --quiet -h 127.0.0.1 --port 3001 -d meteor $dumpDir; then
 			echo -e $RED"mongorestore failed!" $NC
 			exit 2
 		fi
