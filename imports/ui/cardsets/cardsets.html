@@ -28,7 +28,9 @@
                        placeholder="{{_ "input-group.newcarddeck"}}">
                 <span class="input-group-btn">
 					<button id="newCardSet" type="button" class="btn btn-primary saveSet" data-toggle="modal"
-                            data-target="#newSetModal"><i class="glyphicon glyphicon-plus"></i></button>
+                            data-target="#newSetModal" {{disableIfOffline}}>
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
 				</span>
             </div>
 
@@ -155,7 +157,7 @@
                             <span id="info_license">{{getLicense}}</span>
                         </td>
                         <td>
-                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned"
+                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned" {{disableIfOffline}}
                              title='{{_ "confirm-form-learned.title"}}' data-toggle="modal" data-target="#confirmLearnedModal">
                               <i class="glyphicon glyphicon-ban-circle"></i>
                           </a>
@@ -324,7 +326,7 @@
                     <br/>
                     <hr/>
 
-                    <button id="learnedDelete" class="btn btn-danger btn-setDelete">{{_
+                    <button id="learnedDelete" class="btn btn-danger btn-setDelete" {{disableIfOffline}}>{{_
                             "confirm-form-learned.title"}}</button>
                     <button id="learnedCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
