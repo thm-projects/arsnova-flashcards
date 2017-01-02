@@ -45,14 +45,15 @@ for testDir in $searchDir; do
 		
 		# Restore the database
 		echo -e $GREEN"Restoring database ..." $NC
-		if ! mongorestore --quiet -h 127.0.0.1 --port 3001 -d meteor $dumpDir; then
+		if ! mongorestore -h 127.0.0.1 --port 3001 -d meteor 
+$dumpDir 1> /dev/null; then
 			echo -e $RED"mongorestore failed!" $NC
 			exit 2
 		fi
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		chimp  --ddp=http://localhost:3000 --path=$testDir $1
+		~/node_modules/chimp/bin/chimp.js --ddp=http://localhost:3000 --path=$testDir $1
 		if [ $? -ne 0 ]; then
 			failedTests=$((failedTests+1))
 			echo -e $RED"Chimp test failed!" $NC
