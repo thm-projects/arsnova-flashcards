@@ -9,7 +9,6 @@ chimp:
   dependencies: []
   script:
     - npm install
-    - meteor reset --allow-superuser
     - meteor --allow-superuser --no-lint --no-release-check --settings settings_test.json &
     - sleep 150
     - ./tests/runTests.sh

@@ -34,6 +34,13 @@ for testDir in $searchDir; do
 	if [ -d $testDir ]; then
 		echo -e $BLUE"Entering directory $testDir" $NC
 		
+		# drop the database
+		echo -e $GREEN"Dropping database ..." $NC
+		if ! echo "db.dropDatabase()" | meteor mongo --allow-superuser ; then
+			echo -e $RED"error dropping meteor database" $NC
+			exit 3
+		fi
+		
 		# Restore the database
 		echo -e $GREEN"Restoring database ..." $NC
 		if ! mongorestore -h 127.0.0.1 --port 3001 -d meteor $dumpDir ; then
@@ -46,13 +53,6 @@ for testDir in $searchDir; do
 		if ! chimp --ddp=http://localhost:3000 --path=$testDir ; then
 			echo -e $RED"Chimp test failed!" $NC
 			exitVal=1
-		fi
-
-		# drop the database
-		echo -e $GREEN"Dropping database ..." $NC
-		if ! echo "db.dropDatabase()" | meteor mongo --allow-superuser ; then
-			echo -e $RED"error dropping meteor database" $NC
-			exit 3
 		fi
 	fi
 done
