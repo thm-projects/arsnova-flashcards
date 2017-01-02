@@ -129,7 +129,8 @@
     "everyone": "Alle",
     "everything": "Alles",
     "reset": "Alle Filter zurücksetzen",
-    "rating": "Bewertung"
+    "rating": "Bewertung",
+    "moreResults": "Zeige weitere Einträge"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
