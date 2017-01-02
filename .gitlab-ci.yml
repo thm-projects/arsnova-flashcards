@@ -11,7 +11,7 @@ chimp:
     - npm install
     - meteor --allow-superuser --no-lint --no-release-check --settings settings_test.json &
     - sleep 150
-    - ./tests/runTests.sh
+    - ./tests/runTests.sh --browser=phantomjs
 
 jshint:
   stage: test

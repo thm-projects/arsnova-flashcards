@@ -23,6 +23,8 @@ function checkDirectory
 
 # Exit value, set to -1 when chimp test fails
 exitVal=0
+successfulTests=0
+failedTests=0
 
 checkDirectory
 
@@ -50,12 +52,19 @@ for testDir in $searchDir; do
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		chimp --ddp=http://localhost:3000 --path=$testDir --browser=phantomjs
+		chimp  --ddp=http://localhost:3000 --path=$testDir $1
 		if [ $? -ne 0 ]; then
+			failedTests=$((failedTests+1))
 			echo -e $RED"Chimp test failed!" $NC
 			exitVal=1
+		else
+			successfulTests=$((successfulTests+1))
 		fi
 	fi
 done
+
+echo -e $BLUE"Testing result:" $NC
+echo -e $GREEN"Successfull tests: $successfulTests" $NC
+echo -e $RED"Failed tests: $failedTests" $NC
 
 exit $exitVal
