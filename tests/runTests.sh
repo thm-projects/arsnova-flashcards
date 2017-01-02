@@ -16,7 +16,7 @@ function checkDirectory
 {
 	if [ $(basename $PWD) == "tests" ]; then
 		echo -e $RED"$0 musst me called from project root!" $NC
-		exit -5
+		exit 5
 	fi
 }
 
@@ -38,21 +38,21 @@ for testDir in $searchDir; do
 		echo -e $GREEN"Restoring database ..." $NC
 		if ! mongorestore -h 127.0.0.1 --port 3001 -d meteor $dumpDir ; then
 			echo -e $RED"mongorestore failed!" $NC
-			exit -2
+			exit 2
 		fi
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
 		if ! chimp --ddp=http://localhost:3000 --path=$testDir ; then
 			echo -e $RED"Chimp test failed!" $NC
-			exitVal=-1
+			exitVal=1
 		fi
 
 		# drop the database
 		echo -e $GREEN"Dropping database ..." $NC
 		if ! echo "db.dropDatabase()" | meteor mongo ; then
 			echo -e $RED"error dropping meteor database" $NC
-			exit -3
+			exit 3
 		fi
 	fi
 done
