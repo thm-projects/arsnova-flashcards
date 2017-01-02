@@ -1,4 +1,4 @@
-import {login, logout, agreeCookies} from "./helper_functions";
+import {login, logout, agreeCookies} from "../helper_functions";
 
 var username = "login_testuser";
 

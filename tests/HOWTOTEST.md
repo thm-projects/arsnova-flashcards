@@ -23,6 +23,9 @@ Exit mongo shell
 #### Run the tests
     chimp --ddp=http://localhost:3000 --watch --path=tests
 
+#### Run all chimp tests
+In project root start meteor `meteor --settings settings_test.json`.
+Then in another shell enter `./tests/runTests.sh`
 
 ## Important
 For the tests, please login with the user "testuser"
@@ -30,7 +33,7 @@ For the tests, please login with the user "testuser"
 ## Helpers
 Include the **helper_functions.js** for common functions.
 
-	import {login, logout} from "./helper_functions"
+	import {login, logout} from "../helper_functions"
 
 now you can use the helper functions:
 
