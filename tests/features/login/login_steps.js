@@ -14,6 +14,7 @@ module.exports = function () {
 	this.Given(/^submit the login form$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		login(username);
+		login(username);
 	});
 
 	this.Then(/^he should see the AGB page$/, function () {

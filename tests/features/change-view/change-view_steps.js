@@ -1,6 +1,4 @@
-import {login, logout, agreeCookies} from "../helper_functions";
-
-var username = "testuser";
+import {login, logout, agreeCookies, setResolution} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -8,12 +6,14 @@ module.exports = function () {
 	this.Given(/^I am on the site$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.url('http://localhost:3000');
-		agreeCookies();
 	});
 
 	this.Given(/^He loges in$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		login(username);
+		browser.pause(1000);
+		login("testuser");
+		agreeCookies();
+		setResolution();
 	});
 
 	this.Given(/^change to cardset$/, function () {
@@ -24,12 +24,12 @@ module.exports = function () {
 
 	this.Then(/^they are on the cardset$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
 	this.Then(/^they change the view to cardlist$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.click('#editCard');
+		browser.click('#btnToListLayout');
 	});
 
 	this.Then(/^they see the cardlist$/, function () {
@@ -44,7 +44,7 @@ module.exports = function () {
 
 	this.Then(/^they se cardset again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
 	this.Then(/^they log out$/, function () {

@@ -6,7 +6,7 @@ export function login(username) {
 	browser.waitForExist("#TestingBackdorUsername", 5000);
 	client.execute(SetUsername, username);
 	browser.click('a[id="BackdoorLogin"]');
-	browser.click('a[id="BackdoorLogin"]');
+	browser.pause(1000);
 }
 
 /* exported logout */
