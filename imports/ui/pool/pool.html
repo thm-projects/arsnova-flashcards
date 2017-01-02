@@ -15,13 +15,15 @@
 
 <template name="category">
     <div class="buttonHeader">
-        <div class="btn-group" role="group" aria-label="Reset group">
+        <div class="btn-group hidden-xs hidden-sm hidden-md" role="group" aria-label="Reset group">
             <button class="resetFilters btn btn-default" id="resetBtn" role="button">
                 {{_ "set-list.reset"}} </button>
         </div>
         <nav class="navbar navbar-default">
             <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
+                    <button class="resetFilters btn btn-default hidden-lg" id="resetBtn" role="button">{{_
+                            "set-list.reset"}} </button>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -42,11 +44,11 @@
                         <li class="dropdown col-lg-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
-                                    {{#if hasAuthorFilter}}
-                                        {{poolFilterAuthor}}
-                                    {{else}}
-                                        {{_ "set-list.author"}}
-                                    {{/if}}
+                                {{#if hasAuthorFilter}}
+                                    {{poolFilterAuthor}}
+                                {{else}}
+                                    {{_ "set-list.author"}}
+                                {{/if}}
                                 <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
