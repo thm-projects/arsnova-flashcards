@@ -34,7 +34,9 @@ module.exports = function () {
 
 	this.Then(/^he need to login again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
+		browser.pause(1000);
 		login(username);
+		browser.click('#BackdoorLogin');
 	});
 
 	this.Then(/^he agree the AGBs$/, function () {
