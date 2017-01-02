@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "./helper_functions";
+import {login, logout, setResolution, agreeCookies} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var sFront,sBack;
