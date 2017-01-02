@@ -20,7 +20,8 @@ module.exports = function () {
 	});
 
 	this.When(/^User clicks on a cardset$/, function () {
-		browser.click('span.poolText');
+		browser.waitForVisible('.poolText', 5000);
+		browser.click('.poolText');
 	});
 
 	this.Then(/^he is shown the details of the cardset$/, function () {
