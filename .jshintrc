@@ -46,6 +46,9 @@
     "ActiveRoute": true,
     "prompt": true,
     "Chart": true,
-    "Ground": false
+    "Ground": false,
+    "SSR": true,
+    "process": true,
+    "Assets": true
   }
 }
