@@ -72,7 +72,6 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var cards = this.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectReset') + cardset.name;
 			var text = TAPi18n.__('mailNotification.textIntro') + this.getName + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
 			text += this.getDeadline(cardset, user_id);
