@@ -776,9 +776,7 @@
     "subjectSingular2": " card ",
     "subjectPlural2": " cards ",
     "subjectCardset": "of the cardset ",
-    "subjectEnd": " to learn",
-    "textIntro": "Dear participant of the current THMCards-learning-phase,\n\n",
-    "newCards1": "a new day has begun and ",
+    "subjectEnd": " for learning.",
     "newCards2Singular": " card awaits you in the cardset ",
     "newCards2Plural": " cards await you in the cardset ",
     "greetings": "\n\nyour THMCards-Team",
@@ -786,6 +784,15 @@
     "textIntroEnding": "Dear participant,\n\n",
     "textEnding": "Today ends the learning-phase of the cardset ",
     "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
-    "textReset": "your learning-progress has been reset due to inactivity. "
+    "textReset": "your learning-progress has been reset due to inactivity. ",
+    "mailCard" : "The cardset ",
+    "mailCard1" : "needs your attention!\n\n",
+    "newCards1": "After checking your ongoing learning phase we recognized, that ",
+    "textIntro": "Hello ",
+    "textIntro1": ",\n\n it is time, to take a look at your cards!\n\n",
+    "textDate1": "You got time till ",
+    "textDate2": "to work on your active cards. Otherwise your learning progress will be resetted!",
+    "subjectSingular3": " is.\n\n",
+    "subjectPlural3": " are.\n\n"
   }
 }

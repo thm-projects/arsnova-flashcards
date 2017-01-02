@@ -6,7 +6,7 @@ export class CronScheduler {
 		SyncedCron.add({
 			name: "leitnerCron",
 			schedule: function (parser) {
-				return parser.recur().on('01:00:00').time();
+				return parser.recur().every(5).second();
 			},
 			job: function () {
 				Meteor.call("updateLeitnerCards");
