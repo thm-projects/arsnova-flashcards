@@ -54,6 +54,10 @@
     "browser": true,
     "client": true,
     "module": true,
-    "expect": true
+    "expect": true,
+    "Ground": false,
+    "SSR": true,
+    "process": true,
+    "Assets": true
   }
 }
