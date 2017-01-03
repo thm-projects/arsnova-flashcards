@@ -305,9 +305,9 @@ Template.profileSettings.helpers({
 	getColorThemes() {
 		return ColorThemes.find();
 	},
-	getSelectedColorThemes: function()
+	getSelectedColorThemes: function ()
 	{
-		if(this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme){
+		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
 			return "selected";
 		}
 	}
@@ -413,7 +413,7 @@ Template.profileSettings.events({
 		Meteor.call("updateColorTheme", selected, user_id);
 		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 	},
-	"change #colorThemeSelect": function() {
+	"change #colorThemeSelect": function () {
 		var selected = $('#colorThemeSelect').val();
 		//$('#colorThemeCancel')[0].disabled = false;
 		$('#colorThemeSave')[0].disabled = false;

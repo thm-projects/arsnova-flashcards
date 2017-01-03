@@ -4,7 +4,7 @@ import {ColorThemes} from "../../api/theme.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 
-var initColorThemes = function() {
+var initColorThemes = function () {
 	return [{
 		"_id": "1",
 		"name": "template1"
@@ -146,7 +146,7 @@ Meteor.startup(function () {
 
 	if (ColorThemes.find().count() === 0) {
 		for (var theme in themes) {
-			if(themes.hasOwnProperty(theme)){
+			if (themes.hasOwnProperty(theme)) {
 				ColorThemes.insert(themes[theme]);
 			}
 		}
