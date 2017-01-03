@@ -302,13 +302,14 @@ Template.profileSidebar.helpers({
  */
 
 Template.profileSettings.helpers({
-    getColorThemes() {
-        return ColorThemes.find();
-    },
+	getColorThemes() {
+		return ColorThemes.find();
+	},
 	getSelectedColorThemes: function()
 	{
-    	if(this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme)
-    		return "selected";
+		if(this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme){
+			return "selected";
+		}
 	}
 });
 
@@ -407,17 +408,17 @@ Template.profileSettings.events({
 		var selected = $('#colorThemeSelect').val();
 		var user_id = Meteor.userId();
 
-        //$('#colorThemeCancel')[0].disabled = true;
-        $('#colorThemeSave')[0].disabled = true;
-        Meteor.call("updateColorTheme", selected, user_id);
-        Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
-    },
-    "change #colorThemeSelect": function() {
-        var selected = $('#colorThemeSelect').val();
-        //$('#colorThemeCancel')[0].disabled = false;
-        $('#colorThemeSave')[0].disabled = false;
-        Session.set("theme", selected);
-    },
+		//$('#colorThemeCancel')[0].disabled = true;
+		$('#colorThemeSave')[0].disabled = true;
+		Meteor.call("updateColorTheme", selected, user_id);
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+	},
+	"change #colorThemeSelect": function() {
+		var selected = $('#colorThemeSelect').val();
+		//$('#colorThemeCancel')[0].disabled = false;
+		$('#colorThemeSave')[0].disabled = false;
+		Session.set("theme", selected);
+	},
 	"click #profileSave": function () {
 		// Email validation
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
