@@ -4,12 +4,10 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
 import {Ratings} from "../../api/ratings.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("allLearned");
 Meteor.subscribe('ratings');
 
 var items_increment = 14;
@@ -22,33 +20,6 @@ Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
-
-/**
- * Creates a browser-popup with defined content
- * @param title Heading for notification
- * @param message Body of notification
- */
-export function notification(title, message) {
-	var messageIcon = "https://git.thm.de/uploads/project/avatar/374/cards_logo.png";
-	//source: https://developer.mozilla.org/de/docs/Web/API/notification
-	if (Notification.permission === "granted") {
-		var options = {
-			body: message,
-			icon: messageIcon
-		};
-		new Notification(title, options);
-	} else if (Notification.permission !== 'denied') {
-		Notification.requestPermission(function (permission) {
-			if (permission === "granted") {
-				var options = {
-					body: message,
-					icon: messageIcon
-				};
-				new Notification(title, options);
-			}
-		});
-	}
-}
 
 var query = {};
 
@@ -171,16 +142,6 @@ function filterModule(event) {
 	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
 	resetInfiniteBar();
-}
-
-function deadline(cardset) {
-	var active = Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), active: true});
-	var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
-	if (deadline.getTime() > cardset.learningEnd.getTime()) {
-		return (TAPi18n.__('notifications.deadline') + cardset.learningEnd.toLocaleDateString());
-	} else {
-		return (TAPi18n.__('notifications.deadline') + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning'));
-	}
 }
 
 /**
@@ -426,12 +387,6 @@ Template.pool.onRendered(function () {
 			'editor'
 		])) {
 		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
-	}
-	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for (var i = 0; i < toLearn.length; ++i) {
-		if (Learned.find({cardset_id: toLearn[i]._id, user_id: Meteor.userId(), active: true}).count() !== 0) {
-			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name + deadline(toLearn[i]));
-		}
 	}
 	checkFilters();
 });
