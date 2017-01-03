@@ -266,21 +266,13 @@ Template.showLicense.helpers({
 	getLicenseCount: function () {
 		if (Session.get('selectedCardset')) {
 			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
-			if (item.license.length > 0) {
-				return true;
-			} else {
-				return false;
-			}
+			return (item.license.length > 0);
 		}
 	},
 	getLicenseType: function (type) {
 		if (Session.get('selectedCardset')) {
 			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
-			if (item.license.includes(type)) {
-				return true;
-			} else {
-				return false;
-			}
+			return (item.license.includes(type));
 		}
 	}
 });
