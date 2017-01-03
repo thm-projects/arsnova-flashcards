@@ -1,7 +1,18 @@
 import {Meteor} from "meteor/meteor";
 import {Badges} from "../../api/badges.js";
+import {ColorThemes} from "../../api/theme.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
+
+var initColorThemes = function() {
+	return [{
+        "_id": "1",
+        "name": "template1"
+	},{
+        "_id": "2",
+        "name": "template2"
+    }];
+}
 
 var initBadges = function () {
 	return [{
@@ -106,6 +117,8 @@ var initBadges = function () {
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	var badges = initBadges();
+    var themes = initColorThemes();
+
 	process.env.MAIL_URL = Meteor.settings.MAIL_URL;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
@@ -130,5 +143,12 @@ Meteor.startup(function () {
 			}
 		}
 	}
+
+    if (ColorThemes.find().count() === 0) {
+        for (var theme in themes) {
+            ColorThemes.insert(themes[theme]);
+        }
+    }
+
 	cronScheduler.startCron();
 });

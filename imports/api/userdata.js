@@ -22,7 +22,8 @@ if (Meteor.isServer) {
 						'daysInRow': 1,
 						'earnedBadges': 1,
 						'customerId': 1,
-						'blockedtext': 1
+						'blockedtext': 1,
+						"selectedColorTheme": 1
 					}
 				});
 		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
@@ -171,7 +172,8 @@ Meteor.methods({
 				lvl: 1,
 				lastOnAt: new Date(),
 				daysInRow: 0,
-				earnedBadges: []
+				earnedBadges: [],
+				selectedColorTheme: "1",
 			}
 		});
 	},
@@ -294,9 +296,19 @@ Meteor.methods({
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
 	},
 	updateEarnedBadges: function (index, rank) {
-		check(index, Number);
-		check(rank, Number);
-		Meteor.users.update(Meteor.user()._id,
-			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
-	}
+        check(index, Number);
+        check(rank, Number);
+        Meteor.users.update(Meteor.user()._id,
+            {$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
+    },
+    updateColorTheme: function (selectedColorTheme, id) {
+        check(selectedColorTheme, String);
+        check(id, String);
+
+        Meteor.users.update(id, {
+            $set: {
+                "selectedColorTheme": selectedColorTheme
+            }
+        });
+    }
 });

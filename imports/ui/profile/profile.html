@@ -252,6 +252,25 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
+                <h4 class="panel-title">{{_ "profile.settings.appearance"}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="sel1">{{_ "profile.settings.theme"}}:</label>
+                    <select class="form-control" id="colorThemeSelect">
+                        {{#each getColorThemes}}
+                            <option {{getSelectedColorThemes}} value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="btn-group pull-right" role="group">
+                    <button disabled id="colorThemeSave" type="button" class="btn btn-success">{{_
+                            "profile.save"}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <h4 class="panel-title">{{_ "profile.settings.delete"}}</h4>
             </div>
             <div class="panel-body">
