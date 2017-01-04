@@ -9,6 +9,12 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     .lmargin {
       margin-left: 24px;
     }
+
+    h2 {
+      @media screen and (max-width: 667px) {
+        font-size: 20px;
+      }
+    }
   }
   .carousel-caption {
     color: $color_fuscous_gray_approx;
