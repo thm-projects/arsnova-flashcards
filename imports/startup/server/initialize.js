@@ -6,11 +6,17 @@ import {CronScheduler} from "../../../server/cronjob.js";
 
 var initColorThemes = function () {
 	return [{
-		"_id": "1",
-		"name": "template1"
+		"_id": "default",
+		"name": "Default"
 	},{
-		"_id": "2",
-		"name": "template2"
+		"_id": "aflatunense",
+		"name": "Aflatunense"
+	},{
+		"_id": "lemonchill",
+		"name": "Lemon Chill"
+	},{
+		"_id": "bluestar",
+		"name": "Blue Star"
 	}];
 };
 
@@ -144,11 +150,10 @@ Meteor.startup(function () {
 		}
 	}
 
-	if (ColorThemes.find().count() === 0) {
-		for (var theme in themes) {
-			if (themes.hasOwnProperty(theme)) {
-				ColorThemes.insert(themes[theme]);
-			}
+	ColorThemes.remove({});
+	for (var theme in themes) {
+		if (themes.hasOwnProperty(theme)) {
+			ColorThemes.insert(themes[theme]);
 		}
 	}
 

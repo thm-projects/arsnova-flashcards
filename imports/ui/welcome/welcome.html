@@ -20,7 +20,7 @@
                     </ol>
 
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" role="listbox">
                         <div class="item active">
                             <img alt="First slide" src="/img/carousel0.jpg">
                             <div class="carousel-caption">
@@ -68,11 +68,13 @@
                     </div>
 
                     <!-- Controls -->
-                    <a id="btn_left" class="left carousel-control" href="#carousel-generic" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" style=""></span>
+                    <a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
+                        <span class="icon-prev" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
                     </a>
-                    <a id="btn_right" class="right carousel-control" href="#carousel-generic" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" style="background-image:none"></span>
+                    <a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
+                        <span class="icon-next" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
             </div>

@@ -19,9 +19,20 @@ Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
 
-$(document).on('click','.navbar-collapse.in',function (e) {
-	if ($(e.target).is('a')) {
-		$(this).collapse('hide');
+Session.setDefault("theme", "default");
+
+// Check if user is logged in and load the selectedColorTheme
+Meteor.autorun(function () {
+	if (Meteor.userId()) {
+		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
+		if (Meteor.users.findOne(Meteor.userId())) {
+			if (Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
+				Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+			}
+		}
+	} else {
+		// When user logged out, go back to default Theme
+		Session.set('theme', "default");
 	}
 });
 
@@ -63,6 +74,12 @@ Template.main.events({
 });
 
 Template.main.helpers({
+	getTheme: function () {
+		if (Session.get('theme')) {
+			console.log(Session.get("theme"));
+			return "theme-" + Session.get("theme");
+		}
+	},
 	getYear: function () {
 		return moment(new Date()).format("YYYY");
 	},
