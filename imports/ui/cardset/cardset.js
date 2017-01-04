@@ -668,11 +668,7 @@ Template.cardsetInfo.helpers({
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
 	},
 	isPublished: function () {
-		if (this.kind === 'personal') {
-			return false;
-		} else {
-			return true;
-		}
+		return (this.kind === 'personal');
 	},
 	getActiveLearner
 });
