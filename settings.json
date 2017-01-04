@@ -18,7 +18,8 @@
     "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"
   },
   "private": {
-    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
+    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9",
+    "FCM_API_KEY": "AAAAIST6Cb4:APA91bEazKYwihnbcAyqMaX_oNZvNlzoplnCKXpVtBKx-HfGqh9Oof9zufvxvcsINOxIs1guu9cUtXC1YGWFNIAJEDJN_vnc5xMqg1koTJd5bZ5jux3q2Qnstu4kiB_WrbehSPswvw_hIB-q-QNTmH0bVT1YTAXD3A"
   },
   "admin": {
     "name": "hg13345"

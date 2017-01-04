@@ -63,6 +63,8 @@ function subscribeForPushNotification() {
 				Meteor.call("addWebPushSubscription", sub, function (error) {
 					if (error) {
 						throw new Meteor.Error(error.statusCode, 'Error subscription failed');
+					} else {
+						Meteor.call("sendPushNotificationsToUser", Meteor.userId(), "Yeah! Push Notifications!");
 					}
 				});
 			}
