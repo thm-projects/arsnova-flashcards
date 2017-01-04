@@ -236,6 +236,32 @@
 								<span id="errorGivenName" class="help-block name"></span>
 							</div>
 						</div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}</label>
+                            <form>
+                                <fieldset>
+                                    <div class="col-md-9 form-group">
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="webNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
+                                                       checked>
+                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span id="errorNotification" class="help-block name"></span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
 						<div class="btn-group pull-left" role="group">
 							<button disabled id="profileCancel" type="button"
 									class="btn btn-danger">{{_ "profile.cancel"}}</button>

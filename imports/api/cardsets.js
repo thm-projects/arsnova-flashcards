@@ -118,12 +118,6 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	learningInterval: {
 		type: [Number]
-	},
-	mailNotification: {
-		type: Boolean
-	},
-	webNotification: {
-		type: Boolean
 	}
 });
 
@@ -254,15 +248,13 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
+	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
 		check(id, String);
 		check(maxCards, String);
 		check(daysBeforeReset, String);
 		check(learningStart, Date);
 		check(learningEnd, Date);
 		check(learningInterval, [String]);
-		check(mailNotification, Boolean);
-		check(webNotification, Boolean);
 
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			if (!maxCards) {
@@ -293,9 +285,7 @@ Meteor.methods({
 					daysBeforeReset: daysBeforeReset,
 					learningStart: learningStart,
 					learningEnd: learningEnd,
-					learningInterval: learningInterval,
-					mailNotification: mailNotification,
-					webNotification: webNotification
+					learningInterval: learningInterval
 				}
 			});
 			Meteor.call("clearLearningProgress", id);

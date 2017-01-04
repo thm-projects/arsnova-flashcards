@@ -23,7 +23,9 @@ if (Meteor.isServer) {
 						'earnedBadges': 1,
 						'customerId': 1,
 						'blockedtext': 1,
-						"selectedColorTheme": 1
+						"selectedColorTheme": 1,
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
@@ -138,6 +140,17 @@ Meteor.methods({
 		Meteor.users.update(id, {
 			$set: {
 				"profile.givenname": givenname
+			}
+		});
+	},
+	updateUsersNotification: function (mail, web, id) {
+		check(name, String);
+		check(id, String);
+
+		Meteor.users.update(id, {
+			$set: {
+				mailNotification: mail,
+				webNotification: web
 			}
 		});
 	},
