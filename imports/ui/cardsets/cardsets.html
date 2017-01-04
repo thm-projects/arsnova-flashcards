@@ -27,7 +27,7 @@
                 <input class="form-control" type="text" id="new-set-input"
                        placeholder="{{_ "input-group.newcarddeck"}}">
                 <span class="input-group-btn">
-					<button id="newCardSet" type="button" class="btn btn-primary saveSet" data-toggle="modal"
+					<button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
                             data-target="#newSetModal" {{disableIfOffline}}>
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
@@ -60,7 +60,7 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
+                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
                         <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
@@ -111,7 +111,7 @@
         <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
             <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
             <br>
-            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
+            <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
                     data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
         </td>
     </tr>
@@ -124,7 +124,7 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
+                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
                         <button class="sortNameLearned btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"

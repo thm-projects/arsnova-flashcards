@@ -51,7 +51,7 @@
 				<span>{{_ "sidebar-nav.at"}}</span>
 				<span>{{getDate}}</span>
 			</span>
-            <button class="btn btn-danger back-button" id="back-button">
+            <button class="btn btn-raised btn-danger back-button" id="back-button">
                 <span class="pull-left">{{_ "backbutton"}}</span>
             </button>
         </div>
@@ -59,27 +59,27 @@
 
     <div id="set-learn-controls-region">
         <div class="well well-sm sidebar-nav">
-            <button class="btn btn-default learn-box {{selectedBox 1}}" id="subject1" value="1" {{isDisabled}}>
+            <button class="btn btn-raised btn-default learn-box {{selectedBox 1}}" id="subject1" value="1" {{isDisabled}}>
                 <span class="pull-left">{{_ "subject1"}}</span>
                 <span class="badge pull-right one">{{countBox 1}}</span>
             </button>
-            <button class="btn btn-default learn-box {{selectedBox 2}}" id="subject2" value="2" {{isDisabled}}>
+            <button class="btn btn-raised btn-default learn-box {{selectedBox 2}}" id="subject2" value="2" {{isDisabled}}>
                 <span class="pull-left">{{_ "subject2"}}</span>
                 <span class="badge pull-right two">{{countBox 2}}</span>
             </button>
-            <button class="btn btn-default learn-box {{selectedBox 3}}" id="subject3" value="3" {{isDisabled}}>
+            <button class="btn btn-raised btn-default learn-box {{selectedBox 3}}" id="subject3" value="3" {{isDisabled}}>
                 <span class="pull-left">{{_ "subject3"}}</span>
                 <span class="badge pull-right three">{{countBox 3}}</span>
             </button>
-            <button class="btn btn-default learn-box {{selectedBox 4}}" id="subject4" value="4" {{isDisabled}}>
+            <button class="btn btn-raised btn-default learn-box {{selectedBox 4}}" id="subject4" value="4" {{isDisabled}}>
                 <span class="pull-left">{{_ "subject4"}}</span>
                 <span class="badge pull-right four">{{countBox 4}}</span>
             </button>
-            <button class="btn btn-default learn-box {{selectedBox 5}}" id="subject5" value="5" {{isDisabled}}>
+            <button class="btn btn-raised btn-default learn-box {{selectedBox 5}}" id="subject5" value="5" {{isDisabled}}>
                 <span class="pull-left">{{_ "subject5"}}</span>
                 <span class="badge pull-right five">{{countBox 5}}</span>
             </button>
-            <button class="btn btn-success learn-box {{selectedBox 6}} disabled" id="learned_card" value="6" disabled>
+            <button class="btn btn-raised btn-success learn-box {{selectedBox 6}} disabled" id="learned_card" value="6" disabled>
                 <span class="pull-left">{{_ "subject6"}}</span>
                 <span class="badge pull-right six">{{countBox 6}}</span>
             </button>
@@ -197,10 +197,10 @@
         <br>
         <div id="learn-navigation" class="btn-group btn-group-justified">
             <div class="btn-group" role="group">
-                <button class="btn btn-primary answer card-success" id="known">{{_ "know"}}</button>
+                <button class="btn btn-raised btn-primary answer card-success" id="known">{{_ "know"}}</button>
             </div>
             <div class="btn-group" role="group">
-                <button class="btn btn-default answer card-fail" id="notknown">{{_ "notknow"}}</button>
+                <button class="btn btn-raised btn-default answer card-fail" id="notknown">{{_ "notknow"}}</button>
             </div>
         </div>
     {{/if}}
@@ -233,7 +233,7 @@
             {{#unless isLearningActive}}
                 <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
                 <br>
-                <a class="btn-back btn btn-default btn-s learn-back" id="endscreenBack">
+                <a class="btn-back btn-raised btn btn-default btn-s learn-back" id="endscreenBack">
                     <span>{{_ "learn-endscreen.back2"}}</span>
                 </a>
             {{/unless}}
