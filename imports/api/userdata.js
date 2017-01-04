@@ -186,7 +186,9 @@ Meteor.methods({
 				lastOnAt: new Date(),
 				daysInRow: 0,
 				earnedBadges: [],
-				selectedColorTheme: "1"
+				selectedColorTheme: "1",
+				mailNotification: 1,
+				webNotification: 0
 			}
 		});
 	},
