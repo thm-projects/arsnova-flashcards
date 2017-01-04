@@ -216,7 +216,9 @@
     "settings": {
       "name": "Profil",
       "delete": "Benutzerprofil löschen",
-      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen."
+      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen.",
+      "appearance": "Erscheinungsbild",
+      "theme": "Farbauswahl"
     }
   },
   "profil-header": {

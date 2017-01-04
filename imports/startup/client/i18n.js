@@ -11,7 +11,7 @@ getUserLanguage = function () {
 
 Meteor.startup(function () {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/serviceWorker.js').then().catch(error => console.log(error));
+		navigator.serviceWorker.register('/serviceWorker.js').then().catch(/*error => console.log(error)*/);
 	}
 	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
 

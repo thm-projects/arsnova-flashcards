@@ -10,6 +10,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import {Ratings} from "../../api/ratings.js";
+import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
@@ -21,6 +22,7 @@ Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {
 	Session.set('data_loaded', true);
 });
@@ -299,6 +301,18 @@ Template.profileSidebar.helpers({
  * ############################################################################
  */
 
+Template.profileSettings.helpers({
+	getColorThemes() {
+		return ColorThemes.find();
+	},
+	getSelectedColorThemes: function ()
+	{
+		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
+			return "selected";
+		}
+	}
+});
+
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true);
@@ -387,6 +401,23 @@ Template.profileSettings.events({
 			$('#profileSave')[0].disabled = true;
 			$('#profileCancel')[0].disabled = true;
 		}
+	},
+
+
+	"click #colorThemeSave": function () {
+		var selected = $('#colorThemeSelect').val();
+		var user_id = Meteor.userId();
+
+		//$('#colorThemeCancel')[0].disabled = true;
+		$('#colorThemeSave')[0].disabled = true;
+		Meteor.call("updateColorTheme", selected, user_id);
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+	},
+	"change #colorThemeSelect": function () {
+		var selected = $('#colorThemeSelect').val();
+		//$('#colorThemeCancel')[0].disabled = false;
+		$('#colorThemeSave')[0].disabled = false;
+		Session.set("theme", selected);
 	},
 	"click #profileSave": function () {
 		// Email validation
