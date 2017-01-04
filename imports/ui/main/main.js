@@ -19,6 +19,12 @@ Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
 
+$(document).on('click','.navbar-collapse.in',function (e) {
+	if ($(e.target).is('a')) {
+		$(this).collapse('hide');
+	}
+});
+
 Template.main.events({
 	'click #logout': function (event) {
 		event.preventDefault();
