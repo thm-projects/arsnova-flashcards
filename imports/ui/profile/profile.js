@@ -314,7 +314,7 @@ Template.profileSettings.helpers({
 
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
-	// Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
 });
 
 Template.profileSettings.events({
