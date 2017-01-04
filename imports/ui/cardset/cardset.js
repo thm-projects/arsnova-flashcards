@@ -55,7 +55,16 @@ function subscribeForPushNotification() {
 				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
 				const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
 				const endpoint = subscription.endpoint;
-				console.log("SUBSCRIPTION SUCCESSFULL", key, authSecret, endpoint);
+				const sub = {
+					endpoint: endpoint,
+					key: key,
+					authSecret: authSecret
+				};
+				Meteor.call("addWebPushSubscription", sub, function (error) {
+					if (error) {
+						throw new Meteor.Error(error.statusCode, 'Error subscription failed');
+					}
+				});
 			}
 		});
 }
