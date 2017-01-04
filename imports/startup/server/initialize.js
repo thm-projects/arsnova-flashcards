@@ -151,6 +151,5 @@ Meteor.startup(function () {
 			}
 		}
 	}
-
 	cronScheduler.startCron();
 });
