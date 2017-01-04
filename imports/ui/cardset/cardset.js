@@ -38,6 +38,27 @@ export function getActiveLearner() {
 	return (_.pluck(distinctData, "user_id").length);
 }
 
+function subscribeForPushNotification() {
+	navigator.serviceWorker.getRegistration()
+		.then(function (registration) {
+			return registration.pushManager.getSubscription()
+				.then(function (subscription) {
+					if (!subscription) {
+						return registration.pushManager.subscribe({userVisibleOnly: true});
+					}
+				});
+		})
+		.then(function (subscription) {
+			if (subscription) {
+				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+				const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+				const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+				const endpoint = subscription.endpoint;
+				console.log("SUBSCRIPTION SUCCESSFULL", key, authSecret, endpoint);
+			}
+		});
+}
 
 /**
  * ############################################################################
@@ -77,28 +98,6 @@ Template.cardset.rendered = function () {
 	}
 	subscribeForPushNotification();
 };
-
-function subscribeForPushNotification() {
-	navigator.serviceWorker.getRegistration()
-		.then(function (registration) {
-			return registration.pushManager.getSubscription()
-				.then(function (subscription) {
-					if (!subscription) {
-						return registration.pushManager.subscribe({userVisibleOnly: true});
-					}
-				});
-		})
-		.then(function (subscription) {
-			if (subscription) {
-				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
-				const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
-				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-				const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
-				const endpoint = subscription.endpoint;
-				console.log("SUBSCRIPTION SUCCESSFULL", key, authSecret, endpoint);
-			}
-		});
-}
 
 Template.cardset.helpers({
 
