@@ -13,6 +13,7 @@ import {Ratings} from "../../api/ratings.js";
 import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
+import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
 
