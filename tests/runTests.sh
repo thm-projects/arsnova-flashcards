@@ -29,9 +29,6 @@ failedTestsArray=()
 
 checkDirectory
 
-apt-get update
-apt-get --yes install firefox-esr xauth xvfb
-
 # step through any subdirectory of tests/features and
 # - restore meteor database
 # - run chimp
