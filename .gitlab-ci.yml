@@ -35,7 +35,7 @@ jsdoc:
    stage: build
    tags:
      - nodejs
-   dependencies: [jsdoc]
+   dependencies: []
    script:
     - jsdoc -c documentation/conf.json -d .jsdoc -r
 build:
