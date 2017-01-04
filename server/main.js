@@ -27,6 +27,7 @@ import "../imports/api/ratings.js";
 import "../imports/api/notifications.js";
 import "../imports/api/paid.js";
 import "../imports/api/adminSettings.js";
+import "../imports/api/webPushSubscriptions.js";
 
 // DATABASE ------------------------------------------------------
 

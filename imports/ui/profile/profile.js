@@ -16,7 +16,6 @@ import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
-
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
@@ -323,6 +322,11 @@ Template.profileSettings.helpers({
 	}
 });
 
+Template.profileSettings.onDestroyed(function () {
+	// Go back to last saved Theme
+	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+});
+
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true);
@@ -412,8 +416,6 @@ Template.profileSettings.events({
 			$('#profileCancel')[0].disabled = true;
 		}
 	},
-
-
 	"click #colorThemeSave": function () {
 		var selected = $('#colorThemeSelect').val();
 		var user_id = Meteor.userId();
@@ -425,6 +427,7 @@ Template.profileSettings.events({
 	"change #colorThemeSelect": function () {
 		var selected = $('#colorThemeSelect').val();
 		$('#colorThemeSave')[0].disabled = false;
+		// Set session variable. Will be reset to value from mongoDB when template is destroyed
 		Session.set("theme", selected);
 	},
 	"click #profileSave": function () {
