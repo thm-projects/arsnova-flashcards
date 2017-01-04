@@ -64,7 +64,7 @@ export class MailNotifier {
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset') + cardset.name + TAPi18n.__('mailNotification.subjectEnd');
 			text += cardset.name + TAPi18n.__('mailNotification.subjectEnd');
-			this.sendMail(this.getMail(user_id), subject, text);
+			this.sendMail(this.getMail(user_id), subject, text, cardset._id, "#3d9c19", "#328114");
 		}
 	}
 
@@ -73,9 +73,9 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var subject = TAPi18n.__('mailNotification.subjectReset') + cardset.name;
-			var text = TAPi18n.__('mailNotification.textIntro') + this.getName + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
+			var text = TAPi18n.__('mailNotification.textIntro') + this.getName(user_id) + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
 			text += this.getDeadline(cardset, user_id);
-			this.sendMail(this.getMail(user_id), subject, text);
+			this.sendMail(this.getMail(user_id), subject, text, cardset._id, "#d70000", "#a40000");
 		}
 	}
 
@@ -86,17 +86,23 @@ export class MailNotifier {
 			var subject = TAPi18n.__('mailNotification.subjectTitle') + TAPi18n.__('mailNotification.subjectEnding') + cardset.name;
 			var text = TAPi18n.__('mailNotification.textIntroEnding') + TAPi18n.__('mailNotification.textEnding') + cardset.name + TAPi18n.__('mailNotification.greetings');
 			for (var i = 0; i < learners.length; i++) {
-				this.sendMail(this.getMail(learners[i].user_id), subject, text, cardset._id);
+				this.sendMail(this.getMail(learners[i].user_id), subject, text, cardset._id, "#d70000", "#a40000");
 			}
 		}
 	}
 
-	sendMail (mail, subject, text, cardsetId) {
+	sendMail (mail, subject, text, cardsetId, titleColor, buttonColor) {
+		var datenschutz = TAPi18n.__('footer.datenschutz');
+		var agb = TAPi18n.__('footer.agb');
+		var impressum = TAPi18n.__('footer.impressum');
+		var service = TAPi18n.__('mailNotification.service');
+		var unsubscribe = TAPi18n.__('mailNotification.unsubscribe');
+		var copyright = TAPi18n.__('mailNotification.copyright');
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
-				var html = SSR.render("newsletter", {message: text, title: subject, id: cardsetId, url: Meteor.settings.public.rooturl});
+				var html = SSR.render("newsletter", {message: text, title: subject, id: cardsetId, url: Meteor.settings.public.rooturl, titlecolor: titleColor, btncol: buttonColor, datenschutz: datenschutz, impressum: impressum, agb: agb, service: service, unsubscribe: unsubscribe, copyright: copyright});
 				Email.send({
 					from: '',
 					to: mail,
