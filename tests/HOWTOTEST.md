@@ -21,7 +21,10 @@ Exit mongo shell
 #### Load the test data
     mongorestore -h 127.0.0.1 --port 3001 -d meteor tests/dump/meteor
 #### Run the tests
-    chimp --ddp=http://localhost:3000 --watch --path=tests
+    chimp --ddp=http://localhost:3000 --path=tests/features/yourDirectory
+    you can add --browser=firefox to run the test on the firefox browser, default browser is chrome
+    the ci test run uses firefox, due to chrome and phantomjs are not working in the server,
+    chrome stucks and phantom has problems with script injection from chimp
 
 #### Run all chimp tests
 In project root start meteor `meteor --settings settings_test.json`.

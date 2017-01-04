@@ -25,8 +25,12 @@ function checkDirectory
 exitVal=0
 successfulTests=0
 failedTests=0
+failedTestsArray=()
 
 checkDirectory
+
+apt-get update
+apt-get --yes install firefox-esr xauth xvfb
 
 # step through any subdirectory of tests/features and
 # - restore meteor database
@@ -45,16 +49,17 @@ for testDir in $searchDir; do
 		
 		# Restore the database
 		echo -e $GREEN"Restoring database ..." $NC
-		if ! mongorestore -h 127.0.0.1 --port 3001 -d meteor $dumpDir 1> /dev/null; then
+		if ! mongorestore --drop -h 127.0.0.1 --port 3001 -d meteor $dumpDir 1> /dev/null; then
 			echo -e $RED"mongorestore failed!" $NC
 			exit 2
 		fi
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		chimp --ddp=http://localhost:3000 --path=$testDir $1
+		xvfb-run --server-args="-screen 0 1920x1080x16" chimp --ddp=http://localhost:3000 --path=$testDir $1
 		if [ $? -ne 0 ]; then
 			failedTests=$((failedTests+1))
+			failedTestsArray+=("$testDir")
 			echo -e $RED"Chimp test failed!" $NC
 			exitVal=1
 		else
@@ -66,5 +71,9 @@ done
 echo -e $BLUE"Testing result:" $NC
 echo -e $GREEN"Successfull tests: $successfulTests" $NC
 echo -e $RED"Failed tests: $failedTests" $NC
+
+for test in $failedTestsArray; do
+	echo -e $RED $test $NC
+done
 
 exit $exitVal
