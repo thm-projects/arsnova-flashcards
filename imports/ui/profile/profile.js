@@ -609,7 +609,7 @@ Template.profileMembership.events({
 
 Template.profileMembership.helpers({
 	hasUserData: function () {
-		email = Meteor.user().email;
+		var email = Meteor.user().email;
 		return email !== "" && email !== undefined;
 	}
 });
