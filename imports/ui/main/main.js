@@ -19,6 +19,14 @@ Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
 
+// Check if user is logged in and load the selectedColorTheme
+Meteor.autorun(function () {
+    if (Meteor.userId()) {
+        // If there is no selectedColorTheme the Session var "theme" will stay NULL.
+        Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+    }
+});
+
 Template.main.events({
 	'click #logout': function (event) {
 		event.preventDefault();
@@ -57,6 +65,13 @@ Template.main.events({
 });
 
 Template.main.helpers({
+	getTheme: function () {
+        if (Session.get('theme')){
+            return "theme-" + Session.get("theme");
+		} else {
+        	return "theme-default";
+		}
+	},
 	getYear: function () {
 		return moment(new Date()).format("YYYY");
 	},

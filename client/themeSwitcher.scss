@@ -1,0 +1,148 @@
+/*
+ * This file is part of ARSnova Click.
+ * Copyright (C) 2016 The ARSnova Team
+ *
+ * ARSnova Click is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ARSnova Click is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ARSnova Click.  If not, see <http://www.gnu.org/licenses/>.*/
+
+@mixin theme($name) {
+
+	/* Google Material Design Color Palette */
+	$md_red_300: #e57373;
+	$md_red_500: #f44336;
+	$md_red_700: #d32f2f;
+	$md_red_accent: #d50000;
+
+	$md_pink_300: #F06292;
+	$md_pink_500: #e91e63;
+	$md_pink_700: #C2185B;
+	$md_pink_accent: #c51162;
+
+	$md_purple_300: #BA68C8;
+	$md_purple_500: #9C27B0;
+	$md_purple_700: #7B1FA2;
+	$md_purple_accent: #AA00FF;
+
+	$md_deep_purple_300: #9575CD;
+	$md_deep_purple_500: #673AB7;
+	$md_deep_purple_700: #512DA8;
+	$md_deep_purple_accent: #6200EA;
+
+	$md_indigo_300: #7986CB;
+	$md_indigo_500: #3F51B5;
+	$md_indigo_700: #303F9F;
+	$md_indigo_accent: #304FFE;
+
+	$md_blue_300: #64B5F6;
+	$md_blue_500: #2196F3;
+	$md_blue_700: #1976D2;
+	$md_blue_accent: #2962FF;
+
+	$md_light_blue_300: #4FC3F7;
+	$md_light_blue_500: #03A9F4;
+	$md_light_blue_700: #0288D1;
+	$md_light_blue_accent: #0091EA;
+
+	$md_cyan_300: #4DD0E1;
+	$md_cyan_500: #00BCD4;
+	$md_cyan_700: #0097A7;
+	$md_cyan_accent: #00B8D4;
+
+	$md_teal_300: #4db6ac;
+	$md_teal_500: #009688;
+	$md_teal_700: #00796b;
+	$md_teal_accent: #00BFA5;
+
+	$md_green_300: #81C784;
+	$md_green_500: #4CAF50;
+	$md_green_700: #388E3C;
+	$md_green_accent: #00C853;
+
+	$md_light_green_300: #AED581;
+	$md_light_green_500: #8BC34A;
+	$md_light_green_700: #689F38;
+	$md_light_green_accent: #64DD17;
+
+	$md_lime_300: #DCE775;
+	$md_lime_500: #CDDC39;
+	$md_lime_700: #AFB42B;
+	$md_lime_accent: #AEEA00;
+
+	$md_yellow_300: #FFF176;
+	$md_yellow_500: #FFEB3B;
+	$md_yellow_700: #FBC02D;
+	$md_yellow_accent: #FFD600;
+
+	$md_amber_300: #FFD54F;
+	$md_amber_500: #FFC107;
+	$md_amber_700: #FFA000;
+	$md_amber_accent: #FFAB00;
+
+	$md_orange_300: #FFB74D;
+	$md_orange_500: #FF9800;
+	$md_orange_700: #F57C00;
+	$md_orange_accent: #FF6D00;
+
+	$md_deep_orange_300: #FF8A65;
+	$md_deep_orange_500: #FF5722;
+	$md_deep_orange_700: #E64A19;
+	$md_deep_orange_accent: #DD2C00;
+
+	$md_brown_300: #A1887F;
+	$md_brown_500: #795548;
+	$md_brown_700: #5D4037;
+
+	$md_grey_300: #E0E0E0;
+	$md_grey_500: #9E9E9E;
+	$md_grey_700: #616161;
+
+	$md_blue_grey_300: #90A4AE;
+	$md_blue_grey_500: #607D8B;
+	$md_blue_grey_700: #455A64;
+
+	/* Global Colors defined on Material Design */
+	$theme_red: $md_red_accent;
+	$theme_orange: $md_deep_orange_500;
+	$theme_blue: $md_blue_500;
+	$theme_yellow: $md_yellow_500;
+	$theme_green: $md_green_accent;
+	$theme_gray: $md_grey_500;
+
+
+	$background-color: yellow;
+
+	@if ($name == "theme-default") {
+		$background-color: yellow;
+	}
+
+	@if ($name == "theme-1") {
+		$background-color: black;
+	}
+
+	@if ($name == "theme-2") {
+		$background-color: white;
+	}
+
+	.#{$name} {
+		background: $background-color;
+		-webkit-transition: background-color 800ms linear;
+		-moz-transition: background-color 800ms linear;
+		-o-transition: background-color 800ms linear;
+		-ms-transition: background-color 800ms linear;
+		transition: background-color 800ms linear;
+	} /* End of <body/> */
+} /* End of mixin declaration */
+
+@include theme(theme-default);
+@include theme(theme-1);
+@include theme(theme-2);

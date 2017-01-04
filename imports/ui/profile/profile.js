@@ -13,7 +13,6 @@ import {Ratings} from "../../api/ratings.js";
 import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
-import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
 
@@ -313,6 +312,11 @@ Template.profileSettings.helpers({
 	}
 });
 
+Template.profileSettings.onDestroyed(function () {
+	// Go back to last saved Theme
+    Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+});
+
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true);
@@ -402,8 +406,6 @@ Template.profileSettings.events({
 			$('#profileCancel')[0].disabled = true;
 		}
 	},
-
-
 	"click #colorThemeSave": function () {
 		var selected = $('#colorThemeSelect').val();
 		var user_id = Meteor.userId();
@@ -415,7 +417,8 @@ Template.profileSettings.events({
 	"change #colorThemeSelect": function () {
 		var selected = $('#colorThemeSelect').val();
 		$('#colorThemeSave')[0].disabled = false;
-		Session.set("theme", selected);
+		// Set session variable. Will be reset to value from mongoDB when template is destroyed
+        Session.set("theme", selected);
 	},
 	"click #profileSave": function () {
 		// Email validation
