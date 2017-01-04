@@ -418,7 +418,7 @@ Template.profileSettings.events({
 		var selected = $('#colorThemeSelect').val();
 		$('#colorThemeSave')[0].disabled = false;
 		// Set session variable. Will be reset to value from mongoDB when template is destroyed
-		// Session.set("theme", selected);
+		Session.set("theme", selected);
 	},
 	"click #profileSave": function () {
 		// Email validation

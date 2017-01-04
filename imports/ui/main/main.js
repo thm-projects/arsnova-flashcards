@@ -69,8 +69,8 @@ Template.main.events({
 
 Template.main.helpers({
 	getTheme: function () {
-        if (Session.get('theme')){
-            return "theme-" + Session.get("theme");
+		if (Session.get('theme')){
+			return "theme-" + Session.get("theme");
 		}
 	},
 	getYear: function () {
