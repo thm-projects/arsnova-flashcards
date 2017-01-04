@@ -24,10 +24,10 @@ Session.setDefault("theme", "default");
 
 // Check if user is logged in and load the selectedColorTheme
 Meteor.autorun(function () {
-    if (Meteor.userId()) {
-        // If there is no selectedColorTheme the Session var "theme" will stay NULL.
-        Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
-    }
+	if (Meteor.userId()) {
+		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
+		Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+	}
 });
 
 Template.main.events({

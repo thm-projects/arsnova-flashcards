@@ -16,7 +16,6 @@ import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
-
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
@@ -315,7 +314,7 @@ Template.profileSettings.helpers({
 
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
-    Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+	// Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
 });
 
 Template.profileSettings.events({
@@ -419,7 +418,7 @@ Template.profileSettings.events({
 		var selected = $('#colorThemeSelect').val();
 		$('#colorThemeSave')[0].disabled = false;
 		// Set session variable. Will be reset to value from mongoDB when template is destroyed
-        Session.set("theme", selected);
+		// Session.set("theme", selected);
 	},
 	"click #profileSave": function () {
 		// Email validation
