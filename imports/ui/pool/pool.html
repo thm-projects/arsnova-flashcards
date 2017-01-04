@@ -16,13 +16,13 @@
 <template name="category">
     <div class="buttonHeader">
         <div class="btn-group hidden-xs hidden-sm hidden-md" role="group" aria-label="Reset group">
-            <button class="resetFilters btn btn-default" id="resetBtn" role="button">
+            <button class="resetFilters btn btn-default btn-raised" id="resetBtn" role="button">
                 {{_ "set-list.reset"}} </button>
         </div>
         <nav class="navbar navbar-default">
             <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-default hidden-lg" id="resetBtn" role="button">{{_
+                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtn" role="button">{{_
                             "set-list.reset"}} </button>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
@@ -108,7 +108,7 @@
                                 {{/each}}
                             </ul>
                         </li>
-                        <li class="dropdown col-lg-2">
+                        <li class="dropdown col-lg-1">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 {{#if hasModuleFilter}}
@@ -131,14 +131,14 @@
                         </li>
                         <ul class="nav navbar-nav navbar-right">
                             <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
-                                 aria-label="License group" style="padding-top: 10px;">
-                                <label class="btn btn-default btn-info active">
+                                 aria-label="License group" style="padding-top: 20px;">
+                                <label class="btn btn-default btn-info btn-sm active">
                                     <input type="checkbox" autocomplete="off" value="free" checked=""> Free
                                 </label>
-                                <label class="btn btn-default btn-success active">
+                                <label class="btn btn-default btn-success btn-sm active">
                                     <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
                                 </label>
-                                <label class="btn btn-default btn-danger active">
+                                <label class="btn btn-default btn-danger btn-sm active">
                                     <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
                                 </label>
                             </div>

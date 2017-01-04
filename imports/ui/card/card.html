@@ -68,17 +68,17 @@
 
 <template name="btnCard">
     <div class="col-md-12">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group btn-group-raised btn-group-justified" role="group" aria-label="...">
             {{#if isEditMode}}
                 <div id="changeDeleteButton" class="btn-group" role="group">
                     <button id="cardDelete" class="btn btn-danger btn-large">{{_ "deletecard"}}</button>
                 </div>
             {{/if}}
-            <div class="btn-group" role="group">
+            <div class="btn-group btn-group-raised" role="group">
                 <button id="cardCancel" class="btn btn-default btn-large cancel"
                         onclick="history.go(-1)">{{_ "declinecard"}}</button>
             </div>
-            <div class="btn-group" role="group">
+            <div class="btn-group btn-group-raised" role="group">
                 <button id="cardSave" class="btn btn-success btn-large save" {{disableIfOffline}}>
                     {{_ "savecard"}}
                 </button>
