@@ -30,6 +30,9 @@ Meteor.autorun(function () {
 				Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
 			}
 		}
+	} else {
+		// When user logged out, go back to default Theme
+		Session.set('theme', "default");
 	}
 });
 
