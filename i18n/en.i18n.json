@@ -54,8 +54,9 @@
     "heading": "Tasks are waiting for you!",
     "content": "Cardset: ",
     "deadline": "\nDeadline: ",
-    "warning": "\n\nMissing the deadline will reset your learning-progress.",
-    "admin": "You're an admin!"
+    "warning": "\nMissing the deadline will reset your learning-progress.",
+    "admin": "You're an admin!",
+    "cards": "\nCards: "
   },
   "input-group": {
     "newcarddeck": "New deck of cards"

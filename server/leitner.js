@@ -4,7 +4,7 @@ import {Cardsets} from "../imports/api/cardsets.js";
 import {Learned} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
-
+import {WebNotifier} from "./sendwebpush.js";
 
 Meteor.methods({
 	addToLeitner: function (cardset) {
@@ -145,7 +145,8 @@ Meteor.methods({
 			}
 
 			if (!isNewUser && user.webNotification) {
-				Meteor.call("sendPushNotificationsToUser", user._id, "Yeah! Push Notifications!");
+				var web = new WebNotifier();
+				web.prepareWeb(cardset, user._id);
 			}
 		}
 	},
