@@ -19,7 +19,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset, Meteor.userId(), false, true);
+			Meteor.call("setCards", cardset, Meteor.user(), false, true);
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
