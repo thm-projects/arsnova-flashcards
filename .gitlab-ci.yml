@@ -31,7 +31,13 @@ sonar:
   dependencies: []
   script:
     - gradle sonarqube
-
+jsdoc:
+   stage: build
+   tags:
+     - nodejs
+   dependencies: [jsdoc]
+   script:
+    - jsdoc -c documentation/conf.json -d .jsdoc -r
 build:
   stage: build
   only:
