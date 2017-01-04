@@ -99,7 +99,7 @@
     "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
     "notification": "Benachrichtigungen",
     "mailNotificationCheckbox": "E-Mail",
-    "webNotificationCheckbox": "Browser",
+    "webNotificationCheckbox": "Web",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
   },
   "confirmEndLearn-form": {

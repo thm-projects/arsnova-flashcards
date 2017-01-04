@@ -23,7 +23,9 @@ if (Meteor.isServer) {
 						'earnedBadges': 1,
 						'customerId': 1,
 						'blockedtext': 1,
-						"selectedColorTheme": 1
+						"selectedColorTheme": 1,
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
@@ -49,7 +51,9 @@ if (Meteor.isServer) {
 						'lastOnAt': 1,
 						'daysInRow': 1,
 						'earnedBadges': 1,
-						'balance': 1
+						'balance': 1,
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else {
@@ -141,6 +145,18 @@ Meteor.methods({
 			}
 		});
 	},
+	updateUsersNotification: function (mail, web, id) {
+		check(mail, Boolean);
+		check(web, Boolean);
+		check(id, String);
+
+		Meteor.users.update(id, {
+			$set: {
+				mailNotification: mail,
+				webNotification: web
+			}
+		});
+	},
 	updateUsersProfileState: function (completed, id) {
 		check(completed, Boolean);
 		check(id, String);
@@ -173,7 +189,9 @@ Meteor.methods({
 				lastOnAt: new Date(),
 				daysInRow: 0,
 				earnedBadges: [],
-				selectedColorTheme: "1"
+				selectedColorTheme: "1",
+				mailNotification: 1,
+				webNotification: 0
 			}
 		});
 	},

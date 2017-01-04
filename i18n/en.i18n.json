@@ -102,7 +102,7 @@
     "mailNotificationRadio": "E-Mail",
     "webNotificationRadio": "Browser",
     "mailNotificationCheckbox": "E-Mail",
-    "webNotificationCheckbox": "Browser",
+    "webNotificationCheckbox": "Web",
     "notificationError": "Please choose at least one way of notification!"
   },
   "confirmEndLearn-form": {

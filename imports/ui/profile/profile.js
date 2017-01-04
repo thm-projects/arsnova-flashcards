@@ -310,6 +310,16 @@ Template.profileSettings.helpers({
 		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
 			return "selected";
 		}
+	},
+	getMailNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).mailNotification) {
+			return "checked";
+		}
+	},
+	getWebNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).webNotification) {
+			return "checked";
+		}
 	}
 });
 
@@ -486,21 +496,39 @@ Template.profileSettings.events({
 					validName = true;
 				}
 				if (validEmail && validName && validBirthName && validGivenName) {
-					$('#inputEmailValidation').val('');
-					$('#inputEmailValidationForm').addClass("hidden");
-					$('#profileSave')[0].disabled = true;
-					$('#profileCancel')[0].disabled = true;
-					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersBirthName", birthname, user_id);
-					Meteor.call("updateUsersGivenName", givenname, user_id);
-					Meteor.call("updateUsersProfileState", true, user_id);
-					Meteor.call("updateUsersName", result, user_id);
-					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+					var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+					var webNotification = document.getElementById('webNotificationCheckbox').checked;
+					if (mailNotification || webNotification) {
+						$('#inputEmailValidation').val('');
+						$('#inputEmailValidationForm').addClass("hidden");
+						$('#profileSave')[0].disabled = true;
+						$('#profileCancel')[0].disabled = true;
+						Meteor.call("updateUsersEmail", email);
+						Meteor.call("updateUsersBirthName", birthname, user_id);
+						Meteor.call("updateUsersGivenName", givenname, user_id);
+						Meteor.call("updateUsersProfileState", true, user_id);
+						Meteor.call("updateUsersName", result, user_id);
+						Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+					}
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
 				}
 			}
 		});
+	},
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
+		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+			document.getElementById('profileSave').disabled = true;
+			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
+		} else {
+			document.getElementById('profileSave').disabled = false;
+			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#errorNotification').html('');
+		}
 	},
 	"click #profileCancel": function () {
 		var user = Meteor.users.findOne(Meteor.userId());

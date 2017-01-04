@@ -850,24 +850,7 @@ Template.cardsetStartLearnForm.events({
 				}
 			}
 
-			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
-			var webNotification = document.getElementById('webNotificationCheckbox').checked;
-			if (mailNotification || webNotification) {
-				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
-			}
-		}
-	},
-	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
-		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
-			document.getElementById('confirmLearn').disabled = true;
-			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
-		} else {
-			document.getElementById('confirmLearn').disabled = false;
-			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#errorNotification').html('');
+			Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
 		}
 	},
 	"click #cancelLearn": function () {
@@ -879,8 +862,6 @@ Template.cardsetStartLearnForm.events({
 		$('#inputLearningInterval3').val(7);
 		$('#inputLearningInterval4').val(28);
 		$('#inputLearningInterval5').val(84);
-		document.getElementById('mailNotificationCheckbox').checked = true;
-		document.getElementById('webNotificationCheckbox').checked = true;
 	},
 	"input #inputMaxCards": function () {
 		if (parseInt($('#inputMaxCards').val()) <= 0) {

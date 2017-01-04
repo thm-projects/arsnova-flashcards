@@ -79,18 +79,6 @@ export class MailNotifier {
 		}
 	}
 
-	prepareMailEnded (cardset, learners) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			var subject = TAPi18n.__('mailNotification.subjectTitle') + TAPi18n.__('mailNotification.subjectEnding') + cardset.name;
-			var text = TAPi18n.__('mailNotification.textIntroEnding') + TAPi18n.__('mailNotification.textEnding') + cardset.name + TAPi18n.__('mailNotification.greetings');
-			for (var i = 0; i < learners.length; i++) {
-				this.sendMail(this.getMail(learners[i].user_id), subject, text, cardset._id, "#d70000", "#a40000");
-			}
-		}
-	}
-
 	sendMail (mail, subject, text, cardsetId, titleColor, buttonColor) {
 		var datenschutz = TAPi18n.__('footer.datenschutz');
 		var agb = TAPi18n.__('footer.agb');
