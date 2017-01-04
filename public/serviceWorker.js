@@ -95,12 +95,11 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('push', function (event) {
+	var payload = event.data ? event.data.text() : 'no payload';
 	event.waitUntil(
-		self.registration.showNotification('Title', {
-			lang: 'de',
-			body: 'Body',
-			icon: 'https://git.thm.de/uploads/project/avatar/374/cards_logo.png',
-			vibrate: [500, 100, 500],
+		self.registration.showNotification('THMcards', {
+			body: payload,
+			icon: 'https://git.thm.de/uploads/project/avatar/374/cards_logo.png'
 		})
 	);
 });
