@@ -94,5 +94,16 @@ self.addEventListener('fetch', (event) => {
 	);
 });
 
+self.addEventListener('push', function (event) {
+	event.waitUntil(
+		self.registration.showNotification('Title', {
+			lang: 'de',
+			body: 'Body',
+			icon: 'https://git.thm.de/uploads/project/avatar/374/cards_logo.png',
+			vibrate: [500, 100, 500],
+		})
+	);
+});
+
 // Service worker created by Ilan Schemoul alias NitroBAY as a specific Service Worker for Meteor
 // Please see https://github.com/NitroBAY/meteor-service-worker for the official project source
