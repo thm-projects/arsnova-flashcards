@@ -51,7 +51,9 @@ if (Meteor.isServer) {
 						'lastOnAt': 1,
 						'daysInRow': 1,
 						'earnedBadges': 1,
-						'balance': 1
+						'balance': 1,
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else {
@@ -144,7 +146,8 @@ Meteor.methods({
 		});
 	},
 	updateUsersNotification: function (mail, web, id) {
-		check(name, String);
+		check(mail, Boolean);
+		check(web, Boolean);
 		check(id, String);
 
 		Meteor.users.update(id, {

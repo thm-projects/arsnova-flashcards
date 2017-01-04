@@ -310,6 +310,16 @@ Template.profileSettings.helpers({
 		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
 			return "selected";
 		}
+	},
+	getMailNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).mailNotification) {
+			return "checked";
+		}
+	},
+	getWebNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).webNotification) {
+			return "checked";
+		}
 	}
 });
 
@@ -498,7 +508,7 @@ Template.profileSettings.events({
 						Meteor.call("updateUsersGivenName", givenname, user_id);
 						Meteor.call("updateUsersProfileState", true, user_id);
 						Meteor.call("updateUsersName", result, user_id);
-						Meteor.cal("updateUsersNotification", mailNotification, webNotification, user_id);
+						Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
 						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 					}
 				} else {
