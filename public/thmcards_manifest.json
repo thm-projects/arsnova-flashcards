@@ -32,5 +32,7 @@
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#ffffff",
-  "theme_color": "#3d9c19"
+  "theme_color": "#3d9c19",
+  "gcm_sender_id": "142354287038",
+  "gcm_user_visible_only": true
 }
