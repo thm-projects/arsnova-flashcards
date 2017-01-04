@@ -181,7 +181,7 @@ Meteor.methods({
 			}
 		}
 	},
-	disableLearning: function (cardset, learners) {
+	disableLearning: function (cardset) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -191,15 +191,6 @@ Meteor.methods({
 						active: false
 					}
 				}, {multi: true});
-			}
-			if (cardset.mailNotification) {
-				var mail = new MailNotifier();
-				mail.prepareMailEnded(cardset, learners);
-				Cardsets.update({_id: cardset._id}, {
-					$set: {
-						mailNotification: false
-					}
-				});
 			}
 		}
 	}
