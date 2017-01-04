@@ -143,6 +143,10 @@ Meteor.methods({
 					mail.prepareMail(cardset, user._id);
 				}
 			}
+
+			if (!isNewUser && user.webNotification) {
+				Meteor.call("sendPushNotificationsToUser", user._id, "Yeah! Push Notifications!");
+			}
 		}
 	},
 	resetCards: function (cardset, user_id) {
