@@ -135,6 +135,15 @@ Meteor.methods({
 				}
 			}
 
+			//always make sure that at least mailNotifications are checked
+			if (!user.mailNotification && !user.webNotification) {
+				Meteor.users.update(user._id, {
+					$set: {
+						mailNotification: true
+					}
+				});
+			}
+
 			if (!isNewUser && user.mailNotification && Meteor.call("mailsEnabled")) {
 				var mail = new MailNotifier();
 				if (isReset) {
