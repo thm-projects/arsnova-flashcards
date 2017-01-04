@@ -785,16 +785,19 @@
     "subjectEnding": "ends the learning-phase of the cardset ",
     "textIntroEnding": "Dear participant,\n\n",
     "textEnding": "Today ends the learning-phase of the cardset ",
-    "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
-    "textReset": "your learning-progress has been reset due to inactivity. ",
-    "mailCard" : "The cardset ",
-    "mailCard1" : "needs your attention!\n\n",
+    "subjectReset": "THMcards: Your learning-progress is going to be resetted for the cardset ",
+    "textReset": "your learning-progress has been resetted due to inactivity. ",
+    "mailCard" : "the cardset ",
+    "mailCard1" : " needs your attention!\n\n",
     "newCards1": "After checking your ongoing learning phase we recognized, that ",
     "textIntro": "Hello ",
     "textIntro1": ",\n\n it is time, to take a look at your cards!\n\n",
     "textDate1": "You got time till ",
-    "textDate2": "to work on your active cards. Otherwise your learning progress will be resetted!",
+    "textDate2": " to work on your active cards. Otherwise your learning progress will be resetted!",
     "subjectSingular3": " is.\n\n",
-    "subjectPlural3": " are.\n\n"
+    "subjectPlural3": " are.\n\n",
+    "service": "This newsletter is a Service from THMcards. You are receiving this email, because you signed up at ",
+    "unsubscribe": "Not interested anymore? To unsubscribe stop the current learning phase.",
+    "copyright": "© 2016 THMcards"
   }
 }
