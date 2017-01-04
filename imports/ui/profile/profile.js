@@ -408,14 +408,12 @@ Template.profileSettings.events({
 		var selected = $('#colorThemeSelect').val();
 		var user_id = Meteor.userId();
 
-		//$('#colorThemeCancel')[0].disabled = true;
 		$('#colorThemeSave')[0].disabled = true;
 		Meteor.call("updateColorTheme", selected, user_id);
 		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 	},
 	"change #colorThemeSelect": function () {
 		var selected = $('#colorThemeSelect').val();
-		//$('#colorThemeCancel')[0].disabled = false;
 		$('#colorThemeSave')[0].disabled = false;
 		Session.set("theme", selected);
 	},
@@ -611,7 +609,7 @@ Template.profileMembership.events({
 
 Template.profileMembership.helpers({
 	hasUserData: function () {
-		email = Meteor.user().email;
+		var email = Meteor.user().email;
 		return email !== "" && email !== undefined;
 	}
 });
