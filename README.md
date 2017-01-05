@@ -48,7 +48,11 @@ To start ARSnova Cards on localhost use `meteor --settings settings.json` inside
 - [Staging](http://cards-staging.mni.thm.de)
 - [Production](https://arsnova.cards)
 
+## Documentation 
+
+The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 
 ## Credits
+
 
 ARSnova Cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
