@@ -37,6 +37,11 @@ npm install
 
 Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
 
+### Automated User Acceptance Tests
+
+Make sure that the user acceptance tests are working.  
+For more information about user acceptance tests have a look at tests/HOWTOTEST.md [klick](tests/HOWTOTEST.md).
+
 ### Project structure
 
 Since Meteor is supporting ES6 (ES2015) we use the import/export statements to modularize the application.

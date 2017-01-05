@@ -29,6 +29,11 @@ failedTestsArray=()
 
 checkDirectory
 
+#######################################
+if [ $NODE_ENV -n ] ; then
+	SERVER_PREFIX='xvfb-run --server-args="-screen 0 1920x1080x16" '
+fi
+
 # step through any subdirectory of tests/features and
 # - restore meteor database
 # - run chimp
@@ -53,7 +58,7 @@ for testDir in $searchDir; do
 		
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		xvfb-run --server-args="-screen 0 1920x1080x16" chimp --ddp=http://localhost:3000 --path=$testDir $1
+		$SERVER_PREFIX chimp --ddp=http://localhost:3000 --path=$testDir $1
 		if [ $? -ne 0 ]; then
 			failedTests=$((failedTests+1))
 			failedTestsArray+=("$testDir")
@@ -74,3 +79,4 @@ for test in $failedTestsArray; do
 done
 
 exit $exitVal
+
