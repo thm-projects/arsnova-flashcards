@@ -30,6 +30,12 @@ ARSnova Cards is a digital recreation of a classic learning tool. The service of
 6. Create one plan with id "pro" and your preferred price (lowercase for Plan ID, Plan Name's should be "Pro")
 
 
+### Firebase setup (web push notifications)
+1. [Create a Firebase project](https://console.firebase.google.com/)
+2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
+3. Insert the key into `settings.json` (_private.FCM_API_KEY_)
+
+
 ## Getting Started
 
 To start ARSnova Cards on localhost use `meteor --settings settings.json` inside the repository. You can then access ARSnova Cards from your host machine by opening http://localhost:3000.
