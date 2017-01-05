@@ -3,7 +3,7 @@ Feature: Edit a card
 
   Background:
     Given User is on the poolview with username "testuser" (EaC)
-    And he is on the view of the cardset named --test-cards1-- (EaC)
+    And he is on the view of a cardset (EaC)
 
   Scenario: Edit card
     When the user clicks on the edit button of the first card

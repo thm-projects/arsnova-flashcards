@@ -1,12 +1,12 @@
 /* exported login */
 export function login(username) {
+	browser.waitForVisible('#TestingBackdorUsername',5000);
 	var SetUsername = function (name) {
 		$('#TestingBackdorUsername').val(name);
 	};
-	browser.waitForExist("#TestingBackdorUsername", 5000);
 	client.execute(SetUsername, username);
+	browser.waitForVisible('a[id="BackdoorLogin"]',5000);
 	browser.click('a[id="BackdoorLogin"]');
-	browser.pause(1000);
 }
 
 /* exported logout */

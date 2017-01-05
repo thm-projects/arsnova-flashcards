@@ -2,7 +2,6 @@ import {login, logout, setResolution, agreeCookies} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var sFront,sBack;
-	/*jshint unused:false*/
 	/**
 	 * ---------------------------------------------------------------------
 	 * Background
@@ -15,8 +14,13 @@ module.exports = function () {
 		agreeCookies();
 		browser.windowHandleSize();
 	});
-	this.Given(/^he is on the view of the cardset named \-\-test\-cards(\d+)\-\- \(EaC\)$/, function (arg1) {
-		browser.url('http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz');
+	this.Given(/^he is on the view of a cardset \(EaC\)$/, function () {
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
+		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
+		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
 		browser.waitForExist(".carousel-inner", 5000);
 	});
 	this.When(/^the user clicks on the edit button of the first card$/, function () {

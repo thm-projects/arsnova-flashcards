@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "./helper_functions"
+import {login, setResolution, agreeCookies} from "../helper_functions";
 module.exports = function () {
 	var countBeforeCreated = 0;
 	var countCards = 0;
@@ -9,14 +9,21 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.Given(/^User is on the poolview with username "([^"]*)"$/, function (arg1) {
-		browser.url('http://localhost:3000');
-		login("testuser");
+		if (browser.getUrl() != "http://localhost:3000") {
+			browser.url('http://localhost:3000');
+		}
+		login(arg1);
 		setResolution();
 		agreeCookies();
 		browser.windowHandleSize();
 	});
-	this.Given(/^he is on the view of the cardset named \-\-test\-cards(\d+)\-\-$/, function (arg1) {
-		browser.url('http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz');
+	this.Given(/^he is on the view of a cardset$/, function () {
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
+		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
+		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
 		browser.waitForExist(".carousel-inner", 5000);
 		countBeforeCreated = browser.elements(".carousel-inner > div").value.length;
 	});
@@ -41,7 +48,7 @@ module.exports = function () {
 	this.When(/^he enters a text for the back of the card$/, function () {
 		browser.setValue('#backEditor', 'BACKOFTHECARD');
 	});
-	this.When(/^he press on the "([^"]*)" button$/, function (arg1) {
+	this.When(/^he press on the save button$/, function () {
 		browser.waitForExist('#cardSave', 5000);
 		browser.click('#cardSave');
 	});
@@ -51,6 +58,7 @@ module.exports = function () {
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 	this.Then(/^the card should be saved$/, function () {
+		browser.waitForVisible(".carousel-inner > div",5000);
 		countCards = browser.elements(".carousel-inner > div").value.length;
 		expect(countBeforeCreated + 1).toEqual(countCards);
 	});
@@ -67,15 +75,16 @@ module.exports = function () {
 		expect(expectedFrontOfTheCard).toEqual(frontOfTheCard);
 	});
 	this.Then(/^he can go back and delete the card$/, function () {
+		browser.waitForVisible('#editCard',5000);
 		var editButton  = browser.elements('#editCard').value[countCards - 1];
-		editButton.waitForVisible(5000);
 		editButton.click();
+		browser.waitForVisible('#cardDelete',5000);
 		var deleteButton = browser.element('#cardDelete');
 		deleteButton.click();
 	});
 	this.Then(/^he have to confirm the delete process$/, function () {
+		browser.waitForVisible('#cardConfirm',5000);
 		var confirmDeleteButton = browser.element('#cardConfirm');
-		confirmDeleteButton.waitForVisible(5000);
 		confirmDeleteButton.click();
 	});
 	/**
@@ -91,6 +100,5 @@ module.exports = function () {
 		var currentUrl = browser.getUrl();
 		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz";
 		expect(currentUrl).toEqual(expectedUrl);
-		logout();
 	});
 };
