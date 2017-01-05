@@ -41,7 +41,10 @@ jsdoc:
   dependencies: []
   script:
     - npm install
-    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d .jsdoc-files -r
+    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d build/jsdoc -r
+  artifacts:
+    paths:
+      - build/jsdoc/
 
 build:
   stage: build
@@ -74,6 +77,7 @@ deploy_staging:
     - ssh
   dependencies:
     - build
+    - jsdoc
   script:
     - chmod -R a+rX,ug+w "build"
     - eval $(ssh-agent -s)
