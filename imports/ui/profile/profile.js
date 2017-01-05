@@ -301,9 +301,11 @@ Template.profileSidebar.helpers({
  */
 
 Template.profileSettings.helpers({
+	/** Function returns all colorThemes from the databse */
 	getColorThemes() {
 		return ColorThemes.find();
 	},
+	/** Function returns "selected" when the value of the selectedColorTheme and the input _id are the same */
 	getSelectedColorThemes: function ()
 	{
 		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
@@ -322,6 +324,7 @@ Template.profileSettings.helpers({
 	}
 });
 
+/** Function resets the temporary selected color theme */
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
@@ -416,6 +419,7 @@ Template.profileSettings.events({
 			$('#profileCancel')[0].disabled = true;
 		}
 	},
+	/** Function evaluates the currently selected color theme of the input box and saves it to the database */
 	"click #colorThemeSave": function () {
 		var selected = $('#colorThemeSelect').val();
 		var user_id = Meteor.userId();
@@ -424,6 +428,7 @@ Template.profileSettings.events({
 		Meteor.call("updateColorTheme", selected, user_id);
 		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
 	},
+	/** Function changes the temporary color theme when the input box changes its value */
 	"change #colorThemeSelect": function () {
 		var selected = $('#colorThemeSelect').val();
 		$('#colorThemeSave')[0].disabled = false;

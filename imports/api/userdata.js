@@ -319,6 +319,10 @@ Meteor.methods({
 		Meteor.users.update(Meteor.user()._id,
 			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
 	},
+	/** Function saves the given colorTheme to the given user
+	*  @param {string} selectedColorTheme - The id of the selected color theme
+	*  @param {string} id - The id of the user
+	* */
 	updateColorTheme: function (selectedColorTheme, id) {
 		check(selectedColorTheme, String);
 		check(id, String);

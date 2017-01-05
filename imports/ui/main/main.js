@@ -21,7 +21,7 @@ Meteor.subscribe("adminSettings");
 
 Session.setDefault("theme", "default");
 
-// Check if user is logged in and load the selectedColorTheme
+/** Function provides an reactive callback when a user loggs in and out */
 Meteor.autorun(function () {
 	if (Meteor.userId()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
@@ -82,7 +82,6 @@ Template.main.events({
 Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
-			console.log(Session.get("theme"));
 			return "theme-" + Session.get("theme");
 		}
 	},
