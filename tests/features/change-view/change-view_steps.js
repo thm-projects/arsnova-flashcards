@@ -18,6 +18,7 @@ module.exports = function () {
 
 	this.Given(/^change to cardset$/, function () {
 		// Write code here that turns the phrase above into concrete actions
+		browser.pause(2000);
 		browser.url('http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz');
 		browser.waitForExist('.cardsetInfo', 5000);
 	});

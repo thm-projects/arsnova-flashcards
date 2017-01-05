@@ -25,15 +25,15 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
+		browser.pause(2000);
 		browser.url('http://localhost:3000/created');
-		while (browser.elements('.cardsetRow').value.length === 0) {
-			browser.pause(500);
-		}
+		browser.waitForExist('.cardsetRow', 10000);
 		cardsetsBeforeCreated = browser.elements('.cardsetRow').value.length;
 	});
 
 	this.When(/^User clicks on the create cardset button$/, function () {
 		browser.click('#newCardSet');
+		browser.pause(2000);
 	});
 
 	this.Then(/^he is redirected to the new cardset form$/, function () {

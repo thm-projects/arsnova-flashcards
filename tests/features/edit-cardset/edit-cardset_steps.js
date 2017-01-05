@@ -23,6 +23,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
+		browser.pause(1000);
 		browser.url('http://localhost:3000/created');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);

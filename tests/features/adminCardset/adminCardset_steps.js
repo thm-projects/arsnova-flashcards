@@ -33,6 +33,7 @@ module.exports = function () {
 
 	this.Then(/^the cardset should not be in the list anymore$/, function () {
 		browser.waitForVisible("#cardsetConfirmModalAdmin", 5000, true);
+		browser.pause(1000);
 
 		var elements = browser.elements(".delete");
 		expect(elements.value.length - 1).toEqual(numberOfCardsets - 1);

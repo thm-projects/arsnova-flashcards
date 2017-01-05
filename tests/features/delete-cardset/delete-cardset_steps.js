@@ -13,6 +13,7 @@ module.exports = function () {
 		browser.windowHandleSize();
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
+		browser.pause(1000);
 		browser.url('http://localhost:3000/created');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
@@ -32,11 +33,11 @@ module.exports = function () {
 	});
 	this.Then(/^he should be able to press the delete cardset button$/, function () {
 		browser.click('#cardSetDelete');
-		browser.pause(500);
+		browser.pause(1000);
 	});
 	this.Then(/^he should be able to press the delete cardset button again to be sure$/, function () {
 		browser.click('#cardSetConfirm');
-		browser.pause(500);
+		browser.pause(1000);
 	});
 	this.Then(/^he should be returned to the my cardset view$/, function () {
 		browser.waitForVisible('#cardSetView', 5000);

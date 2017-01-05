@@ -21,6 +21,7 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I am on the cardset view of the testcardset$/, function () {
+		browser.pause(2000);
 		browser.url('http://localhost:3000/created');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
@@ -30,6 +31,7 @@ module.exports = function () {
 	});
 
 	this.When(/^I click the Button Letiner's learning box$/, function () {
+		browser.waitForExist('#learnBox', 10000);
 		browser.click('#learnBox');
 	});
 
@@ -40,6 +42,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^Box one contains two cards$/, function () {
+		browser.waitForExist('#subject1 span.badge', 10000);
 		var cards = browser.getText('#subject1 span.badge');
 		expect(cards).toBe("2");
 	});
@@ -60,6 +63,7 @@ module.exports = function () {
 		expect(cards).toBe("0");
 
 		logout();
+		browser.pause(2000);
 	});
 
 
@@ -69,6 +73,7 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I went to the box view of the testcardset$/, function () {
+		browser.pause(1000);
 		browser.url('http://localhost:3000/created');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
@@ -79,25 +84,30 @@ module.exports = function () {
 	});
 
 	this.When(/^I click on the Button Box one$/, function () {
+		browser.waitForExist('#subject1', 10000);
 		browser.click('#subject1');
 	});
 
 
 	this.Then(/^The frontside of first card is shown$/, function () {
+		browser.waitForExist('.front0 p', 10000);
 		var text = browser.getText('.front0 p');
 		expect(text).toBe("question1");
 	});
 
 	this.Then(/^I can click on the card$/, function () {
+		browser.waitForExist('#cardCarousel', 10000);
 		browser.click('#cardCarousel');
 	});
 
 	this.Then(/^The backside of the first card is shown$/, function () {
+		browser.waitForExist('.back0 p', 10000);
 		var text = browser.getText('.back0 p');
 		expect(text).toBe("answer1");
 	});
 
 	this.Then(/^I can click on the button Known$/, function () {
+		browser.waitForExist('#known', 10000);
 		browser.click('#known');
 	});
 
@@ -118,6 +128,7 @@ module.exports = function () {
 	/////////////////////////////////////////
 
 	this.When(/^I click the Button Memo$/, function () {
+		browser.waitForExist('#learnMemo', 10000);
 		browser.click('#learnMemo');
 	});
 
@@ -170,6 +181,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^I can click button three$/, function () {
+		browser.waitForExist('#memoRate3', 10000);
 		oldVal = browser.getText('.frontblock span p');
 		browser.click('#memoRate3');
 	});
