@@ -32,7 +32,6 @@ export class WebNotifier {
 		} else {
 			var notifier = new Notifications();
 			var message = TAPi18n.__('notifications.content') + cardset.name + TAPi18n.__('notifications.cards') + notifier.getActiveCardsCount(cardset._id, user_id) + this.getDeadline(cardset, user_id);
-			console.log(message);
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}
