@@ -34,6 +34,8 @@ sonar:
 
 jsdoc:
   stage: build
+  only:
+    - staging
   tags:
     - nodejs
   dependencies: []
@@ -78,6 +80,7 @@ deploy_staging:
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
+    - scp -r "build/jsdoc" "$NEW_STAGING_SSH_URL"
   environment: staging
 
 deploy_production:
