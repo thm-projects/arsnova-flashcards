@@ -1,7 +1,7 @@
 import {SyncedCron} from "meteor/percolate:synced-cron";
 
 export class CronScheduler {
-
+	/** Function starts a Cronjob which executs the leitner algorithm */
 	startCron () {
 		SyncedCron.add({
 			name: "leitnerCron",

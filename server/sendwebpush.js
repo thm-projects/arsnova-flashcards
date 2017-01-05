@@ -3,6 +3,11 @@ import {Learned} from "../imports/api/learned.js";
 
 export class WebNotifier {
 
+	/** Function returns the deadline text-message depending on if the deadline goes beyond the cardsets learning-phase
+	 *  @param {string} cardset_id - The id of the cardset
+	 *  @param {string} user_id - The id of the user
+	 *  @returns {string} - The deadline text-message
+	 * */
 	getDeadline (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -17,13 +22,16 @@ export class WebNotifier {
 		}
 	}
 
+	/** Function creates and sends the Web-Push payload message
+	 *  @param {Object} cardset - The cardset from the active learning-phase
+	 *  @param {string} user_id - The id of the user
+	 * */
 	prepareWeb (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
 			var message = TAPi18n.__('notifications.content') + cardset.name + TAPi18n.__('notifications.cards') + notifier.getActiveCardsCount(cardset._id, user_id) + this.getDeadline(cardset, user_id);
-			console.log(message);
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}

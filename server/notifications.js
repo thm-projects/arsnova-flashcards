@@ -1,6 +1,10 @@
 import {Learned} from "../imports/api/learned.js";
 
 export class Notifications {
+	/** Function returns the name of the user for the E-Mail and Web-Push notification text
+	 *  @param {string} user_id - The id of the user
+	 *  @returns {string} - The name of the user
+	 * */
 	getName (user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -10,6 +14,11 @@ export class Notifications {
 		}
 	}
 
+	/** Function returns the amount of cards that the user has to learn from the cardset
+	 *  @param {string} cardset_id - The id of the cardset from which to get the card count from
+	 *  @param {string} user_id - The id of the user
+	 *  @returns {number} - The amount of cards that the user has to learn from the cardset
+	 * */
 	getActiveCardsCount (cardset_id, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");

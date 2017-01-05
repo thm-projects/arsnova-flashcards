@@ -1,3 +1,11 @@
+/**
+ * @file Service worker created by Ilan Schemoul alias NitroBAY as a specific Service Worker for Meteor
+ * Please see {@link https://github.com/NitroBAY/meteor-service-worker} for the official project source
+ *
+ * Eventlistener added for web-push notifications
+ *
+ */
+
 const HTMLToCache = '/';
 const version = 'MSW V0.3';
 
@@ -94,6 +102,13 @@ self.addEventListener('fetch', (event) => {
 	);
 });
 
+/**
+ * push eventListener.
+ * shows a notification with the content of the push-event
+ *
+ * @param web-push notification event
+ * @listens push
+ */
 self.addEventListener('push', function (event) {
 	var payload = event.data ? event.data.text() : 'no payload';
 	event.waitUntil(
@@ -103,6 +118,3 @@ self.addEventListener('push', function (event) {
 		})
 	);
 });
-
-// Service worker created by Ilan Schemoul alias NitroBAY as a specific Service Worker for Meteor
-// Please see https://github.com/NitroBAY/meteor-service-worker for the official project source
