@@ -132,15 +132,5 @@ Template.main.helpers({
 
 Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
-
-	var user = Meteor.users.findOne({
-		_id: Meteor.userId(),
-		lvl: {
-			$exists: false
-		}
-	});
-
-	if (user !== undefined) {
-		Meteor.call("initUser");
-	}
+	Meteor.call("initUser");
 });

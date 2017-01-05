@@ -179,21 +179,32 @@ Meteor.methods({
 		return name;
 	},
 	initUser: function () {
-		Meteor.users.update(Meteor.user()._id, {
-			$set: {
-				visible: true,
-				email: "",
-				birthname: "",
-				givenname: "",
-				lvl: 1,
-				lastOnAt: new Date(),
-				daysInRow: 0,
-				earnedBadges: [],
-				selectedColorTheme: "1",
-				mailNotification: 1,
-				webNotification: 0
+		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+			var user = Meteor.users.findOne({
+				_id: Meteor.userId(),
+				lvl: {
+					$exists: true
+				}
+			});
+
+			if (user === undefined) {
+				Meteor.users.update(Meteor.user()._id, {
+					$set: {
+						visible: true,
+						email: "",
+						birthname: "",
+						givenname: "",
+						lvl: 1,
+						lastOnAt: new Date(),
+						daysInRow: 0,
+						earnedBadges: [],
+						selectedColorTheme: "1",
+						mailNotification: 1,
+						webNotification: 0
+					}
+				});
 			}
-		});
+		}
 	},
 	setUserAsLecturer: function (id) {
 		check(id, String);
