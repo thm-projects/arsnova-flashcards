@@ -38,8 +38,9 @@ jsdoc:
     - nodejs
   dependencies: []
   script:
+    - npm install
     - jsdoc -c documentation/conf.json -d .json -r
-    
+
 build:
   stage: build
   only:
