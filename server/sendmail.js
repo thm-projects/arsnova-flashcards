@@ -2,8 +2,15 @@ import {Email} from "meteor/email";
 import {Learned} from "../imports/api/learned.js";
 import {Notifications} from "./notifications.js";
 
-
+/**
+ * Class used for sending the newsletter mail
+ */
 export class MailNotifier {
+	/**
+	 * Gets the mail address of a user
+	 * @param {string} user_id - id of user
+	 * @return  mail address of user
+	 */
 	getMail (user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -13,6 +20,12 @@ export class MailNotifier {
 		}
 	}
 
+	/**
+	 * Returns the deadline text for the mail of a cardset
+	 * @param {Cardset} cardset -  The cardset
+	 * @param {string} user_id - id of user
+	 * @returns {string} deadline text
+	 */
 	getDeadline (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -27,6 +40,11 @@ export class MailNotifier {
 		}
 	}
 
+	/**
+	 * Prepares the notification mail for a cardset
+	 * @param {cardset} cardset - The cardset
+	 * @param {string} user_id - id of user
+	 */
 	prepareMail (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -49,6 +67,11 @@ export class MailNotifier {
 		}
 	}
 
+	/**
+	 * Prepares the reset mail for a cardset
+	 * @param {Cardset} cardset - The cardset
+	 * @param {string} user_id - id of user
+	 */
 	prepareMailReset (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
@@ -61,6 +84,15 @@ export class MailNotifier {
 		}
 	}
 
+	/**
+	 * Sends the newsletter to a user
+	 * @param {string} mail - Mail address of user
+	 * @param {string} subject - The mail subject
+	 * @param {string} text - The Mail content
+	 * @param {string} cardsetId - The id of the cardset for the link
+	 * @param {string} titleColor - The rgb color of the title background
+	 * @param {string} buttonColor - The rgb color of the button background
+	 */
 	sendMail (mail, subject, text, cardsetId, titleColor, buttonColor) {
 		var datenschutz = TAPi18n.__('footer.datenschutz', null, Meteor.settings.newsletterLanguage);
 		var agb = TAPi18n.__('footer.agb', null, Meteor.settings.newsletterLanguage);
