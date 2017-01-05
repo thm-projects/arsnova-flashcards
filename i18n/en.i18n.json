@@ -761,6 +761,11 @@
       "name_toShort": "Username must consist more than 4 letters!",
       "name_toLong": "Username must consist less than 26 letters!",
       "visible_invalid": "Profile must be public!"
+    },
+    "mail-settings": {
+      "mail-settings": "Mail settings",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
     }
   },
   "access-denied": {

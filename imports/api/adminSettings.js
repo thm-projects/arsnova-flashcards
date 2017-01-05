@@ -32,5 +32,20 @@ Meteor.methods({
 					seqThree: inv3
 				}
 			});
+	},
+	updateMailSettings: function (enableMails) {
+		check(enableMails, Boolean);
+
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		AdminSettings.upsert({
+			name: "mailSettings"
+		},
+		{
+			$set: {
+				enabled: enableMails
+			}
+		});
 	}
 });
