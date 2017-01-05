@@ -82,7 +82,6 @@ Template.main.events({
 Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
-			console.log(Session.get("theme"));
 			return "theme-" + Session.get("theme");
 		}
 	},
