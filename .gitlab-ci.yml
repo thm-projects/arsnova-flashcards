@@ -32,6 +32,15 @@ sonar:
   script:
     - gradle sonarqube
 
+jsdoc:
+  stage: build
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install
+    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d .jsdoc-files -r
+
 build:
   stage: build
   only:

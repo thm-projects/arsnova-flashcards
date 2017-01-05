@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./first_login.html";
 
-/**
+/*
  * ############################################################################
  * first_login_content_only
  * ############################################################################
