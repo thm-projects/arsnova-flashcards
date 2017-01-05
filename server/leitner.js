@@ -195,7 +195,7 @@ Meteor.methods({
 			}
 		}
 	},
-	mailsEnabled: function() {
+	mailsEnabled: function () {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
