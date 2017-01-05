@@ -22,7 +22,6 @@ Meteor.methods({
 					auth: sub.authSecret
 				}
 			};
-			console.log(subscription);
 			webPush.sendNotification(subscription, message);
 		});
 	}
