@@ -34,12 +34,17 @@ sonar:
 
 jsdoc:
   stage: build
+  only:
+    - staging
   tags:
     - nodejs
   dependencies: []
   script:
     - npm install
-    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d .jsdoc-files -r
+    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d build/jsdoc -r
+  artifacts:
+    paths:
+      - build/jsdoc/
 
 build:
   stage: build
@@ -72,12 +77,14 @@ deploy_staging:
     - ssh
   dependencies:
     - build
+    - jsdoc
   script:
     - chmod -R a+rX,ug+w "build"
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
+    - scp -r "build/jsdoc" "$NEW_STAGING_SSH_URL"
   environment: staging
 
 deploy_production:
