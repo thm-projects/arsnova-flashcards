@@ -1,23 +1,15 @@
 import {Email} from "meteor/email";
 import {Learned} from "../imports/api/learned.js";
+import {Notifications} from "./notifications.js";
+
 
 export class MailNotifier {
-
 	getMail (user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var user = Meteor.users.find({_id: user_id}).fetch();
 			return user[0].email;
-		}
-	}
-
-	getName (user_id) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			var user = Meteor.users.find({_id: user_id}).fetch();
-			return user[0].profile.name;
 		}
 	}
 
@@ -35,25 +27,14 @@ export class MailNotifier {
 		}
 	}
 
-	getActiveCardsCount (cardset_id, user_id) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			return Learned.find({
-				cardset_id: cardset_id,
-				user_id: user_id,
-				active: true
-			}).count();
-		}
-	}
-
 	prepareMail (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var cards = this.getActiveCardsCount(cardset._id, user_id);
+			var notifier = new Notifications();
+			var cards = notifier.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectTitle');
-			var text = TAPi18n.__('mailNotification.textIntro') + this.getName(user_id) + TAPi18n.__('mailNotification.textIntro1') + TAPi18n.__('mailNotification.newCards1');
+			var text = TAPi18n.__('mailNotification.textIntro') + notifier.getName(user_id) + TAPi18n.__('mailNotification.textIntro1') + TAPi18n.__('mailNotification.newCards1');
 
 			if (cards === 1) {
 				subject += TAPi18n.__('mailNotification.subjectSingular1') + cards + TAPi18n.__('mailNotification.subjectSingular2');
@@ -72,8 +53,9 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
+			var notifier = new Notifications();
 			var subject = TAPi18n.__('mailNotification.subjectReset') + cardset.name;
-			var text = TAPi18n.__('mailNotification.textIntro') + this.getName(user_id) + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
+			var text = TAPi18n.__('mailNotification.textIntro') + notifier.getName(user_id) + "\n\n" + TAPi18n.__('mailNotification.mailCard') + cardset.name + TAPi18n.__('mailNotification.mailCard1') + "\n\n";
 			text += this.getDeadline(cardset, user_id);
 			this.sendMail(this.getMail(user_id), subject, text, cardset._id, "#d70000", "#a40000");
 		}

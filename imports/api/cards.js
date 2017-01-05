@@ -31,6 +31,17 @@ if (Meteor.isServer) {
 						})
 					}
 				});
+			} else if (Roles.userIsInRole(this.userId, 'university')) {
+				return Cards.find({
+					cardset_id: {
+						$in: Cardsets.find({
+							visible: true,
+							kind: {$in: ['free', 'edu']}
+						}).map(function (cardset) {
+							return cardset._id;
+						})
+					}
+				});
 			} else {
 				return Cards.find({
 					$or: [

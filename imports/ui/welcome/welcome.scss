@@ -30,6 +30,11 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
         margin-right: 0;
       }
     }
+    @media screen and (max-width: 320px){
+      img {
+        padding-bottom: 14px;
+      }
+    }
   }
 
 }

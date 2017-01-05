@@ -68,12 +68,18 @@ server/
 
 Sadly, some editors still do not have UTF-8 as their default setting. Using the wrong encoding will destroy non-ASCII characters like french quotation marks or umlauts.
 
+### Documenting your code
+
+We use [JSDoc](https://github.com/jsdoc3/jsdoc) with the [DocStrap](https://github.com/docstrap/docstrap) template to document our code! For more information, you can visit
+the [Wiki-Page](https://git.thm.de/arsnova/flashcards/wikis/code-documentation-with-jsdoc).
+
 ### Summary
 
 It all comes down to
 
 * reviewing your own changes,
 * keeping your commits clean and focused,
+* documenting your code,
 * and always staying up to date.
 
 If you keep these things in mind, your merge requests will be accepted much faster. Happy coding!

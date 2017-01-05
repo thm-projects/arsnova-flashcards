@@ -2,8 +2,9 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../imports/api/cards.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 import {Learned} from "../imports/api/learned.js";
+import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
-
+import {WebNotifier} from "./sendwebpush.js";
 
 Meteor.methods({
 	addToLeitner: function (cardset) {
@@ -19,7 +20,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset, Meteor.userId(), false, true);
+			Meteor.call("setCards", cardset, Meteor.user(), false, true);
 		}
 	},
 	getActiveCard: function (cardset_id, user) {
@@ -134,13 +135,27 @@ Meteor.methods({
 				}
 			}
 
-			if (!isNewUser && user.mailNotification) {
+			//always make sure that at least mailNotifications are checked for the user
+			if (!user.mailNotification && !user.webNotification) {
+				Meteor.users.update(user._id, {
+					$set: {
+						mailNotification: true
+					}
+				});
+			}
+
+			if (!isNewUser && user.mailNotification && Meteor.call("mailsEnabled")) {
 				var mail = new MailNotifier();
 				if (isReset) {
 					mail.prepareMailReset(cardset, user._id);
 				} else {
 					mail.prepareMail(cardset, user._id);
 				}
+			}
+
+			if (!isNewUser && user.webNotification) {
+				var web = new WebNotifier();
+				web.prepareWeb(cardset, user._id);
 			}
 		}
 	},
@@ -192,6 +207,13 @@ Meteor.methods({
 					}
 				}, {multi: true});
 			}
+		}
+	},
+	mailsEnabled: function () {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			return AdminSettings.findOne({name: "mailSettings"}).enabled;
 		}
 	}
 });

@@ -21,7 +21,7 @@ Meteor.subscribe("adminSettings");
 
 Session.setDefault("theme", "default");
 
-// Check if user is logged in and load the selectedColorTheme
+/** Function provides an reactive callback when a user loggs in and out */
 Meteor.autorun(function () {
 	if (Meteor.userId()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
@@ -33,6 +33,12 @@ Meteor.autorun(function () {
 	} else {
 		// When user logged out, go back to default Theme
 		Session.set('theme', "default");
+	}
+});
+
+$(document).on('click','.navbar-collapse.in',function (e) {
+	if ($(e.target).is('a')) {
+		$(this).collapse('hide');
 	}
 });
 
@@ -76,7 +82,6 @@ Template.main.events({
 Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
-			console.log(Session.get("theme"));
 			return "theme-" + Session.get("theme");
 		}
 	},
@@ -126,15 +131,5 @@ Template.main.helpers({
 
 Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
-
-	var user = Meteor.users.findOne({
-		_id: Meteor.userId(),
-		lvl: {
-			$exists: false
-		}
-	});
-
-	if (user !== undefined) {
-		Meteor.call("initUser");
-	}
+	Meteor.call("initUser");
 });
