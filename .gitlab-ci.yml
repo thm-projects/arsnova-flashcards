@@ -39,7 +39,7 @@ jsdoc:
   dependencies: []
   script:
     - npm install
-    - jsdoc -c documentation/conf.json -d .json -r
+    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d .jsdoc-files -r
 
 build:
   stage: build
