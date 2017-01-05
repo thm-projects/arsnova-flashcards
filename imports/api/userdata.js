@@ -199,8 +199,8 @@ Meteor.methods({
 						daysInRow: 0,
 						earnedBadges: [],
 						selectedColorTheme: "1",
-						mailNotification: 1,
-						webNotification: 0
+						mailNotification: true,
+						webNotification: false
 					}
 				});
 			}
