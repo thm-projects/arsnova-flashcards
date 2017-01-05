@@ -1,6 +1,9 @@
 import {Notifications} from "./notifications.js";
 import {Learned} from "../imports/api/learned.js";
 
+/**
+ * Class used for generating the text of web-push notifications
+ */
 export class WebNotifier {
 
 	/** Function returns the deadline text-message depending on if the deadline goes beyond the cardsets learning-phase

@@ -1,5 +1,8 @@
 import {Learned} from "../imports/api/learned.js";
 
+/**
+ * Class used for generating text of mail and web-push messages
+ */
 export class Notifications {
 	/** Function returns the name of the user for the E-Mail and Web-Push notification text
 	 *  @param {string} user_id - The id of the user
