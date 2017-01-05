@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../imports/api/cards.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 import {Learned} from "../imports/api/learned.js";
+import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 
 
@@ -134,7 +135,7 @@ Meteor.methods({
 				}
 			}
 
-			if (!isNewUser && user.mailNotification) {
+			if (!isNewUser && user.mailNotification && Meteor.call("mailsEnabled")) {
 				var mail = new MailNotifier();
 				if (isReset) {
 					mail.prepareMailReset(cardset, user._id);
@@ -192,6 +193,13 @@ Meteor.methods({
 					}
 				}, {multi: true});
 			}
+		}
+	},
+	mailsEnabled: function() {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			return AdminSettings.findOne({name: "mailSettings"}).enabled;
 		}
 	}
 });

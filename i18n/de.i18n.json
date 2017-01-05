@@ -758,6 +758,11 @@
       "name_toShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
       "name_toLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
+    },
+    "mail-settings": {
+      "mail-settings": "Mail Einstellungen",
+      "enabled": "Aktiviert",
+      "disabled": "Deaktiviert"
     }
   },
   "access-denied": {
