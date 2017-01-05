@@ -38,6 +38,12 @@ export function getActiveLearner() {
 	return (_.pluck(distinctData, "user_id").length);
 }
 
+/**
+ * Creates a web push subscription for the current device.
+ * The Browser ask the user for permissions and creates the subscription.
+ * Afterwards the subscription will be saved for the current user via the
+ * Meteor-method addWebPushSubscription.
+ */
 function subscribeForPushNotification() {
 	navigator.serviceWorker.getRegistration()
 		.then(function (registration) {
