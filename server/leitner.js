@@ -135,7 +135,7 @@ Meteor.methods({
 				}
 			}
 
-			//always make sure that at least mailNotifications are checked
+			//always make sure that at least mailNotifications are checked for the user
 			if (!user.mailNotification && !user.webNotification) {
 				Meteor.users.update(user._id, {
 					$set: {
