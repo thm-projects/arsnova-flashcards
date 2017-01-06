@@ -23,7 +23,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", card.cardset_id, card._id);
 			});
-			Meteor.call("setCards", cardset, Meteor.user(), false, true);
+			Meteor.call("setCards", cardset, Meteor.user(), false);
 		}
 	},
 	/** Function returns the cards marked as active from an user in an active learning-phase
@@ -101,9 +101,8 @@ Meteor.methods({
 	 *  @param {Object} cardset - The cardset from the active learning-phase
 	 *  @param {Object} user - The user from the cardset of the active learning-phase
 	 *  @param {boolean} isReset - Sends a special notification if the card selection got called by missing the deadline
-	 *  @param {boolean} isNewUser - Skip sending a notification if the user just entered the learning-phase
 	 * */
-	setCards: function (cardset, user, isReset, isNewUser) {
+	setCards: function (cardset, user, isReset) {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -173,7 +172,7 @@ Meteor.methods({
 				});
 			}
 
-			if (!isNewUser && user.mailNotification && Meteor.call("mailsEnabled")) {
+			if (user.mailNotification && Meteor.call("mailsEnabled")) {
 				var mail = new MailNotifier();
 				if (isReset) {
 					mail.prepareMailReset(cardset, user._id);
@@ -182,7 +181,7 @@ Meteor.methods({
 				}
 			}
 
-			if (!isNewUser && user.webNotification) {
+			if (user.webNotification) {
 				var web = new WebNotifier();
 				web.prepareWeb(cardset, user._id);
 			}
@@ -204,7 +203,7 @@ Meteor.methods({
 					currentDate: new Date()
 				}
 			}, {multi: true});
-			Meteor.call("setCards", cardset, user_id, true, false);
+			Meteor.call("setCards", cardset, user_id, true);
 		}
 	},
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
@@ -219,7 +218,7 @@ Meteor.methods({
 					for (var k = 0; k < learners.length; k++) {
 						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
 						if (!activeCard) {
-							Meteor.call("setCards", cardsets[i], learners[k], false, false);
+							Meteor.call("setCards", cardsets[i], learners[k], false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
 						}
