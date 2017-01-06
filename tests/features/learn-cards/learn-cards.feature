@@ -2,12 +2,11 @@ Feature: Learn Cards
 
   As a user i would like to learn cardsets with "Leitners memo box" or "Memo" method.
   
-Background:
+
+  Scenario: Go to "Leitners memo box"
     Given User is on the site
     And User is logged in
-    
-  Scenario: Go to "Leitners memo box"
-    Given I am on the cardset view of the testcardset
+    And I am on the cardset view of the testcardset
     When I click the Button Letiner's learning box
     Then I am on the box view of the testcardset
     And Box one contains two cards

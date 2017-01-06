@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "../helper_functions.js";
+import {login, setResolution, agreeCookies} from "../helper_functions.js";
 
 module.exports = function () {
 	'use strict';
@@ -12,6 +12,8 @@ module.exports = function () {
 		agreeCookies();
 		setResolution();
 		browser.windowHandleSize();
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
 	});
 
 
@@ -21,8 +23,8 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I am on the cardset view of the testcardset$/, function () {
-		browser.pause(2000);
-		browser.url('http://localhost:3000/created');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
 		browser.click('#cardSetView tr:nth-child(1) td a');
@@ -31,7 +33,7 @@ module.exports = function () {
 	});
 
 	this.When(/^I click the Button Letiner's learning box$/, function () {
-		browser.waitForExist('#learnBox', 10000);
+		browser.waitForVisible('#learnBox', 10000);
 		browser.click('#learnBox');
 	});
 
@@ -48,6 +50,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^Boxes two to five contain zero cards$/, function () {
+		browser.waitForExist('#subject5 span.badge',5000);
 		var cards = browser.getText('#subject2 span.badge');
 		expect(cards).toBe("0");
 		cards = browser.getText('#subject3 span.badge');
@@ -59,11 +62,9 @@ module.exports = function () {
 	});
 
 	this.Then(/^Learned contains zero cards$/, function () {
+		browser.waitForExist('#learned_card span.badge',5000);
 		var cards = browser.getText('#learned_card span.badge');
 		expect(cards).toBe("0");
-
-		logout();
-		browser.pause(2000);
 	});
 
 
@@ -73,18 +74,20 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I went to the box view of the testcardset$/, function () {
-		browser.pause(1000);
-		browser.url('http://localhost:3000/created');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
+		browser.waitForVisible('#cardSetView tr:nth-child(1) td a',5000);
 		browser.click('#cardSetView tr:nth-child(1) td a');
 		bool = browser.waitForVisible('#learnBox', 15000);
 		expect(bool).toBe(true);
+		browser.waitForVisible('#learnBox',5000);
 		browser.click('#learnBox');
 	});
 
 	this.When(/^I click on the Button Box one$/, function () {
-		browser.waitForExist('#subject1', 10000);
+		browser.waitForVisible('#subject1', 10000);
 		browser.click('#subject1');
 	});
 
@@ -96,7 +99,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^I can click on the card$/, function () {
-		browser.waitForExist('#cardCarousel', 10000);
+		browser.waitForVisible('#cardCarousel', 10000);
 		browser.click('#cardCarousel');
 	});
 
@@ -107,17 +110,13 @@ module.exports = function () {
 	});
 
 	this.Then(/^I can click on the button Known$/, function () {
-		browser.waitForExist('#known', 10000);
+		browser.waitForVisible('#known', 10000);
 		browser.click('#known');
 	});
 
 	this.Then(/^Box (\d+) contains one card$/, function (arg1) {
 		var cards = browser.getText('#subject' + arg1 + ' span.badge');
 		expect(cards).toBe("1");
-
-		if (arg1 == 2) {
-			logout();
-		}
 	});
 
 
@@ -128,7 +127,7 @@ module.exports = function () {
 	/////////////////////////////////////////
 
 	this.When(/^I click the Button Memo$/, function () {
-		browser.waitForExist('#learnMemo', 10000);
+		browser.waitForVisible('#learnMemo', 10000);
 		browser.click('#learnMemo');
 	});
 
@@ -141,8 +140,6 @@ module.exports = function () {
 	this.Then(/^The button Show answer is shown$/, function () {
 		var button = browser.isExisting('#memoShowAnswer');
 		expect(button).toBe(true);
-
-		logout();
 	});
 
 
@@ -156,6 +153,7 @@ module.exports = function () {
 
 
 	this.Then(/^I can click on the Button Show answer$/, function () {
+		browser.waitForVisible('#memoShowAnswer',5000);
 		browser.click('#memoShowAnswer');
 	});
 
@@ -181,16 +179,16 @@ module.exports = function () {
 	});
 
 	this.Then(/^I can click button three$/, function () {
-		browser.waitForExist('#memoRate3', 10000);
+		browser.waitForVisible('#memoRate3', 10000);
+		browser.waitForExist('.frontblock span p',5000);
 		oldVal = browser.getText('.frontblock span p');
 		browser.click('#memoRate3');
 	});
 
 	this.Then(/^The next card is shown$/, function () {
+		browser.waitForExist('.frontblock span p',5000);
 		var same = oldVal == browser.getText('.frontblock span p');
 		expect(same).toBe(false);
-
-		logout();
 	});
 };
 

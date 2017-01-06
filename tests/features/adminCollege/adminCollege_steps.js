@@ -12,18 +12,22 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForExist("#adminpanel", 5000);
-		browser.url('http://localhost:3000/admin/dashboard');
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible("#adminpanel", 5000);
+		browser.click("#adminpanel");
 	});
 
 	this.When(/^user goes to the menu item college$/, function () {
-		browser.url('http://localhost:3000/admin/settings');
+		browser.waitForVisible("a[href='/admin/university']",5000);
+		browser.click("a[href='/admin/university']");
 	});
 
 	this.When(/^user creates a new college and course$/, function () {
 		browser.waitForExist('#college', 5000);
 		browser.setValue('#college', 'THM');
 		browser.setValue('#courseOfStudies', 'MSP');
+		browser.waitForVisible('#insertButton');
 		browser.click("#insertButton");
 	});
 

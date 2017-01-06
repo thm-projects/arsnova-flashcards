@@ -23,8 +23,10 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.pause(1000);
-		browser.url('http://localhost:3000/created');
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
 	});
@@ -46,7 +48,6 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
-		// Warten bis Text eingetippt wird
 		browser.waitUntil(function () {
 			browser.setValue('#editSetName', title);
 			return browser.getValue('#editSetName') === title;
@@ -81,16 +82,19 @@ module.exports = function () {
 		}, 5000, 'expected text to be different after 5s');
 	});
 	this.Then(/^he should be able to edit the college$/, function () {
+		browser.waitForVisible('#editSetCollege',5000);
 		browser.click('#editSetCollege');
 		browser.waitForVisible('li[data="' + college + '"] a', 5000);
 		browser.click('li[data="' + college + '"] a');
 	});
 	this.Then(/^he should be able to edit the course$/, function () {
+		browser.waitForVisible('#editSetCourse',5000);
 		browser.click('#editSetCourse');
 		browser.waitForVisible('li[data="' + course + '"] a', 5000);
 		browser.click('li[data="' + course + '"] a');
 	});
 	this.Then(/^he should press the save deck of cards button$/, function () {
+		browser.waitForVisible('#cardSetSave',5000);
 		browser.click('#cardSetSave');
 	});
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
@@ -98,13 +102,18 @@ module.exports = function () {
 			console.log(browser.isExisting('.modal-open'));
 			return browser.isExisting('.modal-open') === false;
 		}, 5000, 'expected text to be different after 5s');
+		browser.waitForVisible('#editCardset',5000);
 		browser.click('#editCardset');
 		browser.waitForVisible('#editSetName', 5000);
-
+		browser.waitForExist('#editSetName',5000);
 		expect(browser.elements('#editSetName').getAttribute("value")).toBe(title);
+		browser.waitForExist('#editSetDescription',5000);
 		expect(browser.elements('#editSetDescription').getAttribute("value")).toBe(description);
+		browser.waitForExist('#editSetModule',5000);
 		expect(browser.elements('#editSetModule').getAttribute("value")).toBe(module);
+		browser.waitForExist('#editSetModuleShort',5000);
 		expect(browser.elements('#editSetModuleShort').getAttribute("value")).toBe(moduleInitials);
+		browser.waitForExist('#editSetModuleNum',5000);
 		expect(browser.elements('#editSetModuleNum').getAttribute("value")).toBe(moduleID);
 
 		browser.click('#cardSetCancel');
@@ -112,4 +121,3 @@ module.exports = function () {
 		logout();
 	});
 };
-

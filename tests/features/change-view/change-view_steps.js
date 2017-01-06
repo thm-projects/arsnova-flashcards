@@ -17,39 +17,38 @@ module.exports = function () {
 	});
 
 	this.Given(/^change to cardset$/, function () {
-		// Write code here that turns the phrase above into concrete actions
-		browser.pause(2000);
-		browser.url('http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz');
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
+		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
+		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
 		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {
-		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
 	this.Then(/^they change the view to cardlist$/, function () {
-		// Write code here that turns the phrase above into concrete actions
+		browser.waitForVisible('#btnToListLayout',5000);
 		browser.click('#btnToListLayout');
 	});
 
 	this.Then(/^they see the cardlist$/, function () {
-		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('#set-details-region', 5000);
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {
-		// Write code here that turns the phrase above into concrete actions
+		browser.waitForVisible('#btnToCardLayout',5000);
 		browser.click('#btnToCardLayout');
 	});
 
 	this.Then(/^they se cardset again$/, function () {
-		// Write code here that turns the phrase above into concrete actions
 		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
 	this.Then(/^they log out$/, function () {
-		// Write code here that turns the phrase above into concrete actions
 		logout();
 	});
 };

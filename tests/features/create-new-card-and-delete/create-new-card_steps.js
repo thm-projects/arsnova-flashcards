@@ -64,13 +64,16 @@ module.exports = function () {
 	});
 	this.Then(/^the last card should be the new created one$/, function () {
 		var wf = ".detailfront" + countBeforeCreated;
+
 		var selectorFront = wf + " > p";
 
 		browser.waitForExist(wf,5000);
+		browser.waitForExist(selectorFront,5000);
+		browser.waitForVisible('#leftCarouselControl');
 		browser.click('#leftCarouselControl');
-		browser.waitForVisible(wf);
 
 		var expectedFrontOfTheCard = "FRONTOFTHECARD";
+		browser.waitForVisible(selectorFront);
 		var frontOfTheCard = browser.getText(selectorFront);
 		expect(expectedFrontOfTheCard).toEqual(frontOfTheCard);
 	});

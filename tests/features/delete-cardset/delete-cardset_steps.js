@@ -13,8 +13,10 @@ module.exports = function () {
 		browser.windowHandleSize();
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.pause(1000);
-		browser.url('http://localhost:3000/created');
+		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
+		browser.click('a.cc_btn.cc_btn_accept_all');
+		browser.waitForVisible('#cardsets',5000);
+		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
 	});
@@ -32,17 +34,18 @@ module.exports = function () {
 		browser.waitForVisible('#editSetName', 5000);
 	});
 	this.Then(/^he should be able to press the delete cardset button$/, function () {
+		browser.waitForVisible('#cardSetDelete',5000);
 		browser.click('#cardSetDelete');
-		browser.pause(1000);
 	});
 	this.Then(/^he should be able to press the delete cardset button again to be sure$/, function () {
+		browser.waitForVisible('#cardSetConfirm',5000);
 		browser.click('#cardSetConfirm');
-		browser.pause(1000);
 	});
 	this.Then(/^he should be returned to the my cardset view$/, function () {
 		browser.waitForVisible('#cardSetView', 5000);
 	});
 	this.Then(/^he should not see the deleted cardset there$/, function () {
+		browser.waitForExist('#cardSetView > tr',5000);
 		expect(browser.elements('#cardSetView > tr').value.length).toBe(1);
 		logout();
 	});
