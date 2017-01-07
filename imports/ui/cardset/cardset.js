@@ -111,7 +111,6 @@ Template.cardset.rendered = function () {
 			}
 		});
 	}
-	subscribeForPushNotification();
 };
 
 Template.cardset.helpers({
@@ -452,6 +451,7 @@ function setLightBoxes(html) {
 
 Template.cardsetDetails.helpers({
 	addToLeitner: function () {
+		subscribeForPushNotification();
 		Meteor.call("addToLeitner", this);
 	},
 	learningEnded: function () {
