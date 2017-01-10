@@ -125,7 +125,7 @@ Meteor.startup(function () {
 	var badges = initBadges();
 	var themes = initColorThemes();
 
-	process.env.MAIL_URL = Meteor.settings.MAIL_URL;
+	process.env.MAIL_URL = Meteor.settings.mail.url;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
 		getDocType: function () {
