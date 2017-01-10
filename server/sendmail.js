@@ -33,9 +33,9 @@ export class MailNotifier {
 			var active = Learned.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.newsletterLanguage) + cardset.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.newsletterLanguage));
+				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) + cardset.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
 			} else {
-				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.newsletterLanguage) + deadline.toLocaleDateString() + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.newsletterLanguage));
+				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + deadline.toLocaleDateString() + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));
 			}
 		}
 	}
@@ -51,18 +51,18 @@ export class MailNotifier {
 		} else {
 			var notifier = new Notifications();
 			var cards = notifier.getActiveCardsCount(cardset._id, user_id);
-			var subject = TAPi18n.__('mailNotification.subjectTitle', null, Meteor.settings.newsletterLanguage);
-			var text = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.newsletterLanguage) + notifier.getName(user_id) + TAPi18n.__('mailNotification.textIntro1', null, Meteor.settings.newsletterLanguage) + TAPi18n.__('mailNotification.newCards1', null, Meteor.settings.newsletterLanguage);
+			var subject = TAPi18n.__('mailNotification.subjectTitle', null, Meteor.settings.mail.language);
+			var text = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + TAPi18n.__('mailNotification.textIntro1', null, Meteor.settings.mail.language) + TAPi18n.__('mailNotification.newCards1', null, Meteor.settings.mail.language);
 
 			if (cards === 1) {
-				subject += TAPi18n.__('mailNotification.subjectSingular1', null, Meteor.settings.newsletterLanguage) + cards + TAPi18n.__('mailNotification.subjectSingular2', null, Meteor.settings.newsletterLanguage);
-				text += cards + TAPi18n.__('mailNotification.newCards2Singular', null, Meteor.settings.newsletterLanguage);
+				subject += TAPi18n.__('mailNotification.subjectSingular1', null, Meteor.settings.mail.language) + cards + TAPi18n.__('mailNotification.subjectSingular2', null, Meteor.settings.mail.language);
+				text += cards + TAPi18n.__('mailNotification.newCards2Singular', null, Meteor.settings.mail.language);
 			} else {
-				subject += TAPi18n.__('mailNotification.subjectPlural1', null, Meteor.settings.newsletterLanguage) + cards + TAPi18n.__('mailNotification.subjectPlural2', null, Meteor.settings.newsletterLanguage);
-				text += cards + TAPi18n.__('mailNotification.newCards2Plural', null, Meteor.settings.newsletterLanguage);
+				subject += TAPi18n.__('mailNotification.subjectPlural1', null, Meteor.settings.mail.language) + cards + TAPi18n.__('mailNotification.subjectPlural2', null, Meteor.settings.mail.language);
+				text += cards + TAPi18n.__('mailNotification.newCards2Plural', null, Meteor.settings.mail.language);
 			}
-			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.newsletterLanguage) + cardset.name + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.newsletterLanguage);
-			text += cardset.name + TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.newsletterLanguage);
+			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.mail.language);
+			text += cardset.name + TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.mail.language);
 			this.sendMail(this.getMail(user_id), subject, text, cardset._id, "#3d9c19", "#328114");
 		}
 	}
@@ -77,8 +77,8 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
-			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.newsletterLanguage) + cardset.name;
-			var text = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.newsletterLanguage) + notifier.getName(user_id) + "\n\n" + TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.newsletterLanguage) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.newsletterLanguage) + "\n\n";
+			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + cardset.name;
+			var text = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + "\n\n" + TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.mail.language) + "\n\n";
 			text += this.getDeadline(cardset, user_id);
 			this.sendMail(this.getMail(user_id), subject, text, cardset._id, "#d70000", "#a40000");
 		}
@@ -94,20 +94,20 @@ export class MailNotifier {
 	 * @param {string} buttonColor - The rgb color of the button background
 	 */
 	sendMail (mail, subject, text, cardsetId, titleColor, buttonColor) {
-		var datenschutz = TAPi18n.__('footer.datenschutz', null, Meteor.settings.newsletterLanguage);
-		var agb = TAPi18n.__('footer.agb', null, Meteor.settings.newsletterLanguage);
-		var impressum = TAPi18n.__('footer.impressum', null, Meteor.settings.newsletterLanguage);
-		var service = TAPi18n.__('mailNotification.service', null, Meteor.settings.newsletterLanguage);
-		var unsubscribe = TAPi18n.__('mailNotification.unsubscribe', null, Meteor.settings.newsletterLanguage);
-		var copyright = TAPi18n.__('mailNotification.copyright', null, Meteor.settings.newsletterLanguage);
-		var myCardset = TAPi18n.__('mailNotification.my-cardset', null, Meteor.settings.newsletterLanguage);
+		var datenschutz = TAPi18n.__('footer.datenschutz', null, Meteor.settings.mail.language);
+		var agb = TAPi18n.__('footer.agb', null, Meteor.settings.mail.language);
+		var impressum = TAPi18n.__('footer.impressum', null, Meteor.settings.mail.language);
+		var service = TAPi18n.__('mailNotification.service', null, Meteor.settings.mail.language);
+		var unsubscribe = TAPi18n.__('mailNotification.unsubscribe', null, Meteor.settings.mail.language);
+		var copyright = TAPi18n.__('mailNotification.copyright', null, Meteor.settings.mail.language);
+		var myCardset = TAPi18n.__('mailNotification.my-cardset', null, Meteor.settings.mail.language);
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
 				var html = SSR.render("newsletter", {message: text, title: subject, id: cardsetId, url: Meteor.settings.public.rooturl, titlecolor: titleColor, btncol: buttonColor, datenschutz: datenschutz, impressum: impressum, agb: agb, service: service, unsubscribe: unsubscribe, copyright: copyright, cardset: myCardset});
 				Email.send({
-					from: '',
+					from: Meteor.settings.mail.senderAddress,
 					to: mail,
 					subject: subject,
 					html: html
