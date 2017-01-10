@@ -72,7 +72,7 @@ Meteor.methods({
 	},
 	/** Function returns all users who are currently registered in a learning-phase
 	 *  @param {string} cardset_id - The id of the cardset from the active learning-phase
-	 *  @returns {Object} - The users who are currently in a learning-phase
+	 *  @returns {Object} - A list of users who are currently in a learning-phase
 	 * */
 	getLearners: function (cardset_id) {
 		if (!Meteor.isServer) {
@@ -189,13 +189,13 @@ Meteor.methods({
 	},
 	/** Function resets all cards to the first box if the user missed the deadline and selects new ones by calling setCards
 	 *  @param {Object} cardset - The cardset from the active learning-phase
-	 *  @param {string} user_id - The id of the user
+	 *  @param {Object} user - The user from the cardset of the active learning-phase
 	 * */
-	resetCards: function (cardset, user_id) {
+	resetCards: function (cardset, user) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			Learned.update({cardset_id: cardset._id, user_id: user_id}, {
+			Learned.update({cardset_id: cardset._id, user_id: user._id}, {
 				$set: {
 					box: 1,
 					active: false,
@@ -203,7 +203,7 @@ Meteor.methods({
 					currentDate: new Date()
 				}
 			}, {multi: true});
-			Meteor.call("setCards", cardset, user_id, true);
+			Meteor.call("setCards", cardset, user, true);
 		}
 	},
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
@@ -217,14 +217,15 @@ Meteor.methods({
 				if (cardsets[i].learningEnd.getTime() > new Date().getTime()) {
 					for (var k = 0; k < learners.length; k++) {
 						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
+						var user = Meteor.users.findOne(learners[k].user_id);
 						if (!activeCard) {
-							Meteor.call("setCards", cardsets[i], learners[k], false);
+							Meteor.call("setCards", cardsets[i], user, false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
-							Meteor.call("resetCards", cardsets[i], learners[k].user_id);
+							Meteor.call("resetCards", cardsets[i], user);
 						}
 					}
 				} else {
-					Meteor.call("disableLearning", cardsets[i], learners);
+					Meteor.call("disableLearning", cardsets[i]);
 				}
 			}
 		}
