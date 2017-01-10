@@ -35,7 +35,10 @@ Meteor.methods({
 					auth: sub.authSecret
 				}
 			};
-			webPush.sendNotification(subscription, message);
+			var response = webPush.sendNotification(subscription, message);
+			if (response.statusCode !== 200) {
+				console.log("FCM push notification request failed", response.body);
+			}
 		});
 	}
 
