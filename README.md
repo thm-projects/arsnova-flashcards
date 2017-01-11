@@ -1,7 +1,7 @@
-ARSnova Cards
+arsnova.cards
 ---
 
-ARSnova Cards is a digital recreation of a classic learning tool. The service offers students a modern and intuitive access to one of the most successful proven learning methods.
+arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
 ## Initial setup
 
@@ -38,7 +38,7 @@ ARSnova Cards is a digital recreation of a classic learning tool. The service of
 
 ## Getting Started
 
-To start ARSnova Cards on localhost use `meteor --settings settings.json` inside the repository. You can then access ARSnova Cards from your host machine by opening http://localhost:3000.
+To start arsnova.cards on localhost use `meteor --settings settings.json` inside the repository. You can then access the app from your host machine by opening http://localhost:3000.
 
 ## CI Pipeline
 
@@ -55,4 +55,4 @@ The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 ## Credits
 
 
-ARSnova Cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
+arsnova.cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
