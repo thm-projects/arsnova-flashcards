@@ -1,7 +1,7 @@
 arsnova.cards
 ---
 
-arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
+The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
 ## Initial setup
 
