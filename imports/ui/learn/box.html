@@ -129,19 +129,23 @@
                             <h3>{{_ "leitnerCard"}}</h3>
                             <br>
                             {{#if isFront}}
-                                {{boxMarkdownFront this.front @index}}
+                                <!--{{boxMarkdownFront this.front @index}}-->
                                 <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                                 <div class="block">
                                     <div class="cardContent centered front{{@index}} active">
-                                        <!--<p>{{front}}</p>-->
+                                        {{#each splitTextOnNewLine front}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                 </div>
                             {{else}}
-                                {{boxMarkdownBack this.back @index}}
+                                <!--{{boxMarkdownBack this.back @index}}-->
                                 <img class="cardside cardback-symbol" src="/img/icon_back.png">
                                 <div class="block">
                                     <div class="cardContent centered back{{@index}} active">
-                                        <!--<p>{{back}}</p>-->
+                                        {{#each splitTextOnNewLine back}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                 </div>
                             {{/if}}
@@ -162,19 +166,23 @@
                             <h3>{{_ "subject"}} {{box}}</h3>
                             <br>
                             {{#if isFront}}
-                                {{boxMarkdownFront this.front @index}}
+                                <!--{{boxMarkdownFront this.front @index}}-->
                                 <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                                 <div class="block">
                                     <div class="cardContent centered front{{@index}} active">
-                                        <!--<p>{{front}}</p>-->
+                                        {{#each splitTextOnNewLine front}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                 </div>
                             {{else}}
-                                {{boxMarkdownBack this.back @index}}
+                                <!--{{boxMarkdownBack this.back @index}}-->
                                 <img class="cardside cardback-symbol" src="/img/icon_back.png">
                                 <div class="block">
                                     <div class="cardContent centered back{{@index}} active">
-                                        <!--<p>{{back}}</p>-->
+                                        {{#each splitTextOnNewLine back}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                 </div>
                             {{/if}}

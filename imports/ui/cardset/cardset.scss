@@ -195,6 +195,8 @@ img.cardside {
   position: absolute;
   right: 88px;
   top: 13px;
+  bottom: unset;
+  left: unset;
 }
 
 #pictureModal .modal-header {
@@ -340,4 +342,13 @@ img.cardside {
 .cardContent {
   width: 100%;
   height: 100%;
+}
+
+.emojiWrapper {
+  height: 30px;
+
+  img {
+    height: inherit;
+    position: unset;
+  }
 }

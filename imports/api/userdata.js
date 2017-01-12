@@ -324,10 +324,11 @@ Meteor.methods({
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
 	},
-	updateEarnedBadges: function (index, rank) {
+	updateEarnedBadges: function (userId, index, rank) {
+		check(userId, String);
 		check(index, Number);
 		check(rank, Number);
-		Meteor.users.update(Meteor.user()._id,
+		Meteor.users.update(userId,
 			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
 	},
 	/** Function saves the given colorTheme to the given user

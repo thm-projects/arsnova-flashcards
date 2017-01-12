@@ -3,6 +3,8 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Session} from "meteor/session";
+import {Showdown} from 'meteor/markdown';
+import {MeteorMathJax} from 'meteor/mrt:mathjax';
 
 Meteor.subscribe("collegesCourses");
 
@@ -201,3 +203,35 @@ Template.registerHelper("isOffline", function () {
 Template.registerHelper("disableIfOffline", function () {
 	return Meteor.status().connected ? "" : "disabled";
 });
+
+const converter = new Showdown.converter({
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tables: true
+});
+
+const helper = new MeteorMathJax.Helper({
+    useCache: true,
+    transform: function (x) {
+        return converter.makeHtml(x);
+    }
+});
+Template.registerHelper('mathjax', helper.getTemplate());
+MeteorMathJax.defaultConfig = {
+    config: ["TeX-AMS-MML_HTMLorMML.js"],
+    jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
+    extensions: ["tex2jax.js", "Safe.js", "mml2jax.js", "fast-preview.js", "AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
+    TeX: {
+        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+        equationNumbers: { autoNumber: "AMS" }
+    },
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        preview: 'none'
+    },
+    messageStyle: 'none',
+    showProcessingMessages: false,
+    showMathMenu: false
+};
