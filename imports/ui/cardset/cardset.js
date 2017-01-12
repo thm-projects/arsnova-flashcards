@@ -483,11 +483,11 @@ Template.cardsetDetails.helpers({
 
 		return count !== 1;
 	},
-    splitTextOnNewLine: function (text) {
-        const result = text.split("\n");
-        lib.parseGithubFlavoredMarkdown(result);
-        return result;
-    },
+	splitTextOnNewLine: function (text) {
+		const result = text.split("\n");
+		lib.parseGithubFlavoredMarkdown(result);
+		return result;
+	},
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
 			.then(function (html) {
