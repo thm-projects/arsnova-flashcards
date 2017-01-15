@@ -14,6 +14,7 @@ import "../learn/box.js";
 import "../learn/memo.js";
 import "./cardset.html";
 import * as lib from '/client/lib.js';
+import '/client/hammer.js';
 
 
 Meteor.subscribe("cardsets");
@@ -614,6 +615,16 @@ Template.cardsetInfo.onRendered(function () {
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
 	});
+
+    var mc = new Hammer.Manager(document.getElementById('set-details-region'));
+    mc.add( new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50 }) );
+    mc.on("swipe", function(ev) {
+    	if(ev.deltaX < 0){
+            document.getElementById('rightCarouselControl').click();
+		}else{
+            document.getElementById('leftCarouselControl').click();
+		}
+    });
 });
 
 Template.cardsetInfo.helpers({
