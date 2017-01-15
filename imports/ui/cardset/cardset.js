@@ -1,5 +1,7 @@
 //------------------------ IMPORTS
 
+/*global Hammer*/
+
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
@@ -616,15 +618,15 @@ Template.cardsetInfo.onRendered(function () {
 		container: 'body'
 	});
 
-    var mc = new Hammer.Manager(document.getElementById('set-details-region'));
-    mc.add( new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50 }) );
-    mc.on("swipe", function(ev) {
-    	if(ev.deltaX < 0){
-            document.getElementById('rightCarouselControl').click();
-		}else{
-            document.getElementById('leftCarouselControl').click();
+	var mc = new Hammer.Manager(document.getElementById('set-details-region'));
+	mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL,threshold: 50}));
+	mc.on("swipe", function (ev) {
+		if (ev.deltaX < 0) {
+			document.getElementById('rightCarouselControl').click();
+		} else {
+			document.getElementById('leftCarouselControl').click();
 		}
-    });
+	});
 });
 
 Template.cardsetInfo.helpers({
