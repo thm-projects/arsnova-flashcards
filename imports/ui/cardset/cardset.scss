@@ -33,6 +33,10 @@ $font_5: sans-serif;
   }
 }
 
+.item {
+  height: unset;
+}
+
 //@extend-elements
 //original selectors
 //.carousel-control.left, .carousel-control.right
@@ -49,8 +53,7 @@ $font_5: sans-serif;
 .box {
   border: 1px solid $color_alto_approx;
   font-family: $font_0, $font_1;
-  min-height: 400px;
-  padding: 50px;
+  min-height: 300px;
   margin: 0 auto;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
@@ -321,7 +324,6 @@ img.cardside {
 .back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  position: absolute;
   overflow: visible;
   transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);
@@ -331,7 +333,7 @@ img.cardside {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  position: absolute;
+  min-height: 300px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -344,11 +346,7 @@ img.cardside {
   height: 100%;
 }
 
-.emojiWrapper {
+.emojiWrapper > img {
   height: 30px;
-
-  img {
-    height: inherit;
-    position: unset;
-  }
+  position: unset;
 }
