@@ -34,9 +34,6 @@ export function drawGraph() {
 	if (Meteor.userId() !== undefined) {
 		query.user_id = Meteor.userId();
 	}
-	if (undefined !== undefined) {
-		query.cardset_id = undefined;
-	}
 	query.box = 1;
 	var box1 = Learned.find(query).count();
 	query.box = 2;
