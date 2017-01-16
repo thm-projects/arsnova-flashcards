@@ -79,7 +79,7 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
-			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + '"' +cardset.name + '"';
+			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + '"' + cardset.name + '"';
 			var text = TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.mail.language) + "\n\n";
 			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + ",";
 			text += this.getDeadline(cardset, user_id);
