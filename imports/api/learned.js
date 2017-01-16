@@ -70,6 +70,11 @@ Meteor.methods({
 			}
 		});
 	},
+	/** Function marks an active card as learned
+	 *  @param {string} cardset_id - The cardset id from the card
+	 *  @param {string} card_id - The id from the card
+	 *  @param {boolean} isWrong - Did the user know the answer?
+	 * */
 	updateLearned: function (cardset_id, card_id, isWrong) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
