@@ -23,12 +23,7 @@ Meteor.subscribe('learned', function () {
 
 export function drawGraph() {
 	var query = {};
-	if (undefined !== undefined) {
-		query.user_id = Meteor.userId();
-	}
-	if (undefined !== undefined) {
-		query.cardset_id = undefined;
-	}
+	
 	query.box = 1;
 	var box1 = Learned.find(query).count();
 	query.box = 2;
