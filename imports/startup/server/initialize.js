@@ -142,6 +142,13 @@ Meteor.startup(function () {
 		});
 	}
 
+	if (!AdminSettings.findOne({name: "mailSettings"})) {
+		AdminSettings.insert({
+			name: "mailSettings",
+			enabled: false
+		});
+	}
+
 	if (Badges.find().count() === 0) {
 		for (var badge in badges) {
 			if (badges.hasOwnProperty(badge)) {

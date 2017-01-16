@@ -790,7 +790,7 @@
     "newCards2Singular": " Karte erwartet dich in dem Kartensatz ",
     "newCards2Plural": " Karten erwarten dich in dem Kartensatz ",
     "textIntro": "Hallo ",
-    "textIntro1": ",\n\n es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
+    "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
     "textDate2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase konnte festgestellt werden, dass ",
@@ -805,9 +805,10 @@
     "subjectReset": "THMcards: Ihr Lernfortschritt hat sich zurückgesetzt für den Kartensatz ",
     "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
-    "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast, von ",
-    "unsubscribe": "Nicht mehr interessiert? Beende die aktuelle Lernphase, um diesen Newsletter zu deabonnieren.",
+    "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
+    "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2017 THMcards",
-    "my-cardset": "Mein Kartensatz"
+    "my-cardset": "Zum Kartensatz...",
+    "auto-generated": "Bitte antworten Sie nicht auf diese Mail, sie wurde automatisch erstellt."
   }
 }
