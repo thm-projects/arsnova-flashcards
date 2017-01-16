@@ -25,7 +25,6 @@ Meteor.methods({
 	 * @param message the message displayed in the push notification
 	 */
 	sendPushNotificationsToUser: function (userId, message) {
-		console.log("Preparing FCM push notification request");
 		webPush.setGCMAPIKey(Meteor.settings.private.FCM_API_KEY);
 		var data = WebPushSubscriptions.findOne({userId: userId});
 		data.subscriptions.forEach(function (sub) {
@@ -36,11 +35,12 @@ Meteor.methods({
 					auth: sub.authSecret
 				}
 			};
-			var response = webPush.sendNotification(subscription, message);
-			if (!response || response.statusCode !== 200) {
-				console.log("FCM push notification request failed", response.body);
-			}
+			webPush.sendNotification(subscription, message)
+				.then(function (response) {
+					if (response.statusCode !== 200 && response.statusCode !== 201) {
+						console.log("FCM push notification request failed", response.body);
+					}
+				});
 		});
 	}
-
 });
