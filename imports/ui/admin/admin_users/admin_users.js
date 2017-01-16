@@ -23,7 +23,7 @@ Meteor.subscribe('learned', function () {
 
 export function drawGraph() {
 	var query = {};
-	
+
 	query.box = 1;
 	var box1 = Learned.find(query).count();
 	query.box = 2;
