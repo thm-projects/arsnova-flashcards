@@ -27,6 +27,10 @@ export class MailNotifier {
 	 * @returns {string} deadline text
 	 */
 	getDeadline (cardset, user_id) {
+		Date.prototype.toLocaleDateString = function () {
+			var d = new Date();
+			return d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear();
+		};
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
