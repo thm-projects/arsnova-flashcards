@@ -1,0 +1,10 @@
+@function theme-aflatunense() {
+  @return (
+          primary-color: #9C27B0,
+          accent: #FFC107,
+          primary-text: #212121,
+          secondary-text: #757575,
+          divider-color: #BDBDBD,
+          accent_300: #FFD54F
+  );
+}
