@@ -23,7 +23,7 @@ if (Meteor.isServer) {
 						'earnedBadges': 1,
 						'customerId': 1,
 						'blockedtext': 1,
-						"selectedColorTheme": 1,
+						"selectedColorTheme": "default",
 						"mailNotification": 1,
 						"webNotification": 1
 					}
@@ -198,7 +198,7 @@ Meteor.methods({
 						lastOnAt: new Date(),
 						daysInRow: 0,
 						earnedBadges: [],
-						selectedColorTheme: "1",
+						selectedColorTheme: "default",
 						mailNotification: true,
 						webNotification: false
 					}
