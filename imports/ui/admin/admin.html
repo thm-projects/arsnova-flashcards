@@ -63,7 +63,8 @@
                                         <li class="divider"></li>
                                         <div class="notification-footer">
                                             <a href="{{pathFor route='admin_notifications'}}" type="button"
-                                               class="btn btn-info">
+                                               class="btn btn-info"
+                                               data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                                 {{_ "notifications.viewAll"}} <i
                                                     class="glyphicon glyphicon-circle-arrow-right"></i>
                                             </a>
@@ -72,7 +73,8 @@
                                 </li>
                                 {{#if currentUser}}
                                     <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}"
-                                           id="usr-profile-admin">{{getUsername}}</a></li>
+                                           id="usr-profile-admin" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        {{getUsername}}</a></li>
                                 {{/if}}
                                 <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i>{{_
                                         "navbar-collapse.logout"}}</a></li>
@@ -135,6 +137,13 @@
                                href="{{pathFor route='admin_university'}}">
                                 <i class="fa fa-cog"></i>
                                 <span>{{_ "admin.manageS"}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
+                               href="{{pathFor route='admin_settings'}}">
+                                <i class="fa fa-cog"></i>
+                                <span>{{_ "admin.settings"}}</span>
                             </a>
                         </li>
                     </ul>

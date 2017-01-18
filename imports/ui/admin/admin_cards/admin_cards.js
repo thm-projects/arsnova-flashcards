@@ -9,7 +9,7 @@ import "./admin_cards.html";
 import "./admin_card.js";
 import {getAuthorName} from "../../../api/cardset.js";
 
-/**
+/*
  * ############################################################################
  * admin_cards
  * ############################################################################
@@ -38,7 +38,6 @@ Template.admin_cards.helpers({
 	},
 	tableSettings: function () {
 		return {
-			showNavigationRowsPerPage: false,
 			fields: [
 				{
 					key: 'front',
@@ -107,8 +106,7 @@ Template.admin_cards.helpers({
 						return new Spacebars.SafeString("<a class='deleteCardAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecard') + "' data-toggle='modal' data-target='#cardConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 					}
 				}
-			]
-		};
+			],showNavigationRowsPerPage: true, showNavigation: true};
 	}
 });
 
@@ -135,7 +133,7 @@ Template.admin_cards.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardConfirmFormAdmin
  * ############################################################################

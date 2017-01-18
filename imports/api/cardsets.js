@@ -4,7 +4,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
 import {Ratings} from "./ratings.js";
-
+import {check} from "meteor/check";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -118,12 +118,6 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	learningInterval: {
 		type: [Number]
-	},
-	mailNotification: {
-		type: Boolean
-	},
-	webNotification: {
-		type: Boolean
 	}
 });
 
@@ -133,7 +127,8 @@ CardsetsIndex = new EasySearch.Index({
 	collection: Cardsets,
 	fields: [
 		'name',
-		'description'
+		'description',
+		'owner'
 	],
 	engine: new EasySearch.Minimongo({
 		selector: function (searchObject, options, aggregation) {
@@ -162,6 +157,17 @@ CardsetsIndex = new EasySearch.Index({
 
 Meteor.methods({
 	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, college, course) {
+		check(name, String);
+		check(description, String);
+		check(visible, Boolean);
+		check(ratings, Boolean);
+		check(kind, String);
+		check(module, String);
+		check(moduleShort, String);
+		check(moduleNum, String);
+		check(college, String);
+		check(course, String);
+
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -210,6 +216,7 @@ Meteor.methods({
 		Meteor.call('checkLvl');
 	},
 	deleteCardset: function (id) {
+		check(id, String);
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -228,6 +235,8 @@ Meteor.methods({
 		});
 	},
 	deactivateLearning: function (id) {
+		check(id, String);
+
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			Cardsets.update(id, {
 				$set: {
@@ -239,7 +248,14 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification) {
+	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+		check(id, String);
+		check(maxCards, String);
+		check(daysBeforeReset, String);
+		check(learningStart, Date);
+		check(learningEnd, Date);
+		check(learningInterval, [String]);
+
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
 			if (!maxCards) {
 				maxCards = 5;
@@ -269,9 +285,7 @@ Meteor.methods({
 					daysBeforeReset: daysBeforeReset,
 					learningStart: learningStart,
 					learningEnd: learningEnd,
-					learningInterval: learningInterval,
-					mailNotification: mailNotification,
-					webNotification: webNotification
+					learningInterval: learningInterval
 				}
 			});
 			Meteor.call("clearLearningProgress", id);
@@ -281,6 +295,15 @@ Meteor.methods({
 		}
 	},
 	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
+		check(id, String);
+		check(name, String);
+		check(description, String);
+		check(module, String);
+		check(moduleShort, String);
+		check(moduleNum, String);
+		check(college, String);
+		check(course, String);
+
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -306,12 +329,14 @@ Meteor.methods({
 			}
 		});
 	},
-	activateLearningPeriodSetEdu: function (cartset_id) {
+	activateLearningPeriodSetEdu: function (cardset_id) {
+		check(cardset_id, String);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Cardsets.update({
-			_id: cartset_id
+			_id: cardset_id
 		}, {
 			$set: {
 				kind: "edu"
@@ -321,6 +346,8 @@ Meteor.methods({
 		});
 	},
 	updateRelevance: function (cardset_id) {
+		check(cardset_id, String);
+
 		var relevance = 0;
 
 		var ratings = Ratings.find({cardset_id: cardset_id});
@@ -352,6 +379,10 @@ Meteor.methods({
 		return relevance;
 	},
 	publishCardset: function (id, kind, price, visible) {
+		check(id, String);
+		check(kind, String);
+		check(visible, Boolean);
+
 		// Make sure only the task owner can make a task private
 		var cardset = Cardsets.findOne(id);
 
@@ -378,6 +409,8 @@ Meteor.methods({
 		});
 	},
 	makeProRequest: function (cardset_id) {
+		check(cardset_id, String);
+
 		var cardset = Cardsets.findOne(cardset_id);
 
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
@@ -393,6 +426,8 @@ Meteor.methods({
 		});
 	},
 	acceptProRequest: function (cardset_id) {
+		check(cardset_id, String);
+
 		var cardset = Cardsets.findOne(cardset_id);
 
 		if (!Roles.userIsInRole(this.userId, 'lecturer')) {
@@ -411,6 +446,8 @@ Meteor.methods({
 		});
 	},
 	declineProRequest: function (cardset_id) {
+		check(cardset_id, String);
+
 		var cardset = Cardsets.findOne(cardset_id);
 		if ((!Roles.userIsInRole(this.userId, 'lecturer')) && (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]))) {
 			throw new Meteor.Error("not-authorized");
@@ -426,6 +463,9 @@ Meteor.methods({
 		});
 	},
 	updateLicense: function (id, license) {
+		check(id, String);
+		check(license, [String]);
+
 		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [

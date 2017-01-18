@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets.js";
+import {check} from "meteor/check";
 
 export const Paid = new Mongo.Collection("paid");
 
@@ -25,6 +26,9 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	addPaid: function (cardset_id, amount) {
+		check(cardset_id, String);
+		check(amount, Number);
+
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");

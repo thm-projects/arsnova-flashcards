@@ -27,8 +27,10 @@
                 <input class="form-control" type="text" id="new-set-input"
                        placeholder="{{_ "input-group.newcarddeck"}}">
                 <span class="input-group-btn">
-					<button id="newCardSet" type="button" class="btn btn-primary saveSet" data-toggle="modal"
-                            data-target="#newSetModal"><i class="glyphicon glyphicon-plus"></i></button>
+					<button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
+                            data-target="#newSetModal" {{disableIfOffline}}>
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
 				</span>
             </div>
 
@@ -58,7 +60,7 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
+                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
                         <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
@@ -68,14 +70,7 @@
                     </div>
                 </th>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
-                        <button class="sortCategory btn btn-default" role="button" value="down" data-toggle="dropdown">
-                            {{_ "set-list.description"}} </button>
-                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                    </div>
+                    <span>{{_ "set-list.description"}}</span>
                 </th>
                 <th>
                     <span>{{_ "set-list.licence"}}</span>
@@ -103,7 +98,7 @@
                 <span class="badge cardsetBadge">{{countCards this._id}}</span>
             </a>
         </td>
-        <td>{{description}}</td>
+        <td>{{#markdown}}{{description}}{{/markdown}}</td>
         <td>
             <span id="info_license">{{getLicense}}</span>
         </td>
@@ -116,7 +111,7 @@
         <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
             <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
             <br>
-            <button id="setListEmpty" class="btn btn-primary btn-newSet" data-toggle="modal"
+            <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
                     data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
         </td>
     </tr>
@@ -129,7 +124,7 @@
             <thead class="set-list">
             <tr>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
+                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
                         <button class="sortNameLearned btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
@@ -139,14 +134,7 @@
                     </div>
                 </th>
                 <th>
-                    <div class="btn-group" role="group" aria-label="Topic group">
-                        <button class="sortCategoryLearned btn btn-default" role="button" value="down" data-toggle="dropdown">
-                            {{_ "set-list.description"}} </button>
-                        <button type="button" class="sortCategory btn btn-default dropdown-toggle" value="down"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                    </div>
+                    <span>{{_ "set-list.description"}}</span>
                 </th>
                 <th>
                     <span>{{_ "set-list.licence"}}</span>
@@ -169,7 +157,7 @@
                             <span id="info_license">{{getLicense}}</span>
                         </td>
                         <td>
-                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned"
+                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned" {{disableIfOffline}}
                              title='{{_ "confirm-form-learned.title"}}' data-toggle="modal" data-target="#confirmLearnedModal">
                               <i class="glyphicon glyphicon-ban-circle"></i>
                           </a>
@@ -191,6 +179,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorNew">
+    <textarea class="form-control" data-provide="markdown" rows="6" id="newSetDescription"
+              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+</template>
 
 <template name="cardsetsForm">
     <div class="modal fade" id="newSetModal" tabindex="-1" role="dialog" aria-labelledby="newSetModalTitle">
@@ -215,8 +207,7 @@
                             <label id="newSetDescriptionLabel" class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="newSetDescription"
-                                          placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+                                {{>descriptionEditorNew}}
                                 <span id="helpNewSetDescription" class="help-block description"></span>
                             </div>
                         </div>
@@ -335,7 +326,7 @@
                     <br/>
                     <hr/>
 
-                    <button id="learnedDelete" class="btn btn-danger btn-setDelete">{{_
+                    <button id="learnedDelete" class="btn btn-danger btn-setDelete" {{disableIfOffline}}>{{_
                             "confirm-form-learned.title"}}</button>
                     <button id="learnedCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>

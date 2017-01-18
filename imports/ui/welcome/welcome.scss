@@ -9,6 +9,12 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     .lmargin {
       margin-left: 24px;
     }
+
+    h2 {
+      @media screen and (max-width: 667px) {
+        font-size: 20px;
+      }
+    }
   }
   .carousel-caption {
     color: $color_fuscous_gray_approx;
@@ -24,6 +30,24 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
         margin-right: 0;
       }
     }
+    @media screen and (max-width: 320px){
+      img {
+        padding-bottom: 14px;
+      }
+    }
   }
 
+}
+
+.item {
+  height: 300px;
+}
+
+.item img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

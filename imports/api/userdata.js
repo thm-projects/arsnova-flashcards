@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
+import {check} from "meteor/check";
 
 if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
@@ -19,8 +20,12 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
+						'earnedBadges': 1,
 						'customerId': 1,
-						'blockedtext': 1
+						'blockedtext': 1,
+						"selectedColorTheme": "default",
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
@@ -45,7 +50,10 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
-						'balance': 1
+						'earnedBadges': 1,
+						'balance': 1,
+						"mailNotification": 1,
+						"webNotification": 1
 					}
 				});
 		} else {
@@ -54,8 +62,34 @@ if (Meteor.isServer) {
 	});
 }
 
+Meteor.users.allow({
+	insert() {
+		return false;
+	},
+	update() {
+		return false;
+	},
+	remove() {
+		return false;
+	}
+});
+
+Meteor.users.deny({
+	insert() {
+		return true;
+	},
+	update() {
+		return true;
+	},
+	remove() {
+		return true;
+	}
+});
+
 Meteor.methods({
 	updateUsersVisibility: function (visible) {
+		check(visible, Boolean);
+
 		Meteor.users.update(Meteor.user()._id, {
 			$set: {
 				visible: visible
@@ -63,6 +97,8 @@ Meteor.methods({
 		});
 	},
 	updateUsersEmail: function (email) {
+		check(email, String);
+
 		Meteor.users.update(Meteor.user()._id, {
 			$set: {
 				email: email
@@ -70,6 +106,9 @@ Meteor.methods({
 		});
 	},
 	updateUsersName: function (name, id) {
+		check(name, String);
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				"profile.name": name
@@ -77,6 +116,9 @@ Meteor.methods({
 		});
 	},
 	updateUsersTitle: function (title, id) {
+		check(title, String);
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				"profile.title": title
@@ -84,6 +126,9 @@ Meteor.methods({
 		});
 	},
 	updateUsersBirthName: function (birthname, id) {
+		check(birthname, String);
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				"profile.birthname": birthname
@@ -91,13 +136,31 @@ Meteor.methods({
 		});
 	},
 	updateUsersGivenName: function (givenname, id) {
+		check(givenname, String);
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				"profile.givenname": givenname
 			}
 		});
 	},
+	updateUsersNotification: function (mail, web, id) {
+		check(mail, Boolean);
+		check(web, Boolean);
+		check(id, String);
+
+		Meteor.users.update(id, {
+			$set: {
+				mailNotification: mail,
+				webNotification: web
+			}
+		});
+	},
 	updateUsersProfileState: function (completed, id) {
+		check(completed, Boolean);
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				"profile.completed": completed
@@ -105,6 +168,9 @@ Meteor.methods({
 		});
 	},
 	checkUsersName: function (name, id) {
+		check(name, String);
+		check(id, String);
+
 		name = name.trim();
 		var userExists = Meteor.users.findOne({"profile.name": name});
 		if (userExists && userExists._id !== id) {
@@ -113,19 +179,36 @@ Meteor.methods({
 		return name;
 	},
 	initUser: function () {
-		Meteor.users.update(Meteor.user()._id, {
-			$set: {
-				visible: true,
-				email: "",
-				birthname: "",
-				givenname: "",
-				lvl: 1,
-				lastOnAt: new Date(),
-				daysInRow: 0
+		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
+			var user = Meteor.users.findOne({
+				_id: Meteor.userId(),
+				lvl: {
+					$exists: true
+				}
+			});
+
+			if (user === undefined) {
+				Meteor.users.update(Meteor.user()._id, {
+					$set: {
+						visible: true,
+						email: "",
+						birthname: "",
+						givenname: "",
+						lvl: 1,
+						lastOnAt: new Date(),
+						daysInRow: 0,
+						earnedBadges: [],
+						selectedColorTheme: "default",
+						mailNotification: true,
+						webNotification: false
+					}
+				});
 			}
-		});
+		}
 	},
 	setUserAsLecturer: function (id) {
+		check(id, String);
+
 		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -139,6 +222,9 @@ Meteor.methods({
 		Roles.addUsersToRoles(id, 'lecturer');
 	},
 	setLecturerRequest: function (user_id, request) {
+		check(user_id, String);
+		check(request, Boolean);
+
 		if (!this.userId || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -150,6 +236,8 @@ Meteor.methods({
 		});
 	},
 	updateUsersLast: function (id) {
+		check(id, String);
+
 		Meteor.users.update(id, {
 			$set: {
 				lastOnAt: new Date()
@@ -157,6 +245,9 @@ Meteor.methods({
 		});
 	},
 	updateUsersDaysInRow: function (id, row) {
+		check(id, String);
+		check(row, Number);
+
 		Meteor.users.update(id, {
 			$set: {
 				daysInRow: row
@@ -164,6 +255,10 @@ Meteor.methods({
 		});
 	},
 	increaseUsersBalance: function (user_id, lecturer_id, amount) {
+		check(user_id, String);
+		check(lecturer_id, String);
+		check(amount, Number);
+
 		if (amount < 10) {
 			var user_amount = Math.round((amount * 0.7) * 100) / 100;
 			var lecturer_amount = Math.round((amount * 0.05) * 100) / 100;
@@ -175,6 +270,8 @@ Meteor.methods({
 		}
 	},
 	resetUsersBalance: function (user_id) {
+		check(user_id, String);
+
 		if (user_id) {
 			Meteor.users.update(user_id, {
 				$set: {
@@ -226,5 +323,25 @@ Meteor.methods({
 		}
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
+	},
+	updateEarnedBadges: function (index, rank) {
+		check(index, Number);
+		check(rank, Number);
+		Meteor.users.update(Meteor.user()._id,
+			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
+	},
+	/** Function saves the given colorTheme to the given user
+	*  @param {string} selectedColorTheme - The id of the selected color theme
+	*  @param {string} id - The id of the user
+	* */
+	updateColorTheme: function (selectedColorTheme, id) {
+		check(selectedColorTheme, String);
+		check(id, String);
+
+		Meteor.users.update(id, {
+			$set: {
+				"selectedColorTheme": selectedColorTheme
+			}
+		});
 	}
 });

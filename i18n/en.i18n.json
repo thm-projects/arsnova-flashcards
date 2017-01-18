@@ -29,7 +29,8 @@
     "logout": "Logout",
     "search": "Search",
     "frontend": "Front end",
-    "backend": "Back end"
+    "backend": "Back end",
+    "none": "None"
   },
   "footer": {
     "impressum": "Legal Notice",
@@ -53,8 +54,9 @@
     "heading": "Tasks are waiting for you!",
     "content": "Cardset: ",
     "deadline": "\nDeadline: ",
-    "warning": "\n\nMissing the deadline will reset your learning-progress.",
-    "admin": "You're an admin!"
+    "warning": "\nMissing the deadline will reset your learning-progress.",
+    "admin": "You're an admin!",
+    "cards": "\nCards: "
   },
   "input-group": {
     "newcarddeck": "New deck of cards"
@@ -79,7 +81,7 @@
   "confirm-form-profile": {
     "title": "Delete user profile",
     "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",
-    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards. 
+    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards.
     Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
@@ -101,7 +103,7 @@
     "mailNotificationRadio": "E-Mail",
     "webNotificationRadio": "Browser",
     "mailNotificationCheckbox": "E-Mail",
-    "webNotificationCheckbox": "Browser",
+    "webNotificationCheckbox": "Web",
     "notificationError": "Please choose at least one way of notification!"
   },
   "confirmEndLearn-form": {
@@ -121,7 +123,7 @@
     "category": "Category",
     "description": "Description",
     "module": "Module",
-    "licence": "Licence",
+    "licence": "License",
     "topic": "Topic",
     "availability": "Availability",
     "college": "College",
@@ -130,7 +132,9 @@
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
     "everything": "Everything",
-    "reset": "Reset all filters"
+    "reset": "Reset all filters",
+    "rating": "Rating",
+    "moreResults": "Show more results"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -171,6 +175,7 @@
     "nc-desc": "Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.",
     "nd-desc": "Licensees may copy, distribute, display and perform only verbatim copies of the work, not derivative works and remixes based on it.",
     "sa-desc": "Licensees may distribute derivative works only under a license identical (\"not more restrictive\") to the license that governs the original work.",
+    "zero-desc": "No license has been set for this cardset.",
     "saveLicense": "Save license",
     "wrongCombination": "This combination is not allowed!",
     "report": "Report cardset/user",
@@ -216,7 +221,9 @@
     "settings": {
       "name": "Profile",
       "delete": "Delete user profile",
-      "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile."
+      "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile.",
+      "appearance": "Appearance",
+      "theme": "Color theme"
     }
   },
   "profil-header": {
@@ -377,7 +384,8 @@
     "private": "Private",
     "license": " Select license",
     "startLearning": "Start Learning-Phase",
-    "stopLearning": "Stop Learning-Phase"
+    "stopLearning": "Stop Learning-Phase",
+    "poolLicense": "License for "
   },
   "pool": {
     "relevance": "Relevance",
@@ -567,9 +575,11 @@
   "silver": "Silver",
   "bronze": "Bronze",
   "newbadge": "New Badge",
+  "rank": "Rank",
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
   "badgetext3": "",
+  "youareoffline": "You are offline!",
   "admin": {
     "allLearnedCardsets": "All learned cardsets",
     "learnedCardsets": "Learning progress of the cardset",
@@ -752,6 +762,11 @@
       "name_toShort": "Username must consist more than 4 letters!",
       "name_toLong": "Username must consist less than 26 letters!",
       "visible_invalid": "Profile must be public!"
+    },
+    "mail-settings": {
+      "mail-settings": "Mail settings",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
     }
   },
   "access-denied": {
@@ -771,16 +786,28 @@
     "subjectSingular2": " card ",
     "subjectPlural2": " cards ",
     "subjectCardset": "of the cardset ",
-    "subjectEnd": " to learn",
-    "textIntro": "Dear participant of the current THMCards-learning-phase,\n\n",
-    "newCards1": "a new day has begun and ",
+    "subjectEnd": " for learning.",
+    "textEnd": " for learning.",
     "newCards2Singular": " card awaits you in the cardset ",
     "newCards2Plural": " cards await you in the cardset ",
     "greetings": "\n\nyour THMCards-Team",
     "subjectEnding": "ends the learning-phase of the cardset ",
     "textIntroEnding": "Dear participant,\n\n",
     "textEnding": "Today ends the learning-phase of the cardset ",
-    "subjectReset": "THMcards: Your learning-progress has been reset for the cardset ",
-    "textReset": "your learning-progress has been reset due to inactivity. "
+    "subjectReset": "THMcards: Your learning-progress is going to be resetted for the cardset ",
+    "textReset": "your learning-progress has been resetted due to inactivity. ",
+    "mailCard" : "the cardset ",
+    "mailCard1" : " needs your attention!\n\n",
+    "newCards1": "After checking your ongoing learning phase we recognized, that ",
+    "textIntro": "Hello ",
+    "textIntro1": ",\n\n it is time, to take a look at your cards!\n\n",
+    "textDate1": "You got time till ",
+    "textDate2": " to work on your active cards. Otherwise your learning progress will be resetted!",
+    "subjectSingular3": " is.\n\n",
+    "subjectPlural3": " are.\n\n",
+    "service": "This newsletter is a Service from THMcards. You are receiving this email, because you signed up at ",
+    "unsubscribe": "Not interested anymore? To unsubscribe stop the current learning phase.",
+    "copyright": "© 2017 THMcards",
+    "my-cardset": "My Cardset"
   }
 }

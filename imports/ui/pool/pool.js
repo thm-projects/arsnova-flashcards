@@ -4,11 +4,13 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Ratings} from "../../api/ratings.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("allLearned");
+Meteor.subscribe('ratings');
+
+var items_increment = 14;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
@@ -16,33 +18,8 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
-
-/**
- * Creates a browser-popup with defined content
- * @param title Heading for notification
- * @param message Body of notification
- */
-export function notification(title, message) {
-	var messageIcon = "https://git.thm.de/uploads/project/avatar/374/cards_logo.png";
-	//source: https://developer.mozilla.org/de/docs/Web/API/notification
-	if (Notification.permission === "granted") {
-		var options = {
-			body: message,
-			icon: messageIcon
-		};
-		new Notification(title, options);
-	} else if (Notification.permission !== 'denied') {
-		Notification.requestPermission(function (permission) {
-			if (permission === "granted") {
-				var options = {
-					body: message,
-					icon: messageIcon
-				};
-				new Notification(title, options);
-			}
-		});
-	}
-}
+Session.setDefault('selectedCardset');
+Session.setDefault("itemsLimit", items_increment);
 
 var query = {};
 
@@ -64,27 +41,35 @@ function prepareQuery() {
 	}
 }
 
-function checkFilters() {
-	if (Session.get('poolFilterAuthor')) {
-		$(".filterAuthorGroup").addClass('active');
+function checkRemainingCards() {
+	prepareQuery();
+	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+		$(".showMoreResults").data("visible", true);
+		return true;
 	} else {
-		$(".filterAuthorGroup").removeClass('active');
+		$(".showMoreResults").data("visible", false);
+		return false;
 	}
-	if (Session.get('poolFilterCollege')) {
-		$(".filterCollegeGroup").addClass('active');
-	} else {
-		$(".filterCollegeGroup").removeClass('active');
+}
+
+function resetInfiniteBar() {
+	Session.set("itemsLimit", items_increment);
+	checkRemainingCards();
+}
+
+function showMoreVisible() {
+	var threshold, target = $(".showMoreResults");
+	if (target.data("visible")) {
+		threshold = $(window).scrollTop() + $(window).height() - target.height();
+		if (target.offset().top < threshold) {
+			target.data("visible", false);
+			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		}
 	}
-	if (Session.get('poolFilterCourse')) {
-		$(".filterCourseGroup").addClass('active');
-	} else {
-		$(".filterCourseGroup").removeClass('active');
-	}
-	if (Session.get('poolFilterModule')) {
-		$(".filterModuleGroup").addClass('active');
-	} else {
-		$(".filterModuleGroup").removeClass('active');
-	}
+}
+$(window).scroll(showMoreVisible);
+
+function filterCheckbox() {
 	$("#filterCheckbox input:checkbox").each(function () {
 		if (!Session.get('poolFilter').includes($(this).val())) {
 			$(this).prop('checked', false);
@@ -96,17 +81,70 @@ function checkFilters() {
 	});
 }
 
-function deadline(cardset) {
-	var active = Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), active: true});
-	var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
-	if (deadline.getTime() > cardset.learningEnd.getTime()) {
-		return (TAPi18n.__('notifications.deadline') + cardset.learningEnd.toLocaleDateString());
+function checkFilters() {
+	if (Session.get('poolFilterAuthor')) {
+		$(".filterAuthorGroup").addClass('active');
 	} else {
-		return (TAPi18n.__('notifications.deadline') + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning'));
+		$(".filterAuthorGroup").removeClass('active').first();
 	}
+	if (Session.get('poolFilterCollege')) {
+		$(".filterCollegeGroup").addClass('active');
+	} else {
+		$(".filterCollegeGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterCourse')) {
+		$(".filterCourseGroup").addClass('active');
+	} else {
+		$(".filterCourseGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterModule')) {
+		$(".filterModuleGroup").addClass('active');
+	} else {
+		$(".filterModuleGroup").removeClass('active').first();
+	}
+	filterCheckbox();
 }
 
-/**
+function filterCollege(event) {
+	var button = $(".filterCollegeGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterCollegeVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterCollegeVal', $(event.target).data('id'));
+	}
+	Session.set('poolFilterCollege', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+function filterCourse(event) {
+	var button = $(".filterCourseGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterCourseVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterCourseVal', $(event.target).data('id'));
+	}
+	Session.set('poolFilterCourse', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+function filterModule(event) {
+	var button = $(".filterModuleGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterModuleVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterModuleVal', $(event.target).data('id'));
+	}
+	Session.set('poolFilterModule', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+/*
  * ############################################################################
  * category
  * ############################################################################
@@ -120,7 +158,7 @@ Template.category.helpers({
 	},
 	getDecks: function () {
 		prepareQuery();
-		return Cardsets.find(query, {sort: Session.get('poolSortTopic')});
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
@@ -145,6 +183,33 @@ Template.category.helpers({
 	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
+	},
+	hasAuthorFilter: function () {
+		return Session.get('poolFilterAuthor');
+	},
+	poolFilterAuthor: function () {
+		return Session.get('poolFilterAuthorVal');
+	},
+	hasCollegeFilter: function () {
+		return Session.get('poolFilterCollege');
+	},
+	poolFilterCollege: function () {
+		return Session.get('poolFilterCollegeVal');
+	},
+	hasCourseFilter: function () {
+		return Session.get('poolFilterCourse');
+	},
+	poolFilterCourse: function () {
+		return Session.get('poolFilterCourseVal');
+	},
+	hasModuleFilter: function () {
+		return Session.get('poolFilterModule');
+	},
+	poolFilterModule: function () {
+		return Session.get('poolFilterModuleVal');
+	},
+	moreResults: function () {
+		return checkRemainingCards();
 	}
 });
 
@@ -152,17 +217,54 @@ Template.category.greeting = function () {
 	return Session.get('authors');
 };
 
+Template.showLicense.helpers({
+	getTopic: function () {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			return item.name;
+		}
+	},
+	getLicenseCount: function () {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			return (item.license.length > 0);
+		}
+	},
+	getLicenseType: function (type) {
+		if (Session.get('selectedCardset')) {
+			var item = Cardsets.findOne({_id: Session.get('selectedCardset')});
+			return (item.license.includes(type));
+		}
+	}
+});
+
 Template.poolCardsetRow.helpers({
+	getAverageRating: function () {
+		var ratings = Ratings.find({
+			cardset_id: this._id
+		});
+		var count = ratings.count();
+		if (count !== 0) {
+			var amount = 0;
+			ratings.forEach(function (rate) {
+				amount = amount + rate.rating;
+			});
+			var result = (amount / count).toFixed(2);
+			return result;
+		} else {
+			return 0;
+		}
+	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
-				return '<span class="label label-info">Free</span>';
+				return '<span class="label label-info panelUnitKind" data-id="free">Free</span>';
 			case "edu":
-				return '<span class="label label-success">Edu</span>';
+				return '<span class="label label-success panelUnitKind" data-id="edu">Edu</span>';
 			case "pro":
-				return '<span class="label label-danger">Pro</span>';
+				return '<span class="label label-danger panelUnitKind" data-id="pro">Pro</span>';
 			default:
-				return '<span class="label label-default">Undefined!</span>';
+				return '<span class="label label-default panelUnitKind">Undefined!</span>';
 		}
 	},
 	getPrice: function () {
@@ -175,22 +277,50 @@ Template.poolCardsetRow.helpers({
 
 		if (this.license.length > 0) {
 			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + this._id + '"/>');
 			}
 			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + this._id + '"/>');
 			}
 
 			return new Spacebars.SafeString(licenseString);
 		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
+			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
 		}
+	},
+	getMaximumText: function (text) {
+		const maxLength = 15;
+		const textSplitted = text.split(" ");
+		if (textSplitted.length > maxLength) {
+			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+		}
+		return text;
+	}
+});
+
+
+Template.poolCardsetRow.events({
+	'click .filterCollege': function (event) {
+		filterCollege(event);
+	},
+	'click .filterCourse': function (event) {
+		filterCourse(event);
+	},
+	'click .filterModule': function (event) {
+		filterModule(event);
+	},
+	'click .filterCheckbox': function (event) {
+		Session.set('poolFilter', [$(event.target).data('id')]);
+		filterCheckbox();
+	},
+	'click .showLicense': function (event) {
+		Session.set('selectedCardset', $(event.target).data('id'));
 	}
 });
 
@@ -203,8 +333,9 @@ Template.category.events({
 		Session.set('poolFilterModule');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		checkFilters();
+		resetInfiniteBar();
 	},
-	'click .sortTopic': function () {
+	'click #topicBtn': function () {
 		var sort = Session.get('poolSortTopic');
 		if (sort.name === 1) {
 			Session.set('poolSortTopic', {name: -1});
@@ -216,37 +347,26 @@ Template.category.events({
 		var button = $(".filterAuthorGroup");
 		if (!$(event.target).data('id')) {
 			button.removeClass("active");
+			Session.set('poolFilterAuthorVal', null);
 		} else {
 			button.addClass('active');
+			Session.set('poolFilterAuthorVal', $(event.target).html());
 		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
+		resetInfiniteBar();
 	},
 	'click .filterCollege': function (event) {
-		var button = $(".filterCollegeGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterCollege', $(event.target).data('id'));
+		filterCollege(event);
 	},
 	'click .filterCourse': function (event) {
-		var button = $(".filterCourseGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterCourse', $(event.target).data('id'));
+		filterCourse(event);
 	},
 	'click .filterModule': function (event) {
-		var button = $(".filterModuleGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-		} else {
-			button.addClass('active');
-		}
-		Session.set('poolFilterModule', $(event.target).data('id'));
+		filterModule(event);
+	},
+	'click .showMoreResults': function () {
+		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		checkRemainingCards();
 	},
 	'change #filterCheckbox': function () {
 		var filter = [];
@@ -267,12 +387,6 @@ Template.pool.onRendered(function () {
 			'editor'
 		])) {
 		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
-	}
-	var toLearn = Cardsets.find({webNotification: true, learningActive: true}).fetch();
-	for (var i = 0; i < toLearn.length; ++i) {
-		if (Learned.find({cardset_id: toLearn[i]._id, user_id: Meteor.userId(), active: true}).count() !== 0) {
-			notification(TAPi18n.__('notifications.heading'), TAPi18n.__('notifications.content') + toLearn[i].name + deadline(toLearn[i]));
-		}
 	}
 	checkFilters();
 });

@@ -16,7 +16,7 @@ Session.setDefault('cardsetSortCreated', {name: 1});
 Session.setDefault('cardsetSortLearned', {name: 1});
 
 
-/**
+/*
  * ############################################################################
  * created
  * ############################################################################
@@ -55,7 +55,7 @@ Template.created.onDestroyed(function () {
 	Session.set('cardsetSortCreated', {name: 1});
 });
 
-/**
+/*
  * ############################################################################
  * learned
  * ############################################################################
@@ -110,7 +110,7 @@ Template.created.onDestroyed(function () {
 	Session.set('cardsetSortLearned', {name: 1});
 });
 
-/**
+/*
  * ############################################################################
  * cardsets
  * ############################################################################
@@ -208,7 +208,31 @@ Template.cardsets.events({
 	}
 });
 
-/**
+/*
+ * ############################################################################
+ * descriptionEditorNew
+ * ############################################################################
+ */
+
+Template.descriptionEditorNew.rendered = function () {
+	$("#newSetDescription").markdown({
+		autofocus: true,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		footer: "<p></p>",
+		onChange: function (e) {
+			var content = e.getContent();
+			if (content !== "") {
+				Meteor.promise("convertMarkdown", content)
+					.then(function (rendered) {
+						$(".md-footer").html(rendered);
+					});
+			}
+		}
+	});
+};
+
+/*
  * ############################################################################
  * cardsetsForm
  * ############################################################################
@@ -303,7 +327,7 @@ Template.cardsetsForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetsConfirmLearnedForm
  * ############################################################################

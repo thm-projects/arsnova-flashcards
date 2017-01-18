@@ -45,6 +45,10 @@
     "ServiceConfiguration": true,
     "ActiveRoute": true,
     "prompt": true,
-    "Chart": true
+    "Chart": true,
+    "Ground": false,
+    "SSR": true,
+    "process": true,
+    "Assets": true
   }
 }

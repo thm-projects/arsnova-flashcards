@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-
+import {check} from "meteor/check";
 
 export const AdminSettings = new Mongo.Collection("adminSettings");
 
@@ -14,6 +14,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	updateInterval: function (inv1, inv2, inv3) {
+		check(inv1, Number);
+		check(inv2, Number);
+		check(inv3, Number);
+
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -28,5 +32,20 @@ Meteor.methods({
 					seqThree: inv3
 				}
 			});
+	},
+	updateMailSettings: function (enableMails) {
+		check(enableMails, Boolean);
+
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		AdminSettings.upsert({
+			name: "mailSettings"
+		},
+		{
+			$set: {
+				enabled: enableMails
+			}
+		});
 	}
 });

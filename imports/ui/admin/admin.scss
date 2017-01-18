@@ -87,6 +87,21 @@ body {
             .page-number {
               margin-right: 20px;
             }
+            .rows-per-page {
+              margin-left: 20px;
+            }
+            .form-inline input {
+              width: 50px;
+            }
+            .next-page {
+              font-size: 200%;
+              margin: 0 5px;
+            }
+            .previous-page {
+              font-size: 200%;
+              margin: 0 5px;
+            }
+
           }
         }
         .dashboard-box {

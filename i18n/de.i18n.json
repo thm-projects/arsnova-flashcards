@@ -29,7 +29,8 @@
     "logout": "Logout",
     "search": "Suche",
     "frontend": "Front-End",
-    "backend": "Back-End"
+    "backend": "Back-End",
+    "none": "Ohne"
   },
   "footer": {
     "impressum": "Impressum",
@@ -53,8 +54,9 @@
     "heading": "Aufgaben warten!",
     "content": "Kartensatz: ",
     "deadline": "\nFrist: ",
-    "warning": "\n\nNicht bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
-    "admin": "Sie sind ein Admin!"
+    "warning": "\nNicht bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
+    "admin": "Sie sind ein Admin!",
+    "cards": "\nKarten: "
   },
   "input-group": {
     "newcarddeck": "Neuer Kartensatz"
@@ -98,7 +100,7 @@
     "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
     "notification": "Benachrichtigungen",
     "mailNotificationCheckbox": "E-Mail",
-    "webNotificationCheckbox": "Browser",
+    "webNotificationCheckbox": "Web",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
   },
   "confirmEndLearn-form": {
@@ -127,7 +129,9 @@
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
     "everything": "Alles",
-    "reset": "Alle Filter zurücksetzen"
+    "reset": "Alle Filter zurücksetzen",
+    "rating": "Bewertung",
+    "moreResults": "Zeige weitere Einträge"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -168,6 +172,7 @@
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
+    "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
     "saveLicense": "Lizenz speichern",
     "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
     "report": "Kartensatz/Benutzer melden",
@@ -212,7 +217,9 @@
     "settings": {
       "name": "Profil",
       "delete": "Benutzerprofil löschen",
-      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen."
+      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen.",
+      "appearance": "Erscheinungsbild",
+      "theme": "Farbauswahl"
     }
   },
   "profil-header": {
@@ -376,7 +383,8 @@
     "private": "Privat",
     "license": " Lizenz wählen",
     "startLearning": "Starte Lernphase",
-    "stopLearning": "Beende Lernphase"
+    "stopLearning": "Beende Lernphase",
+    "poolLicense": "Lizenz für "
   },
   "pool": {
     "relevance": "Relevanz",
@@ -566,9 +574,11 @@
   "silver": "Silber",
   "bronze": "Bronze",
   "newbadge": "Neuer Badge",
+  "rank": "Rang",
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
+  "youareoffline": "Sie sind offline!",
   "admin": {
     "allLearnedCardsets": "Alle gelernten Kartensätze",
     "learnedCardsets": "Lernfortschritt des Kartensatzes",
@@ -749,6 +759,11 @@
       "name_toShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
       "name_toLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
+    },
+    "mail-settings": {
+      "mail-settings": "Mail Einstellungen",
+      "enabled": "Aktiviert",
+      "disabled": "Deaktiviert"
     }
   },
   "access-denied": {
@@ -756,7 +771,7 @@
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: "
-  }, 
+  },
   "first-login": {
     "text": "Ich habe die allgemeinen Geschäftsbedingungen und Datenschutzerklärung gelesen und bin damit einverstanden.",
     "button": "Akzeptieren"
@@ -767,17 +782,32 @@
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
     "subjectPlural2": " Karten ",
+    "subjectSingular3": " ist.\n\n",
+    "subjectPlural3": " sind.\n\n",
     "subjectCardset": "aus dem Kartensatz ",
-    "subjectEnd": " zu lernen",
-    "textIntro": "Sehr geehrter Teilnehmer der aktuellen THMCards-Lernphase,\n\n",
-    "newCards1": "ein neuer Tag hat begonnen und ",
-    "newCards2Singular": " Karte erwartet dich im Kartensatz ",
-    "newCards2Plural": " Karten erwarten dich im Kartensatz ",
+    "subjectEnd": " zu lernen.",
+    "textEnd": " zu lernen sind.",
+    "newCards2Singular": " Karte erwartet dich in dem Kartensatz ",
+    "newCards2Plural": " Karten erwarten dich in dem Kartensatz ",
+    "textIntro": "Hallo ",
+    "textIntro1": ",\n\n es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
+    "textDate1": "Du hast noch bis zum ",
+    "textDate2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt zurückgesetzt!",
+    "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase konnte festgestellt werden, dass ",
+    "newCards2Singular": " Karte aus dem Kartensatz ",
+    "newCards2Plural": " Karten aus dem Kartensatz ",
+    "mailCard" : "Der Kartensatz ",
+    "mailCard1" : " benötigt deine Aufmerksamkeit!\n\n",
     "greetings": "\n\nIhr THMCards-Team",
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
     "textIntroEnding": "Sehr geehrter Teilnehmer,\n\n",
     "textEnding": "Heute endet die Lernphase des Kartensatzes ",
     "subjectReset": "THMcards: Ihr Lernfortschritt hat sich zurückgesetzt für den Kartensatz ",
-    "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. "
+    "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
+    "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast, von ",
+    "unsubscribe": "Nicht mehr interessiert? Beende die aktuelle Lernphase, um diesen Newsletter zu deabonnieren.",
+    "copyright": "© 2017 THMcards",
+    "my-cardset": "Mein Kartensatz"
   }
 }

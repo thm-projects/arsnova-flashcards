@@ -24,9 +24,9 @@
                           <div class="panel-body">
                               <div class="input-group has-error">
   											<span class="input-group-btn">
-  											  <button id="acceptRequest" class="btn btn-success" type="button">{{_
+  											  <button id="acceptRequest" class="btn btn-raised btn-success" type="button">{{_
                                                         "cardset.request.accept"}}</button>
-  											  <button id="declineRequest" class="btn btn-danger" type="button">{{_
+  											  <button id="declineRequest" class="btn btn-raised btn-danger" type="button">{{_
                                                         "cardset.request.decline"}}</button>
   											</span>
                                   <input id="declineRequestReason" type="text" class="form-control"
@@ -63,7 +63,7 @@
                 <div class="col-sm-8">
                     <div class="">
                         <h4>{{{getKind}}} {{name}}</h4>
-                        <hr> {{description}}
+                        <hr> {{#markdown}}{{description}}{{/markdown}}
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -116,23 +116,29 @@
             </div>
             {{#if isOwner}}
                 <div class="panel-footer">
-                    <div class="btn-group">
+                    <div class="btn-group btn-group-raised">
                         <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#publishModal" {{isDisabled}}><i class="fa fa-eye"></i> {{_
-                                "sidebar-nav.publish"}}: {{getStatus}}</button>
+                                data-target="#publishModal" {{isDisabled}} {{disableIfOffline}}>
+                            <i class="fa fa-eye"></i> {{_ "sidebar-nav.publish"}}: {{getStatus}}
+                        </button>
                         <button id="publishTooltip" type="button" class="btn btn-default" data-toggle="tooltip"
                                 title="{{_ "sidebar-nav.tooltip"}}">
                             <i class="fa fa-question"></i></button>
                     </div>
-                    <button id="editCardset" class="btn btn-default" type="button" data-toggle="modal"
-                            data-target="#editSetModal"><i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
+                    <button id="editCardset" class="btn btn-raised btn-default" type="button" data-toggle="modal"
+                            data-target="#editSetModal" {{disableIfOffline}}>
+                        <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                     </button>
                     {{#unless learningActive}}
-                        <div class="btn-group">
-                            <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"><i
-                                    class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}</a>
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span
-                                    class="caret"></span></button>
+                        <div class="btn-group btn-group-raised">
+                            <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"
+                                {{disableIfOffline}}>
+                                <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
+                            </a>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                {{disableIfOffline}}>
+                                <span class="caret"></span>
+                            </button>
                             <ul class="dropdown-menu">
                                 <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
                                         class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
@@ -144,7 +150,8 @@
 
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default" type="button" data-toggle="modal"
-                                data-target="#selectLicenseModal"><i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                                data-target="#selectLicenseModal" {{disableIfOffline}}>
+                            <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
                         </button>
                     {{/if}}
                 </div>
@@ -159,7 +166,7 @@
             <div id="set-details-sideBar-region">
                 <div class="well well-sm sidebar-nav">
                     <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-                    <div class="btn-group btn-group-xs btn-group-justified">
+                    <div class="btn-group btn-group-raised btn-group-raised-xs btn-group-raised-justified">
                         <a id="btnToCardLayout"
                            class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
                            href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
@@ -173,8 +180,8 @@
             <div id="set-details-learn-region">
                 <div class="well well-sm sidebar-nav">
                     <span class="nav-header-cardset">{{_ "learn"}}</span>
-                    <button id="learnBox" class="btn btn-default learn btn-block">{{_ "learnfile"}}</button>
-                    <button id="learnMemo" class="btn btn-default memo btn-block">{{_ "memo"}}</button>
+                    <button id="learnBox" class="btn btn-raised btn-default learn btn-block">{{_ "learnfile"}}</button>
+                    <button id="learnMemo" class="btn btn-raised btn-default memo btn-block">{{_ "memo"}}</button>
                 </div>
             </div>
         {{/unless}}
@@ -205,7 +212,7 @@
                         {{/if}}
                     {{/if}}
                     {{#unless isOwner}}
-                        <button id="report_button" class="btn btn-default btn-block btn-warning flag" href="#"
+                        <button id="report_button" style="white-space: normal; padding-left: 10px; padding-right: 10px;" class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
                                 data-toggle="modal" data-target="#reportModal">{{_
                                 "report"}}</button>
                     {{/unless}}
@@ -237,17 +244,17 @@
                 </div>
             </div>
         </div>
-        <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group btn-group-raised btn-group btn-group-raised-raised btn-group btn-group-raised-justified" role="group">
         </div>
 
     </div>
-    <div class="col-md-8" id="set-details-region">
+    <div class="col-md-8 flip-container" id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
                         <div class="item {{#if cardActive @index}}active{{/if}}">
-                            <div class="box">
+                            <div class="box flashcard">
                                 <div class="cardNumber">
                                     {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
                                 </div>
@@ -284,7 +291,7 @@
 </template>
 
 <template name="cardsetDetails">
-    <div class="col-md-9" id="set-details-region">
+    <div class="col-md-9 flip-container" id="set-details-region">
         {{#unless learningActive}}
             <div>
                 {{#if countCards this._id}}
@@ -292,9 +299,10 @@
                         <div class="carousel-inner">
                             {{#each getCardsCheckActive}}
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
-                                    <div class="box">
+                                    <div class="box flashcard">
+                                        <div class="innerBox">
                                         {{#if isOwner}}
-                                            <a id="editCard" class="btn-editCard btn btn-default btn-xs"
+                                            <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
                                                href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
                                                 <i class="glyphicon glyphicon-pencil"></i>
                                             </a>
@@ -315,6 +323,7 @@
                                                  style="display:none">
                                                 <p>{{back}}</p>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -399,13 +408,9 @@
             <tr>
                 <th>
                     <span>{{_ "frontside"}}</span>
-                    <a class="frontdown" role="button">⇓</a>
-                    <a class="frontup" role="button">⇑</a>
                 </th>
                 <th>
                     <span>{{_ "backside"}}</span>
-                    <a class="backdown" role="button">⇓</a>
-                    <a class="backup" role="button">⇑</a>
                 </th>
                 {{#if isOwner}}
                     <th>{{_ "options"}}</th>
@@ -446,6 +451,10 @@
     </div>
 </template>
 
+<template name="descriptionEditorEdit">
+     <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
+               value="{{description}}"></textarea>
+</template>
 
 <template name="cardsetForm">
     <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
@@ -469,8 +478,7 @@
                             <label id="editSetDescriptionLabel" class="col-md-3 control-label"
                                    for="editSetDescription">{{_ "modal-dialog.description"}}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" rows="3" id="editSetDescription"
-                                          value="{{description}}"></textarea>
+                                {{>descriptionEditorEdit}}
                                 <span id="helpEditSetDescription" class="help-block description"></span>
                             </div>
                         </div>
@@ -514,7 +522,7 @@
                             <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
                                     "modal-dialog.college"}}</label>
                             <div class="dropup">
-                                <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
+                                <div class="btn-group btn-group-raised  col-xs-12 col-sm-12 col-md-9">
                                     <button id="editSetCollege" type="button"
                                             class="btn btn-default editSetCollegeDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
@@ -540,18 +548,18 @@
                             <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
-                                <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
+                                <div class="btn-group btn-group-raised  col-xs-12 col-sm-12 col-md-9">
                                     <button id="editSetCourse" type="button"
-                                            class="btn btn-default editSetCourseDropdown longButton"
+                                            class="btn btn-raised btn-default editSetCourseDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
-                                    <button type="button" class="btn dropdown-toggle editSetCourseDropdown"
+                                    <button type="button" class="btn btn-raised dropdown-toggle editSetCourseDropdown"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         <span class="caret"></span>
                                         <span class="sr-only"></span>
                                     </button>
-                                    <ul class="dropdown-menu longButton">
+                                    <ul class="dropdown-menu btn-raised longButton">
                                         {{#each getCourses}}
                                             <li class="course" value="{{_id}}" data="{{this.course}}"><a
                                                     href="#">{{this.course}}</a></li>
@@ -564,13 +572,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardSetCancel" class="btn btn-warning" data-dismiss="modal">{{_
+                    <button id="cardSetCancel" class="btn btn-raised btn-warning" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
-                    <button id="cardSetDelete" class="btn btn-danger pull-left btn-setDelete" style="width:150px">{{_
+                    <button id="cardSetDelete" class="btn btn-raised btn-danger pull-left btn-setDelete" style="width:150px">{{_
                             "modal-dialog.delete"}}</button>
-                    <button id="cardSetConfirm" class="btn btn-warning pull-left" style="width:150px; display:none">{{_
+                    <button id="cardSetConfirm" class="btn btn-raised btn-warning pull-left" style="width:150px; display:none">{{_
                             "modal-dialog.confirm"}}</button>
-                    <button id="cardSetSave" class="btn btn-primary">{{_ "modal-dialog.save"}}</button>
+                    <button id="cardSetSave" class="btn btn-raised btn-primary">{{_ "modal-dialog.save"}}</button>
                 </div>
             </div>
         </div>
@@ -648,32 +656,6 @@
                             <div class="col-md-12">
                                 <span id="errorInputLearningInterval" class="help-block name"></span>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.notification"}}</label>
-                            <form>
-                                <fieldset>
-                                    <div class="col-md-9 form-group">
-                                        <div class="col-md-6">
-                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
-                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
-                                                       checked>
-                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
-                                            </label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="checkbox-inline" for="webNotificationCheckbox">
-                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
-                                                       checked>
-                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
-                                            </label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span id="errorNotification" class="help-block name"></span>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -791,7 +773,7 @@
                             <label class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
                             <div class="controls col-md-9">
-                                <div id="publishKind" class="btn-group btn-group-kind" data-toggle="buttons">
+                                <div id="publishKind" class="btn-group btn-group-raised btn-group btn-group-raised-kind" data-toggle="buttons">
                                     <label id="kindoption0"
                                            class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
                                            style="width:100px">
@@ -876,7 +858,7 @@
                             <label id="modulesLabel" class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
                             <div class="controls col-md-9">
-                                <div id="cc-modules" class="btn-group" data-toggle="buttons">
+                                <div id="cc-modules" class="btn-group btn-group-raised" data-toggle="buttons">
                                     <label id="cc-option0"
                                            class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
                                            style="width:100px">

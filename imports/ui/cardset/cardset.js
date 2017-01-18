@@ -24,6 +24,7 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+// Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
 });
@@ -37,8 +38,44 @@ export function getActiveLearner() {
 	return (_.pluck(distinctData, "user_id").length);
 }
 
-
 /**
+ * Creates a web push subscription for the current device.
+ * The Browser ask the user for permissions and creates the subscription.
+ * Afterwards the subscription will be saved for the current user via the
+ * Meteor-method addWebPushSubscription.
+ */
+function subscribeForPushNotification() {
+	navigator.serviceWorker.getRegistration()
+		.then(function (registration) {
+			return registration.pushManager.getSubscription()
+				.then(function (subscription) {
+					if (!subscription) {
+						return registration.pushManager.subscribe({userVisibleOnly: true});
+					}
+				});
+		})
+		.then(function (subscription) {
+			if (subscription) {
+				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+				const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+				const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+				const endpoint = subscription.endpoint;
+				const sub = {
+					endpoint: endpoint,
+					key: key,
+					authSecret: authSecret
+				};
+				Meteor.call("addWebPushSubscription", sub, function (error) {
+					if (error) {
+						throw new Meteor.Error(error.statusCode, 'Error subscription failed');
+					}
+				});
+			}
+		});
+}
+
+/*
  * ############################################################################
  * cardset
  * ############################################################################
@@ -107,17 +144,29 @@ Template.cardset.helpers({
 	}
 });
 
+function flipBack() {
+	$(".cardfront-symbol").css('display', "none");
+	$(".cardback-symbol").css('display', "");
+	$(".cardfront").css('display', "none");
+	$(".cardback").css('display', "");
+	$(".box").addClass("flipped");
+	$(".innerBox").addClass("back");
+}
+
+function flipFront() {
+	$(".cardfront-symbol").css('display', "");
+	$(".cardback-symbol").css('display', "none");
+	$(".cardfront").css('display', "");
+	$(".cardback").css('display', "none");
+	$(".box").removeClass("flipped");
+	$(".innerBox").removeClass("back");
+}
+
 function ifCardset() {
 	if ($(".cardfront-symbol").css('display') === 'none') {
-		$(".cardfront-symbol").css('display', "");
-		$(".cardback-symbol").css('display', "none");
-		$(".cardfront").css('display', "");
-		$(".cardback").css('display', "none");
+		flipFront();
 	} else if ($(".cardback-symbol").css('display') === 'none') {
-		$(".cardfront-symbol").css('display', "none");
-		$(".cardback-symbol").css('display', "");
-		$(".cardfront").css('display', "none");
-		$(".cardback").css('display', "");
+		flipBack();
 	}
 }
 
@@ -217,7 +266,7 @@ Template.cardset.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetForm
  * ############################################################################
@@ -315,7 +364,31 @@ Template.cardsetForm.events({
 	}
 });
 
-/**
+/*
+ * ############################################################################
+ * descriptionEditorEdit
+ * ############################################################################
+ */
+
+Template.descriptionEditorEdit.rendered = function () {
+	$("#editSetDescription").markdown({
+		autofocus: true,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		footer: "<p></p>",
+		onChange: function (e) {
+			var content = e.getContent();
+			if (content !== "") {
+				Meteor.promise("convertMarkdown", content)
+					.then(function (rendered) {
+						$(".md-footer").html(rendered);
+					});
+			}
+		}
+	});
+};
+
+/*
  * ############################################################################
  * cardsetList
  * ############################################################################
@@ -344,37 +417,11 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .deleteCardList': function () {
 		Session.set('cardId', this._id);
-	},
-	'click #set-details-region .frontdown': function () {
-		Session.set('cardSort', {
-			front: 1
-		});
-	},
-	'click #set-details-region .frontup': function () {
-		Session.set('cardSort', {
-			front: -1
-		});
-	},
-	'click #set-details-region .backdown': function () {
-		Session.set('cardSort', {
-			back: 1
-		});
-	},
-	'click #set-details-region .backup': function () {
-		Session.set('cardSort', {
-			back: -1
-		});
 	}
 });
 
-Template.cardsetList.onDestroyed(function () {
-	Session.set('cardSort', {
-		front: 1
-	});
-});
 
-
-/**
+/*
  * ############################################################################
  * cardsetDetails
  * ############################################################################
@@ -386,9 +433,25 @@ Template.cardsetDetails.onCreated(function () {
 	});
 });
 
+function setLightBoxes(html) {
+	if ($(html).find('img').length !== 0) {
+		$(html).find('img').each(function () {
+			var imageDescription = $(this).attr('alt');
+			var imageUrl = $(this).attr('src');
+
+			html = $(this).wrap('<a href="' + imageUrl + '" data-type="image" data-toggle="lightbox" data-title="' + imageDescription + '"></a>').parent().click(function (event) {
+				event.preventDefault();
+				return $(this).ekkoLightbox();
+			}).parent();
+		});
+	}
+
+	return html;
+}
 
 Template.cardsetDetails.helpers({
 	addToLeitner: function () {
+		subscribeForPushNotification();
 		Meteor.call("addToLeitner", this);
 	},
 	learningEnded: function () {
@@ -422,10 +485,12 @@ Template.cardsetDetails.helpers({
 	cardDetailsMarkdown: function (front, back, index) {
 		Meteor.promise("convertMarkdown", front)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailfront" + index).html(html);
 			});
 		Meteor.promise("convertMarkdown", back)
 			.then(function (html) {
+				html = setLightBoxes(html);
 				$(".detailback" + index).html(html);
 			});
 	},
@@ -453,7 +518,7 @@ Template.cardsetDetails.events({
 		ifCardset();
 	},
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		ifCardset();
+		flipFront();
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
@@ -465,7 +530,7 @@ Template.cardsetDetails.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetPreview
  * ############################################################################
@@ -526,14 +591,14 @@ Template.cardsetPreview.events({
 		ifCardset();
 	},
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		ifCardset();
+		flipFront();
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetInfo
  * ############################################################################
@@ -640,11 +705,7 @@ Template.cardsetInfo.helpers({
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
 	},
 	isPublished: function () {
-		if (this.kind === 'personal') {
-			return false;
-		} else {
-			return true;
-		}
+		return (this.kind === 'personal');
 	},
 	getActiveLearner
 });
@@ -701,7 +762,7 @@ Template.cardsetInfo.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetSidebar
  * ############################################################################
@@ -777,7 +838,7 @@ Template.cardsetSidebar.helpers({
 		}
 	}
 });
-/**
+/*
  * ############################################################################
  * cardsetStartLearnForm
  * ############################################################################
@@ -826,24 +887,7 @@ Template.cardsetStartLearnForm.events({
 				}
 			}
 
-			var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
-			var webNotification = document.getElementById('webNotificationCheckbox').checked;
-			if (mailNotification || webNotification) {
-				Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, mailNotification, webNotification);
-			}
-		}
-	},
-	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
-		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
-			document.getElementById('confirmLearn').disabled = true;
-			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
-		} else {
-			document.getElementById('confirmLearn').disabled = false;
-			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#errorNotification').html('');
+			Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
 		}
 	},
 	"click #cancelLearn": function () {
@@ -855,8 +899,6 @@ Template.cardsetStartLearnForm.events({
 		$('#inputLearningInterval3').val(7);
 		$('#inputLearningInterval4').val(28);
 		$('#inputLearningInterval5').val(84);
-		document.getElementById('mailNotificationCheckbox').checked = true;
-		document.getElementById('webNotificationCheckbox').checked = true;
 	},
 	"input #inputMaxCards": function () {
 		if (parseInt($('#inputMaxCards').val()) <= 0) {
@@ -898,7 +940,7 @@ Template.cardsetStartLearnForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetEndLearnForm
  * ############################################################################
@@ -912,7 +954,7 @@ Template.cardsetEndLearnForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetImportForm
  * ############################################################################
@@ -984,7 +1026,7 @@ Template.cardsetImportForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetConfirmForm
  * ############################################################################
@@ -1000,7 +1042,7 @@ Template.cardsetConfirmForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * cardsetPublishForm
  * ############################################################################
@@ -1019,10 +1061,6 @@ Template.cardsetPublishForm.onRendered(function () {
 			return this.value === cardset.kind;
 		}).prop('checked', true);
 
-		var kindWithPrice = (cardset.kind === 'edu' || cardset.kind === 'pro');
-		Session.set('kindWithPrice', kindWithPrice);
-
-
 		$('#publishPrice').val(cardset.price);
 	});
 });
@@ -1040,6 +1078,12 @@ Template.cardsetPublishForm.helpers({
 });
 
 Template.cardsetPublishForm.events({
+	'shown.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
+	'hidden.bs.modal #publishModal': function () {
+		Session.set('kindWithPrice', false);
+	},
 	'click #cardsetPublish': function (evt, tmpl) {
 		var id = this._id;
 		var kind = tmpl.find('#publishKind > .active > input').value;
@@ -1067,6 +1111,10 @@ Template.cardsetPublishForm.events({
 			var target = "lecturer";
 
 			Meteor.call("addNotification", target, type, text, this._id);
+
+			license.push("by");
+			license.push("nd");
+			Meteor.call("updateLicense", id, license);
 			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
 		}
 
@@ -1080,7 +1128,7 @@ Template.cardsetPublishForm.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * selectLicenseForm
  * ############################################################################
@@ -1157,7 +1205,7 @@ Template.selectLicenseForm.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * reportCardsetForm
  * ############################################################################

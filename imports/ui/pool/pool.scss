@@ -1,6 +1,14 @@
 #pool-category-region {
   margin-bottom: 35px;
   $color_orange_pool: rgb(255, 153, 51);
+  $color_background_free_filter_btn: #5bc0de;
+  $color_border_free_filter_btn: #46b8da;
+  $color_background_edu_filter_btn: #5cb85c;
+  $color_border_edu_filter_btn: #4cae4c;
+  $color_background_pro_filter_btn: #d9534f;
+  $color_border_pro_filter_btn: #d43f3a;
+  $color_btn_inactive: #9e9c9c;
+  $color_item_separator: #b2b2b2;
   text-align: left;
 
   h3 {
@@ -33,12 +41,52 @@
     font-weight: bold;
   }
 
+  .btn-info.active {
+    color: $white;
+    background-color: $color_background_free_filter_btn;
+    border-color: $color_border_free_filter_btn;
+  }
+
+  .btn-success.active {
+    color: $white;
+    background-color: $color_background_edu_filter_btn;
+    border-color: $color_border_edu_filter_btn;
+  }
+
+  .btn-danger.active {
+    color: $white;
+    background-color: $color_background_pro_filter_btn;
+    border-color: $color_border_pro_filter_btn;
+  }
+
+  .btn-info, .btn-success, .btn-danger {
+    background-color: $color_item_separator;
+    border-color: $color_btn_inactive;
+  }
+
   .panel {
-    padding-top: 10px;
-    padding-bottom: 10px;
     padding-left: 0px;
     padding-right: 0px;
     margin-bottom: 0px;
+  }
+  .panelUnit {
+    padding: 10px 15px 10px 15px;
+  }
+
+  .panelUnitKind {
+    margin-left: 15px;
+  }
+
+  .panelUnitPrice {
+    display: inline-block;
+    height: 40px;
+    margin-left: 5px;
+    margin-right: -5px;
+  }
+
+  .panelAvailability {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   #pool_license img {
@@ -51,13 +99,16 @@
     background-color: $color_wild_sand_approx;
   }
 
+  .panelUnitNoBorder {
+    border: none !important;
+  }
+
   .poolHeaderTop {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 14px;
     font-weight: bold;
-    background-color: $color_orange_pool;
-    color: $white;
+    background-color: $white;
   }
 
   .poolHeaderBottom {
@@ -78,7 +129,7 @@
     text-align: center;
   }
 
-  .poolText {
+  .poolText, .topicName {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -89,39 +140,175 @@
     padding-right: 0px;
   }
 
+  .scrollArrow {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 35px;
+    text-align: center;
+  }
+
   #info_license img {
     width: 20px;
   }
-  #collegeBtn{
-    width: 160px;
-  }
-  #resetBtn{
-    width: 272px;
-  }
-  #topicBtn{
-    width: 245px;
-  }
-  #moduleBtn{
-    width: 70px;
+
+  .stars-rating {
+    height: 20px;
   }
 
-  @media (max-width: 992px) {
+  #showLicenseModal {
+    #cc-modules img {
+      width: 30px;
+    }
+    #cc-description {
+      padding-top: 10px;
+      img {
+        width: 58px;
+      }
+
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .navbar-header {
+      float: none;
+    }
+    .navbar-left, .navbar-right {
+      float: none !important;
+    }
+    .navbar-toggle {
+      display: block;
+    }
+    .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+      display: none !important;
+    }
+    .navbar-nav {
+      float: none !important;
+      margin-top: 7.5px;
+    }
+    .navbar-nav > li {
+      float: none;
+    }
+    .navbar-nav > li > a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .collapse.in {
+      display: block !important;
+    }
+
     .panel {
       margin-top: 3px;
       margin-bottom: 3px;
     }
 
-    #resetBtn{
-      width: 242px;
+    .panelUnit {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: dashed 1px $color_item_separator;
     }
-    #topicBtn{
-      width: 215px;
+
+    .panelUnitPrice {
+      height: 41px;
+    }
+
+    .info_license_mobile {
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    #resetBtn {
+      margin-left: 15px;
+      margin-top: 8px;
+    }
+
+    .field-tip .tip-content {
+      bottom: 102%;
+    }
+
+    #filterCheckbox {
+      margin-left: 30px;
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
+    #pool-nav-wrapper, #pool-nav {
+      .dropdown {
+        padding: 0px;
+      }
+    }
+
+    #filterCheckbox {
+      margin-top: -2px;
+      padding-bottom: 0px;
+      padding-right: 30px;
+    }
+
     .altPanel {
       background-color: $color_wild_sand_approx;
     }
+
+    .panelUnit {
+      border-right: dashed 1px $color_item_separator;
+    }
+
+    .panelUnitLicense {
+      margin-left: 5px;
+      margin-right: -5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
+
+  @media (min-width: 768px) {
+    #pool-nav-wrapper, #pool-nav {
+      padding: 0px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #filterCheckbox {
+      margin-left: 45px;
+    }
+  }
+}
+
+.field-tip .tip-content {
+  max-lines: 1;
+  visibility: hidden;
+  width: 240px;
+  text-overflow: ellipsis;
+  background-color: black;
+  opacity: 0.9;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 2;
+  bottom: 115%;
+}
+
+.field-tip .tip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -95px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.field-tip:hover .tip-content {
+  visibility: visible;
 }

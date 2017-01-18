@@ -10,18 +10,18 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import {Ratings} from "../../api/ratings.js";
+import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import {AdminSettings} from "../../api/adminSettings";
-import {Graph} from "../../api/graph.js";
 import "./profile.html";
-
 
 Meteor.subscribe("experience");
 Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
+Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {
 	Session.set('data_loaded', true);
 });
@@ -30,15 +30,59 @@ Meteor.subscribe('learned', function () {
 });
 
 export function drawGraph() {
-	if (Session.get('data_loaded')) {
-		var ctx = document.getElementById("profileChart").getContext("2d");
-		new Chart(ctx).Bar(Graph(Meteor.userId(), undefined),
-			{
-				responsive: true
-			});
+	var query = {};
+	if (Meteor.userId() !== undefined) {
+		query.user_id = Meteor.userId();
 	}
-}
+	query.box = 1;
+	var box1 = Learned.find(query).count();
+	query.box = 2;
+	var box2 = Learned.find(query).count();
+	query.box = 3;
+	var box3 = Learned.find(query).count();
+	query.box = 4;
+	var box4 = Learned.find(query).count();
+	query.box = 5;
+	var box5 = Learned.find(query).count();
+	query.box = 6;
+	var box6 = Learned.find(query).count();
+	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
+	var ctx = document.getElementById("profileChart").getContext("2d");
+	new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			datasets: [
+				{
+					backgroundColor: "rgba(242,169,0,0.5)",
+					borderColor: "rgba(74,92,102,0.2)",
+					borderWidth: 1,
+					data: userData,
+					label: 'Anzahl Karten'
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						callback: function (value) {
+							if (value % 1 === 0) {
+								return value;
+							}
+						}
+					}
+				}]
+			}
+		}
+	});
+}
 
 function getLvl() {
 	var user = Meteor.users.findOne(Router.current().params._id);
@@ -65,13 +109,13 @@ function kritiker(rank) {
 	var badge = Badges.findOne("1");
 	switch (rank) {
 		case 3:
-			return ratings / badge.rank3 * 100;
+			return {max: badge.rank3, count: ratings};
 		case 2:
-			return ratings / badge.rank2 * 100;
+			return {max: badge.rank2, count: ratings};
 		case 1:
-			return ratings / badge.rank1 * 100;
+			return {max: badge.rank1, count: ratings};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -100,13 +144,13 @@ function krone(rank) {
 	var badge = Badges.findOne("2");
 	switch (rank) {
 		case 3:
-			return count / badge.rank3 * 100;
+			return {max: badge.rank3, count: count};
 		case 2:
-			return count / badge.rank2 * 100;
+			return {max: badge.rank2, count: count};
 		case 1:
-			return count / badge.rank1 * 100;
+			return {max: badge.rank1, count: count};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -116,13 +160,13 @@ function stammgast(rank) {
 	var badge = Badges.findOne("3");
 	switch (rank) {
 		case 3:
-			return user / badge.rank3 * 100;
+			return {max: badge.rank3, count: user};
 		case 2:
-			return user / badge.rank2 * 100;
+			return {max: badge.rank2, count: user};
 		case 1:
-			return user / badge.rank1 * 100;
+			return {max: badge.rank1, count: user};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -134,11 +178,11 @@ function streber(rank) {
 	var badge = Badges.findOne("4");
 	switch (rank) {
 		case 3:
-			return learned / badge.rank3 * 100;
+			return {max: badge.rank3, count: learned};
 		case 2:
-			return learned / badge.rank2 * 100;
+			return {max: badge.rank2, count: learned};
 		case 1:
-			return learned / badge.rank1 * 100;
+			return {max: badge.rank1, count: learned};
 		default:
 			return 0;
 	}
@@ -164,13 +208,13 @@ function wohltaeter(rank) {
 	var badge = Badges.findOne("5");
 	switch (rank) {
 		case 3:
-			return count / badge.rank3 * 100;
+			return {max: badge.rank3, count: count};
 		case 2:
-			return count / badge.rank2 * 100;
+			return {max: badge.rank2, count: count};
 		case 1:
-			return count / badge.rank1 * 100;
+			return {max: badge.rank1, count: count};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -188,13 +232,13 @@ function bestseller(rank) {
 	var badge = Badges.findOne("6");
 	switch (rank) {
 		case 3:
-			return learner / badge.rank3 * 100;
+			return {max: badge.rank3, count: learner};
 		case 2:
-			return learner / badge.rank2 * 100;
+			return {max: badge.rank2, count: learner};
 		case 1:
-			return learner / badge.rank1 * 100;
+			return {max: badge.rank1, count: learner};
 		default:
-			return 0;
+			return {};
 	}
 }
 
@@ -207,7 +251,7 @@ Template.registerHelper("isUser", function () {
 	return Router.current().params._id === Meteor.userId();
 });
 
-/**
+/*
  * ############################################################################
  * profile
  * ############################################################################
@@ -226,7 +270,7 @@ Template.profile.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileSidebar
  * ############################################################################
@@ -247,11 +291,41 @@ Template.profileSidebar.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileSettings
  * ############################################################################
  */
+
+Template.profileSettings.helpers({
+	/** Function returns all colorThemes from the databse */
+	getColorThemes() {
+		return ColorThemes.find();
+	},
+	/** Function returns "selected" when the value of the selectedColorTheme and the input _id are the same */
+	getSelectedColorThemes: function ()
+	{
+		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
+			return "selected";
+		}
+	},
+	getMailNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).mailNotification) {
+			return "checked";
+		}
+	},
+	getWebNotifications: function () {
+		if (Meteor.users.findOne(Meteor.userId()).webNotification) {
+			return "checked";
+		}
+	}
+});
+
+/** Function resets the temporary selected color theme */
+Template.profileSettings.onDestroyed(function () {
+	// Go back to last saved Theme
+	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+});
 
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
@@ -342,6 +416,22 @@ Template.profileSettings.events({
 			$('#profileCancel')[0].disabled = true;
 		}
 	},
+	/** Function evaluates the currently selected color theme of the input box and saves it to the database */
+	"click #colorThemeSave": function () {
+		var selected = $('#colorThemeSelect').val();
+		var user_id = Meteor.userId();
+
+		$('#colorThemeSave')[0].disabled = true;
+		Meteor.call("updateColorTheme", selected, user_id);
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+	},
+	/** Function changes the temporary color theme when the input box changes its value */
+	"change #colorThemeSelect": function () {
+		var selected = $('#colorThemeSelect').val();
+		$('#colorThemeSave')[0].disabled = false;
+		// Set session variable. Will be reset to value from mongoDB when template is destroyed
+		Session.set("theme", selected);
+	},
 	"click #profileSave": function () {
 		// Email validation
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -411,21 +501,39 @@ Template.profileSettings.events({
 					validName = true;
 				}
 				if (validEmail && validName && validBirthName && validGivenName) {
-					$('#inputEmailValidation').val('');
-					$('#inputEmailValidationForm').addClass("hidden");
-					$('#profileSave')[0].disabled = true;
-					$('#profileCancel')[0].disabled = true;
-					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersBirthName", birthname, user_id);
-					Meteor.call("updateUsersGivenName", givenname, user_id);
-					Meteor.call("updateUsersProfileState", true, user_id);
-					Meteor.call("updateUsersName", result, user_id);
-					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+					var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+					var webNotification = document.getElementById('webNotificationCheckbox').checked;
+					if (mailNotification || webNotification) {
+						$('#inputEmailValidation').val('');
+						$('#inputEmailValidationForm').addClass("hidden");
+						$('#profileSave')[0].disabled = true;
+						$('#profileCancel')[0].disabled = true;
+						Meteor.call("updateUsersEmail", email);
+						Meteor.call("updateUsersBirthName", birthname, user_id);
+						Meteor.call("updateUsersGivenName", givenname, user_id);
+						Meteor.call("updateUsersProfileState", true, user_id);
+						Meteor.call("updateUsersName", result, user_id);
+						Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+					}
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
 				}
 			}
 		});
+	},
+	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
+		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
+			document.getElementById('profileSave').disabled = true;
+			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
+			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
+		} else {
+			document.getElementById('profileSave').disabled = false;
+			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
+			$('#errorNotification').html('');
+		}
 	},
 	"click #profileCancel": function () {
 		var user = Meteor.users.findOne(Meteor.userId());
@@ -455,7 +563,7 @@ Template.profileSettings.events({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileMembership
  * ############################################################################
@@ -534,13 +642,13 @@ Template.profileMembership.events({
 
 Template.profileMembership.helpers({
 	hasUserData: function () {
-		email = Meteor.user().email;
+		var email = Meteor.user().email;
 		return email !== "" && email !== undefined;
 	}
 });
 
 
-/**
+/*
  * ############################################################################
  * profileBilling
  * ############################################################################
@@ -651,7 +759,7 @@ Template.profileBilling.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileNotifications
  * ############################################################################
@@ -686,7 +794,7 @@ Template.profileNotifications.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileRequests
  * ############################################################################
@@ -698,7 +806,7 @@ Template.profileRequests.helpers({
 	}
 });
 
-/**
+/*
  * ############################################################################
  * profileXp
  * ############################################################################
@@ -961,7 +1069,7 @@ Template.profileXp.events({
 });
 
 
-/**
+/*
  * ############################################################################
  * profileBadges
  * ############################################################################
@@ -972,37 +1080,84 @@ Template.profileBadges.helpers({
 		return Badges.find();
 	},
 	isGained: function (index, rank) {
+		var badge;
 		switch (index) {
 			case 0:
-				return kritiker(rank) >= 100;
+				badge = kritiker(rank);
+				break;
 			case 1:
-				return krone(rank) >= 100;
+				badge = krone(rank);
+				break;
 			case 2:
-				return stammgast(rank) >= 100;
+				badge = stammgast(rank);
+				break;
 			case 3:
-				return streber(rank) >= 100;
+				badge = streber(rank);
+				break;
 			case 4:
-				return wohltaeter(rank) >= 100;
+				badge = wohltaeter(rank);
+				break;
 			case 5:
-				return bestseller(rank) >= 100;
+				badge = bestseller(rank);
+				break;
 			default:
 				return false;
 		}
+		var gained = badge.count >= badge.max;
+
+		index++; //index in DB starts at 1
+		var user = Meteor.users.findOne(Meteor.userId);
+		if (gained) {
+			for (var i in user.earnedBadges) {
+				if (index == user.earnedBadges[i].index && rank == user.earnedBadges[i].rank) {
+					return gained;
+				}
+			}
+			Meteor.call("updateEarnedBadges", index, rank);
+			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
+		}
+		return gained;
 	},
 	getPercent: function (index, rank) {
+		var badge;
 		switch (index) {
 			case 0:
-				return kritiker(rank);
+				badge = kritiker(rank);
+				break;
 			case 1:
-				return krone(rank);
+				badge = krone(rank);
+				break;
 			case 2:
-				return stammgast(rank);
+				badge = stammgast(rank);
+				break;
 			case 3:
-				return streber(rank);
+				badge = streber(rank);
+				break;
 			case 4:
-				return wohltaeter(rank);
+				badge = wohltaeter(rank);
+				break;
 			case 5:
-				return bestseller(rank);
+				badge = bestseller(rank);
+				break;
+			default:
+				return 0;
+		}
+		return badge.count / badge.max * 100;
+	},
+	getCount: function (index, rank) {
+		switch (index) {
+			case 0:
+				return kritiker(rank).count;
+			case 1:
+				return krone(rank).count;
+			case 2:
+				return stammgast(rank).count;
+			case 3:
+				return streber(rank).count;
+			case 4:
+				return wohltaeter(rank).count;
+			case 5:
+				return bestseller(rank).count;
 			default:
 				return 0;
 		}
@@ -1011,15 +1166,12 @@ Template.profileBadges.helpers({
 
 
 Template.profileXp.onRendered(function () {
-	var self = this;
-	self.subscribe("learned", function () {
-		self.autorun(function () {
-			drawGraph();
-		});
-	});
+	if (Session.get('data_loaded') || !navigator.onLine) {
+		drawGraph();
+	}
 });
 
-/**
+/*
  * ############################################################################
  * profileDeleteConfirmForm
  * ############################################################################

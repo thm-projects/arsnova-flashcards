@@ -1,7 +1,24 @@
 import {Meteor} from "meteor/meteor";
 import {Badges} from "../../api/badges.js";
+import {ColorThemes} from "../../api/theme.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
+
+var initColorThemes = function () {
+	return [{
+		"_id": "default",
+		"name": "Default"
+	},{
+		"_id": "aflatunense",
+		"name": "Aflatunense"
+	},{
+		"_id": "lemonchill",
+		"name": "Lemon Chill"
+	},{
+		"_id": "bluestar",
+		"name": "Blue Star"
+	}];
+};
 
 var initBadges = function () {
 	return [{
@@ -106,6 +123,15 @@ var initBadges = function () {
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	var badges = initBadges();
+	var themes = initColorThemes();
+
+	process.env.MAIL_URL = Meteor.settings.mail.url;
+	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
+	Template.newsletter.helpers({
+		getDocType: function () {
+			return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+		}
+	});
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
@@ -123,5 +149,13 @@ Meteor.startup(function () {
 			}
 		}
 	}
+
+	ColorThemes.remove({});
+	for (var theme in themes) {
+		if (themes.hasOwnProperty(theme)) {
+			ColorThemes.insert(themes[theme]);
+		}
+	}
+
 	cronScheduler.startCron();
 });

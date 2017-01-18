@@ -6,7 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_card.html";
 
-/**
+/*
  * ############################################################################
  * Functions
  * ############################################################################
@@ -63,7 +63,7 @@ function image(e) {
 	}
 }
 
-/**
+/*
  * ############################################################################
  * admin_card
  * ############################################################################
@@ -212,9 +212,9 @@ Template.admin_card.rendered = function () {
 			footer: "<p></p>",
 			onChange: function (e) {
 				var content = e.getContent();
-				console.log(content);
+
 				Session.set(side + "Text", content);
-				console.log(Session.get("frontText"));
+
 				if (content !== "") {
 					Meteor.promise("convertMarkdown", content)
 						.then(function (rendered) {

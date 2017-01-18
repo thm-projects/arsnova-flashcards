@@ -124,6 +124,27 @@ Template.registerHelper("getAuthorName", function (owner) {
 	}
 });
 
+Template.registerHelper("getAuthor", function (owner) {
+	var author = Meteor.users.findOne({"_id": owner});
+	if (author) {
+		var degree = "";
+		if (author.profile.title) {
+			degree = author.profile.title;
+		} else {
+			degree = TAPi18n.__('navbar-collapse.none');
+		}
+		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
+			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
+			return author.profile.givenname;
+		}
+		return {
+			degree: degree,
+			givenname: author.profile.givenname,
+			birthname: author.profile.birthname
+		};
+	}
+});
+
 // Return the cardset license
 Template.registerHelper("getLicense", function () {
 	var licenseString = "";
@@ -168,4 +189,15 @@ Template.registerHelper("getType", function (type) {
 	}
 
 	return type;
+});
+
+// detects if the app is offline or not
+Template.registerHelper("isOffline", function () {
+	return !Meteor.status().connected;
+});
+
+// Adds the "disabled" attribute to Elements if the app is offline
+// use it like this: <button {{disableIfOffline}}>...</button>
+Template.registerHelper("disableIfOffline", function () {
+	return Meteor.status().connected ? "" : "disabled";
 });

@@ -6,6 +6,15 @@ $white: rgb(255, 255, 255);
   background-color: $white;
 }
 
+.progress-bar {
+  position: absolute;
+}
+
+.progress-label {
+  position: relative;
+  z-index: 1;
+}
+
 .badgeFooterImg {
   text-align: center;
 }
@@ -98,6 +107,7 @@ $white: rgb(255, 255, 255);
 
 .progress{
   margin: 0;
+  position: relative;
 }
 
 .divTrophy{

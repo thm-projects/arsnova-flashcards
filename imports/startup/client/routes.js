@@ -183,7 +183,7 @@ Router.route('/admin/notifications', {
 	layoutTemplate: 'admin_main'
 });
 
-Router.route('/admin/settings', {
+Router.route('/admin/university', {
 	name: 'admin_university',
 	template: 'admin_university',
 	layoutTemplate: 'admin_main'
@@ -192,6 +192,12 @@ Router.route('/admin/settings', {
 Router.route('/admin/interval', {
 	name: 'admin_interval',
 	template: 'admin_interval',
+	layoutTemplate: 'admin_main'
+});
+
+Router.route('/admin/settings', {
+	name: 'admin_settings',
+	template: 'admin_settings',
 	layoutTemplate: 'admin_main'
 });
 
