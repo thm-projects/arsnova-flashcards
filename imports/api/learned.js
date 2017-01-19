@@ -70,23 +70,56 @@ Meteor.methods({
 			}
 		});
 	},
-	updateLearned: function (learned_id, box, nextDate) {
-		check(learned_id, String);
-		check(box, Number);
-		check(nextDate, Date);
-
+	/** Function marks an active card as learned
+	 *  @param {string} cardset_id - The cardset id from the card
+	 *  @param {string} card_id - The id from the card
+	 *  @param {boolean} isWrong - Did the user know the answer?
+	 * */
+	updateLearned: function (cardset_id, card_id, isWrong) {
 		// Make sure the user is logged in
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Learned.update(learned_id, {
-			$set: {
-				box: box,
-				active: false,
-				nextDate: nextDate,
-				currentDate: new Date()
+
+		check(cardset_id, String);
+		check(card_id, String);
+		check(isWrong, Boolean);
+
+		var cardset = Cardsets.findOne({_id: cardset_id});
+
+		if (cardset !== undefined) {
+			var query = {};
+
+			query.card_id = card_id;
+			query.cardset_id = cardset_id;
+			query.user_id = Meteor.userId();
+			if (cardset.learningActive) {
+				query.active = true;
 			}
-		});
+			var currentLearned = Learned.findOne(query);
+
+			if (currentLearned !== undefined) {
+				var selectedBox = currentLearned.box + 1;
+				var nextDate = new Date();
+
+				if (isWrong) {
+					selectedBox = 1;
+				}
+
+				if (cardset.learningActive) {
+					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
+				}
+
+				Learned.update(currentLearned._id, {
+					$set: {
+						box: selectedBox,
+						active: false,
+						nextDate: nextDate,
+						currentDate: new Date()
+					}
+				});
+			}
+		}
 	},
 	deleteLearned: function (cardset_id) {
 		check(cardset_id, String);

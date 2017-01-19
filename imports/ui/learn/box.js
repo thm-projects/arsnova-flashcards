@@ -184,26 +184,7 @@ Template.boxMain.events({
 		}
 	},
 	"click #known": function () {
-		var currentCard = $('.carousel-inner > .active').attr('data');
-		var currentLearned = Learned.findOne({
-			card_id: currentCard,
-			user_id: Meteor.userId()
-		});
-
-		var selectedBox;
-		if (this.learningActive) {
-			selectedBox = currentLearned.box;
-		} else {
-			selectedBox = parseInt(Session.get('selectedBox'));
-		}
-
-		if (selectedBox < 6) {
-			var date = new Date();
-			if (this.learningActive) {
-				date = new Date(date.getTime() + this.learningInterval[selectedBox] * 86400000);
-			}
-			Meteor.call('updateLearned', currentLearned._id, selectedBox + 1, date);
-		}
+		Meteor.call('updateLearned', this._id, $('.carousel-inner > .active').attr('data'), false);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
@@ -211,13 +192,7 @@ Template.boxMain.events({
 		Session.set('isFront', true);
 	},
 	"click #notknown": function () {
-		var currentCard = $('.carousel-inner > .active').attr('data');
-		var currentLearned = Learned.findOne({
-			card_id: currentCard,
-			user_id: Meteor.userId()
-		});
-
-		Meteor.call('updateLearned', currentLearned._id, 1, new Date());
+		Meteor.call('updateLearned', this._id, $('.carousel-inner > .active').attr('data'), true);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
