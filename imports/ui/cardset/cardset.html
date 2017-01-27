@@ -262,13 +262,16 @@
                                 <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                                 <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
                                 <div class="block">
-                                    {{cardDetailsMarkdown this.front this.back @index}}
                                     <div class="cardContent centered cardfront detailfront{{@index}}">
-                                        <p>{{front}}</p>
+                                        {{#each splitTextOnNewLine front}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                     <div class="cardContent centered cardback detailback{{@index}}"
                                          style="display:none">
-                                        <p>{{back}}</p>
+                                        {{#each splitTextOnNewLine back}}
+                                            {{#mathjax}}{{this}}{{/mathjax}}
+                                        {{/each}}
                                     </div>
                                 </div>
                             </div>
@@ -315,13 +318,16 @@
                                         <img class="cardside cardback-symbol" src="/img/icon_back.png"
                                              style="display: none;">
                                         <div class="block">
-                                            {{cardDetailsMarkdown this.front this.back @index}}
                                             <div class="cardContent centered cardfront detailfront{{@index}}">
-                                                <p>{{front}}</p>
+                                                {{#each splitTextOnNewLine front}}
+                                                    {{#mathjax}}{{this}}{{/mathjax}}
+                                                {{/each}}
                                             </div>
                                             <div class="cardContent centered cardback detailback{{@index}}"
                                                  style="display:none">
-                                                <p>{{back}}</p>
+                                                {{#each splitTextOnNewLine back}}
+                                                    {{#mathjax}}{{this}}{{/mathjax}}
+                                                {{/each}}
                                             </div>
                                         </div>
                                         </div>
