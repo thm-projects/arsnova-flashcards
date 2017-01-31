@@ -27,19 +27,15 @@ export class MailNotifier {
 	 * @returns {string} deadline text
 	 */
 	getDeadline (cardset, user_id) {
-		Date.prototype.toLocaleDateString = function () {
-			var d = new Date();
-			return d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear();
-		};
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var active = Learned.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) + cardset.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) +  moment(cardset.learningEnd).format("LL") + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
 			} else {
-				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + deadline.toLocaleDateString() + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + moment(deadline).format("LL") + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));
 			}
 		}
 	}
