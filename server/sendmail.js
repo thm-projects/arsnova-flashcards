@@ -33,9 +33,9 @@ export class MailNotifier {
 			var active = Learned.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) +  moment(cardset.learningEnd).format("LL") + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) +  moment(cardset.learningEnd).format("DD.MM.YYYY") + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
 			} else {
-				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + moment(deadline).format("LL") + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + moment(deadline).format("DD.MM.YYYY") + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));
 			}
 		}
 	}
@@ -64,7 +64,7 @@ export class MailNotifier {
 				bold = cards + TAPi18n.__('mailNotification.newCards2Plural', null, Meteor.settings.mail.language) + '"' + cardset.name + '"';
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.mail.language) + '"' + cardset.name + '"' + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.mail.language);
-			textEnd = TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.mail.language);
+			textEnd = TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.mail.language) + this.getDeadline(cardset, user_id);
 			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#3d9c19", "#328114");
 		}
 	}
