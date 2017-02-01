@@ -787,7 +787,7 @@
     "subjectPlural2": " cards ",
     "subjectCardset": "of the cardset ",
     "subjectEnd": " for learning.",
-    "textEnd": " for learning.",
+    "textEnd": " for learning. ",
     "newCards2Singular": " card awaits you in the cardset ",
     "newCards2Plural": " cards await you in the cardset ",
     "greetings": "\n\nyour THMCards-Team",
@@ -808,6 +808,7 @@
     "service": "This newsletter is a Service from THMcards. You are receiving this email, because you signed up at ",
     "unsubscribe": "Not interested anymore? To unsubscribe stop the current learning phase.",
     "copyright": "© 2017 THMcards",
-    "my-cardset": "My Cardset"
+    "my-cardset": "My Cardset",
+    "auto-generated": "Please don't reply to this mail. It was automatically generated."
   }
 }
