@@ -55,8 +55,8 @@ percolate:synced-cron
 jshint@1.1.7
 browser-policy@1.0.9
 check@1.2.4
-shell-server
-markdown
+shell-server@0.2.1
+markdown@1.0.11
 tsega:bootstrap3-lightbox
 polyroid:font-roboto
 ground:db
