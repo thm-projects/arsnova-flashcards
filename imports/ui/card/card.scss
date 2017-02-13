@@ -1,3 +1,7 @@
+$color_background_difficulty0_btn: #5bc0de;
+$color_background_difficulty1_btn: #5cb85c;
+$color_background_difficulty2_btn: #d9534f;
+
 .cardtext {
   margin-bottom: 20px;
 }
@@ -6,4 +10,26 @@
   display: block;
   height: auto;
   max-width: 100%;
+}
+
+.btn-info.active {
+  color: $white !important;
+  background-color: $color_background_difficulty0_btn;
+  border-color: $color_background_difficulty0_btn;
+}
+
+.btn-success.active {
+  color: $white !important;
+  background-color: $color_background_difficulty1_btn;
+  border-color: $color_background_difficulty1_btn;
+}
+
+.btn-danger.active {
+  color: $white !important;
+  background-color: $color_background_difficulty2_btn;
+  border-color: $color_background_difficulty2_btn;
+}
+
+#difficultyGroup {
+  padding-top: 0 !important;
 }

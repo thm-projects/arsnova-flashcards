@@ -114,16 +114,20 @@ var CardsSchema = new SimpleSchema({
 	},
 	cardset_id: {
 		type: String
+	},
+	difficulty: {
+		type: Number
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, front, back) {
+	addCard: function (cardset_id, front, back, difficulty) {
 		check(cardset_id, String);
 		check(front, String);
 		check(back, String);
+		check(difficulty, Number);
 
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
@@ -133,7 +137,8 @@ Meteor.methods({
 		Cards.insert({
 			front: front,
 			back: back,
-			cardset_id: cardset_id
+			cardset_id: cardset_id,
+			difficulty: difficulty
 		});
 		Cardsets.update(cardset_id, {
 			$set: {
@@ -206,10 +211,11 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, front, back) {
+	updateCard: function (card_id, front, back, difficulty) {
 		check(card_id, String);
 		check(front, String);
 		check(back, String);
+		check(difficulty, Number);
 
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
@@ -227,7 +233,8 @@ Meteor.methods({
 		Cards.update(card_id, {
 			$set: {
 				front: front,
-				back: back
+				back: back,
+				difficulty: difficulty
 			}
 		});
 		Cardsets.update(card.cardset_id, {
