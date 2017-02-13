@@ -28,6 +28,26 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{_ "admin.card.settings"}}</div>
                     <div class="panel-body">
+                        <div id="difficultyAdmin" class="cardtext col-lg-12 col-xs-12">
+                            <div class="form-group">
+                                <label id="editCardDifficultyLabelAdmin">{{_ "difficulty"}}</label>
+                                <br>
+                                <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-info btn-sm {{#if isDifficultyChecked
+                                                                                        0}}active{{/if}}">
+                                        <input type="radio" name="difficulty" value="0"> {{_ "difficulty0"}}
+                                    </label>
+                                    <label class="btn btn-default btn-success btn-sm {{#if isDifficultyChecked
+                                                                                           1}}active{{/if}}">
+                                        <input type="radio" name="difficulty" value="1"> {{_ "difficulty1"}}
+                                    </label>
+                                    <label class="btn btn-default btn-danger btn-sm {{#if isDifficultyChecked
+                                                                                          2}}active{{/if}}">
+                                        <input type="radio" name="difficulty" value="2"> {{_ "difficulty2"}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12">
                             <div class="form-group">
                                 <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
@@ -53,9 +73,9 @@
                 <button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
                 <button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
                 <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
-                "admin.card.delete"}}</button>
+                        "admin.card.delete"}}</button>
                 <button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_
-                "admin.card.confirm"}}</button>
+                        "admin.card.confirm"}}</button>
             </div>
         </div>
     </div>

@@ -132,6 +132,15 @@ Template.admin_card.helpers({
 		} else {
 			return null;
 		}
+	},
+	isDifficultyChecked: function (type) {
+		if (this.difficulty === undefined && type === 0) {
+			return true;
+		} else if (type == this.difficulty) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 });
 
@@ -160,7 +169,8 @@ Template.admin_card.events({
 		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000) {
 			var front = Session.get('frontText');
 			var back = Session.get('backText');
-			Meteor.call("updateCard", this._id, front, back);
+			var difficulty = $('input[name=difficulty]:checked').val();
+			Meteor.call("updateCard", this._id, front, back, Number(difficulty));
 			window.history.go(-1);
 		}
 	},
