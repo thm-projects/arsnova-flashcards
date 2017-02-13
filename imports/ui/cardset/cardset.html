@@ -254,7 +254,7 @@
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
                         <div class="item {{#if cardActive @index}}active{{/if}}">
-                            <div class="box flashcard">
+                            <div class="box flashcard {{getCardBackground this.difficulty}}">
                                 <div class="cardNumber">
                                     {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
                                 </div>
@@ -302,7 +302,7 @@
                         <div class="carousel-inner">
                             {{#each getCardsCheckActive}}
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
-                                    <div class="box flashcard">
+                                    <div class="box flashcard {{getCardBackground this.difficulty}}">
                                         <div class="innerBox">
                                         {{#if isOwner}}
                                             <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
@@ -352,7 +352,7 @@
                     <div id="cardCarousel" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
                             <div class="empty-item">
-                                <div class="box">
+                                <div class="box {{getCardBackground this.difficulty}}">
                                     <div class="block">
                                         <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
                                     </div>
@@ -428,8 +428,8 @@
                 {{#each cardList}}
                     <tr class="listitem">
                         {{cardlistMarkdown this.front this.back @index}}
-                        <td class="front{{@index}}"></td>
-                        <td class="back{{@index}}"></td>
+                        <td class="front{{@index}} {{getCardBackground this.difficulty}}"></td>
+                        <td class="back{{@index}} {{getCardBackground this.difficulty}}"></td>
                         {{#if isOwner}}
                             <td>
                                 <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'
