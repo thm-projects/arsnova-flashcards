@@ -213,12 +213,17 @@ body {
   .container .credit {
     margin: 20px 0;
     background-color: $color_wild_sand_approx;
+    text-align: center;
   }
   > .container {
     padding-right: 15px;
     padding-left: 15px;
     background-color: $color_wild_sand_approx;
 
+    #agb {
+      padding-right: 10px;
+      background-color: $color_wild_sand_approx;
+    }
     #impressum {
       padding-right: 10px;
       background-color: $color_wild_sand_approx;
