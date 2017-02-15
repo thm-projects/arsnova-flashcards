@@ -193,6 +193,17 @@ Template.registerHelper("getType", function (type) {
 	return type;
 });
 
+Template.registerHelper("getCardBackground", function (difficulty) {
+	switch (difficulty) {
+		case 1:
+			return 'box-difficulty1';
+		case 2:
+			return 'box-difficulty2';
+		default:
+			return 'box-difficulty0';
+	}
+});
+
 // detects if the app is offline or not
 Template.registerHelper("isOffline", function () {
 	return !Meteor.status().connected;

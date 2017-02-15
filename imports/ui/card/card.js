@@ -99,10 +99,11 @@ Template.btnCard.events({
 		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000) {
 			var front = Session.get('frontText');
 			var back = Session.get('backText');
+			var difficulty = $('input[name=difficulty]:checked').val();
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", this._id, front, back);
+				Meteor.call("addCard", this._id, front, back, Number(difficulty));
 			} else {
-				Meteor.call("updateCard", this._id, front, back);
+				Meteor.call("updateCard", this._id, front, back, Number(difficulty));
 			}
 			window.history.go(-1);
 		}
@@ -241,5 +242,24 @@ Template.backEditor.events({
 	'keyup #backEditor': function () {
 		$('#backtext .md-editor').css('border-color', '');
 		$('#helpNewBacktext').html('');
+	}
+});
+
+
+/*
+ * ############################################################################
+ * difficultyEditor
+ * ############################################################################
+ */
+
+Template.difficultyEditor.helpers({
+	isDifficultyChecked: function (type) {
+		if (this.difficulty === undefined && type === 0) {
+			return true;
+		} else if (type == this.difficulty) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 });

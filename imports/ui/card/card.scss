@@ -1,3 +1,7 @@
+$color_difficulty0: #5cb85c;
+$color_difficulty1: #5bc0de;
+$color_difficulty2: #d9534f;
+
 .cardtext {
   margin-bottom: 20px;
 }
@@ -6,4 +10,39 @@
   display: block;
   height: auto;
   max-width: 100%;
+}
+
+#difficulty .btn-info {
+  color: $color_difficulty0 !important;
+
+}
+
+#difficulty .btn-info.active {
+  color: $white !important;
+  background-color: $color_difficulty0;
+  border-color: $color_difficulty0;
+}
+
+#difficulty .btn-success {
+  color: $color_difficulty1 !important;
+}
+
+#difficulty .btn-success.active {
+  color: $white !important;
+  background-color: $color_difficulty1;
+  border-color: $color_difficulty1;
+}
+
+#difficulty .btn-danger {
+  color: $color_difficulty2 !important;
+}
+
+#difficulty .btn-danger.active {
+  color: $white !important;
+  background-color: $color_difficulty2;
+  border-color: $color_difficulty2;
+}
+
+#difficultyGroup {
+  padding-top: 0 !important;
 }

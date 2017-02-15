@@ -1,46 +1,50 @@
 <template name="newCard">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      {{#if isOwnerCard}}
-          <div class="container">
-              <div class="col-md-12">
-                  <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
-              </div>
-              {{> editor}}
-          </div>
-      {{else}}
-          <h4>{{_ "permission"}}</h4>
-      {{/if}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if isOwnerCard}}
+                <div class="container">
+                    <div class="col-md-12">
+                        <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
+                    </div>
+                    {{> editor}}
+                </div>
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 <template name="editCard">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      {{#if isOwnerCard}}
-          <div class="container">
-              <div class="col-md-12">
-                  <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
-              </div>
-              {{> editor}}
-          </div>
-      {{else}}
-          <h4>{{_ "permission"}}</h4>
-      {{/if}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if isOwnerCard}}
+                <div class="container">
+                    <div class="col-md-12">
+                        <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
+                    </div>
+                    {{> editor}}
+                </div>
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 <template name="editor">
+    <div id="difficulty" class="col-md-12">
+        <h5>{{_ "difficulty"}}</h5>
+        {{> difficultyEditor}}
+    </div>
     <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
         <h5>{{_ "frontside"}}</h5>
         {{> frontEditor}}
@@ -50,6 +54,36 @@
         {{> backEditor}}
     </div>
     {{> btnCard}}
+</template>
+
+<template name="difficultyEditor">
+    <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
+        <label class="btn btn-default btn-info btn-sm {{#if isDifficultyChecked 0}}active{{/if}}">
+            {{#if isDifficultyChecked 0}}
+                <input type="radio" name="difficulty" value="0" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="0">
+            {{/if}}
+            {{_ "difficulty0"}}
+        </label>
+        <label class="btn btn-default btn-success btn-sm {{#if isDifficultyChecked 1}}active{{/if}}">
+            {{#if isDifficultyChecked 1}}
+                <input type="radio" name="difficulty" value="1" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="1">
+            {{/if}}
+
+            {{_ "difficulty1"}}
+        </label>
+        <label class="btn btn-default btn-danger btn-sm {{#if isDifficultyChecked 2}}active{{/if}}">
+            {{#if isDifficultyChecked 2}}
+                <input type="radio" name="difficulty" value="2" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="2">
+            {{/if}}
+            {{_ "difficulty2"}}
+        </label>
+    </div>
 </template>
 
 <template name="frontEditor">

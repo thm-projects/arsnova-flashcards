@@ -124,7 +124,7 @@
 			<div class="carousel-inner">
 				{{#each getCardsByLeitner}}
 					<div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-						<div class="box">
+						<div class="box {{getCardBackground this.difficulty}}">
 							<div class="innerBox">
 								<span class="clicktoflip" id="clicktoflip">Click to flip</span>
 								<h3>{{_ "leitnerCard"}}</h3>
@@ -160,7 +160,7 @@
 			<div class="carousel-inner">
 				{{#each getCardsByBox}}
 					<div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-						<div class="box">
+						<div class="box {{getCardBackground this.difficulty}}">
 							<div class="innerBox">
 								<span class="clicktoflip" id="clicktoflip">Click to flip</span>
 								<h3>{{_ "subject"}} {{box}}</h3>
