@@ -59,13 +59,29 @@
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
         <label class="btn btn-default btn-info btn-sm {{#if isDifficultyChecked 0}}active{{/if}}">
-            <input type="radio" name="difficulty" value="0"> {{_ "difficulty0"}}
+            {{#if isDifficultyChecked 0}}
+                <input type="radio" name="difficulty" value="0" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="0">
+            {{/if}}
+            {{_ "difficulty0"}}
         </label>
         <label class="btn btn-default btn-success btn-sm {{#if isDifficultyChecked 1}}active{{/if}}">
-            <input type="radio" name="difficulty" value="1"> {{_ "difficulty1"}}
+            {{#if isDifficultyChecked 1}}
+                <input type="radio" name="difficulty" value="1" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="1">
+            {{/if}}
+
+            {{_ "difficulty1"}}
         </label>
         <label class="btn btn-default btn-danger btn-sm {{#if isDifficultyChecked 2}}active{{/if}}">
-            <input type="radio" name="difficulty" value="2"> {{_ "difficulty2"}}
+            {{#if isDifficultyChecked 2}}
+                <input type="radio" name="difficulty" value="2" checked>
+            {{else}}
+                <input type="radio" name="difficulty" value="2">
+            {{/if}}
+            {{_ "difficulty2"}}
         </label>
     </div>
 </template>
