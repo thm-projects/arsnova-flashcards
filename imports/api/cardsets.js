@@ -95,6 +95,9 @@ const CardsetsSchema = new SimpleSchema({
 	moduleNum: {
 		type: String
 	},
+	skillLevel: {
+		type: Number
+	},
 	college: {
 		type: String
 	},
@@ -156,7 +159,7 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
-	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, college, course) {
+	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course) {
 		check(name, String);
 		check(description, String);
 		check(visible, Boolean);
@@ -165,6 +168,7 @@ Meteor.methods({
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
+		check(skillLevel, Number);
 		check(college, String);
 		check(course, String);
 
@@ -196,6 +200,7 @@ Meteor.methods({
 			module: module,
 			moduleToken: moduleShort,
 			moduleNum: moduleNum,
+			skillLevel: skillLevel,
 			college: college,
 			course: course,
 			learningActive: false,
@@ -294,13 +299,14 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
+	updateCardset: function (id, name, description, module, moduleShort, moduleNum, skillLevel, college, course) {
 		check(id, String);
 		check(name, String);
 		check(description, String);
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
+		check(skillLevel, Number);
 		check(college, String);
 		check(course, String);
 
@@ -324,6 +330,7 @@ Meteor.methods({
 				module: module,
 				moduleToken: moduleShort,
 				moduleNum: moduleNum,
+				skillLevel: skillLevel,
 				college: college,
 				course: course
 			}

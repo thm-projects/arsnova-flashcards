@@ -193,6 +193,19 @@ Template.registerHelper("getType", function (type) {
 	return type;
 });
 
+Template.registerHelper("getSkillLevel", function (skillLevel) {
+	switch (skillLevel) {
+		case 1:
+			return TAPi18n.__('modal-dialog.skillLevel1');
+		case 2:
+			return TAPi18n.__('modal-dialog.skillLevel2');
+		case 3:
+			return TAPi18n.__('modal-dialog.skillLevel3');
+		default:
+			return TAPi18n.__('modal-dialog.skillLevel0');
+	}
+});
+
 Template.registerHelper("getCardBackground", function (difficulty) {
 	switch (difficulty) {
 		case 1:

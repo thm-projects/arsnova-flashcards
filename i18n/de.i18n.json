@@ -196,7 +196,12 @@
     "moduleNum_required": "Geben Sie eine Modulnummer ein!",
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
     "moduleShortplaceholder": "Abkürzung des Moduls",
-    "moduleNumplaceholder": "Nummer des Moduls"
+    "moduleNumplaceholder": "Nummer des Moduls",
+    "skillLevel": "Kompetenzstufe",
+    "skillLevel0": "Allgemein",
+    "skillLevel1": "Fachbegriffe",
+    "skillLevel2": "Theoretische Grundlagen",
+    "skillLevel3": "Anwendung"
   },
   "profile": {
     "overview": "Lernfortschritt",
