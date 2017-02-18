@@ -7,9 +7,9 @@ $color_storm_dust_approx: rgb(102, 102, 102);
 $black: rgb(0, 0, 0);
 $color_mountain_mist_approx: rgb(153, 153, 153);
 $white_50: rgba(255, 255, 255, 0.5);
-$background_difficulty0: #edffed;
-$background_difficulty1: #edfbff;
-$background_difficulty2: #ffeded;
+$background_difficulty1: #edffed;
+$background_difficulty2: #edfbff;
+$background_difficulty3: #ffeded;
 
 //fonts
 $font_0: Georgia;
@@ -65,16 +65,16 @@ $font_5: sans-serif;
   box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
 }
 
-.box-difficulty0 {
-  background-color: $background_difficulty0;
-}
-
 .box-difficulty1 {
   background-color: $background_difficulty1;
 }
 
 .box-difficulty2 {
   background-color: $background_difficulty2;
+}
+
+.box-difficulty3 {
+  background-color: $background_difficulty3;
 }
 
 .btn-editCard {

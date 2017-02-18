@@ -1,6 +1,7 @@
-$color_difficulty0: #5cb85c;
-$color_difficulty1: #5bc0de;
-$color_difficulty2: #d9534f;
+$color_difficulty0: #EEEEEE;
+$color_difficulty1: #5cb85c;
+$color_difficulty2: #5bc0de;
+$color_difficulty3: #d9534f;
 
 .cardtext {
   margin-bottom: 20px;
@@ -13,34 +14,40 @@ $color_difficulty2: #d9534f;
 }
 
 #difficulty .btn-info {
-  color: $color_difficulty0 !important;
+  color: $color_difficulty1 !important;
 
 }
 
-#difficulty .btn-info.active {
-  color: $white !important;
+#difficulty .btn-default.active {
+  color: $black !important;
   background-color: $color_difficulty0;
   border-color: $color_difficulty0;
 }
 
-#difficulty .btn-success {
-  color: $color_difficulty1 !important;
-}
-
-#difficulty .btn-success.active {
+#difficulty .btn-info.active {
   color: $white !important;
   background-color: $color_difficulty1;
   border-color: $color_difficulty1;
 }
 
-#difficulty .btn-danger {
+#difficulty .btn-success {
   color: $color_difficulty2 !important;
+}
+
+#difficulty .btn-success.active {
+  color: $white !important;
+  background-color: $color_difficulty2;
+  border-color: $color_difficulty2;
+}
+
+#difficulty .btn-danger {
+  color: $color_difficulty3 !important;
 }
 
 #difficulty .btn-danger.active {
   color: $white !important;
-  background-color: $color_difficulty2;
-  border-color: $color_difficulty2;
+  background-color: $color_difficulty3;
+  border-color: $color_difficulty3;
 }
 
 #difficultyGroup {

@@ -212,8 +212,10 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 			return 'box-difficulty1';
 		case 2:
 			return 'box-difficulty2';
+		case 3:
+			return 'box-difficulty3';
 		default:
-			return 'box-difficulty0';
+			return '';
 	}
 });
 
