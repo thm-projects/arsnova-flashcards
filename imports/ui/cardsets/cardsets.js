@@ -123,6 +123,12 @@ Template.cardsets.events({
 		$('#newSetName').val(inputValue);
 		$('#new-set-input').val('');
 	},
+	'click .skillLevel': function (evt) {
+		$('#newSetSkillLevel').text($(evt.currentTarget).attr("data"));
+		$('#newSetSkillLevel').val($(evt.currentTarget).val());
+		$('#newSetSkillLevelLabel').css('color', '');
+		$('.newSetSkillLevel').css('border-color', '');
+	},
 	'click .college': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");
 		$('#newSetCollege').val(collegeName);
@@ -192,6 +198,7 @@ Template.cardsets.events({
 			$('#newSetModule').val() !== "" &&
 			$('#newSetModuleShort').val() !== "" &&
 			$('#newSetModuleNum').val() !== "" &&
+			$('#newSetSkillLevel').val() !== "" &&
 			$('#newSetCollege').val() !== "" &&
 			$('#newSetCourse').val() !== "") {
 			var name = $('#newSetName').val();
@@ -199,10 +206,11 @@ Template.cardsets.events({
 			var module = $('#newSetModule').val();
 			var moduleShort = $('#newSetModuleShort').val();
 			var moduleNum = $('#newSetModuleNum').val();
+			var skillLevel = $('#newSetSkillLevel').val();
 			var college = $('#newSetCollege').text();
 			var course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
 			$('#newSetModal').modal('hide');
 		}
 	}

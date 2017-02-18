@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Badges} from "../../api/badges.js";
 import {Cards} from "../../api/cards.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
@@ -158,6 +159,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					difficulty: 0
+				}
+			}
+		);
+	}
+
+	var cardsets = Cardsets.find({skillLevel: {$exists: false}}).fetch();
+	for (var k = 0; k < cardsets.length; k++) {
+		Cardsets.update({
+				_id: cardsets[k]._id
+			},
+			{
+				$set: {
+					skillLevel: 0
 				}
 			}
 		);

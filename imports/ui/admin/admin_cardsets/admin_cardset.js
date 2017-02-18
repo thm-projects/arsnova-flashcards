@@ -168,6 +168,7 @@ Template.admin_cardset.events({
 			$('#editCardsetModuleAdmin').val() !== "" &&
 			$('#editCardsetModuleShortAdmin').val() !== "" &&
 			$('#editCardsetModuleNumAdmin').val() !== "" &&
+			$('#editCardsetSkillLevel').val() !== "" &&
 			$('#editCardsetCollegeAdmin').val() !== "" &&
 			$('#editCardsetCourseAdmin').val() !== "" &&
 			($("#kindoption0Admin").hasClass('active') ||
@@ -180,6 +181,7 @@ Template.admin_cardset.events({
 			var module = tmpl.find('#editCardsetModuleAdmin').value;
 			var moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
 			var moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
+			var skillLevel = $('#editCardsetSkillLevel').val();
 			var college = $('#editCardsetCollegeAdmin').text();
 			var course = $('#editCardsetCourseAdmin').text();
 
@@ -216,7 +218,7 @@ Template.admin_cardset.events({
 				visible = false;
 			}
 			Meteor.call("publishCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
 			window.history.go(-1);
 		}
 	},
@@ -276,6 +278,12 @@ Template.admin_cardset.events({
 		$('#editCardsetModuleNumLabelAdmin').css('color', '');
 		$('#editCardsetModuleNumAdmin').css('border-color', '');
 		$('#helpEditCardsetModuleNumAdmin').html('');
+	},
+	'click .skillLevelAdmin': function (evt) {
+		$('#editCardsetSkillLevel').text($(evt.currentTarget).attr("data"));
+		$('#editCardsetSkillLevel').val($(evt.currentTarget).val());
+		$('#editCardsetSkillLevelLabel').css('color', '');
+		$('.editCardsetSkillLevel').css('border-color', '');
 	},
 	'click .collegeAdmin': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");

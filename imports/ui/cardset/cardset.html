@@ -89,6 +89,7 @@
                         <br><strong>{{_ "cardset.info.module"}}:</strong> {{this.module}}
                         <br><strong>{{_ "cardset.info.moduleShort"}}:</strong> {{this.moduleToken}}
                         <br><strong>{{_ "cardset.info.moduleNum"}}:</strong> {{this.moduleNum}}
+                        <br><strong>{{_ "modal-dialog.skillLevel"}}:</strong> {{getSkillLevel this.skillLevel}}
                         <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
                         <br><strong>{{_ "cardset.info.course"}}:</strong> {{this.course}}
                         <hr>
@@ -523,6 +524,37 @@
                                 </div>
                             </div><!-- / module textfield -->
                         </div>
+                        <!-- start skills Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="editSetSkillLevelLabel" class="col-md-3 control-label" for="editSetSkillLevel">{{_
+                                    "modal-dialog.skillLevel"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                    <button type="button" id="editSetSkillLevel"
+                                            class="btn btn-raised editSetSkillLevelDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}
+                                    </button>
+                                    <button class="btn btn-raised dropdown-toggle editSetSkillLevelDropdown"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        <li class="skillLevel" value="0" data="{{getSkillLevel 0}}"><a
+                                                href="#">{{getSkillLevel 0}}</a></li>
+                                        <li class="skillLevel" value="1" data="{{getSkillLevel 1}}"><a
+                                                href="#">{{getSkillLevel 1}}</a></li>
+                                        <li class="skillLevel" value="2" data="{{getSkillLevel 2}}"><a
+                                                href="#">{{getSkillLevel 2}}</a></li>
+                                        <li class="skillLevel" value="3" data="{{getSkillLevel 3}}"><a
+                                                href="#">{{getSkillLevel 3}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- / skills Dropdown -->
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
@@ -580,9 +612,9 @@
                 <div class="modal-footer">
                     <button id="cardSetCancel" class="btn btn-raised btn-warning" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
-                    <button id="cardSetDelete" class="btn btn-raised btn-danger pull-left btn-setDelete" style="width:150px">{{_
+                    <button id="cardSetDelete" class="btn btn-raised btn-danger pull-left btn-setDelete">{{_
                             "modal-dialog.delete"}}</button>
-                    <button id="cardSetConfirm" class="btn btn-raised btn-warning pull-left" style="width:150px; display:none">{{_
+                    <button id="cardSetConfirm" class="btn btn-raised btn-warning pull-left" style="display:none">{{_
                             "modal-dialog.confirm"}}</button>
                     <button id="cardSetSave" class="btn btn-raised btn-primary">{{_ "modal-dialog.save"}}</button>
                 </div>

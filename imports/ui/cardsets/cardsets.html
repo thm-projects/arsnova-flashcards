@@ -1,22 +1,22 @@
 <template name="cardsets">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      {{> cardsetsForm}}
-      {{> sidebarCardsets}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{> cardsetsForm}}
+            {{> sidebarCardsets}}
 
-      {{#if isActiveRoute 'created'}}
-        {{> created}}
-      {{/if}}
+            {{#if isActiveRoute 'created'}}
+                {{> created}}
+            {{/if}}
 
-      {{#if isActiveRoute 'learned'}}
-        {{> learned}}
-      {{/if}}
+            {{#if isActiveRoute 'learned'}}
+                {{> learned}}
+            {{/if}}
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 
@@ -61,7 +61,8 @@
             <tr>
                 <th>
                     <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
-                        <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
+                        <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown"
+                                id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -125,7 +126,8 @@
             <tr>
                 <th>
                     <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
-                        <button class="sortNameLearned btn btn-default" role="button" value="down" data-toggle="dropdown" id="sortDown">
+                        <button class="sortNameLearned btn btn-default" role="button" value="down"
+                                data-toggle="dropdown" id="sortDown">
                             {{_  "set-list.topic"}} </button>
                         <button type="button" class="sortName btn btn-default dropdown-toggle" value="down"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -157,10 +159,11 @@
                             <span id="info_license">{{getLicense}}</span>
                         </td>
                         <td>
-                          <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned" {{disableIfOffline}}
-                             title='{{_ "confirm-form-learned.title"}}' data-toggle="modal" data-target="#confirmLearnedModal">
-                              <i class="glyphicon glyphicon-ban-circle"></i>
-                          </a>
+                            <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned" {{disableIfOffline}}
+                               title='{{_ "confirm-form-learned.title"}}' data-toggle="modal"
+                               data-target="#confirmLearnedModal">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                            </a>
                         </td>
                     </tr>
                 {{/each}}
@@ -246,6 +249,37 @@
                                 </div>
                             </div><!-- / module textfield -->
                         </div>
+                        <!-- start skills Dropdown -->
+                        <div class="form-group setdetails categories">
+                            <label id="newSetSkillLevelLabel" class="col-md-3 control-label" for="newSetSkillLevel">{{_
+                                    "modal-dialog.skillLevel"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                    <button type="button" id="newSetSkillLevel"
+                                            class="btn btn-raised newSetSkillLevelDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="0">{{getSkillLevel 0}}
+                                    </button>
+                                    <button class="btn btn-raised dropdown-toggle newSetSkillLevelDropdown"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        <li class="skillLevel" value="0" data="{{getSkillLevel 0}}"><a
+                                                href="#">{{getSkillLevel 0}}</a></li>
+                                        <li class="skillLevel" value="1" data="{{getSkillLevel 1}}"><a
+                                                href="#">{{getSkillLevel 1}}</a></li>
+                                        <li class="skillLevel" value="2" data="{{getSkillLevel 2}}"><a
+                                                href="#">{{getSkillLevel 2}}</a></li>
+                                        <li class="skillLevel" value="3" data="{{getSkillLevel 3}}"><a
+                                                href="#">{{getSkillLevel 3}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- / skills Dropdown -->
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
@@ -253,11 +287,11 @@
                             <div class="dropup">
                                 <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                                     <button type="button" id="newSetCollege"
-                                            class="btn btn-default newSetCollegeDropdown longButton"
+                                            class="btn btn-raised newSetCollegeDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             value="">{{_ "modal-dialog.college_required"}}
                                     </button>
-                                    <button class="btn dropdown-toggle newSetCollegeDropdown" type="button"
+                                    <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown" type="button"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="true">
                                         <span class="caret"></span>
@@ -280,11 +314,11 @@
                             <div class="dropup">
                                 <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
                                     <button type="button" id="newSetCourse"
-                                            class="btn btn-default newSetCourseDropdown longButton"
+                                            class="btn btn-raised newSetCourseDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             value="" disabled>{{_ "modal-dialog.course_required"}}
                                     </button>
-                                    <button type="button" class="btn dropdown-toggle newSetCourseDropdown"
+                                    <button type="button" class="btn btn-raised dropdown-toggle newSetCourseDropdown"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" disabled>
                                         <span class="caret"></span>
@@ -304,9 +338,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
-                        <button class="btn btn-danger cancel" data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                        <button class="btn btn-raised btn-danger cancel" data-dismiss="modal">{{_
+                                "modal-dialog.cancel"}}</button>
                     </div>
-                    <button class="btn btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
+                    <button class="btn btn-raised btn-primary save">{{_ "modal-dialog.createcarddeck"}}</button>
                 </div>
             </div>
         </div>
@@ -314,7 +349,8 @@
 </template>
 
 <template name="cardsetsConfirmLearnedForm">
-    <div class="modal fade" id="confirmLearnedModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnedModalTitle">
+    <div class="modal fade" id="confirmLearnedModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmLearnedModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -326,9 +362,9 @@
                     <br/>
                     <hr/>
 
-                    <button id="learnedDelete" class="btn btn-danger btn-setDelete" {{disableIfOffline}}>{{_
+                    <button id="learnedDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
                             "confirm-form-learned.title"}}</button>
-                    <button id="learnedCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                    <button id="learnedCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>
             </div>

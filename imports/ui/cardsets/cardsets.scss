@@ -66,10 +66,34 @@ ul.nav-list li.active {
 
 .longButton {
   text-align: left;
+  padding-left: 15px;
   width: calc(100% - 25px);
   margin-bottom: 7px;
 }
 
 .dropdown-menu {
   margin-left: 12px;
+}
+
+.btn-group {
+  margin: 10px 0px;
+}
+
+.btn-toolbar .btn {
+  padding: 10px 17px;
+}
+
+.btn-group ul {
+  padding: 0px;
+  li {
+    padding: 10px 0px;
+  }
+}
+
+input, textarea {
+  padding: 0px 5px !important;
+}
+
+.form-control {
+  margin-bottom: -1px !important;
 }
