@@ -299,7 +299,7 @@ Template.profileSidebar.helpers({
 
 Template.profileSettings.helpers({
 	/** Function returns all colorThemes from the databse */
-	getColorThemes() {
+	getColorThemes: function () {
 		return ColorThemes.find();
 	},
 	/** Function returns "selected" when the value of the selectedColorTheme and the input _id are the same */
