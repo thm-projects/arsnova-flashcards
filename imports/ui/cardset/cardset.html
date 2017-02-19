@@ -264,13 +264,13 @@
                                 <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
                                 <div class="block">
                                     <div class="cardContent centered cardfront detailfront{{@index}}">
-                                        {{#each splitTextOnNewLine front}}
+                                        {{#each prepareCardContent front}}
                                             {{#mathjax}}{{this}}{{/mathjax}}
                                         {{/each}}
                                     </div>
                                     <div class="cardContent centered cardback detailback{{@index}}"
                                          style="display:none">
-                                        {{#each splitTextOnNewLine back}}
+                                        {{#each prepareCardContent back}}
                                             {{#mathjax}}{{this}}{{/mathjax}}
                                         {{/each}}
                                     </div>
@@ -320,13 +320,13 @@
                                              style="display: none;">
                                         <div class="block">
                                             <div class="cardContent centered cardfront detailfront{{@index}}">
-                                                {{#each splitTextOnNewLine front}}
+                                                {{#each prepareCardContent front}}
                                                     {{#mathjax}}{{this}}{{/mathjax}}
                                                 {{/each}}
                                             </div>
                                             <div class="cardContent centered cardback detailback{{@index}}"
                                                  style="display:none">
-                                                {{#each splitTextOnNewLine back}}
+                                                {{#each prepareCardContent back}}
                                                     {{#mathjax}}{{this}}{{/mathjax}}
                                                 {{/each}}
                                             </div>
@@ -428,9 +428,8 @@
             {{#if countCards this._id}}
                 {{#each cardList}}
                     <tr class="listitem">
-                        {{cardlistMarkdown this.front this.back @index}}
-                        <td class="front{{@index}} {{getCardBackground this.difficulty}}"></td>
-                        <td class="back{{@index}} {{getCardBackground this.difficulty}}"></td>
+                        <td class="front{{@index}} {{getCardBackground this.difficulty}}">{{#mathjax}}{{prepareCardContent this.front}}{{/mathjax}}</td>
+                        <td class="back{{@index}} {{getCardBackground this.difficulty}}">{{#mathjax}}{{prepareCardContent this.back}}{{/mathjax}}</td>
                         {{#if isOwner}}
                             <td>
                                 <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'

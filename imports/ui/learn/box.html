@@ -133,8 +133,8 @@
 									<img class="cardside cardfront-symbol" src="/img/icon_front.png">
 									<div class="block">
 										<div class="cardContent centered front{{@index}} active">
-											{{#each splitTextOnNewLine front}}
-												{{#mathjax}}{{this}}{{/mathjax}}
+											{{#each prepareCardContent front}}
+												{{#mathjax}}{{prepareCardContent this}}{{/mathjax}}
 											{{/each}}
 										</div>
 									</div>
@@ -142,8 +142,8 @@
 									<img class="cardside cardback-symbol" src="/img/icon_back.png">
 									<div class="block">
 										<div class="cardContent centered back{{@index}} active">
-											{{#each splitTextOnNewLine back}}
-												{{#mathjax}}{{this}}{{/mathjax}}
+											{{#each prepareCardContent back}}
+												{{#mathjax}}{{prepareCardContent this}}{{/mathjax}}
 											{{/each}}
 										</div>
 									</div>
@@ -169,7 +169,7 @@
 									<img class="cardside cardfront-symbol" src="/img/icon_front.png">
 									<div class="block">
 										<div class="cardContent centered front{{@index}} active">
-											{{#each splitTextOnNewLine front}}
+											{{#each prepareCardContent front}}
 												{{#mathjax}}{{this}}{{/mathjax}}
 											{{/each}}
 										</div>
@@ -178,7 +178,7 @@
 									<img class="cardside cardback-symbol" src="/img/icon_back.png">
 									<div class="block">
 										<div class="cardContent centered back{{@index}} active">
-											{{#each splitTextOnNewLine back}}
+											{{#each prepareCardContent back}}
 												{{#mathjax}}{{this}}{{/mathjax}}
 											{{/each}}
 										</div>

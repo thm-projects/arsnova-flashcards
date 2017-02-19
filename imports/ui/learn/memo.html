@@ -29,8 +29,7 @@
                                                         <span>{{_ "memo-endscreen.back"}}</span>
                                                     </a>
                                                 {{else}}
-                                                    {{memoMarkdownFront getMemoCard.front}}
-                                                    <span>{{getMemoCard.front}}</span>
+                                                    {{#mathjax}}{{prepareCardContent getMemoCard.front}}{{/mathjax}}
                                                 {{/if}}
                                             </div>
                                         </div>
@@ -44,8 +43,7 @@
                                             <div class="block memocontent-block backblock">
                                                 {{#if showAnswer}}
                                                     {{#unless isFinish}}
-                                                        <span>{{getMemoCard.back}}</span>
-                                                        {{memoMarkdownBack getMemoCard.back}}
+                                                        {{#mathjax}}{{prepareCardContent getMemoCard.back}}{{/mathjax}}
                                                     {{/unless}}
                                                 {{/if}}
                                             </div>
