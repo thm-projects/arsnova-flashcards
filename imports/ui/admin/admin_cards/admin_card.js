@@ -101,36 +101,18 @@ Template.admin_card.helpers({
 		var cardset = Cardsets.findOne({_id: cardset_id});
 		return cardset.owner;
 	},
-	getFront: function (front) {
-		if (front) {
-			Session.set('frontText', front);
-			if (front !== "") {
-				Meteor.promise("convertMarkdown", front)
-					.then(function (rendered) {
-						$("#frontAdmin .md-footer").html(rendered);
-					})
-					.catch(function (error) {
-						throw new Meteor.Error(error, "Can't convert to Markdown");
-					});
-			}
+	getFront: function () {
+		if (Session.get('frontText') !== undefined) {
+			return Session.get('frontText');
 		} else {
-			return null;
+			return "";
 		}
 	},
-	getBack: function (back) {
-		if (back) {
-			Session.set('backText', back);
-			if (back !== "") {
-				Meteor.promise("convertMarkdown", back)
-					.then(function (rendered) {
-						$("#backAdmin .md-footer").html(rendered);
-					})
-					.catch(function (error) {
-						throw new Meteor.Error(error, "Can't convert to Markdown");
-					});
-			}
+	getBack: function () {
+		if (Session.get('backText') !== undefined) {
+			return Session.get('backText');
 		} else {
-			return null;
+			return "";
 		}
 	},
 	isDifficultyChecked: function (type) {
@@ -214,29 +196,30 @@ Template.admin_card.rendered = function () {
 		}]
 	];
 
-	var templateMarkdown = function (side) {
+	var templateMarkdown = function (sessionID) {
 		return {
 			autofocus: false,
 			hiddenButtons: ["cmdPreview", "cmdImage"],
 			fullscreen: false,
-			footer: "<p></p>",
 			onChange: function (e) {
 				var content = e.getContent();
-
-				Session.set(side + "Text", content);
-
-				if (content !== "") {
-					Meteor.promise("convertMarkdown", content)
-						.then(function (rendered) {
-							$("#" + side + "Admin .md-footer").html(rendered);
-						});
-				}
+				Session.set(sessionID, content);
 			},
 			additionalButtons: additBtn
 		};
 	};
 
-	$("#editCardFrontAdmin").markdown(templateMarkdown("front"));
+	$("#editCardFrontAdmin").markdown(templateMarkdown("frontText"));
 
-	$("#editCardBackAdmin").markdown(templateMarkdown("back"));
+	$("#editCardBackAdmin").markdown(templateMarkdown("backText"));
+
+	if (ActiveRoute.name('adminCard')) {
+		var back = String($('#backAdmin').data('content'));
+		var front = String($('#frontAdmin').data('content'));
+		Session.set('backText', back);
+		Session.set('frontText', front);
+	} else {
+		Session.set('backText', undefined);
+		Session.set('frontText', undefined);
+	}
 };

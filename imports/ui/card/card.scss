@@ -7,7 +7,12 @@ $color_difficulty3: #d9534f;
   margin-bottom: 20px;
 }
 
-.md-footer img {
+#frontTextFooter, #backTextFooter {
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+#frontTextFooter img, #backTextFooter img {
   display: block;
   height: auto;
   max-width: 100%;
