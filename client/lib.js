@@ -1,4 +1,3 @@
-
 import {Tracker} from 'meteor/tracker';
 
 export const markdownRenderingTracker = new Tracker.Dependency();
@@ -151,29 +150,44 @@ export function parseEmojiBlock(result, i) {
 	result[i] = wrapper.prop("outerHTML");
 }
 
-export function parseMathjaxBlock(result, i) {
+export function parseMathjaxBlock(result, i, endDelimiter) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
 	for (let j = i + 1; j < result.length; j++) {
-		if (/^\$\$/.test(result[j])) {
+		tmpNewItem += (result[j] + "\n");
+		if (result[j].endsWith(endDelimiter)) {
 			mergeEndIndex = j;
 			break;
 		}
-		tmpNewItem += (result[j] + "\n");
 	}
 	result.splice(i, mergeEndIndex - i + 1);
-	result.splice(i, 0, $("<div/>").append((tmpNewItem + "$$")).prop("outerHTML"));
+	result.splice(i, 0, $("<div/>").append((tmpNewItem)).prop("outerHTML"));
+}
+
+export function setLightBoxes(content) {
+	$(content).find('img').each(function () {
+		var imageTitle = $(this).attr('alt');
+		var imageUrl = $(this).attr('src');
+		content = $(this).wrap('<a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '"></a>').parent().prop('outerHTML');
+	});
+	return content;
 }
 
 export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 	for (let i = 0; i < result.length; i++) {
 		switch (true) {
-			case /^\$\$$/.test(result[i]):
-				parseMathjaxBlock(result, i);
+			case /^\$\$/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "$$");
 				break;
-			case /\$/.test(result[i]):
+			case /^\\\[/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "\\]");
 				break;
-			case /^```/.test(result[i]):
+			case /^<math/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "</math>");
+				break;
+			case /\$/.test(result[i]) || /\\\(/.test(result[i]):
+				break;
+			case /^```/.test(result[i]) && overrideLineBreaks:
 				parseCodeBlock(result, i);
 				break;
 			case /^([0-9]*\.)?(-)?(\*)? \[x\] /.test(result[i]):
@@ -210,4 +224,5 @@ export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 		}
 	}
 	markdownRenderingTracker.changed();
+	return result.join("<br>");
 }

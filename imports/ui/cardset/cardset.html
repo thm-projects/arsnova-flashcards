@@ -1,58 +1,60 @@
 <template name="cardset" xmlns="http://www.w3.org/1999/html">
-  {{#if isInRole 'firstLogin'}}
-    	{{> first_login_content_only}}
-  {{else}}
-    {{#if isInRole 'blocked'}}
-      {{> access_denied_content_only}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
     {{else}}
-      {{#if hasPermission}}
-          {{> cardsetInfo}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if hasPermission}}
+                {{> cardsetInfo}}
 
-          {{> cardsetForm}}
-          {{> cardsetImportForm}}
-          {{> cardsetPublishForm}}
-          {{> cardsetStartLearnForm}}
-          {{> cardsetEndLearnForm}}
-          {{> selectLicenseForm}}
-          {{> reportCardsetForm}}
-          {{onEditmodalClose this._id}}
+                {{> cardsetForm}}
+                {{> cardsetImportForm}}
+                {{> cardsetPublishForm}}
+                {{> cardsetStartLearnForm}}
+                {{> cardsetEndLearnForm}}
+                {{> selectLicenseForm}}
+                {{> reportCardsetForm}}
+                {{onEditmodalClose this._id}}
 
-          {{#if hasCardsetPermission}}
-              {{#if isLecturerAndHasRequest}}
-                  <div class="col-md-12">
-                      <div class="panel panel-default cardsetInfo">
-                          <div class="panel-body">
-                              <div class="input-group has-error">
+                {{#if hasCardsetPermission}}
+                    {{#if isLecturerAndHasRequest}}
+                        <div class="col-md-12">
+                            <div class="panel panel-default cardsetInfo">
+                                <div class="panel-body">
+                                    <div class="input-group has-error">
   											<span class="input-group-btn">
-  											  <button id="acceptRequest" class="btn btn-raised btn-success" type="button">{{_
-                                                        "cardset.request.accept"}}</button>
-  											  <button id="declineRequest" class="btn btn-raised btn-danger" type="button">{{_
-                                                        "cardset.request.decline"}}</button>
+  											  <button id="acceptRequest" class="btn btn-raised btn-success"
+                                                      type="button">{{_
+                                                      "cardset.request.accept"}}</button>
+  											  <button id="declineRequest" class="btn btn-raised btn-danger"
+                                                      type="button">{{_
+                                                      "cardset.request.decline"}}</button>
   											</span>
-                                  <input id="declineRequestReason" type="text" class="form-control"
-                                         placeholder="Begründung">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              {{/if}}
-              {{> cardsetSidebar}}
-              {{#if isActiveRoute 'cardsetdetailsid'}}
-                  {{> cardsetDetails}}
-              {{/if}}
-              {{#if isActiveRoute 'cardsetlistid'}}
-                  {{> cardsetList}}
-              {{/if}}
-          {{else}}
-              {{> cardsetPreview}}
-          {{/if}}
-      {{else}}
-          <div class="col-md-12">
-              <h4>{{_ "permission"}}</h4>
-          </div>
-      {{/if}}
+                                        <input id="declineRequestReason" type="text" class="form-control"
+                                               placeholder="Begründung">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{> cardsetSidebar}}
+                    {{#if isActiveRoute 'cardsetdetailsid'}}
+                        {{> cardsetDetails}}
+                    {{/if}}
+                    {{#if isActiveRoute 'cardsetlistid'}}
+                        {{> cardsetList}}
+                    {{/if}}
+                {{else}}
+                    {{> cardsetPreview}}
+                {{/if}}
+            {{else}}
+                <div class="col-md-12">
+                    <h4>{{_ "permission"}}</h4>
+                </div>
+            {{/if}}
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 
@@ -213,7 +215,8 @@
                         {{/if}}
                     {{/if}}
                     {{#unless isOwner}}
-                        <button id="report_button" style="white-space: normal; padding-left: 10px; padding-right: 10px;" class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
+                        <button id="report_button" style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
                                 data-toggle="modal" data-target="#reportModal">{{_
                                 "report"}}</button>
                     {{/unless}}
@@ -245,7 +248,8 @@
                 </div>
             </div>
         </div>
-        <div class="btn-group btn-group-raised btn-group btn-group-raised-raised btn-group btn-group-raised-justified" role="group">
+        <div class="btn-group btn-group-raised btn-group btn-group-raised-raised btn-group btn-group-raised-justified"
+             role="group">
         </div>
 
     </div>
@@ -264,15 +268,11 @@
                                 <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
                                 <div class="block">
                                     <div class="cardContent centered cardfront detailfront{{@index}}">
-                                        {{#each splitTextOnNewLine front}}
-                                            {{#mathjax}}{{this}}{{/mathjax}}
-                                        {{/each}}
+                                        {{#mathjax}}{{prepareCardContent back}}{{/mathjax}}
                                     </div>
                                     <div class="cardContent centered cardback detailback{{@index}}"
                                          style="display:none">
-                                        {{#each splitTextOnNewLine back}}
-                                            {{#mathjax}}{{this}}{{/mathjax}}
-                                        {{/each}}
+                                        {{#mathjax}}{{prepareCardContent back}}{{/mathjax}}
                                     </div>
                                 </div>
                             </div>
@@ -305,32 +305,29 @@
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
                                     <div class="box flashcard {{getCardBackground this.difficulty}}">
                                         <div class="innerBox">
-                                        {{#if isOwner}}
-                                            <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
-                                               href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="display: inline;">
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                            </a>
-                                        {{/if}}
-                                        <div class="cardNumber">
-                                            {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                                        </div>
-                                        <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
-                                             style="display: none;">
-                                        <div class="block">
-                                            <div class="cardContent centered cardfront detailfront{{@index}}">
-                                                {{#each splitTextOnNewLine front}}
-                                                    {{#mathjax}}{{this}}{{/mathjax}}
-                                                {{/each}}
+                                            {{#if isOwner}}
+                                                <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
+                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}"
+                                                   style="display: inline;">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                            {{/if}}
+                                            <div class="cardNumber">
+                                                {{cardsIndex @index}}/{{countCards this.cardset_id}}
                                             </div>
-                                            <div class="cardContent centered cardback detailback{{@index}}"
-                                                 style="display:none">
-                                                {{#each splitTextOnNewLine back}}
-                                                    {{#mathjax}}{{this}}{{/mathjax}}
-                                                {{/each}}
+                                            <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                                            <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                            <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                                 style="display: none;">
+                                            <div class="block">
+                                                <div class="cardContent centered cardfront detailfront{{@index}}">
+                                                    {{#mathjax}}{{prepareCardContent front}}{{/mathjax}}
+                                                </div>
+                                                <div class="cardContent centered cardback detailback{{@index}}"
+                                                     style="display:none">
+                                                    {{#mathjax}}{{prepareCardContent back}}{{/mathjax}}
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -408,7 +405,7 @@
 
 
 <template name="cardsetList">
-    <div class="col-md-9" id="set-details-region">
+    <div class="col-md-9" id="cardset-list">
         <table class="table table-bordered table-hover">
             <div class="listhead"></div>
             <thead>
@@ -428,9 +425,10 @@
             {{#if countCards this._id}}
                 {{#each cardList}}
                     <tr class="listitem">
-                        {{cardlistMarkdown this.front this.back @index}}
-                        <td class="front{{@index}} {{getCardBackground this.difficulty}}"></td>
-                        <td class="back{{@index}} {{getCardBackground this.difficulty}}"></td>
+                        <td class="front{{@index}} {{getCardBackground
+                                this.difficulty}}">{{#mathjax}}{{prepareCardContent this.front}}{{/mathjax}}</td>
+                        <td class="back{{@index}} {{getCardBackground
+                                this.difficulty}}">{{#mathjax}}{{prepareCardContent this.back}}{{/mathjax}}</td>
                         {{#if isOwner}}
                             <td>
                                 <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'
@@ -526,7 +524,8 @@
                         </div>
                         <!-- start skills Dropdown -->
                         <div class="form-group setdetails categories">
-                            <label id="editSetSkillLevelLabel" class="col-md-3 control-label" for="editSetSkillLevel">{{_
+                            <label id="editSetSkillLevelLabel" class="col-md-3 control-label"
+                                   for="editSetSkillLevel">{{_
                                     "modal-dialog.skillLevel"}}</label>
                             <div class="dropup">
                                 <div class="btn-group col-xs-12 col-sm-12 col-md-9">
@@ -811,7 +810,8 @@
                             <label class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
                             <div class="controls col-md-9">
-                                <div id="publishKind" class="btn-group btn-group-raised btn-group btn-group-raised-kind" data-toggle="buttons">
+                                <div id="publishKind" class="btn-group btn-group-raised btn-group btn-group-raised-kind"
+                                     data-toggle="buttons">
                                     <label id="kindoption0"
                                            class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
                                            style="width:100px">

@@ -69,21 +69,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12">
+                        <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{front}}">
                             <div class="form-group">
                                 <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
                                 <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{front}}</textarea>
-                                {{getFront front}}
+                                <div id="frontTextFooter">{{#mathjax}}{{prepareCardContent getFront}} {{/mathjax}}</div>
                                 <span id="helpEditCardFrontAdmin" class="help-block front"></span>
                             </div>
                         </div>
-                        <div id="backAdmin" class="cardtext col-lg-6 col-xs-12">
+                        <div id="backAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{back}}">
                             <div class="form-group">
                                 <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
                                 <textarea id="editCardBackAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{back}}</textarea>
-                                {{getBack back}}
+                                <div id="backTextFooter">{{#mathjax}} {{prepareCardContent getBack}}{{/mathjax}}</div>
                                 <span id="helpEditCardBackAdmin" class="help-block back"></span>
                             </div>
                         </div>

@@ -15,7 +15,6 @@ import "../card/card.js";
 import "../learn/box.js";
 import "../learn/memo.js";
 import "./cardset.html";
-import * as lib from '/client/lib.js';
 import '/client/hammer.js';
 
 
@@ -270,6 +269,10 @@ Template.cardset.events({
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
 		}
+	},
+	"click .lightbox-img": function (evt) {
+		evt.preventDefault();
+		return $(this).ekkoLightbox();
 	}
 });
 
@@ -388,16 +391,7 @@ Template.descriptionEditorEdit.rendered = function () {
 		autofocus: true,
 		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
-		footer: "<p></p>",
-		onChange: function (e) {
-			var content = e.getContent();
-			if (content !== "") {
-				Meteor.promise("convertMarkdown", content)
-					.then(function (rendered) {
-						$(".md-footer").html(rendered);
-					});
-			}
-		}
+		footer: "<p></p>"
 	});
 };
 
@@ -408,16 +402,6 @@ Template.descriptionEditorEdit.rendered = function () {
  */
 
 Template.cardsetList.helpers({
-	cardlistMarkdown: function (front, back, index) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".front" + index).html(html);
-			});
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".back" + index).html(html);
-			});
-	},
 	cardList: function () {
 		return Cards.find({
 			cardset_id: this._id
@@ -445,22 +429,6 @@ Template.cardsetDetails.onCreated(function () {
 		this.subscribe('cards', Router.current().params._id);
 	});
 });
-
-function setLightBoxes(html) {
-	if ($(html).find('img').length !== 0) {
-		$(html).find('img').each(function () {
-			var imageDescription = $(this).attr('alt');
-			var imageUrl = $(this).attr('src');
-
-			html = $(this).wrap('<a href="' + imageUrl + '" data-type="image" data-toggle="lightbox" data-title="' + imageDescription + '"></a>').parent().click(function (event) {
-				event.preventDefault();
-				return $(this).ekkoLightbox();
-			}).parent();
-		});
-	}
-
-	return html;
-}
 
 Template.cardsetDetails.helpers({
 	addToLeitner: function () {
@@ -494,23 +462,6 @@ Template.cardsetDetails.helpers({
 		}).quantity;
 
 		return count !== 1;
-	},
-	splitTextOnNewLine: function (text) {
-		const result = text.split("\n");
-		lib.parseGithubFlavoredMarkdown(result);
-		return result;
-	},
-	cardDetailsMarkdown: function (front, back, index) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				html = setLightBoxes(html);
-				$(".detailfront" + index).html(html);
-			});
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				html = setLightBoxes(html);
-				$(".detailback" + index).html(html);
-			});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});
@@ -580,16 +531,6 @@ Template.cardsetPreview.helpers({
 		}).count();
 
 		return count;
-	},
-	cardDetailsMarkdown: function (front, back, index) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".detailfront" + index).html(html);
-			});
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".detailback" + index).html(html);
-			});
 	},
 	getCardsCheckActive: function () {
 		var query = Cards.find({cardset_id: this._id});

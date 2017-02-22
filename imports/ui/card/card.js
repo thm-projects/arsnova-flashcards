@@ -124,21 +124,24 @@ Template.btnCard.events({
  * ############################################################################
  */
 
+Template.frontEditor.helpers({
+	getFront: function () {
+		if (Session.get('frontText') !== undefined) {
+			return Session.get('frontText');
+		}  else {
+			return "";
+		}
+	}
+});
+
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: true,
 		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
-		footer: "<p></p>",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('frontText', content);
-			if (content !== "") {
-				Meteor.promise("convertMarkdown", content)
-					.then(function (rendered) {
-						$("#fronttext .md-footer").html(rendered);
-					});
-			}
 		},
 		additionalButtons: [
 			[{
@@ -161,15 +164,6 @@ Template.frontEditor.rendered = function () {
 	if (ActiveRoute.name('editCard')) {
 		var front = String($('#fronttext').data('content'));
 		Session.set('frontText', front);
-		if (front !== "") {
-			Meteor.promise("convertMarkdown", front)
-				.then(function (rendered) {
-					$("#fronttext .md-footer").html(rendered);
-				})
-				.catch(function (error) {
-					throw new Meteor.Error(error, "Can't convert to Markdown");
-				});
-		}
 	} else {
 		Session.set('frontText', undefined);
 	}
@@ -188,21 +182,24 @@ Template.frontEditor.events({
  * ############################################################################
  */
 
+Template.backEditor.helpers({
+	getBack: function () {
+		if (Session.get('backText') !== undefined) {
+			return Session.get('backText');
+		} else {
+			return "";
+		}
+	}
+});
+
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage"],
 		fullscreen: false,
-		footer: "<p></p>",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('backText', content);
-			if (content !== "") {
-				Meteor.promise("convertMarkdown", content)
-					.then(function (rendered) {
-						$("#backtext .md-footer").html(rendered);
-					});
-			}
 		},
 		additionalButtons: [
 			[{
@@ -224,15 +221,6 @@ Template.backEditor.rendered = function () {
 	if (ActiveRoute.name('editCard')) {
 		var back = String($('#backtext').data('content'));
 		Session.set('backText', back);
-		if (back !== "") {
-			Meteor.promise("convertMarkdown", back)
-				.then(function (rendered) {
-					$("#backtext .md-footer").html(rendered);
-				})
-				.catch(function (error) {
-					throw new Meteor.Error(error, "Can't convert to Markdown");
-				});
-		}
 	} else {
 		Session.set('backText', undefined);
 	}

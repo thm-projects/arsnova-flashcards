@@ -6,7 +6,6 @@ import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import "./box.html";
-import * as lib from '/client/lib.js';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -158,25 +157,6 @@ Template.boxMain.helpers({
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;
-	},
-	splitTextOnNewLine: function (text) {
-		const result = text.split("\n");
-		lib.parseGithubFlavoredMarkdown(result);
-		return result;
-	},
-	boxMarkdownFront: function (front, index) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".front" + index).html(html);
-				$('table').addClass('table');
-			});
-	},
-	boxMarkdownBack: function (back, index) {
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".back" + index).html(html);
-				$('table').addClass('table');
-			});
 	}
 });
 

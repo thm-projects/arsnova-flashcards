@@ -73,20 +73,6 @@ Template.memo.helpers({
 			Session.set('currentCard', cards._id);
 			return cards;
 		}
-	},
-	memoMarkdownFront: function (front) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".box .frontblock span").html(html);
-				$('table').addClass('table');
-			});
-	},
-	memoMarkdownBack: function (back) {
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".box .backblock span").html(html);
-				$('table').addClass('table');
-			});
 	}
 });
 

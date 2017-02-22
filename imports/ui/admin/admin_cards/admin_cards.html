@@ -28,9 +28,9 @@
                     <hr/>
 
                     <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
-                    "admin.confirm-form.cards.title"}}</button>
+                            "admin.confirm-form.cards.title"}}</button>
                     <button id="cardCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
-                    "admin.confirm-form.cancel"}}</button>
+                            "admin.confirm-form.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -38,4 +38,12 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+</template>
+
+<template name="cardContentFront">
+    {{#mathjax}}{{prepareCardContent this.front}}{{/mathjax}}
+</template>
+
+<template name="cardContentBack">
+    {{#mathjax}}{{prepareCardContent this.back}}{{/mathjax}}
 </template>
