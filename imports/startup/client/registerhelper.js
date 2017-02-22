@@ -221,9 +221,8 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 });
 
 Template.registerHelper("prepareCardContent", function (content) {
-	const result = content.split("\n");
-	lib.parseGithubFlavoredMarkdown(result);
-	return result;
+	var result = content.split("\n");
+	return lib.parseGithubFlavoredMarkdown(result);
 });
 
 // detects if the app is offline or not

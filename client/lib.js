@@ -224,4 +224,5 @@ export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 		}
 	}
 	markdownRenderingTracker.changed();
+	return result.join("<br>");
 }
