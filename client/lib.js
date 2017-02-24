@@ -223,6 +223,7 @@ export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 				break;
 		}
 	}
+	result = result.join("\n");
 	markdownRenderingTracker.changed();
-	return result.join("<br>");
+	return result;
 }

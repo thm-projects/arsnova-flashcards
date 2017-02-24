@@ -74,7 +74,7 @@
                                 <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
                                 <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{front}}</textarea>
-                                <div id="frontTextFooter">{{#mathjax}}{{prepareCardContent getFront}} {{/mathjax}}</div>
+                                <div id="frontTextFooter">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
                                 <span id="helpEditCardFrontAdmin" class="help-block front"></span>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                 <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
                                 <textarea id="editCardBackAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{back}}</textarea>
-                                <div id="backTextFooter">{{#mathjax}} {{prepareCardContent getBack}}{{/mathjax}}</div>
+                                <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
                                 <span id="helpEditCardBackAdmin" class="help-block back"></span>
                             </div>
                         </div>

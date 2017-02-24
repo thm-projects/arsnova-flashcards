@@ -220,11 +220,6 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 	}
 });
 
-Template.registerHelper("prepareCardContent", function (content) {
-	var result = content.split("\n");
-	return lib.parseGithubFlavoredMarkdown(result);
-});
-
 // detects if the app is offline or not
 Template.registerHelper("isOffline", function () {
 	return !Meteor.status().connected;
@@ -245,6 +240,8 @@ const converter = new Showdown.converter({
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
+		x = x.split("\n");
+		x = lib.parseGithubFlavoredMarkdown(x);
 		return lib.setLightBoxes(converter.makeHtml(x));
 	}
 });
