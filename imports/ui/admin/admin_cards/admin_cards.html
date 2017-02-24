@@ -41,9 +41,9 @@
 </template>
 
 <template name="cardContentFront">
-    {{#mathjax}}{{prepareCardContent this.front}}{{/mathjax}}
+    {{#mathjax}}{{this.front}}{{/mathjax}}
 </template>
 
 <template name="cardContentBack">
-    {{#mathjax}}{{prepareCardContent this.back}}{{/mathjax}}
+    {{#mathjax}}{{this.back}}{{/mathjax}}
 </template>

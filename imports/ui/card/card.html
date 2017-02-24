@@ -97,7 +97,7 @@
 <template name="frontEditor">
     <form>
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter">{{#mathjax}}{{prepareCardContent getFront}} {{/mathjax}}</div>
+        <div id="frontTextFooter">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
     <span id="helpNewFronttext" class="help-block fronttext"></span>
 </template>
@@ -105,7 +105,7 @@
 <template name="backEditor">
     <form>
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter">{{#mathjax}} {{prepareCardContent getBack}}{{/mathjax}}</div>
+        <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
     <span id="helpNewBacktext" class="help-block backtext"></span>
 </template>
