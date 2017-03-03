@@ -115,6 +115,13 @@ Template.admin_card.helpers({
 			return "";
 		}
 	},
+	getHint: function () {
+		if (Session.get('hintText') !== undefined) {
+			return Session.get('hintText');
+		} else {
+			return "";
+		}
+	},
 	isDifficultyChecked: function (type) {
 		if (this.difficulty === undefined && type === 0) {
 			return true;
@@ -148,11 +155,27 @@ Template.admin_card.events({
 				$('#helpEditCardBackAdmin').html(TAPi18n.__('admin.card.back_required'));
 			}
 		}
-		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000) {
-			var front = Session.get('frontText');
-			var back = Session.get('backText');
+		if ($('#editCardHintAdmin').val().length > 10000) {
+			$('#hintAdmin .md-editor').css('border-color', '#b94a48');
+			$('#helpEditCardHintAdmin').html(TAPi18n.__('text_max'));
+			$('#helpEditCardHintAdmin').css('color', '#b94a48');
+		}
+		if ($('#titleEditor').val().length <= 0 || $('#titleEditor').val().length > 150) {
+			$('#titleEditor .form-control').css('border-color', '#b94a48');
+			$('#helpNewTitletext').css('color', '#b94a48');
+			if ($('#titleEditor').val().length > 150) {
+				$('#helpEditCardTitleAdmin').html(TAPi18n.__('title_max'));
+			} else {
+				$('#helpEditCardTitleAdmin').html(TAPi18n.__('title_required'));
+			}
+		}
+		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#titleEditor').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000 && $('#editCardHintAdmin').val().length <= 10000 && $('#titleEditor').val().length <= 150) {
+			var title = $('#titleEditor').val();
+			var hint =  $('#editCardHintAdmin').val();
+			var front = $('#editCardFrontAdmin').val();
+			var back = $('#editCardBackAdmin').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
-			Meteor.call("updateCard", this._id, front, back, Number(difficulty));
+			Meteor.call("updateCard", this._id, title, hint, front, back, Number(difficulty));
 			window.history.go(-1);
 		}
 	},
@@ -175,6 +198,10 @@ Template.admin_card.events({
 	'keyup #editCardBackAdmin': function () {
 		$('#backAdmin .md-editor').css('border-color', '');
 		$('#helpEditCardBackAdmin').html('');
+	},
+	'keyup #editCardHintAdmin': function () {
+		$('#hintAdmin .md-editor').css('border-color', '');
+		$('#helpEditCardHintAdmin').html('');
 	}
 });
 
@@ -213,13 +240,18 @@ Template.admin_card.rendered = function () {
 
 	$("#editCardBackAdmin").markdown(templateMarkdown("backText"));
 
+	$("#editCardHintAdmin").markdown(templateMarkdown("hintText"));
+
 	if (ActiveRoute.name('adminCard')) {
 		var back = String($('#backAdmin').data('content'));
 		var front = String($('#frontAdmin').data('content'));
+		var hint = String($('#hintAdmin').data('content'));
 		Session.set('backText', back);
 		Session.set('frontText', front);
+		Session.set('hintText', hint);
 	} else {
 		Session.set('backText', undefined);
 		Session.set('frontText', undefined);
+		Session.set('hintText', undefined);
 	}
 };

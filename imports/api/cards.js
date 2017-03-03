@@ -104,6 +104,15 @@ if (Meteor.isServer) {
 }
 
 var CardsSchema = new SimpleSchema({
+	title: {
+		type: String,
+		max: 150
+	},
+	hint: {
+		type: String,
+		optional: true,
+		max: 10000
+	},
 	front: {
 		type: String,
 		max: 10000
@@ -123,8 +132,10 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, front, back, difficulty) {
+	addCard: function (cardset_id, title, hint, front, back, difficulty) {
 		check(cardset_id, String);
+		check(title, String);
+		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
@@ -135,6 +146,8 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		Cards.insert({
+			title: title,
+			hint: hint,
 			front: front,
 			back: back,
 			cardset_id: cardset_id,
@@ -211,8 +224,10 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, front, back, difficulty) {
+	updateCard: function (card_id, title, hint, front, back, difficulty) {
 		check(card_id, String);
+		check(title, String);
+		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
@@ -232,6 +247,8 @@ Meteor.methods({
 
 		Cards.update(card_id, {
 			$set: {
+				title: title,
+				hint: hint,
 				front: front,
 				back: back,
 				difficulty: difficulty

@@ -41,9 +41,17 @@
 </template>
 
 <template name="editor">
-    <div id="difficulty" class="col-md-12">
+    <div id="title" class="col-md-12 cardtext">
+        <h5>{{_ "title"}}</h5>
+        {{> titleEditor}}
+    </div>
+    <div id="difficulty" class="col-md-6">
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
+    </div>
+    <div id="hinttext" class="col-md-6 cardtext" data-content="{{hint}}">
+        <h5>{{_ "hint"}}</h5>
+        {{> hintEditor}}
     </div>
     <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
         <h5>{{_ "frontside"}}</h5>
@@ -108,6 +116,21 @@
         <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
     <span id="helpNewBacktext" class="help-block backtext"></span>
+</template>
+
+<template name="hintEditor">
+    <form>
+        <textarea id="hintEditor" name="content" data-provide="markdown" rows="5">{{hint}}</textarea>
+        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+    </form>
+    <span id="helpNewHinttext" class="help-block hinttext"></span>
+</template>
+
+<template name="titleEditor">
+    <form>
+        <input class="form-control" id="titleEditor" name="content" value="{{title}}">
+    </form>
+    <span id="helpNewTitletext" class="help-block title"></span>
 </template>
 
 <template name="btnCard">

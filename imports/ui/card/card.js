@@ -86,6 +86,11 @@ Template.btnCard.events({
 			$('#helpNewBacktext').html(TAPi18n.__('backtext_required'));
 			$('#helpNewBacktext').css('color', '#b94a48');
 		}
+		if ($('#titleEditor').val() === '') {
+			$('#titleEditor .form-control').css('border-color', '#b94a48');
+			$('#helpNewTitletext').html(TAPi18n.__('title_required'));
+			$('#helpNewTitletext').css('color', '#b94a48');
+		}
 		if ($('#frontEditor').val().length > 10000) {
 			$('#fronttext .md-editor').css('border-color', '#b94a48');
 			$('#helpNewFronttext').html(TAPi18n.__('text_max'));
@@ -96,14 +101,26 @@ Template.btnCard.events({
 			$('#helpNewBacktext').html(TAPi18n.__('text_max'));
 			$('#helpNewBacktext').css('color', '#b94a48');
 		}
-		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000) {
-			var front = Session.get('frontText');
-			var back = Session.get('backText');
+		if ($('#titleEditor').val().length > 150) {
+			$('#titleEditor .form-control').css('border-color', '#b94a48');
+			$('#helpNewTitletext').html(TAPi18n.__('title_max'));
+			$('#helpNewTitletext').css('color', '#b94a48');
+		}
+		if ($('#hintEditor').val().length > 10000) {
+			$('#hinttext .md-editor').css('border-color', '#b94a48');
+			$('#helpNewHinttext').html(TAPi18n.__('text_max'));
+			$('#helpNewHinttext').css('color', '#b94a48');
+		}
+		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#titleEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#titleEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000) {
+			var title = $('#titleEditor').val();
+			var front = $('#frontEditor').val();
+			var back = $('#backEditor').val();
+			var hint = $('#hintEditor').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", this._id, front, back, Number(difficulty));
+				Meteor.call("addCard", this._id, title, hint, front, back, Number(difficulty));
 			} else {
-				Meteor.call("updateCard", this._id, front, back, Number(difficulty));
+				Meteor.call("updateCard", this._id, title, hint, front, back, Number(difficulty));
 			}
 			window.history.go(-1);
 		}
@@ -233,6 +250,63 @@ Template.backEditor.events({
 	}
 });
 
+
+/*
+ * ############################################################################
+ * HintEditor
+ * ############################################################################
+ */
+
+Template.hintEditor.helpers({
+	getHint: function () {
+		if (Session.get('hintText') !== undefined) {
+			return Session.get('hintText');
+		} else {
+			return "";
+		}
+	}
+});
+
+Template.hintEditor.rendered = function () {
+	$("#hintEditor").markdown({
+		autofocus: false,
+		hiddenButtons: ["cmdPreview", "cmdImage"],
+		fullscreen: false,
+		onChange: function (e) {
+			var content = e.getContent();
+			Session.set('hintText', content);
+		},
+		additionalButtons: [
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'glyphicon glyphicon-picture',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "glyphicon glyphicon-usd",
+					callback: tex
+				}]
+			}]
+		]
+	});
+	if (ActiveRoute.name('editCard')) {
+		var hint = String($('#hinttext').data('content'));
+		Session.set('hintText', hint);
+	} else {
+		Session.set('hintText', undefined);
+	}
+};
+
+Template.backEditor.events({
+	'keyup #hintEditor': function () {
+		$('#hinttext .md-editor').css('border-color', '');
+		$('#helpNewHinttext').html('');
+	}
+});
 
 /*
  * ############################################################################
