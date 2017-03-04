@@ -237,6 +237,21 @@ img.cardside {
   left: unset;
 }
 
+.showHint {
+  z-index: 20;
+}
+
+.info {
+  position: absolute;
+  left: 13px;
+  top: 17px;
+  font-size: 28px;
+}
+
+.infoEditor {
+  left: 65px;
+}
+
 #pictureModal .modal-header {
   min-height: 50px;
 }

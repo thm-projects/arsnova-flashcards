@@ -496,6 +496,9 @@ Template.cardsetDetails.events({
 		Router.go('box', {
 			_id: this._id
 		});
+	},
+	"click .showHint": function (event) {
+		Session.set('selectedHint', $(event.target).data('id'));
 	}
 });
 
@@ -554,6 +557,9 @@ Template.cardsetPreview.events({
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
+	},
+	"click .showHint": function (event) {
+		Session.set('selectedHint', $(event.target).data('id'));
 	}
 });
 
@@ -1219,5 +1225,24 @@ Template.reportCardsetForm.events({
 		$('#reportCardsetTextLabel').css('color', '');
 		$('#reportCardsetText').css('border-color', '');
 		$('#helpReportCardsetText').html('');
+	}
+});
+
+/*
+ * ############################################################################
+ * showHint
+ * ############################################################################
+ */
+
+Template.showHint.helpers({
+	getTitle: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).title;
+		}
+	},
+	getHint: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
+		}
 	}
 });

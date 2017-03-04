@@ -79,6 +79,9 @@ $themes: (
     .navbar-default .navbar-toggle:hover {
       background-color: transparent !important;
     }
+    .info {
+      color: $primary-color;
+    }
   }
 
 }
