@@ -10,6 +10,10 @@ $white_50: rgba(255, 255, 255, 0.5);
 $background_difficulty1: #edffed;
 $background_difficulty2: #edfbff;
 $background_difficulty3: #ffeded;
+$color_difficulty0: #5bc0de;
+$color_difficulty1: #5cb85c;
+$color_difficulty2: #5bc0de;
+$color_difficulty3: #d9534f;
 
 //fonts
 $font_0: Georgia;
@@ -75,6 +79,22 @@ $font_5: sans-serif;
 
 .box-difficulty3 {
   background-color: $background_difficulty3;
+}
+
+.box-difficulty0-header {
+  border-bottom: 5px double $color_difficulty0;
+}
+
+.box-difficulty1-header {
+  border-bottom: 5px double $color_difficulty1;
+}
+
+.box-difficulty2-header {
+  border-bottom: 5px double $color_difficulty2;
+}
+
+.box-difficulty3-header {
+  border-bottom: 5px double $color_difficulty3;
 }
 
 .btn-editCard {
@@ -338,16 +358,14 @@ img.cardside {
 }
 
 .flipped {
-  transform: rotateX(180deg);
-  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg) scaleY(-1);
+  -webkit-transform: rotateX(180deg) scaleY(-1);
 }
 
 .back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: visible;
-  transform: rotateX(180deg);
-  -webkit-transform: rotateX(180deg);
 }
 
 .innerBox {
@@ -360,6 +378,13 @@ img.cardside {
   right: 0px;
   bottom: 0px;
   padding: 50px;
+}
+
+.innerBoxHeader {
+  min-height: 80px;
+  height: 100%;
+  text-align: center;
+  padding: 20px 50px 0 50px;
 }
 
 .cardContent {

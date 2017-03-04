@@ -260,19 +260,32 @@
                     {{#each getCardsCheckActive}}
                         <div class="item {{#if cardActive @index}}active{{/if}}">
                             <div class="box flashcard {{getCardBackground this.difficulty}}">
-                                <div class="cardNumber">
-                                    {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
-                                </div>
-                                <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
-                                <div class="block">
-                                    <div class="cardContent centered cardfront detailfront{{@index}}">
-                                        {{#mathjax}}{{back}}{{/mathjax}}
+                                <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
+                                    {{#if isOwner}}
+                                        <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
+                                           href="/cardset/{{cardset_id}}/editcard/{{_id}}"
+                                           style="display: inline;">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    {{/if}}
+                                    <div class="cardNumber">
+                                        {{cardsIndex @index}}/{{countCards this.cardset_id}}
                                     </div>
-                                    <div class="cardContent centered cardback detailback{{@index}}"
-                                         style="display:none">
-                                        {{#mathjax}}{{back}}{{/mathjax}}
+                                    <span id="clicktoflip" class="clicktoflip">Click to flip</span>
+                                    <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                    <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                         style="display: none;">
+                                    <h3>{{title}}</h3>
+                                </div>
+                                <div class="innerBox">
+                                    <div class="block">
+                                        <div class="cardContent centered cardfront detailfront{{@index}}">
+                                            {{#mathjax}}{{front}}{{/mathjax}}
+                                        </div>
+                                        <div class="cardContent centered cardback detailback{{@index}}"
+                                             style="display:none">
+                                            {{#mathjax}}{{back}}{{/mathjax}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +317,7 @@
                             {{#each getCardsCheckActive}}
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
                                     <div class="box flashcard {{getCardBackground this.difficulty}}">
-                                        <div class="innerBox">
+                                        <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
                                             {{#if isOwner}}
                                                 <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
                                                    href="/cardset/{{cardset_id}}/editcard/{{_id}}"
@@ -319,6 +332,9 @@
                                             <img class="cardside cardfront-symbol" src="/img/icon_front.png">
                                             <img class="cardside cardback-symbol" src="/img/icon_back.png"
                                                  style="display: none;">
+                                            <h3>{{title}}</h3>
+                                        </div>
+                                        <div class="innerBox">
                                             <div class="block">
                                                 <div class="cardContent centered cardfront detailfront{{@index}}">
                                                     {{#mathjax}}{{front}}{{/mathjax}}

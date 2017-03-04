@@ -209,6 +209,8 @@ Template.registerHelper("getSkillLevel", function (skillLevel) {
 
 Template.registerHelper("getCardBackground", function (difficulty) {
 	switch (difficulty) {
+		case 0:
+			return 'box-difficulty0';
 		case 1:
 			return 'box-difficulty1';
 		case 2:
