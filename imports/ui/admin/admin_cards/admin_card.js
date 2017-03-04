@@ -226,7 +226,7 @@ Template.admin_card.rendered = function () {
 	var templateMarkdown = function (sessionID) {
 		return {
 			autofocus: false,
-			hiddenButtons: ["cmdPreview", "cmdImage"],
+			hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 			fullscreen: false,
 			onChange: function (e) {
 				var content = e.getContent();

@@ -389,7 +389,7 @@ Template.cardsetForm.events({
 Template.descriptionEditorEdit.rendered = function () {
 	$("#editSetDescription").markdown({
 		autofocus: true,
-		hiddenButtons: ["cmdPreview", "cmdImage"],
+		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		footer: "<p></p>"
 	});

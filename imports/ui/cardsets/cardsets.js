@@ -225,7 +225,7 @@ Template.cardsets.events({
 Template.descriptionEditorNew.rendered = function () {
 	$("#newSetDescription").markdown({
 		autofocus: true,
-		hiddenButtons: ["cmdPreview", "cmdImage"],
+		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		footer: "<p></p>",
 		onChange: function (e) {

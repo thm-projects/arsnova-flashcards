@@ -154,7 +154,7 @@ Template.frontEditor.helpers({
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: true,
-		hiddenButtons: ["cmdPreview", "cmdImage"],
+		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		onChange: function (e) {
 			var content = e.getContent();
@@ -212,7 +212,7 @@ Template.backEditor.helpers({
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage"],
+		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		onChange: function (e) {
 			var content = e.getContent();
@@ -270,7 +270,7 @@ Template.hintEditor.helpers({
 Template.hintEditor.rendered = function () {
 	$("#hintEditor").markdown({
 		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage"],
+		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		onChange: function (e) {
 			var content = e.getContent();
