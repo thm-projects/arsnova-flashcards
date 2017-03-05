@@ -260,7 +260,7 @@
                 <div class="carousel-inner">
                     {{#each getCardsCheckActive}}
                         <div class="item {{#if cardActive @index}}active{{/if}}">
-                            <div class="box flashcard {{getCardBackground this.difficulty}}">
+                            <div class="box flashcard">
                                 <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
                                     {{#if isOwner}}
                                         <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
@@ -285,7 +285,7 @@
                                     {{/if}}
                                     <h3>{{title}}</h3>
                                 </div>
-                                <div class="innerBox">
+                                <div class="innerBoxBody {{getCardBackground this.difficulty}}">
                                     <div class="block">
                                         <div class="cardContent centered cardfront detailfront{{@index}}">
                                             {{#mathjax}}{{front}}{{/mathjax}}
@@ -324,7 +324,7 @@
                         <div class="carousel-inner">
                             {{#each getCardsCheckActive}}
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
-                                    <div class="box flashcard {{getCardBackground this.difficulty}}">
+                                    <div class="box flashcard">
                                         <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
                                             {{#if isOwner}}
                                                 <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
@@ -349,7 +349,7 @@
                                             {{/if}}
                                             <h3>{{title}}</h3>
                                         </div>
-                                        <div class="innerBox">
+                                        <div class="innerBoxBody {{getCardBackground this.difficulty}}">
                                             <div class="block">
                                                 <div class="cardContent centered cardfront detailfront{{@index}}">
                                                     {{#mathjax}}{{front}}{{/mathjax}}

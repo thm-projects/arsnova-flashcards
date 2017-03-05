@@ -10,10 +10,11 @@ $white_50: rgba(255, 255, 255, 0.5);
 $background_difficulty1: #edffed;
 $background_difficulty2: #edfbff;
 $background_difficulty3: #ffeded;
-$color_difficulty0: #5bc0de;
-$color_difficulty1: #5cb85c;
-$color_difficulty2: #5bc0de;
-$color_difficulty3: #d9534f;
+$color_difficulty0: rgba(91,192, 222, 0.3);
+$color_difficulty1: rgba(92, 184, 92, 0.3);
+$color_difficulty2: rgba(91,192, 222, 0.3);
+$color_difficulty3: rgba(217, 83, 79, 0.3);
+$header_line: rgba(255, 0, 0, 0.6);
 
 //fonts
 $font_0: Georgia;
@@ -69,32 +70,64 @@ $font_5: sans-serif;
   box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
 }
 
+.box-difficulty0 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $white,
+                  $white 26px,
+                  $color_difficulty0 26px,
+                  $color_difficulty0 28px
+  );
+}
+
 .box-difficulty1 {
-  background-color: $background_difficulty1;
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty1,
+                  $background_difficulty1 26px,
+                  $color_difficulty1 26px,
+                  $color_difficulty1 28px
+  );
 }
 
 .box-difficulty2 {
-  background-color: $background_difficulty2;
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty2,
+                  $background_difficulty2 26px,
+                  $color_difficulty2 26px,
+                  $color_difficulty2 28px
+  );
 }
 
 .box-difficulty3 {
-  background-color: $background_difficulty3;
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty3,
+                  $background_difficulty3 26px,
+                  $color_difficulty3 26px,
+                  $color_difficulty3 28px
+  );
 }
 
 .box-difficulty0-header {
-  border-bottom: 5px double $color_difficulty0;
+  background-color: $white;
+  border-bottom: 3px solid $header_line;
 }
 
 .box-difficulty1-header {
-  border-bottom: 5px double $color_difficulty1;
+  background-color: $background_difficulty1;
+  border-bottom: 3px solid $header_line;
 }
 
 .box-difficulty2-header {
-  border-bottom: 5px double $color_difficulty2;
+  background-color: $background_difficulty2;
+  border-bottom: 3px solid $header_line;
 }
 
 .box-difficulty3-header {
-  border-bottom: 5px double $color_difficulty3;
+  background-color: $background_difficulty3;
+  border-bottom: 3px solid $header_line;
 }
 
 .btn-editCard {
@@ -135,7 +168,6 @@ $font_5: sans-serif;
 .centered {
   display: inline-block;
   vertical-align: middle;
-  font-size: 1.2em;
   img {
     max-width: 370px;
   }
@@ -275,12 +307,6 @@ img.cardside {
   margin-bottom: 20px;
 }
 
-#cardset-list {
-  .MathJax {
-    font-size: 10px !important;
-  }
-}
-
 #selectLicenseModal {
   #cc-modules img {
     width: 30px;
@@ -383,23 +409,23 @@ img.cardside {
   overflow: visible;
 }
 
-.innerBox {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  min-height: 300px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  padding: 50px;
-}
-
 .innerBoxHeader {
   min-height: 80px;
   height: 100%;
   text-align: center;
   padding: 20px 50px 0 50px;
+}
+
+.innerBoxBody {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 50px 26px 50px;
 }
 
 .cardContent {
