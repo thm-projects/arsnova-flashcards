@@ -130,12 +130,6 @@ $font_5: sans-serif;
   border-bottom: 3px solid $header_line;
 }
 
-.btn-editCard {
-  position: absolute;
-  left: 12px;
-  top: 11px;
-}
-
 .btn-showPictureDetails {
   position: absolute;
   left: 45px;
@@ -145,9 +139,6 @@ $font_5: sans-serif;
 
 .clicktoflip {
   color: $color_storm_dust_approx;
-  position: absolute;
-  right: 10px;
-  top: 13px;
   font-style: italic;
 }
 
@@ -262,26 +253,11 @@ $font_5: sans-serif;
 }
 
 img.cardside {
-  position: absolute;
-  right: 88px;
-  top: 13px;
+  position: relative;
+  float: left;
+  padding-right: 5px;
   bottom: unset;
   left: unset;
-}
-
-.showHint {
-  z-index: 20;
-}
-
-.info {
-  position: absolute;
-  left: 13px;
-  top: 17px;
-  font-size: 28px;
-}
-
-.infoEditor {
-  left: 65px;
 }
 
 #pictureModal .modal-header {
@@ -410,10 +386,14 @@ img.cardside {
 }
 
 .innerBoxHeader {
-  min-height: 80px;
+  min-height: 90px;
   height: 100%;
   text-align: center;
   padding: 20px 50px 0 50px;
+
+  h3 {
+    margin-bottom: 0;
+  }
 }
 
 .innerBoxBody {
@@ -440,4 +420,28 @@ img.cardside {
 
 .dropup .btn-group {
   box-shadow: none;
+}
+
+.leftHeader {
+  position: absolute;
+  display: block;
+  top: 12px;
+  left: 10px;
+}
+
+#editCard {
+  position: relative;
+  float: left;
+  display: block;
+  margin: 0 5px 0 0;
+}
+
+#showHint {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  z-index: 20;
+  font-size: 26px;
 }

@@ -531,6 +531,7 @@
   "difficulty3": "Expert",
   "frontside": "Front",
   "backside": "Back",
+  "turn": "turn",
   "hint": "Hint",
   "title":  "Title",
   "options": "Options",

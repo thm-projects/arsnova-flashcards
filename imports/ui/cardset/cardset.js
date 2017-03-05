@@ -497,7 +497,7 @@ Template.cardsetDetails.events({
 			_id: this._id
 		});
 	},
-	"click .showHint": function (event) {
+	"click #showHint": function (event) {
 		Session.set('selectedHint', $(event.target).data('id'));
 	}
 });
@@ -558,7 +558,7 @@ Template.cardsetPreview.events({
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	},
-	"click .showHint": function (event) {
+	"click #showHint": function (event) {
 		Session.set('selectedHint', $(event.target).data('id'));
 	}
 });

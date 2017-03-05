@@ -262,27 +262,34 @@
                         <div class="item {{#if cardActive @index}}active{{/if}}">
                             <div class="box flashcard">
                                 <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
-                                    {{#if isOwner}}
-                                        <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
-                                           href="/cardset/{{cardset_id}}/editcard/{{_id}}"
-                                           style="display: inline;">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                    {{/if}}
-                                    <div class="cardNumber">
-                                        {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                                    </div>
-                                    <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                    <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                    <img class="cardside cardback-symbol" src="/img/icon_back.png"
-                                         style="display: none;">
-                                    {{#if hint}}
-                                        <a href="#" class="showHint">
-                                                    <span class="info glyphicon glyphicon-info-sign"
+                                    <div class="leftHeader">
+                                        {{#if isOwner}}
+                                            <a id="editCard"
+                                               class="btn-editCard btn btn-raised btn-default btn-xs"
+                                               href="/cardset/{{cardset_id}}/editcard/{{_id}}">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        {{/if}}
+                                        {{#if hint}}
+                                            <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                        </a>
-                                    {{/if}}
+                                            </a>
+                                        {{/if}}
+                                    </div>
+                                    <div class="cardNumber">
+                                        {{cardsIndex @index}}/{{countCards this.cardset_id}}<br>
+                                        <span class="cardfront">{{_ "frontside"}}</span><span class="cardback"
+                                                                                              style="display:none">{{_
+                                            "backside"}}</span>
+                                    </div>
+                                    <div id="clicktoflip" class="clicktoflip">
+                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                             style="display: none;">
+                                        {{_ "turn"}}</div>
+                                    <br>
                                     <h3>{{title}}</h3>
                                 </div>
                                 <div class="innerBoxBody {{getCardBackground this.difficulty}}">
@@ -326,27 +333,33 @@
                                 <div class="item {{#if cardActive @index}}active{{/if}}">
                                     <div class="box flashcard">
                                         <div class="innerBoxHeader {{getCardBackground this.difficulty}}-header">
-                                            {{#if isOwner}}
-                                                <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}"
-                                                   style="display: inline;">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            {{/if}}
-                                            <div class="cardNumber">
-                                                {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                                            </div>
-                                            <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                            <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                            <img class="cardside cardback-symbol" src="/img/icon_back.png"
-                                                 style="display: none;">
-                                            {{#if hint}}
-                                                <a href="#" class="showHint">
-                                                    <span class="info infoEditor glyphicon glyphicon-info-sign"
+                                            <div class="leftHeader">
+                                                {{#if isOwner}}
+                                                    <a id="editCard"
+                                                       class="btn-editCard btn btn-raised btn-default btn-xs"
+                                                       href="/cardset/{{cardset_id}}/editcard/{{_id}}">
+                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                    </a>
+                                                {{/if}}
+                                                {{#if hint}}
+                                                    <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                                </a>
-                                            {{/if}}
+                                                    </a>
+                                                {{/if}}
+                                            </div>
+                                            <div class="cardNumber">
+                                                {{cardsIndex @index}}/{{countCards this.cardset_id}}<br>
+                                                <span class="cardfront">{{_ "frontside"}}</span><span
+                                                    class="cardback" style="display:none">{{_ "backside"}}</span>
+                                            </div>
+                                            <div id="clicktoflip" class="clicktoflip">
+                                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                                <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                                     style="display: none;">
+                                                {{_ "turn"}}</div>
+                                            <br>
                                             <h3>{{title}}</h3>
                                         </div>
                                         <div class="innerBoxBody {{getCardBackground this.difficulty}}">
