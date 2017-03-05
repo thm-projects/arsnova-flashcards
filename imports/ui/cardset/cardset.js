@@ -147,32 +147,6 @@ Template.cardset.helpers({
 	}
 });
 
-function flipBack() {
-	$(".cardfront-symbol").css('display', "none");
-	$(".cardback-symbol").css('display', "");
-	$(".cardfront").css('display', "none");
-	$(".cardback").css('display', "");
-	$(".box").addClass("flipped");
-	$(".innerBox").addClass("back");
-}
-
-function flipFront() {
-	$(".cardfront-symbol").css('display', "");
-	$(".cardback-symbol").css('display', "none");
-	$(".cardfront").css('display', "");
-	$(".cardback").css('display', "none");
-	$(".box").removeClass("flipped");
-	$(".innerBox").removeClass("back");
-}
-
-function ifCardset() {
-	if ($(".cardfront-symbol").css('display') === 'none') {
-		flipFront();
-	} else if ($(".cardback-symbol").css('display') === 'none') {
-		flipBack();
-	}
-}
-
 Template.cardset.events({
 	'click #cardSetSave': function (evt, tmpl) {
 		if ($('#editSetName').val() === "") {
@@ -417,152 +391,6 @@ Template.cardsetList.events({
 	}
 });
 
-
-/*
- * ############################################################################
- * cardsetDetails
- * ############################################################################
- */
-
-Template.cardsetDetails.onCreated(function () {
-	this.autorun(() => {
-		this.subscribe('cards', Router.current().params._id);
-	});
-});
-
-Template.cardsetDetails.helpers({
-	addToLeitner: function () {
-		subscribeForPushNotification();
-		Meteor.call("addToLeitner", this);
-	},
-	learningEnded: function () {
-		return (this.learningEnd.getTime() < new Date().getTime());
-	},
-	allLearned: function () {
-		return (Learned.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
-	},
-	Deadline: function () {
-		var active = Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
-		var deadline = new Date(active.currentDate.getTime() + this.daysBeforeReset * 86400000);
-		if (deadline.getTime() > this.learningEnd.getTime()) {
-			return (TAPi18n.__('deadlinePrologue') + this.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
-		} else {
-			return (TAPi18n.__('deadlinePrologue') + deadline.toLocaleDateString() + TAPi18n.__('deadlineEpilogue2'));
-		}
-	},
-	cardsIndex: function (index) {
-		return index + 1;
-	},
-	cardActive: function (index) {
-		return 0 === index;
-	},
-	cardCountOne: function (cardset_id) {
-		var count = Cardsets.find({
-			_id: cardset_id
-		}).quantity;
-
-		return count !== 1;
-	},
-	getCardsCheckActive: function () {
-		var query = Cards.find({cardset_id: this._id});
-
-		query.observeChanges({
-			removed: function () {
-				$('#cardCarousel .item:first-child').addClass('active');
-			}
-		});
-		return query;
-	},
-	notEmpty: function () {
-		return Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count();
-	}
-});
-
-Template.cardsetDetails.events({
-	"click .box": function () {
-		ifCardset();
-	},
-	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		flipFront();
-	},
-	'click .item.active .block a': function (evt) {
-		evt.stopPropagation();
-	},
-	"click #learnBoxActive": function () {
-		Router.go('box', {
-			_id: this._id
-		});
-	},
-	"click #showHint": function (event) {
-		Session.set('selectedHint', $(event.target).data('id'));
-	}
-});
-
-/*
- * ############################################################################
- * cardsetPreview
- * ############################################################################
- */
-
-Template.cardsetPreview.onCreated(function () {
-	this.autorun(() => {
-		this.subscribe('cards', Router.current().params._id);
-	});
-});
-
-Template.cardsetPreview.helpers({
-	cardsIndex: function (index) {
-		return index + 1;
-	},
-	cardActive: function (index) {
-		return 0 === index;
-	},
-	cardCountOne: function (cardset_id) {
-		var count = Cardsets.find({
-			_id: cardset_id
-		}).quantity;
-
-		return count !== 1;
-	},
-	countPreviewCards: function (cardset_id) {
-		var count = Cards.find({
-			cardset_id: cardset_id
-		}).count();
-
-		return count;
-	},
-	getCardsCheckActive: function () {
-		var query = Cards.find({cardset_id: this._id});
-
-		query.observeChanges({
-			removed: function () {
-				$('#cardCarousel .item:first-child').addClass('active');
-			}
-		});
-
-		return query;
-	}
-});
-
-Template.cardsetPreview.events({
-	"click .box": function () {
-		ifCardset();
-	},
-	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		flipFront();
-	},
-	'click .item.active .block a': function (evt) {
-		evt.stopPropagation();
-	},
-	"click #showHint": function (event) {
-		Session.set('selectedHint', $(event.target).data('id'));
-	}
-});
-
 /*
  * ############################################################################
  * cardsetInfo
@@ -681,8 +509,7 @@ Template.cardsetInfo.helpers({
 	},
 	isPublished: function () {
 		return (this.kind === 'personal');
-	},
-	getActiveLearner
+	}
 });
 
 Template.cardsetInfo.events({
@@ -1230,19 +1057,43 @@ Template.reportCardsetForm.events({
 
 /*
  * ############################################################################
- * showHint
+ * leitnerLearning
  * ############################################################################
  */
 
-Template.showHint.helpers({
-	getTitle: function () {
-		if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).title;
+Template.leitnerLearning.helpers({
+	addToLeitner: function () {
+		subscribeForPushNotification();
+		Meteor.call("addToLeitner", this);
+	},
+	learningEnded: function () {
+		return (this.learningEnd.getTime() < new Date().getTime());
+	},
+	allLearned: function () {
+		return (Learned.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
+	},
+	Deadline: function () {
+		var active = Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
+		var deadline = new Date(active.currentDate.getTime() + this.daysBeforeReset * 86400000);
+		if (deadline.getTime() > this.learningEnd.getTime()) {
+			return (TAPi18n.__('deadlinePrologue') + this.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
+		} else {
+			return (TAPi18n.__('deadlinePrologue') + deadline.toLocaleDateString() + TAPi18n.__('deadlineEpilogue2'));
 		}
 	},
-	getHint: function () {
-		if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
-		}
+	notEmpty: function () {
+		return Learned.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
+		}).count();
+	}
+});
+
+Template.leitnerLearning.events({
+	"click #learnBoxActive": function () {
+		Router.go('box', {
+			_id: this._id
+		});
 	}
 });

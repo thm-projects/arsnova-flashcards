@@ -100,7 +100,7 @@
 <!-- Startscreen -->
 <template name="boxStart">
     <div class="box innerBox">
-        <div class="block">
+        <div class="block emptyCard">
             <div class="centered front">
                 <p>{{_ "choosesubject"}}</p>
             </div>
@@ -111,7 +111,7 @@
 <!-- Empty -->
 <template name="boxEmpty">
     <div class="box innerBox">
-        <div class="block">
+        <div class="block emptyCard">
             <div class="centered front">
                 <p>{{_ "nocards"}}</p>
             </div>
@@ -122,75 +122,7 @@
 
 <!-- Mainscreen -->
 <template name="boxMain">
-    <div class="carousel slide" id="cardCarousel">
-        {{#if isLearningActive }}
-            <div class="carousel-indicators">
-                <small class="text-muted card-indicator">{{_ "leitner_status" count=countLeitner}}</small>
-            </div>
-            <div class="carousel-inner">
-                {{#each getCardsByLeitner}}
-                    <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-                        <div class="box {{getCardBackground this.difficulty}}">
-                            <div class="innerBox">
-                                <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-                                <h3>{{_ "leitnerCard"}}</h3>
-                                <br>
-                                {{#if isFront}}
-                                    <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                    <div class="block">
-                                        <div class="cardContent centered front{{@index}} active">
-                                            {{#mathjax}}{{front}}{{/mathjax}}
-                                        </div>
-                                    </div>
-                                {{else}}
-                                    <img class="cardside cardback-symbol" src="/img/icon_back.png">
-                                    <div class="block">
-                                        <div class="cardContent centered back{{@index}} active">
-                                            {{#mathjax}}{{back}}{{/mathjax}}
-                                        </div>
-                                    </div>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{else}}
-            <div class="carousel-indicators">
-                <small class="text-muted card-indicator">{{_ "box_status" count=countBox}}</small>
-            </div>
-            <div class="carousel-inner">
-                {{#each getCardsByBox}}
-                    <div class="item {{#if cardActiveByBox @index}}active{{/if}}" data="{{this._id}}">
-                        <div class="box {{getCardBackground this.difficulty}}">
-                            <div class="innerBox">
-                                <span class="clicktoflip" id="clicktoflip">Click to flip</span>
-                                <h3>{{_ "subject"}} {{box}}</h3>
-                                <br>
-                                {{#if isFront}}
-                                    <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                    <div class="block">
-                                        <div class="cardContent centered front{{@index}} active">
-                                            {{#mathjax}}{{front}}{{/mathjax}}
-                                        </div>
-                                    </div>
-                                {{else}}
-                                    <img class="cardside cardback-symbol" src="/img/icon_back.png">
-                                    <div class="block">
-                                        <div class="cardContent centered back{{@index}} active">
-                                            {{#mathjax}}{{back}}{{/mathjax}}
-                                        </div>
-                                    </div>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{/if}}
-
-    </div>
-
+    {{> flashcards}}
     {{#if isFront}}
         <!-- Helptext -->
         <div class="learn-cardHelptext">
@@ -209,7 +141,6 @@
         </div>
     {{/if}}
     {{> boxPictureForm}}
-
 </template>
 
 <template name="graph">
@@ -232,7 +163,7 @@
 <!-- Endscreen -->
 <template name="boxEnd">
     <div class="box learn-endscreen innerBox">
-        <div class="block">
+        <div class="block emptyCard">
             <div class="centered front learnbox-success">{{_ "learn-endscreen.success"}}</div>
             {{#unless isLearningActive}}
                 <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>

@@ -3,6 +3,9 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
+import {Learned} from "../../api/learned.js";
 import "./card.html";
 
 
@@ -66,6 +69,122 @@ function tex(e) {
 
 	// Set the cursor
 	e.setSelection(cursor, cursor + chunk.length);
+}
+
+function turnBack() {
+	$(".cardfront-symbol").css('display', "none");
+	$(".cardback-symbol").css('display', "");
+	$(".cardfront").css('display', "none");
+	$(".cardback").css('display', "");
+	$(".box").addClass("flipped");
+	$(".innerBox").addClass("back");
+}
+
+function turnFront() {
+	$(".cardfront-symbol").css('display', "");
+	$(".cardback-symbol").css('display', "none");
+	$(".cardfront").css('display', "");
+	$(".cardback").css('display', "none");
+	$(".box").removeClass("flipped");
+	$(".innerBox").removeClass("back");
+}
+
+export function turnCard() {
+	if ($(".cardfront-symbol").css('display') === 'none') {
+		turnFront();
+	} else if ($(".cardback-symbol").css('display') === 'none') {
+		turnBack();
+	}
+}
+
+function isBox() {
+	return Router.current().route.getName() === "box";
+}
+
+function isCardset() {
+	return Router.current().route.getName() === "cardsetdetailsid";
+}
+
+function isMemo() {
+	return Router.current().route.getName() === "memo";
+}
+
+function getBoxCards() {
+	var cards = [];
+	var learnedCards = Learned.find({
+		cardset_id: Session.get('activeCardset')._id,
+		user_id: Meteor.userId(),
+		box: parseInt(Session.get('selectedBox'))
+	}, {
+		sort: {
+			currentDate: 1
+		}
+	});
+	learnedCards.forEach(function (learnedCard) {
+		var card = Cards.findOne({
+			_id: learnedCard.card_id
+		});
+		cards.push(card);
+	});
+	return cards;
+}
+
+function getCardsetCards() {
+	var query = Cards.find({cardset_id: Session.get('activeCardset')._id});
+
+	query.observeChanges({
+		removed: function () {
+			$('#cardCarousel .item:first-child').addClass('active');
+		}
+	});
+	return query;
+}
+
+function getLeitnerCards() {
+	var cards = [];
+	var learnedCards = Learned.find({
+		cardset_id: Session.get('activeCardset')._id,
+		user_id: Meteor.userId(),
+		active: true
+	}, {
+		sort: {
+			currentDate: 1
+		}
+	});
+
+	learnedCards.forEach(function (learnedCard) {
+		var card = Cards.findOne({
+			_id: learnedCard.card_id
+		});
+		cards.push(card);
+	});
+	return cards;
+}
+
+function getMemoCards() {
+	var cards = [];
+	var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	actualDate.setHours(0, 0, 0, 0);
+
+	var learned = Learned.findOne({
+		cardset_id: Session.get('activeCardset')._id,
+		user_id: Meteor.userId(),
+		nextDate: {
+			$lte: actualDate
+		}
+	}, {
+		sort: {
+			nextDate: 1
+		}
+	});
+	if (learned !== undefined) {
+		cards = Cards.find({
+			cardset_id: Session.get('activeCardset')._id,
+			_id: learned.card_id
+		}).fetch();
+		Session.set('currentCard', learned.card_id);
+		return cards;
+	}
 }
 
 Template.btnCard.helpers({
@@ -145,7 +264,7 @@ Template.frontEditor.helpers({
 	getFront: function () {
 		if (Session.get('frontText') !== undefined) {
 			return Session.get('frontText');
-		}  else {
+		} else {
 			return "";
 		}
 	}
@@ -323,5 +442,130 @@ Template.difficultyEditor.helpers({
 		} else {
 			return false;
 		}
+	}
+});
+
+/*
+ * ############################################################################
+ * cardHint
+ * ############################################################################
+ */
+
+Template.cardHint.helpers({
+	getTitle: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).title;
+		}
+	},
+	getHint: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
+		}
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcards
+ * ############################################################################
+ */
+
+Template.flashcards.onCreated(function () {
+	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+});
+
+Template.flashcards.helpers({
+	cardActive: function (index) {
+		return 0 === index;
+	},
+	cardsIndex: function (index) {
+		return index + 1;
+	},
+	isLearningActive: function () {
+		return Session.get('activeCardset').learningActive;
+	},
+	isBox: function () {
+		return isBox();
+	},
+	isCardset: function () {
+		return isCardset();
+	},
+	isMemo: function () {
+		return isMemo();
+	},
+	box: function () {
+		return Session.get("selectedBox");
+	},
+	cardCountOne: function () {
+		var cardset = Session.get('activeCardset');
+		var count = Cards.find({
+			cardset_id: cardset._id
+		}).count();
+		return count === 1;
+	},
+	getCards: function () {
+		if (isBox()) {
+			if (Session.get('activeCardset').learningActive) {
+				return getLeitnerCards();
+			} else {
+				return getBoxCards();
+			}
+		}
+		if (isCardset()) {
+			return getCardsetCards();
+		}
+		if (isMemo()) {
+			return getMemoCards();
+		}
+	},
+	countBox: function () {
+		var maxIndex = Learned.find({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			box: parseInt(Session.get('selectedBox'))
+		}).count();
+		Session.set('maxIndex', maxIndex);
+		return maxIndex;
+	},
+	countLeitner: function () {
+		var maxIndex = Learned.find({
+			cardset_id: this.cardset_id,
+			user_id: Meteor.userId(),
+			active: true
+		}).count();
+		Session.set('maxIndex', maxIndex);
+		return maxIndex;
+	}
+});
+
+Template.flashcards.events({
+	"click #leftCarouselControl, click #rightCarouselControl": function () {
+		turnFront();
+	},
+	"click .box": function () {
+		if (!isMemo()) {
+			turnCard();
+		}
+	},
+	'click .item.active .block a': function (evt) {
+		evt.stopPropagation();
+	},
+	"click #showHint": function (event) {
+		Session.set('selectedHint', $(event.target).data('id'));
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardsEmpty
+ * ############################################################################
+ */
+
+Template.flashcardsEmpty.helpers({
+	isBox: function () {
+		return isBox();
+	},
+	isCardset: function () {
+		return isCardset();
 	}
 });
