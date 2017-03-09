@@ -160,22 +160,22 @@ Template.admin_card.events({
 			$('#helpEditCardHintAdmin').html(TAPi18n.__('text_max'));
 			$('#helpEditCardHintAdmin').css('color', '#b94a48');
 		}
-		if ($('#titleEditor').val().length <= 0 || $('#titleEditor').val().length > 150) {
-			$('#titleEditor .form-control').css('border-color', '#b94a48');
-			$('#helpNewTitletext').css('color', '#b94a48');
-			if ($('#titleEditor').val().length > 150) {
-				$('#helpEditCardTitleAdmin').html(TAPi18n.__('title_max'));
+		if ($('#subjectEditor').val().length <= 0 || $('#subjectEditor').val().length > 150) {
+			$('#subjectEditor .form-control').css('border-color', '#b94a48');
+			$('#helpNewSubjecttext').css('color', '#b94a48');
+			if ($('#subjectEditor').val().length > 150) {
+				$('#helpEditCardSubjectAdmin').html(TAPi18n.__('cardsubject_max'));
 			} else {
-				$('#helpEditCardTitleAdmin').html(TAPi18n.__('title_required'));
+				$('#helpEditCardSubjectAdmin').html(TAPi18n.__('cardsubject_required'));
 			}
 		}
-		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#titleEditor').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000 && $('#editCardHintAdmin').val().length <= 10000 && $('#titleEditor').val().length <= 150) {
-			var title = $('#titleEditor').val();
+		if ($('#editCardFrontAdmin').val() !== '' && $('#editCardBackAdmin').val() !== '' && $('#subjectEditor').val() !== '' && $('#editCardFrontAdmin').val().length <= 10000 && $('#editCardBackAdmin').val().length <= 10000 && $('#editCardHintAdmin').val().length <= 10000 && $('#subjectEditor').val().length <= 150) {
+			var subject = $('#subjectEditor').val();
 			var hint =  $('#editCardHintAdmin').val();
 			var front = $('#editCardFrontAdmin').val();
 			var back = $('#editCardBackAdmin').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
-			Meteor.call("updateCard", this._id, title, hint, front, back, Number(difficulty));
+			Meteor.call("updateCard", this._id, subject, hint, front, back, Number(difficulty));
 			window.history.go(-1);
 		}
 	},

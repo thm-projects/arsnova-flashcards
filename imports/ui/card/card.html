@@ -41,9 +41,9 @@
 </template>
 
 <template name="editor">
-    <div id="title" class="col-md-12 cardtext">
-        <h5>{{_ "title"}}</h5>
-        {{> titleEditor}}
+    <div id="subject" class="col-md-12 cardtext">
+        <h5>{{_ "cardsubject"}}</h5>
+        {{> subjectEditor}}
     </div>
     <div id="difficulty" class="col-md-6">
         <h5>{{_ "difficulty"}}</h5>
@@ -126,11 +126,11 @@
     <span id="helpNewHinttext" class="help-block hinttext"></span>
 </template>
 
-<template name="titleEditor">
+<template name="subjectEditor">
     <form>
-        <input class="form-control" id="titleEditor" name="content" value="{{title}}">
+        <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
     </form>
-    <span id="helpNewTitletext" class="help-block title"></span>
+    <span id="helpNewSubjecttext" class="help-block subject"></span>
 </template>
 
 <template name="btnCard">
@@ -205,7 +205,7 @@
                                         {{#unless isMemo}}{{_ "turn"}}{{/unless}}</div>
 
                                     <br>
-                                    <h3>{{title}}</h3>
+                                    <h3>{{subject}}</h3>
                                 </div>
                                 <div class="innerBoxBody {{getCardBackground difficulty}}">
                                     <div class="block">
@@ -270,7 +270,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showHintTitle" class="modal-title">{{getTitle}}: {{_ "hint"}}</h4>
+                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{_ "hint"}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
