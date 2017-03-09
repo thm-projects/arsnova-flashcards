@@ -542,16 +542,16 @@ Template.flashcards.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		turnFront();
 	},
-	"click .box": function () {
-		if (!isMemo()) {
+	"click .box": function (evt) {
+		if (!isMemo() && ($(evt.target).data('type') !== "showHint")) {
 			turnCard();
 		}
 	},
 	'click .item.active .block a': function (evt) {
 		evt.stopPropagation();
 	},
-	"click #showHint": function (event) {
-		Session.set('selectedHint', $(event.target).data('id'));
+	"click #showHint": function (evt) {
+		Session.set('selectedHint', $(evt.target).data('id'));
 	}
 });
 

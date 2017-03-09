@@ -99,12 +99,14 @@ Template.boxMain.helpers({
 });
 
 Template.boxMain.events({
-	"click .box": function () {
-		var isFront = Session.get('isFront');
-		if (isFront === true) {
-			Session.set('isFront', false);
-		} else {
-			Session.set('isFront', true);
+	"click .box": function (evt) {
+		if (($(evt.target).data('type') !== "showHint")) {
+			var isFront = Session.get('isFront');
+			if (isFront === true) {
+				Session.set('isFront', false);
+			} else {
+				Session.set('isFront', true);
+			}
 		}
 	},
 	"click #known": function () {
