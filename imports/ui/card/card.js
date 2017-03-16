@@ -77,7 +77,8 @@ function turnBack() {
 	$(".cardfront").css('display', "none");
 	$(".cardback").css('display', "");
 	$(".box").addClass("flipped");
-	$(".innerBox").addClass("back");
+	$(".innerBoxHeader").addClass("back");
+	$(".innerBoxBody").addClass("back");
 }
 
 function turnFront() {
@@ -86,7 +87,8 @@ function turnFront() {
 	$(".cardfront").css('display', "");
 	$(".cardback").css('display', "none");
 	$(".box").removeClass("flipped");
-	$(".innerBox").removeClass("back");
+	$(".innerBoxHeader").removeClass("back");
+	$(".innerBoxBody").removeClass("back");
 }
 
 export function turnCard() {

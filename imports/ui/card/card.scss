@@ -255,25 +255,22 @@ img.cardside {
 }
 
 .flip-container {
-  -webkit-perspective: 1000px;
   perspective: 1000px;
 }
 
 .flashcard {
-  -webkit-transform-style: preserve-3d;
+  transform-origin: right center;
   transform-style: preserve-3d;
-  -webkit-transition: all .5s;
   transition: all .5s;
 }
 
 .flipped {
-  transform: rotateX(180deg) scaleY(-1);
-  -webkit-transform: rotateX(180deg) scaleY(-1);
+  transform: translateX( -100% ) rotateY( -180deg );
 }
 
 .back {
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: rotateY( 180deg );
   overflow: visible;
 }
 
@@ -298,6 +295,12 @@ img.cardside {
   right: 0;
   bottom: 0;
   padding: 26px 50px 26px 50px;
+  line-height: 28px;
+  font-size: 18px;
+  vertical-align: bottom;
+  p {
+    margin: 0;
+  }
 }
 
 .cardContent {
