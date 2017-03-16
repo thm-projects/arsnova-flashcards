@@ -5,9 +5,9 @@ $input_difficulty3: #d9534f;
 $background_difficulty1: #edffed;
 $background_difficulty2: #edfbff;
 $background_difficulty3: #ffeded;
-$color_difficulty0: rgba(91,192, 222, 0.3);
+$color_difficulty0: rgba(91, 192, 222, 0.3);
 $color_difficulty1: rgba(92, 184, 92, 0.3);
-$color_difficulty2: rgba(91,192, 222, 0.3);
+$color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $header_line: rgba(255, 0, 0, 0.6);
 
@@ -71,7 +71,6 @@ $header_line: rgba(255, 0, 0, 0.6);
   font-size: 10px !important;
 }
 
-
 .cardNumber {
   color: $color_mountain_mist_approx;
   font-family: $font_2, $font_3, $font_4, $font_5;
@@ -82,7 +81,6 @@ $header_line: rgba(255, 0, 0, 0.6);
   text-align: center;
   top: 14px;
 }
-
 
 .centered {
   display: inline-block;
@@ -103,7 +101,6 @@ $header_line: rgba(255, 0, 0, 0.6);
     @extend %extend_1;
   }
 }
-
 
 .carousel-inner {
   min-height: 278px;
@@ -162,23 +159,19 @@ $header_line: rgba(255, 0, 0, 0.6);
 }
 
 .box-difficulty0-header {
-  background-color: $white;
-  border-bottom: 3px solid $header_line;
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
 }
 
 .box-difficulty1-header {
-  background-color: $background_difficulty1;
-  border-bottom: 3px solid $header_line;
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty1 5px, $background_difficulty1 100%);
 }
 
 .box-difficulty2-header {
-  background-color: $background_difficulty2;
-  border-bottom: 3px solid $header_line;
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty2 5px, $background_difficulty2 100%);
 }
 
 .box-difficulty3-header {
-  background-color: $background_difficulty3;
-  border-bottom: 3px solid $header_line;
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty3 5px, $background_difficulty3 100%);
 }
 
 .btn-showPictureDetails {
@@ -192,7 +185,6 @@ $header_line: rgba(255, 0, 0, 0.6);
   color: $color_storm_dust_approx;
   font-style: italic;
 }
-
 
 img.cardside {
   position: relative;
@@ -222,7 +214,6 @@ img.cardside {
 .item {
   height: unset;
 }
-
 
 .leftHeader {
   position: absolute;
@@ -265,12 +256,12 @@ img.cardside {
 }
 
 .flipped {
-  transform: translateX( -100% ) rotateY( -180deg );
+  transform: translateX(-100%) rotateY(-180deg);
 }
 
 .back {
   backface-visibility: hidden;
-  transform: rotateY( 180deg );
+  transform: rotateY(180deg);
   overflow: visible;
 }
 
