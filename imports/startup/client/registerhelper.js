@@ -26,22 +26,8 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
-// Check if user is owner of a cardset
-Template.registerHelper("isOwnerCard", function () {
-	var owner;
-	if (this._id) {
-		owner = Cardsets.findOne(Router.current().params._id).owner;
-	}
-	return owner === Meteor.userId();
-});
-
-Template.registerHelper("isOwner", function () {
-	var owner;
-	if (this.owner) {
-		owner = this.owner;
-	} else if (Template.parentData(1)) {
-		owner = Template.parentData(1).owner;
-	}
+Template.registerHelper("isCardsetOwner", function (cardset_id) {
+	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return owner === Meteor.userId();
 });
 
@@ -209,6 +195,8 @@ Template.registerHelper("getSkillLevel", function (skillLevel) {
 
 Template.registerHelper("getCardBackground", function (difficulty) {
 	switch (difficulty) {
+		case 0:
+			return 'box-difficulty0';
 		case 1:
 			return 'box-difficulty1';
 		case 2:

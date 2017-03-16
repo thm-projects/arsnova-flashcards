@@ -16,7 +16,6 @@
                 {{> selectLicenseForm}}
                 {{> reportCardsetForm}}
                 {{onEditmodalClose this._id}}
-
                 {{#if hasCardsetPermission}}
                     {{#if isLecturerAndHasRequest}}
                         <div class="col-md-12">
@@ -40,13 +39,26 @@
                     {{/if}}
                     {{> cardsetSidebar}}
                     {{#if isActiveRoute 'cardsetdetailsid'}}
-                        {{> cardsetDetails}}
+                        {{#if learningActive}}
+                            {{> leitnerLearning}}
+                        {{else}}
+                            {{#if countCards this._id}}
+                                {{> flashcards cardset=this}}
+                            {{else}}
+                                {{> flashcardsEmpty}}
+                            {{/if}}
+                        {{/if}}
                     {{/if}}
                     {{#if isActiveRoute 'cardsetlistid'}}
                         {{> cardsetList}}
                     {{/if}}
                 {{else}}
                     {{> cardsetPreview}}
+                    {{#if countCards this._id}}
+                        {{> flashcards cardset=this}}
+                    {{else}}
+                        {{> flashcardsEmpty}}
+                    {{/if}}
                 {{/if}}
             {{else}}
                 <div class="col-md-12">
@@ -75,7 +87,7 @@
                             {{#if hasRated}}
                                 {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
                             {{else}}
-                                {{#if isOwner}}
+                                {{#if isCardsetOwner _id}}
                                     {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                                 {{else}}
                                     {{> starsRating id='rating' rating=getAverage mutable=true}}
@@ -117,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            {{#if isOwner}}
+            {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
                     <div class="btn-group btn-group-raised">
                         <button id="publishCardset" class="btn btn-default" type="button" data-toggle="modal"
@@ -193,7 +205,7 @@
             <div id="set-details-learn-region">
                 <div class="well well-sm sidebar-nav">
                     <span class="nav-header-cardset">{{_ "manage"}}</span>
-                    {{#if isOwner}}
+                    {{#if isCardsetOwner _id}}
                         {{#if isInRole 'lecturer'}}
                             <button id="startStopLearning"
                                     class="btn btn-default startStopLearn btn-block {{#if
@@ -214,7 +226,7 @@
                                     "box_export"}}</button>
                         {{/if}}
                     {{/if}}
-                    {{#unless isOwner}}
+                    {{#unless isCardsetOwner _id}}
                         <button id="report_button" style="white-space: normal; padding-left: 10px; padding-right: 10px;"
                                 class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
                                 data-toggle="modal" data-target="#reportModal">{{_
@@ -229,7 +241,7 @@
 </template>
 
 <template name="cardsetPreview">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
@@ -251,158 +263,8 @@
         <div class="btn-group btn-group-raised btn-group btn-group-raised-raised btn-group btn-group-raised-justified"
              role="group">
         </div>
-
-    </div>
-    <div class="col-md-8 flip-container" id="set-details-region">
-        <div>
-            <div id="cardCarousel" class="carousel slide" data-interval="false">
-                <div class="carousel-inner">
-                    {{#each getCardsCheckActive}}
-                        <div class="item {{#if cardActive @index}}active{{/if}}">
-                            <div class="box flashcard {{getCardBackground this.difficulty}}">
-                                <div class="cardNumber">
-                                    {{cardsIndex @index}}/{{countPreviewCards this.cardset_id}}
-                                </div>
-                                <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                <img class="cardside cardback-symbol" src="/img/icon_back.png" style="display: none;">
-                                <div class="block">
-                                    <div class="cardContent centered cardfront detailfront{{@index}}">
-                                        {{#mathjax}}{{back}}{{/mathjax}}
-                                    </div>
-                                    <div class="cardContent centered cardback detailback{{@index}}"
-                                         style="display:none">
-                                        {{#mathjax}}{{back}}{{/mathjax}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
-
-                {{#if cardCountOne this._id}}
-                    <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel" data-slide="prev">
-                        <span class="icon-prev"></span>
-                    </a>
-                    <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel" data-slide="next">
-                        <span class="icon-next"></span>
-                    </a>
-                {{/if}}
-            </div>
-
-        </div>
     </div>
 </template>
-
-<template name="cardsetDetails">
-    <div class="col-md-9 flip-container" id="set-details-region">
-        {{#unless learningActive}}
-            <div>
-                {{#if countCards this._id}}
-                    <div id="cardCarousel" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-                            {{#each getCardsCheckActive}}
-                                <div class="item {{#if cardActive @index}}active{{/if}}">
-                                    <div class="box flashcard {{getCardBackground this.difficulty}}">
-                                        <div class="innerBox">
-                                            {{#if isOwner}}
-                                                <a id="editCard" class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}"
-                                                   style="display: inline;">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            {{/if}}
-                                            <div class="cardNumber">
-                                                {{cardsIndex @index}}/{{countCards this.cardset_id}}
-                                            </div>
-                                            <span id="clicktoflip" class="clicktoflip">Click to flip</span>
-                                            <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                            <img class="cardside cardback-symbol" src="/img/icon_back.png"
-                                                 style="display: none;">
-                                            <div class="block">
-                                                <div class="cardContent centered cardfront detailfront{{@index}}">
-                                                    {{#mathjax}}{{front}}{{/mathjax}}
-                                                </div>
-                                                <div class="cardContent centered cardback detailback{{@index}}"
-                                                     style="display:none">
-                                                    {{#mathjax}}{{back}}{{/mathjax}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/each}}
-                        </div>
-
-                        {{#if cardCountOne this._id}}
-                            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
-                               data-slide="prev">
-                                <span class="icon-prev"></span>
-                            </a>
-                            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
-                               data-slide="next">
-                                <span class="icon-next"></span>
-                            </a>
-                        {{/if}}
-                    </div>
-
-                {{else}}
-                    <div id="cardCarousel" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-                            <div class="empty-item">
-                                <div class="box {{getCardBackground this.difficulty}}">
-                                    <div class="block">
-                                        <div class="centered front" style="font-size:2em">{{_ "nocards"}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {{/if}}
-            </div>
-        {{else}}
-            {{addToLeitner}}
-            <div id="cardCarousel" class="carousel slide" data-interval="false">
-                <div class="carousel-inner">
-                    <div class="empty-item">
-                        <div class="box">
-                            <div class="block">
-                                {{#unless learningEnded}}
-                                    <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
-                                        <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
-                                        <p>{{_ "learnPhaseActiveBody"}}</p>
-                                    </div>
-                                    {{#if notEmpty}}
-                                        <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
-                                        <br><br>
-                                        <button id="learnBoxActive"
-                                                class="btn btn-success learn btn-block btn-learn">{{_
-                                                "cardsToLearn"}}</button>
-                                    {{else}}
-                                        {{#if allLearned}}
-                                            <br><br>
-                                            <div class="alert alert-success leitner-text" role="alert">{{_
-                                                    "learnedEverything"}}</div>
-                                        {{else}}
-                                            <br><br>
-                                            <button id="learnBoxDisabled"
-                                                    class="btn btn-warning learn btn-block btn-learn"
-                                                    disabled>{{_ "noCardsToLearn"}}</button>
-                                        {{/if}}
-                                    {{/if}}
-                                {{else}}
-                                    <div class="alert alert-danger leitner-header" role="alert">{{_
-                                            "learnPhaseEnded"}}</div>
-                                {{/unless}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/unless}}
-    </div>
-</template>
-
 
 <template name="cardsetList">
     <div class="col-md-9" id="cardset-list">
@@ -416,7 +278,7 @@
                 <th>
                     <span>{{_ "backside"}}</span>
                 </th>
-                {{#if isOwner}}
+                {{#if isCardsetOwner _id}}
                     <th>{{_ "options"}}</th>
                 {{/if}}
             </tr>
@@ -429,7 +291,7 @@
                                 this.difficulty}}">{{#mathjax}}{{this.front}}{{/mathjax}}</td>
                         <td class="back{{@index}} {{getCardBackground
                                 this.difficulty}}">{{#mathjax}}{{this.back}}{{/mathjax}}</td>
-                        {{#if isOwner}}
+                        {{#if isCardsetOwner cardset_id}}
                             <td>
                                 <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'
                                    href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
@@ -1000,6 +862,49 @@
                     <button id="reportCardsetCancel" class="btn btn-default"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="leitnerLearning">
+    <div class="col-md-9 flip-container" id="set-details-region">
+        {{addToLeitner}}
+        <div id="cardCarousel" class="carousel slide" data-interval="false">
+            <div class="carousel-inner">
+                <div class="empty-item">
+                    <div class="box">
+                        <div class="block">
+                            {{#unless learningEnded}}
+                                <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
+                                    <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
+                                    <p>{{_ "learnPhaseActiveBody"}}</p>
+                                </div>
+                                {{#if notEmpty}}
+                                    <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
+                                    <br><br>
+                                    <button id="learnBoxActive"
+                                            class="btn btn-success learn btn-block btn-learn">{{_
+                                            "cardsToLearn"}}</button>
+                                {{else}}
+                                    {{#if allLearned}}
+                                        <br><br>
+                                        <div class="alert alert-success leitner-text" role="alert">{{_
+                                                "learnedEverything"}}</div>
+                                    {{else}}
+                                        <br><br>
+                                        <button id="learnBoxDisabled"
+                                                class="btn btn-warning learn btn-block btn-learn"
+                                                disabled>{{_ "noCardsToLearn"}}</button>
+                                    {{/if}}
+                                {{/if}}
+                            {{else}}
+                                <div class="alert alert-danger leitner-header" role="alert">{{_
+                                        "learnPhaseEnded"}}</div>
+                            {{/unless}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

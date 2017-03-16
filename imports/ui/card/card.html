@@ -5,7 +5,7 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#if isOwnerCard}}
+            {{#if isCardsetOwner this._id}}
                 <div class="container">
                     <div class="col-md-12">
                         <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
@@ -26,7 +26,7 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#if isOwnerCard}}
+            {{#if isCardsetOwner this.cardset_id}}
                 <div class="container">
                     <div class="col-md-12">
                         <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
@@ -41,9 +41,17 @@
 </template>
 
 <template name="editor">
-    <div id="difficulty" class="col-md-12">
+    <div id="subject" class="col-md-12 cardtext">
+        <h5>{{_ "cardsubject"}}</h5>
+        {{> subjectEditor}}
+    </div>
+    <div id="difficulty" class="col-md-6">
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
+    </div>
+    <div id="hinttext" class="col-md-6 cardtext" data-content="{{hint}}">
+        <h5>{{_ "hint"}}</h5>
+        {{> hintEditor}}
     </div>
     <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
         <h5>{{_ "frontside"}}</h5>
@@ -110,6 +118,21 @@
     <span id="helpNewBacktext" class="help-block backtext"></span>
 </template>
 
+<template name="hintEditor">
+    <form>
+        <textarea id="hintEditor" name="content" data-provide="markdown" rows="5">{{hint}}</textarea>
+        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+    </form>
+    <span id="helpNewHinttext" class="help-block hinttext"></span>
+</template>
+
+<template name="subjectEditor">
+    <form>
+        <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
+    </form>
+    <span id="helpNewSubjecttext" class="help-block subject"></span>
+</template>
+
 <template name="btnCard">
     <div class="col-md-12">
         <div class="btn-group btn-group-raised btn-group-justified" role="group" aria-label="...">
@@ -126,6 +149,138 @@
                 <button id="cardSave" class="btn btn-success btn-large save" {{disableIfOffline}}>
                     {{_ "savecard"}}
                 </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="flashcards">
+    {{> cardHint}}
+    <div class="{{#if isCardset}}col-md-9{{/if}} flip-container" id="set-details-region">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    {{#each getCards}}
+                        <div class="item {{#if cardActive @index}}active{{/if}}" data="{{_id}}">
+                            <div class="box flashcard">
+                                <div class="innerBoxHeader {{getCardBackground difficulty}}-header">
+                                    <div class="leftHeader">
+                                        {{#if isCardsetOwner cardset_id}}
+                                            {{#if isCardset}}
+                                                <a id="editCard"
+                                                   class="btn-editCard btn btn-raised btn-default btn-xs"
+                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                            {{/if}}
+                                        {{/if}}
+                                        {{#if hint}}
+                                            <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
+                                                          data-id="{{_id}}" data-type="showHint" data-toggle="modal"
+                                                          data-target="#showHintModal"></span>
+                                            </a>
+                                        {{/if}}
+                                    </div>
+                                    <div class="cardNumber">
+                                        {{#if isCardset}}
+                                            {{cardsIndex @index}}/{{countCards cardset_id}}<br>
+                                        {{/if}}
+                                        {{#if isBox}}
+                                            {{#if isLearningActive}}
+                                                {{_ "leitner_status" count=countLeitner}}
+                                            {{else}}
+                                                {{_ "subject"}} {{box}}: {{_ "box_status" count=countBox}}
+                                            {{/if}}
+                                            <br>
+                                        {{/if}}
+                                        <span class="cardfront">{{_ "frontside"}}</span><span
+                                            class="cardback" style="display:none">{{_ "backside"}}</span>
+                                    </div>
+
+                                    <div id="clicktoflip" class="clicktoflip">
+                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                             style="display: none;">
+                                        {{#unless isMemo}}{{_ "turn"}}{{/unless}}</div>
+
+                                    <br>
+                                    <h3>{{subject}}</h3>
+                                </div>
+                                <div class="innerBoxBody {{getCardBackground difficulty}}">
+                                    <div class="block">
+                                        <div class="cardContent centered cardfront detailfront{{@index}}">
+                                            {{#mathjax}}{{front}}{{/mathjax}}
+                                        </div>
+                                        <div class="cardContent centered cardback detailback{{@index}}"
+                                             style="display:none">
+                                            {{#mathjax}}{{back}}{{/mathjax}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                {{#if isCardset}}
+                    {{#unless cardCountOne}}
+                        <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
+                           data-slide="prev">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
+                           data-slide="next">
+                            <span class="icon-next"></span>
+                        </a>
+                    {{/unless}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="flashcardsEmpty">
+    <div class="{{#if isCardset}}col-md-9{{/if}}{{#if isBox}}col-md-12{{/if}} flip-container" id="set-details-region">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="box flashcard emptyCard">
+                            {{#if isCardset}}
+                                <h4>{{_ "nocards"}}</h4>
+                            {{else}}
+                                <h4>{{_ "memo-empty.text"}}</h4>
+                                <br>
+                                <a id="memoEndBtn" class="btn-back btn btn-default btn-raised"
+                                   onclick="history.go(-1)">
+                                    <span>{{_ "memo-endscreen.back"}}</span>
+                                </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardHint">
+    <div class="modal fade" id="showHintModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{_ "hint"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                {{#mathjax}}{{getHint}}{{/mathjax}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,58 +1,66 @@
-$color_difficulty0: #EEEEEE;
-$color_difficulty1: #5cb85c;
-$color_difficulty2: #5bc0de;
-$color_difficulty3: #d9534f;
+$input_difficulty0: #EEEEEE;
+$input_difficulty1: #5cb85c;
+$input_difficulty2: #5bc0de;
+$input_difficulty3: #d9534f;
+$background_difficulty1: #edffed;
+$background_difficulty2: #edfbff;
+$background_difficulty3: #ffeded;
+$color_difficulty0: rgba(91, 192, 222, 0.3);
+$color_difficulty1: rgba(92, 184, 92, 0.3);
+$color_difficulty2: rgba(91, 192, 222, 0.3);
+$color_difficulty3: rgba(217, 83, 79, 0.3);
+$header_line: rgba(255, 0, 0, 0.6);
 
 .cardtext {
   margin-bottom: 20px;
 }
 
-#frontTextFooter, #backTextFooter {
+#frontTextFooter, #backTextFooter, #hintTextFooter {
   padding: 10px;
   background-color: #f5f5f5;
 }
 
-#frontTextFooter img, #backTextFooter img {
+#frontTextFooter img, #backTextFooter img, #hintTextFooter img {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
 #difficulty .btn-info {
-  color: $color_difficulty1 !important;
+  color: $input_difficulty1 !important;
 
 }
 
 #difficulty .btn-default.active {
   color: $black !important;
-  background-color: $color_difficulty0;
-  border-color: $color_difficulty0;
+  background-color: $input_difficulty0;
+  border-color: $input_difficulty0;
 }
 
 #difficulty .btn-info.active {
   color: $white !important;
-  background-color: $color_difficulty1;
-  border-color: $color_difficulty1;
+  background-color: $input_difficulty1;
+  border-color: $input_difficulty1;
 }
 
 #difficulty .btn-success {
-  color: $color_difficulty2 !important;
+  color: $input_difficulty2 !important;
 }
 
 #difficulty .btn-success.active {
   color: $white !important;
-  background-color: $color_difficulty2;
-  border-color: $color_difficulty2;
+  background-color: $input_difficulty2;
+  border-color: $input_difficulty2;
 }
 
 #difficulty .btn-danger {
-  color: $color_difficulty3 !important;
+  color: $input_difficulty3 !important;
 }
 
 #difficulty .btn-danger.active {
   color: $white !important;
-  background-color: $color_difficulty3;
-  border-color: $color_difficulty3;
+  background-color: $input_difficulty3;
+  border-color: $input_difficulty3;
 }
 
 #difficultyGroup {
@@ -61,4 +69,241 @@ $color_difficulty3: #d9534f;
 
 .MathJax {
   font-size: 10px !important;
+}
+
+.cardNumber {
+  color: $color_mountain_mist_approx;
+  font-family: $font_2, $font_3, $font_4, $font_5;
+  font-size: 85%;
+  position: absolute;
+  width: 100%;
+  margin-left: -50px;
+  text-align: center;
+  top: 14px;
+}
+
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  img {
+    max-width: 370px;
+  }
+}
+
+.carousel-control {
+  color: $black;
+  width: 7%;
+  z-index: 5;
+  &.left {
+    @extend %extend_1;
+  }
+  &.right {
+    @extend %extend_1;
+  }
+}
+
+.carousel-inner {
+  min-height: 278px;
+}
+
+.box {
+  border: 1px solid $color_alto_approx;
+  font-family: $font_0, $font_1;
+  min-height: 300px;
+  margin: 0 auto;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 4px;
+  background-color: $white;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
+}
+
+.box-difficulty0 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $white,
+                  $white 26px,
+                  $color_difficulty0 26px,
+                  $color_difficulty0 28px
+  );
+}
+
+.box-difficulty1 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty1,
+                  $background_difficulty1 26px,
+                  $color_difficulty1 26px,
+                  $color_difficulty1 28px
+  );
+}
+
+.box-difficulty2 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty2,
+                  $background_difficulty2 26px,
+                  $color_difficulty2 26px,
+                  $color_difficulty2 28px
+  );
+}
+
+.box-difficulty3 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficulty3,
+                  $background_difficulty3 26px,
+                  $color_difficulty3 26px,
+                  $color_difficulty3 28px
+  );
+}
+
+.box-difficulty0-header {
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
+}
+
+.box-difficulty1-header {
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty1 5px, $background_difficulty1 100%);
+}
+
+.box-difficulty2-header {
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty2 5px, $background_difficulty2 100%);
+}
+
+.box-difficulty3-header {
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty3 5px, $background_difficulty3 100%);
+}
+
+.btn-showPictureDetails {
+  position: absolute;
+  left: 45px;
+  top: 11px;
+  font-family: $font_2, $font_3, $font_4, $font_5;
+}
+
+.clicktoflip {
+  color: $color_storm_dust_approx;
+  font-style: italic;
+}
+
+img.cardside {
+  position: relative;
+  float: left;
+  padding-right: 5px;
+  bottom: unset;
+  left: unset;
+}
+
+.cardsetInfo {
+  h3 {
+    margin-top: 0;
+  }
+  .well {
+    margin-bottom: 0;
+  }
+  .left {
+    float: left;
+  }
+  #ratingLocked {
+    margin-top: 2px;
+    margin-left: 6px;
+    left: 6px;
+  }
+}
+
+.item {
+  height: unset;
+}
+
+.leftHeader {
+  position: absolute;
+  display: block;
+  top: 12px;
+  left: 10px;
+}
+
+#editCard {
+  position: relative;
+  float: left;
+  display: block;
+  margin: 0 5px 0 0;
+  z-index: 20;
+}
+
+#showHint {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  z-index: 20;
+  font-size: 26px;
+}
+
+.btn-editCardset {
+  float: left;
+  margin-right: 7px;
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.flashcard {
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  transition: all .5s;
+}
+
+.flipped {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+.back {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  overflow: visible;
+}
+
+.innerBoxHeader {
+  min-height: 90px;
+  height: 100%;
+  text-align: center;
+  padding: 20px 50px 0 50px;
+
+  h3 {
+    margin-bottom: 0;
+  }
+}
+
+.innerBoxBody {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 50px 26px 50px;
+  line-height: 28px;
+  font-size: 18px;
+  vertical-align: bottom;
+  p {
+    margin: 0;
+  }
+}
+
+.cardContent {
+  width: 100%;
+  height: 100%;
+}
+
+.emojiWrapper > img {
+  height: 30px;
+  position: unset;
+}
+
+.emptyCard {
+  padding: 50px;
 }

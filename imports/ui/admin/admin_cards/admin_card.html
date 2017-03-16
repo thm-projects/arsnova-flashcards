@@ -28,7 +28,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{_ "admin.card.settings"}}</div>
                     <div class="panel-body">
-                        <div id="difficulty" class="cardtext col-lg-12 col-xs-12">
+                        <div id="subjectAdmin" class="cardtext col-lg-12 col-xs-12" data-content="{{subject}}">
+                            <div class="form-group">
+                                <label id="editSubjectLabelAdmin">{{_ "cardsubject"}}</label>
+                                    <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
+                                <span id="helpEditCardSubjectAdmin" class="help-block subject"></span>
+                            </div>
+                        </div>
+                        <div id="difficulty" class="cardtext col-lg-6 col-xs-12">
                             <div class="form-group">
                                 <label id="editCardDifficultyLabelAdmin">{{_ "difficulty"}}</label>
                                 <br>
@@ -67,6 +74,15 @@
                                         {{_ "difficulty3"}}
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div id="hintAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{hint}}">
+                            <div class="form-group">
+                                <label id="editCardHintLabelAdmin">{{_ "hint"}}</label>
+                                <textarea id="editCardHintAdmin" class="form-control" type="text" name="content"
+                                          data-provide="markdown" rows="5">{{hint}}</textarea>
+                                <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+                                <span id="helpEditCardHintAdmin" class="help-block hint"></span>
                             </div>
                         </div>
                         <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{front}}">

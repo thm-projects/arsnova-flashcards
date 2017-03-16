@@ -6,71 +6,28 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-                <div class="col-md-12">
+                {{> cardHint}}
+                <div id="memoFlashcard" class="col-md-9  col-centered">
                     <h4>{{name}}</h4>
-                </div>
-                <div class="col-md-12">
-                    <div id="set-memo-region">
-                        <div>
-                            <div class="memo-endscreen">
-                                <div class="row twosided">
-                                    <div class="col-md-6">
-                                        <div class="box {{#unless isFinish}} {{getCardBackground
-                                                getMemoCard.difficulty}} {{/unless}}">
-  									<span class="memo-site">
-  									  <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_
-                                            "frontside"}}
-  									</span>
-                                            <div class="block memocontent-block frontblock">
-                                                {{#if isFinish}}
-                                                    <span>{{_ "memo-empty.text"}}</span>
-                                                    <a id="memoEndBtn" class="btn-back btn btn-default btn-s"
-                                                       onclick="history.go(-1)">
-                                                        <span>{{_ "memo-endscreen.back"}}</span>
-                                                    </a>
-                                                {{else}}
-                                                    {{#mathjax}}{{getMemoCard.front}}{{/mathjax}}
-                                                {{/if}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="box {{#unless isFinish}} {{getCardBackground
-                                                getMemoCard.difficulty}} {{/unless}}">
-  									<span class="memo-site">
-  									  <img class="cardside cardfront-symbol" src="/img/icon_front.png"> {{_ "backside"}}
-  									</span>
-                                            <div class="block memocontent-block backblock">
-                                                {{#if showAnswer}}
-                                                    {{#unless isFinish}}
-                                                        {{#mathjax}}{{getMemoCard.back}}{{/mathjax}}
-                                                    {{/unless}}
-                                                {{/if}}
-                                            </div>
-                                        </div>
+                    {{#unless isFinish}}
+                        {{> flashcards}}
+                    {{else}}
+                        {{> flashcardsEmpty}}
+                    {{/unless}}
+                    {{#unless isEmpty}}
+                        {{#unless isFinish}}
+                            {{#if showAnswer}}
+                                {{> memoRate}}
+                            {{else}}
+                                <div class="btn-group btn-group-raised btn-group-justified">
+                                    <div class="btn-group">
+                                        <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
+                                                title="success">{{_ "cardmemo.showanswer"}}</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            <br>
-
-                            {{#unless isEmpty}}
-                                {{#unless isFinish}}
-                                    {{#if showAnswer}}
-                                        {{> memoRate}}
-                                    {{else}}
-                                        <div class="btn-group btn-group-raised btn-group-justified">
-                                            <div class="btn-group">
-                                                <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
-                                                        title="success">{{_ "cardmemo.showanswer"}}</button>
-                                            </div>
-                                        </div>
-                                    {{/if}}
-                                {{/unless}}
-                            {{/unless}}
-
-                        </div>
-                    </div>
+                            {{/if}}
+                        {{/unless}}
+                    {{/unless}}
                 </div>
                 <!-- Permission denied -->
             {{else}}
