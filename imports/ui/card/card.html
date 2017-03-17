@@ -135,22 +135,18 @@
 
 <template name="btnCard">
     <div class="col-md-12">
-        <div class="btn-group btn-group-raised btn-group-justified" role="group" aria-label="...">
-            {{#if isEditMode}}
-                <div id="changeDeleteButton" class="btn-group" role="group">
-                    <button id="cardDelete" class="btn btn-danger btn-large">{{_ "deletecard"}}</button>
-                </div>
-            {{/if}}
-            <div class="btn-group btn-group-raised" role="group">
-                <button id="cardCancel" class="btn btn-default btn-large cancel"
-                        onclick="history.go(-1)">{{_ "declinecard"}}</button>
-            </div>
-            <div class="btn-group btn-group-raised" role="group">
-                <button id="cardSave" class="btn btn-success btn-large save" {{disableIfOffline}}>
-                    {{_ "savecard"}}
-                </button>
-            </div>
-        </div>
+        {{#if isEditMode}}
+            <button id="cardDelete" class="btn btn-warning btn-raised col-xs-12 col-sm-3">{{_ "deletecard"}}</button>
+                <button id="changeDeleteButton" style="display: none;"
+                        class="btn btn-danger btn-raised col-xs-12 col-sm-3" onclick="history.go(-1)">{{_
+                "confirmcard"}}</button>
+        {{/if}}
+            <button id=" cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3"
+        onclick="history.go(-1)">{{_ "declinecard"}}</button>
+        <button id="cardSave"
+                class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
+            {{_ "savecard"}}
+        </button>
     </div>
 </template>
 

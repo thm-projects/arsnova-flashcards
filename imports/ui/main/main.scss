@@ -178,6 +178,11 @@ body {
       }
     }
   }
+
+  .modal-footer button {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
 }
 
 @media(min-width: 768px) {
@@ -251,4 +256,8 @@ body {
 button:disabled {
   color: $color_slate_gray_approx !important;
   background-color: $color_mercury_approx !important;
+}
+
+.form-group {
+  margin-top: 5px !important;
 }
