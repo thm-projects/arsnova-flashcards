@@ -172,26 +172,22 @@
                             <div class="controls">
                                 <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0Admin"
-                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
                                         <input type="radio" name="kind" value="personal" id="kind_private_admin">
                                         <div>Private</div>
                                     </label>
                                     <label id="kindoption1Admin"
-                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
                                         <input type="radio" name="kind" value="free" id="kind_free_admin">
                                         <div>Free</div>
                                     </label>
                                     <label id="kindoption2Admin"
-                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                                         <input type="radio" name="kind" value="edu" id="kind_edu_admin">
                                         <div>Edu</div>
                                     </label>
                                     <label id="kindoption3Admin"
-                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                                         <input type="radio" name="kind" value="pro" id="kind_pro_admin">
                                         <div>Pro</div>
                                     </label>
@@ -285,10 +281,10 @@
             </form>
             <div class="box-button-admin">
                 <button id="cardsetCancelAdmin" class="btn btn-raised">{{_ "admin.cardset.cancel"}}</button>
-                <button id="cardsetSaveAdmin" class="btn btn-raised btn-primary">{{_ "admin.cardset.save"}}</button>
-                <button id="cardsetDeleteAdmin" class="btn btn-raised btn-danger btn-setDelete pull-right">{{_
+                <button id="cardsetSaveAdmin" class="btn btn-raised btn-success">{{_ "admin.cardset.save"}}</button>
+                <button id="cardsetDeleteAdmin" class="btn btn-raised btn-warning btn-raised btn-setDelete pull-right">{{_
                         "admin.cardset.delete"}}</button>
-                <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right"
+                <button id="cardsetConfirmAdmin" class="btn btn-danger btn-raised pull-right"
                         style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
             </div>
         </div>

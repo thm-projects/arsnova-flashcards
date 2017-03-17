@@ -237,3 +237,18 @@ body {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.modal-header, .modal-body, .modal-footer {
+  margin: 0 !important;
+  padding: 15px !important;
+}
+
+.modal-body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+button:disabled {
+  color: $color_slate_gray_approx !important;
+  background-color: $color_mercury_approx !important;
+}

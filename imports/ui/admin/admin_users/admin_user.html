@@ -235,14 +235,14 @@
                 </form>
             </div>
             <div class="box-button-admin">
-                <button id="userCancelAdmin" class="btn btn-default">{{_ "admin.user.cancel"}}</button>
-                <button id="userSaveAdmin" class="btn btn-primary">{{_ "admin.user.save"}}</button>
+                <button id="userCancelAdmin" class="btn btn-default btn-raised">{{_ "admin.user.cancel"}}</button>
+                <button id="userSaveAdmin" class="btn btn-success btn-raised">{{_ "admin.user.save"}}</button>
                 {{#if isCurrentUser _id}}
                     {{#if isAdminUser _id}}
-                        <button id="userDeleteAdmin" class="btn btn-danger btn-setDelete pull-right"
-                                style="width:150px">{{_ "admin.user.delete"}}</button>
-                        <button id="userConfirmAdmin" class="btn btn-warning pull-right"
-                                style="width:150px; display:none">{{_ "admin.user.confirm"}}</button>
+                        <button id="userDeleteAdmin" class="btn btn-warning btn-raised btn-setDelete pull-right"
+                                >{{_ "admin.user.delete"}}</button>
+                        <button id="userConfirmAdmin" class="btn btn-danger btn-raised pull-right"
+                                style="display:none">{{_ "admin.user.confirm"}}</button>
                     {{/if}}
                 {{/if}}
             </div>

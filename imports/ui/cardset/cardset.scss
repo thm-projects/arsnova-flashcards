@@ -205,3 +205,33 @@ $font_5: sans-serif;
 .dropup .btn-group {
   box-shadow: none;
 }
+
+#publishKind, #publishKindAdmin {
+  .btn-info {
+    color: #31b0d5 !important;
+  }
+
+  .btn-default.active {
+    color: $black !important;
+  }
+
+  .btn-info.active {
+    color: $white !important;
+  }
+
+  .btn-success {
+    color: #398439 !important;
+  }
+
+  .btn-success.active {
+    color: $white !important;
+  }
+
+  .btn-danger {
+    color: #c9302c !important;
+  }
+
+  .btn-danger.active {
+    color: $white !important;
+  }
+}

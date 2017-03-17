@@ -23,9 +23,10 @@
                     <td id="tblCollege">{{college}}</td>
                     <td id="tblCourse">{{course}}</td>
                     <td>
-                        <button class="btn btn-danger" type="submit"
+                        <button class="btn btn-danger btn-raised" type="submit"
                                 id="deleteCollageCourse">{{_ "admin.delete"}}</button>
-                        <button class="btn btn-warning" type="submit" id="editCollageCourse">{{_ "admin.edit"}}</button>
+                        <button class="btn btn-warning btn-raised" type="submit" id="editCollageCourse">{{_
+                                "admin.edit"}}</button>
                     </td>
                 </tr>
             {{/each}}
@@ -37,24 +38,28 @@
         <h3><span>{{_ "admin.confirm-form.settings.new_entry"}}</span></h3>
 
         <hr>
-        <br>
         <div class="form-group" id="bookTemplate">
-            <form class="form-inline" id="newEntry" name="validForm">
-
-                <label for="text">{{_ "admin.confirm-form.settings.college"}}:</label>
-                &nbsp;&ensp; <input type="text" class="form-control" id="college" name="valid"
-                                    placeholder="{{_ "admin.confirm-form.settings.college"}}"><br><br>
-
-                <label for="text">{{_ "admin.confirm-form.settings.course_of_studies"}}:</label>
-                &nbsp; <input type="text" class="form-control" id="courseOfStudies" name="valid"
-                              placeholder="{{_ "admin.confirm-form.settings.course_of_studies"}}">
-
-                <br><br>
-                <input value="{{_ "admin.confirm-form.cancel"}}" type="button" id="cancelButton"
-                       class="btn btn-default btn-danger pull-left">
-                <input value="{{_ "admin.confirm-form.settings.save"}}" type="button" id="insertButton"
-                       class="btn btn-default btn-success pull-right">&ensp;
-
+            <form class="form" id="newEntry" name="validForm">
+                <div id class="row">
+                    <div class="col-md-6">
+                        <label for="text">{{_ "admin.confirm-form.settings.college"}}:</label>
+                        &nbsp;&ensp; <input type="text" class="form-control" id="college" name="valid"
+                                            placeholder="{{_ "admin.confirm-form.settings.college"}}"><br>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="text">{{_ "admin.confirm-form.settings.course_of_studies"}}:</label>
+                        &nbsp; <input type="text" class="form-control" id="courseOfStudies" name="valid"
+                                      placeholder="{{_ "admin.confirm-form.settings.course_of_studies"}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" id="cancelButton" class="btn btn-default btn-raised pull-left">{{_
+                                "admin.confirm-form.cancel"}}</button>
+                        <button type="submit" id="insertButton" class="btn btn-success btn-raised pull-right">&ensp;{{_
+                                "admin.confirm-form.settings.save"}}</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

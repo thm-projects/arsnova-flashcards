@@ -181,7 +181,7 @@
             <div id="set-details-sideBar-region">
                 <div class="well well-sm sidebar-nav">
                     <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-                    <div class="btn-group btn-group-raised btn-group-raised-xs btn-group-raised-justified">
+                    <div class="btn-group">
                         <a id="btnToCardLayout"
                            class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
                            href="/cardset/{{_id}}">{{_ "sidebar-nav.viewmap"}}</a>
@@ -208,8 +208,8 @@
                     {{#if isCardsetOwner _id}}
                         {{#if isInRole 'lecturer'}}
                             <button id="startStopLearning"
-                                    class="btn btn-default startStopLearn btn-block {{#if
-                                            learningActive}} btn-warning {{else}} btn-success {{/if}}"
+                                    class="btn btn-default btn-raised startStopLearn btn-block {{#if
+                                            learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
                                     type="button"
                                     data-toggle="modal"
                                     data-target="{{#unless
@@ -221,7 +221,7 @@
                                     {{_ "sidebar-nav.startLearning"}}
                                 {{/if}}
                             </button>
-                            <button id="exportCSV" class="btn btn-default btn-block{{#if
+                            <button id="exportCSV" class="btn btn-default btn-raised btn-block{{#if
                                     learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
                                     "box_export"}}</button>
                         {{/if}}
@@ -250,17 +250,19 @@
                             <div class="">
                                 <div id="payment-form"></div>
                                 <button id="buyCardsetBtn" type="submit"
-                                        class="btn btn-success btn-block">{{_ "cardset.money.buy"}} {{price}}€
+                                        class="btn btn-success btn-block btn-raised">{{_ "cardset.money.buy"}} {{price}}
+                                    €
                                 </button>
                                 <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
-                                   class="btn btn-warning btn-block" type="button">{{_ "cardset.money.pro"}}</a>
+                                   class="btn btn-warning btn-block btn-raised" type="button">{{_
+                                        "cardset.money.pro"}}</a>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="btn-group btn-group-raised btn-group btn-group-raised-raised btn-group btn-group-raised-justified"
+        <div class="btn-group"
              role="group">
         </div>
     </div>
@@ -421,7 +423,7 @@
                             <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
                                     "modal-dialog.college"}}</label>
                             <div class="dropup">
-                                <div class="btn-group btn-group-raised  col-xs-12 col-sm-12 col-md-9">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                                     <button id="editSetCollege" type="button"
                                             class="btn btn-default editSetCollegeDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
@@ -447,7 +449,7 @@
                             <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
-                                <div class="btn-group btn-group-raised  col-xs-12 col-sm-12 col-md-9">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                                     <button id="editSetCourse" type="button"
                                             class="btn btn-raised btn-default editSetCourseDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
@@ -471,13 +473,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cardSetCancel" class="btn btn-raised btn-warning" data-dismiss="modal">{{_
+                    <button id="cardSetCancel" class="btn btn-raised btn-default" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                     <button id="cardSetDelete" class="btn btn-raised btn-danger pull-left btn-setDelete">{{_
                             "modal-dialog.delete"}}</button>
                     <button id="cardSetConfirm" class="btn btn-raised btn-warning pull-left" style="display:none">{{_
                             "modal-dialog.confirm"}}</button>
-                    <button id="cardSetSave" class="btn btn-raised btn-primary">{{_ "modal-dialog.save"}}</button>
+                    <button id="cardSetSave" class="btn btn-raised btn-success">{{_ "modal-dialog.save"}}</button>
                 </div>
             </div>
         </div>
@@ -585,9 +587,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button id="cancelEndLearn" class="btn btn-default pull-left" data-dismiss="modal"
-                                style="width:150px">{{_ "confirmEndLearn-form.cancel"}}</button>
-                        <button id="confirmEndLearn" class="btn btn-warning pull-right"
+                        <button id="cancelEndLearn" class="btn btn-default btn-raised pull-left"
+                                data-dismiss="modal">{{_ "confirmEndLearn-form.cancel"}}</button>
+                        <button id="confirmEndLearn" class="btn btn-danger btn-raised pull-right"
                                 data-dismiss="modal">{{_ "confirmEndLearn-form.confirm"}}</button>
                     </div>
                 </div>
@@ -667,73 +669,67 @@
                     <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label"
+                               for="newSetDescription">{{_ "modal-dialog.kind"}}:</label>
+                        <div class="controls">
+                            <div id="publishKind" class="btn-group"
+                                 data-toggle="buttons">
+                                <label id="kindoption0"
+                                       class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="personal" id="kind_private">
+                                    <div>Private</div>
+                                </label>
+                                <label id="kindoption1"
+                                       class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="free" id="free">
+                                    <div>Free</div>
+                                </label>
+                                {{#if isInRole 'lecturer'}}
+                                    <label id="kindoption2"
+                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
+                                        <input type="radio" name="kind" value="edu" id="kind_edu">
+                                        <div>Edu</div>
+                                    </label>
+                                {{/if}}
+                                {{#if isInRole 'pro'}}
+                                    <label id="kindoption3"
+                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
+                                        <input type="radio" name="kind" value="pro" id="kind_pro">
+                                        <div>Pro</div>
+                                    </label>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    {{#if kindWithPrice}}
                         <div class="form-group">
-                            <label class="col-md-3 control-label"
-                                   for="newSetDescription">{{_ "modal-dialog.kind"}}</label>
-                            <div class="controls col-md-9">
-                                <div id="publishKind" class="btn-group btn-group-raised btn-group btn-group-raised-kind"
-                                     data-toggle="buttons">
-                                    <label id="kindoption0"
-                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
-                                           style="width:100px">
-                                        <input type="radio" name="kind" value="personal" id="kind_private">
-                                        <div>Private</div>
-                                    </label>
-                                    <label id="kindoption1"
-                                           class="btn btn-default {{#if kindIsActive 'free'}}active{{/if}}"
-                                           style="width:100px">
-                                        <input type="radio" name="kind" value="free" id="free">
-                                        <div>Free</div>
-                                    </label>
-                                    {{#if isInRole 'lecturer'}}
-                                        <label id="kindoption2"
-                                               class="btn btn-default {{#if kindIsActive 'edu'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="radio" name="kind" value="edu" id="kind_edu">
-                                            <div>Edu</div>
-                                        </label>
-                                    {{/if}}
-                                    {{#if isInRole 'pro'}}
-                                        <label id="kindoption3"
-                                               class="btn btn-default {{#if kindIsActive 'pro'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="radio" name="kind" value="pro" id="kind_pro">
-                                            <div>Pro</div>
-                                        </label>
-                                    {{/if}}
+                            <label id="publishPriceLabel" class="col-md-3 control-label"
+                                   for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <select id="publishPrice" class="form-control">
+                                        <option {{priceIsSelected 0.99}}>0.99</option>
+                                        <option {{priceIsSelected 1.99}}>1.99</option>
+                                        <option {{priceIsSelected 2.99}}>2.99</option>
+                                        <option {{priceIsSelected 3.99}}>3.99</option>
+                                        <option {{priceIsSelected 4.99}}>4.99</option>
+                                        <option {{priceIsSelected 5.99}}>5.99</option>
+                                        <option {{priceIsSelected 6.99}}>6.99</option>
+                                        <option {{priceIsSelected 7.99}}>7.99</option>
+                                        <option {{priceIsSelected 8.99}}>8.99</option>
+                                        <option {{priceIsSelected 9.99}}>9.99</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        {{#if kindWithPrice}}
-                            <div class="form-group">
-                                <label id="publishPriceLabel" class="col-md-3 control-label"
-                                       for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <select id="publishPrice" class="form-control">
-                                            <option {{priceIsSelected 0.99}}>0.99</option>
-                                            <option {{priceIsSelected 1.99}}>1.99</option>
-                                            <option {{priceIsSelected 2.99}}>2.99</option>
-                                            <option {{priceIsSelected 3.99}}>3.99</option>
-                                            <option {{priceIsSelected 4.99}}>4.99</option>
-                                            <option {{priceIsSelected 5.99}}>5.99</option>
-                                            <option {{priceIsSelected 6.99}}>6.99</option>
-                                            <option {{priceIsSelected 7.99}}>7.99</option>
-                                            <option {{priceIsSelected 8.99}}>8.99</option>
-                                            <option {{priceIsSelected 9.99}}>9.99</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/if}}
-                    </div>
+                    {{/if}}
                 </div>
                 <div class="modal-footer">
-                    <button id="cardsetCancel" class="btn btn-default"
+                    <button id="cardsetCancel" class="btn btn-default btn-raised pull-left"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="cardsetPublish"
-                            class="btn btn-info pull-success">{{_ "modal-dialog.publish"}}</button>
+                            class="btn btn-raised btn-success pull-right">{{_ "modal-dialog.publish"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -758,7 +754,7 @@
                             <label id="modulesLabel" class="col-md-3 control-label"
                                    for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
                             <div class="controls col-md-9">
-                                <div id="cc-modules" class="btn-group btn-group-raised" data-toggle="buttons">
+                                <div id="cc-modules" class="btn-group" data-toggle="buttons">
                                     <label id="cc-option0"
                                            class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
                                            style="width:100px">
@@ -859,9 +855,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="reportCardsetCancel" class="btn btn-default"
+                    <button id="reportCardsetCancel" class="btn btn-default btn-raised"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-                    <button id="reportCardsetSave" class="btn btn-primary">{{_ "modal-dialog.submitcomplaint"}}</button>
+                    <button id="reportCardsetSave" class="btn btn-success btn-raised">{{_
+                            "modal-dialog.submitcomplaint"}}</button>
                 </div>
             </div>
         </div>
@@ -885,7 +882,7 @@
                                     <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
                                     <br><br>
                                     <button id="learnBoxActive"
-                                            class="btn btn-success learn btn-block btn-learn">{{_
+                                            class="btn btn-raised btn-success learn btn-block btn-learn">{{_
                                             "cardsToLearn"}}</button>
                                 {{else}}
                                     {{#if allLearned}}
