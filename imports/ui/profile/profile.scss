@@ -127,3 +127,7 @@ $white: rgb(255, 255, 255);
 #profilepublicoption1 .active, #profilepublicoption2 .active  {
   color: $white !important;
 }
+
+.panel-body {
+  padding: 15px;
+}

@@ -194,6 +194,10 @@ body {
       display: none;
     }
   }
+  .panel-body button {
+    margin: 10px 0 !important;
+    width: auto;
+  }
 }
 
 @media(max-width: 991px) {
@@ -251,6 +255,10 @@ body {
 .modal-body {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+button {
+  padding: 8px !important;
 }
 
 button:disabled {
