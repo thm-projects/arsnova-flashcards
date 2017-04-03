@@ -479,10 +479,10 @@ Template.cardsetInfo.helpers({
 	getStatus: function () {
 		if (this.visible) {
 			var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-			return TAPi18n.__('sidebar-nav.published') + " (" + kind + ")";
+			return kind;
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
-				return TAPi18n.__('sidebar-nav.review') + " (Pro)";
+				return TAPi18n.__('sidebar-nav.review');
 			} else {
 				return TAPi18n.__('sidebar-nav.private');
 			}

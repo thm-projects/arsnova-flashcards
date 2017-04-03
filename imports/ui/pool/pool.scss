@@ -62,6 +62,7 @@
   .btn-info, .btn-success, .btn-danger {
     background-color: $color_item_separator;
     border-color: $color_btn_inactive;
+    color: $white;
   }
 
   .panel {
@@ -115,6 +116,7 @@
     padding-top: 5px;
     padding-bottom: 10px;
     font-weight: bold;
+    font-size: 13px;
     background-color: $color_orange_pool;
     color: $white;
   }
@@ -273,10 +275,15 @@
     #pool-nav-wrapper, #pool-nav {
       padding: 0px;
     }
+
+    #moduleFilter {
+      padding-right: 0px !important;
+    }
   }
 
   @media (max-width: 767px) {
     #filterCheckbox {
+      padding: 0 !important;
       margin-left: 45px;
     }
   }
@@ -311,4 +318,12 @@
 
 .field-tip:hover .tip-content {
   visibility: visible;
+}
+
+.resetFilters {
+  padding: 8px;
+}
+
+#upgrade, #downgrade {
+  width: 100% !important;
 }

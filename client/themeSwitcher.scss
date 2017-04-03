@@ -31,6 +31,12 @@ $themes: (
     #pool-category-region .poolHeaderBottom {
       background-color: $accent;
     }
+
+    #newCardSet {
+      background-color: $primary-color;
+      color: $accent;
+    }
+
     #pool-category-region {
       .cardsetInfo {
         a {
@@ -48,12 +54,11 @@ $themes: (
         color: $primary-color;
       }
     }
-    .glyphicon-plus {
-      color: $primary-color;
-    }
+
     .btn.btn-raised.btn-primary {
-      background-color: $accent;
+      background-color: $primary-color;
     }
+
     .btn.btn-raised:not(.btn-link):hover.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-primary, .btn-group-raised .btn:not(.btn-link):hover.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):hover.btn-primary, .btn.btn-raised:not(.btn-link):focus.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-primary, .btn-group-raised .btn:not(.btn-link):focus.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.btn-primary, .btn.btn-raised:not(.btn-link).active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-primary, .btn-group-raised .btn:not(.btn-link).active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link).active.btn-primary, .btn.btn-raised:not(.btn-link):active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-primary, .btn-group-raised .btn:not(.btn-link):active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):active.btn-primary {
       background-color: $accent_300;
     }

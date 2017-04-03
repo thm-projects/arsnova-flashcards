@@ -248,7 +248,7 @@ Template.btnCard.events({
 	},
 	'click #cardDelete': function () {
 		$("#cardDelete").remove();
-		$("#changeDeleteButton").html('<button id="cardConfirm" class="btn btn-warning btn-large" onclick="history.go(-1)">' + TAPi18n.__("confirmcard") + '</button>');
+		$("#changeDeleteButton").css('display', "");
 	},
 	'click #cardConfirm': function () {
 		var id = this._id;

@@ -66,7 +66,7 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
-        <label class="btn btn-default btn-sm {{#if isDifficultyChecked 0}}active{{/if}}">
+        <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked>
             {{else}}
@@ -74,7 +74,7 @@
             {{/if}}
             {{_ "difficulty0"}}
         </label>
-        <label class="btn btn-default btn-info btn-sm {{#if isDifficultyChecked 1}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}">
             {{#if isDifficultyChecked 1}}
                 <input type="radio" name="difficulty" value="1" checked>
             {{else}}
@@ -83,7 +83,7 @@
 
             {{_ "difficulty1"}}
         </label>
-        <label class="btn btn-default btn-success btn-sm {{#if isDifficultyChecked 2}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}">
             {{#if isDifficultyChecked 2}}
                 <input type="radio" name="difficulty" value="2" checked>
             {{else}}
@@ -91,7 +91,7 @@
             {{/if}}
             {{_ "difficulty2"}}
         </label>
-        <label class="btn btn-default btn-danger btn-sm {{#if isDifficultyChecked 3}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}">
             {{#if isDifficultyChecked 3}}
                 <input type="radio" name="difficulty" value="3" checked>
             {{else}}
@@ -135,22 +135,18 @@
 
 <template name="btnCard">
     <div class="col-md-12">
-        <div class="btn-group btn-group-raised btn-group-justified" role="group" aria-label="...">
-            {{#if isEditMode}}
-                <div id="changeDeleteButton" class="btn-group" role="group">
-                    <button id="cardDelete" class="btn btn-danger btn-large">{{_ "deletecard"}}</button>
-                </div>
-            {{/if}}
-            <div class="btn-group btn-group-raised" role="group">
-                <button id="cardCancel" class="btn btn-default btn-large cancel"
-                        onclick="history.go(-1)">{{_ "declinecard"}}</button>
-            </div>
-            <div class="btn-group btn-group-raised" role="group">
-                <button id="cardSave" class="btn btn-success btn-large save" {{disableIfOffline}}>
-                    {{_ "savecard"}}
-                </button>
-            </div>
-        </div>
+        {{#if isEditMode}}
+            <button id="cardDelete" class="btn btn-warning btn-raised col-xs-12 col-sm-3">{{_ "deletecard"}}</button>
+                <button id="changeDeleteButton" style="display: none;"
+                        class="btn btn-danger btn-raised col-xs-12 col-sm-3" onclick="history.go(-1)">{{_
+                "confirmcard"}}</button>
+        {{/if}}
+            <button id=" cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3"
+        onclick="history.go(-1)">{{_ "declinecard"}}</button>
+        <button id="cardSave"
+                class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
+            {{_ "savecard"}}
+        </button>
     </div>
 </template>
 

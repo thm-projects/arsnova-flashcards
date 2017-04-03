@@ -205,3 +205,75 @@ $font_5: sans-serif;
 .dropup .btn-group {
   box-shadow: none;
 }
+
+#publishKind, #publishKindAdmin {
+  .btn-info {
+    color: #31b0d5 !important;
+  }
+
+  .btn-default.active {
+    color: $black !important;
+  }
+
+  .btn-info.active {
+    color: $white !important;
+  }
+
+  .btn-success {
+    color: #398439 !important;
+  }
+
+  .btn-success.active {
+    color: $white !important;
+  }
+
+  .btn-danger {
+    color: #c9302c !important;
+  }
+
+  .btn-danger.active {
+    color: $white !important;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #cardSetCancel {
+    margin-left: 25px;
+  }
+}
+
+.form-control.interval {
+  display: inline;
+  width: 55px !important;
+}
+
+@media (max-width: 767px) {
+  .form-control.interval {
+    width: 50px !important;
+  }
+}
+
+.panel-footer {
+  padding: 10px;
+  .btn-group {
+    margin-right: 10px;
+    padding: 0;
+  }
+}
+
+.panel-body {
+  padding: 0;
+
+  h4 {
+    line-height: 24px;
+  }
+
+  .well {
+    padding: 10px !important;
+  }
+
+  .infoBox {
+    padding: 10px;
+  }
+}

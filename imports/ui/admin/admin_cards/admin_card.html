@@ -40,7 +40,7 @@
                                 <label id="editCardDifficultyLabelAdmin">{{_ "difficulty"}}</label>
                                 <br>
                                 <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm {{#if isDifficultyChecked 0}}active{{/if}}">
+                                    <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}">
                                         {{#if isDifficultyChecked 0}}
                                             <input type="radio" name="difficulty" value="0" checked>
                                         {{else}}
@@ -48,7 +48,7 @@
                                         {{/if}}
                                         {{_ "difficulty0"}}
                                     </label>
-                                    <label class="btn btn-default btn-info btn-sm {{#if isDifficultyChecked 1}}active{{/if}}">
+                                    <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}">
                                         {{#if isDifficultyChecked 1}}
                                             <input type="radio" name="difficulty" value="1" checked>
                                         {{else}}
@@ -57,7 +57,7 @@
 
                                         {{_ "difficulty1"}}
                                     </label>
-                                    <label class="btn btn-default btn-success btn-sm {{#if isDifficultyChecked 2}}active{{/if}}">
+                                    <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}">
                                         {{#if isDifficultyChecked 2}}
                                             <input type="radio" name="difficulty" value="2" checked>
                                         {{else}}
@@ -65,7 +65,7 @@
                                         {{/if}}
                                         {{_ "difficulty2"}}
                                     </label>
-                                    <label class="btn btn-default btn-danger btn-sm {{#if isDifficultyChecked 3}}active{{/if}}">
+                                    <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}">
                                         {{#if isDifficultyChecked 3}}
                                             <input type="radio" name="difficulty" value="3" checked>
                                         {{else}}
@@ -107,11 +107,11 @@
                 </div>
             </form>
             <div class="box-button-admin">
-                <button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
-                <button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
-                <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
+                <button id="cardCancelAdmin" class="btn btn-default btn-raised">{{_ "admin.card.cancel"}}</button>
+                <button id="cardSaveAdmin" class="btn btn-success btn-raised">{{_ "admin.card.save"}}</button>
+                <button id="cardDeleteAdmin" class="btn btn-warning btn-setDelete btn-raised pull-right">{{_
                         "admin.card.delete"}}</button>
-                <button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_
+                <button id="cardConfirmAdmin" class="btn btn-danger btn-raised pull-right" style="display:none">{{_
                         "admin.card.confirm"}}</button>
             </div>
         </div>

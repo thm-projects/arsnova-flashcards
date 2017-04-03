@@ -168,13 +168,13 @@
                                 <div class="col-md-8">
                                     <div class="btn-group btn-group-justified" data-toggle="buttons">
                                         <label id="profilepublicoption1"
-                                               class="btn btn-default profile-public {{#if
+                                               class="btn btn-success profile-public {{#if
                                                        getUser.visible}}active{{/if}}">
                                             <input type="radio" name="visible" value="true">
                                             <div>{{_ "panel-body.profilepublicoption1"}}</div>
                                         </label>
                                         <label id="profilepublicoption2"
-                                               class="btn btn-default profile-private {{#unless
+                                               class="btn btn-danger profile-private {{#unless
                                                        getUser.visible}}active{{/unless}}">
                                             <input type="radio" name="visible" value="false">
                                             <div>{{_ "panel-body.profilepublicoption2"}}</div>
@@ -262,16 +262,14 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <div class="btn-group pull-left" role="group">
-                            <button disabled id="profileCancel" type="button"
-                                    class="btn btn-danger">{{_ "profile.cancel"}}</button>
-                        </div>
-                        <div class="btn-group pull-right" role="group">
-                            <button disabled id="profileSave" type="button" class="btn btn-success"
-                                {{disableIfOffline}}>
-                                {{_ "profile.save"}}
-                            </button>
-                        </div>
+                        <button disabled id="profileCancel" type="button"
+                                class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave">{{_
+                                "profile.cancel"}}</button>
+                        <button disabled id="profileSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
+                            {{disableIfOffline}}>
+                            {{_ "profile.save"}}
+                        </button>
                     {{/if}}
                 </form>
             </div>
@@ -289,10 +287,9 @@
                         {{/each}}
                     </select>
                 </div>
-                <div class="btn-group pull-right" role="group">
-                    <button disabled id="colorThemeSave" type="button" class="btn btn-success">{{_
-                            "profile.save"}}</button>
-                </div>
+                <button disabled id="colorThemeSave" type="button"
+                        class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                        "profile.save"}}</button>
             </div>
         </div>
         <div class="panel panel-default">
@@ -302,7 +299,7 @@
             <div class="panel-body">
                 <p>{{_ "profile.settings.deleteText"}}</p>
                 <hr/>
-                <button id="profileDelete" type="button" class="btn btn-danger" data-toggle="modal"
+                <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3" data-toggle="modal"
                         data-target="#profileDelteConfirmModal" {{disableIfOffline}}>
                     {{_ "profile.settings.delete"}}
                 </button>
@@ -388,7 +385,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
 								<span class="span2">
@@ -403,10 +400,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
-								<span class="span3">
+								<span class="span2">
                                     {{getXpYesterday}}
                                 </span>
                             </div>
@@ -418,10 +415,10 @@
                         </div>
                     </div>
                     <!-- vorgestern 1 -->
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
-								<span class="span4">
+								<span class="span2">
                                     {{getXpTwoDaysAgo}}
                                 </span>
                             </div>
@@ -433,10 +430,10 @@
                         </div>
                     </div>
                     <!-- Secquencer 1 -->
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
-								<span class="span5">
+								<span class="span2">
                                     {{getXpSeq1}}
                                 </span>
                             </div>
@@ -448,10 +445,10 @@
                         </div>
                     </div>
                     <!-- Secquencer 2 -->
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
-								<span class="span5">
+								<span class="span2">
                                     {{getXpSeq2}}
                                 </span>
                             </div>
@@ -463,10 +460,10 @@
                         </div>
                     </div>
                     <!-- Secquencer 3 -->
-                    <div class="col-md-2 col-xs-2">
+                    <div class="col-md-2 col-xs-4">
                         <div id="well" class="well well-sm">
                             <div id="row1" class="row">
-								<span class="span5">
+								<span class="span2">
                                     {{getXpSeq3}}
                                 </span>
                             </div>
@@ -716,7 +713,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="paymentMethodDropIn"></div>
-                                <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info">{{_
+                                <button type="submit" id="savePaymentBtn" class="btn btn-block btn-info btn-raised">{{_
                                         "billing.payment.save"}}</button>
                             </div>
                         </div>
@@ -732,7 +729,8 @@
                             <div class="">
                                 <div class="">
                                     <div id="payoutDropIn"></div>
-                                    <button id="payoutBtn" type="submit" class="btn btn-info btn-block">{{getBalance}}
+                                    <button id="payoutBtn" type="submit"
+                                            class="btn btn-info btn-block btn-raised">{{getBalance}}
                                         € {{_ "billing.balance.disburse"}}</button>
                                 </div>
                             </div>
@@ -809,10 +807,10 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button type="submit" id="downgrade" class="btn btn-block btn-default">{{_
+                                <button type="submit" id="downgrade" class="btn btn-danger btn-raised btn-block">{{_
                                         "billing.plan.back"}}</button>
                             {{else}}
-                                <button class="btn btn-block btn-success disabled" href="#">{{_
+                                <button id="downgrade" class="btn btn-default btn-raised btn-block disabled" href="#">{{_
                                         "billing.plan.actual"}}</button>
                             {{/if}}
                         </div>
@@ -834,13 +832,15 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button class="btn btn-block btn-success disabled">{{_ "billing.plan.actual"}}</button>
+                                <button class="btn btn-block btn-success btn-raised disabled">{{_
+                                        "billing.plan.actual"}}</button>
                             {{else}}
                                 <form role="form">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="subscribe-form"></div>
-                                            <button type="submit" id="upgrade" class="btn btn-block btn-default">{{_
+                                            <button type="submit" id="upgrade"
+                                                    class="btn btn-block btn-info btn-raised col-xs-12">{{_
                                                     "billing.plan.subscribe"}}</button>
                                         </div>
                                     </div>
@@ -861,7 +861,8 @@
                 {{else}}
                     {{#if hasUserData}}
                         <form class="form-horizontal" id="lecturerRequestForm">
-                            <button type="button" id="sendLecturerRequest" class="btn btn-info pull-right">{{_
+                            <button type="button" id="sendLecturerRequest"
+                                    class="btn btn-info btn-raised pull-right">{{_
                                     "billing.plan.send"}}</button>
                         </form>
                     {{else}}
@@ -961,9 +962,12 @@
                     <br/>
                     <hr/>
 
-                    <button id="profileDelete" class="btn btn-danger btn-setDelete">{{_
+                    <button id="profileDelete"
+                            class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3 btn-setDelete">{{_
                             "confirm-form-profile.title"}}</button>
-                    <button id="profileCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                    <button id="profileCancel"
+                            class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3 pull-right"
+                            data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>
             </div>
