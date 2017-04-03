@@ -28,7 +28,7 @@ service-configuration@1.0.11
 accounts-facebook@1.1.1
 accounts-google@1.1.1
 zimme:active-route
-atoy40:accounts-cas
+trayhem:accounts-cas
 random@1.0.10
 momentjs:moment
 rzymek:moment-locales
