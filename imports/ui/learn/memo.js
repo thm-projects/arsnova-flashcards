@@ -4,7 +4,9 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
+import {turnCard} from "../card/card.js";
 import "./memo.html";
 
 
@@ -19,13 +21,15 @@ Meteor.subscribe("learned");
  */
 
 Template.memo.onCreated(function () {
-	var cardset_id = Router.current().params._id;
-	var cards = Cards.find({
-		cardset_id: cardset_id
-	});
-	cards.forEach(function (card) {
-		Meteor.call("addLearned", card.cardset_id, card._id);
-	});
+	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+	if (!Session.get('activeCardset').learningActive) {
+		var cards = Cards.find({
+			cardset_id: Session.get('activeCardset')._id
+		});
+		cards.forEach(function (card) {
+			Meteor.call("addLearned", Session.get('activeCardset')._id, card._id);
+		});
+	}
 });
 
 Template.memo.onDestroyed(function () {
@@ -34,6 +38,7 @@ Template.memo.onDestroyed(function () {
 
 Template.memo.helpers({
 	showAnswer: function () {
+		turnCard();
 		return Session.get('showAnswer');
 	},
 	isFinish: function () {
@@ -41,7 +46,7 @@ Template.memo.helpers({
 		actualDate.setHours(0, 0, 0, 0);
 
 		var learned = Learned.findOne({
-			cardset_id: this._id,
+			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate
@@ -49,44 +54,6 @@ Template.memo.helpers({
 		});
 
 		return (learned === undefined);
-	},
-	getMemoCard: function () {
-		var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		actualDate.setHours(0, 0, 0, 0);
-
-		var learned = Learned.findOne({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			nextDate: {
-				$lte: actualDate
-			}
-		}, {
-			sort: {
-				nextDate: 1
-			}
-		});
-		if (learned !== undefined) {
-			var cards = Cards.findOne({
-				cardset_id: this._id,
-				_id: learned.card_id
-			});
-			Session.set('currentCard', cards._id);
-			return cards;
-		}
-	},
-	memoMarkdownFront: function (front) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".box .frontblock span").html(html);
-				$('table').addClass('table');
-			});
-	},
-	memoMarkdownBack: function (back) {
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".box .backblock span").html(html);
-				$('table').addClass('table');
-			});
 	}
 });
 

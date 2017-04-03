@@ -28,21 +28,78 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{_ "admin.card.settings"}}</div>
                     <div class="panel-body">
-                        <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12">
+                        <div id="subjectAdmin" class="cardtext col-lg-12 col-xs-12" data-content="{{subject}}">
+                            <div class="form-group">
+                                <label id="editSubjectLabelAdmin">{{_ "cardsubject"}}</label>
+                                    <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
+                                <span id="helpEditCardSubjectAdmin" class="help-block subject"></span>
+                            </div>
+                        </div>
+                        <div id="difficulty" class="cardtext col-lg-6 col-xs-12">
+                            <div class="form-group">
+                                <label id="editCardDifficultyLabelAdmin">{{_ "difficulty"}}</label>
+                                <br>
+                                <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}">
+                                        {{#if isDifficultyChecked 0}}
+                                            <input type="radio" name="difficulty" value="0" checked>
+                                        {{else}}
+                                            <input type="radio" name="difficulty" value="0">
+                                        {{/if}}
+                                        {{_ "difficulty0"}}
+                                    </label>
+                                    <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}">
+                                        {{#if isDifficultyChecked 1}}
+                                            <input type="radio" name="difficulty" value="1" checked>
+                                        {{else}}
+                                            <input type="radio" name="difficulty" value="1">
+                                        {{/if}}
+
+                                        {{_ "difficulty1"}}
+                                    </label>
+                                    <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}">
+                                        {{#if isDifficultyChecked 2}}
+                                            <input type="radio" name="difficulty" value="2" checked>
+                                        {{else}}
+                                            <input type="radio" name="difficulty" value="2">
+                                        {{/if}}
+                                        {{_ "difficulty2"}}
+                                    </label>
+                                    <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}">
+                                        {{#if isDifficultyChecked 3}}
+                                            <input type="radio" name="difficulty" value="3" checked>
+                                        {{else}}
+                                            <input type="radio" name="difficulty" value="3">
+                                        {{/if}}
+                                        {{_ "difficulty3"}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hintAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{hint}}">
+                            <div class="form-group">
+                                <label id="editCardHintLabelAdmin">{{_ "hint"}}</label>
+                                <textarea id="editCardHintAdmin" class="form-control" type="text" name="content"
+                                          data-provide="markdown" rows="5">{{hint}}</textarea>
+                                <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+                                <span id="helpEditCardHintAdmin" class="help-block hint"></span>
+                            </div>
+                        </div>
+                        <div id="frontAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{front}}">
                             <div class="form-group">
                                 <label id="editCardFrontLabelAdmin">{{_ "admin.card.front"}}</label>
                                 <textarea id="editCardFrontAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{front}}</textarea>
-                                {{getFront front}}
+                                <div id="frontTextFooter">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
                                 <span id="helpEditCardFrontAdmin" class="help-block front"></span>
                             </div>
                         </div>
-                        <div id="backAdmin" class="cardtext col-lg-6 col-xs-12">
+                        <div id="backAdmin" class="cardtext col-lg-6 col-xs-12" data-content="{{back}}">
                             <div class="form-group">
                                 <label id="editCardBackLabelAdmin">{{_ "admin.card.back"}}</label>
                                 <textarea id="editCardBackAdmin" class="form-control" type="text" name="content"
                                           data-provide="markdown" rows="10">{{back}}</textarea>
-                                {{getBack back}}
+                                <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
                                 <span id="helpEditCardBackAdmin" class="help-block back"></span>
                             </div>
                         </div>
@@ -50,12 +107,12 @@
                 </div>
             </form>
             <div class="box-button-admin">
-                <button id="cardCancelAdmin" class="btn btn-default">{{_ "admin.card.cancel"}}</button>
-                <button id="cardSaveAdmin" class="btn btn-primary">{{_ "admin.card.save"}}</button>
-                <button id="cardDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
-                "admin.card.delete"}}</button>
-                <button id="cardConfirmAdmin" class="btn btn-warning pull-right" style="width:150px; display:none">{{_
-                "admin.card.confirm"}}</button>
+                <button id="cardCancelAdmin" class="btn btn-default btn-raised">{{_ "admin.card.cancel"}}</button>
+                <button id="cardSaveAdmin" class="btn btn-success btn-raised">{{_ "admin.card.save"}}</button>
+                <button id="cardDeleteAdmin" class="btn btn-warning btn-setDelete btn-raised pull-right">{{_
+                        "admin.card.delete"}}</button>
+                <button id="cardConfirmAdmin" class="btn btn-danger btn-raised pull-right" style="display:none">{{_
+                        "admin.card.confirm"}}</button>
             </div>
         </div>
     </div>

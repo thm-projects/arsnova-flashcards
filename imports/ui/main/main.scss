@@ -178,6 +178,11 @@ body {
       }
     }
   }
+
+  .modal-footer button {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
 }
 
 @media(min-width: 768px) {
@@ -188,6 +193,10 @@ body {
     .navbar-toggle {
       display: none;
     }
+  }
+  .panel-body button {
+    margin: 10px 0 !important;
+    width: auto;
   }
 }
 
@@ -236,4 +245,27 @@ body {
   min-width: 240px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  margin: 0 !important;
+  padding: 15px !important;
+}
+
+.modal-body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+button {
+  padding: 8px !important;
+}
+
+button:disabled {
+  color: $color_slate_gray_approx !important;
+  background-color: $color_mercury_approx !important;
+}
+
+.form-group {
+  margin-top: 5px !important;
 }

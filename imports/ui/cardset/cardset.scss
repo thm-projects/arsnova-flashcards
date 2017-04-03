@@ -16,27 +16,6 @@ $font_3: Helvetica;
 $font_4: Arial;
 $font_5: sans-serif;
 
-.cardsetInfo {
-  h3 {
-    margin-top: 0;
-  }
-  .well {
-    margin-bottom: 0;
-  }
-  .left {
-    float: left;
-  }
-  #ratingLocked {
-    margin-top: 2px;
-    margin-left: 6px;
-    left: 6px;
-  }
-}
-
-.item {
-  height: unset;
-}
-
 //@extend-elements
 //original selectors
 //.carousel-control.left, .carousel-control.right
@@ -44,43 +23,6 @@ $font_5: sans-serif;
   background-image: none;
   margin-top: 40px;
   margin-bottom: 40px;
-}
-
-.carousel-inner {
-  min-height: 278px;
-}
-
-.box {
-  border: 1px solid $color_alto_approx;
-  font-family: $font_0, $font_1;
-  min-height: 300px;
-  margin: 0 auto;
-  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-  border-radius: 4px;
-  background-color: $white;
-  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
-}
-
-.btn-editCard {
-  position: absolute;
-  left: 12px;
-  top: 11px;
-}
-
-.btn-showPictureDetails {
-  position: absolute;
-  left: 45px;
-  top: 11px;
-  font-family: $font_2, $font_3, $font_4, $font_5;
-}
-
-.clicktoflip {
-  color: $color_storm_dust_approx;
-  position: absolute;
-  right: 10px;
-  top: 13px;
-  font-style: italic;
 }
 
 .block {
@@ -95,37 +37,6 @@ $font_5: sans-serif;
   pre {
     text-align: left;
   }
-}
-
-.centered {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1.2em;
-  img {
-    max-width: 370px;
-  }
-}
-
-.carousel-control {
-  color: $black;
-  width: 7%;
-  z-index: 5;
-  &.left {
-    @extend %extend_1;
-  }
-  &.right {
-    @extend %extend_1;
-  }
-}
-
-.cardNumber {
-  color: $color_mountain_mist_approx;
-  font-family: $font_2, $font_3, $font_4, $font_5;
-  font-size: 85%;
-  position: absolute;
-  left: 50%;
-  top: 14px;
-  margin-left: -16px;
 }
 
 .meteorBox {
@@ -169,11 +80,6 @@ $font_5: sans-serif;
   margin-bottom: 20px;
 }
 
-.btn-editCardset {
-  float: left;
-  margin-right: 7px;
-}
-
 .btn-file {
   position: relative;
   overflow: hidden;
@@ -192,14 +98,6 @@ $font_5: sans-serif;
     cursor: inherit;
     display: block;
   }
-}
-
-img.cardside {
-  position: absolute;
-  right: 88px;
-  top: 13px;
-  bottom: unset;
-  left: unset;
 }
 
 #pictureModal .modal-header {
@@ -304,49 +202,78 @@ img.cardside {
   border-left-color: #1b809e;
 }
 
-.flip-container {
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
+.dropup .btn-group {
+  box-shadow: none;
 }
 
-.flashcard {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transition: all .5s;
-  transition: all .5s;
+#publishKind, #publishKindAdmin {
+  .btn-info {
+    color: #31b0d5 !important;
+  }
+
+  .btn-default.active {
+    color: $black !important;
+  }
+
+  .btn-info.active {
+    color: $white !important;
+  }
+
+  .btn-success {
+    color: #398439 !important;
+  }
+
+  .btn-success.active {
+    color: $white !important;
+  }
+
+  .btn-danger {
+    color: #c9302c !important;
+  }
+
+  .btn-danger.active {
+    color: $white !important;
+  }
 }
 
-.flipped {
-  transform: rotateX(180deg);
-  -webkit-transform: rotateX(180deg);
+@media (min-width: 768px) {
+
+  #cardSetCancel {
+    margin-left: 25px;
+  }
 }
 
-.back {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  overflow: visible;
-  transform: rotateX(180deg);
-  -webkit-transform: rotateX(180deg);
+.form-control.interval {
+  display: inline;
+  width: 55px !important;
 }
 
-.innerBox {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  min-height: 300px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  padding: 50px;
+@media (max-width: 767px) {
+  .form-control.interval {
+    width: 50px !important;
+  }
 }
 
-.cardContent {
-  width: 100%;
-  height: 100%;
+.panel-footer {
+  padding: 10px;
+  .btn-group {
+    margin-right: 10px;
+    padding: 0;
+  }
 }
 
-.emojiWrapper > img {
-  height: 30px;
-  position: unset;
+.panel-body {
+  padding: 0;
+
+  h4 {
+    line-height: 24px;
+  }
+
+  .well {
+    padding: 10px !important;
+  }
+
+  .infoBox {
+    padding: 10px;
+  }
 }

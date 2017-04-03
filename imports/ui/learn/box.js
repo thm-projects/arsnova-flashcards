@@ -4,9 +4,10 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../api/cards.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
+import {turnCard} from "../card/card.js";
 import "./box.html";
-import * as lib from '/client/lib.js';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -15,14 +16,13 @@ Meteor.subscribe("cards");
 Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
-Session.set('isFinish', false);
+Session.set('isFinish', true);
 
 Meteor.subscribe('learned', function () {
 	Session.set('data_loaded', true);
 });
 
 var chart;
-
 
 /*
  * ############################################################################
@@ -31,34 +31,36 @@ var chart;
  */
 
 Template.box.onCreated(function () {
-	var cardset_id = Router.current().params._id;
-	var cards = Cards.find({
-		cardset_id: cardset_id
-	});
-	cards.forEach(function (card) {
-		Meteor.call("addLearned", card.cardset_id, card._id);
-	});
+	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+	if (!Session.get('activeCardset').learningActive) {
+		var cards = Cards.find({
+			cardset_id: Session.get('activeCardset')._id
+		});
+		cards.forEach(function (card) {
+			Meteor.call("addLearned", Session.get('activeCardset')._id, card._id);
+		});
+	}
 });
 
 Template.box.helpers({
 	boxSelected: function () {
 		var selectedBox = Session.get('selectedBox');
-		if (this.learningActive) {
+		if (Session.get('activeCardset').learningActive) {
 			return true;
 		}
 		return selectedBox !== null;
 	},
 	isNotEmpty: function () {
 		var notEmpty;
-		if (this.learningActive) {
+		if (Session.get('activeCardset').learningActive) {
 			notEmpty = Learned.find({
-				cardset_id: this._id,
+				cardset_id: Session.get('activeCardset')._id,
 				user_id: Meteor.userId(),
 				active: true
 			}).count();
 		} else {
 			notEmpty = Learned.find({
-				cardset_id: this._id,
+				cardset_id: Session.get('activeCardset')._id,
 				user_id: Meteor.userId(),
 				box: parseInt(Session.get('selectedBox'))
 			}).count();
@@ -66,11 +68,17 @@ Template.box.helpers({
 		return notEmpty;
 	},
 	isFinish: function () {
-		if (this.learningActive && Learned.find({
-				cardset_id: this._id,
+		if (Session.get('activeCardset').learningActive && Learned.find({
+				cardset_id: Session.get('activeCardset')._id,
 				user_id: Meteor.userId(),
 				active: true
-			}).count()) {
+			}).count() !== 0) {
+			Session.set('isFinish', false);
+		} else if (!Session.get('activeCardset').learningActive && Learned.find({
+				cardset_id: Session.get('activeCardset')._id,
+				user_id: Meteor.userId(),
+				box: {$nin: [6]}
+			}).count() !== 0) {
 			Session.set('isFinish', false);
 		}
 		return Session.get('isFinish');
@@ -84,126 +92,40 @@ Template.box.helpers({
  */
 
 Template.boxMain.helpers({
-	isLearningActive: function () {
-		return this.learningActive;
-	},
 	isFront: function () {
 		var isFront = Session.get('isFront');
 		return isFront === true;
-	},
-	box: function () {
-		return Session.get("selectedBox");
-	},
-	getCardsByBox: function () {
-		var selectedBox = parseInt(Session.get('selectedBox'));
-
-		var learnedCards = Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			box: selectedBox
-		}, {
-			sort: {
-				currentDate: 1
-			}
-		});
-
-		var cards = [];
-		learnedCards.forEach(function (learnedCard) {
-			var card = Cards.findOne({
-				_id: learnedCard.card_id
-			});
-			cards.push(card);
-		});
-
-		return cards;
-	},
-	getCardsByLeitner: function () {
-		var learnedCards = Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			active: true
-		}, {
-			sort: {
-				currentDate: 1
-			}
-		});
-
-		var cards = [];
-		learnedCards.forEach(function (learnedCard) {
-			var card = Cards.findOne({
-				_id: learnedCard.card_id
-			});
-			cards.push(card);
-		});
-
-		return cards;
-	},
-	cardActiveByBox: function (index) {
-		return 1 === index + 1;
-	},
-	countBox: function () {
-		var maxIndex = Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			box: parseInt(Session.get('selectedBox'))
-		}).count();
-		Session.set('maxIndex', maxIndex);
-		return maxIndex;
-	},
-	countLeitner: function () {
-		var maxIndex = Learned.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count();
-		Session.set('maxIndex', maxIndex);
-		return maxIndex;
-	},
-	splitTextOnNewLine: function (text) {
-		const result = text.split("\n");
-		lib.parseGithubFlavoredMarkdown(result);
-		return result;
-	},
-	boxMarkdownFront: function (front, index) {
-		Meteor.promise("convertMarkdown", front)
-			.then(function (html) {
-				$(".front" + index).html(html);
-				$('table').addClass('table');
-			});
-	},
-	boxMarkdownBack: function (back, index) {
-		Meteor.promise("convertMarkdown", back)
-			.then(function (html) {
-				$(".back" + index).html(html);
-				$('table').addClass('table');
-			});
 	}
 });
 
 Template.boxMain.events({
-	"click .box": function () {
-		var isFront = Session.get('isFront');
-		if (isFront === true) {
-			Session.set('isFront', false);
-		} else {
-			Session.set('isFront', true);
+	"click .box": function (evt) {
+		if (($(evt.target).data('type') !== "showHint")) {
+			var isFront = Session.get('isFront');
+			if (isFront === true) {
+				Session.set('isFront', false);
+			} else {
+				Session.set('isFront', true);
+			}
 		}
 	},
 	"click #known": function () {
-		Meteor.call('updateLearned', this._id, $('.carousel-inner > .active').attr('data'), false);
+		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data'), false);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
 		}
 		Session.set('isFront', true);
+		turnCard();
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLearned', this._id, $('.carousel-inner > .active').attr('data'), true);
+		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data'), true);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
 		}
 		Session.set('isFront', true);
+		turnCard();
 	}
 });
 
@@ -239,13 +161,13 @@ Template.boxSide.helpers({
 	},
 	countBox: function (boxId) {
 		return Learned.find({
-			cardset_id: this._id,
+			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			box: boxId
 		}).count();
 	},
 	isDisabled: function () {
-		return this.learningActive ? 'disabled' : '';
+		return Session.get('activeCardset').learningActive ? 'disabled' : '';
 	}
 });
 
@@ -261,7 +183,7 @@ Template.boxSide.onDestroyed(function () {
 
 Template.boxEnd.helpers({
 	isLearningActive: function () {
-		return this.learningActive;
+		return Session.get('activeCardset').learningActive;
 	}
 });
 
@@ -270,7 +192,7 @@ Template.boxEnd.events({
 		Session.set('selectedBox', null);
 		Session.set('isFinish', false);
 		Router.go('cardsetdetailsid', {
-			_id: this._id
+			_id: Session.get('activeCardset')._id
 		});
 	}
 });

@@ -1,5 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Badges} from "../../api/badges.js";
+import {Cards} from "../../api/cards.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
@@ -8,13 +10,13 @@ var initColorThemes = function () {
 	return [{
 		"_id": "default",
 		"name": "Default"
-	},{
+	}, {
 		"_id": "aflatunense",
 		"name": "Aflatunense"
-	},{
+	}, {
 		"_id": "lemonchill",
 		"name": "Lemon Chill"
-	},{
+	}, {
 		"_id": "bluestar",
 		"name": "Blue Star"
 	}];
@@ -147,6 +149,32 @@ Meteor.startup(function () {
 			name: "mailSettings",
 			enabled: false
 		});
+	}
+
+	var cards = Cards.find({difficulty: {$exists: false}}).fetch();
+	for (var i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					difficulty: 0
+				}
+			}
+		);
+	}
+
+	var cardsets = Cardsets.find({skillLevel: {$exists: false}}).fetch();
+	for (var k = 0; k < cardsets.length; k++) {
+		Cardsets.update({
+				_id: cardsets[k]._id
+			},
+			{
+				$set: {
+					skillLevel: 0
+				}
+			}
+		);
 	}
 
 	if (Badges.find().count() === 0) {

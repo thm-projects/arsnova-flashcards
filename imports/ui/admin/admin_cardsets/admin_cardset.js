@@ -61,28 +61,18 @@ Template.admin_cardset.helpers({
 			fields: [
 				{
 					key: 'front', label: TAPi18n.__('admin.front'), sortable: false,
+					tmpl: Template.cardContentFront,
 					cellClass: function (value, object) {
 						var css = 'front_' + object._id;
 						return css;
-					},
-					fn: function (front, object) {
-						Meteor.promise("convertMarkdown", front)
-							.then(function (html) {
-								$(".front_" + object._id).html(html);
-							});
 					}
 				},
 				{
 					key: 'back', label: TAPi18n.__('admin.back'), sortable: false,
+					tmpl: Template.cardContentBack,
 					cellClass: function (value, object) {
 						var css = 'back_' + object._id;
 						return css;
-					},
-					fn: function (front, object) {
-						Meteor.promise("convertMarkdown", front)
-							.then(function (html) {
-								$(".back_" + object._id).html(html);
-							});
 					}
 				},
 				{
@@ -168,6 +158,7 @@ Template.admin_cardset.events({
 			$('#editCardsetModuleAdmin').val() !== "" &&
 			$('#editCardsetModuleShortAdmin').val() !== "" &&
 			$('#editCardsetModuleNumAdmin').val() !== "" &&
+			$('#editCardsetSkillLevel').val() !== "" &&
 			$('#editCardsetCollegeAdmin').val() !== "" &&
 			$('#editCardsetCourseAdmin').val() !== "" &&
 			($("#kindoption0Admin").hasClass('active') ||
@@ -180,6 +171,7 @@ Template.admin_cardset.events({
 			var module = tmpl.find('#editCardsetModuleAdmin').value;
 			var moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
 			var moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
+			var skillLevel = $('#editCardsetSkillLevel').val();
 			var college = $('#editCardsetCollegeAdmin').text();
 			var course = $('#editCardsetCourseAdmin').text();
 
@@ -216,7 +208,7 @@ Template.admin_cardset.events({
 				visible = false;
 			}
 			Meteor.call("publishCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
 			window.history.go(-1);
 		}
 	},
@@ -276,6 +268,12 @@ Template.admin_cardset.events({
 		$('#editCardsetModuleNumLabelAdmin').css('color', '');
 		$('#editCardsetModuleNumAdmin').css('border-color', '');
 		$('#helpEditCardsetModuleNumAdmin').html('');
+	},
+	'click .skillLevelAdmin': function (evt) {
+		$('#editCardsetSkillLevel').text($(evt.currentTarget).attr("data"));
+		$('#editCardsetSkillLevel').val($(evt.currentTarget).val());
+		$('#editCardsetSkillLevelLabel').css('color', '');
+		$('.editCardsetSkillLevel').css('border-color', '');
 	},
 	'click .collegeAdmin': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");

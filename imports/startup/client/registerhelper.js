@@ -5,6 +5,7 @@ import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
+import * as lib from '/client/lib.js';
 
 Meteor.subscribe("collegesCourses");
 
@@ -25,22 +26,8 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
-// Check if user is owner of a cardset
-Template.registerHelper("isOwnerCard", function () {
-	var owner;
-	if (this._id) {
-		owner = Cardsets.findOne(Router.current().params._id).owner;
-	}
-	return owner === Meteor.userId();
-});
-
-Template.registerHelper("isOwner", function () {
-	var owner;
-	if (this.owner) {
-		owner = this.owner;
-	} else if (Template.parentData(1)) {
-		owner = Template.parentData(1).owner;
-	}
+Template.registerHelper("isCardsetOwner", function (cardset_id) {
+	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return owner === Meteor.userId();
 });
 
@@ -193,6 +180,34 @@ Template.registerHelper("getType", function (type) {
 	return type;
 });
 
+Template.registerHelper("getSkillLevel", function (skillLevel) {
+	switch (skillLevel) {
+		case 1:
+			return TAPi18n.__('modal-dialog.skillLevel1');
+		case 2:
+			return TAPi18n.__('modal-dialog.skillLevel2');
+		case 3:
+			return TAPi18n.__('modal-dialog.skillLevel3');
+		default:
+			return TAPi18n.__('modal-dialog.skillLevel0');
+	}
+});
+
+Template.registerHelper("getCardBackground", function (difficulty) {
+	switch (difficulty) {
+		case 0:
+			return 'box-difficulty0';
+		case 1:
+			return 'box-difficulty1';
+		case 2:
+			return 'box-difficulty2';
+		case 3:
+			return 'box-difficulty3';
+		default:
+			return '';
+	}
+});
+
 // detects if the app is offline or not
 Template.registerHelper("isOffline", function () {
 	return !Meteor.status().connected;
@@ -213,21 +228,24 @@ const converter = new Showdown.converter({
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		return converter.makeHtml(x);
+		x = x.split("\n");
+		x = lib.parseGithubFlavoredMarkdown(x);
+		return lib.setLightBoxes(converter.makeHtml(x));
 	}
 });
+
 Template.registerHelper('mathjax', helper.getTemplate());
 MeteorMathJax.defaultConfig = {
 	config: ["TeX-AMS-MML_HTMLorMML.js"],
-	jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
-	extensions: ["tex2jax.js", "Safe.js", "mml2jax.js", "fast-preview.js", "AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
+	jax: ["input/TeX", "input/MathML", "output/HTML-CSS", "output/NativeMML", "output/PreviewHTML"],
+	extensions: ["tex2jax.js", "enclose.js", "Safe.js", "mml2jax.js", "fast-preview.js", "AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
 	TeX: {
-		extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+		extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"],
 		equationNumbers: {autoNumber: "AMS"}
 	},
 	tex2jax: {
-		inlineMath: [['$','$'], ['\\(','\\)']],
-		displayMath: [['$$', '$$']],
+		inlineMath: [['$', '$'], ["\\(", "\\)"]],
+		displayMath: [['$$', '$$'], ["\\[", "\\]"]],
 		processEscapes: true,
 		preview: 'none'
 	},

@@ -43,30 +43,20 @@ Template.admin_cards.helpers({
 					key: 'front',
 					label: TAPi18n.__('admin.front'),
 					sortable: false,
+					tmpl: Template.cardContentFront,
 					cellClass: function (value, object) {
 						var css = 'front_' + object._id;
 						return css;
-					},
-					fn: function (front, object) {
-						Meteor.promise("convertMarkdown", front)
-							.then(function (html) {
-								$(".front_" + object._id).html(html);
-							});
 					}
 				},
 				{
 					key: 'back',
 					label: TAPi18n.__('admin.back'),
 					sortable: false,
+					tmpl: Template.cardContentBack,
 					cellClass: function (value, object) {
 						var css = 'back_' + object._id;
 						return css;
-					},
-					fn: function (front, object) {
-						Meteor.promise("convertMarkdown", front)
-							.then(function (html) {
-								$(".back_" + object._id).html(html);
-							});
 					}
 				},
 				{

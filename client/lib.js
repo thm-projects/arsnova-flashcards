@@ -1,8 +1,12 @@
-
 import {Tracker} from 'meteor/tracker';
 
 export const markdownRenderingTracker = new Tracker.Dependency();
 
+/** Parses a code block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the code block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseCodeBlock(result, i) {
 	let tmpNewItem = result[i].replace(/\s/g, "") + "\n";
 	let mergeEndIndex = result.length;
@@ -17,6 +21,11 @@ export function parseCodeBlock(result, i) {
 	result.splice(i, 0, tmpNewItem);
 }
 
+/** Parses an ordered list
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the ordered list
+ *  @param {number} i - Beginning of the ordered list
+ * */
 export function parseOrderedList(result, i) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
@@ -31,6 +40,11 @@ export function parseOrderedList(result, i) {
 	result.splice(i, 0, tmpNewItem);
 }
 
+/** Parses an unordered list
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains unordered list
+ *  @param {number} i - Beginning of the unordered list
+ * */
 export function parseUnorderedList(result, i) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
@@ -45,6 +59,11 @@ export function parseUnorderedList(result, i) {
 	result.splice(i, 0, tmpNewItem);
 }
 
+/** Parses a comment block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains comment block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseCommentBlock(result, i) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
@@ -59,6 +78,11 @@ export function parseCommentBlock(result, i) {
 	result.splice(i, 0, tmpNewItem);
 }
 
+/** Parses a link block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the link block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseLinkBlock(result, i) {
 	const startIndex = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/.exec(result[i]);
 	const linkStr = startIndex[0] || result[i];
@@ -68,6 +92,11 @@ export function parseLinkBlock(result, i) {
 	result[i] = prevLinkContent + "<a href='" + link + "' target='_blank'>" + linkStr + "</a>" + postLinkContent;
 }
 
+/** Parses a strikethrough block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the strikethrough block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseStrikeThroughBlock(result, i) {
 	result[i].match(/~~[^~{2}]*~~/gi).forEach(function (element) {
 		result[i] = result[i].replace(element, "<del>" + element.replace(/~~/g, "") + "</del>");
@@ -75,6 +104,11 @@ export function parseStrikeThroughBlock(result, i) {
 	return result[i];
 }
 
+/** Parses a table block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the table block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseTableBlock(result, i) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
@@ -138,6 +172,11 @@ export function parseTableBlock(result, i) {
 	result.splice(i, 0, tmpNewItemElement.prop('outerHTML'));
 }
 
+/** Parses an emoji block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains the emoji block
+ *  @param {number} i - Beginning of the block
+ * */
 export function parseEmojiBlock(result, i) {
 	const wrapper = $("<div class='emojiWrapper'/>");
 	let lastIndex = 0;
@@ -151,29 +190,60 @@ export function parseEmojiBlock(result, i) {
 	result[i] = wrapper.prop("outerHTML");
 }
 
-export function parseMathjaxBlock(result, i) {
+/** Parses a latex block
+ *  @author arsnova.click
+ *  @param {string} result - Text that contains latex block
+ *  @param {number} i - Beginning of the block
+ *  @param {string} endDelimiter - End of the block
+ * */
+export function parseMathjaxBlock(result, i, endDelimiter) {
 	let tmpNewItem = result[i] + "\n";
 	let mergeEndIndex = result.length;
 	for (let j = i + 1; j < result.length; j++) {
-		if (/^\$\$/.test(result[j])) {
+		tmpNewItem += (result[j] + "\n");
+		if (result[j].endsWith(endDelimiter)) {
 			mergeEndIndex = j;
 			break;
 		}
-		tmpNewItem += (result[j] + "\n");
 	}
 	result.splice(i, mergeEndIndex - i + 1);
-	result.splice(i, 0, $("<div/>").append((tmpNewItem + "$$")).prop("outerHTML"));
+	result.splice(i, 0, $("<div/>").append((tmpNewItem)).prop("outerHTML"));
 }
 
+/** Wraps image files inside a lightbox-img class
+ *  @param {string} content - Text that contains the image
+ *  @returns {string} - The wrapped text
+ * */
+export function setLightBoxes(content) {
+	$(content).find('img').each(function () {
+		var imageTitle = $(this).attr('alt');
+		var imageUrl = $(this).attr('src');
+		content = $(this).wrap('<a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '"></a>').parent().prop('outerHTML');
+	});
+	return content;
+}
+
+/** Parses the card text for mathjax
+ *  @author arsnova.click
+ *  @param {string} result - The text to adjust for mathjax
+ *  @param {boolean} overrideLineBreaks - Overrides line breaks for selected blocks
+ *  @returns {string} - The mathjax-formatted text
+ * */
 export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 	for (let i = 0; i < result.length; i++) {
 		switch (true) {
-			case /^\$\$$/.test(result[i]):
-				parseMathjaxBlock(result, i);
+			case /^\$\$/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "$$");
 				break;
-			case /\$/.test(result[i]):
+			case /^\\\[/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "\\]");
 				break;
-			case /^```/.test(result[i]):
+			case /^<math/.test(result[i]) && overrideLineBreaks:
+				parseMathjaxBlock(result, i, "</math>");
+				break;
+			case /\$/.test(result[i]) || /\\\(/.test(result[i]):
+				break;
+			case /^```/.test(result[i]) && overrideLineBreaks:
 				parseCodeBlock(result, i);
 				break;
 			case /^([0-9]*\.)?(-)?(\*)? \[x\] /.test(result[i]):
@@ -209,5 +279,7 @@ export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 				break;
 		}
 	}
+	result = result.join("\n");
 	markdownRenderingTracker.changed();
+	return result;
 }

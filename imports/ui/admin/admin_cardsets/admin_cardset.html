@@ -77,18 +77,50 @@
                                 </div>
                             </div><!-- / module textfield -->
                         </div>
+                        <!-- start skills Dropdown -->
+                        <div class="form-group setdetails categories row">
+                            <label id="editCardsetSkillLevelLabel" class="col-md-3 control-label"
+                                   for="editCardsetSkillLevel">{{_
+                                    "modal-dialog.skillLevel"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                    <button type="button" id="editCardsetSkillLevel"
+                                            class="btn btn-raised editCardsetSkillLevelDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}
+                                    </button>
+                                    <button class="btn btn-raised dropdown-toggle editCardsetSkillLevelDropdown"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        <li class="skillLevelAdmin" value="0" data="{{getSkillLevel 0}}"><a
+                                                href="#">{{getSkillLevel 0}}</a></li>
+                                        <li class="skillLevelAdmin" value="1" data="{{getSkillLevel 1}}"><a
+                                                href="#">{{getSkillLevel 1}}</a></li>
+                                        <li class="skillLevelAdmin" value="2" data="{{getSkillLevel 2}}"><a
+                                                href="#">{{getSkillLevel 2}}</a></li>
+                                        <li class="skillLevelAdmin" value="3" data="{{getSkillLevel 3}}"><a
+                                                href="#">{{getSkillLevel 3}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- / skills Dropdown -->
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories row">
-                            <label id="editCardsetCollegeLabelAdmin" class="col-md-2 control-label"
+                            <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
                                    for="editCardsetCollegeAdmin">{{_
                                     "modal-dialog.college"}}</label>
                             <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-10" role="group">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
                                     <button type="button" id="editCardsetCollegeAdmin"
-                                            class="btn btn-default editCardsetCollegeDropdownAdmin longButton"
+                                            class="btn btn-raised editCardsetCollegeDropdownAdmin longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
-                                    <button class="btn dropdown-toggle editCardsetCollegeDropdownAdmin"
+                                    <button class="btn btn-raised dropdown-toggle editCardsetCollegeDropdownAdmin"
                                             type="button" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="true">
                                         <span class="caret"></span>
@@ -107,16 +139,17 @@
                         </div><!-- / college Dropdown -->
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories row">
-                            <label id="editCardsetCourseLabelAdmin" class="col-md-2 control-label"
+                            <label id="editCardsetCourseLabelAdmin" class="col-md-3 control-label"
                                    for="editCardsetCourseAdmin">{{_
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-10" role="group">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
                                     <button type="button" id="editCardsetCourseAdmin"
-                                            class="btn btn-default editCardsetCourseDropdownAdmin longButton"
+                                            class="btn btn-raised editCardsetCourseDropdownAdmin longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
-                                    <button type="button" class="btn dropdown-toggle editCardsetCourseDropdownAdmin"
+                                    <button type="button"
+                                            class="btn btn-raised dropdown-toggle editCardsetCourseDropdownAdmin"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         <span class="caret"></span>
@@ -139,26 +172,22 @@
                             <div class="controls">
                                 <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
                                     <label id="kindoption0Admin"
-                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
                                         <input type="radio" name="kind" value="personal" id="kind_private_admin">
                                         <div>Private</div>
                                     </label>
                                     <label id="kindoption1Admin"
-                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
                                         <input type="radio" name="kind" value="free" id="kind_free_admin">
                                         <div>Free</div>
                                     </label>
                                     <label id="kindoption2Admin"
-                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                                         <input type="radio" name="kind" value="edu" id="kind_edu_admin">
                                         <div>Edu</div>
                                     </label>
                                     <label id="kindoption3Admin"
-                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}"
-                                           style="width:100px">
+                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                                         <input type="radio" name="kind" value="pro" id="kind_pro_admin">
                                         <div>Pro</div>
                                     </label>
@@ -251,11 +280,11 @@
                 </div>
             </form>
             <div class="box-button-admin">
-                <button id="cardsetCancelAdmin" class="btn btn-default">{{_ "admin.cardset.cancel"}}</button>
-                <button id="cardsetSaveAdmin" class="btn btn-primary">{{_ "admin.cardset.save"}}</button>
-                <button id="cardsetDeleteAdmin" class="btn btn-danger btn-setDelete pull-right" style="width:150px">{{_
+                <button id="cardsetCancelAdmin" class="btn btn-raised">{{_ "admin.cardset.cancel"}}</button>
+                <button id="cardsetSaveAdmin" class="btn btn-raised btn-success">{{_ "admin.cardset.save"}}</button>
+                <button id="cardsetDeleteAdmin" class="btn btn-raised btn-warning btn-raised btn-setDelete pull-right">{{_
                         "admin.cardset.delete"}}</button>
-                <button id="cardsetConfirmAdmin" class="btn btn-warning pull-right"
+                <button id="cardsetConfirmAdmin" class="btn btn-danger btn-raised pull-right"
                         style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
             </div>
         </div>
@@ -278,9 +307,10 @@
                     <br/>
                     <hr/>
 
-                    <button id="cardDeleteCardsetAdmin" class="btn btn-danger btn-setDelete" style="width:150px">{{_
+                    <button id="cardDeleteCardsetAdmin" class="btn btn-raised btn-danger btn-setDelete"
+                    >{{_
                             "admin.confirm-form.cards.title"}}</button>
-                    <button id="cardCancelCardsetAdmin" class="btn btn-default pull-right" data-dismiss="modal">{{_
+                    <button id="cardCancelCardsetAdmin" class="btn btn-raised pull-right" data-dismiss="modal">{{_
                             "admin.confirm-form.cancel"}}</button>
                 </div>
             </div>
