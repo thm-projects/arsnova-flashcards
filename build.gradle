@@ -11,6 +11,9 @@ sonarqube {
 		property "sonar.sourceEncoding", "UTF-8"
 		property "sonar.language", "js"
 		property "sonar.sources", "./"
+		// client/lib.js causes ClassNotFoundException.
+		// See https://github.com/SonarSource/sonar-javascript/issues/552.
+		property "sonar.exclusions", "**/node_modules/**,client/lib.js"
 		property "sonar.host.url", "https://scm.thm.de/sonar/"
 	}
 }
