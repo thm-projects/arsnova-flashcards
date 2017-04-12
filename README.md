@@ -8,6 +8,8 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 ## Initial setup
 
 1. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
+2. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
+3. Install the web-push npm package inside the repository `meteor npm install --save web-push`
 
 ### Settings
 
