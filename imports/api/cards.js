@@ -89,6 +89,10 @@ if (Meteor.isServer) {
 		check(cardset_id, String);
 
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			if (this.userId === Cardsets.findOne({_id: cardset_id}).owner) {
+				return Cards.find({cardset_id: cardset_id});
+			}
+
 			var count = Cards.find({cardset_id: cardset_id}).count();
 			var limit = count * 0.1;
 
