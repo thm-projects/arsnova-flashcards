@@ -1,12 +1,19 @@
 {
-  "front": "yourfirstcardfront",
-  "back": "yourfirstcardback"
-},
-{
-"front": "yoursecondcardfront",
-"back": "yoursecondcardback"
-},
-{
-"front": "yourthirdcardfront",
-"back": "yourthirdcardback"
+  "subject": "yourFirstCardSubject",
+  "difficulty": 1,
+  "hint": "yourFirstCardHint",
+  "front": "yourFirstCardFront",
+  "back": "yourFirstCardBack"
+}, {
+  "subject": "yourSecondCardSubject",
+  "difficulty": 0,
+  "hint": "yourSecondCardHint",
+  "front": "yourSecondCardFront",
+  "back": "yourSecondCardBack"
+},  {
+  "subject": "yourThirdCardSubject",
+  "difficulty": 1,
+  "hint": "yourThirdCardHint",
+  "front": "yourThirdCardFront",
+  "back": "yourThirdCardBack"
 }
