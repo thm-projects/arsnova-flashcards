@@ -3,9 +3,14 @@ arsnova.cards
 
 The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
+arsnova.cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
+
 ## Initial setup
 
 1. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
+2. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
+3. Install the web-push npm package inside the repository `meteor npm install --save web-push`
+4.  Install the charts npm package inside the repository `meteor npm install --save chart.js`
 
 ### Settings
 
