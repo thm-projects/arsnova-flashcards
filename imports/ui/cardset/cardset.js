@@ -535,32 +535,33 @@ Template.cardsetInfo.events({
 		}
 	},
 	'click #exportCardsBtn': function () {
-		//TODO: linked to todo below
-		/*var cardset = Cardsets.findOne(this._id);
-		 var cards = Cards.find({
-		 cardset_id: this._id
-		 }, {
-		 fields: {
-		 'front': 1,
-		 'back': 1,
-		 '_id': 0
-		 }
-		 }).fetch();
-		 var cardsString = '';
+		var cardset = Cardsets.findOne(this._id);
+		var cards = Cards.find({
+			cardset_id: this._id
+		}, {
+			fields: {
+				'subject': 1,
+				'difficulty': 1,
+				'hint': 1,
+				'front': 1,
+				'back': 1,
+				'_id': 0
+			}
+		}).fetch();
 
-		 for (var i = 0; i < cards.length; i++) {
-		 cardsString += JSON.stringify(cards[i]);
+		var cardsString = '';
 
-		 if (cards.length - 1 > cards[i]) {
-		 cardsString += ", ";
-		 }
-		 }
+		for (var i = 0; i < cards.length; i++) {
+			cardsString += JSON.stringify(cards[i]);
+			if (i < cards.length - 1) {
+				cardsString += ", ";
+			}
+		}
 
-		 var exportData = new Blob([cardsString], {
-		 type: "application/json"
-		 });*/
-		//TODO: This function is not defined... do something!
-		//saveAs(exportData, cardset.name + ".json");
+		var exportData = new Blob([cardsString], {
+			type: "application/json"
+		});
+		saveAs(exportData, cardset.name + ".json");
 	}
 });
 

@@ -49,6 +49,7 @@
     "Ground": false,
     "SSR": true,
     "process": true,
-    "Assets": true
+    "Assets": true,
+    "saveAs": false
   }
 }
