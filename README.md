@@ -1,24 +1,25 @@
 arsnova.cards
 ---
-
 The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
 arsnova.cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
 
-## Initial setup
 
-1. install [Meteor](https://www.meteor.com/)
+## Initial setup
+1. Install [Meteor](https://www.meteor.com/)
 2. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
 3. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
 4. Install the web-push npm package inside the repository `meteor npm install --save web-push`
 5. Install the charts npm package inside the repository `meteor npm install --save chart.js`
 
+
 ### Settings
 1. For development you can use  `settings.json`
-2. Change it according to your needs
-3. Set your initial admin user
+2. Set your initial admin user
+3. Change it according to your needs
 
 > Warning: Never publish your production settings file!
+
 
 ### Authentication setup (For Google, Facebook and Twitter logins)
 1. [Create your Google api keys](https://console.developers.google.com/)
@@ -42,22 +43,20 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 
 
 ## Getting Started
-
 To start arsnova.cards on localhost use `meteor --settings settings.json` inside the repository. You can then access the app from your host machine by opening http://localhost:3000.
 
-## CI Pipeline
 
+## CI Pipeline
 [![build status](https://git.thm.de/arsnova/flashcards/badges/staging/build.svg)](https://git.thm.de/arsnova/flashcards/commits/staging)
 
 
 - [Staging](http://cards-staging.mni.thm.de)
 - [Production](https://arsnova.cards)
 
-## Documentation 
 
+## Documentation 
 The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 
+
 ## Credits
-
-
 arsnova.cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
