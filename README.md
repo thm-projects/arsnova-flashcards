@@ -7,26 +7,26 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 
 ## Initial setup
 
-1. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
-2. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
-3. Install the web-push npm package inside the repository `meteor npm install --save web-push`
-4.  Install the charts npm package inside the repository `meteor npm install --save chart.js`
+1. install [Meteor](https://www.meteor.com/)
+2. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
+3. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
+4. Install the web-push npm package inside the repository `meteor npm install --save web-push`
+5. Install the charts npm package inside the repository `meteor npm install --save chart.js`
 
 ### Settings
-
 1. For development you can use  `settings.json`
 2. Change it according to your needs
 3. Set your initial admin user
 
 > Warning: Never publish your production settings file!
 
-### Authentication setup
+### Authentication setup (For Google, Facebook and Twitter logins)
 1. [Create your Google api keys](https://console.developers.google.com/)
 2. [Create your Facebook api keys](https://developers.facebook.com/)
 3. [Create your Twitter api keys](https://apps.twitter.com/)
 
 
-### Braintree setup
+### Braintree setup (For PayPal payments)
 1. [Create a Braintree sandbox account](https://www.braintreepayments.com/get-started)
 2. [Login](https://sandbox.braintreegateway.com/login) to the braintree sandbox
 3. Retrieve your api keys (navigate to: My User > View Authorizations)
@@ -35,7 +35,7 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 6. Create one plan with id "pro" and your preferred price (lowercase for Plan ID, Plan Name's should be "Pro")
 
 
-### Firebase setup (web push notifications)
+### Firebase setup (For web notifications)
 1. [Create a Firebase project](https://console.firebase.google.com/)
 2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
 3. Insert the key into `settings.json` (_private.FCM_API_KEY_)
