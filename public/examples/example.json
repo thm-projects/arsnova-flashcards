@@ -1,19 +1,19 @@
 {
-  "subject": "yourFirstCardSubject",
+  "subject": "subject1",
   "difficulty": 1,
-  "hint": "yourFirstCardHint",
-  "front": "yourFirstCardFront",
-  "back": "yourFirstCardBack"
+  "hint": "hint1",
+  "front": "front1",
+  "back": "back1"
 }, {
-  "subject": "yourSecondCardSubject",
+  "subject": "subject2",
   "difficulty": 0,
-  "hint": "yourSecondCardHint",
-  "front": "yourSecondCardFront",
-  "back": "yourSecondCardBack"
+  "hint": "hint2",
+  "front": "front2",
+  "back": "back2"
 },  {
-  "subject": "yourThirdCardSubject",
+  "subject": "subject3",
   "difficulty": 1,
-  "hint": "yourThirdCardHint",
-  "front": "yourThirdCardFront",
-  "back": "yourThirdCardBack"
+  "hint": "hint3",
+  "front": "front3",
+  "back": "back3"
 }
