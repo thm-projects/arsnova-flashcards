@@ -39,7 +39,7 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 ### Firebase setup (For web notifications)
 1. [Create a Firebase project](https://console.firebase.google.com/)
 2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
-3. Insert the key into `settings.json` (FCM_API_KEY)
+3. Insert the key into `settings.json` (`FCM_API_KEY`)
 
 
 ## Getting Started
