@@ -7,7 +7,7 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 
 ## Initial setup
 1. Install [Meteor](https://www.meteor.com/)
-2. Clone this repo `git clone git@git.thm.de:arsnova/flashcards.git`
+2. Clone this repository `git clone git@git.thm.de:arsnova/flashcards.git`
 3. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
 4. Install the web-push npm package inside the repository `meteor npm install --save web-push`
 5. Install the charts npm package inside the repository `meteor npm install --save chart.js`
@@ -39,7 +39,7 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 ### Firebase setup (For web notifications)
 1. [Create a Firebase project](https://console.firebase.google.com/)
 2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
-3. Insert the key into `settings.json` (_private.FCM_API_KEY_)
+3. Insert the key into `settings.json` (FCM_API_KEY)
 
 
 ## Getting Started
