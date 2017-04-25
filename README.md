@@ -7,16 +7,13 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 
 ## Initial setup
 1. Install [Meteor](https://www.meteor.com/)
-2. Clone this repository `git clone git@git.thm.de:arsnova/flashcards.git`
-3. Install the bable-runtime npm package inside the repository `meteor npm install --save babel-runtime`
-4. Install the web-push npm package inside the repository `meteor npm install --save web-push`
-5. Install the charts npm package inside the repository `meteor npm install --save chart.js`
+2. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
+3. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
+4. Set your initial admin user in `settings.json`
 
 
 ### Settings
-1. For development you can use  `settings.json`
-2. Set your initial admin user
-3. Change it according to your needs
+Change the settings in `settings.json` according to your needs
 
 > Warning: Never publish your production settings file!
 
