@@ -32,11 +32,12 @@ module.exports = function () {
 	});
 
 	this.Then(/^user should see the college and course in list$/, function () {
+		browser.waitForExist('#tblCollege', 5000);
 		var college = browser.getText("#tblCollege");
 		var course = browser.getText("#tblCourse");
 
-		expect(college[college.length - 1]).toEqual("THM");
-		expect(course[course.length - 1]).toEqual("MSP");
+		expect(college).toEqual("THM");
+		expect(course).toEqual("MSP");
 
 		logoutAdmin();
 	});

@@ -10,7 +10,7 @@ module.exports = function () {
 	var moduleInitials = "short";
 	var moduleID = "42";
 	var college = "THM";
-	var course = "Informatik";
+	var course = "MSP";
 
 
 	this.Given(/^User is on the site$/, function () {
@@ -79,7 +79,7 @@ module.exports = function () {
 		browser.waitForVisible('#newSetCourse',5000);
 		browser.click('#newSetCourse');
 		browser.waitForVisible('li[data="' + course + '"] a', 5000);
-		browser.click('li[data="Informatik"] a');
+		browser.click('li[data="' + course + '"] a');
 	});
 
 	this.Then(/^he should push the create new cardset button$/, function () {

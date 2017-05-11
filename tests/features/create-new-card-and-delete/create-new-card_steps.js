@@ -42,6 +42,9 @@ module.exports = function () {
 		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz/newcard";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
+	this.When(/^he enters a text for the subject of the card$/, function () {
+		browser.setValue('#subjectEditor', 'SUBJECTOFTHECARD');
+	});
 	this.When(/^he enters a text for the front of the card$/, function () {
 		browser.setValue('#frontEditor', 'FRONTOFTHECARD');
 	});
