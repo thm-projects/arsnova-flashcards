@@ -12,8 +12,6 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible("#adminpanel", 5000);
 		browser.click("#adminpanel");
 	});
@@ -26,18 +24,18 @@ module.exports = function () {
 	this.When(/^user creates a new college and course$/, function () {
 		browser.waitForExist('#college', 5000);
 		browser.setValue('#college', 'THM');
-		browser.setValue('#courseOfStudies', 'MSP');
+		browser.setValue('#courseOfStudies', 'WBS');
 		browser.waitForVisible('#insertButton');
 		browser.click("#insertButton");
 	});
 
 	this.Then(/^user should see the college and course in list$/, function () {
-		browser.waitForExist('#tblCollege', 5000);
-		var college = browser.getText("#tblCollege");
-		var course = browser.getText("#tblCourse");
+		browser.waitForExist('.tblCollege-2', 5000);
+		var college = browser.getText(".tblCollege-2");
+		var course = browser.getText(".tblCourse-2");
 
 		expect(college).toEqual("THM");
-		expect(course).toEqual("MSP");
+		expect(course).toEqual("WBS");
 
 		logoutAdmin();
 	});

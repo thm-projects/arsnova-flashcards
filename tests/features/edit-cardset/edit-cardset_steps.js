@@ -23,8 +23,6 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
@@ -99,7 +97,6 @@ module.exports = function () {
 	});
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
 		browser.waitUntil(function () {
-			console.log(browser.isExisting('.modal-open'));
 			return browser.isExisting('.modal-open') === false;
 		}, 5000, 'expected text to be different after 5s');
 		browser.waitForVisible('#editCardset',5000);

@@ -110,13 +110,13 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the free license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-info active"]', 5000);
-		browser.click('label[class="btn btn-default btn-info active"]');
+		browser.waitForVisible('label[class="btn btn-default btn-info btn-sm active"]', 5000);
+		browser.click('label[class="btn btn-default btn-info btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected free license group$/, function () {
 		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		expect(cardsetList.value.length).not.toEqual(cardsetListLength);
 	});
 
 	/**
@@ -126,13 +126,13 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the edu license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-success active"]', 5000);
-		browser.click('label[class="btn btn-default btn-success active"]');
+		browser.waitForVisible('label[class="btn btn-default btn-success btn-sm active"]', 5000);
+		browser.click('label[class="btn btn-default btn-success btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected edu license group$/, function () {
 		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		expect(cardsetList.value.length).not.toEqual(cardsetListLength);
 	});
 
 	/**
@@ -142,13 +142,13 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the pro license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-danger active"]', 5000);
-		browser.click('label[class="btn btn-default btn-danger active"]');
+		browser.waitForVisible('label[class="btn btn-default btn-danger btn-sm active"]', 5000);
+		browser.click('label[class="btn btn-default btn-danger btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
 		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).not.toEqual(cardsetListLength);
+		expect(cardsetList.value.length).toEqual(cardsetListLength);
 		logout();
 	});
 };

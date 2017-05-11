@@ -12,8 +12,6 @@ module.exports = function () {
 		agreeCookies();
 		setResolution();
 		browser.windowHandleSize();
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 	});
 
 
@@ -87,30 +85,30 @@ module.exports = function () {
 	});
 
 	this.When(/^I click on the Button Box one$/, function () {
-		browser.waitForVisible('#subject1', 10000);
+		browser.waitForVisible('#subject1', 5000);
 		browser.click('#subject1');
 	});
 
 
 	this.Then(/^The frontside of first card is shown$/, function () {
-		browser.waitForExist('.front0 p', 10000);
-		var text = browser.getText('.front0 p');
-		expect(text).toBe("question1");
+		browser.waitForVisible('.detailfront0', 5000);
+		var text = browser.getText('.detailfront0');
+		expect(text).toBe("question 1");
 	});
 
 	this.Then(/^I can click on the card$/, function () {
-		browser.waitForVisible('#cardCarousel', 10000);
+		browser.waitForExist('#cardCarousel', 5000);
 		browser.click('#cardCarousel');
 	});
 
 	this.Then(/^The backside of the first card is shown$/, function () {
-		browser.waitForExist('.back0 p', 10000);
-		var text = browser.getText('.back0 p');
-		expect(text).toBe("answer1");
+		browser.waitForExist('.detailback0', 5000);
+		var text = browser.getText('.detailback0');
+		expect(text).toBe("answer 1");
 	});
 
 	this.Then(/^I can click on the button Known$/, function () {
-		browser.waitForVisible('#known', 10000);
+		browser.waitForVisible('#known', 5000);
 		browser.click('#known');
 	});
 
@@ -127,7 +125,7 @@ module.exports = function () {
 	/////////////////////////////////////////
 
 	this.When(/^I click the Button Memo$/, function () {
-		browser.waitForVisible('#learnMemo', 10000);
+		browser.waitForVisible('#learnMemo', 5000);
 		browser.click('#learnMemo');
 	});
 
@@ -159,6 +157,7 @@ module.exports = function () {
 
 
 	this.Then(/^The buttons zero to five are shown$/, function () {
+		browser.waitForVisible('#memoRate0',5000);
 		var button = browser.isExisting('#memoRate0');
 		expect(button).toBe(true);
 
@@ -179,15 +178,15 @@ module.exports = function () {
 	});
 
 	this.Then(/^I can click button three$/, function () {
-		browser.waitForVisible('#memoRate3', 10000);
-		browser.waitForExist('.frontblock span p',5000);
-		oldVal = browser.getText('.frontblock span p');
+		browser.waitForVisible('#memoRate3', 5000);
+		browser.waitForExist('.detailback0', 5000);
+		oldVal = browser.getText('.detailback0');
 		browser.click('#memoRate3');
 	});
 
 	this.Then(/^The next card is shown$/, function () {
-		browser.waitForExist('.frontblock span p',5000);
-		var same = oldVal == browser.getText('.frontblock span p');
+		browser.waitForExist('.detailfront0', 5000);
+		var same = (oldVal === browser.getText('.detailfront0'));
 		expect(same).toBe(false);
 	});
 };

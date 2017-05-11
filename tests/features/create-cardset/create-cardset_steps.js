@@ -25,8 +25,6 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
 		browser.waitForExist('.cardsetRow', 10000);

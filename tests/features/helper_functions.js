@@ -1,29 +1,31 @@
 /* exported login */
 export function login(username) {
-	browser.waitForVisible('#TestingBackdorUsername',5000);
+	browser.waitForExist('#TestingBackdoorUsername',15000);
 	var SetUsername = function (name) {
-		$('#TestingBackdorUsername').val(name);
+		$('#TestingBackdoorUsername').val(name);
 	};
-	client.execute(SetUsername, username);
-	browser.waitForVisible('a[id="BackdoorLogin"]',5000);
-	browser.click('a[id="BackdoorLogin"]');
+	browser.execute(SetUsername, username);
+	browser.waitForExist('#BackdoorLogin',15000);
+	browser.click('#BackdoorLogin');
 }
 
 /* exported logout */
 export function logout() {
-	browser.waitForExist('#logout', 5000);
+	browser.waitForExist('#logout', 15000);
 	browser.click('#logout');
 }
 
 /* exported agreeCookies */
 export function agreeCookies() {
+	browser.waitForExist('a.cc_btn.cc_btn_accept_all',15000);
 	browser.setCookie({name: 'cookieconsent_dismissed', value: 'yes'});
+	browser.click('a.cc_btn.cc_btn_accept_all');
 }
 
 /* exported firstLogin */
 export function firstLogin(username) {
 	login(username);
-	browser.waitForExist('#accept_checkbox', 5000);
+	browser.waitForExist('#accept_checkbox', 15000);
 	browser.$('#accept_checkbox').click();
 	browser.click('button[id="accept_button"]');
 }
@@ -39,6 +41,6 @@ export function setResolution() {
 
 /* exported logoutAdmin */
 export function logoutAdmin() {
-	browser.waitForExist('#logout_admin', 5000);
+	browser.waitForExist('#logout_admin', 15000);
 	browser.click('#logout_admin');
 }

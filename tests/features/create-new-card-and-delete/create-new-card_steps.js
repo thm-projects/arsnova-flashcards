@@ -18,8 +18,6 @@ module.exports = function () {
 		browser.windowHandleSize();
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
 		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
@@ -89,8 +87,8 @@ module.exports = function () {
 		deleteButton.click();
 	});
 	this.Then(/^he have to confirm the delete process$/, function () {
-		browser.waitForVisible('#cardConfirm',5000);
-		var confirmDeleteButton = browser.element('#cardConfirm');
+		browser.waitForVisible('#changeDeleteButton',5000);
+		var confirmDeleteButton = browser.element('#changeDeleteButton');
 		confirmDeleteButton.click();
 	});
 	/**
@@ -99,7 +97,7 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.Then(/^he can press on the \-\-Cancel\-\- button$/, function () {
-		browser.waitForVisible('#cardCancel');
+		browser.waitForVisible('#cardCancel', 5000);
 		browser.click('#cardCancel');
 	});
 	this.Then(/^he should be redirected back$/, function () {

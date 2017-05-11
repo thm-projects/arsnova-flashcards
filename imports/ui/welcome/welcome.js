@@ -42,7 +42,7 @@ Template.welcome.events({
 	// Backdoor for login in acceptance tests
 	'click #BackdoorLogin': function () {
 		if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
-			Meteor.insecureUserLogin(document.getElementById("TestingBackdorUsername").value);
+			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val());
 		}
 	},
 
@@ -72,6 +72,6 @@ Template.welcome.onRendered(function () {
 	// Backdoor for login in acceptance tests
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
 		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" /></a>');
-		$('.panel-footer').append('<input id="TestingBackdorUsername" type="text" name="username" placeholder="username"></input>');
+		$('.panel-footer').append('<input id="TestingBackdoorUsername" name="username" placeholder="username">');
 	}
 });

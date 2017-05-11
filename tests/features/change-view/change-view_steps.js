@@ -17,8 +17,6 @@ module.exports = function () {
 	});
 
 	this.Given(/^change to cardset$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
 		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
@@ -36,7 +34,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^they see the cardlist$/, function () {
-		browser.waitForExist('#set-details-region', 5000);
+		browser.waitForExist('#cardset-list', 5000);
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {

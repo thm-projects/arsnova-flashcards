@@ -1,4 +1,4 @@
-import {login, logout, agreeCookies} from "../helper_functions";
+import {login, logout, setResolution, agreeCookies} from "../helper_functions";
 
 var username = "login_testuser";
 
@@ -8,6 +8,8 @@ module.exports = function () {
 	this.Given(/^I am on the site$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		browser.url('http://localhost:3000');
+		setResolution();
+		browser.windowHandleSize();
 		agreeCookies();
 	});
 
@@ -19,36 +21,37 @@ module.exports = function () {
 
 	this.Then(/^he should see the AGB page$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#first_login_content', 5000);
+		browser.waitForExist('#first_login_content', 15000);
 	});
 
 	this.Then(/^he can decline it$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.click('button[id="logout_first_login"]');
+		browser.waitForExist('#logout_first_login', 15000);
+		browser.click('#logout_first_login');
 	});
 
 	this.Then(/^he is on the login page$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#welcome', 5000);
+		browser.waitForExist('#TestingBackdoorUsername',15000);
 	});
 
 	this.Then(/^he need to login again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.pause(1000);
 		login(username);
-		browser.click('#BackdoorLogin');
+		login(username);
 	});
 
 	this.Then(/^he agree the AGBs$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#accept_checkbox', 5000);
-		browser.$('#accept_checkbox').click();
-		browser.click('button[id="accept_button"]');
+		browser.waitForExist('#select_checkbox', 15000);
+		browser.$('#select_checkbox').click();
+		browser.waitForEnabled('#accept_button', 15000);
+		browser.click('#accept_button');
 	});
 
 	this.Then(/^he see the pool page$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#pool-category-region', 5000);
+		browser.waitForExist('#pool-category-region', 15000);
 	});
 
 	this.Then(/^he log out$/, function () {
@@ -58,18 +61,20 @@ module.exports = function () {
 
 	this.Then(/^he login again$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#welcome', 5000);
+		browser.waitForExist('#TestingBackdoorUsername',15000);
+		login(username);
 		login(username);
 	});
 
 	this.Then(/^he sees the pool directly$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#pool-category-region', 8000);
+		browser.waitForExist('#pool-category-region', 15000);
 	});
 
 	this.Then(/^he logs off$/, function () {
 		// Write code here that turns the phrase above into concrete actions
 		logout();
+		browser.waitForExist('#TestingBackdoorUsername',15000);
 	});
 };
 

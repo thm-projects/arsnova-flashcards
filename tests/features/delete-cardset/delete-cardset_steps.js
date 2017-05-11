@@ -7,14 +7,12 @@ module.exports = function () {
 		browser.url('http://localhost:3000');
 	});
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
 		agreeCookies();
+		login("testuser");
 		setResolution();
 		browser.windowHandleSize();
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);

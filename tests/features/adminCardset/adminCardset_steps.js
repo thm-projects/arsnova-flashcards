@@ -15,8 +15,6 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForVisible('a.cc_btn.cc_btn_accept_all',5000);
-		browser.click('a.cc_btn.cc_btn_accept_all');
 		browser.waitForVisible("#adminpanel", 5000);
 		browser.click('#adminpanel');
 	});
