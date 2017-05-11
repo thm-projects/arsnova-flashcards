@@ -1,8 +1,8 @@
 import {login, setResolution, agreeCookies} from "../helper_functions";
 module.exports = function () {
+	'use strict';
 	var countBeforeCreated = 0;
 	var countCards = 0;
-	'use strict';
 	/**
 	 * ---------------------------------------------------------------------
 	 * Background

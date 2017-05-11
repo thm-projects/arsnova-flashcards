@@ -1,3 +1,4 @@
+Feature: Create college and course
 
   As an admin,
   so that a cardset can assigned to a college and course,
