@@ -39,9 +39,14 @@ Change the settings in `settings.json` according to your needs
 3. Insert the key into `settings.json` (`FCM_API_KEY`)
 
 
-## Getting Started
+## Starting the app
 To start arsnova.cards on localhost use `meteor --settings settings.json` inside the repository. You can then access the app from your host machine by opening http://localhost:3000.
 
+## Contribution guide
+The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/wikis/contribution-guide).
+
+## Documentation 
+The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 
 ## CI Pipeline
 [![build status](https://git.thm.de/arsnova/flashcards/badges/staging/build.svg)](https://git.thm.de/arsnova/flashcards/commits/staging)
@@ -49,11 +54,6 @@ To start arsnova.cards on localhost use `meteor --settings settings.json` inside
 
 - [Staging](http://cards-staging.mni.thm.de)
 - [Production](https://arsnova.cards)
-
-
-## Documentation 
-The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
-
 
 ## Credits
 arsnova.cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
