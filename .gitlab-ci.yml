@@ -1,16 +1,32 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
   NODE_ENV: production
+  BUILD_DIR: build
+  BUNDLE_DIR: "$BUILD_DIR/bundle"
 
 chimp:
   stage: test
+  only:
+    - master
+    - staging
+    - /^v[0-9]+/
   tags:
     - nodejs
-  dependencies: []
+  services:
+    - mongo
+  dependencies:
+    - build
+  variables:
+    PORT: "3000"
+    ROOT_URL: "http://localhost:$PORT"
+    MONGO_URL: "mongodb://mongo/meteor-test"
   script:
-    - npm install
-    - meteor --allow-superuser --no-lint --no-release-check --settings settings_test.json &
-    - sleep 150
+    - export METEOR_SETTINGS="$(cat settings_test.json)"
+    - mongo --quiet --eval "version();" --host mongo
+    - cd "$BUNDLE_DIR/programs/server" && npm install
+    - cd -
+    - node "$BUNDLE_DIR/main.js" &
+    - sleep 15
     - ./tests/runTests.sh
 
 jshint:
@@ -55,7 +71,7 @@ jsdoc:
     - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d build/jsdoc -r
   artifacts:
     paths:
-      - build/jsdoc/
+      - "$BUILD_DIR/jsdoc/"
 
 build:
   stage: build
@@ -70,7 +86,7 @@ build:
   script:
     - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
     - npm install
-    - meteor build --allow-superuser --server-only --directory build
+    - meteor build --allow-superuser --server-only --directory "$BUILD_DIR"
     - mv /opt/meteor/package-metadata "$CI_PROJECT_DIR/"
   cache:
     paths:
@@ -78,7 +94,7 @@ build:
       - .meteor/local
   artifacts:
     paths:
-      - build/bundle/
+      - "$BUNDLE_DIR"
 
 deploy_staging:
   stage: deploy
@@ -111,7 +127,7 @@ deploy_production:
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
-    - scp -r "build/bundle/"* "$NEW_PRODUCTION_SSH_URL"
+    - scp -r "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
   environment: production
 
 sync_mirror:
