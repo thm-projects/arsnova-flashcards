@@ -1,5 +1,7 @@
-front,back
-yourfirstcardfront,yourfirstcardback
-yoursecondcardfront,yoursecondcardback
-yourthirdcardfront,yourthirdcardback
+subject,difficulty,hint,front,back
+subject1,0,hint1,front1,back1
+subject2,0,hint2,front2,back2
+subject3,0,hint3,front3,back3
+subject4,0,hint4,front4,back4
+subject5,0,hint5,front5,back5
 ...
