@@ -19,6 +19,7 @@ module.exports = function () {
 			login(username);
 			agreeCookies();
 			setResolution();
+			browser.windowHandleSize();
 			isLoggedIn = true;
 		}
 	});

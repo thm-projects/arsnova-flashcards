@@ -7,8 +7,8 @@ module.exports = function () {
 		browser.url('http://localhost:3000');
 	});
 	this.Given(/^User is logged in$/, function () {
-		agreeCookies();
 		login("testuser");
+		agreeCookies();
 		setResolution();
 		browser.windowHandleSize();
 	});
