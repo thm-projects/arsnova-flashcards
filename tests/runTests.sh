@@ -46,11 +46,11 @@ for testDir in $searchDir; do
 
 		# Run chimp
 		echo -e $GREEN"Running chimp ..." $NC
-		#if [ $DISPLAY -n ] ; then
-        #		xvfb-run --server-args="-screen 0 1920x1080x16" chimp --ddp=http://localhost:3000 --browser=firefox --path=$testDir $1
-		#else
-			chimp --ddp=http://localhost:3000 --browser=firefox --path=$testDir $1
-		#fi
+		if [ $DISPLAY -n ] ; then
+        		xvfb-run --server-args="-screen 0 1920x1080x16" chimp --ddp=http://localhost:3000 --path=$testDir --browser=firefox $1
+		else
+			chimp --ddp=http://localhost:3000 --path=$testDir --browser=firefox $1
+		fi
 		if [ $? -ne 0 ]; then
 			failedTests=$((failedTests+1))
 			failedTestsArray+=("$testDir")
