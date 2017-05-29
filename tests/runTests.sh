@@ -4,6 +4,16 @@
 searchDir="tests/features/*"
 dumpDir="tests/dump/meteor"
 
+if [ -z "$POST" ]; then
+	PORT=3000
+fi
+if [ -z "$MONGO_HOST" ]; then
+	MONGO_HOST=localhost
+	MONGO_PORT=3001
+	MONGO_DB=meteor
+elif [ -z "$MONGO_PORT" ]; then
+	MONGO_PORT=27017
+fi
 
 #colors
 RED='\033[0;31m'
@@ -39,7 +49,7 @@ for testDir in $searchDir; do
 
 		# Drop and Restore the database
 		echo -e $GREEN"Dropping and Restoring database ..." $NC
-		if ! mongorestore --drop -h 127.0.0.1 --port 3001 -d meteor $dumpDir 1> /dev/null; then
+		if ! mongorestore --drop -h "$MONGO_HOST" --port "$MONGO_PORT" -d "$MONGO_DB" $dumpDir 1> /dev/null; then
 			echo -e $RED"mongorestore failed!" $NC
 			exit 2
 		fi
@@ -49,7 +59,7 @@ for testDir in $searchDir; do
 		if [ $DISPLAY -n ] ; then
         		xvfb-run --server-args="-screen 0 1920x1080x16" chimp --ddp=http://localhost:3000 --path=$testDir --browser=firefox $1
 		else
-			chimp --ddp=http://localhost:3000 --path=$testDir --browser=firefox $1
+			chimp --ddp=http://localhost:$PORT --path=$testDir --browser=firefox $1
 		fi
 		if [ $? -ne 0 ]; then
 			failedTests=$((failedTests+1))
