@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "../helper_functions";
+import {login, logout} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -17,9 +17,6 @@ module.exports = function () {
 		browser.url('http://localhost:3000');
 		if (!isLoggedIn) {
 			login(username);
-			agreeCookies();
-			setResolution();
-			browser.windowHandleSize();
 			isLoggedIn = true;
 		}
 	});

@@ -1,4 +1,4 @@
-import {login, setResolution, agreeCookies} from "../helper_functions";
+import {login} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var countBeforeCreated = 0;
@@ -13,9 +13,6 @@ module.exports = function () {
 			browser.url('http://localhost:3000');
 		}
 		login(arg1);
-		setResolution();
-		agreeCookies();
-		browser.windowHandleSize();
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
 		browser.waitForVisible('#cardsets',5000);

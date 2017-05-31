@@ -1,4 +1,4 @@
-import {login, logout, agreeCookies, setResolution} from "../helper_functions";
+import {login, logout} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -10,10 +10,7 @@ module.exports = function () {
 
 	this.Given(/^He loges in$/, function () {
 		// Write code here that turns the phrase above into concrete actions
-		browser.pause(1000);
 		login("testuser");
-		agreeCookies();
-		setResolution();
 	});
 
 	this.Given(/^change to cardset$/, function () {

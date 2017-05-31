@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "../helper_functions";
+import {login, logout} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var sFront,sBack;
@@ -10,9 +10,6 @@ module.exports = function () {
 	this.Given(/^User is on the poolview with username "([^"]*)" \(EaC\)$/, function (arg1) {
 		browser.url('http://localhost:3000');
 		login(arg1);
-		setResolution();
-		agreeCookies();
-		browser.windowHandleSize();
 	});
 	this.Given(/^he is on the view of a cardset \(EaC\)$/, function () {
 		browser.waitForVisible('#cardsets',5000);

@@ -1,4 +1,4 @@
-import {login, setResolution, agreeCookies} from "../helper_functions.js";
+import {login} from "../helper_functions.js";
 
 module.exports = function () {
 	'use strict';
@@ -9,9 +9,6 @@ module.exports = function () {
 
 	this.Given(/^User is logged in$/, function () {
 		login("testuser");
-		agreeCookies();
-		setResolution();
-		browser.windowHandleSize();
 	});
 
 

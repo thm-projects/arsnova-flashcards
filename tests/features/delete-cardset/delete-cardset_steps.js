@@ -1,4 +1,4 @@
-import {login, logout, setResolution, agreeCookies} from "../helper_functions.js";
+import {login, logout} from "../helper_functions.js";
 
 module.exports = function () {
 	'use strict';
@@ -8,9 +8,6 @@ module.exports = function () {
 	});
 	this.Given(/^User is logged in$/, function () {
 		login("testuser");
-		agreeCookies();
-		setResolution();
-		browser.windowHandleSize();
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.waitForVisible('#cardsets',5000);

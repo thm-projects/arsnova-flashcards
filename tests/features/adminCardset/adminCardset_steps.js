@@ -1,4 +1,4 @@
-import {login, agreeCookies, logoutAdmin} from "../helper_functions";
+import {login, logoutAdmin} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -11,7 +11,6 @@ module.exports = function () {
 
 	this.Given(/^user is logged in$/, function () {
 		login("testuser");
-		agreeCookies();
 	});
 
 	this.Given(/^user is in the back end$/, function () {
