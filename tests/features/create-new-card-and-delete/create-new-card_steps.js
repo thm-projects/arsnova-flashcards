@@ -17,6 +17,8 @@ module.exports = function () {
 	this.Given(/^he is on the view of a cardset$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitForVisible("a[href='/cardset/bySxZuBpKZhKgB7aW']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/bySxZuBpKZhKgB7aW']");
 		browser.waitForExist(".carousel-inner", TIMERTHRESHOLD);

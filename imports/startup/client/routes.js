@@ -26,18 +26,18 @@ Router.route('impressum');
 Router.route('agb');
 Router.route('datenschutz');
 
-Router.route('/created', {
-	name: 'created',
+Router.route('/create', {
+	name: 'create',
 	template: 'cardsets'
 });
 
-Router.route('/learned', {
-	name: 'learned',
+Router.route('/learn', {
+	name: 'learn',
 	template: 'cardsets'
 });
 
 Router.route('/cardset', function () {
-	this.redirect('created');
+	this.redirect('learn');
 });
 
 Router.route('/cardset/:_id', {
@@ -55,7 +55,7 @@ Router.route('/cardset/:_id/stats', {
 });
 
 Router.route('/cardsetlist', function () {
-	this.redirect('created');
+	this.redirect('create');
 });
 
 Router.route('/cardsetlist/:_id', {

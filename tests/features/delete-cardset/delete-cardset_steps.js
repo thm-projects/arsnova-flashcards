@@ -13,14 +13,16 @@ module.exports = function () {
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		oldCardsetCount = browser.elements('#cardSetView > tr').value.length;
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
+		oldCardsetCount = browser.elements('.cardsetRow').value.length;
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected create new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.When(/^User clicks on a cardset that he owns$/, function () {
-		browser.waitForVisible('#cardSetView tr:nth-child(1) td a',TIMERTHRESHOLD);
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.waitForVisible('#set-list-region > div:nth-child(1) > a',TIMERTHRESHOLD);
+		browser.click('#set-list-region > div:nth-child(1) > a');
 	});
 	this.Then(/^he is shown the details of the cardset$/, function () {
 		browser.waitForVisible('#editCardset', TIMERTHRESHOLD);
@@ -40,12 +42,11 @@ module.exports = function () {
 		browser.click('#cardSetConfirm');
 	});
 	this.Then(/^he should be returned to the my cardset view$/, function () {
-		browser.waitForVisible('#cardSetView', TIMERTHRESHOLD);
+		browser.waitForVisible('.cardsetRow', TIMERTHRESHOLD);
 	});
 	this.Then(/^he should not see the deleted cardset there$/, function () {
-		browser.waitForExist('#cardSetView > tr',TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.elements('#cardSetView > tr').value.length ===  (oldCardsetCount - 1);
+			return browser.elements('.cardsetRow').value.length ===  (oldCardsetCount - 1);
 		}, TIMERTHRESHOLD, 'expected cardset to be deleted after ' + TIMERTHRESHOLDTEXT);
 		logout();
 	});

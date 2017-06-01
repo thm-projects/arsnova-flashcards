@@ -3,6 +3,8 @@ $color_mountain_mist_approx: rgb(153, 153, 153);
 $white: rgb(255, 255, 255);
 $black_50: rgba(0, 0, 0, 0.5);
 $color_storm_dust_approx: rgb(102, 102, 102);
+$color_orange_pool: rgb(255, 153, 51);
+$color_item_separator: #b2b2b2;
 
 //fonts
 $font_0: Georgia;
@@ -10,6 +12,34 @@ $font_1: serif;
 
 hr {
   margin: 10px 0;
+}
+
+.ellipsis > *, .ellipsis {
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+
+.cardsetHeaderTop {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: $white;
+}
+
+.cardsetHeaderBottom {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  background-color: $color_orange_pool;
+  color: $white;
+}
+
+.cardsetLabel {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 
 .nav-header {
@@ -100,4 +130,14 @@ input, textarea {
 
 .glyphicon-plus {
   color: $white;
+}
+
+#learn-list-region, #set-list-region {
+  .empty-list {
+    background-color: $white;
+    padding-top: 10px;
+  }
+  .deleteLearned {
+    cursor: pointer;
+  }
 }

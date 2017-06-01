@@ -16,6 +16,8 @@ module.exports = function () {
 	this.Given(/^change to cardset$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
 		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);

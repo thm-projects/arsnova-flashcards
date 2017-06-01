@@ -22,13 +22,15 @@ module.exports = function () {
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.When(/^User clicks on a cardset that he owns$/, function () {
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.click('#set-list-region > div:nth-child(1) > a');
 	});
 
 	this.Then(/^he is shown the details of the cardset$/, function () {

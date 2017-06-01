@@ -74,7 +74,7 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
-  "confirm-form-learned": {
+  "confirm-form-learn": {
     "title": "Leave cardset",
     "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
   },
@@ -130,9 +130,8 @@
     "confirm": "Continue"
   },
   "nav-list": {
-    "category": "Category",
-    "created": "Created",
-    "learned": "Learned"
+    "learn": "Learn",
+    "create": "Create"
   },
   "set-list": {
     "name": "Name",
@@ -163,8 +162,8 @@
     "emptypooltextlist": "There aren't any decks of cards yet",
     "newset": "Create a deck of cards"
   },
-  "set-list-learned-empty": {
-    "emptytextlist": "You have not learned any deck of cards yet"
+  "set-list-learn-empty": {
+    "emptytextlist": "You aren't learning any deck of cards yet"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",

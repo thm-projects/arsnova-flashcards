@@ -20,10 +20,12 @@ module.exports = function () {
 	this.Given(/^I am on the cardset view of the testcardset$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
-		browser.click('#cardSetView tr:nth-child(2) td a');
+		browser.click('#set-list-region > div:nth-child(2) > a');
 		browser.waitUntil(function () {
 			return browser.isVisible('#learnBox');
 		}, TIMERTHRESHOLD, 'expected learn by leitner button to be visible after ' + TIMERTHRESHOLDTEXT);
@@ -81,11 +83,13 @@ module.exports = function () {
 	this.Given(/^I went to the box view of the testcardset$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
-		browser.waitForVisible('#cardSetView tr:nth-child(2) td a',TIMERTHRESHOLD);
-		browser.click('#cardSetView tr:nth-child(2) td a');
+		browser.waitForVisible('#set-list-region > div:nth-child(2) > a',TIMERTHRESHOLD);
+		browser.click('#set-list-region > div:nth-child(2) > a');
 		browser.waitUntil(function () {
 			return browser.isVisible('#learnBox');
 		}, TIMERTHRESHOLD, 'expected learn by leitner button to be visible after ' + TIMERTHRESHOLDTEXT);

@@ -74,7 +74,7 @@
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
-  "confirm-form-learned": {
+  "confirm-form-learn": {
     "title": "Kartensatz verlassen",
     "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
   },
@@ -128,9 +128,8 @@
     "confirm": "Bestätigen"
   },
   "nav-list": {
-    "category": "Kategorie",
-    "created": "Erstellt",
-    "learned": "Gelernt"
+    "learn": "Lern",
+    "create": "Erstelle"
   },
   "set-list": {
     "name": "Name",
@@ -161,8 +160,8 @@
     "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
     "newset": "Kartensatz anlegen"
   },
-  "set-list-learned-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz gelernt"
+  "set-list-learn-empty": {
+    "emptytextlist": "Du hast noch keinen Kartensatz zum lernen"
   },
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",

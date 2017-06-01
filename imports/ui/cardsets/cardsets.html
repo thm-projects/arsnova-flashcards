@@ -8,12 +8,12 @@
             {{> cardsetsForm}}
             {{> sidebarCardsets}}
 
-            {{#if isActiveRoute 'created'}}
-                {{> created}}
+            {{#if isActiveRoute 'create'}}
+                {{> create}}
             {{/if}}
 
-            {{#if isActiveRoute 'learned'}}
-                {{> learned}}
+            {{#if isActiveRoute 'learn'}}
+                {{> learn}}
             {{/if}}
         {{/if}}
     {{/if}}
@@ -21,31 +21,30 @@
 
 
 <template name="sidebarCardsets">
-    <div id='set-list-sidebar-region' class="col-md-3">
+    <div id='set-list-sidebar-region' class="col-lg-3">
         <div class="well well-sm sidebar-nav">
             <div class="input-group">
                 <input class="form-control" type="text" id="new-set-input"
                        placeholder="{{_ "input-group.newcarddeck"}}">
                 <span class="input-group-btn">
-					<button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
-                            data-target="#newSetModal" {{disableIfOffline}}>
-                        <i class="glyphicon glyphicon-plus"></i>
-                    </button>
-				</span>
+                  <button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
+                          data-target="#newSetModal" {{disableIfOffline}}>
+                    <i class="glyphicon glyphicon-plus"></i>
+                  </button>
+              </span>
             </div>
 
             <hr/>
 
             <ul class="nav nav-list">
-                <li class="nav-header">{{_ "nav-list.category"}}</li>
-                <li class="{{#if isActiveRoute 'created'}}active{{/if}}">
-                    <a id="setCreated" href="{{pathFor route='created'}}" name="set-created">
-                        {{_ "nav-list.created"}}
+                <li class="{{#if isActiveRoute 'learn'}}active{{/if}}">
+                    <a id="setLearn" href="{{pathFor route='learn'}}" name="set-learn">
+                        {{_ "nav-list.learn"}}
                     </a>
                 </li>
-                <li class="{{#if isActiveRoute 'learned'}}active{{/if}}">
-                    <a id="setLearned" href="{{pathFor route='learned'}}" name="set-learned">
-                        {{_ "nav-list.learned"}}
+                <li class="{{#if isActiveRoute 'create'}}active{{/if}}">
+                    <a id="setCreate" href="{{pathFor route='create'}}" name="set-create">
+                        {{_ "nav-list.create"}}
                     </a>
                 </li>
             </ul>
@@ -54,123 +53,87 @@
 </template>
 
 
-<template name="created">
-    <div class="col-md-9" id="set-list-region">
-        <table class="table table-bordered table-hover">
-            <thead class="set-list">
-            <tr>
-                <th>
-                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
-                        <button class="sortName btn btn-default" role="button" value="down" data-toggle="dropdown"
-                                id="sortDown">
-                            {{_  "set-list.topic"}}  <span class="glyphicon glyphicon-sort"></span></button>
-                    </div>
-                </th>
-                <th>
-                    <span>{{_ "set-list.description"}}</span>
-                </th>
-                <th>
-                    <span>{{_ "set-list.licence"}}</span>
-                </th>
-            </tr>
-            </thead>
-            <tbody id="cardSetView">
-            {{#if cardsetList.count}}
-                {{#each cardsetList}}
+<template name="create">
+    <div class="col-lg-9" id="set-list-region">
+        {{#if cardsetList.count}}
+            {{#each cardsetList}}
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default {{#if
+                        oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
-                {{/each}}
-            {{else}}
-                {{> cardsetEmpty}}
-            {{/if}}
-            </tbody>
-        </table>
+                </div>
+            {{/each}}
+        {{else}}
+            {{> cardsetEmpty}}
+        {{/if}}
     </div>
 </template>
 
-
 <template name="cardsetRow">
-    <tr class="cardsetRow">
-        <td>
-            <a href="/cardset/{{_id}}">{{name}}
-                <span class="badge cardsetBadge">{{countCards this._id}}</span>
-            </a>
-        </td>
-        <td>{{#markdown}}{{description}}{{/markdown}}</td>
-        <td>
-            <span id="info_license">{{getLicense}}</span>
-        </td>
-    </tr>
+    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+        <span class="col-xs-5 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
+                "set-list.topic"}}
+            :</span>
+        <span class="cell col-xs-7 col-sm-7 col-md-8 col-lg-3 poolText panelUnit" data-id="{{this._id}}">
+                <span class="cell col-xs-9 col-sm-9 col-md-10 col-lg-9 topicName" data-id="{{this._id}}">
+                    {{this.name}}
+                </span>
+                <span class="cell badge cardsetBadge" data-id="{{this._id}}">
+                    {{countCards this._id}}
+                </span>
+            </span>
+        <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
+        <span class="col-xs-5 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
+                                                                                                         'create'}}panelUnitNoBorder{{/if}}">{{_
+                "set-list.description"}}
+            :</span>
+        <span class="cell col-xs-7 col-sm-7 col-md-8 {{#if isActiveRoute
+                                                           'learn'}}col-lg-7 panelUnit{{else}}col-lg-9 panelUnit panelUnitNoBorder{{/if}}
+                                                               poolText ellipsis">
+            {{this.description}}
+        </span>
+    </a>
+    {{#if isActiveRoute 'learn'}}
+        <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
+           title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
+           data-id="{{this._id}}">
+            <span class="cell col-xs-12 col-sm-12 col-md-12 col-lg-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+                  data-id="{{this._id}}">
+           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "navbar-collapse.logout"}}
+        </span>
+        </a>
+    {{/if}}
 </template>
 
-
 <template name="cardsetEmpty">
-    <tr class="empty-list">
-        <td align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
-            <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
+    <div class="empty-list">
+        <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
+            {{#if isActiveRoute 'create'}}
+                <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
+            {{/if}}
+
+            {{#if isActiveRoute 'learn'}}
+                <span class="emptyTextList">{{_ "set-list-learn-empty.emptytextlist"}}</span>
+            {{/if}}
             <br>
             <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
                     data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
-        </td>
-    </tr>
+        </div>
+    </div>
 </template>
 
-
-<template name="learned">
-    <div id="learned-list-region" class="col-md-9">
-        <table class="table table-bordered table-hover">
-            <thead class="set-list">
-            <tr>
-                <th>
-                    <div class="btn-group btn-group-raised" role="group" aria-label="Topic group">
-                        <button class="sortNameLearned btn btn-default" role="button" value="down"
-                                data-toggle="dropdown" id="sortDown">
-                            {{_  "set-list.topic"}}  <span class="glyphicon glyphicon-sort"></span></button>
-                    </div>
-                </th>
-                <th>
-                    <span>{{_ "set-list.description"}}</span>
-                </th>
-                <th>
-                    <span>{{_ "set-list.licence"}}</span>
-                </th>
-                <th>{{_ "options"}}</th>
-            </tr>
-            </thead>
-            <tbody id="cardSetView">
-            {{#if learnedList.count}}
-                {{#each learnedList}}
-                    <tr class="cardsetRow">
-                        <td>
-                            <a href="/cardset/{{_id}}">{{name}}
-                                <span class="badge cardsetBadge">{{countCards this._id}}</span>
-                            </a>
-                        </td>
-
-                        <td>{{description}}</td>
-                        <td>
-                            <span id="info_license">{{getLicense}}</span>
-                        </td>
-                        <td>
-                            <a class="deleteLearned btn btn-xs btn-default btn-deleteLearned" {{disableIfOffline}}
-                               title='{{_ "confirm-form-learned.title"}}' data-toggle="modal"
-                               data-target="#confirmLearnedModal">
-                                <i class="glyphicon glyphicon-ban-circle"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {{/each}}
-            {{else}}
-                <tr class="empty-list">
-                    <td align="center" height="60" colspan="4" class="emptyCellList set-list-learned-empty">
-                        <span class="emptyTextList">{{_ "set-list-learned-empty.emptytextlist"}}</span>
-                        <br>
-                        <br>
-                    </td>
-                </tr>
-            {{/if}}
-            </tbody>
-            {{> cardsetsConfirmLearnedForm}}
-        </table>
+<template name="learn">
+    <div id="learn-list-region" class="col-lg-9">
+        {{#if learnList.count}}
+            {{#each learnList}}
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default cardsetInfo responsive-utilities-test visible-on">
+                    {{> cardsetRow}}
+                </div>
+            {{/each}}
+        {{else}}
+            {{> cardsetEmpty}}
+        {{/if}}
+        {{> cardsetsConfirmLearnForm}}
     </div>
 </template>
 
@@ -329,7 +292,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-raised btn-default btn-block  col-xs-12 col-sm-3 cancel" data-dismiss="modal">{{_
+                    <button class="btn btn-raised btn-default btn-block  col-xs-12 col-sm-3 cancel"
+                            data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                     <button class="btn btn-raised btn-success btn-block  col-xs-12 col-sm-3 save pull-right">{{_
                             "modal-dialog.createcarddeck"}}</button>
@@ -339,23 +303,23 @@
     </div>
 </template>
 
-<template name="cardsetsConfirmLearnedForm">
-    <div class="modal fade" id="confirmLearnedModal" tabindex="-1" role="dialog"
-         aria-labelledby="confirmLearnedModalTitle">
+<template name="cardsetsConfirmLearnForm">
+    <div class="modal fade" id="confirmLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmLearnModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmLearnedModalTitle" class="modal-title">{{_ "confirm-form-learned.title"}}</h4>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirm-form-learn.title"}}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{_ "confirm-form-learned.text"}}</p>
+                    <p>{{_ "confirm-form-learn.text"}}</p>
                     <br/>
                     <hr/>
 
-                    <button id="learnedDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
-                            "confirm-form-learned.title"}}</button>
-                    <button id="learnedCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
+                    <button id="learnDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
+                            "confirm-form-learn.title"}}</button>
+                    <button id="learnCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>
             </div>
