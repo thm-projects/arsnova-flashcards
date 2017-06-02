@@ -91,22 +91,38 @@ function turnFront() {
 	$(".innerBoxBody").removeClass("back");
 }
 
+/**
+* Function changes from the backside to the front side of
+* a card or the other way around
+*/
 export function turnCard() {
-	if ($(".cardfront-symbol").css('display') === 'none') {
+	if ($(".cardfront").css('display') === 'none') {
 		turnFront();
-	} else if ($(".cardback-symbol").css('display') === 'none') {
+	} else if ($(".cardback").css('display') === 'none') {
 		turnBack();
 	}
 }
 
+/**
+* Function checks if route is a Box
+* @return {Boolean} Return true, when the current route is a Box.
+*/
 function isBox() {
 	return Router.current().route.getName() === "box";
 }
 
+/**
+* Function checks if route is a Cardset
+* @return {Boolean} Return true, when route is a Cardset.
+*/
 function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid";
 }
 
+/**
+* Function checks if route is a Cardset
+* @return {Boolean} Return true, when route is a Memo.
+*/
 function isMemo() {
 	return Router.current().route.getName() === "memo";
 }

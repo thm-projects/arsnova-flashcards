@@ -195,10 +195,11 @@
                                     </div>
 
                                     <div id="clicktoflip" class="clicktoflip">
-                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                      {{#unless isMemo}}
+                                        <img id="iconfront" class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img id="iconback" class="cardside cardback-symbol" src="/img/icon_back.png"
                                              style="display: none;">
-                                        {{#unless isMemo}}{{_ "turn"}}{{/unless}}</div>
+                                      {{_ "turn"}}{{/unless}}</div>
 
                                     <br>
                                     <h3>{{subject}}</h3>
