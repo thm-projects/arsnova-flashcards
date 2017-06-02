@@ -1,13 +1,30 @@
 ## How to test the application with chimp and cucumber
 
+## Install NodeJS 6.XX
+[https://nodejs.org/en/](https://nodejs.org/en/)
+
+## Install MongoDB
+[https://www.mongodb.com](https://www.mongodb.com)
+
+## Install Chrome or Chromium
+
 ## Install chimp
 	npm install -g chimp
 
 ### Please follow the folling procedure
 #### Enter the project directory
     cd flashcards
+
 #### Run Meteor
     meteor --settings settings_test.json
+
+## Run all chimp tests
+In project root start meteor `meteor --settings settings_test.json`.
+Then in another shell enter `./tests/runTests.sh`
+
+
+## Run a single test
+
 #### Clear the current database
 Enter mongo shell with
 
@@ -25,10 +42,6 @@ Exit mongo shell
     you can add --browser=firefox to run the test on the firefox browser, default browser is chrome
     the ci test run uses firefox, due to chrome and phantomjs are not working in the server,
     chrome stucks and phantom has problems with script injection from chimp
-
-#### Run all chimp tests
-In project root start meteor `meteor --settings settings_test.json`.
-Then in another shell enter `./tests/runTests.sh`
 
 ## Important
 For the tests, please login with the user "testuser"
