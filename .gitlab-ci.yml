@@ -10,7 +10,6 @@ chimp:
     - master
     - staging
     - /^v[0-9]+/
-    - /^205-/
   tags:
     - nodejs
   allow_failure: true
@@ -84,7 +83,6 @@ build:
     - master
     - staging
     - /^v[0-9]+/
-    - /^205-/
   tags:
     - meteor
   image: local-nodejs-meteor:1.4
