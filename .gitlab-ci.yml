@@ -13,6 +13,7 @@ chimp:
     - /^205-/
   tags:
     - nodejs
+  allow_failure: true
   services:
     - mongo
   dependencies:
