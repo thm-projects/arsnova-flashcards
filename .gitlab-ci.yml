@@ -1,6 +1,37 @@
 variables:
   MIRROR_REPO: git@github.com:thm-projects/arsnova-flashcards.git
   NODE_ENV: production
+  BUILD_DIR: build
+  BUNDLE_DIR: "$BUILD_DIR/bundle"
+
+chimp:
+  stage: test
+  only:
+    - master
+    - staging
+    - /^v[0-9]+/
+    - /^205-/
+  tags:
+    - nodejs
+  services:
+    - mongo
+  dependencies:
+    - build
+  variables:
+    PORT: "3000"
+    ROOT_URL: "http://localhost:$PORT"
+    MONGO_HOST: mongo
+    MONGO_PORT: "27017"
+    MONGO_DB: meteor-test
+    MONGO_URL: "mongodb://$MONGO_HOST:$MONGO_PORT/$MONGO_DB"
+  script:
+    - export METEOR_SETTINGS="$(cat settings_test.json)"
+    - mongo --quiet --eval "version();" --host "$MONGO_HOST"
+    - cd "$BUNDLE_DIR/programs/server" && npm install
+    - cd -
+    - node "$BUNDLE_DIR/main.js" &
+    - sleep 15
+    - ./tests/runTests.sh
 
 jshint:
   stage: test
@@ -9,7 +40,7 @@ jshint:
   dependencies: []
   script:
     - npm install jshint@^2.9.0
-    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n
+    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n ./tests
 
 jscs:
   stage: test
@@ -18,7 +49,7 @@ jscs:
   dependencies: []
   script:
     - npm install jscs
-    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server}/
+    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server,tests}/
 
 sonar:
   stage: test
@@ -44,7 +75,7 @@ jsdoc:
     - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d build/jsdoc -r
   artifacts:
     paths:
-      - build/jsdoc/
+      - "$BUILD_DIR/jsdoc/"
 
 build:
   stage: build
@@ -52,6 +83,7 @@ build:
     - master
     - staging
     - /^v[0-9]+/
+    - /^205-/
   tags:
     - meteor
   image: local-nodejs-meteor:1.4
@@ -59,7 +91,7 @@ build:
   script:
     - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
     - npm install
-    - meteor build --allow-superuser --server-only --directory build
+    - meteor build --allow-superuser --server-only --directory "$BUILD_DIR"
     - mv /opt/meteor/package-metadata "$CI_PROJECT_DIR/"
   cache:
     paths:
@@ -67,7 +99,7 @@ build:
       - .meteor/local
   artifacts:
     paths:
-      - build/bundle/
+      - "$BUNDLE_DIR"
 
 deploy_staging:
   stage: deploy
@@ -100,7 +132,7 @@ deploy_production:
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
-    - scp -r "build/bundle/"* "$NEW_PRODUCTION_SSH_URL"
+    - scp -r "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
   environment: production
 
 sync_mirror:

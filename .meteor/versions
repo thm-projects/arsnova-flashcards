@@ -99,6 +99,7 @@ meteorspark:util@0.2.0
 minifier-css@1.2.16
 minifier-js@1.2.18
 minimongo@1.0.21
+mizzao:accounts-testing@0.1.0
 mizzao:timesync@0.4.0
 mizzao:user-status@0.6.6
 mobile-experience@1.0.4
