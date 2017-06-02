@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Ratings} from "../../api/ratings.js";
 import {Learned} from "../../api/learned.js";
 import "./pool.html";
 
@@ -20,6 +19,7 @@ Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterSkillLevel');
 Session.setDefault('poolFilterLearnphase');
+Session.setDefault('poolFilterRating', -1);
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
@@ -55,6 +55,7 @@ function prepareQuery() {
 		 */
 		query.learningActive = Session.get('poolFilterLearnphase');
 	}
+	query.relevance = {$gt: Session.get('poolFilterRating')};
 }
 
 function checkRemainingCards() {
@@ -129,6 +130,11 @@ function checkFilters() {
 	} else {
 		$(".filterLearnphase").removeClass('active').first();
 	}
+	if (Session.get('poolFilterRating')) {
+		$(".filterRatingGroup").addClass('active');
+	} else {
+		$(".filterRatingGroup").removeClass('active').first();
+	}
 	filterCheckbox();
 }
 
@@ -196,6 +202,19 @@ function filterLearnphase(event) {
 		Session.set('poolFilterLearnphase');
 	}
 
+	resetInfiniteBar();
+}
+
+function filterRating(event) {
+	var button = $(".filterRatingGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterRatingVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterRatingVal', $(event.target).data('id'));
+	}
+	Session.set('poolFilterRating', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
@@ -290,6 +309,16 @@ Template.category.helpers({
 	poolFilterLearnphase: function () {
 		return Session.get('poolFilterLearnphaseVal');
 	},
+	hasRatingFilter: function () {
+		return Session.get('poolFilterRating') !== -1;
+	},
+	poolFilterRating: function () {
+		if (Session.get('poolFilterRating') === 1) {
+			return TAPi18n.__('set-list.ratingFilter');
+		} else {
+			return TAPi18n.__("set-list.ratingFilterPlural", {rating: Session.get('poolFilterRating')});
+		}
+	},
 	moreResults: function () {
 		return checkRemainingCards();
 	}
@@ -365,22 +394,6 @@ Template.poolCardsetRow.helpers({
 			return false;
 		}
 	},
-	getAverageRating: function () {
-		var ratings = Ratings.find({
-			cardset_id: this._id
-		});
-		var count = ratings.count();
-		if (count !== 0) {
-			var amount = 0;
-			ratings.forEach(function (rate) {
-				amount = amount + rate.rating;
-			});
-			var result = (amount / count).toFixed(2);
-			return result;
-		} else {
-			return 0;
-		}
-	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -397,6 +410,9 @@ Template.poolCardsetRow.helpers({
 		if (this.price !== 0) {
 			return this.price + '€';
 		}
+	},
+	getRelevance: function () {
+		return Math.floor(this.relevance - 1);
 	},
 	getLicense: function () {
 		var licenseString = "";
@@ -446,6 +462,9 @@ Template.poolCardsetRow.events({
 	'click .filterSkillLevel': function (event) {
 		filterSkillLevel(event);
 	},
+	'click .filterRating': function (event) {
+		filterRating(event);
+	},
 	'click .filterCheckbox': function (event) {
 		Session.set('poolFilter', [$(event.target).data('id')]);
 		filterCheckbox();
@@ -466,6 +485,7 @@ Template.category.events({
 		Session.set('poolFilterCourse');
 		Session.set('poolFilterModule');
 		Session.set('poolFilterSkillLevel');
+		Session.set('poolFilterRating', -1);
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		Session.set('poolFilterLearnphase');
 		checkFilters();
@@ -505,6 +525,9 @@ Template.category.events({
 	},
 	'click .filterLearnphase': function () {
 		filterLearnphase(event);
+	},
+	'click .filterRating': function (event) {
+		filterRating(event);
 	},
 	'click .showMoreResults': function () {
 		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);

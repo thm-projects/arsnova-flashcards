@@ -180,6 +180,37 @@
                                 {{/each}}
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" id="ratingFilter" class="dropdown-toggle ratingBtn" data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                {{#if hasRatingFilter}}
+                                    {{poolFilterRating}}
+                                {{else}}
+                                    {{_ "set-list.rating"}}
+                                {{/if}}
+                                <span class="glyphicon glyphicon-filter"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" class="filterRating active" data-id="-1">{{_ "set-list.everything"}}</a>
+                                </li>
+                                <li><a href="#" class="filterRating" data-id="0">{{_ "set-list.ratingFilterPlural"
+                                                                                     rating=0}}</a>
+                                </li>
+                                <li><a href="#" class="filterRating" data-id="1">{{_ "set-list.ratingFilter"}}</a>
+                                </li>
+                                <li><a href="#" class="filterRating" data-id="2">{{_ "set-list.ratingFilterPlural"
+                                                                                     rating=2}}</a>
+                                </li>
+                                <li><a href="#" class="filterRating" data-id="3">{{_ "set-list.ratingFilterPlural"
+                                                                                     rating=3}}</a>
+                                </li>
+                                <li><a href="#" class="filterRating" data-id="4">{{_ "set-list.ratingFilterPlural"
+                                                                                     rating=4}}</a>
+                                </li>
+                            </ul>
+                        </li>
                         <ul class="nav navbar-nav navbar-right">
                             <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
                                  aria-label="License group" style="padding-top: 20px;">
@@ -305,11 +336,13 @@
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
     <a href="#" class="filterRating"
-       title="{{this.name}} {{_ "set-list.rating"}}: {{getAverageRating}} {{_ "rating-field.stars"}}">
-        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit">{{_ "set-list.rating"}}
+       title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
+       data-id={{getRelevance}}>
+        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit" data-id={{getRelevance}}>{{_
+                "set-list.rating"}}
             :</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit">
-            {{> starsRating rating=getAverageRating mutable=false}}
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit" data-id={{getRelevance}}>
+            {{> starsRating rating=this.relevance mutable=false}}
         </span>
     </a>
     <span class="col-lg-2 kind-label visible-lg panelAvailability">
@@ -371,11 +404,11 @@
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-enter-learnphase.text"}}</p>
-                        <ul>
-                            <li>{{_ "panel-body.givenname"}}</li>
-                            <li>{{_ "panel-body.birthname"}}</li>
-                            <li>{{_ "panel-body.email"}}</li>
-                        </ul>
+                    <ul>
+                        <li>{{_ "panel-body.givenname"}}</li>
+                        <li>{{_ "panel-body.birthname"}}</li>
+                        <li>{{_ "panel-body.email"}}</li>
+                    </ul>
                     <p>{{_ "confirm-enter-learnphase.text2"}}</p>
                 </div>
                 <hr>
@@ -394,12 +427,14 @@
 
 <template name="poolTitleContent">
     <div class="tip-content">{{#markdown}}{{getMaximumText content.description}}{{/markdown}}</div>
-    <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_ "set-list.topic"}}
+    <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_
+            "set-list.topic"}}
         :</span>
     <span class="cell col-xs-8 col-sm-9 col-md-9 col-lg-2 poolText panelUnit" data-id="{{content._id}}">
                 <span class="cell col-xs-9 col-sm-10 col-md-10 col-lg-9 topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}
-                        <span class="label label-info" aria-label="active learnphase label" data-id="{{content._id}}">{{_
+                        <span class="label label-info" aria-label="active learnphase label"
+                              data-id="{{content._id}}">{{_
                                 "set-list.activeLearnphase"}}: {{getActiveLearners content._id}}</span>
                     {{/if}}
                     {{content.name}}
@@ -423,7 +458,8 @@
                     <p>{{_ "complete-profile.text"}}</p>
                     <br>
                     <hr>
-                    <button id="completeProfileGoToProfile" class="btn btn-default btn-block btn-raised btn-success active"
+                    <button id="completeProfileGoToProfile"
+                            class="btn btn-default btn-block btn-raised btn-success active"
                             data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
                     <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
                             data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>

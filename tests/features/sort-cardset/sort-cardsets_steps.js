@@ -109,10 +109,9 @@ module.exports = function () {
 
 	/**
 	 * ---------------------------------------------------------------------
-	 * Sort by module skill level
+	 * Sort by skill level scenario
 	 * ---------------------------------------------------------------------
 	 */
-
 	this.When(/^user clicks on the filter by skill level button$/, function () {
 		browser.waitForVisible('a[class="dropdown-toggle skillLevelBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle skillLevelBtn"]');
@@ -128,7 +127,6 @@ module.exports = function () {
 			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
 		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered skill after ' + TIMERTHRESHOLDTEXT);
 	});
-
 
 	/**
 	 * ---------------------------------------------------------------------
