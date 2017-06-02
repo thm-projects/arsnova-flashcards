@@ -28,6 +28,8 @@ This is a no-brainer. Keep your branches up to date so that merges will never en
 
 ### Code Style
 
+[You can use following tutorial to test your code style with Webstorm](https://git.thm.de/arsnova/flashcards/wikis/testing-with-webstorm)
+
 This project makes use of both jscs and jshint. You can review your code with the defined rules by using gulp. Install:
 
 ```
