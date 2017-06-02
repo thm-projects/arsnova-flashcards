@@ -71,6 +71,9 @@ Template.memo.events({
 
 		Meteor.call("updateLearnedMemo", currentLearned._id, grade);
 		Session.set("showAnswer", false);
+	},
+	"click #back-button": function () {
+		window.history.go(-1);
 	}
 });
 
