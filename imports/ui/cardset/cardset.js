@@ -532,6 +532,8 @@ Template.cardsetInfo.events({
 		}).count();
 		if (count === 0) {
 			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+		} else {
+			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
 		}
 	},
 	'click #exportCardsBtn': function () {

@@ -409,6 +409,8 @@
     "info": {
       "author": "Author",
       "rating": "Rating",
+      "userRating": "Your rating ",
+      "notRated": "Not yet rated",
       "quantity": "Number of cards",
       "release": "Published",
       "reviewer": "Reviewer",

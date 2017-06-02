@@ -85,15 +85,16 @@
                     <div class="well">
                         {{#if ratingEnabled}}
                             <strong class="left">{{_ "cardset.info.rating"}}:</strong>
-                            {{#if hasRated}}
-                                {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
+                            {{#if isCardsetOwner _id}}
+                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                             {{else}}
-                                {{#if isCardsetOwner _id}}
-                                    {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                                {{else}}
-                                    {{> starsRating id='rating' rating=getAverage mutable=true}}
-                                {{/if}}
+                                {{> starsRating id='rating' rating=getAverage mutable=true}}
                             {{/if}}
+                            {{#unless isCardsetOwner _id}}
+                                <br><strong class="left">{{_ "cardset.info.userRating"}}:</strong>
+                                <span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
+                                ({{_ "cardset.info.notRated"}}){{/unless}}
+                            {{/unless}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
                             <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearner}}

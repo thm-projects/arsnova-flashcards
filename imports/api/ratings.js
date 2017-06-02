@@ -48,5 +48,36 @@ Meteor.methods({
 			owner: Meteor.userId()
 		});
 		Meteor.call('checkLvl');
+	},
+	updateRating: function (cardset_id, owner, rating) {
+		check(cardset_id, String);
+		check(owner, String);
+		check(rating, Number);
+
+		// Make sure the user is logged in
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		Ratings.update({
+				cardset_id: cardset_id,
+				user: owner
+			},
+			{
+				$set: {
+					rating: rating
+				}
+			}
+		);
+
+		Meteor.call("updateRelevance", cardset_id, function (error, relevance) {
+			if (!error) {
+				Cardsets.update(cardset_id, {
+					$set: {
+						relevance: Number(relevance)
+					}
+				});
+			}
+		});
 	}
 });
