@@ -27,6 +27,7 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+
 // Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
@@ -89,7 +90,6 @@ Template.cardset.rendered = function () {
 	Session.set('cardsetId', Router.current().params._id);
 
 	var customerId = Meteor.user().customerId;
-
 	if ($('#payment-form').length) {
 		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
@@ -928,6 +928,21 @@ Template.cardsetPublishForm.events({
 		var kind = $('#publishKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
 		Session.set('kindWithPrice', kindWithPrice);
+	}
+});
+
+/*
+ * ############################################################################
+ * deleteCardsForm
+ * ############################################################################
+ */
+
+Template.deleteCardsForm.events({
+	'click #deleteCardsConfirm': function () {
+		var id = this._id;
+		$('#deleteCardsModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteCards", id);
+		}).modal('hide');
 	}
 });
 

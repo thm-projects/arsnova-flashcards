@@ -239,6 +239,33 @@ Meteor.methods({
 			cardset_id: id
 		});
 	},
+	deleteCards: function (id) {
+		check(id, String);
+		// Make sure only the task owner can make a task private
+		var cardset = Cardsets.findOne(id);
+
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+		}
+		Cards.remove({
+			cardset_id: id
+		});
+
+		Cardsets.update({
+				_id: id
+			},
+			{
+				$set: {
+					quantity: 0
+				}
+			}
+		);
+	},
 	deactivateLearning: function (id) {
 		check(id, String);
 

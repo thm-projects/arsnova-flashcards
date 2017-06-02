@@ -205,7 +205,8 @@
     "skillLevel0": "General",
     "skillLevel1": "Technical Terms",
     "skillLevel2": "Theoretical Principles",
-    "skillLevel3": "Practice"
+    "skillLevel3": "Practice",
+    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
   },
   "profile": {
     "overview": "Learning Progress",
@@ -547,6 +548,7 @@
   "searchpicture": "Image search",
   "declinecard": "Cancel",
   "deletecard": "Delete card",
+  "deleteCards": "Delete all cards",
   "confirmcard": "Sure?",
   "savecard": "Save card",
   "insertpicture": "Add image",
