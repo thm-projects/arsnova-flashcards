@@ -21,6 +21,10 @@ import "./card.html";
  * ############################################################################
  */
 
+/**
+ * Surrounds a selected text with the markdown tags for an image.
+ * @param {event} e - The DOM Event
+ */
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(), link;
@@ -158,6 +162,10 @@ function getCardsetCards() {
 	return query;
 }
 
+/**
+ * Get a set of cards for the learning algorithm by Leitner.
+ * @return {Collection} The card set
+ */
 function getLeitnerCards() {
 	var cards = [];
 	var learnedCards = Learned.find({
@@ -179,8 +187,11 @@ function getLeitnerCards() {
 	return cards;
 }
 
+/**
+ * Get a set of cards for the supermemo algorithm.
+ * @return {Collection} The card collection
+ */
 function getMemoCards() {
-	var cards = [];
 	var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
 
@@ -196,7 +207,7 @@ function getMemoCards() {
 		}
 	});
 	if (learned !== undefined) {
-		cards = Cards.find({
+		var cards = Cards.find({
 			cardset_id: Session.get('activeCardset')._id,
 			_id: learned.card_id
 		}).fetch();
