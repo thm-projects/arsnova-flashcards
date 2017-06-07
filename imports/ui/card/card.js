@@ -265,7 +265,9 @@ Template.btnCard.events({
 			$('#helpNewHinttext').html(TAPi18n.__('text_max'));
 			$('#helpNewHinttext').css('color', '#b94a48');
 		}
-		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000) {
+		var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
+		var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
+		if (editorsEmpty && editorsValidLength) {
 			var subject = $('#subjectEditor').val();
 			var front = $('#frontEditor').val();
 			var back = $('#backEditor').val();
@@ -479,11 +481,7 @@ Template.backEditor.events({
 
 Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
-		if ((this.difficulty === undefined && type === 0) || (type == this.difficulty)) {
-			return true;
-		} else {
-			return false;
-		}
+		return ((this.difficulty === undefined && type === 0) || (type === this.difficulty));
 	}
 });
 
