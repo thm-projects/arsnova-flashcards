@@ -1,3 +1,9 @@
+<<<<<<< HEAD:tests/features/change-view/change-view_steps.js
+=======
+
+
+
+>>>>>>> unrelated to issue: Fixed the failing of CI by cleaning incorrectly formatted code, up:tests/features/Filter versetzt in der Pool-Ansicht/Filterversetzt_steps.js
 import {login, logout} from "../helper_functions";
 
 module.exports = function () {
@@ -30,9 +36,19 @@ module.exports = function () {
 		browser.click('#btnToListLayout');
 	});
 
+<<<<<<< HEAD:tests/features/change-view/change-view_steps.js
 	this.Then(/^they see the cardlist$/, function () {
 		browser.waitForExist('#cardset-list', 5000);
 	});
+=======
+	this.Then(/^User choose a Filter$/, function () {
+		browser.waitForExist('#cardset-list', 5000);
+	});
+
+	this.Then(/^User should see Filter in Order$/, function () {
+		browser.waitForExist('.cardsetInfo', 5000);
+	});
+>>>>>>> unrelated to issue: Fixed the failing of CI by cleaning incorrectly formatted code, up:tests/features/Filter versetzt in der Pool-Ansicht/Filterversetzt_steps.js
 
 	this.Then(/^they change the view back to cardset$/, function () {
 		browser.waitForVisible('#btnToCardLayout',5000);
@@ -48,4 +64,8 @@ module.exports = function () {
 	});
 };
 
+<<<<<<< HEAD:tests/features/change-view/change-view_steps.js
 // tests/features/change_view_steps.js
+=======
+// tests/features/Filterversetzt_steps.js
+>>>>>>> unrelated to issue: Fixed the failing of CI by cleaning incorrectly formatted code, up:tests/features/Filter versetzt in der Pool-Ansicht/Filterversetzt_steps.js
