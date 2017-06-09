@@ -453,9 +453,7 @@ Template.backEditor.events({
 
 Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
-		if (this.difficulty === undefined && type === 0) {
-			return true;
-		} else if (type == this.difficulty) {
+		if ((this.difficulty === undefined && type === 0) || (type == this.difficulty)) {
 			return true;
 		} else {
 			return false;
