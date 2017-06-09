@@ -284,13 +284,16 @@ Template.btnCard.events({
  * ############################################################################
  */
 
+/**
+ * Returns the front text of a card
+ * @return front text
+ */
 Template.frontEditor.helpers({
 	getFront: function () {
 		if (Session.get('frontText') !== undefined) {
 			return Session.get('frontText');
-		} else {
-			return "";
 		}
+		return "";
 	}
 });
 
@@ -342,13 +345,16 @@ Template.frontEditor.events({
  * ############################################################################
  */
 
+/**
+ * Returns the back text of a card
+ * @return back text
+ */
 Template.backEditor.helpers({
 	getBack: function () {
 		if (Session.get('backText') !== undefined) {
 			return Session.get('backText');
-		} else {
-			return "";
 		}
+		return "";
 	}
 });
 
@@ -400,13 +406,16 @@ Template.backEditor.events({
  * ############################################################################
  */
 
+/**
+ * Returns the hint text of a card
+ * @return hint of the card
+ */
 Template.hintEditor.helpers({
 	getHint: function () {
 		if (Session.get('hintText') !== undefined) {
 			return Session.get('hintText');
-		} else {
-			return "";
 		}
+		return "";
 	}
 });
 
