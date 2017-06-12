@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>320</x>
+      <y>150</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;30;90</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>320</y>
+      <w>390</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+erstellt</panel_attributes>
+    <additional_attributes>10.0;20.0;370.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>380</y>
+      <w>520</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+erstellt</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0;150.0;170.0;500.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>250</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+erstellt</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>790</x>
+      <y>260</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m1pos=-5,0
+m2=1
+m2pos=5,0</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>130</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+</panel_attributes>
+    <additional_attributes>60.0;100.0;60.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>950</x>
+      <y>450</y>
+      <w>120</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m1pos=-15,-10
+m2=*
+m2pos=0,10
+enthält</panel_attributes>
+    <additional_attributes>20.0;10.0;20.0;40.0;100.0;40.0;100.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>590</y>
+      <w>170</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+enthält &gt;</panel_attributes>
+    <additional_attributes>10.0;60.0;70.0;60.0;70.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>630</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+hat</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>550</y>
+      <w>250</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0;100.0;100.0;230.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>570</y>
+      <w>100</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>10</x>
+      <y>0</y>
+      <w>1260</w>
+      <h>760</h>
+    </coordinates>
+    <panel_attributes>arsnova.cards
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>610</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;60.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>400</y>
+      <w>80</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m1pos=0,-5
+m2=*
+m2pos=10,0
+liest</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;60.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>400</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>480</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>130</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Braintree
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>180</y>
+      <w>140</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;70.0;60.0;70.0;110.0;120.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>350</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+schaltet frei &gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>60</x>
+      <y>180</y>
+      <w>80</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;60.0;60.0;60.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>440</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Admin
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>530</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Backend
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>620</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Badge
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>530</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Lernfortschritt
+--
+Erfahrungspunkte</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>470</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Benachrichtigung
+--
+istNeu</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>620</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Lernkartei
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>760</x>
+      <y>620</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Fach
+--
+AnzahlKarten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>650</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>SuperMemo
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1010</x>
+      <y>520</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Lernkarte
+--
+Vorderseite
+Rückseite</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>230</y>
+      <w>270</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>Kartensatz
+--
+Thema
+Beschreibung
+Status
+GesamtBewertung
+Lizenz
+Modul-Langname
+Modul-Kurzname
+Modul-Nummer
+Kompetenzstufe
+Hochschule
+Studienfach</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>90</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Pool
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>240</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Bewertung
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>140</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>AllgemeinerBenutzer
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>240</y>
+      <w>290</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Benutzer
+--
+Sichtbarkeit
+MitgliedschaftTyp
+hatDozentFreigabe
+E-Mail
+Kennung
+Titel
+Nachname
+Vorname</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>780</x>
+      <y>770</y>
+      <w>491</w>
+      <h>331</h>
+    </coordinates>
+    <panel_attributes>ARSnova
+arsnova.cards
+THM, FB MNI, SoSe 2017
+https://git.thm.de/B-Team/flashcards
+v3.0 (902525d5)
+http://staging.arsnova.cards
+http://arsnova.cards
+Domänendiagramm
+UMLet v14.2
+v2.0
+31.05.2017
+Simon Heuser, Hermann Lallah
+07.06.2017
+Simon Heuser
+simon.heuser@mni.thm.de</panel_attributes>
+    <additional_attributes/>
+    <custom_code>height=330;
+
+int y=textHeight();
+String[] texts = {
+	"Projekt:",
+	"Projektbezeichnung:",
+	"Projektort und -zeitraum:",
+	"Projekt-Repository:",
+	"Release:",
+	"Staging Server:",
+	"Produktionsserver:",
+	"UML-Diagrammart:",
+	"UML-Tool:",
+	"Modellversion:",
+	"Erstelldatum:",
+	"Ersteller/in:",
+	"Letzte Änderung:",
+	"Letzter Bearbeiter",
+	"E-Mail:"
+};
+
+drawRectangle(0,0,width,height);
+
+for(int i = 0; i&lt;texts.length;i++) {
+	drawLine(0,y+5,width,y+5);
+	drawLine(170,y-20,170,y+5);
+	y += printLeft(texts[i],y);
+	y += 5;
+}
+
+y=textHeight();
+for(String line : textlines) {
+	y += printRight(line,y) + 5;
+}
+</custom_code>
+  </element>
+</diagram>
