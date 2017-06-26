@@ -229,7 +229,13 @@ const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
 		x = x.split("\n");
-		x = lib.parseGithubFlavoredMarkdown(x);
+		//NOTE:
+		// Set OverrideLineBreaks to false, otherwise everything written between two mathjax statements
+		// will be displayed as plain text and not as correctly formated html.
+		// Also almost all redundant whitespace is removed from learning card, which seems to be acceptable,
+		// in favor of correctly displayed markdown content.
+		// This might be changing some later time, until then this solution should be sufficient enough.
+		x = lib.parseGithubFlavoredMarkdown(x, false);
 		return lib.setLightBoxes(converter.makeHtml(x));
 	}
 });

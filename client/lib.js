@@ -147,12 +147,18 @@ export function parseMathjaxBlock(result, i, endDelimiter) {
  *  @returns {string} - The wrapped text
  * */
 export function setLightBoxes(content) {
-	$(content).find('img').each(function () {
+	var element = $(content);
+	$(element).find('img').each(function () {
 		var imageTitle = $(this).attr('alt');
 		var imageUrl = $(this).attr('src');
-		content = $(this).wrap('<a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '"></a>').parent().prop('outerHTML');
+		var wrapped = $(this).wrap('<a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '"></a>').parent().prop('outerHTML');
+		$(this).text(wrapped);
 	});
-	return content;
+
+	//NOTE:
+	// The jQueryObject -content- needs to be wrapped in an seperate element,
+	// otherwise only the first element in content will be returned by .html()
+	return $('<div/>').append(element).html();
 }
 
 /** Parses the card text for mathjax
