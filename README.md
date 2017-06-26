@@ -48,6 +48,11 @@ The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards
 ## Documentation 
 The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 
+### UML Diagrams
+- [Activity](https://git.thm.de/arsnova/flashcards/wikis/uml---activity-diagram)
+- [Domain model](https://git.thm.de/arsnova/flashcards/wikis/uml---domain-model-diagram)
+- [Use case](https://git.thm.de/arsnova/flashcards/wikis/uml---use-case-diagram)
+
 ## CI Pipeline
 [![build status](https://git.thm.de/arsnova/flashcards/badges/staging/build.svg)](https://git.thm.de/arsnova/flashcards/commits/staging)
 
