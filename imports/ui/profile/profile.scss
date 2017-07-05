@@ -1,5 +1,6 @@
 //colors
 $white: rgb(255, 255, 255);
+$black: rgb(0, 0 ,0);
 
 .badgeFooterProgress {
   margin-top: 8px;
@@ -130,4 +131,8 @@ $white: rgb(255, 255, 255);
 
 .panel-body {
   padding: 15px;
+}
+
+.profilepublic-rb-text-color {
+  color: $black !important;
 }
