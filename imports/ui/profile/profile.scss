@@ -133,6 +133,11 @@ $black: rgb(0, 0 ,0);
   padding: 15px;
 }
 
+.modal-content-for-buttons {
+  position: absolute;
+  padding-bottom: 10px;
+}
+
 .profilepublic-rb-text-color {
   color: $black !important;
 }
