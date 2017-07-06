@@ -169,13 +169,13 @@
                                     <div class="btn-group btn-group-justified" data-toggle="buttons">
                                         <label id="profilepublicoption1"
                                                class="btn btn-success profile-public {{#if
-                                                       getUser.visible}}active{{/if}}">
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/if}}">
                                             <input type="radio" name="visible" value="true">
                                             <div>{{_ "panel-body.profilepublicoption1"}}</div>
                                         </label>
                                         <label id="profilepublicoption2"
                                                class="btn btn-danger profile-private {{#unless
-                                                       getUser.visible}}active{{/unless}}">
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/unless}}">
                                             <input type="radio" name="visible" value="false">
                                             <div>{{_ "panel-body.profilepublicoption2"}}</div>
                                         </label>
