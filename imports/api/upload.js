@@ -49,6 +49,11 @@ Meteor.methods({
 			}
 
 			if (item.front !== "") {
+				let hlcodeReplacement = "\n```\n";
+				let regex = /<hlcode>|<\/hlcode>/g;
+				front = front.replace(regex, hlcodeReplacement);
+				back = back.replace(regex, hlcodeReplacement);
+
 				Cards.insert({
 					subject: subject,
 					difficulty: item.difficulty,
