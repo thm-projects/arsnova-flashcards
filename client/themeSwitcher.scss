@@ -21,7 +21,8 @@ $themes: (
     .navbar.navbar-default {
       background-color: $primary-color;
     }
-    .navbar-default .navbar-nav > .active > a {
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .open > a {
       background-color: $accent;
     }
     .glyphicon-chevron-down:before {
