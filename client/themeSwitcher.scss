@@ -87,6 +87,11 @@ $themes: (
     .info {
       color: $primary-color;
     }
+
+    .navbar.navbar-default .dropdown-menu li > a:hover {
+      color: $primary-color;
+    }
+
   }
 
 }
