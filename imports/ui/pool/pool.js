@@ -17,6 +17,7 @@ Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
+Session.setDefault('poolFilterSkillLevel');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
@@ -38,6 +39,9 @@ function prepareQuery() {
 	}
 	if (Session.get('poolFilterModule')) {
 		query.module = Session.get('poolFilterModule');
+	}
+	if (Session.get('poolFilterSkillLevel')) {
+		query.skillLevel = Session.get('poolFilterSkillLevel');
 	}
 }
 
@@ -102,6 +106,11 @@ function checkFilters() {
 	} else {
 		$(".filterModuleGroup").removeClass('active').first();
 	}
+	if (Session.get('poolFilterSkillLevel')) {
+		$(".filterSkillLevel").addClass('active');
+	} else {
+		$(".filterSkillLevel").removeClass('active').first();
+	}
 	filterCheckbox();
 }
 
@@ -144,6 +153,19 @@ function filterModule(event) {
 	resetInfiniteBar();
 }
 
+function filterSkillLevel(event) {
+	var button = $(".filterSkillLevelGroup");
+	if (!$(event.target).data('id')) {
+		button.removeClass("active");
+		Session.set('poolFilterSkillLevelVal', null);
+	} else {
+		button.addClass('active');
+		Session.set('poolFilterSkillLevelVal', $(event.target).data('id'));
+	}
+	Session.set('poolFilterSkillLevel', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
 /*
  * ############################################################################
  * category
@@ -181,6 +203,12 @@ Template.category.helpers({
 			return item.moduleNum;
 		});
 	},
+	getSkillLevels: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"skillLevel": 1}}).fetch(), function (item) {
+			return item.skillLevel;
+		});
+	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
 	},
@@ -207,6 +235,12 @@ Template.category.helpers({
 	},
 	poolFilterModule: function () {
 		return Session.get('poolFilterModuleVal');
+	},
+	hasSkillLevelFilter: function () {
+		return Session.get('poolFilterSkillLevel');
+	},
+	poolFilterSkillLevel: function () {
+		return Session.get('poolFilterSkillLevelVal');
 	},
 	moreResults: function () {
 		return checkRemainingCards();
@@ -315,6 +349,9 @@ Template.poolCardsetRow.events({
 	'click .filterModule': function (event) {
 		filterModule(event);
 	},
+	'click .filterSkillLevel': function (event) {
+		filterSkillLevel(event);
+	},
 	'click .filterCheckbox': function (event) {
 		Session.set('poolFilter', [$(event.target).data('id')]);
 		filterCheckbox();
@@ -331,6 +368,7 @@ Template.category.events({
 		Session.set('poolFilterCollege');
 		Session.set('poolFilterCourse');
 		Session.set('poolFilterModule');
+		Session.set('poolFilterSkillLevel');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 		checkFilters();
 		resetInfiniteBar();
@@ -363,6 +401,9 @@ Template.category.events({
 	},
 	'click .filterModule': function (event) {
 		filterModule(event);
+	},
+	'click .filterSkillLevel': function (event) {
+		filterSkillLevel(event);
 	},
 	'click .showMoreResults': function () {
 		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
