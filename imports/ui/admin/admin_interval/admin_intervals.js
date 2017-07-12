@@ -35,7 +35,7 @@ function saveInterval() {
 
 Template.admin_interval.events({
 	'keypress input': function (event) {
-		if (event.keyCode == 13) {
+		if (event.keyCode === 13) {
 			saveInterval();
 		}
 	},

@@ -228,7 +228,7 @@ Template.admin_cardset.events({
 		event.preventDefault();
 		var card = this;
 
-		if (event.target.className == "deleteCardAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
 			Session.set('cardId', card._id);
 		}
 	},

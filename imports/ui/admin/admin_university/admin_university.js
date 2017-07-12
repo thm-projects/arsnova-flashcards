@@ -54,7 +54,7 @@ function addCollegeAndCourse() {
 
 Template.admin_university.events({
 	'keypress input': function (event) {
-		if (event.keyCode == 13) {
+		if (event.keyCode === 13) {
 			addCollegeAndCourse();
 		}
 	},

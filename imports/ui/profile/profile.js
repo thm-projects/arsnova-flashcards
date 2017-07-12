@@ -1109,7 +1109,7 @@ Template.profileBadges.helpers({
 		var earnedBadges = Meteor.user().earnedBadges;
 		if (gained) {
 			for (var i = 0; i < earnedBadges.length; i++) {
-				if (index == earnedBadges[i].index && rank == earnedBadges[i].rank) {
+				if (index === earnedBadges[i].index && rank === earnedBadges[i].rank) {
 					return gained;
 				}
 			}
