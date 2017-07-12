@@ -96,6 +96,14 @@ $themes: (
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
       background-color: $primary-color;
     }
+
+    li.dropdown.open a.dropdown-toggle {
+      background-color: $accent;
+    }
+    li.dropdown.open ul.dropdown-menu a:hover {
+      color: $primary-text;
+    }
+
   }
 
 }
