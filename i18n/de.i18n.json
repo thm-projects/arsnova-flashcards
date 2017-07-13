@@ -132,7 +132,8 @@
     "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
     "skillLevel": "Kompetenzstufe",
-    "moreResults": "Zeige weitere Einträge"
+    "moreResults": "Zeige weitere Einträge",
+    "activeLearnphase": "Aktiv"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",

@@ -135,7 +135,8 @@
     "reset": "Reset filters",
     "rating": "Rating",
     "skillLevel": "Skill Level",
-    "moreResults": "Show more results"
+    "moreResults": "Show more results",
+    "activeLearnphase": "Active"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",

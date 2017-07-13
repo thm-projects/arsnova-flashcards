@@ -220,6 +220,9 @@
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit">{{_ "set-list.topic"}}:</span>
         <span class="cell col-xs-8 col-sm-9 col-md-9 col-lg-2 poolText panelUnit">
                 <span class="cell col-xs-10 col-sm-10 col-md-10 col-lg-10 topicName">
+                    {{#if this.learningActive}}
+                        <span class="label label-info" aria-label="active learnphase label">{{_ "set-list.activeLearnphase"}}</span>
+                    {{/if}}
                     {{this.name}}
                 </span>
                 <span class="cell badge cardsetBadge">
