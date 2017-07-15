@@ -18,6 +18,7 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterSkillLevel');
+Session.setDefault('poolFilterLearnphase');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
@@ -42,6 +43,16 @@ function prepareQuery() {
 	}
 	if (Session.get('poolFilterSkillLevel')) {
 		query.skillLevel = Session.get('poolFilterSkillLevel');
+	}
+	if (Session.get('poolFilterLearnphase') != null) {
+		/*NOTE:
+		 * Need to check explicitly agains null, because true and false are valid values for this filter.
+		 * Otherwise the boolean value stored in the session might evaluate the above condition to false,
+		 * which causes the next line to be skipped.
+		 * This is not intended, because the stored value is needed as filter property
+		 * for not yet started learning phases.
+		 */
+		query.learningActive = Session.get('poolFilterLearnphase');
 	}
 }
 
@@ -111,6 +122,11 @@ function checkFilters() {
 	} else {
 		$(".filterSkillLevel").removeClass('active').first();
 	}
+	if (Session.get('poolFilterLearnphase') != null) {
+		$(".filterLearnphase").addClass('active');
+	} else {
+		$(".filterLearnphase").removeClass('active').first();
+	}
 	filterCheckbox();
 }
 
@@ -166,6 +182,21 @@ function filterSkillLevel(event) {
 	resetInfiniteBar();
 }
 
+function filterLearnphase(event) {
+	if ($(event.target).data('id') === true) {
+		Session.set('poolFilterLearnphaseVal', true);
+		Session.set('poolFilterLearnphase', true);
+	} else if ($(event.target).data('id') === false) {
+		Session.set('poolFilterLearnphaseVal', false);
+		Session.set('poolFilterLearnphase', false);
+	} else {
+		Session.set('poolFilterLearnphaseVal');
+		Session.set('poolFilterLearnphase');
+	}
+
+	resetInfiniteBar();
+}
+
 /*
  * ############################################################################
  * category
@@ -209,6 +240,12 @@ Template.category.helpers({
 			return item.skillLevel;
 		});
 	},
+	getLearnphases: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"learningActive": 1}}).fetch(), function (item) {
+			return item.learningActive;
+		});
+	},
 	oddRow: function (index) {
 		return (index % 2 === 1);
 	},
@@ -241,6 +278,15 @@ Template.category.helpers({
 	},
 	poolFilterSkillLevel: function () {
 		return Session.get('poolFilterSkillLevelVal');
+	},
+	hasLearnphaseFilter: function () {
+		/*NOTE:
+		 * The stored value is allowed to be false, so we need to check against null for filter availability.
+		 */
+		return (Session.get('poolFilterLearnphase') != null);
+	},
+	poolFilterLearnphase: function () {
+		return Session.get('poolFilterLearnphaseVal');
 	},
 	moreResults: function () {
 		return checkRemainingCards();
@@ -370,6 +416,7 @@ Template.category.events({
 		Session.set('poolFilterModule');
 		Session.set('poolFilterSkillLevel');
 		Session.set('poolFilter', ["free", "edu", "pro"]);
+		Session.set('poolFilterLearnphase');
 		checkFilters();
 		resetInfiniteBar();
 	},
@@ -404,6 +451,9 @@ Template.category.events({
 	},
 	'click .filterSkillLevel': function (event) {
 		filterSkillLevel(event);
+	},
+	'click .filterLearnphase': function () {
+		filterLearnphase(event);
 	},
 	'click .showMoreResults': function () {
 		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);

@@ -133,7 +133,9 @@
     "rating": "Bewertung",
     "skillLevel": "Kompetenzstufe",
     "moreResults": "Zeige weitere Einträge",
-    "activeLearnphase": "Aktiv"
+    "learnphase": "Lernphase",
+    "activeLearnphase": "Aktiv",
+    "inactiveLearnphase": "Inaktiv"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",

@@ -193,6 +193,16 @@ Template.registerHelper("getSkillLevel", function (skillLevel) {
 	}
 });
 
+Template.registerHelper("getLearnphase", function (state) {
+	if (state === true) {
+		return TAPi18n.__('set-list.activeLearnphase');
+	} else if (state === false) {
+		return TAPi18n.__('set-list.inactiveLearnphase');
+	} else {
+		return TAPi18n.__('set-list.learnphase');
+	}
+});
+
 Template.registerHelper("getCardBackground", function (difficulty) {
 	switch (difficulty) {
 		case 0:
