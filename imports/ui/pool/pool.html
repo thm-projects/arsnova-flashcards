@@ -244,7 +244,7 @@
         <span class="cell col-xs-8 col-sm-9 col-md-9 col-lg-2 poolText panelUnit">
                 <span class="cell col-xs-10 col-sm-10 col-md-10 col-lg-10 topicName">
                     {{#if this.learningActive}}
-                        <span class="label label-info" aria-label="active learnphase label">{{_ "set-list.activeLearnphase"}}</span>
+                        <span class="label label-info" aria-label="active learnphase label">{{_ "set-list.activeLearnphase"}}: {{getLearners this._id}}</span>
                     {{/if}}
                     {{this.name}}
                 </span>
