@@ -1040,24 +1040,6 @@ Template.profileXp.helpers({
 	}
 });
 
-function getLvl() {
-	var user = Meteor.users.findOne(Router.current().params._id);
-	if (user === undefined) {
-		return null;
-	}
-	return user.lvl;
-}
-
-function xpForLevel(level) {
-	var points = 0;
-
-	for (var i = 1; i < level; i++) {
-		points += Math.floor(i + 30 * Math.pow(2, i / 10));
-	}
-	return Math.floor(points / 4);
-}
-
-
 Template.profileXp.events({
 	'onload': setInterval(function () {
 		$('#well' + backgroundColorBox1).css("background-color", "lightblue");

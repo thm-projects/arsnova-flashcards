@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
+import {getAuthorName} from "../../api/cardset.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -99,18 +100,7 @@ Template.registerHelper("getCollege", function (value) {
 });
 
 Template.registerHelper("getAuthorName", function (owner) {
-	var author = Meteor.users.findOne({"_id": owner});
-	if (author) {
-		var degree = "";
-		if (author.profile.title) {
-			degree = author.profile.title;
-		}
-		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-			return author.profile.givenname;
-		}
-		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-	}
+	return getAuthorName(owner);
 });
 
 Template.registerHelper("getAuthor", function (owner) {
