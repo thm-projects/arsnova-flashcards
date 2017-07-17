@@ -201,7 +201,8 @@
     "skillLevel0": "Allgemein",
     "skillLevel1": "Fachbegriffe",
     "skillLevel2": "Theoretische Grundlagen",
-    "skillLevel3": "Anwendung"
+    "skillLevel3": "Anwendung",
+    "deleteCards": "Möchten Sie wirklich alle Karten für den Kartensatz \"__name__\" löschen?"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -546,6 +547,7 @@
   "searchpicture": "Bildsuche",
   "declinecard": "Abbrechen",
   "deletecard": "Karte löschen",
+  "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Karte speichern",
   "insertpicture": "Bild einfügen",
