@@ -424,8 +424,7 @@ Template.cardsetInfo.helpers({
 			ratings.forEach(function (rate) {
 				amount = amount + rate.rating;
 			});
-			var result = (amount / count).toFixed(2);
-			return result;
+			return ((amount / count).toFixed(2));
 		} else {
 			return 0;
 		}
@@ -478,8 +477,7 @@ Template.cardsetInfo.helpers({
 	},
 	getStatus: function () {
 		if (this.visible) {
-			var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-			return kind;
+			return (this.kind.charAt(0).toUpperCase() + this.kind.slice(1));
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
 				return TAPi18n.__('sidebar-nav.review');
@@ -649,10 +647,10 @@ Template.cardsetSidebar.helpers({
 
 Template.cardsetStartLearnForm.events({
 	"input #inputLearningStart": function () {
-		let start = new Date($('#inputLearningStart').val());
-		let end = new Date($('#inputLearningEnd').val());
+		const start = new Date($('#inputLearningStart').val());
+		const end = new Date($('#inputLearningEnd').val());
 		if (isNaN(start.getTime()) || start < new Date()) {
-			let today = new Date();
+			const today = new Date();
 			$('#inputLearningStart').val(today.getFullYear() + "-" + ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + "-" + (today.getDate() < 10 ? '0' : '') + end.getDate());
 		}
 		if (start >= end) {
@@ -662,7 +660,7 @@ Template.cardsetStartLearnForm.events({
 		document.getElementById('inputLearningEnd').setAttribute("min", (start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate()));
 	},
 	"input #inputLearningEnd": function () {
-		let start = new Date($('#inputLearningStart').val());
+		const start = new Date($('#inputLearningStart').val());
 		let end = new Date($('#inputLearningEnd').val());
 		if (isNaN(end.getTime()) || start >= end) {
 			end = start;

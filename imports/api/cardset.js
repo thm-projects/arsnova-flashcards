@@ -4,6 +4,11 @@ import {Learned} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 
+/**
+ * Returns the degree, the givenname and the birthname from the author of a cardset
+ * @param owner - The database ID of the author
+ * @returns {*} - Degree + givenname + birthname
+ */
 export function getAuthorName(owner) {
 	var author = Meteor.users.findOne({"_id": owner});
 	if (author) {

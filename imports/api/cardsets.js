@@ -159,6 +159,20 @@ CardsetsIndex = new EasySearch.Index({
 });
 
 Meteor.methods({
+	/**
+	 * Adds a cardset to the personal deck of cards.
+	 * @param {String} name - Title of the cardset
+	 * @param {String} description - Description for the content of the cardset
+	 * @param {Boolean} visible - Visibility of the cardset
+	 * @param {Boolean} ratings - Rating of the cardset
+	 * @param {String} kind - Type of cards
+	 * @param {String} module - Modulename
+	 * @param {String} moduleShort - Abbreviation for the module
+	 * @param {String} moduleNum - Number of the module
+	 * @param {Number} skillLevel - Skill level of the cardset
+	 * @param {String} college - Assigned university
+	 * @param {String} course - Assigned university course
+	 */
 	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course) {
 		check(name, String);
 		check(description, String);
@@ -220,6 +234,10 @@ Meteor.methods({
 		});
 		Meteor.call('checkLvl');
 	},
+	/**
+	 * Delete selected Cardset from database if user is auhorized.
+	 * @param {String} id - Database id of the cardset to be deleted
+	 */
 	deleteCardset: function (id) {
 		check(id, String);
 		// Make sure only the task owner can make a task private
@@ -266,6 +284,10 @@ Meteor.methods({
 			}
 		);
 	},
+	/**
+	 * Deactivate the learning phase for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the learning phase is to be deactivated.
+	 */
 	deactivateLearning: function (id) {
 		check(id, String);
 
@@ -280,6 +302,15 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
+	/**
+	 * Activate the learning phase for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
+	 * @param {String} maxCards - Maximum number of daily learnable cards
+	 * @param {String} daysBeforeReset - Maximum overrun in days
+	 * @param {Date} learningStart - Start date of the learnin gphase
+	 * @param {Date} learningEnd - End date of the learning phase
+	 * @param {String} learningInterval - Learning interval in days
+	 */
 	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
 		check(id, String);
 		check(maxCards, String);
@@ -326,6 +357,18 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
+	/**
+	 * Updates the selected cardset if user is authorized.
+	 * @param {String} id - ID of the cardset to be updated
+	 * @param {String} name - Title of the cardset
+	 * @param {String} description - Description for the content of the cardset
+	 * @param {String} module - Module name
+	 * @param {String} moduleShort - Abbreviation for the module
+	 * @param {String} moduleNum - Number of the module
+	 * @param {Number} skillLevel - Skill level of the cardset
+	 * @param {String} college - Assigned university
+	 * @param {String} course - Assigned university course
+	 */
 	updateCardset: function (id, name, description, module, moduleShort, moduleNum, skillLevel, college, course) {
 		check(id, String);
 		check(name, String);

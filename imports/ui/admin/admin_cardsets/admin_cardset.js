@@ -26,11 +26,7 @@ Template.admin_cardset.helpers({
 		return kind === this.kind;
 	},
 	kindWithPrice: function () {
-		if (Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
-			return true;
-		} else {
-			return false;
-		}
+		return (Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
 	},
 	priceIsSelected: function (price) {
 		return price === this.price ? 'selected' : '';
@@ -45,11 +41,7 @@ Template.admin_cardset.helpers({
 		}
 	},
 	isPublished: function () {
-		if (Session.get('kind') === 'free' || Session.get('kind') === 'edu' || Session.get('kind') === 'pro') {
-			return true;
-		} else {
-			return false;
-		}
+		return (Session.get('kind') === 'free' || Session.get('kind') === 'edu' || Session.get('kind') === 'pro');
 	},
 	cardListCardsetAdmin: function () {
 		return Cards.find({cardset_id: this._id});
@@ -63,16 +55,14 @@ Template.admin_cardset.helpers({
 					key: 'front', label: TAPi18n.__('admin.front'), sortable: false,
 					tmpl: Template.cardContentFront,
 					cellClass: function (value, object) {
-						var css = 'front_' + object._id;
-						return css;
+						return ('front_' + object._id);
 					}
 				},
 				{
 					key: 'back', label: TAPi18n.__('admin.back'), sortable: false,
 					tmpl: Template.cardContentBack,
 					cellClass: function (value, object) {
-						var css = 'back_' + object._id;
-						return css;
+						return ('back_' + object._id);
 					}
 				},
 				{

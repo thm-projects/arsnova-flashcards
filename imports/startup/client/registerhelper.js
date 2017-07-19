@@ -116,7 +116,7 @@ Template.registerHelper("getAuthorName", function (owner) {
 Template.registerHelper("getAuthor", function (owner) {
 	var author = Meteor.users.findOne({"_id": owner});
 	if (author) {
-		var degree = "";
+		var degree;
 		if (author.profile.title) {
 			degree = author.profile.title;
 		} else {

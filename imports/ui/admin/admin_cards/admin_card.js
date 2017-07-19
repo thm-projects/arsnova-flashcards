@@ -82,11 +82,7 @@ Template.admin_card.helpers({
 		if (cardset_id) {
 			var cardset = Cardsets.findOne({_id: cardset_id});
 
-			if (cardset.userDeleted) {
-				return false;
-			} else {
-				return true;
-			}
+			return (!cardset.userDeleted);
 		}
 	},
 	getCardsetname: function (cardset_id) {
@@ -123,9 +119,7 @@ Template.admin_card.helpers({
 		}
 	},
 	isDifficultyChecked: function (type) {
-		if (this.difficulty === undefined && type === 0) {
-			return true;
-		} else if (type == this.difficulty) {
+		if ((this.difficulty === undefined && type === 0) || ((type == this.difficulty))) {
 			return true;
 		} else {
 			return false;

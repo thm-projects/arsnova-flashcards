@@ -57,7 +57,14 @@ Template.memo.helpers({
 	}
 });
 
+/**
+ * Declare event handlers for instances of the memo template.
+ */
 Template.memo.events({
+	/**
+	 * Show Answer in SuperMemo mode
+	 * Sets the showAnswer variable of the Session = true
+	 */
 	"click #memoShowAnswer": function () {
 		Session.set('showAnswer', true);
 	},
@@ -72,6 +79,10 @@ Template.memo.events({
 		Meteor.call("updateLearnedMemo", currentLearned._id, grade);
 		Session.set("showAnswer", false);
 	},
+	/**
+	 * Go back to cardset from SuperMemo mode
+	 * Go back one page in the history, on click of the "Return to cardset" button
+	 */
 	"click #back-button": function () {
 		window.history.go(-1);
 	}
