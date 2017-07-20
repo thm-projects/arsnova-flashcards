@@ -432,7 +432,7 @@
       "reason": "Enter a reason for rejecting the request"
     },
     "money": {
-      "buy": "Buy cardset for",
+      "buy": "Buy cardset",
       "pro": "Learn as premium-user",
       "bought": "Thank you for your payment!"
     }
