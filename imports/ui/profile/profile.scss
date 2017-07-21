@@ -129,10 +129,6 @@ $black: rgb(0, 0 ,0);
   color: $white !important;
 }
 
-.panel-body {
-  padding: 15px;
-}
-
 .modal-content-for-buttons {
   position: absolute;
   padding-bottom: 10px;
@@ -140,4 +136,24 @@ $black: rgb(0, 0 ,0);
 
 .profilepublic-rb-text-color {
   color: $black !important;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.list-group li{
+ margin: 1em;
+}
+
+.panel-footer{
+ margin-top: 2em;
+}
+
+.red-passage{
+ color: red;
+}
+
+.green-passage{
+  color: green;
 }
