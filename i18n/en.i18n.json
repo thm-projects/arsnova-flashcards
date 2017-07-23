@@ -78,6 +78,16 @@
     "title": "Leave cardset",
     "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
   },
+  "confirm-enter-learnphase": {
+    "title": "Join active learnphase",
+    "text": "Do you really want to join this active learnphase?",
+    "enter": "Enter"
+  },
+  "confirm-leave-learnphase": {
+    "btn-txt": "Leave Learning-Phase",
+    "title": "Leave the active Learning-Phase",
+    "text": "Do you really want to leave this active Learning-Phase? If you accept this, then your entire learning progress will be deleted."
+  },
   "confirm-form-profile": {
     "title": "Delete user profile",
     "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",

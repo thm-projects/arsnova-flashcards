@@ -576,6 +576,27 @@ Template.cardsetInfo.events({
 
 /*
  * ############################################################################
+ * leaveLearnPhaseForm
+ * ############################################################################
+ */
+
+Template.leaveLearnPhaseForm.events({
+	'click #leaveLearnPhaseConfirm': function () {
+		var id = Session.get('cardsetId');
+
+
+		$('#leaveModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#leaveModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLearned", id);
+			Router.go('home');
+		});
+	}
+});
+
+/*
+ * ############################################################################
  * cardsetSidebar
  * ############################################################################
  */
