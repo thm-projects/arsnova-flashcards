@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Ratings} from "../../api/ratings.js";
+import {Profile} from "../profile/profile.js";
 import {Learned} from "../../api/learned.js";
 import "./pool.html";
 
@@ -83,6 +84,7 @@ function showMoreVisible() {
 		}
 	}
 }
+
 $(window).scroll(showMoreVisible);
 
 function filterCheckbox() {
@@ -320,6 +322,11 @@ Template.showLicense.helpers({
 });
 
 Template.poolCardsetRow.helpers({
+	isProfileCompleted: function () {
+		if (Meteor.user()) {
+			return Meteor.user().profile.completed;
+		}
+	},
 	getAverageRating: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
@@ -392,7 +399,6 @@ Template.poolCardsetRow.helpers({
 		return (_.pluck(distinctData, "user_id").length);
 	}
 });
-
 
 Template.poolCardsetRow.events({
 	'click .filterCollege': function (event) {
@@ -474,6 +480,19 @@ Template.category.events({
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
+	}
+});
+
+Template.completeProfileModal.events({
+	"click #completeProfileGoToProfile": function () {
+		$('#completeProfileModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#completeProfileModal').on('hidden.bs.modal', function () {
+			Router.go('profileSettings', {
+				_id: Meteor.userId()
+			});
+		});
 	}
 });
 

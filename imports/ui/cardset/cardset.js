@@ -583,8 +583,6 @@ Template.cardsetInfo.events({
 Template.leaveLearnPhaseForm.events({
 	'click #leaveLearnPhaseConfirm': function () {
 		var id = Session.get('cardsetId');
-
-
 		$('#leaveModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
