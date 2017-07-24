@@ -582,6 +582,7 @@
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte übrig",
+  "box_stats": "Lernstatistik",
   "box_status_plural": "__count__ Karten übrig",
   "leitner_status": "Noch eine Karte übrig für die aktuelle Lerneinheit",
   "leitner_status_plural": "Noch __count__ Karten übrig in der aktuellen Lerneinheit",

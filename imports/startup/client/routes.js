@@ -49,6 +49,11 @@ Router.route('/cardset/:_id', {
 	}
 });
 
+Router.route('/cardset/:_id/stats', {
+	name: 'cardsetstats',
+	template: 'cardsetLearnActivityStatistic'
+});
+
 Router.route('/cardsetlist', function () {
 	this.redirect('created');
 });
