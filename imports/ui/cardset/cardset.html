@@ -40,7 +40,7 @@
                     {{/if}}
                     {{> cardsetSidebar}}
                     {{#if isActiveRoute 'cardsetdetailsid'}}
-                        {{#if learningActive}}
+                        {{#if lerningActiveAndNotEditor}}
                             {{> leitnerLearning}}
                         {{else}}
                             {{#if countCards this._id}}

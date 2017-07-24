@@ -44,6 +44,9 @@ Meteor.methods({
 				return d.user_id;
 			});
 			for (var k = 0; k < distinctData.length; k++) {
+				if (distinctData[k].user_id === Meteor.userId()) {
+					continue;
+				}
 				var user = Meteor.users.find({_id: distinctData[k].user_id}).fetch();
 				content += user[0].profile.givenname + colSep + user[0].profile.birthname + colSep + user[0].email + colSep;
 				data = Learned.find({cardset_id: cardset_id, user_id: distinctData[k].user_id}).fetch();

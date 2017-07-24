@@ -127,6 +127,12 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
+	'lerningActiveAndNotEditor': function () {
+		if (this.owner !== Meteor.userId() && this.learningActive) {
+			return true;
+		}
+		return false;
+	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
 		var cardsetKind = this.kind;
