@@ -388,6 +388,9 @@ Template.cardsetList.helpers({
 		}, {
 			sort: Session.get("cardSort")
 		});
+	},
+	isDisabled: function () {
+		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 
