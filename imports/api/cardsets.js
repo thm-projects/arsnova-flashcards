@@ -190,10 +190,6 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		var nameTitle = 'undefined';
-		if (Meteor.user().profile.title) {
-			nameTitle = Meteor.user().profile.title;
-		}
 		Cardsets.insert({
 			name: name,
 			description: description,

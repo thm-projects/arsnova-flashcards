@@ -131,7 +131,11 @@
     "everything": "Alles",
     "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
-    "moreResults": "Zeige weitere Einträge"
+    "skillLevel": "Kompetenzstufe",
+    "moreResults": "Zeige weitere Einträge",
+    "learnphase": "Lernphase",
+    "activeLearnphase": "Aktiv",
+    "inactiveLearnphase": "Inaktiv"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
