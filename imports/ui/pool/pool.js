@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Ratings} from "../../api/ratings.js";
-import {Profile} from "../profile/profile.js";
 import {Learned} from "../../api/learned.js";
 import "./pool.html";
 
@@ -300,6 +299,21 @@ Template.category.greeting = function () {
 	return Session.get('authors');
 };
 
+Template.enterActiveLearnphaseModal.events({
+	'click #enterActiveLearnphaseConfirm': function () {
+		if (Session.get('selectedCardset')) {
+			$('#enterActiveLearnphaseModal').modal('hide');
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
+			$('#enterActiveLearnphaseModal').on('hidden.bs.modal', function () {
+				Router.go('cardsetdetailsid', {
+					_id: Session.get('selectedCardset')
+				});
+			});
+		}
+	}
+});
+
 Template.showLicense.helpers({
 	getTopic: function () {
 		if (Session.get('selectedCardset')) {
@@ -322,9 +336,33 @@ Template.showLicense.helpers({
 });
 
 Template.poolCardsetRow.helpers({
+	isAlreadyLearning: function () {
+		if (this.owner === Meteor.userId()) {
+			return true;
+		}
+		let learnedCards = Learned.find({
+			user_id: Meteor.userId()
+		});
+		let learnedCardsets = [];
+		learnedCards.forEach(function (learnedCard) {
+			if ($.inArray(learnedCard.cardset_id, learnedCardsets) === -1) {
+				learnedCardsets.push(learnedCard.cardset_id);
+			}
+		});
+		if (learnedCardsets.indexOf(this._id) != -1) {
+			return true;
+		} else {
+			return false;
+		}
+	},
 	isProfileCompleted: function () {
-		if (Meteor.user()) {
-			return Meteor.user().profile.completed;
+		if (this.owner === Meteor.userId()) {
+			return true;
+		}
+		if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
+			return true;
+		} else {
+			return false;
 		}
 	},
 	getAverageRating: function () {
@@ -381,7 +419,10 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
 		}
-	},
+	}
+});
+
+Template.poolTitleContent.helpers({
 	getMaximumText: function (text) {
 		const maxLength = 15;
 		const textSplitted = text.split(" ");
@@ -418,6 +459,9 @@ Template.poolCardsetRow.events({
 		filterCheckbox();
 	},
 	'click .showLicense': function (event) {
+		Session.set('selectedCardset', $(event.target).data('id'));
+	},
+	'click .poolText ': function (event) {
 		Session.set('selectedCardset', $(event.target).data('id'));
 	}
 });

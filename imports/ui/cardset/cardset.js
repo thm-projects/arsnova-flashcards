@@ -1137,8 +1137,10 @@ Template.reportCardsetForm.events({
 
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
-		subscribeForPushNotification();
-		Meteor.call("addToLeitner", this);
+		if (this.owner !== Meteor.userId()) {
+			subscribeForPushNotification();
+			Meteor.call("addToLeitner", this);
+		}
 	},
 	learningEnded: function () {
 		return (this.learningEnd.getTime() < new Date().getTime());

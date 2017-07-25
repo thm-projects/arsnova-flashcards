@@ -81,7 +81,8 @@
   "confirm-enter-learnphase": {
     "title": "Join active learnphase",
     "text": "Do you really want to join this active learnphase?",
-    "enter": "Enter"
+    "enter": "Enter",
+    "close": "Close"
   },
   "confirm-leave-learnphase": {
     "btn-txt": "Leave Learning-Phase",
