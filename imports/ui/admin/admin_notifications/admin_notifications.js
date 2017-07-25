@@ -391,7 +391,7 @@ Template.admin_notifications.events({
 		var cardset = Cardsets.findOne({_id: id});
 		var user = Meteor.users.findOne({_id: id});
 
-		if (event.target.className == "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
 			Session.set('notificationId', notification._id);
 		}
 		if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
@@ -417,7 +417,7 @@ Template.admin_notifications.events({
 				Session.set('isReceiver', false);
 			}
 		}
-		if (event.target.className == 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className == "fa fa-university") {
+		if (event.target.className === 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className === "fa fa-university") {
 			Session.set('lecturerrequest', notification.request);
 			Session.set('request_id', notification.sender_id);
 			Session.set('requesttext', notification.text);

@@ -9,7 +9,7 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.Given(/^User is on the poolview with username "([^"]*)"$/, function (arg1) {
-		if (browser.getUrl() != "http://localhost:3000") {
+		if (browser.getUrl() !== "http://localhost:3000") {
 			browser.url('http://localhost:3000');
 		}
 		login(arg1);

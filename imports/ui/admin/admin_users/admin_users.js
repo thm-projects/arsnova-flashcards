@@ -207,10 +207,10 @@ Template.admin_users.events({
 		event.preventDefault();
 		var user = this;
 
-		if (event.target.className == "deleteUserAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteUserAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
 			Session.set('userId', user._id);
 		}
-		if (event.target.className == "mailtoUserAdmin btn btn-xs btn-default" || event.target.className == "fa fa-envelope") {
+		if (event.target.className === "mailtoUserAdmin btn btn-xs btn-default" || event.target.className === "fa fa-envelope") {
 			Session.set('userId', user._id);
 			Session.set('getUsername', user.profilename);
 		}

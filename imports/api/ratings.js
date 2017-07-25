@@ -10,6 +10,8 @@ if (Meteor.isServer) {
 	Meteor.publish("ratings", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			return Ratings.find();
+		} else {
+			return [];
 		}
 	});
 }

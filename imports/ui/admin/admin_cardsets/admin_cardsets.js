@@ -93,7 +93,7 @@ Template.admin_cardsets.events({
 		event.preventDefault();
 		var cardset = this;
 
-		if (event.target.className == "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
 			Session.set('cardsetId', cardset._id);
 		}
 	},
