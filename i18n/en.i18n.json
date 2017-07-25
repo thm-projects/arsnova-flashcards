@@ -583,6 +583,7 @@
   "know": "Known",
   "notknow": "Not known",
   "box_status": "One card left",
+  "box_stats": "Learn Statistic",
   "box_status_plural": "__count__ cards left",
   "leitner_status": "Only one card left for the current lesson plan",
   "leitner_status_plural": "Only __count__ cards left for the current lesson plan",

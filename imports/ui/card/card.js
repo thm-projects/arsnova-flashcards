@@ -208,6 +208,12 @@ function getMemoCards() {
 Template.btnCard.helpers({
 	isEditMode: function () {
 		return ActiveRoute.name('editCard');
+	},
+	learningActive: function () {
+		return Cardsets.findOne(Router.current().params._id).learningActive;
+	},
+	isDisabled: function () {
+		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 

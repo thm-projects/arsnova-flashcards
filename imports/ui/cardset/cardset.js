@@ -127,6 +127,12 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
+	'lerningActiveAndNotEditor': function () {
+		if (this.owner !== Meteor.userId() && this.learningActive) {
+			return true;
+		}
+		return false;
+	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
 		var cardsetKind = this.kind;
@@ -382,6 +388,9 @@ Template.cardsetList.helpers({
 		}, {
 			sort: Session.get("cardSort")
 		});
+	},
+	isDisabled: function () {
+		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 
@@ -626,6 +635,18 @@ Template.cardsetSidebar.events({
 				hiddenElement.click();
 			}
 		});
+	},
+	"click #showStats": function () {
+		var cardset_id = Template.parentData(1)._id;
+		Meteor.call("getLearningData", cardset_id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
+			}
+			if (result) {
+				Session.set("cardsetStats", result);
+				Router.go('cardsetstats', {_id: Router.current().params._id});
+			}
+		});
 	}
 });
 
@@ -641,11 +662,29 @@ Template.cardsetSidebar.helpers({
 		}
 	}
 });
+
 /*
- * ############################################################################
- * cardsetStartLearnForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetLearnActivityStatistic
+* ############################################################################
+*/
+Template.cardsetLearnActivityStatistic.helpers({
+	getCardsetStats: function () {
+		return Session.get("cardsetStats");
+	}
+});
+
+Template.cardsetLearnActivityStatistic.events({
+	"click #closeStats": function () {
+		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+	}
+});
+
+/*
+* ############################################################################
+* cardsetStartLearnForm
+* ############################################################################
+*/
 
 Template.cardsetStartLearnForm.events({
 	"input #inputLearningStart": function () {

@@ -136,7 +136,7 @@
 <template name="btnCard">
     <div class="col-md-12">
         {{#if isEditMode}}
-            <button id="cardDelete" class="btn btn-warning btn-raised col-xs-12 col-sm-3">{{_ "deletecard"}}</button>
+        <button id="cardDelete" class="btn {{#if learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_ "deletecard"}}</button>
                 <button id="changeDeleteButton" style="display: none;"
                         class="btn btn-danger btn-raised col-xs-12 col-sm-3" onclick="history.go(-1)">{{_
                 "confirmcard"}}</button>

@@ -40,7 +40,7 @@
                     {{/if}}
                     {{> cardsetSidebar}}
                     {{#if isActiveRoute 'cardsetdetailsid'}}
-                        {{#if learningActive}}
+                        {{#if lerningActiveAndNotEditor}}
                             {{> leitnerLearning}}
                         {{else}}
                             {{#if countCards this._id}}
@@ -151,14 +151,14 @@
                             <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                         </button>
                     </div>
-                    <div class="btn-group btn-group-raised">
-                        <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
-                                data-toggle="modal"
-                                data-target="#deleteCardsModal" {{disableIfOffline}}>
-                            <i class="fa fa-trash"></i> {{_ "deleteCards"}}
-                        </button>
-                    </div>
                     {{#unless learningActive}}
+                        <div class="btn-group btn-group-raised">
+                            <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                                    data-toggle="modal"
+                                    data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                            </button>
+                        </div>
                         <div class="btn-group btn-group-raised">
                             <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"
                                 {{disableIfOffline}}>
@@ -239,6 +239,10 @@
                             <button id="exportCSV" class="btn btn-default btn-raised btn-block{{#if
                                     learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
                                     "box_export"}}</button>
+                            <button id="showStats" class="btn btn-default btn-raised btn-block{{#if
+                                    learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>
+                                    {{_ "box_stats"}}
+                            </button>
                         {{/if}}
                     {{/if}}
                     {{#unless isCardsetOwner _id}}
@@ -314,10 +318,10 @@
                                    href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
-                                   title='{{_ "deletecard"}}' data-toggle="modal" data-target="#deleteCardsModal">
-                                    <i class="glyphicon glyphicon-ban-circle"></i>
-                                </a>
+                                <button class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
+                                   {{isDisabled}} title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
+                                    <i class="glyphicon glyphicon-ban-circle" ></i>
+                                </button>
                             </td>
                         {{/if}}
                     </tr>
@@ -656,7 +660,7 @@
                     <br/>
                     <hr/>
 
-                    <button id="cardDelete" class="btn btn-danger btn-setDelete">{{_
+                    <button id="cardDelete" class="btn {{#if learningActive}} btn-success {{else}} btn-default btn-setDelete{{/if}} " {{isDisabled}}>{{_
                             "confirm-form.title"}}</button>
                     <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
@@ -952,4 +956,40 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="cardsetLearnActivityStatistic">
+  <div class="container" >
+  <div style="overflow-x:auto;">
+    <table  class="table table-striped table-hover ">
+      <tbody>
+          <tr class="active">
+             <th>{{_ "panel-body.givenname"}}</th>
+             <th>{{_ "panel-body.birthname"}}</th>
+             <th>{{_ "panel-body.email"}}</th>
+             <th>{{_ "subject1"}}</th>
+             <th>{{_ "subject2"}}</th>
+             <th>{{_ "subject3"}}</th>
+             <th>{{_ "subject4"}}</th>
+             <th>{{_ "subject5"}}</th>
+             <th>{{_ "subject6"}}</th>
+          </tr>
+        {{#each getCardsetStats}}
+          <tr>
+            <th>{{this.givenname}}</th>
+            <th>{{this.birthname}}</th>
+            <th>{{this.email}}</th>
+            <th>{{this.box1}}</th>
+            <th>{{this.box2}}</th>
+            <th>{{this.box3}}</th>
+            <th>{{this.box4}}</th>
+            <th>{{this.box5}}</th>
+            <th>{{this.box6}}</th>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-info btn-block btn-raised" id="closeStats">{{_ "access-denied.button"}}</a>
+  </div>
 </template>

@@ -181,6 +181,10 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
+		if (cardset.learningActive) {
+			throw new Meteor.Error("not-possible active learnphase");
+		}
+
 		var countCards = Cards.find({cardset_id: cardset._id}).count();
 		if (countCards <= 5) {
 			Cardsets.update(cardset._id, {
