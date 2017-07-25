@@ -397,6 +397,8 @@
     "name": "Name",
     "author": "Autor",
     "rating": "Bewertung",
+    "userRating": "Deine Bewertung ",
+    "notRated": "Noch nicht bewertet",
     "quantity": "Kartenanzahl",
     "release": "Veröffentlicht",
     "deleted": "Gelöscht",
