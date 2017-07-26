@@ -795,8 +795,9 @@
                             <h3>STANDARD</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead">
-                            <h2>0€</h2></p>
+                            <div class="lead">
+                                <h2>0€</h2>
+                            </div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
@@ -823,8 +824,8 @@
                             <h3>PRO</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead">
-                            <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
+                            <div class="lead">
+                            <h2>6.99€ / {{_ "billing.plan.month"}}</h2></div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
@@ -833,7 +834,7 @@
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button class="btn btn-block btn-success btn-raised disabled">{{_
+                                <button id="upgrade" class="btn btn-block btn-success btn-raised disabled">{{_
                                         "billing.plan.actual"}}</button>
                             {{else}}
                                 <form role="form">
