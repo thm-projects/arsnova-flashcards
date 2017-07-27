@@ -576,6 +576,25 @@ Template.cardsetInfo.events({
 
 /*
  * ############################################################################
+ * leaveLearnPhaseForm
+ * ############################################################################
+ */
+
+Template.leaveLearnPhaseForm.events({
+	'click #leaveLearnPhaseConfirm': function () {
+		var id = Session.get('cardsetId');
+		$('#leaveModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#leaveModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLearned", id);
+			Router.go('home');
+		});
+	}
+});
+
+/*
+ * ############################################################################
  * cardsetSidebar
  * ############################################################################
  */
@@ -1118,8 +1137,10 @@ Template.reportCardsetForm.events({
 
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
-		subscribeForPushNotification();
-		Meteor.call("addToLeitner", this);
+		if (this.owner !== Meteor.userId()) {
+			subscribeForPushNotification();
+			Meteor.call("addToLeitner", this);
+		}
 	},
 	learningEnded: function () {
 		return (this.learningEnd.getTime() < new Date().getTime());

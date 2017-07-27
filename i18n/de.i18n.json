@@ -78,6 +78,22 @@
     "title": "Kartensatz verlassen",
     "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
   },
+  "confirm-enter-learnphase": {
+    "title": "Aktiver Lernphase beitreten",
+    "text": "Wollen Sie dieser aktiven Lernphase wirklich beitreten?",
+    "enter": "Beitreten",
+    "close": "Schließen"
+  },
+  "confirm-leave-learnphase": {
+    "btn-txt": "Lernphase verlassen",
+    "title": "Aktive Lernphase verlassen",
+    "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
+  },
+  "complete-profile": {
+    "btn-txt": "Schließen",
+    "title": "Nutzerprofil unvollständig",
+    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+  },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
     "text": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
