@@ -83,7 +83,6 @@ function showMoreVisible() {
 		}
 	}
 }
-
 $(window).scroll(showMoreVisible);
 
 function filterCheckbox() {
@@ -299,21 +298,6 @@ Template.category.greeting = function () {
 	return Session.get('authors');
 };
 
-Template.enterActiveLearnphaseModal.events({
-	'click #enterActiveLearnphaseConfirm': function () {
-		if (Session.get('selectedCardset')) {
-			$('#enterActiveLearnphaseModal').modal('hide');
-			$('body').removeClass('modal-open');
-			$('.modal-backdrop').remove();
-			$('#enterActiveLearnphaseModal').on('hidden.bs.modal', function () {
-				Router.go('cardsetdetailsid', {
-					_id: Session.get('selectedCardset')
-				});
-			});
-		}
-	}
-});
-
 Template.showLicense.helpers({
 	getTopic: function () {
 		if (Session.get('selectedCardset')) {
@@ -336,35 +320,6 @@ Template.showLicense.helpers({
 });
 
 Template.poolCardsetRow.helpers({
-	isAlreadyLearning: function () {
-		if (this.owner === Meteor.userId()) {
-			return true;
-		}
-		let learnedCards = Learned.find({
-			user_id: Meteor.userId()
-		});
-		let learnedCardsets = [];
-		learnedCards.forEach(function (learnedCard) {
-			if ($.inArray(learnedCard.cardset_id, learnedCardsets) === -1) {
-				learnedCardsets.push(learnedCard.cardset_id);
-			}
-		});
-		if (learnedCardsets.indexOf(this._id) != -1) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-	isProfileCompleted: function () {
-		if (this.owner === Meteor.userId()) {
-			return true;
-		}
-		if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
-			return true;
-		} else {
-			return false;
-		}
-	},
 	getAverageRating: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
@@ -419,10 +374,7 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
 		}
-	}
-});
-
-Template.poolTitleContent.helpers({
+	},
 	getMaximumText: function (text) {
 		const maxLength = 15;
 		const textSplitted = text.split(" ");
@@ -440,6 +392,7 @@ Template.poolTitleContent.helpers({
 		return (_.pluck(distinctData, "user_id").length);
 	}
 });
+
 
 Template.poolCardsetRow.events({
 	'click .filterCollege': function (event) {
@@ -459,9 +412,6 @@ Template.poolCardsetRow.events({
 		filterCheckbox();
 	},
 	'click .showLicense': function (event) {
-		Session.set('selectedCardset', $(event.target).data('id'));
-	},
-	'click .poolText ': function (event) {
 		Session.set('selectedCardset', $(event.target).data('id'));
 	}
 });
@@ -524,19 +474,6 @@ Template.category.events({
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
-	}
-});
-
-Template.completeProfileModal.events({
-	"click #completeProfileGoToProfile": function () {
-		$('#completeProfileModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
-		$('#completeProfileModal').on('hidden.bs.modal', function () {
-			Router.go('profileSettings', {
-				_id: Meteor.userId()
-			});
-		});
 	}
 });
 

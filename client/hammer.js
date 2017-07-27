@@ -139,7 +139,7 @@ var extend = deprecate(function extend(dest, src, merge) {
 	var keys = Object.keys(src);
 	var i = 0;
 	while (i < keys.length) {
-		if (merge && dest[keys[i]] === undefined) {
+		if (!merge || (merge && dest[keys[i]] === undefined)) {
 			dest[keys[i]] = src[keys[i]];
 		}
 		i++;
@@ -197,7 +197,7 @@ function bindFn(fn, context) {
  * @returns {Boolean}
  */
 function boolOrFn(val, args) {
-	if (typeof val === TYPE_FUNCTION) {
+	if (typeof val == TYPE_FUNCTION) {
 		return val.apply(args ? args[0] || undefined : undefined, args);
 	}
 	return val;
@@ -246,7 +246,7 @@ function removeEventListeners(target, types, handler) {
  */
 function hasParent(node, parent) {
 	while (node) {
-		if (node === parent) {
+		if (node == parent) {
 			return true;
 		}
 		node = node.parentNode;
@@ -286,7 +286,7 @@ function inArray(src, find, findByKey) {
 	} else {
 		var i = 0;
 		while (i < src.length) {
-			if ((findByKey && src[i][findByKey] === find) || (!findByKey && src[i] === find)) {
+			if ((findByKey && src[i][findByKey] == find) || (!findByKey && src[i] === find)) {
 				return i;
 			}
 			i++;
@@ -367,8 +367,7 @@ function prefixed(obj, property) {
  */
 var _uniqueId = 1;
 function uniqueId() {
-	_uniqueId++;
-	return _uniqueId;
+	return _uniqueId++;
 }
 
 /**
@@ -610,7 +609,7 @@ function computeIntervalInputData(session, input) {
 		deltaTime = input.timeStamp - last.timeStamp,
 		velocity, velocityX, velocityY, direction;
 
-	if (input.eventType !== INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
+	if (input.eventType != INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
 		var deltaX = input.deltaX - last.deltaX;
 		var deltaY = input.deltaY - last.deltaY;
 
@@ -869,8 +868,8 @@ function PointerEventInput() {
 	this.evWin = POINTER_WINDOW_EVENTS;
 
 	Input.apply(this, arguments);
-	this.manager.session.pointerEvents = [];
-	this.store = this.manager.session.pointerEvents;
+
+	this.store = (this.manager.session.pointerEvents = []);
 }
 
 inherit(PointerEventInput, Input, {
@@ -886,7 +885,7 @@ inherit(PointerEventInput, Input, {
 		var eventType = POINTER_INPUT_MAP[eventTypeNormalized];
 		var pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
 
-		var isTouch = (pointerType === INPUT_TYPE_TOUCH);
+		var isTouch = (pointerType == INPUT_TYPE_TOUCH);
 
 		// get index of the event in the store
 		var storeIndex = inArray(store, ev.pointerId, 'pointerId');
@@ -1123,8 +1122,8 @@ inherit(TouchMouseInput, Input, {
 	 * @param {Object} inputData
 	 */
 	handler: function TMEhandler(manager, inputEvent, inputData) {
-		var isTouch = (inputData.pointerType === INPUT_TYPE_TOUCH),
-			isMouse = (inputData.pointerType === INPUT_TYPE_MOUSE);
+		var isTouch = (inputData.pointerType == INPUT_TYPE_TOUCH),
+			isMouse = (inputData.pointerType == INPUT_TYPE_MOUSE);
 
 		if (isMouse && inputData.sourceCapabilities && inputData.sourceCapabilities.firesTouchEvents) {
 			return;
@@ -1218,7 +1217,7 @@ TouchAction.prototype = {
 	 */
 	set: function(value) {
 		// find out the touch-action by the event handlers
-		if (value === TOUCH_ACTION_COMPUTE) {
+		if (value == TOUCH_ACTION_COMPUTE) {
 			value = this.compute();
 		}
 
@@ -1654,13 +1653,13 @@ function stateStr(state) {
  * @returns {String}
  */
 function directionStr(direction) {
-	if (direction === DIRECTION_DOWN) {
+	if (direction == DIRECTION_DOWN) {
 		return 'down';
-	} else if (direction === DIRECTION_UP) {
+	} else if (direction == DIRECTION_UP) {
 		return 'up';
-	} else if (direction === DIRECTION_LEFT) {
+	} else if (direction == DIRECTION_LEFT) {
 		return 'left';
-	} else if (direction === DIRECTION_RIGHT) {
+	} else if (direction == DIRECTION_RIGHT) {
 		return 'right';
 	}
 	return '';
@@ -1790,11 +1789,11 @@ inherit(PanRecognizer, AttrRecognizer, {
 		if (!(direction & options.direction)) {
 			if (options.direction & DIRECTION_HORIZONTAL) {
 				direction = (x === 0) ? DIRECTION_NONE : (x < 0) ? DIRECTION_LEFT : DIRECTION_RIGHT;
-				hasMoved = x !== this.pX;
+				hasMoved = x != this.pX;
 				distance = Math.abs(input.deltaX);
 			} else {
 				direction = (y === 0) ? DIRECTION_NONE : (y < 0) ? DIRECTION_UP : DIRECTION_DOWN;
-				hasMoved = y !== this.pY;
+				hasMoved = y != this.pY;
 				distance = Math.abs(input.deltaY);
 			}
 		}
@@ -2004,7 +2003,7 @@ inherit(SwipeRecognizer, AttrRecognizer, {
 		return this._super.attrTest.call(this, input) &&
 			direction & input.offsetDirection &&
 			input.distance > this.options.threshold &&
-			input.maxPointers === this.options.pointers &&
+			input.maxPointers == this.options.pointers &&
 			abs(velocity) > this.options.velocity && input.eventType & INPUT_END;
 	},
 
@@ -2076,7 +2075,7 @@ inherit(TapRecognizer, Recognizer, {
 		// we only allow little movement
 		// and we've reached an end event, so a tap is possible
 		if (validMovement && validTouchTime && validPointers) {
-			if (input.eventType !== INPUT_END) {
+			if (input.eventType != INPUT_END) {
 				return this.failTimeout();
 			}
 
@@ -2126,7 +2125,7 @@ inherit(TapRecognizer, Recognizer, {
 	},
 
 	emit: function() {
-		if (this.state === STATE_RECOGNIZED) {
+		if (this.state == STATE_RECOGNIZED) {
 			this._input.tapCount = this.count;
 			this.manager.emit(this.options.event, this._input);
 		}
@@ -2366,7 +2365,7 @@ Manager.prototype = {
 			// 3.   allow if the recognizer is allowed to run simultaneous with the current recognized recognizer.
 			//      this can be setup with the `recognizeWith()` method on the recognizer.
 			if (session.stopped !== FORCED_STOP && ( // 1
-					!curRecognizer || recognizer === curRecognizer || // 2
+					!curRecognizer || recognizer == curRecognizer || // 2
 					recognizer.canRecognizeWith(curRecognizer))) { // 3
 				recognizer.recognize(inputData);
 			} else {
@@ -2394,7 +2393,7 @@ Manager.prototype = {
 
 		var recognizers = this.recognizers;
 		for (var i = 0; i < recognizers.length; i++) {
-			if (recognizers[i].options.event === recognizer) {
+			if (recognizers[i].options.event == recognizer) {
 				return recognizers[i];
 			}
 		}

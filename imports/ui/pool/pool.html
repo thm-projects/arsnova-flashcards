@@ -8,8 +8,6 @@
             <div id="pool-category-region" class="container">
                 {{> category}}
                 {{> showLicense}}
-                {{> completeProfileModal}}
-                {{> enterActiveLearnphaseModal}}
             </div>
         {{/if}}
     {{/if}}
@@ -111,8 +109,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="moduleFilter" class="dropdown-toggle moduleBtn" data-toggle="dropdown"
-                               role="button"
+                            <a href="#" id="moduleFilter" class="dropdown-toggle moduleBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 {{#if hasModuleFilter}}
                                     {{poolFilterModule}}
@@ -133,8 +130,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="skillLevelFilter" class="dropdown-toggle skillLevelBtn"
-                               data-toggle="dropdown" role="button"
+                            <a href="#" id="skillLevelFilter" class="dropdown-toggle skillLevelBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 {{#if hasSkillLevelFilter}}
                                     {{getSkillLevel poolFilterSkillLevel}}
@@ -145,18 +141,15 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#" class="filterSkillLevel active" data-id="">{{_
-                                            "set-list.everything"}}</a>
+                                    <a href="#" class="filterSkillLevel active" data-id="">{{_ "set-list.everything"}}</a>
                                 </li>
                                 {{#each getSkillLevels}}
-                                    <li><a href="#" class="filterSkillLevel"
-                                           data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</a></li>
+                                    <li><a href="#" class="filterSkillLevel" data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</a></li>
                                 {{/each}}
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="learnphaseFilter" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button"
+                            <a href="#" id="learnphaseFilter" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 {{#if hasLearnphaseFilter}}
                                     {{getLearnphase poolFilterLearnphase}}
@@ -171,11 +164,9 @@
                                 </li>
                                 {{#each getLearnphases}}
                                     {{#if this.learningActive}}
-                                        <li><a href="#" class="filterLearnphase" data-id="true">{{getLearnphase
-                                                this.learningActive}}</a></li>
+                                        <li><a href="#" class="filterLearnphase" data-id="true">{{getLearnphase this.learningActive}}</a></li>
                                     {{else}}
-                                        <li><a href="#" class="filterLearnphase" data-id="false">{{getLearnphase
-                                                this.learningActive}}</a></li>
+                                        <li><a href="#" class="filterLearnphase" data-id="false">{{getLearnphase this.learningActive}}</a></li>
                                     {{/if}}
                                 {{/each}}
                             </ul>
@@ -246,33 +237,22 @@
 </template>
 
 <template name="poolCardsetRow">
-    {{#if this.learningActive}}
-        {{#if isProfileCompleted}}
-            {{#if isAlreadyLearning}}
-                <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-                   title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-                    {{>poolTitleContent content=this}}
-                </a>
-            {{else}}
-                <a href="#" class="panelUnitBorder field-tip"
-                   title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-                   data-toggle="modal" data-target="#enterActiveLearnphaseModal">
-                    {{>poolTitleContent content=this}}
-                </a>
-            {{/if}}
-        {{else}}
-            <a href="#" class="panelUnitBorder field-tip"
-               title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-               data-toggle="modal" data-target="#completeProfileModal">
-                {{>poolTitleContent content=this}}
-            </a>
-        {{/if}}
-    {{else}}
-        <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-            {{>poolTitleContent content=this}}
-        </a>
-    {{/if}}
+    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+        <div class="tip-content">{{#markdown}}{{getMaximumText this.description}}{{/markdown}}</div>
+        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit">{{_ "set-list.topic"}}:</span>
+        <span class="cell col-xs-8 col-sm-9 col-md-9 col-lg-2 poolText panelUnit">
+                <span class="cell col-xs-10 col-sm-10 col-md-10 col-lg-10 topicName">
+                    {{#if this.learningActive}}
+                        <span class="label label-info" aria-label="active learnphase label">{{_ "set-list.activeLearnphase"}}: {{getLearners this._id}}</span>
+                    {{/if}}
+                    {{this.name}}
+                </span>
+                <span class="cell badge cardsetBadge">
+                    {{countCards this._id}}
+                </span>
+        </span>
+    </a>
     <a href="/profile/{{this.owner}}/settings/" title="{{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit">{{_ "set-list.author"}}
             :</span>
@@ -298,8 +278,7 @@
               data-id="{{this.module}}">{{this.moduleToken}}</span>
     </a>
     <a href="#" class="filterSkillLevel" title="Filter {{_ "set-list.skillLevel"}}: {{getSkillLevel this.skillLevel}}">
-        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit"
-              data-id="{{this.skillLevel}}">{{_
+        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit" data-id="{{this.skillLevel}}">{{_
                 "set-list.skillLevel"}}:</span>
         <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit"
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
@@ -360,75 +339,6 @@
     </a>
 </template>
 
-<template name="enterActiveLearnphaseModal">
-    <div class="modal fade" id="enterActiveLearnphaseModal" tabindex="-1" role="dialog"
-         aria-labelledby="enterActiveLearnphaseTitle">
-        <div class="modal-dialog">
-            <div class="modal-content modal-content-for-buttons col-xs-12">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="enterActiveLearnphaseTitle" class="modal-title">{{_ "confirm-enter-learnphase.title"}}</h4>
-                </div>
-                <div class="modal-body">
-                    {{_ "confirm-enter-learnphase.text"}}
-                </div>
-                <hr>
-                <button id="enterActiveLearnphaseConfirm"
-                        class="btn btn-success btn-raised btn-block active">{{_
-                        "confirm-enter-learnphase.enter"}}</button>
-                <button id="enterActiveLearnphaseCancel" class="btn btn-default btn-block btn-raised col-xs-12"
-                        data-dismiss="modal">{{_ "confirm-enter-learnphase.close"}}</button>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
-
-<template name="poolTitleContent">
-    <div class="tip-content">{{#markdown}}{{getMaximumText content.description}}{{/markdown}}</div>
-    <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_ "set-list.topic"}}
-        :</span>
-    <span class="cell col-xs-8 col-sm-9 col-md-9 col-lg-2 poolText panelUnit" data-id="{{content._id}}">
-                <span class="cell col-xs-10 col-sm-10 col-md-10 col-lg-10 topicName" data-id="{{content._id}}">
-                    {{#if content.learningActive}}
-                        <span class="label label-info" aria-label="active learnphase label" data-id="{{content._id}}">{{_
-                                "set-list.activeLearnphase"}}: {{getLearners content._id}}</span>
-                    {{/if}}
-                    {{content.name}}
-                </span>
-                <span class="cell badge cardsetBadge" data-id="{{content._id}}">
-                    {{countCards content._id}}
-                </span>
-            </span>
-</template>
-
-<template name="completeProfileModal">
-    <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
-         aria-labelledby="completeProfileTitle">
-        <div class="modal-dialog">
-            <div class="modal-content  modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-header">
-                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{_ "complete-profile.text"}}</p>
-                    <br>
-                    <hr>
-                    <button id="completeProfileGoToProfile" class="btn btn-default btn-block btn-raised btn-success active"
-                            data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
-                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
-                            data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
 
 <template name="poolCardsetEmpty">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 empty-list panel panel-default cardsetInfo ">
