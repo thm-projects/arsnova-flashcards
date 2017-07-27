@@ -32,6 +32,9 @@ if (Meteor.isServer) {
 			});
 		}
 	});
+	Meteor.publish("tags", function () {
+		return Cardsets.find({}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1}});
+	});
 }
 
 const CardsetsSchema = new SimpleSchema({
