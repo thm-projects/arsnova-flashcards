@@ -16,6 +16,7 @@
                 {{> selectLicenseForm}}
                 {{> reportCardsetForm}}
                 {{> deleteCardsForm}}
+                {{> leaveLearnPhaseForm}}
                 {{onEditmodalClose this._id}}
                 {{#if hasCardsetPermission}}
                     {{#if isLecturerAndHasRequest}}
@@ -250,6 +251,13 @@
                                 class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
                                 data-toggle="modal" data-target="#reportModal">{{_
                                 "report"}}</button>
+                        {{#if learningActive}}
+                            <button id="leaveLearnPhaseButton"
+                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                    data-toggle="modal" data-target="#leaveModal">{{_
+                                    "confirm-leave-learnphase.btn-txt"}}</button>
+                        {{/if}}
                     {{/unless}}
                 </div>
             </div>
@@ -367,6 +375,28 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+</template>
+
+<template name="leaveLearnPhaseForm">
+    <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveLearnPhaseTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                    <h4 id="leaveLearnPhaseTitle" class="modal-title">{{_ "confirm-leave-learnphase.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-leave-learnphase.text"}}</p>
+                    <br>
+                    <hr>
+                    <button id="leaveLearnPhaseConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
+                            "confirm-leave-learnphase.btn-txt"}}</button>
+                    <button id="leaveLearnPhaseCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="cardsetForm">
