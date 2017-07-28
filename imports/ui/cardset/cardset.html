@@ -269,7 +269,7 @@
 
 <template name="cardsetPreview">
     <div class="col-md-3">
-        <div class="">
+        <div id="cardsetPreview">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
                     <form role="form">
@@ -280,12 +280,12 @@
                                         class="btn btn-success btn-block btn-raised">{{_ "cardset.money.buy"}} {{price}}
                                     €
                                 </button>
-                                <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
-                                   class="btn btn-warning btn-block btn-raised" type="button">{{_
-                                        "cardset.money.pro"}}</a>
                             </div>
                         </div>
                     </form>
+                    <button id="buyProBtn"
+                            class="btn btn-warning btn-block btn-raised">{{_ "cardset.money.pro"}}
+                    </button>
                 </div>
             </div>
         </div>
