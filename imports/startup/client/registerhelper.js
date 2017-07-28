@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
+import {Learned} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
@@ -49,6 +50,15 @@ Template.registerHelper("getCards", function () {
 	return Cards.find({
 		cardset_id: this._id
 	});
+});
+
+//Returns the number of active learners in a cardset
+Template.registerHelper("getActiveLearners", function (id) {
+	var data = Learned.find({cardset_id: id, box: {$gt: 1}}).fetch();
+	var distinctData = _.uniq(data, false, function (d) {
+		return d.user_id;
+	});
+	return (_.pluck(distinctData, "user_id").length);
 });
 
 // Returns the locale date
