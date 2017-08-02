@@ -33,15 +33,6 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
-export function getActiveLearner() {
-	var cardsetid = Router.current().params._id;
-	var data = Learned.find({cardset_id: cardsetid, box: {$gt: 1}}).fetch();
-	var distinctData = _.uniq(data, false, function (d) {
-		return d.user_id;
-	});
-	return (_.pluck(distinctData, "user_id").length);
-}
-
 /**
  * Creates a web push subscription for the current device.
  * The Browser ask the user for permissions and creates the subscription.

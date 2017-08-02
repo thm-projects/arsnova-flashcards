@@ -400,7 +400,7 @@
                 <span class="cell col-xs-10 col-sm-10 col-md-10 col-lg-10 topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}
                         <span class="label label-info" aria-label="active learnphase label" data-id="{{content._id}}">{{_
-                                "set-list.activeLearnphase"}}: {{getLearners content._id}}</span>
+                                "set-list.activeLearnphase"}}: {{getActiveLearners content._id}}</span>
                     {{/if}}
                     {{content.name}}
                 </span>

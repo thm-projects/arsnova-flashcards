@@ -430,14 +430,6 @@ Template.poolTitleContent.helpers({
 			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
 		}
 		return text;
-	},
-	getLearners: function (id) {
-		var cardsetid = id;
-		var data = Learned.find({cardset_id: cardsetid, box: {$gt: 1}}).fetch();
-		var distinctData = _.uniq(data, false, function (d) {
-			return d.user_id;
-		});
-		return (_.pluck(distinctData, "user_id").length);
 	}
 });
 
