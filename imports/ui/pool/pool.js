@@ -384,11 +384,11 @@ Template.poolCardsetRow.helpers({
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
-				return '<span class="label label-info panelUnitKind" data-id="free">Free</span>';
+				return '<span class="label label-free panelUnitKind" data-id="free">Free</span>';
 			case "edu":
-				return '<span class="label label-success panelUnitKind" data-id="edu">Edu</span>';
+				return '<span class="label label-edu panelUnitKind" data-id="edu">Edu</span>';
 			case "pro":
-				return '<span class="label label-danger panelUnitKind" data-id="pro">Pro</span>';
+				return '<span class="label label-pro panelUnitKind" data-id="pro">Pro</span>';
 			default:
 				return '<span class="label label-default panelUnitKind">Undefined!</span>';
 		}
