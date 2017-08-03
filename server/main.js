@@ -6,6 +6,7 @@ import "../imports/api/cardsets.js";
 import "../imports/api/cards.js";
 import "../imports/api/learned.js";
 import "./leitner.js";
+import "./wordcloud.js";
 import "../imports/api/badges.js";
 import "../imports/api/experience.js";
 import "../imports/api/ratings.js";
