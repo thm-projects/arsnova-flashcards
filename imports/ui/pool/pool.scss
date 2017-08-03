@@ -1,12 +1,12 @@
 #pool-category-region {
   margin-bottom: 35px;
   $color_orange_pool: rgb(255, 153, 51);
-  $color_background_free_filter_btn: #5bc0de;
-  $color_border_free_filter_btn: #46b8da;
-  $color_background_edu_filter_btn: #5cb85c;
-  $color_border_edu_filter_btn: #4cae4c;
-  $color_background_pro_filter_btn: #d9534f;
-  $color_border_pro_filter_btn: #d43f3a;
+  $color_background_free_filter_btn: #003bd1;
+  $color_border_free_filter_btn: #003bd1;
+  $color_background_edu_filter_btn: #80ba24;
+  $color_border_edu_filter_btn: #80ba24;
+  $color_background_pro_filter_btn: #ffb300;
+  $color_border_pro_filter_btn: #ffb300;
   $color_btn_inactive: #9e9c9c;
   $color_item_separator: #b2b2b2;
   text-align: left;
@@ -286,6 +286,18 @@
       padding: 0 !important;
       margin-left: 45px;
     }
+  }
+
+  .label-free {
+    background-color: $color_background_free_filter_btn;
+  }
+
+  .label-edu {
+    background-color: $color_background_edu_filter_btn;
+  }
+
+  .label-pro {
+    background-color: $color_background_pro_filter_btn;
   }
 }
 
