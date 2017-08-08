@@ -21,6 +21,10 @@ import "./card.html";
  * ############################################################################
  */
 
+/**
+ * Surrounds a selected text with the markdown tags for an image.
+ * @param {event} e - The DOM Event
+ */
 function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(), link;
@@ -158,6 +162,10 @@ function getCardsetCards() {
 	return query;
 }
 
+/**
+ * Get a set of cards for the learning algorithm by Leitner.
+ * @return {Collection} The card set
+ */
 function getLeitnerCards() {
 	var cards = [];
 	var learnedCards = Learned.find({
@@ -179,8 +187,11 @@ function getLeitnerCards() {
 	return cards;
 }
 
+/**
+ * Get a set of cards for the supermemo algorithm.
+ * @return {Collection} The card collection
+ */
 function getMemoCards() {
-	var cards = [];
 	var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
 
@@ -196,7 +207,7 @@ function getMemoCards() {
 		}
 	});
 	if (learned !== undefined) {
-		cards = Cards.find({
+		var cards = Cards.find({
 			cardset_id: Session.get('activeCardset')._id,
 			_id: learned.card_id
 		}).fetch();
@@ -254,7 +265,9 @@ Template.btnCard.events({
 			$('#helpNewHinttext').html(TAPi18n.__('text_max'));
 			$('#helpNewHinttext').css('color', '#b94a48');
 		}
-		if ($('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '' && $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000) {
+		var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
+		var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
+		if (editorsEmpty && editorsValidLength) {
 			var subject = $('#subjectEditor').val();
 			var front = $('#frontEditor').val();
 			var back = $('#backEditor').val();
@@ -468,11 +481,7 @@ Template.backEditor.events({
 
 Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
-		if ((this.difficulty === undefined && type === 0) || (type == this.difficulty)) {
-			return true;
-		} else {
-			return false;
-		}
+		return ((this.difficulty === undefined && type === 0) || (type === this.difficulty));
 	}
 });
 
