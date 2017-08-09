@@ -7,8 +7,8 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
+			const MINIMUM_SIZE = 10;
 			var cardsets = Cardsets.find({}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1}});
-
 			var list = [];
 
 			// find biggest cardset for normalization
@@ -19,7 +19,6 @@ Meteor.methods({
 				}
 			});
 
-			// load cardset name
 			cardsets.forEach(function (cardset) {
 				var name = cardset.name;
 
@@ -43,11 +42,11 @@ Meteor.methods({
 				}
 
 				var quantitiy = cardset.quantity / biggestCardsetSize * 40;
+				quantitiy = (quantitiy > MINIMUM_SIZE ? quantitiy : MINIMUM_SIZE);
 
 				list.push([name, quantitiy, color]);
 			});
 
-			// sort list
 			list.sort(function (a, b) { return (b[0].length * b[1]) - (a[0].length * a[1]); });
 
 			if (list.length > 0) {
