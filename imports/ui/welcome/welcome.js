@@ -8,6 +8,9 @@ import "./welcome.html";
 
 Meteor.subscribe("wordcloud");
 
+/**
+ * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
+ */
 function createTagCloud() {
 	var cloud = Cloud.find({}).fetch();
 	var list = [];
