@@ -14,15 +14,14 @@ function setResolution() {
 
 /* exported login */
 export function login(username) {
-	'use strict';
-	agreeCookies();
 	setResolution();
-	browser.waitForExist('#TestingBackdoorUsername', 15000);
+	browser.waitForVisible('#TestingBackdoorUsername', 15000);
 	var SetUsername = function (name) {
 		$('#TestingBackdoorUsername').val(name);
 	};
+	agreeCookies();
 	browser.execute(SetUsername, username);
-	browser.waitForExist('#BackdoorLogin', 15000);
+	browser.waitForVisible('#BackdoorLogin', 15000);
 	browser.click('#BackdoorLogin');
 }
 
