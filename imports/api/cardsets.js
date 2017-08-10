@@ -278,7 +278,11 @@ Meteor.methods({
 			},
 			{
 				$set: {
-					quantity: 0
+					quantity: 0,
+					kind: 'personal',
+					reviewed: false,
+					request: false,
+					visible: false
 				}
 			}
 		);
