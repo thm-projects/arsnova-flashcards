@@ -17,7 +17,7 @@ export class CronScheduler {
 		});
 		SyncedCron.start();
 	}
-	startWordCron() {
+	startWordCron () {
 		SyncedCron.add({
 			name: "wordCron",
 			schedule: function (parser) {
