@@ -136,12 +136,12 @@
 <template name="btnCard">
     <div class="col-md-12">
         {{#if isEditMode}}
-            <button id="cardDelete" class="btn btn-warning btn-raised col-xs-12 col-sm-3">{{_ "deletecard"}}</button>
-                <button id="changeDeleteButton" style="display: none;"
+        <button id="cardDelete" class="btn {{#if learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_ "deletecard"}}</button>
+                <button id="cardDeleteConfirm" style="display: none;"
                         class="btn btn-danger btn-raised col-xs-12 col-sm-3" onclick="history.go(-1)">{{_
                 "confirmcard"}}</button>
         {{/if}}
-            <button id=" cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3"
+            <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3"
         onclick="history.go(-1)">{{_ "declinecard"}}</button>
         <button id="cardSave"
                 class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
@@ -195,10 +195,11 @@
                                     </div>
 
                                     <div id="clicktoflip" class="clicktoflip">
-                                        <img class="cardside cardfront-symbol" src="/img/icon_front.png">
-                                        <img class="cardside cardback-symbol" src="/img/icon_back.png"
+                                      {{#unless isMemo}}
+                                        <img id="iconfront" class="cardside cardfront-symbol" src="/img/icon_front.png">
+                                        <img id="iconback" class="cardside cardback-symbol" src="/img/icon_back.png"
                                              style="display: none;">
-                                        {{#unless isMemo}}{{_ "turn"}}{{/unless}}</div>
+                                      {{_ "turn"}}{{/unless}}</div>
 
                                     <br>
                                     <h3>{{subject}}</h3>

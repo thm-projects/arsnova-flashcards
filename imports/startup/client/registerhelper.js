@@ -2,10 +2,12 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
+import {Learned} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
+import {getAuthorName} from "../../api/cardset.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -48,6 +50,15 @@ Template.registerHelper("getCards", function () {
 	return Cards.find({
 		cardset_id: this._id
 	});
+});
+
+//Returns the number of active learners in a cardset
+Template.registerHelper("getActiveLearners", function (id) {
+	var data = Learned.find({cardset_id: id, box: {$gt: 1}}).fetch();
+	var distinctData = _.uniq(data, false, function (d) {
+		return d.user_id;
+	});
+	return (_.pluck(distinctData, "user_id").length);
 });
 
 // Returns the locale date
@@ -99,24 +110,13 @@ Template.registerHelper("getCollege", function (value) {
 });
 
 Template.registerHelper("getAuthorName", function (owner) {
-	var author = Meteor.users.findOne({"_id": owner});
-	if (author) {
-		var degree = "";
-		if (author.profile.title) {
-			degree = author.profile.title;
-		}
-		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-			return author.profile.givenname;
-		}
-		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-	}
+	return getAuthorName(owner);
 });
 
 Template.registerHelper("getAuthor", function (owner) {
 	var author = Meteor.users.findOne({"_id": owner});
 	if (author) {
-		var degree = "";
+		var degree;
 		if (author.profile.title) {
 			degree = author.profile.title;
 		} else {
@@ -193,6 +193,16 @@ Template.registerHelper("getSkillLevel", function (skillLevel) {
 	}
 });
 
+Template.registerHelper("getLearnphase", function (state) {
+	if (state === true) {
+		return TAPi18n.__('set-list.activeLearnphase');
+	} else if (state === false) {
+		return TAPi18n.__('set-list.inactiveLearnphase');
+	} else {
+		return TAPi18n.__('set-list.learnphase');
+	}
+});
+
 Template.registerHelper("getCardBackground", function (difficulty) {
 	switch (difficulty) {
 		case 0:
@@ -229,7 +239,13 @@ const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
 		x = x.split("\n");
-		x = lib.parseGithubFlavoredMarkdown(x);
+		//NOTE:
+		// Set OverrideLineBreaks to false, otherwise everything written between two mathjax statements
+		// will be displayed as plain text and not as correctly formated html.
+		// Also almost all redundant whitespace is removed from learning card, which seems to be acceptable,
+		// in favor of correctly displayed markdown content.
+		// This might be changing some later time, until then this solution should be sufficient enough.
+		x = lib.parseGithubFlavoredMarkdown(x, false);
 		return lib.setLightBoxes(converter.makeHtml(x));
 	}
 });

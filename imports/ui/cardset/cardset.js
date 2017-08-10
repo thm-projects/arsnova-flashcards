@@ -27,19 +27,11 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
+
 // Session variable for sorting order is keept for further use but only has a default value.
 Session.setDefault('cardSort', {
 	front: 1
 });
-
-export function getActiveLearner() {
-	var cardsetid = Router.current().params._id;
-	var data = Learned.find({cardset_id: cardsetid, box: {$gt: 1}}).fetch();
-	var distinctData = _.uniq(data, false, function (d) {
-		return d.user_id;
-	});
-	return (_.pluck(distinctData, "user_id").length);
-}
 
 /**
  * Creates a web push subscription for the current device.
@@ -89,7 +81,6 @@ Template.cardset.rendered = function () {
 	Session.set('cardsetId', Router.current().params._id);
 
 	var customerId = Meteor.user().customerId;
-
 	if ($('#payment-form').length) {
 		Meteor.call('getClientToken', customerId, function (error, clientToken) {
 			if (error) {
@@ -126,6 +117,12 @@ Template.cardset.helpers({
 		Session.set('previousModuleNum', Cardsets.findOne(id).moduleNum);
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
+	},
+	'lerningActiveAndNotEditor': function () {
+		if (this.owner !== Meteor.userId() && this.learningActive) {
+			return true;
+		}
+		return false;
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
@@ -356,6 +353,20 @@ Template.cardsetForm.events({
 
 /*
  * ############################################################################
+ * cardsetPreview
+ * ############################################################################
+ */
+
+Template.cardsetPreview.events({
+	"click #buyProBtn": function () {
+		Router.go('profileMembership', {
+			_id: Meteor.userId()
+		});
+	}
+});
+
+/*
+ * ############################################################################
  * descriptionEditorEdit
  * ############################################################################
  */
@@ -382,6 +393,9 @@ Template.cardsetList.helpers({
 		}, {
 			sort: Session.get("cardSort")
 		});
+	},
+	isDisabled: function () {
+		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 
@@ -424,8 +438,7 @@ Template.cardsetInfo.helpers({
 			ratings.forEach(function (rate) {
 				amount = amount + rate.rating;
 			});
-			var result = (amount / count).toFixed(2);
-			return result;
+			return ((amount / count).toFixed(2));
 		} else {
 			return 0;
 		}
@@ -478,8 +491,7 @@ Template.cardsetInfo.helpers({
 	},
 	getStatus: function () {
 		if (this.visible) {
-			var kind = this.kind.charAt(0).toUpperCase() + this.kind.slice(1);
-			return kind;
+			return (this.kind.charAt(0).toUpperCase() + this.kind.slice(1));
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
 				return TAPi18n.__('sidebar-nav.review');
@@ -532,6 +544,8 @@ Template.cardsetInfo.events({
 		}).count();
 		if (count === 0) {
 			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+		} else {
+			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
 		}
 	},
 	'click #exportCardsBtn': function () {
@@ -562,6 +576,27 @@ Template.cardsetInfo.events({
 			type: "application/json"
 		});
 		saveAs(exportData, cardset.name + ".json");
+	}
+});
+
+/*
+ * ############################################################################
+ * leaveLearnPhaseForm
+ * ############################################################################
+ */
+
+Template.leaveLearnPhaseForm.events({
+	'click #leaveLearnPhaseConfirm': function () {
+		var id = Session.get('cardsetId');
+
+
+		$('#leaveModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#leaveModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLearned", id);
+			Router.go('home');
+		});
 	}
 });
 
@@ -626,6 +661,18 @@ Template.cardsetSidebar.events({
 				hiddenElement.click();
 			}
 		});
+	},
+	"click #showStats": function () {
+		var cardset_id = Template.parentData(1)._id;
+		Meteor.call("getLearningData", cardset_id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
+			}
+			if (result) {
+				Session.set("cardsetStats", result);
+				Router.go('cardsetstats', {_id: Router.current().params._id});
+			}
+		});
 	}
 });
 
@@ -641,18 +688,36 @@ Template.cardsetSidebar.helpers({
 		}
 	}
 });
+
 /*
- * ############################################################################
- * cardsetStartLearnForm
- * ############################################################################
- */
+* ############################################################################
+* cardsetLearnActivityStatistic
+* ############################################################################
+*/
+Template.cardsetLearnActivityStatistic.helpers({
+	getCardsetStats: function () {
+		return Session.get("cardsetStats");
+	}
+});
+
+Template.cardsetLearnActivityStatistic.events({
+	"click #closeStats": function () {
+		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+	}
+});
+
+/*
+* ############################################################################
+* cardsetStartLearnForm
+* ############################################################################
+*/
 
 Template.cardsetStartLearnForm.events({
 	"input #inputLearningStart": function () {
-		let start = new Date($('#inputLearningStart').val());
-		let end = new Date($('#inputLearningEnd').val());
+		const start = new Date($('#inputLearningStart').val());
+		const end = new Date($('#inputLearningEnd').val());
 		if (isNaN(start.getTime()) || start < new Date()) {
-			let today = new Date();
+			const today = new Date();
 			$('#inputLearningStart').val(today.getFullYear() + "-" + ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + "-" + (today.getDate() < 10 ? '0' : '') + end.getDate());
 		}
 		if (start >= end) {
@@ -662,7 +727,7 @@ Template.cardsetStartLearnForm.events({
 		document.getElementById('inputLearningEnd').setAttribute("min", (start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate()));
 	},
 	"input #inputLearningEnd": function () {
-		let start = new Date($('#inputLearningStart').val());
+		const start = new Date($('#inputLearningStart').val());
 		let end = new Date($('#inputLearningEnd').val());
 		if (isNaN(end.getTime()) || start >= end) {
 			end = start;
@@ -933,6 +998,21 @@ Template.cardsetPublishForm.events({
 
 /*
  * ############################################################################
+ * deleteCardsForm
+ * ############################################################################
+ */
+
+Template.deleteCardsForm.events({
+	'click #deleteCardsConfirm': function () {
+		var id = this._id;
+		$('#deleteCardsModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteCards", id);
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
  * selectLicenseForm
  * ############################################################################
  */
@@ -1064,8 +1144,10 @@ Template.reportCardsetForm.events({
 
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
-		subscribeForPushNotification();
-		Meteor.call("addToLeitner", this);
+		if (this.owner !== Meteor.userId()) {
+			subscribeForPushNotification();
+			Meteor.call("addToLeitner", this);
+		}
 	},
 	learningEnded: function () {
 		return (this.learningEnd.getTime() < new Date().getTime());

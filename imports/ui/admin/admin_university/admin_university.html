@@ -20,8 +20,8 @@
             <tbody>
             {{#each allColleges}}
                 <tr>
-                    <td id="tblCollege">{{college}}</td>
-                    <td id="tblCourse">{{course}}</td>
+                    <td class="tblCollege-{{@index}}">{{college}}</td>
+                    <td class="tblCourse-{{@index}}">{{course}}</td>
                     <td>
                         <button class="btn btn-danger btn-raised" type="submit"
                                 id="deleteCollageCourse">{{_ "admin.delete"}}</button>
@@ -54,9 +54,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" id="cancelButton" class="btn btn-default btn-raised pull-left">{{_
+                        <button type="button" id="cancelButton" class="btn btn-default btn-raised pull-left">{{_
                                 "admin.confirm-form.cancel"}}</button>
-                        <button type="submit" id="insertButton" class="btn btn-success btn-raised pull-right">&ensp;{{_
+                        <button type="button" id="insertButton" class="btn btn-success btn-raised pull-right">&ensp;{{_
                                 "admin.confirm-form.settings.save"}}</button>
                     </div>
                 </div>

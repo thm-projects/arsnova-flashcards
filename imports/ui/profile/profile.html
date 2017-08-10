@@ -169,13 +169,13 @@
                                     <div class="btn-group btn-group-justified" data-toggle="buttons">
                                         <label id="profilepublicoption1"
                                                class="btn btn-success profile-public {{#if
-                                                       getUser.visible}}active{{/if}}">
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/if}}">
                                             <input type="radio" name="visible" value="true">
                                             <div>{{_ "panel-body.profilepublicoption1"}}</div>
                                         </label>
                                         <label id="profilepublicoption2"
                                                class="btn btn-danger profile-private {{#unless
-                                                       getUser.visible}}active{{/unless}}">
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/unless}}">
                                             <input type="radio" name="visible" value="false">
                                             <div>{{_ "panel-body.profilepublicoption2"}}</div>
                                         </label>
@@ -795,14 +795,16 @@
                             <h3>STANDARD</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead">
-                            <h2>0€</h2></p>
+                            <div class="lead">
+                                <h2>0€</h2>
+                            </div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
                             {{#if isInRole 'university'}}
-                                <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}
-                                </li>
+                                <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+		<!--add new class "red-passage" to change text to red, and add third listgroup to Standard User-->
+				<li class="list-group-item red-passage"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
                             {{/if}}
                         </ul>
                         <div class="panel-footer">
@@ -822,17 +824,17 @@
                             <h3>PRO</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead">
-                            <h2>6.99€ / {{_ "billing.plan.month"}}</h2></p>
+                            <div class="lead">
+                            <h2>6.99€ / {{_ "billing.plan.month"}}</h2></div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-                            <li class="list-group-item"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-                            <li class="list-group-item"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
-                                <button class="btn btn-block btn-success btn-raised disabled">{{_
+                                <button id="upgrade" class="btn btn-block btn-success btn-raised disabled">{{_
                                         "billing.plan.actual"}}</button>
                             {{else}}
                                 <form role="form">
@@ -950,7 +952,7 @@
     <div class="modal fade" id="profileDelteConfirmModal" tabindex="-1" role="dialog"
          aria-labelledby="profileDelteConfirmModalTitle">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="profileDelteConfirmModalTitle" class="modal-title">{{_ "confirm-form-profile.title"}}</h4>

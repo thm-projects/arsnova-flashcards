@@ -123,9 +123,8 @@ Template.main.helpers({
 				languages.push({code: key, label: obj[key]});
 			}
 		}
-		if (languages) {
-			return languages;
-		}
+
+		return languages;
 	}
 });
 

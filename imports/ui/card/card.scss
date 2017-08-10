@@ -85,9 +85,6 @@ $header_line: rgba(255, 0, 0, 0.6);
 .centered {
   display: inline-block;
   vertical-align: middle;
-  img {
-    max-width: 370px;
-  }
 }
 
 .carousel-control {
@@ -297,13 +294,30 @@ img.cardside {
 .cardContent {
   width: 100%;
   height: 100%;
-}
 
-.emojiWrapper > img {
-  height: 30px;
-  position: unset;
+  .lightbox-img {
+
+    img {
+      width: 100%;
+      max-width: 375px;
+      position: static;
+      display: block;
+    }
+
+    .emojiImage {
+      position: unset;
+      width: auto;
+      display: initial;
+    }
+  }
 }
 
 .emptyCard {
   padding: 50px;
+}
+
+@media (min-width: 768px) {
+  #cardCancel {
+    margin-left: 25px;
+  }
 }

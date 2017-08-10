@@ -28,6 +28,8 @@ This is a no-brainer. Keep your branches up to date so that merges will never en
 
 ### Code Style
 
+[You can use following tutorial to test your code style with Webstorm](https://git.thm.de/arsnova/flashcards/wikis/testing-with-webstorm)
+
 This project makes use of both jscs and jshint. You can review your code with the defined rules by using gulp. Install:
 
 ```
@@ -36,6 +38,11 @@ npm install
 ```
 
 Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
+
+### Automated User Acceptance Tests
+
+Make sure that the user acceptance tests are working.  
+For more information about user acceptance tests have a look at tests/HOWTOTEST.md [klick](tests/HOWTOTEST.md).
 
 ### Project structure
 

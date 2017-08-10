@@ -189,12 +189,13 @@ Template.admin_users.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function (value) {
-						if (Meteor.user()._id !== value) {
-							if (!Roles.userIsInRole(value, 'admin')) {
+							if ((Meteor.user()._id !== value) &&
+								(!Roles.userIsInRole(value, 'admin')))
+							{
 								return new Spacebars.SafeString("<a class='deleteUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deleteuser') + "' data-toggle='modal' data-target='#userConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 							}
 						}
-					}
+
 				}
 			]
 		};
@@ -206,10 +207,10 @@ Template.admin_users.events({
 		event.preventDefault();
 		var user = this;
 
-		if (event.target.className == "deleteUserAdmin btn btn-xs btn-default" || event.target.className == "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteUserAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
 			Session.set('userId', user._id);
 		}
-		if (event.target.className == "mailtoUserAdmin btn btn-xs btn-default" || event.target.className == "fa fa-envelope") {
+		if (event.target.className === "mailtoUserAdmin btn btn-xs btn-default" || event.target.className === "fa fa-envelope") {
 			Session.set('userId', user._id);
 			Session.set('getUsername', user.profilename);
 		}
@@ -255,8 +256,7 @@ Template.messageFormAdmin.onRendered(function () {
 
 Template.messageFormAdmin.helpers({
 	getUsername: function () {
-		var username = Session.get('getUsername');
-		return username;
+		return (Session.get('getUsername'));
 	},
 	getCardsets: function () {
 		var user_id = Session.get('userId');
@@ -269,11 +269,7 @@ Template.messageFormAdmin.helpers({
 	isCardset: function () {
 		var showCardset = Session.get('showCardset');
 
-		if (showCardset) {
-			return true;
-		} else {
-			return false;
-		}
+		return (showCardset);
 	}
 });
 

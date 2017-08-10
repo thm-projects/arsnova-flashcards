@@ -78,6 +78,23 @@
     "title": "Kartensatz verlassen",
     "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
   },
+  "confirm-enter-learnphase": {
+    "title": "Aktiver Lernphase beitreten",
+    "text": "Sie erlauben dem Dozent des Kartensatzes bei Beitritt folgenden Zugriff auf Ihre Daten:",
+    "text2": "Diese Daten werden nur zur Benotung Ihrer Leistung verwendet.",
+    "enter": "Beitreten",
+    "close": "Schließen"
+  },
+  "confirm-leave-learnphase": {
+    "btn-txt": "Lernphase verlassen",
+    "title": "Aktive Lernphase verlassen",
+    "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
+  },
+  "complete-profile": {
+    "btn-txt": "Schließen",
+    "title": "Nutzerprofil unvollständig",
+    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+  },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
     "text": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
@@ -131,7 +148,11 @@
     "everything": "Alles",
     "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
-    "moreResults": "Zeige weitere Einträge"
+    "skillLevel": "Kompetenzstufe",
+    "moreResults": "Zeige weitere Einträge",
+    "learnphase": "Lernphase",
+    "activeLearnphase": "Aktiv",
+    "inactiveLearnphase": "Inaktiv"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -201,7 +222,8 @@
     "skillLevel0": "Allgemein",
     "skillLevel1": "Fachbegriffe",
     "skillLevel2": "Theoretische Grundlagen",
-    "skillLevel3": "Anwendung"
+    "skillLevel3": "Anwendung",
+    "deleteCards": "Möchten Sie wirklich alle Karten für den Kartensatz \"__name__\" löschen?"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -396,6 +418,8 @@
     "name": "Name",
     "author": "Autor",
     "rating": "Bewertung",
+    "userRating": "Deine Bewertung ",
+    "notRated": "Noch nicht bewertet",
     "quantity": "Kartenanzahl",
     "release": "Veröffentlicht",
     "deleted": "Gelöscht",
@@ -430,7 +454,7 @@
       "reason": "Geben Sie eine Begründung für die Ablehnung der Anfrage an"
     },
     "money": {
-      "buy": "Kartensatz kaufen für",
+      "buy": "Kartensatz kaufen",
       "pro": "Als Premium-Nutzer lernen",
       "bought": "Vielen Dank für Ihren Kauf!"
     }
@@ -546,6 +570,7 @@
   "searchpicture": "Bildsuche",
   "declinecard": "Abbrechen",
   "deletecard": "Karte löschen",
+  "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Karte speichern",
   "insertpicture": "Bild einfügen",
@@ -574,6 +599,7 @@
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte übrig",
+  "box_stats": "Lernstatistik",
   "box_status_plural": "__count__ Karten übrig",
   "leitner_status": "Noch eine Karte übrig für die aktuelle Lerneinheit",
   "leitner_status_plural": "Noch __count__ Karten übrig in der aktuellen Lerneinheit",

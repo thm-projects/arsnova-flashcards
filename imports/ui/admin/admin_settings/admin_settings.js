@@ -13,6 +13,6 @@ Template.admin_settings.events({
 
 Template.admin_settings.helpers({
 	isMailEnabled: function (type) {
-		return (type == AdminSettings.findOne({name: "mailSettings"}).enabled) ? "checked" : "";
+		return (type === AdminSettings.findOne({name: "mailSettings"}).enabled) ? "checked" : "";
 	}
 });

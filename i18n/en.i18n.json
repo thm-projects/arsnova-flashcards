@@ -78,6 +78,23 @@
     "title": "Leave cardset",
     "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
   },
+  "confirm-enter-learnphase": {
+    "title": "Join active learnphase",
+    "text": "You allow the lecturer of this cardset following access to your data:",
+    "text2": "This information will be only used to score your progress.",
+    "enter": "Enter",
+    "close": "Close"
+  },
+  "confirm-leave-learnphase": {
+    "btn-txt": "Leave Learning-Phase",
+    "title": "Leave the active Learning-Phase",
+    "text": "Do you really want to leave this active Learning-Phase? If you accept this, then your entire learning progress will be deleted."
+  },
+  "complete-profile": {
+    "btn-txt": "Close",
+    "title": "User profile incomplete",
+    "text": "Your user profile is incomplete. Please enter your first, last name and email to continue."
+  },
   "confirm-form-profile": {
     "title": "Delete user profile",
     "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",
@@ -134,7 +151,11 @@
     "everything": "Everything",
     "reset": "Reset filters",
     "rating": "Rating",
-    "moreResults": "Show more results"
+    "skillLevel": "Skill Level",
+    "moreResults": "Show more results",
+    "learnphase": "Learning phase",
+    "activeLearnphase": "Active",
+    "inactiveLearnphase": "Inactive"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -205,7 +226,8 @@
     "skillLevel0": "General",
     "skillLevel1": "Technical Terms",
     "skillLevel2": "Theoretical Principles",
-    "skillLevel3": "Practice"
+    "skillLevel3": "Practice",
+    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
   },
   "profile": {
     "overview": "Learning Progress",
@@ -408,6 +430,8 @@
     "info": {
       "author": "Author",
       "rating": "Rating",
+      "userRating": "Your rating ",
+      "notRated": "Not yet rated",
       "quantity": "Number of cards",
       "release": "Published",
       "reviewer": "Reviewer",
@@ -431,7 +455,7 @@
       "reason": "Enter a reason for rejecting the request"
     },
     "money": {
-      "buy": "Buy cardset for",
+      "buy": "Buy cardset",
       "pro": "Learn as premium-user",
       "bought": "Thank you for your payment!"
     }
@@ -547,6 +571,7 @@
   "searchpicture": "Image search",
   "declinecard": "Cancel",
   "deletecard": "Delete card",
+  "deleteCards": "Delete all cards",
   "confirmcard": "Sure?",
   "savecard": "Save card",
   "insertpicture": "Add image",
@@ -575,6 +600,7 @@
   "know": "Known",
   "notknow": "Not known",
   "box_status": "One card left",
+  "box_stats": "Learn Statistic",
   "box_status_plural": "__count__ cards left",
   "leitner_status": "Only one card left for the current lesson plan",
   "leitner_status_plural": "Only __count__ cards left for the current lesson plan",

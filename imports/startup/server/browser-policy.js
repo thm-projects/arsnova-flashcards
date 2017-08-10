@@ -13,3 +13,5 @@ BrowserPolicy.content.allowOriginForAll('https://*.braintreegateway.com');
 BrowserPolicy.content.allowOriginForAll('http://*.cloudflare.com');
 BrowserPolicy.content.allowOriginForAll('https://git.thm.de');
 BrowserPolicy.content.allowOriginForAll('https://cdn.mathjax.org');
+
+BrowserPolicy.content.allowImageOrigin('*');

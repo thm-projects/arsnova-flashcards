@@ -21,7 +21,8 @@ $themes: (
     .navbar.navbar-default {
       background-color: $primary-color;
     }
-    .navbar-default .navbar-nav > .active > a {
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .open > a {
       background-color: $accent;
     }
     .glyphicon-chevron-down:before {
@@ -87,6 +88,22 @@ $themes: (
     .info {
       color: $primary-color;
     }
+
+    .navbar.navbar-default .dropdown-menu li > a:hover {
+      color: $primary-color;
+    }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+      background-color: $primary-color;
+    }
+
+    li.dropdown.open a.dropdown-toggle {
+      background-color: $accent;
+    }
+    li.dropdown.open ul.dropdown-menu a:hover {
+      color: $primary-text;
+    }
+
   }
 
 }

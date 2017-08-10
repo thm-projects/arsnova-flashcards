@@ -10,6 +10,8 @@ if (Meteor.isServer) {
 				'editor'
 			])) {
 			return Meteor.users.find({});
+		} else {
+			return [];
 		}
 	});
 }

@@ -11,16 +11,12 @@ import "./box.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-
+Meteor.subscribe('learned');
 
 Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', true);
-
-Meteor.subscribe('learned', function () {
-	Session.set('data_loaded', true);
-});
 
 var chart;
 
@@ -260,7 +256,10 @@ function updateGraph() {
 
 Template.boxSide.onRendered(function () {
 	drawGraph();
-	if (Session.get('data_loaded') || !navigator.onLine) {
-		updateGraph();
-	}
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			updateGraph();
+		});
+	});
 });

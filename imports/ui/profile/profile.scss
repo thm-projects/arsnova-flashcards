@@ -1,5 +1,6 @@
 //colors
 $white: rgb(255, 255, 255);
+$black: rgb(0, 0 ,0);
 
 .badgeFooterProgress {
   margin-top: 8px;
@@ -128,6 +129,26 @@ $white: rgb(255, 255, 255);
   color: $white !important;
 }
 
+.profilepublic-rb-text-color {
+  color: $black !important;
+}
+
 .panel-body {
   padding: 15px;
+}
+
+.list-group li{
+ margin: 1em;
+}
+
+.panel-footer{
+ margin-top: 2em;
+}
+
+.red-passage{
+ color: red;
+}
+
+.green-passage{
+  color: green;
 }

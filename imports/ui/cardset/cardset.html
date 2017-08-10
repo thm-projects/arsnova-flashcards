@@ -15,6 +15,8 @@
                 {{> cardsetEndLearnForm}}
                 {{> selectLicenseForm}}
                 {{> reportCardsetForm}}
+                {{> deleteCardsForm}}
+                {{> leaveLearnPhaseForm}}
                 {{onEditmodalClose this._id}}
                 {{#if hasCardsetPermission}}
                     {{#if isLecturerAndHasRequest}}
@@ -39,7 +41,7 @@
                     {{/if}}
                     {{> cardsetSidebar}}
                     {{#if isActiveRoute 'cardsetdetailsid'}}
-                        {{#if learningActive}}
+                        {{#if lerningActiveAndNotEditor}}
                             {{> leitnerLearning}}
                         {{else}}
                             {{#if countCards this._id}}
@@ -76,7 +78,7 @@
             <div class="panel-body">
                 <div class="col-sm-8">
                     <div class="">
-                        <h4>{{{getKind}}} {{name}}</h4>
+                        <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
                         <hr> {{#markdown}}{{description}}{{/markdown}}
                     </div>
                 </div>
@@ -84,18 +86,19 @@
                     <div class="well">
                         {{#if ratingEnabled}}
                             <strong class="left">{{_ "cardset.info.rating"}}:</strong>
-                            {{#if hasRated}}
-                                {{> starsRating id='ratingLocked' rating=getUserRating mutable=false}}
+                            {{#if isCardsetOwner _id}}
+                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                             {{else}}
-                                {{#if isCardsetOwner _id}}
-                                    {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                                {{else}}
-                                    {{> starsRating id='rating' rating=getAverage mutable=true}}
-                                {{/if}}
+                                {{> starsRating id='rating' rating=getAverage mutable=true}}
                             {{/if}}
+                            {{#unless isCardsetOwner _id}}
+                                <br><strong class="left">{{_ "cardset.info.userRating"}}:</strong>
+                                <span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
+                                ({{_ "cardset.info.notRated"}}){{/unless}}
+                            {{/unless}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearner}}
+                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearners this._id}}
                             <hr>
                         {{/if}}
                         <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
@@ -150,6 +153,13 @@
                         </button>
                     </div>
                     {{#unless learningActive}}
+                        <div class="btn-group btn-group-raised">
+                            <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                                    data-toggle="modal"
+                                    data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                            </button>
+                        </div>
                         <div class="btn-group btn-group-raised">
                             <a type="button" id="newCardBtn" class="btn btn-info" href="{{pathFor 'newCard'}}"
                                 {{disableIfOffline}}>
@@ -230,6 +240,10 @@
                             <button id="exportCSV" class="btn btn-default btn-raised btn-block{{#if
                                     learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>{{_
                                     "box_export"}}</button>
+                            <button id="showStats" class="btn btn-default btn-raised btn-block{{#if
+                                    learningActive}} btn-success {{else}} btn-default{{/if}}" {{isDisabled}}>
+                                    {{_ "box_stats"}}
+                            </button>
                         {{/if}}
                     {{/if}}
                     {{#unless isCardsetOwner _id}}
@@ -237,6 +251,13 @@
                                 class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
                                 data-toggle="modal" data-target="#reportModal">{{_
                                 "report"}}</button>
+                        {{#if learningActive}}
+                            <button id="leaveLearnPhaseButton"
+                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                    data-toggle="modal" data-target="#leaveModal">{{_
+                                    "confirm-leave-learnphase.btn-txt"}}</button>
+                        {{/if}}
                     {{/unless}}
                 </div>
             </div>
@@ -248,7 +269,7 @@
 
 <template name="cardsetPreview">
     <div class="col-md-3">
-        <div class="">
+        <div id="cardsetPreview">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
                     <form role="form">
@@ -259,12 +280,12 @@
                                         class="btn btn-success btn-block btn-raised">{{_ "cardset.money.buy"}} {{price}}
                                     €
                                 </button>
-                                <a href="{{pathFor 'profileMembership' _id=currentUser._id}}" id="sortName"
-                                   class="btn btn-warning btn-block btn-raised" type="button">{{_
-                                        "cardset.money.pro"}}</a>
                             </div>
                         </div>
                     </form>
+                    <button id="buyProBtn"
+                            class="btn btn-warning btn-block btn-raised">{{_ "cardset.money.pro"}}
+                    </button>
                 </div>
             </div>
         </div>
@@ -305,10 +326,10 @@
                                    href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
-                                   title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
-                                    <i class="glyphicon glyphicon-ban-circle"></i>
-                                </a>
+                                <button class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
+                                   {{isDisabled}} title='{{_ "deletecard"}}' data-toggle="modal" data-target="#confirmModal">
+                                    <i class="glyphicon glyphicon-ban-circle" ></i>
+                                </button>
                             </td>
                         {{/if}}
                     </tr>
@@ -329,6 +350,53 @@
 <template name="descriptionEditorEdit">
      <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
                value="{{description}}"></textarea>
+</template>
+
+<template name="deleteCardsForm">
+    <div class="modal fade" id="deleteCardsModal" tabindex="-1" role="dialog"
+         aria-labelledby="deleteCardsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="deleteCardsTitle" class="modal-title">{{_ "deleteCards"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.deleteCards" name= this.description }}
+                    <button id="deleteCardsConfirm" class="btn btn-raised btn-warning btn-block col-xs-12 col-sm-3">{{_
+                            "deleteCards"}}</button>
+                    <button id="deleteCardsCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="leaveLearnPhaseForm">
+    <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveLearnPhaseTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                    <h4 id="leaveLearnPhaseTitle" class="modal-title">{{_ "confirm-leave-learnphase.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-leave-learnphase.text"}}</p>
+                    <br>
+                    <hr>
+                    <button id="leaveLearnPhaseConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
+                            "confirm-leave-learnphase.btn-txt"}}</button>
+                    <button id="leaveLearnPhaseCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="cardsetForm">
@@ -622,7 +690,7 @@
                     <br/>
                     <hr/>
 
-                    <button id="cardDelete" class="btn btn-danger btn-setDelete">{{_
+                    <button id="cardDelete" class="btn {{#if learningActive}} btn-success {{else}} btn-default btn-setDelete{{/if}} " {{isDisabled}}>{{_
                             "confirm-form.title"}}</button>
                     <button id="cardCancel" class="btn btn-default pull-right" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
@@ -918,4 +986,40 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="cardsetLearnActivityStatistic">
+  <div class="container" >
+  <div style="overflow-x:auto;">
+    <table  class="table table-striped table-hover ">
+      <tbody>
+          <tr class="active">
+             <th>{{_ "panel-body.givenname"}}</th>
+             <th>{{_ "panel-body.birthname"}}</th>
+             <th>{{_ "panel-body.email"}}</th>
+             <th>{{_ "subject1"}}</th>
+             <th>{{_ "subject2"}}</th>
+             <th>{{_ "subject3"}}</th>
+             <th>{{_ "subject4"}}</th>
+             <th>{{_ "subject5"}}</th>
+             <th>{{_ "subject6"}}</th>
+          </tr>
+        {{#each getCardsetStats}}
+          <tr>
+            <th>{{this.givenname}}</th>
+            <th>{{this.birthname}}</th>
+            <th>{{this.email}}</th>
+            <th>{{this.box1}}</th>
+            <th>{{this.box2}}</th>
+            <th>{{this.box3}}</th>
+            <th>{{this.box4}}</th>
+            <th>{{this.box5}}</th>
+            <th>{{this.box6}}</th>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-info btn-block btn-raised" id="closeStats">{{_ "access-denied.button"}}</a>
+  </div>
 </template>

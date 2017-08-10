@@ -193,4 +193,5 @@ Meteor.startup(function () {
 	}
 
 	cronScheduler.startCron();
+	cronScheduler.startWordCron();
 });

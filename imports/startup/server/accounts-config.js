@@ -30,6 +30,17 @@ ServiceConfiguration.configurations.insert({
 
 
 Meteor.users.after.insert(function (userId, doc) {
+	// Setup roles for backdoor login, required for acceptance tests
+	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor)
+	{
+		Roles.addUsersToRoles(doc._id, [
+			'standard',
+			'university',
+			'admin',
+			'firstLogin'
+		]);
+	}
+
 	if (doc.services.cas) {
 		if (doc.services.cas.id === Meteor.settings.admin.name) {
 			Roles.addUsersToRoles(doc._id, [
