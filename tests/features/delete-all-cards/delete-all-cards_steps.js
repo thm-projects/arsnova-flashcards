@@ -7,7 +7,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^I am logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^I am on my own cardset$/, function () {

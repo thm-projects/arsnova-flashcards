@@ -8,7 +8,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is logged in$/, function () {
-		login("testuser");
+		login("editorLogin");
 	});
 
 	this.Given(/^user is in the back end$/, function () {
@@ -31,8 +31,8 @@ module.exports = function () {
 
 	this.Then(/^user should see the college and course in list$/, function () {
 		browser.waitForExist('.tblCollege-2', 5000);
-		var college = browser.getText(".tblCollege-2");
-		var course = browser.getText(".tblCourse-2");
+		var college = browser.getText(".tblCollege-3");
+		var course = browser.getText(".tblCourse-3");
 
 		expect(college).toEqual("THM");
 		expect(course).toEqual("WBS");

@@ -13,10 +13,13 @@ function setResolution() {
 }
 
 /* exported login */
-export function login() {
+export function login(userLogin) {
 	setResolution();
-	browser.waitForVisible('#TestingBackdoorUsername', 15000);
 	agreeCookies();
+	browser.waitForVisible('#TestingBackdoorUsername', 15000);
+	browser.click('#TestingBackdoorUsername', 15000);
+	browser.waitForVisible('#' + userLogin);
+	browser.click('#' + userLogin);
 	browser.waitForVisible('#BackdoorLogin', 15000);
 	browser.click('#BackdoorLogin');
 }

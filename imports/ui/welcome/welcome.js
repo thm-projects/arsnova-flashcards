@@ -132,14 +132,14 @@ Template.welcome.onRendered(function () {
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
 		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" /></a>');
 		$('.panel-footer').append('<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername">' +
-			'<option value="admin">admin  (Back end access)</option>' +
-			'<option value="editor">editor (Back end access)</option>' +
-			'<option >standard</option>' +
-			'<option>university</option>' +
-			'<option>lecturer</option>' +
-			'<option>pro</option>' +
-			'<option>blocked</option>' +
-			'<option>firstLogin</option>' +
+			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
+			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
+			'<option id="standardLogin" value="standard">standard</option>' +
+			'<option id="universityLogin" value="university">university</option>' +
+			'<option id="lecturerLogin" value="lecturer">lecturer</option>' +
+			'<option id="proLogin" value="pro">pro</option>' +
+			'<option id="proLogin" value="blocked">blocked</option>' +
+			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
 			'</select>');
 	}
 

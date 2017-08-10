@@ -8,7 +8,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is logged in$/, function () {
-		login('testuser');
+		login("standardLogin");
 	});
 
 	this.Given(/^User is on the cardset view of the testcardset$/, function () {
@@ -34,7 +34,7 @@ module.exports = function () {
 
 	this.Then(/^User is on the memo view of the testcardset$/, function () {
 		var url = browser.getUrl();
-		expect(url).toBe('http://localhost:3000/memo/2P6mg5iqCZ49QPPDz');
+		expect(url).toBe('http://localhost:3000/memo/dTjXBmerQ6v828kZj');
 	});
 
 	this.Then(/^User should not see a icon_front.png$/, function () {

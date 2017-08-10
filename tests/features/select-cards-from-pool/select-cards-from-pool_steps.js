@@ -8,7 +8,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^User is on the pool view$/, function () {
@@ -25,7 +25,7 @@ module.exports = function () {
 	this.Then(/^he is shown the details of the cardset$/, function () {
 		browser.pause(2000);
 		var url = browser.getUrl();
-		expect(url).toBe("http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz");
+		expect(url).toBe("http://localhost:3000/cardset/dTjXBmerQ6v828kZj");
 
 		logout();
 	});

@@ -8,14 +8,14 @@ module.exports = function () {
 	});
 
 	this.Given(/^He loges in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^change to cardset$/, function () {
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
-		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
+		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",5000);
+		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
 		browser.waitForExist('.cardsetInfo', 5000);
 	});
 
