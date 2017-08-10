@@ -1,12 +1,6 @@
 #pool-category-region {
   margin-bottom: 35px;
   $color_orange_pool: rgb(255, 153, 51);
-  $color_background_free_filter_btn: #003bd1;
-  $color_border_free_filter_btn: #003bd1;
-  $color_background_edu_filter_btn: #80ba24;
-  $color_border_edu_filter_btn: #80ba24;
-  $color_background_pro_filter_btn: #ffb300;
-  $color_border_pro_filter_btn: #ffb300;
   $color_btn_inactive: #9e9c9c;
   $color_item_separator: #b2b2b2;
   text-align: left;
@@ -43,20 +37,20 @@
 
   .btn-info.active {
     color: $white;
-    background-color: $color_background_free_filter_btn;
-    border-color: $color_border_free_filter_btn;
+    background-color: $color_free_btn;
+    border-color: $color_free_btn;
   }
 
   .btn-success.active {
     color: $white;
-    background-color: $color_background_edu_filter_btn;
-    border-color: $color_border_edu_filter_btn;
+    background-color: $color_edu_btn;
+    border-color: $color_edu_btn;
   }
 
   .btn-danger.active {
     color: $white;
-    background-color: $color_background_pro_filter_btn;
-    border-color: $color_border_pro_filter_btn;
+    background-color: $color_pro_btn;
+    border-color: $color_pro_btn;
   }
 
   .btn-info, .btn-success, .btn-danger {
@@ -289,15 +283,15 @@
   }
 
   .label-free {
-    background-color: $color_background_free_filter_btn;
+    background-color: $color_free_btn;
   }
 
   .label-edu {
-    background-color: $color_background_edu_filter_btn;
+    background-color: $color_edu_btn;
   }
 
   .label-pro {
-    background-color: $color_background_pro_filter_btn;
+    background-color: $color_pro_btn;
   }
 }
 

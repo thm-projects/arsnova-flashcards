@@ -208,7 +208,7 @@ $font_5: sans-serif;
 
 #publishKind, #publishKindAdmin {
   .btn-info {
-    color: #31b0d5 !important;
+    color: $color_free_btn !important;
   }
 
   .btn-default.active {
@@ -217,22 +217,28 @@ $font_5: sans-serif;
 
   .btn-info.active {
     color: $white !important;
+    background-color: $color_free_btn;
+    border-color: $color_free_btn;
   }
 
   .btn-success {
-    color: #398439 !important;
+    color: $color_edu_btn !important;
   }
 
   .btn-success.active {
     color: $white !important;
+    background-color: $color_edu_btn;
+    border-color: $color_edu_btn;
   }
 
   .btn-danger {
-    color: #c9302c !important;
+    color: $color_pro_btn !important;
   }
 
   .btn-danger.active {
     color: $white !important;
+    background-color: $color_pro_btn;
+    border-color: $color_pro_btn;
   }
 }
 
