@@ -315,3 +315,9 @@ img.cardside {
 .emptyCard {
   padding: 50px;
 }
+
+@media (min-width: 768px) {
+  #cardCancel {
+    margin-left: 25px;
+  }
+}

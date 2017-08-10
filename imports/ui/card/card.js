@@ -283,9 +283,9 @@ Template.btnCard.events({
 	},
 	'click #cardDelete': function () {
 		$("#cardDelete").remove();
-		$("#changeDeleteButton").css('display', "");
+		$("#cardDeleteConfirm").css('display', "");
 	},
-	'click #cardConfirm': function () {
+	'click #cardDeleteConfirm': function () {
 		var id = this._id;
 		Meteor.call("deleteCard", id);
 	}
