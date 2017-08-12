@@ -42,7 +42,7 @@ function createTagCloud() {
 			list: list,
 			gridSize: gridSize,
 			weightFactor: weightFactor,
-			fontFamily: 'Finger Paint, cursive, sans-serif',
+			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 			color: function (word) {
 				for (var i = 0; i < list.length; i++) {
 					if (word == list[i][0]) {
