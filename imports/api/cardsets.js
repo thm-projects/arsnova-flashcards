@@ -3,6 +3,8 @@ import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
+import {Learned} from "./learned.js";
+import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 
@@ -253,6 +255,15 @@ Meteor.methods({
 
 		Cardsets.remove(id);
 		Cards.remove({
+			cardset_id: id
+		});
+		Learned.remove({
+			cardset_id: id
+		});
+		Notifications.remove({
+			link_id: id
+		});
+		Ratings.remove({
 			cardset_id: id
 		});
 	},
