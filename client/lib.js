@@ -78,20 +78,6 @@ export function parseCommentBlock(result, i) {
 	result.splice(i, 0, tmpNewItem);
 }
 
-/** Parses a link block
- *  @author arsnova.click
- *  @param {string} result - Text that contains the link block
- *  @param {number} i - Beginning of the block
- * */
-export function parseLinkBlock(result, i) {
-	const startIndex = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/.exec(result[i]);
-	const linkStr = startIndex[0] || result[i];
-	const link = !/^https?:\/\//.test(linkStr) ? "http://" + linkStr : linkStr;
-	const prevLinkContent = result[i].substring(0, startIndex.index);
-	const postLinkContent = result[i].indexOf(" ", startIndex.index) > -1 ? result[i].substring(result[i].indexOf(" ", startIndex.index)) : "";
-	result[i] = prevLinkContent + "<a href='" + link + "' target='_blank'>" + linkStr + "</a>" + postLinkContent;
-}
-
 /** Parses a strikethrough block
  *  @author arsnova.click
  *  @param {string} result - Text that contains the strikethrough block
@@ -201,9 +187,6 @@ export function parseGithubFlavoredMarkdown(result, overrideLineBreaks = true) {
 				break;
 			case /~~.*~~/.test(result[i]):
 				parseStrikeThroughBlock(result, i);
-				break;
-			case !/(^!)?\[.*\]\(.*\)/.test(result[i]) && /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/.test(result[i]) && !(/youtube/.test(result[i]) || /youtu.be/.test(result[i]) || /vimeo/.test(result[i])):
-				parseLinkBlock(result, i);
 				break;
 			case overrideLineBreaks && result[i].length === 0:
 				result.splice(i, 0, "<br/>");
