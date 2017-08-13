@@ -239,31 +239,30 @@ const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
 		x = x.split("\n");
-		//NOTE:
-		// Set OverrideLineBreaks to false, otherwise everything written between two mathjax statements
-		// will be displayed as plain text and not as correctly formated html.
-		// Also almost all redundant whitespace is removed from learning card, which seems to be acceptable,
-		// in favor of correctly displayed markdown content.
-		// This might be changing some later time, until then this solution should be sufficient enough.
-		x = lib.parseGithubFlavoredMarkdown(x, false);
+		x = lib.parseGithubFlavoredMarkdown(x);
 		return lib.setLightBoxes(converter.makeHtml(x));
 	}
 });
 
 Template.registerHelper('mathjax', helper.getTemplate());
+MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js';
 MeteorMathJax.defaultConfig = {
 	config: ["TeX-AMS-MML_HTMLorMML.js"],
 	jax: ["input/TeX", "input/MathML", "output/HTML-CSS", "output/NativeMML", "output/PreviewHTML"],
 	extensions: ["tex2jax.js", "enclose.js", "Safe.js", "mml2jax.js", "fast-preview.js", "AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
 	TeX: {
-		extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"],
-		equationNumbers: {autoNumber: "AMS"}
+		extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
 	},
 	tex2jax: {
-		inlineMath: [['$', '$'], ["\\(", "\\)"]],
-		displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+		inlineMath: [['$', '$'], ["\(", "\)"]],
+		displayMath: [['$$', '$$'], ["\[", "\]"]],
 		processEscapes: true,
 		preview: 'none'
+	},
+	styles: {
+		".MathJax_Display": {
+			display: "table"
+		}
 	},
 	messageStyle: 'none',
 	showProcessingMessages: false,
