@@ -733,6 +733,7 @@
       "header": "Cardset",
       "edit": "Edit",
       "username": "User:",
+      "userID": "User-ID:",
       "date": "Created At:",
       "info": "Cardset info",
       "settings": "Cardset settings",
@@ -750,7 +751,10 @@
       "dateUpdated": "Last updated:",
       "license": "License",
       "wrongCombination": "This combination is not allowed!",
-      "noCards": "You have to create at least 5 cards to publish this cardset!"
+      "noCards": "You have to create at least 5 cards to publish this cardset!",
+      "changeOwner": "Change Owner",
+      "changeOwnerFailure": "User not found",
+      "changeOwnerSuccess": "Owner changed successfully"
     },
     "card": {
       "header": "Card",
