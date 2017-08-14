@@ -8,14 +8,14 @@
   },
   "intro": {
     "about": "Was ist THMcards?",
-    "choose": "Wähle deinen Login:",
+    "choose": "",
     "impressum": "Impressum"
   },
   "carousel-inner": {
     "carousel-header-0": "Deine digitalen Lernkarten",
     "carousel-paragraph-0": "Lerne oder erstelle deine eigenen digitalen Lernkarten.",
     "carousel-header-1": "THMcards spricht TeX",
-    "carousel-paragraph-1": "Endlich ein einfacher Weg sperrige Matheformeln zu lernen.",
+    "carousel-paragraph-1": "Endlich ein einfacher Weg, sperrige Matheformeln zu lernen.",
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Lerne Programmcode einfacher - dank automatischem Syntaxhighlighting.",
     "carousel-header-3": "Sammel Badges",
@@ -28,8 +28,8 @@
     "billing": "Abrechnung",
     "logout": "Logout",
     "search": "Suche",
-    "frontend": "Front-End",
-    "backend": "Back-End",
+    "frontend": "Frontend",
+    "backend": "Backend",
     "none": "Ohne"
   },
   "footer": {
@@ -46,16 +46,16 @@
     "approved": "Freigegeben",
     "pending": "Freigabe ausstehend",
     "progress": "In Bearbeitung",
-    "reporteduser": "Gemeldeter Benutzer",
+    "reporteduser": "Gemeldeter Benutzer/innen",
     "reportedcardset": "Gemeldeter Kartensatz",
-    "reporteduseradmin": "Adminbenachrichtigung (Gemeldeter Benutzer)",
+    "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
     "lecturer": "Dozenten-Anfrage",
     "heading": "Aufgaben warten!",
     "content": "Kartensatz: ",
     "deadline": "\nFrist: ",
     "warning": "\nNicht bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
-    "admin": "Sie sind ein Admin!",
+    "admin": "Sie sind angemeldet als Admin!",
     "cards": "\nKarten: "
   },
   "input-group": {
@@ -93,7 +93,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
@@ -261,8 +261,8 @@
       "subscribed": "Vielen Dank für Ihr Abonnement!"
     },
     "downgrade": {
-      "error": "Sie können Ihr Konto nicht herunterstufen solange Sie Pro-Kartensätze haben!",
-      "confirm": "Sind Sie sicher ihr Konto zurückzustufen? Dies bedeutet, dass Ihr Abonnement nicht länger aktiv ist. Sie können später jederzeit Ihr Konto wieder hochstufen.",
+      "error": "Sie können Ihr Konto nicht herunterstufen, solange Sie Pro-Kartensätze haben!",
+      "confirm": "Sind Sie sicher, ihr Konto zurückzustufen? Dies bedeutet, dass Ihr Abonnement nicht länger aktiv ist. Sie können später jederzeit Ihr Konto wieder hochstufen.",
       "canceled": "Abonnement erfolgreich beendet!"
     }
   },
@@ -278,8 +278,8 @@
       "month": "Monat",
       "subscribe": "Pro-Version abonnieren",
       "lecturer": "Dozent",
-      "send": "Anfrage versenden um alle Vorteile eines Dozenten zu erhalten.",
-      "lecturerActivatet": "Sie sind als Dozent freigeschaltet.",
+      "send": "Anfrage versenden, um alle Vorteile eines Dozenten zu erhalten.",
+      "lecturerActivatet": "Sie sind als Dozent/in freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
@@ -764,7 +764,7 @@
       "confirm": "Sicher?",
       "front_required": "Bitte Vorderseite ausfüllen!",
       "back_required": "Bitte Rückseite ausfüllen!",
-      "text_max": "Es sind nur 10000 Zeichen erlaubt!"
+      "text_max": "Es sind nur 10.000 Zeichen erlaubt!"
     },
     "user": {
       "header": "Benutzer",
@@ -802,7 +802,7 @@
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     },
     "mail-settings": {
-      "mail-settings": "Mail Einstellungen",
+      "mail-settings": "Mail-Einstellungen",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
     }
@@ -834,16 +834,16 @@
     "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
     "textDate2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt zurückgesetzt!",
-    "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase konnte festgestellt werden, dass ",
+    "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus dem Kartensatz ",
     "newCards2Plural": " Karten aus dem Kartensatz ",
     "mailCard" : "Der Kartensatz ",
     "mailCard1" : " benötigt deine Aufmerksamkeit!\n\n",
     "greetings": "\n\nIhr THMCards-Team",
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
-    "textIntroEnding": "Sehr geehrter Teilnehmer,\n\n",
+    "textIntroEnding": "Sehr geehrte/r Teilnehmer/in,\n\n",
     "textEnding": "Heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Ihr Lernfortschritt hat sich zurückgesetzt für den Kartensatz ",
+    "subjectReset": "THMcards: Ihr Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
     "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
