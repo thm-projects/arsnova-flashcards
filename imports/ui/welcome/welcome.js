@@ -43,19 +43,14 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-			color: function (word) {
-				for (var i = 0; i < list.length; i++) {
-					if (word == list[i][0]) {
-						return list[i][2];
-					}
-				}
+			color: function () {
+				return (['#003BD1', '#80BA24', '#FFB300'])[Math.floor(Math.random() * 3)];
 			},
 			hover: window.drawBox,
-			backgroundColor: '#FFFFFF',
+			backgroundColor: '#EEEEEE',
 			drawOutOfBound: false,
-			rotateRatio: 0.1,
-			minRotation: 0,
-			maxRotation: 0
+			rotateRatio: 0.5,
+			rotationSteps: 2
 		});
 }
 
