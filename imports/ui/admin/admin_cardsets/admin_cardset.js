@@ -85,6 +85,18 @@ Template.admin_cardset.helpers({
 });
 
 Template.admin_cardset.events({
+	'click #cardsetChangeOwnerAdmin': function (evt, tmpl) {
+		let owner = tmpl.find('#editOwnerAdmin').value;
+		Meteor.call('changeOwner', this._id, owner, function (error, result) {
+			if (error || result === false) {
+				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#b94a48'});
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerFailure'));
+			} else {
+				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#4ab948'});
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerSuccess'));
+			}
+		});
+	},
 	'change #publishKindAdmin': function (evt, tmpl) {
 		var kind = tmpl.find('#publishKindAdmin > .active > input').value;
 		Session.set('kind', kind);

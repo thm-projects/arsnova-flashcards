@@ -730,6 +730,7 @@
       "header": "Kartensatz",
       "edit": "Bearbeite",
       "username": "Benutzer:",
+      "userID": "Benutzer-ID:",
       "date": "Erstelldatum:",
       "info": "Kartensatz Informationen",
       "settings": "Kartesatz Einstellungen",
@@ -747,7 +748,10 @@
       "dateUpdated": "Zuletzt aktualisiert:",
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
-      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!"
+      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!",
+      "changeOwner": "Besitzer ändern",
+      "changeOwnerFailure": "Benutzer nicht gefunden",
+      "changeOwnerSuccess": "Besitzer erfolgreich geändert"
     },
     "card": {
       "header": "Karte",

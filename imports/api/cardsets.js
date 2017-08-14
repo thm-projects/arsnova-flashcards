@@ -574,5 +574,29 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
+	},
+	/**
+	 * Changes the owner of the selected cardset. Only the super admin got access to this feature.
+	 * @param {String} id - ID of the cardset to be updated
+	 * @param {String} owner - The new owner for the cardset
+	 */
+	changeOwner: function (id, owner) {
+		check(id, String);
+		check(owner, String);
+
+		if (!Roles.userIsInRole(this.userId, ["admin"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
+			Cardsets.update(id, {
+				$set: {
+					owner: owner
+				}
+			});
+			return true;
+		} else {
+			return false;
+		}
 	}
 });

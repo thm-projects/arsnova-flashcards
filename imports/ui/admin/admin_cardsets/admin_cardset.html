@@ -20,6 +20,24 @@
                             {{/if}}
                         </div>
                         <div class="form-group">
+                            <label id="cardsetOwnerAdminLabel">{{_ "admin.cardset.userID"}}</label>
+                            {{#if isInRole 'admin'}}
+                                {{#if userExists userDeleted}}
+                                    <input class="form-control" type="text" id="editOwnerAdmin"
+                                           value="{{this.owner}}">
+                                {{else}}
+                                    {{username}} ({{_ "admin.deleted"}})
+                                {{/if}}
+                                <a id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
+                                    {{_ "admin.cardset.changeOwner"}}</a>
+                                <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
+                                       style="visibility: hidden;"></label>
+                            {{else}}
+                                <label id="cardsetOwnerIDAdminLabel" for="cardsetOwnerAdminLabel">
+                                    {{this.owner}}</label>
+                            {{/if}}
+                        </div>
+                        <div class="form-group">
                             <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
                             {{getDate}}
                         </div>
@@ -282,7 +300,8 @@
             <div class="box-button-admin">
                 <button id="cardsetCancelAdmin" class="btn btn-raised">{{_ "admin.cardset.cancel"}}</button>
                 <button id="cardsetSaveAdmin" class="btn btn-raised btn-success">{{_ "admin.cardset.save"}}</button>
-                <button id="cardsetDeleteAdmin" class="btn btn-raised btn-warning btn-raised btn-setDelete pull-right">{{_
+                <button id="cardsetDeleteAdmin"
+                        class="btn btn-raised btn-warning btn-raised btn-setDelete pull-right">{{_
                         "admin.cardset.delete"}}</button>
                 <button id="cardsetConfirmAdmin" class="btn btn-danger btn-raised pull-right"
                         style="width:150px; display:none">{{_ "admin.cardset.confirm"}}</button>
