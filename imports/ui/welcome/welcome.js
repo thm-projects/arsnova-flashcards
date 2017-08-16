@@ -9,6 +9,21 @@ import "./welcome.html";
 Meteor.subscribe("wordcloud");
 
 /**
+ * This method nserts a hover message for the wordcloud content
+ *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
+ *  @param {Object} dimension - X and Y Positions relative to the canvas
+ */
+function wordcloudHover(item, dimension) {
+	if (dimension === undefined) {
+		$('#welcome-tip').css({'visibility': 'hidden'});
+		return;
+	}
+	let bottomAdjustment = 385 - dimension.y;
+	$('#welcome-tip').html("<p>" + item[3] + "</p>");
+	$('#welcome-tip').css({'visibility': 'visible', 'left': dimension.x, 'bottom': bottomAdjustment});
+}
+
+/**
  * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
  */
 function createTagCloud() {
@@ -43,10 +58,11 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
+			classes: 'tip-content',
 			color: function () {
 				return (['#003BD1', '#80BA24', '#FFB300'])[Math.floor(Math.random() * 3)];
 			},
-			hover: window.drawBox,
+			hover: wordcloudHover,
 			backgroundColor: '#EEEEEE',
 			drawOutOfBound: false,
 			rotateRatio: 0.5,
