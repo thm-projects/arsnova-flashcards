@@ -66,7 +66,8 @@ function createTagCloud() {
 			backgroundColor: '#EEEEEE',
 			drawOutOfBound: false,
 			rotateRatio: 0.5,
-			rotationSteps: 2
+			rotationSteps: 2,
+			wait: 100
 		});
 }
 
