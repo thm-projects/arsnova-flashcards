@@ -6,9 +6,14 @@ $color_mercury_approx: rgb(223, 229, 230);
 $color_la_palma_approx: rgb(61, 156, 25);
 $color_wild_sand_approx: rgb(245, 245, 245);
 $color_slate_gray_approx: rgb(74, 92, 102);
-$color_free_btn: #003bd1;
-$color_edu_btn: #80ba24;
-$color_pro_btn: #ffb300;
+$color_thm_dark_blue: #002878;
+$color_thm_orange: #F5AA01;
+$color_thm_red: #9C132D;
+$color_thm_gray: #4A5C66;
+$color_thm_green: #78B925;
+$color_free_btn: $color_thm_dark_blue;
+$color_edu_btn: $color_thm_green;
+$color_pro_btn: $color_thm_orange;
 
 html {
   position: relative;
@@ -212,7 +217,7 @@ body {
 }
 
 #theme-wrapper {
-  margin-top:100px;
+  margin-top: 100px;
 }
 
 .footer {
@@ -311,4 +316,24 @@ button:disabled {
 
 .field-tip:hover .tip-content {
   visibility: visible;
+}
+
+.label-info {
+  color: $white !important;
+  background-color: $color_free_btn !important;
+}
+
+.label-warning {
+  color: $white !important;
+  background-color: $color_thm_red !important;
+}
+
+.label-danger {
+  color: $white !important;
+  background-color: $color_pro_btn !important;
+}
+
+.label-success {
+  color: $white !important;
+  background-color: $color_edu_btn !important;
 }
