@@ -281,3 +281,34 @@ button:disabled {
   position: absolute;
   padding-bottom: 10px;
 }
+
+.field-tip .tip-content, #welcome-tip {
+  max-lines: 1;
+  visibility: hidden;
+  width: 240px;
+  text-overflow: ellipsis;
+  background-color: black;
+  opacity: 0.9;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 2;
+  bottom: 115%;
+}
+
+.field-tip .tip-content::after, #welcome-tip::after  {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -95px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.field-tip:hover .tip-content {
+  visibility: visible;
+}
