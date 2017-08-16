@@ -3,7 +3,7 @@ Feature: Create a new Card and delete it
   and he wants to be able to delete it
 
   Scenario: Create a new card and delete it
-    Given User is on the poolview with username "testuser"
+    Given User is on the poolview with username "standard"
     And he is on the view of a cardset
     When the user clicks on the --create a new card-- button
     And he is redirected to the --New card-- view

@@ -276,32 +276,32 @@
     <a href="/profile/{{this.owner}}/settings/" title="{{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit">{{_ "set-list.author"}}
             :</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-2 poolContent poolText panelUnit">{{getAuthorName
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-2 poolContent poolText panelUnit poolAuthor">{{getAuthorName
                 this.owner}}</span>
     </a>
     <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit"
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit poolCollege"
               data-id="{{this.college}}">{{this.college}}</span>
     </a>
     <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{this.course}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-2 poolContent poolText panelUnit"
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-2 poolContent poolText panelUnit poolCourse"
               data-id="{{this.course}}">{{this.course}}</span>
     </a>
     <a href="#" class="filterModule" title="Filter {{_ "set-list.module"}}: {{this.module}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit" data-id="{{this.module}}">{{_
                 "set-list.module"}}:</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit"
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit poolModule"
               data-id="{{this.module}}">{{this.moduleToken}}</span>
     </a>
     <a href="#" class="filterSkillLevel" title="Filter {{_ "set-list.skillLevel"}}: {{getSkillLevel this.skillLevel}}">
         <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit"
               data-id="{{this.skillLevel}}">{{_
                 "set-list.skillLevel"}}:</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit"
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit poolSkillLevel"
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
     <a href="#" class="filterRating"
@@ -314,7 +314,7 @@
     </a>
     <span class="col-lg-2 kind-label visible-lg panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-lg-3 visible-lg licenseInfo panelUnit panelUnitNoBorder"
+            <span class="kind-label col-lg-3 visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>

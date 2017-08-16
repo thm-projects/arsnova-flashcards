@@ -2,7 +2,7 @@ Feature: Edit a card
   A user to the site wants to be able to edit a card in his cardset
 
   Background:
-    Given User is on the poolview with username "testuser" (EaC)
+    Given User is on the poolview with username "standard"
     And he is on the view of a cardset (EaC)
 
   Scenario: Edit card

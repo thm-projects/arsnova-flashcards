@@ -192,6 +192,7 @@ Meteor.startup(function () {
 		}
 	}
 
+	Meteor.call("updateWordsForWordcloud");
 	cronScheduler.startCron();
 	cronScheduler.startWordCron();
 });

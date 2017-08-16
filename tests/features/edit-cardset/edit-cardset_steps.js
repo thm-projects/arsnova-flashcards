@@ -8,15 +8,15 @@ module.exports = function () {
 	var module = "new-module";
 	var moduleInitials = "new-short";
 	var moduleID = "43";
-	var college = "JLU";
-	var course = "Medizin";
+	var college = "Zulu-Universität";
+	var course = "Z-Studiengang";
 
 	this.Given(/^User is on the site$/, function () {
 		browser.url('http://localhost:3000');
 	});
 
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {

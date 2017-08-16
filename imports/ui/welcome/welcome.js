@@ -131,7 +131,16 @@ Template.welcome.onRendered(function () {
 	// Backdoor for login in acceptance tests
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
 		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" /></a>');
-		$('.panel-footer').append('<input id="TestingBackdoorUsername" name="username" placeholder="username">');
+		$('.panel-footer').append('<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername">' +
+			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
+			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
+			'<option id="standardLogin" value="standard">standard</option>' +
+			'<option id="universityLogin" value="university">university</option>' +
+			'<option id="lecturerLogin" value="lecturer">lecturer</option>' +
+			'<option id="proLogin" value="pro">pro</option>' +
+			'<option id="proLogin" value="blocked">blocked</option>' +
+			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
+			'</select>');
 	}
 
 	this.autorun(() => {

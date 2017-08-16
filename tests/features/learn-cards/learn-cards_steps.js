@@ -8,7 +8,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 
@@ -22,7 +22,7 @@ module.exports = function () {
 		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.click('#cardSetView tr:nth-child(2) td a');
 		bool = browser.waitForVisible('#learnBox', 15000);
 		expect(bool).toBe(true);
 	});
@@ -35,13 +35,13 @@ module.exports = function () {
 
 	this.Then(/^I am on the box view of the testcardset$/, function () {
 		var url = browser.getUrl();
-		expect(url).toBe("http://localhost:3000/box/2P6mg5iqCZ49QPPDz");
+		expect(url).toBe("http://localhost:3000/box/bySxZuBpKZhKgB7aW");
 	});
 
-	this.Then(/^Box one contains two cards$/, function () {
+	this.Then(/^Box one contains 36 cards$/, function () {
 		browser.waitForExist('#subject1 span.badge', 10000);
 		var cards = browser.getText('#subject1 span.badge');
-		expect(cards).toBe("2");
+		expect(cards).toBe("36");
 	});
 
 	this.Then(/^Boxes two to five contain zero cards$/, function () {
@@ -73,8 +73,8 @@ module.exports = function () {
 		browser.click('#cardsets');
 		var bool = browser.waitForVisible('#newCardSet', 15000);
 		expect(bool).toBe(true);
-		browser.waitForVisible('#cardSetView tr:nth-child(1) td a',5000);
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.waitForVisible('#cardSetView tr:nth-child(2) td a',5000);
+		browser.click('#cardSetView tr:nth-child(2) td a');
 		bool = browser.waitForVisible('#learnBox', 15000);
 		expect(bool).toBe(true);
 		browser.waitForVisible('#learnBox',5000);
@@ -90,7 +90,7 @@ module.exports = function () {
 	this.Then(/^The frontside of first card is shown$/, function () {
 		browser.waitForVisible('.detailfront0', 5000);
 		var text = browser.getText('.detailfront0');
-		expect(text).toBe("question 1");
+		expect(text).toBe("Vorderseite für Karte Nr. 5 A: Kartensatz");
 	});
 
 	this.Then(/^I can click on the card$/, function () {
@@ -101,12 +101,17 @@ module.exports = function () {
 	this.Then(/^The backside of the first card is shown$/, function () {
 		browser.waitForExist('.detailback0', 5000);
 		var text = browser.getText('.detailback0');
-		expect(text).toBe("answer 1");
+		expect(text).toBe("Rückseite für Karte Nr. 5 A: Kartensatz");
 	});
 
 	this.Then(/^I can click on the button Known$/, function () {
 		browser.waitForVisible('#known', 5000);
 		browser.click('#known');
+	});
+
+	this.Then(/^Box (\d+) contains 35 cards$/, function (arg1) {
+		var cards = browser.getText('#subject' + arg1 + ' span.badge');
+		expect(cards).toBe("35");
 	});
 
 	this.Then(/^Box (\d+) contains one card$/, function (arg1) {
@@ -129,7 +134,7 @@ module.exports = function () {
 
 	this.Then(/^I am on the memo view of the testcardset$/, function () {
 		var url = browser.getUrl();
-		expect(url).toBe("http://localhost:3000/memo/2P6mg5iqCZ49QPPDz");
+		expect(url).toBe("http://localhost:3000/memo/bySxZuBpKZhKgB7aW");
 	});
 
 	this.Then(/^The button Show answer is shown$/, function () {

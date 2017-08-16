@@ -8,17 +8,17 @@ module.exports = function () {
 	 * Background
 	 * ---------------------------------------------------------------------
 	 */
-	this.Given(/^User is on the poolview with username "([^"]*)"$/, function (arg1) {
+	this.Given(/^User is on the poolview with username "standard"$/, function () {
 		if (browser.getUrl() !== "http://localhost:3000") {
 			browser.url('http://localhost:3000');
 		}
-		login(arg1);
+		login("standardLogin");
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
-		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
+		browser.waitForVisible("a[href='/cardset/bySxZuBpKZhKgB7aW']",5000);
+		browser.click("a[href='/cardset/bySxZuBpKZhKgB7aW']");
 		browser.waitForExist(".carousel-inner", 5000);
 		countBeforeCreated = browser.elements(".carousel-inner > div").value.length;
 	});
@@ -34,7 +34,7 @@ module.exports = function () {
 	});
 	this.When(/^he is redirected to the \-\-New card\-\- view$/, function () {
 		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz/newcard";
+		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW/newcard";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 	this.When(/^he enters a text for the subject of the card$/, function () {
@@ -52,7 +52,7 @@ module.exports = function () {
 	});
 	this.Then(/^he should be redirected to his own cardsets view back again$/, function () {
 		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz";
+		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 	this.Then(/^the card should be saved$/, function () {
@@ -84,8 +84,8 @@ module.exports = function () {
 		deleteButton.click();
 	});
 	this.Then(/^he have to confirm the delete process$/, function () {
-		browser.waitForVisible('#changeDeleteButton',5000);
-		var confirmDeleteButton = browser.element('#changeDeleteButton');
+		browser.waitForVisible('#cardDeleteConfirm',5000);
+		var confirmDeleteButton = browser.element('#cardDeleteConfirm');
 		confirmDeleteButton.click();
 	});
 	/**
@@ -99,7 +99,7 @@ module.exports = function () {
 	});
 	this.Then(/^he should be redirected back$/, function () {
 		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz";
+		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 };

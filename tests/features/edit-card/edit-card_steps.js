@@ -7,15 +7,15 @@ module.exports = function () {
 	 * Background
 	 * ---------------------------------------------------------------------
 	 */
-	this.Given(/^User is on the poolview with username "([^"]*)" \(EaC\)$/, function (arg1) {
+	this.Given(/^User is on the poolview with username "standard"$/, function () {
 		browser.url('http://localhost:3000');
-		login(arg1);
+		login("standardLogin");
 	});
 	this.Given(/^he is on the view of a cardset \(EaC\)$/, function () {
 		browser.waitForVisible('#cardsets',5000);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/2P6mg5iqCZ49QPPDz']",5000);
-		browser.click("a[href='/cardset/2P6mg5iqCZ49QPPDz']");
+		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",5000);
+		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
 		browser.waitForExist(".carousel-inner", 5000);
 	});
 	this.When(/^the user clicks on the edit button of the first card$/, function () {
@@ -25,7 +25,7 @@ module.exports = function () {
 	});
 	this.Then(/^he should be on the edit view of this card$/, function () {
 		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz/editcard/84omt45zeyky5hNMX";
+		var expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj/editcard/2byMAFYd9N2Bp9cLQ";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 	this.Then(/^he enters "([^"]*)" for the front of the card \(EaC\)$/, function (arg1) {
@@ -46,7 +46,7 @@ module.exports = function () {
 	});
 	this.Then(/^he should be redirected to his own cardsets view back again \(EaC\)$/, function () {
 		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/2P6mg5iqCZ49QPPDz";
+		var expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj";
 		expect(currentUrl).toEqual(expectedUrl);
 	});
 	this.Then(/^the front of the card should be "([^"]*)"$/, function (arg1) {
