@@ -39,10 +39,10 @@ npm install
 
 Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
 
-### Automated User Acceptance Tests
+### Automated User Acceptance Tests with chimp
+We use chimp to automatically test the Front End functionality of [arsnova.cards](https://arsnova.cards). `Merge Requests will be only accepted if all chimp tests have been passed`.
 
-Make sure that the user acceptance tests are working.  
-For more information about user acceptance tests have a look at tests/HOWTOTEST.md [klick](tests/HOWTOTEST.md).
+For more information about user acceptance tests have a look at [tests/HOWTOTEST.md](tests/HOWTOTEST.md).
 
 ### Project structure
 
