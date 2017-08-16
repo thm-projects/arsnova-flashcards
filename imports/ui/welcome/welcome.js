@@ -60,7 +60,7 @@ function createTagCloud() {
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 			classes: 'tip-content',
 			color: function () {
-				return (['#003BD1', '#80BA24', '#FFB300'])[Math.floor(Math.random() * 3)];
+				return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
 			},
 			hover: wordcloudHover,
 			backgroundColor: '#EEEEEE',
