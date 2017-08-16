@@ -1,64 +1,70 @@
-## How to test the application with chimp and cucumber
+## Installing chimp and other required software
 
-## Install NodeJS 6.XX
+### Install NodeJS 6.XX
 [https://nodejs.org/en/](https://nodejs.org/en/)
 
-## Install MongoDB
+### Install MongoDB
 [https://www.mongodb.com](https://www.mongodb.com)
 
-## Install Chrome or Chromium
+### Install Chrome or Chromium
 
-## Install chimp
+### Install chimp
 	npm install -g chimp
 
-### Please follow the folling procedure
-#### Enter the project directory
+### Additional steps for Windows 
+- [Install git for Windows (Shell integration)] (https://git-scm.com/download/win)
+- Add your MongoDB bin folder to your `PATH enviormental variable` to gain access to mongodump.exe and mongorestore.exe
+
+## Running a test
+
+### Enter the project directory
     cd flashcards
 
-#### Run Meteor
+### Run Meteor
+Start meteor (from your project root / flashcards folder):  
+
     meteor --settings settings_test.json
 
-## Run all chimp tests
-In project root start meteor `meteor --settings settings_test.json`.
-Then in another shell enter `./tests/runTests.sh`
+## Following commands are executed in a shell that isn't running meteor (from your project root / flashcards folder):
+### Run all chimp tests
+    ./tests/runTests.sh
 
+#### Run a single chimp test
+    ./tests/singleTest.sh
 
-## Run a single test
+### Dump the Test-Database
+    ./tests/dumpTestDatabase.sh
 
-#### Clear the current database
-Enter mongo shell with
+### Load the Test-Database
+    ./tests/loadTestDatabase.sh
 
-    meteor mongo
+## Logins
+You can use following user strings for the login:
 
-Then
+(Backend Access)
+- "adminLogin"
+- "editorLogin"
 
-    use meteor
-    db.dropDatabase()
-Exit mongo shell
-#### Load the test data
-    mongorestore -h 127.0.0.1 --port 3001 -d meteor tests/dump/meteor
-#### Run the tests
-    chimp --ddp=http://localhost:3000 --path=tests/features/yourDirectory
-    you can add --browser=firefox to run the test on the firefox browser, default browser is chrome
-    the ci test run uses firefox, due to chrome and phantomjs are not working in the server,
-    chrome stucks and phantom has problems with script injection from chimp
-
-## Important
-For the tests, please login with the user "testuser"
+(Frontend only)
+- "standardLogin"
+- "universityLogin"
+- "lecturerLogin"
+- "blockedLogin"
+- "firstLogin"
 
 ## Helpers
 Include the **helper_functions.js** for common functions.
 
-	import {login, logout} from "../helper_functions"
+    import {login, logout} from "../helper_functions"
 
 now you can use the helper functions:
 
-	login("testuser");
-	...
-	logout();
+    login("LOGINSTRING");
+    ...
+    logout();
 
 ## Useful links
-[General info about chimp](https://chimp.readme.io/docs/introduction)
-[Chimp cheat sheet](https://chimp.readme.io/docs/cheat-sheet)
-[Chimp github page](https://github.com/xolvio/chimp)
-[Webdriver the API](http://webdriver.io/api.html)
+- [General info about chimp](https://chimp.readme.io/docs/introduction)
+- [Chimp cheat sheet](https://chimp.readme.io/docs/cheat-sheet)
+- [Chimp github page](https://github.com/xolvio/chimp)
+- [Webdriver the API](http://webdriver.io/api.html)
