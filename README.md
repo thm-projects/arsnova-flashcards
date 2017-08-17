@@ -40,7 +40,15 @@ Change the settings in `settings.json` according to your needs
 
 
 ## Starting the app
-To start arsnova.cards on localhost use `meteor --settings settings.json` inside the repository. You can then access the app from your host machine by opening http://localhost:3000.
+Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost,:
+
+- For development:
+  - `meteor --settings settings_test.json`
+
+- For production:
+  - `meteor --settings settings.json`
+
+You can then access the app from your host machine by visiting http://localhost:3000.
 
 ## Contribution guide
 The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/blob/staging/CONTRIBUTING.md).

@@ -9,6 +9,21 @@ import "./welcome.html";
 Meteor.subscribe("wordcloud");
 
 /**
+ * This method nserts a hover message for the wordcloud content
+ *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
+ *  @param {Object} dimension - X and Y Positions relative to the canvas
+ */
+function wordcloudHover(item, dimension) {
+	if (dimension === undefined) {
+		$('#welcome-tip').css({'visibility': 'hidden'});
+		return;
+	}
+	let bottomAdjustment = 385 - dimension.y;
+	$('#welcome-tip').html("<p>" + item[3] + "</p>");
+	$('#welcome-tip').css({'visibility': 'visible', 'left': dimension.x, 'bottom': bottomAdjustment});
+}
+
+/**
  * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
  */
 function createTagCloud() {
@@ -43,14 +58,16 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
+			classes: 'tip-content',
 			color: function () {
-				return (['#003BD1', '#80BA24', '#FFB300'])[Math.floor(Math.random() * 3)];
+				return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
 			},
-			hover: window.drawBox,
+			hover: wordcloudHover,
 			backgroundColor: '#EEEEEE',
 			drawOutOfBound: false,
 			rotateRatio: 0.5,
-			rotationSteps: 2
+			rotationSteps: 2,
+			wait: 100
 		});
 }
 
@@ -131,7 +148,16 @@ Template.welcome.onRendered(function () {
 	// Backdoor for login in acceptance tests
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
 		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" /></a>');
-		$('.panel-footer').append('<input id="TestingBackdoorUsername" name="username" placeholder="username">');
+		$('.panel-footer').append('<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername">' +
+			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
+			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
+			'<option id="standardLogin" value="standard">standard</option>' +
+			'<option id="universityLogin" value="university">university</option>' +
+			'<option id="lecturerLogin" value="lecturer">lecturer</option>' +
+			'<option id="proLogin" value="pro">pro</option>' +
+			'<option id="proLogin" value="blocked">blocked</option>' +
+			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
+			'</select>');
 	}
 
 	this.autorun(() => {

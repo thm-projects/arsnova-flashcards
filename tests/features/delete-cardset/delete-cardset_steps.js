@@ -7,7 +7,7 @@ module.exports = function () {
 		browser.url('http://localhost:3000');
 	});
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.waitForVisible('#cardsets',5000);
@@ -41,7 +41,7 @@ module.exports = function () {
 	});
 	this.Then(/^he should not see the deleted cardset there$/, function () {
 		browser.waitForExist('#cardSetView > tr',5000);
-		expect(browser.elements('#cardSetView > tr').value.length).toBe(1);
+		expect(browser.elements('#cardSetView > tr').value.length).toBe(9);
 		logout();
 	});
 };

@@ -1,7 +1,7 @@
 Feature: Learn Cards
 
   As a user i would like to learn cardsets with "Leitners memo box" or "Memo" method.
-  
+
 
   Scenario: Go to "Leitners memo box"
     Given User is on the site
@@ -9,7 +9,7 @@ Feature: Learn Cards
     And I am on the cardset view of the testcardset
     When I click the Button Letiner's learning box
     Then I am on the box view of the testcardset
-    And Box one contains two cards
+    And Box one contains 36 cards
     And Boxes two to five contain zero cards
     And Learned contains zero cards
 
@@ -20,7 +20,7 @@ Feature: Learn Cards
     And I can click on the card
     And The backside of the first card is shown
     And I can click on the button Known
-    And Box 1 contains one card
+    And Box 1 contains 35 cards
     And Box 2 contains one card
 
   Scenario: Go to "Memo"

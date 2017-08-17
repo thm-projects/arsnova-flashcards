@@ -4,13 +4,13 @@ module.exports = function () {
 	'use strict';
 	var cardsetsBeforeCreated = 0;
 
-	var title = "title";
+	var title = "CardTitle";
 	var description = "description";
 	var module = "module";
 	var moduleInitials = "short";
 	var moduleID = "42";
 	var college = "THM";
-	var course = "MSP";
+	var course = "Informatik";
 
 
 	this.Given(/^User is on the site$/, function () {
@@ -18,7 +18,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {

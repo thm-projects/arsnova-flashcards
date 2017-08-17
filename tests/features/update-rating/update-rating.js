@@ -9,7 +9,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^I am logged in$/, function () {
-		login("testuser");
+		login("standardLogin");
 	});
 
 	this.Given(/^I am on a cardset that I don't own and haven't rated$/, function () {

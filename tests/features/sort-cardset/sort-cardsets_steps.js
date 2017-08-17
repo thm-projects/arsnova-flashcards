@@ -3,9 +3,9 @@ import {login, logout} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 
-	var cardsetListLength = 2;
+	var cardsetList;
 	var isLoggedIn = false;
-	var username = "testuser";
+	var username = "standardLogin";
 
 	/**
 	 * ---------------------------------------------------------------------
@@ -37,8 +37,9 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list sorted by the choosen author$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".poolAuthor").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
 	});
 
 	/**
@@ -57,8 +58,9 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list sorted by the choosen college$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".poolCollege").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
 	});
 
 	/**
@@ -77,8 +79,9 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list sorted by the choosen course$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".poolCourse").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
 	});
 
 	/**
@@ -97,9 +100,32 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list sorted by the choosen module$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".poolModule").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
 	});
+
+	/**
+	 * ---------------------------------------------------------------------
+	 * Sort by module skill level
+	 * ---------------------------------------------------------------------
+	 */
+
+	this.When(/^user clicks on the filter by skill level button$/, function () {
+		browser.waitForVisible('a[class="dropdown-toggle skillLevelBtn"]', 5000);
+		browser.click('a[class="dropdown-toggle skillLevelBtn"]');
+	});
+
+	this.Then(/^he should choose a skill level/, function () {
+		browser.click('a[class="filterSkillLevel"]');
+	});
+
+	this.Then(/^he should see the cardset list sorted by the choosen skill level$/, function () {
+		let cardsetListFilteredWord = browser.elements(".poolSkillLevel").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
+	});
+
 
 	/**
 	 * ---------------------------------------------------------------------
@@ -113,8 +139,10 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected free license group$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).not.toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".pool-edu, .pool-pro").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.click('label[class="btn btn-default btn-info btn-sm"]');
 	});
 
 	/**
@@ -129,8 +157,10 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected edu license group$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).not.toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".pool-free, .pool-pro").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.click('label[class="btn btn-default btn-success btn-sm"]');
 	});
 
 	/**
@@ -145,8 +175,10 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
-		var cardsetList = browser.elements('.cardsetInfo');
-		expect(cardsetList.value.length).toEqual(cardsetListLength);
+		let cardsetListFilteredWord = browser.elements(".pool-free, .pool-edu").value.length;
+		cardsetList = browser.elements(".topicName").value.length;
+		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.click('label[class="btn btn-default btn-danger btn-sm"]');
 		logout();
 	});
 };
