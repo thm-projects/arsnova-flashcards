@@ -1,4 +1,4 @@
-import {login, logout} from "../helper_functions";
+import {login, logout, TIMERTHRESHOLD} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -14,33 +14,33 @@ module.exports = function () {
 	});
 
 	this.Given(/^change to cardset$/, function () {
-		browser.waitForVisible('#cardsets',5000);
+		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",5000);
+		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
-		browser.waitForExist('.cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {
-		browser.waitForExist('.cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they change the view to cardlist$/, function () {
-		browser.waitForVisible('#btnToListLayout',5000);
+		browser.waitForVisible('#btnToListLayout',TIMERTHRESHOLD);
 		browser.click('#btnToListLayout');
 	});
 
 	this.Then(/^they see the cardlist$/, function () {
-		browser.waitForExist('#cardset-list', 5000);
+		browser.waitForVisible('#cardset-list', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {
-		browser.waitForVisible('#btnToCardLayout',5000);
+		browser.waitForVisible('#btnToCardLayout',TIMERTHRESHOLD);
 		browser.click('#btnToCardLayout');
 	});
 
-	this.Then(/^they se cardset again$/, function () {
-		browser.waitForExist('.cardsetInfo', 5000);
+	this.Then(/^they see cardset again$/, function () {
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they log out$/, function () {

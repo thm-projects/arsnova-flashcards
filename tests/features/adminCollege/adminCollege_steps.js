@@ -1,4 +1,4 @@
-import {login, logoutAdmin} from "../helper_functions";
+import {login, logoutAdmin, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -12,17 +12,17 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForVisible("#adminpanel", 5000);
+		browser.waitForVisible("#adminpanel", TIMERTHRESHOLD);
 		browser.click("#adminpanel");
 	});
 
 	this.When(/^user goes to the menu item college$/, function () {
-		browser.waitForVisible("a[href='/admin/university']",5000);
+		browser.waitForVisible("a[href='/admin/university']",TIMERTHRESHOLD);
 		browser.click("a[href='/admin/university']");
 	});
 
 	this.When(/^user creates a new college and course$/, function () {
-		browser.waitForExist('#college', 5000);
+		browser.waitForExist('#college', TIMERTHRESHOLD);
 		browser.setValue('#college', 'THM');
 		browser.setValue('#courseOfStudies', 'WBS');
 		browser.waitForVisible('#insertButton');
@@ -30,13 +30,13 @@ module.exports = function () {
 	});
 
 	this.Then(/^user should see the college and course in list$/, function () {
-		browser.waitForExist('.tblCollege-2', 5000);
-		var college = browser.getText(".tblCollege-3");
-		var course = browser.getText(".tblCourse-3");
-
-		expect(college).toEqual("THM");
-		expect(course).toEqual("WBS");
-
+		browser.waitForExist('.tblCollege-2', TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getText(".tblCollege-3") === 'THM';
+		}, TIMERTHRESHOLD, 'expected College to be THM after ' + TIMERTHRESHOLDTEXT);
+		browser.waitUntil(function () {
+			return browser.getText(".tblCourse-3") === 'WBS';
+		}, TIMERTHRESHOLD, 'expected Course to be WBS after ' + TIMERTHRESHOLDTEXT);
 		logoutAdmin();
 	});
 };

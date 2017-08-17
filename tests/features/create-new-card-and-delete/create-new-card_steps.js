@@ -1,4 +1,4 @@
-import {login} from "../helper_functions";
+import {login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var countBeforeCreated = 0;
@@ -15,11 +15,11 @@ module.exports = function () {
 		login("standardLogin");
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
-		browser.waitForVisible('#cardsets',5000);
+		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/bySxZuBpKZhKgB7aW']",5000);
+		browser.waitForVisible("a[href='/cardset/bySxZuBpKZhKgB7aW']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/bySxZuBpKZhKgB7aW']");
-		browser.waitForExist(".carousel-inner", 5000);
+		browser.waitForExist(".carousel-inner", TIMERTHRESHOLD);
 		countBeforeCreated = browser.elements(".carousel-inner > div").value.length;
 	});
 	/**
@@ -28,14 +28,14 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.When(/^the user clicks on the \-\-create a new card\-\- button$/, function () {
-		// Write code here that turns the phrase above into concrete actions
-		browser.waitForExist('#newCardBtn', 5000);
+		browser.waitForExist('#newCardBtn', TIMERTHRESHOLD);
 		browser.click('#newCardBtn');
 	});
 	this.When(/^he is redirected to the \-\-New card\-\- view$/, function () {
-		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW/newcard";
-		expect(currentUrl).toEqual(expectedUrl);
+		let expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW/newcard";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.When(/^he enters a text for the subject of the card$/, function () {
 		browser.setValue('#subjectEditor', 'SUBJECTOFTHECARD');
@@ -47,46 +47,46 @@ module.exports = function () {
 		browser.setValue('#backEditor', 'BACKOFTHECARD');
 	});
 	this.When(/^he press on the save button$/, function () {
-		browser.waitForExist('#cardSave', 5000);
+		browser.waitForExist('#cardSave', TIMERTHRESHOLD);
 		browser.click('#cardSave');
 	});
 	this.Then(/^he should be redirected to his own cardsets view back again$/, function () {
-		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
-		expect(currentUrl).toEqual(expectedUrl);
+		let expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^the card should be saved$/, function () {
-		browser.waitForVisible(".carousel-inner > div",5000);
-		countCards = browser.elements(".carousel-inner > div").value.length;
-		expect(countBeforeCreated + 1).toEqual(countCards);
+		browser.waitForVisible(".carousel-inner > div",TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return (countBeforeCreated + 1) === (countCards = browser.elements(".carousel-inner > div").value.length);
+		}, TIMERTHRESHOLD, 'expected ' + countCards + ' to be greater than ' + countBeforeCreated + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^the last card should be the new created one$/, function () {
 		var wf = ".detailfront" + countBeforeCreated;
 
 		var selectorFront = wf + " > p";
 
-		browser.waitForExist(wf,5000);
-		browser.waitForExist(selectorFront,5000);
+		browser.waitForExist(wf,TIMERTHRESHOLD);
+		browser.waitForExist(selectorFront,TIMERTHRESHOLD);
 		browser.waitForVisible('#leftCarouselControl');
 		browser.click('#leftCarouselControl');
 
 		var expectedFrontOfTheCard = "FRONTOFTHECARD";
 		browser.waitForVisible(selectorFront);
-		var frontOfTheCard = browser.getText(selectorFront);
-		expect(expectedFrontOfTheCard).toEqual(frontOfTheCard);
+		browser.waitUntil(function () {
+			return expectedFrontOfTheCard === browser.getText(selectorFront);
+		}, TIMERTHRESHOLD, 'expected front of the card to be ' + expectedFrontOfTheCard + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^he can go back and delete the card$/, function () {
-		browser.waitForVisible('#editCard',5000);
-		var editButton  = browser.elements('#editCard').value[countCards - 1];
-		editButton.click();
-		browser.waitForVisible('#cardDelete',5000);
-		var deleteButton = browser.element('#cardDelete');
-		deleteButton.click();
+		browser.waitForVisible('#editCard',TIMERTHRESHOLD);
+		browser.elements('#editCard').value[countCards - 1].click();
+		browser.waitForVisible('#cardDelete',TIMERTHRESHOLD);
+		browser.click('#cardDelete');
 	});
 	this.Then(/^he have to confirm the delete process$/, function () {
-		browser.waitForVisible('#cardDeleteConfirm',5000);
-		var confirmDeleteButton = browser.element('#cardDeleteConfirm');
-		confirmDeleteButton.click();
+		browser.waitForVisible('#cardDeleteConfirm',TIMERTHRESHOLD);
+		browser.click('#cardDeleteConfirm');
 	});
 	/**
 	 * ---------------------------------------------------------------------
@@ -94,12 +94,16 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.Then(/^he can press on the \-\-Cancel\-\- button$/, function () {
-		browser.waitForVisible('#cardCancel', 5000);
+		browser.waitForVisible('#cardCancel', TIMERTHRESHOLD);
 		browser.click('#cardCancel');
 	});
 	this.Then(/^he should be redirected back$/, function () {
-		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
-		expect(currentUrl).toEqual(expectedUrl);
+		let expectedUrl = "http://localhost:3000/cardset/bySxZuBpKZhKgB7aW";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
+	});
+	this.Then(/^they log out$/, function () {
+		logout();
 	});
 };

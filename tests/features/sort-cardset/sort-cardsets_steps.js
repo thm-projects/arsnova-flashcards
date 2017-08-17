@@ -1,9 +1,7 @@
-import {login, logout} from "../helper_functions";
+import {login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
-
-	var cardsetList;
 	var isLoggedIn = false;
 	var username = "standardLogin";
 
@@ -28,7 +26,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by author button$/, function () {
-		browser.waitForVisible('a[class="dropdown-toggle authorBtn"]', 5000);
+		browser.waitForVisible('a[class="dropdown-toggle authorBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle authorBtn"]');
 	});
 
@@ -38,8 +36,9 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen author$/, function () {
 		let cardsetListFilteredWord = browser.elements(".poolAuthor").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered topic after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	/**
@@ -49,7 +48,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by college button$/, function () {
-		browser.waitForVisible('a[class="dropdown-toggle collegeBtn"]', 5000);
+		browser.waitForVisible('a[class="dropdown-toggle collegeBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle collegeBtn"]');
 	});
 
@@ -59,8 +58,9 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen college$/, function () {
 		let cardsetListFilteredWord = browser.elements(".poolCollege").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered college after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	/**
@@ -70,7 +70,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by course button$/, function () {
-		browser.waitForVisible('a[class="dropdown-toggle courseBtn"]', 5000);
+		browser.waitForVisible('a[class="dropdown-toggle courseBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle courseBtn"]');
 	});
 
@@ -80,8 +80,9 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen course$/, function () {
 		let cardsetListFilteredWord = browser.elements(".poolCourse").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered course after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	/**
@@ -91,7 +92,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by module button$/, function () {
-		browser.waitForVisible('a[class="dropdown-toggle moduleBtn"]', 5000);
+		browser.waitForVisible('a[class="dropdown-toggle moduleBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle moduleBtn"]');
 	});
 
@@ -101,8 +102,9 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen module$/, function () {
 		let cardsetListFilteredWord = browser.elements(".poolModule").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered module after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	/**
@@ -112,7 +114,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by skill level button$/, function () {
-		browser.waitForVisible('a[class="dropdown-toggle skillLevelBtn"]', 5000);
+		browser.waitForVisible('a[class="dropdown-toggle skillLevelBtn"]', TIMERTHRESHOLD);
 		browser.click('a[class="dropdown-toggle skillLevelBtn"]');
 	});
 
@@ -122,8 +124,9 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen skill level$/, function () {
 		let cardsetListFilteredWord = browser.elements(".poolSkillLevel").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries with the filtered skill after ' + TIMERTHRESHOLDTEXT);
 	});
 
 
@@ -134,14 +137,15 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the free license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-info btn-sm active"]', 5000);
+		browser.waitForVisible('label[class="btn btn-default btn-info btn-sm active"]', TIMERTHRESHOLD);
 		browser.click('label[class="btn btn-default btn-info btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected free license group$/, function () {
 		let cardsetListFilteredWord = browser.elements(".pool-edu, .pool-pro").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries without free license entries after ' + TIMERTHRESHOLDTEXT);
 		browser.click('label[class="btn btn-default btn-info btn-sm"]');
 	});
 
@@ -152,14 +156,15 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the edu license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-success btn-sm active"]', 5000);
+		browser.waitForVisible('label[class="btn btn-default btn-success btn-sm active"]', TIMERTHRESHOLD);
 		browser.click('label[class="btn btn-default btn-success btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected edu license group$/, function () {
 		let cardsetListFilteredWord = browser.elements(".pool-free, .pool-pro").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries without edu license entries after ' + TIMERTHRESHOLDTEXT);
 		browser.click('label[class="btn btn-default btn-success btn-sm"]');
 	});
 
@@ -170,14 +175,15 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the pro license group button$/, function () {
-		browser.waitForVisible('label[class="btn btn-default btn-danger btn-sm active"]', 5000);
+		browser.waitForVisible('label[class="btn btn-default btn-danger btn-sm active"]', TIMERTHRESHOLD);
 		browser.click('label[class="btn btn-default btn-danger btn-sm active"]');
 	});
 
 	this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
 		let cardsetListFilteredWord = browser.elements(".pool-free, .pool-edu").value.length;
-		cardsetList = browser.elements(".topicName").value.length;
-		expect(cardsetList).toEqual(cardsetListFilteredWord);
+		browser.waitUntil(function () {
+			return browser.elements(".topicName").value.length === cardsetListFilteredWord;
+		}, TIMERTHRESHOLD, 'expected cardset list to only contain entries without pro license entries after ' + TIMERTHRESHOLDTEXT);
 		browser.click('label[class="btn btn-default btn-danger btn-sm"]');
 		logout();
 	});
