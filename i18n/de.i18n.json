@@ -148,6 +148,8 @@
     "everything": "Alles",
     "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
+    "ratingFilter": "> 1 Stern",
+    "ratingFilterPlural": "> __rating__ Sterne",
     "skillLevel": "Kompetenzstufe",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lernphase",

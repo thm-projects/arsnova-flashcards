@@ -150,6 +150,8 @@
     "everything": "Everything",
     "reset": "Reset filters",
     "rating": "Rating",
+    "ratingFilter": "> 1 Star",
+    "ratingFilterPlural": "> __rating__ Stars",
     "skillLevel": "Skill Level",
     "moreResults": "Show more results",
     "learnphase": "Learning phase",
