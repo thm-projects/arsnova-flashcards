@@ -23,3 +23,4 @@ Feature: Create a new Card and delete it
     And he is redirected to the --New card-- view
     Then he can press on the --Cancel-- button
     Then he should be redirected back
+    And they log out

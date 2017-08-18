@@ -1,4 +1,4 @@
-import { login } from '../helper_functions.js';
+import { login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from '../helper_functions.js';
 
 module.exports = function () {
 	'use strict';
@@ -12,13 +12,15 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the cardset view of the testcardset$/, function () {
-		browser.waitForVisible('#cardsets', 5000);
+		browser.waitForVisible('#cardsets', TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		var bool = browser.waitForVisible('#newCardSet', 15000);
-		expect(bool).toBe(true);
+		browser.waitUntil(function () {
+			return browser.isVisible('#newCardSet');
+		}, TIMERTHRESHOLD, 'expected create new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
 		browser.click('#cardSetView tr:nth-child(1) td a');
-		bool = browser.waitForVisible('#learnBox', 15000);
-		expect(bool).toBe(true);
+		browser.waitUntil(function () {
+			return browser.isVisible('#learnBox');
+		}, TIMERTHRESHOLD, 'expected learn by leitner button to be visible after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	/////////////////////////////////////////
@@ -28,27 +30,32 @@ module.exports = function () {
 	/////////////////////////////////////////
 
 	this.When(/^User clicks the Button Memo$/, function () {
-		browser.waitForVisible('#learnMemo', 5000);
+		browser.waitForVisible('#learnMemo', TIMERTHRESHOLD);
 		browser.click('#learnMemo');
 	});
 
 	this.Then(/^User is on the memo view of the testcardset$/, function () {
-		var url = browser.getUrl();
-		expect(url).toBe('http://localhost:3000/memo/dTjXBmerQ6v828kZj');
+		let expectedUrl = "http://localhost:3000/memo/dTjXBmerQ6v828kZj";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^User should not see a icon_front.png$/, function () {
-		const doesExist = browser.waitForExist('#iconfront', 5000, true);
-		expect(doesExist).toBe(true);
+		browser.waitUntil(function () {
+			return !browser.isExisting('#iconfront');
+		}, TIMERTHRESHOLD, 'expected card front icon to not exist after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^User clicks on the Button Show answer$/, function () {
-		browser.waitForVisible('#memoShowAnswer', 5000);
+		browser.waitForVisible('#memoShowAnswer', TIMERTHRESHOLD);
 		browser.click('#memoShowAnswer');
 	});
 
 	this.Then(/^User should not see a icon_back.png$/, function () {
-		const doesExist = browser.waitForExist('#iconback', 5000, true);
-		expect(doesExist).toBe(true);
+		browser.waitUntil(function () {
+			return !browser.isExisting('#iconback');
+		}, TIMERTHRESHOLD, 'expected card back icon to not exist after ' + TIMERTHRESHOLDTEXT);
+		logout();
 	});
 };

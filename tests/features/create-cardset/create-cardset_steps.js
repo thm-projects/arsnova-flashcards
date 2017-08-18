@@ -1,4 +1,4 @@
-import {login, logout} from "../helper_functions.js";
+import {login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions.js";
 
 module.exports = function () {
 	'use strict';
@@ -22,104 +22,117 @@ module.exports = function () {
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.waitForVisible('#cardsets',5000);
+		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForExist('.cardsetRow', 10000);
+		browser.waitForExist('.cardsetRow', TIMERTHRESHOLD);
 		cardsetsBeforeCreated = browser.elements('.cardsetRow').value.length;
 	});
 
 	this.When(/^User clicks on the create cardset button$/, function () {
-		browser.waitForVisible('#newCardSet',5000);
+		browser.waitForVisible('#newCardSet',TIMERTHRESHOLD);
 		browser.click('#newCardSet');
 	});
 
 	this.Then(/^he is redirected to the new cardset form$/, function () {
-		var bool = browser.waitForVisible('#newSetModalTitle', 10000);
-		expect(bool).toBe(true);
+		browser.waitUntil(function () {
+			return browser.isVisible('#newSetModalTitle');
+		}, TIMERTHRESHOLD, 'expected Title to be visible after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
-		browser.waitForExist('#newSetName',5000);
+		browser.waitForExist('#newSetName',TIMERTHRESHOLD);
 		browser.setValue('#newSetName', title);
 	});
 
 	this.Then(/^he should be able to edit the cardset description$/, function () {
-		browser.waitForExist('#newSetDescription', 5000);
+		browser.waitForExist('#newSetDescription', TIMERTHRESHOLD);
 		browser.setValue('#newSetDescription', description);
 	});
 
 	this.Then(/^he should be able to edit the module name$/, function () {
-		browser.waitForExist('#newSetModule', 5000);
+		browser.waitForExist('#newSetModule', TIMERTHRESHOLD);
 		browser.setValue('#newSetModule', module);
 	});
 
 	this.Then(/^he should be able to edit the module initials$/, function () {
-		browser.waitForExist('#newSetModuleShort', 5000);
+		browser.waitForExist('#newSetModuleShort', TIMERTHRESHOLD);
 		browser.setValue('#newSetModuleShort', moduleInitials);
 	});
 
 	this.Then(/^he should be able to edit the module ID$/, function () {
-		browser.waitForExist('#newSetModuleNum', 5000);
+		browser.waitForExist('#newSetModuleNum', TIMERTHRESHOLD);
 		browser.setValue('#newSetModuleNum', moduleID);
 	});
 
 	this.Then(/^he should be able to choose a college$/, function () {
-		browser.waitForVisible('#newSetCollege',5000);
+		browser.waitForVisible('#newSetCollege',TIMERTHRESHOLD);
 		browser.click('#newSetCollege');
-		browser.waitForVisible('li[data="' + college + '"] a', 5000);
+		browser.waitForVisible('li[data="' + college + '"] a', TIMERTHRESHOLD);
 		browser.click('li[data="' + college + '"] a');
 	});
 
 	this.Then(/^he should be able to choose a course$/, function () {
-		browser.waitForVisible('#newSetCourse',5000);
+		browser.waitForVisible('#newSetCourse',TIMERTHRESHOLD);
 		browser.click('#newSetCourse');
-		browser.waitForVisible('li[data="' + course + '"] a', 5000);
+		browser.waitForVisible('li[data="' + course + '"] a', TIMERTHRESHOLD);
 		browser.click('li[data="' + course + '"] a');
 	});
 
 	this.Then(/^he should push the create new cardset button$/, function () {
-		browser.waitForVisible('button.save',5000);
+		browser.waitForVisible('button.save',TIMERTHRESHOLD);
 		browser.click('button.save');
 	});
 
 	this.Then(/^he should see the created cardset in the my cardset view with the correct values$/, function () {
-		var bool = browser.waitForVisible('#cardSetView tr:nth-child(3) td a', 5000);
-		expect(bool).toBe(true);
-		browser.waitForExist('.cardsetRow',5000);
-		var amountCardsSets = browser.elements('.cardsetRow').value.length;
-		expect(amountCardsSets).toBe(cardsetsBeforeCreated + 1);
+		browser.waitUntil(function () {
+			return browser.isVisible('#cardSetView tr:nth-child(3) td a');
+		}, TIMERTHRESHOLD, 'expected Cardset to appear in my cardset after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForExist('.cardsetRow',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.elements('.cardsetRow').value.length === (cardsetsBeforeCreated + 1);
+		}, TIMERTHRESHOLD, 'expected Cardset to appear in my cardset after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^he should select the created cardset$/, function () {
 		browser.waitUntil(function () {
 			return browser.isExisting('.modal-open') === false;
-		}, 5000, 'expected text to be different after 5s');
-		browser.waitForVisible('#cardSetView tr:nth-child(3) td a', 5000);
+		}, TIMERTHRESHOLD, 'expected text to be different after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForVisible('#cardSetView tr:nth-child(3) td a', TIMERTHRESHOLD);
 		browser.click('#cardSetView tr:nth-child(3) td a');
 	});
 
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
-		var bool = browser.waitForVisible('#editCardset', 5000);
-		expect(bool).toBe(true);
+		browser.waitUntil(function () {
+			return browser.isVisible('#editCardset');
+		}, TIMERTHRESHOLD, 'expected edit card button to be visible after ' + TIMERTHRESHOLDTEXT);
 
-		browser.waitForVisible('#editCardset',5000);
+		browser.waitForVisible('#editCardset',TIMERTHRESHOLD);
 		browser.click('#editCardset');
-		browser.waitForVisible('#editSetName', 5000);
+		browser.waitForVisible('#editSetName', TIMERTHRESHOLD);
 
-		browser.waitForExist('#editSetName',5000);
-		expect(browser.elements('#editSetName').getAttribute("value")).toBe(title);
-		browser.waitForExist('#editSetDescription',5000);
-		expect(browser.elements('#editSetDescription').getAttribute("value")).toBe(description);
-		browser.waitForExist('#editSetModule',5000);
-		expect(browser.elements('#editSetModule').getAttribute("value")).toBe(module);
-		browser.waitForExist('#editSetModuleShort',5000);
-		expect(browser.elements('#editSetModuleShort').getAttribute("value")).toBe(moduleInitials);
-		browser.waitForExist('#editSetModuleNum',5000);
-		expect(browser.elements('#editSetModuleNum').getAttribute("value")).toBe(moduleID);
-
-		browser.waitForVisible('#cardSetCancel',5000);
+		browser.waitForExist('#editSetName',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getAttribute('#editSetName', 'value') === title;
+		}, TIMERTHRESHOLD, 'expected cardset name to be ' + title + ' after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForExist('#editSetDescription',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getAttribute('#editSetDescription', 'value') === description;
+		}, TIMERTHRESHOLD, 'expected cardset name to be ' + description + ' after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForExist('#editSetModule',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getAttribute('#editSetModule', 'value') === module;
+		}, TIMERTHRESHOLD, 'expected cardset name to be ' + module + ' after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForExist('#editSetModuleShort',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getAttribute('#editSetModuleShort', 'value') === moduleInitials;
+		}, TIMERTHRESHOLD, 'expected cardset name to be ' + moduleInitials + ' after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForExist('#editSetModuleNum',TIMERTHRESHOLD);
+		browser.waitUntil(function () {
+			return browser.getAttribute('#editSetModuleNum', 'value') === moduleID;
+		}, TIMERTHRESHOLD, 'expected cardset name to be ' + moduleID + ' after ' + TIMERTHRESHOLDTEXT);
+		browser.waitForVisible('#cardSetCancel',TIMERTHRESHOLD);
 		browser.click('#cardSetCancel');
-		browser.waitForVisible('#editSetName', 5000, true);
+		browser.waitForVisible('#editSetName', TIMERTHRESHOLD, true);
 		logout();
 	});
 };

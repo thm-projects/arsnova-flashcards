@@ -13,7 +13,7 @@ Scenario: Visitor can view the cardset
   And they change the view to cardlist
   Then they see the cardlist
   And they change the view back to cardset
-  Then they se cardset again
+  Then they see cardset again
   And they log out
 
 # tests/features/login.feature

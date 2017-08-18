@@ -1,4 +1,4 @@
-import {login, logout} from "../helper_functions";
+import {login, logout, TIMERTHRESHOLD} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -12,33 +12,33 @@ module.exports = function () {
 	});
 
 	this.Given(/^change to cardset$/, function () {
-		browser.waitForVisible('#cardsets',5000);
+		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",5000);
+		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
-		browser.waitForExist('.cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {
-		browser.waitForExist('.cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they start the SuperMemo mode$/, function () {
-		browser.waitForVisible('#learnMemo',5000);
+		browser.waitForVisible('#learnMemo',TIMERTHRESHOLD);
 		browser.click('#learnMemo');
 	});
 
 	this.Then(/^they see the SuperMemo view$/, function () {
-		browser.waitForExist('#memoFlashcard', 5000);
+		browser.waitForExist('#memoFlashcard', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {
-		browser.waitForVisible('#back-button',5000);
+		browser.waitForVisible('#back-button',TIMERTHRESHOLD);
 		browser.click('#back-button');
 	});
 
 	this.Then(/^they see the cardset again$/, function () {
-		browser.waitForExist('.cardsetInfo', 5000);
+		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
 	});
 
 	this.Then(/^they log out$/, function () {
