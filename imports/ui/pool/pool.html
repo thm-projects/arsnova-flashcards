@@ -338,11 +338,11 @@
     <a href="#" class="filterRating"
        title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
        data-id={{getRelevance}}>
-        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel poolText panelUnit" data-id={{getRelevance}}>{{_
+        <span class="col-xs-4 col-sm-3 col-md-3 hidden-lg poolLabel panelUnit" data-id={{getRelevance}}>{{_
                 "set-list.rating"}}
             :</span>
-        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent poolText panelUnit" data-id={{getRelevance}}>
-            {{> starsRating rating=this.relevance mutable=false}}
+        <span class="col-xs-8 col-sm-9 col-md-9 col-lg-1 poolContent panelUnit" data-id={{getRelevance}}>
+            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
         </span>
     </a>
     <span class="col-lg-2 kind-label visible-lg panelAvailability">
