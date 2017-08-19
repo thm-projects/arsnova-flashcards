@@ -148,7 +148,8 @@
   }
 
   .stars-rating {
-    height: 20px;
+    margin-top: -5px;
+    height: 12px;
   }
 
   #showLicenseModal {
@@ -262,6 +263,10 @@
       margin-right: -5px;
       padding-left: 10px;
       padding-right: 10px;
+    }
+
+    .stars-rating {
+      margin-left: -5px;
     }
   }
 

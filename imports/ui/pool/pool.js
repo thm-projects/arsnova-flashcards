@@ -411,9 +411,6 @@ Template.poolCardsetRow.helpers({
 			return this.price + '€';
 		}
 	},
-	getRelevance: function () {
-		return Math.floor(this.relevance - 1);
-	},
 	getLicense: function () {
 		var licenseString = "";
 
@@ -435,6 +432,12 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
 		}
+	},
+	getRelevance: function () {
+		return Math.floor(this.relevance - 1);
+	},
+	getStarsRating: function () {
+		return ((Math.round(this.relevance * 2) / 2).toFixed(1) * 10);
 	}
 });
 
