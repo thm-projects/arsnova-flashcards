@@ -138,6 +138,20 @@ function checkFilters() {
 	filterCheckbox();
 }
 
+function resetFilters() {
+	Session.set('poolSortTopic', {name: 1});
+	Session.set('poolFilterAuthor');
+	Session.set('poolFilterCollege');
+	Session.set('poolFilterCourse');
+	Session.set('poolFilterModule');
+	Session.set('poolFilterSkillLevel');
+	Session.set('poolFilterRating', -1);
+	Session.set('poolFilter', ["free", "edu", "pro"]);
+	Session.set('poolFilterLearnphase');
+	checkFilters();
+	resetInfiniteBar();
+}
+
 function filterCollege(event) {
 	var button = $(".filterCollegeGroup");
 	if (!$(event.target).data('id')) {
@@ -482,17 +496,7 @@ Template.poolCardsetRow.events({
 
 Template.category.events({
 	'click #resetBtn': function () {
-		Session.set('poolSortTopic', {name: 1});
-		Session.set('poolFilterAuthor');
-		Session.set('poolFilterCollege');
-		Session.set('poolFilterCourse');
-		Session.set('poolFilterModule');
-		Session.set('poolFilterSkillLevel');
-		Session.set('poolFilterRating', -1);
-		Session.set('poolFilter', ["free", "edu", "pro"]);
-		Session.set('poolFilterLearnphase');
-		checkFilters();
-		resetInfiniteBar();
+		resetFilters();
 	},
 	'click #topicBtn': function () {
 		var sort = Session.get('poolSortTopic');
@@ -562,6 +566,10 @@ Template.category.onDestroyed(function () {
 	Session.set('poolSort', {relevance: -1});
 });
 
+Template.pool.onCreated(function () {
+	resetFilters();
+});
+
 Template.pool.onRendered(function () {
 	if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
 			'admin',
@@ -569,5 +577,4 @@ Template.pool.onRendered(function () {
 		])) {
 		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
 	}
-	checkFilters();
 });
