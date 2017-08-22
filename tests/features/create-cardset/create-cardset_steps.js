@@ -24,6 +24,8 @@ module.exports = function () {
 	this.Given(/^User is on the my cardset view$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitForExist('.cardsetRow', TIMERTHRESHOLD);
 		cardsetsBeforeCreated = browser.elements('.cardsetRow').value.length;
 	});
@@ -85,7 +87,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the created cardset in the my cardset view with the correct values$/, function () {
 		browser.waitUntil(function () {
-			return browser.isVisible('#cardSetView tr:nth-child(3) td a');
+			return browser.isVisible('#set-list-region > div:nth-child(3) > a');
 		}, TIMERTHRESHOLD, 'expected Cardset to appear in my cardset after ' + TIMERTHRESHOLDTEXT);
 		browser.waitForExist('.cardsetRow',TIMERTHRESHOLD);
 		browser.waitUntil(function () {
@@ -97,8 +99,8 @@ module.exports = function () {
 		browser.waitUntil(function () {
 			return browser.isExisting('.modal-open') === false;
 		}, TIMERTHRESHOLD, 'expected text to be different after ' + TIMERTHRESHOLDTEXT);
-		browser.waitForVisible('#cardSetView tr:nth-child(3) td a', TIMERTHRESHOLD);
-		browser.click('#cardSetView tr:nth-child(3) td a');
+		browser.waitForVisible('#set-list-region > div:nth-child(3) > a', TIMERTHRESHOLD);
+		browser.click('#set-list-region > div:nth-child(3) > a');
 	});
 
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {

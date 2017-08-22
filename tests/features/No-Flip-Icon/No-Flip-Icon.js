@@ -14,10 +14,12 @@ module.exports = function () {
 	this.Given(/^User is on the cardset view of the testcardset$/, function () {
 		browser.waitForVisible('#cardsets', TIMERTHRESHOLD);
 		browser.click('#cardsets');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected create new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.click('#set-list-region > div:nth-child(1) > a');
 		browser.waitUntil(function () {
 			return browser.isVisible('#learnBox');
 		}, TIMERTHRESHOLD, 'expected learn by leitner button to be visible after ' + TIMERTHRESHOLDTEXT);

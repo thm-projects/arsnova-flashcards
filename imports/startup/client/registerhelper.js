@@ -218,6 +218,10 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 	}
 });
 
+Template.registerHelper("oddRow", function (index) {
+	return (index % 2 === 1);
+});
+
 // detects if the app is offline or not
 Template.registerHelper("isOffline", function () {
 	return !Meteor.status().connected;
@@ -227,6 +231,15 @@ Template.registerHelper("isOffline", function () {
 // use it like this: <button {{disableIfOffline}}>...</button>
 Template.registerHelper("disableIfOffline", function () {
 	return Meteor.status().connected ? "" : "disabled";
+});
+
+Template.registerHelper("getMaximumText", function (text) {
+	const maxLength = 15;
+	const textSplitted = text.split(" ");
+	if (textSplitted.length > maxLength) {
+		return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+	}
+	return text;
 });
 
 const converter = new Showdown.converter({

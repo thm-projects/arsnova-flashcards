@@ -281,9 +281,6 @@ Template.category.helpers({
 			return item.learningActive;
 		});
 	},
-	oddRow: function (index) {
-		return (index % 2 === 1);
-	},
 	hasAuthorFilter: function () {
 		return Session.get('poolFilterAuthor');
 	},

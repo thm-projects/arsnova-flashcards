@@ -13,8 +13,10 @@ module.exports = function () {
 	this.Given(/^I am on my own cardset$/, function () {
 		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible('#cardSetView tr:nth-child(1) td a',TIMERTHRESHOLD);
-		browser.click('#cardSetView tr:nth-child(1) td a');
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
+		browser.waitForVisible('#set-list-region > div:nth-child(1) > a',TIMERTHRESHOLD);
+		browser.click('#set-list-region > div:nth-child(1) > a');
 	});
 
 	this.When(/^I press the delete all cards button$/, function () {

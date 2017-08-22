@@ -8,106 +8,61 @@ import {Learned} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./cardsets.html";
 
+Session.setDefault('cardsetId', undefined);
 
 Meteor.subscribe("cardsets");
 
 
-Session.setDefault('cardsetSortCreated', {name: 1});
-Session.setDefault('cardsetSortLearned', {name: 1});
-
-
 /*
  * ############################################################################
- * created
+ * create
  * ############################################################################
  */
 
-Template.created.helpers({
+Template.create.helpers({
 	cardsetList: function () {
 		return Cardsets.find({
 			owner: Meteor.userId()
 		}, {
-			sort: Session.get('cardsetSortCreated')
+			sort: {name: 1}
 		});
 	}
 });
 
-Template.created.events({
-	'click .sortName': function () {
-		var sort = Session.get('cardsetSortCreated');
-		if (sort.name === 1) {
-			Session.set('cardsetSortCreated', {name: -1});
-		} else {
-			Session.set('cardsetSortCreated', {name: 1});
-		}
-	},
-	'click .sortCategory': function () {
-		var sort = Session.get('cardsetSortCreated');
-		if (sort.category === 1) {
-			Session.set('cardsetSortCreated', {category: -1});
-		} else {
-			Session.set('cardsetSortCreated', {category: 1});
-		}
-	}
-});
-
-Template.created.onDestroyed(function () {
-	Session.set('cardsetSortCreated', {name: 1});
-});
 
 /*
  * ############################################################################
- * learned
+ * learn
  * ############################################################################
  */
 
-Template.learned.helpers({
-	learnedList: function () {
-		var learnedCards = Learned.find({
+Template.learn.helpers({
+	learnList: function () {
+		var learnCards = Learned.find({
 			user_id: Meteor.userId()
 		});
 
-		var learnedCardsets = [];
-		learnedCards.forEach(function (learnedCard) {
-			if ($.inArray(learnedCard.cardset_id, learnedCardsets) === -1) {
-				learnedCardsets.push(learnedCard.cardset_id);
+		var learnCardsets = [];
+		learnCards.forEach(function (learnCard) {
+			if ($.inArray(learnCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(learnCard.cardset_id);
 			}
 		});
 
 		return Cardsets.find({
 			_id: {
-				$in: learnedCardsets
+				$in: learnCardsets
 			}
 		}, {
-			sort: Session.get('cardsetSortLearned')
+			sort: {name: 1}
 		});
 	}
 });
 
-Template.learned.events({
-	'click .sortNameLearned': function () {
-		var sort = Session.get('cardsetSortLearned');
-		if (sort.name === 1) {
-			Session.set('cardsetSortLearned', {name: -1});
-		} else {
-			Session.set('cardsetSortLearned', {name: 1});
-		}
-	},
-	'click .sortCategoryLearned': function () {
-		var sort = Session.get('cardsetSortLearned');
-		if (sort.category === 1) {
-			Session.set('cardsetSortLearned', {category: -1});
-		} else {
-			Session.set('cardsetSortLearned', {category: 1});
-		}
-	},
-	'click .deleteLearned': function () {
-		Session.set('cardsetId', this._id);
+Template.learn.events({
+	'click .deleteLearned': function (event) {
+		Session.set('cardsetId', $(event.target).data('id'));
 	}
-});
-
-Template.created.onDestroyed(function () {
-	Session.set('cardsetSortLearned', {name: 1});
 });
 
 /*
@@ -337,16 +292,14 @@ Template.cardsetsForm.events({
 
 /*
  * ############################################################################
- * cardsetsConfirmLearnedForm
+ * cardsetsConfirmLearnForm
  * ############################################################################
  */
 
-Template.cardsetsConfirmLearnedForm.events({
-	'click #learnedDelete': function () {
-		var id = Session.get('cardsetId');
-
-		$('#confirmLearnedModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLearned", id);
+Template.cardsetsConfirmLearnForm.events({
+	'click #learnDelete': function () {
+		$('#confirmLearnModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLearned", Session.get('cardsetId'));
 		}).modal('hide');
 	}
 });
