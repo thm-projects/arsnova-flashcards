@@ -9,7 +9,8 @@
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
-    "impressum": "Legal Notice"
+    "impressum": "Legal Notice",
+    "backButton": "Back to Login"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
