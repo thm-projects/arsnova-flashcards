@@ -39,23 +39,30 @@ function createTagCloud() {
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 
 	let width = document.getElementById('tag-cloud-canvas').width;
-	let gridSize = 20;
-	let weightFactor = 1;
+	let gridSize = 15;
+	let weightFactor = 1.5;
+	let wordRotation = 0.7853981634;
 
 	if (width < 300) {
-		gridSize = 10;
+		gridSize = 5;
 		weightFactor = 0.6;
 	} else if (width < 500) {
-		gridSize = 15;
+		gridSize = 5;
 		weightFactor = 0.8;
 	}
 
-	document.getElementById('tag-cloud-canvas').height = width / 3.125;
+	document.getElementById('tag-cloud-canvas').height = width / 2.5;
 
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
+			drawOutOfBound: false,
 			list: list,
 			gridSize: gridSize,
+			shape: "diamond",
+			rotateRatio: 1.0,
+			rotationSteps: 2.0,
+			minRotation: wordRotation,
+			maxRotation: wordRotation * -3,
 			weightFactor: weightFactor,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 			classes: 'tip-content',
@@ -64,10 +71,7 @@ function createTagCloud() {
 			},
 			hover: wordcloudHover,
 			backgroundColor: '#EEEEEE',
-			drawOutOfBound: false,
-			rotateRatio: 0.5,
-			rotationSteps: 2,
-			wait: 100
+			wait: 75
 		});
 }
 
