@@ -9,7 +9,8 @@
   "intro": {
     "about": "Was ist THMcards?",
     "choose": "",
-    "impressum": "Impressum"
+    "impressum": "Impressum",
+    "backButton": "Zurück zum Login"
   },
   "carousel-inner": {
     "carousel-header-0": "Deine digitalen Lernkarten",
@@ -677,6 +678,8 @@
     "adminNotificationComplaintUser": "Admin-Benachrichtigung (Beschwerde Benutzer)",
     "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
     "lecturerRequest": "Dozenten-Anfrage",
+    "yes": "Ja",
+    "no": "Nein",
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
@@ -752,7 +755,10 @@
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!",
       "changeOwner": "Besitzer ändern",
       "changeOwnerFailure": "Benutzer nicht gefunden",
-      "changeOwnerSuccess": "Besitzer erfolgreich geändert"
+      "changeOwnerSuccess": "Besitzer erfolgreich geändert",
+      "wordcloud": "Wortwolke:",
+      "addToWordcloud": "Hinzufügen",
+      "removeFromWordcloud": "Entfernen"
     },
     "card": {
       "header": "Karte",

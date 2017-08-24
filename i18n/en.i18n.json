@@ -9,7 +9,8 @@
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
-    "impressum": "Legal Notice"
+    "impressum": "Legal Notice",
+    "backButton": "Back to Login"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -677,6 +678,8 @@
     "adminNotificationComplaintUser": "Admin-Notification (Complaint User)",
     "adminNotificationComplaintCardSet": "Admin-Notification (Complaint Cardset)",
     "lecturerRequest": "Lecturer Request",
+    "yes": "Yes",
+    "no": "No",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
@@ -754,7 +757,10 @@
       "noCards": "You have to create at least 5 cards to publish this cardset!",
       "changeOwner": "Change Owner",
       "changeOwnerFailure": "User not found",
-      "changeOwnerSuccess": "Owner changed successfully"
+      "changeOwnerSuccess": "Owner changed successfully",
+      "wordcloud": "Wordcloude:",
+      "addToWordcloud": "Add",
+      "removeFromWordcloud": "Remove"
     },
     "card": {
       "header": "Card",

@@ -223,6 +223,10 @@ body {
   margin-top: 100px;
 }
 
+#theme-wrapper-no-nav {
+  margin-top: 20px;
+}
+
 .footer {
   position: absolute;
   left: 0;
@@ -293,14 +297,14 @@ button:disabled {
 .field-tip .tip-content, #welcome-tip {
   max-lines: 1;
   visibility: hidden;
-  width: 240px;
+  width: 320px;
   text-overflow: ellipsis;
-  background-color: black;
+  background-color: $color_thm_gray;
   opacity: 0.9;
   color: #fff;
   text-align: left;
   border-radius: 6px;
-  padding: 5px 5px;
+  padding: 15px;
   position: absolute;
   z-index: 1040;
   bottom: 115%;
@@ -314,7 +318,7 @@ button:disabled {
   margin-left: -95px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: $color_thm_gray transparent transparent transparent;
 }
 
 .field-tip:hover .tip-content {
@@ -438,15 +442,25 @@ button:disabled {
     height: 41px;
   }
 
-  .field-tip .tip-content {
-    bottom: 102%;
-  }
-
   .info_license_mobile {
     margin-left: 0px;
     margin-right: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .field-tip .tip-content {
+    width: 270px;
+    bottom: 102%;
+    font-size: 11px;
+  }
+
+  .tip-content {
+  }
+
+  #welcome-tip {
+    width: 280px;
+    font-size: 11px;
   }
 }
 

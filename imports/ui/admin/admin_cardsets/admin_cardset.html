@@ -38,6 +38,16 @@
                             {{/if}}
                         </div>
                         <div class="form-group">
+                            <label id="cardsetWordcloud">{{_ "admin.cardset.wordcloud"}}</label>
+                            {{#if isInWordcloud}}
+                                <a id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
+                                    {{_ "admin.cardset.removeFromWordcloud"}}</a>
+                            {{else}}
+                                <a id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
+                                    {{_ "admin.cardset.addToWordcloud"}}</a>
+                            {{/if}}
+                        </div>
+                        <div class="form-group">
                             <label id="editCardsetDateLabelAdmin">{{_ "admin.cardset.date"}}</label>
                             {{getDate}}
                         </div>
