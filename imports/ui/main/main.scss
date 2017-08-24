@@ -41,6 +41,13 @@ body {
 
 .search-divide {
   margin: 5px 0 5px 0;
+  height: 2px;
+  color:  $color_thm_gray;
+  background-color: $color_thm_gray;
+}
+
+.search-author {
+  margin-top: 15px;
 }
 
 #input-search {

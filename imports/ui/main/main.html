@@ -1,5 +1,6 @@
 <template name="main">
-    <div id="{{#if currentUser}}{{#if isInRole 'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
+    <div id="{{#if currentUser}}{{#if isInRole
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
          class="{{getTheme}}">
         {{#if currentUser}}
             {{#if isInRole 'firstLogin'}}
@@ -55,13 +56,13 @@
                                                 <a href="/cardset/{{_id}}" class="list-group-item clearfix">
                                                     <h4 class="list-group-item-heading">{{name}}</h4>
                                                     <p class="list-group-item-text">{{description}}</p>
-                                                    <hr class="search-divide">
                                                     {{#with getAuthor this.owner}}
-                                                        <p class="list-group-item-text">{{_ "cardset.info.author"}}
+                                                        <p class="list-group-item-text search-author">{{_ "cardset.info.author"}}
                                                             : {{givenname}} {{birthname}}</p>
                                                         <p class="list-group-item-text">{{_ "panel-body.title"}}
                                                             : {{degree}}</p>
                                                     {{/with}}
+                                                    <hr class="search-divide">
                                                 </a>
                                             {{/each}}
                                         </div>
