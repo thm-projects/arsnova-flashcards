@@ -32,6 +32,10 @@ body {
   }
 }
 
+.btn {
+  text-transform: unset !important;
+}
+
 .table {
   background-color: $white;
   img {
