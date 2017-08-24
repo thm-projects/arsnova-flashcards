@@ -480,6 +480,12 @@ button:disabled {
   }
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  #input-search {
+    width: 110px;
+  }
+}
+
 @media (min-width: 1200px) {
   .altPanel {
     background-color: $color_wild_sand_approx;
