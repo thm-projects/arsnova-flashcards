@@ -18,10 +18,10 @@ function wordcloudHover(item, dimension) {
 		$('#welcome-tip').css({'visibility': 'hidden'});
 		return;
 	}
-	let heightAdjustment = $('#login').height() + $('#tag-cloud-canvas').height() + 50;
+	let heightAdjustment = $('#login').height() + $('#tag-cloud-canvas').height() + 30;
 	let widthAdjustment;
 	if ($('#tag-cloud-canvas').width() < 600) {
-		widthAdjustment = 25;
+		widthAdjustment = 20;
 	} else {
 		widthAdjustment = dimension.x;
 	}
