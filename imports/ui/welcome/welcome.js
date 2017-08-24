@@ -18,9 +18,15 @@ function wordcloudHover(item, dimension) {
 		$('#welcome-tip').css({'visibility': 'hidden'});
 		return;
 	}
-	let bottomAdjustment = 385 - dimension.y;
+	let heightAdjustment = $('#login').height() + $('#tag-cloud-canvas').height() + 50;
+	let widthAdjustment;
+	if ($('#tag-cloud-canvas').width() < 600) {
+		widthAdjustment = 25;
+	} else {
+		widthAdjustment = dimension.x;
+	}
 	$('#welcome-tip').html("<p>" + item[3] + "</p>");
-	$('#welcome-tip').css({'visibility': 'visible', 'left': dimension.x, 'bottom': bottomAdjustment});
+	$('#welcome-tip').css({'visibility': 'visible', 'left': widthAdjustment, 'bottom': heightAdjustment});
 }
 
 /**
