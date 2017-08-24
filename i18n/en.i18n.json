@@ -678,6 +678,8 @@
     "adminNotificationComplaintUser": "Admin-Notification (Complaint User)",
     "adminNotificationComplaintCardSet": "Admin-Notification (Complaint Cardset)",
     "lecturerRequest": "Lecturer Request",
+    "yes": "Yes",
+    "no": "No",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
@@ -755,7 +757,10 @@
       "noCards": "You have to create at least 5 cards to publish this cardset!",
       "changeOwner": "Change Owner",
       "changeOwnerFailure": "User not found",
-      "changeOwnerSuccess": "Owner changed successfully"
+      "changeOwnerSuccess": "Owner changed successfully",
+      "wordcloud": "Wordcloude:",
+      "addToWordcloud": "Add",
+      "removeFromWordcloud": "Remove"
     },
     "card": {
       "header": "Card",

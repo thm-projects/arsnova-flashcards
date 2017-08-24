@@ -38,6 +38,7 @@ Template.admin_cardsets.helpers({
 				"_id": cardset._id,
 				"name": cardset.name,
 				"kind": kind,
+				"wordcloud": cardset.wordcloud,
 				"username": getAuthorName(cardset.owner),
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
@@ -56,6 +57,15 @@ Template.admin_cardsets.helpers({
 				{key: 'name', label: TAPi18n.__('set-list.topic')},
 				{key: 'kind', label: TAPi18n.__('set-list.availability')},
 				{
+					key: 'wordcloud', label: TAPi18n.__('admin.cardset.wordcloud'), fn: function (value, object) {
+						if (object.wordcloud) {
+							return new Spacebars.SafeString("<span name='" + value + "'>" + TAPi18n.__('admin.yes') + "</span>");
+						} else {
+							return new Spacebars.SafeString("<span name='" + value + "'>" + TAPi18n.__('admin.no') + "</span>");
+						}
+					}
+				},
+				{
 					key: 'username', label: TAPi18n.__('set-list.author'), fn: function (value, object) {
 						if (object.userDeleted) {
 							return new Spacebars.SafeString("<span name='" + value + "'>" + value + " (" + TAPi18n.__('admin.deleted') + ")</span>");
@@ -65,7 +75,7 @@ Template.admin_cardsets.helpers({
 					}
 				},
 				{
-					key: 'dateString', label: TAPi18n.__('nav-list.created'), fn: function (value, object) {
+					key: 'dateString', label: TAPi18n.__('admin.created'), fn: function (value, object) {
 						return new Spacebars.SafeString("<span name='" + object.date + "'>" + value + "</span>");
 					}
 				},
