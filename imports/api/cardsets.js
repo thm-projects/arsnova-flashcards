@@ -126,6 +126,9 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	learningInterval: {
 		type: [Number]
+	},
+	wordcloud: {
+		type: Boolean
 	}
 });
 
@@ -225,7 +228,8 @@ Meteor.methods({
 			learningEnd: 0,
 			learningInterval: [],
 			mailNotification: true,
-			webNotification: true
+			webNotification: true,
+			wordcloud: false
 		});
 		Experience.insert({
 			type: 2,
@@ -266,6 +270,7 @@ Meteor.methods({
 		Ratings.remove({
 			cardset_id: id
 		});
+		Meteor.call("updateWordsForWordcloud");
 	},
 	deleteCards: function (id) {
 		check(id, String);
@@ -598,5 +603,25 @@ Meteor.methods({
 		} else {
 			return false;
 		}
+	},
+	/**
+	 * Whitelist the cardset for the wordcloud
+	 * 	 * @param {String} id - ID of the cardset to be updated
+	 * @param {Boolean} status - Wordcloud status for the cardset: true = Add to wordcloud, false = remove from Wordcloud
+	 */
+	updateWordcloudStatus: function (id, status) {
+		check(id, String);
+		check(status, Boolean);
+
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+
+		Cardsets.update(id, {
+			$set: {
+				wordcloud: status
+			}
+		});
+		Meteor.call("updateWordsForWordcloud");
 	}
 });

@@ -14,6 +14,9 @@ $color_thm_green: #78B925;
 $color_free_btn: $color_thm_dark_blue;
 $color_edu_btn: $color_thm_green;
 $color_pro_btn: $color_thm_orange;
+$color_orange_pool: $color_thm_orange;
+$color_btn_inactive: #9e9c9c;
+$color_item_separator: $color_thm_gray;
 
 html {
   position: relative;
@@ -220,6 +223,10 @@ body {
   margin-top: 100px;
 }
 
+#theme-wrapper-no-nav {
+  margin-top: 20px;
+}
+
 .footer {
   position: absolute;
   left: 0;
@@ -290,16 +297,16 @@ button:disabled {
 .field-tip .tip-content, #welcome-tip {
   max-lines: 1;
   visibility: hidden;
-  width: 240px;
+  width: 320px;
   text-overflow: ellipsis;
-  background-color: black;
+  background-color: $color_thm_gray;
   opacity: 0.9;
   color: #fff;
   text-align: left;
   border-radius: 6px;
-  padding: 5px 5px;
+  padding: 15px;
   position: absolute;
-  z-index: 2;
+  z-index: 1040;
   bottom: 115%;
 }
 
@@ -311,7 +318,7 @@ button:disabled {
   margin-left: -95px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: $color_thm_gray transparent transparent transparent;
 }
 
 .field-tip:hover .tip-content {
@@ -336,4 +343,153 @@ button:disabled {
 .label-success {
   color: $white !important;
   background-color: $color_edu_btn !important;
+}
+
+// Pool and my cardsets list
+.panel {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+.panelUnit {
+  padding: 10px 15px 10px 15px;
+}
+
+.panelUnitKind {
+  margin-left: 15px;
+}
+
+.panelUnitPrice {
+  display: inline-block;
+  height: 40px;
+  margin-left: 5px;
+  margin-right: -5px;
+}
+
+.panelAvailability {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#pool_license img {
+  width: 20px;
+}
+
+#poolCaption {
+  padding-left: 8px;
+  font-weight: bold;
+  background-color: $color_wild_sand_approx;
+}
+
+.panelUnitNoBorder {
+  border: none !important;
+}
+
+.poolHeaderTop {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: $white;
+}
+
+.poolHeaderBottom {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  background-color: $color_orange_pool;
+  color: $white;
+}
+
+.poolLabel {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.empty-list {
+  text-align: center;
+}
+
+.poolText, .topicName, .panelName {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.topicName {
+  padding-left: 0;
+}
+
+@media (max-width: 1199px) {
+  .panel {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .panelUnit {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: dashed 1px $color_item_separator;
+  }
+
+  .panelUnitDescription {
+    padding-right: 0;
+  }
+
+  .panelUnitPrice {
+    height: 41px;
+  }
+
+  .info_license_mobile {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .field-tip .tip-content {
+    width: 270px;
+    bottom: 102%;
+    font-size: 11px;
+  }
+
+  .tip-content {
+  }
+
+  #welcome-tip {
+    width: 280px;
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .panel {
+    padding-right: 3px;
+    background-clip: content-box;
+    -webkit-box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .altPanel {
+    padding-left: 3px;
+    padding-right: 0;
+    -webkit-box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media (min-width: 1200px) {
+  .altPanel {
+    background-color: $color_wild_sand_approx;
+  }
+
+  .panelUnit {
+    border-right: dashed 1px $color_item_separator;
+  }
+}
+
+.badge {
+  padding: 3px 5px;
 }

@@ -81,6 +81,9 @@ Template.admin_cardset.helpers({
 				}
 			]
 		};
+	},
+	isInWordcloud: function () {
+		return this.wordcloud;
 	}
 });
 
@@ -295,6 +298,12 @@ Template.admin_cardset.events({
 		$('#editCardsetCourseLabelAdmin').css('color', '');
 		$('.editCardsetCourseDropdownAdmin').css('border-color', '');
 		$('#helpEditCardsetCourseAdmin').html('');
+	},
+	'click #cardsetAddToWordcloude': function () {
+		Meteor.call('updateWordcloudStatus', this._id, true);
+	},
+	'click #cardsetRemoveFromWordcloude': function () {
+		Meteor.call('updateWordcloudStatus', this._id, false);
 	}
 });
 

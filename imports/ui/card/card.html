@@ -138,11 +138,10 @@
         {{#if isEditMode}}
         <button id="cardDelete" class="btn {{#if learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_ "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised col-xs-12 col-sm-3" onclick="history.go(-1)">{{_
+                        class="btn btn-danger btn-raised col-xs-12 col-sm-3">{{_
                 "confirmcard"}}</button>
         {{/if}}
-            <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3"
-        onclick="history.go(-1)">{{_ "declinecard"}}</button>
+            <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3">{{_ "declinecard"}}</button>
         <button id="cardSave"
                 class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
             {{_ "savecard"}}
@@ -248,8 +247,7 @@
                             {{else}}
                                 <h4>{{_ "memo-empty.text"}}</h4>
                                 <br>
-                                <a id="memoEndBtn" class="btn-back btn btn-default btn-raised"
-                                   onclick="history.go(-1)">
+                                <a id="memoEndBtn" class="btn-back btn btn-default btn-raised">
                                     <span>{{_ "memo-endscreen.back"}}</span>
                                 </a>
                             {{/if}}

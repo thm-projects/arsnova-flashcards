@@ -96,9 +96,9 @@ function turnFront() {
 }
 
 /**
-* Function changes from the backside to the front side of
-* a card or the other way around
-*/
+ * Function changes from the backside to the front side of
+ * a card or the other way around
+ */
 export function turnCard() {
 	if ($(".cardfront").css('display') === 'none') {
 		turnFront();
@@ -108,25 +108,25 @@ export function turnCard() {
 }
 
 /**
-* Function checks if route is a Box
-* @return {Boolean} Return true, when the current route is a Box.
-*/
+ * Function checks if route is a Box
+ * @return {Boolean} Return true, when the current route is a Box.
+ */
 function isBox() {
 	return Router.current().route.getName() === "box";
 }
 
 /**
-* Function checks if route is a Cardset
-* @return {Boolean} Return true, when route is a Cardset.
-*/
+ * Function checks if route is a Cardset
+ * @return {Boolean} Return true, when route is a Cardset.
+ */
 function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid";
 }
 
 /**
-* Function checks if route is a Cardset
-* @return {Boolean} Return true, when route is a Memo.
-*/
+ * Function checks if route is a Cardset
+ * @return {Boolean} Return true, when route is a Memo.
+ */
 function isMemo() {
 	return Router.current().route.getName() === "memo";
 }
@@ -281,6 +281,9 @@ Template.btnCard.events({
 			window.history.go(-1);
 		}
 	},
+	'click #cardCancel': function () {
+		window.history.go(-1);
+	},
 	'click #cardDelete': function () {
 		$("#cardDelete").remove();
 		$("#cardDeleteConfirm").css('display', "");
@@ -288,6 +291,7 @@ Template.btnCard.events({
 	'click #cardDeleteConfirm': function () {
 		var id = this._id;
 		Meteor.call("deleteCard", id);
+		window.history.go(-1);
 	}
 });
 
@@ -600,6 +604,12 @@ Template.flashcards.events({
  * flashcardsEmpty
  * ############################################################################
  */
+
+Template.flashcardsEmpty.events({
+	'click #memoEndBtn': function () {
+		window.history.go(-1);
+	}
+});
 
 Template.flashcardsEmpty.helpers({
 	isBox: function () {

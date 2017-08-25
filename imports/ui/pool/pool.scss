@@ -1,8 +1,5 @@
 #pool-category-region {
   margin-bottom: 35px;
-  $color_orange_pool: rgb(255, 153, 51);
-  $color_btn_inactive: #9e9c9c;
-  $color_item_separator: #b2b2b2;
   text-align: left;
 
   h3 {
@@ -59,78 +56,6 @@
     color: $white;
   }
 
-  .panel {
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-bottom: 0px;
-  }
-  .panelUnit {
-    padding: 10px 15px 10px 15px;
-  }
-
-  .panelUnitKind {
-    margin-left: 15px;
-  }
-
-  .panelUnitPrice {
-    display: inline-block;
-    height: 40px;
-    margin-left: 5px;
-    margin-right: -5px;
-  }
-
-  .panelAvailability {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  #pool_license img {
-    width: 20px;
-  }
-
-  #poolCaption {
-    padding-left: 8px;
-    font-weight: bold;
-    background-color: $color_wild_sand_approx;
-  }
-
-  .panelUnitNoBorder {
-    border: none !important;
-  }
-
-  .poolHeaderTop {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: $white;
-  }
-
-  .poolHeaderBottom {
-    padding-top: 5px;
-    padding-bottom: 10px;
-    font-weight: bold;
-    font-size: 13px;
-    background-color: $color_orange_pool;
-    color: $white;
-  }
-
-  .poolLabel {
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
-  }
-
-  .empty-list {
-    text-align: center;
-  }
-
-  .poolText, .topicName {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .licenseInfo, .topicName {
     padding-left: 0px;
     padding-right: 0px;
@@ -148,7 +73,8 @@
   }
 
   .stars-rating {
-    height: 20px;
+    margin-top: -5px;
+    height: 12px;
   }
 
   #showLicenseModal {
@@ -200,28 +126,6 @@
       display: block !important;
     }
 
-    .panel {
-      margin-top: 3px;
-      margin-bottom: 3px;
-    }
-
-    .panelUnit {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-bottom: dashed 1px $color_item_separator;
-    }
-
-    .panelUnitPrice {
-      height: 41px;
-    }
-
-    .info_license_mobile {
-      margin-left: 0px;
-      margin-right: 0px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
     #resetBtn {
       margin-left: 15px;
       margin-top: 8px;
@@ -229,10 +133,6 @@
 
     .field-tip .tip-content {
       bottom: 102%;
-    }
-
-    #filterCheckbox {
-      margin-left: 30px;
     }
   }
 
@@ -249,19 +149,8 @@
       padding-right: 30px;
     }
 
-    .altPanel {
-      background-color: $color_wild_sand_approx;
-    }
-
-    .panelUnit {
-      border-right: dashed 1px $color_item_separator;
-    }
-
-    .panelUnitLicense {
-      margin-left: 5px;
-      margin-right: -5px;
-      padding-left: 10px;
-      padding-right: 10px;
+    .stars-rating {
+      margin-left: -5px;
     }
   }
 
@@ -293,6 +182,13 @@
   .label-pro {
     background-color: $color_pro_btn;
   }
+
+  .panelUnitLicense {
+    margin-left: 5px;
+    margin-right: -5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .resetFilters {
@@ -301,8 +197,4 @@
 
 #upgrade, #downgrade {
   width: 100% !important;
-}
-
-.badge {
-  padding: 3px 5px;
 }

@@ -1,4 +1,4 @@
-import {login, logoutAdmin} from "../helper_functions";
+import {login, logoutAdmin, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
 
 module.exports = function () {
 	'use strict';
@@ -14,29 +14,30 @@ module.exports = function () {
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForVisible("#adminpanel", 5000);
+		browser.waitForVisible("#adminpanel", TIMERTHRESHOLD);
 		browser.click('#adminpanel');
 	});
 
 	this.When(/^user goes to the menu item cardsets$/, function () {
-		browser.waitForVisible("a[href='/admin/cardsets']",5000);
+		browser.waitForVisible("a[href='/admin/cardsets']",TIMERTHRESHOLD);
 		browser.click("a[href='/admin/cardsets']");
 	});
 
 	this.When(/^user clicks on the delete button$/, function () {
-		browser.waitForExist('.delete', 5000);
+		browser.waitForExist('.delete', TIMERTHRESHOLD);
 		numberOfCardsets = browser.elements(".delete").value.length;
 		browser.waitForVisible(".deleteCardsetAdmin");
 		browser.click(".deleteCardsetAdmin");
-		browser.waitForVisible("#cardsetConfirmModalAdmin", 5000);
+		browser.waitForVisible("#cardsetConfirmModalAdmin", TIMERTHRESHOLD);
 		browser.click("#cardetDeleteAdmin");
 	});
 
 	this.Then(/^the cardset should not be in the list anymore$/, function () {
-		browser.waitForVisible("#cardsetConfirmModalAdmin", 5000, true);
+		browser.waitForVisible("#cardsetConfirmModalAdmin", TIMERTHRESHOLD, true);
 		browser.waitForVisible('.delete');
-		let elements = browser.elements(".delete");
-		expect(elements.value.length).toEqual(numberOfCardsets - 1);
+		browser.waitUntil(function () {
+			return browser.elements(".delete").value.length === (numberOfCardsets - 1);
+		}, TIMERTHRESHOLD, 'expected cardset to be deleted after ' + TIMERTHRESHOLDTEXT);
 		logoutAdmin();
 	});
 };

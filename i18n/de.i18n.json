@@ -9,7 +9,8 @@
   "intro": {
     "about": "Was ist THMcards?",
     "choose": "",
-    "impressum": "Impressum"
+    "impressum": "Impressum",
+    "backButton": "Zurück zum Login"
   },
   "carousel-inner": {
     "carousel-header-0": "Deine digitalen Lernkarten",
@@ -74,7 +75,7 @@
     "title": "Karte löschen",
     "text": "Wollen Sie diese Karte wirklich löschen?"
   },
-  "confirm-form-learned": {
+  "confirm-form-learn": {
     "title": "Kartensatz verlassen",
     "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
   },
@@ -128,9 +129,8 @@
     "confirm": "Bestätigen"
   },
   "nav-list": {
-    "category": "Kategorie",
-    "created": "Erstellt",
-    "learned": "Gelernt"
+    "learn": "Lern",
+    "create": "Erstelle"
   },
   "set-list": {
     "name": "Name",
@@ -148,6 +148,8 @@
     "everything": "Alles",
     "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
+    "ratingFilter": "> 1 Stern",
+    "ratingFilterPlural": "> __rating__ Sterne",
     "skillLevel": "Kompetenzstufe",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lernphase",
@@ -159,8 +161,8 @@
     "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
     "newset": "Kartensatz anlegen"
   },
-  "set-list-learned-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz gelernt"
+  "set-list-learn-empty": {
+    "emptytextlist": "Du hast noch keinen Kartensatz zum lernen"
   },
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
@@ -676,6 +678,8 @@
     "adminNotificationComplaintUser": "Admin-Benachrichtigung (Beschwerde Benutzer)",
     "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
     "lecturerRequest": "Dozenten-Anfrage",
+    "yes": "Ja",
+    "no": "Nein",
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
@@ -751,7 +755,10 @@
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!",
       "changeOwner": "Besitzer ändern",
       "changeOwnerFailure": "Benutzer nicht gefunden",
-      "changeOwnerSuccess": "Besitzer erfolgreich geändert"
+      "changeOwnerSuccess": "Besitzer erfolgreich geändert",
+      "wordcloud": "Wortwolke:",
+      "addToWordcloud": "Hinzufügen",
+      "removeFromWordcloud": "Entfernen"
     },
     "card": {
       "header": "Karte",

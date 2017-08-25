@@ -177,6 +177,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
+	for (var l = 0; l < cardsets.length; l++) {
+		Cardsets.update({
+				_id: cardsets[l]._id
+			},
+			{
+				$set: {
+					wordcloud: false
+				}
+			}
+		);
+	}
+
 	if (Badges.find().count() === 0) {
 		for (var badge in badges) {
 			if (badges.hasOwnProperty(badge)) {

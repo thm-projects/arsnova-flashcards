@@ -9,7 +9,8 @@
   "intro": {
     "about": "About THMcards",
     "choose": "Select your login:",
-    "impressum": "Legal Notice"
+    "impressum": "Legal Notice",
+    "backButton": "Back to Login"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -74,7 +75,7 @@
     "title": "Delete card",
     "text": "Do you really want to delete this card?"
   },
-  "confirm-form-learned": {
+  "confirm-form-learn": {
     "title": "Leave cardset",
     "text": "Do you really want to leave this cardset? If you accept this process, you lose your entire learning progress."
   },
@@ -98,8 +99,7 @@
   "confirm-form-profile": {
     "title": "Delete user profile",
     "text": "If you do not think you will use THMcards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in THMcards, so other users of the system can use them.",
-    "text2": "If you qould shill like your user profile deleted, click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards.
-    Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
+    "text2": "If you would still like to delete your user profile, please click the button \"Delete user profile\". After the process you will be automatically logged out of THMcards."
   },
   "confirmLearn-form": {
     "title": "Start Learning-Phase",
@@ -131,9 +131,8 @@
     "confirm": "Continue"
   },
   "nav-list": {
-    "category": "Category",
-    "created": "Created",
-    "learned": "Learned"
+    "learn": "Learn",
+    "create": "Create"
   },
   "set-list": {
     "name": "Name",
@@ -151,6 +150,8 @@
     "everything": "Everything",
     "reset": "Reset filters",
     "rating": "Rating",
+    "ratingFilter": "> 1 Star",
+    "ratingFilterPlural": "> __rating__ Stars",
     "skillLevel": "Skill Level",
     "moreResults": "Show more results",
     "learnphase": "Learning phase",
@@ -162,8 +163,8 @@
     "emptypooltextlist": "There aren't any decks of cards yet",
     "newset": "Create a deck of cards"
   },
-  "set-list-learned-empty": {
-    "emptytextlist": "You have not learned any deck of cards yet"
+  "set-list-learn-empty": {
+    "emptytextlist": "You aren't learning any deck of cards yet"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
@@ -677,6 +678,8 @@
     "adminNotificationComplaintUser": "Admin-Notification (Complaint User)",
     "adminNotificationComplaintCardSet": "Admin-Notification (Complaint Cardset)",
     "lecturerRequest": "Lecturer Request",
+    "yes": "Yes",
+    "no": "No",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
@@ -754,7 +757,10 @@
       "noCards": "You have to create at least 5 cards to publish this cardset!",
       "changeOwner": "Change Owner",
       "changeOwnerFailure": "User not found",
-      "changeOwnerSuccess": "Owner changed successfully"
+      "changeOwnerSuccess": "Owner changed successfully",
+      "wordcloud": "Wordcloude:",
+      "addToWordcloud": "Add",
+      "removeFromWordcloud": "Remove"
     },
     "card": {
       "header": "Card",

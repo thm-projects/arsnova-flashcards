@@ -8,7 +8,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			const MINIMUM_SIZE = 10;
-			var cardsets = Cardsets.find({}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1, description: 1}});
+			var cardsets = Cardsets.find({wordcloud: true}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1, description: 1}});
 			var list = [];
 
 			// find biggest cardset for normalization
@@ -44,15 +44,13 @@ Meteor.methods({
 				var quantitiy = cardset.quantity / biggestCardsetSize * 40;
 				quantitiy = (quantitiy > MINIMUM_SIZE ? quantitiy : MINIMUM_SIZE);
 
-				list.push([name, quantitiy, color, cardset.description]);
+				list.push([name, quantitiy, color, cardset.description, cardset._id]);
 			});
 
 			list.sort(function (a, b) { return (b[0].length * b[1]) - (a[0].length * a[1]); });
 
-			if (list.length > 0) {
-				Cloud.remove({});
-				Cloud.insert({'list': list});
-			}
+			Cloud.remove({});
+			Cloud.insert({'list': list});
 		}
 	}
 });

@@ -224,7 +224,7 @@ Template.cardset.events({
 
 		$('#editSetModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
-			Router.go('created');
+			Router.go('create');
 		}).modal('hide');
 	},
 	'click #acceptRequest': function () {

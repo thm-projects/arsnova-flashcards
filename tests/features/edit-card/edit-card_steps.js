@@ -1,4 +1,4 @@
-import {login, logout} from "../helper_functions";
+import {login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
 module.exports = function () {
 	'use strict';
 	var sFront,sBack;
@@ -12,60 +12,66 @@ module.exports = function () {
 		login("standardLogin");
 	});
 	this.Given(/^he is on the view of a cardset \(EaC\)$/, function () {
-		browser.waitForVisible('#cardsets',5000);
+		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",5000);
+		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.click('#setCreate');
+		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
 		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
-		browser.waitForExist(".carousel-inner", 5000);
+		browser.waitForExist(".carousel-inner", TIMERTHRESHOLD);
 	});
 	this.When(/^the user clicks on the edit button of the first card$/, function () {
-		var editButton = browser.elements('#editCard').value[0];
-		editButton.waitForVisible(5000);
+		let editButton = browser.elements('#editCard').value[0];
+		editButton.waitForVisible(TIMERTHRESHOLD);
 		editButton.click();
 	});
 	this.Then(/^he should be on the edit view of this card$/, function () {
-		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj/editcard/2byMAFYd9N2Bp9cLQ";
-		expect(currentUrl).toEqual(expectedUrl);
+		let expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj/editcard/2byMAFYd9N2Bp9cLQ";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^he enters "([^"]*)" for the front of the card \(EaC\)$/, function (arg1) {
-		var frontSelector = browser.element('#fronttext');
+		let frontSelector = browser.element('#fronttext');
 		frontSelector.waitForVisible();
 		sFront = frontSelector.getAttribute("data-content");
 		browser.setValue('#frontEditor', arg1);
 	});
 	this.Then(/^he enters a "([^"]*)" for the back of the card \(EaC\)$/, function (arg1) {
-		var backSelector = browser.element('#backtext');
+		let backSelector = browser.element('#backtext');
 		backSelector.waitForVisible();
 		sBack = backSelector.getAttribute("data-content");
 		browser.setValue('#backEditor', arg1);
 	});
 	this.Then(/^he press on the save button \(EaC\)$/, function () {
-		browser.waitForExist('#cardSave', 5000);
+		browser.waitForExist('#cardSave', TIMERTHRESHOLD);
 		browser.click('#cardSave');
 	});
 	this.Then(/^he should be redirected to his own cardsets view back again \(EaC\)$/, function () {
-		var currentUrl = browser.getUrl();
-		var expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj";
-		expect(currentUrl).toEqual(expectedUrl);
+		let expectedUrl = "http://localhost:3000/cardset/dTjXBmerQ6v828kZj";
+		browser.waitUntil(function () {
+			return browser.getUrl() === expectedUrl;
+		}, TIMERTHRESHOLD, 'expected current URL to be ' + expectedUrl + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^the front of the card should be "([^"]*)"$/, function (arg1) {
-		var selectorFront = browser.element('.detailfront0');
-		var expectedFrontOfTheCard = arg1;
-		selectorFront.waitForVisible(5000);
-		var frontOfTheCard = selectorFront.getText();
-		expect(expectedFrontOfTheCard).toEqual(frontOfTheCard);
+		let selectorFront = browser.element('.detailfront0');
+		let expectedFrontOfTheCard = arg1;
+		selectorFront.waitForVisible(TIMERTHRESHOLD);
+		let frontOfTheCard = selectorFront.getText();
+		browser.waitUntil(function () {
+			return expectedFrontOfTheCard === frontOfTheCard;
+		}, TIMERTHRESHOLD, 'expected front of the card to be ' + expectedFrontOfTheCard + ' after ' + TIMERTHRESHOLDTEXT);
 	});
 	this.Then(/^he wants to undo previous changes$/, function () {
-		var editButton = browser.elements('#editCard').value[0];
-		editButton.waitForVisible(5000);
+		let editButton = browser.elements('#editCard').value[0];
+		editButton.waitForVisible(TIMERTHRESHOLD);
 		editButton.click();
 
-		browser.waitForExist('#frontEditor', 5000);
+		browser.waitForExist('#frontEditor', TIMERTHRESHOLD);
 		browser.setValue('#frontEditor', sFront);
-		browser.waitForExist('#backEditor', 5000);
+		browser.waitForExist('#backEditor', TIMERTHRESHOLD);
 		browser.setValue('#backEditor', sBack);
-		browser.waitForExist('#cardSave', 5000);
+		browser.waitForExist('#cardSave', TIMERTHRESHOLD);
 		browser.click('#cardSave');
 		logout();
 	});
