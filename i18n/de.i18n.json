@@ -10,7 +10,7 @@
     "about": "Was ist THMcards?",
     "choose": "",
     "impressum": "Impressum",
-    "backButton": "Zurück zum Login"
+    "backButton": "Zurück zum Start"
   },
   "carousel-inner": {
     "carousel-header-0": "Deine digitalen Lernkarten",
@@ -34,6 +34,9 @@
     "none": "Ohne"
   },
   "footer": {
+    "info": "Info"
+  },
+  "contact": {
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB"

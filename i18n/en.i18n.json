@@ -10,7 +10,7 @@
     "about": "About THMcards",
     "choose": "Select your login:",
     "impressum": "Legal Notice",
-    "backButton": "Back to Login"
+    "backButton": "Back to Start"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -34,6 +34,9 @@
     "none": "None"
   },
   "footer": {
+    "info": "Info"
+  },
+  "contact": {
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
     "agb": "GTC"

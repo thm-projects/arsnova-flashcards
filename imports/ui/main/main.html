@@ -57,7 +57,8 @@
                                                     <h4 class="list-group-item-heading">{{name}}</h4>
                                                     <p class="list-group-item-text">{{description}}</p>
                                                     {{#with getAuthor this.owner}}
-                                                        <p class="list-group-item-text search-author">{{_ "cardset.info.author"}}
+                                                        <p class="list-group-item-text search-author">{{_
+                                                                "cardset.info.author"}}
                                                             : {{givenname}} {{birthname}}</p>
                                                         <p class="list-group-item-text">{{_ "panel-body.title"}}
                                                             : {{degree}}</p>
@@ -168,11 +169,10 @@
 
         <div id="footer" class="footer">
             <div class="container">
-                <p class="muted credit">
-                    <a id="impressum" href="{{pathFor route='impressum'}}">{{_ "footer.impressum"}}</a>
-                    <a id="datenschutz" href="{{pathFor route='datenschutz'}}">{{_ "footer.datenschutz"}}</a>
-                    <a id="agb" href="{{pathFor route='agb'}}">{{_ "footer.agb"}}</a>
-                </p>
+                <a id="info" class="col-xs-12 contact" href="{{pathFor route='impressum'}}">
+                    <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                    <p class="footer-text"><span class="footerElementText">Info</span></p>
+                </a>
             </div>
         </div>
     </div> <!-- Theme Wrapper -->
