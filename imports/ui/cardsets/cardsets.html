@@ -110,14 +110,15 @@
         <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
             {{#if isActiveRoute 'create'}}
                 <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
+                <br>
+                <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
+                        data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}
                 <span class="emptyTextList">{{_ "set-list-learn-empty.emptytextlist"}}</span>
+                <br><br><br><br><br>
             {{/if}}
-            <br>
-            <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
-                    data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
         </div>
     </div>
 </template>
@@ -126,7 +127,8 @@
     <div id="learn-list-region" class="col-lg-9">
         {{#if learnList.count}}
             {{#each learnList}}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default cardsetInfo responsive-utilities-test visible-on">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default {{#if
+                        oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
                 </div>
             {{/each}}
