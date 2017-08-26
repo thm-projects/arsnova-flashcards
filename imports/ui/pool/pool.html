@@ -7,7 +7,6 @@
         {{else}}
             <div id="pool-category-region" class="container">
                 {{> category}}
-                {{> showLicense}}
                 {{> completeProfileModal}}
                 {{> enterActiveLearnphaseModal}}
             </div>
@@ -247,13 +246,13 @@
         <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
                 "set-list.module"}}
         </span>
-        <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
+        <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
                 "set-list.skillLevel"}}
         </span>
         <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
                 "set-list.rating"}}
         </span>
-        <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
+        <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
                 "set-list.availability"}}
         </span>
     </div>
@@ -332,7 +331,7 @@
         <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
               data-id="{{this.skillLevel}}">{{_
                 "set-list.skillLevel"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent poolText panelUnit poolSkillLevel"
+        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolSkillLevel"
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
     <a href="#" class="filterRating"
@@ -345,50 +344,31 @@
             <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
         </span>
     </a>
-    <span class="col-lg-2 kind-label visible-lg panelAvailability">
+    <span class="col-lg-1 kind-label visible-lg panelAvailability panelUnitNoBorder">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-lg-3 visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
+            <span class="kind-label col-lg-6 visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-lg-3 visible-lg licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
+            <span class="col-lg-6 visible-lg licenseInfo panelUnit panelUnitPrice panelUnitNoBorder" data-id="{{this.kind}}">
                 {{{getPrice}}}
-            </span>
-        </a>
-
-        <a href="#" class="showLicense" title="{{_ "set-list.licence"}}: {{this.name}}">
-            <span id="info_license"
-                  class="col-lg-6 visible-lg licenseInfo poolText panelUnit panelUnitLicense panelUnitNoBorder"
-                  data-id="{{_id}}" data-toggle="modal" data-target="#showLicenseModal">
-                {{getLicense}}
             </span>
         </a>
     </span>
     <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-        <span class="col-xs-12 col-sm-12 col-md-12 hidden-lg poolLabel poolText panelAvailability"
+        <span class="col-xs-12 col-sm-12 col-md-12 hidden-lg poolLabel poolText panelAvailability panelUnitNoBorder"
               data-id="{{this.kind}}">
-            <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
+            <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder"
                   data-id="{{this.kind}}">{{_
                     "set-list.availability"}}:</span>
-            <span class="kind-label col-xs-3 col-sm-4 col-md-3 hidden-lg licenseInfo panelUnit panelUnitKind info_license_mobile"
+            <span class="kind-label col-xs-3 col-sm-4 col-md-3 hidden-lg licenseInfo panelUnit panelUnitKind panelUnitNoBorder info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-xs-3 col-sm-3 col-md-5 hidden-lg licenseInfo panelUnit panelUnitPrice info_license_mobile"
+            <span class="col-xs-3 col-sm-3 col-md-5 hidden-lg licenseInfo panelUnit panelUnitPrice panelUnitNoBorder info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getPrice}}}
             </span>
-        </span>
-    </a>
-    <a href="#" class="showLicense panelUnitNoBorder" title="{{_ "set-list.licence"}}: {{this.name}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder"
-              data-id="{{_id}}"
-              data-toggle="modal" data-target="#showLicenseModal">{{_ "set-list.licence"}}:</span>
-        <span id="info_license" class="col-xs-6 col-sm-7 col-md-8 hidden-lg info_license_mobile panelUnitNoBorder"
-              data-id="{{_id}}"
-              data-toggle="modal"
-              data-target="#showLicenseModal">
-            {{getLicense}}
         </span>
     </a>
 </template>
@@ -479,52 +459,4 @@
         <br>
         <br>
     </div>
-</template>
-
-<template name="showLicense">
-    <div class="modal fade" id="showLicenseModal" tabindex="-1" role="dialog"
-         aria-labelledby="showLicenseTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showLicenseTitle" class="modal-title">{{_ "sidebar-nav.poolLicense"}} {{_ "set-list.topic"}}
-                        : {{getTopic}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div id=cc-description class="col-md-12">
-                                {{#if getLicenseCount}}
-                                    {{#if getLicenseType 'by'}}
-                                        <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
-                                    {{/if}}
-                                    {{#if getLicenseType 'nc'}}
-                                        <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
-                                    {{/if}}
-                                    {{#if getLicenseType 'nd'}}
-                                        <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
-                                    {{/if}}
-                                    {{#if getLicenseType 'sa'}}
-                                        <img class="col-md-2" src="/img/sa.large.png"
-                                             alt="Weitergabe unter gleichen Bedingungen"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
-                                    {{/if}}
-                                {{else}}
-                                    <img class="col-md-2" src="/img/zero.large.png" alt="Keine Lizenz"/>
-                                    <p class="col-md-10">{{_ "modal-dialog.zero-desc"}}</p>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 </template>
