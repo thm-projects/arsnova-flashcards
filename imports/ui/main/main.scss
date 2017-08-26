@@ -17,6 +17,7 @@ $color_pro_btn: $color_thm_orange;
 $color_orange_pool: $color_thm_orange;
 $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
+$color_footer_hover: rgb(215, 215, 215);
 
 html {
   position: relative;
@@ -271,8 +272,8 @@ body {
   height: 60px;
   background-color: $color_wild_sand_approx;
   .container {
-    font-size: 18px;
     height: 60px;
+    margin-bottom: 0;
     background-color: $color_wild_sand_approx;
     text-align: center;
   }
@@ -280,16 +281,34 @@ body {
     height: 60px;
   }
   .footer-icon {
-    margin: 10px 0 0 0;
+    font-size: 18px;
+    padding: 10px 0 0 0;
+    margin: 0;
   }
   .footer-text {
+    font-size: 16px;
     margin: 0;
+  }
+
+  li {
+    height: 60px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li:hover {
+    background-color: $color_footer_hover;
   }
   a {
     text-decoration: none;
+    outline: none;
   }
-  a:hover {
-    background-color: #EEEEEE;
+  .dropdown-menu {
+    margin: 0;
+    padding: 0;
+  }
+  .lang {
+    padding: 25px 15px;
   }
 }
 
@@ -546,9 +565,11 @@ button:disabled {
 #contact .nav-tabs a {
   border-radius: 0;
   margin-bottom: 0;
+  outline: none;
 }
 
 #contact .nav-tabs .inactive a {
   color: black !important;
   background-color: #eeeeee !important;
+  outline: none;
 }

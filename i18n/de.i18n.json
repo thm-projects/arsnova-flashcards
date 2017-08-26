@@ -34,13 +34,14 @@
     "none": "Ohne"
   },
   "footer": {
-    "info": "Info"
+    "info": "Info",
+    "language": "Sprache",
+    "fullscreen": "Vollbild"
   },
   "contact": {
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
-    "agb": "AGB",
-    "fullscreen": "Vollbild"
+    "agb": "AGB"
   },
   "notifications": {
     "title": "Benachrichtigungen",

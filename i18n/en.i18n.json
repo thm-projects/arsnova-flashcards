@@ -34,13 +34,14 @@
     "none": "None"
   },
   "footer": {
-    "info": "Info"
+    "info": "Info",
+    "language": "Language",
+    "fullscreen": "Fullscreen"
   },
   "contact": {
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
-    "agb": "GTC",
-    "fullscreen": "Fullscreen"
+    "agb": "GTC"
   },
   "notifications": {
     "title": "Notifications",

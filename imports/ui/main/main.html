@@ -70,18 +70,6 @@
                                     </div>
 
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li id="navbar-languagepanel"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                {{#each getLanguages}}
-                                                    <li><a href="#" role="menuitem" class="lang"
-                                                           data-lang={{code}}>{{label.name}}</a></li>
-                                                {{/each}}
-                                            </ul>
-                                        </li>
                                         {{#if isInRole 'admin, editor'}}
                                             <li id="navbar-adminpanel">
                                                 <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
@@ -168,16 +156,33 @@
 
 
         <div id="footer" class="footer">
-            <div class="container">
-                <a id="info" class="col-xs-6" href="{{pathFor route='impressum'}}">
-                    <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                    <p class="footer-text"><span class="footerElementText">Info</span></p>
-                </a>
-                <a id="fullscreen" class="col-xs-6" href="#">
-                <p class="footer-icon"><span class="glyphicon glyphicon-fullscreen"></span></p>
-                <p class="footer-text"><span class="footerElementText">{{_ "footer.fullscreen"}}</span></p>
-                </a>
-            </div>
+            <ul class="container dropup">
+                <li class="col-xs-4">
+                    <a id="info" href="{{pathFor route='impressum'}}">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                        <p class="footer-text"><span class="footerElementText">Info</span></p>
+                    </a>
+                </li>
+                <li id="navbar-languagepanel" class="col-xs-4"
+                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                        <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span></p>
+                    </a>
+                    <ul class="dropdown-menu col-xs-12">
+                        {{#each getLanguages}}
+                            <li><a href="#" role="menuitem" class="lang"
+                                   data-lang={{code}}>{{label.name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="col-xs-4">
+                    <a id="fullscreen" href="#">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-fullscreen"></span></p>
+                        <p class="footer-text"><span class="footerElementText">{{_ "footer.fullscreen"}}</span></p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div> <!-- Theme Wrapper -->
 </template>
