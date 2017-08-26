@@ -39,7 +39,8 @@
   "contact": {
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
-    "agb": "GTC"
+    "agb": "GTC",
+    "fullscreen": "Fullscreen"
   },
   "notifications": {
     "title": "Notifications",

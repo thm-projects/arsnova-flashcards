@@ -22,6 +22,7 @@ html {
   position: relative;
   min-height: 100%;
   font-family: 'Roboto';
+  background-color: $color_mercury_approx;
 }
 
 body {
@@ -284,8 +285,10 @@ body {
   .footer-text {
     margin: 0;
   }
-  a:hover {
+  a {
     text-decoration: none;
+  }
+  a:hover {
     background-color: #EEEEEE;
   }
 }

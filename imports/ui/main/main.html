@@ -169,9 +169,13 @@
 
         <div id="footer" class="footer">
             <div class="container">
-                <a id="info" class="col-xs-12 contact" href="{{pathFor route='impressum'}}">
+                <a id="info" class="col-xs-6" href="{{pathFor route='impressum'}}">
                     <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                     <p class="footer-text"><span class="footerElementText">Info</span></p>
+                </a>
+                <a id="fullscreen" class="col-xs-6" href="#">
+                <p class="footer-icon"><span class="glyphicon glyphicon-fullscreen"></span></p>
+                <p class="footer-text"><span class="footerElementText">{{_ "footer.fullscreen"}}</span></p>
                 </a>
             </div>
         </div>

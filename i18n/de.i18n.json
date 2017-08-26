@@ -39,7 +39,8 @@
   "contact": {
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
-    "agb": "AGB"
+    "agb": "AGB",
+    "fullscreen": "Vollbild"
   },
   "notifications": {
     "title": "Benachrichtigungen",
