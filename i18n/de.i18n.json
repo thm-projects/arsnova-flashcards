@@ -24,7 +24,7 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
-    "pool": "Pool",
+    "pool": "Alle Kartensätze",
     "myprofile": "Mein Profil",
     "billing": "Abrechnung",
     "logout": "Logout",
