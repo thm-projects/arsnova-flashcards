@@ -118,11 +118,8 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
-	'lerningActiveAndNotEditor': function () {
-		if (this.owner !== Meteor.userId() && this.learningActive) {
-			return true;
-		}
-		return false;
+	'learningActiveAndNotEditor': function () {
+		return this.owner !== Meteor.userId() && this.learningActive;
 	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
@@ -393,9 +390,6 @@ Template.cardsetList.helpers({
 		}, {
 			sort: Session.get("cardSort")
 		});
-	},
-	isDisabled: function () {
-		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 
@@ -501,7 +495,7 @@ Template.cardsetInfo.helpers({
 		}
 	},
 	isDisabled: function () {
-		return (this.quantity < 5 || this.reviewed || this.request) ? 'disabled' : '';
+		return !!(this.quantity < 5 || this.reviewed || this.request);
 	},
 	hasAmount: function () {
 		return this.kind === 'pro' || this.kind === 'edu';
@@ -677,15 +671,11 @@ Template.cardsetSidebar.events({
 });
 
 Template.cardsetSidebar.helpers({
-	isDisabled: function () {
-		return (this.learningActive) ? '' : 'disabled';
-	},
 	enableIfPublished: function () {
-		if (this.kind === 'personal') {
-			return "disabled";
-		} else {
-			return "";
-		}
+		return this.kind !== 'personal';
+	},
+	'learningActiveAndNotEditor': function () {
+		return this.owner !== Meteor.userId() && this.learningActive;
 	}
 });
 

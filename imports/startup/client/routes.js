@@ -22,9 +22,20 @@ Router.route('/home', {
 	template: 'welcome'
 });
 
-Router.route('impressum');
-Router.route('agb');
-Router.route('datenschutz');
+Router.route('impressum', {
+	name: 'impressum',
+	template: 'contact'
+});
+
+Router.route('agb', {
+	name: 'agb',
+	template: 'contact'
+});
+
+Router.route('datenschutz', {
+	name: 'datenschutz',
+	template: 'contact'
+});
 
 Router.route('/create', {
 	name: 'create',

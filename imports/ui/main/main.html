@@ -1,5 +1,6 @@
 <template name="main">
-    <div id="{{#if currentUser}}{{#if isInRole 'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
+    <div id="{{#if currentUser}}{{#if isInRole
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
          class="{{getTheme}}">
         {{#if currentUser}}
             {{#if isInRole 'firstLogin'}}
@@ -19,10 +20,6 @@
                                         <span class="icon-bar"></span>
                                     </button>
                                 {{/if}}
-                                <a class="navbar-brand" href="{{pathFor route='home'}}">
-                                    <img src="/img/logo.png" alt="THMcards Logo"/>
-                                </a>
-
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +43,7 @@
                                         </li>
                                     </ul>
                                     <div id="searchDropdown"
-                                         class="navbar-form navbar-left hidden-sm input-append btn-group"
+                                         class="navbar-form navbar-left input-append btn-group"
                                          role="search">
                                         <input id="input-search" class="form-control typeahead" name="search"
                                                type="text"
@@ -59,31 +56,20 @@
                                                 <a href="/cardset/{{_id}}" class="list-group-item clearfix">
                                                     <h4 class="list-group-item-heading">{{name}}</h4>
                                                     <p class="list-group-item-text">{{description}}</p>
-                                                    <hr class="search-divide">
                                                     {{#with getAuthor this.owner}}
-                                                        <p class="list-group-item-text">{{_ "cardset.info.author"}}
+                                                        <p class="list-group-item-text search-author">{{_
+                                                                "cardset.info.author"}}
                                                             : {{givenname}} {{birthname}}</p>
                                                         <p class="list-group-item-text">{{_ "panel-body.title"}}
                                                             : {{degree}}</p>
                                                     {{/with}}
+                                                    <hr class="search-divide">
                                                 </a>
                                             {{/each}}
                                         </div>
                                     </div>
 
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li id="navbar-languagepanel"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                {{#each getLanguages}}
-                                                    <li><a href="#" role="menuitem" class="lang"
-                                                           data-lang={{code}}>{{label.name}}</a></li>
-                                                {{/each}}
-                                            </ul>
-                                        </li>
                                         {{#if isInRole 'admin, editor'}}
                                             <li id="navbar-adminpanel">
                                                 <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
@@ -170,13 +156,33 @@
 
 
         <div id="footer" class="footer">
-            <div class="container">
-                <p class="muted credit">
-                    <a id="impressum" href="{{pathFor route='impressum'}}">{{_ "footer.impressum"}}</a>
-                    <a id="datenschutz" href="{{pathFor route='datenschutz'}}">{{_ "footer.datenschutz"}}</a>
-                    <a id="agb" href="{{pathFor route='agb'}}">{{_ "footer.agb"}}</a>
-                </p>
-            </div>
+            <ul class="container dropup">
+                <li class="col-xs-4">
+                    <a id="info" href="{{pathFor route='impressum'}}">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                        <p class="footer-text"><span class="footerElementText">Info</span></p>
+                    </a>
+                </li>
+                <li id="navbar-languagepanel" class="col-xs-4"
+                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                        <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span></p>
+                    </a>
+                    <ul class="dropdown-menu col-xs-12">
+                        {{#each getLanguages}}
+                            <li><a href="#" role="menuitem" class="lang"
+                                   data-lang={{code}}>{{label.name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="col-xs-4">
+                    <a id="fullscreen" href="#">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-fullscreen"></span></p>
+                        <p class="footer-text"><span class="footerElementText">{{_ "footer.fullscreen"}}</span></p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div> <!-- Theme Wrapper -->
 </template>

@@ -262,14 +262,19 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <button disabled id="profileCancel" type="button"
-                                class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave">{{_
-                                "profile.cancel"}}</button>
-                        <button disabled id="profileSave" type="button"
-                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
-                            {{disableIfOffline}}>
-                            {{_ "profile.save"}}
-                        </button>
+                        {{#unless isDisabledCancelProfile}}
+                            <button id="profileCancel" type="button"
+                                    class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave"
+                                    data-id="disabled">{{_
+                                    "profile.cancel"}}</button>
+                        {{/unless}}
+                        {{#unless isDisabledSaveProfile}}
+                            <button id="profileSave" type="button"
+                                    class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
+                                {{disableIfOffline}}>
+                                {{_ "profile.save"}}
+                            </button>
+                        {{/unless}}
                     {{/if}}
                 </form>
             </div>
@@ -287,9 +292,11 @@
                         {{/each}}
                     </select>
                 </div>
-                <button disabled id="colorThemeSave" type="button"
-                        class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
-                        "profile.save"}}</button>
+                {{#unless isDisabledSaveTheme}}
+                    <button id="colorThemeSave" type="button"
+                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                            "profile.save"}}</button>
+                {{/unless}}
             </div>
         </div>
         <div class="panel panel-default">
@@ -299,7 +306,8 @@
             <div class="panel-body">
                 <p>{{_ "profile.settings.deleteText"}}</p>
                 <hr/>
-                <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3" data-toggle="modal"
+                <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3"
+                        data-toggle="modal"
                         data-target="#profileDelteConfirmModal" {{disableIfOffline}}>
                     {{_ "profile.settings.delete"}}
                 </button>
@@ -800,11 +808,14 @@
                             </div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_
+                                    "billing.plan.free"}}</li>
                             {{#if isInRole 'university'}}
-                                <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-		<!--add new class "red-passage" to change text to red, and add third listgroup to Standard User-->
-				<li class="list-group-item red-passage"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
+                                <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_
+                                        "billing.plan.edu"}}</li>
+                                <!--add new class "red-passage" to change text to red, and add third listgroup to Standard User-->
+                                <li class="list-group-item red-passage"><i class="fa fa-star"></i> {{_
+                                        "billing.plan.pro"}}</li>
                             {{/if}}
                         </ul>
                         <div class="panel-footer">
@@ -812,7 +823,8 @@
                                 <button type="submit" id="downgrade" class="btn btn-danger btn-raised btn-block">{{_
                                         "billing.plan.back"}}</button>
                             {{else}}
-                                <button id="downgrade" class="btn btn-default btn-raised btn-block disabled" href="#">{{_
+                                <button id="downgrade" class="btn btn-default btn-raised btn-block disabled"
+                                        href="#">{{_
                                         "billing.plan.actual"}}</button>
                             {{/if}}
                         </div>
@@ -825,12 +837,15 @@
                         </div>
                         <div class="panel-body text-center">
                             <div class="lead">
-                            <h2>6.99€ / {{_ "billing.plan.month"}}</h2></div>
+                                <h2>6.99€ / {{_ "billing.plan.month"}}</h2></div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_ "billing.plan.free"}}</li>
-                            <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_ "billing.plan.edu"}}</li>
-                            <li class="list-group-item green-passage"><i class="fa fa-star"></i> {{_ "billing.plan.pro"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_
+                                    "billing.plan.free"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-university"></i> {{_
+                                    "billing.plan.edu"}}</li>
+                            <li class="list-group-item green-passage"><i class="fa fa-star"></i> {{_
+                                    "billing.plan.pro"}}</li>
                         </ul>
                         <div class="panel-footer">
                             {{#if isInRole 'pro'}}
