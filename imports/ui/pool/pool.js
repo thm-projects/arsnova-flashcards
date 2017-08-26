@@ -566,12 +566,3 @@ Template.category.onDestroyed(function () {
 Template.pool.onCreated(function () {
 	resetFilters();
 });
-
-Template.pool.onRendered(function () {
-	if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
-			'admin',
-			'editor'
-		])) {
-		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
-	}
-});
