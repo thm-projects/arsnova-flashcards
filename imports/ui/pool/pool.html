@@ -250,10 +250,10 @@
                 "set-list.skillLevel"}}
         </span>
         <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
-                "set-list.rating"}}
+                "set-list.availability"}}
         </span>
         <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
-                "set-list.availability"}}
+                "set-list.rating"}}
         </span>
     </div>
     {{#if getDecks.count}}
@@ -334,23 +334,13 @@
         <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolSkillLevel"
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
-    <a href="#" class="filterRating"
-       title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
-       data-id={{getRelevance}}>
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id={{getRelevance}}>{{_
-                "set-list.rating"}}
-            :</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent panelUnit" data-id={{getRelevance}}>
-            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
-        </span>
-    </a>
-    <span class="col-lg-1 kind-label visible-lg panelAvailability panelUnitNoBorder">
+    <span class="col-lg-1 kind-label visible-lg panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
             <span class="kind-label col-lg-6 visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-lg-6 visible-lg licenseInfo panelUnit panelUnitPrice panelUnitNoBorder" data-id="{{this.kind}}">
+            <span class="col-lg-6 visible-lg licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
                 {{{getPrice}}}
             </span>
         </a>
@@ -358,17 +348,27 @@
     <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
         <span class="col-xs-12 col-sm-12 col-md-12 hidden-lg poolLabel poolText panelAvailability panelUnitNoBorder"
               data-id="{{this.kind}}">
-            <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder"
+            <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
                   data-id="{{this.kind}}">{{_
                     "set-list.availability"}}:</span>
-            <span class="kind-label col-xs-3 col-sm-4 col-md-3 hidden-lg licenseInfo panelUnit panelUnitKind panelUnitNoBorder info_license_mobile"
+            <span class="kind-label col-xs-3 col-sm-4 col-md-3 hidden-lg licenseInfo panelUnit panelUnitKind info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-xs-3 col-sm-3 col-md-5 hidden-lg licenseInfo panelUnit panelUnitPrice panelUnitNoBorder info_license_mobile"
+            <span class="col-xs-3 col-sm-3 col-md-5 hidden-lg licenseInfo panelUnit panelUnitPrice info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getPrice}}}
             </span>
+        </span>
+    </a>
+    <a href="#" class="filterRating"
+       title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
+       data-id={{getRelevance}}>
+        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder" data-id={{getRelevance}}>{{_
+                "set-list.rating"}}
+            :</span>
+        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent panelUnit panelUnitNoBorder" data-id={{getRelevance}}>
+            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
         </span>
     </a>
 </template>
