@@ -135,11 +135,13 @@ Template.admin_cardset.events({
 			$('#helpEditCardsetModuleNumAdmin').html(TAPi18n.__('modal-dialog.moduleNum_required'));
 			$('#helpEditCardsetModuleNumAdmin').css('color', '#b94a48');
 		}
-		if ($('#editCardsetCollegeAdmin').val() === "") {
-			$('#editCardsetCollegeLabelAdmin').css('color', '#b94a48');
-			$('.editCardsetCollegeDropdownAdmin').css('border-color', '#b94a48');
-			$('#helpEditCardsetCollegeAdmin').html(TAPi18n.__('modal-dialog.college_required'));
-			$('#helpEditCardsetCollegeAdmin').css('color', '#b94a48');
+		if (!Meteor.settings.public.university.singleUniversity) {
+			if ($('#editCardsetCollegeAdmin').val() === "") {
+				$('#editCardsetCollegeLabelAdmin').css('color', '#b94a48');
+				$('.editCardsetCollegeDropdownAdmin').css('border-color', '#b94a48');
+				$('#helpEditCardsetCollegeAdmin').html(TAPi18n.__('modal-dialog.college_required'));
+				$('#helpEditCardsetCollegeAdmin').css('color', '#b94a48');
+			}
 		}
 		if ($('#editCardsetCourseAdmin').val() === "") {
 			$('#editCardsetCourseLabelAdmin').css('color', '#b94a48');
@@ -158,63 +160,128 @@ Template.admin_cardset.events({
 			$('#helpCC-modules-admin').html(TAPi18n.__('admin.cardset.wrongCombination'));
 			$('#helpCC-modules-admin').css('color', '#b94a48');
 		}
-		if ($('#editCardsetNameAdmin').val() !== "" &&
-			$('#editCardsetDescriptionAdmin').val() !== "" &&
-			$('#editCardsetModuleAdmin').val() !== "" &&
-			$('#editCardsetModuleShortAdmin').val() !== "" &&
-			$('#editCardsetModuleNumAdmin').val() !== "" &&
-			$('#editCardsetSkillLevel').val() !== "" &&
-			$('#editCardsetCollegeAdmin').val() !== "" &&
-			$('#editCardsetCourseAdmin').val() !== "" &&
-			($("#kindoption0Admin").hasClass('active') ||
-			($("#kindoption1Admin").hasClass('active') ||
-			$("#kindoption2Admin").hasClass('active') ||
-			$("#kindoption3Admin").hasClass('active')) &&
-			this.quantity >= 5)) {
-			var name = tmpl.find('#editCardsetNameAdmin').value;
-			var description = tmpl.find('#editCardsetDescriptionAdmin').value;
-			var module = tmpl.find('#editCardsetModuleAdmin').value;
-			var moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
-			var moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
-			var skillLevel = $('#editCardsetSkillLevel').val();
-			var college = $('#editCardsetCollegeAdmin').text();
-			var course = $('#editCardsetCourseAdmin').text();
-
-			var kind = tmpl.find('#publishKindAdmin > .active > input').value;
-			var price = 0;
-			var visible = true;
-			var license = [];
-
-			if (("#cc-modules-admin").length) {
-				if ($("#cc-option0-admin").hasClass('active')) {
-					license.push("by");
+		let name;
+		let description;
+		let module;
+		let moduleShort;
+		let moduleNum;
+		let skillLevel;
+		let college;
+		let course;
+		let kind;
+		let price;
+		let visible;
+		let license;
+		if (Meteor.settings.public.university.singleUniversity) {
+			if ($('#editCardsetNameAdmin').val() !== "" &&
+				$('#editCardsetDescriptionAdmin').val() !== "" &&
+				$('#editCardsetModuleAdmin').val() !== "" &&
+				$('#editCardsetModuleShortAdmin').val() !== "" &&
+				$('#editCardsetModuleNumAdmin').val() !== "" &&
+				$('#editCardsetSkillLevel').val() !== "" &&
+				$('#editCardsetCollegeAdmin').val() !== "" &&
+				$('#editCardsetCourseAdmin').val() !== "" &&
+				($("#kindoption0Admin").hasClass('active') ||
+					($("#kindoption1Admin").hasClass('active') ||
+						$("#kindoption2Admin").hasClass('active') ||
+						$("#kindoption3Admin").hasClass('active')) &&
+					this.quantity >= 5)) {
+				name = tmpl.find('#editCardsetNameAdmin').value;
+				description = tmpl.find('#editCardsetDescriptionAdmin').value;
+				module = tmpl.find('#editCardsetModuleAdmin').value;
+				moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
+				moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
+				skillLevel = $('#editCardsetSkillLevel').val();
+				college = Meteor.settings.public.university.default;
+				course = $('#editCardsetCourseAdmin').text();
+				kind = tmpl.find('#publishKindAdmin > .active > input').value;
+				price = 0;
+				visible = true;
+				license = [];
+				if (("#cc-modules-admin").length) {
+					if ($("#cc-option0-admin").hasClass('active')) {
+						license.push("by");
+					}
+					if ($("#cc-option1-admin").hasClass('active')) {
+						license.push("nc");
+					}
+					if ($("#cc-option2-admin").hasClass('active')) {
+						license.push("nd");
+					}
+					if ($("#cc-option3-admin").hasClass('active')) {
+						license.push("sa");
+					}
 				}
-				if ($("#cc-option1-admin").hasClass('active')) {
-					license.push("nc");
+				Meteor.call('updateLicense', this._id, license);
+				if (kind === 'edu' || kind === 'pro') {
+					if (tmpl.find('#publishPriceAdmin') !== null) {
+						price = tmpl.find('#publishPriceAdmin').value;
+					} else {
+						price = this.price;
+					}
 				}
-				if ($("#cc-option2-admin").hasClass('active')) {
-					license.push("nd");
+				if (kind === 'personal') {
+					visible = false;
 				}
-				if ($("#cc-option3-admin").hasClass('active')) {
-					license.push("sa");
-				}
+				Meteor.call("publishCardset", this._id, kind, price, visible);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				window.history.go(-1);
 			}
-
-			Meteor.call('updateLicense', this._id, license);
-
-			if (kind === 'edu' || kind === 'pro') {
-				if (tmpl.find('#publishPriceAdmin') !== null) {
-					price = tmpl.find('#publishPriceAdmin').value;
-				} else {
-					price = this.price;
+		} else {
+			if ($('#editCardsetNameAdmin').val() !== "" &&
+				$('#editCardsetDescriptionAdmin').val() !== "" &&
+				$('#editCardsetModuleAdmin').val() !== "" &&
+				$('#editCardsetModuleShortAdmin').val() !== "" &&
+				$('#editCardsetModuleNumAdmin').val() !== "" &&
+				$('#editCardsetSkillLevel').val() !== "" &&
+				$('#editCardsetCollegeAdmin').val() !== "" &&
+				$('#editCardsetCourseAdmin').val() !== "" &&
+				($("#kindoption0Admin").hasClass('active') ||
+				($("#kindoption1Admin").hasClass('active') ||
+				$("#kindoption2Admin").hasClass('active') ||
+				$("#kindoption3Admin").hasClass('active')) &&
+				this.quantity >= 5)) {
+				name = tmpl.find('#editCardsetNameAdmin').value;
+				description = tmpl.find('#editCardsetDescriptionAdmin').value;
+				module = tmpl.find('#editCardsetModuleAdmin').value;
+				moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
+				moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
+				skillLevel = $('#editCardsetSkillLevel').val();
+				college = $('#editCardsetCollegeAdmin').text();
+				course = $('#editCardsetCourseAdmin').text();
+				kind = tmpl.find('#publishKindAdmin > .active > input').value;
+				price = 0;
+				visible = true;
+				license = [];
+				if (("#cc-modules-admin").length) {
+					if ($("#cc-option0-admin").hasClass('active')) {
+						license.push("by");
+					}
+					if ($("#cc-option1-admin").hasClass('active')) {
+						license.push("nc");
+					}
+					if ($("#cc-option2-admin").hasClass('active')) {
+						license.push("nd");
+					}
+					if ($("#cc-option3-admin").hasClass('active')) {
+						license.push("sa");
+					}
 				}
+				Meteor.call('updateLicense', this._id, license);
+				if (kind === 'edu' || kind === 'pro') {
+					if (tmpl.find('#publishPriceAdmin') !== null) {
+						price = tmpl.find('#publishPriceAdmin').value;
+					} else {
+						price = this.price;
+					}
+				}
+				if (kind === 'personal') {
+					visible = false;
+				}
+				Meteor.call("publishCardset", this._id, kind, price, visible);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				window.history.go(-1);
 			}
-			if (kind === 'personal') {
-				visible = false;
-			}
-			Meteor.call("publishCardset", this._id, kind, price, visible);
-			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
-			window.history.go(-1);
 		}
 	},
 	'click #cardsetCancelAdmin': function () {

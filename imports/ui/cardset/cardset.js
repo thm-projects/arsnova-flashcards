@@ -173,11 +173,13 @@ Template.cardset.events({
 			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
 			$('#helpEditSetModuleNum').css('color', '#b94a48');
 		}
-		if ($('#editSeCollege').val() === "") {
-			$('#editSetCollegeLabel').css('color', '#b94a48');
-			$('.editSetCollegeDropdown').css('border-color', '#b94a48');
-			$('#helpEditSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
-			$('#helpEditSetCollege').css('color', '#b94a48');
+		if (!Meteor.settings.public.university.singleUniversity) {
+			if ($('#editSeCollege').val() === "") {
+				$('#editSetCollegeLabel').css('color', '#b94a48');
+				$('.editSetCollegeDropdown').css('border-color', '#b94a48');
+				$('#helpEditSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+				$('#helpEditSetCollege').css('color', '#b94a48');
+			}
 		}
 		if ($('#editSetCourse').val() === "") {
 			$('#editSetCourseLabel').css('color', '#b94a48');
@@ -185,26 +187,55 @@ Template.cardset.events({
 			$('#helpEditSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 			$('#helpEditSetCourse').css('color', '#b94a48');
 		}
-		if ($('#editSetName').val() !== "" &&
-			$('#editSetDescription').val() !== "" &&
-			$('#editSetModule').val() !== "" &&
-			$('#editSetModuleShort').val() !== "" &&
-			$('#editSetModuleNum').val() !== "" &&
-			$('#editSetSkillLevel').val() !== "" &&
-			$('#editSetCollege').val() !== "" &&
-			$('#editSetCourse').val() !== "") {
-			var name = tmpl.find('#editSetName').value;
-			var description = tmpl.find('#editSetDescription').value;
-			var module = tmpl.find('#editSetModule').value;
-			var moduleShort = tmpl.find('#editSetModuleShort').value;
-			var moduleNum = tmpl.find('#editSetModuleNum').value;
-			var skillLevel = $('#editSetSkillLevel').val();
-			var college = $('#editSetCollege').text();
-			var course = $('#editSetCourse').text();
-
-			Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
-			$('#editSetSkillLevel').html('');
-			$('#editSetModal').modal('hide');
+		let name;
+		let description;
+		let module;
+		let moduleShort;
+		let moduleNum;
+		let skillLevel;
+		let college;
+		let course;
+		if (Meteor.settings.public.university.singleUniversity) {
+			if ($('#editSetName').val() !== "" &&
+				$('#editSetDescription').val() !== "" &&
+				$('#editSetModule').val() !== "" &&
+				$('#editSetModuleShort').val() !== "" &&
+				$('#editSetModuleNum').val() !== "" &&
+				$('#editSetSkillLevel').val() !== "" &&
+				$('#editSetCourse').val() !== "") {
+				name = tmpl.find('#editSetName').value;
+				description = tmpl.find('#editSetDescription').value;
+				module = tmpl.find('#editSetModule').value;
+				moduleShort = tmpl.find('#editSetModuleShort').value;
+				moduleNum = tmpl.find('#editSetModuleNum').value;
+				skillLevel = $('#editSetSkillLevel').val();
+				college = Meteor.settings.public.university.default;
+				course = $('#editSetCourse').text();
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				$('#editSetModal').modal('hide');
+				$('#editSetSkillLevel').html('');
+			}
+		} else {
+			if ($('#editSetName').val() !== "" &&
+				$('#editSetDescription').val() !== "" &&
+				$('#editSetModule').val() !== "" &&
+				$('#editSetModuleShort').val() !== "" &&
+				$('#editSetModuleNum').val() !== "" &&
+				$('#editSetSkillLevel').val() !== "" &&
+				$('#editSetCollege').val() !== "" &&
+				$('#editSetCourse').val() !== "") {
+				name = tmpl.find('#editSetName').value;
+				description = tmpl.find('#editSetDescription').value;
+				module = tmpl.find('#editSetModule').value;
+				moduleShort = tmpl.find('#editSetModuleShort').value;
+				moduleNum = tmpl.find('#editSetModuleNum').value;
+				skillLevel = $('#editSetSkillLevel').val();
+				college = $('#editSetCollege').text();
+				course = $('#editSetCourse').text();
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				$('#editSetModal').modal('hide');
+				$('#editSetSkillLevel').html('');
+			}
 		}
 	},
 	'click #cardSetDelete': function () {

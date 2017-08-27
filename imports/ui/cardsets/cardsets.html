@@ -239,50 +239,75 @@
                                 </div>
                             </div>
                         </div><!-- / skills Dropdown -->
-                        <!-- start college Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
-                                    "modal-dialog.college"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                    <button type="button" id="newSetCollege"
-                                            class="btn btn-raised newSetCollegeDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="">{{_ "modal-dialog.college_required"}}
-                                    </button>
-                                    <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown" type="button"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="true">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        {{#each getColleges}}
-                                            <li class="college" value="{{_id}}" data="{{this.college}}"><a
-                                                    href="#">{{this.college}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpNewSetCollege" class="help-block college"></span>
+                        {{#unless singleUniversity}}
+                            <!-- start college Dropdown -->
+                            <div class="form-group setdetails categories">
+                                <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
+                                        "modal-dialog.college"}}</label>
+                                <div class="dropup">
+                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                        <button type="button" id="newSetCollege"
+                                                class="btn btn-raised newSetCollegeDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                value="">{{_ "modal-dialog.college_required"}}
+                                        </button>
+                                        <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown"
+                                                type="button"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu longButton">
+                                            {{#each getColleges}}
+                                                <li class="college" value="{{_id}}" data="{{this.college}}"><a
+                                                        href="#">{{this.college}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                        <span id="helpNewSetCollege" class="help-block college"></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- / college Dropdown -->
+                            </div><!-- / college Dropdown -->
+                        {{/unless}}
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="newSetCourseLabel" class="col-md-3 control-label" for="newSetCourse">{{_
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
                                 <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
-                                    <button type="button" id="newSetCourse"
-                                            class="btn btn-raised newSetCourseDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="" disabled>{{_ "modal-dialog.course_required"}}
-                                    </button>
-                                    <button type="button" class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false" disabled>
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
+                                    {{#unless singleUniversity}}
+                                        <button type="button" id="newSetCourse"
+                                                class="btn btn-raised newSetCourseDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                value="" disabled>{{_
+                                                "modal-dialog.course_required"}}
+                                        </button>
+                                    {{else}}
+                                        <button type="button" id="newSetCourse"
+                                                class="btn btn-raised newSetCourseDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                value="">{{_
+                                                "modal-dialog.course_required"}}
+                                        </button>
+                                    {{/unless}}
+                                    {{#unless singleUniversity}}
+                                        <button type="button"
+                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false"
+                                                disabled>
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                    {{else}}
+                                        <button type="button"
+                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                    {{/unless}}
                                     <ul class="dropdown-menu longButton">
                                         {{#each getCourses}}
                                             <li class="course" value="{{_id}}" data="{{this.course}}"><a
