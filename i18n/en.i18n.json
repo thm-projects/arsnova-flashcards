@@ -168,7 +168,8 @@
     "newset": "Create a deck of cards"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "You aren't learning any deck of cards yet"
+    "emptytextlist": "You aren't learning any deck of cards yet",
+    "browseCardset": "Choose a deck of cards"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
