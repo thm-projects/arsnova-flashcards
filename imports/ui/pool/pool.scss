@@ -68,26 +68,9 @@
     text-align: center;
   }
 
-  #info_license img {
-    width: 20px;
-  }
-
   .stars-rating {
     margin-top: -5px;
     height: 12px;
-  }
-
-  #showLicenseModal {
-    #cc-modules img {
-      width: 30px;
-    }
-    #cc-description {
-      padding-top: 10px;
-      img {
-        width: 58px;
-      }
-
-    }
   }
 
   @media (max-width: 1199px) {
@@ -181,13 +164,6 @@
 
   .label-pro {
     background-color: $color_pro_btn;
-  }
-
-  .panelUnitLicense {
-    margin-left: 5px;
-    margin-right: -5px;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 }
 

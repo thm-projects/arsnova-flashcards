@@ -46,14 +46,14 @@ function createTagCloud() {
 
 	let width = document.getElementById('tag-cloud-canvas').width;
 	let gridSize = 15;
-	let weightFactor = 1.5;
+	let weightFactor = 1.0;
 	let wordRotation = 0.7853981634;
 
-	if (width < 300) {
-		gridSize = 5;
-		weightFactor = 0.6;
-	} else if (width < 500) {
-		gridSize = 5;
+	if (width < 500) {
+		gridSize = 10;
+		weightFactor = 0.4;
+	} else if (width < 1025) {
+		gridSize = 10;
 		weightFactor = 0.8;
 	}
 

@@ -10,7 +10,7 @@
     "about": "About THMcards",
     "choose": "Select your login:",
     "impressum": "Legal Notice",
-    "backButton": "Back to Login"
+    "backButton": "Back to Start"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -23,8 +23,8 @@
     "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
   },
   "navbar-collapse": {
-    "carddecks": "My deck of cards",
-    "pool": "Pool",
+    "carddecks": "My decks of cards",
+    "pool": "All decks of cards",
     "myprofile": "My profile",
     "billing": "Billing",
     "logout": "Logout",
@@ -34,6 +34,11 @@
     "none": "None"
   },
   "footer": {
+    "info": "Info",
+    "language": "Language",
+    "fullscreen": "Fullscreen"
+  },
+  "contact": {
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
     "agb": "GTC"

@@ -74,19 +74,6 @@ function resetInfiniteBar() {
 	checkRemainingCards();
 }
 
-function showMoreVisible() {
-	var threshold, target = $(".showMoreResults");
-	if (target.data("visible")) {
-		threshold = $(window).scrollTop() + $(window).height() - target.height();
-		if (target.offset().top < threshold) {
-			target.data("visible", false);
-			Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
-		}
-	}
-}
-
-$(window).scroll(showMoreVisible);
-
 function filterCheckbox() {
 	$("#filterCheckbox input:checkbox").each(function () {
 		if (!Session.get('poolFilter').includes($(this).val())) {
@@ -565,13 +552,4 @@ Template.category.onDestroyed(function () {
 
 Template.pool.onCreated(function () {
 	resetFilters();
-});
-
-Template.pool.onRendered(function () {
-	if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), [
-			'admin',
-			'editor'
-		])) {
-		Bert.alert(TAPi18n.__('notifications.admin'), 'success', 'growl-bottom-right');
-	}
 });
