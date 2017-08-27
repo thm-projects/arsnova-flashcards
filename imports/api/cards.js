@@ -17,70 +17,147 @@ if (Meteor.isServer) {
 					'editor',
 					'lecturer'
 				])) {
-				return Cards.find();
+				if (Meteor.settings.public.university.singleUniversity) {
+					return Cards.find({college: Meteor.settings.public.university.default});
+				} else {
+					return Cards.find();
+				}
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
-				return Cards.find({
-					cardset_id: {
-						$in: Cardsets.find({
-							$or: [
-								{owner: this.userId},
-								{visible: true}
-							]
-						}).map(function (cardset) {
-							return cardset._id;
-						})
-					}
-				});
-			} else if (Roles.userIsInRole(this.userId, 'university')) {
-				return Cards.find({
-					cardset_id: {
-						$in: Cardsets.find({
-							visible: true,
-							kind: {$in: ['free', 'edu']}
-						}).map(function (cardset) {
-							return cardset._id;
-						})
-					}
-				});
-			} else {
-				return Cards.find({
-					$or: [
-						//is owner
-						{
-							cardset_id: {
-								$in: Cardsets.find({owner: this.userId}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
-						},
-						//is visible and is free
-						{
-							cardset_id: {
-								$in: Cardsets.find({
-									visible: true,
-									kind: 'free'
-								}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
-						},
-						//is visible and has bought
-						{
-							cardset_id: {
-								$in: Paid.find({
-									user_id: this.userId,
-									cardset_id: {
-										$in: Cardsets.find({visible: true}).map(function (cardset) {
-											return cardset._id;
-										})
-									}
-								}).map(function (paid) {
-									return paid.cardset_id;
-								})
-							}
+				if (Meteor.settings.public.university.singleUniversity) {
+					return Cards.find({
+						cardset_id: {
+							$in: Cardsets.find({
+								$or: [
+									{owner: this.userId},
+									{visible: true},
+									{college: Meteor.settings.public.university.default}
+								]
+							}).map(function (cardset) {
+								return cardset._id;
+							})
 						}
-					]
-				});
+					});
+				} else {
+					return Cards.find({
+						cardset_id: {
+							$in: Cardsets.find({
+								$or: [
+									{owner: this.userId},
+									{visible: true}
+								]
+							}).map(function (cardset) {
+								return cardset._id;
+							})
+						}
+					});
+				}
+			} else if (Roles.userIsInRole(this.userId, 'university')) {
+				if (Meteor.settings.public.university.singleUniversity) {
+					return Cards.find({
+						cardset_id: {
+							$in: Cardsets.find({
+								visible: true,
+								college: Meteor.settings.public.university.default,
+								kind: {$in: ['free', 'edu']}
+							}).map(function (cardset) {
+								return cardset._id;
+							})
+						}
+					});
+				} else {
+					return Cards.find({
+						cardset_id: {
+							$in: Cardsets.find({
+								visible: true,
+								kind: {$in: ['free', 'edu']}
+							}).map(function (cardset) {
+								return cardset._id;
+							})
+						}
+					});
+				}
+			} else {
+				if (Meteor.settings.public.university.singleUniversity) {
+					return Cards.find({
+						$or: [
+							//is owner
+							{
+								cardset_id: {
+									$in: Cardsets.find({owner: this.userId, college: Meteor.settings.public.university.default}).map(function (cardset) {
+										return cardset._id;
+									})
+								}
+							},
+							//is visible and is free
+							{
+								cardset_id: {
+									$in: Cardsets.find({
+										visible: true,
+										kind: 'free',
+										college: Meteor.settings.public.university.default
+									}).map(function (cardset) {
+										return cardset._id;
+									})
+								}
+							},
+							//is visible and has bought
+							{
+								cardset_id: {
+									$in: Paid.find({
+										user_id: this.userId,
+										college: Meteor.settings.public.university.default,
+										cardset_id: {
+											$in: Cardsets.find({visible: true}).map(function (cardset) {
+												return cardset._id;
+											})
+										}
+									}).map(function (paid) {
+										return paid.cardset_id;
+									})
+								}
+							}
+						]
+					});
+				} else {
+					return Cards.find({
+						$or: [
+							//is owner
+							{
+								cardset_id: {
+									$in: Cardsets.find({owner: this.userId}).map(function (cardset) {
+										return cardset._id;
+									})
+								}
+							},
+							//is visible and is free
+							{
+								cardset_id: {
+									$in: Cardsets.find({
+										visible: true,
+										kind: 'free'
+									}).map(function (cardset) {
+										return cardset._id;
+									})
+								}
+							},
+							//is visible and has bought
+							{
+								cardset_id: {
+									$in: Paid.find({
+										user_id: this.userId,
+										cardset_id: {
+											$in: Cardsets.find({visible: true}).map(function (cardset) {
+												return cardset._id;
+											})
+										}
+									}).map(function (paid) {
+										return paid.cardset_id;
+									})
+								}
+							}
+						]
+					});
+				}
 			}
 		}
 	});

@@ -67,7 +67,14 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Cardsets.find({learningActive: true}).fetch();
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Cardsets.find({
+					learningActive: true,
+					college: Meteor.settings.public.university.default
+				}).fetch();
+			} else {
+				return Cardsets.find({learningActive: true}).fetch();
+			}
 		}
 	},
 	/** Function returns all users who are currently registered in a learning-phase

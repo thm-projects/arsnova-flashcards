@@ -8,7 +8,28 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			const MINIMUM_SIZE = 10;
-			var cardsets = Cardsets.find({wordcloud: true}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1, description: 1}});
+			var cardsets;
+			if (Meteor.settings.public.university.singleUniversity) {
+				cardsets = Cardsets.find({wordcloud: true}, {
+					fields: {
+						_id: 1,
+						name: 1,
+						quantity: 1,
+						kind: 1,
+						description: 1
+					}
+				});
+			} else {
+				cardsets = Cardsets.find({wordcloud: true, college: Meteor.settings.public.university.default}, {
+					fields: {
+						_id: 1,
+						name: 1,
+						quantity: 1,
+						kind: 1,
+						description: 1
+					}
+				});
+			}
 			var list = [];
 
 			// find biggest cardset for normalization

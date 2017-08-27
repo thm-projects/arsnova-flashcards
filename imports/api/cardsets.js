@@ -16,22 +16,47 @@ if (Meteor.isServer) {
 				'admin',
 				'editor'
 			])) {
-			return Cardsets.find();
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Cardsets.find({"college": Meteor.settings.public.university.default});
+			} else {
+				return Cardsets.find();
+			}
 		} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
-			return Cardsets.find({
-				$or: [
-					{visible: true},
-					{request: true},
-					{owner: this.userId}
-				]
-			});
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Cardsets.find({
+					"college": Meteor.settings.public.university.default,
+					$or: [
+						{visible: true},
+						{request: true},
+						{owner: this.userId}
+					]
+				});
+			} else {
+				return Cardsets.find({
+					$or: [
+						{visible: true},
+						{request: true},
+						{owner: this.userId}
+					]
+				});
+			}
 		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return Cardsets.find({
-				$or: [
-					{visible: true},
-					{owner: this.userId}
-				]
-			});
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Cardsets.find({
+					"college": Meteor.settings.public.university.default,
+					$or: [
+						{visible: true},
+						{owner: this.userId}
+					]
+				});
+			} else {
+				return Cardsets.find({
+					$or: [
+						{visible: true},
+						{owner: this.userId}
+					]
+				});
+			}
 		}
 	});
 	Meteor.publish("tags", function () {
@@ -182,6 +207,9 @@ Meteor.methods({
 	 * @param {String} course - Assigned university course
 	 */
 	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course) {
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		}
 		check(name, String);
 		check(description, String);
 		check(visible, Boolean);
@@ -389,6 +417,9 @@ Meteor.methods({
 	 * @param {String} course - Assigned university course
 	 */
 	updateCardset: function (id, name, description, module, moduleShort, moduleNum, skillLevel, college, course) {
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		}
 		check(id, String);
 		check(name, String);
 		check(description, String);

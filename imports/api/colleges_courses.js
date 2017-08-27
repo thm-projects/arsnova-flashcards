@@ -7,13 +7,20 @@ export const CollegesCourses = new Mongo.Collection("collegesCourses");
 if (Meteor.isServer) {
 	Meteor.publish("collegesCourses", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return CollegesCourses.find();
+			if (Meteor.settings.public.university.singleUniversity) {
+				return CollegesCourses.find({"college": Meteor.settings.public.university.default});
+			} else {
+				return CollegesCourses.find();
+			}
 		}
 	});
 }
 
 Meteor.methods({
 	"updateCollegesCoursess": function (college, course) {
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		}
 		check(college, String);
 		check(course, String);
 
@@ -27,6 +34,9 @@ Meteor.methods({
 		});
 	},
 	"deleteCollegesCourses": function (college, course) {
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		}
 		check(college, String);
 		check(course, String);
 
@@ -40,6 +50,9 @@ Meteor.methods({
 		});
 	},
 	"editCollegesCourses": function (college, course, newCollege, newCourse) {
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		}
 		check(college, String);
 		check(course, String);
 		check(newCollege, String);

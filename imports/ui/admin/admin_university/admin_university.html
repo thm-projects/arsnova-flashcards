@@ -1,15 +1,17 @@
 <template name="admin_university">
     <div class="content-header">
-        <h1>{{_ "admin.manage"}}</h1>
+        <h1>{{#unless singleUniversity}}{{_ "admin.manageUniversityLong"}}{{else}}{{_ "admin.manageCourse"}}{{/unless}}</h1>
     </div>
     <div class="well well-sm">
         <table class="table table-bordered table-hover table-striped" id="collegeTable">
             <thead class="set-list">
             <tr>
-                <th><span>{{_ "admin.confirm-form.settings.college"}}</span>
-                    <!--<a class="collegedown" role="button">⇓</a>
-                    <a class="collegeup" role="button">⇑</a>-->
-                </th>
+                {{#unless singleUniversity}}
+                    <th><span>{{_ "admin.confirm-form.settings.college"}}</span>
+                        <!--<a class="collegedown" role="button">⇓</a>
+                        <a class="collegeup" role="button">⇑</a>-->
+                    </th>
+                {{/unless}}
                 <th><span>{{_ "admin.confirm-form.settings.course_of_studies"}}</span>
                     <!--<a class="coursedown" role="button">⇓</a>
                     <a class="courseup" role="button">⇑</a>-->
@@ -20,7 +22,9 @@
             <tbody>
             {{#each allColleges}}
                 <tr>
-                    <td class="tblCollege-{{@index}}">{{college}}</td>
+                    {{#unless singleUniversity}}
+                        <td class="tblCollege-{{@index}}">{{college}}</td>
+                    {{/unless}}
                     <td class="tblCourse-{{@index}}">{{course}}</td>
                     <td>
                         <button class="btn btn-danger btn-raised" type="submit"
@@ -41,12 +45,14 @@
         <div class="form-group" id="bookTemplate">
             <form class="form" id="newEntry" name="validForm">
                 <div id class="row">
+                    {{#unless singleUniversity}}
                     <div class="col-md-6">
                         <label for="text">{{_ "admin.confirm-form.settings.college"}}:</label>
                         &nbsp;&ensp; <input type="text" class="form-control" id="college" name="valid"
                                             placeholder="{{_ "admin.confirm-form.settings.college"}}"><br>
                     </div>
-                    <div class="col-md-6">
+                    {{/unless}}
+                    <div class="{{#unless singleUniversity}}col-md-6{{else}}col-md-12{{/unless}}">
                         <label for="text">{{_ "admin.confirm-form.settings.course_of_studies"}}:</label>
                         &nbsp; <input type="text" class="form-control" id="courseOfStudies" name="valid"
                                       placeholder="{{_ "admin.confirm-form.settings.course_of_studies"}}">

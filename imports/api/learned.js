@@ -8,11 +8,21 @@ export const Learned = new Mongo.Collection("learned");
 if (Meteor.isServer) {
 	Meteor.publish("learned", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			var cardsetsIds = Cardsets.find({
-				owner: this.userId
-			}).map(function (cardset) {
-				return cardset._id;
-			});
+			var cardsetsIds;
+			if (Meteor.settings.public.university.singleUniversity) {
+				cardsetsIds = Cardsets.find({
+					owner: this.userId,
+					college: Meteor.settings.public.university.default
+				}).map(function (cardset) {
+					return cardset._id;
+				});
+			} else {
+				cardsetsIds = Cardsets.find({
+					owner: this.userId
+				}).map(function (cardset) {
+					return cardset._id;
+				});
+			}
 
 			var learned = Learned.find({
 				$or: [
@@ -25,8 +35,11 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("allLearned", function () {
 			if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				var learned = Learned.find({});
-				return learned;
+				if (Meteor.settings.public.university.singleUniversity) {
+					return Learned.find({college: Meteor.settings.public.university.default});
+				} else {
+					return Learned.find({});
+				}
 			}
 		}
 	);

@@ -1,4 +1,5 @@
 import "./admin_university.html";
+import {Meteor} from "meteor/meteor";
 import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
@@ -14,17 +15,25 @@ Session.setDefault('adminSortCreated', {college: 1});
 Template.admin_university.helpers({
 
 	'allColleges': function () {
-		return CollegesCourses.find({
-			/*sort: Session.get('adminSortCreated')*/
-		});
+		if (Meteor.settings.public.university.singleUniversity) {
+			return CollegesCourses.find({"college": Meteor.settings.public.university.default});
+		} else {
+			return CollegesCourses.find({});
+		}
 	}
 
 });
 
 function addCollegeAndCourse() {
-	var college = document.getElementById("college").value;
+	var college;
 	var course = document.getElementById("courseOfStudies").value;
 	var deleteButton = document.createElement("input");
+	if (Meteor.settings.public.university.singleUniversity) {
+		college = Meteor.settings.public.university.default;
+	} else {
+		college = document.getElementById("college").value;
+	}
+
 	deleteButton.setAttribute("type", "button");
 	deleteButton.setAttribute("id", "deleteRow");
 	deleteButton.setAttribute("value", "delete");
@@ -69,7 +78,9 @@ Template.admin_university.events({
 		}
 	},
 	'click #editCollageCourse': function () {
-		document.getElementById("college").value = this.college;
+		if (!Meteor.settings.public.university.singleUniversity) {
+			document.getElementById("college").value = this.college;
+		}
 		document.getElementById("courseOfStudies").value = this.course;
 		editCollege = this.college;
 		editCourse = this.course;

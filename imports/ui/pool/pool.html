@@ -66,28 +66,31 @@
                                 {{/each}}
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle collegeBtn" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                {{#if hasCollegeFilter}}
-                                    {{poolFilterCollege}}
-                                {{else}}
-                                    {{_ "set-list.college"}}
-                                {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" class="filterCollege active" data-id="">{{_ "set-list.everything"}}</a>
-                                </li>
-                                {{#each getColleges}}
+                        {{#unless singleUniversity}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle collegeBtn" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{#if hasCollegeFilter}}
+                                        {{poolFilterCollege}}
+                                    {{else}}
+                                        {{_ "set-list.college"}}
+                                    {{/if}}
+                                    <span class="glyphicon glyphicon-filter"></span>
+                                </a>
+                                <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterCollege"
-                                           data-id="{{this.college}}">{{this.college}}</a>
+                                        <a href="#" class="filterCollege active" data-id="">{{_
+                                                "set-list.everything"}}</a>
                                     </li>
-                                {{/each}}
-                            </ul>
-                        </li>
+                                    {{#each getColleges}}
+                                        <li>
+                                            <a href="#" class="filterCollege"
+                                               data-id="{{this.college}}">{{this.college}}</a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        {{/unless}}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle courseBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" id="collegeBtn">
@@ -231,15 +234,17 @@
     </div>
     <div class="responsive-utilities-test visible-on">
 
-        <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
+        <span class="{{#unless singleUniversity}}col-lg-2{{else}}col-lg-3{{/unless}} visible-lg poolHeaderBottom">{{_
                 "set-list.topic"}}
         </span>
         <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
-        <span class="col-lg-1 visible-lg poolHeaderBottom poolHeaderCollege">{{_
-                "set-list.college"}}
-        </span>
+        {{#unless singleUniversity}}
+            <span class="col-lg-1 visible-lg poolHeaderBottom poolHeaderCollege">{{_
+                    "set-list.college"}}
+            </span>
+        {{/unless}}
         <span class="col-lg-2 visible-lg poolHeaderBottom poolHeaderCourse">{{_
                 "set-list.course"}}
         </span>
@@ -309,12 +314,14 @@
         <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolAuthor">{{getAuthorName
                 this.owner}}</span>
     </a>
-    <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
+    {{#unless singleUniversity}}
+        <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
         <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent poolText panelUnit poolCollege"
-              data-id="{{this.college}}">{{this.college}}</span>
-    </a>
+            <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent poolText panelUnit poolCollege"
+                  data-id="{{this.college}}">{{this.college}}</span>
+        </a>
+    {{/unless}}
     <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{this.course}}">
         <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
@@ -364,10 +371,12 @@
     <a href="#" class="filterRating"
        title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
        data-id={{getRelevance}}>
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder" data-id={{getRelevance}}>{{_
+        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder"
+              data-id={{getRelevance}}>{{_
                 "set-list.rating"}}
             :</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent panelUnit panelUnitNoBorder" data-id={{getRelevance}}>
+        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent panelUnit panelUnitNoBorder"
+              data-id={{getRelevance}}>
             <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
         </span>
     </a>
@@ -410,8 +419,8 @@
     <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topic"}}
         :</span>
-    <span class="cell col-xs-6 col-sm-7 col-md-8 col-lg-2 poolText panelUnit" data-id="{{content._id}}">
-                <span class="cell col-xs-8 col-sm-9 col-md-10 col-lg-9 topicName" data-id="{{content._id}}">
+    <span class="cell col-xs-6 col-sm-7 col-md-8 {{#unless singleUniversity}}col-lg-2{{else}}col-lg-3{{/unless}} poolText panelUnit" data-id="{{content._id}}">
+                <span class="cell col-xs-8 col-sm-9 col-md-10 {{#unless singleUniversity}}col-lg-9{{else}}col-lg-10{{/unless}} topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}
                         <span class="label label-info" aria-label="active learnphase label"
                               data-id="{{content._id}}">{{_

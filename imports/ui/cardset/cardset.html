@@ -108,7 +108,9 @@
                         <br><strong>{{_ "cardset.info.moduleShort"}}:</strong> {{this.moduleToken}}
                         <br><strong>{{_ "cardset.info.moduleNum"}}:</strong> {{this.moduleNum}}
                         <br><strong>{{_ "modal-dialog.skillLevel"}}:</strong> {{getSkillLevel this.skillLevel}}
-                        <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
+                        {{#unless singleUniversity}}
+                            <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
+                        {{/unless}}
                         <br><strong>{{_ "cardset.info.course"}}:</strong> {{this.course}}
                         <hr>
                         <strong>{{_ "cardset.info.author"}}:</strong>
@@ -501,32 +503,35 @@
                                 </div>
                             </div>
                         </div><!-- / skills Dropdown -->
-                        <!-- start college Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
-                                    "modal-dialog.college"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                    <button id="editSetCollege" type="button"
-                                            class="btn btn-default btn-raised editSetCollegeDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
-                                    <button class="btn dropdown-toggle btn-raised editSetCollegeDropdown" type="button"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="true">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        {{#each getColleges}}
-                                            <li class="college" value="{{_id}}" data="{{this.college}}"><a
-                                                    href="#">{{this.college}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpEditSetCollege" class="help-block college"></span>
+                        {{#unless singleUniversity}}
+                            <!-- start college Dropdown -->
+                            <div class="form-group setdetails categories">
+                                <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
+                                        "modal-dialog.college"}}</label>
+                                <div class="dropup">
+                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                        <button id="editSetCollege" type="button"
+                                                class="btn btn-default btn-raised editSetCollegeDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
+                                        <button class="btn dropdown-toggle btn-raised editSetCollegeDropdown"
+                                                type="button"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu longButton">
+                                            {{#each getColleges}}
+                                                <li class="college" value="{{_id}}" data="{{this.college}}"><a
+                                                        href="#">{{this.college}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                        <span id="helpEditSetCollege" class="help-block college"></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- / college Dropdown -->
+                            </div><!-- / college Dropdown -->
+                        {{/unless}}
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories">
                             <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
