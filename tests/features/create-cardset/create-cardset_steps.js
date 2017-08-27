@@ -9,8 +9,8 @@ module.exports = function () {
 	var module = "module";
 	var moduleInitials = "short";
 	var moduleID = "42";
-	var college = "THM";
-	var course = "Informatik";
+	var college = "Zulu-Universität";
+	var course = "Z-Studiengang";
 
 
 	this.Given(/^User is on the site$/, function () {

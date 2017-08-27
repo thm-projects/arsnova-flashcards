@@ -168,7 +168,8 @@
     "newset": "Create a deck of cards"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "You aren't learning any deck of cards yet"
+    "emptytextlist": "You aren't learning any deck of cards yet",
+    "browseCardset": "Choose a deck of cards"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
@@ -636,13 +637,14 @@
     "interval": "Learning period",
     "notifications": "Notifications",
     "settings": "Settings",
-    "manage": "Manage college and course",
     "see_all": "See all",
     "name": "Name",
     "kind": "Kind",
     "front": "Front",
     "back": "Back",
-    "manageS": "College manager",
+    "manageUniversityLong": "Manage college and course",
+    "manageUniversity": "College manager",
+    "manageCourse": "Course manager",
     "admin": "Admin",
     "pro": "Pro",
     "university": "Edu",

@@ -14,6 +14,10 @@
       "displayCas": true,
       "displayTestingBackdoor": true
     },
+    "university": {
+      "singleUniversity": false,
+      "default": "THM"
+    },
     "env": "Sandbox",
     "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
     "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"

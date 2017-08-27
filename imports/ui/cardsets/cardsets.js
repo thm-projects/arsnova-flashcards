@@ -67,6 +67,17 @@ Template.learn.events({
 
 /*
  * ############################################################################
+ * empty
+ * ############################################################################
+ */
+Template.cardsetEmpty.events({
+	'click #learnListEmpty': function () {
+		Router.go('home');
+	}
+});
+
+/*
+ * ############################################################################
  * cardsets
  * ############################################################################
  */
@@ -136,11 +147,13 @@ Template.cardsets.events({
 			$('#helpNewSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
 			$('#helpNewSetModuleNum').css('color', '#b94a48');
 		}
-		if ($('#newSetCollege').val() === "") {
-			$('#newSetCollegeLabel').css('color', '#b94a48');
-			$('.newSetCollegeDropdown').css('border-color', '#b94a48');
-			$('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
-			$('#helpNewSetCollege').css('color', '#b94a48');
+		if (!Meteor.settings.public.university.singleUniversity) {
+			if ($('#newSetCollege').val() === "") {
+				$('#newSetCollegeLabel').css('color', '#b94a48');
+				$('.newSetCollegeDropdown').css('border-color', '#b94a48');
+				$('#helpNewSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+				$('#helpNewSetCollege').css('color', '#b94a48');
+			}
 		}
 		if ($('#newSetCourse').val() === "") {
 			$('#newSetCourseLabel').css('color', '#b94a48');
@@ -148,25 +161,55 @@ Template.cardsets.events({
 			$('#helpNewSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 			$('#helpNewSetCourse').css('color', '#b94a48');
 		}
-		if ($('#newSetName').val() !== "" &&
-			$('#newSetDescription').val() !== "" &&
-			$('#newSetModule').val() !== "" &&
-			$('#newSetModuleShort').val() !== "" &&
-			$('#newSetModuleNum').val() !== "" &&
-			$('#newSetSkillLevel').val() !== "" &&
-			$('#newSetCollege').val() !== "" &&
-			$('#newSetCourse').val() !== "") {
-			var name = $('#newSetName').val();
-			var description = $('#newSetDescription').val();
-			var module = $('#newSetModule').val();
-			var moduleShort = $('#newSetModuleShort').val();
-			var moduleNum = $('#newSetModuleNum').val();
-			var skillLevel = $('#newSetSkillLevel').val();
-			var college = $('#newSetCollege').text();
-			var course = $('#newSetCourse').text();
+		let name;
+		let description;
+		let module;
+		let moduleShort;
+		let moduleNum;
+		let skillLevel;
+		let college;
+		let course;
+		if (Meteor.settings.public.university.singleUniversity) {
+			if ($('#newSetName').val() !== "" &&
+				$('#newSetDescription').val() !== "" &&
+				$('#newSetModule').val() !== "" &&
+				$('#newSetModuleShort').val() !== "" &&
+				$('#newSetModuleNum').val() !== "" &&
+				$('#newSetSkillLevel').val() !== "" &&
+				$('#newSetCourse').val() !== "") {
+				name = $('#newSetName').val();
+				description = $('#newSetDescription').val();
+				module = $('#newSetModule').val();
+				moduleShort = $('#newSetModuleShort').val();
+				moduleNum = $('#newSetModuleNum').val();
+				skillLevel = $('#newSetSkillLevel').val();
+				college = Meteor.settings.public.university.default;
+				course = $('#newSetCourse').text();
 
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
-			$('#newSetModal').modal('hide');
+				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				$('#newSetModal').modal('hide');
+			}
+		} else {
+			if ($('#newSetName').val() !== "" &&
+				$('#newSetDescription').val() !== "" &&
+				$('#newSetModule').val() !== "" &&
+				$('#newSetModuleShort').val() !== "" &&
+				$('#newSetModuleNum').val() !== "" &&
+				$('#newSetSkillLevel').val() !== "" &&
+				$('#newSetCollege').val() !== "" &&
+				$('#newSetCourse').val() !== "") {
+				name = $('#newSetName').val();
+				description = $('#newSetDescription').val();
+				module = $('#newSetModule').val();
+				moduleShort = $('#newSetModuleShort').val();
+				moduleNum = $('#newSetModuleNum').val();
+				skillLevel = $('#newSetSkillLevel').val();
+				college = $('#newSetCollege').text();
+				course = $('#newSetCourse').text();
+
+				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				$('#newSetModal').modal('hide');
+			}
 		}
 	}
 });

@@ -40,6 +40,11 @@ Template.registerHelper("isLecturerOrPro", function () {
 	}
 });
 
+// Check if multiple universities are enabled
+Template.registerHelper("singleUniversity", function () {
+	return Meteor.settings.public.university.singleUniversity;
+});
+
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function (cardset_id) {
 	return Cardsets.findOne({_id: cardset_id}).quantity;

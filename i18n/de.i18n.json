@@ -166,7 +166,8 @@
     "newset": "Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz zum lernen"
+    "emptytextlist": "Du hast noch keinen Kartensatz zum lernen",
+    "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
@@ -636,8 +637,9 @@
     "interval": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
-    "manageS": "Hochschule verwalten",
-    "manage": "Hochschule und Studiengang verwalten",
+    "manageUniversityLong": "Hochschule und Studiengang verwalten",
+    "manageUniversity": "Hochschule verwalten",
+    "manageCourse": "Studiengang verwalten",
     "see_all": "Alle ansehen",
     "name": "Name",
     "kind": "Art",

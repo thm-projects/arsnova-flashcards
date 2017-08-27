@@ -140,34 +140,36 @@
                                 </div>
                             </div>
                         </div><!-- / skills Dropdown -->
-                        <!-- start college Dropdown -->
-                        <div class="form-group setdetails categories row">
-                            <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
-                                   for="editCardsetCollegeAdmin">{{_
-                                    "modal-dialog.college"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
-                                    <button type="button" id="editCardsetCollegeAdmin"
-                                            class="btn btn-raised editCardsetCollegeDropdownAdmin longButton"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
-                                    <button class="btn btn-raised dropdown-toggle editCardsetCollegeDropdownAdmin"
-                                            type="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="true">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        {{#each getColleges}}
-                                            <li class="collegeAdmin" value="{{this.college}}"
-                                                data="{{this.college}}"><a
-                                                    href="#">{{this.college}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpEditCardsetCollegeAdmin" class="help-block collegeAdmin"></span>
+                        {{#unless singleUniversity}}
+                            <!-- start college Dropdown -->
+                            <div class="form-group setdetails categories row">
+                                <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
+                                       for="editCardsetCollegeAdmin">{{_
+                                        "modal-dialog.college"}}</label>
+                                <div class="dropup">
+                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
+                                        <button type="button" id="editCardsetCollegeAdmin"
+                                                class="btn btn-raised editCardsetCollegeDropdownAdmin longButton"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
+                                        <button class="btn btn-raised dropdown-toggle editCardsetCollegeDropdownAdmin"
+                                                type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu longButton">
+                                            {{#each getColleges}}
+                                                <li class="collegeAdmin" value="{{this.college}}"
+                                                    data="{{this.college}}"><a
+                                                        href="#">{{this.college}}</a></li>
+                                            {{/each}}
+                                        </ul>
+                                        <span id="helpEditCardsetCollegeAdmin" class="help-block collegeAdmin"></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- / college Dropdown -->
+                            </div><!-- / college Dropdown -->
+                        {{/unless}}
                         <!-- start course Dropdown -->
                         <div class="form-group setdetails categories row">
                             <label id="editCardsetCourseLabelAdmin" class="col-md-3 control-label"
