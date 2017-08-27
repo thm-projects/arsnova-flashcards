@@ -33,8 +33,8 @@ function wordcloudHover(item, dimension) {
  * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
  */
 function createTagCloud() {
-	var cloud = Cloud.find({}).fetch();
-	var list = [];
+	let cloud = Cloud.find({}).fetch();
+	let list = [];
 
 	if (cloud.length > 0) {
 		list = cloud[0].list;
@@ -42,34 +42,24 @@ function createTagCloud() {
 		return;
 	}
 
+	let heightAdjustment = 105;
+	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 
-	let width = document.getElementById('tag-cloud-canvas').width;
-	let gridSize = 15;
-	let weightFactor = 1.0;
 	let wordRotation = 0.7853981634;
-
-	if (width < 500) {
-		gridSize = 10;
-		weightFactor = 0.4;
-	} else if (width < 1025) {
-		gridSize = 10;
-		weightFactor = 0.8;
-	}
-
-	document.getElementById('tag-cloud-canvas').height = width / 2.5;
-
+	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1024);
+	let weightFactor = Math.pow(1.5, 2.3) * $('#tag-cloud-container').width() / 1024;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
 			drawOutOfBound: false,
 			list: list,
 			gridSize: gridSize,
+			weightFactor: weightFactor,
 			shape: "diamond",
 			rotateRatio: 1.0,
 			rotationSteps: 2.0,
 			minRotation: wordRotation,
 			maxRotation: wordRotation * -3,
-			weightFactor: weightFactor,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 			classes: 'tip-content',
 			color: function () {
@@ -139,6 +129,9 @@ Template.welcome.onCreated(function () {
 	window.addEventListener(orientationEvent, function () {
 		createTagCloud();
 	}, false);
+	$(window).resize(function () {
+		createTagCloud();
+	});
 });
 
 Template.welcome.onRendered(function () {

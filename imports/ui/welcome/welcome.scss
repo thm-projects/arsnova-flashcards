@@ -30,18 +30,21 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
         margin-right: 0;
       }
     }
-    @media screen and (max-width: 320px){
+    @media screen and (max-width: 320px) {
       img {
         padding-bottom: 14px;
       }
     }
   }
 
+  .panel-heading {
+    padding-bottom: 0;
+  }
+
   .panel-footer {
     border-top: 0;
     margin-top: 0px;
   }
-
 }
 
 .item {
@@ -64,4 +67,24 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 #TestingBackdoorUsername {
   background-color: #ffffff;
   padding: 12px 10px;
+}
+
+@media (max-width: 400px) {
+  #login img {
+    width: 62px !important;
+  }
+
+  #BackdoorLogin img, #TestingBackdoorUsername {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 325px) {
+  #login img {
+    width: 50px !important;
+  }
+
+  #BackdoorLogin img, #TestingBackdoorUsername {
+    margin-top: 0;
+  }
 }
