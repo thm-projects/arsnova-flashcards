@@ -33,6 +33,7 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+
 /**
  * Creates a web push subscription for the current device.
  * The Browser ask the user for permissions and creates the subscription.
@@ -68,6 +69,14 @@ function subscribeForPushNotification() {
 				});
 			}
 		});
+}
+
+/**
+ * Add the current user to the leitner algorithm.
+ */
+function addToLeitner(cardset_id) {
+	subscribeForPushNotification();
+	Meteor.call('addToLeitner', cardset_id);
 }
 
 /*
@@ -557,16 +566,6 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
-	"click #learnBox": function () {
-		Router.go('box', {
-			_id: this._id
-		});
-	},
-	"click #learnMemo": function () {
-		Router.go('memo', {
-			_id: this._id
-		});
-	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');
@@ -639,11 +638,13 @@ Template.leaveLearnPhaseForm.events({
  */
 Template.cardsetSidebar.events({
 	"click #learnBox": function () {
+		addToLeitner(this._id);
 		Router.go('box', {
 			_id: this._id
 		});
 	},
 	"click #learnMemo": function () {
+		Meteor.call("addCardsMemo", this._id);
 		Router.go('memo', {
 			_id: this._id
 		});
@@ -1173,8 +1174,7 @@ Template.reportCardsetForm.events({
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
 		if (this.owner !== Meteor.userId()) {
-			subscribeForPushNotification();
-			Meteor.call("addToLeitner", this);
+			addToLeitner(this._id);
 		}
 	},
 	learningEnded: function () {

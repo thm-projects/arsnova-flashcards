@@ -182,11 +182,7 @@
                                             {{cardsIndex @index}}/{{countCards cardset_id}}<br>
                                         {{/if}}
                                         {{#if isBox}}
-                                            {{#if isLearningActive}}
                                                 {{_ "leitner_status" count=countLeitner}}
-                                            {{else}}
-                                                {{_ "subject"}} {{box}}: {{_ "box_status" count=countBox}}
-                                            {{/if}}
                                             <br>
                                         {{/if}}
                                         <span class="cardfront">{{_ "frontside"}}</span><span

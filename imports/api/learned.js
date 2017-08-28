@@ -54,34 +54,40 @@ Meteor.methods({
 		}
 		Learned.remove({cardset_id: cardset_id});
 	},
-	addLearned: function (cardset_id, card_id) {
+	addLearned: function (cardset_id, card_id, user_id, isMemo) {
 		check(cardset_id, String);
 		check(card_id, String);
-
+		check(user_id, String);
+		check(isMemo, Boolean);
 		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
-		}
-		Learned.upsert({
-			cardset_id: cardset_id,
-			card_id: card_id,
-			user_id: Meteor.userId()
-		}, {
-			$set: {
+		} else {
+			if (Learned.findOne({cardset_id: cardset_id, user_id: user_id, isMemo: false})) {
+				isMemo = false;
+			}
+			Learned.upsert({
 				cardset_id: cardset_id,
 				card_id: card_id,
-				user_id: Meteor.userId()
-			},
-			$setOnInsert: {
-				box: 1,
-				ef: 2.5,
-				reps: 0,
-				interval: 0,
-				active: false,
-				nextDate: new Date(),
-				currentDate: new Date()
-			}
-		});
+				user_id: user_id
+			}, {
+				$set: {
+					cardset_id: cardset_id,
+					card_id: card_id,
+					user_id: user_id,
+					isMemo: isMemo
+				},
+				$setOnInsert: {
+					box: 1,
+					ef: 2.5,
+					reps: 0,
+					interval: 0,
+					active: false,
+					nextDate: new Date(),
+					currentDate: new Date()
+				}
+			});
+		}
 	},
 	/** Function marks an active card as learned
 	 *  @param {string} cardset_id - The cardset id from the card
@@ -93,7 +99,6 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-
 		check(cardset_id, String);
 		check(card_id, String);
 		check(isWrong, Boolean);

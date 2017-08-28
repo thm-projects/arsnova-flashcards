@@ -7,29 +7,117 @@ import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 
 Meteor.methods({
-	/** Function adds a new user to an active learning-phase
-	 *  @param {Object} cardset - The cardset from the active learning-phase
+	/** Function adds a new user as learning
+	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @param {boolean} true - Process of adding the user to leitner ended successfully
 	 * */
-	addToLeitner: function (cardset) {
+	addToLeitner: function (cardset_id) {
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
 			throw new Meteor.Error("not-authorized");
-		} else if (!Learned.findOne({
-				cardset_id: cardset._id,
-				user_id: Meteor.userId()
-			}) && cardset.learningEnd.getTime() > new Date().getTime()) {
-			var cards = Cards.find({
+		} else {
+			let cardset = Cardsets.findOne({_id: cardset_id});
+			if (!cardset.learningActive) {
+				Meteor.call("defaultCardsetLeitnerData", cardset, function (error, result) {
+					if (error) {
+						throw new Meteor.Error(error.statusCode, 'Error could not update default leitner data for inactive learning-phase.');
+					}
+					if (result) {
+						cardset = result;
+						if (!Learned.findOne({
+								cardset_id: cardset._id,
+								user_id: Meteor.userId(),
+								isMemo: false
+							})) {
+							Meteor.call("addCardsLeitner", cardset._id, Meteor.userId(), function (error, result) {
+								if (error) {
+									throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in inactive learning-phase.');
+								}
+								if (result) {
+									Meteor.call("setCards", cardset, Meteor.user(), false);
+								}
+							});
+						} else {
+							Meteor.call("addCardsLeitner",  cardset._id, Meteor.userId());
+						}
+					}
+				});
+			} else {
+				if (!Learned.findOne({
+						cardset_id: cardset._id,
+						user_id: Meteor.userId()
+					}) && cardset.learningEnd.getTime() > new Date().getTime()) {
+					Meteor.call("addCardsLeitner",  cardset._id, Meteor.userId(), function (error, result) {
+						if (error) {
+							throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in active learning-phase.');
+						}
+						if (result) {
+							Meteor.call("setCards", cardset, Meteor.user(), false);
+						}
+					});
+				}
+			}
+		}
+	},
+	/** Adds new cards to the learners list for leitner box mode
+	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @param {string} user_id - The id of the user who is currently learning in the specific cardset
+	 *  @returns {Boolean} - Return true once the task is completed
+	 * */
+	addCardsLeitner: function (cardset_id, user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let cards = Cards.find({
+				cardset_id: cardset_id
+			});
+			cards.forEach(function (card) {
+				Meteor.call("addLearned", cardset_id, card._id, user_id, false);
+			});
+			return true;
+		}
+	},
+	/** Adds new cards to the learners list for super memo mode
+	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @returns {Boolean} - Return true once the task is completed
+	 * */
+	addCardsMemo: function (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let cards = Cards.find({
 				cardset_id: cardset._id
 			});
 			cards.forEach(function (card) {
-				Meteor.call("addLearned", card.cardset_id, card._id);
+				Meteor.call("addLearned", cardset._id, card._id, Meteor.userId(), true);
 			});
-			Meteor.call("setCards", cardset, Meteor.user(), false);
+			return true;
 		}
 	},
-	/** Function returns the cards marked as active from an user in an active learning-phase
-	 *  @param {string} cardset_id - The id of the cardset from the active learning-phase
-	 *  @param {Object} user - The user from the cardset of the active learning-phase
-	 *  @returns {Object} - The cards from an user that are currently marked as active in a learning-phase
+	/** Resets the Leitner data to default values (For an inactive learning-phase).
+	 *  @param {Object} cardset - The cardset for which we reset the leitner data
+	 *  @returns {Object} - cardset with updated values
+	 * */
+	defaultCardsetLeitnerData: function (cardset) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			Cardsets.update(cardset._id, {
+				$set: {
+					maxCards: Math.round(cardset.quantity / 3),
+					daysBeforeReset: 7,
+					learningStart: cardset.date,
+					learningEnd: (new Date().setFullYear(2038, 0, 19)),
+					learningInterval: [1, 3, 7, 28, 84]
+				}
+			});
+			return Cardsets.findOne({_id: cardset._id});
+		}
+	},
+	/** Function returns the cards marked as active from an user who is learning
+	 *  @param {string} cardset_id - The id of the cardset with active learners
+	 *  @param {Object} user - The user from the cardset who is currently learning
+	 *  @returns {Object} - The cards from an user that are currently marked as active
 	 * */
 	getActiveCard: function (cardset_id, user) {
 		if (!Meteor.isServer) {
@@ -43,7 +131,7 @@ Meteor.methods({
 		}
 	},
 	/** Function returns the amount of cards inside a box that are valid to learn
-	 *  @param {string} cardset_id - The id of the cardset from the active learning-phase
+	 *  @param {string} cardset_id - The id of the cardset with active learners
 	 *  @param {string} user_id - The id of the user
 	 *  @returns {number} - The amount of valid cards inside the selected box
 	 * */
@@ -60,8 +148,8 @@ Meteor.methods({
 			}).count();
 		}
 	},
-	/** Function returns all cardsets with an active learning-phase
-	 *  @returns {Object} - The cardsets with an active learning-phase
+	/** Function returns all cardsets with learners
+	 *  @returns {Object} - The cardsets with active learners
 	 * */
 	getCardsets: function () {
 		if (!Meteor.isServer) {
@@ -69,23 +157,22 @@ Meteor.methods({
 		} else {
 			if (Meteor.settings.public.university.singleUniversity) {
 				return Cardsets.find({
-					learningActive: true,
 					college: Meteor.settings.public.university.default
 				}).fetch();
 			} else {
-				return Cardsets.find({learningActive: true}).fetch();
+				return Cardsets.find({}).fetch();
 			}
 		}
 	},
-	/** Function returns all users who are currently registered in a learning-phase
-	 *  @param {string} cardset_id - The id of the cardset from the active learning-phase
-	 *  @returns {Object} - A list of users who are currently in a learning-phase
+	/** Function returns all users who are currently registered as learning
+	 *  @param {string} cardset_id - The id of the cardset that got learners
+	 *  @returns {Object} - A list of users who are currently learning
 	 * */
 	getLearners: function (cardset_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var data = Learned.find({cardset_id: cardset_id}).fetch();
+			var data = Learned.find({cardset_id: cardset_id, isMemo: false}).fetch();
 			return _.uniq(data, false, function (d) {
 				return d.user_id;
 			});
@@ -103,10 +190,9 @@ Meteor.methods({
 			});
 		}
 	},
-
 	/** Function selects the next valid cards to learn and notifies the user
-	 *  @param {Object} cardset - The cardset from the active learning-phase
-	 *  @param {Object} user - The user from the cardset of the active learning-phase
+	 *  @param {Object} cardset - The cardset with active learners
+	 *  @param {Object} user - The user from the cardset who is currently learning
 	 *  @param {boolean} isReset - Sends a special notification if the card selection got called by missing the deadline
 	 * */
 	setCards: function (cardset, user, isReset) {
@@ -123,6 +209,7 @@ Meteor.methods({
 			if (Meteor.call("noCardsLeft", cardCount) === 0) {
 				return;
 			}
+
 			// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
 			for (var k = algorithm.length; k > 0; k--) {
 				if (cardCount[k] === 0 && k - 1 >= 0) {
@@ -195,8 +282,8 @@ Meteor.methods({
 		}
 	},
 	/** Function resets all cards to the first box if the user missed the deadline and selects new ones by calling setCards
-	 *  @param {Object} cardset - The cardset from the active learning-phase
-	 *  @param {Object} user - The user from the cardset of the active learning-phase
+	 *  @param {Object} cardset - The cardset with learners
+	 *  @param {Object} user - The user from the cardset who is currently learning
 	 * */
 	resetCards: function (cardset, user) {
 		if (!Meteor.isServer) {

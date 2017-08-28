@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
 import {turnCard} from "../card/card.js";
@@ -23,14 +22,6 @@ Meteor.subscribe("learned");
 Template.memo.onCreated(function () {
 	Session.set('modifiedCard', undefined);
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
-	if (!Session.get('activeCardset').learningActive) {
-		var cards = Cards.find({
-			cardset_id: Session.get('activeCardset')._id
-		});
-		cards.forEach(function (card) {
-			Meteor.call("addLearned", Session.get('activeCardset')._id, card._id);
-		});
-	}
 });
 
 Template.memo.onDestroyed(function () {
@@ -84,7 +75,7 @@ Template.memo.events({
 	 * Go back to cardset from SuperMemo mode
 	 * Go back one page in the history, on click of the "Return to cardset" button
 	 */
-	"click #back-button": function () {
+	"click #backButton": function () {
 		window.history.go(-1);
 	}
 });
