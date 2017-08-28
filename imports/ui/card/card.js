@@ -8,13 +8,6 @@ import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import "./card.html";
 
-
-/*
- * ############################################################################
- * btnCard
- * ############################################################################
- */
-
 /*
  * ############################################################################
  * Functions
@@ -290,6 +283,7 @@ Template.btnCard.events({
 	},
 	'click #cardDeleteConfirm': function () {
 		var id = this._id;
+		Session.set('modifiedCard', undefined);
 		Meteor.call("deleteCard", id);
 		window.history.go(-1);
 	}
@@ -520,7 +514,11 @@ Template.flashcards.onCreated(function () {
 
 Template.flashcards.helpers({
 	cardActive: function (index) {
-		return 0 === index;
+		if (Session.get('modifiedCard')) {
+			return Session.get('modifiedCard') === this._id;
+		} else {
+			return 0 === index;
+		}
 	},
 	cardsIndex: function (index) {
 		return index + 1;
@@ -596,6 +594,9 @@ Template.flashcards.events({
 	},
 	"click #showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));
+	},
+	"click #editCard": function (evt) {
+		Session.set('modifiedCard', $(evt.target).data('id'));
 	}
 });
 
