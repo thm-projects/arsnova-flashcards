@@ -18,7 +18,17 @@ if (Meteor.isServer) {
 					'lecturer'
 				])) {
 				if (Meteor.settings.public.university.singleUniversity) {
-					return Cards.find({college: Meteor.settings.public.university.default});
+					return Cards.find({
+						cardset_id: {
+							$in: Cardsets.find({
+								$or: [
+									{college: Meteor.settings.public.university.default}
+								]
+							}).map(function (cardset) {
+								return cardset._id;
+							})
+						}
+					});
 				} else {
 					return Cards.find();
 				}
