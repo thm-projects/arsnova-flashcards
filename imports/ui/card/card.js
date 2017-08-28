@@ -145,7 +145,7 @@ function getBoxCards() {
 }
 
 function getCardsetCards() {
-	var query = Cards.find({cardset_id: Session.get('activeCardset')._id});
+	var query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
 
 	query.observeChanges({
 		removed: function () {
