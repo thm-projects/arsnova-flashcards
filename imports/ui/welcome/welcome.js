@@ -48,7 +48,7 @@ function createTagCloud() {
 
 	let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1024);
-	let weightFactor = Math.pow(1.5, 2.3) * $('#tag-cloud-container').width() / 1024;
+	let weightFactor = Math.pow(1.4, 2.3) * $('#tag-cloud-container').width() / 1024;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
 			drawOutOfBound: false,
