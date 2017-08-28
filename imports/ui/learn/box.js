@@ -107,7 +107,7 @@ Template.boxMain.events({
 		}
 	},
 	"click #known": function () {
-		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data'), false);
+		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), false);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
@@ -116,7 +116,7 @@ Template.boxMain.events({
 		turnCard();
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data'), true);
+		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), true);
 
 		if (1 === parseInt(Session.get('maxIndex'))) {
 			Session.set('isFinish', true);
