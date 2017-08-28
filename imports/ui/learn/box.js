@@ -27,6 +27,7 @@ var chart;
  */
 
 Template.box.onCreated(function () {
+	Session.set('modifiedCard', undefined);
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	if (!Session.get('activeCardset').learningActive) {
 		var cards = Cards.find({

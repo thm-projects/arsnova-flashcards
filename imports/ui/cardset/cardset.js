@@ -76,6 +76,13 @@ function subscribeForPushNotification() {
  * ############################################################################
  */
 
+Template.cardset.onCreated(function () {
+	if (Session.get('activeCardsetID') !== Router.current().params._id) {
+		Session.set('activeCardsetID', Router.current().params._id);
+		Session.set('modifiedCard', undefined);
+	}
+});
+
 Template.cardset.rendered = function () {
 	Meteor.subscribe("previewCards", Router.current().params._id);
 	Session.set('cardsetId', Router.current().params._id);

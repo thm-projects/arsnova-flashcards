@@ -156,7 +156,7 @@
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
-                        <div class="item {{#if cardActive @index}}active{{/if}}" data="{{_id}}">
+                        <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="innerBoxHeader {{getCardBackground difficulty}}-header">
                                     <div class="leftHeader">
@@ -164,8 +164,8 @@
                                             {{#if isCardset}}
                                                 <a id="editCard"
                                                    class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}">
+                                                    <i class="glyphicon glyphicon-pencil" data-id="{{_id}}"></i>
                                                 </a>
                                             {{/if}}
                                         {{/if}}
