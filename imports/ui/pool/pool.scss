@@ -73,7 +73,7 @@
     height: 12px;
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1200px) {
     .navbar-header {
       float: none;
     }
@@ -119,7 +119,7 @@
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     #pool-nav-wrapper, #pool-nav {
       .dropdown {
         padding: 0px;
@@ -127,30 +127,21 @@
     }
 
     #filterCheckbox {
-      margin-top: -2px;
       padding-bottom: 0px;
       padding-right: 30px;
+      margin-left: 15px;
     }
 
     .stars-rating {
       margin-left: -5px;
     }
-  }
 
-  @media (min-width: 768px) {
     #pool-nav-wrapper, #pool-nav {
       padding: 0px;
     }
 
     #moduleFilter {
       padding-right: 0px !important;
-    }
-  }
-
-  @media (max-width: 767px) {
-    #filterCheckbox {
-      padding: 0 !important;
-      margin-left: 45px;
     }
   }
 
@@ -173,4 +164,26 @@
 
 #upgrade, #downgrade {
   width: 100% !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .licenseInfo {
+    .label {
+      margin-top: -3px;
+      margin-left: 10px;
+      font-size: 70%;
+    }
+  }
+  .stars-rating {
+    margin-top: -5px;
+    width: 65px !important;
+    height: 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #filterCheckbox {
+    margin: 0;
+    margin-left: 30px;
+  }
 }

@@ -23,7 +23,8 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtn" role="button">{{_
+                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtn"
+                            role="button">{{_
                             "set-list.reset"}} </button>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
@@ -234,44 +235,45 @@
     </div>
     <div class="responsive-utilities-test visible-on">
 
-        <span class="{{#unless singleUniversity}}col-lg-2{{else}}col-lg-3{{/unless}} visible-lg poolHeaderBottom">{{_
+        <span class="{{#unless
+                singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} visible-md visible-lg poolHeaderBottom">{{_
                 "set-list.topic"}}
         </span>
-        <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
+        <span class="col-md-2 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
         {{#unless singleUniversity}}
-            <span class="col-lg-1 visible-lg poolHeaderBottom poolHeaderCollege">{{_
+            <span class="col-md-1 visible-md  visible-lg poolHeaderBottom poolHeaderCollege">{{_
                     "set-list.college"}}
             </span>
         {{/unless}}
-        <span class="col-lg-2 visible-lg poolHeaderBottom poolHeaderCourse">{{_
+        <span class="col-md-2 visible-md  visible-lg poolHeaderBottom poolHeaderCourse">{{_
                 "set-list.course"}}
         </span>
-        <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
+        <span class="col-md-1 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.module"}}
         </span>
-        <span class="col-lg-2 visible-lg poolHeaderBottom">{{_
+        <span class="col-md-2 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.skillLevel"}}
         </span>
-        <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
+        <span class="col-md-1 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.availability"}}
         </span>
-        <span class="col-lg-1 visible-lg poolHeaderBottom">{{_
+        <span class="col-md-1 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.rating"}}
         </span>
     </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default {{#if
+            <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                     oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
                 {{> poolCardsetRow}}
             </div>
         {{/each}}
         {{#if moreResults}}
             <a href="#" title="{{_ "set-list.moreResults"}}">
-                <div class="showMoreResults col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-default">
-                    <span class="scrollArrow col-xs-12 col-sm-12 col-md-12 col-lg-12 glyphicon glyphicon-chevron-down"></span>
+                <div class="showMoreResults col-xs-12 col-sm-12 col-md-12 panel panel-default">
+                    <span class="scrollArrow col-xs-12 col-sm-12 col-md-12 glyphicon glyphicon-chevron-down"></span>
                 </div>
             </a>
         {{/if}}
@@ -309,60 +311,60 @@
         </a>
     {{/if}}
     <a href="/profile/{{this.owner}}/settings/" title="{{_ "set-list.author"}}: {{getAuthorName this.owner}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit">{{_ "set-list.author"}}
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit">{{_ "set-list.author"}}
             :</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolAuthor">{{getAuthorName
+        <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolAuthor">{{getAuthorName
                 this.owner}}</span>
     </a>
     {{#unless singleUniversity}}
         <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-            <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent poolText panelUnit poolCollege"
+            <span class="col-xs-6 col-sm-7 col-md-1 poolContent poolText panelUnit poolCollege"
                   data-id="{{this.college}}">{{this.college}}</span>
         </a>
     {{/unless}}
     <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{this.course}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{this.course}}">{{_
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolCourse"
+        <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolCourse"
               data-id="{{this.course}}">{{this.course}}</span>
     </a>
     <a href="#" class="filterModule" title="Filter {{_ "set-list.module"}}: {{this.module}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{this.module}}">{{_
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this.module}}">{{_
                 "set-list.module"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent poolText panelUnit poolModule"
+        <span class="col-xs-6 col-sm-7 col-md-1 poolContent poolText panelUnit poolModule"
               data-id="{{this.module}}">{{this.moduleToken}}</span>
     </a>
     <a href="#" class="filterSkillLevel" title="Filter {{_ "set-list.skillLevel"}}: {{getSkillLevel this.skillLevel}}">
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit"
               data-id="{{this.skillLevel}}">{{_
                 "set-list.skillLevel"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-2 poolContent poolText panelUnit poolSkillLevel"
+        <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolSkillLevel"
               data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
-    <span class="col-lg-1 kind-label visible-lg panelAvailability">
+    <span class="col-md-1 kind-label visible-md visible-lg panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-lg-6 visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
+            <span class="kind-label col-md-6 visible-md visible-lg licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-lg-6 visible-lg licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
+            <span class="col-md-6 visible-md visible-lg licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
                 {{{getPrice}}}
             </span>
         </a>
     </span>
     <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-        <span class="col-xs-12 col-sm-12 col-md-12 hidden-lg poolLabel poolText panelAvailability panelUnitNoBorder"
+        <span class="col-xs-12 col-sm-12 hidden-md hidden-lg poolLabel poolText panelAvailability panelUnitNoBorder"
               data-id="{{this.kind}}">
-            <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit"
+            <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit"
                   data-id="{{this.kind}}">{{_
                     "set-list.availability"}}:</span>
-            <span class="kind-label col-xs-3 col-sm-4 col-md-3 hidden-lg licenseInfo panelUnit panelUnitKind info_license_mobile"
+            <span class="kind-label col-xs-3 col-sm-4 hidden-md hidden-lg licenseInfo panelUnit panelUnitKind info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getKind}}}
             </span>
-            <span class="col-xs-3 col-sm-3 col-md-5 hidden-lg licenseInfo panelUnit panelUnitPrice info_license_mobile"
+            <span class="col-xs-3 col-sm-3 hidden-md hidden-lg licenseInfo panelUnit panelUnitPrice info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getPrice}}}
             </span>
@@ -371,11 +373,11 @@
     <a href="#" class="filterRating"
        title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
        data-id={{getRelevance}}>
-        <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitNoBorder"
+        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit panelUnitNoBorder"
               data-id={{getRelevance}}>{{_
                 "set-list.rating"}}
             :</span>
-        <span class="col-xs-6 col-sm-7 col-md-8 col-lg-1 poolContent panelUnit panelUnitNoBorder"
+        <span class="col-xs-6 col-sm-7 col-md-1 poolContent panelUnit panelUnitNoBorder"
               data-id={{getRelevance}}>
             <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
         </span>
@@ -416,15 +418,17 @@
 
 <template name="poolTitleContent">
     <div class="tip-content">{{#markdown}}{{getMaximumText content.description}}{{/markdown}}</div>
-    <span class="col-xs-6 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_
+    <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topic"}}
         :</span>
-    <span class="cell col-xs-6 col-sm-7 col-md-8 {{#unless singleUniversity}}col-lg-2{{else}}col-lg-3{{/unless}} poolText panelUnit" data-id="{{content._id}}">
-                <span class="cell col-xs-8 col-sm-9 col-md-10 {{#unless singleUniversity}}col-lg-9{{else}}col-lg-10{{/unless}} topicName" data-id="{{content._id}}">
+    <span class="cell col-xs-6 col-sm-7 {{#unless
+            singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} poolText panelUnit" data-id="{{content._id}}">
+                <span class="cell col-xs-8 col-sm-9 {{#unless
+                        singleUniversity}}col-md-9{{else}}col-md-10{{/unless}} topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}
                         <span class="label label-info" aria-label="active learnphase label"
                               data-id="{{content._id}}">{{_
-                                "set-list.activeLearnphase"}}: {{getActiveLearners content._id}}</span>
+                                "set-list.activeLearnphase"}}</span>
                     {{/if}}
                     {{content.name}}
                 </span>
