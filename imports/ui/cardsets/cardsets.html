@@ -21,7 +21,7 @@
 
 
 <template name="sidebarCardsets">
-    <div id='set-list-sidebar-region' class="col-lg-3">
+    <div id='set-list-sidebar-region' class="col-md-3">
         <div class="well well-sm sidebar-nav">
             <div class="input-group">
                 <input class="form-control" type="text" id="new-set-input"
@@ -54,10 +54,10 @@
 
 
 <template name="create">
-    <div class="col-lg-9" id="set-list-region">
+    <div class="col-md-9" id="set-list-region">
         {{#if cardsetList.count}}
             {{#each cardsetList}}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default {{#if
+                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
                 </div>
@@ -71,11 +71,11 @@
 <template name="cardsetRow">
     <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
        title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-        <span class="col-xs-5 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
+        <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 col-md-8 col-lg-3 poolText panelUnit" data-id="{{this._id}}">
-                <span class="cell col-xs-9 col-sm-9 col-md-10 col-lg-9 topicName" data-id="{{this._id}}">
+        <span class="cell col-xs-7 col-sm-7 col-md-3 poolText panelUnit" data-id="{{this._id}}">
+                <span class="cell col-xs-9 col-sm-9 col-md-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
                 </span>
                 <span class="cell badge cardsetBadge" data-id="{{this._id}}">
@@ -83,12 +83,12 @@
                 </span>
             </span>
         <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
-        <span class="col-xs-5 col-sm-5 col-md-4 hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
+        <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
                                                                                                          'create'}}panelUnitNoBorder{{/if}}">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 col-md-8 {{#if isActiveRoute
-                                                           'learn'}}col-lg-7 panelUnit{{else}}col-lg-9 panelUnit panelUnitNoBorder{{/if}}
+        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute
+                                                           'learn'}}col-md-7 panelUnit{{else}}col-md-9 panelUnit panelUnitNoBorder{{/if}}
                                                                poolText ellipsis">
             {{this.description}}
         </span>
@@ -97,7 +97,7 @@
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
-            <span class="cell col-xs-12 col-sm-12 col-md-12 col-lg-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "navbar-collapse.logout"}}
         </span>
@@ -126,10 +126,10 @@
 </template>
 
 <template name="learn">
-    <div id="learn-list-region" class="col-lg-9">
+    <div id="learn-list-region" class="col-md-9">
         {{#if learnList.count}}
             {{#each learnList}}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 panel panel-default {{#if
+                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
                 </div>
