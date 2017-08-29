@@ -666,35 +666,6 @@ Template.cardsetSidebar.events({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	"click #exportCSV": function () {
-		var cardset_id = Template.parentData(1)._id;
-		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
-		var hiddenElement = document.createElement('a');
-		var header = [];
-		header[0] = TAPi18n.__('subject1');
-		header[1] = TAPi18n.__('subject2');
-		header[2] = TAPi18n.__('subject3');
-		header[3] = TAPi18n.__('subject4');
-		header[4] = TAPi18n.__('subject5');
-		header[5] = TAPi18n.__('subject6');
-		header[6] = TAPi18n.__('box_export_given_name');
-		header[7] = TAPi18n.__('box_export_birth_name');
-		header[8] = TAPi18n.__('box_export_mail');
-		Meteor.call("getCSVExport", cardset_id, header, function (error, result) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
-			}
-			if (result) {
-				var statistics = TAPi18n.__('box_export_statistics');
-				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
-				hiddenElement.target = '_blank';
-				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
-				hiddenElement.download = str.replace(/ /g, "_").replace(/:/g, "_");
-				document.body.appendChild(hiddenElement);
-				hiddenElement.click();
-			}
-		});
-	},
 	"click #showStats": function () {
 		var cardset_id = Template.parentData(1)._id;
 		Meteor.call("getLearningData", cardset_id, function (error, result) {
@@ -730,7 +701,36 @@ Template.cardsetLearnActivityStatistic.helpers({
 });
 
 Template.cardsetLearnActivityStatistic.events({
-	"click #closeStats": function () {
+	"click #exportCSV": function () {
+		var cardset_id = Template.parentData(1)._id;
+		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var hiddenElement = document.createElement('a');
+		var header = [];
+		header[0] = TAPi18n.__('subject1');
+		header[1] = TAPi18n.__('subject2');
+		header[2] = TAPi18n.__('subject3');
+		header[3] = TAPi18n.__('subject4');
+		header[4] = TAPi18n.__('subject5');
+		header[5] = TAPi18n.__('subject6');
+		header[6] = TAPi18n.__('box_export_given_name');
+		header[7] = TAPi18n.__('box_export_birth_name');
+		header[8] = TAPi18n.__('box_export_mail');
+		Meteor.call("getCSVExport", cardset_id, header, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
+			}
+			if (result) {
+				var statistics = TAPi18n.__('box_export_statistics');
+				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
+				hiddenElement.target = '_blank';
+				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				hiddenElement.download = str.replace(/ /g, "_").replace(/:/g, "_");
+				document.body.appendChild(hiddenElement);
+				hiddenElement.click();
+			}
+		});
+	},
+	"click #backButton": function () {
 		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 	}
 });
