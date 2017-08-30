@@ -84,6 +84,7 @@ if (Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			}
 			Learned.remove({cardset_id: cardset_id});
+			Meteor.call("updateLearnerCount", cardset_id);
 		},
 		addLearned: function (cardset_id, card_id, user_id, isMemo) {
 			check(cardset_id, String);
@@ -181,6 +182,7 @@ if (Meteor.isServer) {
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
+			Meteor.call("updateLearnerCount", cardset_id);
 		},
 		updateLearnedMemo: function (learned_id, grade) {
 			check(learned_id, String);
@@ -237,6 +239,26 @@ if (Meteor.isServer) {
 					nextDate: nextDate
 				}
 			});
+		},
+		/** Updates the learner count of the cardset
+		 *  @param {string} cardset_id - The cardset id of the cardset that is getting updated
+		 * */
+		updateLearnerCount: function (cardset_id) {
+			check(cardset_id, String);
+			if (!Meteor.isServer) {
+				throw new Meteor.Error("not-authorized");
+			} else {
+				let data = Learned.find({cardset_id: cardset_id}).fetch();
+				let distinctData = _.uniq(data, false, function (d) {
+					return d.user_id;
+				});
+				let learners = _.pluck(distinctData, "user_id");
+				Cardsets.update(cardset_id, {
+					$set: {
+						learners: learners.length
+					}
+				});
+			}
 		}
 	});
 }

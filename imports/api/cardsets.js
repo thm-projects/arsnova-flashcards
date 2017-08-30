@@ -152,6 +152,9 @@ const CardsetsSchema = new SimpleSchema({
 	learningInterval: {
 		type: [Number]
 	},
+	learners: {
+		type: Number
+	},
 	wordcloud: {
 		type: Boolean
 	}
@@ -255,6 +258,7 @@ Meteor.methods({
 			learningStart: 0,
 			learningEnd: 0,
 			learningInterval: [],
+			learners: 0,
 			mailNotification: true,
 			webNotification: true,
 			wordcloud: false

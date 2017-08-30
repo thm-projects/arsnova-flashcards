@@ -73,6 +73,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", cardset_id, card._id, user_id, false);
 			});
+			Meteor.call("updateLearnerCount", cardset_id);
 			return true;
 		}
 	},
@@ -91,6 +92,7 @@ Meteor.methods({
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", cardset._id, card._id, Meteor.userId(), true);
 			});
+			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
 		}
 	},
