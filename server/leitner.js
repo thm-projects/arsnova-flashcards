@@ -5,6 +5,7 @@ import {Learned} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
+import {check} from "meteor/check";
 
 Meteor.methods({
 	/** Function adds a new user as learning
@@ -37,7 +38,7 @@ Meteor.methods({
 								}
 							});
 						} else {
-							Meteor.call("addCardsLeitner",  cardset._id, Meteor.userId());
+							Meteor.call("addCardsLeitner", cardset._id, Meteor.userId());
 						}
 					}
 				});
@@ -46,7 +47,7 @@ Meteor.methods({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId()
 					}) && cardset.learningEnd.getTime() > new Date().getTime()) {
-					Meteor.call("addCardsLeitner",  cardset._id, Meteor.userId(), function (error, result) {
+					Meteor.call("addCardsLeitner", cardset._id, Meteor.userId(), function (error, result) {
 						if (error) {
 							throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in active learning-phase.');
 						}
@@ -82,6 +83,7 @@ Meteor.methods({
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
 	addCardsMemo: function (cardset_id) {
+		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
@@ -94,6 +96,69 @@ Meteor.methods({
 			});
 			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
+		}
+	},
+	/** Adds new cards to the learners list for super memo mode
+	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @returns {Boolean} - Return true once the task is completed
+	 * */
+	deleteLeitner: function (cardset_id) {
+		check(cardset_id, String);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			if (Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), interval: {$ne: 0}})) {
+				Learned.update({
+						cardset_id: cardset._id,
+						user_id: Meteor.userId()
+					},
+					{
+						$set: {
+							box: 1,
+							isMemo: true,
+							nextDate: new Date().getDate()
+						}
+					}, {multi: true});
+			} else {
+				Learned.remove({
+					cardset_id: cardset._id,
+					user_id: Meteor.userId()
+				});
+				Meteor.call("updateLearnerCount", cardset._id);
+			}
+		}
+	},
+	/** Adds new cards to the learners list for super memo mode
+	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @returns {Boolean} - Return true once the task is completed
+	 * */
+	deleteMemo: function (cardset_id) {
+		check(cardset_id, String);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			if (Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), box: {$ne: 1}})) {
+				Learned.update({
+						cardset_id: cardset._id,
+						user_id: Meteor.userId()
+					},
+					{
+						$set: {
+							ef: 2.5,
+							reps: 0,
+							interval: 0,
+							nextDate: new Date().getDate()
+						}
+					}, {multi: true});
+			} else {
+				Learned.remove({
+					cardset_id: cardset._id,
+					user_id: Meteor.userId()
+				});
+				Meteor.call("updateLearnerCount", cardset._id);
+			}
 		}
 	},
 	/** Resets the Leitner data to default values (For an inactive learning-phase).

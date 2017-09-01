@@ -548,6 +548,8 @@
   "manage": "Verwalten",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Wozniak",
+  "resetLearnfile": "Lernen nach Leitner zurücksetzen",
+  "resetMemo": "Lernen nach Wozniak zurücksetzen",
   "statistics": "Kartensatz Statistik",
   "report": "Kartensatz/Benutzer melden",
   "meteor": "Meteor",

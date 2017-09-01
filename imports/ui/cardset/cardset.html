@@ -168,11 +168,13 @@
                             </button>
                         </div>
                         <div class="btn-group btn-group-raised">
-                            <a type="button" id="newCardBtn" class="btn btn-raised btn-success" href="{{pathFor 'newCard'}}"
+                            <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
+                               href="{{pathFor 'newCard'}}"
                                 {{disableIfOffline}}>
                                 <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
                             </a>
-                            <button type="button" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown"
+                            <button type="button" class="btn btn-raised btn-success dropdown-toggle"
+                                    data-toggle="dropdown"
                                 {{disableIfOffline}}>
                                 <span class="caret"></span>
                             </button>
@@ -221,10 +223,21 @@
                     <span class="nav-header-cardset">{{_ "learn"}}</span>
                     <button id="learnBox" class="btn btn-raised btn-success learn btn-block">{{_ "learnfile"}}</button>
                     <button id="learnMemo" class="btn btn-raised btn-success memo btn-block">{{_ "memo"}}</button>
+                    {{#if learningLeitner}}
+                        <button id="resetLeitner"
+                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-danger flag" href="#">{{_
+                                "resetLearnfile"}}</button>
+                    {{/if}}
+                    {{#if learningMemo}}
+                        <button id="resetMemo"
+                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-danger flag" href="#">{{_
+                                "resetMemo"}}</button>
+                    {{/if}}
                 </div>
             </div>
         {{/unless}}
-
         {{#if isLecturerOrPro}}
             {{#if enableIfPublished}}
                 <div id="set-details-learn-region">

@@ -548,6 +548,8 @@
   "manage": "Manage",
   "learnfile": "Learn by Leitner",
   "memo": "Learn by Wozniak",
+  "resetLearnfile": "Reset learn by Leitner",
+  "resetMemo": "Reset learn by Wozniak",
   "statistics": "Deck statistics",
   "report": "Report cardset/user",
   "meteor": "Meteor",

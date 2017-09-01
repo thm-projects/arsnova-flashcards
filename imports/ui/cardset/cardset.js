@@ -458,7 +458,7 @@ Template.cardsetInfo.onRendered(function () {
 	});
 
 	var mc = new Hammer.Manager(document.getElementById('set-details-region'));
-	mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL,threshold: 50}));
+	mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
 	mc.on("swipe", function (ev) {
 		if (ev.deltaX < 0) {
 			document.getElementById('rightCarouselControl').click();
@@ -677,6 +677,12 @@ Template.cardsetSidebar.events({
 				Router.go('cardsetstats', {_id: Router.current().params._id});
 			}
 		});
+	},
+	"click #resetLeitner": function () {
+		Meteor.call("deleteLeitner", this._id);
+	},
+	"click #resetMemo": function () {
+		Meteor.call("deleteMemo", this._id);
 	}
 });
 
@@ -686,6 +692,16 @@ Template.cardsetSidebar.helpers({
 	},
 	'learningActiveAndNotEditor': function () {
 		return this.owner !== Meteor.userId() && this.learningActive;
+	},
+	'learningLeitner': function () {
+		return Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 1}});
+	},
+	'learningMemo': function () {
+		return Learned.findOne({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		});
 	}
 });
 
