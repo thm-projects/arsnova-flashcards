@@ -27,6 +27,17 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
+Template.registerHelper("isProfileCompleted", function (owner_id, learningActive) {
+	if (owner_id === Meteor.userId() && learningActive) {
+		return true;
+	}
+	if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
+		return true;
+	} else {
+		return false;
+	}
+});
+
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
 	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return owner === Meteor.userId();

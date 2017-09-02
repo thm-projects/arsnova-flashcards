@@ -677,12 +677,6 @@ Template.cardsetSidebar.events({
 				Router.go('cardsetstats', {_id: Router.current().params._id});
 			}
 		});
-	},
-	"click #resetLeitner": function () {
-		Meteor.call("deleteLeitner", this._id);
-	},
-	"click #resetMemo": function () {
-		Meteor.call("deleteMemo", this._id);
 	}
 });
 
@@ -1178,6 +1172,32 @@ Template.reportCardsetForm.events({
 		$('#reportCardsetTextLabel').css('color', '');
 		$('#reportCardsetText').css('border-color', '');
 		$('#helpReportCardsetText').html('');
+	}
+});
+
+/*
+ * ############################################################################
+ * resetLeitnerForm
+ * ############################################################################
+ */
+Template.resetLeitnerForm.events({
+	"click #resetLeitnerConfirm": function () {
+		$('#resetLeitnerModal').on('hidden.bs.modal', function () {
+			Meteor.call("resetLeitner", Session.get('activeCardsetID'));
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * resetMemoForm
+ * ############################################################################
+ */
+Template.resetMemoForm.events({
+	"click #resetMemoConfirm": function () {
+		$('#resetMemoModal').on('hidden.bs.modal', function () {
+			Meteor.call("resetMemo", Session.get('activeCardsetID'));
+		}).modal('hide');
 	}
 });
 

@@ -98,7 +98,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\" Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
@@ -209,6 +209,8 @@
     "reason": "Grund",
     "reportuser": "Benutzer melden",
     "reportcardset": "Kartensatz melden",
+    "resetLeitner": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Leitner\" in dem Kartensatz \"__name__\" zurücksetzen?",
+    "resetMemo": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Wozniak\" in dem Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -579,6 +581,7 @@
   "searchpicture": "Bildsuche",
   "declinecard": "Abbrechen",
   "deletecard": "Karte löschen",
+  "reset": "Zurücksetzen",
   "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Karte speichern",
