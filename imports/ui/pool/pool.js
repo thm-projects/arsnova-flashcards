@@ -364,7 +364,7 @@ Template.showLicense.helpers({
 
 Template.poolCardsetRow.helpers({
 	isAlreadyLearning: function () {
-		if (this.owner === Meteor.userId()) {
+		if (this.owner === Meteor.userId() || this.editors.includes(Meteor.userId())) {
 			return true;
 		}
 		let learnedCards = Learned.find({

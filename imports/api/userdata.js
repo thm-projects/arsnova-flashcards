@@ -287,7 +287,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
-		var cardsets = Cardsets.find({
+		let cardsets = Cardsets.find({
 			owner: this.userId,
 			kind: 'personal'
 		});
@@ -307,6 +307,10 @@ Meteor.methods({
 		Cardsets.remove({
 			owner: this.userId,
 			kind: 'personal'
+		});
+
+		Cardsets.update({editors: {$in: [this.userId]}}, {
+			$pull: {editors: this.userId}
 		});
 
 		Meteor.users.update(this.userId, {

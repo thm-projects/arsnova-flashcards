@@ -95,6 +95,11 @@
     "title": "Leave the active Learning-Phase",
     "text": "Do you really want to leave this active Learning-Phase? If you accept this, then your entire learning progress will be deleted."
   },
+  "confirm-leave-editors": {
+    "btn-txt": "Leave Editors",
+    "title": "Leave Editors group",
+    "text": "Do you want to remove your editor privilege for the cardset \"__name__\"?"
+  },
   "complete-profile": {
     "btn-txt": "Close",
     "title": "User profile incomplete",
@@ -187,6 +192,7 @@
     "ratingoption1": "allow",
     "ratingoption2": "disable",
     "kind": "Kind",
+    "close": "Close",
     "cancel": "Cancel",
     "createcarddeck": "Create",
     "delete": "Delete deck of cards",
@@ -221,6 +227,7 @@
     "college_required": "Choose a college",
     "course": "Course",
     "course_required": "Choose a course",
+    "manageEditors": "Manage Editors for cardset ",
     "module": "Module",
     "module_required": "The full name of the module is required!",
     "moduleShort": "Initials",
@@ -349,7 +356,8 @@
     "nameToLong": "Username must consist less than 26 letters!",
     "nameAlreadyExists": "Username is already taken!",
     "birthnameEmpty": "Birth name required!",
-    "givennameEmpty": "Given name required!"
+    "givennameEmpty": "Given name required!",
+    "roles": "Roles"
   },
   "panel-heading-experience": {
     "experience": "Experience Points (XP)",
@@ -412,6 +420,7 @@
     "createcard": "New card",
     "importcard": "Import cards",
     "exportcard": "Export cards",
+    "manageEditors": "Manage Editors",
     "publish": "Status",
     "tooltip": "Create at least 5 Cards in this set and complete your profile before publishing this set. Pro Cardsets can't be demoted!",
     "published": "Published",
@@ -420,7 +429,8 @@
     "license": " Select license",
     "startLearning": "Start Learning-Phase",
     "stopLearning": "Stop Learning-Phase",
-    "poolLicense": "License for "
+    "poolLicense": "License for ",
+    "leaveEditors": "Remove Editor privilege"
   },
   "pool": {
     "relevance": "Relevance",
@@ -651,6 +661,7 @@
     "manageUniversity": "College manager",
     "manageCourse": "Course manager",
     "admin": "Admin",
+    "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
     "lecturer": "Lecturer",

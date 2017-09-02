@@ -60,6 +60,11 @@ Router.route('/cardset/:_id', {
 	}
 });
 
+Router.route('/cardset/:_id/editors', {
+	name: 'cardseteditors',
+	template: 'cardsetManageEditors'
+});
+
 Router.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
 	template: 'cardsetLearnActivityStatistic'

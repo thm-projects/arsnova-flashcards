@@ -134,9 +134,6 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
-	'learningActiveAndNotEditor': function () {
-		return this.owner !== Meteor.userId() && this.learningActive;
-	},
 	'hasCardsetPermission': function () {
 		var userId = Meteor.userId();
 		var cardsetKind = this.kind;
@@ -150,7 +147,7 @@ Template.cardset.helpers({
 			hasRole = true;
 		}
 
-		return this.owner === Meteor.userId() || hasRole;
+		return (this.owner === Meteor.userId() || this.editors.includes(Meteor.userId())) || hasRole;
 	},
 	'isLecturerAndHasRequest': function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
@@ -633,6 +630,23 @@ Template.leaveLearnPhaseForm.events({
 
 /*
  * ############################################################################
+ * leaveEditorsForm
+ * ############################################################################
+ */
+
+Template.leaveEditorsForm.events({
+	'click #leaveEditorsConfirm': function () {
+		$('#leaveEditorsModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#leaveEditorsModal').on('hidden.bs.modal', function () {
+			Meteor.call("leaveEditors", Router.current().params._id);
+		});
+	}
+});
+
+/*
+ * ############################################################################
  * cardsetSidebar
  * ############################################################################
  */
@@ -677,15 +691,23 @@ Template.cardsetSidebar.events({
 				Router.go('cardsetstats', {_id: Router.current().params._id});
 			}
 		});
+	},
+	"click #manageEditors": function () {
+		Meteor.call("getEditors", this._id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for editors');
+			}
+			if (result) {
+				Session.set("cardsetEditors", result);
+				Router.go('cardseteditors', {_id: Router.current().params._id});
+			}
+		});
 	}
 });
 
 Template.cardsetSidebar.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
-	},
-	'learningActiveAndNotEditor': function () {
-		return this.owner !== Meteor.userId() && this.learningActive;
 	},
 	'learningLeitner': function () {
 		return Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 1}});
@@ -712,8 +734,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 
 Template.cardsetLearnActivityStatistic.events({
 	"click #exportCSV": function () {
-		var cardset_id = Template.parentData(1)._id;
-		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
+		var cardset = Cardsets.findOne({_id: Router.current().params._id});
 		var hiddenElement = document.createElement('a');
 		var header = [];
 		header[0] = TAPi18n.__('subject1');
@@ -725,7 +746,7 @@ Template.cardsetLearnActivityStatistic.events({
 		header[6] = TAPi18n.__('box_export_given_name');
 		header[7] = TAPi18n.__('box_export_birth_name');
 		header[8] = TAPi18n.__('box_export_mail');
-		Meteor.call("getCSVExport", cardset_id, header, function (error, result) {
+		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
 			}
@@ -733,7 +754,7 @@ Template.cardsetLearnActivityStatistic.events({
 				var statistics = TAPi18n.__('box_export_statistics');
 				hiddenElement.href = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(result);
 				hiddenElement.target = '_blank';
-				var str = (cardset[0].name + "_" + statistics + "_" + new Date() + ".csv");
+				var str = (cardset.name + "_" + statistics + "_" + new Date() + ".csv");
 				hiddenElement.download = str.replace(/ /g, "_").replace(/:/g, "_");
 				document.body.appendChild(hiddenElement);
 				hiddenElement.click();
@@ -742,6 +763,32 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click #backButton": function () {
 		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+	}
+});
+
+/*
+* ############################################################################
+* cardsetManageEditors
+* ############################################################################
+*/
+Template.cardsetManageEditors.helpers({
+	getEditors: function () {
+		return Session.get("cardsetEditors");
+	},
+	getManageEditorsTitle: function () {
+		return "\"" + Cardsets.findOne({_id: Router.current().params._id}).name + "\"";
+	}
+});
+
+Template.cardsetManageEditors.events({
+	"click #backButton": function () {
+		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+	},
+	"click .addEditor": function (event) {
+		Meteor.call("addEditor", Router.current().params._id, $(event.target).data('id'));
+	},
+	"click .removeEditor": function (event) {
+		Meteor.call("removeEditor", Router.current().params._id, $(event.target).data('id'));
 	}
 });
 
@@ -1209,7 +1256,7 @@ Template.resetMemoForm.events({
 
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
-		if (this.owner !== Meteor.userId()) {
+		if (this.owner !== Meteor.userId() && !this.editors.includes(Meteor.userId())) {
 			addToLeitner(this._id);
 		}
 	},

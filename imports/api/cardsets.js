@@ -77,6 +77,9 @@ const CardsetsSchema = new SimpleSchema({
 	dateUpdated: {
 		type: Date
 	},
+	editors: {
+		type: [String]
+	},
 	owner: {
 		type: String
 	},
@@ -234,6 +237,7 @@ Meteor.methods({
 			description: description,
 			date: new Date(),
 			dateUpdated: new Date(),
+			editors: [],
 			owner: Meteor.userId(),
 			visible: visible,
 			ratings: ratings,
@@ -629,6 +633,15 @@ Meteor.methods({
 		}
 
 		if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
+			if (Cardsets.findOne({id: id, editors: {$in: {owner}}})) {
+				let oldOwner = Cardsets.findOne({id: id}).owner;
+				Cardsets.update(
+					{_id: id},
+					{
+						$pull: {editors: owner},
+						$push: {editors: oldOwner}
+					});
+			}
 			Cardsets.update(id, {
 				$set: {
 					owner: owner
@@ -641,7 +654,7 @@ Meteor.methods({
 	},
 	/**
 	 * Whitelist the cardset for the wordcloud
-	 * 	 * @param {String} id - ID of the cardset to be updated
+	 *     * @param {String} id - ID of the cardset to be updated
 	 * @param {Boolean} status - Wordcloud status for the cardset: true = Add to wordcloud, false = remove from Wordcloud
 	 */
 	updateWordcloudStatus: function (id, status) {
