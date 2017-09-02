@@ -166,3 +166,16 @@ Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
 	Meteor.call("initUser");
 });
+
+Template.completeProfileModal.events({
+	"click #completeProfileGoToProfile": function () {
+		$('#completeProfileModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#completeProfileModal').on('hidden.bs.modal', function () {
+			Router.go('profileSettings', {
+				_id: Meteor.userId()
+			});
+		});
+	}
+});

@@ -33,6 +33,7 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+
 /**
  * Creates a web push subscription for the current device.
  * The Browser ask the user for permissions and creates the subscription.
@@ -68,6 +69,14 @@ function subscribeForPushNotification() {
 				});
 			}
 		});
+}
+
+/**
+ * Add the current user to the leitner algorithm.
+ */
+function addToLeitner(cardset_id) {
+	subscribeForPushNotification();
+	Meteor.call('addToLeitner', cardset_id);
 }
 
 /*
@@ -449,7 +458,7 @@ Template.cardsetInfo.onRendered(function () {
 	});
 
 	var mc = new Hammer.Manager(document.getElementById('set-details-region'));
-	mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL,threshold: 50}));
+	mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
 	mc.on("swipe", function (ev) {
 		if (ev.deltaX < 0) {
 			document.getElementById('rightCarouselControl').click();
@@ -557,16 +566,6 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
-	"click #learnBox": function () {
-		Router.go('box', {
-			_id: this._id
-		});
-	},
-	"click #learnMemo": function () {
-		Router.go('memo', {
-			_id: this._id
-		});
-	},
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');
@@ -639,11 +638,13 @@ Template.leaveLearnPhaseForm.events({
  */
 Template.cardsetSidebar.events({
 	"click #learnBox": function () {
+		addToLeitner(this._id);
 		Router.go('box', {
 			_id: this._id
 		});
 	},
 	"click #learnMemo": function () {
+		Meteor.call("addCardsMemo", this._id);
 		Router.go('memo', {
 			_id: this._id
 		});
@@ -665,6 +666,51 @@ Template.cardsetSidebar.events({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
+	"click #showStats": function () {
+		var cardset_id = Template.parentData(1)._id;
+		Meteor.call("getLearningData", cardset_id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
+			}
+			if (result) {
+				Session.set("cardsetStats", result);
+				Router.go('cardsetstats', {_id: Router.current().params._id});
+			}
+		});
+	}
+});
+
+Template.cardsetSidebar.helpers({
+	enableIfPublished: function () {
+		return this.kind !== 'personal';
+	},
+	'learningActiveAndNotEditor': function () {
+		return this.owner !== Meteor.userId() && this.learningActive;
+	},
+	'learningLeitner': function () {
+		return Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 1}});
+	},
+	'learningMemo': function () {
+		return Learned.findOne({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		});
+	}
+});
+
+/*
+* ############################################################################
+* cardsetLearnActivityStatistic
+* ############################################################################
+*/
+Template.cardsetLearnActivityStatistic.helpers({
+	getCardsetStats: function () {
+		return Session.get("cardsetStats");
+	}
+});
+
+Template.cardsetLearnActivityStatistic.events({
 	"click #exportCSV": function () {
 		var cardset_id = Template.parentData(1)._id;
 		var cardset = Cardsets.find({"_id": cardset_id}).fetch();
@@ -694,42 +740,7 @@ Template.cardsetSidebar.events({
 			}
 		});
 	},
-	"click #showStats": function () {
-		var cardset_id = Template.parentData(1)._id;
-		Meteor.call("getLearningData", cardset_id, function (error, result) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
-			}
-			if (result) {
-				Session.set("cardsetStats", result);
-				Router.go('cardsetstats', {_id: Router.current().params._id});
-			}
-		});
-	}
-});
-
-Template.cardsetSidebar.helpers({
-	enableIfPublished: function () {
-		return this.kind !== 'personal';
-	},
-	'learningActiveAndNotEditor': function () {
-		return this.owner !== Meteor.userId() && this.learningActive;
-	}
-});
-
-/*
-* ############################################################################
-* cardsetLearnActivityStatistic
-* ############################################################################
-*/
-Template.cardsetLearnActivityStatistic.helpers({
-	getCardsetStats: function () {
-		return Session.get("cardsetStats");
-	}
-});
-
-Template.cardsetLearnActivityStatistic.events({
-	"click #closeStats": function () {
+	"click #backButton": function () {
 		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 	}
 });
@@ -1166,6 +1177,32 @@ Template.reportCardsetForm.events({
 
 /*
  * ############################################################################
+ * resetLeitnerForm
+ * ############################################################################
+ */
+Template.resetLeitnerForm.events({
+	"click #resetLeitnerConfirm": function () {
+		$('#resetLeitnerModal').on('hidden.bs.modal', function () {
+			Meteor.call("resetLeitner", Session.get('activeCardsetID'));
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * resetMemoForm
+ * ############################################################################
+ */
+Template.resetMemoForm.events({
+	"click #resetMemoConfirm": function () {
+		$('#resetMemoModal').on('hidden.bs.modal', function () {
+			Meteor.call("resetMemo", Session.get('activeCardsetID'));
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
  * leitnerLearning
  * ############################################################################
  */
@@ -1173,8 +1210,7 @@ Template.reportCardsetForm.events({
 Template.leitnerLearning.helpers({
 	addToLeitner: function () {
 		if (this.owner !== Meteor.userId()) {
-			subscribeForPushNotification();
-			Meteor.call("addToLeitner", this);
+			addToLeitner(this._id);
 		}
 	},
 	learningEnded: function () {

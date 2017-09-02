@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
 import {turnCard} from "../card/card.js";
@@ -13,7 +12,6 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 Meteor.subscribe('learned');
 
-Session.set('selectedBox', null);
 Session.set('isFront', true);
 Session.set('maxIndex', 1);
 Session.set('isFinish', true);
@@ -29,56 +27,35 @@ var chart;
 Template.box.onCreated(function () {
 	Session.set('modifiedCard', undefined);
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
-	if (!Session.get('activeCardset').learningActive) {
-		var cards = Cards.find({
-			cardset_id: Session.get('activeCardset')._id
-		});
-		cards.forEach(function (card) {
-			Meteor.call("addLearned", Session.get('activeCardset')._id, card._id);
-		});
-	}
 });
 
 Template.box.helpers({
-	boxSelected: function () {
-		var selectedBox = Session.get('selectedBox');
-		if (Session.get('activeCardset').learningActive) {
-			return true;
-		}
-		return selectedBox !== null;
+	noCards: function () {
+		return !Learned.findOne({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId()
+		});
 	},
-	isNotEmpty: function () {
-		var notEmpty;
-		if (Session.get('activeCardset').learningActive) {
-			notEmpty = Learned.find({
+	isFinished: function () {
+		if (Learned.find({
 				cardset_id: Session.get('activeCardset')._id,
 				user_id: Meteor.userId(),
 				active: true
-			}).count();
-		} else {
-			notEmpty = Learned.find({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId(),
-				box: parseInt(Session.get('selectedBox'))
-			}).count();
-		}
-		return notEmpty;
-	},
-	isFinish: function () {
-		if (Session.get('activeCardset').learningActive && Learned.find({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId(),
-				active: true
-			}).count() !== 0) {
-			Session.set('isFinish', false);
-		} else if (!Session.get('activeCardset').learningActive && Learned.find({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId(),
-				box: {$nin: [6]}
 			}).count() !== 0) {
 			Session.set('isFinish', false);
 		}
 		return Session.get('isFinish');
+	}
+});
+
+
+Template.box.events({
+	/**
+	 * Go back to cardset from leitner box mode
+	 * Go back one page in the history, on click of the "Return to cardset" button
+	 */
+	"click #backButton": function () {
+		window.history.go(-1);
 	}
 });
 
@@ -128,75 +105,7 @@ Template.boxMain.events({
 
 /*
  * ############################################################################
- * boxSide
- * ############################################################################
- */
-
-Template.boxSide.events({
-	"click .learn-box": function (event) {
-		var box = $(event.currentTarget).val();
-		Session.set('selectedBox', box);
-		Session.set('isFront', true);
-		Session.set('isFinish', false);
-	},
-	'click #cardsetUser': function () {
-		Router.go('profileOverview', {
-			_id: Meteor.userId()
-		});
-	},
-	"click #back-button": function () {
-		window.history.go(-1);
-	}
-});
-
-Template.boxSide.helpers({
-	selectedBox: function (boxId) {
-		var selectedBox = Session.get('selectedBox');
-		if (boxId === selectedBox) {
-			return "active";
-		}
-	},
-	countBox: function (boxId) {
-		return Learned.find({
-			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId(),
-			box: boxId
-		}).count();
-	},
-	isDisabled: function () {
-		return Session.get('activeCardset').learningActive ? 'disabled' : '';
-	}
-});
-
-Template.boxSide.onDestroyed(function () {
-	Session.set('selectedBox', null);
-});
-
-/*
- * ############################################################################
- * boxEnd
- * ############################################################################
- */
-
-Template.boxEnd.helpers({
-	isLearningActive: function () {
-		return Session.get('activeCardset').learningActive;
-	}
-});
-
-Template.boxEnd.events({
-	"click #endscreenBack": function () {
-		Session.set('selectedBox', null);
-		Session.set('isFinish', false);
-		Router.go('cardsetdetailsid', {
-			_id: Session.get('activeCardset')._id
-		});
-	}
-});
-
-/*
- * ############################################################################
- * Chart
+ * Graph
  * ############################################################################
  */
 
@@ -255,7 +164,17 @@ function updateGraph() {
 	chart.update();
 }
 
-Template.boxSide.onRendered(function () {
+Template.graph.helpers({
+	countBox: function (boxId) {
+		return Learned.find({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			box: boxId
+		}).count();
+	}
+});
+
+Template.graph.onRendered(function () {
 	drawGraph();
 	var self = this;
 	self.subscribe("learned", function () {

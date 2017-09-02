@@ -7,7 +7,6 @@
         {{else}}
             <div id="pool-category-region" class="container">
                 {{> category}}
-                {{> completeProfileModal}}
                 {{> enterActiveLearnphaseModal}}
             </div>
         {{/if}}
@@ -284,7 +283,7 @@
 
 <template name="poolCardsetRow">
     {{#if this.learningActive}}
-        {{#if isProfileCompleted}}
+        {{#if isProfileCompleted this.owner this.learningActive}}
             {{#if isAlreadyLearning}}
                 <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
                    title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
@@ -436,33 +435,6 @@
                     {{countCards content._id}}
                 </span>
             </span>
-</template>
-
-<template name="completeProfileModal">
-    <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
-         aria-labelledby="completeProfileTitle">
-        <div class="modal-dialog">
-            <div class="modal-content  modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-header">
-                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{_ "complete-profile.text"}}</p>
-                    <br>
-                    <hr>
-                    <button id="completeProfileGoToProfile"
-                            class="btn btn-default btn-block btn-raised btn-success active"
-                            data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
-                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
-                            data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 </template>
 
 <template name="poolCardsetEmpty">

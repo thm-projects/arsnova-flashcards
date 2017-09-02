@@ -98,7 +98,7 @@
   "complete-profile": {
     "btn-txt": "Close",
     "title": "User profile incomplete",
-    "text": "Your user profile is incomplete. Please enter your first, last name and email to continue."
+    "text": "Your user profile is incomplete. Please enter your first, last name and email in order to use the \"learn by Leitner\" mode."
   },
   "confirm-form-profile": {
     "title": "Delete user profile",
@@ -211,6 +211,8 @@
     "reason": "Reason",
     "reportuser": "Report user",
     "reportcardset": "Report cardset",
+    "resetLeitner": "Do you really want to reset your learning progress for the mode \"learn by leitner\" of the cardset \"__name__\"?",
+    "resetMemo": "Do you really want to reset your learning progress for the mode \"learn by Wozniak\" of the cardset \"__name__\"?",
     "date": "Date",
     "text": "Further information",
     "text_chars": "At least 50 chars required!",
@@ -546,8 +548,10 @@
   "noCardsToLearn": "There are currently no new cards to learn",
   "learn": "Learn",
   "manage": "Manage",
-  "learnfile": "Leitner's learning box",
-  "memo": "Memo",
+  "learnfile": "Learn by Leitner",
+  "memo": "Learn by Wozniak",
+  "resetLearnfile": "Reset learn by Leitner",
+  "resetMemo": "Reset learn by Wozniak",
   "statistics": "Deck statistics",
   "report": "Report cardset/user",
   "meteor": "Meteor",
@@ -578,6 +582,7 @@
   "declinecard": "Cancel",
   "deletecard": "Delete card",
   "deleteCards": "Delete all cards",
+  "reset": "Reset",
   "confirmcard": "Sure?",
   "savecard": "Save card",
   "insertpicture": "Add image",
@@ -606,7 +611,7 @@
   "know": "Known",
   "notknow": "Not known",
   "box_status": "One card left",
-  "box_stats": "Learn Statistic",
+  "box_stats": "Show Learn Statistic",
   "box_status_plural": "__count__ cards left",
   "leitner_status": "Only one card left for the current lesson plan",
   "leitner_status_plural": "Only __count__ cards left for the current lesson plan",

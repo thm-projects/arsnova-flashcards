@@ -98,7 +98,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\" Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
@@ -209,6 +209,8 @@
     "reason": "Grund",
     "reportuser": "Benutzer melden",
     "reportcardset": "Kartensatz melden",
+    "resetLeitner": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Leitner\" in dem Kartensatz \"__name__\" zurücksetzen?",
+    "resetMemo": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Wozniak\" in dem Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -416,8 +418,8 @@
     "review": "In Überprüfung",
     "private": "Privat",
     "license": " Lizenz wählen",
-    "startLearning": "Starte Lernphase",
-    "stopLearning": "Beende Lernphase",
+    "startLearning": "Lernphase starten",
+    "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für "
   },
   "pool": {
@@ -546,8 +548,10 @@
   "noCardsToLearn": "Derzeit gibt es keine neuen Karten zu lernen",
   "learn": "Lernen",
   "manage": "Verwalten",
-  "learnfile": "Lernkartei",
-  "memo": "Memo",
+  "learnfile": "Lernen nach Leitner",
+  "memo": "Lernen nach Wozniak",
+  "resetLearnfile": "Lernen nach Leitner zurücksetzen",
+  "resetMemo": "Lernen nach Wozniak zurücksetzen",
   "statistics": "Kartensatz Statistik",
   "report": "Kartensatz/Benutzer melden",
   "meteor": "Meteor",
@@ -577,6 +581,7 @@
   "searchpicture": "Bildsuche",
   "declinecard": "Abbrechen",
   "deletecard": "Karte löschen",
+  "reset": "Zurücksetzen",
   "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Karte speichern",
@@ -606,11 +611,11 @@
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte übrig",
-  "box_stats": "Lernstatistik",
+  "box_stats": "Lernstatistik anzeigen",
   "box_status_plural": "__count__ Karten übrig",
   "leitner_status": "Noch eine Karte übrig für die aktuelle Lerneinheit",
   "leitner_status_plural": "Noch __count__ Karten übrig in der aktuellen Lerneinheit",
-  "box_export": "Exportiere Lernstatistik",
+  "box_export": "Lernstatistik exportieren",
   "box_export_birth_name": "Name",
   "box_export_given_name": "Vorname",
   "box_export_statistics": "Statistiken",

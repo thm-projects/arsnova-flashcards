@@ -382,16 +382,6 @@ Template.poolCardsetRow.helpers({
 			return false;
 		}
 	},
-	isProfileCompleted: function () {
-		if (this.owner === Meteor.userId()) {
-			return true;
-		}
-		if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
-			return true;
-		} else {
-			return false;
-		}
-	},
 	getKind: function () {
 		switch (this.kind) {
 			case "free":
@@ -530,19 +520,6 @@ Template.category.events({
 			filter.push($(this).val());
 		});
 		Session.set('poolFilter', filter);
-	}
-});
-
-Template.completeProfileModal.events({
-	"click #completeProfileGoToProfile": function () {
-		$('#completeProfileModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
-		$('#completeProfileModal').on('hidden.bs.modal', function () {
-			Router.go('profileSettings', {
-				_id: Meteor.userId()
-			});
-		});
 	}
 });
 

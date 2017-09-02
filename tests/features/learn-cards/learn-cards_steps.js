@@ -18,9 +18,9 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I am on the cardset view of the testcardset$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
+		browser.waitForVisible('#cardsets', TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.waitForVisible('#setCreate', TIMERTHRESHOLD);
 		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
@@ -45,32 +45,32 @@ module.exports = function () {
 	});
 
 	this.Then(/^Box one contains 36 cards$/, function () {
-		browser.waitForExist('#subject1 span.badge', TIMERTHRESHOLD);
+		browser.waitForVisible('#boxChart', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.getText('#subject1 span.badge') === '36';
+			return browser.elementIdAttribute('boxChart','data-box1') === '36';
 		}, TIMERTHRESHOLD, 'expected card count in box 1 to be 36 after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^Boxes two to five contain zero cards$/, function () {
-		browser.waitForExist('#subject5 span.badge',TIMERTHRESHOLD);
+		browser.waitForVisible('#boxChart', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.getText('#subject2 span.badge') === '0';
+			return $('#boxChart').data('box2') === '0';
 		}, TIMERTHRESHOLD, 'expected card count in box 2 to be 0 after ' + TIMERTHRESHOLDTEXT);
 		browser.waitUntil(function () {
-			return browser.getText('#subject3 span.badge') === '0';
+			return $('#boxChart').data('box3') === '0';
 		}, TIMERTHRESHOLD, 'expected card count in box 3 to be 0 after ' + TIMERTHRESHOLDTEXT);
 		browser.waitUntil(function () {
-			return browser.getText('#subject4 span.badge') === '0';
+			return $('#boxChart').data('box4') === '0';
 		}, TIMERTHRESHOLD, 'expected card count in box 4 to be 0 after ' + TIMERTHRESHOLDTEXT);
 		browser.waitUntil(function () {
-			return browser.getText('#subject5 span.badge') === '0';
+			return $('#boxChart').data('box5') === '0';
 		}, TIMERTHRESHOLD, 'expected card count in box 5 to be 0 after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^Learned contains zero cards$/, function () {
-		browser.waitForExist('#learned_card span.badge',TIMERTHRESHOLD);
+		browser.waitForVisible('#boxChart', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.getText('#learned_card span.badge') === '0';
+			return $('#boxChart').data('box6') === '0';
 		}, TIMERTHRESHOLD, 'expected card count in box 6 to be 0 after ' + TIMERTHRESHOLDTEXT);
 	});
 
@@ -81,28 +81,22 @@ module.exports = function () {
 	//
 	/////////////////////////////////////////
 	this.Given(/^I went to the box view of the testcardset$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
+		browser.waitForVisible('#cardsets', TIMERTHRESHOLD);
 		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
+		browser.waitForVisible('#setCreate', TIMERTHRESHOLD);
 		browser.click('#setCreate');
 		browser.waitUntil(function () {
 			return browser.isVisible('#newCardSet');
 		}, TIMERTHRESHOLD, 'expected new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
-		browser.waitForVisible('#set-list-region > div:nth-child(2) > a',TIMERTHRESHOLD);
+		browser.waitForVisible('#set-list-region > div:nth-child(2) > a', TIMERTHRESHOLD);
 		browser.click('#set-list-region > div:nth-child(2) > a');
 		browser.waitUntil(function () {
 			return browser.isVisible('#learnBox');
 		}, TIMERTHRESHOLD, 'expected learn by leitner button to be visible after ' + TIMERTHRESHOLDTEXT);
 
-		browser.waitForVisible('#learnBox',TIMERTHRESHOLD);
+		browser.waitForVisible('#learnBox', TIMERTHRESHOLD);
 		browser.click('#learnBox');
 	});
-
-	this.When(/^I click on the Button Box one$/, function () {
-		browser.waitForVisible('#subject1', TIMERTHRESHOLD);
-		browser.click('#subject1');
-	});
-
 
 	this.Then(/^The frontside of first card is shown$/, function () {
 		browser.waitForVisible('.detailfront0', TIMERTHRESHOLD);
@@ -131,14 +125,16 @@ module.exports = function () {
 	});
 
 	this.Then(/^Box 1 contains 35 cards$/, function () {
+		browser.waitForVisible('#boxChart', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.getText('#subject1 span.badge') === '35';
+			return $('#boxChart').data('box1') === '35';
 		}, TIMERTHRESHOLD, 'expected card count in box 1 to be 35 after ' + TIMERTHRESHOLDTEXT);
 	});
 
 	this.Then(/^Box 2 contains one card$/, function () {
+		browser.waitForVisible('#boxChart', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
-			return browser.getText('#subject2 span.badge') === '1';
+			return $('#boxChart').data('box2') === '1';
 		}, TIMERTHRESHOLD, 'expected card count in box 2 to be 1 after ' + TIMERTHRESHOLDTEXT);
 	});
 
@@ -183,13 +179,13 @@ module.exports = function () {
 
 
 	this.Then(/^I can click on the Button Show answer$/, function () {
-		browser.waitForVisible('#memoShowAnswer',TIMERTHRESHOLD);
+		browser.waitForVisible('#memoShowAnswer', TIMERTHRESHOLD);
 		browser.click('#memoShowAnswer');
 	});
 
 
 	this.Then(/^The buttons zero to five are shown$/, function () {
-		browser.waitForVisible('#memoRate0',TIMERTHRESHOLD);
+		browser.waitForVisible('#memoRate0', TIMERTHRESHOLD);
 		browser.waitUntil(function () {
 			return browser.isVisible('#memoRate0');
 		}, TIMERTHRESHOLD, 'expected memo rate 0 button to be visible after ' + TIMERTHRESHOLDTEXT);
