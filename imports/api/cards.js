@@ -335,7 +335,7 @@ Meteor.methods({
 				'editor'
 			])) {
 			// Make sure the user is logged in and is authorized
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) ||  cardset.editors.includes(Meteor.userId())) {
+			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
 		}

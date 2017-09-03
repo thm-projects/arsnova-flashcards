@@ -705,6 +705,9 @@ Template.cardsetSidebar.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
 	},
+	gotEnoughCards: function () {
+		return (this.quantity >= 5);
+	},
 	'learningLeitner': function () {
 		return Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 1}});
 	},
