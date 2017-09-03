@@ -13,8 +13,6 @@ Meteor.subscribe("cards");
 Meteor.subscribe('learned');
 
 Session.set('isFront', true);
-Session.set('maxIndex', 1);
-Session.set('isFinish', true);
 
 var chart;
 
@@ -33,18 +31,16 @@ Template.box.helpers({
 	noCards: function () {
 		return !Learned.findOne({
 			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId()
+			user_id: Meteor.userId(),
+			box: {$ne: 6}
 		});
 	},
 	isFinished: function () {
-		if (Learned.find({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId(),
-				active: true
-			}).count() !== 0) {
-			Session.set('isFinish', false);
-		}
-		return Session.get('isFinish');
+		return !Learned.findOne({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			active: true
+		});
 	}
 });
 
@@ -85,19 +81,11 @@ Template.boxMain.events({
 	},
 	"click #known": function () {
 		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), false);
-
-		if (1 === parseInt(Session.get('maxIndex'))) {
-			Session.set('isFinish', true);
-		}
 		Session.set('isFront', true);
 		turnCard();
 	},
 	"click #notknown": function () {
 		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), true);
-
-		if (1 === parseInt(Session.get('maxIndex'))) {
-			Session.set('isFinish', true);
-		}
 		Session.set('isFront', true);
 		turnCard();
 	}
