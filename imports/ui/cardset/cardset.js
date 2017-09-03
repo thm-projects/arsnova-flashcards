@@ -281,10 +281,6 @@ Template.cardset.events({
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
 		}
-	},
-	"click .lightbox-img": function (evt) {
-		evt.preventDefault();
-		return $(this).ekkoLightbox();
 	}
 });
 
