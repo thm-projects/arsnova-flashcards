@@ -62,7 +62,10 @@ Router.route('/cardset/:_id', {
 
 Router.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
-	template: 'cardsetManageEditors'
+	template: 'cardsetManageEditors',
+	data: function () {
+		return Cardsets.findOne({_id: this.params._id});
+	}
 });
 
 Router.route('/cardset/:_id/stats', {

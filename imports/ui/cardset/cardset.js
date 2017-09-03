@@ -797,9 +797,6 @@ Template.cardsetLearnActivityStatistic.events({
 Template.cardsetManageEditors.helpers({
 	getEditors: function () {
 		return Session.get("cardsetEditors");
-	},
-	getManageEditorsTitle: function () {
-		return "\"" + Cardsets.findOne({_id: Router.current().params._id}).name + "\"";
 	}
 });
 
