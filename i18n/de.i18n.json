@@ -96,9 +96,9 @@
     "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
   },
   "confirm-leave-editors": {
-    "btn-txt": "Editoren verlassen",
-    "title": "Editoren Gruppe verlassen",
-    "text": "Wollen Sie sich Ihre Editoren Berechtigung für den Kartensatz \"__name__\" entfernen?"
+    "btn-txt": "Bearbeiter Gruppe verlassen",
+    "title": "Bearbeiter Gruppe verlassen",
+    "text": "Wollen Sie sich Ihre Bearbeiter Berechtigung für den Kartensatz \"__name__\" entfernen?"
   },
   "complete-profile": {
     "btn-txt": "Schließen",
@@ -128,7 +128,9 @@
     "notification": "Benachrichtigungen",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Web",
-    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
+    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
+    "card": "Karte",
+    "cards": "Karten"
   },
   "confirmEndLearn-form": {
     "title": "Lernphase beenden",
@@ -224,7 +226,7 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
-    "manageEditors": "Bearbeiter verwalten für den Kartensatz ",
+    "manageEditors": "Bearbeiter verwalten für den Kartensatz \"__name__\"",
     "module": "Modul",
     "module_required": "Geben Sie den vollen Namen des Moduls an!",
     "moduleShort": "Initialien",
@@ -430,7 +432,7 @@
     "startLearning": "Lernphase starten",
     "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für ",
-    "leaveEditors": "Als Editor abmelden"
+    "leaveEditors": "Bearbeiter Gruppe verlassen"
   },
   "pool": {
     "relevance": "Relevanz",

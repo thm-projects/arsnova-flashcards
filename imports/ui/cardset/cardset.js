@@ -728,6 +728,30 @@ Template.cardsetSidebar.helpers({
 Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("cardsetStats");
+	},
+	getDate: function (date) {
+		return moment(date).format("DD.MM.YYYY");
+	},
+	getDeadline: function () {
+		if (this.daysBeforeReset === 1) {
+			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day');
+		} else {
+			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day_plural');
+		}
+	},
+	getLearningStatus: function () {
+		if (this.learningEnd.getTime() > new Date().getTime()) {
+			return TAPi18n.__('set-list.activeLearnphase');
+		} else {
+			return TAPi18n.__('set-list.inactiveLearnphase');
+		}
+	},
+	getWorkload: function () {
+		if (this.maxCards === 1) {
+			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.card');
+		} else {
+			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.cards');
+		}
 	}
 });
 
@@ -773,9 +797,6 @@ Template.cardsetLearnActivityStatistic.events({
 Template.cardsetManageEditors.helpers({
 	getEditors: function () {
 		return Session.get("cardsetEditors");
-	},
-	getManageEditorsTitle: function () {
-		return "\"" + Cardsets.findOne({_id: Router.current().params._id}).name + "\"";
 	}
 });
 
