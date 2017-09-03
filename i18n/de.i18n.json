@@ -128,7 +128,9 @@
     "notification": "Benachrichtigungen",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Web",
-    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
+    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
+    "card": "Karte",
+    "cards": "Karten"
   },
   "confirmEndLearn-form": {
     "title": "Lernphase beenden",

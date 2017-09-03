@@ -130,7 +130,9 @@
     "webNotificationRadio": "Browser",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Web",
-    "notificationError": "Please choose at least one way of notification!"
+    "notificationError": "Please choose at least one way of notification!",
+    "card": "Card",
+    "cards": "Cards"
   },
   "confirmEndLearn-form": {
     "title": "Stop Learn-Phase",

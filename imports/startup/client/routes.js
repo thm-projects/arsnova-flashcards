@@ -67,7 +67,10 @@ Router.route('/cardset/:_id/editors', {
 
 Router.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
-	template: 'cardsetLearnActivityStatistic'
+	template: 'cardsetLearnActivityStatistic',
+	data: function () {
+		return Cardsets.findOne({_id: this.params._id});
+	}
 });
 
 Router.route('/cardsetlist', function () {
@@ -78,8 +81,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardset',
 	data: function () {
-		var currentCardset = this.params._id;
-		return Cardsets.findOne({_id: currentCardset});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 
