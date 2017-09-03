@@ -633,13 +633,13 @@ Meteor.methods({
 		}
 
 		if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
-			if (Cardsets.findOne({id: id, editors: {$in: {owner}}})) {
-				let oldOwner = Cardsets.findOne({id: id}).owner;
+			let cardset = Cardsets.findOne({_id: id});
+			if (cardset.editors.includes(owner)) {
 				Cardsets.update(
 					{_id: id},
 					{
 						$pull: {editors: owner},
-						$push: {editors: oldOwner}
+						$push: {editors: cardset.owner}
 					});
 			}
 			Cardsets.update(id, {
