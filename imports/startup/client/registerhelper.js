@@ -27,8 +27,9 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
-Template.registerHelper("isProfileCompleted", function (owner_id, learningActive) {
-	if (owner_id === Meteor.userId() && learningActive) {
+Template.registerHelper("isProfileCompleted", function (id, learningActive) {
+	let cardset = Cardsets.findOne({_id: id});
+	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && learningActive) {
 		return true;
 	}
 	if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
@@ -43,12 +44,51 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 	return owner === Meteor.userId();
 });
 
+Template.registerHelper("isCardsetEditor", function (user_id) {
+	return Cardsets.findOne({"_id": Router.current().params._id, "editors": {$in: [user_id]}});
+});
+
+Template.registerHelper("learningActiveAndNotEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner !== Meteor.userId() && !cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+});
+
+Template.registerHelper("learningActiveAndEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+});
+
+Template.registerHelper("isEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+});
+
 Template.registerHelper("isLecturerOrPro", function () {
 	this.owner = Cardsets.findOne(Router.current().params._id).owner;
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
 		return true;
 	}
 });
+
+Template.registerHelper("getRoles", function (roles) {
+	roles.sort();
+	let translatedRoles = "";
+	for (let i = 0; i < roles.length; i++) {
+		switch (roles[i]) {
+			case 'admin':
+				translatedRoles += (TAPi18n.__('admin.superAdmin') + ", ");
+				break;
+			case 'editor':
+				translatedRoles += (TAPi18n.__('admin.admin') + ", ");
+				break;
+			case 'lecturer':
+				translatedRoles += (TAPi18n.__('admin.lecturer') + ", ");
+				break;
+		}
+	}
+	return translatedRoles.substring(0, translatedRoles.length - 2);
+});
+
 
 // Check if multiple universities are enabled
 Template.registerHelper("singleUniversity", function () {
