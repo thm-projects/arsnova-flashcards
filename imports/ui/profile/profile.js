@@ -538,12 +538,14 @@ Template.profileSettings.events({
 	},
 	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
 		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
-			document.getElementById('profileSave').disabled = true;
+			Session.set("profileSettingsSave", true);
+			Session.set("profileSettingsCancel", false);
 			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
 			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
 			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
 		} else {
-			document.getElementById('profileSave').disabled = false;
+			Session.set("profileSettingsSave", false);
+			Session.set("profileSettingsCancel", false);
 			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
 			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
 			$('#errorNotification').html('');
@@ -555,6 +557,8 @@ Template.profileSettings.events({
 		$('#inputName').val(user.profile.name);
 		$('#inputBirthName').val(user.profile.birthname);
 		$('#inputGivenName').val(user.profile.givenname);
+		$('#mailNotificationCheckbox').prop('checked', user.mailNotification);
+		$('#webNotificationCheckbox').prop('checked', user.webNotification);
 		$('#inputName').parent().parent().removeClass('has-error');
 		$('#inputBirthName').parent().parent().removeClass('has-error');
 		$('#inputGivenName').parent().parent().removeClass('has-error');
@@ -569,8 +573,6 @@ Template.profileSettings.events({
 		$('#errorEmail').html('');
 		$('#inputEmailValidation').val('');
 		$('#inputEmailValidationForm').addClass("hidden");
-		Session.set("profileSettingsSave", true);
-		Session.set("profileSettingsCancel", true);
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
 		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
