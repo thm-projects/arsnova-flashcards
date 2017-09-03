@@ -729,8 +729,11 @@ Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("cardsetStats");
 	},
-	getDate: function (date) {
-		return moment(date).format("DD.MM.YYYY");
+	getDateEnd: function () {
+		return moment(this.learningEnd).format("DD.MM.YYYY");
+	},
+	getDateStart: function () {
+		return moment(this.learningStart).format("DD.MM.YYYY");
 	},
 	getDeadline: function () {
 		if (this.daysBeforeReset === 1) {
