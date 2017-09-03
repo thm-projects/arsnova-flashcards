@@ -95,10 +95,15 @@
     "title": "Aktive Lernphase verlassen",
     "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
   },
+  "confirm-leave-editors": {
+    "btn-txt": "Bearbeiter Gruppe verlassen",
+    "title": "Bearbeiter Gruppe verlassen",
+    "text": "Wollen Sie sich Ihre Bearbeiter Berechtigung für den Kartensatz \"__name__\" entfernen?"
+  },
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um fortzufahren, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\" Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
@@ -123,7 +128,9 @@
     "notification": "Benachrichtigungen",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Web",
-    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!"
+    "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
+    "card": "Karte",
+    "cards": "Karten"
   },
   "confirmEndLearn-form": {
     "title": "Lernphase beenden",
@@ -185,6 +192,7 @@
     "ratingoption1": "erlauben",
     "ratingoption2": "abschalten",
     "kind": "Art",
+    "close": "Schließen",
     "cancel": "Abbrechen",
     "createcarddeck": "Anlegen",
     "delete": "Kartensatz löschen",
@@ -209,6 +217,8 @@
     "reason": "Grund",
     "reportuser": "Benutzer melden",
     "reportcardset": "Kartensatz melden",
+    "resetLeitner": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Leitner\" in dem Kartensatz \"__name__\" zurücksetzen?",
+    "resetMemo": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Wozniak\" in dem Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -216,6 +226,7 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
+    "manageEditors": "Bearbeiter verwalten für den Kartensatz \"__name__\"",
     "module": "Modul",
     "module_required": "Geben Sie den vollen Namen des Moduls an!",
     "moduleShort": "Initialien",
@@ -344,7 +355,8 @@
     "nameToLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
     "nameAlreadyExists": "Kennung ist bereits vergeben!",
     "birthnameEmpty": "Der Nachname darf nicht leer sein!",
-    "givennameEmpty": "Der Vorname darf nicht leer sein!"
+    "givennameEmpty": "Der Vorname darf nicht leer sein!",
+    "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
     "experience": "Erfahrungspunkte (XP)",
@@ -410,23 +422,23 @@
     "createcard": "Neue Karte",
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
+    "manageEditors": "Bearbeiter verwalten",
     "publish": "Status",
     "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
     "license": " Lizenz wählen",
-    "startLearning": "Starte Lernphase",
-    "stopLearning": "Beende Lernphase",
-    "poolLicense": "Lizenz für "
+    "startLearning": "Lernphase starten",
+    "stopLearning": "Lernphase beenden",
+    "poolLicense": "Lizenz für ",
+    "leaveEditors": "Bearbeiter Gruppe verlassen"
   },
   "pool": {
     "relevance": "Relevanz",
     "name": "Name",
     "author": "Autor",
     "rating": "Bewertung",
-    "userRating": "Deine Bewertung ",
-    "notRated": "Noch nicht bewertet",
     "quantity": "Kartenanzahl",
     "release": "Veröffentlicht",
     "deleted": "Gelöscht",
@@ -438,6 +450,8 @@
     "info": {
       "author": "Autor",
       "rating": "Bewertung",
+      "userRating": "Deine Bewertung ",
+      "notRated": "Noch nicht bewertet",
       "quantity": "Kartenanzahl",
       "release": "Veröffentlicht",
       "reviewer": "Prüfer",
@@ -546,8 +560,10 @@
   "noCardsToLearn": "Derzeit gibt es keine neuen Karten zu lernen",
   "learn": "Lernen",
   "manage": "Verwalten",
-  "learnfile": "Lernkartei",
-  "memo": "Memo",
+  "learnfile": "Lernen nach Leitner",
+  "memo": "Lernen nach Wozniak",
+  "resetLearnfile": "Lernen nach Leitner zurücksetzen",
+  "resetMemo": "Lernen nach Wozniak zurücksetzen",
   "statistics": "Kartensatz Statistik",
   "report": "Kartensatz/Benutzer melden",
   "meteor": "Meteor",
@@ -577,6 +593,7 @@
   "searchpicture": "Bildsuche",
   "declinecard": "Abbrechen",
   "deletecard": "Karte löschen",
+  "reset": "Zurücksetzen",
   "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Karte speichern",
@@ -606,11 +623,11 @@
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte übrig",
-  "box_stats": "Lernstatistik",
+  "box_stats": "Lernstatistik anzeigen",
   "box_status_plural": "__count__ Karten übrig",
   "leitner_status": "Noch eine Karte übrig für die aktuelle Lerneinheit",
   "leitner_status_plural": "Noch __count__ Karten übrig in der aktuellen Lerneinheit",
-  "box_export": "Exportiere Lernstatistik",
+  "box_export": "Lernstatistik exportieren",
   "box_export_birth_name": "Name",
   "box_export_given_name": "Vorname",
   "box_export_statistics": "Statistiken",
@@ -646,6 +663,7 @@
     "front": "Vorderseite",
     "back": "Rückseite",
     "admin": "Admin",
+    "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
     "lecturer": "Dozent",

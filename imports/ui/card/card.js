@@ -124,26 +124,6 @@ function isMemo() {
 	return Router.current().route.getName() === "memo";
 }
 
-function getBoxCards() {
-	var cards = [];
-	var learnedCards = Learned.find({
-		cardset_id: Session.get('activeCardset')._id,
-		user_id: Meteor.userId(),
-		box: parseInt(Session.get('selectedBox'))
-	}, {
-		sort: {
-			currentDate: 1
-		}
-	});
-	learnedCards.forEach(function (learnedCard) {
-		var card = Cards.findOne({
-			_id: learnedCard.card_id
-		});
-		cards.push(card);
-	});
-	return cards;
-}
-
 function getCardsetCards() {
 	var query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
 
@@ -547,11 +527,7 @@ Template.flashcards.helpers({
 	},
 	getCards: function () {
 		if (isBox()) {
-			if (Session.get('activeCardset').learningActive) {
-				return getLeitnerCards();
-			} else {
-				return getBoxCards();
-			}
+			return getLeitnerCards();
 		}
 		if (isCardset()) {
 			return getCardsetCards();

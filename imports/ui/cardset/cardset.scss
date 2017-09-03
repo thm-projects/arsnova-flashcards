@@ -266,6 +266,10 @@ $font_5: sans-serif;
     margin-right: 10px;
     padding: 0;
   }
+
+}
+
+#cardsetInfoDetail {
   margin-bottom: 20px;
 }
 
@@ -299,5 +303,11 @@ $font_5: sans-serif;
       width: 58px;
     }
 
+  }
+}
+
+.table {
+  td {
+    vertical-align: middle !important;
   }
 }

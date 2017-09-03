@@ -15,9 +15,8 @@ Feature: Learn Cards
 
   Scenario: Learn cards with "Leitners memo box"
     Given I went to the box view of the testcardset
-    When I click on the Button Box one
-    Then The frontside of first card is shown
-    And I can click on the card
+    When The frontside of first card is shown
+    Then I can click on the card
     And The backside of the first card is shown
     And I can click on the button Known
     And Box 1 contains 35 cards

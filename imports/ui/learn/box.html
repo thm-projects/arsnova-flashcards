@@ -6,28 +6,24 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-
-                <!-- Sidebar -->
-                <div class="col-md-3">{{> boxSide}}</div>
-
                 <!-- Main -->
-                <div class="col-md-9">
-                    {{#if isFinish}}
-                        {{> boxEnd}}
+                <div class="col-xs-12">
+                    {{#if noCards}}
+                        {{> boxEmpty}}
                     {{else}}
-                        {{#if boxSelected}}
-                            {{#if isNotEmpty}}
-                                {{> boxMain}}
-                            {{else}}
-                                {{> boxEmpty}}
-                            {{/if}}
+                        {{#if isFinished}}
+                            {{> boxEnd}}
                         {{else}}
-                            {{> boxStart}}
+                            {{> boxMain}}
                         {{/if}}
                     {{/if}}
+                    <br>
+                    <br>
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left">{{_ "backbutton"}}</span>
+                    </button>
                     {{> graph}}
                 </div>
-
                 <!-- Permission denied -->
             {{else}}
                 <h4>{{_ "permission"}}</h4>
@@ -36,84 +32,12 @@
     {{/if}}
 </template>
 
-<!-- Sidebar -->
-<template name="boxSide">
-    <div id="set-learn-sideBar-region">
-        <div class="well well-sm sidebar-nav">
-            <h4 id="cardsetName">{{name}}</h4>
-            <hr>
-            <span id="cardsetDesc">{{description}}</span>
-            <hr>
-            <span class="nav-header" id="cardsetCreated">{{_ "createdof2"}}</span>
-            <span id="cardsetWrap">
-				<a role="button" id="cardsetUser">{{username}}</a>
-				<br>
-				<span>{{_ "sidebar-nav.at"}}</span>
-				<span>{{getDate}}</span>
-			</span>
-            <button class="btn btn-raised btn-danger back-button" id="back-button">
-                <span class="pull-left">{{_ "backbutton"}}</span>
-            </button>
-        </div>
-    </div>
-
-    <div id="set-learn-controls-region">
-        <div class="well well-sm sidebar-nav">
-            <button class="btn btn-raised btn-default learn-box {{selectedBox 1}}" id="subject1"
-                    value="1" {{isDisabled}}>
-                <span class="pull-left">{{_ "subject1"}}</span>
-                <span class="badge pull-right one">{{countBox 1}}</span>
-            </button>
-            <button class="btn btn-raised btn-default learn-box {{selectedBox 2}}" id="subject2"
-                    value="2" {{isDisabled}}>
-                <span class="pull-left">{{_ "subject2"}}</span>
-                <span class="badge pull-right two">{{countBox 2}}</span>
-            </button>
-            <button class="btn btn-raised btn-default learn-box {{selectedBox 3}}" id="subject3"
-                    value="3" {{isDisabled}}>
-                <span class="pull-left">{{_ "subject3"}}</span>
-                <span class="badge pull-right three">{{countBox 3}}</span>
-            </button>
-            <button class="btn btn-raised btn-default learn-box {{selectedBox 4}}" id="subject4"
-                    value="4" {{isDisabled}}>
-                <span class="pull-left">{{_ "subject4"}}</span>
-                <span class="badge pull-right four">{{countBox 4}}</span>
-            </button>
-            <button class="btn btn-raised btn-default learn-box {{selectedBox 5}}" id="subject5"
-                    value="5" {{isDisabled}}>
-                <span class="pull-left">{{_ "subject5"}}</span>
-                <span class="badge pull-right five">{{countBox 5}}</span>
-            </button>
-            <button class="btn btn-raised btn-success learn-box {{selectedBox 6}} disabled" id="learned_card" value="6"
-                    disabled>
-                <span class="pull-left">{{_ "subject6"}}</span>
-                <span class="badge pull-right six">{{countBox 6}}</span>
-            </button>
-
-        </div>
-    </div>
-
-
-</template>
-
-
-<!-- Startscreen -->
-<template name="boxStart">
-    <div class="box innerBox">
-        <div class="block emptyCard">
-            <div class="centered front">
-                <p>{{_ "choosesubject"}}</p>
-            </div>
-        </div>
-    </div>
-</template>
-
 <!-- Empty -->
 <template name="boxEmpty">
     <div class="box innerBox">
         <div class="block emptyCard">
             <div class="centered front">
-                <p>{{_ "nocards"}}</p>
+                <p>{{_ "learnedEverything"}}</p>
             </div>
         </div>
     </div>
@@ -144,11 +68,13 @@
 </template>
 
 <template name="graph">
-    <div class="well well-sm sidebar-nav" style="margin-top: 50px">
+    <div class="well well-sm sidebar-nav" style="margin-top: 20px">
         <div id="container" style="min-width: 100%;
 			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
             <h3 class="panel-title">{{_ "admin.learnedCardsets"}}</h3>
-            <canvas id="boxChart" width="800" height="470" style="margin-top: 10px"></canvas>
+            <canvas id="boxChart" width="800" height="470" style="margin-top: 10px" data-box1="{{countBox 1}}"
+                    data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
+                    data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
         </div>
     </div>
 </template>
@@ -164,14 +90,7 @@
 <template name="boxEnd">
     <div class="box learn-endscreen innerBox">
         <div class="block emptyCard">
-            <div class="centered front learnbox-success">{{_ "learn-endscreen.success"}}</div>
-            {{#unless isLearningActive}}
-                <div class="centered front learnbox-choose-message">{{_ "learn-endscreen.back"}}</div>
-                <br>
-                <a class="btn-back btn-raised btn btn-default btn-s learn-back" id="endscreenBack">
-                    <span>{{_ "learn-endscreen.back2"}}</span>
-                </a>
-            {{/unless}}
+            <div class="centered front learnbox-success">{{_ "noCardsToLearn"}}</div>
         </div>
     </div>
 </template>

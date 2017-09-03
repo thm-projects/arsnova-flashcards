@@ -190,6 +190,24 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({learners: {$exists: false}}).fetch();
+	for (var m = 0; m < cardsets.length; m++) {
+		Meteor.call("updateLearnerCount", cardsets[m]._id);
+	}
+
+	cardsets = Cardsets.find({editors: {$exists: false}}).fetch();
+	for (var p = 0; p < cardsets.length; p++) {
+		Cardsets.update({
+				_id: cardsets[p]._id
+			},
+			{
+				$set: {
+					editors: []
+				}
+			}
+		);
+	}
+
 	if (Badges.find().count() === 0) {
 		for (var badge in badges) {
 			if (badges.hasOwnProperty(badge)) {

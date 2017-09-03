@@ -1,29 +1,6 @@
 <template name="memo">
     <div class="container">
-        <div id="set-learn-sideBar-region" class="col-md-3">
-            <div class="well well-sm sidebar-nav">
-                <h4 id="cardsetName">{{name}}</h4>
-                <hr>
-                <span id="cardsetDesc">{{description}}</span>
-                <hr>
-                <span class="nav-header" id="cardsetCreated">{{_ "createdof2"}}</span>
-                <span id="cardsetWrap">
-                    {{#if userExists userDeleted}}
-                        <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
-                    {{else}}
-                        {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
-                    {{/if}}
-                    <br>
-                    <span>{{_ "sidebar-nav.at"}}</span>
-                    <span>{{getDate}}</span>
-                </span>
-                <button class="btn btn-raised btn-danger back-button" id="back-button">
-                    <span class="pull-left">{{_ "backbutton"}}</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-xs-12">
             {{#if isInRole 'firstLogin'}}
                 {{> first_login_content_only}}
             {{else}}
@@ -58,6 +35,11 @@
                         <h4>{{_ "permission"}}</h4>
                     {{/if}}
                     {{> memoPictureForm}}
+                    <br>
+                    <br>
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left">{{_ "backbutton"}}</span>
+                    </button>
                 {{/if}}
             {{/if}}
         </div>

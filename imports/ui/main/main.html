@@ -6,6 +6,7 @@
             {{#if isInRole 'firstLogin'}}
             {{else if  isInRole 'blocked'}}
             {{else}}
+                {{> completeProfileModal}}
                 <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container thm-header">
                         <div class="container-fluid">
@@ -185,4 +186,31 @@
             </ul>
         </div>
     </div> <!-- Theme Wrapper -->
+</template>
+
+<template name="completeProfileModal">
+    <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
+         aria-labelledby="completeProfileTitle">
+        <div class="modal-dialog">
+            <div class="modal-content  modal-content-for-buttons xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "complete-profile.text"}}</p>
+                    <br>
+                    <hr>
+                    <button id="completeProfileGoToProfile"
+                            class="btn btn-default btn-block btn-raised btn-success active"
+                            data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
+                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </template>

@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
-import {Learned} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
@@ -28,9 +27,40 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
+Template.registerHelper("isProfileCompleted", function (id, learningActive) {
+	let cardset = Cardsets.findOne({_id: id});
+	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && learningActive) {
+		return true;
+	}
+	if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
+		return true;
+	} else {
+		return false;
+	}
+});
+
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
 	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return owner === Meteor.userId();
+});
+
+Template.registerHelper("isCardsetEditor", function (user_id) {
+	return Cardsets.findOne({"_id": Router.current().params._id, "editors": {$in: [user_id]}});
+});
+
+Template.registerHelper("learningActiveAndNotEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner !== Meteor.userId() && !cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+});
+
+Template.registerHelper("learningActiveAndEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+});
+
+Template.registerHelper("isEditor", function () {
+	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
 });
 
 Template.registerHelper("isLecturerOrPro", function () {
@@ -39,6 +69,26 @@ Template.registerHelper("isLecturerOrPro", function () {
 		return true;
 	}
 });
+
+Template.registerHelper("getRoles", function (roles) {
+	roles.sort();
+	let translatedRoles = "";
+	for (let i = 0; i < roles.length; i++) {
+		switch (roles[i]) {
+			case 'admin':
+				translatedRoles += (TAPi18n.__('admin.superAdmin') + ", ");
+				break;
+			case 'editor':
+				translatedRoles += (TAPi18n.__('admin.admin') + ", ");
+				break;
+			case 'lecturer':
+				translatedRoles += (TAPi18n.__('admin.lecturer') + ", ");
+				break;
+		}
+	}
+	return translatedRoles.substring(0, translatedRoles.length - 2);
+});
+
 
 // Check if multiple universities are enabled
 Template.registerHelper("singleUniversity", function () {
@@ -55,15 +105,6 @@ Template.registerHelper("getCards", function () {
 	return Cards.find({
 		cardset_id: this._id
 	});
-});
-
-//Returns the number of active learners in a cardset
-Template.registerHelper("getActiveLearners", function (id) {
-	var data = Learned.find({cardset_id: id, box: {$gt: 1}}).fetch();
-	var distinctData = _.uniq(data, false, function (d) {
-		return d.user_id;
-	});
-	return (_.pluck(distinctData, "user_id").length);
 });
 
 // Returns the locale date

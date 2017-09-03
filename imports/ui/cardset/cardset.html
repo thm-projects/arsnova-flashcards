@@ -16,7 +16,10 @@
                 {{> selectLicenseForm}}
                 {{> reportCardsetForm}}
                 {{> deleteCardsForm}}
+                {{> resetLeitnerForm}}
+                {{> resetMemoForm}}
                 {{> leaveLearnPhaseForm}}
+                {{> leaveEditorsForm}}
                 {{onEditmodalClose this._id}}
                 {{#if hasCardsetPermission}}
                     {{#if isLecturerAndHasRequest}}
@@ -73,7 +76,7 @@
 
 
 <template name="cardsetInfo">
-    <div class="col-md-12">
+    <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
                 <div class="col-sm-8">
@@ -98,7 +101,7 @@
                             {{/unless}}
                             <hr>
                             <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{getActiveLearners this._id}}
+                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{this.learners}}
                             <hr>
                         {{/if}}
                         <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
@@ -168,11 +171,13 @@
                             </button>
                         </div>
                         <div class="btn-group btn-group-raised">
-                            <a type="button" id="newCardBtn" class="btn btn-success" href="{{pathFor 'newCard'}}"
+                            <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
+                               href="{{pathFor 'newCard'}}"
                                 {{disableIfOffline}}>
                                 <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
                             </a>
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                            <button type="button" class="btn btn-raised btn-success dropdown-toggle"
+                                    data-toggle="dropdown"
                                 {{disableIfOffline}}>
                                 <span class="caret"></span>
                             </button>
@@ -184,7 +189,6 @@
                             </ul>
                         </div>
                     {{/unless}}
-
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default btn-raised" type="button"
                                 data-toggle="modal"
@@ -216,62 +220,103 @@
             </div>
         {{/unless}}
         {{#unless learningActive}}
-            <div id="set-details-learn-region">
-                <div class="well well-sm sidebar-nav">
-                    <span class="nav-header-cardset">{{_ "learn"}}</span>
-                    <button id="learnBox" class="btn btn-raised btn-default learn btn-block">{{_ "learnfile"}}</button>
-                    <button id="learnMemo" class="btn btn-raised btn-default memo btn-block">{{_ "memo"}}</button>
-                </div>
-            </div>
-        {{/unless}}
-
-        {{#if isLecturerOrPro}}
-            {{#if enableIfPublished}}
+            {{#if gotEnoughCards}}
                 <div id="set-details-learn-region">
                     <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "manage"}}</span>
-                        {{#if isCardsetOwner _id}}
-                            {{#if isInRole 'lecturer'}}
-                                <button id="startStopLearning"
-                                        class="btn btn-default btn-raised startStopLearn btn-block {{#if
-                                                learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
-                                        type="button"
-                                        data-toggle="modal"
-                                        data-target="{{#unless
-                                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
-                                    {{#if learningActive}}
-                                        {{_ "sidebar-nav.stopLearning"}}
-                                    {{else}}
-                                        {{_ "sidebar-nav.startLearning"}}
-                                    {{/if}}
-                                </button>
-                                {{#if learningActive}}
-                                    <button id="exportCSV" class="btn btn-default btn-raised btn-block btn-default">{{_
-                                            "box_export"}}</button>
-                                    <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
-                                        {{_ "box_stats"}}
-                                    </button>
-                                {{/if}}
-                            {{/if}}
+                        <span class="nav-header-cardset">{{_ "learn"}}</span>
+                        {{#if isProfileCompleted this._id this.learningActive}}
+                            <button id="learnBox"
+                                    class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
+                                    "learnfile"}}</button>
+                        {{else}}
+                            <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
+                                    data-toggle="modal" data-target="#completeProfileModal">{{_
+                                    "learnfile"}}</button>
                         {{/if}}
-                        {{#unless isCardsetOwner _id}}
-                            <button id="report_button"
-                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                    class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
-                                    data-toggle="modal" data-target="#reportModal">{{_
-                                    "report"}}</button>
-                            {{#if learningActive}}
-                                <button id="leaveLearnPhaseButton"
-                                        style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                        class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                        data-toggle="modal" data-target="#leaveModal">{{_
-                                        "confirm-leave-learnphase.btn-txt"}}</button>
-                            {{/if}}
-                        {{/unless}}
+                        <button id="learnMemo"
+                                class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
+                                "memo"}}</button>
                     </div>
                 </div>
             {{/if}}
-        {{/if}}
+        {{/unless}}
+        <div id="set-details-learn-region">
+            <div class="well well-sm sidebar-nav">
+                <span class="nav-header-cardset">{{_ "manage"}}</span>
+                {{#if isCardsetOwner _id}}
+                    <button id="manageEditors" type="button"
+                            class="btn btn-default btn-raised btn-block btn-default"
+                        {{disableIfOffline}}>
+                        {{_ "sidebar-nav.manageEditors"}}
+                    </button>
+                {{/if}}
+                {{#unless learningActive}}
+                    {{#if learningLeitner}}
+                        <button id="resetLeitner"
+                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                data-toggle="modal"
+                                data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
+                                "resetLearnfile"}}</button>
+                    {{/if}}
+                    {{#if learningMemo}}
+                        <button id="resetMemo"
+                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                data-toggle="modal"
+                                data-target="#resetMemoModal" {{disableIfOffline}}>{{_
+                                "resetMemo"}}</button>
+                    {{/if}}
+                {{/unless}}
+                {{#if enableIfPublished}}
+                    {{#if isCardsetOwner _id}}
+                        {{#if isInRole 'lecturer'}}
+                            <button id="startStopLearning"
+                                    class="btn btn-default btn-raised startStopLearn btn-block {{#if
+                                            learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="{{#unless
+                                            learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                {{#if learningActive}}
+                                    {{_ "sidebar-nav.stopLearning"}}
+                                {{else}}
+                                    {{_ "sidebar-nav.startLearning"}}
+                                {{/if}}
+                            </button>
+                        {{/if}}
+                    {{/if}}
+                    {{#if learningActiveAndEditor}}
+                        <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
+                            {{_ "box_stats"}}
+                        </button>
+                    {{/if}}
+                    {{#unless isEditor}}
+                        <button id="report_button"
+                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
+                                data-toggle="modal" data-target="#reportModal">{{_
+                                "report"}}</button>
+                        {{#if learningActive}}
+                            <button id="leaveLearnPhaseButton"
+                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                    data-toggle="modal" data-target="#leaveModal">{{_
+                                    "confirm-leave-learnphase.btn-txt"}}</button>
+                        {{/if}}
+                    {{/unless}}
+                    {{#if isEditor}}
+                        {{#unless isCardsetOwner _id}}
+                            <button id="leaveEditors"
+                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
+                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
+                                    data-toggle="modal" data-target="#leaveEditorsModal">{{_
+                                    "sidebar-nav.leaveEditors"}}</button>
+                        {{/unless}}
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -388,6 +433,56 @@
     <!-- /.modal -->
 </template>
 
+<template name="resetLeitnerForm">
+    <div class="modal fade" id="resetLeitnerModal" tabindex="-1" role="dialog"
+         aria-labelledby="resetLeitnerTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="resetLeitnerTitle" class="modal-title">{{_ "resetLearnfile"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.resetLeitner" name= this.name }}
+                    <button id="resetLeitnerConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                            "reset"}}</button>
+                    <button id="resetLeitnerCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="resetMemoForm">
+    <div class="modal fade" id="resetMemoModal" tabindex="-1" role="dialog"
+         aria-labelledby="resetMemoTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="resetMemoTitle" class="modal-title">{{_ "resetMemo"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.resetMemo" name= this.name }}
+                    <button id="resetMemoConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                            "reset"}}</button>
+                    <button id="resetMemoCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
 <template name="leaveLearnPhaseForm">
     <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveLearnPhaseTitle">
         <div class="modal-dialog">
@@ -403,6 +498,28 @@
                     <button id="leaveLearnPhaseConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
                             "confirm-leave-learnphase.btn-txt"}}</button>
                     <button id="leaveLearnPhaseCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="leaveEditorsForm">
+    <div class="modal fade" id="leaveEditorsModal" tabindex="-1" role="dialog" aria-labelledby="leaveEditorsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                    <h4 id="leaveEditorsTitle" class="modal-title">{{_ "confirm-leave-editors.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-leave-editors.text" name= this.name}}</p>
+                    <br>
+                    <hr>
+                    <button id="leaveEditorsConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
+                            "confirm-leave-editors.btn-txt"}}</button>
+                    <button id="leaveEditorsCancel" class="btn btn-default btn-block btn-raised"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                 </div>
             </div>
@@ -835,6 +952,45 @@
     <!-- /.modal -->
 </template>
 
+<template name="cardsetManageEditors">
+    <div class="container">
+        <h3 class="modal-title">{{_ "modal-dialog.manageEditors" name = this.name}}</h3>
+        <div style="overflow-x:auto;">
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr class="active">
+                    <th>{{_ "panel-body.givenname"}}</th>
+                    <th>{{_ "panel-body.birthname"}}</th>
+                    <th>{{_ "panel-body.roles"}}</th>
+                    <th></th>
+                </tr>
+                {{#each getEditors}}
+                    <tr>
+                        <td>{{this.givenname}}</td>
+                        <td>{{this.birthname}}</td>
+                        <td> {{getRoles this.roles}}</td>
+                        <td>
+                            {{#if isCardsetEditor this.id}}
+                                <a class="btn btn-block btn-raised btn-danger removeEditor" data-id="{{this.id}}">
+                                    <i class="fa fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                                </a>
+                            {{else}}
+                                <a class="btn btn-block btn-raised btn-success addEditor" data-id="{{this.id}}">
+                                    <i class="fa fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
+                                </a>
+                            {{/if}}
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-block btn-raised btn-danger" id="backButton">
+            <span class="pull-left">{{_ "backbutton"}}</span>
+        </button>
+    </div>
+</template>
+
 <template name="selectLicenseForm">
     <div class="modal fade" id="selectLicenseModal" tabindex="-1" role="dialog"
          aria-labelledby="selectLicenseModalTitle">
@@ -1007,6 +1163,34 @@
 
 <template name="cardsetLearnActivityStatistic">
     <div class="container">
+        <div class="row">
+            <div id="cardsetInfoDetail" class="col-md-5">
+                <div class="panel panel-default cardsetInfo">
+                    <div class="panel-body">
+                        <h4>{{this.name}}</h4>
+                        <hr>
+                        <div class="col-xs-6">
+                            <strong>{{_ "set-list.learnphase"}}:</strong><br>
+                            <strong>{{_ "pool.activeLearners"}}:</strong><br>
+                            <strong>{{_ "confirmLearn-form.maxCards"}}:</strong><br>
+                            <strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong><br>
+                            <strong>{{_ "confirmLearn-form.learningStart"}}:</strong><br>
+                            <strong>{{_ "confirmLearn-form.learningEnd"}}:</strong><br>
+                            <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
+                                    "box_export"}}</button>
+                        </div>
+                        <div class="col-xs-6">
+                            {{getLearningStatus}}<br>
+                            {{this.learners}}<br>
+                            {{getWorkload}}<br>
+                            {{getDeadline}}<br>
+                            {{getDate this.LearningStart}}<br>
+                            {{getDate this.LearningEnd}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div style="overflow-x:auto;">
             <table class="table table-striped table-hover ">
                 <tbody>
@@ -1014,11 +1198,11 @@
                     <th>{{_ "panel-body.givenname"}}</th>
                     <th>{{_ "panel-body.birthname"}}</th>
                     <th>{{_ "panel-body.email"}}</th>
-                    <th>{{_ "subject1"}}</th>
-                    <th>{{_ "subject2"}}</th>
-                    <th>{{_ "subject3"}}</th>
-                    <th>{{_ "subject4"}}</th>
-                    <th>{{_ "subject5"}}</th>
+                    <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]</th>
+                    <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]</th>
+                    <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]</th>
+                    <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]</th>
+                    <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]</th>
                     <th>{{_ "subject6"}}</th>
                 </tr>
                 {{#each getCardsetStats}}
@@ -1037,7 +1221,9 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-info btn-block btn-raised" id="closeStats">{{_ "access-denied.button"}}</a>
+        <button class="btn btn-block btn-raised btn-danger" id="backButton">
+            <span class="pull-left">{{_ "backbutton"}}</span>
+        </button>
     </div>
 </template>
 

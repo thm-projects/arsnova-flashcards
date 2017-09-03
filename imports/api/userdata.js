@@ -1,6 +1,8 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
+import {Learned} from "./learned.js";
+import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 
 if (Meteor.isServer) {
@@ -287,7 +289,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
-		var cardsets = Cardsets.find({
+		let cardsets = Cardsets.find({
 			owner: this.userId,
 			kind: 'personal'
 		});
@@ -309,10 +311,22 @@ Meteor.methods({
 			kind: 'personal'
 		});
 
+		Cardsets.update({editors: {$in: [this.userId]}}, {
+			$pull: {editors: this.userId}
+		});
+
 		Meteor.users.update(this.userId, {
 			$set: {
 				"services.resume.loginTokens": []
 			}
+		});
+
+		Learned.remove({
+			user_id: this.userId
+		});
+
+		Ratings.remove({
+			user: this.userId
 		});
 
 		Meteor.users.remove(this.userId);

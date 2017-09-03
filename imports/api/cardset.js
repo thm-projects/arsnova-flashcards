@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Match} from "meteor/check";
 import {Learned} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
@@ -30,7 +29,7 @@ Meteor.methods({
 		check(header, [String]);
 
 		var cardset = Cardsets.findOne({_id: cardset_id});
-		if ((Roles.userIsInRole(Meteor.userId(), 'lecturer')) && Meteor.userId() === cardset.owner && (Match.test(header, [String]))) {
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor", "lecturer"])) && (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			var content;
 			var colSep = ";"; // Separates columns
 			var newLine = "\r\n"; //Adds a new line
@@ -52,10 +51,10 @@ Meteor.methods({
 				data = Learned.find({cardset_id: cardset_id, user_id: distinctData[k].user_id}).fetch();
 				for (var l = 1; l <= 6; l++) {
 					content += Learned.find({
-							cardset_id: cardset_id,
-							user_id: distinctData[k].user_id,
-							box: l
-						}).count() + colSep;
+						cardset_id: cardset_id,
+						user_id: distinctData[k].user_id,
+						box: l
+					}).count() + colSep;
 				}
 				content += newLine;
 			}
@@ -66,7 +65,7 @@ Meteor.methods({
 		check(cardset_id, String);
 
 		var cardset = Cardsets.findOne({_id: cardset_id});
-		if ((Roles.userIsInRole(Meteor.userId(), 'lecturer')) && Meteor.userId() === cardset.owner) {
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor", "lecturer"])) && (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			var learningDataArray = [];
 			var data = Learned.find({cardset_id: cardset_id}).fetch();
 			var distinctData = _.uniq(data, false, function (d) {
@@ -100,6 +99,67 @@ Meteor.methods({
 				});
 			}
 			return learningDataArray;
+		}
+	},
+	getEditors: function (cardset_id) {
+		check(cardset_id, String);
+
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		let editorsDataArray = [];
+		if (Meteor.userId() === cardset.owner) {
+			let editors = Meteor.users.find({
+				_id: {$ne: cardset.owner},
+				roles: {$in: ['admin', 'editor', 'lecturer']}
+			}).fetch();
+			for (let i = 0; i < editors.length; i++) {
+				editorsDataArray.push({
+					givenname: editors[i].profile.givenname,
+					birthname: editors[i].profile.birthname,
+					roles: editors[i].roles,
+					id: editors[i]._id
+				});
+			}
+		}
+		return editorsDataArray;
+	},
+	addEditor: function (cardset_id, user_id) {
+		check(cardset_id, String);
+		check(user_id, String);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (Meteor.userId() === cardset.owner && user_id !== cardset.owner) {
+			Cardsets.update(
+				{_id: cardset._id},
+				{
+					$push: {editors: user_id}
+				});
+		}
+		Learned.remove({
+			cardset_id: cardset._id,
+			user_id: user_id
+		});
+		Meteor.call("updateLearnerCount", cardset._id);
+	},
+	removeEditor: function (cardset_id, user_id) {
+		check(cardset_id, String);
+		check(user_id, String);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (Meteor.userId() === cardset.owner && user_id !== cardset.owner) {
+			Cardsets.update(
+				{_id: cardset._id},
+				{
+					$pull: {editors: user_id}
+				});
+		}
+	},
+	leaveEditors: function (cardset_id) {
+		check(cardset_id, String);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (cardset.editors.includes(Meteor.userId())) {
+			Cardsets.update(
+				{_id: cardset._id},
+				{
+					$pull: {editors: Meteor.userId()}
+				});
 		}
 	}
 });
