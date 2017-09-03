@@ -1,6 +1,8 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
+import {Learned} from "./learned.js";
+import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 
 if (Meteor.isServer) {
@@ -317,6 +319,14 @@ Meteor.methods({
 			$set: {
 				"services.resume.loginTokens": []
 			}
+		});
+
+		Learned.remove({
+			user_id: this.userId
+		});
+
+		Ratings.remove({
+			user: this.userId
 		});
 
 		Meteor.users.remove(this.userId);
