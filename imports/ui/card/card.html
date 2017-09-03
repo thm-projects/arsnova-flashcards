@@ -135,7 +135,7 @@
 
 <template name="btnCard">
     <div class="col-md-12">
-        {{#if isCardsetOwner this._id}}
+        {{#if isCardsetOwner this.cardset_id}}
             {{#if isEditMode}}
                 <button id="cardDelete" class="btn {{#if
                         learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_

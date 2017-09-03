@@ -136,8 +136,7 @@ export function setLightBoxes(content) {
 	var element = $(content);
 	$(element).find('img').each(function () {
 		var imageTitle = $(this).attr('alt');
-		var imageUrl = $(this).attr('src');
-		var wrapped = $(this).wrap('<a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '"></a>').parent().prop('outerHTML');
+		var wrapped = $(this).wrap('<span class="lightbox-img" title="' + imageTitle + '"></span>').parent().prop('outerHTML');
 		$(this).text(wrapped);
 	});
 

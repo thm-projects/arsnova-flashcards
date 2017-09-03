@@ -281,10 +281,6 @@ Template.cardset.events({
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
 		}
-	},
-	"click .lightbox-img": function (evt) {
-		evt.preventDefault();
-		return $(this).ekkoLightbox();
 	}
 });
 
@@ -708,6 +704,9 @@ Template.cardsetSidebar.events({
 Template.cardsetSidebar.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
+	},
+	gotEnoughCards: function () {
+		return (this.quantity >= 5);
 	},
 	'learningLeitner': function () {
 		return Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 1}});

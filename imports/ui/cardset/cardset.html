@@ -76,7 +76,7 @@
 
 
 <template name="cardsetInfo">
-    <div id ="cardsetInfoDetail" class="col-md-12">
+    <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
                 <div class="col-sm-8">
@@ -220,26 +220,36 @@
             </div>
         {{/unless}}
         {{#unless learningActive}}
-            <div id="set-details-learn-region">
-                <div class="well well-sm sidebar-nav">
-                    <span class="nav-header-cardset">{{_ "learn"}}</span>
-                    {{#if isProfileCompleted this._id this.learningActive}}
-                        <button id="learnBox"
-                                class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
-                                "learnfile"}}</button>
-                    {{else}}
-                        <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
-                                data-toggle="modal" data-target="#completeProfileModal">{{_
-                                "learnfile"}}</button>
-                    {{/if}}
-                    <button id="learnMemo" class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
-                            "memo"}}</button>
+            {{#if gotEnoughCards}}
+                <div id="set-details-learn-region">
+                    <div class="well well-sm sidebar-nav">
+                        <span class="nav-header-cardset">{{_ "learn"}}</span>
+                        {{#if isProfileCompleted this._id this.learningActive}}
+                            <button id="learnBox"
+                                    class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
+                                    "learnfile"}}</button>
+                        {{else}}
+                            <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
+                                    data-toggle="modal" data-target="#completeProfileModal">{{_
+                                    "learnfile"}}</button>
+                        {{/if}}
+                        <button id="learnMemo"
+                                class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
+                                "memo"}}</button>
+                    </div>
                 </div>
-            </div>
+            {{/if}}
         {{/unless}}
         <div id="set-details-learn-region">
             <div class="well well-sm sidebar-nav">
                 <span class="nav-header-cardset">{{_ "manage"}}</span>
+                {{#if isCardsetOwner _id}}
+                    <button id="manageEditors" type="button"
+                            class="btn btn-default btn-raised btn-block btn-default"
+                        {{disableIfOffline}}>
+                        {{_ "sidebar-nav.manageEditors"}}
+                    </button>
+                {{/if}}
                 {{#unless learningActive}}
                     {{#if learningLeitner}}
                         <button id="resetLeitner"
@@ -279,13 +289,6 @@
                     {{#if learningActiveAndEditor}}
                         <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
                             {{_ "box_stats"}}
-                        </button>
-                    {{/if}}
-                    {{#if isCardsetOwner _id}}
-                        <button id="manageEditors" type="button"
-                                class="btn btn-default btn-raised btn-block btn-default"
-                            {{disableIfOffline}}>
-                            {{_ "sidebar-nav.manageEditors"}}
                         </button>
                     {{/if}}
                     {{#unless isEditor}}
