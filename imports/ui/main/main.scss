@@ -579,7 +579,16 @@ button:disabled {
   background-color: #eeeeee !important;
   outline: none;
 }
+.cardContent .lightbox-img a {
+  display:block;
+  margin:auto;
+}
 
 .cardContent .lightbox-img img {
   width: unset !important;
+  display: unset !important;
+}
+
+.card-image {
+  text-align: center;
 }
