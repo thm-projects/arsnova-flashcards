@@ -638,7 +638,11 @@ Meteor.methods({
 				Cardsets.update(
 					{_id: id},
 					{
-						$pull: {editors: owner},
+						$pull: {editors: owner}
+					});
+				Cardsets.update(
+					{_id: id},
+					{
 						$push: {editors: cardset.owner}
 					});
 			}

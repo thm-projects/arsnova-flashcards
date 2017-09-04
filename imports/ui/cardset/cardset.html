@@ -953,42 +953,56 @@
 </template>
 
 <template name="cardsetManageEditors">
-    <div class="container">
-        <h3 class="modal-title">{{_ "modal-dialog.manageEditors" name = this.name}}</h3>
-        <div style="overflow-x:auto;">
-            <table class="table table-striped table-hover">
-                <tbody>
-                <tr class="active">
-                    <th>{{_ "panel-body.givenname"}}</th>
-                    <th>{{_ "panel-body.birthname"}}</th>
-                    <th>{{_ "panel-body.roles"}}</th>
-                    <th></th>
-                </tr>
-                {{#each getEditors}}
-                    <tr>
-                        <td>{{this.givenname}}</td>
-                        <td>{{this.birthname}}</td>
-                        <td> {{getRoles this.roles}}</td>
-                        <td>
-                            {{#if isCardsetEditor this.id}}
-                                <a class="btn btn-block btn-raised btn-danger removeEditor" data-id="{{this.id}}">
-                                    <i class="fa fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
-                                </a>
-                            {{else}}
-                                <a class="btn btn-block btn-raised btn-success addEditor" data-id="{{this.id}}">
-                                    <i class="fa fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
-                                </a>
-                            {{/if}}
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton">
-            <span class="pull-left">{{_ "backbutton"}}</span>
-        </button>
-    </div>
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#unless isCardsetOwner this._id}}
+                {{> access_denied_content_only}}
+            {{else}}
+                <div class="container">
+                    <h3 class="modal-title">{{_ "modal-dialog.manageEditors" name = this.name}}</h3>
+                    <div style="overflow-x:auto;">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            <tr class="active">
+                                <th>{{_ "panel-body.givenname"}}</th>
+                                <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.roles"}}</th>
+                                <th></th>
+                            </tr>
+                            {{#each getEditors}}
+                                <tr>
+                                    <td>{{this.givenname}}</td>
+                                    <td>{{this.birthname}}</td>
+                                    <td> {{getRoles this.roles}}</td>
+                                    <td>
+                                        {{#if isCardsetEditor this.id}}
+                                            <a class="btn btn-block btn-raised btn-danger removeEditor"
+                                               data-id="{{this.id}}">
+                                                <i class="fa fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                                            </a>
+                                        {{else}}
+                                            <a class="btn btn-block btn-raised btn-success addEditor"
+                                               data-id="{{this.id}}">
+                                                <i class="fa fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
+                                            </a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left">{{_ "backbutton"}}</span>
+                    </button>
+                </div>
+            {{/unless}}
+        {{/if}}
+    {{/if}}
 </template>
 
 <template name="selectLicenseForm">
@@ -1162,69 +1176,81 @@
 </template>
 
 <template name="cardsetLearnActivityStatistic">
-    <div class="container">
-        <div class="row">
-            <div id="cardsetInfoDetail" class="col-md-5">
-                <div class="panel panel-default cardsetInfo">
-                    <div class="panel-body">
-                        <h4>{{this.name}}</h4>
-                        <hr>
-                        <div class="col-xs-6">
-                            <strong>{{_ "set-list.learnphase"}}:</strong><br>
-                            <strong>{{_ "pool.activeLearners"}}:</strong><br>
-                            <strong>{{_ "confirmLearn-form.maxCards"}}:</strong><br>
-                            <strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong><br>
-                            <strong>{{_ "confirmLearn-form.learningStart"}}:</strong><br>
-                            <strong>{{_ "confirmLearn-form.learningEnd"}}:</strong><br>
-                            <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
-                                    "box_export"}}</button>
-                        </div>
-                        <div class="col-xs-6">
-                            {{getLearningStatus}}<br>
-                            {{this.learners}}<br>
-                            {{getWorkload}}<br>
-                            {{getDeadline}}<br>
-                            {{getDateStart}}<br>
-                            {{getDateEnd}}
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#unless isEditor}}
+                {{> access_denied_content_only}}
+            {{else}}
+                <div class="container">
+                    <div class="row">
+                        <div id="cardsetInfoDetail" class="col-md-5">
+                            <div class="panel panel-default cardsetInfo">
+                                <div class="panel-body">
+                                    <h4>{{this.name}}</h4>
+                                    <hr>
+                                    <div class="col-xs-6">
+                                        <strong>{{_ "set-list.learnphase"}}:</strong><br>
+                                        <strong>{{_ "pool.activeLearners"}}:</strong><br>
+                                        <strong>{{_ "confirmLearn-form.maxCards"}}:</strong><br>
+                                        <strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong><br>
+                                        <strong>{{_ "confirmLearn-form.learningStart"}}:</strong><br>
+                                        <strong>{{_ "confirmLearn-form.learningEnd"}}:</strong><br>
+                                        <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
+                                                "box_export"}}</button>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{getLearningStatus}}<br>
+                                        {{this.learners}}<br>
+                                        {{getWorkload}}<br>
+                                        {{getDeadline}}<br>
+                                        {{getDateStart}}<br>
+                                        {{getDateEnd}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div style="overflow-x:auto;">
+                        <table class="table table-striped table-hover ">
+                            <tbody>
+                            <tr class="active">
+                                <th>{{_ "panel-body.givenname"}}</th>
+                                <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.email"}}</th>
+                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]</th>
+                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]</th>
+                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]</th>
+                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]</th>
+                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]</th>
+                                <th>{{_ "subject6"}}</th>
+                            </tr>
+                            {{#each getCardsetStats}}
+                                <tr>
+                                    <th>{{this.givenname}}</th>
+                                    <th>{{this.birthname}}</th>
+                                    <th>{{this.email}}</th>
+                                    <th>{{this.box1}}</th>
+                                    <th>{{this.box2}}</th>
+                                    <th>{{this.box3}}</th>
+                                    <th>{{this.box4}}</th>
+                                    <th>{{this.box5}}</th>
+                                    <th>{{this.box6}}</th>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left">{{_ "backbutton"}}</span>
+                    </button>
                 </div>
-            </div>
-        </div>
-        <div style="overflow-x:auto;">
-            <table class="table table-striped table-hover ">
-                <tbody>
-                <tr class="active">
-                    <th>{{_ "panel-body.givenname"}}</th>
-                    <th>{{_ "panel-body.birthname"}}</th>
-                    <th>{{_ "panel-body.email"}}</th>
-                    <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]</th>
-                    <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]</th>
-                    <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]</th>
-                    <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]</th>
-                    <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]</th>
-                    <th>{{_ "subject6"}}</th>
-                </tr>
-                {{#each getCardsetStats}}
-                    <tr>
-                        <th>{{this.givenname}}</th>
-                        <th>{{this.birthname}}</th>
-                        <th>{{this.email}}</th>
-                        <th>{{this.box1}}</th>
-                        <th>{{this.box2}}</th>
-                        <th>{{this.box3}}</th>
-                        <th>{{this.box4}}</th>
-                        <th>{{this.box5}}</th>
-                        <th>{{this.box6}}</th>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton">
-            <span class="pull-left">{{_ "backbutton"}}</span>
-        </button>
-    </div>
+            {{/unless}}
+        {{/if}}
+    {{/if}}
 </template>
 
 <template name="showLicense">
