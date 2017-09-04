@@ -283,7 +283,7 @@
 
 <template name="poolCardsetRow">
     {{#if this.learningActive}}
-        {{#if isProfileCompleted this._id this.learningActive}}
+        {{#if isProfileCompleted this._id}}
             {{#if isAlreadyLearning}}
                 <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
                    title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">

@@ -53,7 +53,7 @@ Router.route('/cardset', function () {
 
 Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
-	template: 'cardset',
+	template: 'cardsetAccess',
 	data: function () {
 		var currentCardset = this.params._id;
 		return Cardsets.findOne({_id: currentCardset});
@@ -82,7 +82,7 @@ Router.route('/cardsetlist', function () {
 
 Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
-	template: 'cardset',
+	template: 'cardsetAccess',
 	data: function () {
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -108,10 +108,9 @@ Router.route('pool');
 
 Router.route('/box/:_id', {
 	name: 'box',
-	template: 'box',
+	template: 'boxAccess',
 	data: function () {
-		var currentBox = this.params._id;
-		return Cardsets.findOne({_id: currentBox});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 

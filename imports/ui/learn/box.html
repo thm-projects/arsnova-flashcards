@@ -1,4 +1,4 @@
-<template name="box">
+<template name="boxAccess">
     {{#if isInRole 'firstLogin'}}
         {{> first_login_content_only}}
     {{else}}
@@ -6,30 +6,40 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-                <!-- Main -->
-                <div class="col-xs-12">
-                    {{#if noCards}}
-                        {{> boxEmpty}}
-                    {{else}}
-                        {{#if isFinished}}
-                            {{> boxEnd}}
-                        {{else}}
-                            {{> boxMain}}
-                        {{/if}}
-                    {{/if}}
-                    <br>
-                    <br>
-                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left">{{_ "backbutton"}}</span>
-                    </button>
-                    {{> graph}}
-                </div>
-                <!-- Permission denied -->
+                {{#if isProfileCompleted this._id}}
+                    {{> box}}
+                {{else}}
+                    {{> access_denied_profile_incomplete_content_only}}
+                {{/if}}
             {{else}}
                 <h4>{{_ "permission"}}</h4>
             {{/if}}
         {{/if}}
     {{/if}}
+</template>
+
+<template name="box">
+
+    <!-- Main -->
+    <div class="col-xs-12">
+        {{#if noCards}}
+            {{> boxEmpty}}
+        {{else}}
+            {{#if isFinished}}
+                {{> boxEnd}}
+            {{else}}
+                {{> boxMain}}
+            {{/if}}
+        {{/if}}
+        <br>
+        <br>
+        <button class="btn btn-block btn-raised btn-danger" id="backButton">
+            <span class="pull-left">{{_ "backbutton"}}</span>
+        </button>
+        {{> graph}}
+    </div>
+    <!-- Permission denied -->
+
 </template>
 
 <!-- Empty -->
