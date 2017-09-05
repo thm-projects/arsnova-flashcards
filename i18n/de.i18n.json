@@ -17,11 +17,12 @@
       "targetError": "Profil existiert nicht oder ist unvollständig",
       "send": "Sende:",
       "sendMail": "E-Mail",
-      "sendMailError": "E-Mail Benachrichtigung fehlgeschlagen",
-      "sendMailSuccess": "E-Mail Benachrichtigung erfolgreich",
-      "sendWeb": "Web Benachrichtigung",
-      "sendWebError": "Web Benachrichtigung fehlgeschlagen",
-      "sendWebSuccess": "Web Benachrichtigung erfolgreich"
+      "sendMailError": "E-Mail-Benachrichtigung fehlgeschlagen",
+      "sendMailSuccess": "E-Mail-Benachrichtigung erfolgreich",
+      "sendWeb": "Push-Benachrichtigung",
+      "sendWebError": "Push-Benachrichtigung fehlgeschlagen",
+      "sendWebSuccess": "Push-Benachrichtigung erfolgreich",
+      "waitingForResponse": "Warte auf Server Rückmeldung"
     }
   },
   "intro": {
@@ -855,7 +856,7 @@
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     },
     "mail-settings": {
-      "mail-settings": "Mail-Einstellungen",
+      "mail-settings": "Versenden von E-Mail-Benachrichtigungen mit Leitner cron",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
     }
