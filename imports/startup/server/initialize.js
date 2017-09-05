@@ -380,6 +380,13 @@ Meteor.startup(function () {
 		});
 	}
 
+	if (!AdminSettings.findOne({name: "testNotifications"})) {
+		AdminSettings.insert({
+			name: "testNotifications",
+			target: undefined
+		});
+	}
+
 	var cards = Cards.find({difficulty: {$exists: false}}).fetch();
 	for (var i = 0; i < cards.length; i++) {
 		Cards.update({
@@ -457,6 +464,19 @@ Meteor.startup(function () {
 
 	Meteor.users.remove({_id: testNotificationsUser[0]._id});
 	Meteor.users.insert(testNotificationsUser[0]);
+	AdminSettings.insert({
+		target: undefined
+	});
+	AdminSettings.update({
+			name: "testNotifications"
+		},
+		{
+			$set: {
+				testCardsetID: testNotificationsCardset[0]._id,
+				testUserID: testNotificationsUser[0]._id
+			}
+		}
+	);
 
 	for (let card = 0; card < testNotificationsCards.length; card++) {
 		Cards.remove({_id: testNotificationsCards[card]._id});

@@ -40,12 +40,33 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		AdminSettings.upsert({
-			name: "mailSettings"
-		},
-		{
-			$set: {
-				enabled: enableMails
-			}
-		});
+				name: "mailSettings"
+			},
+			{
+				$set: {
+					enabled: enableMails
+				}
+			});
+	},
+	changeNotificationTarget: function (target) {
+		check(target, String);
+
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		let user = Meteor.users.findOne({_id: target});
+		if (user !== undefined && user.email !== undefined && user.email !== "" && user.profile.givenname !== undefined && user.profile.givenname !== "" && user.profile.birthname !== undefined && user.profile.birthname !== "") {
+			AdminSettings.upsert({
+					name: "testNotifications"
+				},
+				{
+					$set: {
+						target: target
+					}
+				});
+			return true;
+		} else {
+			return false;
+		}
 	}
 });
