@@ -6,6 +6,24 @@
     "biggerNull": "Bitte wähle eine Zahl größer als 0",
     "existingCourse": "Dieser Eintrag ist bereits vorhanden."
   },
+  "admin-settings": {
+    "test-notifications": {
+      "title": "Benachrichtigungen Testen",
+      "target": "Ziel:",
+      "noTarget": "Kein Ziel gesetzt",
+      "setTargetID": "Ziel-ID setzen:",
+      "setTarget": "Ziel setzen",
+      "setSuccess": "Ziel wurde gesetzt",
+      "targetError": "Profil existiert nicht oder ist unvollständig",
+      "send": "Sende:",
+      "sendMail": "E-Mail",
+      "sendMailError": "E-Mail Benachrichtigung fehlgeschlagen",
+      "sendMailSuccess": "E-Mail Benachrichtigung erfolgreich",
+      "sendWeb": "Web Benachrichtigung",
+      "sendWebError": "Web Benachrichtigung fehlgeschlagen",
+      "sendWebSuccess": "Web Benachrichtigung erfolgreich"
+    }
+  },
   "intro": {
     "about": "Was ist THMcards?",
     "impressum": "Impressum",
