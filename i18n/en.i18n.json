@@ -6,6 +6,24 @@
     "biggerNull": "Please choose a number bigger then 0",
     "existingCourse": "This entry already exists."
   },
+  "admin-settings": {
+    "test-notifications": {
+      "title": "Test Notifications",
+      "target": "Target:",
+      "noTarget": "No Target set",
+      "setTargetID": "Set Target-ID:",
+      "setTarget": "Set Target",
+      "setSuccess": "Target set",
+      "targetError": "Profile doesn't exist or is incomplete",
+      "send": "Send:",
+      "sendMail": "E-Mail",
+      "sendMailError": "E-Mail notification failed",
+      "sendMailSuccess": "E-Mail notification succeeded",
+      "sendWeb": "Web Notification",
+      "sendWebError": "Web notification failed",
+      "sendWebSuccess": "Web notification succeeded"
+    }
+  },
   "intro": {
     "about": "About THMcards",
     "impressum": "Legal Notice",

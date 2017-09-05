@@ -13,11 +13,49 @@
             <div class="row" style="margin-bottom:10px; margin-left: 5px">
                 <form>
                     <label class="radio-inline">
-                        <input type="radio" name="mail" id="mail-enabled" {{isMailEnabled true}}>{{_ "admin.mail-settings.enabled"}}
+                        <input type="radio" name="mail" id="mail-enabled" {{isMailEnabled true}}>{{_
+                            "admin.mail-settings.enabled"}}
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="mail" id="mail-disabled" {{isMailEnabled false}}>{{_ "admin.mail-settings.disabled"}}
+                        <input type="radio" name="mail" id="mail-disabled" {{isMailEnabled false}}>{{_
+                            "admin.mail-settings.disabled"}}
                     </label>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-test-notifications">
+
+            <h3 class="panel-title">{{_ "admin-settings.test-notifications.title"}}</h3>
+        </div>
+        <div class="panel-body panel-body-notifications-test">
+            <div class="row" style="margin-bottom:10px; margin-left: 5px">
+                <form>
+                    <div class="form-group">
+                        <label id="targetInfo">{{_ "admin-settings.test-notifications.target"}}</label>
+                        {{getNotificationTargetText}}
+                    </div>
+                    <div class="form-group">
+                        <label id="cardsetOwnerAdminLabel">{{_ "admin-settings.test-notifications.setTargetID"}}</label>
+                        <input class="form-control" type="text" id="notificationTarget"
+                               value="">
+                        <a id="setNotificationTarget" class="btn btn-raised btn-success">
+                            {{_ "admin-settings.test-notifications.setTarget"}}</a>
+                        <label id="setTargetInfo" for="setNotificationTarget"
+                               style="visibility: hidden;"></label>
+                        <br>
+                        <br>
+                        {{#if checkNotificationTarget}}
+                            <label id="targetInfo">{{_ "admin-settings.test-notifications.send"}}</label>
+                            <a id="sendMail" class="btn btn-raised btn-success">
+                                {{_ "admin-settings.test-notifications.sendMail"}}</a>
+                            <a id="sendWeb" class="btn btn-raised btn-success">
+                                {{_ "admin-settings.test-notifications.sendWeb"}}</a>
+                            <label id="sendInfo" style="visibility: hidden;"></label>
+                        {{/if}}
+                    </div>
                 </form>
             </div>
         </div>
