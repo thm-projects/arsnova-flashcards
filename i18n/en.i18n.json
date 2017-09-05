@@ -19,9 +19,9 @@
       "sendMail": "E-Mail",
       "sendMailError": "E-Mail notification failed",
       "sendMailSuccess": "E-Mail notification succeeded",
-      "sendWeb": "Web Notification",
-      "sendWebError": "Web notification failed",
-      "sendWebSuccess": "Web notification succeeded"
+      "sendWeb": "Push notification",
+      "sendWebError": "Push notification failed",
+      "sendWebSuccess": "Push notification succeeded"
     }
   },
   "intro": {
@@ -857,7 +857,7 @@
       "visible_invalid": "Profile must be public!"
     },
     "mail-settings": {
-      "mail-settings": "Mail settings",
+      "mail-settings": "Sending E-Mail Notifications with Leitner cron",
       "enabled": "Enabled",
       "disabled": "Disabled"
     }

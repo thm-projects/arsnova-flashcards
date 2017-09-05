@@ -3,10 +3,10 @@ import {AdminSettings} from "../../../api/adminSettings.js";
 import "./admin_settings.html";
 
 Template.admin_settings.events({
-	'change #mail-enabled': function () {
+	'click #enableMail': function () {
 		Meteor.call("updateMailSettings", true);
 	},
-	'change #mail-disabled': function () {
+	'click #disableMail': function () {
 		Meteor.call("updateMailSettings", false);
 	},
 	'click #setNotificationTarget': function (evt, tmpl) {
@@ -45,8 +45,8 @@ Template.admin_settings.events({
 });
 
 Template.admin_settings.helpers({
-	isMailEnabled: function (type) {
-		return (type === AdminSettings.findOne({name: "mailSettings"}).enabled) ? "checked" : "";
+	isMailEnabled: function () {
+		return AdminSettings.findOne({name: "mailSettings"}).enabled;
 	},
 	getNotificationTargetText: function () {
 		let user = Meteor.users.findOne({_id: AdminSettings.findOne({name: "testNotifications"}).target});
