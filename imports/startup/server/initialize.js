@@ -464,9 +464,6 @@ Meteor.startup(function () {
 
 	Meteor.users.remove({_id: testNotificationsUser[0]._id});
 	Meteor.users.insert(testNotificationsUser[0]);
-	AdminSettings.insert({
-		target: undefined
-	});
 	AdminSettings.update({
 			name: "testNotifications"
 		},
