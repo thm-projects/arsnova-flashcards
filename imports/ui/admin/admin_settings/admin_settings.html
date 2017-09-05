@@ -12,14 +12,13 @@
         <div class="panel-body panel-body-mail">
             <div class="row" style="margin-bottom:10px; margin-left: 5px">
                 <form>
-                    <label class="radio-inline">
-                        <input type="radio" name="mail" id="mail-enabled" {{isMailEnabled true}}>{{_
-                            "admin.mail-settings.enabled"}}
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="mail" id="mail-disabled" {{isMailEnabled false}}>{{_
-                            "admin.mail-settings.disabled"}}
-                    </label>
+                    {{#if isMailEnabled}}
+                        <a id="disableMail" class="btn btn-raised btn-success">
+                            {{_ "admin.mail-settings.enabled"}}</a>
+                        {{else}}
+                        <a id="enableMail" class="btn btn-raised btn-danger">
+                            {{_ "admin.mail-settings.disabled"}}</a>
+                        {{/if}}
                 </form>
             </div>
         </div>
