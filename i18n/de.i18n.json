@@ -8,7 +8,7 @@
   },
   "admin-settings": {
     "test-notifications": {
-      "title": "Benachrichtigungen Testen",
+      "title": "Benachrichtigungen testen",
       "target": "Ziel:",
       "noTarget": "Kein Ziel gesetzt",
       "setTargetID": "Ziel-ID setzen:",
