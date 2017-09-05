@@ -21,7 +21,8 @@
       "sendMailSuccess": "E-Mail notification succeeded",
       "sendWeb": "Push notification",
       "sendWebError": "Push notification failed",
-      "sendWebSuccess": "Push notification succeeded"
+      "sendWebSuccess": "Push notification succeeded",
+      "waitingForResponse": "Waiting for Server response"
     }
   },
   "intro": {
