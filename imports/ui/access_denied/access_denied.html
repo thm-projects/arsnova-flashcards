@@ -184,6 +184,30 @@
     <p>{{_ "access-denied.reason"}}{{currentUser.blockedtext}}</p>
     <br/>
     <hr/>
-    <button id="logout_access_denied_blocked" type="button" class="btn btn-default">{{_ "access-denied.button"}}</button>
+    <button id="logout_access_denied_blocked" type="button" class="btn btn-danger btn-block btn-raised">{{_ "access-denied.button"}}</button>
   </div>
+</template>
+
+<template name="access_denied_memo_blocked">
+    <div class="text-left col-md-12" id="access-denied-admin">
+        <h2>{{_ "access-denied.title"}}</h2>
+        <p>{{_ "access-denied.memo"}}</p>
+        <br/>
+        <hr/>
+        <button id="back_to_pool" type="button" class="btn btn-danger btn-block btn-raised">{{_ "access-denied.back"}}</button>
+    </div>
+</template>
+
+<template name="access_denied_profile_incomplete_content_only">
+    <div class="text-left col-md-6 col-md-offset-3" id="access-denied-admin">
+        <h2>{{_ "access-denied.title"}}</h2>
+        <p>{{_ "complete-profile.text"}}</p>
+        <br>
+        <hr>
+        <button id="completeProfileGoToProfile"
+                class="btn btn-default btn-block btn-raised btn-success active"
+                data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
+        <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
+                data-dismiss="modal">{{_ "back"}}</button>
+    </div>
 </template>

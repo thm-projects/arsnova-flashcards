@@ -27,9 +27,9 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
-Template.registerHelper("isProfileCompleted", function (id, learningActive) {
-	let cardset = Cardsets.findOne({_id: id});
-	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && learningActive) {
+Template.registerHelper("isProfileCompleted", function (cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id});
+	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive) {
 		return true;
 	}
 	if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {

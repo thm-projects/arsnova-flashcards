@@ -120,3 +120,31 @@ Template.access_denied_content_only.events({
 		Router.go('home');
 	}
 });
+
+/*
+ * ############################################################################
+ * access_denied_content_only
+ * ############################################################################
+ */
+
+Template.access_denied_memo_blocked.events({
+	'click #back_to_pool': function () {
+		Router.go('home');
+	}
+});
+/*
+ * ############################################################################
+ * access_denied_profile_incomplete_content_only
+ * ############################################################################
+ */
+
+Template.access_denied_profile_incomplete_content_only.events({
+	'click #completeProfileGoToProfile': function () {
+		Router.go('profileSettings', {
+			_id: Meteor.userId()
+		});
+	},
+	'click #completeProfileCancel': function () {
+		Router.go('home');
+	}
+});

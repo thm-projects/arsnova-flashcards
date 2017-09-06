@@ -1,4 +1,4 @@
-<template name="cardset" xmlns="http://www.w3.org/1999/html">
+<template name="cardsetAccess">
     {{#if isInRole 'firstLogin'}}
         {{> first_login_content_only}}
     {{else}}
@@ -6,27 +6,46 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-                {{> cardsetInfo}}
-                {{> showLicense}}
-                {{> cardsetForm}}
-                {{> cardsetImportForm}}
-                {{> cardsetPublishForm}}
-                {{> cardsetStartLearnForm}}
-                {{> cardsetEndLearnForm}}
-                {{> selectLicenseForm}}
-                {{> reportCardsetForm}}
-                {{> deleteCardsForm}}
-                {{> resetLeitnerForm}}
-                {{> resetMemoForm}}
-                {{> leaveLearnPhaseForm}}
-                {{> leaveEditorsForm}}
-                {{onEditmodalClose this._id}}
-                {{#if hasCardsetPermission}}
-                    {{#if isLecturerAndHasRequest}}
-                        <div class="col-md-12">
-                            <div class="panel panel-default cardsetInfo">
-                                <div class="panel-body">
-                                    <div class="input-group has-error">
+                {{#if learningActive}}
+                    {{#if isProfileCompleted this._id}}
+                        {{> cardset}}
+                    {{else}}
+                        {{> access_denied_profile_incomplete_content_only}}
+                    {{/if}}
+                {{else}}
+                    {{> cardset}}
+                {{/if}}
+            {{else}}
+                <div class="col-md-12">
+                    <h4>{{_ "permission"}}</h4>
+                </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="cardset">
+    {{> cardsetInfo}}
+    {{> showLicense}}
+    {{> cardsetForm}}
+    {{> cardsetImportForm}}
+    {{> cardsetPublishForm}}
+    {{> cardsetStartLearnForm}}
+    {{> cardsetEndLearnForm}}
+    {{> selectLicenseForm}}
+    {{> reportCardsetForm}}
+    {{> deleteCardsForm}}
+    {{> resetLeitnerForm}}
+    {{> resetMemoForm}}
+    {{> leaveLearnPhaseForm}}
+    {{> leaveEditorsForm}}
+    {{onEditmodalClose this._id}}
+    {{#if hasCardsetPermission}}
+        {{#if isLecturerAndHasRequest}}
+            <div class="col-md-12">
+                <div class="panel panel-default cardsetInfo">
+                    <div class="panel-body">
+                        <div class="input-group has-error">
   											<span class="input-group-btn">
   											  <button id="acceptRequest" class="btn btn-raised btn-success"
                                                       type="button">{{_
@@ -35,41 +54,34 @@
                                                       type="button">{{_
                                                       "cardset.request.decline"}}</button>
   											</span>
-                                        <input id="declineRequestReason" type="text" class="form-control"
-                                               placeholder="Begründung">
-                                    </div>
-                                </div>
-                            </div>
+                            <input id="declineRequestReason" type="text" class="form-control"
+                                   placeholder="Begründung">
                         </div>
-                    {{/if}}
-                    {{> cardsetSidebar}}
-                    {{#if isActiveRoute 'cardsetdetailsid'}}
-                        {{#if learningActiveAndNotEditor}}
-                            {{> leitnerLearning}}
-                        {{else}}
-                            {{#if countCards this._id}}
-                                {{> flashcards cardset=this}}
-                            {{else}}
-                                {{> flashcardsEmpty}}
-                            {{/if}}
-                        {{/if}}
-                    {{/if}}
-                    {{#if isActiveRoute 'cardsetlistid'}}
-                        {{> cardsetList}}
-                    {{/if}}
-                {{else}}
-                    {{> cardsetPreview}}
-                    {{#if countCards this._id}}
-                        {{> flashcards cardset=this}}
-                    {{else}}
-                        {{> flashcardsEmpty}}
-                    {{/if}}
-                {{/if}}
-            {{else}}
-                <div class="col-md-12">
-                    <h4>{{_ "permission"}}</h4>
+                    </div>
                 </div>
+            </div>
+        {{/if}}
+        {{> cardsetSidebar}}
+        {{#if isActiveRoute 'cardsetdetailsid'}}
+            {{#if learningActiveAndNotEditor}}
+                {{> leitnerLearning}}
+            {{else}}
+                {{#if countCards this._id}}
+                    {{> flashcards cardset=this}}
+                {{else}}
+                    {{> flashcardsEmpty}}
+                {{/if}}
             {{/if}}
+        {{/if}}
+        {{#if isActiveRoute 'cardsetlistid'}}
+            {{> cardsetList}}
+        {{/if}}
+    {{else}}
+        {{> cardsetPreview}}
+        {{#if countCards this._id}}
+            {{> flashcards cardset=this}}
+        {{else}}
+            {{> flashcardsEmpty}}
         {{/if}}
     {{/if}}
 </template>
@@ -224,7 +236,7 @@
                 <div id="set-details-learn-region">
                     <div class="well well-sm sidebar-nav">
                         <span class="nav-header-cardset">{{_ "learn"}}</span>
-                        {{#if isProfileCompleted this._id this.learningActive}}
+                        {{#if isProfileCompleted this._id}}
                             <button id="learnBox"
                                     class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
                                     "learnfile"}}</button>
