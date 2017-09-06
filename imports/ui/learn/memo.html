@@ -1,47 +1,56 @@
+<template name="memoAccess">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if hasPermission}}
+                {{#if learningActive}}
+                    {{> access_denied_memo_blocked}}
+                {{else}}
+                    {{> memo}}
+                {{/if}}
+                <!-- Permission denied -->
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>
+
+
 <template name="memo">
     <div class="container">
         <div class="col-xs-12">
-            {{#if isInRole 'firstLogin'}}
-                {{> first_login_content_only}}
-            {{else}}
-                {{#if isInRole 'blocked'}}
-                    {{> access_denied_content_only}}
+            {{> cardHint}}
+            <div id="memoFlashcard">
+                {{#unless isFinish}}
+                    {{> flashcards}}
                 {{else}}
-                    {{#if hasPermission}}
-                        {{> cardHint}}
-                        <div id="memoFlashcard">
-                            {{#unless isFinish}}
-                                {{> flashcards}}
-                            {{else}}
-                                {{> flashcardsEmpty}}
-                            {{/unless}}
-                            {{#unless isEmpty}}
-                                {{#unless isFinish}}
-                                    {{#if showAnswer}}
-                                        {{> memoRate}}
-                                    {{else}}
-                                        <div class="btn-group btn-group-raised btn-group-justified">
-                                            <div class="btn-group">
-                                                <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
-                                                        title="success">{{_ "cardmemo.showanswer"}}</button>
-                                            </div>
-                                        </div>
-                                    {{/if}}
-                                {{/unless}}
-                            {{/unless}}
-                        </div>
-                        <!-- Permission denied -->
-                    {{else}}
-                        <h4>{{_ "permission"}}</h4>
-                    {{/if}}
-                    {{> memoPictureForm}}
-                    <br>
-                    <br>
-                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left">{{_ "backbutton"}}</span>
-                    </button>
-                {{/if}}
-            {{/if}}
+                    {{> flashcardsEmpty}}
+                {{/unless}}
+                {{#unless isEmpty}}
+                    {{#unless isFinish}}
+                        {{#if showAnswer}}
+                            {{> memoRate}}
+                        {{else}}
+                            <div class="btn-group btn-group-raised btn-group-justified">
+                                <div class="btn-group">
+                                    <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
+                                            title="success">{{_ "cardmemo.showanswer"}}</button>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{/unless}}
+                {{/unless}}
+                {{> memoPictureForm}}
+                <br>
+                <br>
+                <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                    <span class="pull-left">{{_ "backbutton"}}</span>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -91,7 +100,8 @@
 </template>
 
 <template name="memoPictureForm">
-     <div class="modal fade col-md-6" id="memoPictureModal" tabindex="-1" role="dialog" aria-labelledby="memoPictureModalTitle">
+    <div class="modal fade col-md-6" id="memoPictureModal" tabindex="-1" role="dialog"
+         aria-labelledby="memoPictureModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -14,7 +14,7 @@ Meteor.methods({
 	 * */
 	addToLeitner: function (cardset_id) {
 		check(cardset_id, String);
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !Meteor.call("isProfileComplete", Meteor.userId())) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id});
@@ -181,6 +181,22 @@ Meteor.methods({
 			return _.uniq(data, false, function (d) {
 				return d.user_id;
 			});
+		}
+	},
+	/** Checks if the user has completed his profile
+	 *  @param {string} user - The id of the user who needs to be checked
+	 *  @returns {Boolean} - True if the profile is complete, false if not
+	 * */
+	isProfileComplete: function (user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let user = Meteor.users.findOne({_id: user_id});
+			if ((user.profile.birthname !== "" && user.profile.birthname !== undefined) && (user.profile.givenname !== "" && user.profile.givenname !== undefined) && (user.email !== "" && user.email !== undefined)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	},
 	/** Function checks if there are any cards left to learn for a user
@@ -378,12 +394,14 @@ Meteor.methods({
 				var learners = Meteor.call("getLearners", cardsets[i]._id);
 				if (cardsets[i].learningEnd.getTime() > new Date().getTime()) {
 					for (var k = 0; k < learners.length; k++) {
-						var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
-						var user = Meteor.users.findOne(learners[k].user_id);
-						if (!activeCard) {
-							Meteor.call("setCards", cardsets[i], user, false);
-						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
-							Meteor.call("resetCards", cardsets[i], user);
+						if (Meteor.call("isProfileComplete", learners[k].user_id)) {
+							var activeCard = Meteor.call("getActiveCard", cardsets[i]._id, learners[k].user_id);
+							var user = Meteor.users.findOne(learners[k].user_id);
+							if (!activeCard) {
+								Meteor.call("setCards", cardsets[i], user, false);
+							} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
+								Meteor.call("resetCards", cardsets[i], user);
+							}
 						}
 					}
 				} else {
