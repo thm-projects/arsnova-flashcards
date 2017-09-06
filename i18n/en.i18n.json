@@ -867,7 +867,9 @@
     "title": "Access Denied",
     "text": "You don't have permission to open this page!",
     "button": "Close",
-    "reason": "Reason for block: "
+    "reason": "Reason for block: ",
+    "memo": "The usage of Wozniak is blocked as long as the cardset is in an active learning-phase.",
+    "back": "Back"
   },
   "first-login": {
     "text": "I have read the general terms & conditions and the data protection terms and accept them.",

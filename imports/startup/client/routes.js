@@ -116,10 +116,9 @@ Router.route('/box/:_id', {
 
 Router.route('/memo/:_id', {
 	name: 'memo',
-	template: 'memo',
+	template: 'memoAccess',
 	data: function () {
-		var currentMemo = this.params._id;
-		return Cardsets.findOne({_id: currentMemo});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 

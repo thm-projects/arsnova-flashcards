@@ -865,7 +865,9 @@
     "title": "Zugriff verboten",
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
-    "reason": "Grund der Sperrung: "
+    "reason": "Grund der Sperrung: ",
+    "memo": "Das nutzen von Wozniak ist gesperrt solange der Kartensatz eine aktive Lernphase hat.",
+    "back": "Zurück"
   },
   "first-login": {
     "text": "Ich habe die allgemeinen Geschäftsbedingungen und Datenschutzerklärung gelesen und bin damit einverstanden.",
