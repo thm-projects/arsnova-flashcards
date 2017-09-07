@@ -35,6 +35,10 @@ Template.registerHelper("getNextCardTime", function () {
 		user_id: Meteor.userId(),
 		box: {$ne: 6}
 	}, {sort: {nextDate: 1}}).nextDate;
+	let learningEnd = Cardsets.findOne({_id: Router.current().params._id}).learningEnd;
+	if (nextCardDate.getTime() > learningEnd.getTime()) {
+		return TAPi18n.__('noMoreCardsBeforeEnd');
+	}
 	let nextDate = moment(nextCardDate);
 	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dayIntervalHour) {
 		nextDate.add(1, 'day');

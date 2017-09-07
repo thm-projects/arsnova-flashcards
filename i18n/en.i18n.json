@@ -571,6 +571,7 @@
   "learnPhaseActiveHeader": "Learning-Phase active",
   "learnPhaseActiveBody": "Manual learning of leitner and super-memo is deactivated.",
   "learnPhaseEnded": "The Learning-Phase ended.",
+  "noMoreCardsBeforeEnd": "There are no more cards left that can be learned, before the learning-phase ends.",
   "deadlinePrologue": "You've got time until ",
   "deadlineEpilogue1": " , to learn the currently active cards.",
   "deadlineEpilogue2": " , to learn the currently active cards, otherwise your entire learning progress will be reset for this cardset.",
