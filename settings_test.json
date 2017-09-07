@@ -14,6 +14,9 @@
       "displayCas": true,
       "displayTestingBackdoor": true
     },
+    "leitner": {
+      "dayIntervalHour": 1
+    },
     "university": {
       "singleUniversity": false,
       "default": "THM"

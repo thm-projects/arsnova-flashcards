@@ -1,3 +1,4 @@
+import {Meteor} from "meteor/meteor";
 import {SyncedCron} from "meteor/percolate:synced-cron";
 
 /**
@@ -9,7 +10,7 @@ export class CronScheduler {
 		SyncedCron.add({
 			name: "leitnerCron",
 			schedule: function (parser) {
-				return parser.recur().on('01:00:00').time();
+				return parser.recur().on(Meteor.settings.public.leitner.dayIntervalHour).hour();
 			},
 			job: function () {
 				Meteor.call("updateLeitnerCards");

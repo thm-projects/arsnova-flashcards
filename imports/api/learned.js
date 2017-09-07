@@ -143,9 +143,8 @@ if (Meteor.isServer) {
 				query.card_id = card_id;
 				query.cardset_id = cardset_id;
 				query.user_id = Meteor.userId();
-				if (cardset.learningActive) {
-					query.active = true;
-				}
+				query.active = true;
+
 				var currentLearned = Learned.findOne(query);
 
 				if (currentLearned !== undefined) {
@@ -156,9 +155,7 @@ if (Meteor.isServer) {
 						selectedBox = 1;
 					}
 
-					if (cardset.learningActive) {
-						nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
-					}
+					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
 
 					Learned.update(currentLearned._id, {
 						$set: {

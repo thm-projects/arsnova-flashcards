@@ -13,6 +13,9 @@
       "displayGoogle": true,
       "displayCas": true
     },
+    "leitner": {
+      "dayIntervalHour": 1
+    },
     "university": {
       "singleUniversity": true,
       "default": "THM"
