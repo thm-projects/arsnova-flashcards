@@ -86,15 +86,15 @@ function addToLeitner(cardset_id) {
  */
 
 Template.cardset.onCreated(function () {
-	if (Session.get('activeCardsetID') !== Router.current().params._id) {
-		Session.set('activeCardsetID', Router.current().params._id);
+	if (Session.get('activeCardsetID') !== this._id) {
+		Session.set('activeCardsetID', this._id);
 		Session.set('modifiedCard', undefined);
 	}
 });
 
 Template.cardset.rendered = function () {
-	Meteor.subscribe("previewCards", Router.current().params._id);
-	Session.set('cardsetId', Router.current().params._id);
+	Meteor.subscribe("previewCards", this._id);
+	Session.set('cardsetId', this._id);
 
 	var customerId = Meteor.user().customerId;
 	if ($('#payment-form').length) {
@@ -636,7 +636,7 @@ Template.leaveEditorsForm.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		$('#leaveEditorsModal').on('hidden.bs.modal', function () {
-			Meteor.call("leaveEditors", Router.current().params._id);
+			Meteor.call("leaveEditors", this._id);
 		});
 	}
 });
@@ -684,20 +684,12 @@ Template.cardsetSidebar.events({
 			}
 			if (result) {
 				Session.set("cardsetStats", result);
-				Router.go('cardsetstats', {_id: Router.current().params._id});
+				Router.go('cardsetstats', {_id: this._id});
 			}
 		});
 	},
 	"click #manageEditors": function () {
-		Meteor.call("getEditors", this._id, function (error, result) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error could not receive content for editors');
-			}
-			if (result) {
-				Session.set("cardsetEditors", result);
-				Router.go('cardseteditors', {_id: Router.current().params._id});
-			}
-		});
+		Router.go('cardseteditors', {_id: this._id});
 	}
 });
 
@@ -760,7 +752,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 
 Template.cardsetLearnActivityStatistic.events({
 	"click #exportCSV": function () {
-		var cardset = Cardsets.findOne({_id: Router.current().params._id});
+		var cardset = Cardsets.findOne({_id: this._id});
 		var hiddenElement = document.createElement('a');
 		var header = [];
 		header[0] = TAPi18n.__('subject1');
@@ -788,7 +780,7 @@ Template.cardsetLearnActivityStatistic.events({
 		});
 	},
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+		Router.go('cardsetdetailsid', {_id: this._id});
 	}
 });
 
@@ -797,21 +789,29 @@ Template.cardsetLearnActivityStatistic.events({
 * cardsetManageEditors
 * ############################################################################
 */
+
 Template.cardsetManageEditors.helpers({
 	getEditors: function () {
-		return Session.get("cardsetEditors");
+		Meteor.call("getEditors", this._id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for editors');
+			}
+			if (result) {
+				return result;
+			}
+		});
 	}
 });
 
 Template.cardsetManageEditors.events({
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+		Router.go('cardsetdetailsid', {_id: this._id});
 	},
 	"click .addEditor": function (event) {
-		Meteor.call("addEditor", Router.current().params._id, $(event.target).data('id'));
+		Meteor.call("addEditor", this._id, $(event.target).data('id'));
 	},
 	"click .removeEditor": function (event) {
-		Meteor.call("removeEditor", Router.current().params._id, $(event.target).data('id'));
+		Meteor.call("removeEditor", this._id, $(event.target).data('id'));
 	}
 });
 
