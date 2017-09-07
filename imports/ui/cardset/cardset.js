@@ -93,7 +93,7 @@ Template.cardset.onCreated(function () {
 });
 
 Template.cardset.rendered = function () {
-	Meteor.subscribe("previewCards", this._id);
+	Meteor.subscribe("previewCards", Router.current().params._id);
 	Session.set('cardsetId', this._id);
 
 	var customerId = Meteor.user().customerId;

@@ -39,7 +39,12 @@ Template.registerHelper("getNextCardTime", function () {
 	if (nextCardDate.getTime() > learningEnd.getTime()) {
 		return TAPi18n.__('noMoreCardsBeforeEnd');
 	}
-	let nextDate = moment(nextCardDate);
+	let nextDate;
+	if (nextCardDate.getTime() < new Date().getTime()) {
+		nextDate = moment(new Date());
+	} else {
+		nextDate = moment(nextCardDate);
+	}
 	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dayIntervalHour) {
 		nextDate.add(1, 'day');
 	}
