@@ -853,7 +853,7 @@ Template.cardsetStartLearnForm.events({
 		document.getElementById('inputLearningStart').setAttribute("max", (end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + (end.getDate() - 1)));
 	},
 	"click #confirmLearn": function () {
-		if (!Cardsets.findOne(this._id).learningActive) {
+		if (!Cardsets.findOne(Router.current().params._id).learningActive) {
 			var maxCards = $('#inputMaxCards').val();
 			var daysBeforeReset = $('#inputDaysBeforeReset').val();
 			var learningStart = new Date($('#inputLearningStart').val());
@@ -873,6 +873,9 @@ Template.cardsetStartLearnForm.events({
 
 			Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
 		}
+		$('#confirmLearnModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
 	},
 	"click #cancelLearn": function () {
 		$('#inputMaxCards').val(null);
@@ -935,6 +938,9 @@ Template.cardsetEndLearnForm.events({
 		if (Cardsets.findOne(Router.current().params._id).learningActive) {
 			Meteor.call("deactivateLearning", Router.current().params._id);
 		}
+		$('#confirmEndLearnModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
 	}
 });
 
