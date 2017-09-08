@@ -55,8 +55,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	data: function () {
-		var currentCardset = this.params._id;
-		return Cardsets.findOne({_id: currentCardset});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 
@@ -91,16 +90,14 @@ Router.route('/cardsetlist/:_id', {
 Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	data: function () {
-		var currentCardset = this.params._id;
-		return Cardsets.findOne({_id: currentCardset});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 
 Router.route('/cardset/:_id/editcard/:cardid', {
 	name: 'editCard',
 	data: function () {
-		var currentCard = this.params.cardid;
-		return Cards.findOne({_id: currentCard});
+		return Cards.findOne({_id: this.params.cardid});
 	}
 });
 
@@ -164,8 +161,7 @@ Router.route('/admin/cardset/:_id', {
 	template: 'admin_cardset',
 	layoutTemplate: 'admin_main',
 	data: function () {
-		var currentCardset = this.params._id;
-		return Cardsets.findOne({_id: currentCardset});
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 
@@ -180,8 +176,7 @@ Router.route('/admin/card/:_id', {
 	template: 'admin_card',
 	layoutTemplate: 'admin_main',
 	data: function () {
-		var currentCard = this.params._id;
-		return Cards.findOne({_id: currentCard});
+		return Cards.findOne({_id: this.params._id});
 	}
 });
 
@@ -196,8 +191,7 @@ Router.route('/admin/user/:_id', {
 	template: 'admin_user',
 	layoutTemplate: 'admin_main',
 	data: function () {
-		var currentUser = this.params._id;
-		return Meteor.users.findOne({_id: currentUser});
+		return Meteor.users.findOne({_id: this.params._id});
 	}
 });
 
