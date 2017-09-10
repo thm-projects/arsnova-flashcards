@@ -588,11 +588,11 @@ Template.profileSettings.events({
 Template.profileMembership.rendered = function () {
 	var customerId = Meteor.user().customerId;
 
-	if ($('#subscribe-form').length) {
-		Meteor.call('getClientToken', customerId, function (error, clientToken) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
-			} else {
+	Meteor.call('getClientToken', customerId, function (error, clientToken) {
+		if (error) {
+			throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+		} else {
+			if ($('#subscribe-form').length) {
 				braintree.setup(clientToken, "dropin", {
 					container: "subscribe-form",
 					defaultFirst: true,
@@ -612,8 +612,8 @@ Template.profileMembership.rendered = function () {
 					}
 				});
 			}
-		});
-	}
+		}
+	});
 };
 
 Template.profileMembership.events({
@@ -670,14 +670,18 @@ Template.profileMembership.helpers({
  * ############################################################################
  */
 
+Template.profileBilling.onCreated(function () {
+	Session.set("switchedSitesCheck", undefined);
+});
+
 Template.profileBilling.onRendered(function () {
 	var customerId = Meteor.user().customerId;
 
-	if ($('#paymentMethodDropIn').length) {
-		Meteor.call('getClientToken', customerId, function (error, clientToken) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
-			} else {
+	Meteor.call('getClientToken', customerId, function (error, clientToken) {
+		if (error) {
+			throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+		} else {
+			if ($('#paymentMethodDropIn').length) {
 				braintree.setup(clientToken, "dropin", {
 					container: "paymentMethodDropIn",
 					defaultFirst: true,
@@ -697,14 +701,15 @@ Template.profileBilling.onRendered(function () {
 					}
 				});
 			}
-		});
-	}
+		}
+	});
 
-	if ($('#payoutDropIn').length) {
-		Meteor.call('getClientToken', customerId, function (error, clientToken) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
-			} else {
+
+	Meteor.call('getClientToken', customerId, function (error, clientToken) {
+		if (error) {
+			throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+		} else {
+			if ($('#payoutDropIn').length) {
 				braintree.setup(clientToken, "dropin", {
 					container: "payoutDropIn",
 					onPaymentMethodReceived: function (response) {
@@ -727,8 +732,8 @@ Template.profileBilling.onRendered(function () {
 					}
 				});
 			}
-		});
-	}
+		}
+	});
 });
 
 Template.profileBilling.helpers({
@@ -1103,13 +1108,13 @@ Template.profileBadges.helpers({
 
 		index++; //index in DB starts at 1
 		var earnedBadges = Meteor.user().earnedBadges;
-		if (gained) {
+		if (earnedBadges && gained) {
 			for (var i = 0; i < earnedBadges.length; i++) {
 				if (index === earnedBadges[i].index && rank === earnedBadges[i].rank) {
 					return gained;
 				}
 			}
-			Meteor.call("updateEarnedBadges", Meteor.userId(), index, rank);
+			Meteor.call("updateEarnedBadges", index, rank);
 			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
 		}
 		return gained;

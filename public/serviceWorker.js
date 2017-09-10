@@ -37,7 +37,7 @@ self.addEventListener('push', function (event) {
 	event.waitUntil(
 		self.registration.showNotification('THMcards', {
 			body: payload,
-			icon: 'https://git.thm.de/uploads/project/avatar/374/cards_logo.png'
+			icon: 'https://git.thm.de/uploads/system/project/avatar/374/cards_logo.png'
 		})
 	);
 });
