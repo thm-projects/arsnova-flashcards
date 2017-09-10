@@ -75,18 +75,24 @@ Template.registerHelper("isCardsetEditor", function (user_id) {
 });
 
 Template.registerHelper("learningActiveAndNotEditor", function () {
-	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
-	return (cardset.owner !== Meteor.userId() && !cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+	if (Router.current().params._id) {
+		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+		return (cardset.owner !== Meteor.userId() && !cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+	}
 });
 
 Template.registerHelper("learningActiveAndEditor", function () {
-	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
-	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+	if (Router.current().params._id) {
+		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
+	}
 });
 
 Template.registerHelper("isEditor", function () {
-	let cardset = Cardsets.findOne({"_id": Router.current().params._id});
-	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+	if (Router.current().params._id) {
+		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+	}
 });
 
 Template.registerHelper("isLecturerOrPro", function () {
@@ -330,7 +336,7 @@ const helper = new MeteorMathJax.Helper({
 });
 
 Template.registerHelper('mathjax', helper.getTemplate());
-MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js';
+MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js';
 MeteorMathJax.defaultConfig = {
 	config: ["TeX-AMS-MML_HTMLorMML.js"],
 	jax: ["input/TeX", "input/MathML", "output/HTML-CSS", "output/NativeMML", "output/PreviewHTML"],

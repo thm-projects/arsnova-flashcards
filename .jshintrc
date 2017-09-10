@@ -54,6 +54,7 @@
     "browser": true,
     "client": true,
     "module": true,
-    "expect": true
+    "expect": true,
+    "Hammer": true
   }
 }

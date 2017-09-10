@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Learned} from "../../api/learned.js";
 import "./card.html";
+import '/client/hammer.js';
 
 /*
  * ############################################################################
@@ -490,6 +491,20 @@ Template.cardHint.helpers({
 
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+});
+
+Template.flashcards.onRendered(function () {
+	if (Router.current().route.getName() === "cardsetdetailsid") {
+		var mc = new Hammer.Manager(document.getElementById('set-details-region'));
+		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
+		mc.on("swipe", function (ev) {
+			if (ev.deltaX < 0) {
+				document.getElementById('rightCarouselControl').click();
+			} else {
+				document.getElementById('leftCarouselControl').click();
+			}
+		});
+	}
 });
 
 Template.flashcards.helpers({
