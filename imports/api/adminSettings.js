@@ -6,8 +6,12 @@ export const AdminSettings = new Mongo.Collection("adminSettings");
 
 if (Meteor.isServer) {
 	Meteor.publish('default_db_data', function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
-			return AdminSettings.find({});
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			if (Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+				return AdminSettings.find({});
+			} else {
+				return AdminSettings.find({name: "seqSettings"});
+			}
 		}
 	});
 }
