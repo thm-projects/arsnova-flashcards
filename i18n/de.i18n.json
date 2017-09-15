@@ -159,8 +159,8 @@
     "confirm": "Bestätigen"
   },
   "nav-list": {
-    "learn": "Lern",
-    "create": "Erstelle"
+    "learn": "Kartensatz lernen",
+    "create": "Erstellte Kartensätze"
   },
   "set-list": {
     "name": "Name",
@@ -192,7 +192,7 @@
     "newset": "Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz zum lernen",
+    "emptytextlist": "Wähle einen Kartensatz aus",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
@@ -569,7 +569,7 @@
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase aktiv",
-  "learnPhaseActiveBody": "Manuelles lernen von Leitner und Super-Memo ist deaktiviert.",
+  "learnPhaseActiveBody": "Manuelles Lernen nach Leitner und Woźniak ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ender der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
@@ -580,12 +580,12 @@
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",
   "released": " freigeschaltet.",
-  "learn": "Lernen",
+  "learn": "Lernmodus",
   "manage": "Verwalten",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Wozniak",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
-  "resetMemo": "Lernen nach Wozniak zurücksetzen",
+  "resetMemo": "Lernen nach Woźniak zurücksetzen",
   "statistics": "Kartensatz Statistik",
   "report": "Kartensatz/Benutzer melden",
   "meteor": "Meteor",
@@ -903,7 +903,7 @@
     "textIntroEnding": "Sehr geehrte/r Teilnehmer/in,\n\n",
     "textEnding": "Heute endet die Lernphase des Kartensatzes ",
     "subjectReset": "THMcards: Ihr Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
-    "textReset": "durch inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "textReset": "durch Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
