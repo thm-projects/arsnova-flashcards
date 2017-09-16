@@ -395,7 +395,7 @@ Template.poolCardsetRow.helpers({
 		}
 	},
 	getPrice: function () {
-		if (this.price !== 0) {
+		if (this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])))) {
 			return this.price + '€';
 		}
 	},
