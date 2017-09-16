@@ -447,6 +447,9 @@ Template.cardsetInfo.onRendered(function () {
 });
 
 Template.cardsetInfo.helpers({
+	canViewForFree: function () {
+		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
+	},
 	getAverage: function () {
 		var ratings = Ratings.find({
 			cardset_id: this._id
