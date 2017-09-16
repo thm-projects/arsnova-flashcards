@@ -370,17 +370,24 @@ Meteor.methods({
 			}
 
 			if (user.mailNotification && Meteor.call("mailsEnabled")) {
-				var mail = new MailNotifier();
-				if (isReset) {
-					mail.prepareMailReset(cardset, user._id);
-				} else {
-					mail.prepareMail(cardset, user._id);
+				try {
+					var mail = new MailNotifier();
+					if (isReset) {
+						mail.prepareMailReset(cardset, user._id);
+					} else {
+						mail.prepareMail(cardset, user._id);
+					}
+				} catch (error) {
+					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
 				}
 			}
-
 			if (user.webNotification) {
-				var web = new WebNotifier();
-				web.prepareWeb(cardset, user._id);
+				try {
+					var web = new WebNotifier();
+					web.prepareWeb(cardset, user._id);
+				} catch (error) {
+					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
+				}
 			}
 		}
 	},
