@@ -141,7 +141,9 @@
                                 href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
                         {{/if}}
                         {{#if hasAmount}}
-                            <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
+                            {{#unless canViewForFree}}
+                                <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
+                            {{/unless}}
                         {{/if}}
                         {{#if isPurchased}}
                             <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
