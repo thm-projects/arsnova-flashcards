@@ -104,7 +104,7 @@
   },
   "confirm-enter-learnphase": {
     "title": "Aktiver Lernphase beitreten",
-    "text": "Sie erlauben dem Dozent des Kartensatzes bei Beitritt folgenden Zugriff auf Ihre Daten:",
+    "text": "Durch Ihren Beitritt erlauben Sie der Autorin bzw. dem Autor des Kartensatzes folgenden Zugriff auf Ihre Daten:",
     "text2": "Diese Daten werden nur zur Benotung Ihrer Leistung verwendet.",
     "enter": "Beitreten",
     "close": "Schließen"
@@ -112,21 +112,21 @@
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
     "title": "Aktive Lernphase verlassen",
-    "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
+    "text": "Wollen Sie die aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr Lernfortschritt für diesen Kartensatz gelöscht."
   },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeiter Gruppe verlassen",
     "title": "Bearbeiter Gruppe verlassen",
-    "text": "Wollen Sie sich Ihre Bearbeiter Berechtigung für den Kartensatz \"__name__\" entfernen?"
+    "text": "Wollen Sie Ihre Bearbeiter-Berechtigung für den Kartensatz \"__name__\" entfernen?"
   },
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\" Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
-    "text": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
+    "text": "Falls Sie sicher sind, dass Sie THMcards nicht mehr verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
     "text2": "Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
@@ -314,7 +314,7 @@
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
       "subscribe": "Pro-Version abonnieren",
-      "lecturer": "Dozent",
+      "lecturer": "Dozentenstatus anfragen",
       "send": "Anfrage versenden, um alle Vorteile eines Dozenten zu erhalten.",
       "lecturerActivatet": "Sie sind als Dozent/in freigeschaltet.",
       "name": "Name",
@@ -334,7 +334,7 @@
       "disburse": "auszahlen",
       "progress": "Auszahlung wird bearbeitet",
       "success": "Auszahlung wurde durchgeführt",
-      "failed": "Auszahlung nicht freigeschaltet. Wenden Sie sich an ihren Administrator."
+      "failed": "Auszahlung nicht freigeschaltet. Wenden Sie sich bitte an Ihren Administrator."
     },
     "revenue": {
       "header": "Umsatzhistorie",
@@ -504,7 +504,7 @@
     "rateanswer": "Bewerte deine Antwort",
     "rate0": "Blackout",
     "rate1": "Falsche Antwort, aber an die Richtige erinnert",
-    "rate2": "Falsche Antwort, aber leicht an die Richtige erinnert",
+    "rate2": "Falsche Antwort, aber leicht an die richtige erinnert",
     "rate3": "Richtige Antwort nach längerem Überlegen",
     "rate4": "Richtige Antwort nach kurzem Zögern",
     "rate5": "Perfekte Antwort",
@@ -571,7 +571,7 @@
   "learnPhaseActiveHeader": "Lernphase aktiv",
   "learnPhaseActiveBody": "Manuelles Lernen nach Leitner und Woźniak ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
-  "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ender der Lernphase gelernt werden können.",
+  "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeitig aktiven Karten zu bearbeiten.",
   "deadlineEpilogue2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt in diesem Kartzensatz zurückgesetzt.",
@@ -606,7 +606,7 @@
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "cardsubject_required": "Bitte Thema ausfüllen!",
-  "text_max": "Es sind nur 10000 Zeichen erlaubt!",
+  "text_max": "Es sind nur 10.000 Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
   "newcard": "Neue Karte",
   "editcard": "Karte bearbeiten",
@@ -654,7 +654,7 @@
   "box_export_given_name": "Vorname",
   "box_export_statistics": "Statistiken",
   "box_export_mail": "E-Mail",
-  "clickcart": "Klicke auf die Karte um Sie zu drehen",
+  "clickcart": "Klicke auf die Karte, um sie zu drehen",
   "choosesubject": "Wähle ein Fach auf der linken Seite",
   "carddecks": "Kartensätze",
   "gold": "Gold",
@@ -688,20 +688,20 @@
     "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
-    "lecturer": "Dozent",
+    "lecturer": "Dozent/in",
     "mail": "Mail",
     "joined": "Beigetreten",
     "blocked": "Blockiert",
     "created": "Erstelldatum",
     "edit": "Bearbeiten",
     "delete": "Löschen",
-    "edituser": "Benutzer bearbeiten",
+    "edituser": "Benutzer/in bearbeiten",
     "editcardset": "Kartensatz bearbeiten",
     "editcard": "Karte bearbeiten",
-    "deleteuser": "Benutzer löschen",
+    "deleteuser": "Benutzer/in löschen",
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
-    "notifyuser": "Benutzer benachrichtigen",
+    "notifyuser": "Benutzer/in benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
     "deletedUser": "Gelöschter Benutzer",
@@ -718,10 +718,10 @@
     "replyrsender": "Mail an Absender",
     "request": "Anfrage",
     "deleteallnotifications": "Alle Nachrichten löschen",
-    "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
+    "optionNotPossible": "Nicht möglich (Benutzer/in gelöscht)",
     "reportedUser": "Gemeldeter Benutzer",
     "reportedCardSet": "Gemeldeter Kartensatz",
-    "adminNotificationComplaintUser": "Admin-Benachrichtigung (Beschwerde Benutzer)",
+    "adminNotificationComplaintUser": "Adminbenachrichtigung (Beschwerde Benutzer)",
     "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
     "lecturerRequest": "Dozenten-Anfrage",
     "yes": "Ja",
@@ -757,9 +757,9 @@
       "cancel": "Abbrechen"
     },
     "message": {
-      "messageUser": "Benutzer benachrichtigen",
+      "messageUser": "Benutzer/in benachrichtigen",
       "reason": "Grund",
-      "reportuser": "Beschwerde Benutzer",
+      "reportuser": "Beschwerde Benutzer/in",
       "reportcardset": "Beschwerde Kartensatz",
       "cardset": "Kartensatz",
       "noCardsets": "Keine Kartensätze",
@@ -799,9 +799,9 @@
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!",
-      "changeOwner": "Besitzer ändern",
-      "changeOwnerFailure": "Benutzer nicht gefunden",
-      "changeOwnerSuccess": "Besitzer erfolgreich geändert",
+      "changeOwner": "Besitzer/in ändern",
+      "changeOwnerFailure": "Benutzer/in nicht gefunden",
+      "changeOwnerSuccess": "Besitzer/in erfolgreich geändert",
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
       "removeFromWordcloud": "Entfernen"
@@ -809,7 +809,7 @@
     "card": {
       "header": "Karte",
       "edit": "Bearbeite",
-      "username": "Benutzer:",
+      "username": "Benutzer/in:",
       "cardsetname": "Kartensatz:",
       "info": "Karten Informationen",
       "settings": "Karten Einstellungen",
@@ -824,9 +824,9 @@
       "text_max": "Es sind nur 10.000 Zeichen erlaubt!"
     },
     "user": {
-      "header": "Benutzer",
+      "header": "Benutzer/in",
       "edit": "Bearbeite",
-      "info": "Benutzer Informationen",
+      "info": "Benutzer-Informationen",
       "username": "Kennung:",
       "title": "Akademischer Titel (öffentlich):",
       "birthname": "Nachname (öffentlich):",
@@ -838,12 +838,12 @@
       "option1": "Ja",
       "option2": "Nein",
       "email": "E-Mail",
-      "status": "Benutzer Status",
+      "status": "Benutzerstatus",
       "online": "Status:",
       "lastLogin": "Letzter Login:",
       "clock": " Uhr",
       "roles": "Benutzerrollen",
-      "blocked": "Benutzer blockieren",
+      "blocked": "Benutzer/in blockieren",
       "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
       "editortext": "Wollen Sie dem Benutzer Admin-Rechte geben? Als Admin User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
@@ -869,7 +869,7 @@
     "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: ",
-    "memo": "Das nutzen von Wozniak ist gesperrt solange der Kartensatz eine aktive Lernphase hat.",
+    "memo": "Das Nutzen von Wozniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
     "back": "Zurück"
   },
   "first-login": {
@@ -892,23 +892,23 @@
     "textIntro": "Hallo ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
-    "textDate2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt zurückgesetzt!",
+    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu bearbeiten, sonst wird dein gesamter Lernfortschritt zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus dem Kartensatz ",
     "newCards2Plural": " Karten aus dem Kartensatz ",
     "mailCard" : "Der Kartensatz ",
     "mailCard1" : " benötigt deine Aufmerksamkeit!\n\n",
-    "greetings": "\n\nIhr THMCards-Team",
+    "greetings": "\n\nDein THMcards-Team",
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
-    "textIntroEnding": "Sehr geehrte/r Teilnehmer/in,\n\n",
-    "textEnding": "Heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Ihr Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
-    "textReset": "durch Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "textIntroEnding": "Hallo,\n\n",
+    "textEnding": "heute endet die Lernphase des Kartensatzes ",
+    "subjectReset": "THMcards: Dein Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
+    "textReset": "wegen Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2017 THMcards",
     "my-cardset": "Zum Kartensatz...",
-    "auto-generated": "Bitte antworten Sie nicht auf diese Mail, sie wurde automatisch erstellt."
+    "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   }
 }
