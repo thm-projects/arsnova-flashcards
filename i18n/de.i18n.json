@@ -1,7 +1,7 @@
 {
   "admin-interval": {
-    "errorAllFields": "Bitte alle Felder ausfüllen",
-    "errorBiggerThan": "Intervall 1 muss kleiner sein als 2 sein und 2 muss kleiner sein als 3.",
+    "errorAllFields": "Bitte fülle aller Felder aus",
+    "errorBiggerThan": "Intervall 1 muss kleiner sein als Interval 2 und Intervall 2 muss kleiner sein als Intervall 3.",
     "errorBigger999": "Bitte wähle eine Zahl kleiner als 999",
     "biggerNull": "Bitte wähle eine Zahl größer als 0",
     "existingCourse": "Dieser Eintrag ist bereits vorhanden."
@@ -22,7 +22,7 @@
       "sendWeb": "Push-Benachrichtigung",
       "sendWebError": "Push-Benachrichtigung fehlgeschlagen",
       "sendWebSuccess": "Push-Benachrichtigung erfolgreich",
-      "waitingForResponse": "Warte auf Server Rückmeldung"
+      "waitingForResponse": "Warte auf Server-Rückmeldung"
     }
   },
   "intro": {
@@ -70,7 +70,7 @@
     "approved": "Freigegeben",
     "pending": "Freigabe ausstehend",
     "progress": "In Bearbeitung",
-    "reporteduser": "Gemeldeter Benutzer/innen",
+    "reporteduser": "Gemeldete Benutzer/innen",
     "reportedcardset": "Gemeldeter Kartensatz",
     "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
@@ -79,7 +79,7 @@
     "content": "Kartensatz: ",
     "deadline": "\nFrist: ",
     "warning": "\nNicht bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
-    "admin": "Sie sind angemeldet als Admin!",
+    "admin": "Du bist angemeldet als Admin!",
     "cards": "\nKarten: "
   },
   "input-group": {
@@ -96,42 +96,42 @@
   },
   "confirm-form": {
     "title": "Karte löschen",
-    "text": "Wollen Sie diese Karte wirklich löschen?"
+    "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
     "title": "Kartensatz verlassen",
-    "text": "Wollen Sie diesen Kartensatz wirklich verlassen? Wenn Sie den Vorgang bestätigen, geht der gesamte Lernfortschritt des Kartensatzes verloren."
+    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, geht dein gesamter Lernfortschritt des Kartensatzes verloren."
   },
   "confirm-enter-learnphase": {
     "title": "Aktiver Lernphase beitreten",
-    "text": "Sie erlauben dem Dozent des Kartensatzes bei Beitritt folgenden Zugriff auf Ihre Daten:",
-    "text2": "Diese Daten werden nur zur Benotung Ihrer Leistung verwendet.",
+    "text": "Durch deinen Beitritt erlaubst du der Autorin bzw. dem Autor des Kartensatzes folgenden Zugriff auf deine Daten:",
+    "text2": "Diese Daten werden nur zur Bonusvergabe verwendet.",
     "enter": "Beitreten",
     "close": "Schließen"
   },
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
     "title": "Aktive Lernphase verlassen",
-    "text": "Wollen Sie diese aktive Lernphase wirklich verlassen? Wenn Sie den Vorgang bestätigen, wird Ihr gesamter Lernfortschritt für diesen Kartensatz gelöscht."
+    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird dein Lernfortschritt für diesen Kartensatz gelöscht."
   },
   "confirm-leave-editors": {
-    "btn-txt": "Bearbeiter Gruppe verlassen",
-    "title": "Bearbeiter Gruppe verlassen",
-    "text": "Wollen Sie sich Ihre Bearbeiter Berechtigung für den Kartensatz \"__name__\" entfernen?"
+    "btn-txt": "Bearbeitergruppe verlassen",
+    "title": "Bearbeitergruppe verlassen",
+    "text": "Willst du deine Berechtigung für den Kartensatz \"__name__\" entfernen?"
   },
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Ihr Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\" Modus nutzen zu können, füllen Sie bitte die Felder für Vor-, Nachname und Email aus."
+    "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und Email aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerprofil löschen",
-    "text": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen. Das gelöschte Benutzerprofil kann nicht wieder reaktiviert noch die von Ihnen hinzugefügten Informationen oder Inhalte erneut abgerufen werden. Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten Kartensätze gelöscht. Die von Ihnen veröffentlichten Lerninhalte bleiben nach der Löschung des Benutzerprofils weiterhin in THMcards bestehen, damit diese von anderen Benutzern des Systems verwendet werden dürfen.",
-    "text2": "Wenn Sie ihr Benutzerprofil immer noch löschen möchten, klicken Sie auf die Schaltfläche \"Benutzerprofil löschen\". Sie werden nach dem Vorgang automatisch aus THMcards abgemeldet."
+    "text": "Falls du sicher bist, dass du THMcards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerprofil löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Lernphase starten",
-    "text": "Wollen Sie die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer des Kartensatzes geht hierbei verloren!",
+    "text": "Willst du die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Workload",
@@ -153,8 +153,8 @@
   },
   "confirmEndLearn-form": {
     "title": "Lernphase beenden",
-    "warnTitle": "Sie sind im Begriff die Lernphase zu beenden!",
-    "warning": "Wenn Sie den Vorgang fortsetzen, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Wollen Sie wirklich fortfahren?",
+    "warnTitle": "Du bist im Begriff, die Lernphase zu beenden!",
+    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Willst du wirklich fortfahren?",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen"
   },
@@ -217,9 +217,9 @@
     "delete": "Kartensatz löschen",
     "confirm": "Sicher?",
     "save": "Kartensatz speichern",
-    "name_required": "Geben Sie einen Namen ein!",
-    "description_required": "Geben Sie eine Beschreibung ein!",
-    "category_required": "Wählen Sie eine Kategorie!",
+    "name_required": "Gib einen Namen ein!",
+    "description_required": "Gib eine Beschreibung ein!",
+    "category_required": "Wähle eine Kategorie!",
     "price": "Verkaufspreis",
     "publish": "Status speichern",
     "modules": "Rechtemodule",
@@ -230,14 +230,14 @@
     "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
     "saveLicense": "Lizenz speichern",
     "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
-    "report": "Kartensatz/Benutzer melden",
-    "cardsetowner": "Autor",
+    "report": "Kartensatz melden",
+    "cardsetowner": "Autor/in",
     "cardsetname": "Kartensatz",
     "reason": "Grund",
-    "reportuser": "Benutzer melden",
+    "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartensatz melden",
-    "resetLeitner": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Leitner\" in dem Kartensatz \"__name__\" zurücksetzen?",
-    "resetMemo": "Möchtest du wirklich deinen Lernstand für den Modus \"Lernen nach Wozniak\" in dem Kartensatz \"__name__\" zurücksetzen?",
+    "resetLeitner": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
+    "resetMemo": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Wozniak\" für den Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -245,13 +245,13 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
-    "manageEditors": "Bearbeiter verwalten für den Kartensatz \"__name__\"",
+    "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
     "module": "Modul",
-    "module_required": "Geben Sie den vollen Namen des Moduls an!",
+    "module_required": "Gib den vollen Namen des Moduls an!",
     "moduleShort": "Initialien",
-    "moduleShort_required": "Geben Sie eine Abkürzung des Moduls an!",
+    "moduleShort_required": "Gib eine Abkürzung des Moduls an!",
     "moduleNum": "ID",
-    "moduleNum_required": "Geben Sie eine Modulnummer ein!",
+    "moduleNum_required": "Gib die Modulnummer ein!",
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
     "moduleShortplaceholder": "Abkürzung des Moduls",
     "moduleNumplaceholder": "Nummer des Moduls",
@@ -260,7 +260,7 @@
     "skillLevel1": "Fachbegriffe",
     "skillLevel2": "Theoretische Grundlagen",
     "skillLevel3": "Anwendung",
-    "deleteCards": "Möchten Sie wirklich alle Karten für den Kartensatz \"__name__\" löschen?"
+    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
     "overview": "Lernfortschritt",
@@ -280,8 +280,8 @@
 
     "settings": {
       "name": "Profil",
-      "delete": "Benutzerprofil löschen",
-      "deleteText": "Falls Sie glauben, dass Sie THMcards nicht noch einmal verwenden möchten, können Sie hier Ihr Benutzerprofil löschen.",
+      "delete": "Benutzerkonto löschen",
+      "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Erscheinungsbild",
       "theme": "Farbauswahl"
     }
@@ -295,11 +295,11 @@
   "membership": {
     "upgrade": {
       "progress": "In Bearbeitung!",
-      "subscribed": "Vielen Dank für Ihr Abonnement!"
+      "subscribed": "Vielen Dank für dein Abonnement!"
     },
     "downgrade": {
-      "error": "Sie können Ihr Konto nicht herunterstufen, solange Sie Pro-Kartensätze haben!",
-      "confirm": "Sind Sie sicher, ihr Konto zurückzustufen? Dies bedeutet, dass Ihr Abonnement nicht länger aktiv ist. Sie können später jederzeit Ihr Konto wieder hochstufen.",
+      "error": "Du kannst dein Konto nicht herunterstufen, solange du Pro-Kartensätze hast!",
+      "confirm": "Bist du sicher, das Konto zurückzustufen? Dies bedeutet, dass dein Abonnement nicht länger aktiv ist. Du kannst später jederzeit dein Konto wieder hochstufen.",
       "canceled": "Abonnement erfolgreich beendet!"
     }
   },
@@ -314,19 +314,19 @@
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
       "subscribe": "Pro-Version abonnieren",
-      "lecturer": "Dozent",
-      "send": "Anfrage versenden, um alle Vorteile eines Dozenten zu erhalten.",
-      "lecturerActivatet": "Sie sind als Dozent/in freigeschaltet.",
+      "lecturer": "Dozentenstatus anfragen",
+      "send": "Anfrage versenden, um alle Vorteile einer Dozentin oder eines Dozenten zu erhalten.",
+      "lecturerActivatet": "Du bist als Dozent/in freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
     "payment": {
       "header": "Zahlungsmethode",
-      "empty": "Sie haben bisher keine Zahlungsmethode hinzugefügt!",
+      "empty": "Du hast bisher keine Zahlungsmethode hinzugefügt!",
       "save": "Zahlungsmethode speichern",
-      "saveMsg": "Ihre Zahlungsmethode wurde gespeichert",
+      "saveMsg": "Deine Zahlungsmethode wurde gespeichert",
       "progress": "Änderungen werden verarbeitet",
-      "actual": "Ihre Zahlungsmethoden:",
+      "actual": "Deine Zahlungsmethoden:",
       "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
     "balance": {
@@ -334,18 +334,18 @@
       "disburse": "auszahlen",
       "progress": "Auszahlung wird bearbeitet",
       "success": "Auszahlung wurde durchgeführt",
-      "failed": "Auszahlung nicht freigeschaltet. Wenden Sie sich an ihren Administrator."
+      "failed": "Auszahlung nicht freigeschaltet. Wende dich bitte an den Administrator."
     },
     "revenue": {
       "header": "Umsatzhistorie",
-      "empty": "Sie haben bisher noch keine Einnahmen generiert!",
+      "empty": "Du hast bisher noch keine Einnahmen generiert!",
       "boughtFrom": "Gekauft von",
       "for": "für",
       "at": "am"
     },
     "purchases": {
       "header": "Zahlungshistorie",
-      "empty": "Sie haben bisher noch keine Käufe abgeschlossen!",
+      "empty": "Du hast bisher noch keine Käufe abgeschlossen!",
       "boughtFor": "Gekauft für",
       "at": "am"
     }
@@ -369,7 +369,7 @@
     "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
     "profileprivatetext": "Dieses Profil ist privat und kann nicht von anderen Benutzern eingesehen werden.",
-    "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse an",
+    "emailInvalid": "Gib eine gültige E-Mail-Adresse an",
     "nameToShort": "Kennung muss aus mehr als 4 Buchstaben bestehen!",
     "nameToLong": "Kennung muss aus weniger als 26 Buchstaben bestehen!",
     "nameAlreadyExists": "Kennung ist bereits vergeben!",
@@ -441,7 +441,7 @@
     "createcard": "Neue Karte",
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
-    "manageEditors": "Bearbeiter verwalten",
+    "manageEditors": "Bearbeitungsrechte",
     "publish": "Status",
     "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
@@ -451,7 +451,7 @@
     "startLearning": "Lernphase starten",
     "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für ",
-    "leaveEditors": "Bearbeiter Gruppe verlassen"
+    "leaveEditors": "Bearbeitergruppe verlassen"
   },
   "pool": {
     "relevance": "Relevanz",
@@ -473,7 +473,7 @@
       "notRated": "Noch nicht bewertet",
       "quantity": "Kartenanzahl",
       "release": "Veröffentlicht",
-      "reviewer": "Prüfer",
+      "reviewer": "Prüfer/in",
       "amount": "Preis",
       "bought": "Gekauft am",
       "deleted": "Gelöscht",
@@ -491,12 +491,12 @@
       "decline": "Kartensatz nicht freigeben",
       "accepted": "Kartensatz freigegeben",
       "declined": "Kartensatz nicht freigegeben",
-      "reason": "Geben Sie eine Begründung für die Ablehnung der Anfrage an"
+      "reason": "Gib eine Begründung für die Ablehnung der Anfrage an"
     },
     "money": {
       "buy": "Kartensatz kaufen",
       "pro": "Als Premium-Nutzer lernen",
-      "bought": "Vielen Dank für Ihren Kauf!"
+      "bought": "Vielen Dank für deinen Kauf!"
     }
   },
   "cardmemo": {
@@ -504,7 +504,7 @@
     "rateanswer": "Bewerte deine Antwort",
     "rate0": "Blackout",
     "rate1": "Falsche Antwort, aber an die Richtige erinnert",
-    "rate2": "Falsche Antwort, aber leicht an die Richtige erinnert",
+    "rate2": "Falsche Antwort, aber leicht an die richtige erinnert",
     "rate3": "Richtige Antwort nach längerem Überlegen",
     "rate4": "Richtige Antwort nach kurzem Zögern",
     "rate5": "Perfekte Antwort",
@@ -571,7 +571,7 @@
   "learnPhaseActiveHeader": "Lernphase aktiv",
   "learnPhaseActiveBody": "Manuelles Lernen nach Leitner und Woźniak ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
-  "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ender der Lernphase gelernt werden können.",
+  "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeitig aktiven Karten zu bearbeiten.",
   "deadlineEpilogue2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt in diesem Kartzensatz zurückgesetzt.",
@@ -586,8 +586,8 @@
   "memo": "Lernen nach Wozniak",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetMemo": "Lernen nach Woźniak zurücksetzen",
-  "statistics": "Kartensatz Statistik",
-  "report": "Kartensatz/Benutzer melden",
+  "statistics": "Kartensatz-Statistik",
+  "report": "Kartensatz melden",
   "meteor": "Meteor",
   "play": "Spielen",
   "yourhighscore": "Dein Highscore:",
@@ -606,7 +606,7 @@
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "cardsubject_required": "Bitte Thema ausfüllen!",
-  "text_max": "Es sind nur 10000 Zeichen erlaubt!",
+  "text_max": "Es sind nur 10.000 Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
   "newcard": "Neue Karte",
   "editcard": "Karte bearbeiten",
@@ -654,7 +654,7 @@
   "box_export_given_name": "Vorname",
   "box_export_statistics": "Statistiken",
   "box_export_mail": "E-Mail",
-  "clickcart": "Klicke auf die Karte um Sie zu drehen",
+  "clickcart": "Klicke auf die Karte, um sie zu drehen",
   "choosesubject": "Wähle ein Fach auf der linken Seite",
   "carddecks": "Kartensätze",
   "gold": "Gold",
@@ -665,14 +665,14 @@
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
-  "youareoffline": "Sie sind offline!",
+  "youareoffline": "Du bist offline!",
   "admin": {
     "allLearnedCardsets": "Alle gelernten Kartensätze",
     "learnedCardsets": "Lernfortschritt des Kartensatzes",
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
     "cards": "Karten",
-    "users": "Benutzer",
+    "users": "Benutzer/in",
     "interval": "Lernintervalle einstellen",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
@@ -688,40 +688,40 @@
     "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
-    "lecturer": "Dozent",
+    "lecturer": "Dozent/in",
     "mail": "Mail",
     "joined": "Beigetreten",
     "blocked": "Blockiert",
     "created": "Erstelldatum",
     "edit": "Bearbeiten",
     "delete": "Löschen",
-    "edituser": "Benutzer bearbeiten",
+    "edituser": "Benutzer/in bearbeiten",
     "editcardset": "Kartensatz bearbeiten",
     "editcard": "Karte bearbeiten",
-    "deleteuser": "Benutzer löschen",
+    "deleteuser": "Benutzer/in löschen",
     "deletecard": "Karte löschen",
     "deletecardset": "Kartensatz löschen",
-    "notifyuser": "Benutzer benachrichtigen",
+    "notifyuser": "Benutzer/in benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
-    "deletedUser": "Gelöschter Benutzer",
+    "deletedUser": "Gelöschte/r Benutzer/in",
     "complaint": "Benutzerbeschwerden",
     "lecturermessages": "Dozentenanfragen",
     "send": "Gesendete Nachrichten",
     "type": "Typ",
-    "sender": "Absender",
+    "sender": "Absender/in",
     "reason": "Grund",
     "text": "Weitere Informationen",
     "date": "Datum",
-    "receiver": "Empfänger",
+    "receiver": "Empfänger/in",
     "replyreceiver": "Mail an Beschuldigten",
-    "replyrsender": "Mail an Absender",
+    "replyrsender": "Mail an Absender/in",
     "request": "Anfrage",
     "deleteallnotifications": "Alle Nachrichten löschen",
-    "optionNotPossible": "Nicht möglich (Benutzer gelöscht)",
-    "reportedUser": "Gemeldeter Benutzer",
+    "optionNotPossible": "Nicht möglich (Benutzer/in gelöscht)",
+    "reportedUser": "Gemeldete/r Benutzer/in",
     "reportedCardSet": "Gemeldeter Kartensatz",
-    "adminNotificationComplaintUser": "Admin-Benachrichtigung (Beschwerde Benutzer)",
+    "adminNotificationComplaintUser": "Adminbenachrichtigung (Beschwerde Benutzer/in)",
     "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
     "lecturerRequest": "Dozenten-Anfrage",
     "yes": "Ja",
@@ -729,21 +729,21 @@
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
-        "text": "Wollen Sie diesen Kartensatz wirklich löschen?"
+        "text": "Willst du diesen Kartensatz wirklich löschen?"
       },
       "cards": {
         "title": "Karte löschen",
-        "text": "Wollen Sie diese Karte wirklich löschen?"
+        "text": "Willst du diese Karte wirklich löschen?"
       },
       "users": {
-        "title": "Benutzer löschen",
-        "text": "Wollen Sie diesen Benutzer wirklich löschen?"
+        "title": "Benutzer/in löschen",
+        "text": "Willst du diese/n Benutzer/in wirklich löschen?"
       },
       "notifications": {
         "title": "Nachricht löschen",
-        "text": "Wollen Sie diese Nachricht wirklich löschen?",
+        "text": "Willst du diese Nachricht wirklich löschen?",
         "title_all": "Alle Nachrichten löschen",
-        "text_all": "Wollen Sie alle Nachrichten wirklich löschen?",
+        "text_all": "Willst du alle Nachrichten wirklich löschen?",
         "delete_all": "Nachrichten löschen"
       },
       "settings": {
@@ -757,9 +757,9 @@
       "cancel": "Abbrechen"
     },
     "message": {
-      "messageUser": "Benutzer benachrichtigen",
+      "messageUser": "Benutzer/in benachrichtigen",
       "reason": "Grund",
-      "reportuser": "Beschwerde Benutzer",
+      "reportuser": "Beschwerde Benutzer/in",
       "reportcardset": "Beschwerde Kartensatz",
       "cardset": "Kartensatz",
       "noCardsets": "Keine Kartensätze",
@@ -779,7 +779,7 @@
     "cardset": {
       "header": "Kartensatz",
       "edit": "Bearbeite",
-      "username": "Benutzer:",
+      "username": "Benutzer:/in",
       "userID": "Benutzer-ID:",
       "date": "Erstelldatum:",
       "info": "Kartensatz Informationen",
@@ -793,15 +793,15 @@
       "save": "Kartensatz speichern",
       "delete": "Kartensatz löschen",
       "confirm": "Sicher?",
-      "name_required": "Geben Sie einen Namen ein!",
-      "description_required": "Geben Sie eine Beschreibung ein!",
+      "name_required": "Gib einen Namen ein!",
+      "description_required": "Gib eine Beschreibung ein!",
       "dateUpdated": "Zuletzt aktualisiert:",
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um diesen Kartensatz zu veröffentlichen!",
-      "changeOwner": "Besitzer ändern",
-      "changeOwnerFailure": "Benutzer nicht gefunden",
-      "changeOwnerSuccess": "Besitzer erfolgreich geändert",
+      "changeOwner": "Besitzer/in ändern",
+      "changeOwnerFailure": "Benutzer/in nicht gefunden",
+      "changeOwnerSuccess": "Besitzer/in erfolgreich geändert",
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
       "removeFromWordcloud": "Entfernen"
@@ -809,7 +809,7 @@
     "card": {
       "header": "Karte",
       "edit": "Bearbeite",
-      "username": "Benutzer:",
+      "username": "Benutzer/in:",
       "cardsetname": "Kartensatz:",
       "info": "Karten Informationen",
       "settings": "Karten Einstellungen",
@@ -824,9 +824,9 @@
       "text_max": "Es sind nur 10.000 Zeichen erlaubt!"
     },
     "user": {
-      "header": "Benutzer",
+      "header": "Benutzer/in",
       "edit": "Bearbeite",
-      "info": "Benutzer Informationen",
+      "info": "Benutzer-Informationen",
       "username": "Kennung:",
       "title": "Akademischer Titel (öffentlich):",
       "birthname": "Nachname (öffentlich):",
@@ -838,19 +838,19 @@
       "option1": "Ja",
       "option2": "Nein",
       "email": "E-Mail",
-      "status": "Benutzer Status",
+      "status": "Benutzerstatus",
       "online": "Status:",
       "lastLogin": "Letzter Login:",
       "clock": " Uhr",
       "roles": "Benutzerrollen",
-      "blocked": "Benutzer blockieren",
-      "blockedtext": "Wollen Sie dem Benutzer den Zugang zu THMcards verweigern?",
-      "editortext": "Wollen Sie dem Benutzer Admin-Rechte geben? Als Admin User bekommt der Benutzer Zugang zum Administrationsbereich und es ist ihm erlaubt alle Inhalte von THMcards zu bearbeiten.",
+      "blocked": "Benutzer/in blockieren",
+      "blockedtext": "Willst du dem User den Zugang zu THMcards verweigern?",
+      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm erlaubt, alle Inhalte von THMcards zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
-      "blockedtext_invalid": "Geben Sie einen Grund der Sperrung ein!",
+      "blockedtext_invalid": "Gib einen Grund der Sperrung ein!",
       "cancel": "Abbrechen",
-      "save": "Benutzer speichern",
-      "delete": "Benutzer löschen",
+      "save": "Benutzer/in speichern",
+      "delete": "Benutzer/in löschen",
       "confirm": "Sicher?",
       "email_invalid": "Ungültige E-Mail-Adresse!",
       "name_exists": "Kennung ist bereits vergeben!",
@@ -859,17 +859,17 @@
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     },
     "mail-settings": {
-      "mail-settings": "Versenden von E-Mail-Benachrichtigungen mit Leitner cron",
+      "mail-settings": "Versenden von E-Mail-Benachrichtigungen",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
     }
   },
   "access-denied": {
     "title": "Zugriff verboten",
-    "text": "Sie haben keine Berechtigung diese Seite zu öffnen!",
+    "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: ",
-    "memo": "Das nutzen von Wozniak ist gesperrt solange der Kartensatz eine aktive Lernphase hat.",
+    "memo": "Das Nutzen von Wozniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
     "back": "Zurück"
   },
   "first-login": {
@@ -892,23 +892,23 @@
     "textIntro": "Hallo ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
-    "textDate2": " Zeit, um die derzeitig aktiven Karten zu bearbeiten, ansonsten wird dein gesamter Lernfortschritt zurückgesetzt!",
+    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu bearbeiten, sonst wird dein gesamter Lernfortschritt zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus dem Kartensatz ",
     "newCards2Plural": " Karten aus dem Kartensatz ",
     "mailCard" : "Der Kartensatz ",
     "mailCard1" : " benötigt deine Aufmerksamkeit!\n\n",
-    "greetings": "\n\nIhr THMCards-Team",
+    "greetings": "\n\nDein THMcards-Team",
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
-    "textIntroEnding": "Sehr geehrte/r Teilnehmer/in,\n\n",
-    "textEnding": "Heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Ihr Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
-    "textReset": "durch Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "textIntroEnding": "Hallo,\n\n",
+    "textEnding": "heute endet die Lernphase des Kartensatzes ",
+    "subjectReset": "THMcards: Dein Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
+    "textReset": "wegen Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2017 THMcards",
     "my-cardset": "Zum Kartensatz...",
-    "auto-generated": "Bitte antworten Sie nicht auf diese Mail, sie wurde automatisch erstellt."
+    "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   }
 }
