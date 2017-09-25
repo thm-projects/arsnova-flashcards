@@ -174,7 +174,9 @@
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lernphase",
     "activeLearnphase": "Aktiv",
-    "inactiveLearnphase": "Inaktiv"
+    "inactiveLearnphase": "Inaktiv",
+    "learnphaseInfo": "Über diese Lernphase",
+    "cardsetInfo": "Über diesen __type__ Kartensatz"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -655,6 +657,8 @@
     "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
+    "free": "Free",
+    "private": "Private",
     "lecturer": "Dozent/in",
     "mail": "Mail",
     "joined": "Beigetreten",
