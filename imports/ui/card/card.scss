@@ -321,3 +321,11 @@ img.cardside {
     margin-left: 25px;
   }
 }
+
+#answerOptions {
+  position: fixed;
+  height: 150px;
+  top: 0;
+  z-index: 15;
+  background-color: $color_mercury_approx;
+}

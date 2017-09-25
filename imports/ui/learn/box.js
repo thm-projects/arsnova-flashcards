@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
-import {turnCard} from "../card/card.js";
+import {turnCard, resizeAnswers} from "../card/card.js";
 import "./box.html";
 
 Meteor.subscribe("cardsets");
@@ -61,6 +61,13 @@ Template.box.events({
  * ############################################################################
  */
 
+Template.boxMain.onRendered(function () {
+	resizeAnswers();
+	$(window).resize(function () {
+		resizeAnswers();
+	});
+});
+
 Template.boxMain.helpers({
 	isFront: function () {
 		var isFront = Session.get('isFront');
@@ -77,17 +84,20 @@ Template.boxMain.events({
 			} else {
 				Session.set('isFront', true);
 			}
+			$('html, body').animate({scrollTop: '0px'}, 300);
 		}
 	},
 	"click #known": function () {
 		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), false);
 		Session.set('isFront', true);
 		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #notknown": function () {
 		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), true);
 		Session.set('isFront', true);
 		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	}
 });
 
