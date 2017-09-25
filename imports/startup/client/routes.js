@@ -103,6 +103,14 @@ Router.route('/cardset/:_id/editcard/:cardid', {
 
 Router.route('pool');
 
+Router.route('/progress/:_id', {
+	name: 'progress',
+	template: 'myProgress',
+	data: function () {
+		return Cardsets.findOne({_id: this.params._id});
+	}
+});
+
 Router.route('/box/:_id', {
 	name: 'box',
 	template: 'boxAccess',

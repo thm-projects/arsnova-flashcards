@@ -36,7 +36,6 @@
         <button class="btn btn-block btn-raised btn-danger" id="backButton">
             <span class="pull-left">{{_ "backbutton"}}</span>
         </button>
-        {{> graph}}
     </div>
     <!-- Permission denied -->
 
@@ -86,19 +85,6 @@
     {{> boxPictureForm}}
     {{> flashcards}}
 </template>
-
-<template name="graph">
-    <div class="well well-sm sidebar-nav" style="margin-top: 20px">
-        <div id="container" style="min-width: 100%;
-			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
-            <h3 class="panel-title">{{_ "admin.learnedCardsets"}}</h3>
-            <canvas id="boxChart" width="800" height="470" style="margin-top: 10px" data-box1="{{countBox 1}}"
-                    data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
-                    data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
-        </div>
-    </div>
-</template>
-
 
 <template name="appLayout5">
     <div class="container">

@@ -584,6 +584,7 @@
   "manage": "Manage",
   "learnfile": "Learn by Leitner",
   "memo": "Learn by Wozniak",
+  "leitnerProgress": "My learning progress",
   "resetLearnfile": "Reset learn by Leitner",
   "resetMemo": "Reset learn by Wozniak",
   "statistics": "Deck statistics",

@@ -550,6 +550,7 @@
   "manage": "Verwalten",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Wozniak",
+  "leitnerProgress": "Mein Lernstand",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetMemo": "Lernen nach Woźniak zurücksetzen",
   "statistics": "Kartensatz-Statistik",

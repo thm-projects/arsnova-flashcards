@@ -29,6 +29,7 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+var chart;
 
 /**
  * Creates a web push subscription for the current device.
@@ -644,6 +645,11 @@ Template.cardsetSidebar.events({
 	"click #learnMemo": function () {
 		Meteor.call("addCardsMemo", this._id);
 		Router.go('memo', {
+			_id: this._id
+		});
+	},
+	"click #leitnerProgress": function () {
+		Router.go('progress', {
 			_id: this._id
 		});
 	},
@@ -1315,4 +1321,98 @@ Template.leitnerLearning.events({
 			_id: Router.current().params._id
 		});
 	}
+});
+
+
+/*
+ * ############################################################################
+ * myProgress
+ * ############################################################################
+ */
+
+Template.myProgress.events({
+	"click #backButton": function () {
+		Router.go('cardsetdetailsid', {_id: this._id});
+	}
+});
+
+/*
+ * ############################################################################
+ * Graph
+ * ############################################################################
+ */
+
+function drawGraph() {
+	var ctx = document.getElementById("boxChart").getContext("2d");
+	chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			datasets: [
+				{
+					backgroundColor: "rgba(242,169,0,0.5)",
+					borderColor: "rgba(74,92,102,0.2)",
+					borderWidth: 1,
+					data: [0, 0, 0, 0, 0, 0],
+					label: 'Anzahl Karten'
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						callback: function (value) {
+							if (value % 1 === 0) {
+								return value;
+							}
+						}
+					}
+				}]
+			}
+		}
+	});
+}
+
+function updateGraph() {
+	var query = {};
+	if (Meteor.userId() !== undefined) {
+		query.user_id = Meteor.userId();
+	}
+	if (Router.current().params._id !== undefined) {
+		query.cardset_id = Router.current().params._id;
+	}
+
+	var i;
+	for (i = 0; i < 6; i++) {
+		query.box = (i + 1);
+		chart.data.datasets[0].data[i] = Learned.find(query).count();
+	}
+
+	chart.update();
+}
+
+Template.graph.helpers({
+	countBox: function (boxId) {
+		return Learned.find({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			box: boxId
+		}).count();
+	}
+});
+
+Template.graph.onRendered(function () {
+	drawGraph();
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			updateGraph();
+		});
+	});
 });
