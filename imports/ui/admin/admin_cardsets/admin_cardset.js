@@ -3,6 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {Cardsets} from "../../../api/cardsets.js";
 import {Cards} from "../../../api/cards.js";
 import "./admin_cardset.html";
 
@@ -237,10 +238,10 @@ Template.admin_cardset.events({
 				$('#editCardsetCollegeAdmin').val() !== "" &&
 				$('#editCardsetCourseAdmin').val() !== "" &&
 				($("#kindoption0Admin").hasClass('active') ||
-				($("#kindoption1Admin").hasClass('active') ||
-				$("#kindoption2Admin").hasClass('active') ||
-				$("#kindoption3Admin").hasClass('active')) &&
-				this.quantity >= 5)) {
+					($("#kindoption1Admin").hasClass('active') ||
+						$("#kindoption2Admin").hasClass('active') ||
+						$("#kindoption3Admin").hasClass('active')) &&
+					this.quantity >= 5)) {
 				name = tmpl.find('#editCardsetNameAdmin').value;
 				description = tmpl.find('#editCardsetDescriptionAdmin').value;
 				module = tmpl.find('#editCardsetModuleAdmin').value;
@@ -371,6 +372,89 @@ Template.admin_cardset.events({
 	},
 	'click #cardsetRemoveFromWordcloude': function () {
 		Meteor.call('updateWordcloudStatus', this._id, false);
+	},
+	"click #updateLearning": function () {
+		let maxCards = $('#inputMaxCards').val();
+		let daysBeforeReset = $('#inputDaysBeforeReset').val();
+		let learningStart = new Date($('#inputLearningStart').val());
+		let learningEnd = new Date($('#inputLearningEnd').val());
+		let learningInterval = [];
+		for (let i = 0; i < 5; ++i) {
+			learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
+		}
+		if (!learningInterval[0]) {
+			learningInterval[0] = 1;
+		}
+		for (let i = 1; i < 5; ++i) {
+			if (!learningInterval[i]) {
+				learningInterval[i] = (parseInt(learningInterval[i - 1]) + 1);
+			}
+		}
+		Meteor.call("updateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, function (error, result) {
+			if (error) {
+				$('#cardsetUpdateLearningLabel').css({'visibility': 'visible', 'color': '#b94a48'});
+				$('#cardsetUpdateLearningLabel').html(TAPi18n.__('admin.cardset.updateLearningFailure'));
+			}
+			if (result) {
+				$('#cardsetUpdateLearningLabel').css({'visibility': 'visible', 'color': '#4ab948'});
+				$('#cardsetUpdateLearningLabel').html(TAPi18n.__('admin.cardset.updateLearningSuccess'));
+			}
+		});
+	},
+	"input #inputMaxCards": function () {
+		if (parseInt($('#inputMaxCards').val()) <= 0) {
+			$('#inputMaxCards').val(1);
+		} else if (parseInt($('#inputMaxCards').val()) > 100) {
+			$('#inputMaxCards').val(100);
+		}
+	},
+	"input #inputDaysBeforeReset": function () {
+		if (parseInt($('#inputDaysBeforeReset').val()) <= 0) {
+			$('#inputDaysBeforeReset').val(1);
+		} else if (parseInt($('#inputDaysBeforeReset').val()) > 100) {
+			$('#inputDaysBeforeReset').val(100);
+		}
+	},
+	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
+		var error = false;
+		for (let i = 1; i < 5; ++i) {
+			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
+				$('#inputLearningInterval' + i).val(1);
+			} else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
+				$('#inputLearningInterval' + i).val(999);
+			}
+			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
+				error = true;
+			}
+		}
+		if (error) {
+			for (let j = 1; j <= 5; ++j) {
+				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
+				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
+			}
+		} else {
+			for (let k = 1; k <= 5; ++k) {
+				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
+				$('#errorInputLearningInterval').html('');
+			}
+		}
+	}
+});
+
+Template.admin_cardset.onRendered(function () {
+	Session.set('poolFilterCollege', $('#editCardsetCollegeAdmin').val());
+	let cardset = Cardsets.findOne({_id: Router.current().params._id});
+	if (cardset.learningActive) {
+		let now = cardset.learningStart;
+		let end = cardset.learningEnd;
+		let today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+		let tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+		let threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
+		document.getElementById('inputLearningStart').setAttribute("min", today);
+		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
+		$('#inputLearningStart').val(today);
+		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+		$('#inputLearningEnd').val(threeMonths);
 	}
 });
 
@@ -388,14 +472,4 @@ Template.cardConfirmFormCardsetAdmin.events({
 			Meteor.call("deleteCardAdmin", id);
 		}).modal('hide');
 	}
-});
-
-/*
- * ############################################################################
- * cardFormOnRendered
- * ############################################################################
- */
-
-Template.admin_cardset.onRendered(function () {
-	Session.set('poolFilterCollege', $('#editCardsetCollegeAdmin').val());
 });

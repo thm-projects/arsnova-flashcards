@@ -303,6 +303,74 @@
                         {{/if}}
                     </div>
                 </div>
+                {{#if this.learningActive}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{_ "admin.editLearning"}}</div>
+                        <div class="panel-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
+                                        <div class="col-md-9">
+                                            <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control" id="inputMaxCards" value="{{this.maxCards}}">
+                                            <span id="errorMaxCards" class="help-block name"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
+                                        <div class="col-md-9">
+                                            <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control" id="inputDaysBeforeReset" value="{{this.daysBeforeReset}}">
+                                            <span id="errorDaysBeforeReset" class="help-block name"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" id="inputLearningStart" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" id="inputLearningEnd" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
+                                        <div class="col-md-9 form-inline">
+                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control interval" id="inputLearningInterval1" value="{{this.learningInterval.[0]}}">
+                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control interval" id="inputLearningInterval2" value="{{this.learningInterval.[1]}}">
+                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control interval" id="inputLearningInterval3" value="{{this.learningInterval.[2]}}">
+                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control interval" id="inputLearningInterval4" value="{{this.learningInterval.[3]}}">
+                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                   class="form-control interval" id="inputLearningInterval5" value="{{this.learningInterval.[4]}}">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span id="errorInputLearningInterval" class="help-block name"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#" id="updateLearning" class="btn btn-success btn-raised"
+                               data-dismiss="modal">{{_ "admin.updateLearning"}}</a>
+                            <label id="cardsetUpdateLearningLabel" for="updateLearning"
+                                   style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                {{/if}}
                 <div class="panel panel-default">
                     <div class="panel-heading">{{_ "admin.cards"}}</div>
                     <div class="panel-body">
