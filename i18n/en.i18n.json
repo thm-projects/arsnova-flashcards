@@ -726,6 +726,8 @@
     "lecturerRequest": "Lecturer Request",
     "yes": "Yes",
     "no": "No",
+    "editLearning": "Learning-phase settings",
+    "updateLearning": "Update Learning-phase",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
@@ -806,7 +808,9 @@
       "changeOwnerSuccess": "Owner changed successfully",
       "wordcloud": "Wordcloude:",
       "addToWordcloud": "Add",
-      "removeFromWordcloud": "Remove"
+      "removeFromWordcloud": "Remove",
+      "updateLearningFailure": "Error while updating the learning-phase",
+      "updateLearningSuccess": "Learning-phase updated successfully"
     },
     "card": {
       "header": "Card",
