@@ -776,6 +776,10 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click #backButton": function () {
 		Router.go('cardsetdetailsid', {_id: this._id});
+	},
+	"mouseover .field-tip": function () {
+		$(".tip-content").css("bottom", "");
+		$(".tip-content").css("top", $("#exportCSV").offset().top);
 	}
 });
 
