@@ -413,6 +413,43 @@ Meteor.methods({
 		}
 	},
 	/**
+	 * Updates the settings of a learning phase for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
+	 * @param {String} maxCards - Maximum number of daily learnable cards
+	 * @param {String} daysBeforeReset - Maximum overrun in days
+	 * @param {Date} learningStart - Start date of the learnin gphase
+	 * @param {Date} learningEnd - End date of the learning phase
+	 * @param {String} learningInterval - Learning interval in days
+	 */
+	updateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+		check(id, String);
+		check(maxCards, String);
+		check(daysBeforeReset, String);
+		check(learningStart, Date);
+		check(learningEnd, Date);
+		check(learningInterval, [String]);
+
+		if (Roles.userIsInRole(Meteor.userId(), ["admin", "lecturer"]) && ((Cardsets.findOne(id).owner === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), "admin"))) {
+			learningInterval = learningInterval.sort(
+				function (a, b) {
+					return a - b;
+				}
+			);
+			Cardsets.update(id, {
+				$set: {
+					maxCards: maxCards,
+					daysBeforeReset: daysBeforeReset,
+					learningStart: learningStart,
+					learningEnd: learningEnd,
+					learningInterval: learningInterval
+				}
+			});
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+		return true;
+	},
+	/**
 	 * Updates the selected cardset if user is authorized.
 	 * @param {String} id - ID of the cardset to be updated
 	 * @param {String} name - Title of the cardset

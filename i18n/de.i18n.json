@@ -692,6 +692,8 @@
     "lecturerRequest": "Dozentenanfrage",
     "yes": "Ja",
     "no": "Nein",
+    "editLearning": "Lernphase-Einstellungen",
+    "updateLearning": "Lernphase aktualisieren",
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
@@ -770,7 +772,9 @@
       "changeOwnerSuccess": "Besitzer/in erfolgreich geändert",
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
-      "removeFromWordcloud": "Entfernen"
+      "removeFromWordcloud": "Entfernen",
+      "updateLearningFailure": "Fehler beim aktualisieren der Lernphase",
+      "updateLearningSuccess": "Lernphase erfolgreich aktualisiert"
     },
     "card": {
       "header": "Karte",
