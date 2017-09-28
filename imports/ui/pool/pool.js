@@ -399,28 +399,6 @@ Template.poolCardsetRow.helpers({
 			return this.price + '€';
 		}
 	},
-	getLicense: function () {
-		var licenseString = "";
-
-		if (this.license.length > 0) {
-			if (this.license.includes('by')) {
-				licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + this._id + '"/>');
-			}
-			if (this.license.includes('nc')) {
-				licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + this._id + '"/>');
-			}
-			if (this.license.includes('nd')) {
-				licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + this._id + '"/>');
-			}
-			if (this.license.includes('sa')) {
-				licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + this._id + '"/>');
-			}
-
-			return new Spacebars.SafeString(licenseString);
-		} else {
-			return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + this._id + '"/>');
-		}
-	},
 	getRelevance: function () {
 		return Math.floor(this.relevance - 1);
 	},
