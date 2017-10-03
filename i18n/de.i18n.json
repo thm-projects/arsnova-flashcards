@@ -176,7 +176,8 @@
     "activeLearnphase": "Aktiv",
     "inactiveLearnphase": "Inaktiv",
     "learnphaseInfo": "Über diese Lernphase",
-    "cardsetInfo": "Über diesen __type__ Kartensatz"
+    "cardsetInfo": "Über diesen __type__ Kartensatz",
+    "cardsetInfoStatic": "Über diesen Kartensatz"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",

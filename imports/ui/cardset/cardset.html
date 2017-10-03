@@ -1318,8 +1318,8 @@
                         <table class="table table-striped table-hover ">
                             <tbody>
                             <tr class="active">
-                                <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.email"}}</th>
                                 <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=1 count=this.learningInterval.[0]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
                                 <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=2 count=this.learningInterval.[1]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
@@ -1330,8 +1330,8 @@
                             </tr>
                             {{#each getCardsetStats}}
                                 <tr>
-                                    <th>{{this.givenname}}</th>
                                     <th>{{this.birthname}}</th>
+                                    <th>{{this.givenname}}</th>
                                     <th><a href="mailto:{{this.email}}">{{this.email}}</a></th>
                                     <th>{{this.box1}}</th>
                                     <th>{{this.box2}}</th>

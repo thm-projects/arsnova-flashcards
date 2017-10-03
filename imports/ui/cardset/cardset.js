@@ -756,8 +756,8 @@ Template.cardsetLearnActivityStatistic.events({
 		header[3] = TAPi18n.__('subject4');
 		header[4] = TAPi18n.__('subject5');
 		header[5] = TAPi18n.__('subject6');
-		header[6] = TAPi18n.__('box_export_given_name');
-		header[7] = TAPi18n.__('box_export_birth_name');
+		header[6] = TAPi18n.__('box_export_birth_name');
+		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
