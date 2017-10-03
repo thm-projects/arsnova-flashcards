@@ -69,6 +69,13 @@ function tex(e) {
 	e.setSelection(cursor, cursor + chunk.length);
 }
 
+/**
+ * Adjust the width of the fixed answer options to fit the screen
+ */
+export function resizeAnswers() {
+	$("#answerOptions").width($("#backButton").width() + 16);
+}
+
 function turnBack() {
 	$(".cardfront-symbol").css('display', "none");
 	$(".cardback-symbol").css('display', "");

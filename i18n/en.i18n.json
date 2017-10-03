@@ -186,7 +186,10 @@
     "moreResults": "Show more results",
     "learnphase": "Learning phase",
     "activeLearnphase": "Active",
-    "inactiveLearnphase": "Inactive"
+    "inactiveLearnphase": "Inactive",
+    "learnphaseInfo": "About this Learning-Phase",
+    "cardsetInfo": "About this __type__ Cardset",
+    "cardsetInfoStatic": "About this Cardset"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -584,6 +587,7 @@
   "manage": "Manage",
   "learnfile": "Learn by Leitner",
   "memo": "Learn by Wozniak",
+  "leitnerProgress": "My learning progress",
   "resetLearnfile": "Reset learn by Leitner",
   "resetMemo": "Reset learn by Wozniak",
   "statistics": "Deck statistics",
@@ -640,6 +644,8 @@
   "subject4": "Box 4",
   "subject5": "Box 5",
   "subject6": "Learned",
+  "subjectInfo": "Cards in Box __box__ can be learned again after one day.",
+  "subjectInfo_plural": "Cards in Box __box__ can be learned again after __count__ days.",
   "leitnerCard": "Card for current Learning-Phase",
   "backbutton": "Back to the cardset",
   "know": "Known",
@@ -688,6 +694,8 @@
     "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
+    "free": "Free",
+    "private": "Private",
     "lecturer": "Lecturer",
     "mail": "Mail",
     "joined": "Joined",

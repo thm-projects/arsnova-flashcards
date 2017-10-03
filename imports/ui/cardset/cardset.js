@@ -29,6 +29,7 @@ Session.setDefault('cardSort', {
 	front: 1
 });
 
+var chart;
 
 /**
  * Creates a web push subscription for the current device.
@@ -73,6 +74,16 @@ function subscribeForPushNotification() {
 function addToLeitner(cardset_id) {
 	subscribeForPushNotification();
 	Meteor.call('addToLeitner', cardset_id);
+}
+
+function changeCollapseIcon(iconId) {
+	if ($(iconId).hasClass("glyphicon-collapse-down")) {
+		$(iconId).removeClass("glyphicon-collapse-down");
+		$(iconId).addClass("glyphicon-collapse-up");
+	} else {
+		$(iconId).removeClass("glyphicon-collapse-up");
+		$(iconId).addClass("glyphicon-collapse-down");
+	}
 }
 
 /*
@@ -447,56 +458,6 @@ Template.cardsetInfo.onRendered(function () {
 });
 
 Template.cardsetInfo.helpers({
-	canViewForFree: function () {
-		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
-	},
-	getAverage: function () {
-		var ratings = Ratings.find({
-			cardset_id: this._id
-		});
-		var count = ratings.count();
-		if (count !== 0) {
-			var amount = 0;
-			ratings.forEach(function (rate) {
-				amount = amount + rate.rating;
-			});
-			return ((amount / count).toFixed(2));
-		} else {
-			return 0;
-		}
-	},
-	countRatings: function () {
-		return Ratings.find({
-			cardset_id: this._id
-		}).count();
-	},
-	ratingEnabled: function () {
-		return this.ratings === true;
-	},
-	hasRated: function () {
-		var count = Ratings.find({
-			cardset_id: this._id,
-			user: Meteor.userId()
-		}).count();
-		var cardset = Cardsets.findOne(this._id);
-		if (cardset !== null) {
-			return count !== 0;
-		}
-	},
-	getUserRating: function () {
-		var userrating = Ratings.findOne({
-			cardset_id: this._id,
-			user: Meteor.userId()
-		});
-		if (userrating) {
-			return userrating.rating;
-		} else {
-			return 0;
-		}
-	},
-	isOwner: function () {
-		return Meteor.userId() === this.owner;
-	},
 	getKind: function () {
 		switch (this.kind) {
 			case "personal":
@@ -525,41 +486,12 @@ Template.cardsetInfo.helpers({
 	isDisabled: function () {
 		return !!(this.quantity < 5 || this.reviewed || this.request);
 	},
-	hasAmount: function () {
-		return this.kind === 'pro' || this.kind === 'edu';
-	},
-	getAmount: function () {
-		return this.price + '€';
-	},
-	isPurchased: function () {
-		return Paid.findOne({cardset_id: this._id}) !== undefined;
-	},
-	getDateOfPurchase: function () {
-		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
-	},
-	getReviewer: function () {
-		var reviewer = Meteor.users.findOne(this.reviewer);
-		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
-	},
 	isPublished: function () {
 		return (this.kind === 'personal');
 	}
 });
 
 Template.cardsetInfo.events({
-	'click #rating': function () {
-		var cardset_id = Template.parentData(1)._id;
-		var rating = $('#rating').data('userrating');
-		var count = Ratings.find({
-			cardset_id: cardset_id,
-			user: Meteor.userId()
-		}).count();
-		if (count === 0) {
-			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
-		} else {
-			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
-		}
-	},
 	'click #exportCardsBtn': function () {
 		var cardset = Cardsets.findOne(this._id);
 		var cards = Cards.find({
@@ -591,6 +523,101 @@ Template.cardsetInfo.events({
 	}
 });
 
+/*
+ * ############################################################################
+ * cardsetInfoBox
+ * ############################################################################
+ */
+
+Template.cardsetInfoBox.onRendered(function () {
+	$('[data-toggle="tooltip"]').tooltip({
+		container: 'body'
+	});
+});
+
+Template.cardsetInfoBox.helpers({
+	canViewForFree: function () {
+		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
+	},
+	ratingEnabled: function () {
+		return this.ratings === true;
+	},
+	hasRated: function () {
+		var count = Ratings.find({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		}).count();
+		var cardset = Cardsets.findOne(this._id);
+		if (cardset !== null) {
+			return count !== 0;
+		}
+	},
+	getUserRating: function () {
+		var userrating = Ratings.findOne({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		});
+		if (userrating) {
+			return userrating.rating;
+		} else {
+			return 0;
+		}
+	},
+	hasAmount: function () {
+		return this.kind === 'pro' || this.kind === 'edu';
+	},
+	getAmount: function () {
+		return this.price + '€';
+	},
+	getColors: function () {
+		switch (this.kind) {
+			case "free":
+				return "btn-info";
+			case "edu":
+				return "btn-success";
+			case "pro":
+				return "btn-warning";
+		}
+	},
+	getName: function () {
+		switch (this.kind) {
+			case "free":
+				return TAPi18n.__('admin.free');
+			case "edu":
+				return TAPi18n.__('admin.university');
+			case "pro":
+				return TAPi18n.__('admin.pro');
+			default:
+				return TAPi18n.__('admin.Private');
+		}
+	},
+	isPurchased: function () {
+		return Paid.findOne({cardset_id: this._id}) !== undefined;
+	},
+	getDateOfPurchase: function () {
+		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
+	},
+	getReviewer: function () {
+		var reviewer = Meteor.users.findOne(this.reviewer);
+		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
+	}
+});
+
+Template.cardsetInfoBox.events({
+	'click #rating': function () {
+		var cardset_id = Template.parentData(1)._id;
+		var rating = $('#rating').data('userrating');
+		var count = Ratings.find({
+			cardset_id: cardset_id,
+			user: Meteor.userId()
+		}).count();
+		if (count === 0) {
+			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+		} else {
+			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
+		}
+	}
+});
 /*
  * ############################################################################
  * leaveLearnPhaseForm
@@ -647,6 +674,11 @@ Template.cardsetSidebar.events({
 			_id: this._id
 		});
 	},
+	"click #leitnerProgress": function () {
+		Router.go('progress', {
+			_id: this._id
+		});
+	},
 	"click #startStopLearning": function () {
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
 			var now = new Date();
@@ -693,39 +725,23 @@ Template.cardsetSidebar.helpers({
 
 /*
 * ############################################################################
+* cardsetInfoBox
+* ############################################################################
+*/
+Template.cardsetInfoBox.events({
+	"click #collapseCardsetInfoButton": function () {
+		changeCollapseIcon("#collapseCardsetInfoIcon");
+	}
+});
+
+/*
+* ############################################################################
 * cardsetLearnActivityStatistic
 * ############################################################################
 */
 Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("learnerStats");
-	},
-	getDateEnd: function () {
-		return moment(this.learningEnd).format("DD.MM.YYYY");
-	},
-	getDateStart: function () {
-		return moment(this.learningStart).format("DD.MM.YYYY");
-	},
-	getDeadline: function () {
-		if (this.daysBeforeReset === 1) {
-			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day');
-		} else {
-			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day_plural');
-		}
-	},
-	getLearningStatus: function () {
-		if (this.learningEnd.getTime() > new Date().getTime()) {
-			return TAPi18n.__('set-list.activeLearnphase');
-		} else {
-			return TAPi18n.__('set-list.inactiveLearnphase');
-		}
-	},
-	getWorkload: function () {
-		if (this.maxCards === 1) {
-			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.card');
-		} else {
-			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.cards');
-		}
 	}
 });
 
@@ -740,8 +756,8 @@ Template.cardsetLearnActivityStatistic.events({
 		header[3] = TAPi18n.__('subject4');
 		header[4] = TAPi18n.__('subject5');
 		header[5] = TAPi18n.__('subject6');
-		header[6] = TAPi18n.__('box_export_given_name');
-		header[7] = TAPi18n.__('box_export_birth_name');
+		header[6] = TAPi18n.__('box_export_birth_name');
+		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
@@ -760,6 +776,10 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click #backButton": function () {
 		Router.go('cardsetdetailsid', {_id: this._id});
+	},
+	"mouseover .field-tip": function () {
+		$(".tip-content").css("bottom", "");
+		$(".tip-content").css("top", $("#exportCSV").offset().top);
 	}
 });
 
@@ -1274,6 +1294,47 @@ Template.resetMemoForm.events({
 });
 
 /*
+* ############################################################################
+* learningPhaseInfoBox
+* ############################################################################
+*/
+Template.learningPhaseInfoBox.helpers({
+	getDateEnd: function () {
+		return moment(this.learningEnd).format("DD.MM.YYYY");
+	},
+	getDateStart: function () {
+		return moment(this.learningStart).format("DD.MM.YYYY");
+	},
+	getDeadline: function () {
+		if (this.daysBeforeReset === 1) {
+			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day');
+		} else {
+			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day_plural');
+		}
+	},
+	getLearningStatus: function () {
+		if (this.learningEnd.getTime() > new Date().getTime()) {
+			return TAPi18n.__('set-list.activeLearnphase');
+		} else {
+			return TAPi18n.__('set-list.inactiveLearnphase');
+		}
+	},
+	getWorkload: function () {
+		if (this.maxCards === 1) {
+			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.card');
+		} else {
+			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.cards');
+		}
+	}
+});
+
+Template.learningPhaseInfoBox.events({
+	"click #collapseLearningPhaseInfoButton": function () {
+		changeCollapseIcon("#collapseLearningPhaseInfoIcon");
+	}
+});
+
+/*
  * ############################################################################
  * leitnerLearning
  * ############################################################################
@@ -1315,4 +1376,98 @@ Template.leitnerLearning.events({
 			_id: Router.current().params._id
 		});
 	}
+});
+
+
+/*
+ * ############################################################################
+ * myProgress
+ * ############################################################################
+ */
+
+Template.myProgress.events({
+	"click #backButton": function () {
+		Router.go('cardsetdetailsid', {_id: this._id});
+	}
+});
+
+/*
+ * ############################################################################
+ * Graph
+ * ############################################################################
+ */
+
+function drawGraph() {
+	var ctx = document.getElementById("boxChart").getContext("2d");
+	chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			datasets: [
+				{
+					backgroundColor: "rgba(242,169,0,0.5)",
+					borderColor: "rgba(74,92,102,0.2)",
+					borderWidth: 1,
+					data: [0, 0, 0, 0, 0, 0],
+					label: 'Anzahl Karten'
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						callback: function (value) {
+							if (value % 1 === 0) {
+								return value;
+							}
+						}
+					}
+				}]
+			}
+		}
+	});
+}
+
+function updateGraph() {
+	var query = {};
+	if (Meteor.userId() !== undefined) {
+		query.user_id = Meteor.userId();
+	}
+	if (Router.current().params._id !== undefined) {
+		query.cardset_id = Router.current().params._id;
+	}
+
+	var i;
+	for (i = 0; i < 6; i++) {
+		query.box = (i + 1);
+		chart.data.datasets[0].data[i] = Learned.find(query).count();
+	}
+
+	chart.update();
+}
+
+Template.graph.helpers({
+	countBox: function (boxId) {
+		return Learned.find({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			box: boxId
+		}).count();
+	}
+});
+
+Template.graph.onRendered(function () {
+	drawGraph();
+	var self = this;
+	self.subscribe("learned", function () {
+		self.autorun(function () {
+			updateGraph();
+		});
+	});
 });

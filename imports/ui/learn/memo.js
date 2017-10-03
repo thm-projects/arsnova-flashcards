@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
-import {turnCard} from "../card/card.js";
+import {turnCard, resizeAnswers} from "../card/card.js";
 import "./memo.html";
 
 
@@ -24,6 +24,13 @@ Template.memo.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 });
 
+Template.memo.onRendered(function () {
+	resizeAnswers();
+	$(window).resize(function () {
+		resizeAnswers();
+	});
+});
+
 Template.memo.onDestroyed(function () {
 	Session.set("showAnswer", false);
 });
@@ -31,6 +38,7 @@ Template.memo.onDestroyed(function () {
 Template.memo.helpers({
 	showAnswer: function () {
 		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 		return Session.get('showAnswer');
 	},
 	isFinish: function () {
@@ -70,6 +78,7 @@ Template.memo.events({
 
 		Meteor.call("updateLearnedMemo", currentLearned._id, grade);
 		Session.set("showAnswer", false);
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	/**
 	 * Go back to cardset from SuperMemo mode

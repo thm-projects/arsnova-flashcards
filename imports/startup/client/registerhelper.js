@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
-import {getAuthorName} from "../../api/cardset.js";
+import {getAuthorName} from "../../api/cardsetUserlist.js";
 
 Meteor.subscribe("collegesCourses");
 

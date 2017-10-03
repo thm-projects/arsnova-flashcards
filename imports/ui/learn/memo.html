@@ -25,24 +25,33 @@
         <div class="col-xs-12">
             {{> cardHint}}
             <div id="memoFlashcard">
+                <div id="answerOptions">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    {{#unless isEmpty}}
+                        {{#unless isFinish}}
+                            {{#if showAnswer}}
+                                {{> memoRate}}
+                            {{else}}
+                                <div class="btn-group btn-group-raised btn-group-justified">
+                                    <div class="btn-group">
+                                        <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
+                                                title="success">{{_ "cardmemo.showanswer"}}</button>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        {{/unless}}
+                    {{/unless}}
+                </div>
+                <br>
+                <br>
+                <br>
                 {{#unless isFinish}}
                     {{> flashcards}}
                 {{else}}
                     {{> flashcardsEmpty}}
-                {{/unless}}
-                {{#unless isEmpty}}
-                    {{#unless isFinish}}
-                        {{#if showAnswer}}
-                            {{> memoRate}}
-                        {{else}}
-                            <div class="btn-group btn-group-raised btn-group-justified">
-                                <div class="btn-group">
-                                    <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
-                                            title="success">{{_ "cardmemo.showanswer"}}</button>
-                                </div>
-                            </div>
-                        {{/if}}
-                    {{/unless}}
                 {{/unless}}
                 {{> memoPictureForm}}
                 <br>

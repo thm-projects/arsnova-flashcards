@@ -227,7 +227,7 @@ img.cardside {
   z-index: 20;
 }
 
-#showHint {
+#showHint, .about-interval {
   position: relative;
   display: block;
   float: left;
@@ -320,4 +320,12 @@ img.cardside {
   #cardCancel {
     margin-left: 25px;
   }
+}
+
+#answerOptions {
+  position: fixed;
+  height: 150px;
+  top: 0;
+  z-index: 15;
+  background-color: $color_mercury_approx;
 }

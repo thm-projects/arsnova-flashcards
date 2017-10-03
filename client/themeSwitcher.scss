@@ -108,7 +108,9 @@ $themes: (
       color: $primary-text;
     }
 
+    #collapseLearningPhaseInfoButton {
+      border-bottom: 3px solid $primary-color;
+    }
   }
-
 }
 

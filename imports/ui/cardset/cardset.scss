@@ -311,3 +311,44 @@ $font_5: sans-serif;
     vertical-align: middle !important;
   }
 }
+
+.collapseButton {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-decoration: none;
+}
+
+.collapseButton:link, .collapseButton:visited, .collapseButton:hover, .collapseButton:active {
+  text-decoration: none;
+}
+
+.collapseCardsetItem {
+  float: none;
+}
+
+.infoBoxTable td {
+  padding-left: 15px !important;
+  a {
+    display:block;
+    width:100%;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.glyphicon-collapse-down, .glyphicon-collapse-up {
+  font-size: 18px;
+}
+
+#collapseCardsetInfoButton {
+  border-bottom: 3px solid $white;
+}
+
+#collapseLearningPhaseInfoButton {
+  margin-top: 5px;
+}
+
+th .field-tip .tip-content {
+  bottom: auto;
+}
