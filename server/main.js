@@ -18,7 +18,7 @@ import "../imports/api/upload.js";
 import "../imports/api/allusers.js";
 import "../imports/api/billing.js";
 import "../imports/api/adminSettings.js";
-import "../imports/api/cardset.js";
+import "../imports/api/cardsetUserlist.js";
 import "../imports/api/cardsets.js";
 import "../imports/api/cards.js";
 import "../imports/api/colleges_courses.js";
