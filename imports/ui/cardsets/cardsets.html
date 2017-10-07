@@ -56,6 +56,10 @@
 <template name="create">
     <div class="col-md-9" id="set-list-region">
         {{#if cardsetList.count}}
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-md-9 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+            </div>
             {{#each cardsetList}}
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
@@ -84,11 +88,11 @@
             </span>
         <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
         <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
-                                                                                                         'create'}}panelUnitNoBorder{{/if}}">{{_
+                                                                                                          'create'}}panelUnitNoBorder{{/if}}">{{_
                 "set-list.description"}}
             :</span>
         <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute
-                                                           'learn'}}col-md-7 panelUnit{{else}}col-md-9 panelUnit panelUnitNoBorder{{/if}}
+                                                  'learn'}}col-md-7 panelUnit{{else}}col-md-9 panelUnit panelUnitNoBorder{{/if}}
                                                                poolText ellipsis">
             {{this.description}}
         </span>
@@ -99,7 +103,7 @@
            data-id="{{this._id}}">
             <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
-           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "navbar-collapse.logout"}}
+           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "set-list.leave"}}
         </span>
         </a>
     {{/if}}
@@ -128,6 +132,11 @@
 <template name="learn">
     <div id="learn-list-region" class="col-md-9">
         {{#if learnList.count}}
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "manage"}}</span>
+            </div>
             {{#each learnList}}
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">

@@ -189,7 +189,8 @@
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",
     "cardsetInfo": "About this __type__ Cardset",
-    "cardsetInfoStatic": "About this Cardset"
+    "cardsetInfoStatic": "About this Cardset",
+    "leave": "Leave"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
