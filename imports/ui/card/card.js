@@ -255,7 +255,7 @@ Template.btnCard.events({
 			var hint = $('#hintEditor').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", this._id, subject, hint, front, back, Number(difficulty));
+				Meteor.call("addCard", this._id, subject, hint, front, back, Number(difficulty), "0");
 			} else {
 				Meteor.call("updateCard", this._id, subject, hint, front, back, Number(difficulty));
 			}

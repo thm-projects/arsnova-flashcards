@@ -161,7 +161,9 @@ var initTestNotificationsCardset = function () {
 			"learningInterval": [],
 			"wordcloud": false,
 			"learners": 0,
-			"editors": []
+			"editors": [],
+			"shuffled": false,
+			"cardGroups": []
 		}
 	];
 };
@@ -175,7 +177,8 @@ var initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 1",
 			"back": "Back of NotificationsTest: Card Nr. 1",
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
-			"cardset_id": "NotificationsTestCardset"
+			"cardset_id": "NotificationsTestCardset",
+			"cardGroup": "0"
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -184,7 +187,8 @@ var initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 2",
 			"back": "Back of NotificationsTest: Card Nr. 2",
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
-			"cardset_id": "NotificationsTestCardset"
+			"cardset_id": "NotificationsTestCardset",
+			"cardGroup": "0"
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -193,7 +197,8 @@ var initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 3",
 			"back": "Back of NotificationsTest: Card Nr. 3",
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
-			"cardset_id": "NotificationsTestCardset"
+			"cardset_id": "NotificationsTestCardset",
+			"cardGroup": "0"
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -202,7 +207,8 @@ var initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 4",
 			"back": "Back of NotificationsTest: Card Nr. 4",
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
-			"cardset_id": "NotificationsTestCardset"
+			"cardset_id": "NotificationsTestCardset",
+			"cardGroup": "0"
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -211,7 +217,8 @@ var initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 5",
 			"back": "Back of NotificationsTest: Card Nr. 5",
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
-			"cardset_id": "NotificationsTestCardset"
+			"cardset_id": "NotificationsTestCardset",
+			"cardGroup": "0"
 		}
 	];
 };
@@ -442,6 +449,31 @@ Meteor.startup(function () {
 				}
 			}
 		);
+	}
+
+	cardsets = Cardsets.find({shuffled: {$exists: false}}).fetch();
+	for (var q = 0; q < cardsets.length; q++) {
+		Cardsets.update({
+				_id: cardsets[q]._id
+			},
+			{
+				$set: {
+					shuffled: false,
+					cardGroups: [""]
+				}
+			}
+		);
+		Cards.update({
+				cardset_id: cardsets[q]._id
+			},
+			{
+				$set: {
+					cardGroup: "0"
+				}
+			},
+			{
+				multi: true
+			});
 	}
 
 	if (Badges.find().count() === 0) {

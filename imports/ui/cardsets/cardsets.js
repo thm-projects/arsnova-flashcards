@@ -186,7 +186,7 @@ Template.cardsets.events({
 				college = Meteor.settings.public.university.default;
 				course = $('#newSetCourse').text();
 
-				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course, false, []);
 				$('#newSetModal').modal('hide');
 			}
 		} else {
@@ -207,7 +207,7 @@ Template.cardsets.events({
 				college = $('#newSetCollege').text();
 				course = $('#newSetCourse').text();
 
-				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course, false, []);
 				$('#newSetModal').modal('hide');
 			}
 		}

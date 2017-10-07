@@ -160,6 +160,12 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	wordcloud: {
 		type: Boolean
+	},
+	shuffled: {
+		type: Boolean
+	},
+	cardGroups: {
+		type: [String]
 	}
 });
 
@@ -211,8 +217,10 @@ Meteor.methods({
 	 * @param {Number} skillLevel - Skill level of the cardset
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
+	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
+	 * @param {[String]} cardGroups - The group names of the shuffled cards
 	 */
-	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course) {
+	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course, shuffled, cardGroups) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -227,7 +235,12 @@ Meteor.methods({
 		check(skillLevel, Number);
 		check(college, String);
 		check(course, String);
-
+		check(shuffled, Boolean);
+		if (shuffled) {
+			check(cardGroups, [String]);
+		} else {
+			cardGroups = [];
+		}
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -265,7 +278,9 @@ Meteor.methods({
 			learners: 0,
 			mailNotification: true,
 			webNotification: true,
-			wordcloud: false
+			wordcloud: false,
+			shuffled: shuffled,
+			cardGroups: cardGroups
 		});
 		Experience.insert({
 			type: 2,
