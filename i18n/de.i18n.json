@@ -174,7 +174,10 @@
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lernphase",
     "activeLearnphase": "Aktiv",
-    "inactiveLearnphase": "Inaktiv"
+    "inactiveLearnphase": "Inaktiv",
+    "learnphaseInfo": "Über diese Lernphase",
+    "cardsetInfo": "Über diesen __type__ Kartensatz",
+    "cardsetInfoStatic": "Über diesen Kartensatz"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -550,6 +553,7 @@
   "manage": "Verwalten",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Wozniak",
+  "leitnerProgress": "Mein Lernstand",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetMemo": "Lernen nach Woźniak zurücksetzen",
   "statistics": "Kartensatz-Statistik",
@@ -606,6 +610,8 @@
   "subject4": "Fach 4",
   "subject5": "Fach 5",
   "subject6": "Gelernt",
+  "subjectInfo": "Karten in Fach __box__ können erst wieder nach einem Tag gelernt werden.",
+  "subjectInfo_plural": "Karten in Fach __box__ können erst wieder nach __count__ Tagen gelernt werden.",
   "leitnerCard": "Karte für derzeitige Lernphase",
   "backbutton": "Zurück zum Kartensatz",
   "know": "Gewusst",
@@ -654,6 +660,8 @@
     "superAdmin": "Super Admin",
     "pro": "Pro",
     "university": "Edu",
+    "free": "Free",
+    "private": "Private",
     "lecturer": "Dozent/in",
     "mail": "Mail",
     "joined": "Beigetreten",

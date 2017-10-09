@@ -87,6 +87,115 @@
 </template>
 
 
+<template name="cardsetInfoBox">
+    <a id="collapseCardsetInfoButton" class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo" data-toggle="collapse">
+        <strong>{{_ "set-list.cardsetInfo" type=getName}}</strong>
+        <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+    </a>
+    <div class="collapse" id="collapseCardsetInfo">
+        <div class="card card-block">
+            <table class="table table-condensed table-striped table-hover infoBoxTable">
+                <tbody>
+                {{#if ratingEnabled}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
+                        <td>
+                            {{#if isCardsetOwner _id}}
+                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                            {{else}}
+                                {{> starsRating id='rating' rating=getAverage mutable=true}}
+                            {{/if}}
+                        </td>
+                    </tr>
+                    <tr>
+                        {{#unless isCardsetOwner _id}}
+                            <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
+                            <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
+                                ({{_ "cardset.info.notRated"}}){{/unless}}</td>
+                        {{/unless}}
+                    </tr>
+                    <tr>
+                        <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
+                        <td>{{this.quantity}}</td>
+                    </tr>
+                {{/if}}
+                <tr>
+                    <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
+                    <td><a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
+                           data-target="#showLicenseModal">{{getLicense}}</a></td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.module"}}:</strong></td>
+                    <td>{{this.module}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.moduleShort"}}:</strong></td>
+                    <td>{{this.moduleToken}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.moduleNum"}}:</strong></td>
+                    <td>{{this.moduleNum}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "modal-dialog.skillLevel"}}:</strong></td>
+                    <td>{{getSkillLevel this.skillLevel}}</td>
+                </tr>
+                {{#unless singleUniversity}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.college"}}:</strong></td>
+                        <td>{{this.college}}</td>
+                    </tr>
+                {{/unless}}
+                <tr>
+                    <td><strong>{{_ "cardset.info.course"}}:</strong></td>
+                    <td>{{this.course}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.author"}}:</strong></td>
+                    <td>
+                        {{#if userExists userDeleted}}
+                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
+                        {{else}}
+                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.release"}}:</strong></td>
+                    <td>{{getDate}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "cardset.info.dateUpdated"}}:</strong></td>
+                    <td>{{getDateUpdated}}</td>
+                </tr>
+                {{#if getReviewer}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
+                        <td><a
+                                href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                        </td>
+                    </tr>
+                {{/if}}
+                {{#if hasAmount}}
+                    {{#unless canViewForFree}}
+                        <tr>
+                            <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
+                            <td>{{getAmount}}</td>
+                        </tr>
+                    {{/unless}}
+                {{/if}}
+                {{#if isPurchased}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
+                        <td>{{getDateOfPurchase}}</td>
+                    </tr>
+                {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
 <template name="cardsetInfo">
     <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
@@ -98,58 +207,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4 infoBox">
-                    <div class="well">
-                        {{#if ratingEnabled}}
-                            <strong class="left">{{_ "cardset.info.rating"}}:</strong>
-                            {{#if isCardsetOwner _id}}
-                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                            {{else}}
-                                {{> starsRating id='rating' rating=getAverage mutable=true}}
-                            {{/if}}
-                            {{#unless isCardsetOwner _id}}
-                                <br><strong class="left">{{_ "cardset.info.userRating"}}:</strong>
-                                <span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
-                                ({{_ "cardset.info.notRated"}}){{/unless}}
-                            {{/unless}}
-                            <hr>
-                            <strong>{{_ "cardset.info.quantity"}}:</strong> {{this.quantity}}
-                            <br><strong>{{_ "pool.activeLearners"}}:</strong> {{this.learners}}
-                            <hr>
-                        {{/if}}
-                        <strong id="license_strong">{{_ "cardset.info.license"}}:</strong>
-                        <a href="#"><span id="info_license" data-id="{{_id}}" data-toggle="modal"
-                                          data-target="#showLicenseModal">{{getLicense}}</span></a>
-                        <br><strong>{{_ "cardset.info.module"}}:</strong> {{this.module}}
-                        <br><strong>{{_ "cardset.info.moduleShort"}}:</strong> {{this.moduleToken}}
-                        <br><strong>{{_ "cardset.info.moduleNum"}}:</strong> {{this.moduleNum}}
-                        <br><strong>{{_ "modal-dialog.skillLevel"}}:</strong> {{getSkillLevel this.skillLevel}}
-                        {{#unless singleUniversity}}
-                            <br><strong>{{_ "cardset.info.college"}}:</strong> {{this.college}}
-                        {{/unless}}
-                        <br><strong>{{_ "cardset.info.course"}}:</strong> {{this.course}}
-                        <hr>
-                        <strong>{{_ "cardset.info.author"}}:</strong>
-                        {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
-                        {{else}}
-                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
-                        {{/if}}
-                        <br><strong>{{_ "cardset.info.release"}}:</strong> {{getDate}}
-                        <br><strong>{{_ "cardset.info.dateUpdated"}}:</strong> {{getDateUpdated}}
-                        {{#if getReviewer}}
-                            <br><strong>{{_ "cardset.info.reviewer"}}:</strong> <a
-                                href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
-                        {{/if}}
-                        {{#if hasAmount}}
-                            {{#unless canViewForFree}}
-                                <br><strong>{{_ "cardset.info.amount"}}:</strong> {{getAmount}}
-                            {{/unless}}
-                        {{/if}}
-                        {{#if isPurchased}}
-                            <br><strong>{{_ "cardset.info.bought"}}:</strong> {{getDateOfPurchase}}
-                        {{/if}}
-
-                    </div>
+                    {{> cardsetInfoBox}}
+                    {{#if learningActive}}
+                        {{> learningPhaseInfoBox}}
+                    {{/if}}
                 </div>
             </div>
             {{#if isCardsetOwner _id}}
@@ -250,6 +311,11 @@
                         <button id="learnMemo"
                                 class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
                                 "memo"}}</button>
+                        {{#if learningLeitner}}
+                            <button id="leitnerProgress"
+                                    class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
+                                    "leitnerProgress"}}</button>
+                        {{/if}}
                     </div>
                 </div>
             {{/if}}
@@ -267,7 +333,6 @@
                 {{#unless learningActive}}
                     {{#if learningLeitner}}
                         <button id="resetLeitner"
-                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
                                 class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
                                 data-toggle="modal"
                                 data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
@@ -275,7 +340,6 @@
                     {{/if}}
                     {{#if learningMemo}}
                         <button id="resetMemo"
-                                style="white-space: normal; padding-left: 10px; padding-right: 10px;"
                                 class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
                                 data-toggle="modal"
                                 data-target="#resetMemoModal" {{disableIfOffline}}>{{_
@@ -330,6 +394,40 @@
                     {{/if}}
                 {{/if}}
             </div>
+        </div>
+    </div>
+</template>
+
+<template name="myProgress">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#unless isCardsetOwner this._id}}
+                {{> access_denied_content_only}}
+            {{else}}
+                <div class="container">
+                    <h3 class="panel-title">{{_ "learnfile"}}</h3>
+                    {{> graph}}
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left">{{_ "backbutton"}}</span>
+                    </button>
+                </div>
+            {{/unless}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="graph">
+    <div class="well well-sm sidebar-nav" style="margin-top: 20px">
+        <div id="container" style="min-width: 100%;
+			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
+            <h3 class="panel-title">{{_ "admin.learnedCardsets"}} "{{this.name}}"</h3>
+            <canvas id="boxChart" width="800" height="470" style="margin-top: 10px" data-box1="{{countBox 1}}"
+                    data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
+                    data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
         </div>
     </div>
 </template>
@@ -1206,24 +1304,12 @@
                                 <div class="panel-body">
                                     <h4>{{this.name}}</h4>
                                     <hr>
-                                    <div class="col-xs-6">
-                                        <strong>{{_ "set-list.learnphase"}}:</strong><br>
-                                        <strong>{{_ "pool.activeLearners"}}:</strong><br>
-                                        <strong>{{_ "confirmLearn-form.maxCards"}}:</strong><br>
-                                        <strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong><br>
-                                        <strong>{{_ "confirmLearn-form.learningStart"}}:</strong><br>
-                                        <strong>{{_ "confirmLearn-form.learningEnd"}}:</strong><br>
-                                        <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
-                                                "box_export"}}</button>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        {{getLearningStatus}}<br>
-                                        {{this.learners}}<br>
-                                        {{getWorkload}}<br>
-                                        {{getDeadline}}<br>
-                                        {{getDateStart}}<br>
-                                        {{getDateEnd}}
-                                    </div>
+                                    {{> cardsetInfoBox}}
+                                    {{> learningPhaseInfoBox}}
+                                </div>
+                                <div class="panel-footer">
+                                    <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
+                                            "box_export"}}</button>
                                 </div>
                             </div>
                         </div>
@@ -1232,21 +1318,21 @@
                         <table class="table table-striped table-hover ">
                             <tbody>
                             <tr class="active">
-                                <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.email"}}</th>
-                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]</th>
-                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]</th>
-                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]</th>
-                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]</th>
-                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]</th>
+                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=1 count=this.learningInterval.[0]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=2 count=this.learningInterval.[1]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=3 count=this.learningInterval.[2]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=4 count=this.learningInterval.[3]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=5 count=this.learningInterval.[4]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
                                 <th>{{_ "subject6"}}</th>
                             </tr>
                             {{#each getCardsetStats}}
                                 <tr>
-                                    <th>{{this.givenname}}</th>
                                     <th>{{this.birthname}}</th>
-                                    <th>{{this.email}}</th>
+                                    <th>{{this.givenname}}</th>
+                                    <th><a href="mailto:{{this.email}}">{{this.email}}</a></th>
                                     <th>{{this.box1}}</th>
                                     <th>{{this.box2}}</th>
                                     <th>{{this.box3}}</th>
@@ -1265,6 +1351,46 @@
             {{/unless}}
         {{/if}}
     {{/if}}
+</template>
+
+<template name="learningPhaseInfoBox">
+    <a id="collapseLearningPhaseInfoButton" class="col-xs-12 card card-block collapseButton"
+       href="#collapseLearningPhaseInfo" data-toggle="collapse">
+        <strong>{{_ "set-list.learnphaseInfo"}}</strong>
+        <i id="collapseLearningPhaseInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+    </a>
+    <div class="collapse" id="collapseLearningPhaseInfo">
+        <div class="card card-block">
+            <table class="table table-condensed table-striped table-hover infoBoxTable">
+                <tbody>
+                <tr>
+                    <td><strong>{{_ "set-list.learnphase"}}:</strong></td>
+                    <td>{{getLearningStatus}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "pool.activeLearners"}}:</strong></td>
+                    <td>{{this.learners}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "confirmLearn-form.maxCards"}}:</strong></td>
+                    <td>{{getWorkload}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong></td>
+                    <td>{{getDeadline}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "confirmLearn-form.learningStart"}}:</strong></td>
+                    <td>{{getDateStart}}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{_ "confirmLearn-form.learningEnd"}}:</strong></td>
+                    <td>{{getDateEnd}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>
 
 <template name="showLicense">

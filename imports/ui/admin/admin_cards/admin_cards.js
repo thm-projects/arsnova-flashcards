@@ -7,7 +7,7 @@ import {Cards} from "../../../api/cards.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_cards.html";
 import "./admin_card.js";
-import {getAuthorName} from "../../../api/cardset.js";
+import {getAuthorName} from "../../../api/cardsetUserlist.js";
 
 /*
  * ############################################################################
