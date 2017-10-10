@@ -12,12 +12,26 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
 5. Set your initial admin user in `settings.json` or `settings_test.json`
 
-
 ### Settings
-Change the settings in `settings.json` or `settings_test.json` according to your needs
+Change the admin in `settings.json` or `settings_test.json` according to your needs
 
 > Warning: Never publish your settings file!
 
+## Starting the app
+Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost,:
+
+- For development:
+  - `meteor --settings settings_test.json`
+
+- For production:
+  - `meteor --settings settings.json`
+
+You can then access the app from your host machine by visiting http://localhost:3000.
+
+## Loading the Test Database
+1. Make sure that you've installed [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
+2. Use following command from the project directory (flashcards folder), **once you've started the server with the settings_test.json file**:
+ - `./tests/loadTestDatabase.sh`
 
 ## Optional features
 
@@ -40,23 +54,6 @@ Change the settings in `settings.json` or `settings_test.json` according to your
 1. [Create a Firebase project](https://console.firebase.google.com/)
 2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
 3. Insert the key into `settings.json` (`FCM_API_KEY`)
-
-
-## Starting the app
-Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost,:
-
-- For development:
-  - `meteor --settings settings_test.json`
-
-- For production:
-  - `meteor --settings settings.json`
-
-You can then access the app from your host machine by visiting http://localhost:3000.
-
-## Loading the Test Database
-1. Make sure that you've installed [MongoDB Community Server](https://www.mongodb.com/download-center#community)
-2. Use following command from the project directory (flashcards folder), **once you've started the server with the settings_test.json file**:
- - `./tests/loadTestDatabase.sh`
 
 ## Contribution guide
 The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/blob/staging/CONTRIBUTING.md).
