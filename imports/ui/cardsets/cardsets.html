@@ -15,6 +15,10 @@
             {{#if isActiveRoute 'learn'}}
                 {{> learn}}
             {{/if}}
+
+            {{#if isActiveRoute 'shuffle'}}
+                {{> shuffle}}
+            {{/if}}
         {{/if}}
     {{/if}}
 </template>
@@ -33,9 +37,7 @@
                   </button>
               </span>
             </div>
-
             <hr/>
-
             <ul class="nav nav-list">
                 <li class="{{#if isActiveRoute 'learn'}}active{{/if}}">
                     <a id="setLearn" href="{{pathFor route='learn'}}" name="set-learn">
@@ -52,9 +54,41 @@
     </div>
 </template>
 
+<template name="shuffle">
+    {{#unless isActiveRoute 'shuffle'}}
+        {{#if shuffleList.count}}
+            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                    "set-list.shuffleCardsets"}}</a>
+        {{/if}}
+    {{else}}
+        <div class="col-md-9" id="set-list-region">
+            <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button">{{_
+                    "set-list.shuffle"}}</a>
+            <a href="#" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_ "declinecard"}}</a>
+            {{shuffleInfoText}}
+            {{#if shuffleList.count}}
+                <div class="responsive-utilities-test visible-on">
+                    <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                    <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                    <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
+                </div>
+                {{#each shuffleList}}
+                    <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                            oddRow
+                            @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                        {{> cardsetRow}}
+                    </div>
+                {{/each}}
+            {{else}}
+                {{> cardsetEmpty}}
+            {{/if}}
+        </div>
+    {{/unless}}
+</template>
 
 <template name="create">
     <div class="col-md-9" id="set-list-region">
+        {{> shuffle}}
         {{#if cardsetList.count}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
@@ -73,7 +107,7 @@
 </template>
 
 <template name="cardsetRow">
-    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+    <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
        title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
@@ -91,9 +125,8 @@
                                                                                                           'create'}}panelUnitNoBorder{{/if}}">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute
-                                                  'learn'}}col-md-7 panelUnit{{else}}col-md-9 panelUnit panelUnitNoBorder{{/if}}
-                                                               poolText ellipsis">
+        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute 'create'}}col-md-9 panelUnit panelUnitNoBorder{{else}}
+            {{#if isActiveRoute 'create'}}col-md-8{{else}}col-md-7{{/if}} panelUnit {{/if}} poolText ellipsis">
             {{this.description}}
         </span>
     </a>
@@ -106,6 +139,21 @@
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "set-list.leave"}}
         </span>
         </a>
+    {{/if}}
+    {{#if isActiveRoute 'shuffle'}}
+        <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder">
+            {{#if inShuffleSelection this._id}}
+                <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeShuffleCardset"
+                   data-id="{{this._id}}">
+                    <i class="fa fa-minus" data-id="{{this._id}}"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                </a>
+            {{else}}
+                <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addShuffleCardset"
+                   data-id="{{this._id}}">
+                    <i class="fa fa-plus" data-id="{{this._id}}"></i> {{_ "admin.cardset.addToWordcloud"}}
+                </a>
+            {{/if}}
+        </span>
     {{/if}}
 </template>
 
@@ -131,6 +179,7 @@
 
 <template name="learn">
     <div id="learn-list-region" class="col-md-9">
+        {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>

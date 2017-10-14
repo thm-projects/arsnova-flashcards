@@ -12,7 +12,6 @@ Session.setDefault('cardsetId', undefined);
 
 Meteor.subscribe("cardsets");
 
-
 /*
  * ############################################################################
  * create
@@ -28,7 +27,6 @@ Template.create.helpers({
 		});
 	}
 });
-
 
 /*
  * ############################################################################
@@ -67,6 +65,89 @@ Template.learn.events({
 
 /*
  * ############################################################################
+ * cardsetRow
+ * ############################################################################
+ */
+
+Template.cardsetRow.events({
+	"click .addShuffleCardset": function (event) {
+		let array = Session.get("ShuffledCardsets");
+		array.push($(event.target).data('id'));
+		Session.set("ShuffledCardsets", array);
+	},
+	"click .removeShuffleCardset": function (event) {
+		let array = Session.get("ShuffledCardsets");
+		array = jQuery.grep(array, function (value) {
+			return value !== $(event.target).data('id');
+		});
+		Session.set("ShuffledCardsets", array);
+	}
+});
+
+Template.cardsetRow.helpers({
+	inShuffleSelection: function (cardset_id) {
+		return Session.get("ShuffledCardsets").includes(cardset_id);
+	},
+	getLink: function (cardset_id) {
+		return ActiveRoute.name('shuffle') ? "#" : ("/cardset/" + cardset_id);
+	}
+});
+
+
+/*
+ * ############################################################################
+ * shuffle
+ * ############################################################################
+ */
+
+Template.shuffle.events({
+	'click #cancelShuffle': function () {
+		window.history.go(-1);
+	}
+});
+
+Template.shuffle.helpers({
+	shuffleInfoText: function () {
+		return TAPi18n.__('set-list.shuffleInfoText');
+	},
+	shuffleList: function () {
+		let learnCards = Learned.find({
+			user_id: Meteor.userId()
+		});
+		let otherCardsets = Cardsets.find({
+			$or: [
+				{owner: Meteor.userId()},
+				{editors: {$in: [Meteor.userId()]}}
+			]
+		});
+		let cardsets = [];
+		learnCards.forEach(function (learnCard) {
+			if ($.inArray(learnCard.cardset_id, cardsets) === -1) {
+				cardsets.push(learnCard.cardset_id);
+			}
+		});
+		otherCardsets.forEach(function (createdCardset) {
+			if ($.inArray(createdCardset._id, cardsets) === -1) {
+				cardsets.push(createdCardset._id);
+			}
+		});
+
+		return Cardsets.find({
+			_id: {
+				$in: cardsets
+			}
+		}, {
+			sort: {name: 1}
+		});
+	}
+});
+
+Template.shuffle.created = function () {
+	Session.set("ShuffledCardsets", []);
+};
+
+/*
+ * ############################################################################
  * empty
  * ############################################################################
  */
@@ -83,7 +164,6 @@ Template.cardsetEmpty.events({
  */
 
 Template.cardsets.events({
-
 	'click #newCardSet': function () {
 		var inputValue = $('#new-set-input').val();
 		$('#newSetName').val(inputValue);

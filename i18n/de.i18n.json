@@ -178,7 +178,10 @@
     "learnphaseInfo": "Über diese Lernphase",
     "cardsetInfo": "Über diesen __type__ Kartensatz",
     "cardsetInfoStatic": "Über diesen Kartensatz",
-    "leave": "Verlassen"
+    "leave": "Verlassen",
+    "shuffleCardsets": "Kartensätze vermischen",
+    "shuffle": "Vermischen",
+    "shuffleInfoText": ""
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -552,6 +555,7 @@
   "released": " freigeschaltet.",
   "learn": "Lernmodus",
   "manage": "Verwalten",
+  "selection": "Auswahl",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Wozniak",
   "leitnerProgress": "Mein Lernstand",

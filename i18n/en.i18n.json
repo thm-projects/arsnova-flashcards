@@ -190,7 +190,10 @@
     "learnphaseInfo": "About this Learning-Phase",
     "cardsetInfo": "About this __type__ Cardset",
     "cardsetInfoStatic": "About this Cardset",
-    "leave": "Leave"
+    "leave": "Leave",
+    "shuffleCardsets": "Shuffle Cardsets",
+    "shuffle": "Shuffle",
+    "shuffleInfoText": ""
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -586,6 +589,7 @@
   "released": ".",
   "learn": "Learn",
   "manage": "Manage",
+  "selection": "Selection",
   "learnfile": "Learn by Leitner",
   "memo": "Learn by Wozniak",
   "leitnerProgress": "My learning progress",
