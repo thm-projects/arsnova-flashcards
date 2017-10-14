@@ -10,15 +10,15 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
 3. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
 4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
-5. Set your initial admin user in `settings.json` or `settings_test.json`
+5. Set your initial admin user in `settings.json` or `settings_test.json` (cas account)
 
 ### Settings
-Change the admin in `settings.json` or `settings_test.json` according to your needs
+Change `settings.json` or `settings_test.json` according to your needs
 
 > Warning: Never publish your settings file!
 
 ## Starting the app
-Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost,:
+Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost:
 
 - For development:
   - `meteor --settings settings_test.json`
@@ -29,7 +29,7 @@ Use one of the following commands inside the repository (flashcards folder), to 
 You can then access the app from your host machine by visiting http://localhost:3000.
 
 ## Loading the Test Database
-1. Make sure that you've installed [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
+1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
 2. Use following command from the project directory (flashcards folder), **once you've started the server with the settings_test.json file**:
  - `./tests/loadTestDatabase.sh`
 
