@@ -31,7 +31,7 @@ You can then access the app from your host machine by visiting http://localhost:
 ## Loading the Test Database
 1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
 2. Start the server with the development settings
-2. Open a new terminal in the flashcards folder and load the Testdatabase with: `./tests/loadTestDatabase.sh`
+2. Open a new terminal in the flashcards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
 
 ## Optional features
 
