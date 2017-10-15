@@ -1,19 +1,21 @@
-## Installing chimp and other required software
+# Installing chimp and other required software
 
-### Install NodeJS 6.XX
-[https://nodejs.org/en/](https://nodejs.org/en/)
+## Linux Steps (Ubuntu)
+1. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
+1. Install the mongodb-tools: `sudo apt-get install mongo-tools`
+1. Check if Node.js is installed with `node -v `and install the recommended version if this isn't the case
+1. Update the OpenJDK `sudo apt-get install openjdk-9-jdk`
+1. Create a symbolic link to the conf files, if your openjdk version is lower than 9~b177-2
+     > cd /usr/lib/jvm/java-9-openjdk-amd64   
+     sudo ln -s lib conf
 
-### Install MongoDB
-[https://www.mongodb.com](https://www.mongodb.com)
-
-### Install Chrome or Chromium
-
-### Install chimp
-	npm install -g chimp
-
-### Additional steps for Windows 
-- [Install git for Windows (Shell integration)] (https://git-scm.com/download/win)
-- Add your MongoDB bin folder to your `PATH enviormental variable` to gain access to mongodump.exe and mongorestore.exe
+## Windows Steps
+1. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
+1. [Install git for Windows (Shell integration)](https://git-scm.com/download/win)
+1. [Install the latest Version of NodeJS](https://nodejs.org/en/)
+1. [Install MongoDB](https://www.mongodb.com)
+1. Add your MongoDB bin folder to your `PATH enviormental variable` to gain access to mongodump.exe and mongorestore.exe
+1. Install the latest Version of Firefox
 
 ## Running a test
 
