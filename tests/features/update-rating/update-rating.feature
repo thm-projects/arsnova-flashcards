@@ -5,8 +5,7 @@ I want to have the ability to update my rating,
 on cardsets that I don't own.
 
 Background:
-  Given I am on the site
-  And I am logged in
+  Given User is logged in
   And I am on a cardset that I don't own and haven't rated
 
 @watch

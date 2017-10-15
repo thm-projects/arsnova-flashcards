@@ -1,51 +1,40 @@
-import {login, logout, TIMERTHRESHOLD} from "../helper_functions";
+import * as cardset from "../../features_helper/cardset.js";
+import * as navigation from "../../features_helper/navigation.js";
+import * as learn from "../../features_helper/learn.js";
 
 module.exports = function () {
 	'use strict';
 
-	this.Given(/^I am on the site$/, function () {
-		browser.url('http://localhost:3000');
+	this.Given(/^user is logged in$/, function () {
+		navigation.login("standardLogin");
 	});
 
-	this.Given(/^He loges in$/, function () {
-		login("standardLogin");
-	});
-
-	this.Given(/^change to cardset$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
-		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
-		browser.click('#setCreate');
-		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
-		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+	this.When(/^change to cardset$/, function () {
+		navigation.selectMyCardset();
+		navigation.selectCardsetList(1);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+		cardset.collapseCardsetInfo(false);
 	});
 
 	this.Then(/^they start the SuperMemo mode$/, function () {
-		browser.waitForVisible('#learnMemo',TIMERTHRESHOLD);
-		browser.click('#learnMemo');
+		cardset.learnMemo(true);
 	});
 
 	this.Then(/^they see the SuperMemo view$/, function () {
-		browser.waitForExist('#memoFlashcard', TIMERTHRESHOLD);
+		learn.memoView();
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {
-		browser.waitForVisible('#back-button',TIMERTHRESHOLD);
-		browser.click('#back-button');
+		navigation.back(true);
 	});
 
 	this.Then(/^they see the cardset again$/, function () {
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+		cardset.collapseCardsetInfo(false);
 	});
 
 	this.Then(/^they log out$/, function () {
-		logout();
+		navigation.logout();
 	});
 };
-
-// tests/features/change_view_steps.js

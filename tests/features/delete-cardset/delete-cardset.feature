@@ -5,8 +5,7 @@ so that I can have more room for decks of cards,
 I want to delete a deck of card
 
 Background:
-	Given User is on the site
-	And User is logged in
+	Given User is logged in
 	And User is on the my cardset view
 
 @watch

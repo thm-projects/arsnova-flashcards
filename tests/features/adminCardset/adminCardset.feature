@@ -5,8 +5,7 @@ Feature: Delete a cardset in the back end
   the users wants to delete it in the backend.
 
   Background:
-    Given user is on the site
-    And user is logged in
+    Given user is logged in
     And user is in the back end
 
 @watch

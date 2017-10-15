@@ -55,7 +55,7 @@ You can use following user strings for the login:
 - "firstLogin"
 
 ## Helpers
-Include the **helper_functions.js** for common functions.
+Include the files in the **features_helper folder** for common functions.
 
     import {login, logout} from "../helper_functions"
 

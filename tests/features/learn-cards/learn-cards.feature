@@ -1,37 +1,15 @@
-Feature: Learn Cards
+Feature: Learn Cards with leitner and wozniak
 
-  As a user i would like to learn cardsets with "Leitners memo box" or "Memo" method.
+  As a user I would like to learn cards with the leitner and wozniak algorithms.
 
 
-  Scenario: Go to "Leitners memo box"
-    Given User is on the site
-    And User is logged in
-    And I am on the cardset view of the testcardset
-    When I click the Button Letiner's learning box
-    Then I am on the box view of the testcardset
-    And Box one contains 36 cards
-    And Boxes two to five contain zero cards
-    And Learned contains zero cards
+  Scenario: Learn cards with the leitner algorithm
+    Given I'm logged in
+    And I'm at the leitner statistics to check my progress
+    Then I'll go to the leitner learning box and answer a card
+    Then I'll go back to the leitner statistics view to check my progress
 
-  Scenario: Learn cards with "Leitners memo box"
-    Given I went to the box view of the testcardset
-    When The frontside of first card is shown
-    Then I can click on the card
-    And The backside of the first card is shown
-    And I can click on the button Known
-    And Box 1 contains 35 cards
-    And Box 2 contains one card
-
-  Scenario: Go to "Memo"
-    Given I am on the cardset view of the testcardset
-    When I click the Button Memo
-    Then I am on the memo view of the testcardset
-    And The button Show answer is shown
-
-  Scenario: Learn cards with "Memo"
-    Given I am on the cardset view of the testcardset
-    When I click the Button Memo
-    Then I can click on the Button Show answer
-    Then The buttons zero to five are shown
-    Then I can click button three
-    Then The next card is shown
+  Scenario: Learn cards with the wozniak algorithm
+    Given I went to the super memo view of the cardset
+    Then I'll answer a card
+    And The algorithm should give me a new card
