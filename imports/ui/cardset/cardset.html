@@ -478,7 +478,7 @@
                         <tbody>
                         {{#each cardList}}
                             <tr>
-                                <td class="{{getCardBackgroundList this.difficulty}} cardListRow" data-id="{{this._id}}"><div class="col-xs-11 listCard">{{this.front}}</div><i class="glyphicon glyphicon-menu-right pull-right"></i></td>
+                                <td class="{{getCardBackgroundList this.difficulty}} cardListRow" data-id="{{this._id}}"><div class="col-xs-11 listCard" data-id="{{this._id}}">{{this.front}}</div><i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"></i></td>
                             </tr>
                         {{/each}}
                         </tbody>
