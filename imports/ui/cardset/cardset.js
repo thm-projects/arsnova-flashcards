@@ -23,12 +23,6 @@ Meteor.subscribe('ratings', function () {
 	Session.set('ratingsLoaded', true);
 });
 
-
-// Session variable for sorting order is keept for further use but only has a default value.
-Session.setDefault('cardSort', {
-	front: 1
-});
-
 var chart;
 
 /**
@@ -430,18 +424,42 @@ Template.descriptionEditorEdit.rendered = function () {
  */
 
 Template.cardsetList.helpers({
-	cardList: function () {
-		return Cards.find({
+	cardSubject: function () {
+		return _.uniq(Cards.find({
 			cardset_id: this._id
 		}, {
-			sort: Session.get("cardSort")
+			cardset_id: 1,
+			subject: 1,
+			sort: {subject: 1}
+		}).fetch(), function (card) {
+			return card.subject;
 		});
+	},
+	cardList: function () {
+		return Cards.find({
+			cardset_id: this.cardset_id,
+			subject: this.subject
+		}, {
+			_id: 1,
+			difficulty: 1,
+			front: 1,
+			sort: {front: 1}
+		});
+	},
+	getMaximumText: function (text) {
+		const maxLength = 10;
+		const textSplitted = text.split(" ");
+		if (textSplitted.length > maxLength) {
+			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+		}
+		return text;
 	}
 });
 
 Template.cardsetList.events({
-	'click .deleteCardList': function () {
-		Session.set('cardId', this._id);
+	'click .cardListRow': function (evt) {
+		Session.set('modifiedCard', $(evt.target).data('id'));
+		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 	}
 });
 

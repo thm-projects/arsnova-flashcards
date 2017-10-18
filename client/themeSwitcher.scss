@@ -111,6 +111,10 @@ $themes: (
     #collapseLearningPhaseInfoButton {
       border-bottom: 3px solid $primary-color;
     }
+    .cardListSubject th {
+      color: white;
+      background-color: $primary-color;
+    }
   }
 }
 

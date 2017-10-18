@@ -296,6 +296,21 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 	}
 });
 
+Template.registerHelper("getCardBackgroundList", function (difficulty) {
+	switch (difficulty) {
+		case 0:
+			return 'box-difficulty-list0';
+		case 1:
+			return 'box-difficulty-list1';
+		case 2:
+			return 'box-difficulty-list2';
+		case 3:
+			return 'box-difficulty-list3';
+		default:
+			return '';
+	}
+});
+
 Template.registerHelper("oddRow", function (index) {
 	return (index % 2 === 1);
 });
