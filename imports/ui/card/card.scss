@@ -125,6 +125,14 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficulty-list0 {
+  background: $white;
+}
+
+.box-difficulty-list0:hover {
+  background: darken($white, 15%);
+}
+
 .box-difficulty1 {
   background: repeating-linear-gradient(
                   to bottom,
@@ -133,6 +141,14 @@ $header_line: rgba(255, 0, 0, 0.6);
                   $color_difficulty1 26px,
                   $color_difficulty1 28px
   );
+}
+
+.box-difficulty-list1 {
+  background: $color_difficulty1;
+}
+
+.box-difficulty-list1:hover {
+  background: darken($color_difficulty1, 15%);
 }
 
 .box-difficulty2 {
@@ -145,6 +161,14 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficulty-list2 {
+  background: $color_difficulty2;
+}
+
+.box-difficulty-list2:hover {
+  background: darken($color_difficulty2, 15%);
+}
+
 .box-difficulty3 {
   background: repeating-linear-gradient(
                   to bottom,
@@ -153,6 +177,14 @@ $header_line: rgba(255, 0, 0, 0.6);
                   $color_difficulty3 26px,
                   $color_difficulty3 28px
   );
+}
+
+.box-difficulty-list3 {
+  background: $color_difficulty3;
+}
+
+.box-difficulty-list3:hover {
+  background: darken($color_difficulty3, 15%);
 }
 
 .box-difficulty0-header {
@@ -300,6 +332,7 @@ img.cardside {
       max-width: 375px;
       position: static;
       display: block;
+      z-index: 20;
     }
 
     .emojiImage {

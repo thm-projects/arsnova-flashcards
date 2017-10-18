@@ -583,12 +583,9 @@ Template.flashcards.events({
 		turnFront();
 	},
 	"click .box": function (evt) {
-		if (!isMemo() && ($(evt.target).data('type') !== "showHint")) {
+		if (!isMemo() && ($(evt.target).data('type') !== "showHint") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
-	},
-	'click .item.active .block a': function (evt) {
-		evt.stopPropagation();
 	},
 	"click #showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));

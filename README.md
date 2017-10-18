@@ -7,16 +7,33 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 
 ## Initial setup
 1. Install [Meteor](https://www.meteor.com/)
-2. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
-3. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
-4. Set your initial admin user in `settings.json`
-
+2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
+3. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
+4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
+5. Set your initial admin user in `settings.json` or `settings_test.json` (cas account)
 
 ### Settings
-Change the settings in `settings.json` according to your needs
+Change `settings.json` or `settings_test.json` according to your needs
 
-> Warning: Never publish your production settings file!
+> Warning: Never publish your settings file!
 
+## Starting the app
+Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost:
+
+- For development:
+  - `meteor --settings settings_test.json`
+
+- For production:
+  - `meteor --settings settings.json`
+
+You can then access the app from your host machine by visiting http://localhost:3000.
+
+## Loading the Test Database
+1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
+2. Start the server with the development settings
+2. Open a new terminal in the flashcards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
+
+## Optional features
 
 ### Authentication setup (For Google, Facebook and Twitter logins)
 1. [Create your Google api keys](https://console.developers.google.com/)
@@ -37,18 +54,6 @@ Change the settings in `settings.json` according to your needs
 1. [Create a Firebase project](https://console.firebase.google.com/)
 2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
 3. Insert the key into `settings.json` (`FCM_API_KEY`)
-
-
-## Starting the app
-Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost,:
-
-- For development:
-  - `meteor --settings settings_test.json`
-
-- For production:
-  - `meteor --settings settings.json`
-
-You can then access the app from your host machine by visiting http://localhost:3000.
 
 ## Contribution guide
 The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/blob/staging/CONTRIBUTING.md).

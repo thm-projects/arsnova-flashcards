@@ -88,7 +88,9 @@
 
 
 <template name="cardsetInfoBox">
-    <a id="collapseCardsetInfoButton" class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo" data-toggle="collapse">
+    <a id="collapseCardsetInfoButton"
+       class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo"
+       data-toggle="collapse">
         <strong>{{_ "set-list.cardsetInfo" type=getName}}</strong>
         <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
     </a>
@@ -462,56 +464,47 @@
 
 <template name="cardsetList">
     <div class="col-md-9" id="cardset-list">
-        <table class="table table-bordered table-hover">
-            <div class="listhead"></div>
-            <thead>
-            <tr>
-                <th>
-                    <span>{{_ "frontside"}}</span>
-                </th>
-                <th>
-                    <span>{{_ "backside"}}</span>
-                </th>
-                {{#if isCardsetOwner _id}}
-                    <th>{{_ "options"}}</th>
-                {{/if}}
-            </tr>
-            </thead>
-            <tbody>
-            {{#if countCards this._id}}
-                {{#each cardList}}
-                    <tr class="listitem">
-                        <td class="front{{@index}} {{getCardBackground
-                                this.difficulty}}">{{#mathjax}}{{this.front}}{{/mathjax}}</td>
-                        <td class="back{{@index}} {{getCardBackground
-                                this.difficulty}}">{{#mathjax}}{{this.back}}{{/mathjax}}</td>
-                        {{#if isCardsetOwner cardset_id}}
-                            <td>
-                                <a class="editCardList btn btn-xs btn-default btn-listEditCard" title='{{_ "editcard"}}'
-                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" style="margin-left: 5px;">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                                {{#unless learningActive}}
-                                    <button class="deleteCardList btn btn-xs btn-default btn-listDeleteCard"
-                                            title='{{_ "deletecard"}}' data-toggle="modal"
-                                            data-target="#confirmModal">
-                                        <i class="glyphicon glyphicon-ban-circle"></i>
-                                    </button>
-                                {{/unless}}
-                            </td>
-                        {{/if}}
-                    </tr>
-                {{/each}} {{else}}
+        {{#if cardSubject}}
+            {{#each cardSubject}}
+                <div class="cardListSubject">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                <span>{{this.subject}}</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each cardList}}
+                            <tr>
+                                <td class="{{getCardBackgroundList this.difficulty}} cardListRow" data-id="{{this._id}}"><div class="col-xs-11 listCard" data-id="{{this._id}}">{{this.front}}</div><i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"></i></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            {{/each}} {{else}}
+            <table class="table table-bordered table-hover">
+                <div class="listhead"></div>
+                <thead>
+                <tr>
+                    <th>
+                        <span>{{_ "frontside"}}</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr class="empty-listitem">
                     <td colspan="3" align="center">
-                        <span style="font-family:'Georgia'">{{_ "nocards"}}</span>
+                        <span style="font-family:'Georgia'">{{#mathjax}}{{_ "nocards"}}{{/mathjax}}</span>
                     </td>
                 </tr>
-            {{/if}}
-
-            </tbody>
-            {{> cardsetConfirmForm}}
-        </table>
+                </tbody>
+            </table>
+        {{/if}}
+        {{> cardsetConfirmForm}}
     </div>
 </template>
 
@@ -1321,11 +1314,26 @@
                                 <th>{{_ "panel-body.birthname"}}</th>
                                 <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.email"}}</th>
-                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=1 count=this.learningInterval.[0]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
-                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=2 count=this.learningInterval.[1]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
-                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=3 count=this.learningInterval.[2]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
-                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=4 count=this.learningInterval.[3]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
-                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}] <a href="#" class="field-tip"><div class="tip-content"><p>{{_ "subjectInfo" box=5 count=this.learningInterval.[4]}}</p></div><i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}] <a href="#" class="field-tip">
+                                    <div class="tip-content"><p>{{_ "subjectInfo" box=1
+                                                                    count=this.learningInterval.[0]}}</p></div>
+                                    <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}] <a href="#" class="field-tip">
+                                    <div class="tip-content"><p>{{_ "subjectInfo" box=2
+                                                                    count=this.learningInterval.[1]}}</p></div>
+                                    <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}] <a href="#" class="field-tip">
+                                    <div class="tip-content"><p>{{_ "subjectInfo" box=3
+                                                                    count=this.learningInterval.[2]}}</p></div>
+                                    <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}] <a href="#" class="field-tip">
+                                    <div class="tip-content"><p>{{_ "subjectInfo" box=4
+                                                                    count=this.learningInterval.[3]}}</p></div>
+                                    <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
+                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}] <a href="#" class="field-tip">
+                                    <div class="tip-content"><p>{{_ "subjectInfo" box=5
+                                                                    count=this.learningInterval.[4]}}</p></div>
+                                    <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
                                 <th>{{_ "subject6"}}</th>
                             </tr>
                             {{#each getCardsetStats}}

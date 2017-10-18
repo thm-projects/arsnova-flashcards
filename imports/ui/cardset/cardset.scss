@@ -352,3 +352,22 @@ $font_5: sans-serif;
 th .field-tip .tip-content {
   bottom: auto;
 }
+
+.cardListSubject table {
+  margin-bottom: 0;
+  table-layout: fixed;
+}
+
+.cardListSubject thead tr th {
+  padding-left: 15px;
+}
+
+.listCard {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardListSubject tbody tr:hover {
+  cursor: pointer;
+}
