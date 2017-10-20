@@ -10,30 +10,40 @@ if (Meteor.isServer) {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			if (Meteor.settings.public.university.singleUniversity) {
 				return Learned.find({
-					cardset_id: {
-						$in: Cardsets.find({
-							$or: [
-								{owner: this.userId},
-								{learningActive: true},
-								{college: Meteor.settings.public.university.default}
-							]
-						}).map(function (cardset) {
-							return cardset._id;
-						})
-					}
+					$or: [
+						{user_id: this.userId},
+						{
+							cardset_id: {
+								$in: Cardsets.find({
+									$or: [
+										{owner: this.userId},
+										{learningActive: true},
+										{college: Meteor.settings.public.university.default}
+									]
+								}).map(function (cardset) {
+									return cardset._id;
+								})
+							}
+						}
+					]
 				});
 			} else {
 				return Learned.find({
-					cardset_id: {
-						$in: Cardsets.find({
-							$or: [
-								{owner: this.userId},
-								{learningActive: true}
-							]
-						}).map(function (cardset) {
-							return cardset._id;
-						})
-					}
+					$or: [
+						{user_id: this.userId},
+						{
+							cardset_id: {
+								$in: Cardsets.find({
+									$or: [
+										{owner: this.userId},
+										{learningActive: true}
+									]
+								}).map(function (cardset) {
+									return cardset._id;
+								})
+							}
+						}
+					]
 				});
 			}
 		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
