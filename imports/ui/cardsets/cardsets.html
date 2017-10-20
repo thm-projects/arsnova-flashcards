@@ -29,10 +29,10 @@
         <div class="well well-sm sidebar-nav">
             <div class="input-group">
                 <input class="form-control" type="text" id="new-set-input"
-                       placeholder="{{_ "input-group.newcarddeck"}}">
+                       placeholder="{{_ "input-group.newcarddeck"}}" {{disableIfShuffle}}>
                 <span class="input-group-btn">
                   <button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
-                          data-target="#newSetModal" {{disableIfOffline}}>
+                          data-target="#newSetModal" {{disableIfOffline}} {{disableIfShuffle}}>
                     <i class="glyphicon glyphicon-plus"></i>
                   </button>
               </span>
@@ -62,9 +62,13 @@
         {{/if}}
     {{else}}
         <div class="col-md-9" id="set-list-region">
-            <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button">{{_
-                    "set-list.shuffle"}}</a>
-            <a href="#" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_ "declinecard"}}</a>
+            {{#if gotShuffledCards}}
+                <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
+                   data-toggle="modal"
+                   data-target="#newSetModal" {{disableIfOffline}}>{{_
+                        "set-list.shuffle"}}</a>
+            {{/if}}
+            <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_ "declinecard"}}</a>
             {{shuffleInfoText}}
             {{#if shuffleList.count}}
                 <div class="responsive-utilities-test visible-on">
@@ -201,7 +205,7 @@
 
 <template name="descriptionEditorNew">
     <textarea class="form-control" data-provide="markdown" rows="6" id="newSetDescription"
-              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}">{{getShuffleDescription}}</textarea>
 </template>
 
 <template name="cardsetsForm">
@@ -219,7 +223,7 @@
                                    for="newSetName">{{_ "modal-dialog.name"}}</label>
                             <div class="col-md-9">
                                 <input class="form-control" type="text" id="newSetName"
-                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}">
+                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}" value="{{getShuffleName}}">
                                 <span id="helpNewSetName" class="help-block name"></span>
                             </div>
                         </div>
@@ -240,7 +244,8 @@
                                        for="newSetModule">{{_ "modal-dialog.module"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModule"
-                                           placeholder="{{_ "modal-dialog.moduleplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                           value="{{getShuffleModule}}">
                                     <span id="helpNewSetModule" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -250,7 +255,8 @@
                                        for="newSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModuleShort"
-                                           placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                           value="{{getShuffleModuleShort}}">
                                     <span id="helpNewSetModuleShort" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -261,7 +267,8 @@
                                         "modal-dialog.moduleNum"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModuleNum"
-                                           placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                           value="{{getShuffleModuleNum}}">
                                     <span id="helpNewSetModuleNum" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -273,9 +280,7 @@
                             <div class="dropup">
                                 <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                                     <button type="button" id="newSetSkillLevel"
-                                            class="btn btn-raised newSetSkillLevelDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="0">{{getSkillLevel 0}}
+                                            class="btn btn-raised newSetSkillLevelDropdown longButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="0">{{getSkillLevel getShuffleSkillLevel}}
                                     </button>
                                     <button class="btn btn-raised dropdown-toggle newSetSkillLevelDropdown"
                                             type="button"
@@ -284,6 +289,7 @@
                                         <span class="caret"></span>
                                         <span class="sr-only"></span>
                                     </button>
+                                    {{getShuffleSkillLevel}}
                                     <ul class="dropdown-menu longButton">
                                         <li class="skillLevel" value="0" data="{{getSkillLevel 0}}"><a
                                                 href="#">{{getSkillLevel 0}}</a></li>
@@ -304,11 +310,19 @@
                                         "modal-dialog.college"}}</label>
                                 <div class="dropup">
                                     <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                        <button type="button" id="newSetCollege"
-                                                class="btn btn-raised newSetCollegeDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="">{{_ "modal-dialog.college_required"}}
-                                        </button>
+                                        {{#if isActiveRoute 'shuffle'}}
+                                            <button type="button" id="newSetCollege"
+                                                    class="btn btn-raised newSetCollegeDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    value="{{getShuffleCollege 0}}">{{getShuffleCollege 1}}
+                                            </button>
+                                        {{else}}
+                                            <button type="button" id="newSetCollege"
+                                                    class="btn btn-raised newSetCollegeDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    value="">{{_ "modal-dialog.college_required"}}
+                                            </button>
+                                        {{/if}}
                                         <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown"
                                                 type="button"
                                                 data-toggle="dropdown"
@@ -316,6 +330,7 @@
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
+
                                         <ul class="dropdown-menu longButton">
                                             {{#each getColleges}}
                                                 <li class="college" value="{{_id}}" data="{{this.college}}"><a
@@ -333,39 +348,19 @@
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
                                 <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
-                                    {{#unless singleUniversity}}
-                                        <button type="button" id="newSetCourse"
-                                                class="btn btn-raised newSetCourseDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="" disabled>{{_
-                                                "modal-dialog.course_required"}}
-                                        </button>
-                                    {{else}}
-                                        <button type="button" id="newSetCourse"
-                                                class="btn btn-raised newSetCourseDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="">{{_
-                                                "modal-dialog.course_required"}}
-                                        </button>
-                                    {{/unless}}
-                                    {{#unless singleUniversity}}
-                                        <button type="button"
-                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"
-                                                disabled>
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                    {{else}}
-                                        <button type="button"
-                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                    {{/unless}}
+                                    <button type="button" id="newSetCourse"
+                                            class="btn btn-raised newSetCourseDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="{{getShuffleCourse 1}}" {{isSingleUniversity}}>{{getShuffleCourse 0}}
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-raised dropdown-toggle newSetCourseDropdown"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false"
+                                        {{isSingleUniversity}}>
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
                                     <ul class="dropdown-menu longButton">
                                         {{#each getCourses}}
                                             <li class="course" value="{{_id}}" data="{{this.course}}"><a
@@ -379,11 +374,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-raised btn-default btn-block  col-xs-12 col-sm-3 cancel"
+                    <a class="btn btn-raised btn-default col-xs-12 col-sm-3 cancel"
                             data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                    <button class="btn btn-raised btn-success btn-block  col-xs-12 col-sm-3 save pull-right">{{_
-                            "modal-dialog.createcarddeck"}}</button>
+                            "modal-dialog.cancel"}}</a>
+                    <a href="create" class="btn btn-raised btn-success col-xs-12 col-sm-3 save pull-right">{{_
+                            "modal-dialog.createcarddeck"}}</a>
                 </div>
             </div>
         </div>
