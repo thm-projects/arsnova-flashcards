@@ -236,9 +236,12 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 		check(shuffled, Boolean);
+		let quantity;
 		if (shuffled) {
 			check(cardGroups, [String]);
+			quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
 		} else {
+			quantity = 0;
 			cardGroups = [];
 		}
 		// Make sure the user is logged in before inserting a cardset
@@ -260,7 +263,7 @@ Meteor.methods({
 			reviewer: 'undefined',
 			request: false,
 			relevance: 0,
-			quantity: 0,
+			quantity: quantity,
 			license: [],
 			userDeleted: false,
 			module: module,

@@ -69,7 +69,11 @@
                 {{#if countCards this._id}}
                     {{> flashcards cardset=this}}
                 {{else}}
-                    {{> flashcardsEmpty}}
+                    {{#if isShuffledCardset this._id}}
+                        {{> flashcards cardset=this}}
+                    {{else}}
+                        {{> flashcardsEmpty}}
+                    {{/if}}
                 {{/if}}
             {{/if}}
         {{/if}}
@@ -240,31 +244,34 @@
                         </button>
                     </div>
                     {{#unless learningActive}}
-                        <div class="btn-group btn-group-raised">
-                            <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
-                                    data-toggle="modal"
-                                    data-target="#deleteCardsModal" {{disableIfOffline}}>
-                                <i class="fa fa-trash"></i> {{_ "deleteCards"}}
-                            </button>
-                        </div>
-                        <div class="btn-group btn-group-raised">
-                            <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
-                               href="{{pathFor 'newCard'}}"
-                                {{disableIfOffline}}>
-                                <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
-                            </a>
-                            <button type="button" class="btn btn-raised btn-success dropdown-toggle"
-                                    data-toggle="dropdown"
-                                {{disableIfOffline}}>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" id="importCardsBtn" data-toggle="modal" data-target="#importModal"><i
-                                        class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                                <li><a href="#" id="exportCardsBtn"><i
-                                        class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
-                            </ul>
-                        </div>
+                        {{#unless isShuffledCardset this._id}}
+                            <div class="btn-group btn-group-raised">
+                                <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                                        data-toggle="modal"
+                                        data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                    <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                                </button>
+                            </div>
+                            <div class="btn-group btn-group-raised">
+                                <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
+                                   href="{{pathFor 'newCard'}}"
+                                    {{disableIfOffline}}>
+                                    <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
+                                </a>
+                                <button type="button" class="btn btn-raised btn-success dropdown-toggle"
+                                        data-toggle="dropdown"
+                                    {{disableIfOffline}}>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" id="importCardsBtn" data-toggle="modal"
+                                           data-target="#importModal"><i
+                                            class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
+                                    <li><a href="#" id="exportCardsBtn"><i
+                                            class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
+                                </ul>
+                            </div>
+                        {{/unless}}
                     {{/unless}}
                     {{#if isPublished}}
                         <button id="selectLicense" class="btn btn-default btn-raised" type="button"
@@ -464,37 +471,40 @@
 
 <template name="cardsetList">
     <div class="col-md-9" id="cardset-list">
-        {{#if cardSubject}}
-            {{#each cardSubject}}
-                <div class="cardListSubject">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>
-                                <span>{{this.subject}}</span>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{#each cardList}}
+        {{#if this.quantity}}
+            {{#each cardsetList}}
+                {{#if isShuffledCardset}}
+                    <div class="cardListName btn-raised {{getColors}}">
+                        {{this.name}}
+                    </div>
+                {{/if}}
+                {{#each cardSubject}}
+                    <div class="cardListSubject">
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td class="{{getCardBackgroundList this.difficulty}} cardListRow" data-id="{{this._id}}"><div class="col-xs-11 listCard" data-id="{{this._id}}">{{this.front}}</div><i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"></i></td>
+                                <th>
+                                    <span>{{this.subject}}</span>
+                                </th>
                             </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </div>
-
-            {{/each}} {{else}}
+                            </thead>
+                            <tbody>
+                            {{#each cardList}}
+                                <tr>
+                                    <td class="{{getCardBackgroundList this.difficulty}} cardListRow"
+                                        data-id="{{this._id}}">
+                                        <div class="col-xs-11 listCard" data-id="{{this._id}}">{{this.front}}</div>
+                                        <i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"></i>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                {{/each}}
+            {{/each}}
+        {{else}}
             <table class="table table-bordered table-hover">
-                <div class="listhead"></div>
-                <thead>
-                <tr>
-                    <th>
-                        <span>{{_ "frontside"}}</span>
-                    </th>
-                </tr>
-                </thead>
                 <tbody>
                 <tr class="empty-listitem">
                     <td colspan="3" align="center">

@@ -133,8 +133,12 @@ function isMemo() {
 }
 
 function getCardsetCards() {
-	var query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
-
+	let query = "";
+	if (Session.get('activeCardset').shuffled) {
+		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {sort: {subject: 1, front: 1}});
+	} else {
+		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
+	}
 	query.observeChanges({
 		removed: function () {
 			$('#cardCarousel .item:first-child').addClass('active');
@@ -575,6 +579,9 @@ Template.flashcards.helpers({
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;
+	},
+	getCardsetCount: function () {
+		return Session.get('activeCardset').quantity;
 	}
 });
 
