@@ -193,7 +193,6 @@ function getMemoCards() {
 	});
 	if (learned !== undefined) {
 		var cards = Cards.find({
-			cardset_id: Session.get('activeCardset')._id,
 			_id: learned.card_id
 		}).fetch();
 		Session.set('currentCard', learned.card_id);
@@ -573,7 +572,7 @@ Template.flashcards.helpers({
 	},
 	countLeitner: function () {
 		var maxIndex = Learned.find({
-			cardset_id: this.cardset_id,
+			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			active: true
 		}).count();
@@ -582,6 +581,9 @@ Template.flashcards.helpers({
 	},
 	getCardsetCount: function () {
 		return Session.get('activeCardset').quantity;
+	},
+	getCardsetName: function () {
+		return Cardsets.findOne({_id: this.cardset_id}).name;
 	}
 });
 
