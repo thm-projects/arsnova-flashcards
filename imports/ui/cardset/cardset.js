@@ -612,15 +612,19 @@ Template.cardsetInfoBox.helpers({
 		}
 	},
 	getName: function () {
+		let shuffled = "";
+		if (this.shuffled) {
+			shuffled = TAPi18n.__('admin.shuffled') + " ";
+		}
 		switch (this.kind) {
 			case "free":
-				return TAPi18n.__('admin.free');
+				return shuffled + TAPi18n.__('admin.free');
 			case "edu":
-				return TAPi18n.__('admin.university');
+				return shuffled + TAPi18n.__('admin.university');
 			case "pro":
-				return TAPi18n.__('admin.pro');
+				return shuffled + TAPi18n.__('admin.pro');
 			default:
-				return TAPi18n.__('admin.private');
+				return shuffled + TAPi18n.__('admin.private');
 		}
 	},
 	isPurchased: function () {
