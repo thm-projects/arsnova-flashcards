@@ -457,6 +457,8 @@ Template.cardsetList.helpers({
 	},
 	getColors: function () {
 		switch (this.kind) {
+			case "personal":
+				return "btn-danger";
 			case "free":
 				return "btn-info";
 			case "edu":
@@ -599,6 +601,8 @@ Template.cardsetInfoBox.helpers({
 	},
 	getColors: function () {
 		switch (this.kind) {
+			case "personal":
+				return "btn-danger";
 			case "free":
 				return "btn-info";
 			case "edu":
@@ -616,7 +620,7 @@ Template.cardsetInfoBox.helpers({
 			case "pro":
 				return TAPi18n.__('admin.pro');
 			default:
-				return TAPi18n.__('admin.Private');
+				return TAPi18n.__('admin.private');
 		}
 	},
 	isPurchased: function () {
