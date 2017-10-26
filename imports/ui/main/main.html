@@ -36,10 +36,17 @@
                                             </a>
                                         </li>
                                         <li id="navbar-ownsets"
-                                            class="{{#if isActiveRoute regex='home|create|learn'}}active{{/if}}"
+                                            class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a href="{{pathFor route='cardset'}}" id="cardsets">
+                                            <a href="{{pathFor route='create'}}" id="cardsets">
                                                 {{_ "navbar-collapse.carddecks"}}
+                                            </a>
+                                        </li>
+                                        <li id="navbar-ownsets"
+                                            class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
+                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                            <a href="{{pathFor route='learn'}}" id="learnsets">
+                                                {{_ "navbar-collapse.learndecks"}}
                                             </a>
                                         </li>
                                     </ul>

@@ -189,19 +189,6 @@ Template.cardsetRow.helpers({
 
 /*
  * ############################################################################
- * sidebarCardsets
- * ############################################################################
- */
-
-
-Template.sidebarCardsets.helpers({
-	disableIfShuffle: function () {
-		return ActiveRoute.name('shuffle') ? "disabled" : "";
-	}
-});
-
-/*
- * ############################################################################
  * shuffle
  * ############################################################################
  */
@@ -220,8 +207,11 @@ Template.shuffle.helpers({
 		let learnCards = Learned.find({
 			user_id: Meteor.userId()
 		});
-		let createCardsets = Cardsets.find({
-			owner: Meteor.userId()
+		let otherCardsets = Cardsets.find({
+			$or: [
+				{owner: Meteor.userId()},
+				{editors: {$in: [Meteor.userId()]}}
+			]
 		});
 		let cardsets = [];
 		learnCards.forEach(function (learnCard) {
@@ -229,7 +219,7 @@ Template.shuffle.helpers({
 				cardsets.push(learnCard.cardset_id);
 			}
 		});
-		createCardsets.forEach(function (createdCardset) {
+		otherCardsets.forEach(function (createdCardset) {
 			if ($.inArray(createdCardset._id, cardsets) === -1) {
 				cardsets.push(createdCardset._id);
 			}

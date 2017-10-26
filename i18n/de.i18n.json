@@ -32,7 +32,8 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
-    "pool": "Alle Kartensätze",
+    "learndecks": "Mein Lernpensum",
+    "pool": "Pool",
     "myprofile": "Mein Profil",
     "billing": "Abrechnung",
     "logout": "Logout",

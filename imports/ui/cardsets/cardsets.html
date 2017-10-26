@@ -6,8 +6,6 @@
             {{> access_denied_content_only}}
         {{else}}
             {{> cardsetsForm}}
-            {{> sidebarCardsets}}
-
             {{#if isActiveRoute 'create'}}
                 {{> create}}
             {{/if}}
@@ -23,37 +21,6 @@
     {{/if}}
 </template>
 
-
-<template name="sidebarCardsets">
-    <div id='set-list-sidebar-region' class="col-md-3">
-        <div class="well well-sm sidebar-nav">
-            <div class="input-group">
-                <input class="form-control" type="text" id="new-set-input"
-                       placeholder="{{_ "input-group.newcarddeck"}}" {{disableIfShuffle}}>
-                <span class="input-group-btn">
-                  <button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
-                          data-target="#newSetModal" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="glyphicon glyphicon-plus"></i>
-                  </button>
-              </span>
-            </div>
-            <hr/>
-            <ul class="nav nav-list">
-                <li class="{{#if isActiveRoute 'learn'}}active{{/if}}">
-                    <a id="setLearn" href="{{pathFor route='learn'}}" name="set-learn">
-                        {{_ "nav-list.learn"}}
-                    </a>
-                </li>
-                <li class="{{#if isActiveRoute 'create'}}active{{/if}}">
-                    <a id="setCreate" href="{{pathFor route='create'}}" name="set-create">
-                        {{_ "nav-list.create"}}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</template>
-
 <template name="shuffle">
     {{#unless isActiveRoute 'shuffle'}}
         {{#if shuffleList.count}}
@@ -61,7 +28,7 @@
                     "set-list.shuffleCardsets"}}</a>
         {{/if}}
     {{else}}
-        <div class="col-md-9" id="set-list-region">
+        <div class="col-md-12" id="set-list-region">
             {{#if gotShuffledCards}}
                 <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
                    data-toggle="modal"
@@ -73,8 +40,8 @@
             {{#if shuffleList.count}}
                 <div class="responsive-utilities-test visible-on">
                     <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                    <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
-                    <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
+                    <span class="col-md-8 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                    <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
                 </div>
                 {{#each shuffleList}}
                     <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
@@ -91,9 +58,16 @@
 </template>
 
 <template name="create">
-    <div class="col-md-9" id="set-list-region">
-        {{> shuffle}}
+    <div class="col-md-12" id="set-list-region">
+        {{#unless cardsetList.count}}
+            {{> shuffle}}
+        {{/unless}}
         {{#if cardsetList.count}}
+            <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#newSetModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                {{_ "set-list-empty.newset"}}
+            </button>
+            {{> shuffle}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-md-9 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
@@ -167,14 +141,14 @@
             {{#if isActiveRoute 'create'}}
                 <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
                 <br>
-                <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
+                <button id="setListEmpty" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
                         data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}
                 <span class="emptyTextList">{{_ "set-list-learn-empty.emptytextlist"}}</span>
                 <br>
-                <button id="learnListEmpty" class="btn btn-raised btn-primary btn-newSet">{{_
+                <button id="learnListEmpty" class="btn btn-raised btn-success btn-newSet">{{_
                         "set-list-learn-empty.browseCardset"}}</button>
             {{/if}}
         </div>
@@ -182,7 +156,7 @@
 </template>
 
 <template name="learn">
-    <div id="learn-list-region" class="col-md-9">
+    <div id="learn-list-region" class="col-md-12">
         {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
@@ -280,7 +254,9 @@
                             <div class="dropup">
                                 <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                                     <button type="button" id="newSetSkillLevel"
-                                            class="btn btn-raised newSetSkillLevelDropdown longButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="0">{{getSkillLevel getShuffleSkillLevel}}
+                                            class="btn btn-raised newSetSkillLevelDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="0">{{getSkillLevel getShuffleSkillLevel}}
                                     </button>
                                     <button class="btn btn-raised dropdown-toggle newSetSkillLevelDropdown"
                                             type="button"
@@ -375,7 +351,7 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-raised btn-default col-xs-12 col-sm-3 cancel"
-                            data-dismiss="modal">{{_
+                       data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</a>
                     <a href="create" class="btn btn-raised btn-success col-xs-12 col-sm-3 save pull-right">{{_
                             "modal-dialog.createcarddeck"}}</a>
