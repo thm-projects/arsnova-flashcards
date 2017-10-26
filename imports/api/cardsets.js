@@ -218,7 +218,7 @@ Meteor.methods({
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
-	 * @param {[String]} cardGroups - The group names of the shuffled cards
+	 * @param {String} cardGroups - The group names of the shuffled cards
 	 */
 	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course, shuffled, cardGroups) {
 		if (Meteor.settings.public.university.singleUniversity) {
