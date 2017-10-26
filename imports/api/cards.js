@@ -217,24 +217,30 @@ var CardsSchema = new SimpleSchema({
 	},
 	difficulty: {
 		type: Number
+	},
+	cardGroup: {
+		type: String
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
-
+		check(cardGroup, String);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
+		}
+		if (!cardset.shuffled) {
+			cardGroup = "0";
 		}
 		Cards.insert({
 			subject: subject,
@@ -242,7 +248,8 @@ Meteor.methods({
 			front: front,
 			back: back,
 			cardset_id: cardset_id,
-			difficulty: difficulty
+			difficulty: difficulty,
+			cardGroup: cardGroup
 		});
 		Cardsets.update(cardset_id, {
 			$set: {

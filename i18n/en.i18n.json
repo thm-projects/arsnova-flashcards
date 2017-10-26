@@ -42,7 +42,8 @@
   },
   "navbar-collapse": {
     "carddecks": "My decks of cards",
-    "pool": "All decks of cards",
+    "learndecks": "Workload",
+    "pool": "Pool",
     "myprofile": "My profile",
     "billing": "Billing",
     "logout": "Logout",
@@ -189,7 +190,11 @@
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",
     "cardsetInfo": "About this __type__ Cardset",
-    "cardsetInfoStatic": "About this Cardset"
+    "cardsetInfoStatic": "About this Cardset",
+    "leave": "Leave",
+    "shuffleCardsets": "Shuffle Cardsets",
+    "shuffle": "Shuffle",
+    "shuffleInfoText": ""
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -585,6 +590,7 @@
   "released": ".",
   "learn": "Learn",
   "manage": "Manage",
+  "selection": "Selection",
   "learnfile": "Learn by Leitner",
   "memo": "Learn by Wozniak",
   "leitnerProgress": "My learning progress",
@@ -696,6 +702,7 @@
     "university": "Edu",
     "free": "Free",
     "private": "Private",
+    "shuffled": "shuffled",
     "lecturer": "Lecturer",
     "mail": "Mail",
     "joined": "Joined",

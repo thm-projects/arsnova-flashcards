@@ -72,6 +72,7 @@ Template.memo.events({
 		var grade = $(event.currentTarget).data("id");
 
 		var currentLearned = Learned.findOne({
+			cardset_id: Session.get('activeCardset')._id,
 			card_id: Session.get('currentCard'),
 			user_id: Meteor.userId()
 		});

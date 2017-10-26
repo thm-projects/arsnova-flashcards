@@ -141,3 +141,13 @@ input, textarea {
     cursor: pointer;
   }
 }
+
+.shuffleButton {
+  margin: -5px 0 0 0;
+}
+
+@media (min-width: 992px) {
+  #set-list-region .tip-content, #learn-list-region .tip-content {
+    margin-left: 285px;
+  }
+}

@@ -371,3 +371,10 @@ th .field-tip .tip-content {
 .cardListSubject tbody tr:hover {
   cursor: pointer;
 }
+
+.cardListName {
+  color: $white;
+  padding: 5px 0 5px 10px;
+  font-size: 24px;
+  font-weight: bold;
+}

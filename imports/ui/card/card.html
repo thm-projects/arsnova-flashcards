@@ -165,7 +165,7 @@
                             <div class="box flashcard">
                                 <div class="innerBoxHeader {{getCardBackground difficulty}}-header">
                                     <div class="leftHeader">
-                                        {{#if isEditor}}
+                                        {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
                                                 <a id="editCard"
                                                    class="btn-editCard btn btn-raised btn-default btn-xs"
@@ -184,12 +184,13 @@
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
-                                            {{cardsIndex @index}}/{{countCards cardset_id}}<br>
+                                            {{cardsIndex @index}}/{{getCardsetCount}}<br>
                                         {{/if}}
                                         {{#if isBox}}
                                             {{_ "leitner_status" count=countLeitner}}
                                             <br>
                                         {{/if}}
+                                        <span>{{getCardsetName}}</span><br>
                                         <span class="cardfront">{{_ "frontside"}}</span><span
                                             class="cardback" style="display:none">{{_ "backside"}}</span>
                                     </div>

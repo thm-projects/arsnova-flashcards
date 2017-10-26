@@ -6,8 +6,6 @@
             {{> access_denied_content_only}}
         {{else}}
             {{> cardsetsForm}}
-            {{> sidebarCardsets}}
-
             {{#if isActiveRoute 'create'}}
                 {{> create}}
             {{/if}}
@@ -15,47 +13,65 @@
             {{#if isActiveRoute 'learn'}}
                 {{> learn}}
             {{/if}}
+
+            {{#if isActiveRoute 'shuffle'}}
+                {{> shuffle}}
+            {{/if}}
         {{/if}}
     {{/if}}
 </template>
 
-
-<template name="sidebarCardsets">
-    <div id='set-list-sidebar-region' class="col-md-3">
-        <div class="well well-sm sidebar-nav">
-            <div class="input-group">
-                <input class="form-control" type="text" id="new-set-input"
-                       placeholder="{{_ "input-group.newcarddeck"}}">
-                <span class="input-group-btn">
-                  <button id="newCardSet" type="button" class="btn btn-raised btn-primary saveSet" data-toggle="modal"
-                          data-target="#newSetModal" {{disableIfOffline}}>
-                    <i class="glyphicon glyphicon-plus"></i>
-                  </button>
-              </span>
-            </div>
-
-            <hr/>
-
-            <ul class="nav nav-list">
-                <li class="{{#if isActiveRoute 'learn'}}active{{/if}}">
-                    <a id="setLearn" href="{{pathFor route='learn'}}" name="set-learn">
-                        {{_ "nav-list.learn"}}
-                    </a>
-                </li>
-                <li class="{{#if isActiveRoute 'create'}}active{{/if}}">
-                    <a id="setCreate" href="{{pathFor route='create'}}" name="set-create">
-                        {{_ "nav-list.create"}}
-                    </a>
-                </li>
-            </ul>
+<template name="shuffle">
+    {{#unless isActiveRoute 'shuffle'}}
+        {{#if shuffleList.count}}
+            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                    "set-list.shuffleCardsets"}}</a>
+        {{/if}}
+    {{else}}
+        <div class="col-md-12" id="set-list-region">
+            {{#if gotShuffledCards}}
+                <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
+                   data-toggle="modal"
+                   data-target="#newSetModal" {{disableIfOffline}}>{{_
+                        "set-list.shuffle"}}</a>
+            {{/if}}
+            <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_ "declinecard"}}</a>
+            {{shuffleInfoText}}
+            {{#if shuffleList.count}}
+                <div class="responsive-utilities-test visible-on">
+                    <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                    <span class="col-md-8 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                    <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
+                </div>
+                {{#each shuffleList}}
+                    <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                            oddRow
+                            @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                        {{> cardsetRow}}
+                    </div>
+                {{/each}}
+            {{else}}
+                {{> cardsetEmpty}}
+            {{/if}}
         </div>
-    </div>
+    {{/unless}}
 </template>
 
-
 <template name="create">
-    <div class="col-md-9" id="set-list-region">
+    <div class="col-md-12" id="set-list-region">
+        {{#unless cardsetList.count}}
+            {{> shuffle}}
+        {{/unless}}
         {{#if cardsetList.count}}
+            <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#newSetModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                {{_ "set-list-empty.newset"}}
+            </button>
+            {{> shuffle}}
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-md-9 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+            </div>
             {{#each cardsetList}}
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
@@ -69,7 +85,7 @@
 </template>
 
 <template name="cardsetRow">
-    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+    <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
        title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
@@ -84,12 +100,11 @@
             </span>
         <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
         <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
-                                                                                                         'create'}}panelUnitNoBorder{{/if}}">{{_
+                                                                                                          'create'}}panelUnitNoBorder{{/if}}">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute
-                                                           'learn'}}col-md-7 panelUnit{{else}}col-md-9 panelUnit panelUnitNoBorder{{/if}}
-                                                               poolText ellipsis">
+        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute 'create'}}col-md-9 panelUnit panelUnitNoBorder{{else}}
+            {{#if isActiveRoute 'create'}}col-md-8{{else}}col-md-7{{/if}} panelUnit {{/if}} poolText ellipsis">
             {{this.description}}
         </span>
     </a>
@@ -99,9 +114,24 @@
            data-id="{{this._id}}">
             <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
-           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "navbar-collapse.logout"}}
+           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "set-list.leave"}}
         </span>
         </a>
+    {{/if}}
+    {{#if isActiveRoute 'shuffle'}}
+        <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder">
+            {{#if inShuffleSelection this._id}}
+                <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeShuffleCardset"
+                   data-id="{{this._id}}">
+                    <i class="fa fa-minus" data-id="{{this._id}}"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                </a>
+            {{else}}
+                <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addShuffleCardset"
+                   data-id="{{this._id}}">
+                    <i class="fa fa-plus" data-id="{{this._id}}"></i> {{_ "admin.cardset.addToWordcloud"}}
+                </a>
+            {{/if}}
+        </span>
     {{/if}}
 </template>
 
@@ -111,14 +141,14 @@
             {{#if isActiveRoute 'create'}}
                 <span class="emptyTextList">{{_ "set-list-empty.emptytextlist"}}</span>
                 <br>
-                <button id="setListEmpty" class="btn btn-raised btn-primary btn-newSet" data-toggle="modal"
+                <button id="setListEmpty" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
                         data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}
                 <span class="emptyTextList">{{_ "set-list-learn-empty.emptytextlist"}}</span>
                 <br>
-                <button id="learnListEmpty" class="btn btn-raised btn-primary btn-newSet">{{_
+                <button id="learnListEmpty" class="btn btn-raised btn-success btn-newSet">{{_
                         "set-list-learn-empty.browseCardset"}}</button>
             {{/if}}
         </div>
@@ -126,8 +156,14 @@
 </template>
 
 <template name="learn">
-    <div id="learn-list-region" class="col-md-9">
+    <div id="learn-list-region" class="col-md-12">
+        {{> shuffle}}
         {{#if learnList.count}}
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "manage"}}</span>
+            </div>
             {{#each learnList}}
                 <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
@@ -143,7 +179,7 @@
 
 <template name="descriptionEditorNew">
     <textarea class="form-control" data-provide="markdown" rows="6" id="newSetDescription"
-              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"></textarea>
+              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}">{{getShuffleDescription}}</textarea>
 </template>
 
 <template name="cardsetsForm">
@@ -161,7 +197,7 @@
                                    for="newSetName">{{_ "modal-dialog.name"}}</label>
                             <div class="col-md-9">
                                 <input class="form-control" type="text" id="newSetName"
-                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}">
+                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}" value="{{getShuffleName}}">
                                 <span id="helpNewSetName" class="help-block name"></span>
                             </div>
                         </div>
@@ -182,7 +218,8 @@
                                        for="newSetModule">{{_ "modal-dialog.module"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModule"
-                                           placeholder="{{_ "modal-dialog.moduleplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                           value="{{getShuffleModule}}">
                                     <span id="helpNewSetModule" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -192,7 +229,8 @@
                                        for="newSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModuleShort"
-                                           placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                           value="{{getShuffleModuleShort}}">
                                     <span id="helpNewSetModuleShort" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -203,7 +241,8 @@
                                         "modal-dialog.moduleNum"}}</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="text" id="newSetModuleNum"
-                                           placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}">
+                                           placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                           value="{{getShuffleModuleNum}}">
                                     <span id="helpNewSetModuleNum" class="help-block name"></span>
                                 </div>
                             </div><!-- / module textfield -->
@@ -217,7 +256,7 @@
                                     <button type="button" id="newSetSkillLevel"
                                             class="btn btn-raised newSetSkillLevelDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="0">{{getSkillLevel 0}}
+                                            value="0">{{getSkillLevel getShuffleSkillLevel}}
                                     </button>
                                     <button class="btn btn-raised dropdown-toggle newSetSkillLevelDropdown"
                                             type="button"
@@ -226,6 +265,7 @@
                                         <span class="caret"></span>
                                         <span class="sr-only"></span>
                                     </button>
+                                    {{getShuffleSkillLevel}}
                                     <ul class="dropdown-menu longButton">
                                         <li class="skillLevel" value="0" data="{{getSkillLevel 0}}"><a
                                                 href="#">{{getSkillLevel 0}}</a></li>
@@ -246,11 +286,19 @@
                                         "modal-dialog.college"}}</label>
                                 <div class="dropup">
                                     <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                        <button type="button" id="newSetCollege"
-                                                class="btn btn-raised newSetCollegeDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="">{{_ "modal-dialog.college_required"}}
-                                        </button>
+                                        {{#if isActiveRoute 'shuffle'}}
+                                            <button type="button" id="newSetCollege"
+                                                    class="btn btn-raised newSetCollegeDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    value="{{getShuffleCollege 0}}">{{getShuffleCollege 1}}
+                                            </button>
+                                        {{else}}
+                                            <button type="button" id="newSetCollege"
+                                                    class="btn btn-raised newSetCollegeDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    value="">{{_ "modal-dialog.college_required"}}
+                                            </button>
+                                        {{/if}}
                                         <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown"
                                                 type="button"
                                                 data-toggle="dropdown"
@@ -258,6 +306,7 @@
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
+
                                         <ul class="dropdown-menu longButton">
                                             {{#each getColleges}}
                                                 <li class="college" value="{{_id}}" data="{{this.college}}"><a
@@ -275,39 +324,19 @@
                                     "modal-dialog.course"}}</label>
                             <div class="dropup">
                                 <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
-                                    {{#unless singleUniversity}}
-                                        <button type="button" id="newSetCourse"
-                                                class="btn btn-raised newSetCourseDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="" disabled>{{_
-                                                "modal-dialog.course_required"}}
-                                        </button>
-                                    {{else}}
-                                        <button type="button" id="newSetCourse"
-                                                class="btn btn-raised newSetCourseDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                value="">{{_
-                                                "modal-dialog.course_required"}}
-                                        </button>
-                                    {{/unless}}
-                                    {{#unless singleUniversity}}
-                                        <button type="button"
-                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"
-                                                disabled>
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                    {{else}}
-                                        <button type="button"
-                                                class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                    {{/unless}}
+                                    <button type="button" id="newSetCourse"
+                                            class="btn btn-raised newSetCourseDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            value="{{getShuffleCourse 1}}" {{isSingleUniversity}}>{{getShuffleCourse 0}}
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-raised dropdown-toggle newSetCourseDropdown"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false"
+                                        {{isSingleUniversity}}>
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
                                     <ul class="dropdown-menu longButton">
                                         {{#each getCourses}}
                                             <li class="course" value="{{_id}}" data="{{this.course}}"><a
@@ -321,11 +350,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-raised btn-default btn-block  col-xs-12 col-sm-3 cancel"
-                            data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                    <button class="btn btn-raised btn-success btn-block  col-xs-12 col-sm-3 save pull-right">{{_
-                            "modal-dialog.createcarddeck"}}</button>
+                    <a class="btn btn-raised btn-default col-xs-12 col-sm-3 cancel"
+                       data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</a>
+                    <a href="create" class="btn btn-raised btn-success col-xs-12 col-sm-3 save pull-right">{{_
+                            "modal-dialog.createcarddeck"}}</a>
                 </div>
             </div>
         </div>

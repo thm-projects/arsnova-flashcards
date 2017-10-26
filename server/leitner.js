@@ -30,7 +30,7 @@ Meteor.methods({
 								user_id: Meteor.userId(),
 								isMemo: false
 							})) {
-							Meteor.call("addCardsLeitner", cardset._id, Meteor.userId(), function (error, result) {
+							Meteor.call("addCardsLeitner", cardset, Meteor.userId(), function (error, result) {
 								if (error) {
 									throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in inactive learning-phase.');
 								}
@@ -39,7 +39,7 @@ Meteor.methods({
 								}
 							});
 						} else {
-							Meteor.call("addCardsLeitner", cardset._id, Meteor.userId());
+							Meteor.call("addCardsLeitner", cardset, Meteor.userId());
 						}
 					}
 				});
@@ -48,7 +48,7 @@ Meteor.methods({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId()
 					}) && cardset.learningEnd.getTime() > new Date().getTime()) {
-					Meteor.call("addCardsLeitner", cardset._id, Meteor.userId(), function (error, result) {
+					Meteor.call("addCardsLeitner", cardset, Meteor.userId(), function (error, result) {
 						if (error) {
 							throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in active learning-phase.');
 						}
@@ -61,21 +61,28 @@ Meteor.methods({
 		}
 	},
 	/** Adds new cards to the learners list for leitner box mode
-	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
+	 *  @param {string} cardset - The cardset in which the user is learning
 	 *  @param {string} user_id - The id of the user who is currently learning in the specific cardset
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
-	addCardsLeitner: function (cardset_id, user_id) {
+	addCardsLeitner: function (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let cards = Cards.find({
-				cardset_id: cardset_id
-			});
+			let cards;
+			if (cardset.shuffled) {
+				cards = Cards.find({
+					cardset_id: {$in: cardset.cardGroups}
+				});
+			} else {
+				cards = Cards.find({
+					cardset_id: cardset._id
+				});
+			}
 			cards.forEach(function (card) {
-				Meteor.call("addLearned", cardset_id, card._id, user_id, false);
+				Meteor.call("addLearned", cardset._id, card._id, user_id, false);
 			});
-			Meteor.call("updateLearnerCount", cardset_id);
+			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
 		}
 	},
@@ -89,9 +96,16 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let cards = Cards.find({
-				cardset_id: cardset._id
-			});
+			let cards;
+			if (cardset.shuffled) {
+				cards = Cards.find({
+					cardset_id: {$in: cardset.cardGroups}
+				});
+			} else {
+				cards = Cards.find({
+					cardset_id: cardset._id
+				});
+			}
 			cards.forEach(function (card) {
 				Meteor.call("addLearned", cardset._id, card._id, Meteor.userId(), true);
 			});

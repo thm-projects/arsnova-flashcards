@@ -133,8 +133,12 @@ function isMemo() {
 }
 
 function getCardsetCards() {
-	var query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
-
+	let query = "";
+	if (Session.get('activeCardset').shuffled) {
+		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {sort: {subject: 1, front: 1}});
+	} else {
+		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
+	}
 	query.observeChanges({
 		removed: function () {
 			$('#cardCarousel .item:first-child').addClass('active');
@@ -189,7 +193,6 @@ function getMemoCards() {
 	});
 	if (learned !== undefined) {
 		var cards = Cards.find({
-			cardset_id: Session.get('activeCardset')._id,
 			_id: learned.card_id
 		}).fetch();
 		Session.set('currentCard', learned.card_id);
@@ -255,7 +258,7 @@ Template.btnCard.events({
 			var hint = $('#hintEditor').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", this._id, subject, hint, front, back, Number(difficulty));
+				Meteor.call("addCard", this._id, subject, hint, front, back, Number(difficulty), "0");
 			} else {
 				Meteor.call("updateCard", this._id, subject, hint, front, back, Number(difficulty));
 			}
@@ -569,12 +572,18 @@ Template.flashcards.helpers({
 	},
 	countLeitner: function () {
 		var maxIndex = Learned.find({
-			cardset_id: this.cardset_id,
+			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			active: true
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;
+	},
+	getCardsetCount: function () {
+		return Session.get('activeCardset').quantity;
+	},
+	getCardsetName: function () {
+		return Cardsets.findOne({_id: this.cardset_id}).name;
 	}
 });
 

@@ -422,8 +422,17 @@ Template.descriptionEditorEdit.rendered = function () {
  * cardsetList
  * ############################################################################
  */
-
 Template.cardsetList.helpers({
+	isShuffledCardset: function () {
+		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+	},
+	cardsetList: function () {
+		if (this.shuffled) {
+			return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
+		} else {
+			return Cardsets.find({_id: this._id}).fetch();
+		}
+	},
 	cardSubject: function () {
 		return _.uniq(Cards.find({
 			cardset_id: this._id
@@ -446,13 +455,17 @@ Template.cardsetList.helpers({
 			sort: {front: 1}
 		});
 	},
-	getMaximumText: function (text) {
-		const maxLength = 10;
-		const textSplitted = text.split(" ");
-		if (textSplitted.length > maxLength) {
-			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
+	getColors: function () {
+		switch (this.kind) {
+			case "personal":
+				return "btn-danger";
+			case "free":
+				return "btn-info";
+			case "edu":
+				return "btn-success";
+			case "pro":
+				return "btn-warning";
 		}
-		return text;
 	}
 });
 
@@ -462,7 +475,6 @@ Template.cardsetList.events({
 		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 	}
 });
-
 /*
  * ############################################################################
  * cardsetInfo
@@ -589,6 +601,8 @@ Template.cardsetInfoBox.helpers({
 	},
 	getColors: function () {
 		switch (this.kind) {
+			case "personal":
+				return "btn-danger";
 			case "free":
 				return "btn-info";
 			case "edu":
@@ -598,15 +612,19 @@ Template.cardsetInfoBox.helpers({
 		}
 	},
 	getName: function () {
+		let shuffled = "";
+		if (this.shuffled) {
+			shuffled = TAPi18n.__('admin.shuffled') + " ";
+		}
 		switch (this.kind) {
 			case "free":
-				return TAPi18n.__('admin.free');
+				return shuffled + TAPi18n.__('admin.free');
 			case "edu":
-				return TAPi18n.__('admin.university');
+				return shuffled + TAPi18n.__('admin.university');
 			case "pro":
-				return TAPi18n.__('admin.pro');
+				return shuffled + TAPi18n.__('admin.pro');
 			default:
-				return TAPi18n.__('admin.Private');
+				return shuffled + TAPi18n.__('admin.private');
 		}
 	},
 	isPurchased: function () {
