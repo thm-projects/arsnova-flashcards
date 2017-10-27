@@ -118,8 +118,15 @@
 
 <template name="subjectEditor">
     <form>
-        <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="-1"
-               autofocus>
+        {{#if isActiveRoute 'newCard'}}
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
+                   tabindex="-1"
+                   autofocus>
+        {{else}}
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}"
+                   tabindex="-1"
+                   autofocus>
+        {{/if}}
     </form>
 </template>
 

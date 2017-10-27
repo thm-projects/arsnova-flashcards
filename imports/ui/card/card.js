@@ -396,20 +396,30 @@ Template.frontEditor.events({
 	}
 });
 
+
+
 /*
  * ############################################################################
  * Editor
  * ############################################################################
  */
-Template.editor.rendered = function () {
-	$('#subjectEditor').focus();
-};
-
-Template.editor.events({
-	'keyup #subjectEditor': function () {
-		$('#subjectEditor').css('border', 0);
+Template.subjectEditor.helpers({
+	getSubject: function () {
+		return Session.get('subjextEditorText');
 	}
 });
+
+Template.subjectEditor.events({
+	'keyup #subjectEditor': function () {
+		$('#subjectEditor').css('border', 0);
+		Session.set('subjextEditorText', $('#subjectEditor').val());
+	}
+});
+
+Template.subjectEditor.rendered = function () {
+	$('#subjectEditor').focus();
+	Session.set('subjextEditorText', $('#subjectEditor').val());
+};
 
 /*
  * ############################################################################
