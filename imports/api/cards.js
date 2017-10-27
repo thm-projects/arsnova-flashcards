@@ -93,7 +93,10 @@ if (Meteor.isServer) {
 							//is owner
 							{
 								cardset_id: {
-									$in: Cardsets.find({owner: this.userId, college: Meteor.settings.public.university.default}).map(function (cardset) {
+									$in: Cardsets.find({
+										owner: this.userId,
+										college: Meteor.settings.public.university.default
+									}).map(function (cardset) {
 										return cardset._id;
 									})
 								}
@@ -236,6 +239,7 @@ Meteor.methods({
 		check(cardGroup, String);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
+		let card_id = "";
 		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -250,6 +254,8 @@ Meteor.methods({
 			cardset_id: cardset_id,
 			difficulty: difficulty,
 			cardGroup: cardGroup
+		}, function (err, card) {
+			card_id = card;
 		});
 		Cardsets.update(cardset_id, {
 			$set: {
@@ -264,6 +270,7 @@ Meteor.methods({
 			owner: Meteor.userId()
 		});
 		Meteor.call('checkLvl');
+		return card_id;
 	},
 	deleteCard: function (card_id) {
 		check(card_id, String);
@@ -333,7 +340,6 @@ Meteor.methods({
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
-
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
