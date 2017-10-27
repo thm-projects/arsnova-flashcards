@@ -351,6 +351,9 @@ Template.frontEditor.helpers({
 			return Session.get('frontText');
 		}
 		return "";
+	},
+	getDifficultyColor: function () {
+		return Session.get('difficultyColor');
 	}
 });
 
@@ -397,10 +400,9 @@ Template.frontEditor.events({
 });
 
 
-
 /*
  * ############################################################################
- * Editor
+ * SubjectEditor
  * ############################################################################
  */
 Template.subjectEditor.helpers({
@@ -437,6 +439,9 @@ Template.backEditor.helpers({
 			return Session.get('backText');
 		}
 		return "";
+	},
+	getDifficultyColor: function () {
+		return Session.get('difficultyColor');
 	}
 });
 
@@ -552,6 +557,16 @@ Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
 		return ((this.difficulty === undefined && type === 0) || (type === this.difficulty));
 	}
+});
+
+Template.difficultyEditor.events({
+	'click #difficultyGroup': function (event) {
+		Session.set('difficultyColor', Number($(event.target).data('color')));
+	}
+});
+
+Template.difficultyEditor.onRendered(function () {
+	Session.set('difficultyColor', Number($('input[name=difficulty]:checked').val()));
 });
 
 /*
