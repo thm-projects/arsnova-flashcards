@@ -276,6 +276,7 @@ function saveCard(card_id, returnToCardset) {
 						$('#hintEditor').val('');
 						Session.set('frontText', undefined);
 						Session.set('backText', undefined);
+						Session.set('hintText', undefined);
 					}
 				}
 			});

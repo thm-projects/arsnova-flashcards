@@ -113,6 +113,7 @@
 <template name="hintEditor">
     <form>
         <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
+        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
     </form>
 </template>
 
