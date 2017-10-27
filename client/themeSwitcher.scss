@@ -115,6 +115,12 @@ $themes: (
       color: white;
       background-color: $primary-color;
     }
+    .cardContent hr {
+      background-color: $primary-color;
+    }
+    #frontTextFooter hr, #backTextFooter hr {
+      background-color: $primary-color;
+    }
   }
 }
 

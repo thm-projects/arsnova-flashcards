@@ -14,6 +14,11 @@ $header_line: rgba(255, 0, 0, 0.6);
 #frontTextFooter, #backTextFooter {
   padding-left: 15px;
   padding-right: 15px;
+  hr {
+    display:block;
+    height: 4px;
+    border: 0;
+  }
 }
 
 #hintTextFooter {
@@ -340,6 +345,12 @@ img.cardside {
       width: auto;
       display: initial;
     }
+  }
+
+  hr {
+    display:block;
+    height: 4px;
+    border: 0;
   }
 }
 
