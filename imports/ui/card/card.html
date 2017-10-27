@@ -101,7 +101,6 @@
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
         <div id="frontTextFooter">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
-    <span id="helpNewFronttext" class="help-block fronttext"></span>
 </template>
 
 <template name="backEditor">
@@ -109,14 +108,12 @@
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
         <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
-    <span id="helpNewBacktext" class="help-block backtext"></span>
 </template>
 
 <template name="hintEditor">
     <form>
         <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
     </form>
-    <span id="helpNewHinttext" class="help-block hinttext"></span>
 </template>
 
 <template name="subjectEditor">
@@ -124,27 +121,27 @@
         <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="-1"
                autofocus>
     </form>
-    <span id="helpNewSubjecttext" class="help-block subject"></span>
 </template>
 
 <template name="btnCard">
     <div class="actionButtons col-md-12">
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}}>
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}}>
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-sm-2" {{disableIfOffline}}>
+                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}}>
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2">{{_
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2">{{_
                 "declinecard"}}</button>
-        {{#if isCardsetOwner this.cardset_id}}
-            {{#if isEditMode}}
+        {{#if isEditMode}}
+            {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}} >{{_ "deletecard"}}</button>
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}} >{{_
+                        "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
             {{/if}}
         {{/if}}
     </div>
