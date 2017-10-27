@@ -7,9 +7,6 @@
         {{else}}
             {{#if isCardsetOwner this._id}}
                 <div class="container">
-                    <div class="col-md-12">
-                        <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
-                    </div>
                     {{> editor}}
                 </div>
             {{else}}
@@ -28,9 +25,6 @@
         {{else}}
             {{#if isEditor}}
                 <div class="container">
-                    <div class="col-md-12">
-                        <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
-                    </div>
                     {{> editor}}
                 </div>
             {{else}}
@@ -41,17 +35,13 @@
 </template>
 
 <template name="editor">
-    <div id="subject" class="col-md-12 cardtext">
+    <div id="subject" class="col-md-6 cardtext">
         <h5>{{_ "cardsubject"}}</h5>
         {{> subjectEditor}}
     </div>
-    <div id="difficulty" class="col-md-6">
+    <div id="difficulty" class="col-md-6 cardtext">
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
-    </div>
-    <div id="hinttext" class="col-md-6 cardtext" data-content="{{hint}}">
-        <h5>{{_ "hint"}}</h5>
-        {{> hintEditor}}
     </div>
     <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
         <h5>{{_ "frontside"}}</h5>
@@ -61,11 +51,15 @@
         <h5>{{_ "backside"}}</h5>
         {{> backEditor}}
     </div>
+    <div id="hinttext" class="col-md-12 cardtext" data-content="{{hint}}">
+        <h5>{{_ "hint"}}</h5>
+        {{> hintEditor}}
+    </div>
     {{> btnCard}}
 </template>
 
 <template name="difficultyEditor">
-    <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
+    <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
         <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked>
@@ -120,37 +114,39 @@
 
 <template name="hintEditor">
     <form>
-        <textarea id="hintEditor" name="content" data-provide="markdown" rows="5">{{hint}}</textarea>
-        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+        <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
     </form>
     <span id="helpNewHinttext" class="help-block hinttext"></span>
 </template>
 
 <template name="subjectEditor">
     <form>
-        <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
+        <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="-1"
+               autofocus>
     </form>
     <span id="helpNewSubjecttext" class="help-block subject"></span>
 </template>
 
 <template name="btnCard">
-    <div class="col-md-12">
-        {{#if isCardsetOwner this.cardset_id}}
-            {{#if isEditMode}}
-                <button id="cardDelete" class="btn {{#if
-                        learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_
-                        "deletecard"}}</button>
-                <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised col-xs-12 col-sm-3">{{_
-                        "confirmcard"}}</button>
-            {{/if}}
-        {{/if}}
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3">{{_
-                "declinecard"}}</button>
+    <div class="actionButtons col-md-12">
         <button id="cardSave"
-                class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}}>
             {{_ "savecard"}}
         </button>
+        <button id="cardSaveReturn"
+                class="btn btn-success btn-raised save col-xs-12 col-sm-2" {{disableIfOffline}}>
+            {{_ "savecardReturn"}}
+        </button>
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2">{{_
+                "declinecard"}}</button>
+        {{#if isCardsetOwner this.cardset_id}}
+            {{#if isEditMode}}
+                <button id="cardDelete"
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}} >{{_ "deletecard"}}</button>
+                <button id="cardDeleteConfirm" style="display: none;"
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
+            {{/if}}
+        {{/if}}
     </div>
 </template>
 
@@ -263,7 +259,7 @@
 </template>
 
 <template name="cardHint">
-    <div class="modal fade" id="showHintModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="showHintModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">
             <div class="modal-content">
                 <div class="modal-header">

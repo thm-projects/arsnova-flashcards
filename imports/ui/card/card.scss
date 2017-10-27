@@ -11,10 +11,6 @@ $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $header_line: rgba(255, 0, 0, 0.6);
 
-.cardtext {
-  margin-bottom: 20px;
-}
-
 #frontTextFooter, #backTextFooter, #hintTextFooter {
   padding: 10px;
   background-color: #f5f5f5;
@@ -347,16 +343,18 @@ img.cardside {
   padding: 50px;
 }
 
-@media (min-width: 768px) {
-  #cardCancel {
-    margin-left: 25px;
-  }
-}
-
 #answerOptions {
   position: fixed;
   height: 150px;
   top: 0;
   z-index: 15;
   background-color: $color_mercury_approx;
+}
+
+.editorBackground {
+  background-color: #EEEEEE;
+}
+
+.actionButtons .btn:not(:first-of-type) {
+  margin-left: 15px;
 }
