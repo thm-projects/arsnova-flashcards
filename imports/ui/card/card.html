@@ -99,14 +99,14 @@
 <template name="frontEditor">
     <form>
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter" class="innerBoxBody {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
+        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
 </template>
 
 <template name="backEditor">
     <form>
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter" class="innerBoxBody {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
+        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
 </template>
 
