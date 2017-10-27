@@ -29,7 +29,7 @@ $themes: (
       color: $primary-color;
     }
 
-    #pool-category-region .poolHeaderBottom {
+    .poolHeaderBottom {
       background-color: $accent;
     }
 
@@ -113,6 +113,12 @@ $themes: (
     }
     .cardListSubject th {
       color: white;
+      background-color: $primary-color;
+    }
+    .cardContent hr {
+      background-color: $primary-color;
+    }
+    #frontTextFooter hr, #backTextFooter hr {
       background-color: $primary-color;
     }
   }

@@ -60,7 +60,8 @@ Meteor.methods({
 					front: front,
 					back: back,
 					hint: hint,
-					cardset_id: cardset_id
+					cardset_id: cardset_id,
+					cardGroup: -1
 				});
 				Cardsets.update(cardset_id, {
 					$set: {

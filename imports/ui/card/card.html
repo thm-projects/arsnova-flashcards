@@ -7,9 +7,6 @@
         {{else}}
             {{#if isCardsetOwner this._id}}
                 <div class="container">
-                    <div class="col-md-12">
-                        <h3 style="margin-bottom:20px">{{_ "newcard"}}</h3>
-                    </div>
                     {{> editor}}
                 </div>
             {{else}}
@@ -28,9 +25,6 @@
         {{else}}
             {{#if isEditor}}
                 <div class="container">
-                    <div class="col-md-12">
-                        <h3 style="margin-bottom:20px">{{_ "editcard"}}</h3>
-                    </div>
                     {{> editor}}
                 </div>
             {{else}}
@@ -41,17 +35,13 @@
 </template>
 
 <template name="editor">
-    <div id="subject" class="col-md-12 cardtext">
+    <div id="subject" class="col-md-6 cardtext">
         <h5>{{_ "cardsubject"}}</h5>
         {{> subjectEditor}}
     </div>
-    <div id="difficulty" class="col-md-6">
+    <div id="difficulty" class="col-md-6 cardtext">
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
-    </div>
-    <div id="hinttext" class="col-md-6 cardtext" data-content="{{hint}}">
-        <h5>{{_ "hint"}}</h5>
-        {{> hintEditor}}
     </div>
     <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
         <h5>{{_ "frontside"}}</h5>
@@ -61,12 +51,16 @@
         <h5>{{_ "backside"}}</h5>
         {{> backEditor}}
     </div>
+    <div id="hinttext" class="col-md-12 cardtext" data-content="{{hint}}">
+        <h5>{{_ "hint"}}</h5>
+        {{> hintEditor}}
+    </div>
     {{> btnCard}}
 </template>
 
 <template name="difficultyEditor">
-    <div id="difficultyGroup" class="btn-group" role="group" data-toggle="buttons">
-        <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}">
+    <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
+        <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked>
             {{else}}
@@ -74,7 +68,7 @@
             {{/if}}
             {{_ "difficulty0"}}
         </label>
-        <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
             {{#if isDifficultyChecked 1}}
                 <input type="radio" name="difficulty" value="1" checked>
             {{else}}
@@ -83,7 +77,7 @@
 
             {{_ "difficulty1"}}
         </label>
-        <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
             {{#if isDifficultyChecked 2}}
                 <input type="radio" name="difficulty" value="2" checked>
             {{else}}
@@ -91,7 +85,7 @@
             {{/if}}
             {{_ "difficulty2"}}
         </label>
-        <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}">
+        <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
             {{#if isDifficultyChecked 3}}
                 <input type="radio" name="difficulty" value="3" checked>
             {{else}}
@@ -105,52 +99,59 @@
 <template name="frontEditor">
     <form>
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
+        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
-    <span id="helpNewFronttext" class="help-block fronttext"></span>
 </template>
 
 <template name="backEditor">
     <form>
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
+        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
-    <span id="helpNewBacktext" class="help-block backtext"></span>
 </template>
 
 <template name="hintEditor">
     <form>
-        <textarea id="hintEditor" name="content" data-provide="markdown" rows="5">{{hint}}</textarea>
+        <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
         <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
     </form>
-    <span id="helpNewHinttext" class="help-block hinttext"></span>
 </template>
 
 <template name="subjectEditor">
     <form>
-        <input class="form-control" id="subjectEditor" name="content" value="{{subject}}">
+        {{#if isActiveRoute 'newCard'}}
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
+                   tabindex="-1"
+                   autofocus>
+        {{else}}
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}"
+                   tabindex="-1"
+                   autofocus>
+        {{/if}}
     </form>
-    <span id="helpNewSubjecttext" class="help-block subject"></span>
 </template>
 
 <template name="btnCard">
-    <div class="col-md-12">
-        {{#if isCardsetOwner this.cardset_id}}
-            {{#if isEditMode}}
-                <button id="cardDelete" class="btn {{#if
-                        learningActive}} btn-warning {{else}} btn-default{{/if}} btn-raised col-xs-12 col-sm-3" {{isDisabled}}>{{_
-                        "deletecard"}}</button>
-                <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised col-xs-12 col-sm-3">{{_
-                        "confirmcard"}}</button>
-            {{/if}}
-        {{/if}}
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-3">{{_
-                "declinecard"}}</button>
+    <div class="actionButtons col-md-12">
         <button id="cardSave"
-                class="btn btn-success btn-raised save pull-right col-xs-12 col-sm-3" {{disableIfOffline}}>
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}}>
             {{_ "savecard"}}
         </button>
+        <button id="cardSaveReturn"
+                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}}>
+            {{_ "savecardReturn"}}
+        </button>
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2">{{_
+                "declinecard"}}</button>
+        {{#if isEditMode}}
+            {{#if isCardsetOwner this.cardset_id}}
+                <button id="cardDelete"
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}} >{{_
+                        "deletecard"}}</button>
+                <button id="cardDeleteConfirm" style="display: none;"
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
+            {{/if}}
+        {{/if}}
     </div>
 </template>
 
@@ -165,7 +166,7 @@
                             <div class="box flashcard">
                                 <div class="innerBoxHeader {{getCardBackground difficulty}}-header">
                                     <div class="leftHeader">
-                                        {{#if isEditor}}
+                                        {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
                                                 <a id="editCard"
                                                    class="btn-editCard btn btn-raised btn-default btn-xs"
@@ -184,12 +185,13 @@
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
-                                            {{cardsIndex @index}}/{{countCards cardset_id}}<br>
+                                            {{cardsIndex @index}}/{{getCardsetCount}}<br>
                                         {{/if}}
                                         {{#if isBox}}
                                             {{_ "leitner_status" count=countLeitner}}
                                             <br>
                                         {{/if}}
+                                        <span>{{getCardsetName}}</span><br>
                                         <span class="cardfront">{{_ "frontside"}}</span><span
                                             class="cardback" style="display:none">{{_ "backside"}}</span>
                                     </div>
@@ -262,7 +264,7 @@
 </template>
 
 <template name="cardHint">
-    <div class="modal fade" id="showHintModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="showHintModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">
             <div class="modal-content">
                 <div class="modal-header">

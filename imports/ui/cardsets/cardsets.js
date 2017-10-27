@@ -12,6 +12,55 @@ Session.setDefault('cardsetId', undefined);
 
 Meteor.subscribe("cardsets");
 
+function cleanModal() {
+	$('#newSetModal').on('hidden.bs.modal', function () {
+		$('#newSetName').val('');
+		$('#helpNewSetName').html('');
+		$('#newSetName').css('border-color', '');
+		$('#newSetNameLabel').css('color', '');
+
+		$('#newSetDescription').val('');
+		$('#helpNewSetDescription').html('');
+		$('#newSetDescription').css('border-color', '');
+		$('#newSetDescriptionLabel').css('color', '');
+
+		$('#newSetModule').val('');
+		$('#helpNewSetModule').html('');
+		$('#newSetModule').css('border-color', '');
+		$('#newSetModuleLabel').css('color', '');
+
+		$('#newSetModuleShort').val('');
+		$('#helpNewSetModuleShort').html('');
+		$('#newSetModuleShort').css('border-color', '');
+		$('#newSetModuleShortLabel').css('color', '');
+
+		$('#newSetModuleNum').val('');
+		$('#helpNewSetModuleNum').html('');
+		$('#newSetModuleNum').css('border-color', '');
+		$('#newSetModuleNumLabel').css('color', '');
+
+		if ($('#newSetCollege').val() !== "") {
+			$('#newSetCollege').val('');
+			$('#newSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+		}
+
+		$('#helpNewSetCollege').html('');
+		$('.newSetCollegeDropdown').css('border-color', '');
+		$('#newSetCollegeLabel').css('color', '');
+
+		if ($('#newSetCourse').val() !== "") {
+			$('#newSetCourse').val('');
+			$('#newSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
+		}
+
+		$('#helpNewSetCourse').html('');
+		$('.newSetCourseDropdown').css('border-color', '');
+		$('#newSetCourseLabel').css('color', '');
+		$('.newSetCourseDropdown').attr('disabled', true);
+
+		Session.set('poolFilterCollege', undefined);
+	});
+}
 
 /*
  * ############################################################################
@@ -28,7 +77,6 @@ Template.create.helpers({
 		});
 	}
 });
-
 
 /*
  * ############################################################################
@@ -67,6 +115,136 @@ Template.learn.events({
 
 /*
  * ############################################################################
+ * cardsetRow
+ * ############################################################################
+ */
+
+Template.cardsetRow.events({
+	"click .addShuffleCardset": function (event) {
+		let array = Session.get("ShuffledCardsets");
+		let arrayExclude = Session.get("ShuffledCardsetsExclude");
+		let cardset = Cardsets.findOne({_id: $(event.target).data('id')}, {shuffled: 1, cardGroups: 1});
+		if (cardset.shuffled) {
+			for (let i = 0; i < cardset.cardGroups.length; i++) {
+				if (!array.includes(cardset.cardGroups[i])) {
+					array.push(cardset.cardGroups[i]);
+				}
+			}
+			arrayExclude.push($(event.target).data('id'));
+			Session.set("ShuffledCardsetsExclude", arrayExclude);
+		} else {
+			array.push($(event.target).data('id'));
+		}
+		Session.set("ShuffledCardsets", array);
+	},
+	"click .removeShuffleCardset": function (event) {
+		let array = Session.get("ShuffledCardsets");
+		let arrayExclude = Session.get("ShuffledCardsetsExclude");
+		let cardset = Cardsets.findOne({_id: $(event.target).data('id')}, {shuffled: 1, cardGroups: 1});
+		if (cardset.shuffled) {
+			array = jQuery.grep(array, function (value) {
+				for (let i = 0; i < cardset.cardGroups.length; i++) {
+					if (value === cardset.cardGroups[i]) {
+						return false;
+					}
+				}
+				return true;
+			});
+			arrayExclude = jQuery.grep(arrayExclude, function (value) {
+				return value !== $(event.target).data('id');
+			});
+			Session.set("ShuffledCardsetsExclude", arrayExclude);
+		} else {
+			array = jQuery.grep(array, function (value) {
+				return value !== $(event.target).data('id');
+			});
+			for (let i = 0; i < Session.get("ShuffledCardsetsExclude").length; i++) {
+				cardset = Cardsets.findOne({_id: Session.get("ShuffledCardsetsExclude")[i]}, {cardGroups: 1});
+				let brokenHeart = true;
+				for (let k = 0; k < cardset.cardGroups.length; k++) {
+					if (array.includes(cardset.cardGroups[k])) {
+						brokenHeart = false;
+					}
+				}
+				if (brokenHeart) {
+					arrayExclude.splice(i, 1);
+				}
+			}
+			Session.set("ShuffledCardsetsExclude", arrayExclude);
+		}
+		Session.set("ShuffledCardsets", array);
+	}
+});
+
+Template.cardsetRow.helpers({
+	inShuffleSelection: function (cardset_id) {
+		if (Session.get("ShuffledCardsets").includes(cardset_id) || Session.get("ShuffledCardsetsExclude").includes(cardset_id)) {
+			return true;
+		}
+	},
+	getLink: function (cardset_id) {
+		return ActiveRoute.name('shuffle') ? "#" : ("/cardset/" + cardset_id);
+	}
+});
+
+/*
+ * ############################################################################
+ * shuffle
+ * ############################################################################
+ */
+
+Template.shuffle.events({
+	'click #createShuffledCardset': function () {
+		Session.set("ShuffleTemplate", Cardsets.findOne({_id: Session.get("ShuffledCardsets")[0]}));
+	}
+});
+
+Template.shuffle.helpers({
+	shuffleInfoText: function () {
+		return TAPi18n.__('set-list.shuffleInfoText');
+	},
+	shuffleList: function () {
+		let learnCards = Learned.find({
+			user_id: Meteor.userId()
+		});
+		let otherCardsets = Cardsets.find({
+			$or: [
+				{owner: Meteor.userId()},
+				{editors: {$in: [Meteor.userId()]}}
+			]
+		});
+		let cardsets = [];
+		learnCards.forEach(function (learnCard) {
+			if ($.inArray(learnCard.cardset_id, cardsets) === -1) {
+				cardsets.push(learnCard.cardset_id);
+			}
+		});
+		otherCardsets.forEach(function (createdCardset) {
+			if ($.inArray(createdCardset._id, cardsets) === -1) {
+				cardsets.push(createdCardset._id);
+			}
+		});
+
+		return Cardsets.find({
+			_id: {
+				$in: cardsets
+			}
+		}, {
+			sort: {name: 1}
+		});
+	},
+	gotShuffledCards: function () {
+		return Session.get("ShuffledCardsets").length > 1;
+	}
+});
+
+Template.shuffle.created = function () {
+	Session.set("ShuffledCardsets", []);
+	Session.set("ShuffledCardsetsExclude", []);
+};
+
+/*
+ * ############################################################################
  * empty
  * ############################################################################
  */
@@ -78,12 +256,76 @@ Template.cardsetEmpty.events({
 
 /*
  * ############################################################################
+ * cardsetForm
+ * ############################################################################
+ */
+
+Template.cardsetsForm.helpers({
+	isSingleUniversity: function () {
+		if (ActiveRoute.name('shuffle')) {
+			return "";
+		} else {
+			return Meteor.settings.public.university.singleUniversity ? "" : "disabled";
+		}
+	},
+	getShuffleName: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? "Shuffle: " + Session.get("ShuffleTemplate").name : "";
+		}
+	},
+	getShuffleModule: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").module : "";
+		}
+	},
+	getShuffleModuleShort: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleToken : "";
+		}
+	},
+	getShuffleModuleNum: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleNum : "";
+		}
+	},
+	getShuffleSkillLevel: function () {
+		if (ActiveRoute.name('shuffle')) {
+			if (Session.get("ShuffleTemplate") !== undefined) {
+				$('.newSetSkillLevelDropdown').defaultValue = Session.get("ShuffleTemplate").skillLevel;
+			}
+		} else {
+			$('.newSetSkillLevelDropdown').defaultValue = 0;
+		}
+	},
+	getShuffleCollege: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return Session.get("ShuffleTemplate").college;
+		}
+	},
+	getShuffleCourse: function (mode) {
+		if (mode) {
+			if (Session.get("ShuffleTemplate") !== undefined) {
+				return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").course : "";
+			} else {
+				return "";
+			}
+		} else {
+			if (Session.get("ShuffleTemplate") !== undefined) {
+				return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").course : (TAPi18n.__('modal-dialog.course_required'));
+			} else {
+				return TAPi18n.__('modal-dialog.course_required');
+			}
+		}
+	}
+});
+
+/*
+ * ############################################################################
  * cardsets
  * ############################################################################
  */
 
 Template.cardsets.events({
-
 	'click #newCardSet': function () {
 		var inputValue = $('#new-set-input').val();
 		$('#newSetName').val(inputValue);
@@ -169,48 +411,39 @@ Template.cardsets.events({
 		let skillLevel;
 		let college;
 		let course;
-		if (Meteor.settings.public.university.singleUniversity) {
-			if ($('#newSetName').val() !== "" &&
-				$('#newSetDescription').val() !== "" &&
-				$('#newSetModule').val() !== "" &&
-				$('#newSetModuleShort').val() !== "" &&
-				$('#newSetModuleNum').val() !== "" &&
-				$('#newSetSkillLevel').val() !== "" &&
-				$('#newSetCourse').val() !== "") {
-				name = $('#newSetName').val();
-				description = $('#newSetDescription').val();
-				module = $('#newSetModule').val();
-				moduleShort = $('#newSetModuleShort').val();
-				moduleNum = $('#newSetModuleNum').val();
-				skillLevel = $('#newSetSkillLevel').val();
-				college = Meteor.settings.public.university.default;
-				course = $('#newSetCourse').text();
-
-				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
-				$('#newSetModal').modal('hide');
-			}
+		let shuffled;
+		let cardGroups;
+		if (ActiveRoute.name('shuffle')) {
+			shuffled = true;
+			cardGroups = Session.get("ShuffledCardsets");
 		} else {
-			if ($('#newSetName').val() !== "" &&
-				$('#newSetDescription').val() !== "" &&
-				$('#newSetModule').val() !== "" &&
-				$('#newSetModuleShort').val() !== "" &&
-				$('#newSetModuleNum').val() !== "" &&
-				$('#newSetSkillLevel').val() !== "" &&
-				$('#newSetCollege').val() !== "" &&
-				$('#newSetCourse').val() !== "") {
-				name = $('#newSetName').val();
-				description = $('#newSetDescription').val();
-				module = $('#newSetModule').val();
-				moduleShort = $('#newSetModuleShort').val();
-				moduleNum = $('#newSetModuleNum').val();
-				skillLevel = $('#newSetSkillLevel').val();
-				college = $('#newSetCollege').text();
-				course = $('#newSetCourse').text();
-
-				Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course);
-				$('#newSetModal').modal('hide');
-			}
+			shuffled = false;
+			cardGroups = [];
 		}
+		if (Meteor.settings.public.university.singleUniversity) {
+			college = Meteor.settings.public.university.default;
+		} else {
+			college = $('#newSetCollege').text();
+		}
+		if ($('#newSetName').val() !== "" &&
+			$('#newSetDescription').val() !== "" &&
+			$('#newSetModule').val() !== "" &&
+			$('#newSetModuleShort').val() !== "" &&
+			$('#newSetModuleNum').val() !== "" &&
+			$('#newSetSkillLevel').val() !== "" &&
+			college !== "" &&
+			$('#newSetCourse').val() !== "") {
+			name = $('#newSetName').val();
+			description = $('#newSetDescription').val();
+			module = $('#newSetModule').val();
+			moduleShort = $('#newSetModuleShort').val();
+			moduleNum = $('#newSetModuleNum').val();
+			skillLevel = $('#newSetSkillLevel').val();
+			course = $('#newSetCourse').text();
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course, shuffled, cardGroups);
+			$('#newSetModal').modal('hide');
+		}
+		cleanModal();
 	}
 });
 
@@ -238,61 +471,19 @@ Template.descriptionEditorNew.rendered = function () {
 	});
 };
 
+Template.descriptionEditorNew.helpers({
+	getShuffleDescription: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").description : "";
+		}
+	}
+});
+
 /*
  * ############################################################################
  * cardsetsForm
  * ############################################################################
  */
-
-Template.cardsetsForm.onRendered(function () {
-	$('#newSetModal').on('hidden.bs.modal', function () {
-		$('#newSetName').val('');
-		$('#helpNewSetName').html('');
-		$('#newSetName').css('border-color', '');
-		$('#newSetNameLabel').css('color', '');
-
-		$('#newSetDescription').val('');
-		$('#helpNewSetDescription').html('');
-		$('#newSetDescription').css('border-color', '');
-		$('#newSetDescriptionLabel').css('color', '');
-
-		$('#newSetModule').val('');
-		$('#helpNewSetModule').html('');
-		$('#newSetModule').css('border-color', '');
-		$('#newSetModuleLabel').css('color', '');
-
-		$('#newSetModuleShort').val('');
-		$('#helpNewSetModuleShort').html('');
-		$('#newSetModuleShort').css('border-color', '');
-		$('#newSetModuleShortLabel').css('color', '');
-
-		$('#newSetModuleNum').val('');
-		$('#helpNewSetModuleNum').html('');
-		$('#newSetModuleNum').css('border-color', '');
-		$('#newSetModuleNumLabel').css('color', '');
-
-		if ($('#newSetCollege').val() !== "") {
-			$('#newSetCollege').val('');
-			$('#newSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
-		}
-
-		$('#helpNewSetCollege').html('');
-		$('.newSetCollegeDropdown').css('border-color', '');
-		$('#newSetCollegeLabel').css('color', '');
-
-		if ($('#newSetCourse').val() !== "") {
-			$('#newSetCourse').val('');
-			$('#newSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
-		}
-
-		$('#helpNewSetCourse').html('');
-		$('.newSetCourseDropdown').css('border-color', '');
-		$('#newSetCourseLabel').css('color', '');
-		$('.newSetCourseDropdown').attr('disabled', true);
-
-		Session.set('poolFilterCollege', undefined);
-	});
-});
 
 Template.cardsetsForm.events({
 	'keyup #newSetName': function () {
@@ -330,6 +521,11 @@ Template.cardsetsForm.events({
 		$('#newSetCourseLabel').css('color', '');
 		$('.newSetCourseDropdown').css('border-color', '');
 		$('#helpNewSetCourse').html('');
+	},
+	'click .cancel': function () {
+		if (!ActiveRoute.name('shuffle')) {
+			cleanModal();
+		}
 	}
 });
 

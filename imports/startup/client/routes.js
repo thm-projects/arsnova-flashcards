@@ -47,6 +47,11 @@ Router.route('/learn', {
 	template: 'cardsets'
 });
 
+Router.route('/shuffle', {
+	name: 'shuffle',
+	template: 'cardsets'
+});
+
 Router.route('/cardset', function () {
 	this.redirect('learn');
 });

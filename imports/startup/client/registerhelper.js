@@ -95,6 +95,11 @@ Template.registerHelper("isEditor", function () {
 	}
 });
 
+Template.registerHelper("isCardEditor", function (cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id});
+	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+});
+
 Template.registerHelper("isLecturerOrPro", function () {
 	this.owner = Cardsets.findOne(Router.current().params._id).owner;
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
@@ -137,6 +142,10 @@ Template.registerHelper("getCards", function () {
 	return Cards.find({
 		cardset_id: this._id
 	});
+});
+
+Template.registerHelper("isShuffledCardset", function (cardset_id) {
+	return Cardsets.findOne({_id: cardset_id}).shuffled;
 });
 
 // Returns the locale date
