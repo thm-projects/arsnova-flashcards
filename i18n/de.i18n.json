@@ -221,7 +221,7 @@
     "price": "Verkaufspreis",
     "publish": "Status speichern",
     "modules": "Rechtemodule",
-    "by-desc": "Der Name des Urhebers muss genannt werden.",
+    "by-desc": "Der Name der Urheberin oder des Urhebers muss genannt werden.",
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
@@ -454,7 +454,7 @@
   "pool": {
     "relevance": "Relevanz",
     "name": "Name",
-    "author": "Autor",
+    "author": "Autor/in",
     "rating": "Bewertung",
     "quantity": "Kartenanzahl",
     "release": "Veröffentlicht",
@@ -465,7 +465,7 @@
   },
   "cardset": {
     "info": {
-      "author": "Autor",
+      "author": "Autor/in",
       "rating": "Bewertung",
       "userRating": "Deine Bewertung ",
       "notRated": "Noch nicht bewertet",
@@ -482,7 +482,7 @@
       "moduleNum": "Modul-Nummer",
       "college": "Hochschule",
       "course": "Studienfach",
-      "undefinedAuthor": "Bitte füll dein Profil aus"
+      "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
       "accept": "Kartensatz freigeben",
