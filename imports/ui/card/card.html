@@ -99,14 +99,16 @@
 <template name="frontEditor">
     <form>
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
+        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
+                getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
 </template>
 
 <template name="backEditor">
     <form>
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
+        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
+                getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
 </template>
 
@@ -157,6 +159,7 @@
 
 <template name="flashcards">
     {{> cardHint}}
+    {{> copyCard}}
     <div class="{{#if isCardset}}col-md-9{{/if}} flip-container" id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
@@ -170,15 +173,18 @@
                                             {{#if isCardset}}
                                                 <a id="editCard"
                                                    class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}">
-                                                    <i class="glyphicon glyphicon-pencil" data-id="{{_id}}"></i>
+                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}"
+                                                   data-type="cardNavigation">
+                                                    <i class="glyphicon glyphicon-pencil" data-id="{{_id}}"
+                                                       data-type="cardNavigation"></i>
                                                 </a>
                                             {{/if}}
                                         {{/if}}
                                         {{#if hint}}
                                             <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
-                                                          data-id="{{_id}}" data-type="showHint" data-toggle="modal"
+                                                          data-id="{{_id}}" data-type="cardNavigation"
+                                                          data-toggle="modal"
                                                           data-target="#showHintModal"></span>
                                             </a>
                                         {{/if}}
@@ -205,6 +211,19 @@
                                             {{_ "turn"}}{{/unless}}</div>
 
                                     <br>
+                                    <div class="leftHeader2">
+                                        {{#if isCardEditor this.cardset_id}}
+                                            {{#if isCardset}}
+                                                <a href="#" id="copyCard"
+                                                   class="btn-editCard btn btn-raised btn-default btn-xs"
+                                                   data-id="{{_id}}" data-type="cardNavigation" data-toggle="modal"
+                                                   data-target="#showCopyCardModal">
+                                                    <i class="glyphicon glyphicon-duplicate" data-id="{{_id}}"
+                                                       data-type="cardNavigation"></i>
+                                                </a>
+                                            {{/if}}
+                                        {{/if}}
+                                    </div>
                                     <h3>{{subject}}</h3>
                                 </div>
                                 <div class="innerBoxBody {{getCardBackground difficulty}}">
@@ -276,6 +295,50 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 {{#mathjax}}{{getHint}}{{/mathjax}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="copyCard">
+    <div class="modal fade" id="showCopyCardModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="showHintTitle" class="modal-title">{{_ "copyCardTitle"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                {{_ "copyCardText"}}
+                                <br>
+                                <br>
+                                <table class="table table-hover table-bordered cardListSubject">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <span>{{_ "navbar-collapse.carddecks"}}</span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each cardsetList}}
+                                        <tr>
+                                            <td class="copyCardset" data-id="{{this._id}}">
+                                                <a href="#" data-id="{{this._id}}">
+                                                    {{this.name}}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

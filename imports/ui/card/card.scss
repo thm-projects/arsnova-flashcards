@@ -255,7 +255,14 @@ img.cardside {
   left: 10px;
 }
 
-#editCard {
+.leftHeader2 {
+  position: absolute;
+  display: block;
+  top: 50px;
+  left: 10px;
+}
+
+#editCard, #copyCard {
   position: relative;
   float: left;
   display: block;
@@ -383,4 +390,10 @@ img.cardside {
 
 .cardtext h5 {
   font-weight: bold;
+}
+
+.copyCardset a:link {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
 }
