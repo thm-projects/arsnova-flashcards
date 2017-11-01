@@ -688,7 +688,7 @@ Template.flashcards.events({
 		turnFront();
 	},
 	"click .box": function (evt) {
-		if (!isMemo() && ($(evt.target).data('type') !== "showHint") && ($(evt.target).data('type') !== "cardImage")) {
+		if (!isMemo() && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},
@@ -696,6 +696,9 @@ Template.flashcards.events({
 		Session.set('selectedHint', $(evt.target).data('id'));
 	},
 	"click #editCard": function (evt) {
+		Session.set('modifiedCard', $(evt.target).data('id'));
+	},
+	"click #copyCard": function (evt) {
 		Session.set('modifiedCard', $(evt.target).data('id'));
 	}
 });
@@ -718,5 +721,35 @@ Template.flashcardsEmpty.helpers({
 	},
 	isCardset: function () {
 		return isCardset();
+	}
+});
+
+/*
+ * ############################################################################
+ * copyCard
+ * ############################################################################
+ */
+
+Template.copyCard.helpers({
+	cardsetList: function () {
+		return Cardsets.find({
+			owner: Meteor.userId(),
+			shuffled: false
+		}, {
+			sort: {name: 1}
+		});
+	}
+});
+
+Template.copyCard.events({
+	"click .copyCardset": function (evt) {
+		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('modifiedCard'), function (error, result) {
+			if (result) {
+				$('#showCopyCardModal').modal('hide');
+				$('body').removeClass('modal-open');
+				$('.modal-backdrop').remove();
+				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-bottom-right');
+			}
+		});
 	}
 });

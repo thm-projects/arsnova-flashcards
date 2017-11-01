@@ -272,6 +272,30 @@ Meteor.methods({
 		Meteor.call('checkLvl');
 		return card_id;
 	},
+	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
+		check(sourceCardset_id, String);
+		check(targetCardset_id, String);
+		check(card_id, String);
+		let cardset = Cardsets.findOne(sourceCardset_id);
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+			// Make sure the user is logged in and is authorized
+			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+			let card = Cards.findOne(card_id);
+			if (card !== undefined) {
+				let hint = "";
+				if (card.hint !== undefined) {
+					hint = card.hint;
+				}
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0");
+				return true;
+			}
+		}
+	},
 	deleteCard: function (card_id) {
 		check(card_id, String);
 
