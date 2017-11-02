@@ -238,6 +238,9 @@ Meteor.methods({
 		check(shuffled, Boolean);
 		let quantity;
 		if (shuffled) {
+			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
+				throw new Meteor.Error("not-authorized");
+			}
 			check(cardGroups, [String]);
 			quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
 		} else {
