@@ -65,6 +65,10 @@ Template.registerHelper("isProfileCompleted", function (cardset_id) {
 	}
 });
 
+Template.registerHelper("canShuffle", function () {
+	return Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro']);
+});
+
 Template.registerHelper("canCopyCard", function (cardset_id) {
 	let owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return (Roles.userIsInRole(Meteor.userId(), ['admin']) || (owner === Meteor.userId()));

@@ -22,39 +22,42 @@
 </template>
 
 <template name="shuffle">
-    {{#unless isActiveRoute 'shuffle'}}
-        {{#if shuffleList.count}}
-            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
-                    "set-list.shuffleCardsets"}}</a>
-        {{/if}}
-    {{else}}
-        <div class="col-md-12" id="set-list-region">
-            {{#if gotShuffledCards}}
-                <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
-                   data-toggle="modal"
-                   data-target="#newSetModal" {{disableIfOffline}}>{{_
-                        "set-list.shuffle"}}</a>
-            {{/if}}
-            <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_ "declinecard"}}</a>
-            {{shuffleInfoText}}
+    {{#if canShuffle}}
+        {{#unless isActiveRoute 'shuffle'}}
             {{#if shuffleList.count}}
-                <div class="responsive-utilities-test visible-on">
-                    <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                    <span class="col-md-8 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
-                    <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
-                </div>
-                {{#each shuffleList}}
-                    <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
-                            oddRow
-                            @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                        {{> cardsetRow}}
-                    </div>
-                {{/each}}
-            {{else}}
-                {{> cardsetEmpty}}
+                <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                        "set-list.shuffleCardsets"}}</a>
             {{/if}}
-        </div>
-    {{/unless}}
+        {{else}}
+            <div class="col-md-12" id="set-list-region">
+                {{#if gotShuffledCards}}
+                    <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
+                       data-toggle="modal"
+                       data-target="#newSetModal" {{disableIfOffline}}>{{_
+                            "set-list.shuffle"}}</a>
+                {{/if}}
+                <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                        "declinecard"}}</a>
+                {{shuffleInfoText}}
+                {{#if shuffleList.count}}
+                    <div class="responsive-utilities-test visible-on">
+                        <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                        <span class="col-md-8 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                        <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
+                    </div>
+                    {{#each shuffleList}}
+                        <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                                oddRow
+                                @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                            {{> cardsetRow}}
+                        </div>
+                    {{/each}}
+                {{else}}
+                    {{> cardsetEmpty}}
+                {{/if}}
+            </div>
+        {{/unless}}
+    {{/if}}
 </template>
 
 <template name="create">
