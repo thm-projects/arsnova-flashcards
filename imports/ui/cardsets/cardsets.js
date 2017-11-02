@@ -196,6 +196,24 @@ Template.cardsetRow.helpers({
 Template.shuffle.events({
 	'click #createShuffledCardset': function () {
 		Session.set("ShuffleTemplate", Cardsets.findOne({_id: Session.get("ShuffledCardsets")[0]}));
+	},
+	'click #updateShuffledCardset': function () {
+		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();
+		Meteor.call("updateShuffleGroups", Router.current().params._id, Session.get("ShuffledCardsets"), removedCardsets, function (error, result) {
+			if (error) {
+				Bert.alert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-bottom-right');
+			}
+			if (result) {
+				Bert.alert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-bottom-right');
+				Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+			}
+		});
+	},
+	'click #cancelUpdateShuffle': function () {
+		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+	},
+	'click #removeShuffledCards': function () {
+		Session.set("ShuffledCardsets", []);
 	}
 });
 
@@ -204,6 +222,9 @@ Template.shuffle.helpers({
 		return TAPi18n.__('set-list.shuffleInfoText');
 	},
 	shuffleList: function () {
+		if (Router.current().route.getName() === "editshuffle") {
+			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
+		}
 		let learnCards = Learned.find({
 			user_id: Meteor.userId()
 		});
@@ -234,7 +255,17 @@ Template.shuffle.helpers({
 		});
 	},
 	gotShuffledCards: function () {
-		return Session.get("ShuffledCardsets").length > 1;
+		if (ActiveRoute.name('shuffle')) {
+			return Session.get("ShuffledCardsets").length > 0;
+		} else {
+			return true;
+		}
+	},
+	displayRemoveButton: function () {
+		return Session.get("ShuffledCardsets").length > 0;
+	},
+	isActiveCardset: function () {
+		return this._id === Router.current().params._id;
 	}
 });
 
