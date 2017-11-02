@@ -245,13 +245,15 @@
                     </div>
                     {{#unless learningActive}}
                         {{#unless isShuffledCardset this._id}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
-                                        data-toggle="modal"
-                                        data-target="#deleteCardsModal" {{disableIfOffline}}>
-                                    <i class="fa fa-trash"></i> {{_ "deleteCards"}}
-                                </button>
-                            </div>
+                            {{#if this.quantity}}
+                                <div class="btn-group btn-group-raised">
+                                    <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                                            data-toggle="modal"
+                                            data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                        <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                                    </button>
+                                </div>
+                            {{/if}}
                             <div class="btn-group btn-group-raised">
                                 <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
                                    href="{{pathFor 'newCard'}}"
