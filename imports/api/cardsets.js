@@ -522,6 +522,51 @@ Meteor.methods({
 			}
 		});
 	},
+	/**
+	 * Update the cardGroups of the shuffled cardset
+	 * @param {String} id - Database id of the cardset to receive the updated cardGroups
+	 * @param {String} cardGroups - The cardset references
+	 * @param {String} removedCardsets - The previous cardset references that got removed
+	 */
+	updateShuffleGroups: function (id, cardGroups, removedCardsets) {
+		check(id, String);
+		check(cardGroups, [String]);
+		check(removedCardsets, [String]);
+		let cardset = Cardsets.findOne(id);
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+		}
+		let quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
+		let kind = cardset.kind;
+		let visible = cardset.visible;
+		if (cardGroups.length === 0) {
+			kind = "personal";
+			visible = false;
+		}
+		Cardsets.update({
+			_id: cardset._id
+		}, {
+			$set: {
+				visible: visible,
+				kind: kind,
+				quantity: quantity,
+				cardGroups: cardGroups
+			}
+		});
+		let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
+		for (let i = 0; i < removedCards.length; i++) {
+			Learned.remove({
+				cardset_id: cardset._id,
+				card_id: removedCards[i]._id
+			});
+		}
+		return true;
+	},
 	activateLearningPeriodSetEdu: function (cardset_id) {
 		check(cardset_id, String);
 

@@ -466,6 +466,9 @@ Template.cardsetList.helpers({
 			case "pro":
 				return "btn-warning";
 		}
+	},
+	gotReferences: function () {
+		return Cardsets.findOne({_id: Router.current().params._id}).cardGroups !== [""];
 	}
 });
 
@@ -550,6 +553,9 @@ Template.cardsetInfo.events({
 			type: "application/json"
 		});
 		saveAs(exportData, cardset.name + ".json");
+	},
+	'click #editShuffle': function () {
+		Router.go('editshuffle', {_id: Router.current().params._id});
 	}
 });
 

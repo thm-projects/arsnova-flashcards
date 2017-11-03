@@ -79,6 +79,10 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 	return owner === Meteor.userId();
 });
 
+Template.registerHelper("isShuffleRoute", function () {
+	return (Router.current().route.getName() === "shuffle" || Router.current().route.getName() === "editshuffle");
+});
+
 Template.registerHelper("isCardsetEditor", function (user_id) {
 	return Cardsets.findOne({"_id": Router.current().params._id, "editors": {$in: [user_id]}});
 });
