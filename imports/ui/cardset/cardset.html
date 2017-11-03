@@ -69,8 +69,12 @@
                 {{#if countCards this._id}}
                     {{> flashcards cardset=this}}
                 {{else}}
-                    {{#if isShuffledCardset this._id}}
-                        {{> flashcards cardset=this}}
+                    {{#if isShuffledCardset}}
+                        {{#if gotReferences}}
+                            {{> flashcards cardset=this}}
+                        {{else}}
+                            {{> flashcardsEmpty}}
+                        {{/if}}
                     {{else}}
                         {{> flashcardsEmpty}}
                     {{/if}}
@@ -244,6 +248,14 @@
                         </button>
                     </div>
                     {{#unless learningActive}}
+                        {{#if isShuffledCardset this._id}}
+                            <div class="btn-group btn-group-raised">
+                                <button id="editShuffle" class="btn btn-raised btn-default"
+                                        type="button" {{disableIfOffline}}>
+                                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                                </button>
+                            </div>
+                        {{/if}}
                         {{#unless isShuffledCardset this._id}}
                             {{#if this.quantity}}
                                 <div class="btn-group btn-group-raised">

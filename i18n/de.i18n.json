@@ -182,7 +182,12 @@
     "leave": "Verlassen",
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
-    "shuffleInfoText": ""
+    "shuffleInfoText": "",
+    "shuffleCardsetReferences": "Kartensatz Referenzen bearbeiten",
+    "shuffleUpdateSuccess": "Referenzen aktualisiert",
+    "shuffleUpdateFailure": "Fehler beim aktualisieren der Referenzen",
+    "shuffleRemove": "Alle Referenzen entfernen",
+    "shuffleRemoveWarning": "Entfernte Referenzen löschen ebenfalls den dazugehörigen Lernstand."
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -196,6 +201,7 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
+    "editreferences": "Referenzen editieren",
     "name": "Thema",
     "nameplaceholder": "Thema des Kartensatzes",
     "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
