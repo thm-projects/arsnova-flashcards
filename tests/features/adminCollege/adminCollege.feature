@@ -5,8 +5,7 @@ Feature: Create college and course
   The user wants to create a college and course.
 
   Background:
-    Given user is on the site
-    And user is logged in
+    Given user is logged in
     And user is in the back end
 
 @watch

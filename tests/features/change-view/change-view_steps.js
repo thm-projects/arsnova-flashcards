@@ -1,53 +1,31 @@
-import {login, logout, TIMERTHRESHOLD} from "../helper_functions";
+import * as cardset from "../../features_helper/cardset.js";
+import * as navigation from "../../features_helper/navigation.js";
 
 module.exports = function () {
 	'use strict';
 
-	this.Given(/^I am on the site$/, function () {
-		// Write code here that turns the phrase above into concrete actions
-		browser.url('http://localhost:3000');
+	this.Given(/^user is logged in$/, function () {
+		navigation.login("standardLogin");
 	});
 
-	this.Given(/^He loges in$/, function () {
-		// Write code here that turns the phrase above into concrete actions
-		login("standardLogin");
-	});
-
-	this.Given(/^change to cardset$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
-		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
-		browser.click('#setCreate');
-		browser.waitForVisible("a[href='/cardset/dTjXBmerQ6v828kZj']",TIMERTHRESHOLD);
-		browser.click("a[href='/cardset/dTjXBmerQ6v828kZj']");
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+	this.When(/^change to cardset$/, function () {
+		navigation.selectMyCardset();
+		navigation.selectCardsetList(1);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+		cardset.collapseCardsetInfo(false);
 	});
 
 	this.Then(/^they change the view to cardlist$/, function () {
-		browser.waitForVisible('#btnToListLayout',TIMERTHRESHOLD);
-		browser.click('#btnToListLayout');
-	});
-
-	this.Then(/^they see the cardlist$/, function () {
-		browser.waitForVisible('#cardset-list', TIMERTHRESHOLD);
+		cardset.cardList(true);
 	});
 
 	this.Then(/^they change the view back to cardset$/, function () {
-		browser.waitForVisible('#btnToCardLayout',TIMERTHRESHOLD);
-		browser.click('#btnToCardLayout');
-	});
-
-	this.Then(/^they see cardset again$/, function () {
-		browser.waitForExist('.cardsetInfo', TIMERTHRESHOLD);
+		cardset.cardDetail(true);
 	});
 
 	this.Then(/^they log out$/, function () {
-		logout();
+		navigation.logout();
 	});
 };
-
-// tests/features/change_view_steps.js

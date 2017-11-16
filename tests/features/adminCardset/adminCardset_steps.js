@@ -1,43 +1,35 @@
-import {login, logoutAdmin, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions";
+import * as global from "../../features_helper/global.js";
+import * as navigation from "../../features_helper/navigation.js";
 
 module.exports = function () {
 	'use strict';
 
-	var numberOfCardsets;
+	let numberOfCardsets;
 
-	this.Given(/^user is on the site$/, function () {
-		browser.url('http://localhost:3000');
-	});
 
 	this.Given(/^user is logged in$/, function () {
-		login("editorLogin");
+		navigation.login("editorLogin");
 	});
 
 	this.Given(/^user is in the back end$/, function () {
-		browser.waitForVisible("#adminpanel", TIMERTHRESHOLD);
-		browser.click('#adminpanel');
+		navigation.switchToBackEnd(true);
 	});
 
 	this.When(/^user goes to the menu item cardsets$/, function () {
-		browser.waitForVisible("a[href='/admin/cardsets']",TIMERTHRESHOLD);
-		browser.click("a[href='/admin/cardsets']");
+		navigation.backendCardset(true);
 	});
 
 	this.When(/^user clicks on the delete button$/, function () {
-		browser.waitForExist('.delete', TIMERTHRESHOLD);
+		browser.waitForExist('.delete', global.threshold);
 		numberOfCardsets = browser.elements(".delete").value.length;
-		browser.waitForVisible(".deleteCardsetAdmin");
-		browser.click(".deleteCardsetAdmin");
-		browser.waitForVisible("#cardsetConfirmModalAdmin", TIMERTHRESHOLD);
-		browser.click("#cardetDeleteAdmin");
+		navigation.clickElement(".deleteCardsetAdmin");
+		navigation.clickElement("#cardetDeleteAdmin");
 	});
 
 	this.Then(/^the cardset should not be in the list anymore$/, function () {
-		browser.waitForVisible("#cardsetConfirmModalAdmin", TIMERTHRESHOLD, true);
+		browser.waitForVisible("#cardsetConfirmModalAdmin", global.threshold, true);
 		browser.waitForVisible('.delete');
-		browser.waitUntil(function () {
-			return browser.elements(".delete").value.length === (numberOfCardsets - 1);
-		}, TIMERTHRESHOLD, 'expected cardset to be deleted after ' + TIMERTHRESHOLDTEXT);
-		logoutAdmin();
+		navigation.compareContent(".delete", --numberOfCardsets, 1);
+		navigation.logoutAdmin();
 	});
 };

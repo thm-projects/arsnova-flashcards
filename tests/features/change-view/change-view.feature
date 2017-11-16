@@ -3,17 +3,13 @@ Feature: Change view in cardset/carslist
   As a visitor, I whould change the view in cardset to cardlist and reverse.
 
 Background:
-  Given I am on the site
+  Given user is logged in
 
 @watch
 Scenario: Visitor can view the cardset
-  And He loges in
-  And change to cardset
-  Then they are on the cardset
-  And they change the view to cardlist
-  Then they see the cardlist
-  And they change the view back to cardset
-  Then they see cardset again
+  When change to cardset
+  Then they change the view to cardlist
+  Then they change the view back to cardset
   And they log out
 
 # tests/features/login.feature

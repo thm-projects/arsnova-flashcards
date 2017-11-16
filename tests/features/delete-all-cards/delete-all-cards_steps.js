@@ -1,57 +1,49 @@
-import {login, logout, TIMERTHRESHOLD} from "../helper_functions";
+import * as cardset from "../../features_helper/cardset.js";
+import * as global from "../../features_helper/global.js";
+import * as navigation from "../../features_helper/navigation.js";
+
 module.exports = function () {
 	'use strict';
 
-	this.Given(/^I am on the site$/, function () {
-		browser.url('http://localhost:3000');
-	});
-
-	this.Given(/^I am logged in$/, function () {
-		login("standardLogin");
+	this.Given(/^User is logged in$/, function () {
+		navigation.login("standardLogin");
 	});
 
 	this.Given(/^I am on my own cardset$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
-		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
-		browser.click('#setCreate');
-		browser.waitForVisible('#set-list-region > div:nth-child(1) > a',TIMERTHRESHOLD);
-		browser.click('#set-list-region > div:nth-child(1) > a');
+		navigation.selectMyCardset();
+		navigation.selectCardsetList(1);
 	});
 
 	this.When(/^I press the delete all cards button$/, function () {
-		browser.waitForVisible('#delete_cards',TIMERTHRESHOLD);
-		browser.click('#delete_cards');
+		cardset.deleteAllCards(true);
 	});
 
 	this.Then(/^I get a pop-up with a warning message$/, function () {
-		browser.waitForVisible('#deleteCardsConfirm',TIMERTHRESHOLD);
+		cardset.deleteAllCardsConfirm(false);
 	});
 
 	this.Then(/^I press the "Cancel" button$/, function () {
-		browser.click('#deleteCardsCancel');
-		browser.waitForVisible(".cardNumber",TIMERTHRESHOLD);
+		cardset.deleteAllCardsCancel(true);
 	});
 
 	this.Then(/^I'm back on my cardset$/, function () {
-		browser.waitForVisible(".cardNumber",TIMERTHRESHOLD);
+		browser.waitForVisible(".cardNumber",global.threshold);
 	});
 
 	this.Then(/^I click the delete all cards button again$/, function () {
-		browser.waitForVisible('#delete_cards',TIMERTHRESHOLD);
-		browser.click('#delete_cards');
+		cardset.deleteAllCards(true);
 	});
 
 	this.Then(/^I get a pop-up with a warning message again$/, function () {
-		browser.waitForVisible('#deleteCardsConfirm',TIMERTHRESHOLD);
+		cardset.deleteAllCardsConfirm(false);
 	});
 
 	this.Then(/^I press "Delete all cards" button$/, function () {
-		browser.click('#deleteCardsConfirm');
+		cardset.deleteAllCardsConfirm(true);
 	});
 
 	this.Then(/^I've deleted all cards$/, function () {
-		browser.waitForVisible(".emptyCard",TIMERTHRESHOLD);
-		logout();
+		browser.waitForVisible(".emptyCard",global.threshold);
+		navigation.logout();
 	});
 };
