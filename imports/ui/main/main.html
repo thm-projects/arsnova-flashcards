@@ -1,12 +1,13 @@
 <template name="main">
-    <div id="{{#if currentUser}}{{#if isInRole
-                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
-         class="{{getTheme}}">
-        {{#if currentUser}}
-            {{#if isInRole 'firstLogin'}}
-            {{else if  isInRole 'blocked'}}
-            {{else}}
-                {{> completeProfileModal}}
+<div id="{{#if currentUser}}{{#if isInRole
+                                  'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
+     class="{{getTheme}}">
+{{#if currentUser}}
+    {{#if isInRole 'firstLogin'}}
+    {{else if  isInRole 'blocked'}}
+    {{else}}
+        {{> completeProfileModal}}
+        {{#unless fullscreenActive}}
                 <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container thm-header">
                         <div class="container-fluid">
@@ -146,76 +147,73 @@
                         <!-- /.container-fluid -->
                     </div>
                 </nav>
+            {{/unless}}
             {{/if}}
         {{/if}}
-        <div id="main" class="container">
-            {{#if isOffline}}
-                <div class="alert alert-warning">
-                    {{_ "youareoffline"}}
+            <div id="main" class="container">
+                {{#if isOffline}}
+                    <div class="alert alert-warning">
+                        {{_ "youareoffline"}}
+                    </div>
+                {{/if}}
+                <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
+                <div class="row">
+                    {{> yield}}
                 </div>
-            {{/if}}
-            <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="row">
-                {{> yield}}
             </div>
-        </div>
 
-
-        <div id="footer" class="footer">
-            <ul class="container dropup">
-                <li class="col-xs-4">
-                    <a id="info" href="{{pathFor route='impressum'}}">
-                        <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                        <p class="footer-text"><span class="footerElementText">Info</span></p>
-                    </a>
-                </li>
-                <li id="navbar-languagepanel" class="col-xs-4"
-                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
-                        <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span></p>
-                    </a>
-                    <ul class="dropdown-menu col-xs-12">
-                        {{#each getLanguages}}
-                            <li><a href="#" role="menuitem" class="lang"
-                                   data-lang={{code}}>{{label.name}}</a></li>
-                        {{/each}}
+        {{#unless fullscreenActive}}
+                <div id="footer" class="footer">
+                    <ul class="container dropup">
+                        <li class="col-xs-6">
+                            <a id="info" href="{{pathFor route='impressum'}}">
+                                <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                                <p class="footer-text"><span class="footerElementText">Info</span></p>
+                            </a>
+                        </li>
+                        <li id="navbar-languagepanel" class="col-xs-6"
+                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                                <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span>
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu col-xs-12">
+                                {{#each getLanguages}}
+                                    <li><a href="#" role="menuitem" class="lang"
+                                           data-lang={{code}}>{{label.name}}</a></li>
+                                {{/each}}
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                <li class="col-xs-4">
-                    <a id="fullscreen" href="#">
-                        <p class="footer-icon"><span class="glyphicon glyphicon-fullscreen"></span></p>
-                        <p class="footer-text"><span class="footerElementText">{{_ "footer.fullscreen"}}</span></p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div> <!-- Theme Wrapper -->
-</template>
+                </div>
+        {{/unless}}
+        </div> <!-- Theme Wrapper -->
+        </template>
 
-<template name="completeProfileModal">
-    <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
-         aria-labelledby="completeProfileTitle">
-        <div class="modal-dialog">
-            <div class="modal-content  modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-header">
-                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
+        <template name="completeProfileModal">
+            <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
+                 aria-labelledby="completeProfileTitle">
+                <div class="modal-dialog">
+                    <div class="modal-content  modal-content-for-buttons xs-12">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-header">
+                            <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{_ "complete-profile.text"}}</p>
+                            <br>
+                            <hr>
+                            <button id="completeProfileGoToProfile"
+                                    class="btn btn-default btn-block btn-raised btn-success active"
+                                    data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
+                            <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
+                                    data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
                 </div>
-                <div class="modal-body">
-                    <p>{{_ "complete-profile.text"}}</p>
-                    <br>
-                    <hr>
-                    <button id="completeProfileGoToProfile"
-                            class="btn btn-default btn-block btn-raised btn-success active"
-                            data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
-                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
-                            data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
-                </div>
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
+            <!-- /.modal -->
+        </template>

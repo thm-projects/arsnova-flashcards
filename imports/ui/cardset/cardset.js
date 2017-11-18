@@ -751,7 +751,7 @@ Template.cardsetSidebar.helpers({
 		return this.kind !== 'personal';
 	},
 	gotEnoughCards: function () {
-		return (this.quantity >= 5);
+		return (this.quantity >= 1);
 	},
 	'learningLeitner': function () {
 		return Learned.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId(), box: {$ne: 1}});

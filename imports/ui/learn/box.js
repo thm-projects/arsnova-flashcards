@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
-import {turnCard, resizeAnswers} from "../card/card.js";
+import {turnCard, resizeAnswers, toggleFullscreen} from "../card/card.js";
 import "./box.html";
 
 Meteor.subscribe("cardsets");
@@ -53,11 +53,40 @@ Template.box.events({
 	}
 });
 
+
+/*
+ * ############################################################################
+ * boxEnd
+ * ############################################################################
+ */
+
+Template.boxEnd.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+});
+
+/*
+ * ############################################################################
+ * boxEmpty
+ * ############################################################################
+ */
+
+Template.boxEmpty.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+});
+
 /*
  * ############################################################################
  * boxMain
  * ############################################################################
  */
+
+Template.boxMain.onCreated(function () {
+	Session.set('isFront', true);
+});
 
 Template.boxMain.onRendered(function () {
 	resizeAnswers();
@@ -75,7 +104,7 @@ Template.boxMain.helpers({
 
 Template.boxMain.events({
 	"click .box": function (evt) {
-		if (($(evt.target).data('type') !== "showHint")) {
+		if (($(evt.target).data('type') !== "cardNavigation")) {
 			var isFront = Session.get('isFront');
 			if (isFront === true) {
 				Session.set('isFront', false);
