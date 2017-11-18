@@ -5,8 +5,7 @@ so that I can create and learn cards,
 I want to edit a deck of cards that I own
 
 Background:
-	Given User is on the site
-	And User is logged in
+	Given User is logged in
 	And User is on the my cardset view
 
 @watch

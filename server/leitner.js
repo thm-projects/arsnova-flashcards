@@ -123,7 +123,7 @@ Meteor.methods({
 		} else {
 			Cardsets.update(cardset._id, {
 				$set: {
-					maxCards: Math.round(cardset.quantity / 3),
+					maxCards: Math.ceil(cardset.quantity / 3),
 					daysBeforeReset: 7,
 					learningStart: cardset.date,
 					learningEnd: (new Date().setFullYear(2038, 0, 19)),

@@ -20,37 +20,8 @@ Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
 
 Session.setDefault("theme", "default");
+Session.setDefault("fullscreen", false);
 
-
-/**
- * Toggle fullscreen mode
- * @param {Object} elem - The element that should be toggled to fullscreen
- */
-function toggleFullscreen(elem) {
-	elem = elem || document.documentElement;
-	if (!document.fullscreenElement && !document.mozFullScreenElement &&
-		!document.webkitFullscreenElement && !document.msFullscreenElement) {
-		if (elem.requestFullscreen) {
-			elem.requestFullscreen();
-		} else if (elem.msRequestFullscreen) {
-			elem.msRequestFullscreen();
-		} else if (elem.mozRequestFullScreen) {
-			elem.mozRequestFullScreen();
-		} else if (elem.webkitRequestFullscreen) {
-			elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-		}
-	} else {
-		if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.msExitFullscreen) {
-			document.msExitFullscreen();
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		}
-	}
-}
 
 /** Function provides an reactive callback when a user loggs in and out */
 Meteor.autorun(function () {
@@ -107,9 +78,6 @@ Template.main.events({
 	'click .lang': function (event) {
 		event.preventDefault();
 		TAPi18n.setLanguage($(event.target).data('lang'));
-	},
-	'click #fullscreen': function () {
-		toggleFullscreen();
 	}
 });
 

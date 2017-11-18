@@ -1,7 +1,7 @@
-Feature: Sort cardsets at poolview
+Feature: Filter the pool
 
   Background:
-    Given User is on the poolview
+    Given User is logged in
 
   @watch
   Scenario: User sorts by author
@@ -47,3 +47,4 @@ Feature: Sort cardsets at poolview
   Scenario: User sorts by unselected pro license group
     When user clicks on the pro license group button
     Then he should see the cardset list filtered by the unselected pro license group
+    And they log out

@@ -25,27 +25,30 @@
 </template>
 
 <template name="cardset">
-    {{> cardsetInfo}}
-    {{> showLicense}}
-    {{> cardsetForm}}
-    {{> cardsetImportForm}}
-    {{> cardsetPublishForm}}
-    {{> cardsetStartLearnForm}}
-    {{> cardsetEndLearnForm}}
-    {{> selectLicenseForm}}
-    {{> reportCardsetForm}}
-    {{> deleteCardsForm}}
-    {{> resetLeitnerForm}}
-    {{> resetMemoForm}}
-    {{> leaveLearnPhaseForm}}
-    {{> leaveEditorsForm}}
-    {{onEditmodalClose this._id}}
+    {{#unless fullscreenActive}}
+        {{> cardsetInfo}}
+        {{> showLicense}}
+        {{> cardsetForm}}
+        {{> cardsetImportForm}}
+        {{> cardsetPublishForm}}
+        {{> cardsetStartLearnForm}}
+        {{> cardsetEndLearnForm}}
+        {{> selectLicenseForm}}
+        {{> reportCardsetForm}}
+        {{> deleteCardsForm}}
+        {{> resetLeitnerForm}}
+        {{> resetMemoForm}}
+        {{> leaveLearnPhaseForm}}
+        {{> leaveEditorsForm}}
+        {{onEditmodalClose this._id}}
+    {{/unless}}
     {{#if hasCardsetPermission}}
-        {{#if isLecturerAndHasRequest}}
-            <div class="col-md-12">
-                <div class="panel panel-default cardsetInfo">
-                    <div class="panel-body">
-                        <div class="input-group has-error">
+        {{#unless fullscreenActive}}
+            {{#if isLecturerAndHasRequest}}
+                <div class="col-md-12">
+                    <div class="panel panel-default cardsetInfo">
+                        <div class="panel-body">
+                            <div class="input-group has-error">
   											<span class="input-group-btn">
   											  <button id="acceptRequest" class="btn btn-raised btn-success"
                                                       type="button">{{_
@@ -54,14 +57,15 @@
                                                       type="button">{{_
                                                       "cardset.request.decline"}}</button>
   											</span>
-                            <input id="declineRequestReason" type="text" class="form-control"
-                                   placeholder="Begründung">
+                                <input id="declineRequestReason" type="text" class="form-control"
+                                       placeholder="Begründung">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {{/if}}
-        {{> cardsetSidebar}}
+            {{/if}}
+            {{> cardsetSidebar}}
+        {{/unless}}
         {{#if isActiveRoute 'cardsetdetailsid'}}
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}

@@ -63,12 +63,12 @@ Meteor.methods({
 					cardset_id: cardset_id,
 					cardGroup: -1
 				});
-				Cardsets.update(cardset_id, {
-					$set: {
-						quantity: Cards.find({cardset_id: cardset_id}).count()
-					}
-				});
 			}
 		}
+		Cardsets.update(cardset_id, {
+			$set: {
+				quantity: Cards.find({cardset_id: cardset_id}).count()
+			}
+		});
 	}
 });

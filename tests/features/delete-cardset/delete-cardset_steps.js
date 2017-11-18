@@ -1,53 +1,42 @@
-import {login, logout, TIMERTHRESHOLD, TIMERTHRESHOLDTEXT} from "../helper_functions.js";
+import * as global from "../../features_helper/global.js";
+import * as navigation from "../../features_helper/navigation.js";
 
 module.exports = function () {
 	'use strict';
 	let oldCardsetCount = 0;
 
-	this.Given(/^User is on the site$/, function () {
-		browser.url('http://localhost:3000');
-	});
 	this.Given(/^User is logged in$/, function () {
-		login("standardLogin");
+		navigation.login("standardLogin");
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
-		browser.waitForVisible('#cardsets',TIMERTHRESHOLD);
-		browser.click('#cardsets');
-		browser.waitForVisible('#setCreate',TIMERTHRESHOLD);
-		browser.click('#setCreate');
-		oldCardsetCount = browser.elements('.cardsetRow').value.length;
-		browser.waitUntil(function () {
-			return browser.isVisible('#newCardSet');
-		}, TIMERTHRESHOLD, 'expected create new cardset button to be visible after ' + TIMERTHRESHOLDTEXT);
+		navigation.selectMyCardset();
+		oldCardsetCount = navigation.getContent('.cardsetRow', 1);
+		navigation.contentVisible('#newCardSet');
 	});
 	this.When(/^User clicks on a cardset that he owns$/, function () {
-		browser.waitForVisible('#set-list-region > div:nth-child(1) > a',TIMERTHRESHOLD);
-		browser.click('#set-list-region > div:nth-child(1) > a');
+		navigation.selectCardsetList(1);
 	});
 	this.Then(/^he is shown the details of the cardset$/, function () {
-		browser.waitForVisible('#editCardset', TIMERTHRESHOLD);
+		navigation.contentVisible('#editCardset');
 	});
 	this.Then(/^he should push the edit cardset button$/, function () {
-		browser.click('#editCardset');
+		navigation.clickElement('#editCardset');
 	});
 	this.Then(/^he should see the edit cardset form$/, function () {
-		browser.waitForVisible('#editSetName', TIMERTHRESHOLD);
+		navigation.contentVisible('#editSetName');
 	});
 	this.Then(/^he should be able to press the delete cardset button$/, function () {
-		browser.waitForVisible('#cardSetDelete',TIMERTHRESHOLD);
-		browser.click('#cardSetDelete');
+		navigation.clickElement('#cardSetDelete');
 	});
 	this.Then(/^he should be able to press the delete cardset button again to be sure$/, function () {
-		browser.waitForVisible('#cardSetConfirm',TIMERTHRESHOLD);
-		browser.click('#cardSetConfirm');
+		navigation.clickElement('#cardSetConfirm');
 	});
 	this.Then(/^he should be returned to the my cardset view$/, function () {
-		browser.waitForVisible('.cardsetRow', TIMERTHRESHOLD);
+		navigation.selectMyCardset();
+		navigation.checkUrl(global.createRoute);
 	});
 	this.Then(/^he should not see the deleted cardset there$/, function () {
-		browser.waitUntil(function () {
-			return browser.elements('.cardsetRow').value.length ===  (oldCardsetCount - 1);
-		}, TIMERTHRESHOLD, 'expected cardset to be deleted after ' + TIMERTHRESHOLDTEXT);
-		logout();
+		navigation.compareContent('.cardsetRow', --oldCardsetCount, 1);
+		navigation.logout();
 	});
 };

@@ -318,6 +318,10 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 	}
 });
 
+Template.registerHelper("fullscreenActive", function () {
+	return Session.get('fullscreen');
+});
+
 Template.registerHelper("getCardBackgroundList", function (difficulty) {
 	switch (difficulty) {
 		case 0:

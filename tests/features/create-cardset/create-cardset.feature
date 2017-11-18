@@ -5,10 +5,9 @@ so that I can create and learn cards,
 I want to create a new deck of cards
 
 Background:
-    Given User is on the site
-    And User is logged in
-    And User is on the my cardset view 
-    
+    Given User is logged in
+    And User is on the my cardset view
+
 @watch
 Scenario: User creates a new deck of cards
     When User clicks on the create cardset button
@@ -21,6 +20,5 @@ Scenario: User creates a new deck of cards
     And he should be able to choose a college
     And he should be able to choose a course
     And he should push the create new cardset button
-    And he should see the created cardset in the my cardset view with the correct values
     And he should select the created cardset
     And he should see the details of that cardset with the correct values

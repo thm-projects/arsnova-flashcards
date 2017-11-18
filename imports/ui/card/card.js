@@ -97,6 +97,21 @@ function turnFront() {
 }
 
 /**
+ * Toggle the card view between fullscreen and normal mode
+ */
+export function toggleFullscreen() {
+	if (Session.get('fullscreen')) {
+		Session.set('fullscreen', false);
+		$("#theme-wrapper").css("margin-top", "100px");
+		$("#answerOptions").css("margin-top", "0");
+	} else {
+		Session.set('fullscreen', true);
+		$("#theme-wrapper").css("margin-top", "20px");
+		$("#answerOptions").css("margin-top", "-80px");
+	}
+}
+
+/**
  * Function changes from the backside to the front side of
  * a card or the other way around
  */
@@ -333,6 +348,17 @@ Template.btnCard.events({
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
+	}
+});
+
+/*
+ * ############################################################################
+ * editor
+ * ############################################################################
+ */
+Template.editor.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
 	}
 });
 
@@ -676,7 +702,7 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	getCardsetCount: function () {
-		return Session.get('activeCardset').quantity;
+		return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 	},
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
@@ -700,6 +726,9 @@ Template.flashcards.events({
 	},
 	"click #copyCard": function (evt) {
 		Session.set('modifiedCard', $(evt.target).data('id'));
+	},
+	"click #toggleFullscreen": function () {
+		toggleFullscreen();
 	}
 });
 
@@ -708,6 +737,12 @@ Template.flashcards.events({
  * flashcardsEmpty
  * ############################################################################
  */
+
+Template.flashcardsEmpty.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+});
 
 Template.flashcardsEmpty.events({
 	'click #memoEndBtn': function () {
