@@ -676,7 +676,7 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	getCardsetCount: function () {
-		return Session.get('activeCardset').quantity;
+		return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 	},
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
