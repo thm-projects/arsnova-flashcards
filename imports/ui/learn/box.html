@@ -33,9 +33,11 @@
         {{/if}}
         <br>
         <br>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton">
-            <span class="pull-left">{{_ "backbutton"}}</span>
-        </button>
+        {{#unless fullscreenActive}}
+            <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                <span class="pull-left">{{_ "backbutton"}}</span>
+            </button>
+        {{/unless}}
     </div>
     <!-- Permission denied -->
 

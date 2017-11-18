@@ -280,6 +280,17 @@ img.cardside {
   font-size: 26px;
 }
 
+.fullscreen {
+  float: right;
+  margin-top: 30px;
+  margin-right: -40px;
+  font-size: 22px;
+  z-index: 100;
+}
+
+.fullscreenMemo {
+  margin-top: -5px;
+}
 .btn-editCardset {
   float: left;
   margin-right: 7px;

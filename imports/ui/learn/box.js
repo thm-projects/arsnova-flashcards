@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
-import {turnCard, resizeAnswers} from "../card/card.js";
+import {turnCard, resizeAnswers, toggleFullscreen} from "../card/card.js";
 import "./box.html";
 
 Meteor.subscribe("cardsets");
@@ -50,6 +50,31 @@ Template.box.events({
 	 */
 	"click #backButton": function () {
 		window.history.go(-1);
+	}
+});
+
+
+/*
+ * ############################################################################
+ * boxEnd
+ * ############################################################################
+ */
+
+Template.boxEnd.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+});
+
+/*
+ * ############################################################################
+ * boxEmpty
+ * ############################################################################
+ */
+
+Template.boxEmpty.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
 	}
 });
 
