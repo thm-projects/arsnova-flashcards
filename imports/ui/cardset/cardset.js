@@ -622,16 +622,7 @@ Template.cardsetInfoBox.helpers({
 		if (this.shuffled) {
 			shuffled = TAPi18n.__('admin.shuffled') + " ";
 		}
-		switch (this.kind) {
-			case "free":
-				return shuffled + TAPi18n.__('admin.free');
-			case "edu":
-				return shuffled + TAPi18n.__('admin.university');
-			case "pro":
-				return shuffled + TAPi18n.__('admin.pro');
-			default:
-				return shuffled + TAPi18n.__('admin.private');
-		}
+		return shuffled;
 	},
 	isPurchased: function () {
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
