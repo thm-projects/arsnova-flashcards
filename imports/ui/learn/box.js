@@ -59,6 +59,10 @@ Template.box.events({
  * ############################################################################
  */
 
+Template.boxMain.onCreated(function () {
+	Session.set('isFront', true);
+});
+
 Template.boxMain.onRendered(function () {
 	resizeAnswers();
 	$(window).resize(function () {
@@ -75,7 +79,7 @@ Template.boxMain.helpers({
 
 Template.boxMain.events({
 	"click .box": function (evt) {
-		if (($(evt.target).data('type') !== "showHint")) {
+		if (($(evt.target).data('type') !== "cardNavigation")) {
 			var isFront = Session.get('isFront');
 			if (isFront === true) {
 				Session.set('isFront', false);
