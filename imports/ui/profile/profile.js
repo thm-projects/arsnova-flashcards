@@ -437,7 +437,7 @@ Template.profileSettings.events({
 
 		Session.set("themeSettings", true);
 		Meteor.call("updateColorTheme", selected, user_id);
-		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 	},
 	/** Function changes the temporary color theme when the input box changes its value */
 	"change #colorThemeSelect": function () {
@@ -528,10 +528,10 @@ Template.profileSettings.events({
 						Meteor.call("updateUsersProfileState", true, user_id);
 						Meteor.call("updateUsersName", result, user_id);
 						Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
-						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 					}
 				} else {
-					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');
 				}
 			}
 		});
@@ -575,7 +575,7 @@ Template.profileSettings.events({
 		$('#inputEmailValidationForm').addClass("hidden");
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
-		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('profile.canceled'), 'danger', 'growl-top-left');
 	}
 });
 
@@ -599,14 +599,14 @@ Template.profileMembership.rendered = function () {
 					onPaymentMethodReceived: function (response) {
 						$('#upgrade').prop("disabled", true);
 
-						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-bottom-right');
+						Bert.alert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-top-left');
 						var nonce = response.nonce;
 						var plan = Session.get('plan');
 						Meteor.call('btSubscribe', nonce, plan, function (error) {
 							if (error) {
 								throw new Meteor.Error(error.message, 'error');
 							} else {
-								Bert.alert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-top-left');
 							}
 						});
 					}
@@ -623,7 +623,7 @@ Template.profileMembership.events({
 	"click #downgrade": function () {
 		var hasPro = Cardsets.find({owner: Meteor.userId(), kind: 'pro'}).count();
 		if (hasPro > 0) {
-			Bert.alert(TAPi18n.__('membership.downgrade.error'), 'danger', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('membership.downgrade.error'), 'danger', 'growl-top-left');
 		} else {
 			var confirmCancel = confirm(TAPi18n.__('membership.downgrade.confirm'));
 			if (confirmCancel) {
@@ -632,13 +632,13 @@ Template.profileMembership.events({
 
 				Meteor.call('btCancelSubscription', function (error, response) {
 					if (error) {
-						Bert.alert(error.reason, "danger", 'growl-bottom-right');
+						Bert.alert(error.reason, "danger", 'growl-top-left');
 					} else {
 						if (response.error) {
-							Bert.alert(response.error.message, "danger", 'growl-bottom-right');
+							Bert.alert(response.error.message, "danger", 'growl-top-left');
 						} else {
 							Session.set('currentUserPlan_' + Meteor.userId(), null);
-							Bert.alert(TAPi18n.__('membership.downgrade.canceled'), 'success', 'growl-bottom-right');
+							Bert.alert(TAPi18n.__('membership.downgrade.canceled'), 'success', 'growl-top-left');
 						}
 					}
 				});
@@ -652,7 +652,7 @@ Template.profileMembership.events({
 
 		Meteor.call("addNotification", target, type, text, Meteor.userId(), target);
 		Meteor.call("setLecturerRequest", Meteor.userId(), true);
-		Bert.alert('Anfrage wurde gesendet', 'success', 'growl-bottom-right');
+		Bert.alert('Anfrage wurde gesendet', 'success', 'growl-top-left');
 	}
 });
 
@@ -688,13 +688,13 @@ Template.profileBilling.onRendered(function () {
 					onPaymentMethodReceived: function (response) {
 						$('#savePaymentBtn').prop("disabled", true);
 
-						Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-bottom-right');
+						Bert.alert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-top-left');
 						var nonce = response.nonce;
 						Meteor.call('btUpdatePaymentMethod', nonce, function (error) {
 							if (error) {
 								throw new Meteor.Error(error.message, 'error');
 							} else {
-								Bert.alert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-top-left');
 								$('#savePaymentBtn').prop("disabled", false);
 							}
 						});
@@ -714,7 +714,7 @@ Template.profileBilling.onRendered(function () {
 					container: "payoutDropIn",
 					onPaymentMethodReceived: function (response) {
 						$('#payoutBtn').prop("disabled", true);
-						Bert.alert(TAPi18n.__('billing.balance.progress'), 'info', 'growl-bottom-right');
+						Bert.alert(TAPi18n.__('billing.balance.progress'), 'info', 'growl-top-left');
 
 						var nonce = response.nonce;
 
@@ -722,10 +722,10 @@ Template.profileBilling.onRendered(function () {
 							if (error) {
 								throw new Meteor.Error('transaction-creation-failed');
 							} else if (success !== undefined && success.name === "authorizationError") {
-								Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-top-left');
 							} else {
 								Meteor.call("resetUsersBalance", Meteor.userId());
-								Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('billing.balance.success'), 'success', 'growl-top-left');
 								$('#payoutBtn').prop("disabled", false);
 							}
 						});
@@ -1115,7 +1115,7 @@ Template.profileBadges.helpers({
 				}
 			}
 			Meteor.call("updateEarnedBadges", index, rank);
-			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-top-left');
 		}
 		return gained;
 	},

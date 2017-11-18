@@ -201,10 +201,10 @@ Template.shuffle.events({
 		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();
 		Meteor.call("updateShuffleGroups", Router.current().params._id, Session.get("ShuffledCardsets"), removedCardsets, function (error, result) {
 			if (error) {
-				Bert.alert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-bottom-right');
+				Bert.alert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-top-left');
 			}
 			if (result) {
-				Bert.alert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-bottom-right');
+				Bert.alert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-top-left');
 				Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 			}
 		});

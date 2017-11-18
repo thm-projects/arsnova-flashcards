@@ -40,15 +40,15 @@ function addCollegeAndCourse() {
 	if (edit) {
 		Meteor.call("editCollegesCourses", editCollege, editCourse, college, course);
 		document.getElementById("newEntry").reset();
-		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		edit = false;
 	} else {
 		if (college === "" || course === "") {
-			Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-top-left');
 		} else {
 			if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}})) {
 				if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}, course: {$regex: course, $options: "i"}})) {
-					Bert.alert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-top-left');
 					return;
 				} else {
 					college = CollegesCourses.findOne({college: {$regex: college, $options: "i"}}).college;
@@ -56,7 +56,7 @@ function addCollegeAndCourse() {
 			}
 			Meteor.call("updateCollegesCoursess", college, course);
 			document.getElementById("newEntry").reset();
-			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		}
 	}
 }

@@ -296,7 +296,7 @@ function saveCard(card_id, returnToCardset) {
 		}
 	}
 	if (errorMessage !== '') {
-		Bert.alert(errorMessage, "danger", 'growl-bottom-right');
+		Bert.alert(errorMessage, "danger", 'growl-top-left');
 	}
 	var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
 	var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
@@ -309,7 +309,7 @@ function saveCard(card_id, returnToCardset) {
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", card_id, subject, hint, front, back, Number(difficulty), "0", function (error, result) {
 				if (result) {
-					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
 						Session.set('modifiedCard', result);
 						Router.go('cardsetdetailsid', {
@@ -327,7 +327,7 @@ function saveCard(card_id, returnToCardset) {
 			});
 		} else {
 			Meteor.call("updateCard", card_id, subject, hint, front, back, Number(difficulty));
-			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
 					_id: Router.current().params._id
@@ -374,7 +374,7 @@ Template.btnCard.events({
 		var id = this._id;
 		Session.set('modifiedCard', undefined);
 		Meteor.call("deleteCard", id);
-		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
@@ -778,7 +778,7 @@ Template.copyCard.events({
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
 				$('.modal-backdrop').remove();
-				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-bottom-right');
+				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
 			}
 		});
 	}

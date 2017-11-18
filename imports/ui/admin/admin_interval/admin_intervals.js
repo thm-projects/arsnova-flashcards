@@ -19,16 +19,16 @@ function saveInterval() {
 	var inv3 = document.getElementById('inv3').value;
 
 	if (inv1 === "" || inv2 === "" || inv3 === "") {
-		Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-top-left');
 	} else if (Number(inv1) >= Number(inv2) || Number(inv2) >= Number(inv3)) {
 		//Interval must be bigger than 1, 2 must be bigger than 3
-		Bert.alert(TAPi18n.__('admin-interval.errorBiggerThan'), 'danger', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('admin-interval.errorBiggerThan'), 'danger', 'growl-top-left');
 	} else if (inv1 > 0 && inv2 > 0 && inv3 > 0) {
 		Meteor.call('updateInterval', parseInt(inv1), parseInt(inv2), parseInt(inv3));
-		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		$('#inv1, #inv2, #inv3').val("");
 	} else {
-		Bert.alert(TAPi18n.__('admin-interval.biggerNull'), 'danger', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('admin-interval.biggerNull'), 'danger', 'growl-top-left');
 	}
 	return true;
 }
@@ -48,7 +48,7 @@ Template.admin_interval.events({
 		if (!(($('#inv1').val() === seq.seqOne && $('#inv2').val() === seq.seqTwo && $('#inv3').val() === seq.seqThree) ||
 			(7 === seq.seqOne && 30 === seq.seqTwo && 90 === seq.seqThree))) {
 			Meteor.call('updateInterval', 7, 30, 90);
-			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 			$('#inv1, #inv2, #inv3').val("");
 		}
 	}
