@@ -51,6 +51,10 @@
         <h5>{{_ "backside"}}</h5>
         {{> backEditor}}
     </div>
+    <div id="preview" class="col-xs-12 cardtext">
+        <h5>{{_ "preview"}}</h5>
+        {{> flashcards cardset=this}}
+    </div>
     <div id="hinttext" class="col-md-12 cardtext" data-content="{{hint}}">
         <h5>{{_ "hint"}}</h5>
         {{> hintEditor}}
@@ -99,23 +103,18 @@
 <template name="frontEditor">
     <form>
         <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
-                getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
     </form>
 </template>
 
 <template name="backEditor">
     <form>
         <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
-                getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
     </form>
 </template>
 
 <template name="hintEditor">
     <form>
         <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
-        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
     </form>
 </template>
 
@@ -160,7 +159,8 @@
 <template name="flashcards">
     {{> cardHint}}
     {{> copyCard}}
-    <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-md-9{{/unless}}{{/if}} flip-container" id="set-details-region">
+    <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-md-9{{/unless}}{{/if}} flip-container"
+         id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
@@ -210,11 +210,16 @@
                                             {{_ "turn"}}
                                         </div>
                                     {{/unless}}
-                                    <a href="#" id="toggleFullscreen"
-                                       class="fullscreen {{#if isMemo}}fullscreenMemo{{/if}}"
-                                       data-type="cardNavigation">
-                                        <span class="glyphicon glyphicon-fullscreen" data-type="cardNavigation"></span>
-                                    </a>
+                                    {{#unless isActiveRoute 'newCard'}}
+                                        {{#unless isActiveRoute 'editCard'}}
+                                            <a href="#" id="toggleFullscreen"
+                                               class="fullscreen {{#if isMemo}}fullscreenMemo{{/if}}"
+                                               data-type="cardNavigation">
+                                                <span class="glyphicon glyphicon-fullscreen"
+                                                      data-type="cardNavigation"></span>
+                                            </a>
+                                        {{/unless}}
+                                    {{/unless}}
                                     <br>
                                     <div class="leftHeader2">
                                         {{#if canCopyCard this.cardset_id}}

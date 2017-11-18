@@ -614,6 +614,7 @@
   "difficulty3": "Expert",
   "frontside": "Front",
   "backside": "Back",
+  "preview": "Preview",
   "turn": "turn",
   "hint": "Hint",
   "copyCardTitle": "Copy card",

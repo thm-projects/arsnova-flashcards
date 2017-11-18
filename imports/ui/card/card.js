@@ -140,6 +140,14 @@ function isCardset() {
 }
 
 /**
+ * Function checks if route is a card edit Mode
+ * @return {Boolean} Return true, when route is new Card or edit Card.
+ */
+function isEditMode() {
+	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
+}
+
+/**
  * Function checks if route is a Cardset
  * @return {Boolean} Return true, when route is a Memo.
  */
@@ -192,6 +200,28 @@ function getLeitnerCards() {
 	return cards;
 }
 
+/**
+ * Get the Session Data of the card
+ * @return {Collection} The Session Data of the card.
+ */
+function getEditModeCard() {
+	let id = "-1";
+	if (ActiveRoute.name('editCard')) {
+		id = Session.get('modifiedCard');
+	} else {
+		Session.set('modifiedCard', undefined);
+	}
+	return [{
+		"_id": id,
+		"subject": Session.get('subjextEditorText'),
+		"difficulty": Session.get('difficultyColor'),
+		"front": Session.get('frontText'),
+		"back": Session.get('backText'),
+		"hint": Session.get('hintText'),
+		"cardset_id": Router.current().params._id,
+		"cardGroup": 0
+	}];
+}
 /**
  * Get a set of cards for the supermemo algorithm.
  * @return {Collection} The card collection
@@ -368,22 +398,6 @@ Template.editor.onCreated(function () {
  * ############################################################################
  */
 
-/**
- * Returns the front text of a card
- * @return front text
- */
-Template.frontEditor.helpers({
-	getFront: function () {
-		if (Session.get('frontText') !== undefined) {
-			return Session.get('frontText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: false,
@@ -456,22 +470,6 @@ Template.subjectEditor.rendered = function () {
  * ############################################################################
  */
 
-/**
- * Returns the back text of a card
- * @return back text
- */
-Template.backEditor.helpers({
-	getBack: function () {
-		if (Session.get('backText') !== undefined) {
-			return Session.get('backText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
@@ -519,19 +517,6 @@ Template.backEditor.events({
  * HintEditor
  * ############################################################################
  */
-
-/**
- * Returns the hint text of a card
- * @return hint of the card
- */
-Template.hintEditor.helpers({
-	getHint: function () {
-		if (Session.get('hintText') !== undefined) {
-			return Session.get('hintText');
-		}
-		return "";
-	}
-});
 
 Template.hintEditor.rendered = function () {
 	$("#hintEditor").markdown({
@@ -604,12 +589,16 @@ Template.difficultyEditor.onRendered(function () {
 
 Template.cardHint.helpers({
 	getSubject: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('subjextEditorText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		}
 	},
 	getHint: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('hintText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
 	}
@@ -662,6 +651,9 @@ Template.flashcards.helpers({
 	isMemo: function () {
 		return isMemo();
 	},
+	isEditMode: function () {
+		return isEditMode();
+	},
 	box: function () {
 		return Session.get("selectedBox");
 	},
@@ -681,6 +673,9 @@ Template.flashcards.helpers({
 		}
 		if (isMemo()) {
 			return getMemoCards();
+		}
+		if (isEditMode()) {
+			return getEditModeCard();
 		}
 	},
 	countBox: function () {
