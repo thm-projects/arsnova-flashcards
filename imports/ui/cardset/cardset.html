@@ -173,11 +173,9 @@
                 <tr>
                     <td><strong>{{_ "cardset.info.author"}}:</strong></td>
                     <td>
-                        {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
-                        {{else}}
-                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
-                        {{/if}}
+                        {{#each getAuthors}}
+                                <a href="{{pathFor 'profileSettings' _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
+                        {{/each}}
                     </td>
                 </tr>
                 <tr>
