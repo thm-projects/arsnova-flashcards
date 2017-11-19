@@ -19,7 +19,7 @@ import '/client/hammer.js';
  * Surrounds a selected text with the markdown tags for an image.
  * @param {event} e - The DOM Event
  */
-function image(e) {
+export function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(), link;
 
@@ -44,7 +44,7 @@ function image(e) {
 	}
 }
 
-function tex(e) {
+export function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(), content = e.getContent();
 
@@ -97,6 +97,7 @@ function turnFront() {
 }
 
 var lastWidth = $("#cardCarousel").width();
+
 /**
  * Resizes flashcards to din a6 format
  */
@@ -421,6 +422,7 @@ Template.frontEditor.rendered = function () {
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('frontText', content);
@@ -431,12 +433,12 @@ Template.frontEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
@@ -493,6 +495,7 @@ Template.backEditor.rendered = function () {
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('backText', content);
@@ -503,12 +506,12 @@ Template.backEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
@@ -541,6 +544,7 @@ Template.hintEditor.rendered = function () {
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('hintText', content);
@@ -551,12 +555,12 @@ Template.hintEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]

@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Learned} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./cardsets.html";
+import {image, tex} from '/imports/ui/card/card.js';
 
 Session.setDefault('cardsetId', undefined);
 
@@ -486,9 +487,10 @@ Template.cardsets.events({
 
 Template.descriptionEditorNew.rendered = function () {
 	$("#newSetDescription").markdown({
-		autofocus: true,
+		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		footer: "<p></p>",
 		onChange: function (e) {
 			var content = e.getContent();
@@ -498,7 +500,23 @@ Template.descriptionEditorNew.rendered = function () {
 						$(".md-footer").html(rendered);
 					});
 			}
-		}
+		},
+		additionalButtons: [
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'fa fa-file-image-o',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "fa fa-superscript",
+					callback: tex
+				}]
+			}]
+		]
 	});
 };
 

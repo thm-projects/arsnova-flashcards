@@ -13,6 +13,7 @@ import "../card/card.js";
 import "../learn/box.js";
 import "../learn/memo.js";
 import "./cardset.html";
+import {image, tex} from '/imports/ui/card/card.js';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
@@ -410,10 +411,27 @@ Template.cardsetPreview.events({
 
 Template.descriptionEditorEdit.rendered = function () {
 	$("#editSetDescription").markdown({
-		autofocus: true,
+		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
-		footer: "<p></p>"
+		iconlibrary: "fa",
+		footer: "<p></p>",
+		additionalButtons: [
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'fa fa-file-image-o',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "fa fa-superscript",
+					callback: tex
+				}]
+			}]
+		]
 	});
 };
 

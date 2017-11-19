@@ -595,3 +595,27 @@ button:disabled {
 #alert-warning {
   z-index: 150;
 }
+
+.md-header .fa {
+  margin: 0 auto;
+  font-size: 24px;
+  padding: 3px 6px;
+  color: $color_thm_gray;
+  border-radius: 5px;
+  border: 1px solid $color_thm_gray;
+  background-color: $white;
+}
+
+.md-header .fa:hover {
+  background-color: $color_athens_gray_approx;
+}
+
+.fa-link:before {
+  content: "\f0ac" !important;
+}
+
+.md-header button {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 5px !important;
+}
