@@ -135,8 +135,14 @@
                 {{/if}}
                 <tr>
                     <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
-                    <td><a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
-                           data-target="#showLicenseModal">{{getLicense}}</a></td>
+                    <td>
+                        {{#unless isShuffledCardset this._id}}
+                            <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
+                               data-target="#showLicenseModal">{{getLicense}}</a>
+                        {{else}}
+                            {{_ "cardset.info.shuffleLicense"}}
+                        {{/unless}}
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.module"}}:</strong></td>
@@ -288,13 +294,15 @@
                             </div>
                         {{/unless}}
                     {{/unless}}
-                    {{#if isPublished}}
-                        <button id="selectLicense" class="btn btn-default btn-raised" type="button"
-                                data-toggle="modal"
-                                data-target="#selectLicenseModal" {{disableIfOffline}}>
-                            <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
-                        </button>
-                    {{/if}}
+                    {{#unless isShuffledCardset this._id}}
+                        {{#if isPublished}}
+                            <button id="selectLicense" class="btn btn-default btn-raised" type="button"
+                                    data-toggle="modal"
+                                    data-target="#selectLicenseModal" {{disableIfOffline}}>
+                                <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                            </button>
+                        {{/if}}
+                    {{/unless}}
                 </div>
             {{/if}}
         </div>
