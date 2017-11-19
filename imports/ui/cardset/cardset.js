@@ -734,6 +734,9 @@ Template.cardsetSidebar.events({
 	},
 	"click #manageEditors": function () {
 		Router.go('cardseteditors', {_id: Router.current().params._id});
+	},
+	"click #collapseManageButton": function () {
+		changeCollapseIcon("#collapseMangeIcon");
 	}
 });
 

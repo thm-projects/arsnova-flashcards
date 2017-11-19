@@ -305,7 +305,7 @@
 </template>
 
 <template name="cardsetSidebar">
-    <div class="col-md-3">
+    <div id="sidebar" class="col-md-3">
         {{#unless learningActiveAndNotEditor}}
             <div id="set-details-sideBar-region col-xs-12">
                 <div class="well well-sm sidebar-nav">
@@ -348,8 +348,12 @@
             {{/if}}
         {{/unless}}
         <div id="set-details-learn-region">
-            <div class="well well-sm sidebar-nav">
-                <span class="nav-header-cardset">{{_ "manage"}}</span>
+            <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
+               href="#collapseManage" data-toggle="collapse">
+                <strong>{{_ "manage"}}</strong>
+                <i id="collapseMangeIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+            </a>
+            <div id="collapseManage" class="collapse well well-sm">
                 {{#if isCardsetOwner _id}}
                     <button id="manageEditors" type="button"
                             class="btn btn-default btn-raised btn-block btn-default"
