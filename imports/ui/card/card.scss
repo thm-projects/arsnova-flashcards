@@ -91,7 +91,6 @@ $header_line: rgba(255, 0, 0, 0.6);
 .box {
   border: 1px solid $color_alto_approx;
   font-family: $font_0, $font_1;
-  min-height: 300px;
   margin: 0 auto;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
@@ -310,7 +309,6 @@ img.cardside {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  min-height: 300px;
   top: 0;
   left: 0;
   right: 0;

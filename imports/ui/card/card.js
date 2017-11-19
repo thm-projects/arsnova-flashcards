@@ -96,6 +96,23 @@ function turnFront() {
 	$(".innerBoxBody").removeClass("back");
 }
 
+var lastWidth = $("#cardCarousel").width();
+/**
+ * Resizes flashcards to din a6 format
+ */
+function resizeFlashcards() {
+	let flashcardWidth = $('#cardCarousel').width();
+	if (flashcardWidth != lastWidth) {
+		let flashcardHeaderHeight = $('.innerBoxHeader').height();
+		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
+		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+		$('.box').css('min-height', newFlashcardHeight);
+		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
+		lastWidth = $("#cardCarousel").width();
+	}
+	setTimeout(resizeFlashcards, 250);
+}
+
 /**
  * Toggle the card view between fullscreen and normal mode
  */
@@ -222,6 +239,7 @@ function getEditModeCard() {
 		"cardGroup": 0
 	}];
 }
+
 /**
  * Get a set of cards for the supermemo algorithm.
  * @return {Collection} The card collection
@@ -626,6 +644,7 @@ Template.flashcards.onRendered(function () {
 			}
 		});
 	}
+	resizeFlashcards();
 });
 
 Template.flashcards.helpers({
