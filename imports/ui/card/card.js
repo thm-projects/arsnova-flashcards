@@ -117,8 +117,8 @@ function resizeFlashcards() {
 /**
  * Toggle the card view between fullscreen and normal mode
  */
-export function toggleFullscreen() {
-	if (Session.get('fullscreen')) {
+export function toggleFullscreen(forceOff = false) {
+	if (Session.get('fullscreen') || forceOff) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "100px");
 		$("#answerOptions").css("margin-top", "0");
