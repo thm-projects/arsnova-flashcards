@@ -22,16 +22,16 @@ module.exports = function () {
 		cardset.editCard();
 	});
 	this.Then(/^he enters "([^"]*)" for the front of the card \(EaC\)$/, function (arg1) {
-		navigation.contentVisible('#fronttext');
-		let frontSelector = browser.element('#fronttext');
+		navigation.contentVisible('#contentEditor');
+		let frontSelector = browser.element('#editor');
 		sFront = frontSelector.getAttribute("data-content");
-		navigation.setContent('#frontEditor', arg1);
+		navigation.setContent('#contentEditor', arg1);
 	});
 	this.Then(/^he enters a "([^"]*)" for the back of the card \(EaC\)$/, function (arg1) {
-		navigation.contentVisible('#backtext');
-		let backSelector = browser.element('#backtext');
+		navigation.clickElement('#editBack');
+		let backSelector = browser.element('#editor');
 		sBack = backSelector.getAttribute("data-content");
-		navigation.setContent('#backEditor', arg1);
+		navigation.setContent('#contentEditor', arg1);
 	});
 	this.Then(/^he press on the save button \(EaC\)$/, function () {
 		cardset.saveCardReturn();
@@ -44,8 +44,9 @@ module.exports = function () {
 	});
 	this.Then(/^he wants to undo previous changes$/, function () {
 		cardset.editCard();
-		navigation.setContent('#frontEditor', sFront);
-		navigation.setContent('#backEditor', sBack);
+		navigation.setContent('#contentEditor', sFront);
+		navigation.clickElement('#editBack');
+		navigation.setContent('#contentEditor', sBack);
 		cardset.saveCardReturn();
 	});
 	this.Then(/^he should be redirected to his own cardsets view once again \(EaC\)$/, function () {

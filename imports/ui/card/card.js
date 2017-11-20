@@ -9,11 +9,50 @@ import {Learned} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
 
+Session.setDefault('frontText', '');
+Session.setDefault('backText', '');
+Session.setDefault('hintText', '');
+
 /*
  * ############################################################################
  * Functions
  * ############################################################################
  */
+var activeEditMode = 0;
+function editFront() {
+	activeEditMode = 0;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 4);
+	$('#contentEditor').val(Session.get('frontText'));
+	$('#editor').attr('data-content', Session.get('frontText'));
+	$('#editFront').removeClass('btn-default').addClass('btn-primary');
+	$('#editBack').removeClass('btn-primary').addClass('btn-default');
+	$('#editHint').removeClass('btn-primary').addClass('btn-default');
+	turnFront();
+}
+
+function editBack() {
+	activeEditMode = 1;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 6);
+	$('#contentEditor').val(Session.get('backText'));
+	$('#editor').attr('data-content', Session.get('backText'));
+	$('#editBack').removeClass('btn-default').addClass('btn-primary');
+	$('#editFront').removeClass('btn-primary').addClass('btn-default');
+	$('#editHint').removeClass('btn-primary').addClass('btn-default');
+	turnBack();
+}
+
+function editHint() {
+	activeEditMode = 2;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 8);
+	$('#contentEditor').val(Session.get('hintText'));
+	$('#editor').attr('data-content', Session.get('hintText'));
+	$('#editHint').removeClass('btn-default').addClass('btn-primary');
+	$('#editFront').removeClass('btn-primary').addClass('btn-default');
+	$('#editBack').removeClass('btn-primary').addClass('btn-default');
+}
 
 /**
  * Surrounds a selected text with the markdown tags for an image.
@@ -231,7 +270,7 @@ function getEditModeCard() {
 	}
 	return [{
 		"_id": id,
-		"subject": Session.get('subjextEditorText'),
+		"subject": Session.get('subjectEditorText'),
 		"difficulty": Session.get('difficultyColor'),
 		"front": Session.get('frontText'),
 		"back": Session.get('backText'),
@@ -270,61 +309,46 @@ function getMemoCards() {
 }
 
 function saveCard(card_id, returnToCardset) {
-	let errorMessage = '';
+	let frontText = Session.get('frontText');
+	let backText = Session.get('backText');
+	let hintText = Session.get('hintText');
 	if ($('#subjectEditor').val() === '') {
 		$('#subjectEditor').css('border', '1px solid');
 		$('#subjectEditor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('cardsubject_required');
-		}
+		Bert.alert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
 	}
 	if ($('#subjectEditor').val().length > 150) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('cardsubject_max');
-		}
+		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
 	}
-	if ($('#frontEditor').val() === '') {
-		$('#fronttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('fronttext_required');
-		}
+	if (frontText  === '') {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('fronttext_required'), "danger", 'growl-top-left');
 	}
-	if ($('#backEditor').val() === '') {
-		$('#backtext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('backtext_required');
-		}
+	if (backText === '') {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('backtext_required'), "danger", 'growl-top-left');
 	}
-	if ($('#frontEditor').val().length > 10000) {
-		$('#fronttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (frontText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if ($('#backEditor').val().length > 10000) {
-		$('#backtext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (backText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if ($('#hintEditor').val().length > 10000) {
-		$('#hinttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (hintText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if (errorMessage !== '') {
-		Bert.alert(errorMessage, "danger", 'growl-top-left');
-	}
-	var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
-	var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
+	let editorsEmpty = frontText !== '' && backText !== '' && $('#subjectEditor').val() !== '';
+	let editorsValidLength = frontText.length <= 10000 && backText.length <= 10000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000;
 	if (editorsEmpty && editorsValidLength) {
-		var subject = $('#subjectEditor').val();
-		var front = $('#frontEditor').val();
-		var back = $('#backEditor').val();
-		var hint = $('#hintEditor').val();
-		var difficulty = $('input[name=difficulty]:checked').val();
+		let subject = $('#subjectEditor').val();
+		let front = frontText;
+		let back = backText;
+		let hint = hintText;
+		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", card_id, subject, hint, front, back, Number(difficulty), "0", function (error, result) {
 				if (result) {
@@ -335,12 +359,14 @@ function saveCard(card_id, returnToCardset) {
 							_id: Router.current().params._id
 						});
 					} else {
-						$('#frontEditor').val('');
-						$('#backEditor').val('');
-						$('#hintEditor').val('');
-						Session.set('frontText', undefined);
-						Session.set('backText', undefined);
-						Session.set('hintText', undefined);
+						$('#contentEditor').val('');
+						$('#editor').attr('data-content', '');
+						Session.set('frontText', '');
+						Session.set('backText', '');
+						Session.set('hintText', '');
+						window.scrollTo(0, 0);
+						$('#editFront').click();
+						$('#difficulty0').click();
 					}
 				}
 			});
@@ -405,6 +431,45 @@ Template.btnCard.events({
  * editor
  * ############################################################################
  */
+
+Template.editor.events({
+	'click #editFront': function () {
+		editFront();
+	},
+	'click #editBack': function () {
+		editBack();
+	},
+	'click #editHint': function () {
+		editHint();
+	},
+	'focus #editFront': function () {
+		editFront();
+	},
+	'focus #editBack': function () {
+		editBack();
+	},
+	'focus #editHint': function () {
+		editHint();
+	}
+});
+
+Template.editor.helpers({
+	getContent: function (front, back, hint) {
+		if (front === undefined) {
+			front = '';
+		}
+		Session.set('frontText', front);
+		if (back === undefined) {
+			back = '';
+		}
+		Session.set('backText', back);
+		if (hint === undefined) {
+			hint = '';
+		}
+		Session.set('hintText', hint);
+	}
+});
+
 Template.editor.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		toggleFullscreen();
@@ -413,19 +478,30 @@ Template.editor.onCreated(function () {
 
 /*
  * ############################################################################
- * frontEditor
+ * contentEditor
  * ############################################################################
  */
 
-Template.frontEditor.rendered = function () {
-	$("#frontEditor").markdown({
+Template.contentEditor.rendered = function () {
+	$("#contentEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
 		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
-			Session.set('frontText', content);
+			$('#editor').attr('data-content', content);
+			switch (activeEditMode) {
+				case 0:
+					Session.set('frontText', content);
+					break;
+				case 1:
+					Session.set('backText', content);
+					break;
+				case 2:
+					Session.set('hintText', content);
+					break;
+			}
 		},
 		additionalButtons: [
 			[{
@@ -445,18 +521,15 @@ Template.frontEditor.rendered = function () {
 		]
 	});
 
-	if (ActiveRoute.name('editCard')) {
-		var front = String($('#fronttext').data('content'));
-		Session.set('frontText', front);
-	} else {
-		Session.set('frontText', undefined);
+	if (!ActiveRoute.name('editCard')) {
+		Session.set('frontText', '');
 	}
 };
 
-Template.frontEditor.events({
-	'keyup #frontEditor': function () {
-		$('#fronttext .md-editor').css('border-color', '');
-		$('#helpNewFronttext').html('');
+Template.contentEditor.events({
+	'keyup #contentEditor': function () {
+		$('#contentEditor .md-editor').css('border-color', '');
+		$('#helpNewContent').html('');
 	}
 });
 
@@ -468,118 +541,21 @@ Template.frontEditor.events({
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
-		return Session.get('subjextEditorText');
+		return Session.get('subjectEditorText');
 	}
 });
 
 Template.subjectEditor.events({
 	'keyup #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
-		Session.set('subjextEditorText', $('#subjectEditor').val());
+		Session.set('subjectEditorText', $('#subjectEditor').val());
 	}
 });
 
 Template.subjectEditor.rendered = function () {
 	$('#subjectEditor').focus();
-	Session.set('subjextEditorText', $('#subjectEditor').val());
+	Session.set('subjectEditorText', $('#subjectEditor').val());
 };
-
-/*
- * ############################################################################
- * backEditor
- * ############################################################################
- */
-
-Template.backEditor.rendered = function () {
-	$("#backEditor").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		iconlibrary: "fa",
-		onChange: function (e) {
-			var content = e.getContent();
-			Session.set('backText', content);
-		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'fa fa-file-image-o',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "fa fa-superscript",
-					callback: tex
-				}]
-			}]
-		]
-	});
-	if (ActiveRoute.name('editCard')) {
-		var back = String($('#backtext').data('content'));
-		Session.set('backText', back);
-	} else {
-		Session.set('backText', undefined);
-	}
-};
-
-Template.backEditor.events({
-	'keyup #backEditor': function () {
-		$('#backtext .md-editor').css('border-color', '');
-		$('#helpNewBacktext').html('');
-	}
-});
-
-
-/*
- * ############################################################################
- * HintEditor
- * ############################################################################
- */
-
-Template.hintEditor.rendered = function () {
-	$("#hintEditor").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		iconlibrary: "fa",
-		onChange: function (e) {
-			var content = e.getContent();
-			Session.set('hintText', content);
-		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'fa fa-file-image-o',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "fa fa-superscript",
-					callback: tex
-				}]
-			}]
-		]
-	});
-	if (ActiveRoute.name('editCard')) {
-		var hint = String($('#hinttext').data('content'));
-		Session.set('hintText', hint);
-	} else {
-		Session.set('hintText', undefined);
-	}
-};
-
-Template.backEditor.events({
-	'keyup #hintEditor': function () {
-		$('#hinttext .md-editor').css('border-color', '');
-		$('#helpNewHinttext').html('');
-	}
-});
 
 /*
  * ############################################################################
@@ -596,6 +572,18 @@ Template.difficultyEditor.helpers({
 Template.difficultyEditor.events({
 	'click #difficultyGroup': function (event) {
 		Session.set('difficultyColor', Number($(event.target).data('color')));
+	},
+	'focus #difficulty0': function () {
+		Session.set('difficultyColor', 0);
+	},
+	'focus #difficulty1': function () {
+		Session.set('difficultyColor', 1);
+	},
+	'focus #difficulty2': function () {
+		Session.set('difficultyColor', 2);
+	},
+	'focus #difficulty3': function () {
+		Session.set('difficultyColor', 3);
 	}
 });
 
@@ -612,7 +600,7 @@ Template.difficultyEditor.onRendered(function () {
 Template.cardHint.helpers({
 	getSubject: function () {
 		if (isEditMode()) {
-			return Session.get('subjextEditorText');
+			return Session.get('subjectEditorText');
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		}

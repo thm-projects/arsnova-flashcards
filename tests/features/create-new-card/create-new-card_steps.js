@@ -34,10 +34,11 @@ module.exports = function () {
 		navigation.setContent('#subjectEditor', 'SUBJECTOFTHECARD');
 	});
 	this.When(/^he enters a text for the front of the card$/, function () {
-		navigation.setContent('#frontEditor', 'FRONTOFTHECARD');
+		navigation.setContent('#contentEditor', 'FRONTOFTHECARD');
 	});
 	this.When(/^he enters a text for the back of the card$/, function () {
-		navigation.setContent('#backEditor', 'BACKOFTHECARD');
+		navigation.clickElement('#editBack');
+		navigation.setContent('#contentEditor', 'BACKOFTHECARD');
 	});
 	this.When(/^he press on the save button$/, function () {
 		cardset.saveCardReturn();
