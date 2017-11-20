@@ -19,7 +19,7 @@ import '/client/hammer.js';
  * Surrounds a selected text with the markdown tags for an image.
  * @param {event} e - The DOM Event
  */
-function image(e) {
+export function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(), link;
 
@@ -44,7 +44,7 @@ function image(e) {
 	}
 }
 
-function tex(e) {
+export function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(), content = e.getContent();
 
@@ -96,6 +96,24 @@ function turnFront() {
 	$(".innerBoxBody").removeClass("back");
 }
 
+var lastWidth = $("#cardCarousel").width();
+
+/**
+ * Resizes flashcards to din a6 format
+ */
+function resizeFlashcards() {
+	let flashcardWidth = $('#cardCarousel').width();
+	if (flashcardWidth != lastWidth) {
+		let flashcardHeaderHeight = $('.innerBoxHeader').height();
+		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
+		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+		$('.box').css('min-height', newFlashcardHeight);
+		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
+		lastWidth = $("#cardCarousel").width();
+	}
+	setTimeout(resizeFlashcards, 250);
+}
+
 /**
  * Toggle the card view between fullscreen and normal mode
  */
@@ -137,6 +155,14 @@ function isBox() {
  */
 function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid";
+}
+
+/**
+ * Function checks if route is a card edit Mode
+ * @return {Boolean} Return true, when route is new Card or edit Card.
+ */
+function isEditMode() {
+	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
 }
 
 /**
@@ -190,6 +216,29 @@ function getLeitnerCards() {
 		cards.push(card);
 	});
 	return cards;
+}
+
+/**
+ * Get the Session Data of the card
+ * @return {Collection} The Session Data of the card.
+ */
+function getEditModeCard() {
+	let id = "-1";
+	if (ActiveRoute.name('editCard')) {
+		id = Session.get('modifiedCard');
+	} else {
+		Session.set('modifiedCard', undefined);
+	}
+	return [{
+		"_id": id,
+		"subject": Session.get('subjextEditorText'),
+		"difficulty": Session.get('difficultyColor'),
+		"front": Session.get('frontText'),
+		"back": Session.get('backText'),
+		"hint": Session.get('hintText'),
+		"cardset_id": Router.current().params._id,
+		"cardGroup": 0
+	}];
 }
 
 /**
@@ -266,7 +315,7 @@ function saveCard(card_id, returnToCardset) {
 		}
 	}
 	if (errorMessage !== '') {
-		Bert.alert(errorMessage, "danger", 'growl-bottom-right');
+		Bert.alert(errorMessage, "danger", 'growl-top-left');
 	}
 	var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
 	var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
@@ -279,7 +328,7 @@ function saveCard(card_id, returnToCardset) {
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", card_id, subject, hint, front, back, Number(difficulty), "0", function (error, result) {
 				if (result) {
-					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
 						Session.set('modifiedCard', result);
 						Router.go('cardsetdetailsid', {
@@ -297,7 +346,7 @@ function saveCard(card_id, returnToCardset) {
 			});
 		} else {
 			Meteor.call("updateCard", card_id, subject, hint, front, back, Number(difficulty));
-			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
 					_id: Router.current().params._id
@@ -344,7 +393,7 @@ Template.btnCard.events({
 		var id = this._id;
 		Session.set('modifiedCard', undefined);
 		Meteor.call("deleteCard", id);
-		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
@@ -368,27 +417,12 @@ Template.editor.onCreated(function () {
  * ############################################################################
  */
 
-/**
- * Returns the front text of a card
- * @return front text
- */
-Template.frontEditor.helpers({
-	getFront: function () {
-		if (Session.get('frontText') !== undefined) {
-			return Session.get('frontText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
 Template.frontEditor.rendered = function () {
 	$("#frontEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('frontText', content);
@@ -399,12 +433,12 @@ Template.frontEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
@@ -456,27 +490,12 @@ Template.subjectEditor.rendered = function () {
  * ############################################################################
  */
 
-/**
- * Returns the back text of a card
- * @return back text
- */
-Template.backEditor.helpers({
-	getBack: function () {
-		if (Session.get('backText') !== undefined) {
-			return Session.get('backText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
 Template.backEditor.rendered = function () {
 	$("#backEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('backText', content);
@@ -487,12 +506,12 @@ Template.backEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
@@ -520,24 +539,12 @@ Template.backEditor.events({
  * ############################################################################
  */
 
-/**
- * Returns the hint text of a card
- * @return hint of the card
- */
-Template.hintEditor.helpers({
-	getHint: function () {
-		if (Session.get('hintText') !== undefined) {
-			return Session.get('hintText');
-		}
-		return "";
-	}
-});
-
 Template.hintEditor.rendered = function () {
 	$("#hintEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
 			Session.set('hintText', content);
@@ -548,12 +555,12 @@ Template.hintEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
@@ -604,12 +611,16 @@ Template.difficultyEditor.onRendered(function () {
 
 Template.cardHint.helpers({
 	getSubject: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('subjextEditorText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		}
 	},
 	getHint: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('hintText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
 	}
@@ -637,6 +648,7 @@ Template.flashcards.onRendered(function () {
 			}
 		});
 	}
+	resizeFlashcards();
 });
 
 Template.flashcards.helpers({
@@ -662,6 +674,9 @@ Template.flashcards.helpers({
 	isMemo: function () {
 		return isMemo();
 	},
+	isEditMode: function () {
+		return isEditMode();
+	},
 	box: function () {
 		return Session.get("selectedBox");
 	},
@@ -681,6 +696,9 @@ Template.flashcards.helpers({
 		}
 		if (isMemo()) {
 			return getMemoCards();
+		}
+		if (isEditMode()) {
+			return getEditModeCard();
 		}
 	},
 	countBox: function () {
@@ -783,7 +801,7 @@ Template.copyCard.events({
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
 				$('.modal-backdrop').remove();
-				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-bottom-right');
+				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
 			}
 		});
 	}
