@@ -8,6 +8,7 @@ import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
 import {getAuthorName} from "../../api/cardsetUserlist.js";
+import {toggleFullscreen} from "../../ui/card/card";
 
 Meteor.subscribe("collegesCourses");
 
@@ -320,6 +321,14 @@ Template.registerHelper("getCardBackground", function (difficulty) {
 
 Template.registerHelper("fullscreenActive", function () {
 	return Session.get('fullscreen');
+});
+
+Template.registerHelper("checkActiveRouteName", function () {
+	let currentRoute = Router.current().route.getName();
+	if (currentRoute !== Session.get('previousRouteName')) {
+		Session.set('previousRouteName', currentRoute);
+		toggleFullscreen(true);
+	}
 });
 
 Template.registerHelper("getCardBackgroundList", function (difficulty) {

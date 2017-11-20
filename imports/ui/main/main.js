@@ -21,6 +21,7 @@ Meteor.subscribe("adminSettings");
 
 Session.setDefault("theme", "default");
 Session.setDefault("fullscreen", false);
+Session.setDefault("previousRouteName", undefined);
 
 
 /** Function provides an reactive callback when a user loggs in and out */

@@ -1,219 +1,221 @@
 <template name="main">
-<div id="{{#if currentUser}}{{#if isInRole
-                                  'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
-     class="{{getTheme}}">
-{{#if currentUser}}
-    {{#if isInRole 'firstLogin'}}
-    {{else if  isInRole 'blocked'}}
-    {{else}}
-        {{> completeProfileModal}}
+    {{checkActiveRouteName}}
+    <div id="{{#if currentUser}}{{#if isInRole
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
+         class="{{getTheme}}">
         {{#unless fullscreenActive}}
-                <nav class="navbar navbar-default navbar-fixed-top">
-                    <div class="container thm-header">
-                        <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                {{#if currentUser}}
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                {{/if}}
-                            </div>
+            {{#if currentUser}}
+                {{#if isInRole 'firstLogin'}}
+                {{else if  isInRole 'blocked'}}
+                {{else}}
+                    {{> completeProfileModal}}
 
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                {{#if currentUser}}
-                                    <ul id="navbar" class="nav navbar-nav">
+                    <nav class="navbar navbar-default navbar-fixed-top">
+                        <div class="container thm-header">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    {{#if currentUser}}
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    {{/if}}
+                                </div>
 
-                                        <li id="navbar-pool"
-                                            class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a href="{{pathFor route='home'}}" id="pool">
-                                                {{_ "navbar-collapse.pool"}}
-                                            </a>
-                                        </li>
-                                        <li id="navbar-ownsets"
-                                            class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a href="{{pathFor route='create'}}" id="cardsets">
-                                                {{_ "navbar-collapse.carddecks"}}
-                                            </a>
-                                        </li>
-                                        <li id="navbar-ownsets"
-                                            class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                {{_ "navbar-collapse.learndecks"}}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div id="searchDropdown"
-                                         class="navbar-form navbar-left input-append btn-group"
-                                         role="search">
-                                        <input id="input-search" class="form-control typeahead" name="search"
-                                               type="text"
-                                               autocomplete="off" spellcheck="off" data-source="search"
-                                               data-template="search"
-                                               placeholder="{{_ "navbar-collapse.search"}}">
-                                        <div id="searchResults" class="dropdown-menu list-group"
-                                             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            {{#each searchCategories}}
-                                                <a href="/cardset/{{_id}}" class="list-group-item clearfix">
-                                                    <h4 class="list-group-item-heading">{{name}}</h4>
-                                                    <p class="list-group-item-text">{{description}}</p>
-                                                    {{#with getAuthor this.owner}}
-                                                        <p class="list-group-item-text search-author">{{_
-                                                                "cardset.info.author"}}
-                                                            : {{givenname}} {{birthname}}</p>
-                                                    {{/with}}
-                                                    <hr class="search-divide">
-                                                </a>
-                                            {{/each}}
-                                        </div>
-                                    </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    {{#if currentUser}}
+                                        <ul id="navbar" class="nav navbar-nav">
 
-                                    <ul class="nav navbar-nav navbar-right">
-                                        {{#if isInRole 'admin, editor'}}
-                                            <li id="navbar-adminpanel">
-                                                <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
-                                                    {{_ "navbar-collapse.backend"}}
+                                            <li id="navbar-pool"
+                                                class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                <a href="{{pathFor route='home'}}" id="pool">
+                                                    {{_ "navbar-collapse.pool"}}
                                                 </a>
                                             </li>
-                                        {{/if}}
-                                        <li id="notificationsBtn" class="dropdown">
-                                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fa fa-bell"></i> {{#if countNotifications}}
-                                                <span class="badge">{{countNotifications}}</span>{{/if}}
-                                            </a>
-
-                                            <ul class="dropdown-menu notifications text-dark" role="menu"
-                                                aria-labelledby="dLabel">
-                                                <div class="notification-heading">
-                                                    <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                                    {{#if getNotifications.count}}
-                                                        <button id="clearBtn" type="button"
-                                                                class="btn btn-default pull-right">{{_
-                                                                "notifications.clearAll"}}</button>
-                                                    {{/if}}
-                                                </div>
-                                                <li class="divider"></li>
-                                                {{#if getNotifications.count}}
-                                                    <div class="notifications-wrapper">
-                                                        {{#each getNotifications}}
-                                                            <a href="{{getLink}}" class="content">
-                                                                <div class="notification-item">
-                                                                    <h4 class="item-title">{{getType type}}</h4>
-                                                                    <p class="item-info">{{text}}</p>
-                                                                </div>
-                                                            </a>
-                                                        {{/each}}
-                                                    </div>
-                                                {{else}}
-                                                    <div class="notification-heading">
-                                                        <h4 class="menu-title">{{_
-                                                                "notifications.noNotification"}}</h4>
-                                                    </div>
-                                                {{/if}}
-                                                <li class="divider"></li>
-                                                <div class="notification-footer">
-                                                    <a href="{{pathFor 'profileNotifications' _id=currentUser._id}}"
-                                                       type="button" class="btn btn-info"
-                                                       data-toggle="collapse"
-                                                       data-target="#bs-example-navbar-collapse-1">
-                                                        {{_ "notifications.viewAll"}} <i
-                                                            class="glyphicon glyphicon-circle-arrow-right"></i>
+                                            <li id="navbar-ownsets"
+                                                class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                <a href="{{pathFor route='create'}}" id="cardsets">
+                                                    {{_ "navbar-collapse.carddecks"}}
+                                                </a>
+                                            </li>
+                                            <li id="navbar-ownsets"
+                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                <a href="{{pathFor route='learn'}}" id="learnsets">
+                                                    {{_ "navbar-collapse.learndecks"}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div id="searchDropdown"
+                                             class="navbar-form navbar-left input-append btn-group"
+                                             role="search">
+                                            <input id="input-search" class="form-control typeahead" name="search"
+                                                   type="text"
+                                                   autocomplete="off" spellcheck="off" data-source="search"
+                                                   data-template="search"
+                                                   placeholder="{{_ "navbar-collapse.search"}}">
+                                            <div id="searchResults" class="dropdown-menu list-group"
+                                                 data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                {{#each searchCategories}}
+                                                    <a href="/cardset/{{_id}}" class="list-group-item clearfix">
+                                                        <h4 class="list-group-item-heading">{{name}}</h4>
+                                                        <p class="list-group-item-text">{{description}}</p>
+                                                        {{#with getAuthor this.owner}}
+                                                            <p class="list-group-item-text search-author">{{_
+                                                                    "cardset.info.author"}}
+                                                                : {{givenname}} {{birthname}}</p>
+                                                        {{/with}}
+                                                        <hr class="search-divide">
                                                     </a>
-                                                </div>
-                                            </ul>
-                                        </li>
-                                        <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}"
-                                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                            <a href="{{pathFor 'profileOverview' _id=currentUser._id}}"
-                                               id="usr-profile">{{getUsername}}</a>
-                                        </li>
-                                        <li><a href="#" id="logout"><i
-                                                class="glyphicon glyphicon-log-out"></i>{{_
-                                                "navbar-collapse.logout"}}
-                                        </a></li>
-                                    </ul>
-                                {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </div>
+
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {{#if isInRole 'admin, editor'}}
+                                                <li id="navbar-adminpanel">
+                                                    <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
+                                                        {{_ "navbar-collapse.backend"}}
+                                                    </a>
+                                                </li>
+                                            {{/if}}
+                                            <li id="notificationsBtn" class="dropdown">
+                                                <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-bell"></i> {{#if countNotifications}}
+                                                    <span class="badge">{{countNotifications}}</span>{{/if}}
+                                                </a>
+
+                                                <ul class="dropdown-menu notifications text-dark" role="menu"
+                                                    aria-labelledby="dLabel">
+                                                    <div class="notification-heading">
+                                                        <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                                                        {{#if getNotifications.count}}
+                                                            <button id="clearBtn" type="button"
+                                                                    class="btn btn-default pull-right">{{_
+                                                                    "notifications.clearAll"}}</button>
+                                                        {{/if}}
+                                                    </div>
+                                                    <li class="divider"></li>
+                                                    {{#if getNotifications.count}}
+                                                        <div class="notifications-wrapper">
+                                                            {{#each getNotifications}}
+                                                                <a href="{{getLink}}" class="content">
+                                                                    <div class="notification-item">
+                                                                        <h4 class="item-title">{{getType type}}</h4>
+                                                                        <p class="item-info">{{text}}</p>
+                                                                    </div>
+                                                                </a>
+                                                            {{/each}}
+                                                        </div>
+                                                    {{else}}
+                                                        <div class="notification-heading">
+                                                            <h4 class="menu-title">{{_
+                                                                    "notifications.noNotification"}}</h4>
+                                                        </div>
+                                                    {{/if}}
+                                                    <li class="divider"></li>
+                                                    <div class="notification-footer">
+                                                        <a href="{{pathFor 'profileNotifications' _id=currentUser._id}}"
+                                                           type="button" class="btn btn-info"
+                                                           data-toggle="collapse"
+                                                           data-target="#bs-example-navbar-collapse-1">
+                                                            {{_ "notifications.viewAll"}} <i
+                                                                class="glyphicon glyphicon-circle-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </ul>
+                                            </li>
+                                            <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                <a href="{{pathFor 'profileOverview' _id=currentUser._id}}"
+                                                   id="usr-profile">{{getUsername}}</a>
+                                            </li>
+                                            <li><a href="#" id="logout"><i
+                                                    class="glyphicon glyphicon-log-out"></i>{{_
+                                                    "navbar-collapse.logout"}}
+                                            </a></li>
+                                        </ul>
+                                    {{/if}}
+                                </div>
+                                <!-- /.navbar-collapse -->
                             </div>
-                            <!-- /.navbar-collapse -->
+                            <!-- /.container-fluid -->
                         </div>
-                        <!-- /.container-fluid -->
-                    </div>
-                </nav>
-            {{/unless}}
-            {{/if}}
-        {{/if}}
-            <div id="main" class="container">
-                {{#if isOffline}}
-                    <div class="alert alert-warning">
-                        {{_ "youareoffline"}}
-                    </div>
+                    </nav>
                 {{/if}}
-                <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-                <div class="row">
-                    {{> yield}}
+            {{/if}}
+        {{/unless}}
+        <div id="main" class="container">
+            {{#if isOffline}}
+                <div class="alert alert-warning">
+                    {{_ "youareoffline"}}
                 </div>
+            {{/if}}
+            <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
+            <div class="row">
+                {{> yield}}
             </div>
+        </div>
 
         {{#unless fullscreenActive}}
-                <div id="footer" class="footer">
-                    <ul class="container dropup">
-                        <li class="col-xs-6">
-                            <a id="info" href="{{pathFor route='impressum'}}">
-                                <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                                <p class="footer-text"><span class="footerElementText">Info</span></p>
-                            </a>
-                        </li>
-                        <li id="navbar-languagepanel" class="col-xs-6"
-                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
-                                <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span>
-                                </p>
-                            </a>
-                            <ul class="dropdown-menu col-xs-12">
-                                {{#each getLanguages}}
-                                    <li><a href="#" role="menuitem" class="lang"
-                                           data-lang={{code}}>{{label.name}}</a></li>
-                                {{/each}}
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-        {{/unless}}
-        </div> <!-- Theme Wrapper -->
-        </template>
-
-        <template name="completeProfileModal">
-            <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
-                 aria-labelledby="completeProfileTitle">
-                <div class="modal-dialog">
-                    <div class="modal-content  modal-content-for-buttons xs-12">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <div class="modal-header">
-                            <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>{{_ "complete-profile.text"}}</p>
-                            <br>
-                            <hr>
-                            <button id="completeProfileGoToProfile"
-                                    class="btn btn-default btn-block btn-raised btn-success active"
-                                    data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
-                            <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
-                                    data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
+            <div id="footer" class="footer">
+                <ul class="container dropup">
+                    <li class="col-xs-6">
+                        <a id="info" href="{{pathFor route='impressum'}}">
+                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                            <p class="footer-text"><span class="footerElementText">Info</span></p>
+                        </a>
+                    </li>
+                    <li id="navbar-languagepanel" class="col-xs-6"
+                        data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                            <p class="footer-text"><span class="footerElementText">{{_ "footer.language"}}</span>
+                            </p>
+                        </a>
+                        <ul class="dropdown-menu col-xs-12">
+                            {{#each getLanguages}}
+                                <li><a href="#" role="menuitem" class="lang"
+                                       data-lang={{code}}>{{label.name}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <!-- /.modal -->
-        </template>
+        {{/unless}}
+    </div> <!-- Theme Wrapper -->
+</template>
+
+<template name="completeProfileModal">
+    <div class="modal fade" id="completeProfileModal" tabindex="-1" role="dialog"
+         aria-labelledby="completeProfileTitle">
+        <div class="modal-dialog">
+            <div class="modal-content  modal-content-for-buttons xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "complete-profile.text"}}</p>
+                    <br>
+                    <hr>
+                    <button id="completeProfileGoToProfile"
+                            class="btn btn-default btn-block btn-raised btn-success active"
+                            data-dismiss="modal">{{_ "navbar-collapse.myprofile"}}</button>
+                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "complete-profile.btn-txt"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
