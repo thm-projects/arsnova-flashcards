@@ -616,6 +616,7 @@
   "frontside": "Front",
   "backside": "Back",
   "preview": "Preview",
+  "content": "Content",
   "turn": "turn",
   "hint": "Hint",
   "copyCardTitle": "Copy card",
