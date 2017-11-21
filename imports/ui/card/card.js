@@ -576,7 +576,7 @@ Template.difficultyEditor.helpers({
 
 Template.difficultyEditor.events({
 	'click #difficultyGroup': function (event) {
-		Session.set('difficultyColor', Number($(event.target).data('color')));
+		$(event.target).focus();
 	}
 });
 
