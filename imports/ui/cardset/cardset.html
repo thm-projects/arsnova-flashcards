@@ -135,8 +135,14 @@
                 {{/if}}
                 <tr>
                     <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
-                    <td><a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
-                           data-target="#showLicenseModal">{{getLicense}}</a></td>
+                    <td>
+                        {{#unless isShuffledCardset this._id}}
+                            <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
+                               data-target="#showLicenseModal">{{getLicense}}</a>
+                        {{else}}
+                            {{_ "cardset.info.shuffleLicense"}}
+                        {{/unless}}
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.module"}}:</strong></td>
@@ -167,11 +173,9 @@
                 <tr>
                     <td><strong>{{_ "cardset.info.author"}}:</strong></td>
                     <td>
-                        {{#if userExists userDeleted}}
-                            <a href="{{pathFor 'profileSettings' _id=owner}}">{{getAuthorName this.owner}}</a>
-                        {{else}}
-                            {{this.firstName}} {{this.lastName}} ({{_ "cardset.info.deleted"}})
-                        {{/if}}
+                        {{#each getAuthors}}
+                                <a href="{{pathFor 'profileSettings' _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
+                        {{/each}}
                     </td>
                 </tr>
                 <tr>
@@ -229,9 +233,9 @@
             </div>
             {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
-                    <div class="btn-group btn-group-raised">
-                        {{#unless isDisabled}}
-                            {{#unless learningActive}}
+                    {{#unless isDisabled}}
+                        {{#unless learningActive}}
+                            <div class="btn-group btn-group-raised">
                                 <button id="publishCardset" class="btn btn-default" type="button"
                                         data-toggle="modal"
                                         data-target="#publishModal" {{disableIfOffline}}>
@@ -241,9 +245,9 @@
                                         data-toggle="tooltip"
                                         title="{{_ "sidebar-nav.tooltip"}}">
                                     <i class="fa fa-question"></i></button>
-                            {{/unless}}
+                            </div>
                         {{/unless}}
-                    </div>
+                    {{/unless}}
                     <div class="btn-group btn-group-raised">
                         <button id="editCardset" class="btn btn-raised btn-default" type="button"
                                 data-toggle="modal"
@@ -276,28 +280,27 @@
                                     {{disableIfOffline}}>
                                     <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
                                 </a>
-                                <button type="button" class="btn btn-raised btn-success dropdown-toggle"
-                                        data-toggle="dropdown"
-                                    {{disableIfOffline}}>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" id="importCardsBtn" data-toggle="modal"
-                                           data-target="#importModal"><i
-                                            class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a></li>
-                                    <li><a href="#" id="exportCardsBtn"><i
-                                            class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a></li>
-                                </ul>
+                            </div>
+                            <div class="btn-group btn-group-raised">
+                                <a href="#" id="importCardsBtn" class="btn btn-raised btn-default" data-toggle="modal"
+                                   data-target="#importModal"><i
+                                        class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a>
+                            </div>
+                            <div class="btn-group btn-group-raised">
+                                <a href="#" id="exportCardsBtn" class="btn btn-raised btn-default"><i
+                                        class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
                             </div>
                         {{/unless}}
                     {{/unless}}
-                    {{#if isPublished}}
-                        <button id="selectLicense" class="btn btn-default btn-raised" type="button"
-                                data-toggle="modal"
-                                data-target="#selectLicenseModal" {{disableIfOffline}}>
-                            <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
-                        </button>
-                    {{/if}}
+                    {{#unless isShuffledCardset this._id}}
+                        {{#if isPublished}}
+                            <button id="selectLicense" class="btn btn-default btn-raised" type="button"
+                                    data-toggle="modal"
+                                    data-target="#selectLicenseModal" {{disableIfOffline}}>
+                                <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                            </button>
+                        {{/if}}
+                    {{/unless}}
                 </div>
             {{/if}}
         </div>
@@ -305,7 +308,7 @@
 </template>
 
 <template name="cardsetSidebar">
-    <div class="col-md-3">
+    <div id="sidebar" class="col-md-3">
         {{#unless learningActiveAndNotEditor}}
             <div id="set-details-sideBar-region col-xs-12">
                 <div class="well well-sm sidebar-nav">
@@ -348,8 +351,12 @@
             {{/if}}
         {{/unless}}
         <div id="set-details-learn-region">
-            <div class="well well-sm sidebar-nav">
-                <span class="nav-header-cardset">{{_ "manage"}}</span>
+            <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
+               href="#collapseManage" data-toggle="collapse">
+                <strong>{{_ "manage"}}</strong>
+                <i id="collapseMangeIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+            </a>
+            <div id="collapseManage" class="collapse well well-sm">
                 {{#if isCardsetOwner _id}}
                     <button id="manageEditors" type="button"
                             class="btn btn-default btn-raised btn-block btn-default"

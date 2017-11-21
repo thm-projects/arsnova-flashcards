@@ -43,51 +43,53 @@
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
     </div>
-    <div id="fronttext" class="col-md-6 cardtext" data-content="{{front}}">
-        <h5>{{_ "frontside"}}</h5>
-        {{> frontEditor}}
+    {{getContent front back hint}}
+    <div class="btn-group col-xs-12 editorNavigation cardtext" role="group">
+        <h5>{{_ "content"}}</h5>
+        <button id="editFront" type="button" class="btn btn-primary btn-raised col-xs-12 col-sm-4" tabindex="3">{{_ "frontside"}}</button>
+        <button id="editBack" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="5">{{_ "backside"}}</button>
+        <button id="editHint" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="7">{{_ "hint"}}</button>
     </div>
-    <div id="backtext" class="col-md-6 cardtext" data-content="{{back}}">
-        <h5>{{_ "backside"}}</h5>
-        {{> backEditor}}
+    <div id="editor" class="col-xs-12 cardtext" data-content="{{front}}">
+        {{> contentEditor}}
     </div>
-    <div id="hinttext" class="col-md-12 cardtext" data-content="{{hint}}">
-        <h5>{{_ "hint"}}</h5>
-        {{> hintEditor}}
+    <div id="preview" class="col-xs-12 cardtext">
+        <h5>{{_ "preview"}}</h5>
+        {{> flashcards cardset=this}}
     </div>
     {{> btnCard}}
 </template>
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
+        <label id="difficulty0" class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
             {{#if isDifficultyChecked 0}}
-                <input type="radio" name="difficulty" value="0" checked>
+                <input type="radio" name="difficulty" value="0" checked tabindex="2">
             {{else}}
                 <input type="radio" name="difficulty" value="0">
             {{/if}}
             {{_ "difficulty0"}}
         </label>
-        <label class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
+        <label id="difficulty1" class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
             {{#if isDifficultyChecked 1}}
-                <input type="radio" name="difficulty" value="1" checked>
+                <input type="radio" name="difficulty" value="1" checked tabindex="2">
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
 
             {{_ "difficulty1"}}
         </label>
-        <label class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
+        <label id="difficulty2" class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
             {{#if isDifficultyChecked 2}}
-                <input type="radio" name="difficulty" value="2" checked>
+                <input type="radio" name="difficulty" value="2" checked tabindex="2">
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
             {{_ "difficulty2"}}
         </label>
-        <label class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
+        <label id="difficulty3" class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
             {{#if isDifficultyChecked 3}}
-                <input type="radio" name="difficulty" value="3" checked>
+                <input type="radio" name="difficulty" value="3" checked tabindex="2">
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
@@ -96,31 +98,14 @@
     </div>
 </template>
 
-<template name="frontEditor">
+<template name="contentEditor">
     <form>
-        <textarea id="frontEditor" name="content" data-provide="markdown" rows="10">{{front}}</textarea>
-        <div id="frontTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
-                getDifficultyColor}}">{{#mathjax}}{{getFront}}{{/mathjax}}</div>
-    </form>
-</template>
-
-<template name="backEditor">
-    <form>
-        <textarea id="backEditor" name="content" data-provide="markdown" rows="10">{{back}}</textarea>
-        <div id="backTextFooter" class="innerBoxBody innerBoxBodyEdit {{getCardBackground
-                getDifficultyColor}}">{{#mathjax}}{{getBack}}{{/mathjax}}</div>
-    </form>
-</template>
-
-<template name="hintEditor">
-    <form>
-        <textarea id="hintEditor" name="content" data-provide="markdown" rows="3">{{hint}}</textarea>
-        <div id="hintTextFooter">{{#mathjax}}{{getHint}}{{/mathjax}}</div>
+        <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="4">{{front}}</textarea>
     </form>
 </template>
 
 <template name="subjectEditor">
-    <form>
+    <form tabindex="1">
         {{#if isActiveRoute 'newCard'}}
             <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
                    tabindex="-1"
@@ -136,19 +121,19 @@
 <template name="btnCard">
     <div class="actionButtons col-md-12">
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}}>
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="9">
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}}>
+                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}} tabindex="10">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2">{{_
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2" tabindex="11">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}} >{{_
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}} tabindex="12">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
                         class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
@@ -160,7 +145,8 @@
 <template name="flashcards">
     {{> cardHint}}
     {{> copyCard}}
-    <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-md-9{{/unless}}{{/if}} flip-container" id="set-details-region">
+    <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-md-9{{/unless}}{{/if}} flip-container"
+         id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
@@ -210,11 +196,16 @@
                                             {{_ "turn"}}
                                         </div>
                                     {{/unless}}
-                                    <a href="#" id="toggleFullscreen"
-                                       class="fullscreen {{#if isMemo}}fullscreenMemo{{/if}}"
-                                       data-type="cardNavigation">
-                                        <span class="glyphicon glyphicon-fullscreen" data-type="cardNavigation"></span>
-                                    </a>
+                                    {{#unless isActiveRoute 'newCard'}}
+                                        {{#unless isActiveRoute 'editCard'}}
+                                            <a href="#" id="toggleFullscreen"
+                                               class="fullscreen {{#if isMemo}}fullscreenMemo{{/if}}"
+                                               data-type="cardNavigation">
+                                                <span class="glyphicon glyphicon-fullscreen"
+                                                      data-type="cardNavigation"></span>
+                                            </a>
+                                        {{/unless}}
+                                    {{/unless}}
                                     <br>
                                     <div class="leftHeader2">
                                         {{#if canCopyCard this.cardset_id}}

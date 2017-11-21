@@ -9,17 +9,78 @@ import {Learned} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
 
+Session.setDefault('frontText', '');
+Session.setDefault('backText', '');
+Session.setDefault('hintText', '');
+
 /*
  * ############################################################################
  * Functions
  * ############################################################################
  */
 
+function turnBack() {
+	$(".cardfront-symbol").css('display', "none");
+	$(".cardback-symbol").css('display', "");
+	$(".cardfront").css('display', "none");
+	$(".cardback").css('display', "");
+	$(".box").addClass("flipped");
+	$(".innerBoxHeader").addClass("back");
+	$(".innerBoxBody").addClass("back");
+}
+
+function turnFront() {
+	$(".cardfront-symbol").css('display', "");
+	$(".cardback-symbol").css('display', "none");
+	$(".cardfront").css('display', "");
+	$(".cardback").css('display', "none");
+	$(".box").removeClass("flipped");
+	$(".innerBoxHeader").removeClass("back");
+	$(".innerBoxBody").removeClass("back");
+}
+
+var activeEditMode = 0;
+
+function editFront() {
+	activeEditMode = 0;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 4);
+	$('#contentEditor').val(Session.get('frontText'));
+	$('#editor').attr('data-content', Session.get('frontText'));
+	$('#editFront').removeClass('btn-default').addClass('btn-primary');
+	$('#editBack').removeClass('btn-primary').addClass('btn-default');
+	$('#editHint').removeClass('btn-primary').addClass('btn-default');
+	turnFront();
+}
+
+function editBack() {
+	activeEditMode = 1;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 6);
+	$('#contentEditor').val(Session.get('backText'));
+	$('#editor').attr('data-content', Session.get('backText'));
+	$('#editBack').removeClass('btn-default').addClass('btn-primary');
+	$('#editFront').removeClass('btn-primary').addClass('btn-default');
+	$('#editHint').removeClass('btn-primary').addClass('btn-default');
+	turnBack();
+}
+
+function editHint() {
+	activeEditMode = 2;
+	$('#contentEditor').focus();
+	$('#contentEditor').attr('tabindex', 8);
+	$('#contentEditor').val(Session.get('hintText'));
+	$('#editor').attr('data-content', Session.get('hintText'));
+	$('#editHint').removeClass('btn-default').addClass('btn-primary');
+	$('#editFront').removeClass('btn-primary').addClass('btn-default');
+	$('#editBack').removeClass('btn-primary').addClass('btn-default');
+}
+
 /**
  * Surrounds a selected text with the markdown tags for an image.
  * @param {event} e - The DOM Event
  */
-function image(e) {
+export function image(e) {
 	// Give ![] surround the selection and prepend the image link
 	var chunk, cursor, selected = e.getSelection(), link;
 
@@ -44,7 +105,7 @@ function image(e) {
 	}
 }
 
-function tex(e) {
+export function tex(e) {
 	// Give/remove ** surround the selection
 	var chunk, cursor, selected = e.getSelection(), content = e.getContent();
 
@@ -76,31 +137,32 @@ export function resizeAnswers() {
 	$("#answerOptions").width($("#backButton").width() + 16);
 }
 
-function turnBack() {
-	$(".cardfront-symbol").css('display', "none");
-	$(".cardback-symbol").css('display', "");
-	$(".cardfront").css('display', "none");
-	$(".cardback").css('display', "");
-	$(".box").addClass("flipped");
-	$(".innerBoxHeader").addClass("back");
-	$(".innerBoxBody").addClass("back");
-}
+var lastWidth = $("#cardCarousel").width();
+var lastHeight = $("#cardCarousel").height();
 
-function turnFront() {
-	$(".cardfront-symbol").css('display', "");
-	$(".cardback-symbol").css('display', "none");
-	$(".cardfront").css('display', "");
-	$(".cardback").css('display', "none");
-	$(".box").removeClass("flipped");
-	$(".innerBoxHeader").removeClass("back");
-	$(".innerBoxBody").removeClass("back");
+/**
+ * Resizes flashcards to din a6 format
+ */
+function resizeFlashcards() {
+	let flashcardWidth = $('#cardCarousel').width();
+	let flashcardHeight = $('#cardCarousel').height();
+	if (flashcardWidth != lastWidth || flashcardHeight != lastHeight) {
+		let flashcardHeaderHeight = $('.innerBoxHeader').height();
+		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
+		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+		$('.box').css('min-height', newFlashcardHeight);
+		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
+		lastWidth = $("#cardCarousel").width();
+		lastHeight = $("#cardCarousel").height();
+	}
+	setTimeout(resizeFlashcards, 250);
 }
 
 /**
  * Toggle the card view between fullscreen and normal mode
  */
-export function toggleFullscreen() {
-	if (Session.get('fullscreen')) {
+export function toggleFullscreen(forceOff = false) {
+	if (Session.get('fullscreen') || forceOff) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "100px");
 		$("#answerOptions").css("margin-top", "0");
@@ -137,6 +199,14 @@ function isBox() {
  */
 function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid";
+}
+
+/**
+ * Function checks if route is a card edit Mode
+ * @return {Boolean} Return true, when route is new Card or edit Card.
+ */
+function isEditMode() {
+	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
 }
 
 /**
@@ -193,6 +263,29 @@ function getLeitnerCards() {
 }
 
 /**
+ * Get the Session Data of the card
+ * @return {Collection} The Session Data of the card.
+ */
+function getEditModeCard() {
+	let id = "-1";
+	if (ActiveRoute.name('editCard')) {
+		id = Session.get('modifiedCard');
+	} else {
+		Session.set('modifiedCard', undefined);
+	}
+	return [{
+		"_id": id,
+		"subject": Session.get('subjectEditorText'),
+		"difficulty": Session.get('difficultyColor'),
+		"front": Session.get('frontText'),
+		"back": Session.get('backText'),
+		"hint": Session.get('hintText'),
+		"cardset_id": Router.current().params._id,
+		"cardGroup": 0
+	}];
+}
+
+/**
  * Get a set of cards for the supermemo algorithm.
  * @return {Collection} The card collection
  */
@@ -221,83 +314,70 @@ function getMemoCards() {
 }
 
 function saveCard(card_id, returnToCardset) {
-	let errorMessage = '';
+	let frontText = Session.get('frontText');
+	let backText = Session.get('backText');
+	let hintText = Session.get('hintText');
 	if ($('#subjectEditor').val() === '') {
 		$('#subjectEditor').css('border', '1px solid');
 		$('#subjectEditor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('cardsubject_required');
-		}
+		Bert.alert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
 	}
 	if ($('#subjectEditor').val().length > 150) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('cardsubject_max');
-		}
+		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
 	}
-	if ($('#frontEditor').val() === '') {
-		$('#fronttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('fronttext_required');
-		}
+	if (frontText === '') {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('fronttext_required'), "danger", 'growl-top-left');
 	}
-	if ($('#backEditor').val() === '') {
-		$('#backtext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('backtext_required');
-		}
+	if (backText === '') {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('backtext_required'), "danger", 'growl-top-left');
 	}
-	if ($('#frontEditor').val().length > 10000) {
-		$('#fronttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (frontText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if ($('#backEditor').val().length > 10000) {
-		$('#backtext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (backText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if ($('#hintEditor').val().length > 10000) {
-		$('#hinttext .md-editor').css('border-color', '#b94a48');
-		if (errorMessage === '') {
-			errorMessage = TAPi18n.__('text_max');
-		}
+	if (hintText.length > 10000) {
+		$('#editor .md-editor').css('border-color', '#b94a48');
+		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if (errorMessage !== '') {
-		Bert.alert(errorMessage, "danger", 'growl-bottom-right');
-	}
-	var editorsEmpty = $('#frontEditor').val() !== '' && $('#backEditor').val() !== '' && $('#subjectEditor').val() !== '';
-	var editorsValidLength = $('#frontEditor').val().length <= 10000 && $('#backEditor').val().length <= 10000 && $('#subjectEditor').val().length <= 150 && $('#hintEditor').val().length <= 10000;
+	let editorsEmpty = frontText !== '' && backText !== '' && $('#subjectEditor').val() !== '';
+	let editorsValidLength = frontText.length <= 10000 && backText.length <= 10000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000;
 	if (editorsEmpty && editorsValidLength) {
-		var subject = $('#subjectEditor').val();
-		var front = $('#frontEditor').val();
-		var back = $('#backEditor').val();
-		var hint = $('#hintEditor').val();
-		var difficulty = $('input[name=difficulty]:checked').val();
+		let subject = $('#subjectEditor').val();
+		let front = frontText;
+		let back = backText;
+		let hint = hintText;
+		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", card_id, subject, hint, front, back, Number(difficulty), "0", function (error, result) {
 				if (result) {
-					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
 						Session.set('modifiedCard', result);
 						Router.go('cardsetdetailsid', {
 							_id: Router.current().params._id
 						});
 					} else {
-						$('#frontEditor').val('');
-						$('#backEditor').val('');
-						$('#hintEditor').val('');
-						Session.set('frontText', undefined);
-						Session.set('backText', undefined);
-						Session.set('hintText', undefined);
+						$('#contentEditor').val('');
+						$('#editor').attr('data-content', '');
+						Session.set('frontText', '');
+						Session.set('backText', '');
+						Session.set('hintText', '');
+						window.scrollTo(0, 0);
+						$('#editFront').click();
+						$('#difficulty0').click();
 					}
 				}
 			});
 		} else {
 			Meteor.call("updateCard", card_id, subject, hint, front, back, Number(difficulty));
-			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
 					_id: Router.current().params._id
@@ -344,7 +424,7 @@ Template.btnCard.events({
 		var id = this._id;
 		Session.set('modifiedCard', undefined);
 		Meteor.call("deleteCard", id);
-		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
@@ -356,6 +436,45 @@ Template.btnCard.events({
  * editor
  * ############################################################################
  */
+
+Template.editor.events({
+	'click #editFront': function () {
+		editFront();
+	},
+	'click #editBack': function () {
+		editBack();
+	},
+	'click #editHint': function () {
+		editHint();
+	},
+	'focus #editFront': function () {
+		editFront();
+	},
+	'focus #editBack': function () {
+		editBack();
+	},
+	'focus #editHint': function () {
+		editHint();
+	}
+});
+
+Template.editor.helpers({
+	getContent: function (front, back, hint) {
+		if (front === undefined) {
+			front = '';
+		}
+		Session.set('frontText', front);
+		if (back === undefined) {
+			back = '';
+		}
+		Session.set('backText', back);
+		if (hint === undefined) {
+			hint = '';
+		}
+		Session.set('hintText', hint);
+	}
+});
+
 Template.editor.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		toggleFullscreen();
@@ -364,34 +483,30 @@ Template.editor.onCreated(function () {
 
 /*
  * ############################################################################
- * frontEditor
+ * contentEditor
  * ############################################################################
  */
 
-/**
- * Returns the front text of a card
- * @return front text
- */
-Template.frontEditor.helpers({
-	getFront: function () {
-		if (Session.get('frontText') !== undefined) {
-			return Session.get('frontText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
-Template.frontEditor.rendered = function () {
-	$("#frontEditor").markdown({
+Template.contentEditor.rendered = function () {
+	$("#contentEditor").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
+		iconlibrary: "fa",
 		onChange: function (e) {
 			var content = e.getContent();
-			Session.set('frontText', content);
+			$('#editor').attr('data-content', content);
+			switch (activeEditMode) {
+				case 0:
+					Session.set('frontText', content);
+					break;
+				case 1:
+					Session.set('backText', content);
+					break;
+				case 2:
+					Session.set('hintText', content);
+					break;
+			}
 		},
 		additionalButtons: [
 			[{
@@ -399,30 +514,27 @@ Template.frontEditor.rendered = function () {
 				data: [{
 					name: 'cmdPics',
 					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
+					icon: 'fa fa-file-image-o',
 					callback: image
 				}, {
 					name: "cmdTex",
 					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
+					icon: "fa fa-superscript",
 					callback: tex
 				}]
 			}]
 		]
 	});
 
-	if (ActiveRoute.name('editCard')) {
-		var front = String($('#fronttext').data('content'));
-		Session.set('frontText', front);
-	} else {
-		Session.set('frontText', undefined);
+	if (!ActiveRoute.name('editCard')) {
+		Session.set('frontText', '');
 	}
 };
 
-Template.frontEditor.events({
-	'keyup #frontEditor': function () {
-		$('#fronttext .md-editor').css('border-color', '');
-		$('#helpNewFronttext').html('');
+Template.contentEditor.events({
+	'keyup #contentEditor': function () {
+		$('#contentEditor .md-editor').css('border-color', '');
+		$('#helpNewContent').html('');
 	}
 });
 
@@ -434,145 +546,21 @@ Template.frontEditor.events({
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
-		return Session.get('subjextEditorText');
+		return Session.get('subjectEditorText');
 	}
 });
 
 Template.subjectEditor.events({
 	'keyup #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
-		Session.set('subjextEditorText', $('#subjectEditor').val());
+		Session.set('subjectEditorText', $('#subjectEditor').val());
 	}
 });
 
 Template.subjectEditor.rendered = function () {
 	$('#subjectEditor').focus();
-	Session.set('subjextEditorText', $('#subjectEditor').val());
+	Session.set('subjectEditorText', $('#subjectEditor').val());
 };
-
-/*
- * ############################################################################
- * backEditor
- * ############################################################################
- */
-
-/**
- * Returns the back text of a card
- * @return back text
- */
-Template.backEditor.helpers({
-	getBack: function () {
-		if (Session.get('backText') !== undefined) {
-			return Session.get('backText');
-		}
-		return "";
-	},
-	getDifficultyColor: function () {
-		return Session.get('difficultyColor');
-	}
-});
-
-Template.backEditor.rendered = function () {
-	$("#backEditor").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		onChange: function (e) {
-			var content = e.getContent();
-			Session.set('backText', content);
-		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
-					callback: tex
-				}]
-			}]
-		]
-	});
-	if (ActiveRoute.name('editCard')) {
-		var back = String($('#backtext').data('content'));
-		Session.set('backText', back);
-	} else {
-		Session.set('backText', undefined);
-	}
-};
-
-Template.backEditor.events({
-	'keyup #backEditor': function () {
-		$('#backtext .md-editor').css('border-color', '');
-		$('#helpNewBacktext').html('');
-	}
-});
-
-
-/*
- * ############################################################################
- * HintEditor
- * ############################################################################
- */
-
-/**
- * Returns the hint text of a card
- * @return hint of the card
- */
-Template.hintEditor.helpers({
-	getHint: function () {
-		if (Session.get('hintText') !== undefined) {
-			return Session.get('hintText');
-		}
-		return "";
-	}
-});
-
-Template.hintEditor.rendered = function () {
-	$("#hintEditor").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		onChange: function (e) {
-			var content = e.getContent();
-			Session.set('hintText', content);
-		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'glyphicon glyphicon-picture',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "glyphicon glyphicon-usd",
-					callback: tex
-				}]
-			}]
-		]
-	});
-	if (ActiveRoute.name('editCard')) {
-		var hint = String($('#hinttext').data('content'));
-		Session.set('hintText', hint);
-	} else {
-		Session.set('hintText', undefined);
-	}
-};
-
-Template.backEditor.events({
-	'keyup #hintEditor': function () {
-		$('#hinttext .md-editor').css('border-color', '');
-		$('#helpNewHinttext').html('');
-	}
-});
 
 /*
  * ############################################################################
@@ -589,6 +577,18 @@ Template.difficultyEditor.helpers({
 Template.difficultyEditor.events({
 	'click #difficultyGroup': function (event) {
 		Session.set('difficultyColor', Number($(event.target).data('color')));
+	},
+	'focus #difficulty0': function () {
+		Session.set('difficultyColor', 0);
+	},
+	'focus #difficulty1': function () {
+		Session.set('difficultyColor', 1);
+	},
+	'focus #difficulty2': function () {
+		Session.set('difficultyColor', 2);
+	},
+	'focus #difficulty3': function () {
+		Session.set('difficultyColor', 3);
 	}
 });
 
@@ -604,12 +604,16 @@ Template.difficultyEditor.onRendered(function () {
 
 Template.cardHint.helpers({
 	getSubject: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('subjectEditorText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		}
 	},
 	getHint: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('hintText');
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
 	}
@@ -637,6 +641,7 @@ Template.flashcards.onRendered(function () {
 			}
 		});
 	}
+	resizeFlashcards();
 });
 
 Template.flashcards.helpers({
@@ -662,6 +667,9 @@ Template.flashcards.helpers({
 	isMemo: function () {
 		return isMemo();
 	},
+	isEditMode: function () {
+		return isEditMode();
+	},
 	box: function () {
 		return Session.get("selectedBox");
 	},
@@ -681,6 +689,9 @@ Template.flashcards.helpers({
 		}
 		if (isMemo()) {
 			return getMemoCards();
+		}
+		if (isEditMode()) {
+			return getEditModeCard();
 		}
 	},
 	countBox: function () {
@@ -783,7 +794,7 @@ Template.copyCard.events({
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
 				$('.modal-backdrop').remove();
-				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-bottom-right');
+				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
 			}
 		});
 	}

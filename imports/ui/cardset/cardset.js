@@ -13,6 +13,7 @@ import "../card/card.js";
 import "../learn/box.js";
 import "../learn/memo.js";
 import "./cardset.html";
+import {image, tex} from '/imports/ui/card/card.js';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
@@ -113,7 +114,7 @@ Template.cardset.rendered = function () {
 							if (error) {
 								throw new Meteor.Error('transaction-creation-failed');
 							} else {
-								Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-bottom-right');
+								Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');
 							}
 						});
 					}
@@ -270,16 +271,16 @@ Template.cardset.events({
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
-		Bert.alert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-bottom-right');
+		Bert.alert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-top-left');
 	},
 	'click #declineRequest': function () {
 		var reason = $('#declineRequestReason').val();
 		if (reason === '') {
-			Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-top-left');
 		} else {
 			Meteor.call("declineProRequest", this._id);
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
-			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-bottom-right');
+			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
 		}
 	}
 });
@@ -410,10 +411,27 @@ Template.cardsetPreview.events({
 
 Template.descriptionEditorEdit.rendered = function () {
 	$("#editSetDescription").markdown({
-		autofocus: true,
+		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
 		fullscreen: false,
-		footer: "<p></p>"
+		iconlibrary: "fa",
+		footer: "<p></p>",
+		additionalButtons: [
+			[{
+				name: "groupCustom",
+				data: [{
+					name: 'cmdPics',
+					title: 'Image',
+					icon: 'fa fa-file-image-o',
+					callback: image
+				}, {
+					name: "cmdTex",
+					title: "Tex",
+					icon: "fa fa-superscript",
+					callback: tex
+				}]
+			}]
+		]
 	});
 };
 
@@ -622,16 +640,7 @@ Template.cardsetInfoBox.helpers({
 		if (this.shuffled) {
 			shuffled = TAPi18n.__('admin.shuffled') + " ";
 		}
-		switch (this.kind) {
-			case "free":
-				return shuffled + TAPi18n.__('admin.free');
-			case "edu":
-				return shuffled + TAPi18n.__('admin.university');
-			case "pro":
-				return shuffled + TAPi18n.__('admin.pro');
-			default:
-				return shuffled + TAPi18n.__('admin.private');
-		}
+		return shuffled;
 	},
 	isPurchased: function () {
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
@@ -743,6 +752,9 @@ Template.cardsetSidebar.events({
 	},
 	"click #manageEditors": function () {
 		Router.go('cardseteditors', {_id: Router.current().params._id});
+	},
+	"click #collapseManageButton": function () {
+		changeCollapseIcon("#collapseMangeIcon");
 	}
 });
 
@@ -773,6 +785,21 @@ Template.cardsetSidebar.helpers({
 Template.cardsetInfoBox.events({
 	"click #collapseCardsetInfoButton": function () {
 		changeCollapseIcon("#collapseCardsetInfoIcon");
+	}
+});
+
+Template.cardsetInfoBox.helpers({
+	getAuthors: function () {
+		let cardsets = this.cardGroups;
+		let owner_id = [];
+		cardsets.push(Router.current().params._id);
+		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+			return item.owner;
+		});
+		owners.forEach(function (element) {
+			owner_id.push(element.owner);
+		});
+		return Meteor.users.find({_id: {$in: owner_id}}, {sort: {'profile.birthname': 1}, fields: {profile: 1}});
 	}
 });
 
@@ -1034,7 +1061,7 @@ Template.cardsetImportForm.events({
 							$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
 						} else {
 							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
+							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
 							$('#importModal').modal('toggle');
 						}
 					});
@@ -1051,10 +1078,10 @@ Template.cardsetImportForm.events({
 					Meteor.call('parseUpload', results.data, cardset_id, function (error) {
 						if (error) {
 							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-bottom-right');
+							Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-top-left');
 						} else {
 							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-bottom-right');
+							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
 							$('#importModal').modal('toggle');
 						}
 					});
@@ -1156,7 +1183,7 @@ Template.cardsetPublishForm.events({
 			license.push("by");
 			license.push("nd");
 			Meteor.call("updateLicense", id, license);
-			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-bottom-right');
+			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-top-left');
 		}
 
 		Meteor.call("publishCardset", id, kind, price, visible);
