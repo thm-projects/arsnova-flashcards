@@ -18,7 +18,29 @@ Session.setDefault('hintText', '');
  * Functions
  * ############################################################################
  */
+
+function turnBack() {
+	$(".cardfront-symbol").css('display', "none");
+	$(".cardback-symbol").css('display', "");
+	$(".cardfront").css('display', "none");
+	$(".cardback").css('display', "");
+	$(".box").addClass("flipped");
+	$(".innerBoxHeader").addClass("back");
+	$(".innerBoxBody").addClass("back");
+}
+
+function turnFront() {
+	$(".cardfront-symbol").css('display', "");
+	$(".cardback-symbol").css('display', "none");
+	$(".cardfront").css('display', "");
+	$(".cardback").css('display', "none");
+	$(".box").removeClass("flipped");
+	$(".innerBoxHeader").removeClass("back");
+	$(".innerBoxBody").removeClass("back");
+}
+
 var activeEditMode = 0;
+
 function editFront() {
 	activeEditMode = 0;
 	$('#contentEditor').focus();
@@ -115,40 +137,23 @@ export function resizeAnswers() {
 	$("#answerOptions").width($("#backButton").width() + 16);
 }
 
-function turnBack() {
-	$(".cardfront-symbol").css('display', "none");
-	$(".cardback-symbol").css('display', "");
-	$(".cardfront").css('display', "none");
-	$(".cardback").css('display', "");
-	$(".box").addClass("flipped");
-	$(".innerBoxHeader").addClass("back");
-	$(".innerBoxBody").addClass("back");
-}
-
-function turnFront() {
-	$(".cardfront-symbol").css('display', "");
-	$(".cardback-symbol").css('display', "none");
-	$(".cardfront").css('display', "");
-	$(".cardback").css('display', "none");
-	$(".box").removeClass("flipped");
-	$(".innerBoxHeader").removeClass("back");
-	$(".innerBoxBody").removeClass("back");
-}
-
 var lastWidth = $("#cardCarousel").width();
+var lastHeight = $("#cardCarousel").height();
 
 /**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
 	let flashcardWidth = $('#cardCarousel').width();
-	if (flashcardWidth != lastWidth) {
+	let flashcardHeight = $('#cardCarousel').height();
+	if (flashcardWidth != lastWidth || flashcardHeight != lastHeight) {
 		let flashcardHeaderHeight = $('.innerBoxHeader').height();
 		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
 		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
 		$('.box').css('min-height', newFlashcardHeight);
 		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
 		lastWidth = $("#cardCarousel").width();
+		lastHeight = $("#cardCarousel").height();
 	}
 	setTimeout(resizeFlashcards, 250);
 }
@@ -321,7 +326,7 @@ function saveCard(card_id, returnToCardset) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
 	}
-	if (frontText  === '') {
+	if (frontText === '') {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('fronttext_required'), "danger", 'growl-top-left');
 	}
