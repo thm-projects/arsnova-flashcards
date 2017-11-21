@@ -11,31 +11,76 @@ $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $header_line: rgba(255, 0, 0, 0.6);
 
-#difficulty .btn-info {
-  color: $input_difficulty1 !important;
+#difficultyGroup {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0;
+  width: 100%;
+  border: 1px solid $color_btn_inactive;
+}
 
+#difficulty .btn {
+  background-color: $color_wild_sand_approx;
+  padding: 9px 0 9px 0;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  @media(max-width: 767px) {
+    padding: 20px 0 20px 0;
+  }
+}
+
+#difficulty .btn-white {
+  border-right: 1px solid $color_btn_inactive !important;
+  @media(max-width: 767px) {
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
 }
 
 #difficulty .btn-default.active {
   color: $black !important;
   background-color: $input_difficulty0;
   border-color: $input_difficulty0;
+  border-right: 1px solid $color_btn_inactive !important;
+  @media(max-width: 767px) {
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
+}
+
+#difficulty .btn-info {
+  color: $input_difficulty1 !important;
+  @media(min-width: 768px) {
+    border-right: 2px solid $color_btn_inactive !important;
+  }
+  @media(max-width: 767px) {
+    border-right: 0;
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
 }
 
 #difficulty .btn-info.active {
   color: $white !important;
   background-color: $input_difficulty1;
   border-color: $input_difficulty1;
+  @media(min-width: 768px) {
+    border-right: 2px solid $color_btn_inactive !important;
+  }
+  @media(max-width: 767px) {
+    border-right: 0;
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
 }
 
 #difficulty .btn-success {
   color: $input_difficulty2 !important;
+  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-success.active {
   color: $white !important;
   background-color: $input_difficulty2;
   border-color: $input_difficulty2;
+  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-danger {
@@ -46,10 +91,6 @@ $header_line: rgba(255, 0, 0, 0.6);
   color: $white !important;
   background-color: $input_difficulty3;
   border-color: $input_difficulty3;
-}
-
-#difficultyGroup {
-  padding-top: 0 !important;
 }
 
 .MathJax {
@@ -367,11 +408,29 @@ img.cardside {
 }
 
 .editorNavigation {
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-.editorBackground {
-  background-color: #EEEEEE;
+#editFront, #editBack, #editHint {
+  @media(max-width: 767px) {
+    padding: 20px 0 20px 0 !important;
+  }
+}
+
+#editBack {
+  border-left: 1px solid $color_btn_inactive;
+  border-right: 1px solid $color_btn_inactive;
+  @media(max-width: 767px) {
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive;
+  }
+}
+
+.editorBackground, .md-editor>textarea {
+  background: #FFFFFF;
 }
 
 .actionButtons .btn:not(:first-of-type) {
@@ -381,11 +440,49 @@ img.cardside {
 }
 
 .cardtext h5 {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 5px;
   font-weight: bold;
+}
+
+#subject > h5 {
+  padding-top: 0;
+}
+
+#difficulty h5 {
+  @media(min-width: 992px) {
+    padding-top: 0;
+  }
 }
 
 .copyCardset a:link {
   display: block;
   cursor: pointer;
   text-decoration: none;
+}
+
+#subject {
+  margin-left: 0;
+  padding-left: 0;
+  @media(max-width: 991px) {
+    margin-right: 0;
+    padding-right: 0;
+  }
+}
+
+#difficulty {
+  margin-right: 0;
+  padding-right: 0;
+  @media(max-width: 991px) {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+#editor, .editorNavigation, #preview, .actionButtons {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
