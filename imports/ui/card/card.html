@@ -62,7 +62,7 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="difficulty0" class="btn btn-sm btn-default {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
+        <label id="difficulty0" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked tabindex="2">
             {{else}}
@@ -70,7 +70,7 @@
             {{/if}}
             {{_ "difficulty0"}}
         </label>
-        <label id="difficulty1" class="btn btn-sm btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
+        <label id="difficulty1" class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
             {{#if isDifficultyChecked 1}}
                 <input type="radio" name="difficulty" value="1" checked tabindex="2">
             {{else}}
@@ -79,7 +79,7 @@
 
             {{_ "difficulty1"}}
         </label>
-        <label id="difficulty2" class="btn btn-sm btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
+        <label id="difficulty2" class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
             {{#if isDifficultyChecked 2}}
                 <input type="radio" name="difficulty" value="2" checked tabindex="2">
             {{else}}
@@ -87,7 +87,7 @@
             {{/if}}
             {{_ "difficulty2"}}
         </label>
-        <label id="difficulty3" class="btn btn-sm btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
+        <label id="difficulty3" class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
             {{#if isDifficultyChecked 3}}
                 <input type="radio" name="difficulty" value="3" checked tabindex="2">
             {{else}}
@@ -120,6 +120,7 @@
 
 <template name="btnCard">
     <div class="actionButtons col-md-12">
+        <br>
         <button id="cardSave"
                 class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="9">
             {{_ "savecard"}}

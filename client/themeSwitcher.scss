@@ -111,15 +111,26 @@ $themes: (
     #collapseLearningPhaseInfoButton, #collapseManageButton {
       border-bottom: 3px solid $primary-color;
     }
+
     .cardListSubject th {
       color: white;
       background-color: $primary-color;
     }
+
     .cardContent hr {
       background-color: $primary-color;
     }
+
     #frontTextFooter hr, #backTextFooter hr {
       background-color: $primary-color;
+    }
+
+    .md-editor>.md-header {
+      background:  $primary-color;
+    }
+
+    .md-editor {
+      border: 1px solid $primary-color;
     }
   }
 }
