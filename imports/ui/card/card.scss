@@ -31,9 +31,9 @@ $header_line: rgba(255, 0, 0, 0.6);
 }
 
 #difficulty .btn-white {
-  border-right: 1px solid $color_btn_inactive;
+  border-right: 1px solid $color_btn_inactive !important;
   @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive !important;
   }
 }
 
@@ -41,18 +41,20 @@ $header_line: rgba(255, 0, 0, 0.6);
   color: $black !important;
   background-color: $input_difficulty0;
   border-color: $input_difficulty0;
-  border-right: 1px solid $color_btn_inactive;
+  border-right: 1px solid $color_btn_inactive !important;
   @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive !important;
   }
 }
 
 #difficulty .btn-info {
   color: $input_difficulty1 !important;
-  border-right: 1px solid $color_btn_inactive;
+  @media(min-width: 768px) {
+    border-right: 2px solid $color_btn_inactive !important;
+  }
   @media(max-width: 767px) {
     border-right: 0;
-    border-bottom: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive !important;
   }
 }
 
@@ -61,24 +63,24 @@ $header_line: rgba(255, 0, 0, 0.6);
   background-color: $input_difficulty1;
   border-color: $input_difficulty1;
   @media(min-width: 768px) {
-    border-right: 1px solid $color_btn_inactive;
+    border-right: 2px solid $color_btn_inactive !important;
   }
   @media(max-width: 767px) {
     border-right: 0;
-    border-bottom: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive !important;
   }
 }
 
 #difficulty .btn-success {
   color: $input_difficulty2 !important;
-  border-right: 1px solid $color_btn_inactive;
+  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-success.active {
   color: $white !important;
   background-color: $input_difficulty2;
   border-color: $input_difficulty2;
-  border-right: 1px solid $color_btn_inactive;
+  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-danger {
