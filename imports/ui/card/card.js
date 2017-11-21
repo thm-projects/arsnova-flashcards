@@ -577,23 +577,27 @@ Template.difficultyEditor.helpers({
 Template.difficultyEditor.events({
 	'click #difficultyGroup': function (event) {
 		Session.set('difficultyColor', Number($(event.target).data('color')));
-	},
-	'focus #difficulty0': function () {
-		Session.set('difficultyColor', 0);
-	},
-	'focus #difficulty1': function () {
-		Session.set('difficultyColor', 1);
-	},
-	'focus #difficulty2': function () {
-		Session.set('difficultyColor', 2);
-	},
-	'focus #difficulty3': function () {
-		Session.set('difficultyColor', 3);
 	}
 });
 
 Template.difficultyEditor.onRendered(function () {
 	Session.set('difficultyColor', Number($('input[name=difficulty]:checked').val()));
+	$(this.find('#difficulty0')).on('change keypress paste focus textInput input', function ()
+	{
+		Session.set('difficultyColor', Number($('#difficulty0').data('color')));
+	});
+	$(this.find('#difficulty1')).on('change keypress paste focus textInput input', function ()
+	{
+		Session.set('difficultyColor', Number($('#difficulty1').data('color')));
+	});
+	$(this.find('#difficulty2')).on('change keypress paste focus textInput input', function ()
+	{
+		Session.set('difficultyColor', Number($('#difficulty2').data('color')));
+	});
+	$(this.find('#difficulty3')).on('change keypress paste focus textInput input', function ()
+	{
+		Session.set('difficultyColor', Number($('#difficulty3').data('color')));
+	});
 });
 
 /*
