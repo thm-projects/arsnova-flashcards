@@ -138,22 +138,19 @@ export function resizeAnswers() {
 }
 
 var lastWidth = $("#cardCarousel").width();
-var lastHeight = $("#cardCarousel").height();
 
 /**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
 	let flashcardWidth = $('#cardCarousel').width();
-	let flashcardHeight = $('#cardCarousel').height();
-	if (flashcardWidth != lastWidth || flashcardHeight != lastHeight) {
+	if (flashcardWidth != lastWidth) {
 		let flashcardHeaderHeight = $('.innerBoxHeader').height();
 		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
 		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
 		$('.box').css('min-height', newFlashcardHeight);
 		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
 		lastWidth = $("#cardCarousel").width();
-		lastHeight = $("#cardCarousel").height();
 	}
 	setTimeout(resizeFlashcards, 250);
 }
@@ -242,19 +239,20 @@ function getCardsetCards() {
  * @return {Collection} The card set
  */
 function getLeitnerCards() {
-	var cards = [];
-	var learnedCards = Learned.find({
+	let cards = [];
+	let learnedCards = Learned.find({
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
 	}, {
 		sort: {
 			currentDate: 1
-		}
+		},
+		reactive: false
 	});
 
 	learnedCards.forEach(function (learnedCard) {
-		var card = Cards.findOne({
+		let card = Cards.findOne({
 			_id: learnedCard.card_id
 		});
 		cards.push(card);
@@ -290,11 +288,12 @@ function getEditModeCard() {
  * @return {Collection} The card collection
  */
 function getMemoCards() {
-	var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
+	let cards = [];
 
-	var learned = Learned.findOne({
-		cardset_id: Session.get('activeCardset')._id,
+	let learnedCards = Learned.find({
+		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
 			$lte: actualDate
@@ -302,15 +301,16 @@ function getMemoCards() {
 	}, {
 		sort: {
 			nextDate: 1
-		}
+		},
+		reactive: false
 	});
-	if (learned !== undefined) {
-		var cards = Cards.find({
-			_id: learned.card_id
-		}).fetch();
-		Session.set('currentCard', learned.card_id);
-		return cards;
-	}
+	learnedCards.forEach(function (learnedCard) {
+		let card = Cards.findOne({
+			_id: learnedCard.card_id
+		});
+		cards.push(card);
+	});
+	return cards;
 }
 
 function saveCard(card_id, returnToCardset) {

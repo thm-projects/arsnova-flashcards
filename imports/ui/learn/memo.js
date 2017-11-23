@@ -21,7 +21,6 @@ Meteor.subscribe("learned");
 
 Template.memo.onCreated(function () {
 	Session.set('modifiedCard', undefined);
-	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 });
 
 Template.memo.onRendered(function () {
@@ -46,7 +45,7 @@ Template.memo.helpers({
 		actualDate.setHours(0, 0, 0, 0);
 
 		var learned = Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
+			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate
@@ -69,16 +68,10 @@ Template.memo.events({
 		Session.set('showAnswer', true);
 	},
 	"click .rate-answer": function (event) {
-		var grade = $(event.currentTarget).data("id");
-
-		var currentLearned = Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
-			card_id: Session.get('currentCard'),
-			user_id: Meteor.userId()
-		});
-
-		Meteor.call("updateLearnedMemo", currentLearned._id, grade);
+		Meteor.call("updateLearnedMemo", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
 		Session.set("showAnswer", false);
+		turnCard();
+		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	/**

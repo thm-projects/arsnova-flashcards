@@ -191,8 +191,9 @@ if (Meteor.isServer) {
 			});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
-		updateLearnedMemo: function (learned_id, grade) {
-			check(learned_id, String);
+		updateLearnedMemo: function (cardset_id, card_id, grade) {
+			check(cardset_id, String);
+			check(card_id, String);
 			check(grade, Number);
 
 			// Make sure the user is logged in
@@ -205,11 +206,16 @@ if (Meteor.isServer) {
 			//        (3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
 			//        (4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-			var learned = Learned.findOne(learned_id),
+			let learned = Learned.findOne({
+					cardset_id: cardset_id,
+					card_id: card_id,
+					user_id: Meteor.userId()
+
+				}),
 				ef = learned.ef,
 				reps = learned.reps,
 				nextDate = new Date();
-			var interval = 0;
+			let interval = 0;
 
 			if (grade < 3) {
 				reps = 0;
@@ -238,7 +244,7 @@ if (Meteor.isServer) {
 				}
 			}
 
-			Learned.update(learned_id, {
+			Learned.update(learned._id, {
 				$set: {
 					ef: ef,
 					reps: reps,
