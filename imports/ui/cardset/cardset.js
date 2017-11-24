@@ -548,12 +548,12 @@ Template.cardsetInfo.events({
 			cardset_id: this._id
 		}, {
 			fields: {
-				'subject': 1,
-				'difficulty': 1,
-				'hint': 1,
-				'front': 1,
-				'back': 1,
+				'cardset_id': 0,
+				'cardGroup': 0,
 				'_id': 0
+			}, sort: {
+				'subject': 1,
+				'front': 1
 			}
 		}).fetch();
 

@@ -223,13 +223,21 @@ var CardsSchema = new SimpleSchema({
 	},
 	cardGroup: {
 		type: String
+	},
+	cardType: {
+		type: Number
+	},
+	lecture: {
+		type: String,
+		optional: true,
+		max: 30000
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -237,6 +245,8 @@ Meteor.methods({
 		check(back, String);
 		check(difficulty, Number);
 		check(cardGroup, String);
+		check(cardType, Number);
+		check(lecture, String);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
@@ -253,7 +263,9 @@ Meteor.methods({
 			back: back,
 			cardset_id: cardset_id,
 			difficulty: difficulty,
-			cardGroup: cardGroup
+			cardGroup: cardGroup,
+			cardType: cardType,
+			lecture: lecture
 		}, function (err, card) {
 			card_id = card;
 		});
@@ -284,7 +296,7 @@ Meteor.methods({
 				if (card.hint !== undefined) {
 					hint = card.hint;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0");
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0", card.cardType, card.lecture);
 				return true;
 			}
 		} else {
@@ -358,13 +370,15 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty) {
+	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
+		check(cardType, Number);
+		check(lecture, String);
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
@@ -384,7 +398,9 @@ Meteor.methods({
 				hint: hint,
 				front: front,
 				back: back,
-				difficulty: difficulty
+				difficulty: difficulty,
+				cardType: cardType,
+				lecture: lecture
 			}
 		});
 		Cardsets.update(card.cardset_id, {

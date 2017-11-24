@@ -28,24 +28,33 @@ Meteor.methods({
 			if (item.difficulty === undefined) {
 				item.difficulty = Number(0);
 			}
+			if (item.cardType === undefined) {
+				item.cardType = Number(0);
+			}
+			if (item.lecture === undefined) {
+				item.lecture = "";
+			}
 		}
 
 		for (let i = 0; i < data.length; i++) {
 			let item = data[i];
 
-			var subject, front, back, hint;
+			let subject, front, back, hint, cardType, lecture;
 			try {
 				// If the string is UTF-8, this will work and not throw an error.
 				subject = decodeURIComponent(encodeURIComponent(item.subject));
 				front = decodeURIComponent(encodeURIComponent(item.front));
 				back = decodeURIComponent(encodeURIComponent(item.back));
 				hint = decodeURIComponent(encodeURIComponent(item.hint));
+				lecture = decodeURIComponent(encodeURIComponent(item.lecture));
 			} catch (e) {
 				// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
 				subject = item.subject;
 				front = item.front;
 				back = item.back;
 				hint = item.hint;
+				cardType = item.cardType;
+				lecture = item.lecture;
 			}
 
 			if (item.front !== "") {
@@ -61,7 +70,9 @@ Meteor.methods({
 					back: back,
 					hint: hint,
 					cardset_id: cardset_id,
-					cardGroup: -1
+					cardGroup: -1,
+					cardType: item.cardType,
+					lecture: lecture
 				});
 			}
 		}

@@ -11,15 +11,14 @@ $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $header_line: rgba(255, 0, 0, 0.6);
 
-#difficultyGroup {
+#difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding: 0;
   width: 100%;
-  border: 1px solid $color_btn_inactive;
 }
 
-#difficulty .btn {
+#difficulty .btn, #cardType .btn {
   background-color: $color_wild_sand_approx;
   padding: 9px 0 9px 0;
   font-weight: bold;
@@ -30,16 +29,16 @@ $header_line: rgba(255, 0, 0, 0.6);
   }
 }
 
-#difficulty .btn-white {
+.btn-white {
   border-right: 1px solid $color_btn_inactive !important;
   @media(max-width: 767px) {
     border-bottom: 1px solid $color_btn_inactive !important;
   }
 }
 
-#difficulty .btn-default.active {
+.btn-white.active {
   color: $black !important;
-  background-color: $input_difficulty0;
+  background-color: white !important;
   border-color: $input_difficulty0;
   border-right: 1px solid $color_btn_inactive !important;
   @media(max-width: 767px) {
@@ -50,7 +49,8 @@ $header_line: rgba(255, 0, 0, 0.6);
 #difficulty .btn-info {
   color: $input_difficulty1 !important;
   @media(min-width: 768px) {
-    border-right: 2px solid $color_btn_inactive !important;
+    border-right: 1px solid $color_btn_inactive !important;
+    border-bottom: 0;
   }
   @media(max-width: 767px) {
     border-right: 0;
@@ -63,7 +63,8 @@ $header_line: rgba(255, 0, 0, 0.6);
   background-color: $input_difficulty1;
   border-color: $input_difficulty1;
   @media(min-width: 768px) {
-    border-right: 2px solid $color_btn_inactive !important;
+    border-right: 1px solid $color_btn_inactive !important;
+    border-bottom: 0;
   }
   @media(max-width: 767px) {
     border-right: 0;
@@ -91,6 +92,15 @@ $header_line: rgba(255, 0, 0, 0.6);
   color: $white !important;
   background-color: $input_difficulty3;
   border-color: $input_difficulty3;
+}
+
+#cardType3 {
+  border-right: 0 !important;
+}
+
+#cardType .btn-white.active {
+  color: white !important;
+  background-color: $input_difficulty2 !important;
 }
 
 .MathJax {
@@ -413,13 +423,13 @@ img.cardside {
   margin-bottom: 0;
 }
 
-#editFront, #editBack, #editHint {
+#editFront, #editBack, #editHint, #editPresentation {
   @media(max-width: 767px) {
     padding: 20px 0 20px 0 !important;
   }
 }
 
-#editBack {
+#editBack, #editPresentation {
   border-left: 1px solid $color_btn_inactive;
   border-right: 1px solid $color_btn_inactive;
   @media(max-width: 767px) {
@@ -481,7 +491,7 @@ img.cardside {
   }
 }
 
-#editor, .editorNavigation, #preview, .actionButtons {
+#editor, .editorNavigation, #preview, .actionButtons, #cardType {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -502,4 +512,13 @@ img.cardside {
 
 #set-details-region {
   margin-bottom: 0;
+}
+
+
+#cardType {
+  @media(min-width: 992px) {
+    margin-top: 7px;
+    margin-right: 10px !important;
+    float: right;
+  }
 }

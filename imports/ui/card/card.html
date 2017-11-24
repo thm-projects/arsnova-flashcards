@@ -35,6 +35,7 @@
 </template>
 
 <template name="editor">
+    {{getContent}}
     <div id="subject" class="col-md-6 cardtext">
         <h5>{{_ "cardsubject"}}</h5>
         {{> subjectEditor}}
@@ -43,15 +44,30 @@
         <h5>{{_ "difficulty"}}</h5>
         {{> difficultyEditor}}
     </div>
-    {{getContent front back hint}}
+    <div id="cardType" class="col-xs-12 col-md-5 cardtext">
+        {{> cardType}}
+    </div>
     <div class="btn-group col-xs-12 editorNavigation cardtext" role="group">
         <h5>{{_ "content"}}</h5>
-        <button id="editFront" type="button" class="btn btn-primary btn-raised col-xs-12 col-sm-4" tabindex="3">{{_
-                "frontside"}}</button>
-        <button id="editBack" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="5">{{_
-                "backside"}}</button>
-        <button id="editHint" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="7">{{_
-                "hint"}}</button>
+        <button id="editFront" type="button"
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}{{#unless isCardType
+                                                                                                          3}}col-sm-4{{/unless}}{{/if}}"
+                tabindex="4">{{#unless isCardType 3}}{{_ "frontside"}}{{else}}{{_ "cardType3"}}{{/unless}}</button>
+        {{#unless isCardType 3}}
+            <button id="editBack" type="button"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    tabindex="6">{{_
+                    "backside"}}</button>
+            {{#if isCardType 2}}
+                <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                        tabindex="8">{{_
+                        "cardType2"}}</button>
+            {{/if}}
+            <button id="editHint" type="button"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    tabindex="10">{{_
+                    "hint"}}</button>
+        {{/unless}}
     </div>
     <div id="editor" class="col-xs-12 cardtext" data-content="{{front}}">
         {{> contentEditor}}
@@ -61,6 +77,48 @@
         {{> flashcards cardset=this}}
     </div>
     {{> btnCard}}
+</template>
+
+<template name="cardType">
+    <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
+        <label id="cardType0" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+               data-type="0">
+            {{#if isCardType 0}}
+                <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
+            {{else}}
+                <input type="radio" name="cardType" value="0" data-type="0">
+            {{/if}}
+            {{_ "cardType0"}}
+        </label>
+        <label id="cardType1" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+               data-type="1">
+            {{#if isCardType 1}}
+                <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
+            {{else}}
+                <input type="radio" name="cardType" value="1" data-type="1">
+            {{/if}}
+
+            {{_ "cardType1"}}
+        </label>
+        <label id="cardType2" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+               data-type="2">
+            {{#if isCardType 2}}
+                <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
+            {{else}}
+                <input type="radio" name="cardType" value="2" data-type="2">
+            {{/if}}
+            {{_ "cardType2"}}
+        </label>
+        <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
+               data-type="3">
+            {{#if isCardType 3}}
+                <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
+            {{else}}
+                <input type="radio" name="cardType" value="3" data-type="3">
+            {{/if}}
+            {{_ "cardType3"}}
+        </label>
+    </div>
 </template>
 
 <template name="difficultyEditor">
@@ -111,7 +169,7 @@
 
 <template name="contentEditor">
     <form>
-        <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="4">{{front}}</textarea>
+        <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
     </form>
 </template>
 
@@ -133,20 +191,20 @@
     <div class="actionButtons col-md-12">
         <br>
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="9">
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="12">
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}} tabindex="10">
+                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}} tabindex="13">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2" tabindex="11">{{_
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2" tabindex="14">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
                         class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}}
-                        tabindex="12">{{_
+                        tabindex="15">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
                         class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
@@ -179,14 +237,16 @@
                                                 </a>
                                             {{/if}}
                                         {{/if}}
-                                        {{#if hint}}
-                                            <a href="#" id="showHint">
+                                        {{#unless isCardType 3}}
+                                            {{#if hint}}
+                                                <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                            </a>
-                                        {{/if}}
+                                                </a>
+                                            {{/if}}
+                                        {{/unless}}
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
@@ -197,16 +257,21 @@
                                             <br>
                                         {{/if}}
                                         <span>{{getCardsetName}}</span><br>
-                                        <span class="cardfront">{{_ "frontside"}}</span><span
-                                            class="cardback" style="display:none">{{_ "backside"}}</span>
+                                        {{#unless isCardType 3}}
+                                            <span class="cardfront">{{_ "frontside"}}</span><span
+                                                class="cardback" style="display:none">{{_ "backside"}}</span>
+                                        {{/unless}}
                                     </div>
-                                    <div id="clicktoflip" class="clicktoflip">
-                                        <img id="iconfront" class="cardside cardfront-symbol"
-                                             src="/img/icon_front.png">
-                                        <img id="iconback" class="cardside cardback-symbol" src="/img/icon_back.png"
-                                             style="display: none;">
-                                        {{_ "turn"}}
-                                    </div>
+                                    {{#unless isCardType 3}}
+                                        <div id="clicktoflip" class="clicktoflip">
+                                            <img id="iconfront" class="cardside cardfront-symbol"
+                                                 src="/img/icon_front.png">
+                                            <img id="iconback" class="cardside cardback-symbol"
+                                                 src="/img/icon_back.png"
+                                                 style="display: none;">
+                                            {{_ "turn"}}
+                                        </div>
+                                    {{/unless}}
                                     {{#unless isActiveRoute 'newCard'}}
                                         {{#unless isActiveRoute 'editCard'}}
                                             <a href="#" id="toggleFullscreen"
