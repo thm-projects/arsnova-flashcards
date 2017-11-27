@@ -22,20 +22,19 @@ Session.set('isFront', true);
 
 Template.box.onCreated(function () {
 	Session.set('modifiedCard', undefined);
-	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 });
 
 Template.box.helpers({
 	noCards: function () {
 		return !Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
+			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			box: {$ne: 6}
 		});
 	},
 	isFinished: function () {
 		return !Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
+			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			active: true
 		});
@@ -115,15 +114,17 @@ Template.boxMain.events({
 		}
 	},
 	"click #known": function () {
-		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), false);
+		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
 		Session.set('isFront', true);
 		turnCard();
+		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLearned', Session.get('activeCardset')._id, $('.carousel-inner > .active').attr('data-id'), true);
+		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
 		Session.set('isFront', true);
 		turnCard();
+		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	}
 });

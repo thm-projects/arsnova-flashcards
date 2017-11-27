@@ -264,6 +264,7 @@ img.cardside {
 }
 
 .item {
+  width: 105% !important;
   height: unset;
 }
 
@@ -320,6 +321,8 @@ img.cardside {
 }
 
 .flashcard {
+  float: left;
+  width: 95%;
   transform-origin: right center;
   transform-style: preserve-3d;
   transition: all .5s;
