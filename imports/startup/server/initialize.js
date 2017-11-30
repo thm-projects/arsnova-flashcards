@@ -180,7 +180,8 @@ var initTestNotificationsCards = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
 			"cardType": 0,
-			"lecture": ""
+			"lecture": "",
+			"centerText": false
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -192,7 +193,8 @@ var initTestNotificationsCards = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
 			"cardType": 0,
-			"lecture": ""
+			"lecture": "",
+			"centerText": false
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -204,7 +206,8 @@ var initTestNotificationsCards = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
 			"cardType": 0,
-			"lecture": ""
+			"lecture": "",
+			"centerText": false
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -216,7 +219,8 @@ var initTestNotificationsCards = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
 			"cardType": 0,
-			"lecture": ""
+			"lecture": "",
+			"centerText": false
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -228,7 +232,8 @@ var initTestNotificationsCards = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
 			"cardType": 0,
-			"lecture": ""
+			"lecture": "",
+			"centerText": false
 		}
 	];
 };
@@ -438,6 +443,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					lecture: ""
+				}
+			}
+		);
+	}
+
+	cards = Cards.find({centerText: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					centerText: false
 				}
 			}
 		);

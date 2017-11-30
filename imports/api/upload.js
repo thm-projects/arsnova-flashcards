@@ -34,6 +34,10 @@ Meteor.methods({
 			if (item.lecture === undefined) {
 				item.lecture = "";
 			}
+
+			if (item.centerText === undefined) {
+				item.centerText = false;
+			}
 		}
 
 		for (let i = 0; i < data.length; i++) {
@@ -72,7 +76,8 @@ Meteor.methods({
 					cardset_id: cardset_id,
 					cardGroup: -1,
 					cardType: item.cardType,
-					lecture: lecture
+					lecture: lecture,
+					centerText: item.centerText
 				});
 			}
 		}

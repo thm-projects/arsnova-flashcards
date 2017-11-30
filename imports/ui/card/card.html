@@ -224,7 +224,7 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="innerBoxHeader {{getCardBackground difficulty}}-header">
+                                <div class="cardHeader {{getCardBackground difficulty}}-header">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -298,16 +298,19 @@
                                     </div>
                                     <h3>{{subject}}</h3>
                                 </div>
-                                <div class="innerBoxBody {{getCardBackground difficulty}}">
-                                    <div class="block">
-                                        <div class="cardContent centered cardfront detailfront{{@index}}">
-                                            {{#mathjax}}{{front}}{{/mathjax}}
-                                        </div>
-                                        <div class="cardContent centered cardback detailback{{@index}}"
-                                             style="display:none">
-                                            {{#mathjax}}{{back}}{{/mathjax}}
-                                        </div>
-                                    </div>
+                                <div class="cardContent centered cardfront {{getCardBackground
+                                        difficulty}} detailfront{{@index}}">
+                                    <span class="{{#if centerText}}center-align{{/if}}">
+                                        {{#mathjax}}{{front}}{{/mathjax}}
+                                    </span>
+
+                                </div>
+                                <div class="cardContent centered cardback {{getCardBackground
+                                        difficulty}} detailback{{@index}}"
+                                     style="display:none">
+                                    <span class="{{#if centerText}}center-align{{/if}}">
+                                        {{#mathjax}}{{back}}{{/mathjax}}
+                                    </span>
                                 </div>
                             </div>
                         </div>

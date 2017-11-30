@@ -34,6 +34,10 @@ function initializeContent() {
 	if (Session.get('lectureText') === undefined) {
 		Session.set('lectureText', '');
 	}
+
+	if (Session.get('centerText') === undefined) {
+		Session.set('centerText', false);
+	}
 }
 
 function turnBack() {
@@ -42,8 +46,8 @@ function turnBack() {
 	$(".cardfront").css('display', "none");
 	$(".cardback").css('display', "");
 	$(".box").addClass("flipped");
-	$(".innerBoxHeader").addClass("back");
-	$(".innerBoxBody").addClass("back");
+	$(".cardHeader").addClass("back");
+	$(".cardContent").addClass("back");
 }
 
 function turnFront() {
@@ -52,8 +56,8 @@ function turnFront() {
 	$(".cardfront").css('display', "");
 	$(".cardback").css('display', "none");
 	$(".box").removeClass("flipped");
-	$(".innerBoxHeader").removeClass("back");
-	$(".innerBoxBody").removeClass("back");
+	$(".cardHeader").removeClass("back");
+	$(".cardContent").removeClass("back");
 }
 
 var activeEditMode = 0;
@@ -181,6 +185,37 @@ export function tex(e) {
 	e.setSelection(cursor, cursor + chunk.length);
 }
 
+let additionalButtons = [
+	[{
+		name: "groupCustom",
+		data: [{
+			name: 'cmdPics',
+			title: 'Image',
+			icon: 'fa fa-file-image-o',
+			callback: image
+		}, {
+			name: "cmdTex",
+			title: "Tex",
+			icon: "fa fa-superscript",
+			callback: tex
+		}, {
+			name: 'cmdCenter',
+			title: 'Center',
+			icon: 'material-icons center-button',
+			callback: function () {
+				if (Session.get('centerText')) {
+					$(".center-button").removeClass('pressed');
+					Session.set('centerText', false);
+				} else {
+					$(".center-button").addClass('pressed');
+					Session.set('centerText', true);
+				}
+			}
+		}
+		]
+	}]
+];
+
 /**
  * Adjust the width of the fixed answer options to fit the screen
  */
@@ -192,8 +227,10 @@ export function resizeAnswers() {
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
-	let newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.innerBoxHeader').height();
-	$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
+	let newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
+	$('.cardContent').css('min-height', newFlashcardBodyHeight);
+	let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
+	$('.center-align').css('margin-top', newCenterTextHeight);
 	setTimeout(resizeFlashcards, 125);
 }
 
@@ -323,7 +360,8 @@ function getEditModeCard() {
 		"cardset_id": Router.current().params._id,
 		"cardGroup": 0,
 		"cardType": Session.get('cardType'),
-		"lecture": Session.get('lectureText')
+		"lecture": Session.get('lectureText'),
+		"centerText": Session.get('centerText')
 	}];
 }
 
@@ -364,6 +402,8 @@ function saveCard(card_id, returnToCardset) {
 	let hintText = Session.get('hintText');
 	let lectureText = Session.get('lectureText');
 	let cardType = Session.get('cardType');
+	let centerText = Session.get('centerText');
+
 	if ($('#subjectEditor').val() === '') {
 		$('#subjectEditor').css('border', '1px solid');
 		$('#subjectEditor').css('border-color', '#b94a48');
@@ -412,7 +452,7 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerText, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -434,7 +474,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText);
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerText);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
@@ -532,6 +572,7 @@ Template.editor.helpers({
 			Session.set('hintText', this.hint);
 			Session.set('cardType', this.cardType);
 			Session.set('lectureText', this.lecture);
+			Session.set('centerText', this.centerText);
 		}
 	},
 	isCardType: function (type) {
@@ -575,28 +616,17 @@ Template.contentEditor.rendered = function () {
 					break;
 			}
 		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'fa fa-file-image-o',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "fa fa-superscript",
-					callback: tex
-				}]
-			}]
-		]
+		additionalButtons: additionalButtons
 	});
+	if (Session.get('centerText')) {
+		$(".center-button").addClass('pressed');
+	}
 
 	if (!ActiveRoute.name('editCard')) {
 		Session.set('frontText', '');
 	}
 	$(".md-header").append($("#cardType"));
+	$(".center-button").text('vertical_align_center');
 };
 
 Template.contentEditor.events({
@@ -729,7 +759,7 @@ Template.flashcards.onCreated(function () {
 Template.flashcards.onRendered(function () {
 	resizeFlashcards();
 	if (Router.current().route.getName() === "cardsetdetailsid") {
-		var mc = new Hammer.Manager(document.getElementById('set-details-region'));
+		let mc = new Hammer.Manager(document.getElementById('set-details-region'));
 		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
 		mc.on("swipe", function (ev) {
 			if (ev.deltaX < 0) {
