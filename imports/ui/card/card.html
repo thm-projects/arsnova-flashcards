@@ -237,6 +237,19 @@
                                                 </a>
                                             {{/if}}
                                         {{/if}}
+                                        {{#unless isActiveRoute 'newCard'}}
+                                            {{#unless isActiveRoute 'editCard'}}
+                                                {{#if isCardType 1}}
+                                                    <a id="swapOrder"
+                                                       class="btn-editCard btn btn-raised btn-default btn-xs {{#if
+                                                               reversedViewOrder}}pressed{{/if}} "
+                                                       href="#" data-type="cardNavigation">
+                                                        <i class="material-icons"
+                                                           data-type="cardNavigation">swap_vert</i>
+                                                    </a>
+                                                {{/if}}
+                                            {{/unless}}
+                                        {{/unless}}
                                         {{#unless isCardType 3}}
                                             {{#if hint}}
                                                 <a href="#" id="showHint">
@@ -258,8 +271,11 @@
                                         {{/if}}
                                         <span>{{getCardsetName}}</span><br>
                                         {{#unless isCardType 3}}
-                                            <span class="cardfront">{{_ "frontside"}}</span><span
-                                                class="cardback" style="display:none">{{_ "backside"}}</span>
+                                            <span class="cardfront" style="display: {{#if isCardType 1}}{{#if
+                                                    reversedViewOrder}}none{{/if}}{{/if}}">{{_ "frontside"}}</span><span
+                                                class="cardback" style="display: {{#if isCardType 1}}{{#unless
+                                                reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
+                                                "backside"}}</span>
                                         {{/unless}}
                                     </div>
                                     {{#unless isCardType 3}}
@@ -299,15 +315,16 @@
                                     <h3>{{subject}}</h3>
                                 </div>
                                 <div class="cardContent centered cardfront {{getCardBackground
-                                        difficulty}} detailfront{{@index}}">
+                                        difficulty}} detailfront{{@index}}"
+                                     style="display: {{#if isCardType 1}}{{#if reversedViewOrder}}none{{/if}}{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
-                                        {{#mathjax}}{{front}}{{/mathjax}}
+                                    {{#mathjax}}{{front}}{{/mathjax}}
                                     </span>
-
                                 </div>
                                 <div class="cardContent centered cardback {{getCardBackground
                                         difficulty}} detailback{{@index}}"
-                                     style="display:none">
+                                     style="display: {{#if isCardType 1}}{{#unless
+                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
                                         {{#mathjax}}{{back}}{{/mathjax}}
                                     </span>

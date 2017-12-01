@@ -46,6 +46,10 @@ $header_line: rgba(255, 0, 0, 0.6);
   }
 }
 
+.pressed {
+  background-color: $color_btn_inactive !important;
+}
+
 #difficulty .btn-info {
   color: $input_difficulty1 !important;
   @media(min-width: 768px) {
@@ -308,6 +312,19 @@ img.cardside {
   padding: 0;
   z-index: 20;
   font-size: 26px;
+}
+
+#swapOrder {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0 7px 0 0;
+  padding: 0 10px 1px 10px;
+  z-index: 20;
+}
+
+#swapOrder .material-icons {
+  font-size: 22px;
 }
 
 .fullscreen {

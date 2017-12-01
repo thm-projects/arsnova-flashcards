@@ -584,6 +584,7 @@ Template.editor.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		toggleFullscreen();
 	}
+	Session.set('reverseViewOrder', false);
 });
 
 /*
@@ -754,6 +755,7 @@ Template.cardHint.helpers({
 
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+	Session.set('reverseViewOrder', false);
 });
 
 Template.flashcards.onRendered(function () {
@@ -847,12 +849,19 @@ Template.flashcards.helpers({
 	},
 	isCardType: function (type) {
 		return type === this.cardType;
+	},
+	reversedViewOrder: function () {
+		return Session.get('reverseViewOrder');
 	}
 });
 
 Template.flashcards.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		turnFront();
+		if (Session.get('reverseViewOrder')) {
+			turnBack();
+		} else {
+			turnFront();
+		}
 	},
 	"click .box": function (evt) {
 		if (this.cardType !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
@@ -861,6 +870,15 @@ Template.flashcards.events({
 	},
 	"click #showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));
+	},
+	"click #swapOrder": function () {
+		if (Session.get('reverseViewOrder')) {
+			Session.set('reverseViewOrder', false);
+			turnFront();
+		} else {
+			Session.set('reverseViewOrder', true);
+			turnBack();
+		}
 	},
 	"click #editCard": function (evt) {
 		Session.set('modifiedCard', $(evt.target).data('id'));
@@ -883,6 +901,7 @@ Template.flashcardsEmpty.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		toggleFullscreen();
 	}
+	Session.set('reverseViewOrder', false);
 });
 
 Template.flashcardsEmpty.helpers({
