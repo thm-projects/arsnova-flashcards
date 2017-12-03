@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Email} from "meteor/email";
-import {Learned} from "../imports/api/learned.js";
+import {Leitner} from "../imports/api/learned.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
@@ -33,7 +33,7 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var active = Learned.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
+			var active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
 				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) + moment(cardset.learningEnd).format("DD.MM.YYYY") + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));

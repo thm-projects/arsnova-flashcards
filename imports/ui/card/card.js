@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
 
@@ -240,7 +240,7 @@ function getCardsetCards() {
  */
 function getLeitnerCards() {
 	let cards = [];
-	let learnedCards = Learned.find({
+	let learnedCards = Leitner.find({
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
@@ -292,7 +292,7 @@ function getMemoCards() {
 	actualDate.setHours(0, 0, 0, 0);
 	let cards = [];
 
-	let learnedCards = Learned.find({
+	let learnedCards = Wozniak.find({
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
@@ -699,7 +699,7 @@ Template.flashcards.helpers({
 		}
 	},
 	countBox: function () {
-		var maxIndex = Learned.find({
+		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			box: parseInt(Session.get('selectedBox'))
@@ -708,7 +708,7 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	countLeitner: function () {
-		var maxIndex = Learned.find({
+		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			active: true

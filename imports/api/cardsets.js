@@ -3,7 +3,7 @@ import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
 import {Experience} from "./experience.js";
-import {Learned} from "./learned.js";
+import {Leitner, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
@@ -318,7 +318,10 @@ Meteor.methods({
 		Cards.remove({
 			cardset_id: id
 		});
-		Learned.remove({
+		Leitner.remove({
+			cardset_id: id
+		});
+		Wozniak.remove({
 			cardset_id: id
 		});
 		Notifications.remove({
@@ -373,7 +376,7 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
-			Meteor.call("clearLearningProgress", id);
+			Meteor.call("clearLeitnerProgress", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -427,7 +430,7 @@ Meteor.methods({
 					learningInterval: learningInterval
 				}
 			});
-			Meteor.call("clearLearningProgress", id);
+			Meteor.call("clearLeitnerProgress", id);
 			Meteor.call("activateLearningPeriodSetEdu", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
@@ -560,7 +563,11 @@ Meteor.methods({
 		});
 		let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
 		for (let i = 0; i < removedCards.length; i++) {
-			Learned.remove({
+			Leitner.remove({
+				cardset_id: cardset._id,
+				card_id: removedCards[i]._id
+			});
+			Wozniak.remove({
 				cardset_id: cardset._id,
 				card_id: removedCards[i]._id
 			});

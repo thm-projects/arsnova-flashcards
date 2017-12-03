@@ -3,15 +3,14 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Wozniak} from "../../api/learned.js";
 import {turnCard, resizeAnswers} from "../card/card.js";
 import "./memo.html";
 
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe("learned");
+Meteor.subscribe("wozniak");
 
 /*
  * ############################################################################
@@ -44,7 +43,7 @@ Template.memo.helpers({
 		var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 
-		var learned = Learned.findOne({
+		var learned = Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			nextDate: {
@@ -68,7 +67,7 @@ Template.memo.events({
 		Session.set('showAnswer', true);
 	},
 	"click .rate-answer": function (event) {
-		Meteor.call("updateLearnedMemo", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
+		Meteor.call("updateWozniak", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
 		Session.set("showAnswer", false);
 		turnCard();
 		$('.carousel').carousel('next');

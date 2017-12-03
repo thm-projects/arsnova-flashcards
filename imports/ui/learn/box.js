@@ -3,14 +3,13 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner} from "../../api/learned.js";
 import {turnCard, resizeAnswers, toggleFullscreen} from "../card/card.js";
 import "./box.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe('learned');
+Meteor.subscribe('leitner');
 
 Session.set('isFront', true);
 
@@ -26,14 +25,14 @@ Template.box.onCreated(function () {
 
 Template.box.helpers({
 	noCards: function () {
-		return !Learned.findOne({
+		return !Leitner.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			box: {$ne: 6}
 		});
 	},
 	isFinished: function () {
-		return !Learned.findOne({
+		return !Leitner.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			active: true
@@ -114,14 +113,14 @@ Template.boxMain.events({
 		}
 	},
 	"click #known": function () {
-		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
+		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
+		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');

@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
@@ -31,7 +31,7 @@ Template.registerHelper("isLecturer", function () {
 
 
 Template.registerHelper("getNextCardTime", function () {
-	let nextCardDate = Learned.findOne({
+	let nextCardDate = Leitner.findOne({
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		box: {$ne: 6}

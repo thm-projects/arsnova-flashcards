@@ -4,12 +4,14 @@ import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 
 export const Learned = new Mongo.Collection("learned");
+export const Leitner = new Mongo.Collection("leitner");
+export const Wozniak = new Mongo.Collection("wozniak");
 
 if (Meteor.isServer) {
-	Meteor.publish("learned", function () {
+	Meteor.publish("leitner", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			if (Meteor.settings.public.university.singleUniversity) {
-				return Learned.find({
+				return Leitner.find({
 					$or: [
 						{user_id: this.userId},
 						{
@@ -28,7 +30,7 @@ if (Meteor.isServer) {
 					]
 				});
 			} else {
-				return Learned.find({
+				return Leitner.find({
 					$or: [
 						{user_id: this.userId},
 						{
@@ -48,7 +50,7 @@ if (Meteor.isServer) {
 			}
 		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			if (Meteor.settings.public.university.singleUniversity) {
-				return Learned.find({
+				return Leitner.find({
 					user_id: this.userId,
 					cardset_id: {
 						$in: Cardsets.find({
@@ -61,14 +63,54 @@ if (Meteor.isServer) {
 					}
 				});
 			} else {
-				return Learned.find({user_id: this.userId});
+				return Leitner.find({user_id: this.userId});
 			}
 		}
 	});
-	Meteor.publish("allLearned", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+	Meteor.publish("wozniak", function () {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			if (Meteor.settings.public.university.singleUniversity) {
-				return Learned.find({
+				return Wozniak.find({
+					$or: [
+						{user_id: this.userId},
+						{
+							cardset_id: {
+								$in: Cardsets.find({
+									$or: [
+										{owner: this.userId},
+										{learningActive: true},
+										{college: Meteor.settings.public.university.default}
+									]
+								}).map(function (cardset) {
+									return cardset._id;
+								})
+							}
+						}
+					]
+				});
+			} else {
+				return Wozniak.find({
+					$or: [
+						{user_id: this.userId},
+						{
+							cardset_id: {
+								$in: Cardsets.find({
+									$or: [
+										{owner: this.userId},
+										{learningActive: true}
+									]
+								}).map(function (cardset) {
+									return cardset._id;
+								})
+							}
+						}
+					]
+				});
+			}
+		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Wozniak.find({
+					user_id: this.userId,
 					cardset_id: {
 						$in: Cardsets.find({
 							$or: [
@@ -80,35 +122,50 @@ if (Meteor.isServer) {
 					}
 				});
 			} else {
-				return Learned.find({});
+				return Wozniak.find({user_id: this.userId});
+			}
+		}
+	});
+	Meteor.publish("allLearned", function () {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			if (Meteor.settings.public.university.singleUniversity) {
+				return Leitner.find({
+					cardset_id: {
+						$in: Cardsets.find({
+							$or: [
+								{college: Meteor.settings.public.university.default}
+							]
+						}).map(function (cardset) {
+							return cardset._id;
+						})
+					}
+				});
+			} else {
+				return Leitner.find({});
 			}
 		}
 	});
 
 
 	Meteor.methods({
-		clearLearningProgress: function (cardset_id) {
+		clearLeitnerProgress: function (cardset_id) {
 			check(cardset_id, String);
 
 			if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 				throw new Meteor.Error("not-authorized");
 			}
-			Learned.remove({cardset_id: cardset_id});
+			Leitner.remove({cardset_id: cardset_id});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
-		addLearned: function (cardset_id, card_id, user_id, isMemo) {
+		addLeitner: function (cardset_id, card_id, user_id) {
 			check(cardset_id, String);
 			check(card_id, String);
 			check(user_id, String);
-			check(isMemo, Boolean);
 			// Make sure the user is logged in
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
-				if (Learned.findOne({cardset_id: cardset_id, user_id: user_id, isMemo: false})) {
-					isMemo = false;
-				}
-				Learned.upsert({
+				Leitner.upsert({
 					cardset_id: cardset_id,
 					card_id: card_id,
 					user_id: user_id
@@ -116,14 +173,10 @@ if (Meteor.isServer) {
 					$set: {
 						cardset_id: cardset_id,
 						card_id: card_id,
-						user_id: user_id,
-						isMemo: isMemo
+						user_id: user_id
 					},
 					$setOnInsert: {
 						box: 1,
-						ef: 2.5,
-						reps: 0,
-						interval: 0,
 						active: false,
 						nextDate: new Date(),
 						currentDate: new Date()
@@ -131,12 +184,39 @@ if (Meteor.isServer) {
 				});
 			}
 		},
-		/** Function marks an active card as learned
+		addWozniak: function (cardset_id, card_id, user_id) {
+			check(cardset_id, String);
+			check(card_id, String);
+			check(user_id, String);
+			// Make sure the user is logged in
+			if (!Meteor.isServer) {
+				throw new Meteor.Error("not-authorized");
+			} else {
+				Wozniak.upsert({
+					cardset_id: cardset_id,
+					card_id: card_id,
+					user_id: user_id
+				}, {
+					$set: {
+						cardset_id: cardset_id,
+						card_id: card_id,
+						user_id: user_id
+					},
+					$setOnInsert: {
+						ef: 2.5,
+						interval: 0,
+						reps: 0,
+						nextDate: new Date()
+					}
+				});
+			}
+		},
+		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card
 		 *  @param {string} card_id - The id from the card
 		 *  @param {boolean} isWrong - Did the user know the answer?
 		 * */
-		updateLearned: function (cardset_id, card_id, isWrong) {
+		updateLeitner: function (cardset_id, card_id, isWrong) {
 			// Make sure the user is logged in
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
@@ -155,7 +235,7 @@ if (Meteor.isServer) {
 				query.user_id = Meteor.userId();
 				query.active = true;
 
-				var currentLearned = Learned.findOne(query);
+				var currentLearned = Leitner.findOne(query);
 
 				if (currentLearned !== undefined) {
 					var selectedBox = currentLearned.box + 1;
@@ -167,7 +247,7 @@ if (Meteor.isServer) {
 
 					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
 
-					Learned.update(currentLearned._id, {
+					Leitner.update(currentLearned._id, {
 						$set: {
 							box: selectedBox,
 							active: false,
@@ -178,20 +258,33 @@ if (Meteor.isServer) {
 				}
 			}
 		},
-		deleteLearned: function (cardset_id) {
+		deleteLeitner: function (cardset_id) {
 			check(cardset_id, String);
 
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
 
-			Learned.remove({
+			Leitner.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
-		updateLearnedMemo: function (cardset_id, card_id, grade) {
+		deleteWozniak: function (cardset_id) {
+			check(cardset_id, String);
+
+			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+
+			Wozniak.remove({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId()
+			});
+			Meteor.call("updateLearnerCount", cardset_id);
+		},
+		updateWozniak: function (cardset_id, card_id, grade) {
 			check(cardset_id, String);
 			check(card_id, String);
 			check(grade, Number);
@@ -206,7 +299,7 @@ if (Meteor.isServer) {
 			//        (3)   Set interval to 0, lower the EF, reps + 1 (repeat card today)
 			//        (4-5) Reps + 1, interval is calculated using EF, increasing in time.
 
-			let learned = Learned.findOne({
+			let learned = Wozniak.findOne({
 					cardset_id: cardset_id,
 					card_id: card_id,
 					user_id: Meteor.userId()
@@ -244,7 +337,7 @@ if (Meteor.isServer) {
 				}
 			}
 
-			Learned.update(learned._id, {
+			Wozniak.update(learned._id, {
 				$set: {
 					ef: ef,
 					reps: reps,
@@ -261,7 +354,9 @@ if (Meteor.isServer) {
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
-				let data = Learned.find({cardset_id: cardset_id}).fetch();
+				let leitner = Leitner.find({cardset_id: cardset_id}).fetch();
+				let wozniak = Wozniak.find({cardset_id: cardset_id}).fetch();
+				let data = leitner.concat(wozniak);
 				let distinctData = _.uniq(data, false, function (d) {
 					return d.user_id;
 				});
