@@ -238,8 +238,7 @@ function getLeitnerCards() {
 	}, {
 		sort: {
 			currentDate: 1
-		},
-		reactive: false
+		}
 	});
 
 	learnedCards.forEach(function (learnedCard) {
@@ -292,8 +291,7 @@ function getMemoCards() {
 	}, {
 		sort: {
 			nextDate: 1
-		},
-		reactive: false
+		}
 	});
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
