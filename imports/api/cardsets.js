@@ -362,6 +362,12 @@ Meteor.methods({
 				}
 			}
 		);
+		Leitner.remove({
+			cardset_id: id
+		});
+		Wozniak.remove({
+			cardset_id: id
+		});
 	},
 	/**
 	 * Deactivate the learning phase for the selected cardset.
