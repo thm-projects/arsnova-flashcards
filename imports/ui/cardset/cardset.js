@@ -10,8 +10,7 @@ import {Paid} from "../../api/paid.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
-import "../learn/box.js";
-import "../learn/memo.js";
+import "../learn/learn.js";
 import "./cardset.html";
 import {image, tex} from '/imports/ui/card/card.js';
 

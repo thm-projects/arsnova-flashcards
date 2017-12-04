@@ -755,6 +755,32 @@ Template.flashcardsEmpty.helpers({
 	}
 });
 
+Template.flashcardsEmpty.onRendered(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+	$('.carousel-inner').css('min-height', 0);
+});
+
+/*
+ * ############################################################################
+ * flashcardsEnd
+ * ############################################################################
+ */
+
+Template.flashcardsEnd.onCreated(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+});
+
+Template.flashcardsEnd.onRendered(function () {
+	if (Session.get('fullscreen')) {
+		toggleFullscreen();
+	}
+	$('.carousel-inner').css('min-height', 0);
+});
+
 /*
  * ############################################################################
  * copyCard
