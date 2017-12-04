@@ -92,9 +92,6 @@ Template.learnAnswerOptions.onRendered(function () {
 	$('#cardCarousel').on('slide.bs.carousel', function () {
 		Session.set('animationPlaying', true);
 	});
-	$('#cardCarousel').on('slid.bs.carousel', function () {
-		Session.set('animationPlaying', false);
-	});
 });
 
 Template.learnAnswerOptions.helpers({
@@ -117,25 +114,49 @@ Template.learnAnswerOptions.events({
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #known": function () {
-		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
+		let answeredCard = $('.carousel-inner > .active').attr('data-id');
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
+		if ($('.carousel-inner > .item').length === 1) {
+			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
+		} else {
+			$('#cardCarousel').on('slid.bs.carousel', function () {
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
+				Session.set('animationPlaying', false);
+			});
+		}
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
+		let answeredCard = $('.carousel-inner > .active').attr('data-id');
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
+		if ($('.carousel-inner > .item').length === 1) {
+			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
+		} else {
+			$('#cardCarousel').on('slid.bs.carousel', function () {
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
+				Session.set('animationPlaying', false);
+			});
+		}
 	},
 	"click .rate-answer": function (event) {
-		Meteor.call("updateWozniak", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
+		let answeredCard = $('.carousel-inner > .active').attr('data-id');
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
+		if ($('.carousel-inner > .item').length === 1) {
+			Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
+		} else {
+			$('#cardCarousel').on('slid.bs.carousel', function () {
+				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
+				Session.set('animationPlaying', false);
+			});
+		}
 	}
 });
 
