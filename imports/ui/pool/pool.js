@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner} from "../../api/learned.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
@@ -367,7 +367,7 @@ Template.poolCardsetRow.helpers({
 		if (this.owner === Meteor.userId() || this.editors.includes(Meteor.userId())) {
 			return true;
 		}
-		let learnedCards = Learned.find({
+		let learnedCards = Leitner.find({
 			user_id: Meteor.userId()
 		});
 		let learnedCardsets = [];

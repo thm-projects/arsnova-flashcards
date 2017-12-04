@@ -7,7 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/box.js";
@@ -684,7 +684,7 @@ Template.leaveLearnPhaseForm.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		$('#leaveModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLearned", id);
+			Meteor.call("deleteLeitner", id);
 			Router.go('home');
 		});
 	}
@@ -720,7 +720,7 @@ Template.cardsetSidebar.events({
 		});
 	},
 	"click #learnMemo": function () {
-		Meteor.call("addCardsMemo", this._id);
+		Meteor.call("addWozniakCards", this._id);
 		Router.go('memo', {
 			_id: this._id
 		});
@@ -766,10 +766,10 @@ Template.cardsetSidebar.helpers({
 		return (this.quantity >= 1);
 	},
 	'learningLeitner': function () {
-		return Learned.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId(), box: {$ne: 1}});
+		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
 	},
 	'learningMemo': function () {
-		return Learned.findOne({
+		return Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
@@ -1357,7 +1357,7 @@ Template.resetLeitnerForm.events({
 Template.resetMemoForm.events({
 	"click #resetMemoConfirm": function () {
 		$('#resetMemoModal').on('hidden.bs.modal', function () {
-			Meteor.call("resetMemo", Router.current().params._id);
+			Meteor.call("resetWozniak", Router.current().params._id);
 		}).modal('hide');
 	}
 });
@@ -1419,10 +1419,10 @@ Template.leitnerLearning.helpers({
 		return (this.learningEnd.getTime() < new Date().getTime());
 	},
 	allLearned: function () {
-		return (Learned.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
+		return (Leitner.find({cardset_id: this._id, user_id: Meteor.userId(), box: {$ne: 6}}).count() === 0);
 	},
 	Deadline: function () {
-		var active = Learned.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
+		var active = Leitner.findOne({cardset_id: this._id, user_id: Meteor.userId(), active: true});
 		var deadline = new Date(active.currentDate.getTime() + this.daysBeforeReset * 86400000);
 		if (deadline.getTime() > this.learningEnd.getTime()) {
 			return (TAPi18n.__('deadlinePrologue') + this.learningEnd.toLocaleDateString() + TAPi18n.__('deadlineEpilogue1'));
@@ -1431,7 +1431,7 @@ Template.leitnerLearning.helpers({
 		}
 	},
 	notEmpty: function () {
-		return Learned.find({
+		return Leitner.find({
 			cardset_id: this._id,
 			user_id: Meteor.userId(),
 			active: true
@@ -1515,7 +1515,7 @@ function updateGraph() {
 	var i;
 	for (i = 0; i < 6; i++) {
 		query.box = (i + 1);
-		chart.data.datasets[0].data[i] = Learned.find(query).count();
+		chart.data.datasets[0].data[i] = Leitner.find(query).count();
 	}
 
 	chart.update();
@@ -1523,7 +1523,7 @@ function updateGraph() {
 
 Template.graph.helpers({
 	countBox: function (boxId) {
-		return Learned.find({
+		return Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			box: boxId
@@ -1534,7 +1534,7 @@ Template.graph.helpers({
 Template.graph.onRendered(function () {
 	drawGraph();
 	var self = this;
-	self.subscribe("learned", function () {
+	self.subscribe("leitner", function () {
 		self.autorun(function () {
 			updateGraph();
 		});

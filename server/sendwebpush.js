@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Notifications} from "./notifications.js";
-import {Learned} from "../imports/api/learned.js";
+import {Leitner} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 
@@ -18,7 +18,7 @@ export class WebNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var active = Learned.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
+			var active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date();
 			if (active !== undefined) {
 				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);

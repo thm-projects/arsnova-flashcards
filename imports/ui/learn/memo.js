@@ -3,15 +3,16 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Wozniak} from "../../api/learned.js";
 import {turnCard, resizeAnswers} from "../card/card.js";
 import "./memo.html";
 
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe("learned");
+Meteor.subscribe("wozniak");
+
+Session.set('isFront', true);
 
 /*
  * ############################################################################
@@ -21,7 +22,7 @@ Meteor.subscribe("learned");
 
 Template.memo.onCreated(function () {
 	Session.set('modifiedCard', undefined);
-	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+	Session.set('isFront', true);
 });
 
 Template.memo.onRendered(function () {
@@ -31,29 +32,21 @@ Template.memo.onRendered(function () {
 	});
 });
 
-Template.memo.onDestroyed(function () {
-	Session.set("showAnswer", false);
-});
-
 Template.memo.helpers({
-	showAnswer: function () {
-		turnCard();
-		$('html, body').animate({scrollTop: '0px'}, 300);
-		return Session.get('showAnswer');
+	isFront: function () {
+		return Session.get('isFront');
 	},
 	isFinish: function () {
-		var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 
-		var learned = Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
+		return !Wozniak.findOne({
+			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate
 			}
 		});
-
-		return (learned === undefined);
 	}
 });
 
@@ -61,24 +54,30 @@ Template.memo.helpers({
  * Declare event handlers for instances of the memo template.
  */
 Template.memo.events({
-	/**
-	 * Show Answer in SuperMemo mode
-	 * Sets the showAnswer variable of the Session = true
-	 */
+	"click .box": function (evt) {
+		if (($(evt.target).data('type') !== "cardNavigation")) {
+			if (Session.get('isFront')) {
+				Session.set('isFront', false);
+			} else {
+				Session.set('isFront', true);
+			}
+			$('html, body').animate({scrollTop: '0px'}, 300);
+		}
+	},
 	"click #memoShowAnswer": function () {
-		Session.set('showAnswer', true);
+		if (Session.get('isFront')) {
+			Session.set('isFront', false);
+		} else {
+			Session.set('isFront', true);
+		}
+		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click .rate-answer": function (event) {
-		var grade = $(event.currentTarget).data("id");
-
-		var currentLearned = Learned.findOne({
-			cardset_id: Session.get('activeCardset')._id,
-			card_id: Session.get('currentCard'),
-			user_id: Meteor.userId()
-		});
-
-		Meteor.call("updateLearnedMemo", currentLearned._id, grade);
-		Session.set("showAnswer", false);
+		Meteor.call("updateWozniak", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
+		Session.set('isFront', true);
+		turnCard();
+		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	/**
@@ -86,7 +85,9 @@ Template.memo.events({
 	 * Go back one page in the history, on click of the "Return to cardset" button
 	 */
 	"click #backButton": function () {
-		window.history.go(-1);
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 

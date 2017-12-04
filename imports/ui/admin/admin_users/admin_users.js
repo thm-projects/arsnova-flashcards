@@ -4,14 +4,14 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {Learned} from "../../../api/learned.js";
+import {Leitner} from "../../../api/learned.js";
 import {Chart} from "chart.js";
 import "./admin_users.html";
 import "./admin_user.js";
 
 
 Meteor.subscribe('allUsers');
-Meteor.subscribe('learned', function () {
+Meteor.subscribe('leitner', function () {
 	Session.set('data_loaded', true);
 });
 
@@ -25,17 +25,17 @@ export function drawGraph() {
 	var query = {};
 
 	query.box = 1;
-	var box1 = Learned.find(query).count();
+	var box1 = Leitner.find(query).count();
 	query.box = 2;
-	var box2 = Learned.find(query).count();
+	var box2 = Leitner.find(query).count();
 	query.box = 3;
-	var box3 = Learned.find(query).count();
+	var box3 = Leitner.find(query).count();
 	query.box = 4;
-	var box4 = Learned.find(query).count();
+	var box4 = Leitner.find(query).count();
 	query.box = 5;
-	var box5 = Learned.find(query).count();
+	var box5 = Leitner.find(query).count();
 	query.box = 6;
-	var box6 = Learned.find(query).count();
+	var box6 = Leitner.find(query).count();
 	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
 
 	var ctx = document.getElementById("adminChart").getContext("2d");

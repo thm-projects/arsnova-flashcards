@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../imports/api/cards.js";
 import {Cardsets} from "../imports/api/cardsets.js";
-import {Learned} from "../imports/api/learned.js";
+import {Leitner, Wozniak} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
@@ -25,12 +25,11 @@ Meteor.methods({
 					}
 					if (result) {
 						cardset = result;
-						if (!Learned.findOne({
+						if (!Leitner.findOne({
 								cardset_id: cardset._id,
-								user_id: Meteor.userId(),
-								isMemo: false
+								user_id: Meteor.userId()
 							})) {
-							Meteor.call("addCardsLeitner", cardset, Meteor.userId(), function (error, result) {
+							Meteor.call("addLeitnerCards", cardset, Meteor.userId(), function (error, result) {
 								if (error) {
 									throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in inactive learning-phase.');
 								}
@@ -39,16 +38,16 @@ Meteor.methods({
 								}
 							});
 						} else {
-							Meteor.call("addCardsLeitner", cardset, Meteor.userId());
+							Meteor.call("addLeitnerCards", cardset, Meteor.userId());
 						}
 					}
 				});
 			} else {
-				if (!Learned.findOne({
+				if (!Leitner.findOne({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId()
 					}) && cardset.learningEnd.getTime() > new Date().getTime()) {
-					Meteor.call("addCardsLeitner", cardset, Meteor.userId(), function (error, result) {
+					Meteor.call("addLeitnerCards", cardset, Meteor.userId(), function (error, result) {
 						if (error) {
 							throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in active learning-phase.');
 						}
@@ -65,7 +64,7 @@ Meteor.methods({
 	 *  @param {string} user_id - The id of the user who is currently learning in the specific cardset
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
-	addCardsLeitner: function (cardset, user_id) {
+	addLeitnerCards: function (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -80,7 +79,7 @@ Meteor.methods({
 				});
 			}
 			cards.forEach(function (card) {
-				Meteor.call("addLearned", cardset._id, card._id, user_id, false);
+				Meteor.call("addLeitner", cardset._id, card._id, user_id, false);
 			});
 			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
@@ -90,7 +89,7 @@ Meteor.methods({
 	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
-	addCardsMemo: function (cardset_id) {
+	addWozniakCards: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
@@ -107,7 +106,7 @@ Meteor.methods({
 				});
 			}
 			cards.forEach(function (card) {
-				Meteor.call("addLearned", cardset._id, card._id, Meteor.userId(), true);
+				Meteor.call("addWozniak", cardset._id, card._id, Meteor.userId(), true);
 			});
 			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
@@ -142,7 +141,7 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Learned.findOne({
+			return Leitner.findOne({
 				cardset_id: cardset_id,
 				user_id: user,
 				active: true
@@ -158,7 +157,7 @@ Meteor.methods({
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Learned.find({
+			return Leitner.find({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				box: box,
@@ -191,7 +190,7 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var data = Learned.find({cardset_id: cardset_id, isMemo: false}).fetch();
+			var data = Leitner.find({cardset_id: cardset_id}).fetch();
 			return _.uniq(data, false, function (d) {
 				return d.user_id;
 			});
@@ -233,7 +232,7 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			Learned.update({cardset_id: cardset._id, user_id: user._id}, {
+			Leitner.update({cardset_id: cardset._id, user_id: user._id}, {
 				$set: {
 					box: 1,
 					active: false,
@@ -254,57 +253,28 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), interval: {$ne: 0}})) {
-				Learned.update({
-						cardset_id: cardset._id,
-						user_id: Meteor.userId()
-					},
-					{
-						$set: {
-							box: 1,
-							isMemo: true,
-							nextDate: new Date().getDate()
-						}
-					}, {multi: true});
-			} else {
-				Learned.remove({
-					cardset_id: cardset._id,
-					user_id: Meteor.userId()
-				});
-				Meteor.call("updateLearnerCount", cardset._id);
-			}
+			Leitner.remove({
+				cardset_id: cardset._id,
+				user_id: Meteor.userId()
+			});
+			Meteor.call("updateLearnerCount", cardset._id);
 		}
 	},
 	/** Resets the learning progress for learning by wozniak
 	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
-	resetMemo: function (cardset_id) {
+	resetWozniak: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Learned.findOne({cardset_id: cardset._id, user_id: Meteor.userId(), box: {$ne: 1}})) {
-				Learned.update({
-						cardset_id: cardset._id,
-						user_id: Meteor.userId()
-					},
-					{
-						$set: {
-							ef: 2.5,
-							reps: 0,
-							interval: 0,
-							nextDate: new Date().getDate()
-						}
-					}, {multi: true});
-			} else {
-				Learned.remove({
-					cardset_id: cardset._id,
-					user_id: Meteor.userId()
-				});
-				Meteor.call("updateLearnerCount", cardset._id);
-			}
+			Wozniak.remove({
+				cardset_id: cardset._id,
+				user_id: Meteor.userId()
+			});
+			Meteor.call("updateLearnerCount", cardset._id);
 		}
 	},
 	/** Function selects the next valid cards to learn and notifies the user
@@ -347,7 +317,7 @@ Meteor.methods({
 
 			// l-loop: Get all cards from a box that match the leitner criteria
 			for (var l = 0; l < algorithm.length; l++) {
-				var cards = Learned.find({
+				var cards = Leitner.find({
 					cardset_id: cardset._id,
 					user_id: user._id,
 					box: (l + 1),
@@ -360,7 +330,7 @@ Meteor.methods({
 						var nextCardIndex = Math.floor(Math.random() * (cards.length));
 						var nextCard = cards[nextCardIndex];
 						cards.splice(nextCardIndex, 1);
-						Learned.update({
+						Leitner.update({
 							cardset_id: cardset._id,
 							user_id: user._id,
 							card_id: nextCard.card_id
@@ -438,8 +408,8 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Learned.find({cardset_id: cardset._id, active: true}).count()) {
-				Learned.update({cardset_id: cardset._id}, {
+			if (Leitner.find({cardset_id: cardset._id, active: true}).count()) {
+				Leitner.update({cardset_id: cardset._id}, {
 					$set: {
 						active: false
 					}
@@ -457,4 +427,5 @@ Meteor.methods({
 			return AdminSettings.findOne({name: "mailSettings"}).enabled;
 		}
 	}
-});
+})
+;

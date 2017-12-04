@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./cardsets.html";
 import {image, tex} from '/imports/ui/card/card.js';
@@ -87,17 +87,25 @@ Template.create.helpers({
 
 Template.learn.helpers({
 	learnList: function () {
-		var learnCards = Learned.find({
+		var leitnerCards = Leitner.find({
 			user_id: Meteor.userId()
 		});
 
+		let wozniakCards = Wozniak.find({
+			user_id: Meteor.userId()
+		});
 		var learnCardsets = [];
-		learnCards.forEach(function (learnCard) {
-			if ($.inArray(learnCard.cardset_id, learnCardsets) === -1) {
-				learnCardsets.push(learnCard.cardset_id);
+		leitnerCards.forEach(function (leitnerCard) {
+			if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(leitnerCard.cardset_id);
 			}
 		});
 
+		wozniakCards.forEach(function (wozniakCard) {
+			if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(wozniakCard.cardset_id);
+			}
+		});
 		return Cardsets.find({
 			_id: {
 				$in: learnCardsets
@@ -226,7 +234,10 @@ Template.shuffle.helpers({
 		if (Router.current().route.getName() === "editshuffle") {
 			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 		}
-		let learnCards = Learned.find({
+		let leitnerCards = Leitner.find({
+			user_id: Meteor.userId()
+		});
+		let wozniakCards = Wozniak.find({
 			user_id: Meteor.userId()
 		});
 		let otherCardsets = Cardsets.find({
@@ -236,9 +247,14 @@ Template.shuffle.helpers({
 			]
 		});
 		let cardsets = [];
-		learnCards.forEach(function (learnCard) {
-			if ($.inArray(learnCard.cardset_id, cardsets) === -1) {
-				cardsets.push(learnCard.cardset_id);
+		leitnerCards.forEach(function (leitnerCard) {
+			if ($.inArray(leitnerCard.cardset_id, cardsets) === -1) {
+				cardsets.push(leitnerCard.cardset_id);
+			}
+		});
+		wozniakCards.forEach(function (wozniakCard) {
+			if ($.inArray(wozniakCard.cardset_id, cardsets) === -1) {
+				cardsets.push(wozniakCard.cardset_id);
 			}
 		});
 		otherCardsets.forEach(function (createdCardset) {
@@ -587,7 +603,8 @@ Template.cardsetsForm.events({
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
 		$('#confirmLearnModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLearned", Session.get('cardsetId'));
+			Meteor.call("deleteLeitner", Session.get('cardsetId'));
+			Meteor.call("deleteWozniak", Session.get('cardsetId'));
 		}).modal('hide');
 	}
 });
