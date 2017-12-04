@@ -3,7 +3,7 @@ import {Badges} from "../../api/badges.js";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
-import {Learned} from "../../api/learned.js";
+import {Learned, Leitner, Wozniak} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 
@@ -509,12 +509,44 @@ Meteor.startup(function () {
 
 	for (let card = 0; card < testNotificationsCards.length; card++) {
 		Cards.remove({_id: testNotificationsCards[card]._id});
-		Cards.insert(testNotificationsCards[card]);
 	}
 
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
 		Learned.remove({_id: testNotificationsLearned[learned]._id});
-		Learned.insert(testNotificationsLearned[learned]);
+		Leitner.remove({_id: testNotificationsLearned[learned]._id});
+	}
+
+	let learned = Learned.find({}).fetch();
+	if (learned !== undefined) {
+		for (let i = 0; i < learned.length; i++) {
+			Leitner.insert({
+				card_id: learned[i].card_id,
+				cardset_id: learned[i].cardset_id,
+				user_id: learned[i].user_id,
+				box: learned[i].box,
+				nextDate: learned[i].nextDate,
+				currentDate: learned[i].currentDate,
+				active: learned[i].active
+			});
+			Wozniak.insert({
+				card_id: learned[i].card_id,
+				cardset_id: learned[i].cardset_id,
+				user_id: learned[i].user_id,
+				ef: learned[i].ef,
+				reps: learned[i].reps,
+				interval: learned[i].interval,
+				nextDate: learned[i].nextDate
+			});
+		}
+		Learned.remove({});
+	}
+
+	for (let card = 0; card < testNotificationsCards.length; card++) {
+		Cards.insert(testNotificationsCards[card]);
+	}
+
+	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
+		Leitner.insert(testNotificationsLearned[learned]);
 	}
 
 	Meteor.call("updateWordsForWordcloud");

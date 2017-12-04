@@ -61,15 +61,17 @@
         <br>
         <br>
         <br>
+        <br>
         {{#if isFront}}
             <!-- Helptext -->
-            <div class="learn-cardHelptext">
-                <br>
-                <span>{{_ "clickcart"}}</span>
+            <div class="btn-group btn-group-raised btn-group-justified">
+                <div class="btn-group">
+                    <button id="boxShowAnswer" class="btn btn-primary answer show-answer"
+                            title="success">{{_ "cardmemo.showanswer"}}</button>
+                </div>
             </div>
         {{else}}
             <!-- Navigation -->
-            <br>
             <div id="learn-navigation" class="btn-group btn-group-justified">
                 <div class="btn-group" role="group">
                     <button class="btn btn-raised btn-primary answer card-success" id="known">{{_ "know"}}</button>
@@ -80,7 +82,6 @@
             </div>
         {{/if}}
     </div>
-    <br>
     <br>
     <br>
     <br>

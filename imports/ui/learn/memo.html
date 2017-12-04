@@ -25,35 +25,34 @@
         <div class="col-xs-12">
             {{> cardHint}}
             <div id="memoFlashcard">
-                <div id="answerOptions">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    {{#unless isEmpty}}
-                        {{#unless isFinish}}
-                            {{#if showAnswer}}
-                                {{> memoRate}}
-                            {{else}}
+                {{#unless isEmpty}}
+                    {{#unless isFinish}}
+                        <div id="answerOptions">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            {{#if isFront}}
                                 <div class="btn-group btn-group-raised btn-group-justified">
                                     <div class="btn-group">
                                         <button id="memoShowAnswer" class="btn btn-primary answer show-answer"
                                                 title="success">{{_ "cardmemo.showanswer"}}</button>
                                     </div>
                                 </div>
+                            {{else}}
+                                {{> memoRate}}
                             {{/if}}
-                        {{/unless}}
+                        </div>
+                        <br>
+                        <br>
                     {{/unless}}
-                </div>
-                <br>
-                <br>
-                <br>
+                {{/unless}}
                 {{#unless isFinish}}
                     {{> flashcards}}
+                    {{> memoPictureForm}}
                 {{else}}
                     {{> flashcardsEmpty}}
                 {{/unless}}
-                {{> memoPictureForm}}
                 <br>
                 <br>
                 {{#unless fullscreenActive}}

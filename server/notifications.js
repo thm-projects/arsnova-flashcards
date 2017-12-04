@@ -1,4 +1,4 @@
-import {Learned} from "../imports/api/learned.js";
+import {Leitner} from "../imports/api/learned.js";
 
 /**
  * Class used for generating text of mail and web-push messages
@@ -26,7 +26,7 @@ export class Notifications {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Learned.find({
+			return Leitner.find({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				active: true

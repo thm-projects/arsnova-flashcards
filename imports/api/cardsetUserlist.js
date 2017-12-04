@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {Learned} from "./learned.js";
+import {Leitner} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 
@@ -104,12 +104,12 @@ function getLearners(data, cardset_id) {
 			birthname: user[0].profile.birthname,
 			givenname: user[0].profile.givenname,
 			email: user[0].email,
-			box1: Learned.find(filter[0]).count(),
-			box2: Learned.find(filter[1]).count(),
-			box3: Learned.find(filter[2]).count(),
-			box4: Learned.find(filter[3]).count(),
-			box5: Learned.find(filter[4]).count(),
-			box6: Learned.find(filter[5]).count()
+			box1: Leitner.find(filter[0]).count(),
+			box2: Leitner.find(filter[1]).count(),
+			box3: Leitner.find(filter[2]).count(),
+			box4: Leitner.find(filter[3]).count(),
+			box5: Leitner.find(filter[4]).count(),
+			box6: Leitner.find(filter[5]).count()
 		});
 	}
 	return sortByBirthname(learningDataArray);
@@ -137,7 +137,7 @@ Meteor.methods({
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
 			content += header[5] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
-			let learners = getLearners(Learned.find({cardset_id: cardset_id}).fetch(), cardset_id);
+			let learners = getLearners(Leitner.find({cardset_id: cardset_id}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 + colSep;
@@ -161,7 +161,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor", "lecturer"])) && (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			return getLearners(Learned.find({cardset_id: cardset_id}).fetch(), cardset_id);
+			return getLearners(Leitner.find({cardset_id: cardset_id}).fetch(), cardset_id);
 		}
 	},
 	getEditors: function (cardset_id) {
@@ -196,7 +196,7 @@ Meteor.methods({
 					$push: {editors: user_id}
 				});
 		}
-		Learned.remove({
+		Leitner.remove({
 			cardset_id: cardset._id,
 			user_id: user_id
 		});

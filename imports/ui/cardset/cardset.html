@@ -89,7 +89,9 @@
             {{> cardsetList}}
         {{/if}}
     {{else}}
-        {{> cardsetPreview}}
+        {{#unless fullscreenActive}}
+            {{> cardsetPreview}}
+        {{/unless}}
         {{#if countCards this._id}}
             {{> flashcards cardset=this}}
         {{else}}
@@ -174,7 +176,8 @@
                     <td><strong>{{_ "cardset.info.author"}}:</strong></td>
                     <td>
                         {{#each getAuthors}}
-                                <a href="{{pathFor 'profileSettings' _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
+                            <a href="{{pathFor 'profileSettings'
+                                               _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
                         {{/each}}
                     </td>
                 </tr>
@@ -377,7 +380,7 @@
                                 class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
                                 data-toggle="modal"
                                 data-target="#resetMemoModal" {{disableIfOffline}}>{{_
-                                "resetMemo"}}</button>
+                                "resetWozniak"}}</button>
                     {{/if}}
                 {{/unless}}
                 {{#if enableIfPublished}}
@@ -605,10 +608,10 @@
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="resetMemoTitle" class="modal-title">{{_ "resetMemo"}}</h4>
+                    <h4 id="resetMemoTitle" class="modal-title">{{_ "resetWozniak"}}</h4>
                 </div>
                 <div class="modal-body">
-                    {{_ "modal-dialog.resetMemo" name= this.name }}
+                    {{_ "modal-dialog.resetWozniak" name= this.name }}
                     <button id="resetMemoConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
                             "reset"}}</button>
                     <button id="resetMemoCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"

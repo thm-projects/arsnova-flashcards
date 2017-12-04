@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
 
@@ -137,22 +137,13 @@ export function resizeAnswers() {
 	$("#answerOptions").width($("#backButton").width() + 16);
 }
 
-var lastWidth = $("#cardCarousel").width();
-
 /**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
-	let flashcardWidth = $('#cardCarousel').width();
-	if (flashcardWidth != lastWidth) {
-		let flashcardHeaderHeight = $('.innerBoxHeader').height();
-		let newFlashcardHeight = flashcardWidth / Math.sqrt(2);
-		let newFlashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
-		$('.box').css('min-height', newFlashcardHeight);
-		$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
-		lastWidth = $("#cardCarousel").width();
-	}
-	setTimeout(resizeFlashcards, 250);
+	let newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.innerBoxHeader').height();
+	$('.innerBoxBody').css('min-height', newFlashcardBodyHeight);
+	setTimeout(resizeFlashcards, 125);
 }
 
 /**
@@ -240,7 +231,7 @@ function getCardsetCards() {
  */
 function getLeitnerCards() {
 	let cards = [];
-	let learnedCards = Learned.find({
+	let learnedCards = Leitner.find({
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
@@ -292,7 +283,7 @@ function getMemoCards() {
 	actualDate.setHours(0, 0, 0, 0);
 	let cards = [];
 
-	let learnedCards = Learned.find({
+	let learnedCards = Wozniak.find({
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
@@ -582,20 +573,16 @@ Template.difficultyEditor.events({
 
 Template.difficultyEditor.onRendered(function () {
 	Session.set('difficultyColor', Number($('input[name=difficulty]:checked').val()));
-	$(this.find('#difficulty0')).on('change keypress paste focus textInput input', function ()
-	{
+	$(this.find('#difficulty0')).on('change keypress paste focus textInput input', function () {
 		Session.set('difficultyColor', Number($('#difficulty0').data('color')));
 	});
-	$(this.find('#difficulty1')).on('change keypress paste focus textInput input', function ()
-	{
+	$(this.find('#difficulty1')).on('change keypress paste focus textInput input', function () {
 		Session.set('difficultyColor', Number($('#difficulty1').data('color')));
 	});
-	$(this.find('#difficulty2')).on('change keypress paste focus textInput input', function ()
-	{
+	$(this.find('#difficulty2')).on('change keypress paste focus textInput input', function () {
 		Session.set('difficultyColor', Number($('#difficulty2').data('color')));
 	});
-	$(this.find('#difficulty3')).on('change keypress paste focus textInput input', function ()
-	{
+	$(this.find('#difficulty3')).on('change keypress paste focus textInput input', function () {
 		Session.set('difficultyColor', Number($('#difficulty3').data('color')));
 	});
 });
@@ -634,6 +621,7 @@ Template.flashcards.onCreated(function () {
 });
 
 Template.flashcards.onRendered(function () {
+	resizeFlashcards();
 	if (Router.current().route.getName() === "cardsetdetailsid") {
 		var mc = new Hammer.Manager(document.getElementById('set-details-region'));
 		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
@@ -645,7 +633,6 @@ Template.flashcards.onRendered(function () {
 			}
 		});
 	}
-	resizeFlashcards();
 });
 
 Template.flashcards.helpers({
@@ -699,7 +686,7 @@ Template.flashcards.helpers({
 		}
 	},
 	countBox: function () {
-		var maxIndex = Learned.find({
+		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			box: parseInt(Session.get('selectedBox'))
@@ -708,7 +695,7 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	countLeitner: function () {
-		var maxIndex = Learned.find({
+		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
 			active: true
@@ -729,7 +716,7 @@ Template.flashcards.events({
 		turnFront();
 	},
 	"click .box": function (evt) {
-		if (!isMemo() && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if (($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},
@@ -756,12 +743,6 @@ Template.flashcards.events({
 Template.flashcardsEmpty.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		toggleFullscreen();
-	}
-});
-
-Template.flashcardsEmpty.events({
-	'click #memoEndBtn': function () {
-		window.history.go(-1);
 	}
 });
 

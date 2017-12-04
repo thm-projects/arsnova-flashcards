@@ -3,7 +3,7 @@ import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cardsets} from "./cardsets.js";
 import {Experience} from "./experience.js";
-import {Learned} from "./learned.js";
+import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
 
@@ -324,7 +324,10 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
-		Learned.remove({
+		Leitner.remove({
+			card_id: card_id
+		});
+		Wozniak.remove({
 			card_id: card_id
 		});
 	},
@@ -347,7 +350,10 @@ Meteor.methods({
 					dateUpdated: new Date()
 				}
 			});
-			Learned.remove({
+			Leitner.remove({
+				card_id: card_id
+			});
+			Wozniak.remove({
 				card_id: card_id
 			});
 		}

@@ -3,14 +3,13 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Learned} from "../../api/learned.js";
+import {Leitner} from "../../api/learned.js";
 import {turnCard, resizeAnswers, toggleFullscreen} from "../card/card.js";
 import "./box.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
-Meteor.subscribe('learned');
+Meteor.subscribe('leitner');
 
 Session.set('isFront', true);
 
@@ -26,14 +25,14 @@ Template.box.onCreated(function () {
 
 Template.box.helpers({
 	noCards: function () {
-		return !Learned.findOne({
+		return !Leitner.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			box: {$ne: 6}
 		});
 	},
 	isFinished: function () {
-		return !Learned.findOne({
+		return !Leitner.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			active: true
@@ -48,7 +47,9 @@ Template.box.events({
 	 * Go back one page in the history, on click of the "Return to cardset" button
 	 */
 	"click #backButton": function () {
-		window.history.go(-1);
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
@@ -96,16 +97,14 @@ Template.boxMain.onRendered(function () {
 
 Template.boxMain.helpers({
 	isFront: function () {
-		var isFront = Session.get('isFront');
-		return isFront === true;
+		return Session.get('isFront');
 	}
 });
 
 Template.boxMain.events({
 	"click .box": function (evt) {
 		if (($(evt.target).data('type') !== "cardNavigation")) {
-			var isFront = Session.get('isFront');
-			if (isFront === true) {
+			if (Session.get('isFront')) {
 				Session.set('isFront', false);
 			} else {
 				Session.set('isFront', true);
@@ -113,15 +112,24 @@ Template.boxMain.events({
 			$('html, body').animate({scrollTop: '0px'}, 300);
 		}
 	},
+	"click #boxShowAnswer": function () {
+		if (Session.get('isFront')) {
+			Session.set('isFront', false);
+		} else {
+			Session.set('isFront', true);
+		}
+		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
+	},
 	"click #known": function () {
-		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
+		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #notknown": function () {
-		Meteor.call('updateLearned', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
+		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), true);
 		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');

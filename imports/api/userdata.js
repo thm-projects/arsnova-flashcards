@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
-import {Learned} from "./learned.js";
+import {Leitner, Wozniak} from "./learned.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 
@@ -321,7 +321,11 @@ Meteor.methods({
 			}
 		});
 
-		Learned.remove({
+		Leitner.remove({
+			user_id: this.userId
+		});
+
+		Wozniak.remove({
 			user_id: this.userId
 		});
 
