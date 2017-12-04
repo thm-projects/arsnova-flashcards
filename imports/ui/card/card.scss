@@ -127,6 +127,7 @@ $header_line: rgba(255, 0, 0, 0.6);
 
 .carousel-inner {
   min-height: 278px;
+  border-radius: 4px;
 }
 
 .box {
@@ -389,7 +390,7 @@ img.cardside {
   }
 
   hr {
-    display:block;
+    display: block;
     height: 4px;
     border: 0;
   }
@@ -429,7 +430,7 @@ img.cardside {
   }
 }
 
-.editorBackground, .md-editor>textarea {
+.editorBackground, .md-editor > textarea {
   background: #FFFFFF;
 }
 
@@ -485,4 +486,20 @@ img.cardside {
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
+}
+
+.clicktoflip {
+  color: $color_storm_dust_approx;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  font-style: italic;
+}
+
+#cardCarousel .carousel-indicators {
+  bottom: 0;
+}
+
+#set-details-region {
+  margin-bottom: 0;
 }

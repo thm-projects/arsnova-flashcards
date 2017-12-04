@@ -47,7 +47,7 @@ module.exports = function () {
 
 	this.Then(/^I'll answer a card$/, function () {
 		card1 = navigation.getContent('#cardCarousel > div > div', 2,'data-id');
-		navigation.clickElement('#memoShowAnswer');
+		navigation.clickElement('#learnShowAnswer');
 		navigation.clickElement('#memoRate5');
 	});
 

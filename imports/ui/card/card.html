@@ -266,27 +266,48 @@
 </template>
 
 <template name="flashcardsEmpty">
-    {{#if isCardset}}
-        <div class="col-md-9 flip-container" id="set-details-region">
-            <div>
-                <div id="cardCarousel" class="carousel slide" data-interval="false">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="box flashcard emptyCard">
+    <div class="{{#if isActiveRoute 'cardsetdetailsid'}}col-md-9{{/if}} flip-container" id="set-details-region">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="box flashcard emptyCard">
+                            {{#if isActiveRoute 'cardsetdetailsid'}}
                                 <h4>{{_ "nocards"}}</h4>
-                            </div>
+                            {{/if}}
+                            {{#if isActiveRoute 'box'}}
+                                <h4>{{_ "learnedEverything"}}</h4>
+                            {{/if}}
+                            {{#if isActiveRoute 'memo'}}
+                                <h4>{{_ "memo-empty.text"}}</h4>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    {{else}}
-        <div class="box learn-endscreen innerBox">
-            <div class="block emptyCard">
-                <div class="centered front learnbox-success">{{_ "memo-empty.text"}}</div>
+    </div>
+</template>
+
+<template name="flashcardsEnd">
+    <div class="{{#if isActiveRoute 'cardsetdetailsid'}}col-md-9{{/if}} flip-container" id="set-details-region">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="box flashcard emptyCard">
+                            {{#if isActiveRoute 'box'}}
+                                <h4>{{getNextCardTime}}</h4>
+                            {{/if}}
+                            {{#if isActiveRoute 'memo'}}
+                                <h4>{{_ "memo-endscreen.text"}}</h4>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    {{/if}}
+    </div>
 </template>
 
 <template name="cardHint">

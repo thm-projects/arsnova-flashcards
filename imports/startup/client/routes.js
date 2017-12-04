@@ -126,7 +126,7 @@ Router.route('/progress/:_id', {
 
 Router.route('/box/:_id', {
 	name: 'box',
-	template: 'boxAccess',
+	template: 'learnAlgorithmAccess',
 	data: function () {
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -134,7 +134,7 @@ Router.route('/box/:_id', {
 
 Router.route('/memo/:_id', {
 	name: 'memo',
-	template: 'memoAccess',
+	template: 'learnAlgorithmAccess',
 	data: function () {
 		return Cardsets.findOne({_id: this.params._id});
 	}
