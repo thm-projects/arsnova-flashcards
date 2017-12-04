@@ -9,6 +9,7 @@ import "./learn.html";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
+Session.set('animationPlaying', false);
 
 /*
  * ############################################################################
@@ -25,6 +26,7 @@ Template.learnAlgorithms.onCreated(function () {
 	if (ActiveRoute.name('memo')) {
 		Meteor.subscribe("wozniak");
 	}
+	Session.set('animationPlaying', false);
 });
 
 Template.learnAlgorithms.helpers({
@@ -87,11 +89,20 @@ Template.learnAnswerOptions.onRendered(function () {
 	$(window).resize(function () {
 		$('#answerOptions').css('width', $('#cardCarousel').width());
 	});
+	$('#cardCarousel').on('slide.bs.carousel', function () {
+		Session.set('animationPlaying', true);
+	});
+	$('#cardCarousel').on('slid.bs.carousel', function () {
+		Session.set('animationPlaying', false);
+	});
 });
 
 Template.learnAnswerOptions.helpers({
 	isFront: function () {
 		return Session.get('isFront');
+	},
+	isAnimationPlaying: function () {
+		return Session.get('animationPlaying');
 	}
 });
 
