@@ -46,9 +46,12 @@
     {{getContent front back hint}}
     <div class="btn-group col-xs-12 editorNavigation cardtext" role="group">
         <h5>{{_ "content"}}</h5>
-        <button id="editFront" type="button" class="btn btn-primary btn-raised col-xs-12 col-sm-4" tabindex="3">{{_ "frontside"}}</button>
-        <button id="editBack" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="5">{{_ "backside"}}</button>
-        <button id="editHint" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="7">{{_ "hint"}}</button>
+        <button id="editFront" type="button" class="btn btn-primary btn-raised col-xs-12 col-sm-4" tabindex="3">{{_
+                "frontside"}}</button>
+        <button id="editBack" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="5">{{_
+                "backside"}}</button>
+        <button id="editHint" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-4" tabindex="7">{{_
+                "hint"}}</button>
     </div>
     <div id="editor" class="col-xs-12 cardtext" data-content="{{front}}">
         {{> contentEditor}}
@@ -62,7 +65,9 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="difficulty0" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isDifficultyChecked 0}}active{{/if}}" data-color="0">
+        <label id="difficulty0"
+               class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isDifficultyChecked 0}}active{{/if}}"
+               data-color="0">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked tabindex="2">
             {{else}}
@@ -70,7 +75,9 @@
             {{/if}}
             {{_ "difficulty0"}}
         </label>
-        <label id="difficulty1" class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}" data-color="1">
+        <label id="difficulty1"
+               class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}"
+               data-color="1">
             {{#if isDifficultyChecked 1}}
                 <input type="radio" name="difficulty" value="1" checked tabindex="2">
             {{else}}
@@ -79,7 +86,9 @@
 
             {{_ "difficulty1"}}
         </label>
-        <label id="difficulty2" class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}" data-color="2">
+        <label id="difficulty2"
+               class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}"
+               data-color="2">
             {{#if isDifficultyChecked 2}}
                 <input type="radio" name="difficulty" value="2" checked tabindex="2">
             {{else}}
@@ -87,7 +96,9 @@
             {{/if}}
             {{_ "difficulty2"}}
         </label>
-        <label id="difficulty3" class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}" data-color="3">
+        <label id="difficulty3"
+               class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}"
+               data-color="3">
             {{#if isDifficultyChecked 3}}
                 <input type="radio" name="difficulty" value="3" checked tabindex="2">
             {{else}}
@@ -134,7 +145,8 @@
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}} tabindex="12">{{_
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}}
+                        tabindex="12">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
                         class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
@@ -188,19 +200,17 @@
                                         <span class="cardfront">{{_ "frontside"}}</span><span
                                             class="cardback" style="display:none">{{_ "backside"}}</span>
                                     </div>
-                                    {{#unless isMemo}}
-                                        <div id="clicktoflip" class="clicktoflip">
-                                            <img id="iconfront" class="cardside cardfront-symbol"
-                                                 src="/img/icon_front.png">
-                                            <img id="iconback" class="cardside cardback-symbol" src="/img/icon_back.png"
-                                                 style="display: none;">
-                                            {{_ "turn"}}
-                                        </div>
-                                    {{/unless}}
+                                    <div id="clicktoflip" class="clicktoflip">
+                                        <img id="iconfront" class="cardside cardfront-symbol"
+                                             src="/img/icon_front.png">
+                                        <img id="iconback" class="cardside cardback-symbol" src="/img/icon_back.png"
+                                             style="display: none;">
+                                        {{_ "turn"}}
+                                    </div>
                                     {{#unless isActiveRoute 'newCard'}}
                                         {{#unless isActiveRoute 'editCard'}}
                                             <a href="#" id="toggleFullscreen"
-                                               class="fullscreen {{#if isMemo}}fullscreenMemo{{/if}}"
+                                               class="fullscreen"
                                                data-type="cardNavigation">
                                                 <span class="glyphicon glyphicon-fullscreen"
                                                       data-type="cardNavigation"></span>
@@ -256,27 +266,27 @@
 </template>
 
 <template name="flashcardsEmpty">
-    <div class="{{#if isCardset}}col-md-9{{/if}}{{#if isBox}}col-md-12{{/if}} flip-container" id="set-details-region">
-        <div>
-            <div id="cardCarousel" class="carousel slide" data-interval="false">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="box flashcard emptyCard">
-                            {{#if isCardset}}
+    {{#if isCardset}}
+        <div class="col-md-9 flip-container" id="set-details-region">
+            <div>
+                <div id="cardCarousel" class="carousel slide" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="box flashcard emptyCard">
                                 <h4>{{_ "nocards"}}</h4>
-                            {{else}}
-                                <h4>{{_ "memo-empty.text"}}</h4>
-                                <br>
-                                <a id="memoEndBtn" class="btn-back btn btn-default btn-raised">
-                                    <span>{{_ "memo-endscreen.back"}}</span>
-                                </a>
-                            {{/if}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{else}}
+        <div class="box learn-endscreen innerBox">
+            <div class="block emptyCard">
+                <div class="centered front learnbox-success">{{_ "memo-empty.text"}}</div>
+            </div>
+        </div>
+    {{/if}}
 </template>
 
 <template name="cardHint">

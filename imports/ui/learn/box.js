@@ -47,7 +47,9 @@ Template.box.events({
 	 * Go back one page in the history, on click of the "Return to cardset" button
 	 */
 	"click #backButton": function () {
-		window.history.go(-1);
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
@@ -95,22 +97,29 @@ Template.boxMain.onRendered(function () {
 
 Template.boxMain.helpers({
 	isFront: function () {
-		var isFront = Session.get('isFront');
-		return isFront === true;
+		return Session.get('isFront');
 	}
 });
 
 Template.boxMain.events({
 	"click .box": function (evt) {
 		if (($(evt.target).data('type') !== "cardNavigation")) {
-			var isFront = Session.get('isFront');
-			if (isFront === true) {
+			if (Session.get('isFront')) {
 				Session.set('isFront', false);
 			} else {
 				Session.set('isFront', true);
 			}
 			$('html, body').animate({scrollTop: '0px'}, 300);
 		}
+	},
+	"click #boxShowAnswer": function () {
+		if (Session.get('isFront')) {
+			Session.set('isFront', false);
+		} else {
+			Session.set('isFront', true);
+		}
+		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #known": function () {
 		Meteor.call('updateLeitner', Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), false);

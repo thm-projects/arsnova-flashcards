@@ -12,6 +12,8 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 Meteor.subscribe("wozniak");
 
+Session.set('isFront', true);
+
 /*
  * ############################################################################
  * memo
@@ -20,6 +22,7 @@ Meteor.subscribe("wozniak");
 
 Template.memo.onCreated(function () {
 	Session.set('modifiedCard', undefined);
+	Session.set('isFront', true);
 });
 
 Template.memo.onRendered(function () {
@@ -29,29 +32,21 @@ Template.memo.onRendered(function () {
 	});
 });
 
-Template.memo.onDestroyed(function () {
-	Session.set("showAnswer", false);
-});
-
 Template.memo.helpers({
-	showAnswer: function () {
-		turnCard();
-		$('html, body').animate({scrollTop: '0px'}, 300);
-		return Session.get('showAnswer');
+	isFront: function () {
+		return Session.get('isFront');
 	},
 	isFinish: function () {
-		var actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 
-		var learned = Wozniak.findOne({
+		return !Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate
 			}
 		});
-
-		return (learned === undefined);
 	}
 });
 
@@ -59,16 +54,28 @@ Template.memo.helpers({
  * Declare event handlers for instances of the memo template.
  */
 Template.memo.events({
-	/**
-	 * Show Answer in SuperMemo mode
-	 * Sets the showAnswer variable of the Session = true
-	 */
+	"click .box": function (evt) {
+		if (($(evt.target).data('type') !== "cardNavigation")) {
+			if (Session.get('isFront')) {
+				Session.set('isFront', false);
+			} else {
+				Session.set('isFront', true);
+			}
+			$('html, body').animate({scrollTop: '0px'}, 300);
+		}
+	},
 	"click #memoShowAnswer": function () {
-		Session.set('showAnswer', true);
+		if (Session.get('isFront')) {
+			Session.set('isFront', false);
+		} else {
+			Session.set('isFront', true);
+		}
+		turnCard();
+		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click .rate-answer": function (event) {
 		Meteor.call("updateWozniak", Router.current().params._id, $('.carousel-inner > .active').attr('data-id'), $(event.currentTarget).data("id"));
-		Session.set("showAnswer", false);
+		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
@@ -78,7 +85,9 @@ Template.memo.events({
 	 * Go back one page in the history, on click of the "Return to cardset" button
 	 */
 	"click #backButton": function () {
-		window.history.go(-1);
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 

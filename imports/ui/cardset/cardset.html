@@ -89,7 +89,9 @@
             {{> cardsetList}}
         {{/if}}
     {{else}}
-        {{> cardsetPreview}}
+        {{#unless fullscreenActive}}
+            {{> cardsetPreview}}
+        {{/unless}}
         {{#if countCards this._id}}
             {{> flashcards cardset=this}}
         {{else}}
@@ -174,7 +176,8 @@
                     <td><strong>{{_ "cardset.info.author"}}:</strong></td>
                     <td>
                         {{#each getAuthors}}
-                                <a href="{{pathFor 'profileSettings' _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
+                            <a href="{{pathFor 'profileSettings'
+                                               _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
                         {{/each}}
                     </td>
                 </tr>
