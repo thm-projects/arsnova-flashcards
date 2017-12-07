@@ -304,11 +304,11 @@ img.cardside {
   z-index: 20;
 }
 
-#showHint, .about-interval {
+#showHint, .about-interval, #showLecture, #hintPreview {
   position: relative;
   display: block;
   float: left;
-  margin: 0;
+  margin: 0 10px 0 0;
   padding: 0;
   z-index: 20;
   font-size: 26px;

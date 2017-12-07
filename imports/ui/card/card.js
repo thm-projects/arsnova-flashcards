@@ -60,11 +60,11 @@ function turnFront() {
 	$(".cardContent").removeClass("back");
 }
 
-var activeEditMode = 0;
+Session.set('activeEditMode', 0);
 
 function defaultToFront(cardType) {
 	turnFront();
-	activeEditMode = 0;
+	Session.set('activeEditMode', 0);
 	$('#contentEditor').val(Session.get('frontText'));
 	Session.set('cardType', cardType);
 	$('#editFront').removeClass('btn-default').addClass('btn-primary');
@@ -74,7 +74,7 @@ function defaultToFront(cardType) {
 }
 
 function editFront() {
-	activeEditMode = 0;
+	Session.set('activeEditMode', 0);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 5);
 	$('#contentEditor').val(Session.get('frontText'));
@@ -89,7 +89,7 @@ function editFront() {
 }
 
 function editBack() {
-	activeEditMode = 1;
+	Session.set('activeEditMode', 1);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 7);
 	$('#contentEditor').val(Session.get('backText'));
@@ -104,7 +104,8 @@ function editBack() {
 }
 
 function editLecture() {
-	activeEditMode = 3;
+	turnFront();
+	Session.set('activeEditMode', 3);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 9);
 	$('#contentEditor').val(Session.get('lectureText'));
@@ -118,7 +119,8 @@ function editLecture() {
 }
 
 function editHint() {
-	activeEditMode = 2;
+	turnFront();
+	Session.set('activeEditMode', 2);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 11);
 	$('#contentEditor').val(Session.get('hintText'));
@@ -602,7 +604,7 @@ Template.contentEditor.rendered = function () {
 		onChange: function (e) {
 			var content = e.getContent();
 			$('#editor').attr('data-content', content);
-			switch (activeEditMode) {
+			switch (Session.get('activeEditMode')) {
 				case 0:
 					Session.set('frontText', content);
 					break;
@@ -759,6 +761,7 @@ Template.flashcards.onCreated(function () {
 });
 
 Template.flashcards.onRendered(function () {
+	Session.set('activeEditMode', 0);
 	resizeFlashcards();
 	if (Router.current().route.getName() === "cardsetdetailsid") {
 		let mc = new Hammer.Manager(document.getElementById('set-details-region'));
@@ -852,6 +855,16 @@ Template.flashcards.helpers({
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
+	},
+	isLecturePreview: function () {
+		if (this.cardType === 2) {
+			return (Session.get('activeEditMode') === 3 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+		} else {
+			return false;
+		}
+	},
+	isHintPreview: function () {
+		return (Session.get('activeEditMode') === 2 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
 	}
 });
 
@@ -864,12 +877,19 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if (this.cardType !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if (Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && this.cardType !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},
 	"click #showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));
+	},
+	"click #showLecture": function (evt) {
+		setTimeout(function () {
+			$('html, body').animate({
+				scrollTop: $($(evt.target).data('target')).offset().top
+			}, 1000);
+		}, 500);
 	},
 	"click #swapOrder": function () {
 		if (Session.get('reverseViewOrder')) {

@@ -260,6 +260,14 @@
                                                 </a>
                                             {{/if}}
                                         {{/unless}}
+                                        {{#if isCardType 2}}
+                                            <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-education"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                            </a>
+                                        {{/if}}
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
@@ -270,23 +278,32 @@
                                             <br>
                                         {{/if}}
                                         <span>{{getCardsetName}}</span><br>
-                                        {{#unless isCardType 3}}
-                                            <span class="cardfront" style="display: {{#if isCardType 1}}{{#if
-                                                    reversedViewOrder}}none{{/if}}{{/if}}">{{_ "frontside"}}</span><span
-                                                class="cardback" style="display: {{#if isCardType 1}}{{#unless
-                                                reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
-                                                "backside"}}</span>
+                                        {{#unless isLecturePreview}}
+                                            {{#unless isHintPreview}}
+                                                {{#unless isCardType 3}}
+                                                    <span class="cardfront" style="display: {{#if isCardType 1}}{{#if
+                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{_
+                                                            "frontside"}}</span><span
+                                                        class="cardback" style="display: {{#if isCardType 1}}{{#unless
+                                                        reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
+                                                        "backside"}}</span>
+                                                {{/unless}}
+                                            {{/unless}}
                                         {{/unless}}
                                     </div>
-                                    {{#unless isCardType 3}}
-                                        <div id="clicktoflip" class="clicktoflip">
-                                            <img id="iconfront" class="cardside cardfront-symbol"
-                                                 src="/img/icon_front.png">
-                                            <img id="iconback" class="cardside cardback-symbol"
-                                                 src="/img/icon_back.png"
-                                                 style="display: none;">
-                                            {{_ "turn"}}
-                                        </div>
+                                    {{#unless isLecturePreview}}
+                                        {{#unless isHintPreview}}
+                                            {{#unless isCardType 3}}
+                                                <div id="clicktoflip" class="clicktoflip">
+                                                    <img id="iconfront" class="cardside cardfront-symbol"
+                                                         src="/img/icon_front.png">
+                                                    <img id="iconback" class="cardside cardback-symbol"
+                                                         src="/img/icon_back.png"
+                                                         style="display: none;">
+                                                    {{_ "turn"}}
+                                                </div>
+                                            {{/unless}}
+                                        {{/unless}}
                                     {{/unless}}
                                     {{#unless isActiveRoute 'newCard'}}
                                         {{#unless isActiveRoute 'editCard'}}
@@ -314,21 +331,40 @@
                                     </div>
                                     <h3>{{subject}}</h3>
                                 </div>
-                                <div class="cardContent centered cardfront {{getCardBackground
-                                        difficulty}} detailfront{{@index}}"
-                                     style="display: {{#if isCardType 1}}{{#if reversedViewOrder}}none{{/if}}{{/if}}">
+                                {{#if isHintPreview}}
+                                    <div class="collapse in" id="hintPreview">
+                                        <div class="cardContent centered cardlecture detaillecture{{@index}}">
+                                            {{#mathjax}}{{hint}}{{/mathjax}}
+                                        </div>
+                                    </div>
+                                {{else}}
+                                    {{#unless isLecturePreview}}
+                                        <div class="cardContent centered cardfront {{getCardBackground
+                                                difficulty}} detailfront{{@index}}"
+                                             style="display: {{#if isCardType 1}}{{#if
+                                                     reversedViewOrder}}none{{/if}}{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
-                                    {{#mathjax}}{{front}}{{/mathjax}}
+                                        {{#mathjax}}{{front}}{{/mathjax}}
                                     </span>
-                                </div>
-                                <div class="cardContent centered cardback {{getCardBackground
-                                        difficulty}} detailback{{@index}}"
-                                     style="display: {{#if isCardType 1}}{{#unless
-                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
+                                        </div>
+                                        <div class="cardContent centered cardback {{getCardBackground
+                                                difficulty}} detailback{{@index}}"
+                                             style="display: {{#if isCardType 1}}{{#unless
+                                                     reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
                                         {{#mathjax}}{{back}}{{/mathjax}}
                                     </span>
-                                </div>
+                                        </div>
+                                    {{/unless}}
+                                    {{#if isCardType 2}}
+                                        <div class="collapse {{#if isLecturePreview}}in{{/if}}"
+                                             id="collapseLecture-{{_id}}">
+                                            <div class="cardContent centered cardlecture detaillecture{{@index}}">
+                                                {{#mathjax}}{{lecture}}{{/mathjax}}
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                {{/if}}
                             </div>
                         </div>
                     {{/each}}
