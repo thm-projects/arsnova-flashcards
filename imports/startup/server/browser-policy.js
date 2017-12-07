@@ -14,5 +14,7 @@ BrowserPolicy.content.allowOriginForAll('http://*.cloudflare.com');
 BrowserPolicy.content.allowOriginForAll('https://git.thm.de');
 BrowserPolicy.content.allowOriginForAll('https://cdn.mathjax.org');
 BrowserPolicy.content.allowOriginForAll('https://cdnjs.cloudflare.com');
+BrowserPolicy.content.allowOriginForAll('https://fonts.googleapis.com');
+BrowserPolicy.content.allowOriginForAll('https://fonts.gstatic.com');
 
 BrowserPolicy.content.allowImageOrigin('*');
