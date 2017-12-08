@@ -233,6 +233,7 @@ function resizeFlashcards() {
 	$('.cardContent').css('min-height', newFlashcardBodyHeight);
 	let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 	$('.center-align').css('margin-top', newCenterTextHeight);
+	$('.dictionaryFrame').css('min-height', newFlashcardBodyHeight);
 	setTimeout(resizeFlashcards, 125);
 }
 
