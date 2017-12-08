@@ -16,5 +16,6 @@ BrowserPolicy.content.allowOriginForAll('https://cdn.mathjax.org');
 BrowserPolicy.content.allowOriginForAll('https://cdnjs.cloudflare.com');
 BrowserPolicy.content.allowOriginForAll('https://fonts.googleapis.com');
 BrowserPolicy.content.allowOriginForAll('https://fonts.gstatic.com');
+BrowserPolicy.content.allowOriginForAll('https://dict.tu-chemnitz.de');
 
 BrowserPolicy.content.allowImageOrigin('*');
