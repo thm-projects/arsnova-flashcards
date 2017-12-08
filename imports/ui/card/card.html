@@ -260,14 +260,16 @@
                                                 </a>
                                             {{/if}}
                                         {{/unless}}
-                                        {{#if isCardType 2}}
+                                        {{#unless isCardType 0}}
+                                            {{#unless isCardType 3}}
                                             <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education"
+                                                    <span class="glyphicon glyphicon {{#if isCardType 2}}glyphicon-education{{else}}glyphicon-book{{/if}}"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                             </a>
-                                        {{/if}}
+                                            {{/unless}}
+                                        {{/unless}}
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
@@ -356,14 +358,24 @@
                                     </span>
                                         </div>
                                     {{/unless}}
-                                    {{#if isCardType 2}}
-                                        <div class="collapse {{#if isLecturePreview}}in{{/if}}"
-                                             id="collapseLecture-{{_id}}">
-                                            <div class="cardContent centered cardlecture detaillecture{{@index}}">
-                                                {{#mathjax}}{{lecture}}{{/mathjax}}
+                                    {{#unless isCardType 0}}
+                                        {{#unless isCardType 0}}
+                                            <div class="collapse {{#if isLecturePreview}}in{{/if}}"
+                                                 id="collapseLecture-{{_id}}">
+                                                <div class="cardContent {{#if isCardType 1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
+                                                    {{#if isCardType 1}}
+                                                        <iframe src="https://dict.tu-chemnitz.de/embed"
+                                                                width="100%" height="450px" frameborder="0"
+                                                                data-type="cardNavigation">
+                                                        </iframe>
+                                                    {{/if}}
+                                                    {{#if isCardType 2}}
+                                                        {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                    {{/if}}
+                                                </div>
                                             </div>
-                                        </div>
-                                    {{/if}}
+                                        {{/unless}}
+                                    {{/unless}}
                                 {{/if}}
                             </div>
                         </div>
