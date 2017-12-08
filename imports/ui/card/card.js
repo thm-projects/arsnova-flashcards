@@ -673,6 +673,9 @@ Template.subjectEditor.rendered = function () {
 Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
 		return ((this.difficulty === undefined && type === 0) || (type === this.difficulty));
+	},
+	isCardType: function (type) {
+		return Session.get('cardType') === type;
 	}
 });
 

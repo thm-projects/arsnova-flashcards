@@ -41,7 +41,11 @@
         {{> subjectEditor}}
     </div>
     <div id="difficulty" class="col-md-6 cardtext">
-        <h5>{{_ "difficulty"}}</h5>
+        {{#unless isCardType 3}}
+            <h5>{{_ "difficulty"}}</h5>
+        {{else}}
+            <h5>{{_ "difficultyNotes"}}</h5>
+        {{/unless}}
         {{> difficultyEditor}}
     </div>
     <div id="cardType" class="col-xs-12 col-md-5 cardtext">
@@ -131,7 +135,11 @@
             {{else}}
                 <input type="radio" name="difficulty" value="0">
             {{/if}}
-            {{_ "difficulty0"}}
+            {{#unless isCardType 3}}
+                {{_ "difficulty0"}}
+            {{else}}
+                {{_ "difficultyNotes0"}}
+            {{/unless}}
         </label>
         <label id="difficulty1"
                class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}"
@@ -141,8 +149,11 @@
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
-
-            {{_ "difficulty1"}}
+            {{#unless isCardType 3}}
+                {{_ "difficulty1"}}
+            {{else}}
+                {{_ "difficultyNotes1"}}
+            {{/unless}}
         </label>
         <label id="difficulty2"
                class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}"
@@ -152,7 +163,11 @@
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
-            {{_ "difficulty2"}}
+            {{#unless isCardType 3}}
+                {{_ "difficulty2"}}
+            {{else}}
+                {{_ "difficultyNotes2"}}
+            {{/unless}}
         </label>
         <label id="difficulty3"
                class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}"
@@ -162,7 +177,11 @@
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
-            {{_ "difficulty3"}}
+            {{#unless isCardType 3}}
+                {{_ "difficulty3"}}
+            {{else}}
+                {{_ "difficultyNotes3"}}
+            {{/unless}}
         </label>
     </div>
 </template>
@@ -262,12 +281,13 @@
                                         {{/unless}}
                                         {{#unless isCardType 0}}
                                             {{#unless isCardType 3}}
-                                            <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon {{#if isCardType 2}}glyphicon-education{{else}}glyphicon-book{{/if}}"
+                                                <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon {{#if isCardType
+                                                                                           2}}glyphicon-education{{else}}glyphicon-book{{/if}}"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                            </a>
+                                                </a>
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
@@ -362,9 +382,11 @@
                                         {{#unless isCardType 0}}
                                             <div class="collapse {{#if isLecturePreview}}in{{/if}}"
                                                  id="collapseLecture-{{_id}}">
-                                                <div class="cardContent {{#if isCardType 1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
+                                                <div class="cardContent {{#if isCardType
+                                                                              1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
                                                     {{#if isCardType 1}}
-                                                        <iframe class="dictionaryFrame" src="https://dict.tu-chemnitz.de/embed" frameborder="0"
+                                                        <iframe class="dictionaryFrame"
+                                                                src="https://dict.tu-chemnitz.de/embed" frameborder="0"
                                                                 data-type="cardNavigation">
                                                         </iframe>
                                                     {{/if}}
