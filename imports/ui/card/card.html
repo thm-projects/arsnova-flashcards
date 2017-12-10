@@ -119,7 +119,7 @@
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
         <label id="difficulty0"
-               class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isDifficultyChecked 0}}active{{/if}}"
+               class="col-xs-6 col-sm-3 btn btn-default {{#if isCardType 2}}btn-orange{{else}}btn-white{{/if}} {{#if isDifficultyChecked 0}}active{{/if}}"
                data-color="0">
             {{#if isDifficultyChecked 0}}
                 <input type="radio" name="difficulty" value="0" checked tabindex="2">
@@ -234,7 +234,7 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{getCardBackground difficulty}}-header">
+                                <div class="cardHeader {{getCardBackground difficulty cardType}}-header">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -356,7 +356,7 @@
                                 {{else}}
                                     {{#unless isLecturePreview}}
                                         <div class="cardContent centered cardfront {{getCardBackground
-                                                difficulty}} detailfront{{@index}}"
+                                                difficulty cardType}} detailfront{{@index}}"
                                              style="display: {{#if isCardType 1}}{{#if
                                                      reversedViewOrder}}none{{/if}}{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
@@ -364,7 +364,7 @@
                                     </span>
                                         </div>
                                         <div class="cardContent centered cardback {{getCardBackground
-                                                difficulty}} detailback{{@index}}"
+                                                difficulty cardType}} detailback{{@index}}"
                                              style="display: {{#if isCardType 1}}{{#unless
                                                      reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
