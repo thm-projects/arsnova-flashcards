@@ -41,7 +41,7 @@
         {{> subjectEditor}}
     </div>
     <div id="difficulty" class="col-md-6 cardtext">
-        {{#unless isCardType 3}}
+        {{#unless isCardType 2}}
             <h5>{{_ "difficulty"}}</h5>
         {{else}}
             <h5>{{_ "difficultyNotes"}}</h5>
@@ -54,21 +54,21 @@
     <div class="btn-group col-xs-12 editorNavigation cardtext" role="group">
         <h5>{{_ "content"}}</h5>
         <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}{{#unless isCardType
-                                                                                                          3}}col-sm-4{{/unless}}{{/if}}"
-                tabindex="4">{{#unless isCardType 3}}{{_ "frontside"}}{{else}}{{_ "cardType3"}}{{/unless}}</button>
-        {{#unless isCardType 3}}
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#unless isCardType
+                                                                                                          2}}col-sm-4{{/unless}}{{/if}}"
+                tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
+        {{#unless isCardType 2}}
             <button id="editBack" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-4{{/if}}"
                     tabindex="6">{{_
                     "backside"}}</button>
-            {{#if isCardType 2}}
+            {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                         tabindex="8">{{_
-                        "cardType2"}}</button>
+                        "lecture"}}</button>
             {{/if}}
             <button id="editHint" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-4{{/if}}"
                     tabindex="10">{{_
                     "hint"}}</button>
         {{/unless}}
@@ -85,7 +85,7 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType0" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+        <label id="cardType0" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
                 <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
@@ -94,7 +94,7 @@
             {{/if}}
             {{_ "cardType0"}}
         </label>
-        <label id="cardType1" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+        <label id="cardType1" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
                 <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
@@ -104,7 +104,7 @@
 
             {{_ "cardType1"}}
         </label>
-        <label id="cardType2" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+        <label id="cardType2" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
                 <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
@@ -112,15 +112,6 @@
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
             {{_ "cardType2"}}
-        </label>
-        <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
-               data-type="3">
-            {{#if isCardType 3}}
-                <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
-            {{else}}
-                <input type="radio" name="cardType" value="3" data-type="3">
-            {{/if}}
-            {{_ "cardType3"}}
         </label>
     </div>
 </template>
@@ -135,7 +126,7 @@
             {{else}}
                 <input type="radio" name="difficulty" value="0">
             {{/if}}
-            {{#unless isCardType 3}}
+            {{#unless isCardType 2}}
                 {{_ "difficulty0"}}
             {{else}}
                 {{_ "difficultyNotes0"}}
@@ -149,7 +140,7 @@
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
-            {{#unless isCardType 3}}
+            {{#unless isCardType 2}}
                 {{_ "difficulty1"}}
             {{else}}
                 {{_ "difficultyNotes1"}}
@@ -163,7 +154,7 @@
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
-            {{#unless isCardType 3}}
+            {{#unless isCardType 2}}
                 {{_ "difficulty2"}}
             {{else}}
                 {{_ "difficultyNotes2"}}
@@ -177,7 +168,7 @@
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
-            {{#unless isCardType 3}}
+            {{#unless isCardType 2}}
                 {{_ "difficulty3"}}
             {{else}}
                 {{_ "difficultyNotes3"}}
@@ -269,7 +260,25 @@
                                                 {{/if}}
                                             {{/unless}}
                                         {{/unless}}
-                                        {{#unless isCardType 3}}
+                                        {{#unless isCardType 2}}
+                                            {{#if isCardType 0}}
+                                                {{#if lecture}}
+                                                    <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-education"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                    </a>
+                                                {{/if}}
+                                            {{/if}}
+                                            {{#if isCardType 1}}
+                                                <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                </a>
+                                            {{/if}}
                                             {{#if hint}}
                                                 <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
@@ -278,17 +287,6 @@
                                                           data-target="#showHintModal"></span>
                                                 </a>
                                             {{/if}}
-                                        {{/unless}}
-                                        {{#unless isCardType 0}}
-                                            {{#unless isCardType 3}}
-                                                <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon {{#if isCardType
-                                                                                           2}}glyphicon-education{{else}}glyphicon-book{{/if}}"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-                                                </a>
-                                            {{/unless}}
                                         {{/unless}}
                                     </div>
                                     <div class="cardNumber">
@@ -302,7 +300,7 @@
                                         <span>{{getCardsetName}}</span><br>
                                         {{#unless isLecturePreview}}
                                             {{#unless isHintPreview}}
-                                                {{#unless isCardType 3}}
+                                                {{#unless isCardType 2}}
                                                     <span class="cardfront" style="display: {{#if isCardType 1}}{{#if
                                                             reversedViewOrder}}none{{/if}}{{/if}}">{{_
                                                             "frontside"}}</span><span
@@ -315,7 +313,7 @@
                                     </div>
                                     {{#unless isLecturePreview}}
                                         {{#unless isHintPreview}}
-                                            {{#unless isCardType 3}}
+                                            {{#unless isCardType 2}}
                                                 <div id="clicktoflip" class="clicktoflip">
                                                     <img id="iconfront" class="cardside cardfront-symbol"
                                                          src="/img/icon_front.png">
@@ -378,24 +376,23 @@
                                     </span>
                                         </div>
                                     {{/unless}}
-                                    {{#unless isCardType 0}}
-                                        {{#unless isCardType 0}}
-                                            <div class="collapse {{#if isLecturePreview}}in{{/if}}"
-                                                 id="collapseLecture-{{_id}}">
-                                                <div class="cardContent {{#if isCardType
-                                                                              1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
-                                                    {{#if isCardType 1}}
-                                                        <iframe class="dictionaryFrame"
-                                                                src="https://dict.tu-chemnitz.de/embed" frameborder="0"
-                                                                data-type="cardNavigation">
-                                                        </iframe>
-                                                    {{/if}}
-                                                    {{#if isCardType 2}}
-                                                        {{#mathjax}}{{lecture}}{{/mathjax}}
-                                                    {{/if}}
-                                                </div>
+                                    {{#unless isCardType 2}}
+                                        <div class="collapse {{#if isLecturePreview}}in{{/if}}"
+                                             id="collapseLecture-{{_id}}">
+                                            <div class="cardContent {{#if isCardType
+                                                                          1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
+
+                                                {{#if isCardType 0}}
+                                                    {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                {{/if}}
+                                                {{#if isCardType 1}}
+                                                    <iframe class="dictionaryFrame"
+                                                            src="https://dict.tu-chemnitz.de/embed" frameborder="0"
+                                                            data-type="cardNavigation">
+                                                    </iframe>
+                                                {{/if}}
                                             </div>
-                                        {{/unless}}
+                                        </div>
                                     {{/unless}}
                                 {{/if}}
                             </div>

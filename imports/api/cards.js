@@ -213,6 +213,7 @@ var CardsSchema = new SimpleSchema({
 	},
 	back: {
 		type: String,
+		optional: true,
 		max: 10000
 	},
 	cardset_id: {
@@ -259,6 +260,9 @@ Meteor.methods({
 		}
 		if (!cardset.shuffled) {
 			cardGroup = "0";
+		}
+		if (cardType !== 2 && (back === '' || back === undefined)) {
+			throw new Meteor.Error("Back is empty");
 		}
 		Cards.insert({
 			subject: subject,
@@ -397,7 +401,9 @@ Meteor.methods({
 				throw new Meteor.Error("not-authorized");
 			}
 		}
-
+		if (cardType !== 2 && (back === '' || back === undefined)) {
+			throw new Meteor.Error("Back is empty");
+		}
 		Cards.update(card_id, {
 			$set: {
 				subject: subject,
