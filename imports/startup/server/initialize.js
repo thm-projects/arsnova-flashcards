@@ -448,6 +448,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cards = Cards.find({cardType: 3}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					cardType: 2
+				}
+			}
+		);
+	}
+
 	cards = Cards.find({centerText: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		Cards.update({

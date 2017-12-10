@@ -326,7 +326,7 @@ Meteor.methods({
 					box: (l + 1),
 					active: false,
 					nextDate: {$lte: new Date()},
-					cardType: {$ne: 3}
+					cardType: {$ne: 2}
 				}).fetch();
 				// c-loop: update one random card out of the l loop
 				for (var c = 0; c < (cardset.maxCards * algorithm[l]); c++) {

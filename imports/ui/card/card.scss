@@ -432,19 +432,24 @@ img.cardside {
   margin-bottom: 0;
 }
 
-#editFront, #editBack, #editHint, #editPresentation {
+#editFront, #editBack, #editHint, #editLecture {
   @media(max-width: 767px) {
     padding: 20px 0 20px 0 !important;
   }
 }
 
-#editBack, #editPresentation {
+#editBack, #editLecture {
   border-left: 1px solid $color_btn_inactive;
-  border-right: 1px solid $color_btn_inactive;
   @media(max-width: 767px) {
     border-left: 0;
     border-right: 0;
     border-top: 1px solid $color_btn_inactive;
+  }
+}
+
+#editLecture {
+  border-right: 1px solid $color_btn_inactive;
+  @media(max-width: 767px) {
     border-bottom: 1px solid $color_btn_inactive;
   }
 }
@@ -522,7 +527,6 @@ img.cardside {
 #set-details-region {
   margin-bottom: 0;
 }
-
 
 #cardType {
   @media(min-width: 992px) {
