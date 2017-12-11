@@ -213,6 +213,7 @@ var CardsSchema = new SimpleSchema({
 	},
 	back: {
 		type: String,
+		optional: true,
 		max: 10000
 	},
 	cardset_id: {
@@ -223,13 +224,24 @@ var CardsSchema = new SimpleSchema({
 	},
 	cardGroup: {
 		type: String
+	},
+	cardType: {
+		type: Number
+	},
+	lecture: {
+		type: String,
+		optional: true,
+		max: 30000
+	},
+	centerText: {
+		type: Boolean
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerText) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -237,6 +249,9 @@ Meteor.methods({
 		check(back, String);
 		check(difficulty, Number);
 		check(cardGroup, String);
+		check(cardType, Number);
+		check(lecture, String);
+		check(centerText, Boolean);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
@@ -246,6 +261,9 @@ Meteor.methods({
 		if (!cardset.shuffled) {
 			cardGroup = "0";
 		}
+		if (cardType !== 2 && (back === '' || back === undefined)) {
+			throw new Meteor.Error("Back is empty");
+		}
 		Cards.insert({
 			subject: subject,
 			hint: hint,
@@ -253,7 +271,10 @@ Meteor.methods({
 			back: back,
 			cardset_id: cardset_id,
 			difficulty: difficulty,
-			cardGroup: cardGroup
+			cardGroup: cardGroup,
+			cardType: cardType,
+			lecture: lecture,
+			centerText: centerText
 		}, function (err, card) {
 			card_id = card;
 		});
@@ -284,7 +305,7 @@ Meteor.methods({
 				if (card.hint !== undefined) {
 					hint = card.hint;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0");
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0", card.cardType, card.lecture);
 				return true;
 			}
 		} else {
@@ -358,13 +379,16 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty) {
+	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerText) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
+		check(cardType, Number);
+		check(lecture, String);
+		check(centerText, Boolean);
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
@@ -377,14 +401,19 @@ Meteor.methods({
 				throw new Meteor.Error("not-authorized");
 			}
 		}
-
+		if (cardType !== 2 && (back === '' || back === undefined)) {
+			throw new Meteor.Error("Back is empty");
+		}
 		Cards.update(card_id, {
 			$set: {
 				subject: subject,
 				hint: hint,
 				front: front,
 				back: back,
-				difficulty: difficulty
+				difficulty: difficulty,
+				cardType: cardType,
+				lecture: lecture,
+				centerText: centerText
 			}
 		});
 		Cardsets.update(card.cardset_id, {

@@ -75,7 +75,8 @@ Meteor.methods({
 				});
 			} else {
 				cards = Cards.find({
-					cardset_id: cardset._id
+					cardset_id: cardset._id,
+					card_type: {$ne: 3}
 				});
 			}
 			cards.forEach(function (card) {
@@ -98,11 +99,13 @@ Meteor.methods({
 			let cards;
 			if (cardset.shuffled) {
 				cards = Cards.find({
-					cardset_id: {$in: cardset.cardGroups}
+					cardset_id: {$in: cardset.cardGroups},
+					card_type: {$ne: 3}
 				});
 			} else {
 				cards = Cards.find({
-					cardset_id: cardset._id
+					cardset_id: cardset._id,
+					card_type: {$ne: 3}
 				});
 			}
 			cards.forEach(function (card) {
@@ -322,7 +325,8 @@ Meteor.methods({
 					user_id: user._id,
 					box: (l + 1),
 					active: false,
-					nextDate: {$lte: new Date()}
+					nextDate: {$lte: new Date()},
+					cardType: {$ne: 2}
 				}).fetch();
 				// c-loop: update one random card out of the l loop
 				for (var c = 0; c < (cardset.maxCards * algorithm[l]); c++) {

@@ -596,7 +596,7 @@ button:disabled {
   z-index: 150;
 }
 
-.md-header .fa {
+.md-header .fa, .md-header .center-button {
   margin: 0 auto;
   font-size: 24px;
   padding: 3px 6px;
@@ -606,8 +606,13 @@ button:disabled {
   background-color: $white;
 }
 
-.md-header .fa:hover {
+.md-header .fa:hover, .md-header .center-button:hover {
   background-color: $color_athens_gray_approx;
+}
+
+.md-header .pressed {
+  background-color: $color_thm_gray !important;
+  color: $color_athens_gray_approx !important;
 }
 
 .fa-link:before {
