@@ -36,11 +36,11 @@
 
 <template name="editor">
     {{getContent}}
-    <div id="subject" class="col-md-6 cardtext">
+    <div id="subject" class="col-md-6 cardtext editorElement">
         <h5>{{_ "cardsubject"}}</h5>
         {{> subjectEditor}}
     </div>
-    <div id="difficulty" class="col-md-6 cardtext">
+    <div id="difficulty" class="col-md-6 cardtext editorElement">
         {{#unless isCardType 2}}
             <h5>{{_ "difficulty"}}</h5>
         {{else}}
@@ -48,10 +48,10 @@
         {{/unless}}
         {{> difficultyEditor}}
     </div>
-    <div id="cardType" class="col-xs-12 col-md-5 cardtext">
+    <div id="cardType" class="col-xs-12 col-md-5 cardtext editorElement">
         {{> cardType}}
     </div>
-    <div class="btn-group col-xs-12 editorNavigation cardtext" role="group">
+    <div class="btn-group col-xs-12 editorNavigation cardtext editorElement" role="group">
         <h5>{{_ "content"}}</h5>
         <button id="editFront" type="button"
                 class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#unless isCardType
@@ -73,11 +73,11 @@
                     "hint"}}</button>
         {{/unless}}
     </div>
-    <div id="editor" class="col-xs-12 cardtext" data-content="{{front}}">
+    <div id="editor" class="col-xs-12 cardtext editorElement" data-content="{{front}}">
         {{> contentEditor}}
     </div>
     <div id="preview" class="col-xs-12 cardtext">
-        <h5>{{_ "preview"}}</h5>
+        <h5 class="editorElement">{{_ "preview"}}</h5>
         {{> flashcards cardset=this}}
     </div>
     {{> btnCard}}
@@ -198,7 +198,7 @@
 </template>
 
 <template name="btnCard">
-    <div class="actionButtons col-md-12">
+    <div class="actionButtons col-md-12 editorElement">
         <br>
         <button id="cardSave"
                 class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="12">
@@ -325,16 +325,12 @@
                                             {{/unless}}
                                         {{/unless}}
                                     {{/unless}}
-                                    {{#unless isActiveRoute 'newCard'}}
-                                        {{#unless isActiveRoute 'editCard'}}
-                                            <a href="#" id="toggleFullscreen"
-                                               class="fullscreen"
-                                               data-type="cardNavigation">
+                                    <a href="#" id="toggleFullscreen"
+                                       class="fullscreen"
+                                       data-type="cardNavigation">
                                                 <span class="glyphicon glyphicon-fullscreen"
                                                       data-type="cardNavigation"></span>
-                                            </a>
-                                        {{/unless}}
-                                    {{/unless}}
+                                    </a>
                                     <br>
                                     <div class="leftHeader2">
                                         {{#if canCopyCard this.cardset_id}}
