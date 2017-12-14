@@ -511,6 +511,10 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
+						if (Number(cardType) !== 1) {
+							Session.set('centerText', false);
+							$(".center-button").removeClass('pressed');
+						}
 						window.scrollTo(0, 0);
 						$('#editFront').click();
 						$('#difficulty0').click();
