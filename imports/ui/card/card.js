@@ -190,6 +190,83 @@ export function tex(e) {
 	e.setSelection(cursor, cursor + chunk.length);
 }
 
+/**
+ * Adjust the width of the fixed answer options to fit the screen
+ */
+export function resizeAnswers() {
+	$("#answerOptions").width($("#backButton").width() + 16);
+}
+
+let editorFullScreenActive = false;
+/**
+ * Resizes flashcards to din a6 format
+ */
+function resizeFlashcards() {
+	let newFlashcardBodyHeight;
+	if (editorFullScreenActive) {
+		newFlashcardBodyHeight = ($(window).height() * 0.78);
+		$('#contentEditor').css('min-height', newFlashcardBodyHeight);
+	} else {
+		$('#contentEditor').css('min-height', 'unset');
+		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
+		$('.cardContent').css('min-height', newFlashcardBodyHeight);
+		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
+		$('.center-align').css('margin-top', newCenterTextHeight);
+		$('.dictionaryFrame').css('min-height', newFlashcardBodyHeight);
+	}
+	setTimeout(resizeFlashcards, 125);
+}
+
+let lastEditMode = 0;
+
+/**
+ * Toggle the card view between fullscreen and normal mode
+ */
+export function toggleFullscreen(forceOff = false, isEditor = false) {
+	if (Session.get('fullscreen') || forceOff) {
+		Session.set('fullscreen', false);
+		$("#theme-wrapper").css("margin-top", "100px");
+		$("#answerOptions").css("margin-top", "0");
+		$(".editorElement").css("display", '');
+		$("#preview").css("display", "unset");
+		$(".editorToolbar").css("display", '');
+		$(".fullscreen-button").removeClass("pressed");
+		editorFullScreenActive = false;
+		if (lastEditMode === 2) {
+			$(".glyphicon-education").data.css("height", "unset");
+		}
+		Session.set('activeEditMode', lastEditMode);
+	} else {
+		Session.set('fullscreen', true);
+		$("#theme-wrapper").css("margin-top", "20px");
+		$("#answerOptions").css("margin-top", "-80px");
+		$(".editorElement").css("display", "none");
+		if (isEditor) {
+			$("#preview").css("display", "none");
+			editorFullScreenActive = true;
+			$(".fullscreen-button").addClass("pressed");
+		} else {
+			$(".editorToolbar").css("display", "none");
+		}
+		lastEditMode = Session.get('activeEditMode');
+		if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
+			Session.set('activeEditMode', 0);
+		}
+	}
+}
+
+/**
+ * Function changes from the backside to the front side of
+ * a card or the other way around
+ */
+export function turnCard() {
+	if ($(".cardfront").css('display') === 'none') {
+		turnFront();
+	} else if ($(".cardback").css('display') === 'none') {
+		turnBack();
+	}
+}
+
 let additionalButtons = [
 	[{
 		name: "groupCustom",
@@ -216,67 +293,17 @@ let additionalButtons = [
 					Session.set('centerText', true);
 				}
 			}
+		}, {
+			name: 'cmdFullscreen',
+			title: 'fullscreen',
+			icon: 'glyphicon fullscreen-button',
+			callback: function () {
+				toggleFullscreen(false, true);
+			}
 		}
 		]
 	}]
 ];
-
-/**
- * Adjust the width of the fixed answer options to fit the screen
- */
-export function resizeAnswers() {
-	$("#answerOptions").width($("#backButton").width() + 16);
-}
-
-/**
- * Resizes flashcards to din a6 format
- */
-function resizeFlashcards() {
-	let newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
-	$('.cardContent').css('min-height', newFlashcardBodyHeight);
-	let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
-	$('.center-align').css('margin-top', newCenterTextHeight);
-	$('.dictionaryFrame').css('min-height', newFlashcardBodyHeight);
-	setTimeout(resizeFlashcards, 125);
-}
-
-let lastEditMode = 0;
-/**
- * Toggle the card view between fullscreen and normal mode
- */
-export function toggleFullscreen(forceOff = false) {
-	if (Session.get('fullscreen') || forceOff) {
-		Session.set('fullscreen', false);
-		$("#theme-wrapper").css("margin-top", "100px");
-		$("#answerOptions").css("margin-top", "0");
-		$(".editorElement").css("display", "unset");
-		if (lastEditMode === 2) {
-			$(".glyphicon-education").data.css("height", "unset");
-		}
-		Session.set('activeEditMode', lastEditMode);
-	} else {
-		Session.set('fullscreen', true);
-		$("#theme-wrapper").css("margin-top", "20px");
-		$("#answerOptions").css("margin-top", "-80px");
-		$(".editorElement").css("display", "none");
-		lastEditMode = Session.get('activeEditMode');
-		if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
-			Session.set('activeEditMode', 0);
-		}
-	}
-}
-
-/**
- * Function changes from the backside to the front side of
- * a card or the other way around
- */
-export function turnCard() {
-	if ($(".cardfront").css('display') === 'none') {
-		turnFront();
-	} else if ($(".cardback").css('display') === 'none') {
-		turnBack();
-	}
-}
 
 /**
  * Function checks if route is a Box
@@ -645,6 +672,7 @@ Template.contentEditor.rendered = function () {
 	}
 	$(".md-header").append($("#cardType"));
 	$(".center-button").text('vertical_align_center');
+	$(".fullscreen-button").addClass('glyphicon-fullscreen');
 };
 
 Template.contentEditor.events({

@@ -48,11 +48,11 @@
         {{/unless}}
         {{> difficultyEditor}}
     </div>
-    <div id="cardType" class="col-xs-12 col-md-5 cardtext editorElement">
+    <div id="cardType" class="col-xs-12 col-md-5 cardtext editorToolbar">
         {{> cardType}}
     </div>
-    <div class="btn-group col-xs-12 editorNavigation cardtext editorElement" role="group">
-        <h5>{{_ "content"}}</h5>
+    <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
+        <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
                 class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#unless isCardType
                                                                                                           2}}col-sm-4{{/unless}}{{/if}}"
@@ -73,7 +73,7 @@
                     "hint"}}</button>
         {{/unless}}
     </div>
-    <div id="editor" class="col-xs-12 cardtext editorElement" data-content="{{front}}">
+    <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
     </div>
     <div id="preview" class="col-xs-12 cardtext">
