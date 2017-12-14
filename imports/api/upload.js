@@ -38,6 +38,10 @@ Meteor.methods({
 			if (item.centerText === undefined) {
 				item.centerText = false;
 			}
+
+			if (item.date === undefined) {
+				item.date = new Date();
+			}
 		}
 
 		for (let i = 0; i < data.length; i++) {

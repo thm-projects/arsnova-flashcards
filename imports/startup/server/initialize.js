@@ -474,6 +474,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cards = Cards.find({date: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					date: new Date()
+				}
+			}
+		);
+	}
+
 	let cardsets = Cardsets.find({skillLevel: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({

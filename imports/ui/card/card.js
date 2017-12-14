@@ -38,6 +38,9 @@ function initializeContent() {
 	if (Session.get('centerText') === undefined) {
 		Session.set('centerText', false);
 	}
+	if (Session.get('cardDate') === undefined) {
+		Session.set('cardDate', new Date());
+	}
 }
 
 function turnBack() {
@@ -375,7 +378,8 @@ function getEditModeCard() {
 		"cardGroup": 0,
 		"cardType": Session.get('cardType'),
 		"lecture": Session.get('lectureText'),
-		"centerText": Session.get('centerText')
+		"centerText": Session.get('centerText'),
+		"date": Session.get('cardDate')
 	}];
 }
 
@@ -417,7 +421,7 @@ function saveCard(card_id, returnToCardset) {
 	let lectureText = Session.get('lectureText');
 	let cardType = Session.get('cardType');
 	let centerText = Session.get('centerText');
-
+	let date = Session.get('cardDate');
 	if (lectureText === undefined) {
 		lectureText = '';
 	}
@@ -465,7 +469,7 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerText, function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerText, date, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -487,7 +491,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerText);
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerText, date);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
@@ -876,6 +880,12 @@ Template.flashcards.helpers({
 	},
 	isHintPreview: function () {
 		return (Session.get('activeEditMode') === 2 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+	},
+	getCardDate: function () {
+		return moment(this.date).format("DD.MM.YYYY");
+	},
+	getCardTime: function () {
+		return moment(this.date).format("HH:MM");
 	}
 });
 
