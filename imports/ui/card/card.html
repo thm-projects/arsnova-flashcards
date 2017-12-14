@@ -85,6 +85,15 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
+        <label id="cardType2" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+               data-type="2">
+            {{#if isCardType 2}}
+                <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
+            {{else}}
+                <input type="radio" name="cardType" value="2" data-type="2">
+            {{/if}}
+            {{_ "cardType2"}}
+        </label>
         <label id="cardType0" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
@@ -103,15 +112,6 @@
             {{/if}}
 
             {{_ "cardType1"}}
-        </label>
-        <label id="cardType2" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
-               data-type="2">
-            {{#if isCardType 2}}
-                <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
-            {{else}}
-                <input type="radio" name="cardType" value="2" data-type="2">
-            {{/if}}
-            {{_ "cardType2"}}
         </label>
     </div>
 </template>

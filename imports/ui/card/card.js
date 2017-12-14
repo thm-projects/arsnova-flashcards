@@ -29,7 +29,7 @@ function initializeContent() {
 	}
 
 	if (Session.get('cardType') === undefined) {
-		Session.set('cardType', 0);
+		Session.set('cardType', 2);
 	}
 	if (Session.get('lectureText') === undefined) {
 		Session.set('lectureText', '');
