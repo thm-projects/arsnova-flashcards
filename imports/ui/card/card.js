@@ -29,7 +29,7 @@ function initializeContent() {
 	}
 
 	if (Session.get('cardType') === undefined) {
-		Session.set('cardType', 0);
+		Session.set('cardType', 2);
 	}
 	if (Session.get('lectureText') === undefined) {
 		Session.set('lectureText', '');
@@ -237,6 +237,7 @@ function resizeFlashcards() {
 	setTimeout(resizeFlashcards, 125);
 }
 
+let lastEditMode = 0;
 /**
  * Toggle the card view between fullscreen and normal mode
  */
@@ -245,10 +246,20 @@ export function toggleFullscreen(forceOff = false) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "100px");
 		$("#answerOptions").css("margin-top", "0");
+		$(".editorElement").css("display", "unset");
+		if (lastEditMode === 2) {
+			$(".glyphicon-education").data.css("height", "unset");
+		}
+		Session.set('activeEditMode', lastEditMode);
 	} else {
 		Session.set('fullscreen', true);
 		$("#theme-wrapper").css("margin-top", "20px");
 		$("#answerOptions").css("margin-top", "-80px");
+		$(".editorElement").css("display", "none");
+		lastEditMode = Session.get('activeEditMode');
+		if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
+			Session.set('activeEditMode', 0);
+		}
 	}
 }
 
