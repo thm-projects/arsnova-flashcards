@@ -28,9 +28,14 @@ function initializeContent() {
 		Session.set('hintText', '');
 	}
 
+	if (Session.get('difficultyColor') === undefined) {
+		Session.set('difficultyColor', 0);
+	}
+
 	if (Session.get('cardType') === undefined) {
 		Session.set('cardType', 2);
 	}
+
 	if (Session.get('lectureText') === undefined) {
 		Session.set('lectureText', '');
 	}
@@ -521,6 +526,7 @@ function saveCard(card_id, returnToCardset) {
 					} else {
 						$('#contentEditor').val('');
 						$('#editor').attr('data-content', '');
+						Session.set('difficultyColor', 0);
 						Session.set('frontText', '');
 						Session.set('backText', '');
 						Session.set('hintText', '');
@@ -731,8 +737,8 @@ Template.subjectEditor.rendered = function () {
  */
 
 Template.difficultyEditor.helpers({
-	isDifficultyChecked: function (type) {
-		return type === this.difficulty;
+	isDifficultyChecked: function (difficulty) {
+		return difficulty === Session.get('difficultyColor');
 	},
 	isCardType: function (type) {
 		return Session.get('cardType') === type;
@@ -744,23 +750,6 @@ Template.difficultyEditor.events({
 		Session.set('difficultyColor', Number($(event.target).data('color')));
 	}
 });
-
-Template.difficultyEditor.onRendered(function () {
-	Session.set('difficultyColor', Number($('input[name=difficulty]:checked').val()));
-	$(this.find('#difficulty0')).on('change keypress paste focus textInput input', function () {
-		Session.set('difficultyColor', Number($('#difficulty0').data('color')));
-	});
-	$(this.find('#difficulty1')).on('change keypress paste focus textInput input', function () {
-		Session.set('difficultyColor', Number($('#difficulty1').data('color')));
-	});
-	$(this.find('#difficulty2')).on('change keypress paste focus textInput input', function () {
-		Session.set('difficultyColor', Number($('#difficulty2').data('color')));
-	});
-	$(this.find('#difficulty3')).on('change keypress paste focus textInput input', function () {
-		Session.set('difficultyColor', Number($('#difficulty3').data('color')));
-	});
-});
-
 
 /*
  * ############################################################################
@@ -918,20 +907,20 @@ Template.flashcards.helpers({
 		return Session.get('reverseViewOrder');
 	},
 	isFrontPreview: function () {
-		return (Session.get('activeEditMode') === 0 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+		return (Session.get('activeEditMode') === 0 && isEditMode());
 	},
 	isBackPreview: function () {
-		return (Session.get('activeEditMode') === 1 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+		return (Session.get('activeEditMode') === 1 && isEditMode());
 	},
 	isLecturePreview: function () {
 		if (this.cardType === 0) {
-			return (Session.get('activeEditMode') === 3 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+			return (Session.get('activeEditMode') === 3 && isEditMode());
 		} else {
 			return false;
 		}
 	},
 	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+		return (Session.get('activeEditMode') === 2 && isEditMode());
 	},
 	getCardDate: function () {
 		return moment(this.date).format("DD.MM.YYYY");
@@ -1072,4 +1061,5 @@ Template.newCard.onCreated(function () {
 	Session.set('backText', '');
 	Session.set('hintText', '');
 	Session.set('lectureText', '');
+	Session.set('difficultyColor', 0);
 });

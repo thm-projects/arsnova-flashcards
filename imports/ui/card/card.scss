@@ -489,6 +489,12 @@ img.cardside {
   margin-bottom: 0;
 }
 
+.editorNavigation >.btn-primary:hover {
+  cursor: default;
+  box-shadow: none !important;
+  z-index: 0 !important;
+}
+
 #editFront, #editBack, #editHint, #editLecture {
   @media(max-width: 767px) {
     padding: 20px 0 20px 0 !important;
