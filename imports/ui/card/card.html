@@ -235,7 +235,7 @@
                 <div class="carousel-inner">
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
-                            <div class="{{#if isEditMode}}boxPreview{{else}}box{{/if}} flashcard">
+                            <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType}}-header">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}

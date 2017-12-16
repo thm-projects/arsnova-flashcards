@@ -94,7 +94,6 @@ function turnFront() {
 Session.set('activeEditMode', 0);
 
 function defaultToFront(cardType) {
-	turnFront();
 	Session.set('activeEditMode', 0);
 	$('#contentEditor').val(Session.get('frontText'));
 	Session.set('cardType', cardType);
@@ -102,10 +101,10 @@ function defaultToFront(cardType) {
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
 	$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
+	turnFront();
 }
 
 function editFront() {
-	turnFront();
 	isTextCentered();
 	Session.set('activeEditMode', 0);
 	$('#contentEditor').focus();
@@ -118,10 +117,10 @@ function editFront() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
+	turnFront();
 }
 
 function editBack() {
-	turnFront();
 	isTextCentered();
 	Session.set('activeEditMode', 1);
 	$('#contentEditor').focus();
@@ -134,10 +133,10 @@ function editBack() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
+	turnFront();
 }
 
 function editLecture() {
-	turnFront();
 	isTextCentered();
 	Session.set('activeEditMode', 3);
 	$('#contentEditor').focus();
@@ -150,10 +149,10 @@ function editLecture() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-default').addClass('btn-primary');
 	}
+	turnFront();
 }
 
 function editHint() {
-	turnFront();
 	isTextCentered();
 	Session.set('activeEditMode', 2);
 	$('#contentEditor').focus();
@@ -166,6 +165,7 @@ function editHint() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
+	turnFront();
 }
 
 /**
@@ -265,7 +265,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$(".editorToolbar").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
 		editorFullScreenActive = false;
-		if (isEditor && !Session.get('fullscreen')) {
+		if (isEditor) {
 			switch (lastEditMode) {
 				case 0:
 					editFront();
@@ -281,6 +281,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 					break;
 			}
 		}
+		turnFront();
 		Session.set('activeEditMode', lastEditMode);
 	} else {
 		Session.set('fullscreen', true);
