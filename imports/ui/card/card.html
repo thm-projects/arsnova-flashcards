@@ -234,7 +234,7 @@
                 <div class="carousel-inner">
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
-                            <div class="box flashcard">
+                            <div class="{{#if isEditMode}}boxPreview{{else}}box{{/if}} flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType}}-header">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
@@ -261,33 +261,35 @@
                                                 {{/if}}
                                             {{/unless}}
                                         {{/unless}}
-                                        {{#unless isCardType 2}}
-                                            {{#if isCardType 0}}
-                                                {{#if lecture}}
-                                                    <a href="#" id="showLecture">
+                                        {{#unless isEditMode}}
+                                            {{#unless isCardType 2}}
+                                                {{#if isCardType 0}}
+                                                    {{#if lecture}}
+                                                        <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-education"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                        </a>
+                                                    {{/if}}
+                                                {{/if}}
+                                                {{#if isCardType 1}}
+                                                    <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-book"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                                     </a>
                                                 {{/if}}
-                                            {{/if}}
-                                            {{#if isCardType 1}}
-                                                <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-                                                </a>
-                                            {{/if}}
-                                            {{#if hint}}
-                                                <a href="#" id="showHint">
+                                                {{#if hint}}
+                                                    <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                                </a>
-                                            {{/if}}
+                                                    </a>
+                                                {{/if}}
+                                            {{/unless}}
                                         {{/unless}}
                                     </div>
                                     <div class="cardNumber">
@@ -302,28 +304,37 @@
                                         {{#unless isLecturePreview}}
                                             {{#unless isHintPreview}}
                                                 {{#unless isCardType 2}}
-                                                    <span class="cardfront" style="display: {{#if isCardType 1}}{{#if
-                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{_
-                                                            "frontside"}}</span><span
-                                                        class="cardback" style="display: {{#if isCardType 1}}{{#unless
-                                                        reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
-                                                        "backside"}}</span>
+                                                    {{#unless isEditMode}}
+                                                        <span class="cardfront"
+                                                              style="display: {{#if isCardType 1}}{{#if
+                                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{_
+                                                                "frontside"}}</span><span
+                                                            class="cardback"
+                                                            style="display: {{#if isCardType 1}}{{#unless
+                                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
+                                                            "backside"}}</span>
+                                                    {{else}}
+                                                        {{#if isFrontPreview}}
+                                                            <span class="cardSideText">{{_ "frontside"}}</span>
+                                                        {{/if}}
+                                                        {{#if isBackPreview}}
+                                                            <span class="cardSideText">{{_ "backside"}}</span>
+                                                        {{/if}}
+                                                    {{/unless}}
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
-                                    {{#unless isLecturePreview}}
-                                        {{#unless isHintPreview}}
-                                            {{#unless isCardType 2}}
-                                                <div id="clicktoflip" class="clicktoflip">
-                                                    <img id="iconfront" class="cardside cardfront-symbol"
-                                                         src="/img/icon_front.png">
-                                                    <img id="iconback" class="cardside cardback-symbol"
-                                                         src="/img/icon_back.png"
-                                                         style="display: none;">
-                                                    {{_ "turn"}}
-                                                </div>
-                                            {{/unless}}
+                                    {{#unless isEditMode}}
+                                        {{#unless isCardType 2}}
+                                            <div id="clicktoflip" class="clicktoflip">
+                                                <img id="iconfront" class="cardside cardfront-symbol"
+                                                     src="/img/icon_front.png">
+                                                <img id="iconback" class="cardside cardback-symbol"
+                                                     src="/img/icon_back.png"
+                                                     style="display: none;">
+                                                {{_ "turn"}}
+                                            </div>
                                         {{/unless}}
                                     {{/unless}}
                                     <a href="#" id="toggleFullscreen"
@@ -354,33 +365,46 @@
                                     </div>
                                     <h3>{{subject}}</h3>
                                 </div>
-                                {{#if isHintPreview}}
-                                    <div class="collapse in" id="hintPreview">
-                                        <div class="cardContent centered cardlecture detaillecture{{@index}}">
-                                            {{#mathjax}}{{hint}}{{/mathjax}}
-                                        </div>
+                                {{#if isEditMode}}
+                                    <div class="cardContent centered {{#if
+                                            isFrontPreview}}cardfront {{getCardBackground difficulty
+                                                                                          cardType}} detailfront{{else}}{{#if
+                                            isBackPreview}}cardfront {{getCardBackground difficulty
+                                                                                         cardType}} detailfront{{else}}cardlecture detaillecture{{/if}}{{/if}}{{@index}}">
+                                        <span class="{{#if centerText}}center-align{{/if}}">
+                                        {{#if isFrontPreview}}
+                                            {{#mathjax}}{{front}}{{/mathjax}}
+                                        {{/if}}
+                                            {{#if isBackPreview}}
+                                                {{#mathjax}}{{back}}{{/mathjax}}
+                                            {{/if}}
+                                            {{#if isLecturePreview}}
+                                                {{#mathjax}}{{lecture}}{{/mathjax}}
+                                            {{/if}}
+                                            {{#if isHintPreview}}
+                                                {{#mathjax}}{{hint}}{{/mathjax}}
+                                            {{/if}}
+                                    </span>
                                     </div>
                                 {{else}}
-                                    {{#unless isLecturePreview}}
-                                        <div class="cardContent centered cardfront {{getCardBackground
-                                                difficulty cardType}} detailfront{{@index}}"
-                                             style="display: {{#if isCardType 1}}{{#if
-                                                     reversedViewOrder}}none{{/if}}{{/if}}">
+                                    <div class="cardContent centered cardfront {{getCardBackground
+                                            difficulty cardType}} detailfront{{@index}}"
+                                         style="display: {{#if isCardType 1}}{{#if
+                                                 reversedViewOrder}}none{{/if}}{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
                                         {{#mathjax}}{{front}}{{/mathjax}}
                                     </span>
-                                        </div>
-                                        <div class="cardContent centered cardback {{getCardBackground
-                                                difficulty cardType}} detailback{{@index}}"
-                                             style="display: {{#if isCardType 1}}{{#unless
-                                                     reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
+                                    </div>
+                                    <div class="cardContent centered cardback {{getCardBackground
+                                            difficulty cardType}} detailback{{@index}}"
+                                         style="display: {{#if isCardType 1}}{{#unless
+                                                 reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if centerText}}center-align{{/if}}">
                                         {{#mathjax}}{{back}}{{/mathjax}}
                                     </span>
-                                        </div>
-                                    {{/unless}}
+                                    </div>
                                     {{#unless isCardType 2}}
-                                        <div class="collapse {{#if isLecturePreview}}in{{/if}}"
+                                        <div class="collapsed collapse"
                                              id="collapseLecture-{{_id}}">
                                             <div class="cardContent {{#if isCardType
                                                                           1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">

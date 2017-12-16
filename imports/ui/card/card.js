@@ -77,6 +77,7 @@ function defaultToFront(cardType) {
 }
 
 function editFront() {
+	turnFront();
 	Session.set('activeEditMode', 0);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 5);
@@ -88,10 +89,10 @@ function editFront() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
-	turnFront();
 }
 
 function editBack() {
+	turnFront();
 	Session.set('activeEditMode', 1);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 7);
@@ -103,7 +104,6 @@ function editBack() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
-	turnBack();
 }
 
 function editLecture() {
@@ -198,6 +198,7 @@ export function resizeAnswers() {
 }
 
 let editorFullScreenActive = false;
+
 /**
  * Resizes flashcards to din a6 format
  */
@@ -232,8 +233,21 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$(".editorToolbar").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
 		editorFullScreenActive = false;
-		if (lastEditMode === 2) {
-			$(".glyphicon-education").data.css("height", "unset");
+		if (!isEditor) {
+			switch (lastEditMode) {
+				case 0:
+					editFront();
+					break;
+				case 1:
+					editBack();
+					break;
+				case 2:
+					editHint();
+					break;
+				case 3:
+					editLecture();
+					break;
+			}
 		}
 		Session.set('activeEditMode', lastEditMode);
 	} else {
@@ -718,7 +732,7 @@ Template.subjectEditor.rendered = function () {
 
 Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (type) {
-		return ((this.difficulty === undefined && type === 0) || (type === this.difficulty));
+		return type === this.difficulty;
 	},
 	isCardType: function (type) {
 		return Session.get('cardType') === type;
@@ -847,7 +861,7 @@ Template.flashcards.helpers({
 		return isMemo();
 	},
 	isEditMode: function () {
-		return isEditMode();
+		return (isEditMode() && !Session.get('fullscreen'));
 	},
 	box: function () {
 		return Session.get("selectedBox");
@@ -903,6 +917,12 @@ Template.flashcards.helpers({
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
 	},
+	isFrontPreview: function () {
+		return (Session.get('activeEditMode') === 0 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+	},
+	isBackPreview: function () {
+		return (Session.get('activeEditMode') === 1 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
+	},
 	isLecturePreview: function () {
 		if (this.cardType === 0) {
 			return (Session.get('activeEditMode') === 3 && (Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard"));
@@ -930,7 +950,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if (Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && this.cardType !== 2 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if ((isEditMode() && Session.get('fullscreen')) && this.cardType !== 2 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},

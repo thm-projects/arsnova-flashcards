@@ -173,7 +173,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   border-radius: 4px;
 }
 
-.box {
+.box, .boxPreview {
   border: 1px solid $color_alto_approx;
   font-family: $font_0, $font_1;
   margin: 0 auto;
