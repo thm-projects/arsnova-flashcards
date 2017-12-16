@@ -132,6 +132,10 @@ $themes: (
     .md-editor {
       border: 1px solid $primary-color;
     }
+
+    .editorNavigation >.btn-primary:hover {
+      background-color: $primary-color !important;
+    }
   }
 }
 

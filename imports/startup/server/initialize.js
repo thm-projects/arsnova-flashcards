@@ -181,7 +181,7 @@ var initTestNotificationsCards = function () {
 			"cardGroup": "0",
 			"cardType": 0,
 			"lecture": "",
-			"centerText": false
+			"centerTextElement": [false, false, false, false]
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -194,7 +194,7 @@ var initTestNotificationsCards = function () {
 			"cardGroup": "0",
 			"cardType": 0,
 			"lecture": "",
-			"centerText": false
+			"centerTextElement": [false, false, false, false]
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -207,7 +207,7 @@ var initTestNotificationsCards = function () {
 			"cardGroup": "0",
 			"cardType": 0,
 			"lecture": "",
-			"centerText": false
+			"centerTextElement": [false, false, false, false]
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -220,7 +220,7 @@ var initTestNotificationsCards = function () {
 			"cardGroup": "0",
 			"cardType": 0,
 			"lecture": "",
-			"centerText": false
+			"centerTextElement": [false, false, false, false]
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -233,7 +233,7 @@ var initTestNotificationsCards = function () {
 			"cardGroup": "0",
 			"cardType": 0,
 			"lecture": "",
-			"centerText": false
+			"centerTextElement": [false, false, false, false]
 		}
 	];
 };
@@ -461,14 +461,36 @@ Meteor.startup(function () {
 		);
 	}
 
-	cards = Cards.find({centerText: {$exists: false}}).fetch();
+	cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		let centerTextElement;
+		if (cards[i].cardType === 2) {
+			centerTextElement = [true, true, false, false];
+		} else {
+			centerTextElement = [false, false, false, false];
+		}
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					centerTextElement: centerTextElement
+				},
+				$unset: {
+					centerText: 1
+				}
+			}
+		);
+	}
+
+	cards = Cards.find({date: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		Cards.update({
 				_id: cards[i]._id
 			},
 			{
 				$set: {
-					centerText: false
+					date: new Date()
 				}
 			}
 		);
