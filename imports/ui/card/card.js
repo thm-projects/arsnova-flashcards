@@ -15,6 +15,26 @@ import '/client/hammer.js';
  * ############################################################################
  */
 
+function defaultData() {
+	Session.set('frontText', '');
+	Session.set('backText', '');
+	Session.set('hintText', '');
+	Session.set('lectureText', '');
+	Session.set('difficultyColor', 0);
+	Session.set('cardType', 2);
+	Session.set('centerTextElement', [false, false, false, false]);
+}
+
+function isTextCentered() {
+	let centerTextElement = Session.get('centerTextElement');
+	let editMode = Session.get('activeEditMode');
+	if (centerTextElement[editMode]) {
+		$(".center-button").addClass('pressed');
+	} else {
+		$(".center-button").removeClass('pressed');
+	}
+}
+
 function initializeContent() {
 	if (Session.get('frontText') === undefined) {
 		Session.set('frontText', '');
@@ -40,9 +60,12 @@ function initializeContent() {
 		Session.set('lectureText', '');
 	}
 
-	if (Session.get('centerText') === undefined) {
-		Session.set('centerText', false);
+	if (Session.get('cardType') === 1  && Session.get('centerTextElement') === undefined) {
+		Session.set('centerTextElement', [false, false, false, false]);
+	} else if (Session.get('centerTextElement') === undefined) {
+		Session.set('centerTextElement', [false, false, false, false]);
 	}
+
 	if (Session.get('cardDate') === undefined) {
 		Session.set('cardDate', new Date());
 	}
@@ -83,6 +106,7 @@ function defaultToFront(cardType) {
 
 function editFront() {
 	turnFront();
+	isTextCentered();
 	Session.set('activeEditMode', 0);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 5);
@@ -98,6 +122,7 @@ function editFront() {
 
 function editBack() {
 	turnFront();
+	isTextCentered();
 	Session.set('activeEditMode', 1);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 7);
@@ -113,6 +138,7 @@ function editBack() {
 
 function editLecture() {
 	turnFront();
+	isTextCentered();
 	Session.set('activeEditMode', 3);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 9);
@@ -128,6 +154,7 @@ function editLecture() {
 
 function editHint() {
 	turnFront();
+	isTextCentered();
 	Session.set('activeEditMode', 2);
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 11);
@@ -238,7 +265,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$(".editorToolbar").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
 		editorFullScreenActive = false;
-		if (!isEditor) {
+		if (isEditor && !Session.get('fullscreen')) {
 			switch (lastEditMode) {
 				case 0:
 					editFront();
@@ -304,12 +331,14 @@ let additionalButtons = [
 			title: 'Center',
 			icon: 'material-icons center-button',
 			callback: function () {
-				if (Session.get('centerText')) {
-					$(".center-button").removeClass('pressed');
-					Session.set('centerText', false);
+				let centerTextElement = Session.get('centerTextElement');
+				let editMode = Session.get('activeEditMode');
+				if (centerTextElement[editMode]) {
+					centerTextElement[editMode] = false;
+					Session.set('centerTextElement', centerTextElement);
 				} else {
-					$(".center-button").addClass('pressed');
-					Session.set('centerText', true);
+					centerTextElement[editMode] = true;
+					Session.set('centerTextElement', centerTextElement);
 				}
 			}
 		}, {
@@ -424,7 +453,7 @@ function getEditModeCard() {
 		"cardGroup": 0,
 		"cardType": Session.get('cardType'),
 		"lecture": Session.get('lectureText'),
-		"centerText": Session.get('centerText'),
+		"centerTextElement": Session.get('centerTextElement'),
 		"date": Session.get('cardDate')
 	}];
 }
@@ -466,7 +495,7 @@ function saveCard(card_id, returnToCardset) {
 	let hintText = Session.get('hintText');
 	let lectureText = Session.get('lectureText');
 	let cardType = Session.get('cardType');
-	let centerText = Session.get('centerText');
+	let centerTextElement = Session.get('centerTextElement');
 	let date = Session.get('cardDate');
 	if (lectureText === undefined) {
 		lectureText = '';
@@ -515,11 +544,11 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerText, date, function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
-						Session.set('modifiedCard', result);
+						defaultData();
 						Router.go('cardsetdetailsid', {
 							_id: Router.current().params._id
 						});
@@ -531,9 +560,10 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
-						if (Number(cardType) !== 1) {
-							Session.set('centerText', false);
-							$(".center-button").removeClass('pressed');
+						if (cardType === 1) {
+							Session.set('centerTextElement', [true, true, false, false]);
+						} else {
+							Session.set('centerTextElement', [false, false, false, false]);
 						}
 						window.scrollTo(0, 0);
 						$('#editFront').click();
@@ -542,13 +572,25 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerText, date);
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
+				defaultData();
 				Router.go('cardsetdetailsid', {
 					_id: Router.current().params._id
 				});
 			} else {
+				Session.set('difficultyColor', 0);
+				Session.set('frontText', '');
+				Session.set('backText', '');
+				Session.set('hintText', '');
+				Session.set('lectureText', '');
+				if (cardType === 1) {
+					Session.set('centerTextElement', [true, true, false, false]);
+				} else {
+					Session.set('centerTextElement', [false, false, false, false]);
+				}
+				window.scrollTo(0, 0);
 				Router.go('newCard', {
 					_id: Router.current().params._id
 				});
@@ -577,6 +619,7 @@ Template.btnCard.events({
 		saveCard(this._id, true);
 	},
 	'click #cardCancel': function () {
+		defaultData();
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
@@ -640,11 +683,15 @@ Template.editor.helpers({
 			Session.set('hintText', this.hint);
 			Session.set('cardType', this.cardType);
 			Session.set('lectureText', this.lecture);
-			Session.set('centerText', this.centerText);
+			Session.set('centerTextElement', this.centerTextElement);
+			Session.set('difficultyColor', this.difficulty);
 		}
 	},
 	isCardType: function (type) {
 		return Session.get('cardType') === type;
+	},
+	isTextCentered: function () {
+		isTextCentered();
 	}
 });
 
@@ -687,10 +734,7 @@ Template.contentEditor.rendered = function () {
 		},
 		additionalButtons: additionalButtons
 	});
-	if (Session.get('centerText')) {
-		$(".center-button").addClass('pressed');
-	}
-
+	isTextCentered();
 	if (!ActiveRoute.name('editCard')) {
 		Session.set('frontText', '');
 	}
@@ -763,6 +807,27 @@ Template.cardType.helpers({
 	}
 });
 
+Template.cardType.events({
+	"click #cardType0": function () {
+		let centerTextElement = Session.get('centerTextElement');
+		centerTextElement[0] = false;
+		centerTextElement[1] = false;
+		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardType1": function () {
+		let centerTextElement = Session.get('centerTextElement');
+		centerTextElement[0] = true;
+		centerTextElement[1] = true;
+		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardType2": function () {
+		let centerTextElement = Session.get('centerTextElement');
+		centerTextElement[0] = false;
+		centerTextElement[1] = false;
+		Session.set('centerTextElement', centerTextElement);
+	}
+});
+
 Template.cardType.onRendered(function () {
 	Session.set('cardType', Number($('input[name=cardType]:checked').val()));
 	$(this.find('#cardType0')).on('click change keypress paste focus textInput input', function () {
@@ -795,6 +860,11 @@ Template.cardHint.helpers({
 			return Session.get('hintText');
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
+		}
+	},
+	isCentered: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
 	}
 });
@@ -927,6 +997,14 @@ Template.flashcards.helpers({
 	},
 	getCardTime: function () {
 		return moment(this.date).format("HH:MM");
+	},
+	isCentered: function (type) {
+		if (isEditMode()) {
+			let centerTextElement = Session.get('centerTextElement');
+			return centerTextElement[type];
+		} else {
+			return this.centerTextElement[type];
+		}
 	}
 });
 
@@ -939,7 +1017,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if ((isEditMode() && Session.get('fullscreen')) && this.cardType !== 2 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if ((!isEditMode() || (isEditMode() && Session.get('fullscreen'))) && this.cardType !== 2 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},
@@ -1049,17 +1127,4 @@ Template.copyCard.events({
 			}
 		});
 	}
-});
-
-/*
- * ############################################################################
- * newCard
- * ############################################################################
- */
-Template.newCard.onCreated(function () {
-	Session.set('frontText', '');
-	Session.set('backText', '');
-	Session.set('hintText', '');
-	Session.set('lectureText', '');
-	Session.set('difficultyColor', 0);
 });

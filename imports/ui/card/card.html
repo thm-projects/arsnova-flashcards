@@ -76,6 +76,7 @@
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
     </div>
+    {{isTextCentered}}
     <div id="preview" class="col-xs-12 cardtext">
         <h5 class="editorElement">{{_ "preview"}}</h5>
         {{> flashcards cardset=this}}
@@ -371,27 +372,34 @@
                                                                                           cardType}} detailfront{{else}}{{#if
                                             isBackPreview}}cardfront {{getCardBackground difficulty
                                                                                          cardType}} detailfront{{else}}cardlecture detaillecture{{/if}}{{/if}}{{@index}}">
-                                        <span class="{{#if centerText}}center-align{{/if}}">
+
                                         {{#if isFrontPreview}}
-                                            {{#mathjax}}{{front}}{{/mathjax}}
+                                            <span class="{{#if isCentered 0}}center-align{{/if}}">
+                                                {{#mathjax}}{{front}}{{/mathjax}}
+                                            </span>
                                         {{/if}}
-                                            {{#if isBackPreview}}
+                                        {{#if isBackPreview}}
+                                            <span class="{{#if isCentered 1}}center-align{{/if}}">
                                                 {{#mathjax}}{{back}}{{/mathjax}}
-                                            {{/if}}
-                                            {{#if isLecturePreview}}
-                                                {{#mathjax}}{{lecture}}{{/mathjax}}
-                                            {{/if}}
-                                            {{#if isHintPreview}}
+                                            </span>
+                                        {{/if}}
+                                        {{#if isHintPreview}}
+                                            <span class="{{#if isCentered 2}}center-align{{/if}}">
                                                 {{#mathjax}}{{hint}}{{/mathjax}}
-                                            {{/if}}
-                                    </span>
+                                            </span>
+                                        {{/if}}
+                                        {{#if isLecturePreview}}
+                                            <span class="{{#if isCentered 3}}center-align{{/if}}">
+                                                {{#mathjax}}{{lecture}}{{/mathjax}}
+                                            </span>
+                                        {{/if}}
                                     </div>
                                 {{else}}
                                     <div class="cardContent centered cardfront {{getCardBackground
                                             difficulty cardType}} detailfront{{@index}}"
                                          style="display: {{#if isCardType 1}}{{#if
                                                  reversedViewOrder}}none{{/if}}{{/if}}">
-                                    <span class="{{#if centerText}}center-align{{/if}}">
+                                    <span class="{{#if isCentered 0}}center-align{{/if}}">
                                         {{#mathjax}}{{front}}{{/mathjax}}
                                     </span>
                                     </div>
@@ -399,7 +407,7 @@
                                             difficulty cardType}} detailback{{@index}}"
                                          style="display: {{#if isCardType 1}}{{#unless
                                                  reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                    <span class="{{#if centerText}}center-align{{/if}}">
+                                    <span class="{{#if isCentered 1}}center-align{{/if}}">
                                         {{#mathjax}}{{back}}{{/mathjax}}
                                     </span>
                                     </div>
@@ -410,7 +418,9 @@
                                                                           1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
 
                                                 {{#if isCardType 0}}
-                                                    {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                    <span class="{{#if isCentered 3}}center-align{{/if}}">
+                                                        {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                    </span>
                                                 {{/if}}
                                                 {{#if isCardType 1}}
                                                     <iframe class="dictionaryFrame"
@@ -500,7 +510,9 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
+                                <span class="{{#if isCentered}}center-align{{/if}}">
                                 {{#mathjax}}{{getHint}}{{/mathjax}}
+                                </span>
                             </div>
                         </div>
                     </div>

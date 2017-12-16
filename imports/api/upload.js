@@ -35,8 +35,12 @@ Meteor.methods({
 				item.lecture = "";
 			}
 
-			if (item.centerText === undefined) {
-				item.centerText = false;
+			if (item.centerTextElement === undefined) {
+				if (item.cardType === 1) {
+					item.centerTextElement = [true, true, false, false];
+				} else {
+					item.centerTextElement = [false, false, false, false];
+				}
 			}
 
 			if (item.date === undefined) {
@@ -81,7 +85,7 @@ Meteor.methods({
 					cardGroup: -1,
 					cardType: item.cardType,
 					lecture: lecture,
-					centerText: item.centerText
+					centerTextElement: item.centerTextElement
 				});
 			}
 		}
