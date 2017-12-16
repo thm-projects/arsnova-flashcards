@@ -54,23 +54,22 @@
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#unless isCardType
-                                                                                                          2}}col-sm-4{{/unless}}{{/if}}"
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType 1}}col-sm-6{{/if}}{{#if isCardType 2}}col-sm-12{{/if}}"
                 tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
         {{#unless isCardType 2}}
             <button id="editBack" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType 1}}col-sm-6{{/if}}"
                     tabindex="6">{{_
                     "backside"}}</button>
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                         tabindex="8">{{_
                         "lecture"}}</button>
-            {{/if}}
             <button id="editHint" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-4{{/if}}"
+                    class="btn btn-default btn-raised col-xs-12 col-sm-3"
                     tabindex="10">{{_
                     "hint"}}</button>
+            {{/if}}
         {{/unless}}
     </div>
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
@@ -273,6 +272,14 @@
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                                         </a>
                                                     {{/if}}
+                                                    {{#if hint}}
+                                                        <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
+                                                          data-id="{{_id}}" data-type="cardNavigation"
+                                                          data-toggle="modal"
+                                                          data-target="#showHintModal"></span>
+                                                        </a>
+                                                    {{/if}}
                                                 {{/if}}
                                                 {{#if isCardType 1}}
                                                     <a href="#" id="showLecture">
@@ -280,14 +287,6 @@
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                    </a>
-                                                {{/if}}
-                                                {{#if hint}}
-                                                    <a href="#" id="showHint">
-                                                    <span class="glyphicon glyphicon-info-sign"
-                                                          data-id="{{_id}}" data-type="cardNavigation"
-                                                          data-toggle="modal"
-                                                          data-target="#showHintModal"></span>
                                                     </a>
                                                 {{/if}}
                                             {{/unless}}
