@@ -1,5 +1,5 @@
-export const threshold = 30000;
-export const thresholdText = " after 30 seconds.";
+export const threshold = 15000;
+export const thresholdText = " after 15 seconds.";
 export const baseURL = "http://localhost:3000";
 export const createRoute = "/create";
 export const learnRoute = "/learn";
