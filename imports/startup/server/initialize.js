@@ -150,7 +150,6 @@ var initTestNotificationsCardset = function () {
 			"module": "Notifications Test",
 			"moduleToken": "NT",
 			"moduleNum": "CS1024",
-			"skillLevel": 1,
 			"college": "THM",
 			"course": "BA-Informatik",
 			"learningActive": false,
@@ -496,14 +495,14 @@ Meteor.startup(function () {
 		);
 	}
 
-	let cardsets = Cardsets.find({skillLevel: {$exists: false}}).fetch();
+	let cardsets = Cardsets.find({skillLevel: {$exists: true}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
 				_id: cardsets[i]._id
 			},
 			{
-				$set: {
-					skillLevel: 0
+				$unset: {
+					skillLevel: 1
 				}
 			}
 		);

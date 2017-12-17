@@ -28,12 +28,6 @@ Feature: Filter the pool
     Then he should see the cardset list sorted by the choosen module
 
   @watch
-  Scenario: User sorts by skill level
-    When user clicks on the filter by skill level button
-    Then he should choose a skill level
-    Then he should see the cardset list sorted by the choosen skill level
-
-  @watch
   Scenario: User sorts by unselected free license group
     When user clicks on the free license group button
     Then he should see the cardset list filtered by the unselected free license group

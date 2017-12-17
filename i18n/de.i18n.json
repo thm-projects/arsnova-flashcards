@@ -170,7 +170,6 @@
     "rating": "Sterne",
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
-    "skillLevel": "Kompetenzstufe",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lernphase",
     "activeLearnphase": "Aktiv",
@@ -258,11 +257,6 @@
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
     "moduleShortplaceholder": "Abkürzung des Moduls",
     "moduleNumplaceholder": "Nummer des Moduls",
-    "skillLevel": "Kompetenzstufe",
-    "skillLevel0": "Allgemein",
-    "skillLevel1": "Fachbegriffe",
-    "skillLevel2": "Theoretische Grundlagen",
-    "skillLevel3": "Anwendung",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {

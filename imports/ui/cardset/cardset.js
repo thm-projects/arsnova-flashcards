@@ -205,7 +205,6 @@ Template.cardset.events({
 		let module;
 		let moduleShort;
 		let moduleNum;
-		let skillLevel;
 		let college;
 		let course;
 		if (Meteor.settings.public.university.singleUniversity) {
@@ -214,19 +213,16 @@ Template.cardset.events({
 				$('#editSetModule').val() !== "" &&
 				$('#editSetModuleShort').val() !== "" &&
 				$('#editSetModuleNum').val() !== "" &&
-				$('#editSetSkillLevel').val() !== "" &&
 				$('#editSetCourse').val() !== "") {
 				name = tmpl.find('#editSetName').value;
 				description = tmpl.find('#editSetDescription').value;
 				module = tmpl.find('#editSetModule').value;
 				moduleShort = tmpl.find('#editSetModuleShort').value;
 				moduleNum = tmpl.find('#editSetModuleNum').value;
-				skillLevel = $('#editSetSkillLevel').val();
 				college = Meteor.settings.public.university.default;
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 				$('#editSetModal').modal('hide');
-				$('#editSetSkillLevel').html('');
 			}
 		} else {
 			if ($('#editSetName').val() !== "" &&
@@ -234,7 +230,6 @@ Template.cardset.events({
 				$('#editSetModule').val() !== "" &&
 				$('#editSetModuleShort').val() !== "" &&
 				$('#editSetModuleNum').val() !== "" &&
-				$('#editSetSkillLevel').val() !== "" &&
 				$('#editSetCollege').val() !== "" &&
 				$('#editSetCourse').val() !== "") {
 				name = tmpl.find('#editSetName').value;
@@ -242,12 +237,10 @@ Template.cardset.events({
 				module = tmpl.find('#editSetModule').value;
 				moduleShort = tmpl.find('#editSetModuleShort').value;
 				moduleNum = tmpl.find('#editSetModuleNum').value;
-				skillLevel = $('#editSetSkillLevel').val();
 				college = $('#editSetCollege').text();
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 				$('#editSetModal').modal('hide');
-				$('#editSetSkillLevel').html('');
 			}
 		}
 	},
@@ -336,12 +329,6 @@ Template.cardsetForm.onRendered(function () {
 });
 
 Template.cardsetForm.events({
-	'click .skillLevel': function (evt) {
-		$('#editSetSkillLevel').text($(evt.currentTarget).attr("data"));
-		$('#editSetSkillLevel').val($(evt.currentTarget).val());
-		$('#editSetSkillLevelLabel').css('color', '');
-		$('.editSetSkillLevel').css('border-color', '');
-	},
 	'click .college': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");
 		$('#editSetCollege').html(collegeName);

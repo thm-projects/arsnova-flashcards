@@ -336,15 +336,6 @@ Template.cardsetsForm.helpers({
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleNum : "";
 		}
 	},
-	getShuffleSkillLevel: function () {
-		if (ActiveRoute.name('shuffle')) {
-			if (Session.get("ShuffleTemplate") !== undefined) {
-				$('.newSetSkillLevelDropdown').defaultValue = Session.get("ShuffleTemplate").skillLevel;
-			}
-		} else {
-			$('.newSetSkillLevelDropdown').defaultValue = 0;
-		}
-	},
 	getShuffleCollege: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return Session.get("ShuffleTemplate").college;
@@ -378,12 +369,6 @@ Template.cardsets.events({
 		var inputValue = $('#new-set-input').val();
 		$('#newSetName').val(inputValue);
 		$('#new-set-input').val('');
-	},
-	'click .skillLevel': function (evt) {
-		$('#newSetSkillLevel').text($(evt.currentTarget).attr("data"));
-		$('#newSetSkillLevel').val($(evt.currentTarget).val());
-		$('#newSetSkillLevelLabel').css('color', '');
-		$('.newSetSkillLevel').css('border-color', '');
 	},
 	'click .college': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");
@@ -456,7 +441,6 @@ Template.cardsets.events({
 		let module;
 		let moduleShort;
 		let moduleNum;
-		let skillLevel;
 		let college;
 		let course;
 		let shuffled;
@@ -478,7 +462,6 @@ Template.cardsets.events({
 			$('#newSetModule').val() !== "" &&
 			$('#newSetModuleShort').val() !== "" &&
 			$('#newSetModuleNum').val() !== "" &&
-			$('#newSetSkillLevel').val() !== "" &&
 			college !== "" &&
 			$('#newSetCourse').val() !== "") {
 			name = $('#newSetName').val();
@@ -486,9 +469,8 @@ Template.cardsets.events({
 			module = $('#newSetModule').val();
 			moduleShort = $('#newSetModuleShort').val();
 			moduleNum = $('#newSetModuleNum').val();
-			skillLevel = $('#newSetSkillLevel').val();
 			course = $('#newSetCourse').text();
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, Number(skillLevel), college, course, shuffled, cardGroups);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course, shuffled, cardGroups);
 			$('#newSetModal').modal('hide');
 		}
 		cleanModal();
