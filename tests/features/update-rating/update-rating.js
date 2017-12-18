@@ -9,7 +9,7 @@ module.exports = function () {
 	});
 
 	this.Given(/^I am on a cardset that I don't own and haven't rated$/, function () {
-		navigation.selectPoolList(8);
+		navigation.selectPoolList(6);
 	});
 
 	this.Then(/^the cardset isn't rated by me$/, function () {

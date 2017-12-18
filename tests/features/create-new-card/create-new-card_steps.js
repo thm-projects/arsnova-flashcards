@@ -48,10 +48,8 @@ module.exports = function () {
 		navigation.compareUrl(url, browser.getUrl());
 	});
 	this.Then(/^the card should be saved$/, function () {
-		let wf = ".detailfront" + countBeforeCreated;
-		let selectorFront = wf + " > p";
-		navigation.compareContent(".carousel-inner > div", countBeforeCreated + 1, 1);
-		navigation.compareContent(selectorFront, "FRONTOFTHECARD", 0);
+		navigation.clickElement("#leftCarouselControl");
+		navigation.compareContent(".detailfront" + countBeforeCreated, "FRONTOFTHECARD", 0);
 	});
 	/**
 	 * ---------------------------------------------------------------------

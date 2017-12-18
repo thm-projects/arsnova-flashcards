@@ -112,14 +112,14 @@ module.exports = {
 			browser.click('#newCardSet');
 		}
 	},
-	compareContent: function (content1, content2, dataType, attribute, isTrue = true) {
+	compareContent: function (content1, content2, dataType, attribute = 0, isTrue = true) {
 		let errorMessage;
 		let receivedContent;
 		if (dataType < 4) {
 			browser.waitForVisible(content1, global.threshold);
-			errorMessage = 'Expected content of ' + content1 + ' to be ' + content2 + ' but got ' + receivedContent + global.thresholdText;
+			errorMessage = 'Expected content of ' + content1 + ' to be ' + content2 + ' but got ';
 		} else {
-			errorMessage = 'Expected content ' + content1 + ' to be ' + content2 + global.thresholdText;
+			errorMessage = 'Expected content ' + content1 + ' to be ' + content2;
 		}
 		browser.waitUntil(function () {
 			switch (dataType) {
@@ -143,7 +143,7 @@ module.exports = {
 					receivedContent = browser.getText(content1);
 					return (parseInt(receivedContent) === parseInt(content2)) === isTrue;
 			}
-		}, global.threshold, errorMessage);
+		}, global.threshold, errorMessage + receivedContent + global.thresholdText);
 	},
 	getContent: function (content, dataType, attribute = 0) {
 		browser.waitForVisible(content, global.threshold);

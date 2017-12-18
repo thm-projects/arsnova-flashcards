@@ -41,7 +41,6 @@ function getCardsetInfo(cardset) {
 		[TAPi18n.__('cardset.info.module'), cardset.module],
 		[TAPi18n.__('cardset.info.moduleShort'), cardset.moduleToken],
 		[TAPi18n.__('cardset.info.moduleNum'), cardset.moduleNum],
-		[TAPi18n.__('modal-dialog.skillLevel'), cardset.skillLevel],
 		[TAPi18n.__('cardset.info.college'), cardset.college],
 		[TAPi18n.__('cardset.info.course'), cardset.course],
 		[TAPi18n.__('cardset.info.author'), getAuthorName(cardset.owner)],
