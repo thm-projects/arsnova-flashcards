@@ -129,7 +129,8 @@ const CardsetsSchema = new SimpleSchema({
 		type: String
 	},
 	skillLevel: {
-		type: Number
+		type: Number,
+		optional: true
 	},
 	college: {
 		type: String
@@ -214,13 +215,12 @@ Meteor.methods({
 	 * @param {String} module - Modulename
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
-	 * @param {Number} skillLevel - Skill level of the cardset
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 */
-	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, skillLevel, college, course, shuffled, cardGroups) {
+	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, college, course, shuffled, cardGroups) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -232,7 +232,6 @@ Meteor.methods({
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
-		check(skillLevel, Number);
 		check(college, String);
 		check(course, String);
 		check(shuffled, Boolean);
@@ -272,7 +271,6 @@ Meteor.methods({
 			module: module,
 			moduleToken: moduleShort,
 			moduleNum: moduleNum,
-			skillLevel: skillLevel,
 			college: college,
 			course: course,
 			learningActive: false,
@@ -487,11 +485,10 @@ Meteor.methods({
 	 * @param {String} module - Module name
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
-	 * @param {Number} skillLevel - Skill level of the cardset
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 */
-	updateCardset: function (id, name, description, module, moduleShort, moduleNum, skillLevel, college, course) {
+	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -501,7 +498,6 @@ Meteor.methods({
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
-		check(skillLevel, Number);
 		check(college, String);
 		check(course, String);
 
@@ -525,7 +521,6 @@ Meteor.methods({
 				module: module,
 				moduleToken: moduleShort,
 				moduleNum: moduleNum,
-				skillLevel: skillLevel,
 				college: college,
 				course: course
 			}

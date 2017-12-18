@@ -108,38 +108,6 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <!-- start skills Dropdown -->
-                        <div class="form-group setdetails categories row">
-                            <label id="editCardsetSkillLevelLabel" class="col-md-3 control-label"
-                                   for="editCardsetSkillLevel">{{_
-                                    "modal-dialog.skillLevel"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                    <button type="button" id="editCardsetSkillLevel"
-                                            class="btn btn-raised editCardsetSkillLevelDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}
-                                    </button>
-                                    <button class="btn btn-raised dropdown-toggle editCardsetSkillLevelDropdown"
-                                            type="button"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="true">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        <li class="skillLevelAdmin" value="0" data="{{getSkillLevel 0}}"><a
-                                                href="#">{{getSkillLevel 0}}</a></li>
-                                        <li class="skillLevelAdmin" value="1" data="{{getSkillLevel 1}}"><a
-                                                href="#">{{getSkillLevel 1}}</a></li>
-                                        <li class="skillLevelAdmin" value="2" data="{{getSkillLevel 2}}"><a
-                                                href="#">{{getSkillLevel 2}}</a></li>
-                                        <li class="skillLevelAdmin" value="3" data="{{getSkillLevel 3}}"><a
-                                                href="#">{{getSkillLevel 3}}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!-- / skills Dropdown -->
                         {{#unless singleUniversity}}
                             <!-- start college Dropdown -->
                             <div class="form-group setdetails categories row">

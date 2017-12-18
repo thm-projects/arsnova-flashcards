@@ -120,10 +120,10 @@ Template.learnAnswerOptions.events({
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 		if ($('.carousel-inner > .item').length === 1) {
-			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
+			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
 		} else {
 			$('#cardCarousel').on('slid.bs.carousel', function () {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
 				Session.set('animationPlaying', false);
 			});
 		}
@@ -135,10 +135,10 @@ Template.learnAnswerOptions.events({
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 		if ($('.carousel-inner > .item').length === 1) {
-			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
+			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
 		} else {
 			$('#cardCarousel').on('slid.bs.carousel', function () {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
 				Session.set('animationPlaying', false);
 			});
 		}

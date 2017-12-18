@@ -166,7 +166,6 @@ Template.admin_cardset.events({
 		let module;
 		let moduleShort;
 		let moduleNum;
-		let skillLevel;
 		let college;
 		let course;
 		let kind;
@@ -179,7 +178,6 @@ Template.admin_cardset.events({
 				$('#editCardsetModuleAdmin').val() !== "" &&
 				$('#editCardsetModuleShortAdmin').val() !== "" &&
 				$('#editCardsetModuleNumAdmin').val() !== "" &&
-				$('#editCardsetSkillLevel').val() !== "" &&
 				$('#editCardsetCollegeAdmin').val() !== "" &&
 				$('#editCardsetCourseAdmin').val() !== "" &&
 				($("#kindoption0Admin").hasClass('active') ||
@@ -192,7 +190,6 @@ Template.admin_cardset.events({
 				module = tmpl.find('#editCardsetModuleAdmin').value;
 				moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
 				moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
-				skillLevel = $('#editCardsetSkillLevel').val();
 				college = Meteor.settings.public.university.default;
 				course = $('#editCardsetCourseAdmin').text();
 				kind = tmpl.find('#publishKindAdmin > .active > input').value;
@@ -225,7 +222,7 @@ Template.admin_cardset.events({
 					visible = false;
 				}
 				Meteor.call("publishCardset", this._id, kind, price, visible);
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 				window.history.go(-1);
 			}
 		} else {
@@ -234,7 +231,6 @@ Template.admin_cardset.events({
 				$('#editCardsetModuleAdmin').val() !== "" &&
 				$('#editCardsetModuleShortAdmin').val() !== "" &&
 				$('#editCardsetModuleNumAdmin').val() !== "" &&
-				$('#editCardsetSkillLevel').val() !== "" &&
 				$('#editCardsetCollegeAdmin').val() !== "" &&
 				$('#editCardsetCourseAdmin').val() !== "" &&
 				($("#kindoption0Admin").hasClass('active') ||
@@ -247,7 +243,6 @@ Template.admin_cardset.events({
 				module = tmpl.find('#editCardsetModuleAdmin').value;
 				moduleShort = tmpl.find('#editCardsetModuleShortAdmin').value;
 				moduleNum = tmpl.find('#editCardsetModuleNumAdmin').value;
-				skillLevel = $('#editCardsetSkillLevel').val();
 				college = $('#editCardsetCollegeAdmin').text();
 				course = $('#editCardsetCourseAdmin').text();
 				kind = tmpl.find('#publishKindAdmin > .active > input').value;
@@ -280,7 +275,7 @@ Template.admin_cardset.events({
 					visible = false;
 				}
 				Meteor.call("publishCardset", this._id, kind, price, visible);
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, Number(skillLevel), college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
 				window.history.go(-1);
 			}
 		}
@@ -341,12 +336,6 @@ Template.admin_cardset.events({
 		$('#editCardsetModuleNumLabelAdmin').css('color', '');
 		$('#editCardsetModuleNumAdmin').css('border-color', '');
 		$('#helpEditCardsetModuleNumAdmin').html('');
-	},
-	'click .skillLevelAdmin': function (evt) {
-		$('#editCardsetSkillLevel').text($(evt.currentTarget).attr("data"));
-		$('#editCardsetSkillLevel').val($(evt.currentTarget).val());
-		$('#editCardsetSkillLevelLabel').css('color', '');
-		$('.editCardsetSkillLevel').css('border-color', '');
 	},
 	'click .collegeAdmin': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");

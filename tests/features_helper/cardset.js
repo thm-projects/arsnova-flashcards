@@ -42,6 +42,8 @@ module.exports = {
 		browser.waitForExist('#newCardBtn', global.threshold);
 		if (click) {
 			browser.click('#newCardBtn');
+			browser.waitForExist('#cardType0', global.threshold);
+			browser.click('#cardType0');
 		}
 	},
 	saveCard: function (click = true) {
@@ -63,38 +65,38 @@ module.exports = {
 		}
 	},
 	editCard: function (click = true) {
-		browser.waitForVisible('#editCard',global.threshold);
+		browser.waitForVisible('#editCard', global.threshold);
 		if (click) {
 			let editButton = browser.elements('#editCard').value[0];
 			editButton.click();
 		}
 	},
 	deleteCard: function (click = true) {
-		browser.waitForVisible('#cardDelete',global.threshold);
+		browser.waitForVisible('#cardDelete', global.threshold);
 		if (click) {
 			browser.click('#cardDelete');
 		}
 	},
 	deleteCardConfirm: function (click = true) {
-		browser.waitForVisible('#cardDeleteConfirm',global.threshold);
+		browser.waitForVisible('#cardDeleteConfirm', global.threshold);
 		if (click) {
 			browser.click('#cardDeleteConfirm');
 		}
 	},
 	deleteAllCards: function (click = true) {
-		browser.waitForVisible('#delete_cards',global.threshold);
+		browser.waitForVisible('#delete_cards', global.threshold);
 		if (click) {
 			browser.click('#delete_cards');
 		}
 	},
 	deleteAllCardsConfirm: function (click = true) {
-		browser.waitForVisible('#deleteCardsConfirm',global.threshold);
+		browser.waitForVisible('#deleteCardsConfirm', global.threshold);
 		if (click) {
 			browser.click('#deleteCardsConfirm');
 		}
 	},
 	deleteAllCardsCancel: function (click = true) {
-		browser.waitForVisible('#deleteCardsCancel',global.threshold);
+		browser.waitForVisible('#deleteCardsCancel', global.threshold);
 		if (click) {
 			browser.click('#deleteCardsCancel');
 		}

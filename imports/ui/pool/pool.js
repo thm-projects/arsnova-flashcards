@@ -17,7 +17,6 @@ Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
-Session.setDefault('poolFilterSkillLevel');
 Session.setDefault('poolFilterLearnphase');
 Session.setDefault('poolFilterRating', -1);
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
@@ -41,9 +40,6 @@ function prepareQuery() {
 	}
 	if (Session.get('poolFilterModule')) {
 		query.module = Session.get('poolFilterModule');
-	}
-	if (Session.get('poolFilterSkillLevel')) {
-		query.skillLevel = Session.get('poolFilterSkillLevel');
 	}
 	if (Session.get('poolFilterLearnphase') != null) {
 		/*NOTE:
@@ -107,11 +103,6 @@ function checkFilters() {
 	} else {
 		$(".filterModuleGroup").removeClass('active').first();
 	}
-	if (Session.get('poolFilterSkillLevel')) {
-		$(".filterSkillLevel").addClass('active');
-	} else {
-		$(".filterSkillLevel").removeClass('active').first();
-	}
 	if (Session.get('poolFilterLearnphase') != null) {
 		$(".filterLearnphase").addClass('active');
 	} else {
@@ -131,7 +122,6 @@ function resetFilters() {
 	Session.set('poolFilterCollege');
 	Session.set('poolFilterCourse');
 	Session.set('poolFilterModule');
-	Session.set('poolFilterSkillLevel');
 	Session.set('poolFilterRating', -1);
 	Session.set('poolFilter', ["free", "edu", "pro"]);
 	Session.set('poolFilterLearnphase');
@@ -175,19 +165,6 @@ function filterModule(event) {
 		Session.set('poolFilterModuleVal', $(event.target).data('id'));
 	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
-	resetInfiniteBar();
-}
-
-function filterSkillLevel(event) {
-	var button = $(".filterSkillLevelGroup");
-	if (!$(event.target).data('id')) {
-		button.removeClass("active");
-		Session.set('poolFilterSkillLevelVal', null);
-	} else {
-		button.addClass('active');
-		Session.set('poolFilterSkillLevelVal', $(event.target).data('id'));
-	}
-	Session.set('poolFilterSkillLevel', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
@@ -256,12 +233,6 @@ Template.category.helpers({
 			return item.moduleNum;
 		});
 	},
-	getSkillLevels: function () {
-		prepareQuery();
-		return _.uniq(Cardsets.find(query, {sort: {"skillLevel": 1}}).fetch(), function (item) {
-			return item.skillLevel;
-		});
-	},
 	getLearnphases: function () {
 		prepareQuery();
 		return _.uniq(Cardsets.find(query, {sort: {"learningActive": 1}}).fetch(), function (item) {
@@ -291,12 +262,6 @@ Template.category.helpers({
 	},
 	poolFilterModule: function () {
 		return Session.get('poolFilterModuleVal');
-	},
-	hasSkillLevelFilter: function () {
-		return Session.get('poolFilterSkillLevel');
-	},
-	poolFilterSkillLevel: function () {
-		return Session.get('poolFilterSkillLevelVal');
 	},
 	hasLearnphaseFilter: function () {
 		/*NOTE:
@@ -428,9 +393,6 @@ Template.poolCardsetRow.events({
 	'click .filterModule': function (event) {
 		filterModule(event);
 	},
-	'click .filterSkillLevel': function (event) {
-		filterSkillLevel(event);
-	},
 	'click .filterRating': function (event) {
 		filterRating(event);
 	},
@@ -478,9 +440,6 @@ Template.category.events({
 	},
 	'click .filterModule': function (event) {
 		filterModule(event);
-	},
-	'click .filterSkillLevel': function (event) {
-		filterSkillLevel(event);
 	},
 	'click .filterLearnphase': function () {
 		filterLearnphase(event);

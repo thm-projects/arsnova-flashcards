@@ -113,7 +113,7 @@ Template.admin_card.events({
 			var front = $('#editCardFrontAdmin').val();
 			var back = $('#editCardBackAdmin').val();
 			var difficulty = $('input[name=difficulty]:checked').val();
-			Meteor.call("updateCard", this._id, subject, hint, front, back, Number(difficulty), Number(this.cardType), this.lecture, this.centerText);
+			Meteor.call("updateCard", this._id, subject, hint, front, back, Number(difficulty), Number(this.cardType), this.lecture, this.centerTextElement, this.date);
 			window.history.go(-1);
 		}
 	},

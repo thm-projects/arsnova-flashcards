@@ -135,28 +135,6 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="skillLevelFilter" class="dropdown-toggle skillLevelBtn"
-                               data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                {{#if hasSkillLevelFilter}}
-                                    {{getSkillLevel poolFilterSkillLevel}}
-                                {{else}}
-                                    {{_ "set-list.skillLevel"}}
-                                {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" class="filterSkillLevel active" data-id="">{{_
-                                            "set-list.everything"}}</a>
-                                </li>
-                                {{#each getSkillLevels}}
-                                    <li><a href="#" class="filterSkillLevel"
-                                           data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</a></li>
-                                {{/each}}
-                            </ul>
-                        </li>
-                        <li class="dropdown">
                             <a href="#" id="learnphaseFilter" class="dropdown-toggle" data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true" aria-expanded="false">
@@ -235,14 +213,15 @@
     <div class="responsive-utilities-test visible-on">
 
         <span class="{{#unless
-                singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} visible-md visible-lg poolHeaderBottom">{{_
+                singleUniversity}}col-md-3{{else}}col-md-4{{/unless}} visible-md visible-lg poolHeaderBottom">{{_
                 "set-list.topic"}}
         </span>
-        <span class="col-md-2 visible-md  visible-lg poolHeaderBottom">{{_
+        <span class="{{#unless
+                singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
         {{#unless singleUniversity}}
-            <span class="col-md-1 visible-md  visible-lg poolHeaderBottom poolHeaderCollege">{{_
+            <span class="col-md-2 visible-md  visible-lg poolHeaderBottom poolHeaderCollege">{{_
                     "set-list.college"}}
             </span>
         {{/unless}}
@@ -251,9 +230,6 @@
         </span>
         <span class="col-md-1 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.module"}}
-        </span>
-        <span class="col-md-2 visible-md  visible-lg poolHeaderBottom">{{_
-                "set-list.skillLevel"}}
         </span>
         <span class="col-md-1 visible-md  visible-lg poolHeaderBottom">{{_
                 "set-list.availability"}}
@@ -312,14 +288,15 @@
     <a href="/profile/{{this.owner}}/settings/" title="{{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit">{{_ "set-list.author"}}
             :</span>
-        <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolAuthor">{{getAuthorName
+        <span class="col-xs-6 col-sm-7 {{#unless
+                singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} poolContent poolText panelUnit poolAuthor">{{getAuthorName
                 this.owner}}</span>
     </a>
     {{#unless singleUniversity}}
         <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
         <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-            <span class="col-xs-6 col-sm-7 col-md-1 poolContent poolText panelUnit poolCollege"
+            <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolCollege"
                   data-id="{{this.college}}">{{this.college}}</span>
         </a>
     {{/unless}}
@@ -334,13 +311,6 @@
                 "set-list.module"}}:</span>
         <span class="col-xs-6 col-sm-7 col-md-1 poolContent poolText panelUnit poolModule"
               data-id="{{this.module}}">{{this.moduleToken}}</span>
-    </a>
-    <a href="#" class="filterSkillLevel" title="Filter {{_ "set-list.skillLevel"}}: {{getSkillLevel this.skillLevel}}">
-        <span class="col-xs-6 col-sm-5 hidden-md hidden-lg poolLabel panelUnit"
-              data-id="{{this.skillLevel}}">{{_
-                "set-list.skillLevel"}}:</span>
-        <span class="col-xs-6 col-sm-7 col-md-2 poolContent poolText panelUnit poolSkillLevel"
-              data-id="{{this.skillLevel}}">{{getSkillLevel this.skillLevel}}</span>
     </a>
     <span class="col-md-1 kind-label visible-md visible-lg panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
@@ -421,7 +391,7 @@
             "set-list.topic"}}
         :</span>
     <span class="cell col-xs-6 col-sm-7 {{#unless
-            singleUniversity}}col-md-2{{else}}col-md-3{{/unless}} poolText panelUnit" data-id="{{content._id}}">
+            singleUniversity}}col-md-3{{else}}col-md-4{{/unless}} poolText panelUnit" data-id="{{content._id}}">
                 <span class="cell col-xs-8 col-sm-9 {{#unless
                         singleUniversity}}col-md-9{{else}}col-md-10{{/unless}} topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}

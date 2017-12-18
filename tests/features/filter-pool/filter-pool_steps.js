@@ -96,25 +96,6 @@ module.exports = function () {
 
 	/**
 	 * ---------------------------------------------------------------------
-	 * Sort by skill level scenario
-	 * ---------------------------------------------------------------------
-	 */
-	this.When(/^user clicks on the filter by skill level button$/, function () {
-		navigation.clickElement('#resetBtn');
-		navigation.clickElement('a[class="dropdown-toggle skillLevelBtn"]');
-	});
-
-	this.Then(/^he should choose a skill level/, function () {
-		navigation.clickElement('a[class="filterSkillLevel"]');
-	});
-
-	this.Then(/^he should see the cardset list sorted by the choosen skill level$/, function () {
-		let cardsetListFilteredWord = navigation.getContent('.poolSkillLevel', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
-	});
-
-	/**
-	 * ---------------------------------------------------------------------
 	 * Sort by free license scenario
 	 * ---------------------------------------------------------------------
 	 */

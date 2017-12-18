@@ -281,19 +281,6 @@ Template.registerHelper("getType", function (type) {
 	return type;
 });
 
-Template.registerHelper("getSkillLevel", function (skillLevel) {
-	switch (skillLevel) {
-		case 1:
-			return TAPi18n.__('modal-dialog.skillLevel1');
-		case 2:
-			return TAPi18n.__('modal-dialog.skillLevel2');
-		case 3:
-			return TAPi18n.__('modal-dialog.skillLevel3');
-		default:
-			return TAPi18n.__('modal-dialog.skillLevel0');
-	}
-});
-
 Template.registerHelper("getLearnphase", function (state) {
 	if (state === true) {
 		return TAPi18n.__('set-list.activeLearnphase');
@@ -304,18 +291,33 @@ Template.registerHelper("getLearnphase", function (state) {
 	}
 });
 
-Template.registerHelper("getCardBackground", function (difficulty) {
-	switch (difficulty) {
-		case 0:
-			return 'box-difficulty0';
-		case 1:
-			return 'box-difficulty1';
-		case 2:
-			return 'box-difficulty2';
-		case 3:
-			return 'box-difficulty3';
-		default:
-			return '';
+Template.registerHelper("getCardBackground", function (difficulty, cardType) {
+	if (cardType !== 2) {
+		switch (difficulty) {
+			case 0:
+				return 'box-difficulty0';
+			case 1:
+				return 'box-difficulty1';
+			case 2:
+				return 'box-difficulty2';
+			case 3:
+				return 'box-difficulty3';
+			default:
+				return '';
+		}
+	} else {
+		switch (difficulty) {
+			case 0:
+				return 'box-difficultyNote0';
+			case 1:
+				return 'box-difficultyNote1';
+			case 2:
+				return 'box-difficultyNote2';
+			case 3:
+				return 'box-difficultyNote3';
+			default:
+				return '';
+		}
 	}
 });
 
@@ -331,10 +333,15 @@ Template.registerHelper("checkActiveRouteName", function () {
 	}
 });
 
-Template.registerHelper("getCardBackgroundList", function (difficulty) {
+Template.registerHelper("getCardBackgroundList", function (difficulty, cardType) {
 	switch (difficulty) {
 		case 0:
-			return 'box-difficulty-list0';
+			if (cardType !== 2) {
+				return 'box-difficulty-list0';
+			} else {
+				return 'box-difficultyNote-list0';
+			}
+			break;
 		case 1:
 			return 'box-difficulty-list1';
 		case 2:

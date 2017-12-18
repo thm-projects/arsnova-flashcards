@@ -596,7 +596,7 @@ button:disabled {
   z-index: 150;
 }
 
-.md-header .fa, .md-header .center-button {
+.md-header .fa, .md-header .center-button, .md-header .fullscreen-button {
   margin: 0 auto;
   font-size: 24px;
   padding: 3px 6px;
@@ -606,7 +606,7 @@ button:disabled {
   background-color: $white;
 }
 
-.md-header .fa:hover, .md-header .center-button:hover {
+.md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover {
   background-color: $color_athens_gray_approx;
 }
 

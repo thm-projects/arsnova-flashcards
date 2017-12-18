@@ -2,6 +2,7 @@ $input_difficulty0: #FFFFFF;
 $input_difficulty1: #5cb85c;
 $input_difficulty2: #5bc0de;
 $input_difficulty3: #d9534f;
+$background_difficultyNote0: #FEFFD1;
 $background_difficulty1: #edffed;
 $background_difficulty2: #edfbff;
 $background_difficulty3: #ffeded;
@@ -39,6 +40,24 @@ $header_line: rgba(255, 0, 0, 0.6);
 .btn-white.active {
   color: $black !important;
   background-color: white !important;
+  border-color: $input_difficulty0;
+  border-right: 1px solid $color_btn_inactive !important;
+  @media(max-width: 767px) {
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
+}
+
+.btn-orange {
+  color: $color_thm_orange !important;
+  border-right: 1px solid $color_btn_inactive !important;
+  @media(max-width: 767px) {
+    border-bottom: 1px solid $color_btn_inactive !important;
+  }
+}
+
+.btn-orange.active {
+  color: $white !important;
+  background-color: $color_thm_orange !important;
   border-color: $input_difficulty0;
   border-right: 1px solid $color_btn_inactive !important;
   @media(max-width: 767px) {
@@ -122,6 +141,16 @@ $header_line: rgba(255, 0, 0, 0.6);
   top: 14px;
 }
 
+.cardDate {
+  float: right;
+  color: $color_thm_gray;
+  font-family: $font_2, $font_3, $font_4, $font_5;
+  font-size: 85%;
+  text-align: right;
+  margin-right: -40px;
+  margin-top: -7px;
+}
+
 .centered {
   display: inline-block;
   vertical-align: middle;
@@ -144,7 +173,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   border-radius: 4px;
 }
 
-.box {
+.box, .boxPreview {
   border: 1px solid $color_alto_approx;
   font-family: $font_0, $font_1;
   margin: 0 auto;
@@ -165,12 +194,24 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficultyNote0 {
+  background-color: $background_difficultyNote0;
+}
+
 .box-difficulty-list0 {
   background: $white;
 }
 
+.box-difficultyNote-list0 {
+  background: $background_difficultyNote0;
+}
+
 .box-difficulty-list0:hover {
-  background: darken($white, 15%);
+  background: darken($background_difficultyNote0, 15%);
+}
+
+.box-difficultyNote-list0:hover {
+  background: darken($background_difficultyNote0, 15%);
 }
 
 .box-difficulty1 {
@@ -181,6 +222,10 @@ $header_line: rgba(255, 0, 0, 0.6);
                   $color_difficulty1 26px,
                   $color_difficulty1 28px
   );
+}
+
+.box-difficultyNote1 {
+  background-color: $background_difficulty1;
 }
 
 .box-difficulty-list1 {
@@ -201,6 +246,10 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficultyNote2 {
+  background-color: $background_difficulty2;
+}
+
 .box-difficulty-list2 {
   background: $color_difficulty2;
 }
@@ -219,6 +268,10 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficultyNote3 {
+  background: $background_difficulty3;
+}
+
 .box-difficulty-list3 {
   background: $color_difficulty3;
 }
@@ -231,15 +284,19 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
 }
 
-.box-difficulty1-header {
+.box-difficultyNote0-header {
+  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
+}
+
+.box-difficulty1-header, .box-difficultyNote1-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty1 5px, $background_difficulty1 100%);
 }
 
-.box-difficulty2-header {
+.box-difficulty2-header, .box-difficultyNote2-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty2 5px, $background_difficulty2 100%);
 }
 
-.box-difficulty3-header {
+.box-difficulty3-header, .box-difficultyNote3-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty3 5px, $background_difficulty3 100%);
 }
 
@@ -430,6 +487,12 @@ img.cardside {
 .editorNavigation {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.editorNavigation >.btn-primary:hover {
+  cursor: default;
+  box-shadow: none !important;
+  z-index: 0 !important;
 }
 
 #editFront, #editBack, #editHint, #editLecture {
