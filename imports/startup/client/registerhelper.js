@@ -402,8 +402,8 @@ MeteorMathJax.defaultConfig = {
 		extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
 	},
 	tex2jax: {
-		inlineMath: [['$', '$'], ["\(", "\)"]],
-		displayMath: [['$$', '$$'], ["\[", "\]"]],
+		inlineMath: [['$', '$'], ["\\(", "\\)"]],
+		displayMath: [['$$', '$$'], ["\\[", "\\]"]],
 		processEscapes: true,
 		preview: 'none'
 	},
