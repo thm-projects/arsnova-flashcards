@@ -107,8 +107,7 @@
       display: block !important;
     }
 
-    #resetBtn {
-      margin-left: 15px;
+    .resetBtn {
       margin-top: 8px;
     }
 
@@ -132,7 +131,7 @@
 
     #filterCheckbox {
       padding-bottom: 0px;
-      padding-right: 30px;
+      padding-right: 10px;
       margin-left: 15px;
       margin-top: -5px !important;
     }
@@ -165,6 +164,7 @@
 
 .resetFilters {
   padding: 8px;
+  margin-left: 10px;
 }
 
 #upgrade, #downgrade {
