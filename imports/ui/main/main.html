@@ -135,7 +135,14 @@
                                             <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                                 <a href="{{pathFor 'profileOverview' _id=currentUser._id}}"
-                                                   id="usr-profile">{{getUsername}}</a>
+                                                   id="usr-profile">
+                                                    <span class="hidden-sm">
+                                                        {{getUsername}}
+                                                    </span>
+                                                    <span class="visible-sm">
+                                                        {{_ "navbar-collapse.myprofile"}}
+                                                    </span>
+                                                    </a>
                                             </li>
                                             <li><a href="#" id="logout"><i
                                                     class="glyphicon glyphicon-log-out"></i>

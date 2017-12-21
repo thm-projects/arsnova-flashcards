@@ -464,6 +464,12 @@ button:disabled {
   }
 }
 
+@media (max-width: 768px) {
+  .poolHeaderBottom {
+    font-size: 10px;
+  }
+}
+
 .poolLabel {
   font-weight: bold;
   text-decoration: none;
@@ -484,7 +490,7 @@ button:disabled {
   padding-left: 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .panel {
     margin-top: 3px;
     margin-bottom: 3px;
@@ -527,27 +533,13 @@ button:disabled {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .panel {
-    padding-right: 3px;
-    background-clip: content-box;
-    -webkit-box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-  }
-
-  .altPanel {
-    padding-left: 3px;
-    padding-right: 0;
-    -webkit-box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-  }
-
   #input-search {
     width: 70px;
   }
 
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .altPanel {
     background-color: $color_wild_sand_approx;
   }

@@ -63,13 +63,13 @@
                 {{shuffleInfoText}}
                 {{#if shuffleList.count}}
                     <div class="responsive-utilities-test visible-on">
-                        <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                        <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
-                        <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "selection"}}</span>
+                        <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                        <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                        <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "selection"}}</span>
                     </div>
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                            <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                            <div class="col-xs-12 col-sm-12 panel panel-default {{#if
                                     oddRow
                                     @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                                 {{> cardsetRow}}
@@ -96,11 +96,11 @@
             </button>
             {{> shuffle}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-md-9 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-9 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
             </div>
             {{#each cardsetList}}
-                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                <div class="col-xs-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
                 </div>
@@ -114,11 +114,11 @@
 <template name="cardsetRow">
     <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
        title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-        <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit" data-id="{{this._id}}">{{_
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 col-md-3 poolText panelUnit" data-id="{{this._id}}">
-                <span class="cell col-xs-9 col-sm-9 col-md-9 topicName" data-id="{{this._id}}">
+        <span class="cell col-xs-7 col-sm-3 poolText panelUnit" data-id="{{this._id}}">
+                <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
                 </span>
                 <span class="cell badge cardsetBadge" data-id="{{this._id}}">
@@ -126,12 +126,12 @@
                 </span>
             </span>
         <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
-        <span class="col-xs-5 col-sm-5 hidden-md hidden-lg poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
                                                                                                           'create'}}panelUnitNoBorder{{/if}}">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-7 {{#if isActiveRoute 'create'}}col-md-9 panelUnit panelUnitNoBorder{{else}}
-            {{#if isActiveRoute 'create'}}col-md-8{{else}}col-md-7{{/if}} panelUnit {{/if}} poolText ellipsis">
+        <span class="cell col-xs-7 {{#if isActiveRoute 'create'}}col-sm-9 panelUnit panelUnitNoBorder{{else}}
+            {{#if isActiveRoute 'shuffle'}}col-sm-6 col-md-7{{else}}col-sm-7 col-lg-8{{/if}} panelUnit {{/if}} poolText ellipsis">
             {{this.description}}
         </span>
     </a>
@@ -139,14 +139,14 @@
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
-            <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-12 col-sm-2 col-lg-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i> {{_ "set-list.leave"}}
         </span>
         </a>
     {{/if}}
     {{#if isShuffleRoute}}
-        <span class="cell col-xs-12 col-sm-12 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder">
+        <span class="cell col-xs-5 col-sm-3 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder">
             {{#if inShuffleSelection this._id}}
                 <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeShuffleCardset"
                    data-id="{{this._id}}">
@@ -187,12 +187,12 @@
         {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-md-3 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-md-7 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
-                <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "manage"}}</span>
+                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-7 col-lg-8 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-2 col-lg-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
             </div>
             {{#each learnList}}
-                <div class="col-xs-12 col-sm-6 col-md-12 panel panel-default {{#if
+                <div class="col-xs-12 panel panel-default {{#if
                         oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow}}
                 </div>
