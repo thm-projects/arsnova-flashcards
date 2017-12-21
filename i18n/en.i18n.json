@@ -46,15 +46,10 @@
     "pool": "Pool",
     "myprofile": "My profile",
     "billing": "Billing",
-    "logout": "Logout",
     "search": "Search",
     "frontend": "Front end",
     "backend": "Back end",
     "none": "None"
-  },
-  "footer": {
-    "info": "Info",
-    "language": "Language"
   },
   "contact": {
     "impressum": "Legal Notice",

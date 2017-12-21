@@ -32,19 +32,14 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
-    "learndecks": "Mein Lernpensum",
+    "learndecks": "Mein Pensum",
     "pool": "Pool",
     "myprofile": "Mein Profil",
     "billing": "Abrechnung",
-    "logout": "Logout",
     "search": "Suche",
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne"
-  },
-  "footer": {
-    "info": "Info",
-    "language": "Sprache"
   },
   "contact": {
     "impressum": "Impressum",
