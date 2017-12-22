@@ -342,11 +342,32 @@ $font_5: sans-serif;
 }
 
 #collapseCardsetInfoButton {
-  border-bottom: 3px solid $white;
+  float: none;
+  z-index: 50;
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#collapseCardsetInfo {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #collapseLearningPhaseInfoButton {
-  margin-top: 5px;
+  float: none;
+  z-index: 50;
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#collapseLearningPhaseInfo {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.collapseCardsetInfoContainer {
+  display: block;
+  min-height: 58px;
 }
 
 #collapseManageButton {
