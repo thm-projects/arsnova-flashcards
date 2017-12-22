@@ -32,34 +32,38 @@ var chart;
  * Meteor-method addWebPushSubscription.
  */
 function subscribeForPushNotification() {
-	navigator.serviceWorker.getRegistration()
-		.then(function (registration) {
-			return registration.pushManager.getSubscription()
-				.then(function (subscription) {
-					if (!subscription) {
-						return registration.pushManager.subscribe({userVisibleOnly: true});
-					}
-				});
-		})
-		.then(function (subscription) {
-			if (subscription) {
-				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
-				const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
-				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-				const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
-				const endpoint = subscription.endpoint;
-				const sub = {
-					endpoint: endpoint,
-					key: key,
-					authSecret: authSecret
-				};
-				Meteor.call("addWebPushSubscription", sub, function (error) {
-					if (error) {
-						throw new Meteor.Error(error.statusCode, 'Error subscription failed');
-					}
-				});
-			}
-		});
+	try {
+		navigator.serviceWorker.getRegistration()
+			.then(function (registration) {
+				return registration.pushManager.getSubscription()
+					.then(function (subscription) {
+						if (!subscription) {
+							return registration.pushManager.subscribe({userVisibleOnly: true});
+						}
+					});
+			})
+			.then(function (subscription) {
+				if (subscription) {
+					var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+					const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+					var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+					const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+					const endpoint = subscription.endpoint;
+					const sub = {
+						endpoint: endpoint,
+						key: key,
+						authSecret: authSecret
+					};
+					Meteor.call("addWebPushSubscription", sub, function (error) {
+						if (error) {
+							throw new Meteor.Error(error.statusCode, 'Error subscription failed');
+						}
+					});
+				}
+			});
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 /**
