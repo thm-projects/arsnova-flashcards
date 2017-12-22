@@ -32,7 +32,8 @@
                     <ul class="nav navbar-nav col-lg-12">
                         <li>
                             <button class="resetFilters btn btn-raised btn-default visible-lg" id="resetBtn"
-                                    role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
+                                    role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}}
+                            </button>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -44,12 +45,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
+                                {{_ "set-list.author"}}
                                 {{#if hasAuthorFilter}}
-                                    {{poolFilterAuthor}}
-                                {{else}}
-                                    {{_ "set-list.author"}}
+                                    <span class="glyphicon glyphicon-filter"></span>
                                 {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -59,7 +58,11 @@
                                     {{#if filterAuthors}}
                                         <li>
                                             <a href="#" class="filterAuthor"
-                                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}</a>
+                                               data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}
+                                                {{#if poolFilterAuthor this._id}}
+                                                    <span class="glyphicon glyphicon-filter"></span>
+                                                {{/if}}
+                                            </a>
                                         </li>
                                     {{/if}}
                                 {{/each}}
@@ -69,12 +72,10 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle collegeBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
+                                    {{_ "set-list.college"}}
                                     {{#if hasCollegeFilter}}
-                                        {{poolFilterCollege}}
-                                    {{else}}
-                                        {{_ "set-list.college"}}
+                                        <span class="glyphicon glyphicon-filter"></span>
                                     {{/if}}
-                                    <span class="glyphicon glyphicon-filter"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -84,7 +85,11 @@
                                     {{#each getColleges}}
                                         <li>
                                             <a href="#" class="filterCollege"
-                                               data-id="{{this.college}}">{{this.college}}</a>
+                                               data-id="{{this.college}}">{{this.college}}
+                                                {{#if poolFilterCollege this.college}}
+                                                    <span class="glyphicon glyphicon-filter"></span>
+                                                {{/if}}
+                                            </a>
                                         </li>
                                     {{/each}}
                                 </ul>
@@ -93,12 +98,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle courseBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+                                {{_ "set-list.course"}}
                                 {{#if hasCourseFilter}}
-                                    {{poolFilterCourse}}
-                                {{else}}
-                                    {{_ "set-list.course"}}
+                                    <span class="glyphicon glyphicon-filter"></span>
                                 {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -106,7 +109,11 @@
                                 </li>
                                 {{#each getCourses}}
                                     <li>
-                                        <a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}</a>
+                                        <a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}
+                                            {{#if poolFilterCourse this.course}}
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                            {{/if}}
+                                        </a>
                                     </li>
                                 {{/each}}
                             </ul>
@@ -115,12 +122,10 @@
                             <a href="#" id="moduleFilter" class="dropdown-toggle moduleBtn" data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true" aria-expanded="false">
+                                {{_ "set-list.module"}}
                                 {{#if hasModuleFilter}}
-                                    {{poolFilterModule}}
-                                {{else}}
-                                    {{_ "set-list.module"}}
+                                    <span class="glyphicon glyphicon-filter"></span>
                                 {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -129,7 +134,11 @@
                                 {{#each getModules}}
                                     <li><a href="#" class="filterModule" data-id="{{this.module}}">
                                         {{this.moduleToken}} [{{this.moduleNum}}]:
-                                        {{this.module}}</a></li>
+                                        {{this.module}}
+                                        {{#if poolFilterModule this.module}}
+                                            <span class="glyphicon glyphicon-filter"></span>
+                                        {{/if}}
+                                    </a></li>
                                 {{/each}}
                             </ul>
                         </li>
@@ -137,56 +146,75 @@
                             <a href="#" id="learnphaseFilter" class="dropdown-toggle" data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true" aria-expanded="false">
+                                {{_ "set-list.learnphase"}}
                                 {{#if hasLearnphaseFilter}}
-                                    {{getLearnphase poolFilterLearnphase}}
-                                {{else}}
-                                    {{_ "set-list.learnphase"}}
+                                    <span class="glyphicon glyphicon-filter"></span>
                                 {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#" class="filterLearnphase active">{{_ "set-list.everything"}}</a>
                                 </li>
-                                {{#each getLearnphases}}
-                                    {{#if this.learningActive}}
-                                        <li><a href="#" class="filterLearnphase" data-id="true">{{getLearnphase
-                                                this.learningActive}}</a></li>
-                                    {{else}}
-                                        <li><a href="#" class="filterLearnphase" data-id="false">{{getLearnphase
-                                                this.learningActive}}</a></li>
+                                <li><a href="#" class="filterLearnphase" data-id="true">
+                                    {{_ "set-list.activeLearnphase"}}
+                                    {{#if poolFilterLearnphase true}}
+                                        <span class="glyphicon glyphicon-filter"></span>
                                     {{/if}}
-                                {{/each}}
+                                </a></li>
+                                <li><a href="#" class="filterLearnphase" data-id="false">
+                                    {{_ "set-list.inactiveLearnphase"}}
+                                    {{#if poolFilterLearnphase false}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" id="ratingFilter" class="dropdown-toggle ratingBtn" data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true" aria-expanded="false">
+                                {{_ "set-list.rating"}}
                                 {{#if hasRatingFilter}}
-                                    {{poolFilterRating}}
-                                {{else}}
-                                    {{_ "set-list.rating"}}
+                                    <span class="glyphicon glyphicon-filter"></span>
                                 {{/if}}
-                                <span class="glyphicon glyphicon-filter"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#" class="filterRating active" data-id="-1">{{_ "set-list.everything"}}</a>
                                 </li>
                                 <li><a href="#" class="filterRating" data-id="0">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=0}}</a>
+                                                                                     rating=0}}
+                                    {{#if poolFilterRating 0}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
                                 </li>
-                                <li><a href="#" class="filterRating" data-id="1">{{_ "set-list.ratingFilter"}}</a>
+                                <li><a href="#" class="filterRating" data-id="1">{{_ "set-list.ratingFilter"}}
+                                    {{#if poolFilterRating 1}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
                                 </li>
                                 <li><a href="#" class="filterRating" data-id="2">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=2}}</a>
+                                                                                     rating=2}}
+                                    {{#if poolFilterRating 2}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
                                 </li>
                                 <li><a href="#" class="filterRating" data-id="3">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=3}}</a>
+                                                                                     rating=3}}
+                                    {{#if poolFilterRating 3}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
                                 </li>
                                 <li><a href="#" class="filterRating" data-id="4">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=4}}</a>
+                                                                                     rating=4}}
+                                    {{#if poolFilterRating 4}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
                                 </li>
                             </ul>
                         </li>
