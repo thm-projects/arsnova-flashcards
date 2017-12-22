@@ -165,6 +165,8 @@ Template.welcome.onRendered(function () {
 	}
 
 	this.autorun(() => {
-		createTagCloud();
+		setTimeout(function () {
+			createTagCloud();
+		}, 100);
 	});
 });
