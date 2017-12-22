@@ -46,15 +46,10 @@
     "pool": "Pool",
     "myprofile": "My profile",
     "billing": "Billing",
-    "logout": "Logout",
     "search": "Search",
     "frontend": "Front end",
     "backend": "Back end",
     "none": "None"
-  },
-  "footer": {
-    "info": "Info",
-    "language": "Language"
   },
   "contact": {
     "impressum": "Legal Notice",
@@ -178,7 +173,7 @@
     "title": "Following decks of cards are available:",
     "everyone": "Everyone",
     "everything": "Everything",
-    "reset": "Reset filters",
+    "reset": "Reset",
     "rating": "Stars",
     "ratingFilter": "> 1 Star",
     "ratingFilterPlural": "> __rating__ Stars",

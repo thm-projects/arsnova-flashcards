@@ -18,7 +18,7 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterLearnphase');
-Session.setDefault('poolFilterRating', -1);
+Session.setDefault('poolFilterRating');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
@@ -41,17 +41,12 @@ function prepareQuery() {
 	if (Session.get('poolFilterModule')) {
 		query.module = Session.get('poolFilterModule');
 	}
-	if (Session.get('poolFilterLearnphase') != null) {
-		/*NOTE:
-		 * Need to check explicitly agains null, because true and false are valid values for this filter.
-		 * Otherwise the boolean value stored in the session might evaluate the above condition to false,
-		 * which causes the next line to be skipped.
-		 * This is not intended, because the stored value is needed as filter property
-		 * for not yet started learning phases.
-		 */
+	if (Session.get('poolFilterLearnphase')) {
 		query.learningActive = Session.get('poolFilterLearnphase');
 	}
-	query.relevance = {$gt: Session.get('poolFilterRating')};
+	if (Session.get('poolFilterRating')) {
+		query.relevance = {$gt: Session.get('poolFilterRating')};
+	}
 }
 
 function checkRemainingCards() {
@@ -122,7 +117,7 @@ function resetFilters() {
 	Session.set('poolFilterCollege');
 	Session.set('poolFilterCourse');
 	Session.set('poolFilterModule');
-	Session.set('poolFilterRating', -1);
+	Session.set('poolFilterRating');
 	Session.set('poolFilter', ["free", "edu", "pro"]);
 	Session.set('poolFilterLearnphase');
 	checkFilters();
@@ -130,68 +125,26 @@ function resetFilters() {
 }
 
 function filterCollege(event) {
-	var button = $(".filterCollegeGroup");
-	if (!$(event.target).data('id')) {
-		button.removeClass("active");
-		Session.set('poolFilterCollegeVal', null);
-	} else {
-		button.addClass('active');
-		Session.set('poolFilterCollegeVal', $(event.target).data('id'));
-	}
 	Session.set('poolFilterCollege', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
 function filterCourse(event) {
-	var button = $(".filterCourseGroup");
-	if (!$(event.target).data('id')) {
-		button.removeClass("active");
-		Session.set('poolFilterCourseVal', null);
-	} else {
-		button.addClass('active');
-		Session.set('poolFilterCourseVal', $(event.target).data('id'));
-	}
 	Session.set('poolFilterCourse', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
 function filterModule(event) {
-	var button = $(".filterModuleGroup");
-	if (!$(event.target).data('id')) {
-		button.removeClass("active");
-		Session.set('poolFilterModuleVal', null);
-	} else {
-		button.addClass('active');
-		Session.set('poolFilterModuleVal', $(event.target).data('id'));
-	}
 	Session.set('poolFilterModule', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
 function filterLearnphase(event) {
-	if ($(event.target).data('id') === true) {
-		Session.set('poolFilterLearnphaseVal', true);
-		Session.set('poolFilterLearnphase', true);
-	} else if ($(event.target).data('id') === false) {
-		Session.set('poolFilterLearnphaseVal', false);
-		Session.set('poolFilterLearnphase', false);
-	} else {
-		Session.set('poolFilterLearnphaseVal');
-		Session.set('poolFilterLearnphase');
-	}
-
+	Session.set('poolFilterLearnphase', $(event.target).data('id'));
 	resetInfiniteBar();
 }
 
 function filterRating(event) {
-	var button = $(".filterRatingGroup");
-	if (!$(event.target).data('id')) {
-		button.removeClass("active");
-		Session.set('poolFilterRatingVal', null);
-	} else {
-		button.addClass('active');
-		Session.set('poolFilterRatingVal', $(event.target).data('id'));
-	}
 	Session.set('poolFilterRating', $(event.target).data('id'));
 	resetInfiniteBar();
 }
@@ -233,54 +186,41 @@ Template.category.helpers({
 			return item.moduleNum;
 		});
 	},
-	getLearnphases: function () {
-		prepareQuery();
-		return _.uniq(Cardsets.find(query, {sort: {"learningActive": 1}}).fetch(), function (item) {
-			return item.learningActive;
-		});
-	},
 	hasAuthorFilter: function () {
 		return Session.get('poolFilterAuthor');
 	},
-	poolFilterAuthor: function () {
-		return Session.get('poolFilterAuthorVal');
+	poolFilterAuthor: function (id) {
+		return Session.get('poolFilterAuthor') === id;
 	},
 	hasCollegeFilter: function () {
 		return Session.get('poolFilterCollege');
 	},
-	poolFilterCollege: function () {
-		return Session.get('poolFilterCollegeVal');
+	poolFilterCollege: function (college) {
+		return Session.get('poolFilterCollege') === college;
 	},
 	hasCourseFilter: function () {
 		return Session.get('poolFilterCourse');
 	},
-	poolFilterCourse: function () {
-		return Session.get('poolFilterCourseVal');
+	poolFilterCourse: function (course) {
+		return Session.get('poolFilterCourse') === course;
 	},
 	hasModuleFilter: function () {
 		return Session.get('poolFilterModule');
 	},
-	poolFilterModule: function () {
-		return Session.get('poolFilterModuleVal');
+	poolFilterModule: function (module) {
+		return Session.get('poolFilterModule') === module;
 	},
 	hasLearnphaseFilter: function () {
-		/*NOTE:
-		 * The stored value is allowed to be false, so we need to check against null for filter availability.
-		 */
-		return (Session.get('poolFilterLearnphase') != null);
+		return Session.get('poolFilterLearnphase');
 	},
-	poolFilterLearnphase: function () {
-		return Session.get('poolFilterLearnphaseVal');
+	poolFilterLearnphase: function (learningPhase) {
+		return Session.get('poolFilterLearnphase') === learningPhase;
 	},
 	hasRatingFilter: function () {
-		return Session.get('poolFilterRating') !== -1;
+		return Session.get('poolFilterRating');
 	},
-	poolFilterRating: function () {
-		if (Session.get('poolFilterRating') === 1) {
-			return TAPi18n.__('set-list.ratingFilter');
-		} else {
-			return TAPi18n.__("set-list.ratingFilterPlural", {rating: Session.get('poolFilterRating')});
-		}
+	poolFilterRating: function (rating) {
+		return Session.get('poolFilterRating') === rating;
 	},
 	moreResults: function () {
 		return checkRemainingCards();
@@ -421,14 +361,6 @@ Template.category.events({
 		}
 	},
 	'click .filterAuthor': function (event) {
-		var button = $(".filterAuthorGroup");
-		if (!$(event.target).data('id')) {
-			button.removeClass("active");
-			Session.set('poolFilterAuthorVal', null);
-		} else {
-			button.addClass('active');
-			Session.set('poolFilterAuthorVal', $(event.target).html());
-		}
 		Session.set('poolFilterAuthor', $(event.target).data('id'));
 		resetInfiniteBar();
 	},

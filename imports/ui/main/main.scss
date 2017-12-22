@@ -261,7 +261,7 @@ body {
 }
 
 #theme-wrapper-no-nav {
-  margin-top: 20px;
+  margin-top: 20px !important;
 }
 
 .footer {
@@ -269,32 +269,31 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 40px;
   background-color: $color_wild_sand_approx;
   .container {
-    height: 60px;
+    height: 40px;
     margin-bottom: 0;
     background-color: $color_wild_sand_approx;
     text-align: center;
   }
   #info {
-    height: 60px;
+    height: 40px;
   }
   .footer-icon {
     font-size: 18px;
     padding: 10px 0 0 0;
     margin: 0;
   }
-  .footer-text {
-    font-size: 16px;
-    margin: 0;
-  }
 
   li {
-    height: 60px;
+    height: 40px;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  li ul li  {
+    height: 60px;
   }
   li:hover {
     background-color: $color_footer_hover;
@@ -465,6 +464,12 @@ button:disabled {
   }
 }
 
+@media (max-width: 768px) {
+  .poolHeaderBottom {
+    font-size: 10px;
+  }
+}
+
 .poolLabel {
   font-weight: bold;
   text-decoration: none;
@@ -485,7 +490,7 @@ button:disabled {
   padding-left: 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .panel {
     margin-top: 3px;
     margin-bottom: 3px;
@@ -528,27 +533,13 @@ button:disabled {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .panel {
-    padding-right: 3px;
-    background-clip: content-box;
-    -webkit-box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-  }
-
-  .altPanel {
-    padding-left: 3px;
-    padding-right: 0;
-    -webkit-box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.12), 3px 1px 6px 0 rgba(0, 0, 0, 0.12);
-  }
-
   #input-search {
     width: 70px;
   }
 
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .altPanel {
     background-color: $color_wild_sand_approx;
   }
