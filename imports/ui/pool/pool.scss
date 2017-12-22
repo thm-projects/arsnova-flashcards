@@ -107,13 +107,18 @@
       display: block !important;
     }
 
-    #resetBtn {
-      margin-left: 15px;
+    .resetBtn {
       margin-top: 8px;
     }
 
     .field-tip .tip-content {
       bottom: 102%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    .panelUnitPrice {
+      border: none;
     }
   }
 
@@ -126,7 +131,7 @@
 
     #filterCheckbox {
       padding-bottom: 0px;
-      padding-right: 30px;
+      padding-right: 10px;
       margin-left: 15px;
       margin-top: -5px !important;
     }
@@ -139,9 +144,6 @@
       padding: 0px;
     }
 
-    #moduleFilter {
-      padding-right: 0px !important;
-    }
   }
 
   .label-free {
@@ -159,6 +161,7 @@
 
 .resetFilters {
   padding: 8px;
+  margin-left: 10px;
 }
 
 #upgrade, #downgrade {

@@ -1,9 +1,9 @@
 import * as global from "./global.js";
 
 function agreeCookies() {
-	browser.waitForExist('a.cc_btn.cc_btn_accept_all', global.threshold);
+	browser.waitForExist('div.cc-window.cc-banner > div > a', global.threshold);
 	browser.setCookie({name: 'cookieconsent_dismissed', value: 'yes'});
-	browser.click('a.cc_btn.cc_btn_accept_all');
+	browser.click('div.cc-window.cc-banner > div > a');
 }
 
 function setResolution() {

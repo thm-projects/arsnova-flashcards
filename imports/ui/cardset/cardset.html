@@ -217,17 +217,21 @@
     <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
-                <div class="col-sm-8">
-                    <div class="">
-                        <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
-                        <hr> {{#markdown}}{{description}}{{/markdown}}
+                <div class="row">
+                    <div class="col-sm-6 col-md-8">
+                        <div class="">
+                            <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
+                            <hr> {{#markdown}}{{description}}{{/markdown}}
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4 infoBox">
-                    {{> cardsetInfoBox}}
-                    {{#if learningActive}}
-                        {{> learningPhaseInfoBox}}
-                    {{/if}}
+                    <div class="col-sm-6 col-md-4 infoBox">
+                    <span class="collapseCardsetInfoContainer">
+                        {{> cardsetInfoBox}}
+                    </span>
+                        {{#if learningActive}}
+                            {{> learningPhaseInfoBox}}
+                        {{/if}}
+                    </div>
                 </div>
             </div>
             {{#if isCardsetOwner _id}}
@@ -1293,19 +1297,23 @@
                 {{> access_denied_content_only}}
             {{else}}
                 <div class="container">
-                    <div class="row">
-                        <div id="cardsetInfoDetail" class="col-md-5">
-                            <div class="panel panel-default cardsetInfo">
-                                <div class="panel-body">
-                                    <h4>{{this.name}}</h4>
-                                    <hr>
-                                    {{> cardsetInfoBox}}
-                                    {{> learningPhaseInfoBox}}
+                    <div id="cardsetInfoDetail">
+                        <div class="panel panel-default cardsetInfo">
+                            <div class="panel-body">
+                                <h4>{{this.name}}</h4>
+                                <hr>
+                                <div class="row">
+                                    <span class="col-sm-6 collapseCardsetInfoContainer">
+                                        {{> cardsetInfoBox}}
+                                    </span>
+                                    <span class="col-sm-6 collapseCardsetInfoContainer">
+                                        {{> learningPhaseInfoBox}}
+                                    </span>
                                 </div>
-                                <div class="panel-footer">
-                                    <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
-                                            "box_export"}}</button>
-                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
+                                        "box_export"}}</button>
                             </div>
                         </div>
                     </div>
