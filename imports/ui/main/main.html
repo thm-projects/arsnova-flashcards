@@ -1,5 +1,6 @@
 <template name="main">
     {{checkActiveRouteName}}
+    {{> connectionStatusModal}}
     <div id="{{#if currentUser}}{{#if isInRole
                                       'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
          class="{{getTheme}}">
@@ -9,7 +10,6 @@
                 {{else if  isInRole 'blocked'}}
                 {{else}}
                     {{> completeProfileModal}}
-
                     <nav class="navbar navbar-default navbar-fixed-top">
                         <div class="container thm-header">
                             <div class="container-fluid">
@@ -142,7 +142,7 @@
                                                     <span class="visible-sm">
                                                         {{_ "navbar-collapse.myprofile"}}
                                                     </span>
-                                                    </a>
+                                                </a>
                                             </li>
                                             <li><a href="#" id="logout"><i
                                                     class="glyphicon glyphicon-log-out"></i>
@@ -159,11 +159,6 @@
             {{/if}}
         {{/unless}}
         <div id="main" class="container">
-            {{#if isOffline}}
-                <div class="alert alert-warning">
-                    {{_ "youareoffline"}}
-                </div>
-            {{/if}}
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
             <div class="row">
                 {{> yield}}
@@ -173,7 +168,7 @@
         {{#unless fullscreenActive}}
             <div id="footer" class="footer">
                 <ul class="container dropup">
-                    <li id="navbar-languagepanel" class="col-xs-1"
+                    <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
                         data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
@@ -185,15 +180,25 @@
                             {{/each}}
                         </ul>
                     </li>
-                    <li class="col-xs-1 pull-right">
+                    <li class="col-xs-2 col-sm-1">
                         <a id="info" href="{{pathFor route='impressum'}}">
                             <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                         </a>
+                    </li>
+                    <li class="col-xs-1 pull-right">
+                        {{> connectionStatus}}
                     </li>
                 </ul>
             </div>
         {{/unless}}
     </div> <!-- Theme Wrapper -->
+</template>
+
+<template name="connectionStatus">
+    <a id="connectionStatus" href="#" data-toggle="modal"
+       data-target="#connectionStatusModal">
+        <p class="footer-icon"><span class="glyphicon glyphicon-signal {{getSignal}}"></span></p>
+    </a>
 </template>
 
 <template name="completeProfileModal">
@@ -221,4 +226,34 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+</template>
+
+<template name="connectionStatusModal">
+    <div class="modal fade" id="connectionStatusModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <b>{{_ "connection.webSocket"}}:</b>
+                                            {{#if isConnected}} {{_ "connection.connected"}} {{else}} {{_
+                                                    "connection.disconnected"}} {{/if}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

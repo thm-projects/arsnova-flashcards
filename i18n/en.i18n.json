@@ -184,7 +184,6 @@
     "learnphaseInfo": "About this Learning-Phase",
     "cardsetInfo": "About this __type__ Cardset",
     "cardsetInfoStatic": "About this Cardset",
-    "leave": "",
     "shuffleCardsets": "Shuffle Cardsets",
     "shuffle": "Shuffle",
     "shuffleInfoText": "",
@@ -693,7 +692,12 @@
   "badgetext1": "You received the Badge ",
   "badgetext2": "denizen",
   "badgetext3": "",
-  "youareoffline": "You are offline!",
+  "connection": {
+    "title": "Connection status",
+    "webSocket": "WebSocket",
+    "connected": "connected",
+    "disconnected": "disconnected"
+  },
   "admin": {
     "allLearnedCardsets": "All learned cardsets",
     "learnedCardsets": "Learning progress of the cardset",

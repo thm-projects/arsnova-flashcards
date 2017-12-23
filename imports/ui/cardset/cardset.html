@@ -328,10 +328,11 @@
             </div>
         {{/unless}}
         {{#if gotEnoughCards}}
-            <div id="set-details-learn-region">
-                <div class="well well-sm sidebar-nav">
-                    <span class="nav-header-cardset">{{_ "learn"}}</span>
-                    {{#unless learningActive}}
+            {{#unless learningActive}}
+                <div id="set-details-learn-region">
+                    <div class="well well-sm sidebar-nav">
+                        <span class="nav-header-cardset">{{_ "learn"}}</span>
+
                         {{#if isProfileCompleted this._id}}
                             <button id="learnBox"
                                     class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
@@ -344,14 +345,25 @@
                         <button id="learnMemo"
                                 class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
                                 "memo"}}</button>
-                    {{/unless}}
-                    {{#if learningLeitner}}
-                        <button id="leitnerProgress"
-                                class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
-                                "leitnerProgress"}}</button>
-                    {{/if}}
+                        {{#if learningLeitner}}
+                            <button id="leitnerProgress"
+                                    class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
+                                    "leitnerProgress"}}</button>
+                        {{/if}}
+                    </div>
                 </div>
-            </div>
+            {{else}}
+                {{#if learningLeitner}}
+                    <div id="set-details-learn-region">
+                        <div class="well well-sm sidebar-nav">
+                            <span class="nav-header-cardset">{{_ "learn"}}</span>
+                            <button id="leitnerProgress"
+                                    class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
+                                    "leitnerProgress"}}</button>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/unless}}
         {{/if}}
         <div id="set-details-learn-region">
             <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
