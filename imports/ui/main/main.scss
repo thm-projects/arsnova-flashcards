@@ -615,3 +615,15 @@ button:disabled {
   padding: 0 !important;
   margin-right: 5px !important;
 }
+
+.disconnected {
+  color: $color_thm_red;
+}
+
+.connected {
+  color: $color_thm_green;
+}
+
+.connecting {
+  color: $color_thm_orange;
+}

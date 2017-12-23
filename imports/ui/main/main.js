@@ -22,7 +22,20 @@ Meteor.subscribe("adminSettings");
 Session.setDefault("theme", "default");
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
+Session.setDefault("connectionStatus", 2);
 
+
+function connectionStatus() {
+	let stat;
+	if (Meteor.status().status === "connected") {
+		stat = 1;
+	} else if (Meteor.status().status === "connecting") {
+		stat = 2;
+	} else {
+		stat = 0;
+	}
+	Session.set('connectionStatus', stat);
+}
 
 /** Function provides an reactive callback when a user loggs in and out */
 Meteor.autorun(function () {
@@ -37,6 +50,7 @@ Meteor.autorun(function () {
 		// When user logged out, go back to default Theme
 		Session.set('theme', "default");
 	}
+	connectionStatus();
 });
 
 $(document).on('click', '.navbar-collapse.in', function (e) {

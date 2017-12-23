@@ -172,7 +172,6 @@
     "learnphaseInfo": "Über diese Lernphase",
     "cardsetInfo": "Über diesen __type__ Kartensatz",
     "cardsetInfoStatic": "Über diesen Kartensatz",
-    "leave": "Verlassen",
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
     "shuffleInfoText": "",
@@ -659,7 +658,12 @@
   "badgetext1": "Du hast den Badge ",
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
-  "youareoffline": "Du bist offline!",
+  "connection": {
+    "title": "Verbindung",
+    "webSocket": "WebSocket",
+    "connected": "verbunden",
+    "disconnected": "getrennt"
+  },
   "admin": {
     "allLearnedCardsets": "Alle gelernten Kartensätze",
     "learnedCardsets": "Lernfortschritt des Kartensatzes",

@@ -158,6 +158,17 @@ Template.registerHelper("getCards", function () {
 	});
 });
 
+Template.registerHelper("getSignal", function () {
+	switch (Session.get('connectionStatus')) {
+		case (0):
+			return "disconnected";
+		case (1):
+			return "connected";
+		case (2):
+			return "connecting";
+	}
+});
+
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
 	return Cardsets.findOne({_id: cardset_id}).shuffled;
 });
@@ -358,14 +369,14 @@ Template.registerHelper("oddRow", function (index) {
 });
 
 // detects if the app is offline or not
-Template.registerHelper("isOffline", function () {
-	return !Meteor.status().connected;
+Template.registerHelper("isConnected", function () {
+	return Session.get("connectionStatus") === 1;
 });
 
 // Adds the "disabled" attribute to Elements if the app is offline
 // use it like this: <button {{disableIfOffline}}>...</button>
 Template.registerHelper("disableIfOffline", function () {
-	return Meteor.status().connected ? "" : "disabled";
+	return Session.get("connectionStatus") === 1 ? "" : "disabled";
 });
 
 Template.registerHelper("getMaximumText", function (text) {
