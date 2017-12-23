@@ -717,7 +717,8 @@ Template.cardsetSidebar.events({
 	},
 	"click #leitnerProgress": function () {
 		Router.go('progress', {
-			_id: this._id
+			_id: this._id,
+			user_id: Meteor.userId()
 		});
 	},
 	"click #startStopLearning": function () {
@@ -839,6 +840,12 @@ Template.cardsetLearnActivityStatistic.events({
 	"mouseover .field-tip": function () {
 		$(".tip-content").css("bottom", "");
 		$(".tip-content").css("top", $("#exportCSV").offset().top);
+	},
+	"click .detailed-stats": function (event) {
+		Router.go('progress', {
+			_id: Router.current().params._id,
+			user_id: $(event.target).data('id')
+		});
 	}
 });
 
@@ -1444,9 +1451,28 @@ Template.leitnerLearning.events({
  * ############################################################################
  */
 
+Template.myProgress.helpers({
+	gotCards: function () {
+		return Leitner.find({
+			cardset_id: Router.current().params._id,
+			user_id: Router.current().params.user_id
+		}).count();
+	},
+	isStatsOwner: function () {
+		return Meteor.userId() === Router.current().params.user_id;
+	}
+});
 Template.myProgress.events({
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {_id: this._id});
+		if (Meteor.userId() === Router.current().params.user_id) {
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		} else {
+			Router.go('cardsetstats', {
+				_id: Router.current().params._id
+			});
+		}
 	}
 });
 
@@ -1502,6 +1528,10 @@ function updateGraph() {
 		query.cardset_id = Router.current().params._id;
 	}
 
+	if (Router.current().params.user_id !== undefined) {
+		query.user_id = Router.current().params.user_id;
+	}
+
 	var i;
 	for (i = 0; i < 6; i++) {
 		query.box = (i + 1);
@@ -1514,10 +1544,16 @@ function updateGraph() {
 Template.graph.helpers({
 	countBox: function (boxId) {
 		return Leitner.find({
-			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId(),
+			cardset_id: Router.current().params._id,
+			user_id: Router.current().params.user_id,
 			box: boxId
 		}).count();
+	},
+	isStatsOwner: function () {
+		return Meteor.userId() === Router.current().params.user_id;
+	},
+	getUserID: function () {
+		return Router.current().params.user_id;
 	}
 });
 

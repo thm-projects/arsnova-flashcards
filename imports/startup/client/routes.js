@@ -116,7 +116,7 @@ Router.route('/cardset/:_id/editcard/:cardid', {
 
 Router.route('pool');
 
-Router.route('/progress/:_id', {
+Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'myProgress',
 	data: function () {

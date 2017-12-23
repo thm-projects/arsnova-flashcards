@@ -327,11 +327,11 @@
                 </div>
             </div>
         {{/unless}}
-        {{#unless learningActive}}
-            {{#if gotEnoughCards}}
-                <div id="set-details-learn-region">
-                    <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "learn"}}</span>
+        {{#if gotEnoughCards}}
+            <div id="set-details-learn-region">
+                <div class="well well-sm sidebar-nav">
+                    <span class="nav-header-cardset">{{_ "learn"}}</span>
+                    {{#unless learningActive}}
                         {{#if isProfileCompleted this._id}}
                             <button id="learnBox"
                                     class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
@@ -344,15 +344,15 @@
                         <button id="learnMemo"
                                 class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
                                 "memo"}}</button>
-                        {{#if learningLeitner}}
-                            <button id="leitnerProgress"
-                                    class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
-                                    "leitnerProgress"}}</button>
-                        {{/if}}
-                    </div>
+                    {{/unless}}
+                    {{#if learningLeitner}}
+                        <button id="leitnerProgress"
+                                class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
+                                "leitnerProgress"}}</button>
+                    {{/if}}
                 </div>
-            {{/if}}
-        {{/unless}}
+            </div>
+        {{/if}}
         <div id="set-details-learn-region">
             <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
                href="#collapseManage" data-toggle="collapse">
@@ -442,17 +442,17 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#unless isCardsetOwner this._id}}
-                {{> access_denied_content_only}}
-            {{else}}
+            {{#if gotCards}}
                 <div class="container">
-                    <h3 class="panel-title">{{_ "learnfile"}}</h3>
                     {{> graph}}
                     <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left">{{_ "backbutton"}}</span>
+                        <span class="pull-left">{{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
+                                "backbuttonStatistics"}}{{/if}}</span>
                     </button>
                 </div>
-            {{/unless}}
+            {{else}}
+                {{> access_denied_content_only}}
+            {{/if}}
         {{/if}}
     {{/if}}
 </template>
@@ -461,7 +461,8 @@
     <div class="well well-sm sidebar-nav" style="margin-top: 20px">
         <div id="container" style="min-width: 100%;
 			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
-            <h3 class="panel-title">{{_ "admin.learnedCardsets"}} "{{this.name}}"</h3>
+            <h4>{{this.name}}: {{#if isStatsOwner}}{{_ "admin.myProgress"}}{{else}}{{_ "admin.userProgress"}}
+                "{{getAuthorName getUserID}}"{{/if}}</h4>
             <canvas id="boxChart" width="800" height="470" style="margin-top: 10px" data-box1="{{countBox 1}}"
                     data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
                     data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
@@ -1345,18 +1346,24 @@
                                                                     count=this.learningInterval.[4]}}</p></div>
                                     <i class="glyphicon glyphicon-info-sign showIntervalInfo"></i></a></th>
                                 <th>{{_ "subject6"}}</th>
+                                <th>{{_ "details"}}</th>
                             </tr>
                             {{#each getCardsetStats}}
                                 <tr>
-                                    <th>{{this.birthname}}</th>
-                                    <th>{{this.givenname}}</th>
-                                    <th><a href="mailto:{{this.email}}">{{this.email}}</a></th>
-                                    <th>{{this.box1}}</th>
-                                    <th>{{this.box2}}</th>
-                                    <th>{{this.box3}}</th>
-                                    <th>{{this.box4}}</th>
-                                    <th>{{this.box5}}</th>
-                                    <th>{{this.box6}}</th>
+                                    <td>{{this.birthname}}</td>
+                                    <td>{{this.givenname}}</td>
+                                    <td><a href="mailto:{{this.email}}">{{this.email}}</a></td>
+                                    <td>{{this.box1}}</td>
+                                    <td>{{this.box2}}</td>
+                                    <td>{{this.box3}}</td>
+                                    <td>{{this.box4}}</td>
+                                    <td>{{this.box5}}</td>
+                                    <td>{{this.box6}}</td>
+                                    <td>
+                                        <button data-id="{{this.user_id}}" class="btn btn-block detailed-stats"><i
+                                                class="glyphicon glyphicon glyphicon-stats"
+                                                data-id="{{this.user_id}}"></i></button>
+                                    </td>
                                 </tr>
                             {{/each}}
                             </tbody>
