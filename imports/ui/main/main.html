@@ -168,7 +168,7 @@
         {{#unless fullscreenActive}}
             <div id="footer" class="footer">
                 <ul class="container dropup">
-                    <li id="navbar-languagepanel" class="col-xs-1"
+                    <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
                         data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
@@ -180,7 +180,7 @@
                             {{/each}}
                         </ul>
                     </li>
-                    <li class="col-xs-1">
+                    <li class="col-xs-2 col-sm-1">
                         <a id="info" href="{{pathFor route='impressum'}}">
                             <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                         </a>
@@ -243,9 +243,7 @@
                                 <table class="table">
                                     <tr>
                                         <td>
-                                            {{_ "connection.webSocket"}}:
-                                        </td>
-                                        <td>
+                                            <b>{{_ "connection.webSocket"}}:</b>
                                             {{#if isConnected}} {{_ "connection.connected"}} {{else}} {{_
                                                     "connection.disconnected"}} {{/if}}
                                         </td>
