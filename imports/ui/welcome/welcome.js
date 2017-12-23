@@ -42,7 +42,7 @@ function createTagCloud() {
 		return;
 	}
 
-	let heightAdjustment = 125;
+	let heightAdjustment = 130;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 

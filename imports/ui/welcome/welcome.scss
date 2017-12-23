@@ -39,11 +39,13 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
   .panel-heading {
     padding-bottom: 0;
+    min-height: 177px;
   }
 
   .panel-footer {
     border-top: 0;
-    margin-top: 0px;
+    margin-top: 0;
+    min-height: 84px;
   }
 }
 
