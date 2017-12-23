@@ -100,6 +100,7 @@ function getLearners(data, cardset_id) {
 		}
 
 		learningDataArray.push({
+			user_id: user[0]._id,
 			birthname: user[0].profile.birthname,
 			givenname: user[0].profile.givenname,
 			email: user[0].email,
