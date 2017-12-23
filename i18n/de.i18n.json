@@ -172,6 +172,7 @@
     "learnphaseInfo": "Über diese Lernphase",
     "cardsetInfo": "Über diesen __type__ Kartensatz",
     "cardsetInfoStatic": "Über diesen Kartensatz",
+    "leave": "",
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
     "shuffleInfoText": "",
