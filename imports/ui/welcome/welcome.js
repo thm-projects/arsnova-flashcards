@@ -163,5 +163,7 @@ Template.welcome.onRendered(function () {
 			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
 			'</select>');
 	}
-	createTagCloud();
+	this.autorun(() => {
+		createTagCloud();
+	});
 });
