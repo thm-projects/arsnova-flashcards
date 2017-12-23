@@ -163,7 +163,5 @@ Template.welcome.onRendered(function () {
 			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
 			'</select>');
 	}
-	setTimeout(function () {
-		createTagCloud();
-	}, 100);
+	createTagCloud();
 });
