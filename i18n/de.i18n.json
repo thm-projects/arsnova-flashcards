@@ -635,7 +635,7 @@
   "subjectInfo_plural": "Karten in Fach __box__ können erst wieder nach __count__ Tagen gelernt werden.",
   "leitnerCard": "Karte für derzeitige Lernphase",
   "backbutton": "Zurück zum Kartensatz",
-  "backbuttonStatistics": "Zurück zu den Lernstatistiken",
+  "backbuttonStatistics": "Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte übrig",
