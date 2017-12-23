@@ -163,10 +163,7 @@ Template.welcome.onRendered(function () {
 			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
 			'</select>');
 	}
-
-	this.autorun(() => {
-		setTimeout(function () {
-			createTagCloud();
-		}, 100);
-	});
+	setTimeout(function () {
+		createTagCloud();
+	}, 100);
 });
