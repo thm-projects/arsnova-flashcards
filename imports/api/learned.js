@@ -19,9 +19,10 @@ if (Meteor.isServer) {
 								$in: Cardsets.find({
 									$or: [
 										{owner: this.userId},
-										{learningActive: true},
-										{college: Meteor.settings.public.university.default}
-									]
+										{editors: {$in: [this.userId]}}
+									],
+									learningActive: true,
+									college: Meteor.settings.public.university.default
 								}).map(function (cardset) {
 									return cardset._id;
 								})
@@ -38,8 +39,9 @@ if (Meteor.isServer) {
 								$in: Cardsets.find({
 									$or: [
 										{owner: this.userId},
-										{learningActive: true}
-									]
+										{editors: {$in: [this.userId]}}
+									],
+									learningActive: true
 								}).map(function (cardset) {
 									return cardset._id;
 								})
@@ -54,9 +56,7 @@ if (Meteor.isServer) {
 					user_id: this.userId,
 					cardset_id: {
 						$in: Cardsets.find({
-							$or: [
-								{college: Meteor.settings.public.university.default}
-							]
+							college: Meteor.settings.public.university.default
 						}).map(function (cardset) {
 							return cardset._id;
 						})
@@ -77,10 +77,9 @@ if (Meteor.isServer) {
 							cardset_id: {
 								$in: Cardsets.find({
 									$or: [
-										{owner: this.userId},
-										{learningActive: true},
-										{college: Meteor.settings.public.university.default}
-									]
+										{owner: this.userId}
+									],
+									college: Meteor.settings.public.university.default
 								}).map(function (cardset) {
 									return cardset._id;
 								})
@@ -96,8 +95,7 @@ if (Meteor.isServer) {
 							cardset_id: {
 								$in: Cardsets.find({
 									$or: [
-										{owner: this.userId},
-										{learningActive: true}
+										{owner: this.userId}
 									]
 								}).map(function (cardset) {
 									return cardset._id;
