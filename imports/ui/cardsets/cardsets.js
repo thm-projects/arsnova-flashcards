@@ -234,39 +234,11 @@ Template.shuffle.helpers({
 		if (Router.current().route.getName() === "editshuffle") {
 			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 		}
-		let leitnerCards = Leitner.find({
-			user_id: Meteor.userId()
-		});
-		let wozniakCards = Wozniak.find({
-			user_id: Meteor.userId()
-		});
-		let otherCardsets = Cardsets.find({
+		return Cardsets.find({
 			$or: [
 				{owner: Meteor.userId()},
-				{editors: {$in: [Meteor.userId()]}}
+				{kind: {$in: ["free", "edu"]}}
 			]
-		});
-		let cardsets = [];
-		leitnerCards.forEach(function (leitnerCard) {
-			if ($.inArray(leitnerCard.cardset_id, cardsets) === -1) {
-				cardsets.push(leitnerCard.cardset_id);
-			}
-		});
-		wozniakCards.forEach(function (wozniakCard) {
-			if ($.inArray(wozniakCard.cardset_id, cardsets) === -1) {
-				cardsets.push(wozniakCard.cardset_id);
-			}
-		});
-		otherCardsets.forEach(function (createdCardset) {
-			if ($.inArray(createdCardset._id, cardsets) === -1) {
-				cardsets.push(createdCardset._id);
-			}
-		});
-
-		return Cardsets.find({
-			_id: {
-				$in: cardsets
-			}
 		}, {
 			sort: {name: 1}
 		});
