@@ -128,10 +128,14 @@ Template.welcome.onCreated(function () {
 		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 
 	window.addEventListener(orientationEvent, function () {
-		createTagCloud();
+		if (Router.current().route.getName() === "home") {
+			createTagCloud();
+		}
 	}, false);
 	$(window).resize(function () {
-		createTagCloud();
+		if (Router.current().route.getName() === "home") {
+			createTagCloud();
+		}
 	});
 });
 
