@@ -224,6 +224,10 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
+.box-difficulty-Vocabulary0 {
+  background-color: $white;
+}
+
 .box-difficultyNote1 {
   background-color: $background_difficulty1;
 }
@@ -280,7 +284,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: darken($color_difficulty3, 15%);
 }
 
-.box-difficulty0-header {
+.box-difficulty0-header, .box-difficulty-Vocabulary0-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
 }
 
