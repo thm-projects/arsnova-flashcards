@@ -303,7 +303,7 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType) {
-	if (cardType !== 2) {
+	if (cardType === 0) {
 		switch (difficulty) {
 			case 0:
 				return 'box-difficulty0';
@@ -313,6 +313,19 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType) {
 				return 'box-difficulty2';
 			case 3:
 				return 'box-difficulty3';
+			default:
+				return '';
+		}
+	} else if (cardType === 1) {
+		switch (difficulty) {
+			case 0:
+				return 'box-difficulty-Vocabulary0';
+			case 1:
+				return 'box-difficultyNote1';
+			case 2:
+				return 'box-difficultyNote2';
+			case 3:
+				return 'box-difficultyNote3';
 			default:
 				return '';
 		}
