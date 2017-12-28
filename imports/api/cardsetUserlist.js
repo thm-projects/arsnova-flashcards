@@ -19,7 +19,11 @@ export function getAuthorName(owner) {
 			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
 			return author.profile.givenname;
 		}
-		return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+		if (degree !== "") {
+			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+		} else {
+			return author.profile.givenname + " " + author.profile.birthname;
+		}
 	}
 }
 

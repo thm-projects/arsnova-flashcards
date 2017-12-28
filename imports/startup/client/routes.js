@@ -118,7 +118,7 @@ Router.route('pool');
 
 Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
-	template: 'myProgress',
+	template: 'progress',
 	data: function () {
 		return Cardsets.findOne({_id: this.params._id});
 	}
