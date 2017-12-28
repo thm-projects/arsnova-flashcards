@@ -178,8 +178,7 @@
     "shuffleCardsetReferences": "Kartensatz Referenzen bearbeiten",
     "shuffleUpdateSuccess": "Referenzen aktualisiert",
     "shuffleUpdateFailure": "Fehler beim aktualisieren der Referenzen",
-    "shuffleRemove": "Alle Referenzen entfernen",
-    "shuffleRemoveWarning": "Entfernte Referenzen löschen ebenfalls den dazugehörigen Lernstand."
+    "shuffleRemove": "Alle Referenzen entfernen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
