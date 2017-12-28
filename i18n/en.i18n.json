@@ -190,8 +190,7 @@
     "shuffleCardsetReferences": "Update cardset references",
     "shuffleUpdateSuccess": "Updated references",
     "shuffleUpdateFailure": "Error while updating the references",
-    "shuffleRemove": "Remove all references",
-    "shuffleRemoveWarning": "Deleted references will also remove the associated learning progress."
+    "shuffleRemove": "Remove all references"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -664,6 +663,7 @@
   "subject5": "Box 5",
   "subject6": "Learned",
   "details": "Details",
+  "cardCount": "Amount of Cards",
   "subjectInfo": "Cards in Box __box__ can be learned again after one day.",
   "subjectInfo_plural": "Cards in Box __box__ can be learned again after __count__ days.",
   "leitnerCard": "Card for current Learning-Phase",

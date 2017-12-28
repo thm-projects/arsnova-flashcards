@@ -240,6 +240,11 @@ Template.shuffle.helpers({
 				{kind: {$in: ["free", "edu"]}}
 			]
 		}, {
+			fields: {
+				name: 1,
+				description: 1,
+				quantity: 1
+			},
 			sort: {name: 1}
 		});
 	},

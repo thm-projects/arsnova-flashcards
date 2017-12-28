@@ -75,12 +75,12 @@
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
     </div>
+    {{> btnCard}}
     {{isTextCentered}}
     <div id="preview" class="col-xs-12 cardtext">
         <h5 class="editorElement">{{_ "preview"}}</h5>
         {{> flashcards cardset=this}}
     </div>
-    {{> btnCard}}
 </template>
 
 <template name="cardType">
@@ -199,26 +199,26 @@
 </template>
 
 <template name="btnCard">
-    <div class="actionButtons col-md-12 editorElement">
+    <div class="actionButtons editorElement">
         <br>
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-md-2" {{disableIfOffline}} tabindex="12">
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}} tabindex="12">
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-md-3" {{disableIfOffline}} tabindex="13">
+                class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="13">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-md-2" tabindex="14">{{_
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2" tabindex="14">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-md-2" {{isDisabled}}
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
                         tabindex="15">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised pull-right col-xs-12 col-md-2">{{_ "confirmcard"}}</button>
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
             {{/if}}
         {{/if}}
     </div>
