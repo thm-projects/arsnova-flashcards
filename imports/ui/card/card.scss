@@ -526,8 +526,14 @@ img.cardside {
 }
 
 .actionButtons .btn:not(:first-of-type) {
-  @media(min-width: 992px) {
+  @media(min-width: 768px) {
     margin-left: 15px;
+  }
+}
+
+.actionButtons > button {
+  @media(min-width: 768px) {
+      margin-bottom: 0;
   }
 }
 
