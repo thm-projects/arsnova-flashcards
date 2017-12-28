@@ -663,6 +663,7 @@
   "subject5": "Box 5",
   "subject6": "Learned",
   "details": "Details",
+  "cardCount": "Amount of Cards",
   "subjectInfo": "Cards in Box __box__ can be learned again after one day.",
   "subjectInfo_plural": "Cards in Box __box__ can be learned again after __count__ days.",
   "leitnerCard": "Card for current Learning-Phase",

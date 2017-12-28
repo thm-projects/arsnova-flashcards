@@ -4,8 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {Leitner} from "../../../api/learned.js";
-import {Chart} from "chart.js";
 import "./admin_users.html";
 import "./admin_user.js";
 
@@ -14,72 +12,6 @@ Meteor.subscribe('allUsers');
 Meteor.subscribe('leitner', function () {
 	Session.set('data_loaded', true);
 });
-
-/*
- * ############################################################################
- * admin_dashboard
- * ############################################################################
- */
-
-export function drawGraph() {
-	var query = {};
-
-	query.box = 1;
-	var box1 = Leitner.find(query).count();
-	query.box = 2;
-	var box2 = Leitner.find(query).count();
-	query.box = 3;
-	var box3 = Leitner.find(query).count();
-	query.box = 4;
-	var box4 = Leitner.find(query).count();
-	query.box = 5;
-	var box5 = Leitner.find(query).count();
-	query.box = 6;
-	var box6 = Leitner.find(query).count();
-	var userData = [Number(box1), Number(box2), Number(box3), Number(box4), Number(box5), Number(box6)];
-
-	var ctx = document.getElementById("adminChart").getContext("2d");
-	new Chart(ctx, {
-		type: 'bar',
-		data: {
-			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
-			datasets: [
-				{
-					backgroundColor: "rgba(242,169,0,0.5)",
-					borderColor: "rgba(74,92,102,0.2)",
-					borderWidth: 1,
-					data: userData,
-					label: 'Anzahl Karten'
-				}
-			]
-		},
-		options: {
-			responsive: true,
-			legend: {
-				display: false
-			},
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-						callback: function (value) {
-							if (value % 1 === 0) {
-								return value;
-							}
-						}
-					}
-				}]
-			}
-		}
-	});
-}
-
-Template.messageFormAdmin.onRendered(function () {
-	if (Session.get('data_loaded') || !navigator.onLine) {
-		drawGraph();
-	}
-})
-;
 
 /*
  * ############################################################################

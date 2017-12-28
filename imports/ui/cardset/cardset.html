@@ -447,40 +447,6 @@
     </div>
 </template>
 
-<template name="myProgress">
-    {{#if isInRole 'firstLogin'}}
-        {{> first_login_content_only}}
-    {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{#if gotCards}}
-                <div class="container">
-                    {{> graph}}
-                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left">{{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
-                                "backbuttonStatistics"}}{{/if}}</span>
-                    </button>
-                </div>
-            {{else}}
-                {{> access_denied_content_only}}
-            {{/if}}
-        {{/if}}
-    {{/if}}
-</template>
-
-<template name="graph">
-    <div class="well well-sm sidebar-nav" style="margin-top: 20px">
-        <div id="container" style="min-width: 100%;
-			max-width: 100%; min-height: 100%; max-height: 100%;  margin: 0 auto">
-            <h4>{{this.name}}: {{#if isStatsOwner}}{{_ "admin.myProgress"}}{{else}}{{_ "admin.userProgress"}}
-                "{{getAuthorName getUserID}}"{{/if}}</h4>
-            <canvas id="boxChart" width="800" height="470" style="margin-top: 10px" data-box1="{{countBox 1}}"
-                    data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
-                    data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
-        </div>
-    </div>
-</template>
 
 <template name="cardsetPreview">
     <div class="col-md-3">
