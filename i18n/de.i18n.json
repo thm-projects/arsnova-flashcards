@@ -32,7 +32,7 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
-    "learndecks": "Mein Pensum",
+    "learndecks": "Mein Lernpensum",
     "pool": "Pool",
     "myprofile": "Mein Profil",
     "billing": "Abrechnung",
@@ -175,10 +175,10 @@
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
     "shuffleInfoText": "",
-    "shuffleCardsetReferences": "Kartensatz Referenzen bearbeiten",
-    "shuffleUpdateSuccess": "Referenzen aktualisiert",
-    "shuffleUpdateFailure": "Fehler beim aktualisieren der Referenzen",
-    "shuffleRemove": "Alle Referenzen entfernen"
+    "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
+    "shuffleUpdateSuccess": "Auswahl aktualisiert",
+    "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
+    "shuffleRemove": "Auswahl entfernen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -321,7 +321,7 @@
     },
     "balance": {
       "header": "Kontostand",
-      "disburse": "auszahlen",
+      "disburse": "Auszahlen",
       "progress": "Auszahlung wird bearbeitet",
       "success": "Auszahlung wurde durchgeführt",
       "failed": "Auszahlung nicht freigeschaltet. Wende dich bitte an den Administrator."
@@ -449,7 +449,7 @@
     "author": "Autor/in",
     "rating": "Bewertung",
     "quantity": "Kartenanzahl",
-    "release": "Veröffentlicht",
+    "release": "Erstellt",
     "deleted": "Gelöscht",
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
@@ -462,7 +462,7 @@
       "userRating": "Deine Bewertung ",
       "notRated": "Noch nicht bewertet",
       "quantity": "Kartenanzahl",
-      "release": "Veröffentlicht",
+      "release": "Erstellt",
       "reviewer": "Prüfer/in",
       "amount": "Preis",
       "bought": "Gekauft am",
@@ -470,9 +470,9 @@
       "license": "Lizenz",
       "shuffleLicense": "Siehe individuellen Kartensatz",
       "dateUpdated": "Zuletzt aktualisiert",
-      "module": "Modul-Langname",
-      "moduleShort": "Modul-Kurzname",
-      "moduleNum": "Modul-Nummer",
+      "module": "Modulname",
+      "moduleShort": "Kurzbezeichnung",
+      "moduleNum": "Modulnummer",
       "college": "Hochschule",
       "course": "Studienfach",
       "undefinedAuthor": "Bitte füll dein Profil aus!"
@@ -502,7 +502,7 @@
     "memotext": "Vergleiche die obige Antwort mit der aus deiner Erinnerung und bewerte sie mit Hilfe der Skala. Anhand der Bewertung wird der Zeitpunkt für die nächste Wiederholung deiner Lernkarte berechnet."
   },
   "memo-endscreen": {
-    "text": "Lerneinheit erfolgreich beendet",
+    "text": "Lerneinheit abgeschlossen",
     "back": "Zurück zum Kartensatz"
   },
   "memo-empty": {
@@ -510,7 +510,7 @@
     "back": "Zurück zum Kartensatz"
   },
   "rating-field": {
-    "title": " bewerten",
+    "title": " Bewerten",
     "stars": "Sterne",
     "rating": "Bewertung",
     "chars": "Zeichen",
@@ -524,7 +524,7 @@
     "comment": "Kommentar"
   },
   "learn-endscreen": {
-    "success": "Lerneinheit erfolgreich beendet.",
+    "success": "Lerneinheit abgeschlossen",
     "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz.",
     "back2": "Zurück zum Kartensatz"
   },
@@ -604,7 +604,7 @@
   "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Speichern",
-  "savecardReturn": "Speichern und zurück zum Kartensatz",
+  "savecardReturn": "Speichern und zurück",
   "savecardSuccess": "Karte wurde gespeichert",
   "deletecardSuccess": "Karte wurde gelöscht",
   "insertpicture": "Bild einfügen",
@@ -872,7 +872,7 @@
     }
   },
   "access-denied": {
-    "title": "Zugriff verboten",
+    "title": "Zugriff verweigert",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: ",
