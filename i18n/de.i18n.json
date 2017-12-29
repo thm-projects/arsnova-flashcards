@@ -112,7 +112,7 @@
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
     "text": "Falls du sicher bist, dass du THMcards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerprofil löschen\". Du wirst automatisch aus THMcards abgemeldet."
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Lernphase starten",
@@ -299,7 +299,7 @@
       "desc": "Wähle deine gewünschte Mitgliedsart aus.",
       "actual": "Derzeit ausgewählt",
       "free": "Create. Learn. Remember",
-      "edu": "Edu-Kartensätze frei erhältlich",
+      "edu": "THM-Kartensätze frei erhältlich",
       "back": "Kostenfreien Version",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
@@ -687,8 +687,8 @@
     "admin": "Admin",
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "Edu",
-    "free": "Free",
+    "university": "THM",
+    "free": "Frei",
     "private": "Private",
     "shuffled": "gemischten",
     "lecturer": "Dozent/in",
