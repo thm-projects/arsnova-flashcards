@@ -110,7 +110,7 @@
     "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und Email aus."
   },
   "confirm-form-profile": {
-    "title": "Benutzerprofil löschen",
+    "title": "Benutzerkonto löschen",
     "text": "Falls du sicher bist, dass du THMcards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerprofil löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
@@ -160,7 +160,7 @@
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
-    "everything": "Alles",
+    "everything": "Alle",
     "reset": "Zurücksetzen",
     "rating": "Sterne",
     "ratingFilter": "> 1 Stern",
@@ -232,7 +232,7 @@
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartensatz melden",
     "resetLeitner": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Wozniak\" für den Kartensatz \"__name__\" zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Woźniak\" für den Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -269,7 +269,7 @@
     "error": "Fehlerhafte Einträge!",
 
     "settings": {
-      "name": "Profil",
+      "name": "Mein Profil",
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Erscheinungsbild",
@@ -297,8 +297,8 @@
     "plan": {
       "header": "Mitgliedschaft",
       "desc": "Wähle deine gewünschte Mitgliedsart aus.",
-      "actual": "Momentane Auswahl",
-      "free": "Create. Share. Learn & Remember",
+      "actual": "Derzeit ausgewählt",
+      "free": "Create. Learn. Remember",
       "edu": "Edu-Kartensätze frei erhältlich",
       "back": "Kostenfreien Version",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
@@ -316,7 +316,7 @@
       "save": "Zahlungsmethode speichern",
       "saveMsg": "Deine Zahlungsmethode wurde gespeichert",
       "progress": "Änderungen werden verarbeitet",
-      "actual": "Deine Zahlungsmethoden:",
+      "actual": "Deine Zahlungsmethode:",
       "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
     "balance": {
@@ -335,7 +335,7 @@
     },
     "purchases": {
       "header": "Zahlungshistorie",
-      "empty": "Du hast bisher noch keine Käufe abgeschlossen!",
+      "empty": "Du hast bisher noch keine Kartensätze gekauft.",
       "boughtFor": "Gekauft für",
       "at": "am"
     }
@@ -368,7 +368,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte (XP)",
+    "experience": "Erfahrungspunkte",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -551,7 +551,7 @@
   "manage": "Verwalten",
   "selection": "Auswahl",
   "learnfile": "Lernen nach Leitner",
-  "memo": "Lernen nach Wozniak",
+  "memo": "Lernen nach Woźniak",
   "leitnerProgress": "Mein Lernstand",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
@@ -665,7 +665,7 @@
     "disconnected": "getrennt"
   },
   "admin": {
-    "allLearnedCardsets": "Alle gelernten Kartensätze",
+    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
     "learnedCardsets": "Lernfortschritt des Kartensatzes",
     "userProgress": "Lernstand des Benutzers",
     "myProgress": "Mein Lernstand",
@@ -685,7 +685,7 @@
     "front": "Vorderseite",
     "back": "Rückseite",
     "admin": "Admin",
-    "superAdmin": "Super Admin",
+    "superAdmin": "Hauptverwalter",
     "pro": "Pro",
     "university": "Edu",
     "free": "Free",
@@ -876,7 +876,7 @@
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: ",
-    "memo": "Das Nutzen von Wozniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
+    "memo": "Lernen nach Woźniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
     "back": "Zurück"
   },
   "first-login": {
