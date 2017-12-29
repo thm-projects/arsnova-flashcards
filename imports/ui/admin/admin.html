@@ -12,7 +12,7 @@
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        data-target="#thm-top-navigation" aria-expanded="false">
                                     <span class="sr-only">Toggle navigation</span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -25,7 +25,7 @@
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <div class="collapse navbar-collapse" id="thm-top-navigation">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
                                     <li id="notificationsBtn_admin" class="dropdown">
@@ -64,7 +64,7 @@
                                             <div class="notification-footer">
                                                 <a href="{{pathFor route='admin_notifications'}}" type="button"
                                                    class="btn btn-info"
-                                                   data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                                   data-toggle="collapse" data-target="#thm-top-navigation">
                                                     {{_ "notifications.viewAll"}} <i
                                                         class="glyphicon glyphicon-circle-arrow-right"></i>
                                                 </a>
@@ -74,7 +74,7 @@
                                     {{#if currentUser}}
                                         <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}"
                                                id="usr-profile-admin" data-toggle="collapse"
-                                               data-target="#bs-example-navbar-collapse-1">
+                                               data-target="#thm-top-navigation">
                                             {{getUsername}}</a></li>
                                     {{/if}}
                                     <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i></a></li>
