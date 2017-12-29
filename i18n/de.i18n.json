@@ -192,7 +192,7 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-    "editreferences": "Referenzen editieren",
+    "editreferences": "Kartensatz mischen",
     "name": "Thema",
     "nameplaceholder": "Thema des Kartensatzes",
     "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
@@ -425,7 +425,7 @@
   "sidebar-nav": {
     "created": "Erstellt von",
     "at": "am",
-    "view": "Ansicht wechseln",
+    "view": "Ansicht",
     "viewmap": "Karte",
     "viewlist": "Liste",
     "createcard": "Neue Karte",
@@ -453,19 +453,19 @@
     "deleted": "Gelöscht",
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
-    "dateUpdated": "Zuletzt aktualisiert"
+    "dateUpdated": "Aktualisiert"
   },
   "cardset": {
     "info": {
       "author": "Autor/in",
       "rating": "Bewertung",
-      "userRating": "Deine Bewertung ",
+      "userRating": "Deine Bewertung",
       "notRated": "Noch nicht bewertet",
       "quantity": "Kartenanzahl",
       "release": "Erstellt",
       "reviewer": "Prüfer/in",
       "amount": "Preis",
-      "bought": "Gekauft am",
+      "bought": "Gekauft",
       "deleted": "Gelöscht",
       "license": "Lizenz",
       "shuffleLicense": "Siehe individuellen Kartensatz",
@@ -474,7 +474,7 @@
       "moduleShort": "Kurzbezeichnung",
       "moduleNum": "Modulnummer",
       "college": "Hochschule",
-      "course": "Studienfach",
+      "course": "Studiengang",
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
@@ -580,7 +580,7 @@
   "preview": "Vorschau",
   "content": "Inhalt",
   "lecture": "Vertiefung",
-  "turn": "wenden",
+  "turn": "umdrehen",
   "hint": "Hinweis",
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
@@ -676,8 +676,8 @@
     "interval": "Lernintervalle",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
-    "manageUniversityLong": "Hochschule und Studiengang verwalten",
-    "manageUniversity": "Hochschule verwalten",
+    "manageUniversityLong": " Studiengänge verwalten",
+    "manageUniversity": "Studiengänge verwalten",
     "manageCourse": "Studiengänge",
     "see_all": "Alle ansehen",
     "name": "Name",
