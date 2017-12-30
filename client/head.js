@@ -20,8 +20,8 @@ window.addEventListener("load", function () {
 		},
 		"position": "top",
 		"content": {
-			"message": "THMcards verwendet Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie auf der Seite weitersurfen stimmen Sie der Cookie-Nutzung zu.",
-			"dismiss": "Ich stimme zu",
+			"message": "THMcards verwendet Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
+			"dismiss": "Ich stimme zu.",
 			"link": "Mehr über Datenschutz",
 			"href": "/datenschutz"
 		}
