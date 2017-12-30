@@ -220,6 +220,12 @@ Router.route('/admin/user/:_id', {
 	}
 });
 
+Router.route('/admin/learningStatistics', {
+	name: 'admin_learningStatistics',
+	template: 'admin_learningStatistics',
+	layoutTemplate: 'admin_main'
+});
+
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
