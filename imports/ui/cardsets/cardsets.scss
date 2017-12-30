@@ -151,3 +151,24 @@ input, textarea {
     margin-left: 285px;
   }
 }
+
+.label-free {
+  background-color: $color_free_btn;
+}
+
+.label-edu {
+  background-color: $color_edu_btn;
+}
+
+.label-pro {
+  background-color: $color_pro_btn;
+}
+
+.label-private {
+  background-color: $color_thm_red;
+}
+
+.licenseInfoCreate {
+  padding-left: 0;
+  padding-right: 0;
+}
