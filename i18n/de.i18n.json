@@ -296,16 +296,16 @@
   "billing": {
     "plan": {
       "header": "Mitgliedschaft",
-      "desc": "Wähle deine gewünschte Mitgliedsart aus.",
+      "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
-      "free": "Create. Learn. Remember",
+      "free": "Create. Learn. Remember.",
       "edu": "THM-Kartensätze frei erhältlich",
-      "back": "Kostenfreien Version",
+      "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
-      "subscribe": "Pro-Version abonnieren",
+      "subscribe": "Pro-Abonnement bestellen",
       "lecturer": "Dozentenstatus anfragen",
-      "send": "Anfrage versenden, um alle Vorteile einer Dozentin oder eines Dozenten zu erhalten.",
+      "send": "Anfrage versenden",
       "lecturerActivatet": "Du bist als Dozent/in freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
