@@ -94,7 +94,8 @@
             {{> shuffle}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-8 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
             {{#each cardsetList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -123,11 +124,10 @@
                 </span>
             </span>
         <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription {{#if isActiveRoute
-                                                                                        'create'}}panelUnitNoBorder{{/if}}">{{_
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 {{#if isActiveRoute 'create'}}col-sm-8 panelUnit panelUnitNoBorder{{else}}
+        <span class="cell col-xs-7 {{#if isActiveRoute 'create'}}col-sm-6 col-md-7 panelUnit{{else}}
             {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
                                                                           'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis">
             {{this.description}}
@@ -156,6 +156,14 @@
                     <i class="fa fa-plus" data-id="{{this._id}}"></i> {{_ "admin.cardset.addToWordcloud"}}
                 </a>
             {{/if}}
+        </span>
+    {{/if}}
+    {{#if isActiveRoute 'create'}}
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription panelUnitNoBorder">{{_
+                "set-list.availability"}}
+            :</span>
+        <span class="cell col-xs-5 col-sm-2 col-md-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelUnitNoBorder">
+            {{{getKind this.kind}}}
         </span>
     {{/if}}
 </template>
