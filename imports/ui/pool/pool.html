@@ -343,7 +343,7 @@
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
             <span class="kind-label col-sm-1 col-md-6 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
-                {{{getKind}}}
+                {{{getKind this.kind}}}
             </span>
             <span class="col-sm-1 col-md-6 hidden-xs licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
                 {{{getPrice}}}
@@ -358,7 +358,7 @@
                     "set-list.availability"}}:</span>
             <span class="kind-label col-xs-3 visible-xs licenseInfo panelUnit panelUnitKind info_license_mobile"
                   data-id="{{this.kind}}">
-                {{{getKind}}}
+                {{{getKind this.kind}}}
             </span>
             <span class="col-xs-3 visible-xs licenseInfo panelUnit panelUnitPrice info_license_mobile"
                   data-id="{{this.kind}}">

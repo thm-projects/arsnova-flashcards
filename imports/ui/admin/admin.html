@@ -119,17 +119,17 @@
                                 </a>
                             </li>
                             <li>
+                                <a class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
+                                   href="{{pathFor route='admin_learningStatistics'}}">
+                                    <i class="glyphicon glyphicon-stats"></i>
+                                    <span>{{_ "admin.learningStatistics"}}</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
                                    href="{{pathFor route='admin_notifications'}}">
                                     <i class="fa fa-bell"></i>
                                     <span>{{_ "admin.notifications"}}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_interval'}}active{{/if}}"
-                                   href="{{pathFor route='admin_interval'}}">
-                                    <i class="fa fa-cog"></i>
-                                    <span>{{_ "admin.interval"}}</span>
                                 </a>
                             </li>
                             {{#unless singleUniversity}}

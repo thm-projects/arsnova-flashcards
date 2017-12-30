@@ -287,18 +287,6 @@ Template.poolCardsetRow.helpers({
 			return false;
 		}
 	},
-	getKind: function () {
-		switch (this.kind) {
-			case "free":
-				return '<span class="label label-free panelUnitKind" data-id="free">Free</span>';
-			case "edu":
-				return '<span class="label label-edu panelUnitKind" data-id="edu">Edu</span>';
-			case "pro":
-				return '<span class="label label-pro panelUnitKind" data-id="pro">Pro</span>';
-			default:
-				return '<span class="label label-default panelUnitKind">Undefined!</span>';
-		}
-	},
 	getPrice: function () {
 		if (this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])))) {
 			return this.price + '€';

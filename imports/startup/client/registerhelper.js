@@ -54,6 +54,21 @@ Template.registerHelper("getNextCardTime", function () {
 	return TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
 
+Template.registerHelper("getKind", function (kind) {
+	switch (kind) {
+		case "free":
+			return '<span class="label label-free panelUnitKind" data-id="free">Free</span>';
+		case "edu":
+			return '<span class="label label-edu panelUnitKind" data-id="edu">Edu</span>';
+		case "pro":
+			return '<span class="label label-pro panelUnitKind" data-id="pro">Pro</span>';
+		case "personal":
+			return '<span class="label label-private panelUnitKind" data-id="pro">Private</span>';
+		default:
+			return '<span class="label label-default panelUnitKind">Undefined!</span>';
+	}
+});
+
 Template.registerHelper("isProfileCompleted", function (cardset_id) {
 	let cardset = Cardsets.findOne({_id: cardset_id});
 	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive) {

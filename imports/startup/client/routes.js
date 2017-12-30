@@ -220,6 +220,12 @@ Router.route('/admin/user/:_id', {
 	}
 });
 
+Router.route('/admin/learningStatistics', {
+	name: 'admin_learningStatistics',
+	template: 'admin_learningStatistics',
+	layoutTemplate: 'admin_main'
+});
+
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
@@ -229,12 +235,6 @@ Router.route('/admin/notifications', {
 Router.route('/admin/university', {
 	name: 'admin_university',
 	template: 'admin_university',
-	layoutTemplate: 'admin_main'
-});
-
-Router.route('/admin/interval', {
-	name: 'admin_interval',
-	template: 'admin_interval',
 	layoutTemplate: 'admin_main'
 });
 
