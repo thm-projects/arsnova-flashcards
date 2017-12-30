@@ -733,16 +733,16 @@
 
                 <div id="balance" class="tab-pane fade">
                     <br>
-                    <strong class="pull-left">{{_ "billing.balance.header"}}: {{getBalance}}€</strong>
+                    <strong class="pull-left">{{_ "billing.balance.header"}}: {{getBalance}} €</strong>
                     {{#if hasBalance}}
                         <br><br>
                         <form role="form">
                             <div class="">
                                 <div class="">
                                     <div id="payoutDropIn"></div>
-                                    <button id="payoutBtn" type="submit"
-                                            class="btn btn-info btn-block btn-raised">{{getBalance}}
-                                        € {{_ "billing.balance.disburse"}}</button>
+                                    <button id="payoutBtn" type="submit" class="btn btn-info btn-block btn-raised">
+                                        {{getBalance}} € {{_ "billing.balance.disburse"}}
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -757,7 +757,7 @@
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_
-                                            "billing.revenue.for"}} {{amount}}€ {{_
+                                            "billing.revenue.for"}} {{amount}} € {{_
                                             "billing.revenue.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
@@ -774,7 +774,7 @@
                             {{#each getInvoices}}
                                 <a href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
-                                    <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}}€ {{_
+                                    <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{amount}} € {{_
                                             "billing.purchases.at"}} {{getDate}}</p>
                                 </a>
                             {{/each}}
@@ -807,7 +807,7 @@
                         </div>
                         <div class="panel-body text-center">
                             <div class="lead">
-                                <h2>0€</h2>
+                                <h2>0 €</h2>
                             </div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
@@ -840,7 +840,7 @@
                         </div>
                         <div class="panel-body text-center">
                             <div class="lead">
-                                <h2>6.99€ / {{_ "billing.plan.month"}}</h2></div>
+                                <h2>6,99 € / {{_ "billing.plan.month"}}</h2></div>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item green-passage"><i class="fa fa-check"></i> {{_

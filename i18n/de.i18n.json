@@ -32,7 +32,7 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
-    "learndecks": "Mein Pensum",
+    "learndecks": "Mein Lernpensum",
     "pool": "Pool",
     "myprofile": "Mein Profil",
     "billing": "Abrechnung",
@@ -110,9 +110,9 @@
     "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und Email aus."
   },
   "confirm-form-profile": {
-    "title": "Benutzerprofil löschen",
+    "title": "Benutzerkonto löschen",
     "text": "Falls du sicher bist, dass du THMcards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerprofil löschen\". Du wirst automatisch aus THMcards abgemeldet."
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Lernphase starten",
@@ -160,7 +160,7 @@
     "author": "Autor/in",
     "title": "Aktuell werden folgende Kartensätze angeboten:",
     "everyone": "Alle",
-    "everything": "Alles",
+    "everything": "Alle",
     "reset": "Zurücksetzen",
     "rating": "Sterne",
     "ratingFilter": "> 1 Stern",
@@ -175,10 +175,10 @@
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
     "shuffleInfoText": "",
-    "shuffleCardsetReferences": "Kartensatz Referenzen bearbeiten",
-    "shuffleUpdateSuccess": "Referenzen aktualisiert",
-    "shuffleUpdateFailure": "Fehler beim aktualisieren der Referenzen",
-    "shuffleRemove": "Alle Referenzen entfernen"
+    "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
+    "shuffleUpdateSuccess": "Auswahl aktualisiert",
+    "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
+    "shuffleRemove": "Auswahl entfernen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
@@ -192,7 +192,7 @@
   "modal-dialog": {
     "newcarddeck": "Neuen Kartensatz anlegen",
     "editcard": "Kartensatz editieren",
-    "editreferences": "Referenzen editieren",
+    "editreferences": "Kartensatz mischen",
     "name": "Thema",
     "nameplaceholder": "Thema des Kartensatzes",
     "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
@@ -232,7 +232,7 @@
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartensatz melden",
     "resetLeitner": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Wozniak\" für den Kartensatz \"__name__\" zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Woźniak\" für den Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -241,10 +241,10 @@
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
-    "module": "Modul",
+    "module": "Modulname",
     "module_required": "Gib den vollen Namen des Moduls an!",
-    "moduleShort": "Initialien",
-    "moduleShort_required": "Gib eine Abkürzung des Moduls an!",
+    "moduleShort": "Kurzbezeichnung",
+    "moduleShort_required": "Gib eine Kurzbezeichnung des Moduls an!",
     "moduleNum": "ID",
     "moduleNum_required": "Gib die Modulnummer ein!",
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
@@ -269,7 +269,7 @@
     "error": "Fehlerhafte Einträge!",
 
     "settings": {
-      "name": "Profil",
+      "name": "Mein Profil",
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Erscheinungsbild",
@@ -296,16 +296,16 @@
   "billing": {
     "plan": {
       "header": "Mitgliedschaft",
-      "desc": "Wähle deine gewünschte Mitgliedsart aus.",
-      "actual": "Momentane Auswahl",
-      "free": "Create. Learn. Share",
-      "edu": "Edu-Kartensätze frei erhältlich",
-      "back": "Kostenfreien Version",
+      "desc": "Wähle deine Mitgliedsart:",
+      "actual": "Derzeit ausgewählt",
+      "free": "Create. Learn. Remember.",
+      "edu": "THM-Kartensätze frei erhältlich",
+      "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Kartensätze",
       "month": "Monat",
-      "subscribe": "Pro-Version abonnieren",
+      "subscribe": "Pro-Abonnement bestellen",
       "lecturer": "Dozentenstatus anfragen",
-      "send": "Anfrage versenden, um alle Vorteile einer Dozentin oder eines Dozenten zu erhalten.",
+      "send": "Anfrage versenden",
       "lecturerActivatet": "Du bist als Dozent/in freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
@@ -316,12 +316,12 @@
       "save": "Zahlungsmethode speichern",
       "saveMsg": "Deine Zahlungsmethode wurde gespeichert",
       "progress": "Änderungen werden verarbeitet",
-      "actual": "Deine Zahlungsmethoden:",
+      "actual": "Deine Zahlungsmethode:",
       "add": "Zahlungsmethoden hinzufügen oder auswählen:"
     },
     "balance": {
       "header": "Kontostand",
-      "disburse": "auszahlen",
+      "disburse": "Auszahlen",
       "progress": "Auszahlung wird bearbeitet",
       "success": "Auszahlung wurde durchgeführt",
       "failed": "Auszahlung nicht freigeschaltet. Wende dich bitte an den Administrator."
@@ -335,7 +335,7 @@
     },
     "purchases": {
       "header": "Zahlungshistorie",
-      "empty": "Du hast bisher noch keine Käufe abgeschlossen!",
+      "empty": "Du hast bisher noch keine Kartensätze gekauft.",
       "boughtFor": "Gekauft für",
       "at": "am"
     }
@@ -368,7 +368,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte (XP)",
+    "experience": "Erfahrungspunkte",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -425,7 +425,7 @@
   "sidebar-nav": {
     "created": "Erstellt von",
     "at": "am",
-    "view": "Ansicht wechseln",
+    "view": "Ansicht",
     "viewmap": "Karte",
     "viewlist": "Liste",
     "createcard": "Neue Karte",
@@ -449,32 +449,32 @@
     "author": "Autor/in",
     "rating": "Bewertung",
     "quantity": "Kartenanzahl",
-    "release": "Veröffentlicht",
+    "release": "Erstellt",
     "deleted": "Gelöscht",
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
-    "dateUpdated": "Zuletzt aktualisiert"
+    "dateUpdated": "Aktualisiert"
   },
   "cardset": {
     "info": {
       "author": "Autor/in",
       "rating": "Bewertung",
-      "userRating": "Deine Bewertung ",
+      "userRating": "Deine Bewertung",
       "notRated": "Noch nicht bewertet",
       "quantity": "Kartenanzahl",
-      "release": "Veröffentlicht",
+      "release": "Erstellt",
       "reviewer": "Prüfer/in",
       "amount": "Preis",
-      "bought": "Gekauft am",
+      "bought": "Gekauft",
       "deleted": "Gelöscht",
       "license": "Lizenz",
       "shuffleLicense": "Siehe individuellen Kartensatz",
-      "dateUpdated": "Zuletzt aktualisiert",
-      "module": "Modul-Langname",
-      "moduleShort": "Modul-Kurzname",
-      "moduleNum": "Modul-Nummer",
+      "dateUpdated": "Aktualisiert",
+      "module": "Modulname",
+      "moduleShort": "Kurzbezeichnung",
+      "moduleNum": "Modulnummer",
       "college": "Hochschule",
-      "course": "Studienfach",
+      "course": "Studiengang",
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
@@ -502,7 +502,7 @@
     "memotext": "Vergleiche die obige Antwort mit der aus deiner Erinnerung und bewerte sie mit Hilfe der Skala. Anhand der Bewertung wird der Zeitpunkt für die nächste Wiederholung deiner Lernkarte berechnet."
   },
   "memo-endscreen": {
-    "text": "Lerneinheit erfolgreich beendet",
+    "text": "Lerneinheit abgeschlossen",
     "back": "Zurück zum Kartensatz"
   },
   "memo-empty": {
@@ -510,7 +510,7 @@
     "back": "Zurück zum Kartensatz"
   },
   "rating-field": {
-    "title": " bewerten",
+    "title": " Bewerten",
     "stars": "Sterne",
     "rating": "Bewertung",
     "chars": "Zeichen",
@@ -524,7 +524,7 @@
     "comment": "Kommentar"
   },
   "learn-endscreen": {
-    "success": "Lerneinheit erfolgreich beendet.",
+    "success": "Lerneinheit abgeschlossen",
     "back": "Wähle ein weiteres Fach oder gehe zurück zum Kartensatz.",
     "back2": "Zurück zum Kartensatz"
   },
@@ -551,7 +551,7 @@
   "manage": "Verwalten",
   "selection": "Auswahl",
   "learnfile": "Lernen nach Leitner",
-  "memo": "Lernen nach Wozniak",
+  "memo": "Lernen nach Woźniak",
   "leitnerProgress": "Mein Lernstand",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
@@ -580,7 +580,7 @@
   "preview": "Vorschau",
   "content": "Inhalt",
   "lecture": "Vertiefung",
-  "turn": "wenden",
+  "turn": "umdrehen",
   "hint": "Hinweis",
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
@@ -604,7 +604,7 @@
   "deleteCards": "Alle Karten löschen",
   "confirmcard": "Sicher?",
   "savecard": "Speichern",
-  "savecardReturn": "Speichern und zurück zum Kartensatz",
+  "savecardReturn": "Speichern und zurück",
   "savecardSuccess": "Karte wurde gespeichert",
   "deletecardSuccess": "Karte wurde gelöscht",
   "insertpicture": "Bild einfügen",
@@ -665,7 +665,7 @@
     "disconnected": "getrennt"
   },
   "admin": {
-    "allLearnedCardsets": "Alle gelernten Kartensätze",
+    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
     "learnedCardsets": "Lernfortschritt des Kartensatzes",
     "userProgress": "Lernstand des Benutzers",
     "myProgress": "Mein Lernstand",
@@ -676,8 +676,8 @@
     "interval": "Lernintervalle",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
-    "manageUniversityLong": "Hochschule und Studiengang verwalten",
-    "manageUniversity": "Hochschule verwalten",
+    "manageUniversityLong": " Studiengänge verwalten",
+    "manageUniversity": "Studiengänge verwalten",
     "manageCourse": "Studiengänge",
     "see_all": "Alle ansehen",
     "name": "Name",
@@ -685,10 +685,10 @@
     "front": "Vorderseite",
     "back": "Rückseite",
     "admin": "Admin",
-    "superAdmin": "Super Admin",
+    "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "Edu",
-    "free": "Free",
+    "university": "THM",
+    "free": "Frei",
     "private": "Private",
     "shuffled": "gemischten",
     "lecturer": "Dozent/in",
@@ -800,7 +800,7 @@
       "confirm": "Sicher?",
       "name_required": "Gib einen Namen ein!",
       "description_required": "Gib eine Beschreibung ein!",
-      "dateUpdated": "Zuletzt aktualisiert:",
+      "dateUpdated": "Aktualisiert:",
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um den Kartensatz zu veröffentlichen!",
@@ -872,11 +872,11 @@
     }
   },
   "access-denied": {
-    "title": "Zugriff verboten",
+    "title": "Zugriff verweigert",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund der Sperrung: ",
-    "memo": "Das Nutzen von Wozniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
+    "memo": "Lernen nach Woźniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
     "back": "Zurück"
   },
   "first-login": {

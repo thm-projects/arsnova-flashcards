@@ -534,7 +534,7 @@ button:disabled {
 
 @media (min-width: 768px) and (max-width: 991px) {
   #input-search {
-    width: 70px;
+    width: 120px;
   }
 
 }
@@ -626,4 +626,9 @@ button:disabled {
 
 .connecting {
   color: $color_thm_orange;
+}
+
+#thm-top-navigation a {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
