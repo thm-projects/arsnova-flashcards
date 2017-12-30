@@ -606,6 +606,10 @@ button:disabled {
   color: $color_athens_gray_approx !important;
 }
 
+.md-editor > textarea {
+  border: none;
+}
+
 .fa-link:before {
   content: "\f0ac" !important;
 }
