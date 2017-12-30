@@ -9,9 +9,6 @@ import "./admin_user.js";
 
 
 Meteor.subscribe('allUsers');
-Meteor.subscribe('leitner', function () {
-	Session.set('data_loaded', true);
-});
 
 /*
  * ############################################################################
