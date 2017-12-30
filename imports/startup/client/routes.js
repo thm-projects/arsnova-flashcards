@@ -232,12 +232,6 @@ Router.route('/admin/university', {
 	layoutTemplate: 'admin_main'
 });
 
-Router.route('/admin/interval', {
-	name: 'admin_interval',
-	template: 'admin_interval',
-	layoutTemplate: 'admin_main'
-});
-
 Router.route('/admin/settings', {
 	name: 'admin_settings',
 	template: 'admin_settings',
