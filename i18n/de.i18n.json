@@ -183,7 +183,7 @@
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
     "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
-    "newset": "Kartensatz anlegen"
+    "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
     "emptytextlist": "Wähle einen Kartensatz aus",
@@ -249,7 +249,7 @@
     "moduleNum_required": "Gib die Modulnummer ein!",
     "moduleplaceholder": "Ausgeschriebener Name des Moduls",
     "moduleShortplaceholder": "Abkürzung des Moduls",
-    "moduleNumplaceholder": "Nummer des Moduls",
+    "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
