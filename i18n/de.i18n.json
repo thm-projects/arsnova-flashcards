@@ -253,7 +253,7 @@
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
-    "overview": "Lernstatistik",
+    "overview": "Lernaktivität",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
@@ -368,7 +368,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Lernaktivität gemessen in Erfahrungspunkten",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen eines Edu-Kartensatzes nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
