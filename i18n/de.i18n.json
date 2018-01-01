@@ -186,7 +186,7 @@
     "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle einen Kartensatz aus oder mische einen Kartensatz aus vorhandenen Kartensätzen.",
+    "emptytextlist": "Wähle ein Thema aus dem Pool oder mische einen neuen Kartensatz aus mehreren Themen.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
