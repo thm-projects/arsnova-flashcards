@@ -85,7 +85,7 @@
   },
   "confirm-form-learn": {
     "title": "Kartensatz verlassen",
-    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, geht dein gesamter Lernfortschritt des Kartensatzes verloren."
+    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
   "confirm-enter-learnphase": {
     "title": "Aktiver Lernphase beitreten",
@@ -97,7 +97,7 @@
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
     "title": "Aktive Lernphase verlassen",
-    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird dein Lernfortschritt für diesen Kartensatz gelöscht."
+    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
@@ -116,7 +116,7 @@
   },
   "confirmLearn-form": {
     "title": "Lernphase starten",
-    "text": "Willst du die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
+    "text": "Willst du die Lernphase wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Workload",
@@ -181,12 +181,12 @@
     "shuffleRemove": "Auswahl entfernen"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
-    "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
+    "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
+    "emptypooltextlist": "Kein Kartensatz vorhanden",
     "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle einen Kartensatz aus",
+    "emptytextlist": "Wähle einen Kartensatz aus oder mische einen Kartensatz aus vorhandenen Kartensätzen.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
@@ -224,7 +224,7 @@
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
     "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
     "saveLicense": "Lizenz speichern",
-    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+    "wrongCombination": "Diese Kombination der Lizenzen ist nicht möglich!",
     "report": "Kartensatz melden",
     "cardsetowner": "Autor/in",
     "cardsetname": "Kartensatz",
@@ -253,7 +253,7 @@
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
-    "overview": "Lernfortschritt",
+    "overview": "Lernstatistik",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
@@ -541,7 +541,7 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird dein gesamter Lernfortschritt in diesem Kartzensatz zurückgesetzt.",
+  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik in diesem Kartzensatz zurückgesetzt.",
   "learnedEverything": "Glückwunsch, du hast alle Karten aus diesem Kartensatz gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
@@ -666,7 +666,7 @@
   },
   "admin": {
     "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
-    "learnedCardsets": "Lernfortschritt des Kartensatzes",
+    "learnedCardsets": "Lernstatistik des Kartensatzes",
     "userProgress": "Lernstand des Benutzers nach Leitner",
     "myProgress": "Mein Lernstand nach Leitner",
     "dashboard": "Dashboard",
@@ -900,7 +900,7 @@
     "textIntro": "Hallo ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
-    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird dein gesamter Lernfortschritt zurückgesetzt!",
+    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus dem Kartensatz ",
     "newCards2Plural": " Karten aus dem Kartensatz ",
@@ -910,8 +910,8 @@
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
     "textIntroEnding": "Hallo,\n\n",
     "textEnding": "heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Dein Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
-    "textReset": "wegen Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "subjectReset": "THMcards: Deine Lernstatistik wurde zurückgesetzt für den Kartensatz ",
+    "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
