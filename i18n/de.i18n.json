@@ -28,7 +28,7 @@
   "intro": {
     "about": "Was ist THMcards?",
     "impressum": "Impressum",
-    "backButton": "Zurück zum Start"
+    "backButton": "Zurück"
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
@@ -63,7 +63,7 @@
     "heading": "Aufgaben warten!",
     "content": "Kartensatz: ",
     "deadline": "\nFrist: ",
-    "warning": "\nNicht Bearbeiten der Aufgaben wird deinen Lernstand zurücksetzen.",
+    "warning": "\nNicht Bearbeiten der Aufgaben wird deine Lernstatistik zurücksetzen.",
     "admin": "Du bist angemeldet als Admin!",
     "cards": "\nKarten: "
   },
@@ -85,7 +85,7 @@
   },
   "confirm-form-learn": {
     "title": "Kartensatz verlassen",
-    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, geht dein gesamter Lernfortschritt des Kartensatzes verloren."
+    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
   "confirm-enter-learnphase": {
     "title": "Aktiver Lernphase beitreten",
@@ -97,7 +97,7 @@
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
     "title": "Aktive Lernphase verlassen",
-    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird dein Lernfortschritt für diesen Kartensatz gelöscht."
+    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
@@ -107,7 +107,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und Email aus."
+    "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
@@ -116,7 +116,7 @@
   },
   "confirmLearn-form": {
     "title": "Lernphase starten",
-    "text": "Willst du die Lernphase wirklich starten? Der Lernfortschritt aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
+    "text": "Willst du die Lernphase wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Workload",
@@ -181,12 +181,12 @@
     "shuffleRemove": "Auswahl entfernen"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz angelegt",
-    "emptypooltextlist": "Es ist noch kein Kartensatz vorhanden",
-    "newset": "Kartensatz anlegen"
+    "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
+    "emptypooltextlist": "Kein Kartensatz vorhanden",
+    "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle einen Kartensatz aus",
+    "emptytextlist": "Wähle ein Thema aus dem Pool oder mische einen neuen Kartensatz aus mehreren Themen.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
@@ -224,15 +224,15 @@
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
     "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
     "saveLicense": "Lizenz speichern",
-    "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+    "wrongCombination": "Diese Kombination der Lizenzen ist nicht möglich!",
     "report": "Kartensatz melden",
     "cardsetowner": "Autor/in",
     "cardsetname": "Kartensatz",
     "reason": "Grund",
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartensatz melden",
-    "resetLeitner": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deinen Lernstand im Modus \"Lernen nach Woźniak\" für den Kartensatz \"__name__\" zurücksetzen?",
+    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für den Kartensatz \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -241,19 +241,19 @@
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
-    "module": "Modulname",
-    "module_required": "Gib den vollen Namen des Moduls an!",
+    "module": "Modul",
+    "module_required": "Gib den vollen Titel des Moduls an!",
     "moduleShort": "Kurzbezeichnung",
-    "moduleShort_required": "Gib eine Kurzbezeichnung des Moduls an!",
-    "moduleNum": "ID",
+    "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",
+    "moduleNum": "Modul-Nr.",
     "moduleNum_required": "Gib die Modulnummer ein!",
-    "moduleplaceholder": "Ausgeschriebener Name des Moduls",
-    "moduleShortplaceholder": "Abkürzung des Moduls",
-    "moduleNumplaceholder": "Nummer des Moduls",
+    "moduleplaceholder": "Ausgeschriebener Titel des Moduls",
+    "moduleShortplaceholder": "Abkürzung des Modultitels",
+    "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
-    "overview": "Lernfortschritt",
+    "overview": "Lernaktivität",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
@@ -368,7 +368,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Erfahrungspunkte",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen eines Edu-Kartensatzes nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -541,7 +541,7 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird dein gesamter Lernfortschritt in diesem Kartzensatz zurückgesetzt.",
+  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik in diesem Kartzensatz zurückgesetzt.",
   "learnedEverything": "Glückwunsch, du hast alle Karten aus diesem Kartensatz gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
@@ -552,7 +552,7 @@
   "selection": "Auswahl",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Woźniak",
-  "leitnerProgress": "Mein Lernstand",
+  "leitnerProgress": "Mein Lernstand nach Leitner",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
   "statistics": "Kartensatz-Statistik",
@@ -561,7 +561,7 @@
   "play": "Spielen",
   "yourhighscore": "Dein Highscore:",
   "points": "Punkte",
-  "difficulty": "Schwierigkeitsstufe",
+  "difficulty": "Schwierigkeit",
   "difficulty0": "Allgemein",
   "difficulty1": "Einsteiger",
   "difficulty2": "Fortgeschritten",
@@ -573,7 +573,7 @@
   "difficultyNotes3": "Vortrag",
   "cardType": "Kartentyp",
   "cardType0": "Lernkarte",
-  "cardType1": "Vokabeln",
+  "cardType1": "Vokabel",
   "cardType2": "Mitschrift",
   "frontside": "Vorderseite",
   "backside": "Rückseite",
@@ -590,7 +590,7 @@
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "lecturetext_required": "Bitte Vertiefung ausfüllen!",
-  "cardsubject_required": "Bitte Thema ausfüllen!",
+  "cardsubject_required": "Bitte Thema angeben!",
   "text_max": "Es sind maximal 10.000 Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
   "newcard": "Neue Karte",
@@ -666,9 +666,9 @@
   },
   "admin": {
     "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
-    "learnedCardsets": "Lernfortschritt des Kartensatzes",
-    "userProgress": "Lernstand des Benutzers",
-    "myProgress": "Mein Lernstand",
+    "learnedCardsets": "Lernstatistik des Kartensatzes",
+    "userProgress": "Lernstand des Benutzers nach Leitner",
+    "myProgress": "Mein Lernstand nach Leitner",
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
     "cards": "Karten",
@@ -687,8 +687,8 @@
     "admin": "Admin",
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "THM",
-    "free": "Frei",
+    "university": "Edu",
+    "free": "Free",
     "private": "Private",
     "shuffled": "gemischten",
     "lecturer": "Dozent/in",
@@ -803,7 +803,7 @@
       "description_required": "Gib eine Beschreibung ein!",
       "dateUpdated": "Aktualisiert:",
       "license": "Lizenz",
-      "wrongCombination": "Diese Kombination der Rechtemodule ist nicht möglich!",
+      "wrongCombination": "Diese Kombination der Lizenzen ist nicht möglich!",
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um den Kartensatz zu veröffentlichen!",
       "changeOwner": "Besitzer/in ändern",
       "changeOwnerFailure": "Benutzer/in nicht gefunden",
@@ -811,7 +811,7 @@
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
       "removeFromWordcloud": "Entfernen",
-      "updateLearningFailure": "Fehler beim aktualisieren der Lernphase",
+      "updateLearningFailure": "Fehler beim Aktualisieren der Lernphase",
       "updateLearningSuccess": "Lernphase erfolgreich aktualisiert"
     },
     "card": {
@@ -853,9 +853,9 @@
       "roles": "Benutzerrollen",
       "blocked": "Benutzer/in blockieren",
       "blockedtext": "Willst du dem User den Zugang zu THMcards verweigern?",
-      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm erlaubt, alle Inhalte von THMcards zu bearbeiten.",
+      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von THMcards zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
-      "blockedtext_invalid": "Gib einen Grund der Sperrung ein!",
+      "blockedtext_invalid": "Gib einen Grund für die Sperrung ein!",
       "cancel": "Abbrechen",
       "save": "Benutzer/in speichern",
       "delete": "Benutzer/in löschen",
@@ -876,7 +876,7 @@
     "title": "Zugriff verweigert",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
-    "reason": "Grund der Sperrung: ",
+    "reason": "Grund für die Sperrung: ",
     "memo": "Lernen nach Woźniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
     "back": "Zurück"
   },
@@ -900,7 +900,7 @@
     "textIntro": "Hallo ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick in deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
-    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird dein gesamter Lernfortschritt zurückgesetzt!",
+    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus dem Kartensatz ",
     "newCards2Plural": " Karten aus dem Kartensatz ",
@@ -910,12 +910,12 @@
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
     "textIntroEnding": "Hallo,\n\n",
     "textEnding": "heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Dein Lernfortschritt wurde zurückgesetzt für den Kartensatz ",
-    "textReset": "wegen Inaktivität wurde dein Lernfortschritt zurückgesetzt. ",
+    "subjectReset": "THMcards: Deine Lernstatistik wurde zurückgesetzt für den Kartensatz ",
+    "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
-    "copyright": "© 2017 THMcards",
+    "copyright": "© 2018 THMcards",
     "my-cardset": "Zum Kartensatz...",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   }
