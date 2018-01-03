@@ -445,7 +445,8 @@
     "deleted": "Gelöscht",
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
-    "dateUpdated": "Aktualisiert"
+    "dateUpdated": "Aktualisiert",
+    "selectCardToLearn": "Kartensatz zu meinem Lernpensum hinzufügen"
   },
   "cardset": {
     "info": {
@@ -480,6 +481,9 @@
       "buy": "Kartensatz kaufen",
       "pro": "Als Premium-Nutzer lernen",
       "bought": "Vielen Dank für deinen Kauf!"
+    },
+    "alert": {
+      "addedToWorkload": "Zu meinem Lernpensum hinzugefügt"
     }
   },
   "cardmemo": {

@@ -119,6 +119,10 @@ Template.learn.helpers({
 Template.learn.events({
 	'click .deleteLearned': function (event) {
 		Session.set('cardsetId', $(event.target).data('id'));
+	},
+	'click #browseCardset': function () {
+		Session.set("selectingCardsetToLearn", true);
+		Router.go('home');
 	}
 });
 
@@ -267,17 +271,6 @@ Template.shuffle.created = function () {
 	Session.set("ShuffledCardsets", []);
 	Session.set("ShuffledCardsetsExclude", []);
 };
-
-/*
- * ############################################################################
- * empty
- * ############################################################################
- */
-Template.cardsetEmpty.events({
-	'click #learnListEmpty': function () {
-		Router.go('home');
-	}
-});
 
 /*
  * ############################################################################
@@ -452,6 +445,10 @@ Template.cardsets.events({
 		}
 		cleanModal();
 	}
+});
+
+Template.cardsets.onCreated(function () {
+	Session.set("selectingCardsetToLearn", false);
 });
 
 /*

@@ -453,7 +453,8 @@
     "deleted": "Deleted",
     "license": "License",
     "dateUpdated": "Last updated",
-    "activeLearners": "Active learners"
+    "activeLearners": "Active learners",
+    "selectCardToLearn": "Add cardset to Workload"
   },
   "cardset": {
     "info": {
@@ -488,6 +489,9 @@
       "buy": "Buy cardset",
       "pro": "Learn as premium-user",
       "bought": "Thank you for your payment!"
+    },
+    "alert": {
+      "addedToWorkload": "Added to Workload"
     }
   },
   "cardmemo": {

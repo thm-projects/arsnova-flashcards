@@ -8,4 +8,4 @@ export const learnBoxRoute = "/box";
 export const superMemoRoute = "/memo";
 export const poolRoute = "/pool";
 export const elementsBeforeCreatedList = 2;
-export const elementsBeforeLearnList = 1;
+export const elementsBeforeLearnList = 2;
