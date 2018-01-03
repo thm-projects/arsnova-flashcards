@@ -5,11 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Experience} from "../../api/experience.js";
-import {Badges} from "../../api/badges.js";
 import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import {Leitner} from "../../api/learned.js";
-import {Ratings} from "../../api/ratings.js";
 import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
@@ -17,7 +13,6 @@ import {AdminSettings} from "../../api/adminSettings";
 import "./profile.html";
 
 Meteor.subscribe("experience");
-Meteor.subscribe("badges");
 Meteor.subscribe("notifications");
 Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
@@ -44,147 +39,6 @@ function xpForLevel(level) {
 		points += Math.floor(i + 30 * Math.pow(2, i / 10));
 	}
 	return Math.floor(points / 4);
-}
-
-function kritiker(rank) {
-	var ratings = Ratings.find({
-		user: Meteor.userId()
-	}).count();
-
-	var badge = Badges.findOne("1");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: ratings};
-		case 2:
-			return {max: badge.rank2, count: ratings};
-		case 1:
-			return {max: badge.rank1, count: ratings};
-		default:
-			return {};
-	}
-}
-
-function krone(rank) {
-	var cardsets = Cardsets.find({
-		owner: Meteor.userId()
-	});
-
-	var count = 0;
-
-	cardsets.forEach(function (cardset) {
-		var ratings = Ratings.find({
-			cardset_id: cardset._id
-		});
-		if (ratings.count() > 1) {
-			var total = 0;
-			ratings.forEach(function (rating) {
-				total += rating.rating;
-			});
-			if (total / ratings.count() >= 4.5) {
-				count++;
-			}
-		}
-	});
-
-	var badge = Badges.findOne("2");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: count};
-		case 2:
-			return {max: badge.rank2, count: count};
-		case 1:
-			return {max: badge.rank1, count: count};
-		default:
-			return {};
-	}
-}
-
-function stammgast(rank) {
-	var user = Meteor.users.findOne(Meteor.userId()).daysInRow;
-
-	var badge = Badges.findOne("3");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: user};
-		case 2:
-			return {max: badge.rank2, count: user};
-		case 1:
-			return {max: badge.rank1, count: user};
-		default:
-			return {};
-	}
-}
-
-function streber(rank) {
-	var learned = Leitner.find({
-		user_id: Meteor.userId()
-	}).count();
-
-	var badge = Badges.findOne("4");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: learned};
-		case 2:
-			return {max: badge.rank2, count: learned};
-		case 1:
-			return {max: badge.rank1, count: learned};
-		default:
-			return 0;
-	}
-}
-
-function wohltaeter(rank) {
-	var cardsets = Cardsets.find({
-		owner: Meteor.userId(),
-		visible: true
-	});
-
-	var count = 0;
-
-	cardsets.forEach(function (cardset) {
-		var cards = Cards.find({
-			cardset_id: cardset._id
-		});
-		if (cards.count() >= 5) {
-			count++;
-		}
-	});
-
-	var badge = Badges.findOne("5");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: count};
-		case 2:
-			return {max: badge.rank2, count: count};
-		case 1:
-			return {max: badge.rank1, count: count};
-		default:
-			return {};
-	}
-}
-
-function bestseller(rank) {
-	var cardsetsIds = Cardsets.find({
-		owner: Meteor.userId()
-	}).map(function (cardset) {
-		return cardset._id;
-	});
-
-	var learner = Leitner.find({
-		cardset_id: {$in: cardsetsIds}
-	}).count();
-
-	var badge = Badges.findOne("6");
-	switch (rank) {
-		case 3:
-			return {max: badge.rank3, count: learner};
-		case 2:
-			return {max: badge.rank2, count: learner};
-		case 1:
-			return {max: badge.rank1, count: learner};
-		default:
-			return {};
-	}
 }
 
 Template.registerHelper("getUser", function () {
@@ -810,13 +664,6 @@ export function getDays3() {
 
 
 Template.profileXp.helpers({
-	getHeight: function () {
-		if ($(window).width() < 351) {
-			return parseInt(500);
-		} else {
-			return parseInt(270);
-		}
-	},
 	getDays1: getDays1,
 	getDays2: getDays2,
 	getDays3: getDays3,
@@ -1012,102 +859,6 @@ Template.profileXp.events({
 			backgroundColorBox1 = 1;
 		}
 	}, 50)
-});
-
-
-/*
- * ############################################################################
- * profileBadges
- * ############################################################################
- */
-
-Template.profileBadges.helpers({
-	getBadges: function () {
-		return Badges.find();
-	},
-	isGained: function (index, rank) {
-		var badge;
-		switch (index) {
-			case 0:
-				badge = kritiker(rank);
-				break;
-			case 1:
-				badge = krone(rank);
-				break;
-			case 2:
-				badge = stammgast(rank);
-				break;
-			case 3:
-				badge = streber(rank);
-				break;
-			case 4:
-				badge = wohltaeter(rank);
-				break;
-			case 5:
-				badge = bestseller(rank);
-				break;
-			default:
-				return false;
-		}
-		var gained = badge.count >= badge.max;
-
-		index++; //index in DB starts at 1
-		var earnedBadges = Meteor.user().earnedBadges;
-		if (earnedBadges && gained) {
-			for (var i = 0; i < earnedBadges.length; i++) {
-				if (index === earnedBadges[i].index && rank === earnedBadges[i].rank) {
-					return gained;
-				}
-			}
-			Meteor.call("updateEarnedBadges", index, rank);
-			Bert.alert(TAPi18n.__('newbadge') + ': ' + Badges.findOne(index.toString()).name + ' (' + TAPi18n.__('rank') + ' ' + rank + ')', 'info', 'growl-top-left');
-		}
-		return gained;
-	},
-	getPercent: function (index, rank) {
-		var badge;
-		switch (index) {
-			case 0:
-				badge = kritiker(rank);
-				break;
-			case 1:
-				badge = krone(rank);
-				break;
-			case 2:
-				badge = stammgast(rank);
-				break;
-			case 3:
-				badge = streber(rank);
-				break;
-			case 4:
-				badge = wohltaeter(rank);
-				break;
-			case 5:
-				badge = bestseller(rank);
-				break;
-			default:
-				return 0;
-		}
-		return badge.count / badge.max * 100;
-	},
-	getCount: function (index, rank) {
-		switch (index) {
-			case 0:
-				return kritiker(rank).count;
-			case 1:
-				return krone(rank).count;
-			case 2:
-				return stammgast(rank).count;
-			case 3:
-				return streber(rank).count;
-			case 4:
-				return wohltaeter(rank).count;
-			case 5:
-				return bestseller(rank).count;
-			default:
-				return 0;
-		}
-	}
 });
 
 /*

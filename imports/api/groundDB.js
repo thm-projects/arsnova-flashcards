@@ -1,5 +1,4 @@
 import {AdminSettings} from "./adminSettings.js";
-import {Badges} from "./badges.js";
 import {Cards} from "./cards.js";
 import {Cardsets} from "./cardsets.js";
 import {CollegesCourses} from "./colleges_courses.js";
@@ -13,7 +12,6 @@ import {Cloud} from "./cloud.js";
 
 Ground.Collection(Meteor.users);
 Ground.Collection(AdminSettings);
-Ground.Collection(Badges);
 Ground.Collection(Cards);
 Ground.Collection(Cardsets);
 Ground.Collection(CollegesCourses);
