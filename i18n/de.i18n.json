@@ -397,16 +397,6 @@
     "card": "Karte angelegt",
     "rating": "Kartensatz bewertet"
   },
-  "panel-heading-badges": {
-    "badges": "Badges"
-  },
-  "panel-body-badges": {
-    "text1": "Du hast die Möglichkeit, deine gesammelten Badges mit dem Mozilla Badge Backpack zu syncronisieren.",
-    "text2": "Um deine Badges der ",
-    "text3": "OpenBadges Plattform",
-    "text4": " hinzuzufügen, klicke auf den folgenden Button:",
-    "button": "Jetzt syncronisieren"
-  },
   "panel-heading-meteor": {
     "meteor": "Meteor Statistiken"
   },
