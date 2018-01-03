@@ -71,7 +71,7 @@
     "newcarddeck": "Neuer Kartensatz"
   },
   "upload-form": {
-    "popover-content": "Hier können bestehende Karten zum Kartensatz hochgeladen werden. Unterstützt werden die Formate JSON und CSV (Excel, kommagetrennt). Folgende Templates zeigen die nötige Struktur auf:",
+    "popover-content": "Unterstützt werden die Dateiformate JSON und CSV (Excel, kommagetrennt). Die folgenden Links zeigen die erforderliche Dateistruktur:",
     "upload-title": "Karten importieren",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
