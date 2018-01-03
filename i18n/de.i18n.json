@@ -71,7 +71,7 @@
     "newcarddeck": "Neuer Kartensatz"
   },
   "upload-form": {
-    "popover-content": "Hier können bestehende Karten zum Kartensatz hochgeladen werden. Unterstützt werden die Formate JSON und CSV (Excel, kommagetrennt). Folgende Templates zeigen die nötige Struktur auf:",
+    "popover-content": "Unterstützt werden die Dateiformate JSON und CSV (Excel, kommagetrennt). Die folgenden Links zeigen die erforderliche Dateistruktur:",
     "upload-title": "Karten importieren",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
@@ -195,7 +195,7 @@
     "editreferences": "Kartensatz mischen",
     "name": "Thema",
     "nameplaceholder": "Thema des Kartensatzes",
-    "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
+    "descriptionplaceholder": "Lernziele und Lerninhalte",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "category": "Kategorie",
@@ -247,7 +247,7 @@
     "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",
     "moduleNum": "Modul-Nr.",
     "moduleNum_required": "Gib die Modulnummer ein!",
-    "moduleplaceholder": "Ausgeschriebener Titel des Moduls",
+    "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
@@ -628,7 +628,7 @@
   "subject4": "Fach 4",
   "subject5": "Fach 5",
   "subject6": "Gelernt",
-  "details": "Details",
+  "details": "Grafik",
   "cardCount": "Anzahl Karten",
   "subjectInfo": "Karten in Fach __box__ können erst wieder nach einem Tag gelernt werden.",
   "subjectInfo_plural": "Karten in Fach __box__ können erst wieder nach __count__ Tagen gelernt werden.",
@@ -667,7 +667,7 @@
   "admin": {
     "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
     "learnedCardsets": "Lernstatistik des Kartensatzes",
-    "userProgress": "Lernstand des Benutzers nach Leitner",
+    "userProgress": "Lernstand nach Leitner für: ",
     "myProgress": "Mein Lernstand nach Leitner",
     "dashboard": "Dashboard",
     "cardsets": "Kartensätze",
