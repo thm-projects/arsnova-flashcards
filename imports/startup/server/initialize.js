@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Badges} from "../../api/badges.js";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
@@ -20,106 +19,6 @@ var initColorThemes = function () {
 	}, {
 		"_id": "bluestar",
 		"name": "Blue Star"
-	}];
-};
-
-var initBadges = function () {
-	return [{
-		"_id": "1",
-		"name": "Reviewer",
-		"desc": "Criticism is the highest form of affection. Users will be rewarded with this badge if they deal with cardsets of others and give constructive feedback.",
-		"rank1": 50,
-		"rank2": 25,
-		"rank3": 10,
-		"unit": "ratings",
-		"badge": "kritiker",
-		"i18n": {
-			"de": {
-				"name": "Kritiker",
-				"desc": "Kritik ist die höchste Form der Zuneigung. Benutzer, welche sich sachlich mit den Kartensätzen anderer auseinandersetzen und konstruktives Feedback oder Lob aussprechen, werden mit diesem Badge belohnt",
-				"unit": "Bewertungen"
-			}
-		}
-	}, {
-		"_id": "2",
-		"name": "Reviewer's favourite",
-		"desc": "You will obtain this badge by earning good feedback of other users. It contains all your public cardsets with at least 5 reviews with an average rating of 4.5 stars.",
-		"rank1": 30,
-		"rank2": 15,
-		"rank3": 5,
-		"unit": "carddecks",
-		"badge": "krone",
-		"i18n": {
-			"de": {
-				"name": "Liebling der Kritiker",
-				"desc": "Du erhältst diesen Badge, wenn deine Kartensätze von anderen Lernenden gut bewertet werden. Als Kartensatz zählen alle deine öffentlichen Kartensätze mit mindestens 5 Bewertungen bei einer durchschnittlichen Bewertung von 4,5 Sternen.",
-				"unit": "Kartensätze"
-			}
-		}
-	}, {
-		"_id": "3",
-		"name": "Patron",
-		"desc": "Visit THMcards for several days to obtain this badge!",
-		"rank1": 50,
-		"rank2": 25,
-		"rank3": 10,
-		"unit": "days",
-		"badge": "stammgast",
-		"i18n": {
-			"de": {
-				"name": "Stammgast",
-				"desc": "Besuche THMcards mehrere Tage und erhalte den Stammgast Badge!",
-				"unit": "Tage"
-			}
-		}
-	}, {
-		"_id": "4",
-		"name": "Nerd",
-		"desc": "Ambitiousness is rewarded. Learn different cardsets to obtain this badge. It doesn't matter which learning method you use.",
-		"rank1": 30,
-		"rank2": 15,
-		"rank3": 5,
-		"unit": "cardsets",
-		"badge": "streber",
-		"i18n": {
-			"de": {
-				"name": "Streber",
-				"desc": "Strebsamkeit wird belohnt. Lerne unterschiedliche Kartensätze um diesen Badge zu erhalten. Es steht dir frei, welche Lernmethode du wählst.",
-				"unit": "Kartensätze"
-			}
-		}
-	}, {
-		"_id": "5",
-		"name": "Benefactor",
-		"desc": "Create a certain number of public cardsets that contain at least 5 cards.",
-		"rank1": 15,
-		"rank2": 10,
-		"rank3": 5,
-		"unit": "cardsets",
-		"badge": "autor",
-		"i18n": {
-			"de": {
-				"name": "Wohltäter",
-				"desc": "Erstelle eine bestimmte Anzahl an öffentlichen Kartensätzen, die mindestens 5 Karten beinhalten.",
-				"unit": "Kartensätze"
-			}
-		}
-	}, {
-		"_id": "6",
-		"name": "Bestselling author",
-		"desc": "Reach many learners with popular cardsets.",
-		"rank1": 40,
-		"rank2": 20,
-		"rank3": 10,
-		"unit": "learner",
-		"badge": "bestseller",
-		"i18n": {
-			"de": {
-				"name": "Bestseller-Autor",
-				"desc": "Erreiche viele Lernende mithilfe beliebter Kartensätze.",
-				"unit": "Lernende"
-			}
-		}
 	}];
 };
 
@@ -347,12 +246,6 @@ var initTestNotificationsUser = function () {
 			"lvl": 17,
 			"lastOnAt": (new Date().setFullYear(2017, 9, 5)),
 			"daysInRow": 0,
-			"earnedBadges": [
-				{
-					"index": "5",
-					"rank": "3"
-				}
-			],
 			"selectedColorTheme": "default",
 			"mailNotification": true,
 			"webNotification": false,
@@ -370,7 +263,6 @@ var initTestNotificationsUser = function () {
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
-	let badges = initBadges();
 	let themes = initColorThemes();
 	let testNotificationsCardset = initTestNotificationsCardset();
 	let testNotificationsCards = initTestNotificationsCards();
@@ -562,14 +454,6 @@ Meteor.startup(function () {
 			{
 				multi: true
 			});
-	}
-
-	if (Badges.find().count() === 0) {
-		for (let badge in badges) {
-			if (badges.hasOwnProperty(badge)) {
-				Badges.insert(badges[badge]);
-			}
-		}
 	}
 
 	ColorThemes.remove({});

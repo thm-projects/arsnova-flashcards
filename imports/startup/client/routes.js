@@ -144,10 +144,6 @@ Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile'
 });
-Router.route('/profile/:_id/badges', {
-	name: 'profileBadges',
-	template: 'profile'
-});
 Router.route('/profile/:_id/billing', {
 	name: 'profileBilling',
 	template: 'profile'
