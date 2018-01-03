@@ -60,7 +60,7 @@ function initializeContent() {
 		Session.set('lectureText', '');
 	}
 
-	if (Session.get('cardType') === 1  && Session.get('centerTextElement') === undefined) {
+	if (Session.get('cardType') === 1 && Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
 	} else if (Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
@@ -1128,4 +1128,12 @@ Template.copyCard.events({
 			}
 		});
 	}
+});
+
+Meteor.startup(function () {
+	$(document).on('keyup', function (event) {
+		if (event.keyCode === 27) {
+			toggleFullscreen(true);
+		}
+	});
 });
