@@ -1110,8 +1110,10 @@ Template.copyCard.helpers({
 	cardsetList: function () {
 		return Cardsets.find({
 			owner: Meteor.userId(),
-			shuffled: false
+			shuffled: false,
+			_id: {$nin: [Router.current().params._id]}
 		}, {
+			fields: {name: 1},
 			sort: {name: 1}
 		});
 	}

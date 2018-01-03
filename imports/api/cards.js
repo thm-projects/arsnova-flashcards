@@ -325,10 +325,18 @@ Meteor.methods({
 			let card = Cards.findOne(card_id);
 			if (card !== undefined) {
 				let hint = "";
+				let lecture = "";
+				let back = "";
+				if (card.back !== undefined) {
+					back = card.back;
+				}
 				if (card.hint !== undefined) {
 					hint = card.hint;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, card.back, Number(card.difficulty), "0", card.cardType, card.lecture, card.centerTextElement, card.date);
+				if (card.lecture !== undefined) {
+					lecture = card.lecture;
+				}
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date);
 				return true;
 			}
 		} else {
