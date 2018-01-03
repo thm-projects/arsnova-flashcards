@@ -183,16 +183,29 @@ if (Meteor.isServer) {
 				return Cards.find({cardset_id: cardset_id});
 			}
 
-			var count = Cards.find({cardset_id: cardset_id}).count();
-			var limit = count * 0.1;
+			let count = Cards.find({cardset_id: cardset_id}).count();
+			let cardIdArray = Cards.find({cardset_id: cardset_id}, {_id: 1}).map(function (card) {
+				return card._id;
+			});
+			let limit;
 
-			if (limit < 2) {
+			if (count < 10) {
 				limit = 2;
-			} else if (limit > 15) {
-				limit = 15;
+			} else {
+				limit = 5;
 			}
 
-			return Cards.find({cardset_id: cardset_id}, {limit: limit});
+			let j, x, i;
+			for (i = cardIdArray.length - 1; i > 0; i--) {
+				j = Math.floor(Math.random() * (i + 1));
+				x = cardIdArray[i];
+				cardIdArray[i] = cardIdArray[j];
+				cardIdArray[j] = x;
+			}
+			while (cardIdArray.length > limit) {
+				cardIdArray.pop();
+			}
+			return Cards.find({cardset_id: cardset_id, _id: {$in: cardIdArray}});
 		}
 	});
 }
