@@ -27,6 +27,7 @@
   },
   "intro": {
     "about": "About THMcards",
+    "learnMore": "Learn more...",
     "impressum": "Legal Notice",
     "backButton": "Back to Start"
   },
@@ -50,6 +51,7 @@
     "none": "None"
   },
   "contact": {
+    "about": "About THMcards",
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
     "agb": "GTC"

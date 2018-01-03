@@ -22,6 +22,11 @@ Router.route('/home', {
 	template: 'welcome'
 });
 
+Router.route('about', {
+	name: 'about',
+	template: 'contact'
+});
+
 Router.route('impressum', {
 	name: 'impressum',
 	template: 'contact'
@@ -260,6 +265,7 @@ var goToCreated = function () {
 Router.onBeforeAction(isSignedIn, {
 	except: [
 		'home',
+		'about',
 		'impressum',
 		'agb',
 		'datenschutz'
