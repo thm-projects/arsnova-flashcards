@@ -304,6 +304,7 @@
                                             <br>
                                         {{/if}}
                                         <span>{{getCardsetName}}</span><br>
+                                        {{getCardTypeName}}
                                         {{#unless isLecturePreview}}
                                             {{#unless isHintPreview}}
                                                 {{#unless isCardType 2}}
@@ -327,6 +328,7 @@
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
+                                         ({{getDifficultyName}})
                                     </div>
                                     {{#unless isEditMode}}
                                         {{#unless isCardType 2}}
