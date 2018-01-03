@@ -24,6 +24,7 @@ Session.setDefault("theme", "default");
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
+Session.setDefault("selectingCardsetToLearn", false);
 
 
 function connectionStatus() {

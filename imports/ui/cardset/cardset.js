@@ -155,6 +155,14 @@ Template.cardset.helpers({
 	},
 	'isLecturerAndHasRequest': function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
+	},
+	'selectedForLearning': function () {
+		if (Session.get('selectingCardsetToLearn')) {
+			addToLeitner(this._id);
+			Meteor.call("addWozniakCards", this._id);
+			Session.set("selectingCardsetToLearn", false);
+			Bert.alert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');
+		}
 	}
 });
 

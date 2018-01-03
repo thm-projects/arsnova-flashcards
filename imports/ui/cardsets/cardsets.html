@@ -181,7 +181,7 @@
             {{#if isActiveRoute 'learn'}}
                 <span class="emptyTextList">{{_ "set-list-learn-empty.emptytextlist"}}</span>
                 <br>
-                <button id="learnListEmpty" class="btn btn-raised btn-success btn-newSet">{{_
+                <button id="browseCardset" class="btn btn-raised btn-success btn-newSet">{{_
                         "set-list-learn-empty.browseCardset"}}</button>
             {{/if}}
         </div>
@@ -192,7 +192,7 @@
     <div id="learn-list-region" class="col-md-12">
         {{> shuffle}}
         {{#if learnList.count}}
-            <a href="pool" class="btn btn-raised btn-success">{{_
+            <a id="browseCardset" class="btn btn-raised btn-success">{{_
                     "set-list-learn-empty.browseCardset"}}</a>
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
