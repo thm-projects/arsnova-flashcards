@@ -27,6 +27,7 @@
   },
   "intro": {
     "about": "Was ist THMcards?",
+    "learnMore": "Learn more...",
     "impressum": "Impressum",
     "backButton": "Zurück"
   },
@@ -42,6 +43,7 @@
     "none": "Ohne"
   },
   "contact": {
+    "about": "Über THMcards",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB"
