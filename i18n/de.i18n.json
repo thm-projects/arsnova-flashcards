@@ -195,7 +195,7 @@
     "editreferences": "Kartensatz mischen",
     "name": "Thema",
     "nameplaceholder": "Thema des Kartensatzes",
-    "descriptionplaceholder": "Beschreibung für den Inhalt des Kartensatzes",
+    "descriptionplaceholder": "Lernziele und Lerninhalte",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "category": "Kategorie",
@@ -247,7 +247,7 @@
     "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",
     "moduleNum": "Modul-Nr.",
     "moduleNum_required": "Gib die Modulnummer ein!",
-    "moduleplaceholder": "Ausgeschriebener Titel des Moduls",
+    "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
