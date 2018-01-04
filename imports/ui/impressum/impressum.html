@@ -1,17 +1,10 @@
 <template name="contact">
     <div id="contact" class="col-md-8 col-md-offset-2">
         <nav class="nav nav-tabs nav-justified">
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor
-                    route='about'}}">{{_ "contact.about"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum" href="{{pathFor
-                    route='impressum'}}">{{_ "contact.impressum"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz"
-                                                                               href="{{pathFor route='agb'}}">{{_
-                    "contact.agb"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb"
-                                                                                                 href="{{pathFor
-                                                                                                         route='datenschutz'}}">{{_
-                    "contact.datenschutz"}}</a></li>
+            <li class="sm-12 md-3 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor route='about'}}">{{_ "contact.about"}}</a></li>
+            <li class="sm-12 md-3 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "contact.impressum"}}</a></li>
+            <li class="sm-12 md-3 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz" href="{{pathFor route='agb'}}">{{_ "contact.agb"}}</a></li>
+            <li class="sm-12 md-3 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb" href="{{pathFor route='datenschutz'}}">{{_ "contact.datenschutz"}}</a></li>
         </nav>
         <br>
         {{#if isActiveRoute 'about'}}
@@ -52,7 +45,7 @@
                 — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
             </p>
             <p>
-                Das Konzept von THMcards erlaubt der Lehrperson den Lernprozess der Studierenden objektiv zu bewerten, um so gegebenenfalls <b>Bonuspunkte für das regelmäßige wiederholte Lernen</b> über den Semesterverlauf vergeben zu können.
+                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten, um so gegebenenfalls <b>Bonuspunkte für das regelmäßige wiederholte Lernen</b> über den Semesterverlauf zu vergeben.
                 Das Lernen gemäß den in THMcards implementierten Wiederholungs-Algorithmen von
                 <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
                 <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über die Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
@@ -61,9 +54,10 @@
             <p>
                 Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle <b>Edu-Kartensätze</b>.
                 Hierbei handelt es sich um Kartensätze, die von Lehrenden der THM für ihre Module erstellt wurden.
-                Studierende, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder Google) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben, siehe die AGB.
+                Studierende, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder Google) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>derzeit im kostenlosen Testbetrieb</b>),
+                siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
                 Alle Benutzer/innen können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien Verfügung stellen.
-                Pro-Abonnenten können ihre Kartensätze, deren Qualität zuvor von einer Lehrperson der THM geprüft wurden, auch zum Kauf anbieten.
+                Pro-Abonnenten können ihre Kartensätze, deren Qualität zuvor von einer Lehrperson der THM geprüft wurde, auch zum Kauf anbieten.
             </p>
         </div>
     </div>
@@ -72,7 +66,7 @@
 <template name="impressum">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Impressum
+            Impressum gemäß Telemediengesetz
         </div>
 
         <div class="panel-body">
@@ -250,7 +244,7 @@
             </ul>
             </p>
             <br/>
-            <h4>THMcards FREE und THMcards PRO</h4>
+            <h4>THMcards FREE und THMcards PRO (derzeit im kostenlosen Testbetrieb)</h4>
             <p>
             <ul>
                 <li>THMcards ist in der Free-Version kostenlos nutzbar, jedoch können nicht alle Lerninhalte der
@@ -381,7 +375,7 @@
 <template name="datenschutz">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Datenschutzerklärung
+            Datenschutzerklärung und Verfahrensverzeichnis
         </div>
         <div class="panel-body">
             <h4>Grundsatz</h4>
@@ -510,9 +504,11 @@
                 Bei Unklarheiten oder Anregungen wenden Sie sich an folgende E-Mail-Adresse oder an die im Impressum
                 angegebenen Kontaktdaten: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
             </p>
+            <br/>
+            <h4>Verfahrensverzeichnis</h4>
             <p>
                 Eine Übersicht über die in THMcards gespeicherten Daten finden Sie im
-                <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verfahrensverzeichnis</a>
+                <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verfahrensverzeichnis</a>.
             </p>
             <br/>
             <h4>Änderungen der Datenschutzerklärung</h4>
