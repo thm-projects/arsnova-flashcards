@@ -262,8 +262,8 @@
   },
   "profile": {
     "overview": "Lernaktivität",
-    "billing": "Abrechnung",
-    "membership": "Mitgliedschaft",
+    "billing": "Abrechnung (kostenloser Testbetrieb)",
+    "membership": "Mitgliedschaft (kostenloser Testbetrieb)",
     "notifications": "Benachrichtigungen",
     "requests": "Pro-Anfragen Kartensatzfreigabe",
     "norequests": "Keine Anfragen vorhanden",
@@ -303,7 +303,7 @@
   },
   "billing": {
     "plan": {
-      "header": "Mitgliedschaft",
+      "header": "Mitgliedschaft (derzeit kostenloser Testbetrieb)",
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
       "free": "Create. Learn. Remember.",
