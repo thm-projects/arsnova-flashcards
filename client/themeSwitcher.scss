@@ -136,6 +136,10 @@ $themes: (
     .editorNavigation >.btn-primary:hover {
       background-color: $primary-color !important;
     }
+
+    .bs-callout-info {
+      border-left-color: $primary-color;
+    }
   }
 }
 
