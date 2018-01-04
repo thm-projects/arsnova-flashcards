@@ -101,6 +101,11 @@
     "title": "Aktive Lernphase verlassen",
     "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
+  "confirm-leave-cardset": {
+    "btn-txt": "Kartensatz verlassen",
+    "title": "Kartensatz verlassen",
+    "text": "Willst du diesen Kartensatz verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
+  },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
     "title": "Bearbeitergruppe verlassen",
@@ -176,7 +181,8 @@
     "cardsetInfoStatic": "Über diesen Kartensatz",
     "shuffleCardsets": "Kartensätze mischen",
     "shuffle": "Mischen",
-    "shuffleInfoText": "",
+    "shuffleInfoTextNew": "Neuen Kartensatz durch Hinzufügen mischen",
+    "shuffleInfoTextEdit": "Kartensatz durch Hinzufügen mischen",
     "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",

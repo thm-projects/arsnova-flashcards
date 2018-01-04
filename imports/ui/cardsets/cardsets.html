@@ -30,34 +30,39 @@
             {{/if}}
         {{else}}
             <div class="col-md-12" id="set-list-region">
-                {{#if isActiveRoute 'shuffle'}}
-                    {{#if gotShuffledCards}}
-                        <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
-                           data-toggle="modal"
-                           data-target="#newSetModal" {{disableIfOffline}}>{{_
-                                "set-list.shuffle"}}</a>
+                <div class="bs-callout bs-callout-info selectionInfo">
+                    {{#if isActiveRoute 'shuffle'}}
+                        <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                                "declinecard"}}</a>
+                        {{#if gotShuffledCards}}
+                            <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
+                               data-toggle="modal"
+                               data-target="#newSetModal" {{disableIfOffline}}>{{_
+                                    "set-list.shuffle"}}</a>
+                        {{/if}}
+                        <span class="text">
+                            {{_ "set-list.shuffleInfoTextNew"}}
+                        </span>
                     {{/if}}
-                    <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                            "declinecard"}}</a>
-                {{/if}}
-                {{#if isActiveRoute 'editshuffle'}}
-                    <h3 class="modal-title">{{_ "set-list.shuffleCardsetReferences"}}</h3>
-                    <br>
-                    {{#if gotShuffledCards}}
-                        <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
+                    {{#if isActiveRoute 'editshuffle'}}
+                        {{#if gotShuffledCards}}
+                            <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
+                                    role="button" {{disableIfOffline}}>{{_
+                                    "set-list.shuffle"}}</button>
+                        {{/if}}
+                        <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                                "declinecard"}}</button>
+                        <span class="text">
+                            {{_ "set-list.shuffleInfoTextEdit"}}
+                        </span>
+                    {{/if}}
+                    {{#if displayRemoveButton}}
+                        <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
                                 role="button" {{disableIfOffline}}>{{_
-                                "set-list.shuffle"}}</button>
+                                "set-list.shuffleRemove"}}</button>
                     {{/if}}
-                    <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                            "declinecard"}}</button>
-
-                {{/if}}
-                {{#if displayRemoveButton}}
-                    <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
-                            role="button" {{disableIfOffline}}>{{_
-                            "set-list.shuffleRemove"}}</button>
-                {{/if}}
-                {{shuffleInfoText}}
+                </div>
+                <br>
                 {{#if shuffleList.count}}
                     <div class="responsive-utilities-test visible-on">
                         <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
@@ -190,10 +195,12 @@
 
 <template name="learn">
     <div id="learn-list-region" class="col-md-12">
-        {{> shuffle}}
         {{#if learnList.count}}
             <a id="browseCardset" class="btn btn-raised btn-success">{{_
                     "set-list-learn-empty.browseCardset"}}</a>
+        {{/if}}
+        {{> shuffle}}
+        {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>

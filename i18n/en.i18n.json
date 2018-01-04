@@ -109,6 +109,11 @@
     "title": "Leave the active Learning-Phase",
     "text": "Do you really want to leave this active Learning-Phase? If you accept this, then your entire learning progress will be deleted."
   },
+  "confirm-leave-cardset": {
+    "btn-txt": "Leave Cardset",
+    "title": "Leave the Cardset",
+    "text": "Do you really want to leave this Cardset? If you accept this, then your entire learning progress will be deleted."
+  },
   "confirm-leave-editors": {
     "btn-txt": "Leave Editor Group",
     "title": "Leave Editor Group",
@@ -186,7 +191,8 @@
     "cardsetInfoStatic": "About this Cardset",
     "shuffleCardsets": "Shuffle Cardsets",
     "shuffle": "Shuffle",
-    "shuffleInfoText": "",
+    "shuffleInfoTextNew": "Mix new deck by adding cardsets",
+    "shuffleInfoTextEdit": "Mix deck by adding cardsets",
     "shuffleCardsetReferences": "Update cardset references",
     "shuffleUpdateSuccess": "Updated references",
     "shuffleUpdateFailure": "Error while updating the references",
