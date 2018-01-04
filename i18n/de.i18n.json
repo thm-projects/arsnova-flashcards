@@ -446,7 +446,7 @@
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Aktualisiert",
-    "selectCardToLearn": "Kartensatz zu meinem Lernpensum hinzufügen"
+    "selectCardToLearn": "Kartensatz durch Klick auf ein Thema zum Lernpensum hinzufügen"
   },
   "cardset": {
     "info": {
