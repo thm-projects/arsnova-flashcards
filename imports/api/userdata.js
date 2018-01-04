@@ -22,7 +22,6 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
-						'earnedBadges': 1,
 						'customerId': 1,
 						'blockedtext': 1,
 						"selectedColorTheme": "default",
@@ -52,7 +51,6 @@ if (Meteor.isServer) {
 						'visible': 1,
 						'lastOnAt': 1,
 						'daysInRow': 1,
-						'earnedBadges': 1,
 						'balance': 1,
 						"mailNotification": 1,
 						"webNotification": 1
@@ -199,7 +197,6 @@ Meteor.methods({
 						lvl: 1,
 						lastOnAt: new Date(),
 						daysInRow: 0,
-						earnedBadges: [],
 						selectedColorTheme: "default",
 						mailNotification: true,
 						webNotification: false
@@ -341,12 +338,6 @@ Meteor.methods({
 		}
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
-	},
-	updateEarnedBadges: function (index, rank) {
-		check(index, Number);
-		check(rank, Number);
-		Meteor.users.update(this.userId,
-			{$addToSet: {"earnedBadges": {"index": index.toString(), "rank": rank.toString()}}});
 	},
 	/** Function saves the given colorTheme to the given user
 	 *  @param {string} selectedColorTheme - The id of the selected color theme

@@ -13,9 +13,6 @@
                     {{#if isActiveRoute 'profileOverview'}}
                         <div id="profileOverview">{{> profileXp}}</div>
                     {{/if}}
-                    {{#if isActiveRoute 'profileBadges'}}
-                        <div id="profileBadges">{{> profileBadges}}</div>
-                    {{/if}}
                     {{#if isActiveRoute 'profileBilling'}}
                         <div id="profileBilling">
                             {{#if isUser}}
@@ -107,11 +104,6 @@
                 <li role="presentation" class="{{#if isActiveRoute 'profileOverview'}}active{{/if}}">
                     <a href="/profile/{{currentUser._id}}/overview">
                         <i class="fa fa-trophy"></i>{{_ "profile.overview"}}
-                    </a>
-                </li>
-                <li role="presentation" class="{{#if isActiveRoute 'profileBadges'}}active{{/if}}">
-                    <a href="/profile/{{currentUser._id}}/badges">
-                        <i class="fa fa-certificate"></i>{{_ "panel-heading-badges.badges"}}
                     </a>
                 </li>
                 <li role="presentation" class="{{#if isActiveRoute 'profileMembership'}}active{{/if}}">
@@ -530,144 +522,10 @@
         </div>
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading panel-heading-badges">
+                <div class="panel-heading">
                     <div id="container" style="min-width: 100%;
 			max-width: 100%; min-height: 100%; max-height: 100%; margin: 0 auto">
                         {{> graph}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<!--##################################################################-->
-<!--profileBadges-->
-<!--##################################################################-->
-<template name="profileBadges">
-    <div class="row">
-        <div class="col-md-12" id="profile-badge-region">
-            <div class="panel panel-default">
-                <div class="panel-heading panel-heading-badges">
-                    <h3 class="panel-title">{{_ "panel-heading-badges.badges"}}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        {{#each badge in getBadges}}
-
-                            <div class="col-md-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">{{badge.name}}</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-
-                                                    <div class="col-md-4">
-                                                        <div class="well well-sm badgeWell">
-                                                            <div class="row">
-                                                                <img src="/badges/{{badge.badge}}_3{{#unless isGained
-                                                                                                             @index
-                                                                                                             3}}_gray{{/unless}}.png"
-                                                                     height="60">
-                                                            </div>
-                                                            <div class="row">
-                                                                <strong>{{_ "bronze"}}</strong>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>{{badge.rank3}} {{badge.unit}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="progress badgeFooterProgress">
-                                                                        <div class="progress-bar {{#if isGained @index
-                                                                                                       3}}progress-bar-success{{/if}}"
-                                                                             role="progressbar"
-                                                                             style="width: {{ getPercent @index
-                                                                                                         3}}%"></div>
-                                                                    </div>
-                                                                    <span class="progress-label">{{getCount @index 3}}
-                                                                        / {{badge.rank3}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="well well-sm badgeWell">
-                                                            <div class="row">
-                                                                <img src="/badges/{{badge.badge}}_2{{#unless isGained
-                                                                                                             @index
-                                                                                                             2}}_gray{{/unless}}.png"
-                                                                     height="60">
-                                                            </div>
-                                                            <div class="row">
-                                                                <strong>{{_ "silver"}}</strong>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>{{badge.rank2}} {{badge.unit}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="progress badgeFooterProgress">
-                                                                        <div class="progress-bar {{#if isGained @index
-                                                                                                       2}}progress-bar-success{{/if}}"
-                                                                             role="progressbar"
-                                                                             style="width: {{ getPercent @index
-                                                                                                         2}}%"></div>
-                                                                    </div>
-                                                                    <span class="progress-label">{{getCount @index 2}}
-                                                                        / {{badge.rank2}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="well well-sm badgeWell">
-                                                            <div class="row">
-                                                                <img src="/badges/{{badge.badge}}_1{{#unless isGained
-                                                                                                             @index
-                                                                                                             1}}_gray{{/unless}}.png"
-                                                                     height="60">
-                                                            </div>
-                                                            <div class="row">
-                                                                <strong>{{_ "gold"}}</strong>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>{{badge.rank1}} {{badge.unit}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="progress badgeFooterProgress">
-                                                                        <div class="progress-bar {{#if isGained @index
-                                                                                                       1}}progress-bar-success{{/if}}"
-                                                                             role="progressbar"
-                                                                             style="width: {{ getPercent @index
-                                                                                                         1}}%"></div>
-                                                                    </div>
-                                                                    <span class="progress-label">{{getCount @index 1}}
-                                                                        / {{badge.rank1}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                <p>{{badge.desc}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
                     </div>
                 </div>
             </div>

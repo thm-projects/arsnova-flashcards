@@ -27,6 +27,7 @@
   },
   "intro": {
     "about": "About THMcards",
+    "learnMore": "Learn more...",
     "impressum": "Legal Notice",
     "backButton": "Back to Start"
   },
@@ -36,9 +37,7 @@
     "carousel-header-1": "THMcards speaks TeX",
     "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
     "carousel-header-2": "Hello World!",
-    "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting.",
-    "carousel-header-3": "Collect badges",
-    "carousel-paragraph-3": "Outstanding achievements are rewarded with Open Badges."
+    "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting."
   },
   "navbar-collapse": {
     "carddecks": "My decks of cards",
@@ -52,6 +51,7 @@
     "none": "None"
   },
   "contact": {
+    "about": "About THMcards",
     "impressum": "Legal Notice",
     "datenschutz": "Data protection",
     "agb": "GTC"
@@ -407,16 +407,6 @@
     "card": "Create card",
     "rating": "Rated cardset"
   },
-  "panel-heading-badges": {
-    "badges": "Badges"
-  },
-  "panel-body-badges": {
-    "text1": "You have the possibility to synchronize your collected badges with the Mozilla Badge Backpack.",
-    "text2": "To add the badges to the ",
-    "text3": "OpenBadges Plattform",
-    "text4": ", click the following button:",
-    "button": "Synchronize now"
-  },
   "panel-heading-meteor": {
     "meteor": "Meteor statistics"
   },
@@ -463,7 +453,8 @@
     "deleted": "Deleted",
     "license": "License",
     "dateUpdated": "Last updated",
-    "activeLearners": "Active learners"
+    "activeLearners": "Active learners",
+    "selectCardToLearn": "Add cardset to Workload"
   },
   "cardset": {
     "info": {
@@ -498,6 +489,9 @@
       "buy": "Buy cardset",
       "pro": "Learn as premium-user",
       "bought": "Thank you for your payment!"
+    },
+    "alert": {
+      "addedToWorkload": "Added to Workload"
     }
   },
   "cardmemo": {

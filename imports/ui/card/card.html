@@ -54,21 +54,24 @@
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType 1}}col-sm-6{{/if}}{{#if isCardType 2}}col-sm-12{{/if}}"
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
+                                                                                                     1}}col-sm-6{{/if}}{{#if
+                        isCardType 2}}col-sm-12{{/if}}"
                 tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
         {{#unless isCardType 2}}
             <button id="editBack" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType 1}}col-sm-6{{/if}}"
+                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
+                                                                                                         1}}col-sm-6{{/if}}"
                     tabindex="6">{{_
                     "backside"}}</button>
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                         tabindex="8">{{_
                         "lecture"}}</button>
-            <button id="editHint" type="button"
-                    class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                    tabindex="10">{{_
-                    "hint"}}</button>
+                <button id="editHint" type="button"
+                        class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                        tabindex="10">{{_
+                        "hint"}}</button>
             {{/if}}
         {{/unless}}
     </div>
@@ -301,6 +304,7 @@
                                             <br>
                                         {{/if}}
                                         <span>{{getCardsetName}}</span><br>
+                                        {{getCardTypeName}}
                                         {{#unless isLecturePreview}}
                                             {{#unless isHintPreview}}
                                                 {{#unless isCardType 2}}
@@ -324,6 +328,7 @@
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
+                                         ({{getDifficultyName}})
                                     </div>
                                     {{#unless isEditMode}}
                                         {{#unless isCardType 2}}
@@ -510,7 +515,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <span class="{{#if isCentered}}center-align{{/if}}">
-                                {{#mathjax}}{{getHint}}{{/mathjax}}
+                                    {{#mathjax}}{{getHint}}{{/mathjax}}
                                 </span>
                             </div>
                         </div>

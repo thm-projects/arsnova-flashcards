@@ -60,7 +60,7 @@ function initializeContent() {
 		Session.set('lectureText', '');
 	}
 
-	if (Session.get('cardType') === 1  && Session.get('centerTextElement') === undefined) {
+	if (Session.get('cardType') === 1 && Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
 	} else if (Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
@@ -971,6 +971,41 @@ Template.flashcards.helpers({
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},
+	getCardTypeName: function () {
+		switch (this.cardType) {
+			case 0:
+				return TAPi18n.__('cardType0');
+			case 1:
+				return TAPi18n.__('cardType1');
+			case 2:
+				return TAPi18n.__('cardType2');
+		}
+	},
+	getDifficultyName: function () {
+		if (this.cardType === 2) {
+			switch (this.difficulty) {
+				case 0:
+					return TAPi18n.__('difficultyNotes0');
+				case 1:
+					return TAPi18n.__('difficultyNotes1');
+				case 2:
+					return TAPi18n.__('difficultyNotes2');
+				case 3:
+					return TAPi18n.__('difficultyNotes3');
+			}
+		} else {
+			switch (this.difficulty) {
+				case 0:
+					return TAPi18n.__('difficulty0');
+				case 1:
+					return TAPi18n.__('difficulty1');
+				case 2:
+					return TAPi18n.__('difficulty2');
+				case 3:
+					return TAPi18n.__('difficulty3');
+			}
+		}
+	},
 	isCardType: function (type) {
 		return type === this.cardType;
 	},
@@ -1110,8 +1145,10 @@ Template.copyCard.helpers({
 	cardsetList: function () {
 		return Cardsets.find({
 			owner: Meteor.userId(),
-			shuffled: false
+			shuffled: false,
+			_id: {$nin: [Router.current().params._id]}
 		}, {
+			fields: {name: 1},
 			sort: {name: 1}
 		});
 	}
@@ -1128,4 +1165,12 @@ Template.copyCard.events({
 			}
 		});
 	}
+});
+
+Meteor.startup(function () {
+	$(document).on('keyup', function (event) {
+		if (event.keyCode === 27) {
+			toggleFullscreen(true);
+		}
+	});
 });

@@ -22,6 +22,11 @@ Router.route('/home', {
 	template: 'welcome'
 });
 
+Router.route('about', {
+	name: 'about',
+	template: 'contact'
+});
+
 Router.route('impressum', {
 	name: 'impressum',
 	template: 'contact'
@@ -144,10 +149,6 @@ Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile'
 });
-Router.route('/profile/:_id/badges', {
-	name: 'profileBadges',
-	template: 'profile'
-});
 Router.route('/profile/:_id/billing', {
 	name: 'profileBilling',
 	template: 'profile'
@@ -264,6 +265,7 @@ var goToCreated = function () {
 Router.onBeforeAction(isSignedIn, {
 	except: [
 		'home',
+		'about',
 		'impressum',
 		'agb',
 		'datenschutz'

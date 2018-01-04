@@ -27,6 +27,7 @@
   },
   "intro": {
     "about": "Was ist THMcards?",
+    "learnMore": "Learn more...",
     "impressum": "Impressum",
     "backButton": "Zurück"
   },
@@ -42,6 +43,7 @@
     "none": "Ohne"
   },
   "contact": {
+    "about": "Über THMcards",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB"
@@ -397,16 +399,6 @@
     "card": "Karte angelegt",
     "rating": "Kartensatz bewertet"
   },
-  "panel-heading-badges": {
-    "badges": "Badges"
-  },
-  "panel-body-badges": {
-    "text1": "Du hast die Möglichkeit, deine gesammelten Badges mit dem Mozilla Badge Backpack zu syncronisieren.",
-    "text2": "Um deine Badges der ",
-    "text3": "OpenBadges Plattform",
-    "text4": " hinzuzufügen, klicke auf den folgenden Button:",
-    "button": "Jetzt syncronisieren"
-  },
   "panel-heading-meteor": {
     "meteor": "Meteor Statistiken"
   },
@@ -453,7 +445,8 @@
     "deleted": "Gelöscht",
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
-    "dateUpdated": "Aktualisiert"
+    "dateUpdated": "Aktualisiert",
+    "selectCardToLearn": "Kartensatz durch Klick auf ein Thema zum Lernpensum hinzufügen"
   },
   "cardset": {
     "info": {
@@ -488,6 +481,9 @@
       "buy": "Kartensatz kaufen",
       "pro": "Als Premium-Nutzer lernen",
       "bought": "Vielen Dank für deinen Kauf!"
+    },
+    "alert": {
+      "addedToWorkload": "Zu meinem Lernpensum hinzugefügt"
     }
   },
   "cardmemo": {

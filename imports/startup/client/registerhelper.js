@@ -87,7 +87,11 @@ Template.registerHelper("canShuffle", function () {
 
 Template.registerHelper("canCopyCard", function (cardset_id) {
 	let owner = Cardsets.findOne({"_id": cardset_id}).owner;
-	return (Roles.userIsInRole(Meteor.userId(), ['admin']) || (owner === Meteor.userId()));
+	return (Roles.userIsInRole(Meteor.userId(), ['admin']) || (owner === Meteor.userId())) && Cardsets.find({
+		owner: Meteor.userId(),
+		shuffled: false,
+		_id: {$nin: [Router.current().params._id]}
+	}).count();
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {

@@ -224,12 +224,21 @@ Template.category.helpers({
 	},
 	moreResults: function () {
 		return checkRemainingCards();
+	},
+	selectingCardsetToLearn: function () {
+		return Session.get('selectingCardsetToLearn');
 	}
 });
 
 Template.category.greeting = function () {
 	return Session.get('authors');
 };
+
+Template.category.events({
+	'click #cancelSelection': function () {
+		Session.set('selectingCardsetToLearn', false);
+	}
+});
 
 Template.enterActiveLearnphaseModal.events({
 	'click #enterActiveLearnphaseConfirm': function () {

@@ -143,6 +143,8 @@ Template.cardset.helpers({
 		var hasRole = false;
 		if (Roles.userIsInRole(userId, 'pro') ||
 			(Roles.userIsInRole(userId, 'lecturer')) ||
+			(Roles.userIsInRole(userId, 'admin')) ||
+			(Roles.userIsInRole(userId, 'editor')) ||
 			(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
 			(cardsetKind === 'free') ||
 			(Paid.find({cardset_id: this._id, user_id: userId}).count() === 1)) {
@@ -153,6 +155,14 @@ Template.cardset.helpers({
 	},
 	'isLecturerAndHasRequest': function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
+	},
+	'selectedForLearning': function () {
+		if (Session.get('selectingCardsetToLearn')) {
+			addToLeitner(this._id);
+			Meteor.call("addWozniakCards", this._id);
+			Session.set("selectingCardsetToLearn", false);
+			Bert.alert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');
+		}
 	}
 });
 
@@ -389,6 +399,10 @@ Template.cardsetPreview.events({
 			_id: Meteor.userId()
 		});
 	}
+});
+
+Template.cardsetPreview.onCreated(function () {
+	Cards._collection.remove({cardset_id: Router.current().params._id});
 });
 
 /*
