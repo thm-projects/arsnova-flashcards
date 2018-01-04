@@ -694,6 +694,29 @@ Template.leaveLearnPhaseForm.events({
 
 /*
  * ############################################################################
+ * leaveCardsetForm
+ * ############################################################################
+ */
+
+Template.leaveCardsetForm.events({
+	'click #leaveCardsetConfirm': function () {
+		var id = Router.current().params._id;
+
+
+		$('#leaveCardsetModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$('#leaveCardsetModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteLeitner", id);
+			Meteor.call("deleteWozniak", id);
+			Router.go('home');
+		});
+	}
+});
+
+
+/*
+ * ############################################################################
  * leaveEditorsForm
  * ############################################################################
  */
@@ -758,6 +781,9 @@ Template.cardsetSidebar.events({
 	},
 	"click #collapseManageButton": function () {
 		changeCollapseIcon("#collapseMangeIcon");
+	},
+	"click #leaveCardsetButton": function () {
+		Router.go('pool');
 	}
 });
 
@@ -768,15 +794,22 @@ Template.cardsetSidebar.helpers({
 	gotEnoughCards: function () {
 		return (this.quantity >= 1);
 	},
-	'learningLeitner': function () {
+	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
 	},
-	'learningMemo': function () {
+	learningMemo: function () {
 		return Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
 		});
+	},
+	learning: function () {
+		return (Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()}) || Wozniak.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		}));
 	}
 });
 
