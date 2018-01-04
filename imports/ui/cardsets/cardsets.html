@@ -190,10 +190,12 @@
 
 <template name="learn">
     <div id="learn-list-region" class="col-md-12">
-        {{> shuffle}}
         {{#if learnList.count}}
             <a id="browseCardset" class="btn btn-raised btn-success">{{_
                     "set-list-learn-empty.browseCardset"}}</a>
+        {{/if}}
+        {{> shuffle}}
+        {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
