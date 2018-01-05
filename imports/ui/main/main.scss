@@ -636,3 +636,22 @@ button:disabled {
   padding-left: 10px !important;
   padding-right: 10px !important;
 }
+
+.dropup, .navbar-nav > li  {
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  button {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  a {
+    white-space: normal !important;
+  }
+}
+
+#searchResults {
+  max-height: 400px;
+  overflow-y: scroll;
+}

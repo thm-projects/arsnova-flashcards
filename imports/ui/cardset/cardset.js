@@ -136,23 +136,6 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
-	'hasCardsetPermission': function () {
-		var userId = Meteor.userId();
-		var cardsetKind = this.kind;
-
-		var hasRole = false;
-		if (Roles.userIsInRole(userId, 'pro') ||
-			(Roles.userIsInRole(userId, 'lecturer')) ||
-			(Roles.userIsInRole(userId, 'admin')) ||
-			(Roles.userIsInRole(userId, 'editor')) ||
-			(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
-			(cardsetKind === 'free') ||
-			(Paid.find({cardset_id: this._id, user_id: userId}).count() === 1)) {
-			hasRole = true;
-		}
-
-		return (this.owner === Meteor.userId() || this.editors.includes(Meteor.userId())) || hasRole;
-	},
 	'isLecturerAndHasRequest': function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	},

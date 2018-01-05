@@ -27,6 +27,11 @@ Router.route('about', {
 	template: 'contact'
 });
 
+Router.route('faq', {
+	name: 'faq',
+	template: 'contact'
+});
+
 Router.route('impressum', {
 	name: 'impressum',
 	template: 'contact'
@@ -266,6 +271,7 @@ Router.onBeforeAction(isSignedIn, {
 	except: [
 		'home',
 		'about',
+		'faq',
 		'impressum',
 		'agb',
 		'datenschutz'

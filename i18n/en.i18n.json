@@ -52,8 +52,9 @@
   },
   "contact": {
     "about": "About THMcards",
+    "faq": "FAQ",
     "impressum": "Legal Notice",
-    "datenschutz": "Data protection",
+    "datenschutz": "Data Protection",
     "agb": "GTC"
   },
   "notifications": {
@@ -612,6 +613,7 @@
   "frontside": "Front",
   "backside": "Back",
   "preview": "Preview",
+  "of": "of",
   "content": "Content",
   "lecture": "Lecture",
   "turn": "turn",

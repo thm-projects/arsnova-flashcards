@@ -44,6 +44,7 @@
   },
   "contact": {
     "about": "Über THMcards",
+    "faq": "FAQ",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB"
@@ -580,6 +581,7 @@
   "frontside": "Vorderseite",
   "backside": "Rückseite",
   "preview": "Vorschau",
+  "of": "von",
   "content": "Inhalt",
   "lecture": "Vertiefung",
   "turn": "umdrehen",
