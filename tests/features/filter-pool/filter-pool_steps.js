@@ -22,7 +22,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by author button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.selectPool();
 		navigation.clickElement('a[class="dropdown-toggle authorBtn"]');
 	});
 

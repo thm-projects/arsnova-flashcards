@@ -380,6 +380,10 @@ button:disabled {
   visibility: visible;
 }
 
+.tip-content:hover, #welcome-tip:hover {
+  visibility: hidden !important;
+}
+
 .label-info {
   color: $white !important;
   background-color: $color_free_btn !important;
