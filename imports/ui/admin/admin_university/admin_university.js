@@ -33,7 +33,8 @@ function addCollegeAndCourse() {
 	} else {
 		college = document.getElementById("college").value;
 	}
-
+	course = course.trim();
+	college = college.trim();
 	deleteButton.setAttribute("type", "button");
 	deleteButton.setAttribute("id", "deleteRow");
 	deleteButton.setAttribute("value", "delete");
