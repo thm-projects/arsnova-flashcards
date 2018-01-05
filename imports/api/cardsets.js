@@ -656,7 +656,7 @@ Meteor.methods({
 				Cardsets.update(id, {
 					$set: {
 						kind: kind,
-						price: price,
+						price: price.replace(",","."),
 						visible: visible,
 						relevance: relevance
 					}

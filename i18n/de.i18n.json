@@ -480,6 +480,7 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
+      "alert": "Kartensatz zur Überprüfung freigegeben",
       "accept": "Kartensatz freigeben",
       "decline": "Kartensatz nicht freigeben",
       "accepted": "Kartensatz freigegeben",

@@ -48,26 +48,6 @@
             {{selectedForLearning}}
         {{/unless}}
         {{#unless fullscreenActive}}
-            {{#if isLecturerAndHasRequest}}
-                <div class="col-md-12">
-                    <div class="panel panel-default cardsetInfo">
-                        <div class="panel-body">
-                            <div class="input-group has-error">
-  											<span class="input-group-btn">
-  											  <button id="acceptRequest" class="btn btn-raised btn-success"
-                                                      type="button">{{_
-                                                      "cardset.request.accept"}}</button>
-  											  <button id="declineRequest" class="btn btn-raised btn-danger"
-                                                      type="button">{{_
-                                                      "cardset.request.decline"}}</button>
-  											</span>
-                                <input id="declineRequestReason" type="text" class="form-control"
-                                       placeholder="Begründung">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/if}}
             {{> cardsetSidebar}}
         {{/unless}}
         {{#if isActiveRoute 'cardsetdetailsid'}}
@@ -262,6 +242,18 @@
                     </div>
                 </div>
             </div>
+            {{#if isLecturerAndHasRequest}}
+                <div class="panel-footer">
+                    <button id="acceptRequest" class="btn btn-raised btn-success"
+                            type="button">{{_
+                            "cardset.request.accept"}}</button>
+                    <button id="declineRequest" class="btn btn-raised btn-danger"
+                            type="button">{{_
+                            "cardset.request.decline"}}</button>
+                    <textarea id="declineRequestReason" type="text" class="form-control"
+                              placeholder="{{_ "cardset.request.reason"}}" rows="7"></textarea>
+                </div>
+            {{/if}}
             {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
                     {{#unless isDisabled}}

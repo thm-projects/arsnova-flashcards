@@ -488,6 +488,7 @@
       "course": "Course"
     },
     "request": {
+      "alert": "Set of cards released for review",
       "accept": "Release cardset",
       "decline": "Don't release cardset",
       "accepted": "Cardset released",
