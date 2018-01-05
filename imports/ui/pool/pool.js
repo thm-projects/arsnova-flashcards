@@ -237,6 +237,7 @@ Template.category.greeting = function () {
 Template.category.events({
 	'click #cancelSelection': function () {
 		Session.set('selectingCardsetToLearn', false);
+		Router.go('learn');
 	}
 });
 
