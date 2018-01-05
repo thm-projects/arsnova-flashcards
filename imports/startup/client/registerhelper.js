@@ -9,6 +9,7 @@ import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
 import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
+import {Paid} from "../../api/paid";
 
 Meteor.subscribe("collegesCourses");
 
@@ -217,6 +218,25 @@ Template.registerHelper("getCourses", function () {
 		return item.course;
 	});
 });
+
+Template.registerHelper("hasCardsetPermission", function (_id) {
+	let cardset = Cardsets.findOne({_id});
+	let userId = Meteor.userId();
+	let cardsetKind = cardset.kind;
+
+	var hasRole = false;
+	if (Roles.userIsInRole(userId, 'pro') ||
+		(Roles.userIsInRole(userId, 'lecturer')) ||
+		(Roles.userIsInRole(userId, 'admin')) ||
+		(Roles.userIsInRole(userId, 'editor')) ||
+		(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
+		(cardsetKind === 'free') ||
+		(Paid.find({cardset_id: cardset._id, user_id: userId}).count() === 1)) {
+		hasRole = true;
+	}
+	return (this.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
+});
+
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {

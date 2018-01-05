@@ -297,7 +297,13 @@
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
-                                            {{cardsIndex @index}}/{{getCardsetCount}}<br>
+                                            {{#unless hasCardsetPermission cardset_id}}
+                                                <strong>{{_ "preview"}}:</strong>
+                                                {{cardsIndex @index}}/{{getCardsetCount false}} {{_
+                                                    "of"}} {{getCardsetCount true}} {{_ "admin.cards"}}<br>
+                                            {{else}}
+                                                {{cardsIndex @index}}/{{getCardsetCount true}}<br>
+                                            {{/unless}}
                                         {{/if}}
                                         {{#if isBox}}
                                             {{_ "leitner_status" count=countLeitner}}
@@ -328,7 +334,7 @@
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
-                                         ({{getDifficultyName}})
+                                        ({{getDifficultyName}})
                                     </div>
                                     {{#unless isEditMode}}
                                         {{#unless isCardType 2}}
