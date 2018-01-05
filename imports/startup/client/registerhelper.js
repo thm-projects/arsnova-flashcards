@@ -213,14 +213,14 @@ Template.registerHelper("getCourses", function () {
 	if (Session.get('poolFilterCollege')) {
 		query.college = Session.get('poolFilterCollege');
 	}
-	return _.uniq(CollegesCourses.find(query).fetch(), function (item) {
+	return _.uniq(CollegesCourses.find(query,{sort: {course: 1}}).fetch(), function (item) {
 		return item.course;
 	});
 });
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
-	return _.uniq(CollegesCourses.find().fetch(), function (item) {
+	return _.uniq(CollegesCourses.find({},{sort: {college: 1}}).fetch(), function (item) {
 		return item.college;
 	});
 });
