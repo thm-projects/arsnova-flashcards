@@ -965,8 +965,12 @@ Template.flashcards.helpers({
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;
 	},
-	getCardsetCount: function () {
-		return Cardsets.findOne({_id: Router.current().params._id}).quantity;
+	getCardsetCount: function (getQuantityValue) {
+		if (getQuantityValue) {
+			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
+		} else {
+			return Cards.find({cardset_id: Router.current().params._id}).count();
+		}
 	},
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
