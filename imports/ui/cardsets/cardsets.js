@@ -306,6 +306,11 @@ Template.cardsetsForm.helpers({
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleNum : "";
 		}
 	},
+	getShuffleModuleLink: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleLink : "";
+		}
+	},
 	getShuffleCollege: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return Session.get("ShuffleTemplate").college;
@@ -415,6 +420,10 @@ Template.cardsets.events({
 		let course;
 		let shuffled;
 		let cardGroups;
+		let moduleLink = $('#newSetModuleLink').val();
+		if (moduleLink === undefined) {
+			moduleLink = "";
+		}
 		if (ActiveRoute.name('shuffle')) {
 			shuffled = true;
 			cardGroups = Session.get("ShuffledCardsets");
@@ -440,7 +449,7 @@ Template.cardsets.events({
 			moduleShort = $('#newSetModuleShort').val();
 			moduleNum = $('#newSetModuleNum').val();
 			course = $('#newSetCourse').text();
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course, shuffled, cardGroups);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
 			$('#newSetModal').modal('hide');
 		}
 		cleanModal();

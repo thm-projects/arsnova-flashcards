@@ -255,9 +255,11 @@
     "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",
     "moduleNum": "Modul-Nr.",
     "moduleNum_required": "Gib die Modulnummer ein!",
+    "moduleLink": "Link (Optional)",
     "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
+    "moduleLinkplaceholder": "Link zur Modulbeschreibung",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
