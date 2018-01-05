@@ -16,9 +16,9 @@ Template.admin_university.helpers({
 
 	'allColleges': function () {
 		if (Meteor.settings.public.university.singleUniversity) {
-			return CollegesCourses.find({"college": Meteor.settings.public.university.default});
+			return CollegesCourses.find({"college": Meteor.settings.public.university.default}, {sort: {course: 1}});
 		} else {
-			return CollegesCourses.find({});
+			return CollegesCourses.find({}, {sort: {college: 1, course: 1}});
 		}
 	}
 
@@ -47,7 +47,10 @@ function addCollegeAndCourse() {
 			Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-top-left');
 		} else {
 			if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}})) {
-				if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}, course: {$regex: course, $options: "i"}})) {
+				if (CollegesCourses.findOne({
+						college: {$regex: college, $options: "i"},
+						course: {$regex: course, $options: "i"}
+					})) {
 					Bert.alert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-top-left');
 					return;
 				} else {
