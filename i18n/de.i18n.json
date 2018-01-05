@@ -187,7 +187,16 @@
     "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
-    "shuffleRemove": "Auswahl entfernen"
+    "shuffleRemove": "Auswahl entfernen",
+    "workload": "Heute zu lernen",
+    "learningMode": "Lernmodus",
+    "cardsToLearn": "1_ Karte zu lernen",
+    "cardsToLearnPlural": " Karten zu lernen",
+    "noCardsToLearn": "Keine Karten zu lernen",
+    "leitner": "Leitner",
+    "wozniak": "Woźniak",
+    "both": "Beide",
+    "none": "Keiner"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",

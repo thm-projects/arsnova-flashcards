@@ -184,7 +184,7 @@
     "ratingFilter": "> 1 Star",
     "ratingFilterPlural": "> __rating__ Stars",
     "moreResults": "Show more results",
-    "learnphase": "Learning phase",
+    "learnphase": "Learnphase",
     "activeLearnphase": "Active",
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",
@@ -197,7 +197,16 @@
     "shuffleCardsetReferences": "Update cardset references",
     "shuffleUpdateSuccess": "Updated references",
     "shuffleUpdateFailure": "Error while updating the references",
-    "shuffleRemove": "Remove all references"
+    "shuffleRemove": "Remove all references",
+    "workload": "Workload",
+    "learningMode": "Learningmode",
+    "cardsToLearn": "One Card to learn",
+    "cardsToLearnPlural": " Cards to learn",
+    "noCardsToLearn": "No Cards to learn",
+    "leitner": "Leitner",
+    "wozniak": "Woźniak",
+    "both": "Beide",
+    "none": "None"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
