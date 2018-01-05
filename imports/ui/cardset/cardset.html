@@ -43,7 +43,7 @@
         {{> leaveEditorsForm}}
         {{onEditmodalClose this._id}}
     {{/unless}}
-    {{#if hasCardsetPermission}}
+    {{#if hasCardsetPermission this._id}}
         {{#unless learningActiveAndEditor}}
             {{selectedForLearning}}
         {{/unless}}
