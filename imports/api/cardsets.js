@@ -257,7 +257,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		Cardsets.insert({
-			name: name,
+			name: name.trim(),
 			description: description,
 			date: new Date(),
 			dateUpdated: new Date(),
@@ -274,12 +274,12 @@ Meteor.methods({
 			quantity: quantity,
 			license: [],
 			userDeleted: false,
-			module: module,
-			moduleToken: moduleShort,
-			moduleNum: moduleNum,
-			moduleLink: moduleLink,
-			college: college,
-			course: course,
+			module: module.trim(),
+			moduleToken: moduleShort.trim(),
+			moduleNum: moduleNum.trim(),
+			moduleLink: moduleLink.trim(),
+			college: college.trim(),
+			course: course.trim(),
 			learningActive: false,
 			maxCards: 0,
 			daysBeforeReset: 0,
@@ -524,15 +524,15 @@ Meteor.methods({
 
 		Cardsets.update(id, {
 			$set: {
-				name: name,
+				name: name.trim(),
 				description: description,
 				dateUpdated: new Date(),
-				module: module,
-				moduleToken: moduleShort,
-				moduleNum: moduleNum,
-				moduleLink: moduleLink,
-				college: college,
-				course: course
+				module: module.trim(),
+				moduleToken: moduleShort.trim(),
+				moduleNum: moduleNum.trim(),
+				moduleLink: moduleLink.trim(),
+				college: college.trim(),
+				course: course.trim()
 			}
 		});
 	},

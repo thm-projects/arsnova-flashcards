@@ -33,7 +33,8 @@ function addCollegeAndCourse() {
 	} else {
 		college = document.getElementById("college").value;
 	}
-
+	course = course.trim();
+	college = college.trim();
 	deleteButton.setAttribute("type", "button");
 	deleteButton.setAttribute("id", "deleteRow");
 	deleteButton.setAttribute("value", "delete");
@@ -88,6 +89,7 @@ Template.admin_university.events({
 		editCollege = this.college;
 		editCourse = this.course;
 		edit = true;
+		$("html, body").animate({scrollTop: $(document).height()}, 300);
 	},
 	'click #insertButton': function () {
 		addCollegeAndCourse();
