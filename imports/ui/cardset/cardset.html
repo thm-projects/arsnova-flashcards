@@ -152,15 +152,39 @@
                 </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.module"}}:</strong></td>
-                    <td>{{this.module}}</td>
+                    <td>
+                        {{#if gotModuleLink}}
+                            <a href="{{this.moduleLink}}" target="_blank">
+                                {{this.module}}
+                            </a>
+                        {{else}}
+                            {{this.module}}
+                        {{/if}}
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.moduleShort"}}:</strong></td>
-                    <td>{{this.moduleToken}}</td>
+                    <td>
+                        {{#if gotModuleLink}}
+                            <a href="{{this.moduleLink}}" target="_blank">
+                                {{this.moduleToken}}
+                            </a>
+                        {{else}}
+                            {{this.moduleToken}}
+                        {{/if}}
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.moduleNum"}}:</strong></td>
-                    <td>{{this.moduleNum}}</td>
+                    <td>
+                        {{#if gotModuleLink}}
+                            <a href="{{this.moduleLink}}" target="_blank">
+                                {{this.moduleNum}}
+                            </a>
+                        {{else}}
+                            {{this.moduleNum}}
+                        {{/if}}
+                    </td>
                 </tr>
                 {{#unless singleUniversity}}
                     <tr>
@@ -746,6 +770,16 @@
                                     <input class="form-control" type="text" id="editSetModuleNum"
                                            value="{{moduleNum}}">
                                     <span id="helpEditSetModuleNum" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="editSetModuleLinkLabel" class="col-md-3 control-label"
+                                       for="editSetModuleLink">{{_
+                                        "modal-dialog.moduleLink"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="editSetModuleLink"
+                                           placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                           value="{{moduleLink}}">
                                 </div>
                             </div><!-- / module textfield -->
                         </div>

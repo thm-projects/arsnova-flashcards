@@ -172,6 +172,10 @@ Template.admin_cardset.events({
 		let price;
 		let visible;
 		let license;
+		let moduleLink = tmpl.find('#editSetModuleLinkAdmin').value;
+		if (moduleLink === undefined) {
+			moduleLink = "";
+		}
 		if (Meteor.settings.public.university.singleUniversity) {
 			if ($('#editCardsetNameAdmin').val() !== "" &&
 				$('#editCardsetDescriptionAdmin').val() !== "" &&
@@ -222,7 +226,7 @@ Template.admin_cardset.events({
 					visible = false;
 				}
 				Meteor.call("publishCardset", this._id, kind, price, visible);
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				window.history.go(-1);
 			}
 		} else {
@@ -275,7 +279,7 @@ Template.admin_cardset.events({
 					visible = false;
 				}
 				Meteor.call("publishCardset", this._id, kind, price, visible);
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				window.history.go(-1);
 			}
 		}

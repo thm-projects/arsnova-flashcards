@@ -266,10 +266,12 @@
     "moduleShort": "Initials",
     "moduleShort_required": "The short name of the module is required!",
     "moduleNum": "ID",
+    "moduleLink": "Link (Optional)",
     "moduleNum_required": "The module number is required!",
     "moduleplaceholder": "Full name of the module",
     "moduleShortplaceholder": "Short module name",
     "moduleNumplaceholder": "Number of the module",
+    "moduleLinkplaceholder": "Link to the module description",
     "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
   },
   "profile": {

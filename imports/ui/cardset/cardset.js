@@ -200,8 +200,12 @@ Template.cardset.events({
 		let module;
 		let moduleShort;
 		let moduleNum;
+		let moduleLink = tmpl.find('#editSetModuleLink').value;
 		let college;
 		let course;
+		if (moduleLink === undefined) {
+			moduleLink = "";
+		}
 		if (Meteor.settings.public.university.singleUniversity) {
 			if ($('#editSetName').val() !== "" &&
 				$('#editSetDescription').val() !== "" &&
@@ -213,10 +217,9 @@ Template.cardset.events({
 				description = tmpl.find('#editSetDescription').value;
 				module = tmpl.find('#editSetModule').value;
 				moduleShort = tmpl.find('#editSetModuleShort').value;
-				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = Meteor.settings.public.university.default;
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		} else {
@@ -234,7 +237,7 @@ Template.cardset.events({
 				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = $('#editSetCollege').text();
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		}
@@ -636,6 +639,9 @@ Template.cardsetInfoBox.helpers({
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
+	},
+	gotModuleLink: function () {
+		return this.moduleLink !== "" && this.moduleLink !== undefined;
 	}
 });
 
@@ -788,7 +794,10 @@ Template.cardsetSidebar.helpers({
 		});
 	},
 	learning: function () {
-		return (Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()}) || Wozniak.findOne({
+		return (Leitner.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId()
+		}) || Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
