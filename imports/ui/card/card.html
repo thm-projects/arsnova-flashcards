@@ -81,7 +81,7 @@
     {{> btnCard}}
     {{isTextCentered}}
     <div id="preview" class="col-xs-12 cardtext">
-        <h5 class="editorElement">{{_ "preview"}}</h5>
+        <h5 class="editorElement">{{_ "previewEdit"}}</h5>
         {{> flashcards cardset=this}}
     </div>
 </template>
@@ -299,8 +299,7 @@
                                         {{#if isCardset}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 <strong>{{_ "preview"}}:</strong>
-                                                {{cardsIndex @index}}/{{getCardsetCount false}} {{_
-                                                    "of"}} {{getCardsetCount true}} {{_ "admin.cards"}}<br>
+                                                {{cardsIndex @index}}/{{getCardsetCount false}} <br>
                                             {{else}}
                                                 {{cardsIndex @index}}/{{getCardsetCount true}}<br>
                                             {{/unless}}
@@ -344,7 +343,7 @@
                                                 <img id="iconback" class="cardside cardback-symbol"
                                                      src="/img/icon_back.png"
                                                      style="display: none;">
-                                                {{_ "turn"}}
+                                                <span class="hidden-xs">{{_ "turn"}}</span>
                                             </div>
                                         {{/unless}}
                                     {{/unless}}
