@@ -324,7 +324,7 @@
             {{>poolTitleContent content=this}}
         </a>
     {{/if}}
-    <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}:">
+    <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
         <span class="col-xs-6 {{#unless
