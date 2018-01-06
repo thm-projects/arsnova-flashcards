@@ -206,7 +206,8 @@
     "leitner": "Leitner",
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
-    "none": "None"
+    "none": "None",
+    "levelOfLearning": "Progress"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",

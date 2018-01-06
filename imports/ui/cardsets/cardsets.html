@@ -120,7 +120,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-4 {{#if isActiveRoute 'learn'}}col-md-5{{/if}} poolText panelUnit"
+        <span class="cell col-xs-7 col-sm-4 {{#if isActiveRoute 'learn'}}col-sm-3 col-md-4{{/if}} poolText panelUnit"
               data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
@@ -134,7 +134,7 @@
                 "set-list.description"}}
             :</span>
         <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
-                                                                                                          'create'}}col-sm-6 col-md-7 panelUnit{{else}}
+                                                                                                  'create'}}col-sm-6 col-md-7 panelUnit{{else}}
             {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
                                                                           'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
             {{this.description}}
@@ -156,6 +156,14 @@
         <span class="cell col-xs-7 col-sm-2 panelUnit">
             {{getWorkload}}
         </span>
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                "set-list.levelOfLearning"}}
+            :</span>
+        <a href="progress/{{this._id}}/{{currentUser._id}}">
+            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit">
+           <i class="glyphicon glyphicon glyphicon-stats"></i>
+        </span>
+        </a>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learningMode"}}
             :</span>
@@ -233,9 +241,10 @@
         {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-4 col-md-5 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-3 col-md-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
+                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.levelOfLearning"}}</span>
                 <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
             </div>
