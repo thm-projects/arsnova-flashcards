@@ -1172,9 +1172,38 @@ Template.copyCard.events({
 });
 
 Meteor.startup(function () {
-	$(document).on('keyup', function (event) {
+	$(document).on('keydown', function (event) {
 		if (event.keyCode === 27) {
 			toggleFullscreen(true);
+		}
+		if (Session.get('fullscreen')) {
+			if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+				switch (event.keyCode) {
+					case 37:
+						if ($('#leftCarouselControl').click()) {
+							$('#showHintModal').modal('hide');
+							$('body').removeClass('modal-open');
+							$('.modal-backdrop').remove();
+						}
+						break;
+					case 38:
+						Session.set('isFront', true);
+						turnFront();
+						break;
+					case 39:
+						if ($('#rightCarouselControl').click()) {
+							$('#showHintModal').modal('hide');
+							$('body').removeClass('modal-open');
+							$('.modal-backdrop').remove();
+						}
+						break;
+					case 40:
+						Session.set('isFront', false);
+						turnBack();
+						break;
+				}
+				event.preventDefault();
+			}
 		}
 	});
 });
