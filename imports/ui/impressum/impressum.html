@@ -44,25 +44,33 @@
             <p>
                 THMcards ist keine herkömmliche Lernkarten-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a> oder
                 <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
-                Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das Mitschreiben in Vorlesungen.
+                Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das Mitschreiben in Vorlesungen und eine Bonusvergabe für kontinuierliches Lernen.
                 THMcards versteht sich als <b>vorlesungsbegleitende Lernplattform</b>, als ein virtueller Ort,
                 wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Lernkarten erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
                 — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
             </p>
             <p>
-                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten, um so gegebenenfalls <b>Bonuspunkte für das regelmäßige wiederholte Lernen</b> über den Semesterverlauf zu vergeben.
+                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten, um so gegebenenfalls <b>Bonuspunkte für regelmäßiges wiederholtes Lernen</b> über den Semesterverlauf zu vergeben.
                 Das Lernen gemäß den in THMcards implementierten Wiederholungs-Algorithmen von
                 <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
                 <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über die Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
-                siehe die Projektbeschreibung <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">„Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design“</a>.
+                siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference 2018</a>:
+            </p>
+            <hr>
+            <p>
+                <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</a>
             </p>
             <p>
-                Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle <b>Edu-Kartensätze</b>.
+                Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the week before examination and forgotten a month after. Although we have known about the very low long-term knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic prevails because it works—at least for passing exams. As university lecturers, we seldom received a training on effective teaching and learning strategies. However, we can follow the evidence-based recommendations from cognitive and educational psychology on how to structure a course to distribute learning. With new pedagogical apps at hand, we can implement "spaced repetition" against procrastination in our course design. This paper outlines a pedagogical project to be conducted across several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on spacing learning events over time. The recommendations are implemented by using <a href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based question-and-answer apps for quizzing in class and self-quizzing at home.
+            </p>
+            <hr>
+            <p>
+                Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle <b>Edu-Kartensätze</b> im Pool von THMcards.
                 Hierbei handelt es sich um Kartensätze, die von Lehrenden der THM für ihre Module erstellt wurden.
                 Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder Google+) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis WS 18/19 im kostenlosen Testbetrieb</b>),
                 siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
                 THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien Verfügung stellen.
-                Pro-Abonnentinnen und -Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität zuvor von einer Lehrperson der THM geprüft wurde, auch zum Kauf anbieten.
+                Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität zuvor von einer Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
             </p>
         </div>
     </div>
@@ -84,6 +92,45 @@
                         <b>Antwort:</b>
                         <br/>
                         Ja, THMcards ist Open Source. Eine <a href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanweisung</a> findest du im THM-Gitlab.
+                    </p>
+                </li>
+                <hr/>
+                <li>
+                    <b>Frage:</b>
+                    <br/>
+                    Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?
+                    <br/>
+                    <p>
+                        <b>Antwort:</b>
+                        <br/>
+                        Hier hat die Lehrperson die <b>Bonus-Option</b> aktiviert.
+                        Wenn du nach der <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">5-Fächer-Lernmethode von Sebastian Leitner</a> regelmäßig die vorgegebenen Karten wiederholt lernst, kannst du Bonuspunkte anrechenbar auf die Klausur erwerben.
+                        Du wirst in diesem Fall per <b>Push-Nachrichten</b> auf dein Handy (wenn du zuvor THMcards im Browser deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf das Lernen von Karten nach dem Wiederholungs-Algorithmus von Leitner hingewiesen.
+                        Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im Fach "Gelernt" befinden, siehe den Button "Mein Lernstand".
+                    </p>
+                </li>
+                <hr/>
+                <li>
+                    <b>Frage:</b>
+                    <br/>
+                    Wie kann ich Kartensätze an Kommilitonen weitergeben?
+                    <br/>
+                    <p>
+                        <b>Antwort:</b>
+                        <br/>
+                        Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "free" oder du exportierst den einzelnen Kartensatz als Datei.
+                    </p>
+                </li>
+                <hr/>
+                <li>
+                    <b>Frage:</b>
+                    <br/>
+                    Kann ich als Student/in einer anderen Hochschule THMcards nutzen?
+                    <br/>
+                    <p>
+                        <b>Antwort:</b>
+                        <br/>
+                        Ja, siehe den letzten Absatz unter "Über THMcards" oder die AGB.
                     </p>
                 </li>
             </ol>

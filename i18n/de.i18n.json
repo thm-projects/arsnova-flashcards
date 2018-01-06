@@ -174,7 +174,7 @@
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
-    "learnphase": "Lernphase",
+    "learnphase": "Bonus-Option",
     "activeLearnphase": "Aktiv",
     "inactiveLearnphase": "Inaktiv",
     "learnphaseInfo": "Über diese Lernphase",
@@ -190,13 +190,13 @@
     "shuffleRemove": "Auswahl entfernen",
     "workload": "Heute zu lernen",
     "learningMode": "Lernmodus",
-    "cardsToLearn": "1_ Karte zu lernen",
-    "cardsToLearnPlural": " Karten zu lernen",
-    "noCardsToLearn": "Keine Karten zu lernen",
+    "cardsToLearn": "1 Karte",
+    "cardsToLearnPlural": " Karten",
+    "noCardsToLearn": "nichts",
     "leitner": "Leitner",
     "wozniak": "Woźniak",
-    "both": "Beide",
-    "none": "Keiner"
+    "both": "Leitner & Woźniak",
+    "none": "ohne"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
@@ -269,7 +269,7 @@
     "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
-    "moduleLinkplaceholder": "Link zur Modulbeschreibung",
+    "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
@@ -592,7 +592,7 @@
   "cardType2": "Mitschrift",
   "frontside": "Vorderseite",
   "backside": "Rückseite",
-  "preview": "Vorschau",
+  "preview": "Vorschau zufällig ausgewählter Karten",
   "of": "von",
   "content": "Inhalt",
   "lecture": "Vertiefung",
