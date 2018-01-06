@@ -197,7 +197,9 @@
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
     "none": "ohne",
-    "levelOfLearning": "Lernstand"
+    "levelOfLearning": "Lernstand",
+    "noModuleLong": "Ohne Modul",
+    "noModuleShort": "ohne"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
@@ -262,6 +264,8 @@
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
     "module": "Modul",
+    "moduleActivated": "Mit Modul",
+    "moduleDeactivated": "Ohne Modul",
     "module_required": "Gib den vollen Titel des Moduls an!",
     "moduleShort": "Kurzbezeichnung",
     "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",

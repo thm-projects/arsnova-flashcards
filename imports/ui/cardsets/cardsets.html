@@ -267,7 +267,8 @@
 </template>
 
 <template name="cardsetsForm">
-    <div class="modal fade" id="newSetModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="newSetModalTitle">
+    <div class="modal fade" id="newSetModal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="newSetModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -294,52 +295,63 @@
                             </div>
                         </div>
                         <div class="panel panel-primary">
-                            <div class="panel-heading">{{_ "modal-dialog.module"}}</div>
+                            <div class="panel-heading">{{_ "modal-dialog.module"}}
+                                <span class="moduleRadioButtonGroup pull-right">
+                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton" name="optradio" value="true"
+                                                                       checked="checked">{{_
+                                            "modal-dialog.moduleActivated"}}</label>
+                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton" name="optradio" value="false">{{_
+                                        "modal-dialog.moduleDeactivated"}}</label>
+                                </span>
+                            </div>
                             <br>
-                            <!-- start module textfield -->
-                            <div class="form-group setdetails name" id="module">
-                                <label id="newSetModuleLabel" class="col-md-3 control-label"
-                                       for="newSetModule">{{_ "modal-dialog.module"}}</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="newSetModule"
-                                           placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
-                                           value="{{getShuffleModule}}">
-                                    <span id="helpNewSetModule" class="help-block name"></span>
-                                </div>
-                            </div><!-- / module textfield -->
-                            <!-- start module textfield -->
-                            <div class="form-group setdetails name" id="module">
-                                <label id="newSetModuleShortLabel" class="col-md-3 control-label"
-                                       for="newSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="newSetModuleShort"
-                                           placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
-                                           value="{{getShuffleModuleShort}}">
-                                    <span id="helpNewSetModuleShort" class="help-block name"></span>
-                                </div>
-                            </div><!-- / module textfield -->
-                            <!-- start module textfield -->
-                            <div class="form-group setdetails name" id="module">
-                                <label id="newSetModuleNumLabel" class="col-md-3 control-label"
-                                       for="newSetModuleNum">{{_
-                                        "modal-dialog.moduleNum"}}</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="newSetModuleNum"
-                                           placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
-                                           value="{{getShuffleModuleNum}}">
-                                    <span id="helpNewSetModuleNum" class="help-block name"></span>
-                                </div>
-                            </div><!-- / module textfield -->
-                            <div class="form-group setdetails name" id="module">
-                                <label id="newSetModuleLinkLabel" class="col-md-3 control-label"
-                                       for="newSetModuleLink">{{_
-                                        "modal-dialog.moduleLink"}}</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="newSetModuleLink"
-                                           placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                           value="{{getShuffleModuleLink}}">
-                                </div>
-                            </div><!-- / module textfield -->
+                            <div class="moduleBody">
+                                <!-- start module textfield -->
+                                <div class="form-group setdetails name" id="module">
+                                    <label id="newSetModuleLabel" class="col-md-3 control-label"
+                                           for="newSetModule">{{_ "modal-dialog.module"}}</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" id="newSetModule"
+                                               placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                               value="{{getShuffleModule}}">
+                                        <span id="helpNewSetModule" class="help-block name"></span>
+                                    </div>
+                                </div><!-- / module textfield -->
+                                    <!-- start module textfield -->
+                                <div class="form-group setdetails name" id="module">
+                                    <label id="newSetModuleShortLabel" class="col-md-3 control-label"
+                                           for="newSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" id="newSetModuleShort"
+                                               placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                               value="{{getShuffleModuleShort}}">
+                                        <span id="helpNewSetModuleShort" class="help-block name"></span>
+                                    </div>
+                                </div><!-- / module textfield -->
+                                    <!-- start module textfield -->
+                                <div class="form-group setdetails name" id="module">
+                                    <label id="newSetModuleNumLabel" class="col-md-3 control-label"
+                                           for="newSetModuleNum">{{_
+                                            "modal-dialog.moduleNum"}}</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" id="newSetModuleNum"
+                                               placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                               value="{{getShuffleModuleNum}}">
+                                        <span id="helpNewSetModuleNum" class="help-block name"></span>
+                                    </div>
+                                </div><!-- / module textfield -->
+                                <div class="form-group setdetails name" id="module">
+                                    <label id="newSetModuleLinkLabel" class="col-md-3 control-label"
+                                           for="newSetModuleLink">{{_
+                                            "modal-dialog.moduleLink"}}</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" id="newSetModuleLink"
+                                               placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                               value="{{getShuffleModuleLink}}">
+                                    </div>
+                                </div><!-- / module textfield -->
+                                <br>
+                            </div>
                         </div>
                         {{#unless singleUniversity}}
                             <!-- start college Dropdown -->

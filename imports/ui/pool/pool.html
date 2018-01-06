@@ -141,6 +141,7 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a>
+                                    <a href="#" class="filterNoModule active" data-id="">{{_ "set-list.noModuleLong"}}</a>
                                 </li>
                                 {{#each getModules}}
                                     <li><a href="#" class="filterModule" data-id="{{this.module}}">
@@ -345,11 +346,11 @@
         <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCourse"
               data-id="{{this.course}}">{{this.course}}</span>
     </a>
-    <a href="#" class="filterModule" title="Filter {{_ "set-list.module"}}: {{this.module}}">
+    <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}" title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_ "set-list.noModuleLong"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
                 "set-list.module"}}:</span>
         <span class="col-xs-6 col-md-1 hidden-sm poolContent poolText panelUnit poolModule"
-              data-id="{{this.module}}">{{this.moduleToken}}</span>
+              data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_ "set-list.noModuleShort"}}{{/if}}</span>
     </a>
     <span class="col-sd-2 col-md-1 kind-label hidden-xs panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">

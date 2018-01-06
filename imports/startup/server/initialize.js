@@ -46,6 +46,7 @@ var initTestNotificationsCardset = function () {
 				"nd"
 			],
 			"userDeleted": false,
+			"moduleActive": true,
 			"module": "Notifications Test",
 			"moduleToken": "NT",
 			"moduleNum": "CS1024",
@@ -421,6 +422,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					wordcloud: false
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({moduleActive: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					moduleActive: true
 				}
 			}
 		);
