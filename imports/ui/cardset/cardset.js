@@ -608,9 +608,6 @@ Template.cardsetInfoBox.helpers({
 	hasAmount: function () {
 		return this.kind === 'pro' || this.kind === 'edu';
 	},
-	getAmount: function () {
-		return this.price + '€';
-	},
 	getColors: function () {
 		switch (this.kind) {
 			case "personal":

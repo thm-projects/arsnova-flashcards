@@ -357,7 +357,9 @@
                 {{{getKind this.kind}}}
             </span>
             <span class="col-sm-1 col-md-6 hidden-xs licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
-                {{{getPrice}}}
+                {{#if displayPrice}}
+                    {{{getPrice this.price}}}
+                {{/if}}
             </span>
         </a>
     </span>
@@ -373,7 +375,9 @@
             </span>
             <span class="col-xs-3 visible-xs licenseInfo panelUnit panelUnitPrice info_license_mobile"
                   data-id="{{this.kind}}">
-                {{{getPrice}}}
+                {{#if displayPrice}}
+                    {{{getPrice this.price}}}
+                {{/if}}
             </span>
         </span>
     </a>
