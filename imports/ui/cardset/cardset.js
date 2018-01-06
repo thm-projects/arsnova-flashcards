@@ -126,10 +126,10 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
-
 	'onEditmodalClose': function () {
 		Session.set('previousName', Cardsets.findOne(Router.current().params._id).name);
 		Session.set('previousDescription', Cardsets.findOne(Router.current().params._id).description);
+		Session.set('previousModuleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
 		Session.set('previousModule', Cardsets.findOne(Router.current().params._id).module);
 		Session.set('previousModuleShort', Cardsets.findOne(Router.current().params._id).moduleToken);
 		Session.set('previousModuleNum', Cardsets.findOne(Router.current().params._id).moduleNum);
@@ -161,19 +161,19 @@ Template.cardset.events({
 			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpEditSetDescription').css('color', '#b94a48');
 		}
-		if ($('#editSetModule').val() === "") {
+		if ($('#editSetModule').val() === "" && Session.get('moduleActive')) {
 			$('#editSetModuleLabel').css('color', '#b94a48');
 			$('#editSetModule').css('border-color', '#b94a48');
 			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
 			$('#helpEditSetModule').css('color', '#b94a48');
 		}
-		if ($('#editSetModuleShort').val() === "") {
+		if ($('#editSetModuleShort').val() === "" && Session.get('moduleActive')) {
 			$('#editSetModuleShortLabel').css('color', '#b94a48');
 			$('#editSetModuleShort').css('border-color', '#b94a48');
 			$('#helpEditSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
 			$('#helpEditSetModuleShort').css('color', '#b94a48');
 		}
-		if ($('#editSetModuleNum').val() === "") {
+		if ($('#editSetModuleNum').val() === "" && Session.get('moduleActive')) {
 			$('#editSetModuleNumLabel').css('color', '#b94a48');
 			$('#editSetModuleNum').css('border-color', '#b94a48');
 			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
@@ -207,25 +207,26 @@ Template.cardset.events({
 		if (Meteor.settings.public.university.singleUniversity) {
 			if ($('#editSetName').val() !== "" &&
 				$('#editSetDescription').val() !== "" &&
-				$('#editSetModule').val() !== "" &&
-				$('#editSetModuleShort').val() !== "" &&
-				$('#editSetModuleNum').val() !== "" &&
+				($('#editSetModule').val() !== "" || !Session.get('moduleActive')) &&
+				($('#editSetModuleShort').val() !== "" || !Session.get('moduleActive')) &&
+				($('#editSetModuleNum').val() !== "" || !Session.get('moduleActive')) &&
 				$('#editSetCourse').val() !== "") {
 				name = tmpl.find('#editSetName').value;
 				description = tmpl.find('#editSetDescription').value;
 				module = tmpl.find('#editSetModule').value;
 				moduleShort = tmpl.find('#editSetModuleShort').value;
+				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = Meteor.settings.public.university.default;
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
+				Meteor.call("updateCardset", this._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		} else {
 			if ($('#editSetName').val() !== "" &&
 				$('#editSetDescription').val() !== "" &&
-				$('#editSetModule').val() !== "" &&
-				$('#editSetModuleShort').val() !== "" &&
-				$('#editSetModuleNum').val() !== "" &&
+				($('#editSetModule').val() !== "" || !Session.get('moduleActive')) &&
+				($('#editSetModuleShort').val() !== "" || !Session.get('moduleActive')) &&
+				($('#editSetModuleNum').val() !== "" || !Session.get('moduleActive')) &&
 				$('#editSetCollege').val() !== "" &&
 				$('#editSetCourse').val() !== "") {
 				name = tmpl.find('#editSetName').value;
@@ -235,7 +236,7 @@ Template.cardset.events({
 				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = $('#editSetCollege').text();
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
+				Meteor.call("updateCardset", this._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		}
@@ -283,8 +284,8 @@ Template.cardset.events({
 
 Template.cardsetForm.onRendered(function () {
 	$('#editSetModal').on('hidden.bs.modal', function () {
-		var previousCollegeName = Session.get('previousCollegeName');
-		var previousCourseName = Session.get('previousCourseName');
+		let previousCollegeName = Session.get('previousCollegeName');
+		let previousCourseName = Session.get('previousCourseName');
 
 		$('#editSetName').val(Session.get('previousName'));
 		$('#editSetNameLabel').css('color', '');
@@ -328,6 +329,18 @@ Template.cardsetForm.onRendered(function () {
 		$('#editSetCourseLabel').css('color', '');
 		$('.editSetCourseDropdown').css('border-color', '');
 		$('#helpEditSetCourse').html('');
+
+		if (Session.get('previousModuleActive')) {
+			$('.moduleRadioButton')[0].checked = true;
+			$('.moduleRadioButton')[1].checked = false;
+			$('.moduleBody').css('display', '');
+			Session.set('moduleActive', true);
+		} else {
+			$('.moduleRadioButton')[0].checked = false;
+			$('.moduleRadioButton')[1].checked = true;
+			$('.moduleBody').css('display', 'none');
+			Session.set('moduleActive', false);
+		}
 	});
 });
 
@@ -375,6 +388,15 @@ Template.cardsetForm.events({
 		$('#editSetModuleNumLabel').css('color', '');
 		$('#editSetModuleNum').css('border-color', '');
 		$('#helpEditSetModuleNum').html('');
+	},
+	'click .moduleRadioButton': function (event) {
+		if ($(event.currentTarget).val() === "true") {
+			Session.set('moduleActive', true);
+			$('.moduleBody').css('display', '');
+		} else {
+			Session.set('moduleActive', false);
+			$('.moduleBody').css('display', 'none');
+		}
 	}
 });
 

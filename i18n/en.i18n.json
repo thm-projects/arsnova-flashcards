@@ -207,7 +207,9 @@
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
     "none": "None",
-    "levelOfLearning": "Progress"
+    "levelOfLearning": "Progress",
+    "noModuleLong": "Without module",
+    "noModuleShort": "None"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -273,6 +275,8 @@
     "course_required": "Choose a course",
     "manageEditors": "Manage Editors for cardset \"__name__\"",
     "module": "Module",
+    "moduleActivated": "With Module",
+    "moduleDeactivated": "Without Module",
     "module_required": "The full name of the module is required!",
     "moduleShort": "Initials",
     "moduleShort_required": "The short name of the module is required!",

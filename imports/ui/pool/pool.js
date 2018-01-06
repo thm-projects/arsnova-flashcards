@@ -17,6 +17,7 @@ Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
+Session.setDefault('poolFilterModule', false);
 Session.setDefault('poolFilterLearnphase');
 Session.setDefault('poolFilterRating');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
@@ -38,8 +39,13 @@ function prepareQuery() {
 	if (Session.get('poolFilterCourse')) {
 		query.course = Session.get('poolFilterCourse');
 	}
-	if (Session.get('poolFilterModule')) {
-		query.module = Session.get('poolFilterModule');
+	if (!Session.get('poolFilterNoModule')) {
+		if (Session.get('poolFilterModule')) {
+			query.moduleActive = true;
+			query.module = Session.get('poolFilterModule');
+		}
+	} else {
+		query.moduleActive = false;
 	}
 	if (Session.get('poolFilterLearnphase')) {
 		query.learningActive = Session.get('poolFilterLearnphase');
@@ -116,6 +122,7 @@ function resetFilters() {
 	Session.set('poolFilterAuthor');
 	Session.set('poolFilterCollege');
 	Session.set('poolFilterCourse');
+	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
 	Session.set('poolFilterRating');
 	Session.set('poolFilter', ["free", "edu", "pro"]);
@@ -210,7 +217,7 @@ Template.category.helpers({
 		return Session.get('poolFilterCourse') === course;
 	},
 	hasModuleFilter: function () {
-		return Session.get('poolFilterModule');
+		return Session.get('poolFilterModule') || Session.get('poolFilterNoModule');
 	},
 	poolFilterModule: function (module) {
 		return Session.get('poolFilterModule') === module;
@@ -374,7 +381,11 @@ Template.category.events({
 		filterCourse(event);
 	},
 	'click .filterModule': function (event) {
+		Session.set('poolFilterNoModule', false);
 		filterModule(event);
+	},
+	'click .filterNoModule': function () {
+		Session.set('poolFilterNoModule', true);
 	},
 	'click .filterLearnphase': function () {
 		filterLearnphase(event);
