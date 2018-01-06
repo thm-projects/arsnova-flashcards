@@ -297,16 +297,14 @@ Template.poolCardsetRow.helpers({
 			return false;
 		}
 	},
-	getPrice: function () {
-		if (this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])))) {
-			return this.price + '€';
-		}
-	},
 	getRelevance: function () {
 		return Math.floor(this.relevance - 1);
 	},
 	getStarsRating: function () {
 		return ((Math.round(this.relevance * 2) / 2).toFixed(1) * 10);
+	},
+	displayPrice: function () {
+		return this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
 	}
 });
 
