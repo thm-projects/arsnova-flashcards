@@ -323,11 +323,12 @@
             {{>poolTitleContent content=this}}
         </a>
     {{/if}}
-    <a href="/profile/{{this.owner}}/settings/" title="{{_ "set-list.author"}}: {{getAuthorName this.owner}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit">{{_ "set-list.author"}}
+    <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}:">
+        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
         <span class="col-xs-6 {{#unless
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4 col-md-3{{/unless}} poolContent poolText panelUnit poolAuthor">{{getAuthorName
+                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4 col-md-3{{/unless}} poolContent poolText panelUnit poolAuthor"
+              data-id="{{this.owner}}">{{getAuthorName
                 this.owner}}</span>
     </a>
     {{#unless singleUniversity}}

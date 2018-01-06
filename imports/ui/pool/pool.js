@@ -124,6 +124,11 @@ function resetFilters() {
 	resetInfiniteBar();
 }
 
+function filterAuthor(event) {
+	Session.set('poolFilterAuthor', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
 function filterCollege(event) {
 	Session.set('poolFilterCollege', $(event.target).data('id'));
 	resetInfiniteBar();
@@ -320,6 +325,9 @@ Template.poolTitleContent.helpers({
 });
 
 Template.poolCardsetRow.events({
+	'click .filterAuthor': function (event) {
+		filterAuthor(event);
+	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);
 	},
@@ -357,8 +365,7 @@ Template.category.events({
 		}
 	},
 	'click .filterAuthor': function (event) {
-		Session.set('poolFilterAuthor', $(event.target).data('id'));
-		resetInfiniteBar();
+		filterAuthor(event);
 	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);
