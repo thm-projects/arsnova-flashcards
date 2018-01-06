@@ -120,7 +120,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-4 poolText panelUnit" data-id="{{this._id}}">
+        <span class="cell col-xs-7 col-sm-4 {{#if isActiveRoute 'learn'}}col-md-3{{/if}} poolText panelUnit" data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
                 </span>
@@ -132,17 +132,37 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.description"}}
             :</span>
-        <span class="cell col-xs-7 {{#if isActiveRoute 'create'}}col-sm-6 col-md-7 panelUnit{{else}}
+        <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}hidden-sm col-md-4 panelUnit{{else}}{{#if isActiveRoute 'create'}}col-sm-6 col-md-7 panelUnit{{else}}
             {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
-                                                                          'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis">
+                                                                          'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
             {{this.description}}
         </span>
     </a>
     {{#if isActiveRoute 'learn'}}
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                "set-list.learnphase"}}
+            :</span>
+        <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit">
+            <span class="label {{#if this.learningActive}}label-success{{else}}label-info{{/if}} labelLearning" aria-label="active learnphase label">
+                {{getLearnphaseStatus}}
+            </span>
+        </span>
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                "set-list.workload"}}
+            :</span>
+        <span class="cell col-xs-7 col-sm-3 col-md-2 panelUnit">
+            {{getWorkload}}
+        </span>
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                "set-list.learningMode"}}
+            :</span>
+        <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit">
+            {{getLearningMode}}
+        </span>
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
-            <span class="cell col-xs-12 col-sm-2 col-md-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-12 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>
@@ -202,9 +222,12 @@
         {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
-                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
+                <span class="col-sm-4 col-md-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-0 col-md-4 hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
+                <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
             </div>
             {{#each learnList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -286,6 +309,16 @@
                                            placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
                                            value="{{getShuffleModuleNum}}">
                                     <span id="helpNewSetModuleNum" class="help-block name"></span>
+                                </div>
+                            </div><!-- / module textfield -->
+                            <div class="form-group setdetails name" id="module">
+                                <label id="newSetModuleLinkLabel" class="col-md-3 control-label"
+                                       for="newSetModuleLink">{{_
+                                        "modal-dialog.moduleLink"}}</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="newSetModuleLink"
+                                           placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                           value="{{getShuffleModuleLink}}">
                                 </div>
                             </div><!-- / module textfield -->
                         </div>

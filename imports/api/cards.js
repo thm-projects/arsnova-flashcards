@@ -287,7 +287,7 @@ Meteor.methods({
 			throw new Meteor.Error("Back is empty");
 		}
 		Cards.insert({
-			subject: subject,
+			subject: subject.trim(),
 			hint: hint,
 			front: front,
 			back: back,
@@ -438,7 +438,7 @@ Meteor.methods({
 		}
 		Cards.update(card_id, {
 			$set: {
-				subject: subject,
+				subject: subject.trim(),
 				hint: hint,
 				front: front,
 				back: back,

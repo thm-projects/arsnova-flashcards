@@ -1,5 +1,7 @@
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
+import {Leitner, Wozniak} from "../../api/learned";
+import {Meteor} from "meteor/meteor";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -261,7 +263,21 @@ var isSignedIn = function () {
 
 var goToCreated = function () {
 	if (Meteor.user()) {
-		Router.go('pool');
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		actualDate.setHours(0, 0, 0, 0);
+		let count = Leitner.find({
+			user_id: Meteor.userId(),
+			active: true
+		}).count() + Wozniak.find({
+			user_id: Meteor.userId(), nextDate: {
+				$lte: actualDate
+			}
+		}).count();
+		if (count) {
+			Router.go('learn');
+		} else {
+			Router.go('pool');
+		}
 	} else {
 		this.next();
 	}

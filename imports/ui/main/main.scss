@@ -380,6 +380,10 @@ button:disabled {
   visibility: visible;
 }
 
+.tip-content:hover, #welcome-tip:hover {
+  visibility: hidden !important;
+}
+
 .label-info {
   color: $white !important;
   background-color: $color_free_btn !important;
@@ -408,7 +412,7 @@ button:disabled {
 }
 
 .panelUnit {
-  padding: 10px 15px 10px 15px;
+  padding: 10px;
 }
 
 .panelUnitKind {
@@ -450,8 +454,7 @@ button:disabled {
 }
 
 .poolHeaderBottom {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 10px;
   font-weight: bold;
   font-size: 12px;
   color: $white;

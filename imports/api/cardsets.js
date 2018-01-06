@@ -128,6 +128,10 @@ const CardsetsSchema = new SimpleSchema({
 	moduleNum: {
 		type: String
 	},
+	moduleLink: {
+		type: String,
+		optional: true
+	},
 	skillLevel: {
 		type: Number,
 		optional: true
@@ -215,12 +219,13 @@ Meteor.methods({
 	 * @param {String} module - Modulename
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
+	 * @param {String} moduleLink - Link to the module description
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 */
-	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, college, course, shuffled, cardGroups) {
+	addCardset: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -232,6 +237,7 @@ Meteor.methods({
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
+		check(moduleLink, String);
 		check(college, String);
 		check(course, String);
 		check(shuffled, Boolean);
@@ -251,7 +257,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		Cardsets.insert({
-			name: name,
+			name: name.trim(),
 			description: description,
 			date: new Date(),
 			dateUpdated: new Date(),
@@ -268,11 +274,12 @@ Meteor.methods({
 			quantity: quantity,
 			license: [],
 			userDeleted: false,
-			module: module,
-			moduleToken: moduleShort,
-			moduleNum: moduleNum,
-			college: college,
-			course: course,
+			module: module.trim(),
+			moduleToken: moduleShort.trim(),
+			moduleNum: moduleNum.trim(),
+			moduleLink: moduleLink.trim(),
+			college: college.trim(),
+			course: course.trim(),
 			learningActive: false,
 			maxCards: 0,
 			daysBeforeReset: 0,
@@ -485,10 +492,11 @@ Meteor.methods({
 	 * @param {String} module - Module name
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
+	 * @param {String} moduleLink - Link to the module description
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 */
-	updateCardset: function (id, name, description, module, moduleShort, moduleNum, college, course) {
+	updateCardset: function (id, name, description, module, moduleShort, moduleNum, moduleLink, college, course) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -498,6 +506,7 @@ Meteor.methods({
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
+		check(moduleLink, String);
 		check(college, String);
 		check(course, String);
 
@@ -515,14 +524,15 @@ Meteor.methods({
 
 		Cardsets.update(id, {
 			$set: {
-				name: name,
+				name: name.trim(),
 				description: description,
 				dateUpdated: new Date(),
-				module: module,
-				moduleToken: moduleShort,
-				moduleNum: moduleNum,
-				college: college,
-				course: course
+				module: module.trim(),
+				moduleToken: moduleShort.trim(),
+				moduleNum: moduleNum.trim(),
+				moduleLink: moduleLink.trim(),
+				college: college.trim(),
+				course: course.trim()
 			}
 		});
 	},
@@ -646,7 +656,7 @@ Meteor.methods({
 				Cardsets.update(id, {
 					$set: {
 						kind: kind,
-						price: price,
+						price: price.replace(",","."),
 						visible: visible,
 						relevance: relevance
 					}

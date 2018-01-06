@@ -400,6 +400,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({moduleLink: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					moduleLink: ""
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({

@@ -187,7 +187,16 @@
     "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
-    "shuffleRemove": "Auswahl entfernen"
+    "shuffleRemove": "Auswahl entfernen",
+    "workload": "Heute zu lernen",
+    "learningMode": "Lernmodus",
+    "cardsToLearn": "1_ Karte zu lernen",
+    "cardsToLearnPlural": " Karten zu lernen",
+    "noCardsToLearn": "Keine Karten zu lernen",
+    "leitner": "Leitner",
+    "wozniak": "Woźniak",
+    "both": "Beide",
+    "none": "Keiner"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
@@ -256,9 +265,11 @@
     "moduleShort_required": "Gib eine Kurzbezeichnung des Modultitels an!",
     "moduleNum": "Modul-Nr.",
     "moduleNum_required": "Gib die Modulnummer ein!",
+    "moduleLink": "Link (Optional)",
     "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
+    "moduleLinkplaceholder": "Link zur Modulbeschreibung",
     "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
   },
   "profile": {
@@ -478,6 +489,7 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
+      "alert": "Kartensatz zur Überprüfung freigegeben",
       "accept": "Kartensatz freigeben",
       "decline": "Kartensatz nicht freigeben",
       "accepted": "Kartensatz freigegeben",

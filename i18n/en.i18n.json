@@ -184,7 +184,7 @@
     "ratingFilter": "> 1 Star",
     "ratingFilterPlural": "> __rating__ Stars",
     "moreResults": "Show more results",
-    "learnphase": "Learning phase",
+    "learnphase": "Learnphase",
     "activeLearnphase": "Active",
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",
@@ -197,7 +197,16 @@
     "shuffleCardsetReferences": "Update cardset references",
     "shuffleUpdateSuccess": "Updated references",
     "shuffleUpdateFailure": "Error while updating the references",
-    "shuffleRemove": "Remove all references"
+    "shuffleRemove": "Remove all references",
+    "workload": "Workload",
+    "learningMode": "Learningmode",
+    "cardsToLearn": "One Card to learn",
+    "cardsToLearnPlural": " Cards to learn",
+    "noCardsToLearn": "No Cards to learn",
+    "leitner": "Leitner",
+    "wozniak": "Woźniak",
+    "both": "Beide",
+    "none": "None"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -266,10 +275,12 @@
     "moduleShort": "Initials",
     "moduleShort_required": "The short name of the module is required!",
     "moduleNum": "ID",
+    "moduleLink": "Link (Optional)",
     "moduleNum_required": "The module number is required!",
     "moduleplaceholder": "Full name of the module",
     "moduleShortplaceholder": "Short module name",
     "moduleNumplaceholder": "Number of the module",
+    "moduleLinkplaceholder": "Link to the module description",
     "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
   },
   "profile": {
@@ -486,6 +497,7 @@
       "course": "Course"
     },
     "request": {
+      "alert": "Set of cards released for review",
       "accept": "Release cardset",
       "decline": "Don't release cardset",
       "accepted": "Cardset released",

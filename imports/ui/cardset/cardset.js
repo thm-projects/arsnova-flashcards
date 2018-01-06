@@ -136,9 +136,6 @@ Template.cardset.helpers({
 		Session.set('previousCollegeName', Cardsets.findOne(id).college);
 		Session.set('previousCourseName', Cardsets.findOne(id).course);
 	},
-	'isLecturerAndHasRequest': function () {
-		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
-	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {
 			addToLeitner(this._id);
@@ -200,8 +197,12 @@ Template.cardset.events({
 		let module;
 		let moduleShort;
 		let moduleNum;
+		let moduleLink = tmpl.find('#editSetModuleLink').value;
 		let college;
 		let course;
+		if (moduleLink === undefined) {
+			moduleLink = "";
+		}
 		if (Meteor.settings.public.university.singleUniversity) {
 			if ($('#editSetName').val() !== "" &&
 				$('#editSetDescription').val() !== "" &&
@@ -213,10 +214,9 @@ Template.cardset.events({
 				description = tmpl.find('#editSetDescription').value;
 				module = tmpl.find('#editSetModule').value;
 				moduleShort = tmpl.find('#editSetModuleShort').value;
-				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = Meteor.settings.public.university.default;
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		} else {
@@ -234,7 +234,7 @@ Template.cardset.events({
 				moduleNum = tmpl.find('#editSetModuleNum').value;
 				college = $('#editSetCollege').text();
 				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, college, course);
+				Meteor.call("updateCardset", this._id, name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#editSetModal').modal('hide');
 			}
 		}
@@ -524,6 +524,9 @@ Template.cardsetInfo.helpers({
 	},
 	isPublished: function () {
 		return (this.kind === 'personal');
+	},
+	isLecturerAndHasRequest: function () {
+		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	}
 });
 
@@ -636,6 +639,9 @@ Template.cardsetInfoBox.helpers({
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
+	},
+	gotModuleLink: function () {
+		return this.moduleLink !== "" && this.moduleLink !== undefined;
 	}
 });
 
@@ -788,7 +794,10 @@ Template.cardsetSidebar.helpers({
 		});
 	},
 	learning: function () {
-		return (Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()}) || Wozniak.findOne({
+		return (Leitner.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId()
+		}) || Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
@@ -1178,11 +1187,10 @@ Template.cardsetPublishForm.events({
 		Session.set('kindWithPrice', false);
 	},
 	'click #cardsetPublish': function (evt, tmpl) {
-		var id = this._id;
-		var kind = tmpl.find('#publishKind > .active > input').value;
-		var price = 0;
-		var visible = true;
-		var license = [];
+		let kind = tmpl.find('#publishKind > .active > input').value;
+		let price = 0;
+		let visible = true;
+		let license = [];
 
 		if (kind === 'edu' || kind === 'pro') {
 			if (tmpl.find('#publishPrice') !== null) {
@@ -1193,25 +1201,25 @@ Template.cardsetPublishForm.events({
 		}
 		if (kind === 'personal') {
 			visible = false;
-			Meteor.call('updateLicense', id, license);
+			Meteor.call('updateLicense', Router.current().params._id, license);
 		}
 		if (kind === 'pro') {
 			visible = false;
-			Meteor.call("makeProRequest", id);
+			Meteor.call("makeProRequest", Router.current().params._id);
 
-			var text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
-			var type = "Kartensatz-Freigabe";
-			var target = "lecturer";
+			let text = "Kartensatz " + this.name + " zur Überprüfung freigegeben";
+			let type = "Kartensatz-Freigabe";
+			let target = "lecturer";
 
-			Meteor.call("addNotification", target, type, text, this._id);
+			Meteor.call("addNotification", target, type, text, Router.current().params._id, "lecturer");
 
 			license.push("by");
 			license.push("nd");
-			Meteor.call("updateLicense", id, license);
-			Bert.alert('Kartensatz zur Überprüfung freigegeben', 'success', 'growl-top-left');
+			Meteor.call("updateLicense", Router.current().params._id, license);
+			Bert.alert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
 		}
 
-		Meteor.call("publishCardset", id, kind, price, visible);
+		Meteor.call("publishCardset", Router.current().params._id, kind, price, visible);
 		$('#publishModal').modal('hide');
 	},
 	'change #publishKind': function () {

@@ -16,14 +16,14 @@ module.exports = function () {
 	});
 
 	this.When(/^user creates a new college and course$/, function () {
-		navigation.setContent('#college', 'THM');
-		navigation.setContent('#courseOfStudies', 'WBS');
+		navigation.setContent('#college', 'Zulu-Universität');
+		navigation.setContent('#courseOfStudies', 'Z-Kurs');
 		navigation.clickElement('#insertButton');
 	});
 
 	this.Then(/^user should see the college and course in list$/, function () {
-		navigation.compareContent('.tblCollege-2', 'THM', 0);
-		navigation.compareContent('.tblCourse-3', 'WBS', 0);
+		navigation.compareContent('.tblCollege-80', 'Zulu-Universität', 0);
+		navigation.compareContent('.tblCourse-80', 'Z-Kurs', 0);
 		navigation.logoutAdmin();
 	});
 };

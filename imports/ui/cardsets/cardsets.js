@@ -122,7 +122,7 @@ Template.learn.events({
 	},
 	'click #browseCardset': function () {
 		Session.set("selectingCardsetToLearn", true);
-		Router.go('home');
+		Router.go('pool');
 	}
 });
 
@@ -197,6 +197,59 @@ Template.cardsetRow.helpers({
 	},
 	getLink: function (cardset_id) {
 		return ActiveRoute.name('shuffle') ? "#" : ("/cardset/" + cardset_id);
+	},
+	getLearnphaseStatus: function () {
+		if (this.learningActive) {
+			return TAPi18n.__('set-list.activeLearnphase');
+		} else {
+			return TAPi18n.__('set-list.inactiveLearnphase');
+		}
+	},
+	getWorkload: function () {
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		actualDate.setHours(0, 0, 0, 0);
+		let count = Leitner.find({
+			cardset_id: this._id,
+			user_id: Meteor.userId(),
+			active: true
+		}).count() + Wozniak.find({
+			cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
+				$lte: actualDate
+			}
+		}).count();
+		switch (count) {
+			case 0:
+				return TAPi18n.__('set-list.noCardsToLearn');
+			case 1:
+				return TAPi18n.__('set-list.cardsToLearn');
+			default:
+				return count + TAPi18n.__('set-list.cardsToLearnPlural');
+		}
+	},
+	getLearningMode: function () {
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		actualDate.setHours(0, 0, 0, 0);
+		let count = 0;
+		if (Leitner.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
+			count += 1;
+		}
+		if (Wozniak.find({
+				cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
+					$lte: actualDate
+				}
+			}).count()) {
+			count += 2;
+		}
+		switch (count) {
+			case 0:
+				return TAPi18n.__('set-list.none');
+			case 1:
+				return TAPi18n.__('set-list.leitner');
+			case 2:
+				return TAPi18n.__('set-list.wozniak');
+			case 3:
+				return TAPi18n.__('set-list.both');
+		}
 	}
 });
 
@@ -304,6 +357,11 @@ Template.cardsetsForm.helpers({
 	getShuffleModuleNum: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleNum : "";
+		}
+	},
+	getShuffleModuleLink: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleLink : "";
 		}
 	},
 	getShuffleCollege: function () {
@@ -415,6 +473,10 @@ Template.cardsets.events({
 		let course;
 		let shuffled;
 		let cardGroups;
+		let moduleLink = $('#newSetModuleLink').val();
+		if (moduleLink === undefined) {
+			moduleLink = "";
+		}
 		if (ActiveRoute.name('shuffle')) {
 			shuffled = true;
 			cardGroups = Session.get("ShuffledCardsets");
@@ -440,7 +502,7 @@ Template.cardsets.events({
 			moduleShort = $('#newSetModuleShort').val();
 			moduleNum = $('#newSetModuleNum').val();
 			course = $('#newSetCourse').text();
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, college, course, shuffled, cardGroups);
+			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
 			$('#newSetModal').modal('hide');
 		}
 		cleanModal();
