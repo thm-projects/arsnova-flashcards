@@ -42,6 +42,11 @@ module.exports = {
 		browser.click('#learnsets');
 		this.checkUrl(global.learnRoute);
 	},
+	selectPool: function () {
+		browser.waitForVisible('#pool', global.threshold);
+		browser.click('#pool');
+		this.checkUrl(global.poolRoute);
+	},
 	selectPoolList: function (number) {
 		browser.waitForVisible('#pool-category-region > div:nth-child(' + number + ') > a.panelUnitBorder.field-tip > span.cell', global.threshold);
 		browser.click('#pool-category-region > div:nth-child(' + number + ') > a.panelUnitBorder.field-tip > span.cell');

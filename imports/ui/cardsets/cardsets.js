@@ -122,7 +122,7 @@ Template.learn.events({
 	},
 	'click #browseCardset': function () {
 		Session.set("selectingCardsetToLearn", true);
-		Router.go('home');
+		Router.go('pool');
 	}
 });
 
