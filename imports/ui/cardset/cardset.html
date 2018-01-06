@@ -41,7 +41,7 @@
         {{> leaveLearnPhaseForm}}
         {{> leaveCardsetForm}}
         {{> leaveEditorsForm}}
-        {{onEditmodalClose this._id}}
+        {{onEditmodalClose}}
     {{/unless}}
     {{#if hasCardsetPermission this._id}}
         {{#unless learningActiveAndEditor}}
@@ -205,7 +205,7 @@
                     {{#unless canViewForFree}}
                         <tr>
                             <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
-                            <td>{{getAmount}}</td>
+                            <td>{{getPrice this.price}}</td>
                         </tr>
                     {{/unless}}
                 {{/if}}
@@ -491,8 +491,7 @@
                             <div class="">
                                 <div id="payment-form"></div>
                                 <button id="buyCardsetBtn" type="submit"
-                                        class="btn btn-success btn-block btn-raised">{{_ "cardset.money.buy"}} {{price}}
-                                    €
+                                        class="btn btn-success btn-block btn-raised">{{_ "cardset.money.buy"}} {{getPrice price}}
                                 </button>
                             </div>
                         </div>
@@ -705,7 +704,7 @@
 </template>
 
 <template name="cardsetForm">
-    <div class="modal fade" id="editSetModal" tabindex="-1" role="dialog" aria-labelledby="editSetModalTitle">
+    <div class="modal fade" id="editSetModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="editSetModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -854,7 +853,7 @@
 </template>
 
 <template name="cardsetStartLearnForm">
-    <div class="modal fade" id="confirmLearnModal" tabindex="-1" role="dialog" aria-labelledby="confirmLearnModalTitle">
+    <div class="modal fade" id="confirmLearnModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="confirmLearnModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1029,7 +1028,7 @@
 </template>
 
 <template name="cardsetPublishForm">
-    <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle">
+    <div class="modal fade" id="publishModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="confirmModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1077,16 +1076,16 @@
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <select id="publishPrice" class="form-control">
-                                        <option {{priceIsSelected 0.99}}>0,99</option>
-                                        <option {{priceIsSelected 1.99}}>1,99</option>
-                                        <option {{priceIsSelected 2.99}}>2,99</option>
-                                        <option {{priceIsSelected 3.99}}>3,99</option>
-                                        <option {{priceIsSelected 4.99}}>4,99</option>
-                                        <option {{priceIsSelected 5.99}}>5,99</option>
-                                        <option {{priceIsSelected 6.99}}>6,99</option>
-                                        <option {{priceIsSelected 7.99}}>7,99</option>
-                                        <option {{priceIsSelected 8.99}}>8,99</option>
-                                        <option {{priceIsSelected 9.99}}>9,99</option>
+                                        <option {{priceIsSelected 0.99}}>{{getPrice "0.99" false}}</option>
+                                        <option {{priceIsSelected 1.99}}>{{getPrice "1.99" false}}</option>
+                                        <option {{priceIsSelected 2.99}}>{{getPrice "2.99" false}}</option>
+                                        <option {{priceIsSelected 3.99}}>{{getPrice "3.99" false}}</option>
+                                        <option {{priceIsSelected 4.99}}>{{getPrice "4.99" false}}</option>
+                                        <option {{priceIsSelected 5.99}}>{{getPrice "5.99" false}}</option>
+                                        <option {{priceIsSelected 6.99}}>{{getPrice "6.99" false}}</option>
+                                        <option {{priceIsSelected 7.99}}>{{getPrice "7.99" false}}</option>
+                                        <option {{priceIsSelected 8.99}}>{{getPrice "8.99" false}}</option>
+                                        <option {{priceIsSelected 9.99}}>{{getPrice "9.99" false}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -1234,7 +1233,7 @@
 </template>
 
 <template name="reportCardsetForm">
-    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
+    <div class="modal fade" id="reportModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="reportModalTitle">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

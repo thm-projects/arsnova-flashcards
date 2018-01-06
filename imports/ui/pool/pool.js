@@ -124,6 +124,11 @@ function resetFilters() {
 	resetInfiniteBar();
 }
 
+function filterAuthor(event) {
+	Session.set('poolFilterAuthor', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
 function filterCollege(event) {
 	Session.set('poolFilterCollege', $(event.target).data('id'));
 	resetInfiniteBar();
@@ -297,16 +302,14 @@ Template.poolCardsetRow.helpers({
 			return false;
 		}
 	},
-	getPrice: function () {
-		if (this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])))) {
-			return this.price + '€';
-		}
-	},
 	getRelevance: function () {
 		return Math.floor(this.relevance - 1);
 	},
 	getStarsRating: function () {
 		return ((Math.round(this.relevance * 2) / 2).toFixed(1) * 10);
+	},
+	displayPrice: function () {
+		return this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
 	}
 });
 
@@ -322,6 +325,9 @@ Template.poolTitleContent.helpers({
 });
 
 Template.poolCardsetRow.events({
+	'click .filterAuthor': function (event) {
+		filterAuthor(event);
+	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);
 	},
@@ -359,8 +365,7 @@ Template.category.events({
 		}
 	},
 	'click .filterAuthor': function (event) {
-		Session.set('poolFilterAuthor', $(event.target).data('id'));
-		resetInfiniteBar();
+		filterAuthor(event);
 	},
 	'click .filterCollege': function (event) {
 		filterCollege(event);

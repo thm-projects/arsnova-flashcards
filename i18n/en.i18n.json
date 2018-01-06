@@ -200,13 +200,14 @@
     "shuffleRemove": "Remove all references",
     "workload": "Workload",
     "learningMode": "Learningmode",
-    "cardsToLearn": "One Card to learn",
-    "cardsToLearnPlural": " Cards to learn",
-    "noCardsToLearn": "No Cards to learn",
+    "cardsToLearn": "One Card",
+    "cardsToLearnPlural": " Cards",
+    "noCardsToLearn": "No Cards",
     "leitner": "Leitner",
     "wozniak": "Woźniak",
-    "both": "Beide",
-    "none": "None"
+    "both": "Leitner & Woźniak",
+    "none": "None",
+    "levelOfLearning": "Progress"
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -215,6 +216,7 @@
   },
   "set-list-learn-empty": {
     "emptytextlist": "You aren't learning any deck of cards yet",
+    "emptytextlistNoShuffle": "You aren't learning any deck of cards yet",
     "browseCardset": "Choose a deck of cards"
   },
   "modal-dialog": {
@@ -625,6 +627,7 @@
   "frontside": "Front",
   "backside": "Back",
   "preview": "Preview",
+  "previewEdit": "Preview",
   "of": "of",
   "content": "Content",
   "lecture": "Lecture",

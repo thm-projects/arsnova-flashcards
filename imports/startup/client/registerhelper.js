@@ -214,13 +214,16 @@ Template.registerHelper("getCourses", function () {
 	if (Session.get('poolFilterCollege')) {
 		query.college = Session.get('poolFilterCollege');
 	}
-	return _.uniq(CollegesCourses.find(query,{sort: {course: 1}}).fetch(), function (item) {
+	return _.uniq(CollegesCourses.find(query, {sort: {course: 1}}).fetch(), function (item) {
 		return item.course;
 	});
 });
 
 Template.registerHelper("hasCardsetPermission", function (_id) {
 	let cardset = Cardsets.findOne({_id});
+	if (cardset === undefined) {
+		return false;
+	}
 	let userId = Meteor.userId();
 	let cardsetKind = cardset.kind;
 
@@ -240,7 +243,7 @@ Template.registerHelper("hasCardsetPermission", function (_id) {
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
-	return _.uniq(CollegesCourses.find({},{sort: {college: 1}}).fetch(), function (item) {
+	return _.uniq(CollegesCourses.find({}, {sort: {college: 1}}).fetch(), function (item) {
 		return item.college;
 	});
 });
@@ -329,6 +332,22 @@ Template.registerHelper("getType", function (type) {
 	}
 
 	return type;
+});
+
+Template.registerHelper("getPrice", function (price, returnCurrency = false) {
+	if (TAPi18n.getLanguage() === 'de') {
+		if (returnCurrency) {
+			return price.toString().replace(".", ",") + ' €';
+		} else {
+			return price.toString().replace(".", ",");
+		}
+	} else {
+		if (returnCurrency) {
+			return price + '€';
+		} else {
+			return price;
+		}
+	}
 });
 
 Template.registerHelper("getLearnphase", function (state) {

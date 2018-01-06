@@ -196,7 +196,8 @@
     "leitner": "Leitner",
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
-    "none": "ohne"
+    "none": "ohne",
+    "levelOfLearning": "Lernstand"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
@@ -205,6 +206,7 @@
   },
   "set-list-learn-empty": {
     "emptytextlist": "Wähle ein Thema aus dem Pool oder mische einen neuen Kartensatz aus mehreren Themen.",
+    "emptytextlistNoShuffle": "Wähle ein Thema aus dem Pool.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
@@ -593,6 +595,7 @@
   "frontside": "Vorderseite",
   "backside": "Rückseite",
   "preview": "Vorschau zufällig ausgewählter Karten",
+  "previewEdit": "Vorschau",
   "of": "von",
   "content": "Inhalt",
   "lecture": "Vertiefung",
@@ -646,8 +649,8 @@
   "subject6": "Gelernt",
   "details": "Grafik",
   "cardCount": "Anzahl Karten",
-  "subjectInfo": "Karten in Fach __box__ können erst wieder nach einem Tag gelernt werden.",
-  "subjectInfo_plural": "Karten in Fach __box__ können erst wieder nach __count__ Tagen gelernt werden.",
+  "subjectInfo": "Karten im Fach __box__ werden nach 1 Tag wieder vorgelegt.",
+  "subjectInfo_plural": "Karten im Fach __box__ werden nach __count__ Tagen wieder vorgelegt.",
   "leitnerCard": "Karte für derzeitige Lernphase",
   "backbutton": "Zurück zum Kartensatz",
   "backbuttonStatistics": "Zurück zur Lernstatistik",

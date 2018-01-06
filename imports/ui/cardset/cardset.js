@@ -127,14 +127,15 @@ Template.cardset.rendered = function () {
 
 Template.cardset.helpers({
 
-	'onEditmodalClose': function (id) {
-		Session.set('previousName', Cardsets.findOne(id).name);
-		Session.set('previousDescription', Cardsets.findOne(id).description);
-		Session.set('previousModule', Cardsets.findOne(id).module);
-		Session.set('previousModuleShort', Cardsets.findOne(id).moduleToken);
-		Session.set('previousModuleNum', Cardsets.findOne(id).moduleNum);
-		Session.set('previousCollegeName', Cardsets.findOne(id).college);
-		Session.set('previousCourseName', Cardsets.findOne(id).course);
+	'onEditmodalClose': function () {
+		Session.set('previousName', Cardsets.findOne(Router.current().params._id).name);
+		Session.set('previousDescription', Cardsets.findOne(Router.current().params._id).description);
+		Session.set('previousModule', Cardsets.findOne(Router.current().params._id).module);
+		Session.set('previousModuleShort', Cardsets.findOne(Router.current().params._id).moduleToken);
+		Session.set('previousModuleNum', Cardsets.findOne(Router.current().params._id).moduleNum);
+		Session.set('previousModuleNumLink', Cardsets.findOne(Router.current().params._id).moduleNumLink);
+		Session.set('previousCollegeName', Cardsets.findOne(Router.current().params._id).college);
+		Session.set('previousCourseName', Cardsets.findOne(Router.current().params._id).course);
 	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {
@@ -259,15 +260,17 @@ Template.cardset.events({
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
 		Bert.alert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-top-left');
+		Router.go('home');
 	},
 	'click #declineRequest': function () {
 		var reason = $('#declineRequestReason').val();
 		if (reason === '') {
 			Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-top-left');
 		} else {
+			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id, TAPi18n.__('set-list.author'));
 			Meteor.call("declineProRequest", this._id);
-			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id);
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
+			Router.go('home');
 		}
 	}
 });
@@ -307,6 +310,11 @@ Template.cardsetForm.onRendered(function () {
 		$('#editSetModuleNumLabel').css('color', '');
 		$('#editSetModuleNum').css('border-color', '');
 		$('#helpEditSetModuleNum').html('');
+
+		$('#editSetModuleLink').val(Session.get('previousModuleLink'));
+		$('#editSetModuleLinkLabel').css('color', '');
+		$('#editSetModuleLink').css('border-color', '');
+		$('#helpEditSetModuleLink').html('');
 
 		$('#editSetCollege').html(previousCollegeName);
 		$('#editSetCollege').val(previousCollegeName);
@@ -607,9 +615,6 @@ Template.cardsetInfoBox.helpers({
 	},
 	hasAmount: function () {
 		return this.kind === 'pro' || this.kind === 'edu';
-	},
-	getAmount: function () {
-		return this.price + '€';
 	},
 	getColors: function () {
 		switch (this.kind) {
