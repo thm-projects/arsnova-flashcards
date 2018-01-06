@@ -221,6 +221,9 @@ Template.registerHelper("getCourses", function () {
 
 Template.registerHelper("hasCardsetPermission", function (_id) {
 	let cardset = Cardsets.findOne({_id});
+	if (cardset === undefined) {
+		return false;
+	}
 	let userId = Meteor.userId();
 	let cardsetKind = cardset.kind;
 
