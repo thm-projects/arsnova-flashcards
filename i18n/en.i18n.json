@@ -215,6 +215,7 @@
   },
   "set-list-learn-empty": {
     "emptytextlist": "You aren't learning any deck of cards yet",
+    "emptytextlistNoShuffle": "You aren't learning any deck of cards yet",
     "browseCardset": "Choose a deck of cards"
   },
   "modal-dialog": {
