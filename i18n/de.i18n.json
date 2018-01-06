@@ -196,7 +196,8 @@
     "leitner": "Leitner",
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
-    "none": "ohne"
+    "none": "ohne",
+    "levelOfLearning": "Lernstand"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
