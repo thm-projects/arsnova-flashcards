@@ -205,6 +205,7 @@
   },
   "set-list-learn-empty": {
     "emptytextlist": "Wähle ein Thema aus dem Pool oder mische einen neuen Kartensatz aus mehreren Themen.",
+    "emptytextlistNoShuffle": "Wähle ein Thema aus dem Pool.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
