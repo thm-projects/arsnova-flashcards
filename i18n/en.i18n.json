@@ -200,12 +200,12 @@
     "shuffleRemove": "Remove all references",
     "workload": "Workload",
     "learningMode": "Learningmode",
-    "cardsToLearn": "One Card to learn",
-    "cardsToLearnPlural": " Cards to learn",
-    "noCardsToLearn": "No Cards to learn",
+    "cardsToLearn": "One Card",
+    "cardsToLearnPlural": " Cards",
+    "noCardsToLearn": "No Cards",
     "leitner": "Leitner",
     "wozniak": "Woźniak",
-    "both": "Beide",
+    "both": "Leitner & Woźniak",
     "none": "None"
   },
   "set-list-empty": {
