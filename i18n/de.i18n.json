@@ -264,7 +264,7 @@
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
     "module": "Modul",
-    "moduleActivated": "Mit Modul",
+    "moduleActivated": "Gehört zu einem Modul",
     "moduleDeactivated": "Ohne Modul",
     "module_required": "Gib den vollen Titel des Moduls an!",
     "moduleShort": "Kurzbezeichnung",
@@ -504,7 +504,7 @@
     },
     "money": {
       "buy": "Kartensatz kaufen",
-      "pro": "Als Premium-Nutzer lernen",
+      "pro": "Als Premium-Nutzer/in lernen",
       "bought": "Vielen Dank für deinen Kauf!"
     },
     "alert": {
