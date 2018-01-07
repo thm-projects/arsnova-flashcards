@@ -74,48 +74,61 @@
                     </div>
                 </div>
                 <div class="panel panel-primary">
-                    <div class="panel-heading">{{_ "modal-dialog.module"}}</div>
-                    <div class="form-group setdetails name row" id="module">
-                        <label id="editCardsetModuleLabelAdmin" class="col-md-3 control-label"
-                               for="editCardsetModuleAdmin">{{_ "modal-dialog.module"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="editCardsetModuleAdmin"
-                                   value="{{module}}">
-                            <span id="helpEditCardsetModuleAdmin" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name row" id="module">
-                        <label id="editCardsetModuleShortLabelAdmin" class="col-md-3 control-label"
-                               for="editCardsetModuleShortAdmin">{{_ "modal-dialog.moduleShort"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="editCardsetModuleShortAdmin"
-                                   value="{{moduleToken}}">
-                            <span id="helpEditCardsetModuleShortAdmin" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name row" id="module">
-                        <label id="editCardsetModuleNumLabelAdmin" class="col-md-3 control-label"
-                               for="editCardsetModuleNumAdmin">{{_ "modal-dialog.moduleNum"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="editCardsetModuleNumAdmin"
-                                   value="{{moduleNum}}">
-                            <span id="helpEditCardsetModuleNumAdmin" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <div class="form-group setdetails name" id="module">
-                        <label id="editSetModuleLinkLabelAdmin" class="col-md-3 control-label"
-                               for="editSetModuleLinkAdmin">{{_
-                                "modal-dialog.moduleLink"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="editSetModuleLinkAdmin"
-                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                   value="{{moduleLink}}">
-                        </div>
-                    </div><!-- / module textfield -->
-                    <br>
-                    <br>
+                    <div class="panel-heading">{{_ "modal-dialog.module"}}
+                        <span class="pull-right">
+                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
+                                                                       name="optradio" value="true"
+                                                                       checked="{{#if moduleActive}}checked{{/if}}">{{_
+                                            "modal-dialog.moduleActivated"}}</label>
+                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
+                                                                   name="optradio" value="false" checked="{{#unless
+                                        moduleActive}}checked{{/unless}}">{{_
+                                        "modal-dialog.moduleDeactivated"}}</label>
+                                </span>
+                    </div>
+                    <div class="moduleBody" style="display: {{#unless moduleActive}}none{{/unless}}">
+                        <div class="form-group setdetails name row" id="module">
+                            <label id="editCardsetModuleLabelAdmin" class="col-md-3 control-label"
+                                   for="editCardsetModuleAdmin">{{_ "modal-dialog.module"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="editCardsetModuleAdmin"
+                                       value="{{module}}">
+                                <span id="helpEditCardsetModuleAdmin" class="help-block name"></span>
+                            </div>
+                        </div><!-- / module textfield -->
+                        <!-- start module textfield -->
+                        <div class="form-group setdetails name row" id="module">
+                            <label id="editCardsetModuleShortLabelAdmin" class="col-md-3 control-label"
+                                   for="editCardsetModuleShortAdmin">{{_ "modal-dialog.moduleShort"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="editCardsetModuleShortAdmin"
+                                       value="{{moduleToken}}">
+                                <span id="helpEditCardsetModuleShortAdmin" class="help-block name"></span>
+                            </div>
+                        </div><!-- / module textfield -->
+                        <!-- start module textfield -->
+                        <div class="form-group setdetails name row" id="module">
+                            <label id="editCardsetModuleNumLabelAdmin" class="col-md-3 control-label"
+                                   for="editCardsetModuleNumAdmin">{{_ "modal-dialog.moduleNum"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="editCardsetModuleNumAdmin"
+                                       value="{{moduleNum}}">
+                                <span id="helpEditCardsetModuleNumAdmin" class="help-block name"></span>
+                            </div>
+                        </div><!-- / module textfield -->
+                        <div class="form-group setdetails name" id="module">
+                            <label id="editSetModuleLinkLabelAdmin" class="col-md-3 control-label"
+                                   for="editSetModuleLinkAdmin">{{_
+                                    "modal-dialog.moduleLink"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="editSetModuleLinkAdmin"
+                                       placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                       value="{{moduleLink}}">
+                            </div>
+                        </div><!-- / module textfield -->
+                        <br>
+                        <br>
+                    </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">

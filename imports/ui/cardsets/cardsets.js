@@ -10,6 +10,7 @@ import "./cardsets.html";
 import {image, tex} from '/imports/ui/card/card.js';
 
 Session.setDefault('cardsetId', undefined);
+Session.set('moduleActive', true);
 
 Meteor.subscribe("cardsets");
 
@@ -40,6 +41,11 @@ function cleanModal() {
 		$('#newSetModuleNum').css('border-color', '');
 		$('#newSetModuleNumLabel').css('color', '');
 
+		$('#newSetModuleLink').val('');
+		$('#helpNewSetModuleLink').html('');
+		$('#newSetModuleLink').css('border-color', '');
+		$('#newSetModuleLinkLabel').css('color', '');
+
 		if ($('#newSetCollege').val() !== "") {
 			$('#newSetCollege').val('');
 			$('#newSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
@@ -57,9 +63,18 @@ function cleanModal() {
 		$('#helpNewSetCourse').html('');
 		$('.newSetCourseDropdown').css('border-color', '');
 		$('#newSetCourseLabel').css('color', '');
-		$('.newSetCourseDropdown').attr('disabled', true);
+
+		if (!Meteor.settings.public.university.singleUniversity) {
+			$('.newSetCourseDropdown').attr('disabled', true);
+		}
 
 		Session.set('poolFilterCollege', undefined);
+
+		$('.md-footer').html("");
+		$('.moduleRadioButton')[0].checked = true;
+		$('.moduleRadioButton')[1].checked = false;
+		$('.moduleBody').css('display', '');
+		Session.set('moduleActive', true);
 	});
 }
 
@@ -385,6 +400,17 @@ Template.cardsetsForm.helpers({
 		}
 	}
 });
+Template.cardsets.events({
+	'click .moduleRadioButton': function (event) {
+		if ($(event.currentTarget).val() === "true") {
+			Session.set('moduleActive', true);
+			$('.moduleBody').css('display', '');
+		} else {
+			Session.set('moduleActive', false);
+			$('.moduleBody').css('display', 'none');
+		}
+	}
+});
 
 /*
  * ############################################################################
@@ -432,19 +458,19 @@ Template.cardsets.events({
 			$('#helpNewSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 			$('#helpNewSetDescription').css('color', '#b94a48');
 		}
-		if ($('#newSetModule').val() === "") {
+		if ($('#newSetModule').val() === "" && Session.get('moduleActive')) {
 			$('#newSetModuleLabel').css('color', '#b94a48');
 			$('#newSetModule').css('border-color', '#b94a48');
 			$('#helpNewSetModule').html(TAPi18n.__('modal-dialog.module_required'));
 			$('#helpNewSetModule').css('color', '#b94a48');
 		}
-		if ($('#newSetModuleShort').val() === "") {
+		if ($('#newSetModuleShort').val() === "" && Session.get('moduleActive')) {
 			$('#newSetModuleShortLabel').css('color', '#b94a48');
 			$('#newSetModuleShort').css('border-color', '#b94a48');
 			$('#helpNewSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
 			$('#helpNewSetModuleShort').css('color', '#b94a48');
 		}
-		if ($('#newSetModuleNum').val() === "") {
+		if ($('#newSetModuleNum').val() === "" && Session.get('moduleActive')) {
 			$('#newSetModuleNumLabel').css('color', '#b94a48');
 			$('#newSetModuleNum').css('border-color', '#b94a48');
 			$('#helpNewSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
@@ -491,9 +517,9 @@ Template.cardsets.events({
 		}
 		if ($('#newSetName').val() !== "" &&
 			$('#newSetDescription').val() !== "" &&
-			$('#newSetModule').val() !== "" &&
-			$('#newSetModuleShort').val() !== "" &&
-			$('#newSetModuleNum').val() !== "" &&
+			($('#newSetModule').val() !== "" || !Session.get('moduleActive')) &&
+			($('#newSetModuleShort').val() !== "" || !Session.get('moduleActive')) &&
+			($('#newSetModuleNum').val() !== "" || !Session.get('moduleActive')) &&
 			college !== "" &&
 			$('#newSetCourse').val() !== "") {
 			name = $('#newSetName').val();
@@ -502,7 +528,7 @@ Template.cardsets.events({
 			moduleShort = $('#newSetModuleShort').val();
 			moduleNum = $('#newSetModuleNum').val();
 			course = $('#newSetCourse').text();
-			Meteor.call("addCardset", name, description, false, true, 'personal', module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
+			Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
 			$('#newSetModal').modal('hide');
 		}
 		cleanModal();
@@ -606,6 +632,11 @@ Template.cardsetsForm.events({
 		$('#helpNewSetCourse').html('');
 	},
 	'click .cancel': function () {
+		if (!ActiveRoute.name('shuffle')) {
+			cleanModal();
+		}
+	},
+	'click .close': function () {
 		if (!ActiveRoute.name('shuffle')) {
 			cleanModal();
 		}
