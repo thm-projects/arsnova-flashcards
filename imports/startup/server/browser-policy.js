@@ -6,6 +6,7 @@ BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
 BrowserPolicy.content.allowOriginForAll('https://*.google-analytics.com');
+BrowserPolicy.content.allowOriginForAll('https://*.youtube.com');
 BrowserPolicy.content.allowOriginForAll('https://*.mxpnl.com');
 BrowserPolicy.content.allowOriginForAll('https://*.zendesk.com');
 BrowserPolicy.content.allowOriginForAll('https://*.braintreegateway.com');
