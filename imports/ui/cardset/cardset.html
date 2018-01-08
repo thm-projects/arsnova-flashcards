@@ -167,17 +167,17 @@
                             {{/if}}
                         </td>
                     </tr>
-                {{/if}}
-                {{#unless singleUniversity}}
+                    {{#unless singleUniversity}}
+                        <tr>
+                            <td><strong>{{_ "cardset.info.college"}}:</strong></td>
+                            <td>{{this.college}}</td>
+                        </tr>
+                    {{/unless}}
                     <tr>
-                        <td><strong>{{_ "cardset.info.college"}}:</strong></td>
-                        <td>{{this.college}}</td>
+                        <td><strong>{{_ "cardset.info.course"}}:</strong></td>
+                        <td>{{this.course}}</td>
                     </tr>
-                {{/unless}}
-                <tr>
-                    <td><strong>{{_ "cardset.info.course"}}:</strong></td>
-                    <td>{{this.course}}</td>
-                </tr>
+                {{/if}}
                 <tr>
                     <td><strong>{{_ "cardset.info.author"}}:</strong></td>
                     <td>
@@ -276,7 +276,7 @@
                     <div class="btn-group btn-group-raised">
                         <button id="editCardset" class="btn btn-raised btn-default" type="button"
                                 data-toggle="modal"
-                                data-target="#editSetModal" {{disableIfOffline}}>
+                                data-target="#setCardsetModal" {{disableIfOffline}}>
                             <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                         </button>
                     </div>
@@ -560,11 +560,6 @@
     </div>
 </template>
 
-<template name="descriptionEditorEdit">
-     <textarea class="form-control" data-provide="markdown" rows="6" id="editSetDescription"
-               value="{{description}}"></textarea>
-</template>
-
 <template name="deleteCardsForm">
     <div class="modal fade" id="deleteCardsModal" tabindex="-1" role="dialog"
          aria-labelledby="deleteCardsTitle">
@@ -700,170 +695,6 @@
                             "confirm-leave-editors.btn-txt"}}</button>
                     <button id="leaveEditorsCancel" class="btn btn-default btn-block btn-raised"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<template name="cardsetForm">
-    <div class="modal fade" id="editSetModal" tabindex="-1" data-backdrop="static" role="dialog"
-         aria-labelledby="editSetModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="editSetModalTitle" class="modal-title">{{_ "modal-dialog.editcard"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group setdetails name">
-                            <label id="editSetNameLabel" class="col-md-3 control-label"
-                                   for="editSetName">{{_ "modal-dialog.name"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="editSetName" value="{{name}}">
-                                <span id="helpEditSetName" class="help-block name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group setdetails description">
-                            <label id="editSetDescriptionLabel" class="col-md-3 control-label"
-                                   for="editSetDescription">{{_ "modal-dialog.description"}}</label>
-                            <div class="col-md-9">
-                                {{>descriptionEditorEdit}}
-                                <span id="helpEditSetDescription" class="help-block description"></span>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">{{_ "modal-dialog.module"}}
-                                <span class="moduleRadioButtonGroup pull-right">
-                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
-                                                                       name="optradio" value="true"
-                                                                       checked="{{#if moduleActive}}checked{{/if}}">{{_
-                                            "modal-dialog.moduleActivated"}}</label>
-                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
-                                                                   name="optradio" value="false" checked="{{#unless
-                                        moduleActive}}checked{{/unless}}">{{_
-                                        "modal-dialog.moduleDeactivated"}}</label>
-                                </span>
-                            </div>
-                            <br>
-                            <div class="moduleBody" style="display: {{#unless moduleActive}}none{{/unless}}">
-                                <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="editSetModuleLabel" class="col-md-3 control-label"
-                                           for="editSetModule">{{_ "modal-dialog.module"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="editSetModule"
-                                               value="{{module}}">
-                                        <span id="helpEditSetModule" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="editSetModuleShortLabel" class="col-md-3 control-label"
-                                           for="editSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="editSetModuleShort"
-                                               value="{{moduleToken}}">
-                                        <span id="helpEditSetModuleShort" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="editSetModuleNumLabel" class="col-md-3 control-label"
-                                           for="editSetModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="editSetModuleNum"
-                                               value="{{moduleNum}}">
-                                        <span id="helpEditSetModuleNum" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="editSetModuleLinkLabel" class="col-md-3 control-label"
-                                           for="editSetModuleLink">{{_
-                                            "modal-dialog.moduleLink"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="editSetModuleLink"
-                                               placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                               value="{{moduleLink}}">
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <br>
-                            </div>
-                        </div>
-                        {{#unless singleUniversity}}
-                            <!-- start college Dropdown -->
-                            <div class="form-group setdetails categories">
-                                <label id="editSetCollegeLabel" class="col-md-3 control-label" for="editSetCollege">{{_
-                                        "modal-dialog.college"}}</label>
-                                <div class="dropup">
-                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                        <button id="editSetCollege" type="button"
-                                                class="btn btn-default btn-raised editSetCollegeDropdown longButton"
-                                                data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
-                                        <button class="btn dropdown-toggle btn-raised editSetCollegeDropdown"
-                                                type="button"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="true">
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                        <ul class="dropdown-menu longButton">
-                                            {{#each getColleges}}
-                                                <li class="college" value="{{_id}}" data="{{this.college}}"><a
-                                                        href="#">{{this.college}}</a></li>
-                                            {{/each}}
-                                        </ul>
-                                        <span id="helpEditSetCollege" class="help-block college"></span>
-                                    </div>
-                                </div>
-                            </div><!-- / college Dropdown -->
-                        {{/unless}}
-                        <!-- start course Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="editSetCourseLabel" class="col-md-3 control-label" for="editSetCourse">{{_
-                                    "modal-dialog.course"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                    <button id="editSetCourse" type="button"
-                                            class="btn btn-raised btn-default editSetCourseDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
-                                    <button type="button" class="btn btn-raised dropdown-toggle editSetCourseDropdown"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu btn-raised longButton">
-                                        {{#each getCourses}}
-                                            <li class="course" value="{{_id}}" data="{{this.course}}"><a
-                                                    href="#">{{this.course}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpEditSetCourse" class="help-block course"></span>
-                                </div>
-                            </div>
-                        </div><!-- / course Dropdown -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    {{#unless learningActive}}
-                        <button id="cardSetDelete"
-                                class="btn btn-raised btn-danger btn-block btn-setDelete col-xs-12 col-sm-3">{{_
-                                "modal-dialog.delete"}}</button>
-                        <button id="cardSetConfirm" class="btn btn-raised btn-warning btn-block col-xs-12 col-sm-3"
-                                style="display:none">{{_
-                                "modal-dialog.confirm"}}</button>
-                    {{/unless}}
-                    <button id="cardSetCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
-                            data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                    <button id="cardSetSave"
-                            class="btn btn-raised btn-success btn-block col-xs-12 col-sm-3 pull-right">{{_
-                            "modal-dialog.save"}}</button>
                 </div>
             </div>
         </div>

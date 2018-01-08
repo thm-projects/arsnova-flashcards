@@ -33,38 +33,38 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should see the edit cardset form$/, function () {
-		navigation.contentVisible('#editSetName');
+		navigation.contentVisible('#setName');
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
-		navigation.setContent('#editSetName', title);
-		navigation.compareContent('#editSetName', title, 2, 'value');
+		navigation.setContent('#setName', title);
+		navigation.compareContent('#setName', title, 2, 'value');
 	});
 
 	this.Then(/^he should be able to edit the cardset description$/, function () {
-		navigation.setContent('#editSetDescription', description);
-		navigation.compareContent('#editSetDescription', description, 2, 'value');
+		navigation.setContent('#setDescription', description);
+		navigation.compareContent('#setDescription', description, 2, 'value');
 	});
 
 	this.Then(/^he should be able to edit the module name$/, function () {
-		navigation.setContent('#editSetModule', module);
-		navigation.compareContent('#editSetModule', module, 2, 'value');
+		navigation.setContent('#setModule', module);
+		navigation.compareContent('#setModule', module, 2, 'value');
 	});
 	this.Then(/^he should be able to edit the module initials$/, function () {
-		navigation.setContent('#editSetModuleShort', moduleInitials);
-		navigation.compareContent('#editSetModuleShort', moduleInitials, 2, 'value');
+		navigation.setContent('#setModuleShort', moduleInitials);
+		navigation.compareContent('#setModuleShort', moduleInitials, 2, 'value');
 	});
 
 	this.Then(/^he should be able to edit the module ID$/, function () {
-		navigation.setContent('#editSetModuleNum', moduleID);
-		navigation.compareContent('#editSetModuleNum', moduleID, 2, 'value');
+		navigation.setContent('#setModuleNum', moduleID);
+		navigation.compareContent('#setModuleNum', moduleID, 2, 'value');
 	});
 	this.Then(/^he should be able to edit the college$/, function () {
-		navigation.clickElement('#editSetCollege');
+		navigation.clickElement('#setCollege');
 		navigation.clickElement('li[data="' + college + '"] a');
 	});
 	this.Then(/^he should be able to edit the course$/, function () {
-		navigation.clickElement('#editSetCourse');
+		navigation.clickElement('#setCourse');
 		navigation.clickElement('li[data="' + course + '"] a');
 	});
 	this.Then(/^he should press the save deck of cards button$/, function () {
@@ -73,11 +73,11 @@ module.exports = function () {
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
 		navigation.contentVisible('.modal-open',false);
 		navigation.clickElement('#editCardset');
-		navigation.compareContent('#editSetName', title, 2, 'value');
-		navigation.compareContent('#editSetDescription', description, 2, 'value');
-		navigation.compareContent('#editSetModule', module, 2, 'value');
-		navigation.compareContent('#editSetModuleShort', moduleInitials, 2, 'value');
-		navigation.compareContent('#editSetModuleNum', moduleID, 2, 'value');
+		navigation.compareContent('#setName', title, 2, 'value');
+		navigation.compareContent('#setDescription', description, 2, 'value');
+		navigation.compareContent('#setModule', module, 2, 'value');
+		navigation.compareContent('#setModuleShort', moduleInitials, 2, 'value');
+		navigation.compareContent('#setModuleNum', moduleID, 2, 'value');
 		navigation.clickElement('#cardSetCancel');
 		navigation.logout();
 	});

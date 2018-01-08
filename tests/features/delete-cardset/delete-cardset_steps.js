@@ -23,7 +23,7 @@ module.exports = function () {
 		navigation.clickElement('#editCardset');
 	});
 	this.Then(/^he should see the edit cardset form$/, function () {
-		navigation.contentVisible('#editSetName');
+		navigation.contentVisible('#setName');
 	});
 	this.Then(/^he should be able to press the delete cardset button$/, function () {
 		navigation.clickElement('#cardSetDelete');
