@@ -11,8 +11,8 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/learn.js";
+import "./cardsetForm.js";
 import "./cardset.html";
-import {image, tex} from '/imports/ui/card/card.js';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
@@ -93,6 +93,7 @@ Template.cardset.onCreated(function () {
 		Session.set('activeCardsetID', Router.current().params._id);
 		Session.set('modifiedCard', undefined);
 	}
+	Session.set('moduleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
 });
 
 Template.cardset.rendered = function () {
@@ -133,7 +134,7 @@ Template.cardset.helpers({
 		Session.set('previousModule', Cardsets.findOne(Router.current().params._id).module);
 		Session.set('previousModuleShort', Cardsets.findOne(Router.current().params._id).moduleToken);
 		Session.set('previousModuleNum', Cardsets.findOne(Router.current().params._id).moduleNum);
-		Session.set('previousModuleNumLink', Cardsets.findOne(Router.current().params._id).moduleNumLink);
+		Session.set('previousModuleLink', Cardsets.findOne(Router.current().params._id).moduleLink);
 		Session.set('previousCollegeName', Cardsets.findOne(Router.current().params._id).college);
 		Session.set('previousCourseName', Cardsets.findOne(Router.current().params._id).course);
 	},
@@ -148,104 +149,11 @@ Template.cardset.helpers({
 });
 
 Template.cardset.events({
-	'click #cardSetSave': function (evt, tmpl) {
-		if ($('#editSetName').val() === "") {
-			$('#editSetNameLabel').css('color', '#b94a48');
-			$('#editSetName').css('border-color', '#b94a48');
-			$('#helpEditSetName').html(TAPi18n.__('modal-dialog.name_required'));
-			$('#helpEditSetName').css('color', '#b94a48');
-		}
-		if ($('#editSetDescription').val() === "") {
-			$('#editSetDescriptionLabel').css('color', '#b94a48');
-			$('#editSetDescription').css('border-color', '#b94a48');
-			$('#helpEditSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
-			$('#helpEditSetDescription').css('color', '#b94a48');
-		}
-		if ($('#editSetModule').val() === "" && Session.get('moduleActive')) {
-			$('#editSetModuleLabel').css('color', '#b94a48');
-			$('#editSetModule').css('border-color', '#b94a48');
-			$('#helpEditSetModule').html(TAPi18n.__('modal-dialog.module_required'));
-			$('#helpEditSetModule').css('color', '#b94a48');
-		}
-		if ($('#editSetModuleShort').val() === "" && Session.get('moduleActive')) {
-			$('#editSetModuleShortLabel').css('color', '#b94a48');
-			$('#editSetModuleShort').css('border-color', '#b94a48');
-			$('#helpEditSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
-			$('#helpEditSetModuleShort').css('color', '#b94a48');
-		}
-		if ($('#editSetModuleNum').val() === "" && Session.get('moduleActive')) {
-			$('#editSetModuleNumLabel').css('color', '#b94a48');
-			$('#editSetModuleNum').css('border-color', '#b94a48');
-			$('#helpEditSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
-			$('#helpEditSetModuleNum').css('color', '#b94a48');
-		}
-		if (!Meteor.settings.public.university.singleUniversity) {
-			if ($('#editSeCollege').val() === "") {
-				$('#editSetCollegeLabel').css('color', '#b94a48');
-				$('.editSetCollegeDropdown').css('border-color', '#b94a48');
-				$('#helpEditSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
-				$('#helpEditSetCollege').css('color', '#b94a48');
-			}
-		}
-		if ($('#editSetCourse').val() === "") {
-			$('#editSetCourseLabel').css('color', '#b94a48');
-			$('.editSetCourseDropdown').css('border-color', '#b94a48');
-			$('#helpEditSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
-			$('#helpEditSetCourse').css('color', '#b94a48');
-		}
-		let name;
-		let description;
-		let module;
-		let moduleShort;
-		let moduleNum;
-		let moduleLink = tmpl.find('#editSetModuleLink').value;
-		let college;
-		let course;
-		if (moduleLink === undefined) {
-			moduleLink = "";
-		}
-		if (Meteor.settings.public.university.singleUniversity) {
-			if ($('#editSetName').val() !== "" &&
-				$('#editSetDescription').val() !== "" &&
-				($('#editSetModule').val() !== "" || !Session.get('moduleActive')) &&
-				($('#editSetModuleShort').val() !== "" || !Session.get('moduleActive')) &&
-				($('#editSetModuleNum').val() !== "" || !Session.get('moduleActive')) &&
-				$('#editSetCourse').val() !== "") {
-				name = tmpl.find('#editSetName').value;
-				description = tmpl.find('#editSetDescription').value;
-				module = tmpl.find('#editSetModule').value;
-				moduleShort = tmpl.find('#editSetModuleShort').value;
-				moduleNum = tmpl.find('#editSetModuleNum').value;
-				college = Meteor.settings.public.university.default;
-				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
-				$('#editSetModal').modal('hide');
-			}
-		} else {
-			if ($('#editSetName').val() !== "" &&
-				$('#editSetDescription').val() !== "" &&
-				($('#editSetModule').val() !== "" || !Session.get('moduleActive')) &&
-				($('#editSetModuleShort').val() !== "" || !Session.get('moduleActive')) &&
-				($('#editSetModuleNum').val() !== "" || !Session.get('moduleActive')) &&
-				$('#editSetCollege').val() !== "" &&
-				$('#editSetCourse').val() !== "") {
-				name = tmpl.find('#editSetName').value;
-				description = tmpl.find('#editSetDescription').value;
-				module = tmpl.find('#editSetModule').value;
-				moduleShort = tmpl.find('#editSetModuleShort').value;
-				moduleNum = tmpl.find('#editSetModuleNum').value;
-				college = $('#editSetCollege').text();
-				course = $('#editSetCourse').text();
-				Meteor.call("updateCardset", this._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
-				$('#editSetModal').modal('hide');
-			}
-		}
-	},
 	'click #cardSetDelete': function () {
 		$("#cardSetDelete").css('display', "none");
 		$("#cardSetConfirm").css('display', "");
 
-		$('#editSetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");
 			$("#cardSetConfirm").css('display', "none");
 		});
@@ -253,7 +161,7 @@ Template.cardset.events({
 	'click #cardSetConfirm': function () {
 		var id = this._id;
 
-		$('#editSetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
 			Router.go('create');
 		}).modal('hide');
@@ -278,130 +186,6 @@ Template.cardset.events({
 
 /*
  * ############################################################################
- * cardsetForm
- * ############################################################################
- */
-
-Template.cardsetForm.onRendered(function () {
-	$('#editSetModal').on('hidden.bs.modal', function () {
-		let previousCollegeName = Session.get('previousCollegeName');
-		let previousCourseName = Session.get('previousCourseName');
-
-		$('#editSetName').val(Session.get('previousName'));
-		$('#editSetNameLabel').css('color', '');
-		$('#editSetName').css('border-color', '');
-		$('#helpEditSetName').html('');
-
-		$('#editSetDescription').val(Session.get('previousDescription'));
-		$('#editSetDescriptionLabel').css('color', '');
-		$('#editSetDescription').css('border-color', '');
-		$('#helpEditSetDescription').html('');
-
-		$('#editSetModule').val(Session.get('previousModule'));
-		$('#editSetModuleLabel').css('color', '');
-		$('#editSetModule').css('border-color', '');
-		$('#helpEditSetModule').html('');
-
-		$('#editSetModuleShort').val(Session.get('previousModuleShort'));
-		$('#editSetModuleShortLabel').css('color', '');
-		$('#editSetModuleShort').css('border-color', '');
-		$('#helpEditSetModuleShort').html('');
-
-		$('#editSetModuleNum').val(Session.get('previousModuleNum'));
-		$('#editSetModuleNumLabel').css('color', '');
-		$('#editSetModuleNum').css('border-color', '');
-		$('#helpEditSetModuleNum').html('');
-
-		$('#editSetModuleLink').val(Session.get('previousModuleLink'));
-		$('#editSetModuleLinkLabel').css('color', '');
-		$('#editSetModuleLink').css('border-color', '');
-		$('#helpEditSetModuleLink').html('');
-
-		$('#editSetCollege').html(previousCollegeName);
-		$('#editSetCollege').val(previousCollegeName);
-		Session.set('poolFilterCollege', previousCollegeName);
-		$('#editSetCollegeLabel').css('color', '');
-		$('.editSetCollegeDropdown').css('border-color', '');
-		$('#helpEditSetCollege').html('');
-
-		$('#editSetCourse').html(previousCourseName);
-		$('#editSetCourse').val(previousCourseName);
-		$('#editSetCourseLabel').css('color', '');
-		$('.editSetCourseDropdown').css('border-color', '');
-		$('#helpEditSetCourse').html('');
-
-		if (Session.get('previousModuleActive')) {
-			$('.moduleRadioButton')[0].checked = true;
-			$('.moduleRadioButton')[1].checked = false;
-			$('.moduleBody').css('display', '');
-			Session.set('moduleActive', true);
-		} else {
-			$('.moduleRadioButton')[0].checked = false;
-			$('.moduleRadioButton')[1].checked = true;
-			$('.moduleBody').css('display', 'none');
-			Session.set('moduleActive', false);
-		}
-	});
-});
-
-Template.cardsetForm.events({
-	'click .college': function (evt) {
-		var collegeName = $(evt.currentTarget).attr("data");
-		$('#editSetCollege').html(collegeName);
-		$('#editSetCollege').val(collegeName);
-		Session.set('poolFilterCollege', collegeName);
-		$('#editSetCourse').html((TAPi18n.__('modal-dialog.course_required')));
-		$('#editSetCourse').val('');
-		$('#editSetCollegeLabel').css('color', '');
-		$('.editSetCollegeDropdown').css('border-color', '');
-		$('#helpEditSetCollege').html('');
-	},
-	'click .course': function (evt) {
-		var courseName = $(evt.currentTarget).attr("data");
-		$('#editSetCourse').html(courseName);
-		$('#editSetCourse').val(courseName);
-		$('#editSetCourseLabel').css('color', '');
-		$('.editSetCourseDropdown').css('border-color', '');
-		$('#helpEditSetCourse').html('');
-	},
-	'keyup #editSetName': function () {
-		$('#editSetNameLabel').css('color', '');
-		$('#editSetName').css('border-color', '');
-		$('#helpEditSetName').html('');
-	},
-	'keyup #editSetDescription': function () {
-		$('#editSetDescriptionLabel').css('color', '');
-		$('#editSetDescription').css('border-color', '');
-		$('#helpEditSetDescription').html('');
-	},
-	'keyup #editSetModule': function () {
-		$('#editSetModuleLabel').css('color', '');
-		$('#editSetModule').css('border-color', '');
-		$('#helpEditSetModule').html('');
-	},
-	'keyup #editSetModuleShort': function () {
-		$('#editSetModuleShortLabel').css('color', '');
-		$('#editSetModuleShort').css('border-color', '');
-		$('#helpEditSetModuleShort').html('');
-	},
-	'keyup #editSetModuleNum': function () {
-		$('#editSetModuleNumLabel').css('color', '');
-		$('#editSetModuleNum').css('border-color', '');
-		$('#helpEditSetModuleNum').html('');
-	},
-	'click .moduleRadioButton': function (event) {
-		if ($(event.currentTarget).val() === "true") {
-			Session.set('moduleActive', true);
-			$('.moduleBody').css('display', '');
-		} else {
-			Session.set('moduleActive', false);
-			$('.moduleBody').css('display', 'none');
-		}
-	}
-});
-
-/*
- * ############################################################################
  * cardsetPreview
  * ############################################################################
  */
@@ -417,38 +201,6 @@ Template.cardsetPreview.events({
 Template.cardsetPreview.onCreated(function () {
 	Cards._collection.remove({cardset_id: Router.current().params._id});
 });
-
-/*
- * ############################################################################
- * descriptionEditorEdit
- * ############################################################################
- */
-
-Template.descriptionEditorEdit.rendered = function () {
-	$("#editSetDescription").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		iconlibrary: "fa",
-		footer: "<p></p>",
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'fa fa-file-image-o',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "fa fa-superscript",
-					callback: tex
-				}]
-			}]
-		]
-	});
-};
 
 /*
  * ############################################################################

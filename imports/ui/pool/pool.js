@@ -328,6 +328,11 @@ Template.poolTitleContent.helpers({
 			return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
 		}
 		return text;
+	},
+	gotDescription: function (text) {
+		if (text !== "" && text !== undefined) {
+			return true;
+		}
 	}
 });
 

@@ -92,6 +92,7 @@
                                     <li>
                                         <a href="#" class="filterCollege active" data-id="">{{_
                                                 "set-list.everything"}}</a>
+                                        <a href="#" class="filterNoModule active" data-id="">{{_ "set-list.noCollege"}}</a>
                                     </li>
                                     {{#each getColleges}}
                                         <li>
@@ -117,6 +118,7 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#" class="filterCourse active" data-id="">{{_ "set-list.everything"}}</a>
+                                    <a href="#" class="filterNoModule active" data-id="">{{_ "set-list.noCourse"}}</a>
                                 </li>
                                 {{#each getCourses}}
                                     <li>
@@ -333,18 +335,18 @@
                 this.owner}}</span>
     </a>
     {{#unless singleUniversity}}
-        <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{this.college}}">
+        <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{#if this.moduleActive}}{{this.college}}{{else}}{{_ "set-list.noCollege"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
             <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCollege"
-                  data-id="{{this.college}}">{{this.college}}</span>
+                  data-id="{{this.college}}">{{#if this.moduleActive}}{{this.college}}{{else}}{{_ "set-list.noCollege"}}{{/if}}</span>
         </a>
     {{/unless}}
-    <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{this.course}}">
+    <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_ "set-list.noCourse"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
         <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCourse"
-              data-id="{{this.course}}">{{this.course}}</span>
+              data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_ "set-list.noCourse"}}{{/if}}</span>
     </a>
     <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}" title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_ "set-list.noModuleLong"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
@@ -430,7 +432,8 @@
 </template>
 
 <template name="poolTitleContent">
-    <div class="tip-content">{{#markdown}}{{getMaximumText content.description}}{{/markdown}}</div>
+    <div class="tip-content">{{#if gotDescription content.description}}{{#markdown}}{{getMaximumText content.description}}{{/markdown}}{{else}}{{_
+        "set-list.noDescription"}}{{/if}}</div>
     <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topic"}}
         :</span>

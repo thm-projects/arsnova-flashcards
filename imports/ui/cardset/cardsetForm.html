@@ -1,0 +1,211 @@
+<template name="cardsetForm">
+    <div class="modal fade" id="setCardsetModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="setCardsetModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{#unless isActiveRoute 'admin_cardset'}}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 id="setCardsetModalTitle" class="modal-title">
+                            {{#if isNewCardset}}
+                                {{_ "modal-dialog.newcarddeck"}}
+                            {{else}}
+                                {{_ "modal-dialog.editcard"}}
+                            {{/if}}
+                        </h4>
+                    </div>
+                {{/unless}}
+                {{> cardsetFormContent}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardsetFormContent">
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group setdetails name">
+                <label id="setNameLabel" class="col-md-3 control-label"
+                       for="setName">{{_ "modal-dialog.name"}}</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="setName"
+                           placeholder="{{_ "modal-dialog.nameplaceholder"}}"
+                           value="{{#if isNewCardset}}{{getShuffleName}}{{else}}{{name}}{{/if}}">
+                    <span id="helpSetName" class="help-block name"></span>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                                <span class="moduleRadioButtonGroup">
+                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio"
+                                                                                              class="moduleRadioButton"
+                                                                                              name="optradio"
+                                                                                              value="true"
+                                                                                              checked="{{#if
+                                                                                                      isModuleActive}}checked{{/if}}">{{_
+                                            "modal-dialog.moduleActivated"}}</label>
+                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio"
+                                                                                          class="moduleRadioButton"
+                                                                                          name="optradio" value="false"
+                                                                                          checked="{{#unless
+                                                                                                  isModuleActive}}checked{{/unless}}">{{_
+                                        "modal-dialog.moduleDeactivated"}}</label>
+                                </span>
+                </div>
+                <br>
+                <div class="form-group setdetails description module">
+                    <label id="setDescriptionLabel" class="col-md-2 control-label"
+                           for="setDescription">{{_ "modal-dialog.description"}} {{#unless
+                            isModuleActive}}{{_ "modal-dialog.optional"}}{{/unless}}</label>
+                    <div class="col-md-10">
+                                         <textarea class="form-control" data-provide="markdown" rows="6"
+                                                   placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"
+                                                   id="setDescription"
+                                                   value="{{#if
+                                                           isNewCardset}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>
+                        <span id="helpSetDescription" class="help-block description"></span>
+                    </div>
+                </div>
+                <div class="moduleBody" style="display: {{#unless isModuleActive}}none{{/unless}}">
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLabel" class="col-md-3 control-label"
+                               for="setModule">{{_ "modal-dialog.module"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModule"
+                                   placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                   value="{{#if
+                                           isNewCardset}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
+                            <span id="helpSetModule" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleShortLabel" class="col-md-3 control-label"
+                               for="setModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleShort"
+                                   placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                   value="{{#if
+                                           isNewCardset}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
+                            <span id="helpSetModuleShort" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleNumLabel" class="col-md-3 control-label"
+                               for="setModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleNum"
+                                   placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                   value="{{#if
+                                           isNewCardset}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
+                            <span id="helpSetModuleNum" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLinkLabel" class="col-md-3 control-label"
+                               for="setModuleLink">{{_
+                                "modal-dialog.moduleLink"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleLink"
+                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                   value="{{#if
+                                           isNewCardset}}{{getShuffleModuleLink}}{{else}}{{moduleLink}}{{/if}}">
+                        </div>
+                    </div><!-- / module textfield -->
+                    {{#unless singleUniversity}}
+                        <!-- start college Dropdown -->
+                        <div class="form-group setdetails categories module">
+                            <label id="setCollegeLabel" class="col-md-3 control-label" for="setCollege">{{_
+                                    "modal-dialog.college"}}</label>
+                            <div class="dropup">
+                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                    <button id="setCollege" type="button"
+                                            class="btn btn-default btn-raised setCollegeDropdown longButton"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false"
+                                            value="{{#unless isNewCardset}}{{getCollege this.college
+                                                                                        0}}{{/unless}}">{{#if
+                                            isNewCardset}}{{#unless isShuffleRoute}}{{_
+                                            "modal-dialog.college_required"}}{{/unless}}{{else}}{{getCollege this.college
+                                                                                                1}}{{/if}}</button>
+                                    <button class="btn dropdown-toggle btn-raised setCollegeDropdown"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+                                    <ul class="dropdown-menu longButton">
+                                        {{#each getColleges}}
+                                            <li class="college" value="{{_id}}" data="{{this.college}}"><a
+                                                    href="#">{{this.college}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                    <span id="helpSetCollege" class="help-block college"></span>
+                                </div>
+                            </div>
+                        </div><!-- / college Dropdown -->
+                    {{/unless}}
+                    <!-- start course Dropdown -->
+                    <div class="form-group setdetails categories module">
+                        <label id="setCourseLabel" class="col-md-3 control-label" for="setCourse">{{_
+                                "modal-dialog.course"}}</label>
+                        <div class="dropup">
+                            <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                <button id="setCourse" type="button"
+                                        class="btn btn-raised btn-default setCourseDropdown longButton"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"
+                                        value="{{#unless isNewCardset}}{{getCourse this.course
+                                                                                   0}}{{/unless}}" {{isDisabled
+                                        this.college}}>{{#if isNewCardset}}{{#unless isShuffleRoute}}{{_
+                                        "modal-dialog.course_required"}}{{/unless}}{{else}}{{getCourse this.course
+                                                                                          1}}{{/if}}</button>
+                                <button type="button"
+                                        class="btn btn-raised dropdown-toggle setCourseDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" {{isDisabled
+                                        this.college}}>
+                                    <span class="caret"></span>
+                                    <span class="sr-only"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-raised longButton">
+                                    {{#each getCourses}}
+                                        <li class="course" value="{{_id}}" data="{{this.course}}"><a
+                                                href="#">{{this.course}}</a></li>
+                                    {{/each}}
+                                </ul>
+                                <span id="helpSetCourse" class="help-block course"></span>
+                            </div>
+                        </div>
+                    </div><!-- / course Dropdown -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#unless isActiveRoute 'admin_cardset'}}
+        <div class="modal-footer">
+            {{#unless isNewCardset}}
+                {{#unless learningActive}}
+                    <button id="cardSetDelete"
+                            class="btn btn-raised btn-danger btn-block btn-setDelete col-xs-12 col-sm-3">{{_
+                            "modal-dialog.delete"}}</button>
+                    <button id="cardSetConfirm"
+                            class="btn btn-raised btn-warning btn-block col-xs-12 col-sm-3"
+                            style="display:none">{{_
+                            "modal-dialog.confirm"}}</button>
+                {{/unless}}
+            {{/unless}}
+            <button id="cardSetCancel" class="btn btn-raised {{#unless
+                    isNewCardset}}cardSetCancel{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
+                    data-dismiss="modal">{{_
+                    "modal-dialog.cancel"}}</button>
+            <button id="cardSetSave"
+                    class="btn btn-raised btn-success btn-block col-xs-12 col-sm-3 pull-right">{{#if
+                    isNewCardset}}{{_ "modal-dialog.createcarddeck"}}{{else}}{{_
+                    "modal-dialog.save"}}{{/if}}</button>
+        </div>
+    {{/unless}}
+</template>

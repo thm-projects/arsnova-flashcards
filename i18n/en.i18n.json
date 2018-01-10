@@ -208,7 +208,10 @@
     "both": "Leitner & Woźniak",
     "none": "None",
     "levelOfLearning": "Progress",
-    "noModuleLong": "Without module",
+    "noDescription": "No description available",
+    "noCollege": "No college",
+    "noCourse": "No course",
+    "noModuleLong": "No module",
     "noModuleShort": "None"
   },
   "set-list-empty": {
@@ -230,6 +233,7 @@
     "descriptionplaceholder": "Description for the content of this cardset",
     "categoryplaceholder": "Choose a category",
     "description": "Description",
+    "optional": "(Optional)",
     "category": "Category",
     "visibility": "Visible for",
     "visibilityoption1": "Private",
@@ -275,7 +279,7 @@
     "course_required": "Choose a course",
     "manageEditors": "Manage Editors for cardset \"__name__\"",
     "module": "Module",
-    "moduleActivated": "With Module",
+    "moduleActivated": "Belongs to a Module",
     "moduleDeactivated": "Without Module",
     "module_required": "The full name of the module is required!",
     "moduleShort": "Initials",
