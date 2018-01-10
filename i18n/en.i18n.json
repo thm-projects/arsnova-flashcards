@@ -634,6 +634,7 @@
   "cardType2": "Notes",
   "frontside": "Front",
   "backside": "Back",
+  "backsideCardType2": "Rework",
   "preview": "Preview",
   "previewEdit": "Preview",
   "of": "of",

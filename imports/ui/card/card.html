@@ -56,14 +56,16 @@
         <button id="editFront" type="button"
                 class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
                                                                                                      1}}col-sm-6{{/if}}{{#if
-                        isCardType 2}}col-sm-12{{/if}}"
+                        isCardType 2}}col-sm-6{{/if}}"
                 tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
+        <button id="editBack" type="button"
+                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
+                                                                                                     2}}col-sm-6{{/if}}{{#if
+                        isCardType
+                        1}}col-sm-6{{/if}}"
+                tabindex="6">{{#unless isCardType 2}}{{_ "backside"}}{{else}}{{_
+                "backsideCardType2"}}{{/unless}}</button>
         {{#unless isCardType 2}}
-            <button id="editBack" type="button"
-                    class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
-                                                                                                         1}}col-sm-6{{/if}}"
-                    tabindex="6">{{_
-                    "backside"}}</button>
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                         tabindex="8">{{_
@@ -312,24 +314,27 @@
                                         {{getCardTypeName}}
                                         {{#unless isLecturePreview}}
                                             {{#unless isHintPreview}}
-                                                {{#unless isCardType 2}}
-                                                    {{#unless isEditMode}}
-                                                        <span class="cardfront"
-                                                              style="display: {{#if isCardType 1}}{{#if
-                                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{_
-                                                                "frontside"}}</span><span
-                                                            class="cardback"
-                                                            style="display: {{#if isCardType 1}}{{#unless
-                                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
-                                                            "backside"}}</span>
-                                                    {{else}}
-                                                        {{#if isFrontPreview}}
-                                                            <span class="cardSideText">{{_ "frontside"}}</span>
-                                                        {{/if}}
-                                                        {{#if isBackPreview}}
-                                                            <span class="cardSideText">{{_ "backside"}}</span>
-                                                        {{/if}}
-                                                    {{/unless}}
+                                                {{#unless isEditMode}}
+                                                    <span class="cardfront"
+                                                          style="display: {{#if isCardType 1}}{{#if
+                                                                  reversedViewOrder}}none{{/if}}{{/if}}">{{#unless
+                                                            isCardType 2}}{{_ "frontside"}}{{else}}{{_
+                                                            "cardType2"}}{{/unless}}</span><span
+                                                        class="cardback"
+                                                        style="display: {{#if isCardType 1}}{{#unless
+                                                                reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#unless
+                                                        isCardType 2}}{{_ "backside"}}{{else}}{{_
+                                                        "backsideCardType2"}}{{/unless}}</span>
+                                                {{else}}
+                                                    {{#if isFrontPreview}}
+                                                        <span class="cardSideText">{{#unless isCardType 2}}{{_
+                                                                "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</span>
+                                                    {{/if}}
+                                                    {{#if isBackPreview}}
+                                                        <span class="cardSideText">{{#unless isCardType 2}}{{_
+                                                                "backside"}}{{else}}{{_
+                                                                "backsideCardType2"}}{{/unless}}</span>
+                                                    {{/if}}
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
