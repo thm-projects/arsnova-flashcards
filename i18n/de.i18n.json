@@ -602,6 +602,7 @@
   "cardType2": "Mitschrift",
   "frontside": "Vorderseite",
   "backside": "Rückseite",
+  "backsideCardType2": "Nachbearbeitung",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",

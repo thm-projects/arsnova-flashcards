@@ -981,8 +981,6 @@ Template.flashcards.helpers({
 				return TAPi18n.__('cardType0');
 			case 1:
 				return TAPi18n.__('cardType1');
-			case 2:
-				return TAPi18n.__('cardType2');
 		}
 	},
 	getDifficultyName: function () {
@@ -1057,7 +1055,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if ((!isEditMode() || (isEditMode() && Session.get('fullscreen'))) && this.cardType !== 2 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if ((!isEditMode() || (isEditMode() && Session.get('fullscreen'))) && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
 			turnCard();
 		}
 	},
