@@ -69,7 +69,8 @@ const CardsetsSchema = new SimpleSchema({
 		type: String
 	},
 	description: {
-		type: String
+		type: String,
+		optional: true
 	},
 	date: {
 		type: Date
@@ -139,10 +140,12 @@ const CardsetsSchema = new SimpleSchema({
 		optional: true
 	},
 	college: {
-		type: String
+		type: String,
+		optional: true
 	},
 	course: {
-		type: String
+		type: String,
+		optional: true
 	},
 	learningActive: {
 		type: Boolean

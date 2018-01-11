@@ -59,301 +59,184 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">{{_ "admin.cardset.settings"}}</div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label id="editCardsetNameLabelAdmin">{{_ "admin.cardset.name"}}</label>
-                            <input class="form-control" type="text" id="editCardsetNameAdmin" value="{{name}}">
-                            <span id="helpEditCardsetNameAdmin" class="help-block name"></span>
-                        </div>
-                        <div class="form-group">
-                            <label id="editCardsetDescriptionLabelAdmin">{{_ "admin.cardset.description"}}</label>
-                            <textarea class="form-control" type="text" id="editCardsetDescriptionAdmin"
-                                      value="{{description}}" rows="5"></textarea>
-                            <span id="helpEditCardsetDescriptionAdmin" class="help-block description"></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel panel-primary">
-                    <div class="panel-heading">{{_ "modal-dialog.module"}}
-                        <span class="pull-right">
-                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
-                                                                       name="optradio" value="true"
-                                                                       checked="{{#if moduleActive}}checked{{/if}}">{{_
-                                            "modal-dialog.moduleActivated"}}</label>
-                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton"
-                                                                   name="optradio" value="false" checked="{{#unless
-                                        moduleActive}}checked{{/unless}}">{{_
-                                        "modal-dialog.moduleDeactivated"}}</label>
-                                </span>
-                    </div>
-                    <div class="moduleBody" style="display: {{#unless moduleActive}}none{{/unless}}">
-                        <div class="form-group setdetails name row" id="module">
-                            <label id="editCardsetModuleLabelAdmin" class="col-md-3 control-label"
-                                   for="editCardsetModuleAdmin">{{_ "modal-dialog.module"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="editCardsetModuleAdmin"
-                                       value="{{module}}">
-                                <span id="helpEditCardsetModuleAdmin" class="help-block name"></span>
-                            </div>
-                        </div><!-- / module textfield -->
-                        <!-- start module textfield -->
-                        <div class="form-group setdetails name row" id="module">
-                            <label id="editCardsetModuleShortLabelAdmin" class="col-md-3 control-label"
-                                   for="editCardsetModuleShortAdmin">{{_ "modal-dialog.moduleShort"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="editCardsetModuleShortAdmin"
-                                       value="{{moduleToken}}">
-                                <span id="helpEditCardsetModuleShortAdmin" class="help-block name"></span>
-                            </div>
-                        </div><!-- / module textfield -->
-                        <!-- start module textfield -->
-                        <div class="form-group setdetails name row" id="module">
-                            <label id="editCardsetModuleNumLabelAdmin" class="col-md-3 control-label"
-                                   for="editCardsetModuleNumAdmin">{{_ "modal-dialog.moduleNum"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="editCardsetModuleNumAdmin"
-                                       value="{{moduleNum}}">
-                                <span id="helpEditCardsetModuleNumAdmin" class="help-block name"></span>
-                            </div>
-                        </div><!-- / module textfield -->
-                        <div class="form-group setdetails name" id="module">
-                            <label id="editSetModuleLinkLabelAdmin" class="col-md-3 control-label"
-                                   for="editSetModuleLinkAdmin">{{_
-                                    "modal-dialog.moduleLink"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="editSetModuleLinkAdmin"
-                                       placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                       value="{{moduleLink}}">
-                            </div>
-                        </div><!-- / module textfield -->
-                        <br>
-                        <br>
-                    </div>
+                    <br>
+                    <br>
+                    {{> cardsetFormContent}}
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{#unless singleUniversity}}
-                            <!-- start college Dropdown -->
-                            <div class="form-group setdetails categories row">
-                                <label id="editCardsetCollegeLabelAdmin" class="col-md-3 control-label"
-                                       for="editCardsetCollegeAdmin">{{_
-                                        "modal-dialog.college"}}</label>
-                                <div class="dropup">
-                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
-                                        <button type="button" id="editCardsetCollegeAdmin"
-                                                class="btn btn-raised editCardsetCollegeDropdownAdmin longButton"
-                                                data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" value="{{this.college}}">{{this.college}}</button>
-                                        <button class="btn btn-raised dropdown-toggle editCardsetCollegeDropdownAdmin"
-                                                type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="true">
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-                                        <ul class="dropdown-menu longButton">
-                                            {{#each getColleges}}
-                                                <li class="collegeAdmin" value="{{this.college}}"
-                                                    data="{{this.college}}"><a
-                                                        href="#">{{this.college}}</a></li>
-                                            {{/each}}
-                                        </ul>
-                                        <span id="helpEditCardsetCollegeAdmin" class="help-block collegeAdmin"></span>
-                                    </div>
-                                </div>
-                            </div><!-- / college Dropdown -->
-                        {{/unless}}
-                        <!-- start course Dropdown -->
-                        <div class="form-group setdetails categories row">
-                            <label id="editCardsetCourseLabelAdmin" class="col-md-3 control-label"
-                                   for="editCardsetCourseAdmin">{{_
-                                    "modal-dialog.course"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9" role="group">
-                                    <button type="button" id="editCardsetCourseAdmin"
-                                            class="btn btn-raised editCardsetCourseDropdownAdmin longButton"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" value="{{this.course}}">{{this.course}}</button>
-                                    <button type="button"
-                                            class="btn btn-raised dropdown-toggle editCardsetCourseDropdownAdmin"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        {{#each getCourses}}
-                                            <li class="courseAdmin" value="{{this.course}}" data="{{this.course}}">
-                                                <a
-                                                        href="#">{{this.course}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpEditCardsetCourseAdmin" class="help-block courseAdmin"></span>
-                                </div>
+                    <div class="form-group">
+                        <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_
+                                "admin.cardset.kind"}}</label>
+                        <div class="controls">
+                            <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
+                                <label id="kindoption0Admin"
+                                       class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="personal" id="kind_private_admin">
+                                    <div>Private</div>
+                                </label>
+                                <label id="kindoption1Admin"
+                                       class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="free" id="kind_free_admin">
+                                    <div>Free</div>
+                                </label>
+                                <label id="kindoption2Admin"
+                                       class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="edu" id="kind_edu_admin">
+                                    <div>Edu</div>
+                                </label>
+                                <label id="kindoption3Admin"
+                                       class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
+                                    <input type="radio" name="kind" value="pro" id="kind_pro_admin">
+                                    <div>Pro</div>
+                                </label>
                             </div>
-                        </div><!-- / course Dropdown -->
-                        <div class="form-group">
-                            <label id="editCardsetKindLabelAdmin" for="newSetDescription">{{_
-                                    "admin.cardset.kind"}}</label>
-                            <div class="controls">
-                                <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
-                                    <label id="kindoption0Admin"
-                                           class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="personal" id="kind_private_admin">
-                                        <div>Private</div>
-                                    </label>
-                                    <label id="kindoption1Admin"
-                                           class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="free" id="kind_free_admin">
-                                        <div>Free</div>
-                                    </label>
-                                    <label id="kindoption2Admin"
-                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="edu" id="kind_edu_admin">
-                                        <div>Edu</div>
-                                    </label>
-                                    <label id="kindoption3Admin"
-                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="pro" id="kind_pro_admin">
-                                        <div>Pro</div>
-                                    </label>
-                                </div>
-                            </div>
-                            <span id="helpEditCardsetKindAdmin" class="help-block kind"></span>
                         </div>
-                        {{#if kindWithPrice}}
-                            <div class="form-group">
-                                <label id="publishPriceLabelAdmin" for="publishPrice">{{_ "admin.cardset.price"}}
-                                    (€)</label>
-                                <div class="input-group">
-                                    <select id="publishPriceAdmin" class="form-control">
-                                        <option {{priceIsSelected 0.99}}>{{getPrice "0.99" false}}</option>
-                                        <option {{priceIsSelected 1.99}}>{{getPrice "1.99" false}}</option>
-                                        <option {{priceIsSelected 2.99}}>{{getPrice "2.99" false}}</option>
-                                        <option {{priceIsSelected 3.99}}>{{getPrice "3.99" false}}</option>
-                                        <option {{priceIsSelected 4.99}}>{{getPrice "4.99" false}}</option>
-                                        <option {{priceIsSelected 5.99}}>{{getPrice "5.99" false}}</option>
-                                        <option {{priceIsSelected 6.99}}>{{getPrice "6.99" false}}</option>
-                                        <option {{priceIsSelected 7.99}}>{{getPrice "7.99" false}}</option>
-                                        <option {{priceIsSelected 8.99}}>{{getPrice "8.99" false}}</option>
-                                        <option {{priceIsSelected 9.99}}>{{getPrice "9.99" false}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        {{/if}}
-                        {{#if isPublished}}
-                            <div class="form-group">
-                                <label id="editCardsetLicenseLabelAdmin">{{_ "admin.cardset.license"}}</label>
-                                <div class="controls">
-                                    <div id="cc-modules-admin" class="btn-group" data-toggle="buttons">
-                                        <label id="cc-option0-admin"
-                                               class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="checkbox" autocomplete="off" value="by" id="cc-by-admin">
-                                            <img src="/img/by.large.png" alt="Namensnennung"/>
-                                        </label>
-                                        <label id="cc-option1-admin"
-                                               class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="checkbox" autocomplete="off" value="nc" id="cc-nc-admin">
-                                            <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
-                                        </label>
-                                        <label id="cc-option2-admin"
-                                               class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="checkbox" autocomplete="off" value="nd" id="cc-nd-admin">
-                                            <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
-                                        </label>
-                                        <label id="cc-option3-admin"
-                                               class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}"
-                                               style="width:100px">
-                                            <input type="checkbox" autocomplete="off" value="sa" id="cc-sa-admin">
-                                            <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/>
-                                        </label>
-                                    </div>
-                                    <span id="helpCC-modules-admin" class="help-block cc-modules"></span>
-                                </div>
-                                <div id=cc-description-admin class="col-md-12">
-                                    <div class="row">
-                                        <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
-                                    </div>
-                                    <div class="row">
-                                        <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
-                                    </div>
-                                    <div class="row">
-                                        <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
-                                    </div>
-                                    <div class="row">
-                                        <img class="col-md-2" src="/img/sa.large.png"
-                                             alt="Weitergabe unter gleichen Bedingungen"/>
-                                        <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/if}}
+                        <span id="helpEditCardsetKindAdmin" class="help-block kind"></span>
                     </div>
+                    {{#if kindWithPrice}}
+                        <div class="form-group">
+                            <label id="publishPriceLabelAdmin" for="publishPrice">{{_ "admin.cardset.price"}}
+                                (€)</label>
+                            <div class="input-group">
+                                <select id="publishPriceAdmin" class="form-control">
+                                    <option {{priceIsSelected 0.99}}>{{getPrice "0.99" false}}</option>
+                                    <option {{priceIsSelected 1.99}}>{{getPrice "1.99" false}}</option>
+                                    <option {{priceIsSelected 2.99}}>{{getPrice "2.99" false}}</option>
+                                    <option {{priceIsSelected 3.99}}>{{getPrice "3.99" false}}</option>
+                                    <option {{priceIsSelected 4.99}}>{{getPrice "4.99" false}}</option>
+                                    <option {{priceIsSelected 5.99}}>{{getPrice "5.99" false}}</option>
+                                    <option {{priceIsSelected 6.99}}>{{getPrice "6.99" false}}</option>
+                                    <option {{priceIsSelected 7.99}}>{{getPrice "7.99" false}}</option>
+                                    <option {{priceIsSelected 8.99}}>{{getPrice "8.99" false}}</option>
+                                    <option {{priceIsSelected 9.99}}>{{getPrice "9.99" false}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if isPublished}}
+                        <div class="form-group">
+                            <label id="editCardsetLicenseLabelAdmin">{{_ "admin.cardset.license"}}</label>
+                            <div class="controls">
+                                <div id="cc-modules-admin" class="btn-group" data-toggle="buttons">
+                                    <label id="cc-option0-admin"
+                                           class="btn btn-default {{#if licenseIsActive 'by'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="by" id="cc-by-admin">
+                                        <img src="/img/by.large.png" alt="Namensnennung"/>
+                                    </label>
+                                    <label id="cc-option1-admin"
+                                           class="btn btn-default {{#if licenseIsActive 'nc'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="nc" id="cc-nc-admin">
+                                        <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                    </label>
+                                    <label id="cc-option2-admin"
+                                           class="btn btn-default {{#if licenseIsActive 'nd'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="nd" id="cc-nd-admin">
+                                        <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                    </label>
+                                    <label id="cc-option3-admin"
+                                           class="btn btn-default {{#if licenseIsActive 'sa'}}active{{/if}}"
+                                           style="width:100px">
+                                        <input type="checkbox" autocomplete="off" value="sa" id="cc-sa-admin">
+                                        <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/>
+                                    </label>
+                                </div>
+                                <span id="helpCC-modules-admin" class="help-block cc-modules"></span>
+                            </div>
+                            <div id=cc-description-admin class="col-md-12">
+                                <div class="row">
+                                    <img class="col-md-2" src="/img/by.large.png" alt="Namensnennung"/>
+                                    <p class="col-md-10">{{_ "modal-dialog.by-desc"}}</p>
+                                </div>
+                                <div class="row">
+                                    <img class="col-md-2" src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                    <p class="col-md-10">{{_ "modal-dialog.nc-desc"}}</p>
+                                </div>
+                                <div class="row">
+                                    <img class="col-md-2" src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                    <p class="col-md-10">{{_ "modal-dialog.nd-desc"}}</p>
+                                </div>
+                                <div class="row">
+                                    <img class="col-md-2" src="/img/sa.large.png"
+                                         alt="Weitergabe unter gleichen Bedingungen"/>
+                                    <p class="col-md-10">{{_ "modal-dialog.sa-desc"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
                 </div>
                 {{#if this.learningActive}}
                     <div class="panel panel-default">
                         <div class="panel-heading">{{_ "admin.editLearning"}}</div>
                         <div class="panel-body">
-                                <div class="form">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
-                                        <div class="col-md-9">
-                                            <input type="number" min="1" max="100" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control" id="inputMaxCards" value="{{this.maxCards}}">
-                                            <span id="errorMaxCards" class="help-block name"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
-                                        <div class="col-md-9">
-                                            <input type="number" min="1" max="100" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control" id="inputDaysBeforeReset" value="{{this.daysBeforeReset}}">
-                                            <span id="errorDaysBeforeReset" class="help-block name"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
-                                        <div class="col-md-9">
-                                            <input type="date" class="form-control" id="inputLearningStart" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
-                                        <div class="col-md-9">
-                                            <input type="date" class="form-control" id="inputLearningEnd" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
-                                        <div class="col-md-9 form-inline">
-                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control interval" id="inputLearningInterval1" value="{{this.learningInterval.[0]}}">
-                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control interval" id="inputLearningInterval2" value="{{this.learningInterval.[1]}}">
-                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control interval" id="inputLearningInterval3" value="{{this.learningInterval.[2]}}">
-                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control interval" id="inputLearningInterval4" value="{{this.learningInterval.[3]}}">
-                                            <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                                   onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                   class="form-control interval" id="inputLearningInterval5" value="{{this.learningInterval.[4]}}">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span id="errorInputLearningInterval" class="help-block name"></span>
-                                        </div>
+                            <div class="form">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
+                                    <div class="col-md-9">
+                                        <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control" id="inputMaxCards" value="{{this.maxCards}}">
+                                        <span id="errorMaxCards" class="help-block name"></span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">{{_
+                                            "confirmLearn-form.daysBeforeReset"}}</label>
+                                    <div class="col-md-9">
+                                        <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control" id="inputDaysBeforeReset"
+                                               value="{{this.daysBeforeReset}}">
+                                        <span id="errorDaysBeforeReset" class="help-block name"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">{{_
+                                            "confirmLearn-form.learningStart"}}</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" id="inputLearningStart" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" id="inputLearningEnd" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">{{_
+                                            "confirmLearn-form.learningInterval"}}</label>
+                                    <div class="col-md-9 form-inline">
+                                        <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control interval" id="inputLearningInterval1"
+                                               value="{{this.learningInterval.[0]}}">
+                                        <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control interval" id="inputLearningInterval2"
+                                               value="{{this.learningInterval.[1]}}">
+                                        <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control interval" id="inputLearningInterval3"
+                                               value="{{this.learningInterval.[2]}}">
+                                        <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control interval" id="inputLearningInterval4"
+                                               value="{{this.learningInterval.[3]}}">
+                                        <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                                               onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                               class="form-control interval" id="inputLearningInterval5"
+                                               value="{{this.learningInterval.[4]}}">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <span id="errorInputLearningInterval" class="help-block name"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <a href="#" id="updateLearning" class="btn btn-success btn-raised"

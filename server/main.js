@@ -28,6 +28,8 @@ import "../imports/api/paid.js";
 import "../imports/api/adminSettings.js";
 import "../imports/api/webPushSubscriptions.js";
 
-// DATABASE ------------------------------------------------------
+// STARTUP -------------------------------------------------------
 
-// SERVER METHODS ------------------------------------------------
+import { WebApp } from 'meteor/webapp';
+
+WebApp.addHtmlAttributeHook(() => ({lang: 'de'}));

@@ -5,8 +5,8 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{> cardsetsForm}}
             {{#if isActiveRoute 'create'}}
+                {{> cardsetForm}}
                 {{> create}}
             {{/if}}
 
@@ -15,6 +15,7 @@
             {{/if}}
 
             {{#if isActiveRoute 'shuffle'}}
+                {{> cardsetForm}}
                 {{> shuffle}}
             {{/if}}
         {{/if}}
@@ -37,7 +38,7 @@
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
                                data-toggle="modal"
-                               data-target="#newSetModal" {{disableIfOffline}}>{{_
+                               data-target="#setCardsetModal" {{disableIfOffline}}>{{_
                                     "set-list.shuffle"}}</a>
                         {{/if}}
                         <span class="text">
@@ -93,7 +94,7 @@
         {{/unless}}
         {{#if cardsetList.count}}
             <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                    data-target="#newSetModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                    data-target="#setCardsetModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
             {{> shuffle}}
@@ -129,7 +130,9 @@
                     {{countCards this._id}}
                 </span>
             </span>
-        <div class="tip-content">{{#markdown}}{{this.description}}{{/markdown}}</div>
+        <div class="tip-content">{{#if gotDescription
+                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}</div>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.description"}}
             :</span>
@@ -137,7 +140,8 @@
                                                                                                   'create'}}col-sm-6 col-md-7 panelUnit{{else}}
             {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
                                                                           'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
-            {{this.description}}
+            {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
+                    "set-list.noDescription"}}{{/if}}
         </span>
     </a>
     {{#if isActiveRoute 'learn'}}
@@ -213,7 +217,7 @@
                 </span>
                 <br>
                 <button id="setListEmpty" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
-                        data-target="#newSetModal">{{_ "set-list-empty.newset"}}</button>
+                        data-target="#setCardsetModal">{{_ "set-list-empty.newset"}}</button>
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}
@@ -258,180 +262,6 @@
             {{> cardsetEmpty}}
         {{/if}}
         {{> cardsetsConfirmLearnForm}}
-    </div>
-</template>
-
-<template name="descriptionEditorNew">
-    <textarea class="form-control" data-provide="markdown" rows="6" id="newSetDescription"
-              placeholder="{{_ "modal-dialog.descriptionplaceholder"}}">{{getShuffleDescription}}</textarea>
-</template>
-
-<template name="cardsetsForm">
-    <div class="modal fade" id="newSetModal" data-backdrop="static" tabindex="-1" role="dialog"
-         aria-labelledby="newSetModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="newSetModalTitle" class="modal-title">{{_ "modal-dialog.newcarddeck"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group setdetails name">
-                            <label id="newSetNameLabel" class="col-md-3 control-label"
-                                   for="newSetName">{{_ "modal-dialog.name"}}</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="newSetName"
-                                       placeholder="{{_ "modal-dialog.nameplaceholder"}}" value="{{getShuffleName}}">
-                                <span id="helpNewSetName" class="help-block name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group setdetails description">
-                            <label id="newSetDescriptionLabel" class="col-md-3 control-label"
-                                   for="newSetDescription">{{_ "modal-dialog.description"}}</label>
-                            <div class="col-md-9">
-                                {{>descriptionEditorNew}}
-                                <span id="helpNewSetDescription" class="help-block description"></span>
-                            </div>
-                        </div>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">{{_ "modal-dialog.module"}}
-                                <span class="moduleRadioButtonGroup pull-right">
-                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton" name="optradio" value="true"
-                                                                       checked="checked">{{_
-                                            "modal-dialog.moduleActivated"}}</label>
-                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio" class="moduleRadioButton" name="optradio" value="false">{{_
-                                        "modal-dialog.moduleDeactivated"}}</label>
-                                </span>
-                            </div>
-                            <br>
-                            <div class="moduleBody">
-                                <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="newSetModuleLabel" class="col-md-3 control-label"
-                                           for="newSetModule">{{_ "modal-dialog.module"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="newSetModule"
-                                               placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
-                                               value="{{getShuffleModule}}">
-                                        <span id="helpNewSetModule" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                    <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="newSetModuleShortLabel" class="col-md-3 control-label"
-                                           for="newSetModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="newSetModuleShort"
-                                               placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
-                                               value="{{getShuffleModuleShort}}">
-                                        <span id="helpNewSetModuleShort" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                    <!-- start module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="newSetModuleNumLabel" class="col-md-3 control-label"
-                                           for="newSetModuleNum">{{_
-                                            "modal-dialog.moduleNum"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="newSetModuleNum"
-                                               placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
-                                               value="{{getShuffleModuleNum}}">
-                                        <span id="helpNewSetModuleNum" class="help-block name"></span>
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <div class="form-group setdetails name" id="module">
-                                    <label id="newSetModuleLinkLabel" class="col-md-3 control-label"
-                                           for="newSetModuleLink">{{_
-                                            "modal-dialog.moduleLink"}}</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" type="text" id="newSetModuleLink"
-                                               placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                               value="{{getShuffleModuleLink}}">
-                                    </div>
-                                </div><!-- / module textfield -->
-                                <br>
-                            </div>
-                        </div>
-                        {{#unless singleUniversity}}
-                            <!-- start college Dropdown -->
-                            <div class="form-group setdetails categories">
-                                <label id="newSetCollegeLabel" class="col-md-3 control-label" for="newSetCollege">{{_
-                                        "modal-dialog.college"}}</label>
-                                <div class="dropup">
-                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                        {{#if isActiveRoute 'shuffle'}}
-                                            <button type="button" id="newSetCollege"
-                                                    class="btn btn-raised newSetCollegeDropdown longButton"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                    value="{{getShuffleCollege 0}}">{{getShuffleCollege 1}}
-                                            </button>
-                                        {{else}}
-                                            <button type="button" id="newSetCollege"
-                                                    class="btn btn-raised newSetCollegeDropdown longButton"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                    value="">{{_ "modal-dialog.college_required"}}
-                                            </button>
-                                        {{/if}}
-                                        <button class="btn btn-raised dropdown-toggle newSetCollegeDropdown"
-                                                type="button"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="true">
-                                            <span class="caret"></span>
-                                            <span class="sr-only"></span>
-                                        </button>
-
-                                        <ul class="dropdown-menu longButton">
-                                            {{#each getColleges}}
-                                                <li class="college" value="{{_id}}" data="{{this.college}}"><a
-                                                        href="#">{{this.college}}</a></li>
-                                            {{/each}}
-                                        </ul>
-                                        <span id="helpNewSetCollege" class="help-block college"></span>
-                                    </div>
-                                </div>
-                            </div><!-- / college Dropdown -->
-                        {{/unless}}
-                        <!-- start course Dropdown -->
-                        <div class="form-group setdetails categories">
-                            <label id="newSetCourseLabel" class="col-md-3 control-label" for="newSetCourse">{{_
-                                    "modal-dialog.course"}}</label>
-                            <div class="dropup">
-                                <div class="btn-group  col-xs-12 col-sm-12 col-md-9">
-                                    <button type="button" id="newSetCourse"
-                                            class="btn btn-raised newSetCourseDropdown longButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            value="{{getShuffleCourse 1}}" {{isSingleUniversity}}>{{getShuffleCourse 0}}
-                                    </button>
-                                    <button type="button"
-                                            class="btn btn-raised dropdown-toggle newSetCourseDropdown"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false"
-                                        {{isSingleUniversity}}>
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
-                                    </button>
-                                    <ul class="dropdown-menu longButton">
-                                        {{#each getCourses}}
-                                            <li class="course" value="{{_id}}" data="{{this.course}}"><a
-                                                    href="#">{{this.course}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                    <span id="helpNewSetCourse" class="help-block course"></span>
-                                </div>
-                            </div>
-                        </div><!-- / course Dropdown -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-raised btn-default col-xs-12 col-sm-3 cancel"
-                       data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</a>
-                    <a href="create" class="btn btn-raised btn-success col-xs-12 col-sm-3 save pull-right">{{_
-                            "modal-dialog.createcarddeck"}}</a>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 

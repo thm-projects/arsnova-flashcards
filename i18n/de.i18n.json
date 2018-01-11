@@ -198,7 +198,10 @@
     "both": "Leitner & Woźniak",
     "none": "ohne",
     "levelOfLearning": "Lernstand",
-    "noModuleLong": "Ohne Modul",
+    "noDescription": "Keine Beschreibung vorhanden",
+    "noCollege": "ohne Hochschule",
+    "noCourse": "ohne Studiengang",
+    "noModuleLong": "ohne Modul",
     "noModuleShort": "ohne"
   },
   "set-list-empty": {
@@ -220,6 +223,7 @@
     "descriptionplaceholder": "Lernziele und Lerninhalte",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
+    "optional": "(Optional)",
     "category": "Kategorie",
     "visibility": "Sichtbar für",
     "visibilityoption1": "mich",
@@ -598,6 +602,7 @@
   "cardType2": "Mitschrift",
   "frontside": "Vorderseite",
   "backside": "Rückseite",
+  "backsideCardType2": "Nachbearbeitung",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",
