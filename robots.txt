@@ -1,0 +1,4 @@
+# robots.txt für arsnova.cards
+User-agent: *
+Disallow:
+Sitemap: https://arsnova.cards/sitemap.xml
