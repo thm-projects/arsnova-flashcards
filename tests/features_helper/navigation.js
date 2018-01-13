@@ -47,23 +47,10 @@ module.exports = {
 		browser.click('#pool');
 		this.checkUrl(global.poolRoute);
 	},
-	selectPoolList: function (number) {
-		browser.waitForVisible('#pool-category-region > div:nth-child(' + number + ') > a.panelUnitBorder.field-tip > span.cell', global.threshold);
-		browser.click('#pool-category-region > div:nth-child(' + number + ') > a.panelUnitBorder.field-tip > span.cell');
-		browser.waitForExist(".carousel-inner", global.threshold);
-		return browser.elements(".carousel-inner > div").value.length;
-	},
-	selectCardsetList: function (number) {
-		number = number + global.elementsBeforeCreatedList;
-		browser.waitForVisible('#set-list-region > div:nth-child(' + number + ')', global.threshold);
-		browser.click('#set-list-region > div:nth-child(' + number + ')');
-		browser.waitForExist(".carousel-inner", global.threshold);
-		return browser.elements(".carousel-inner > div").value.length;
-	},
-	selectLearnList: function (number) {
-		number = number + global.elementsBeforeLearnList;
-		browser.waitForVisible('#learn-list-region > div:nth-child(' + number + ')', global.threshold);
-		browser.click('#learn-list-region > div:nth-child(' + number + ')');
+	selectCardsetLink: function (number) {
+		number = number - 1;
+		browser.waitForVisible('#cardsetLink' + number, global.threshold);
+		browser.click('#cardsetLink' + number);
 		browser.waitForExist(".carousel-inner", global.threshold);
 		return browser.elements(".carousel-inner > div").value.length;
 	},
@@ -177,5 +164,10 @@ module.exports = {
 	clickElement: function (element) {
 		browser.waitForVisible(element, global.threshold);
 		browser.click(element);
+	},
+	resetPool: function () {
+		this.selectPool();
+		browser.waitForVisible('#resetBtn', global.threshold);
+		browser.click('#resetBtn');
 	}
 };

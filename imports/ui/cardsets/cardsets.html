@@ -75,7 +75,7 @@
                             <div class="col-xs-12 col-sm-12 panel panel-default {{#if
                                     oddRow
                                     @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                                {{> cardsetRow}}
+                                {{> cardsetRow extendContext 'index' @index}}
                             </div>
                         {{/unless}}
                     {{/each}}
@@ -105,8 +105,9 @@
             </div>
             {{#each cardsetList}}
                 <div class="col-xs-12 panel panel-default {{#if
-                        oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                    {{> cardsetRow}}
+                        oddRow
+                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
         {{else}}
@@ -116,13 +117,18 @@
 </template>
 
 <template name="cardsetRow">
-    <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
-       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+    <div class="cardsetName">
+        <div class="tip-content">{{#if gotDescription
+                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}</div>
+        <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
+           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topic"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-4 {{#if isActiveRoute 'learn'}}col-sm-3 col-md-4{{/if}} poolText panelUnit"
-              data-id="{{this._id}}">
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 {{#if isActiveRoute
+                                                                                'learn'}}col-sm-3 col-md-4{{/if}} poolText panelUnit"
+                  data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
                 </span>
@@ -130,20 +136,18 @@
                     {{countCards this._id}}
                 </span>
             </span>
-        <div class="tip-content">{{#if gotDescription
-                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
-                "set-list.noDescription"}}{{/if}}</div>
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.description"}}
-            :</span>
-        <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
-                                                                                                  'create'}}col-sm-6 col-md-7 panelUnit{{else}}
-            {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
-                                                                          'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
-            {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
-                    "set-list.noDescription"}}{{/if}}
-        </span>
-    </a>
+        </a>
+    </div>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.description"}}
+        :</span>
+    <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
+                                                                                              'create'}}col-sm-6 col-md-7 panelUnit{{else}}
+        {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
+                                                                      'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
+        {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}
+    </span>
     {{#if isActiveRoute 'learn'}}
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learnphase"}}
@@ -254,8 +258,9 @@
             </div>
             {{#each learnList}}
                 <div class="col-xs-12 panel panel-default {{#if
-                        oddRow @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                    {{> cardsetRow}}
+                        oddRow
+                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
         {{else}}

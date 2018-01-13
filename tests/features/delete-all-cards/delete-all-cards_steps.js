@@ -11,7 +11,7 @@ module.exports = function () {
 
 	this.Given(/^I am on my own cardset$/, function () {
 		navigation.selectMyCardset();
-		navigation.selectCardsetList(1);
+		navigation.selectCardsetLink(1);
 	});
 
 	this.When(/^I press the delete all cards button$/, function () {

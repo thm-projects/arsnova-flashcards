@@ -10,7 +10,7 @@ module.exports = function () {
 
 	this.When(/^change to cardset$/, function () {
 		navigation.selectMyCardset();
-		navigation.selectCardsetList(1);
+		navigation.selectCardsetLink(8);
 	});
 
 	this.Then(/^they are on the cardset$/, function () {

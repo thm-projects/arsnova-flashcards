@@ -15,7 +15,7 @@ module.exports = function () {
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
 		navigation.selectMyCardset();
-		countBeforeCreated = navigation.selectCardsetList(3);
+		countBeforeCreated = navigation.selectCardsetLink(3);
 		navigation.contentVisible(".carousel-inner");
 	});
 	/**

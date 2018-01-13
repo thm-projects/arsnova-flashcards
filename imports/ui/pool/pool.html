@@ -29,7 +29,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtn"
+                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
@@ -92,7 +92,8 @@
                                     <li>
                                         <a href="#" class="filterCollege active" data-id="">{{_
                                                 "set-list.everything"}}</a>
-                                        <a href="#" class="filterNoModule active" data-id="">{{_ "set-list.noCollege"}}</a>
+                                        <a href="#" class="filterNoModule active" data-id="">{{_
+                                                "set-list.noCollege"}}</a>
                                     </li>
                                     {{#each getColleges}}
                                         <li>
@@ -143,7 +144,8 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#" class="filterModule active" data-id="">{{_ "set-list.everything"}}</a>
-                                    <a href="#" class="filterNoModule active" data-id="">{{_ "set-list.noModuleLong"}}</a>
+                                    <a href="#" class="filterNoModule active" data-id="">{{_
+                                            "set-list.noModuleLong"}}</a>
                                 </li>
                                 {{#each getModules}}
                                     <li><a href="#" class="filterModule" data-id="{{this.module}}">
@@ -283,7 +285,7 @@
         {{#each getDecks}}
             <div class="col-xs-12 panel panel-default {{#if
                     oddRow @index}} altPanel {{/if}} cardsetInfo responsive-utilities-test visible-on">
-                {{> poolCardsetRow}}
+                {{> poolCardsetRow extendContext 'index' @index}}
             </div>
         {{/each}}
         {{#if moreResults}}
@@ -299,33 +301,38 @@
 </template>
 
 <template name="poolCardsetRow">
-    {{#if this.learningActive}}
-        {{#if isProfileCompleted this._id}}
-            {{#if isAlreadyLearning}}
-                <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-                   title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-                    {{>poolTitleContent content=this}}
-                </a>
+    <div class="cardsetName">
+        <div class="tip-content">{{#if gotDescription description}}{{#markdown}}{{getMaximumText
+                description}}{{/markdown}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}</div>
+        {{#if this.learningActive}}
+            {{#if isProfileCompleted this._id}}
+                {{#if isAlreadyLearning}}
+                    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+                       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+                        {{>poolTitleContent content=this}}
+                    </a>
+                {{else}}
+                    <a href="#" class="panelUnitBorder field-tip"
+                       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
+                       data-toggle="modal" data-target="#enterActiveLearnphaseModal">
+                        {{>poolTitleContent content=this}}
+                    </a>
+                {{/if}}
             {{else}}
                 <a href="#" class="panelUnitBorder field-tip"
                    title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-                   data-toggle="modal" data-target="#enterActiveLearnphaseModal">
+                   data-toggle="modal" data-target="#completeProfileModal">
                     {{>poolTitleContent content=this}}
                 </a>
             {{/if}}
         {{else}}
-            <a href="#" class="panelUnitBorder field-tip"
-               title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-               data-toggle="modal" data-target="#completeProfileModal">
+            <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
+               title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
                 {{>poolTitleContent content=this}}
             </a>
         {{/if}}
-    {{else}}
-        <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-            {{>poolTitleContent content=this}}
-        </a>
-    {{/if}}
+    </div>
     <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
@@ -335,24 +342,33 @@
                 this.owner}}</span>
     </a>
     {{#unless singleUniversity}}
-        <a href="#" class="filterCollege" title="Filter {{_ "set-list.college"}}: {{#if this.moduleActive}}{{this.college}}{{else}}{{_ "set-list.noCollege"}}{{/if}}">
+        <a href="#" class="filterCollege"
+           title="Filter {{_ "set-list.college"}}: {{#if this.moduleActive}}{{this.college}}{{else}}{{_
+                   "set-list.noCollege"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
             <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCollege"
-                  data-id="{{this.college}}">{{#if this.moduleActive}}{{this.college}}{{else}}{{_ "set-list.noCollege"}}{{/if}}</span>
+                  data-id="{{this.college}}">{{#if this.moduleActive}}{{this.college}}{{else}}{{_
+                    "set-list.noCollege"}}{{/if}}</span>
         </a>
     {{/unless}}
-    <a href="#" class="filterCourse" title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_ "set-list.noCourse"}}{{/if}}">
+    <a href="#" class="filterCourse"
+       title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_
+               "set-list.noCourse"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
         <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCourse"
-              data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_ "set-list.noCourse"}}{{/if}}</span>
+              data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_
+                "set-list.noCourse"}}{{/if}}</span>
     </a>
-    <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}" title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_ "set-list.noModuleLong"}}{{/if}}">
+    <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}"
+       title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_
+               "set-list.noModuleLong"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
                 "set-list.module"}}:</span>
         <span class="col-xs-6 col-md-1 hidden-sm poolContent poolText panelUnit poolModule"
-              data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_ "set-list.noModuleShort"}}{{/if}}</span>
+              data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
+                "set-list.noModuleShort"}}{{/if}}</span>
     </a>
     <span class="col-sd-2 col-md-1 kind-label hidden-xs panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
@@ -432,12 +448,10 @@
 </template>
 
 <template name="poolTitleContent">
-    <div class="tip-content">{{#if gotDescription content.description}}{{#markdown}}{{getMaximumText content.description}}{{/markdown}}{{else}}{{_
-        "set-list.noDescription"}}{{/if}}</div>
     <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topic"}}
         :</span>
-    <span class="cell col-xs-6 {{#unless
+    <span id="cardsetLink{{content.index}}" class="cell col-xs-6 cardsetName {{#unless
             singleUniversity}}col-sm-3{{else}}col-sm-4{{/unless}} poolText panelUnit" data-id="{{content._id}}">
                 <span class="cell col-xs-8 {{#unless
                         singleUniversity}}col-sm-9{{else}}col-sm-10{{/unless}} topicName" data-id="{{content._id}}">
