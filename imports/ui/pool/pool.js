@@ -317,10 +317,7 @@ Template.poolCardsetRow.helpers({
 	},
 	displayPrice: function () {
 		return this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
-	}
-});
-
-Template.poolTitleContent.helpers({
+	},
 	getMaximumText: function (text) {
 		const maxLength = 15;
 		const textSplitted = text.split(" ");
@@ -366,6 +363,9 @@ Template.poolCardsetRow.events({
 
 Template.category.events({
 	'click #resetBtn': function () {
+		resetFilters();
+	},
+	'click #resetBtnMobile': function () {
 		resetFilters();
 	},
 	'click #topicBtn': function () {

@@ -349,7 +349,7 @@ button:disabled {
   padding-bottom: 10px;
 }
 
-.field-tip .tip-content, #welcome-tip {
+.tip-content, #welcome-tip {
   max-lines: 1;
   visibility: hidden;
   width: 320px;
@@ -365,7 +365,7 @@ button:disabled {
   bottom: 115%;
 }
 
-.field-tip .tip-content::after, #welcome-tip::after {
+.tip-content::after, #welcome-tip::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -376,7 +376,7 @@ button:disabled {
   border-color: $color_thm_gray transparent transparent transparent;
 }
 
-.field-tip:hover .tip-content {
+.cardsetName:hover .tip-content {
   visibility: visible;
 }
 

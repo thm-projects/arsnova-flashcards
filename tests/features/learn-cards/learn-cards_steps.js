@@ -12,7 +12,7 @@ module.exports = function () {
 
 	this.Then(/^I'm at the leitner statistics to check my progress$/, function () {
 		navigation.selectLearnset();
-		navigation.selectLearnList(1);
+		navigation.selectCardsetLink(1);
 		cardset.collapseCardsetInfo(false);
 		cardset.leitnerProgress();
 		box1Before = navigation.getContent('#boxChart', 2, 'data-box1');

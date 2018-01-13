@@ -3,7 +3,6 @@ import * as navigation from "../../features_helper/navigation.js";
 module.exports = function () {
 	'use strict';
 	let username = "standardLogin";
-	let resetBtn = '#pool-nav > ul > li:nth-child(1) > button';
 
 	/**
 	 * ---------------------------------------------------------------------
@@ -42,7 +41,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by college button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('a[class="dropdown-toggle collegeBtn"]');
 	});
 
@@ -62,7 +61,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by course button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('a[class="dropdown-toggle courseBtn"]');
 	});
 
@@ -82,7 +81,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the filter by module button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('a[class="dropdown-toggle moduleBtn"]');
 	});
 
@@ -102,7 +101,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the free license group button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('label[class="btn btn-default btn-info btn-sm active"]');
 	});
 
@@ -118,7 +117,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the edu license group button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('label[class="btn btn-default btn-success btn-sm active"]');
 	});
 
@@ -134,7 +133,7 @@ module.exports = function () {
 	 */
 
 	this.When(/^user clicks on the pro license group button$/, function () {
-		navigation.clickElement(resetBtn);
+		navigation.resetPool();
 		navigation.clickElement('label[class="btn btn-default btn-danger btn-sm active"]');
 	});
 
