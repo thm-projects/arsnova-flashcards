@@ -400,6 +400,11 @@ img.cardside {
 
 .flipped {
   transform: translateX(-100%) rotateY(-180deg);
+
+}
+
+.disableCardTransition {
+  transition:transform 0s !important;
 }
 
 .back {
