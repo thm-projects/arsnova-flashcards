@@ -14,6 +14,12 @@ import {Paid} from "../../api/paid";
 Meteor.subscribe("collegesCourses");
 
 
+Template.registerHelper('extendContext', function (key, value) {
+	let result = _.clone(this);
+	result[key] = value;
+	return result;
+});
+
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {

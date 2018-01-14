@@ -14,7 +14,7 @@ module.exports = function () {
 	});
 	this.Given(/^he is on the view of a cardset \(EaC\)$/, function () {
 		navigation.selectMyCardset();
-		navigation.selectCardsetList(8);
+		navigation.selectCardsetLink(8);
 		navigation.contentVisible(".carousel-inner");
 	});
 	this.When(/^the user clicks on the edit button of the first card$/, function () {

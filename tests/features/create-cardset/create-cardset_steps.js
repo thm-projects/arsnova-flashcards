@@ -63,7 +63,7 @@ module.exports = function () {
 
 	this.Then(/^he should select the created cardset$/, function () {
 		navigation.contentVisible('.modal-open', false);
-		navigation.selectCardsetList(3);
+		navigation.selectCardsetLink(3);
 	});
 
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {

@@ -21,7 +21,7 @@ module.exports = function () {
 	});
 
 	this.When(/^User clicks on a cardset that he owns$/, function () {
-		navigation.selectCardsetList(1);
+		navigation.selectCardsetLink(1);
 	});
 
 	this.Then(/^he is shown the details of the cardset$/, function () {
