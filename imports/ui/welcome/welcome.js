@@ -140,6 +140,9 @@ Template.welcome.onCreated(function () {
 });
 
 Template.welcome.onRendered(function () {
+	if (Meteor.settings.public.displayLoginButtons.displayCas) {
+		$('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" alt="use CAS for login"/></a>');
+	}
 	if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
 		$('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>');
 	}
@@ -148,9 +151,6 @@ Template.welcome.onRendered(function () {
 	}
 	if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
 		$('.panel-footer').append('<a id="google" href=""><img src="img/social_google_box_white.png" alt="use google for login"/></a>');
-	}
-	if (Meteor.settings.public.displayLoginButtons.displayCas) {
-		$('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" alt="use CAS for login"/></a>');
 	}
 
 	// Backdoor for login in acceptance tests
