@@ -168,6 +168,11 @@
         {{#unless fullscreenActive}}
             <div id="footer" class="footer">
                 <ul class="container dropup">
+                    <li class="col-xs-2 col-sm-1">
+                        <a id="info" href="{{pathFor route='about'}}">
+                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                        </a>
+                    </li>
                     <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
                         data-toggle="collapse" data-target="#thm-top-navigation">
                         <a role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -179,11 +184,6 @@
                                        data-lang={{code}}>{{label.name}}</a></li>
                             {{/each}}
                         </ul>
-                    </li>
-                    <li class="col-xs-2 col-sm-1">
-                        <a id="info" href="{{pathFor route='about'}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                        </a>
                     </li>
                     <li class="col-xs-1 pull-right">
                         {{> connectionStatus}}
