@@ -125,11 +125,11 @@ $black: rgb(0, 0 ,0);
   margin: 0 auto
 }
 
-#profilepublicoption1 .active, #profilepublicoption2 .active  {
+.profilepublic-rb-text-color {
   color: $white !important;
 }
 
-.profilepublic-rb-text-color {
+.profilepublic-rb-text-color:hover {
   color: $black !important;
 }
 
