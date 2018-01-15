@@ -11,14 +11,8 @@ var initColorThemes = function () {
 		"_id": "default",
 		"name": "Default"
 	}, {
-		"_id": "aflatunense",
-		"name": "Aflatunense"
-	}, {
-		"_id": "lemonchill",
-		"name": "Lemon Chill"
-	}, {
-		"_id": "bluestar",
-		"name": "Blue Star"
+		"_id": "contrast",
+		"name": "Contrast"
 	}];
 };
 
