@@ -45,7 +45,7 @@ function createTagCloud() {
 	let heightAdjustment = 130;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
-
+	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.3;
 	let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1024);
