@@ -258,47 +258,8 @@
             {{/if}}
             {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
-                    {{#unless isDisabled}}
-                        {{#unless learningActive}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="publishCardset" class="btn btn-default" type="button"
-                                        data-toggle="modal"
-                                        data-target="#publishModal" {{disableIfOffline}}>
-                                    <i class="fa fa-eye"></i> {{getStatus}}
-                                </button>
-                                <button id="publishTooltip" type="button" class="btn btn-default pull-right"
-                                        data-toggle="tooltip"
-                                        title="{{_ "sidebar-nav.tooltip"}}">
-                                    <i class="fa fa-question"></i></button>
-                            </div>
-                        {{/unless}}
-                    {{/unless}}
-                    <div class="btn-group btn-group-raised">
-                        <button id="editCardset" class="btn btn-raised btn-default" type="button"
-                                data-toggle="modal"
-                                data-target="#setCardsetModal" {{disableIfOffline}}>
-                            <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
-                        </button>
-                    </div>
                     {{#unless learningActive}}
-                        {{#if isShuffledCardset this._id}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="editShuffle" class="btn btn-raised btn-default"
-                                        type="button" {{disableIfOffline}}>
-                                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
-                                </button>
-                            </div>
-                        {{/if}}
                         {{#unless isShuffledCardset this._id}}
-                            {{#if this.quantity}}
-                                <div class="btn-group btn-group-raised">
-                                    <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
-                                            data-toggle="modal"
-                                            data-target="#deleteCardsModal" {{disableIfOffline}}>
-                                        <i class="fa fa-trash"></i> {{_ "deleteCards"}}
-                                    </button>
-                                </div>
-                            {{/if}}
                             <div class="btn-group btn-group-raised">
                                 <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
                                    href="{{pathFor 'newCard'}}"
@@ -311,12 +272,25 @@
                                    data-target="#importModal"><i
                                         class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a>
                             </div>
-                            <div class="btn-group btn-group-raised">
-                                <a href="#" id="exportCardsBtn" class="btn btn-raised btn-default"><i
-                                        class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
-                            </div>
                         {{/unless}}
                     {{/unless}}
+                    {{#unless isDisabled}}
+                        {{#if isShuffledCardset this._id}}
+                            <div class="btn-group btn-group-raised">
+                                <button id="editShuffle" class="btn btn-raised btn-default"
+                                        type="button" {{disableIfOffline}}>
+                                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                                </button>
+                            </div>
+                        {{/if}}
+                    {{/unless}}
+                    <div class="btn-group btn-group-raised">
+                        <button id="editCardset" class="btn btn-raised btn-default" type="button"
+                                data-toggle="modal"
+                                data-target="#setCardsetModal" {{disableIfOffline}}>
+                            <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
+                        </button>
+                    </div>
                     {{#unless isShuffledCardset this._id}}
                         {{#if isPublished}}
                             <button id="selectLicense" class="btn btn-default btn-raised" type="button"
@@ -325,6 +299,38 @@
                                 <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
                             </button>
                         {{/if}}
+                    {{/unless}}
+                    {{#unless isDisabled}}
+                        {{#unless learningActive}}
+                            <div class="btn-group btn-group-raised">
+                                <button id="publishCardset" class="btn btn-default" type="button"
+                                        data-toggle="modal"
+                                        data-target="#publishModal" {{disableIfOffline}}>
+                                    <i class="fa fa-eye"></i> {{getStatus}}
+                                </button>
+                                <button id="publishTooltip" type="button" class="btn btn-default"
+                                        data-toggle="tooltip"
+                                        title="{{_ "sidebar-nav.tooltip"}}">
+                                    <i class="fa fa-question"></i></button>
+                            </div>
+                        {{/unless}}
+                    {{/unless}}
+                    {{#unless learningActive}}
+                        {{#unless isShuffledCardset this._id}}
+                            <div class="btn-group btn-group-raised">
+                                <a href="#" id="exportCardsBtn" class="btn btn-raised btn-default"><i
+                                        class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
+                            </div>
+                            {{#if this.quantity}}
+                                <div class="btn-group btn-group-raised pull-right">
+                                    <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                                            data-toggle="modal"
+                                            data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                        <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                                    </button>
+                                </div>
+                            {{/if}}
+                        {{/unless}}
                     {{/unless}}
                 </div>
             {{/if}}
