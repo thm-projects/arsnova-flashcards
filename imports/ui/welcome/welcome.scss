@@ -93,7 +93,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-THM {
   font-weight: bold;
-  color:$color_thm_green;
+  color: $color_thm_green;
 }
 
 .color-dot:before {
@@ -102,9 +102,14 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   font-size: 1.7vw;
 }
 
-.color-dot,  .color-cards {
+.color-dot {
   font-weight: bold;
-  color:$color_thm_gray;
+  color: $color_thm_gray;
+}
+
+.color-cards {
+  font-weight: bold;
+  color: $color_thm_gray;
 }
 
 .logo-header-chars {
@@ -112,7 +117,6 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   font-size: 0.5em; /* Fallback for old devices */
   font-size: 4.5vw;
   margin: 5px 0;
-  padding-left: 1vw;
 }
 
 .logo-header-beginning {
@@ -130,7 +134,6 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     cursor: default;
     font-size: 0.75em; /* Fallback for old devices */
     font-size: 6.75vw;
-    padding-left: 2vw;
   }
 
   .logo-header-beginning {
