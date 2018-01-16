@@ -90,3 +90,57 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     margin-top: 0;
   }
 }
+
+.color-THM {
+  font-weight: bold;
+  color:$color_thm_green;
+}
+
+.color-dot:before {
+  content: ' \25CF';
+  font-size: 0.2em; /* Fallback for old devices */
+  font-size: 1.7vw;
+}
+
+.color-dot,  .color-cards {
+  font-weight: bold;
+  color:$color_thm_gray;
+}
+
+.logo-header-chars {
+  cursor: default;
+  font-size: 0.5em; /* Fallback for old devices */
+  font-size: 4.5vw;
+  margin: 5px 0;
+  padding-left: 1vw;
+}
+
+.logo-header-beginning {
+  font-size: 0.8em; /* Fallback for old devices */
+  font-size: 5.2vw;
+}
+
+@media (max-width: 1025px) {
+  .color-dot:before {
+    font-size: 0.3em; /* Fallback for old devices */
+    font-size: 2.55vw;
+  }
+
+  .logo-header-chars {
+    cursor: default;
+    font-size: 0.75em; /* Fallback for old devices */
+    font-size: 6.75vw;
+    padding-left: 2vw;
+  }
+
+  .logo-header-beginning {
+    font-size: 1.2em; /* Fallback for old devices */
+    font-size: 7.8vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  #cards-welcome-image {
+    margin-top: -10px;
+  }
+}

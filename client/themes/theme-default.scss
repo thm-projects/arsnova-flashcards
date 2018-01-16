@@ -1,10 +1,12 @@
+@import "changing-colors-definitions";
+
 @function theme-default() {
   @return (
-          primary-color: #009688,
-          accent: #607D8B,
+          primary-color: #4a5c66,
+          accent: #80ba24,
           primary-text: #212121,
-          secondary-text: #757575,
+          secondary-text: #ffffff,
           divider-color: #BDBDBD,
-          accent_300: #90A4AE
+          accent_300: #f0efef
   );
 }

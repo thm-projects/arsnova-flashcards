@@ -1,9 +1,9 @@
 import * as global from "./global.js";
 
 function agreeCookies() {
-	browser.waitForExist('div.cc-window.cc-banner > div > a', global.threshold);
+	browser.waitForExist('body > div.cc-window.cc-floating.cc-type-info.cc-theme-classic.cc-top.cc-left.cc-color-override-722956343 > div > a', global.threshold);
 	browser.setCookie({name: 'cookieconsent_dismissed', value: 'yes'});
-	browser.click('div.cc-window.cc-banner > div > a');
+	browser.click('body > div.cc-window.cc-floating.cc-type-info.cc-theme-classic.cc-top.cc-left.cc-color-override-722956343 > div > a');
 }
 
 function setResolution() {

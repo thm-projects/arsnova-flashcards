@@ -5,20 +5,15 @@ import {ColorThemes} from "../../api/theme.js";
 import {Learned, Leitner, Wozniak} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
+import {Ratings} from "../../api/ratings";
 
 var initColorThemes = function () {
 	return [{
 		"_id": "default",
 		"name": "Default"
 	}, {
-		"_id": "aflatunense",
-		"name": "Aflatunense"
-	}, {
-		"_id": "lemonchill",
-		"name": "Lemon Chill"
-	}, {
-		"_id": "bluestar",
-		"name": "Blue Star"
+		"_id": "contrast",
+		"name": "Contrast"
 	}];
 };
 
@@ -39,6 +34,7 @@ var initTestNotificationsCardset = function () {
 			"reviewer": "undefined",
 			"request": false,
 			"relevance": 0,
+			"raterCount": 0,
 			"quantity": 5,
 			"license": [
 				"by",
@@ -435,6 +431,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					moduleActive: true
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({raterCount: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					raterCount: Number(Ratings.find({cardset_id: cardsets[i]._id}).count())
 				}
 			}
 		);
