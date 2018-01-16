@@ -331,8 +331,8 @@ $font_5: sans-serif;
 .infoBoxTable td {
   padding-left: 15px !important;
   a {
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
   }
   a:hover {
     text-decoration: none;
@@ -446,4 +446,8 @@ th .field-tip .tip-content {
     margin-top: 2px;
     margin-right: 0;
   }
+}
+
+#showHintLearning {
+  font-size: 18px;
 }
