@@ -1,0 +1,14 @@
+.noscript {
+    margin: auto;
+    margin-top: 125px;
+    width: 75%;
+}
+
+.noscript .panel-heading {
+    background-color: #4a5c66 !important;
+}
+
+.noscript .jumbotron {
+    background-color: #80ba24 !important;
+    color: #ffffff;
+}

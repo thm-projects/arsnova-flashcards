@@ -408,9 +408,10 @@
               data-id={{getRelevance}}>{{_
                 "set-list.rating"}}
             :</span>
-        <span class="col-xs-6 col-md-1 hidden-sm poolContent panelUnit panelUnitNoBorder"
+        <span class="col-xs-6 col-md-1 hidden-sm poolContent raterCount panelUnit panelUnitNoBorder"
               data-id={{getRelevance}}>
-            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}>
+            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}><span
+                class="raterCountNumber pull-right">({{this.raterCount}})</span>
         </span>
     </a>
 </template>

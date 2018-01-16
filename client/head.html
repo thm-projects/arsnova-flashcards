@@ -1,7 +1,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
-    <meta name="description" content="This app offers students an intuitive access to one of the most successful and evidence-based learning methods, i.e., spaced repetition.">
+    <meta name="description"
+          content="This app offers students an intuitive access to one of the most successful and evidence-based learning methods, i.e., spaced repetition.">
     <meta name="keywords" content="flashcard,Progressive Web App, ARSnova">
     <meta name="robots" content="all"/>
 
@@ -11,9 +12,10 @@
     <title>THM.cards</title>
 
     <link rel="manifest" href="/thmcards_manifest.json">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="noscript.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="white">
     <meta name="apple-mobile-web-app-title" content="arsnova.cards">
@@ -24,6 +26,23 @@
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 
-    <noscript>To use this web-app you must activate JavaScript in your browser.</noscript>
-
+    <noscript>
+        <div class="noscript">
+            <div class="noscript alternative js-required">
+                <div class="jumbotron text-center">
+                    <h1><strong>JavaScript is Required</strong></h1><br>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-wrench"></span></div>
+                    <div class="panel-body">
+                        <ul style="list-style: none">
+                            <li>We're sorry, but THM Cards doesn't work properly without JavaScript enabled.</li>
+                            <li>Info about JavaScript:<a href="https://en.wikipedia.org/wiki/JavaScript">
+                                JavaScript</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
 </head>

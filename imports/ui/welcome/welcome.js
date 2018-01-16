@@ -45,7 +45,7 @@ function createTagCloud() {
 	let heightAdjustment = 130;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
-
+	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.3;
 	let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1024);
@@ -140,6 +140,9 @@ Template.welcome.onCreated(function () {
 });
 
 Template.welcome.onRendered(function () {
+	if (Meteor.settings.public.displayLoginButtons.displayCas) {
+		$('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" alt="use CAS for login"/></a>');
+	}
 	if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
 		$('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>');
 	}
@@ -149,23 +152,20 @@ Template.welcome.onRendered(function () {
 	if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
 		$('.panel-footer').append('<a id="google" href=""><img src="img/social_google_box_white.png" alt="use google for login"/></a>');
 	}
-	if (Meteor.settings.public.displayLoginButtons.displayCas) {
-		$('.panel-footer').append('<a id="cas" href=""><img src="img/social_cas_box_white.png" alt="use CAS for login"/></a>');
-	}
 
 	// Backdoor for login in acceptance tests
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
-		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" /></a>');
-		$('.panel-footer').append('<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername">' +
+		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/social_backdoor_box_white.png" alt="use backdoor for login"/></a>');
+		$('.panel-footer').append('<span class="btn-group backdoorLogin"><label id="backdoor-label">Backdoor users:</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
 			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
 			'<option id="standardLogin" value="standard">standard</option>' +
 			'<option id="universityLogin" value="university">university</option>' +
 			'<option id="lecturerLogin" value="lecturer">lecturer</option>' +
 			'<option id="proLogin" value="pro">pro</option>' +
-			'<option id="proLogin" value="blocked">blocked</option>' +
+			'<option id="blockedLogin" value="blocked">blocked</option>' +
 			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
-			'</select>');
+			'</select></span>');
 	}
 	this.autorun(() => {
 		createTagCloud();

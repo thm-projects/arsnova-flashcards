@@ -156,7 +156,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
                                 <div class="col-md-8">
-                                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                    <div class="btn-group" data-toggle="buttons">
                                         <label id="profilepublicoption1"
                                                class="btn btn-success profile-public {{#if
                                                        getUser.visible}}active profilepublic-rb-text-color{{/if}}">
@@ -542,7 +542,7 @@
             <h3 class="panel-title">{{_ "profile.billing"}}</h3>
         </div>
         <div class="panel-body">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-pills justify-content-center nav-fill">
                 <li class="active"><a data-toggle="tab" href="#payment">{{_ "billing.payment.header"}}</a></li>
                 <li><a data-toggle="tab" href="#balance">{{_ "billing.balance.header"}}</a></li>
                 <li><a data-toggle="tab" href="#revenue">{{_ "billing.revenue.header"}}</a></li>
