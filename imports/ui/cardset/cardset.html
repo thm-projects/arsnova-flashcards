@@ -104,7 +104,7 @@
                                 {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                             {{else}}
                                 {{> starsRating id='rating' rating=getAverage mutable=true}}
-                            {{/if}}
+                            {{/if}} ({{this.raterCount}})
                         </td>
                     </tr>
                     <tr>

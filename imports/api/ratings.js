@@ -37,7 +37,8 @@ Meteor.methods({
 			if (!error) {
 				Cardsets.update(cardset_id, {
 					$set: {
-						relevance: Number(relevance)
+						relevance: Number(relevance),
+						raterCount: Number(Ratings.find({cardset_id: cardset_id}).count())
 					}
 				});
 			}
@@ -76,7 +77,8 @@ Meteor.methods({
 			if (!error) {
 				Cardsets.update(cardset_id, {
 					$set: {
-						relevance: Number(relevance)
+						relevance: Number(relevance),
+						raterCount: Number(Ratings.find({cardset_id: cardset_id}).count())
 					}
 				});
 			}

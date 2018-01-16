@@ -68,7 +68,8 @@
 
   .stars-rating {
     margin-top: -5px;
-    height: 12px;
+    width: 55px;
+    height: unset !important;
   }
 
   @media (max-width: 1200px) {
@@ -162,8 +163,7 @@
   }
   .stars-rating {
     margin-top: -5px;
-    width: 65px !important;
-    height: 100% !important;
+    width: 40px !important;
   }
 }
 
@@ -172,8 +172,19 @@
     margin: 0;
     margin-left: 30px;
   }
+  .stars-rating {
+    width: 85px !important;
+  }
+  .raterCountNumber {
+    float: unset !important;
+    padding-left: 5px;
+  }
 }
 
 .selectionInfo {
   padding: 0 10px 0 10px;
+}
+
+.raterCount {
+  padding-right: 3px;
 }

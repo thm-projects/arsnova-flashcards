@@ -110,6 +110,10 @@ const CardsetsSchema = new SimpleSchema({
 		type: Number,
 		decimal: true
 	},
+	raterCount: {
+		type: Number,
+		decimal: true
+	},
 	quantity: {
 		type: Number
 	},
@@ -278,6 +282,7 @@ Meteor.methods({
 			reviewer: 'undefined',
 			request: false,
 			relevance: 0,
+			raterCount: 0,
 			quantity: quantity,
 			license: [],
 			userDeleted: false,
@@ -669,7 +674,8 @@ Meteor.methods({
 						kind: kind,
 						price: price.toString().replace(",","."),
 						visible: visible,
-						relevance: relevance
+						relevance: relevance,
+						raterCount: Number(Ratings.find({cardset_id: id}).count())
 					}
 				});
 			}
