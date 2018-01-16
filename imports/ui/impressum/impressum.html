@@ -1,15 +1,19 @@
 <template name="contact">
     <div id="contact" class="col-md-8 col-md-offset-2">
         <nav class="nav nav-tabs nav-justified">
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor route='about'}}">{{_ "contact.about"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="about" href="{{pathFor route='faq'}}">{{_ "contact.faq"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "contact.impressum"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz" href="{{pathFor route='agb'}}">{{_ "contact.agb"}}</a></li>
-            <li class="sm-12 md-3 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb" href="{{pathFor route='datenschutz'}}">{{_ "contact.datenschutz"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor route='about'}}">{{_ "contact.about"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning" href="{{pathFor route='learning'}}">{{_ "contact.learning"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor route='faq'}}">{{_ "contact.faq"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "contact.impressum"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz" href="{{pathFor route='agb'}}">{{_ "contact.agb"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb" href="{{pathFor route='datenschutz'}}">{{_ "contact.datenschutz"}}</a></li>
         </nav>
         <br>
         {{#if isActiveRoute 'about'}}
             {{> about}}
+        {{/if}}
+        {{#if isActiveRoute 'learning'}}
+            {{> learning}}
         {{/if}}
         {{#if isActiveRoute 'faq'}}
             {{> faq}}
@@ -75,6 +79,61 @@
                 siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
                 THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien Verfügung stellen.
                 Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität von einer Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
+            </p>
+        </div>
+    </div>
+</template>
+
+<template name="learning">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Wie du auf THMcards effektiv mit Karten lernst
+        </div>
+
+        <div class="panel-body">
+            <p>
+                Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise lernen:
+            </p>
+            <ol>
+                <li>
+                    nach der 5-Fächer-Lernmethode von Sebastian Leitner
+                </li>
+                <li>
+                    nach der SuperMemo-Lernmetode von Piotr Woźniak
+                </li>
+                <li>
+                    nach der Schwierigkeit des Stoffes:
+                    Allgemein, Einsteiger, Fortgeschritten, Experte
+                </li>
+                <li>
+                    nach den Lernzielstufen (<a href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/" target="_blank">
+                    Taxonomie von Anderson &amp; Krathwohl</a>):<br/>
+                    Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Erschaffen
+                </li>
+                <li>
+                    in der alphabetischen Reihenfolge der Kartentitel
+                </li>
+                <li>
+                    in zufälliger Reihenfolge
+                </li>
+            </ol>
+            <p>
+                Die ersten beiden Methoden sind die effektivsten im Sinne des langfristigen Erinnerns.
+                Sie beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren Zeitabschnitten.
+                Das unter Studierenden weitverbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in der Woche vor der Klausur statt.
+                Die 5-Fächer-Lernmethode nach Leitner legt bereits gelernte Karten in bestimmten länger werdenden Abständen zum wiederholten Lernen vor.
+                Nichterinnerte Karten werden ins erste Fach zurückgelegt:
+                Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
+                Die Intervalle zwischen den Fächern betragen in der Regel täglich (1→2), wöchentlich (2→3), monatlich (3→4)und vierteljährlich(4→5).
+                Karten im Fach 5 gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten wird von der Lehrperson vorgegeben.
+            </p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                 alt="Leitner-Lernmethode" class="img-responsive center-block" />
+            <p class="text-center">
+                Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia: "Lernkartei"</a>
+            </p>
+            <p>
+                Bei der SuperMemo-Lernmethode nach Woźniak werden die Abstände aufgrund deiner Einschätzung, wie leicht oder schwer du dich an die Antwort erinnern kannst, individuell neu berechnet.
             </p>
         </div>
     </div>
