@@ -10,18 +10,20 @@ window.addEventListener("load", function () {
 	window.cookieconsent.initialise({
 		"palette": {
 			"popup": {
-				"background": "#f5f5f5",
+				"background": "#F5AA01",
 				"text": "#4A5C66"
 			},
 			"button": {
-				"background": "#78b925",
+				"background": "#4A5C66",
 				"text": "#ffffff"
 			}
 		},
-		"position": "top",
+		"theme": "classic",
+		"position": "bottom-right",
+
 		"content": {
 			"message": "THMcards verwendet Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
-			"dismiss": "Ich stimme zu.",
+			"dismiss": "Ich stimme zu",
 			"link": "Mehr über Datenschutz",
 			"href": "/datenschutz"
 		}

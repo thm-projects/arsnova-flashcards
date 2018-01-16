@@ -51,7 +51,7 @@
     "none": "None"
   },
   "contact": {
-    "about": "About THMcards",
+    "about": "THMcards",
     "learning": "Learning",
     "faq": "FAQ",
     "impressum": "Legal Notice",
@@ -978,5 +978,10 @@
     "copyright": "© 2017 THMcards",
     "my-cardset": "My Cardset",
     "auto-generated": "Please don't reply to this mail. It was automatically generated."
+  },
+  "footer": {
+    "language": "Choose a language",
+    "info": "About THMcards",
+    "connection": "Connection Status"
   }
 }

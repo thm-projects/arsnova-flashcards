@@ -1,0 +1,24 @@
+@function changing-colors-definitions(){
+  @return (
+          "change-color": white,
+          "input-change-color": #ffd700,
+
+          "colorChangingThm0": white,
+          "colorChangingThm25": #b22222,
+          "colorChangingThm50": info,
+          "colorChangingThm75": #ffd700,
+          "colorChangingThm100": white,
+
+          "colorChangingDot0": #ffd700,
+          "colorChangingDot25": white,
+          "colorChangingDot50": #b22222,
+          "colorChangingDot75": info,
+          "colorChangingDot100": #ffd700,
+
+          "colorChangingCards0": info,
+          "colorChangingCards25": #ffd700,
+          "colorChangingCards50": white,
+          "colorChangingCards75": #b22222,
+          "colorChangingCards100": info,
+  );
+}

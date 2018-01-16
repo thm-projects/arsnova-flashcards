@@ -1,13 +1,9 @@
 @import "themes/theme-default";
-@import "themes/theme-lemonchill";
-@import "themes/theme-aflatunense";
-@import "themes/theme-bluestar";
+@import "themes/theme-contrast";
 
 $themes: (
-        theme-default: theme-default(),
-        theme-lemonchill: theme-lemonchill(),
-        theme-aflatunense: theme-aflatunense(),
-        theme-bluestar: theme-bluestar(),
+        theme-default: map-merge(changing-colors-definitions(),theme-default()),
+        theme-contrast: map-merge(changing-colors-definitions(),theme-contrast())
 );
 
 @each $theme, $map in $themes {
@@ -125,15 +121,15 @@ $themes: (
       background-color: $primary-color;
     }
 
-    .md-editor>.md-header {
-      background:  $primary-color;
+    .md-editor > .md-header {
+      background: $primary-color;
     }
 
     .md-editor {
       border: 1px solid $primary-color;
     }
 
-    .editorNavigation >.btn-primary:hover {
+    .editorNavigation > .btn-primary:hover {
       background-color: $primary-color !important;
     }
 
@@ -142,4 +138,3 @@ $themes: (
     }
   }
 }
-
