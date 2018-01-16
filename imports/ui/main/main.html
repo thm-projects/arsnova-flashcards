@@ -169,13 +169,13 @@
             <div id="footer" class="footer">
                 <ul class="container dropup">
                     <li class="col-xs-2 col-sm-1">
-                        <a id="info" href="{{pathFor route='about'}}">
+                        <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
                             <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                         </a>
                     </li>
                     <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
                         data-toggle="collapse" data-target="#thm-top-navigation">
-                        <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-label="{{_ "footer.language"}}">
                             <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
                         </a>
                         <ul class="dropdown-menu col-xs-12">
@@ -196,7 +196,7 @@
 
 <template name="connectionStatus">
     <a id="connectionStatus" href="#" data-toggle="modal"
-       data-target="#connectionStatusModal">
+       data-target="#connectionStatusModal" aria-label="{{_ "footer.connection"}}">
         <p class="footer-icon"><span class="glyphicon glyphicon-signal {{getSignal}}"></span></p>
     </a>
 </template>

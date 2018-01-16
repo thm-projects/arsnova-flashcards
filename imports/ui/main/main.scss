@@ -292,7 +292,7 @@ body {
     margin: 0;
     padding: 0;
   }
-  li ul li  {
+  li ul li {
     height: 60px;
   }
   li:hover {
@@ -460,7 +460,6 @@ button:disabled {
   color: $white;
 }
 
-
 @media (max-width: 1199px) {
   .poolHeaderBottom {
     font-size: 11px;
@@ -572,9 +571,10 @@ button:disabled {
   background-color: #eeeeee !important;
   outline: none;
 }
+
 .cardContent .lightbox-img a {
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
 }
 
 .cardContent .lightbox-img img {
@@ -640,7 +640,7 @@ button:disabled {
   padding-right: 10px !important;
 }
 
-.dropup, .navbar-nav > li  {
+.dropup, .navbar-nav > li {
   .dropdown-menu {
     max-height: 300px;
     overflow-y: scroll;
@@ -657,4 +657,16 @@ button:disabled {
 #searchResults {
   max-height: 400px;
   overflow-y: scroll;
+}
+
+.backdoorLogin {
+  margin: 0;
+  #TestingBackdoorUsername {
+    margin: 0;
+  }
+  label {
+    float: left;
+    color: black;
+    margin: 0;
+  }
 }

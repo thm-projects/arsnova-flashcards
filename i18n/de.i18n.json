@@ -947,5 +947,10 @@
     "copyright": "© 2018 THMcards",
     "my-cardset": "Zum Kartensatz...",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
+  },
+  "footer": {
+    "language": "Wähle eine Sprache",
+    "info": "Über THMcards",
+    "connection": "Verbindungsstatus"
   }
 }
