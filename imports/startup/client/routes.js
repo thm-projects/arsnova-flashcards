@@ -29,6 +29,11 @@ Router.route('about', {
 	template: 'contact'
 });
 
+Router.route('learning', {
+	name: 'learning',
+	template: 'contact'
+});
+
 Router.route('faq', {
 	name: 'faq',
 	template: 'contact'
@@ -287,6 +292,7 @@ Router.onBeforeAction(isSignedIn, {
 	except: [
 		'home',
 		'about',
+		'learning',
 		'faq',
 		'impressum',
 		'agb',
