@@ -14,13 +14,17 @@ $themes: (
     $secondary-text: map-get($map, "secondary-text");
     $divider-color: map-get($map, "divider-color");
     $accent_300: map-get($map, "accent_300");
+    $hyperlink: map-get($map, "hyperlink");
+
     .navbar.navbar-default {
       background-color: $primary-color;
     }
+
     .navbar-default .navbar-nav > .active > a,
     .navbar-default .navbar-nav > .open > a {
       background-color: $accent;
     }
+
     .glyphicon-chevron-down:before {
       color: $primary-color;
     }
@@ -45,14 +49,22 @@ $themes: (
         }
       }
     }
+
     #footer {
       a {
         color: $primary-color;
       }
     }
+
     .row {
       a {
         color: $primary-color;
+      }
+    }
+
+    .panel-body {
+      a {
+        color: $hyperlink;
       }
     }
 
@@ -63,28 +75,36 @@ $themes: (
     .btn.btn-raised:not(.btn-link):hover.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-primary, .btn-group-raised .btn:not(.btn-link):hover.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):hover.btn-primary, .btn.btn-raised:not(.btn-link):focus.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-primary, .btn-group-raised .btn:not(.btn-link):focus.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.btn-primary, .btn.btn-raised:not(.btn-link).active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-primary, .btn-group-raised .btn:not(.btn-link).active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link).active.btn-primary, .btn.btn-raised:not(.btn-link):active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-primary, .btn-group-raised .btn:not(.btn-link):active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):active.btn-primary {
       background-color: $accent_300;
     }
+
     button#setListEmpty.btn.btn-raised.btn-primary.btn-newSet
     .panel.panel-primary > .panel-heading {
       background-color: $primary-color;
     }
+
     .panel.panel-primary > .panel-heading {
       background-color: $primary-color;
     }
+
     .form-group.is-focused .form-control {
       background-image: none !important;
     }
+
     .form-group.is-focused label.control-label {
       color: $primary-color;
     }
+
     .dropdown-menu li a:hover {
       color: $primary-color;
     }
+
     .nav-tabs {
       background-color: $primary-color;
     }
+
     .navbar-default .navbar-toggle:hover {
       background-color: transparent !important;
     }
+
     .info {
       color: $primary-color;
     }
@@ -100,6 +120,7 @@ $themes: (
     li.dropdown.open a.dropdown-toggle {
       background-color: $accent;
     }
+
     li.dropdown.open ul.dropdown-menu a:hover {
       color: $primary-text;
     }
