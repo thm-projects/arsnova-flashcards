@@ -68,11 +68,6 @@ Template.learnAlgorithms.helpers({
 Template.learnAlgorithms.events({
 	"click .box": function (evt) {
 		if (($(evt.target).data('type') !== "cardNavigation")) {
-			if (Session.get('isFront')) {
-				Session.set('isFront', false);
-			} else {
-				Session.set('isFront', true);
-			}
 			$('html, body').animate({scrollTop: '0px'}, 300);
 		}
 	}
@@ -105,17 +100,11 @@ Template.learnAnswerOptions.helpers({
 
 Template.learnAnswerOptions.events({
 	"click #learnShowAnswer": function () {
-		if (Session.get('isFront')) {
-			Session.set('isFront', false);
-		} else {
-			Session.set('isFront', true);
-		}
 		turnCard();
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #known": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
@@ -130,7 +119,6 @@ Template.learnAnswerOptions.events({
 	},
 	"click #notknown": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
@@ -145,7 +133,6 @@ Template.learnAnswerOptions.events({
 	},
 	"click .rate-answer": function (event) {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		Session.set('isFront', true);
 		turnCard();
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);

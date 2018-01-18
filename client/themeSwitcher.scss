@@ -150,8 +150,13 @@ $themes: (
       border: 1px solid $primary-color;
     }
 
+    .btn-primary:hover {
+      color: $primary-text;
+    }
+
     .editorNavigation > .btn-primary:hover {
       background-color: $primary-color !important;
+      color: white;
     }
 
     .bs-callout-info {
