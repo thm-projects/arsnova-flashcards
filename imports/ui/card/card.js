@@ -28,7 +28,7 @@ function defaultData() {
 function isTextCentered() {
 	let centerTextElement = Session.get('centerTextElement');
 	let editMode = Session.get('activeEditMode');
-	if (centerTextElement[editMode]) {
+	if (centerTextElement !== undefined && centerTextElement[editMode]) {
 		$(".center-button").addClass('pressed');
 	} else {
 		$(".center-button").removeClass('pressed');
