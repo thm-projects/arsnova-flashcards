@@ -11,7 +11,7 @@ $color_thm_orange: #F5AA01;
 $color_thm_red: #9C132D;
 $color_thm_gray: #4A5C66;
 $color_thm_green: #80BA24;
-$color_free_btn: $color_thm_dark_blue;
+$color_free_btn: $color_thm_gray;
 $color_edu_btn: $color_thm_green;
 $color_pro_btn: $color_thm_orange;
 $color_orange_pool: $color_thm_orange;
@@ -50,12 +50,12 @@ body {
 
 .btn-raised.btn-warning {
   color: $white !important;
-  background-color: $color_thm_orange !important;
+  background-color: $color_thm_red !important;
 }
 
 .btn-raised.btn-danger {
   color: $white !important;
-  background-color: $color_thm_red !important;
+  background-color: $color_thm_orange !important;
 }
 
 .table {
