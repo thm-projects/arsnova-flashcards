@@ -243,13 +243,13 @@ Template.cardsetList.helpers({
 	getColors: function () {
 		switch (this.kind) {
 			case "personal":
-				return "btn-danger";
+				return "btn-warning";
 			case "free":
 				return "btn-info";
 			case "edu":
 				return "btn-success";
 			case "pro":
-				return "btn-warning";
+				return "btn-danger";
 		}
 	},
 	gotReferences: function () {
@@ -393,13 +393,13 @@ Template.cardsetInfoBox.helpers({
 	getColors: function () {
 		switch (this.kind) {
 			case "personal":
-				return "btn-danger";
+				return "btn-warning";
 			case "free":
 				return "btn-info";
 			case "edu":
 				return "btn-success";
 			case "pro":
-				return "btn-warning";
+				return "btn-danger";
 		}
 	},
 	getName: function () {
