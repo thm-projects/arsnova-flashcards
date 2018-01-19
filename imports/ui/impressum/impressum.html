@@ -1,12 +1,26 @@
 <template name="contact">
     <div id="contact" class="col-md-8 col-md-offset-2">
         <nav class="nav nav-tabs nav-justified">
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor route='about'}}">{{_ "contact.about"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning" href="{{pathFor route='learning'}}">{{_ "contact.learning"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor route='faq'}}">{{_ "contact.faq"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum" href="{{pathFor route='impressum'}}">{{_ "contact.impressum"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz" href="{{pathFor route='agb'}}">{{_ "contact.agb"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb" href="{{pathFor route='datenschutz'}}">{{_ "contact.datenschutz"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor
+                    route='about'}}">{{_ "contact.about"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning"
+                                                                                              href="{{pathFor
+                                                                                                      route='learning'}}">{{_
+                    "contact.learning"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
+                    route='faq'}}">{{_ "contact.faq"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum"
+                                                                                               href="{{pathFor
+                                                                                                       route='impressum'}}">{{_
+                    "contact.impressum"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz"
+                                                                                         href="{{pathFor
+                                                                                                 route='agb'}}">{{_
+                    "contact.agb"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb"
+                                                                                                 href="{{pathFor
+                                                                                                         route='datenschutz'}}">{{_
+                    "contact.datenschutz"}}</a></li>
         </nav>
         <br>
         {{#if isActiveRoute 'about'}}
@@ -40,45 +54,77 @@
         </div>
         <div class="panel-body">
             <p>
-                THMcards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der Technischen Hochschule Mittelhessen, THM, entwickelt worden.
-                Das <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md" target="_blank">Open-Source-Projekt</a> wurde in der
-                <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">Arbeitsgemeinschaft Qualität in Lehre und Studium (AG QLS)</a>
-                konzipiert. Entwicklung und Betrieb werden mit <a href="https://www.thm.de/zqe/unsere-aufgaben/qsl-mittel.html" target="_blank"> QSL-Mitteln der THM</a> gefördert.
+                THMcards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der Technischen
+                Hochschule Mittelhessen, THM, entwickelt worden.
+                Das <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md" target="_blank">Open-Source-Projekt</a>
+                wurde in der
+                <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">Arbeitsgemeinschaft
+                    Qualität in Lehre und Studium (AG QLS)</a>
+                konzipiert. Entwicklung und Betrieb werden mit <a
+                    href="https://www.thm.de/zqe/unsere-aufgaben/qsl-mittel.html" target="_blank"> QSL-Mitteln der
+                THM</a> gefördert.
             </p>
             <p>
-                THMcards ist keine herkömmliche Lernkartei-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a> oder
+                THMcards ist keine herkömmliche Lernkartei-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a>
+                oder
                 <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
-                Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das Mitschreiben in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
+                Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das Mitschreiben
+                in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
                 THMcards versteht sich als <b>vorlesungsbegleitende Lernplattform</b>, als ein virtueller Ort,
-                wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeitung der Mitschrift, Lernkarten erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
+                wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeitung der Mitschrift, Lernkarten
+                erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
                 — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
             </p>
             <p>
-                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten, um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über den Semesterverlauf zu vergeben.
+                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten,
+                um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über den
+                Semesterverlauf zu vergeben.
                 Das Lernen gemäß den in THMcards implementierten Wiederholungs-Algorithmen von
                 <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
-                <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über die Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
+                <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
+                    Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über die
+                Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
                 siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference 2018</a>:
             </p>
             <hr>
             <p>
-                <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</a>
+                <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against
+                    Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</a>
             </p>
             <p>
-                Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the week before examination and forgotten a month after. Although we have known about the very low long-term knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic prevails because it works—at least for passing exams. As university lecturers, we seldom received a training on effective teaching and learning strategies. However, we can follow the evidence-based recommendations from cognitive and educational psychology on how to structure a course to distribute learning. With new pedagogical apps at hand, we can implement <a href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a> against procrastination in our course design. This paper outlines a pedagogical project to be conducted across several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on spacing learning events over time. The recommendations are implemented by using <a href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based question-and-answer apps for quizzing in class and self-quizzing at home.
+                Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the week
+                before examination and forgotten a month after. Although we have known about the very low long-term
+                knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic
+                prevails because it works—at least for passing exams. As university lecturers, we seldom received a
+                training on effective teaching and learning strategies. However, we can follow the evidence-based
+                recommendations from cognitive and educational psychology on how to structure a course to distribute
+                learning. With new pedagogical apps at hand, we can implement <a
+                    href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a> against
+                procrastination in our course design. This paper outlines a pedagogical project to be conducted across
+                several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on
+                spacing learning events over time. The recommendations are implemented by using <a
+                    href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
+                question-and-answer apps for quizzing in class and self-quizzing at home.
             </p>
-                <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg" alt="forgetting curve" class="img-responsive center-block" />
+            <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
+                 alt="forgetting curve" class="img-responsive center-block"/>
             <p class="text-center">
-                Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: "Spaced Repetition"</a>
+                Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: "Spaced
+                Repetition"</a>
             </p>
             <hr>
             <p>
-                Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle <b>Edu-Kartensätze</b> im Pool von THMcards.
+                Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle
+                <b>Edu-Kartensätze</b> im Pool von THMcards.
                 Hierbei handelt es sich um Kartensätze, die von Lehrenden der THM für ihre Module erstellt wurden.
-                Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder Google+) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis WS 18/19 im kostenlosen Testbetrieb</b>),
+                Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder
+                Google+) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis WS
+                18/19 im kostenlosen Testbetrieb</b>),
                 siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
-                THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien Verfügung stellen.
-                Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität von einer Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
+                THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien
+                Verfügung stellen.
+                Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität von einer
+                Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
             </p>
         </div>
     </div>
@@ -92,7 +138,8 @@
 
         <div class="panel-body">
             <p>
-                Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise lernen:
+                Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise
+                lernen:
             </p>
             <ul>
                 <li>
@@ -106,7 +153,9 @@
                     Allgemein, Einsteiger, Fortgeschritten, Experte
                 </li>
                 <li>
-                    nach den Lernzielstufen der Karten (<a href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/" target="_blank">Taxonomie von Anderson et al.</a>):<br/>
+                    nach den Lernzielstufen der Karten (<a
+                        href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/"
+                        target="_blank">Taxonomie von Anderson et al.</a>):<br/>
                     Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Erschaffen
                 </li>
                 <li>
@@ -117,22 +166,40 @@
                 </li>
             </ul>
             <p>
-                Die ersten beiden Methoden sind die effektivsten im Sinne des langfristigen Erinnerns, siehe die wissenschaftlichen Studien, zitiert in unserem <a href="{{pathFor route='about'}}">Paper</a>.
-                Die Methoden beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren Zeitabschnitten.
-                Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in der Woche vor der Klausur statt.
-                Die 5-Fächer-Lernmethode von Leitner legt bereits gelernte Karten in bestimmten länger werdenden Abständen zum wiederholten Lernen vor.
-                Nicht erinnerte Karten werden ins erste Fach zurückgelegt.
-                Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
-                Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3), monatlich (3→4) und vierteljährlich (4→5) — vergleiche mit den Vergessenskurven in diesem <a href="{{pathFor route='about'}}">Bild</a>.
-                Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten wird von der Lehrperson vorgegeben.
-            </p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
-                 alt="Leitner-Lernmethode" class="img-responsive center-block" />
-            <p class="text-center">
-                Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia: "Lernkartei"</a> — Am Anfang befinden sich alle Lernkarten im Fach 1.
+                Die ersten beiden Methoden sind die effektivsten im Sinne des langfristigen Erinnerns, siehe die
+                wissenschaftlichen Studien, zitiert in unserem <a href="{{pathFor route='about'}}">Paper</a>.
+                Die Methoden beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren
+                Zeitabschnitten.
+                Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in
+                der Woche vor der Klausur statt.
             </p>
             <p>
-                Bei der SuperMemo-Lernmethode von Woźniak werden die Abstände aufgrund deiner Einschätzung, wie leicht oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu berechnet.
+                Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger werdenden
+                Abständen zum wiederholten Lernen vor.
+                Nicht erinnerte Karten werden ins erste Fach zurückgelegt.
+                Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
+                Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3), monatlich
+                (3→4) und vierteljährlich (4→5) — vergleiche mit den Vergessenskurven in diesem <a
+                    href="{{pathFor route='about'}}">Bild</a>.
+                Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten
+                wird von der Lehrperson vorgegeben.
+            </p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                 alt="Leitner-Lernmethode" class="img-responsive center-block"/>
+            <p class="text-center">
+                Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia:
+                "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
+            </p>
+            <p>
+                Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie leicht
+                oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a
+                    href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu
+                berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie auf
+                einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche Antwort, aber
+                leicht an die richtige erinnert (ach ja!)", "Richtige Antwort nach längerem Überlegen", "Richtige Antwort nach
+                kurzem Zögern" bis "Sofort und richtig". Anhand deiner Bewertung wird der Zeitpunkt für die nächste
+                Wiederholung der Lernkarte
+                berechnet.
             </p>
         </div>
     </div>
@@ -147,13 +214,54 @@
             <ol>
                 <li>
                     <p style="color: #9C132D;">
-                        Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?</p>
+                        Warum nicht mit Karteikarten aus Papier lernen?
+                    </p>
+                    <br/>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
+                         alt="Lernkartei analog" class="img-responsive center-block"/>
+                    <br/>
+                    <p>
+                        Den digitalen Karten fehlt zwar die Haptik des Papiers, dafür haben sie aber unbestreitbare
+                        Vorteile:
+                    </p>
+                    <ul>
+                        <li>
+                            Sie sind so transportabel und mobil nutzbar wie dein Smartphone.
+                        </li>
+                        <li>
+                            Sie sind multimedial: Du kannst Bilder, Podcasts und Videos beliebig einfügen.
+                        </li>
+                        <li>
+                            Sie stellen die kompliziertesten mathematischen Formeln in LaTeX sauber dar.
+                        </li>
+                        <li>
+                            Das Wissen aus allen Modulen deines Studiums befindet sich an einem Ort und du kannst es
+                            jederzeit mit einem Klick wiederfinden.
+                        </li>
+                        <li>
+                            Sie werden dir zum Lernen automatisch zur richtigen Zeit wieder vorgelegt. Push-Nachrichten
+                            auf dein Handy erinnern dich ans Lernen.
+                        </li>
+                        <li>
+                            Sie kosten nichts.
+                        </li>
+                    </ul>
+                </li>
+                <hr/>
+                <li>
+                    <p style="color: #9C132D;">
+                        Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?
+                    </p>
                     <p>
                         Hier hat die Lehrperson die <b>Bonus-Option</b> aktiviert.
-                        Wenn du nach der <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">5-Fächer-Methode von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte, anrechenbar auf die Klausurnote, erwerben.
+                        Wenn du nach der <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">5-Fächer-Methode
+                        von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte,
+                        anrechenbar auf die Klausurnote, erwerben.
                         Das hängt natürlich von deiner Dozentin oder deinem Dozenten ab.
-                        Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im Browser deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum hingewiesen.
-                        Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach "Gelernt" befinden, siehe den Button "Mein Lernstand nach Leitner".
+                        Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im Browser
+                        deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum hingewiesen.
+                        Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach
+                        "Gelernt" befinden, siehe den Button "Mein Lernstand nach Leitner".
                     </p>
                 </li>
                 <hr/>
@@ -162,11 +270,14 @@
                         Warum sollen einmal gelernte Karten in immer längeren Abständen wiederholt werden?
                     </p>
                     <p>
-                        Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen, siehe auf der Seite <a href="{{pathFor route='about'}}">THMcards</a>.
+                        Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden
+                        Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen, siehe
+                        auf der Seite <a href="{{pathFor route='about'}}">THMcards</a>.
                         Schneller und cooler erklärt das aber Daniel Hunold im Video:
                     </p>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Is62XAmgrRQ?rel=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Is62XAmgrRQ?rel=0"
+                                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
                         </iframe>
                     </div>
                 </li>
@@ -176,22 +287,28 @@
                         Wie kann ich Kartensätze an meine Kommilitonen weitergeben?
                     </p>
                     <p>
-                        Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free" oder du exportierst den einzelnen Kartensatz als Datei.
+                        Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free" oder
+                        du exportierst den einzelnen Kartensatz als Datei.
                     </p>
                 </li>
                 <hr/>
                 <li>
                     <p style="color: #9C132D;">
-                        Ich habe gesehen, dass es auch den <b>Kartentyp "Mitschrift"</b> gibt. Wie kann ich eine Vorlesung mit THMcards sinnvoll mitschreiben?
+                        Ich habe gesehen, dass es auch den <b>Kartentyp "Mitschrift"</b> gibt. Wie kann ich eine
+                        Vorlesung mit THMcards sinnvoll mitschreiben?
                     </p>
                     <p>
-                        Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder Tablet schreiben.
+                        Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder
+                        Tablet schreiben.
                         Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
-                        Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder in die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift" per Link einfügen.
+                        Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder in
+                        die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift" per
+                        Link einfügen.
                         Die Rückseite dient dir zur Nachbearbeitung der Vorlesung.
                     </p>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bunphvhgd9M?rel=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bunphvhgd9M?rel=0"
+                                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
                         </iframe>
                     </div>
                 </li>
@@ -207,20 +324,27 @@
                 <hr/>
                 <li>
                     <p style="color: #9C132D;">
-                        Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop installieren und anpassen (als <b>"Mein THMcards"</b>) und offline mit den lokal gehaltenen Kartensätzen lernen?
+                        Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop installieren
+                        und anpassen (als <b>"Mein THMcards"</b>) und offline mit den lokal gehaltenen Kartensätzen
+                        lernen?
                     </p>
                     <p>
-                        Ja, THMcards ist Open Source. Eine <a href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a> findest du im THM-Gitlab.
+                        Ja, THMcards ist Open Source. Eine <a
+                            href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a>
+                        findest du im THM-Gitlab.
                     </p>
                 </li>
                 <hr/>
                 <li>
                     <p style="color: #9C132D;">
-                        Wenn ich als Dozent/in, Student/in oder Open-Source-Programmierer/in eine Frage zur <b>Nutzung oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
+                        Wenn ich als Dozent/in, Student/in oder Open-Source-Programmierer/in eine Frage zur <b>Nutzung
+                        oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
                     </p>
                     <p>
                         Schreibe einfach eine Mail an eine der im Impressum genannten Personen.
-                        Bug Reports, Feature und Pull Requests kannst du auch auf <a href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a> schreiben.
+                        Bug Reports, Feature und Pull Requests kannst du auch auf <a
+                            href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
+                        schreiben.
                     </p>
                 </li>
                 <hr/>
@@ -238,7 +362,8 @@
         <div class="panel-body">
             <h4>Dienstanbieter</h4>
             <p>
-                Der Betrieb der Webanwendung <b>THMcards</b> unter <a href="https://arsnova.cards" target="_blank"> arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der TransMIT-Gesellschaft
+                Der Betrieb der Webanwendung <b>THMcards</b> unter <a href="https://arsnova.cards" target="_blank">
+                arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der TransMIT-Gesellschaft
                 für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
             </p>
             <p>
@@ -272,10 +397,12 @@
                 Technische Fragen zur WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
             </p>
             <p>
-                Fragen zur Konzeption und zum didaktischen Einsatz der Lernplattform THMcards: <a href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
+                Fragen zur Konzeption und zum didaktischen Einsatz der Lernplattform THMcards: <a
+                    href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
             </p>
             <p>
-                Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
+                Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                                target="_blank">GitHub</a>
             </p>
         </div>
     </div>
@@ -290,7 +417,8 @@
             <h4>Nutzungsbestimmungen</h4>
             <p>
             <ul>
-                <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw. dem Benutzer
+                <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw. dem
+                    Benutzer
                     (im Folgenden der besseren Lesbarkeit wegen verkürzt "Benutzer" genannt) und
                     THMcards geregelt. Die Webapp THMcards ist eine kostenlose Dienstleistung der
                     TransMIT-Gesellschaft für Technologietransfer mbH, Projektbereich für mobile Anwendungen mit der
@@ -299,8 +427,10 @@
                 <li>Alle Studierende der Technischen Hochschule Mittelhessen, THM, dürfen THMcards für ihre
                     Zwecke verwenden, solange dabei nicht gegen deutsches oder EU-Recht verstoßen wird.
                 </li>
-            <li>THMcards ist ein kostenloser Webservice (Software as a Service). Die Software ist <a href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open Source</a>
-                und steht unter der <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License Version 3</a>.
+                <li>THMcards ist ein kostenloser Webservice (Software as a Service). Die Software ist <a
+                        href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open Source</a>
+                    und steht unter der <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU
+                        General Public License Version 3</a>.
                 </li>
                 <li>Neben dem eigentlichen Lernkartendienst bietet THMcards optional die Möglichkeit, kostenpflichtige
                     Lerninhalte von anderen Benutzern der Plattform zu nutzen. Die folgenden Geschäftsbedingungen
@@ -408,7 +538,9 @@
                     das Recht vor, diese Inhalte zu löschen.
                 </li>
                 <li>Lerninhalte, die von Benutzern selbstständig erarbeitetet und öffentlich zur Verfügung gestellt
-                    wurden, dürfen gemäß der im Kartensatz angegebenen <a href="https://creativecommons.org/licenses/" target="_blank">Creative Commons License</a> weiterverwendet werden.
+                    wurden, dürfen gemäß der im Kartensatz angegebenen <a href="https://creativecommons.org/licenses/"
+                                                                          target="_blank">Creative Commons License</a>
+                    weiterverwendet werden.
                 </li>
                 <li>Bei nicht veröffentlichten Lerninhalten, die nicht das Urheberrecht Dritter verletzen, liegt das
                     Urheberrecht beim Benutzer.
@@ -660,7 +792,8 @@
             <p>
                 Wird THMcards für Einkäufe oder finanzielle Transaktionen genutzt (beispielsweise wenn ein
                 Kartensatz gekauft oder ein Abonnement abgeschlossen wird), werden von THMcards keine
-                Zahlungsinformationen gespeichert. Alle Transaktionen werden über den Dienst <a href="https://www.braintreepayments.com/en-de" target="_blank">Braintree</a> abgewickelt.
+                Zahlungsinformationen gespeichert. Alle Transaktionen werden über den Dienst <a
+                    href="https://www.braintreepayments.com/en-de" target="_blank">Braintree</a> abgewickelt.
                 Dort werden alle Konto- und Authentifizierungsinformationen und Angaben zur Abrechnung gesammelt.
             </p>
             <br/>
@@ -669,7 +802,8 @@
                 Weitergehende personenbezogene Daten werden nur erfasst, wenn Sie diese Angaben freiwillig, etwa im
                 Rahmen einer Dozenten-Anfrage, angeben. Soweit Sie uns personenbezogene Daten zur Verfügung gestellt
                 haben, werden diese nur zur Beantwortung Ihrer Anfragen, zur Abwicklung mit Ihnen geschlossener
-                Verträge, zur Auswertung der Lernphasen und für die technische Administration gespeichert und verarbeitet.
+                Verträge, zur Auswertung der Lernphasen und für die technische Administration gespeichert und
+                verarbeitet.
             </p>
             <br/>
             <h4>Widerspruchsrecht und Auskunftsrecht</h4>
