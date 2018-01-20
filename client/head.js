@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
 		"palette": {
 			"popup": {
 				"background": "#F5AA01",
-				"text": "#4A5C66"
+				"text": "#ffffff"
 			},
 			"button": {
 				"background": "#4A5C66",
@@ -22,9 +22,9 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": "THMcards verwendet Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
+			"message": "THMcards verwendet Cookies. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
-			"link": "Mehr über Datenschutz",
+			"link": "Details zum Datenschutz",
 			"href": "/datenschutz"
 		}
 	});
