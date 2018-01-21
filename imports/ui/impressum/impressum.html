@@ -1,8 +1,15 @@
 <template name="contact">
+    <div class="col-md-8 col-md-offset-2">
+        <button class="btn btn-raised btn-danger" id="back-button">
+            <span class="pull-left">{{_ "intro.backButton"}}</span>
+        </button>
+    </div>
     <div id="contact" class="col-md-8 col-md-offset-2">
         <nav class="nav nav-tabs nav-justified">
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about" href="{{pathFor
-                    route='about'}}">{{_ "contact.about"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about"
+                                                                                           href="{{pathFor
+                                                                                                   route='about'}}">{{_
+                    "contact.about"}}</a></li>
             <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning"
                                                                                               href="{{pathFor
                                                                                                       route='learning'}}">{{_
@@ -41,9 +48,6 @@
         {{#if isActiveRoute 'datenschutz'}}
             {{> datenschutz}}
         {{/if}}
-        <button class="btn btn-raised btn-danger back-button" id="back-button">
-            <span class="pull-left">{{_ "intro.backButton"}}</span>
-        </button>
     </div>
 </template>
 
@@ -191,12 +195,16 @@
                 "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
             </p>
             <p>
-                Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie leicht
+                Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie
+                leicht
                 oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a
                     href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu
-                berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie auf
-                einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche Antwort, aber
-                leicht an die richtige erinnert (ach ja!)", "Richtige Antwort nach längerem Überlegen", "Richtige Antwort nach
+                berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie
+                auf
+                einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche
+                Antwort, aber
+                leicht an die richtige erinnert (ach ja!)", "Richtige Antwort nach längerem Überlegen", "Richtige
+                Antwort nach
                 kurzem Zögern" bis "Sofort und richtig". Anhand deiner Bewertung wird der Zeitpunkt für die nächste
                 Wiederholung der Lernkarte
                 berechnet.
@@ -318,7 +326,8 @@
                         Kann ich als Student/in einer anderen Hochschule THMcards nutzen?
                     </p>
                     <p>
-                        Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die <a href="{{pathFor route='agb'}}">AGB</a>.
+                        Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die <a
+                            href="{{pathFor route='agb'}}">AGB</a>.
                     </p>
                 </li>
                 <hr/>
@@ -341,7 +350,8 @@
                         oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
                     </p>
                     <p>
-                        Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a> genannten Personen.
+                        Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a>
+                        genannten Personen.
                         Bug Reports, Feature und Pull Requests kannst du auch auf <a
                             href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
                         schreiben.
