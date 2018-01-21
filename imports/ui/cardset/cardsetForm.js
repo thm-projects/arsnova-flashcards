@@ -17,7 +17,7 @@ function createRoute() {
 }
 
 function cardsetRoute() {
-	return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid';
+	return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === 'admin_cardset';
 }
 
 function activateModule() {
