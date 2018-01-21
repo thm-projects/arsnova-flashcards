@@ -86,6 +86,10 @@ $themes: (
     }
 
     .form-group.is-focused .form-control {
+      background-image: linear-gradient($primary-color, $primary-color), linear-gradient($divider-color, $divider-color);
+    }
+
+    textarea {
       background-image: none !important;
     }
 
