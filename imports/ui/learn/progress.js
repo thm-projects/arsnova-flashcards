@@ -1,6 +1,7 @@
 import "./progress.html";
 import {Leitner} from "../../api/learned";
 import {Cards} from "../../api/cards";
+import {Cardsets} from "../../api/cardsets";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {getAuthorName} from "../../api/cardsetUserlist";
@@ -98,12 +99,22 @@ function updateGraph() {
 	}
 	for (let k = 0; k < 4; k++) {
 		if (Router.current().route.getName() === "progress") {
-			filterCards = Cards.find({
-				cardset_id: Router.current().params._id,
-				difficulty: k
-			}, {_id: 1}).map(function (card) {
-				return card._id;
-			});
+			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {Fields: {shuffled: 1, cardGroups: 1}});
+			if (cardset.shuffled) {
+				filterCards = Cards.find({
+					cardset_id: {$in: cardset.cardGroups},
+					difficulty: k
+				}, {_id: 1}).map(function (card) {
+					return card._id;
+				});
+			} else {
+				filterCards = Cards.find({
+					cardset_id: Router.current().params._id,
+					difficulty: k
+				}, {_id: 1}).map(function (card) {
+					return card._id;
+				});
+			}
 		} else if (Router.current().route.getName() === "profileOverview") {
 			filterCards = Cards.find({_id: {$in: prepareFilter}, difficulty: k}, {_id: 1}).map(function (card) {
 				return card._id;
