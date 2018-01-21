@@ -48,8 +48,8 @@ function createTagCloud() {
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.3;
 	let wordRotation = 0.7853981634;
-	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1024);
-	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 1024;
+	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 512);
+	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 512;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
 			drawOutOfBound: false,
