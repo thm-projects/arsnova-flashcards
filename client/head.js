@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": "THMcards verwendet Cookies. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
+			"message": "THM.cards verwendet Cookies. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
 			"link": "Details zum Datenschutz",
 			"href": "/datenschutz"
