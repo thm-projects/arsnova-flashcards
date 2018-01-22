@@ -128,7 +128,7 @@
     "text": "Willst du die Lernphase wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "maxCards": "Workload",
+    "maxCards": "Tägliche max. Workload",
     "maxCardsDesc": "Maximal an einem Tag zu lernende Karten",
     "daysBeforeReset": "Terminüberschreitung",
     "daysBeforeResetDesc": "Maximale Anzahl an Tagen, die der Termin überschritten werden darf",
