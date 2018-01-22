@@ -10,57 +10,45 @@ import {check} from "meteor/check";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
+
 if (Meteor.isServer) {
+	let universityFilter = {$ne: null};
+	if (Meteor.settings.public.university.singleUniversity) {
+		universityFilter = Meteor.settings.public.university.default;
+	}
 	Meteor.publish("cardsets", function () {
 		if (Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'
 			])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Cardsets.find({"college": Meteor.settings.public.university.default});
-			} else {
-				return Cardsets.find();
-			}
+			return Cardsets.find({college: universityFilter});
 		} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Cardsets.find({
-					"college": Meteor.settings.public.university.default,
+			return Cardsets.find(
+				{
+					college: universityFilter,
 					$or: [
 						{visible: true},
 						{request: true},
 						{owner: this.userId}
 					]
 				});
-			} else {
-				return Cardsets.find({
-					$or: [
-						{visible: true},
-						{request: true},
-						{owner: this.userId}
-					]
-				});
-			}
 		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Cardsets.find({
-					"college": Meteor.settings.public.university.default,
+			return Cardsets.find(
+				{
+					college: universityFilter,
 					$or: [
 						{visible: true},
 						{owner: this.userId}
 					]
 				});
-			} else {
-				return Cardsets.find({
-					$or: [
-						{visible: true},
-						{owner: this.userId}
-					]
-				});
-			}
 		}
 	});
 	Meteor.publish("tags", function () {
-		return Cardsets.find({}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1}});
+		let universityFilter = null;
+		if (Meteor.settings.public.university.singleUniversity) {
+			universityFilter = Meteor.settings.public.university.default;
+		}
+		return Cardsets.find({college: {$ifNull: [universityFilter, {$exists: true}]}}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1}});
 	});
 }
 
@@ -672,7 +660,7 @@ Meteor.methods({
 				Cardsets.update(id, {
 					$set: {
 						kind: kind,
-						price: price.toString().replace(",","."),
+						price: price.toString().replace(",", "."),
 						visible: visible,
 						relevance: relevance,
 						raterCount: Number(Ratings.find({cardset_id: id}).count())

@@ -5,13 +5,13 @@ import {check} from "meteor/check";
 export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
 if (Meteor.isServer) {
+	let universityFilter = {$ne: null};
+	if (Meteor.settings.public.university.singleUniversity) {
+		universityFilter = Meteor.settings.public.university.default;
+	}
 	Meteor.publish("collegesCourses", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return CollegesCourses.find({"college": Meteor.settings.public.university.default});
-			} else {
-				return CollegesCourses.find();
-			}
+			return CollegesCourses.find({college: universityFilter});
 		}
 	});
 }
