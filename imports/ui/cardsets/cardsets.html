@@ -161,8 +161,11 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.workload"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-2 panelUnit">
+        <span class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+           data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
+        <span class="cell col-xs-7 col-sm-2 panelUnit" data-id="{{this._id}}">
             {{getWorkload}}
+        </span>
         </span>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.levelOfLearning"}}
@@ -241,6 +244,7 @@
 </template>
 
 <template name="learn">
+    {{> selectModeForm}}
     <div id="learn-list-region" class="col-md-12">
         {{#if learnList.count}}
             <a id="browseCardset" class="btn btn-raised btn-success">{{_
@@ -268,6 +272,33 @@
         {{/if}}
         {{> cardsetsConfirmLearnForm}}
     </div>
+</template>
+
+<template name="selectModeForm">
+    <div class="modal fade" id="selectModeToLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="selectModeToLearnTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="selectModeToLearnTitle" class="modal-title">{{_ "learn"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <hr/>
+                    <button id="learnBox"
+                            class="btn btn-raised btn-success learn" {{disableIfOffline}} data-dismiss="modal">{{_
+                            "learnfile"}}</button>
+                    <button id="learnMemo"
+                            class="btn btn-raised btn-success memo pull-right" {{disableIfOffline}} data-dismiss="modal">{{_
+                            "memo"}}</button>
+                </div>
+                <br>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </template>
 
 <template name="cardsetsConfirmLearnForm">

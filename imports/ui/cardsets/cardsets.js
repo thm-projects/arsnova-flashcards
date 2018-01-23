@@ -14,6 +14,25 @@ Session.set('moduleActive', true);
 
 Meteor.subscribe("cardsets");
 
+
+function getLeitnerCount(cardset) {
+	return Leitner.find({
+		cardset_id: cardset._id,
+		user_id: Meteor.userId(),
+		active: true
+	}).count();
+}
+
+function getWozniakCount(cardset) {
+	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	actualDate.setHours(0, 0, 0, 0);
+	return Wozniak.find({
+		cardset_id: cardset._id, user_id: Meteor.userId(), nextDate: {
+			$lte: actualDate
+		}
+	}).count();
+}
+
 /*
  * ############################################################################
  * create
@@ -144,6 +163,21 @@ Template.cardsetRow.events({
 			Session.set("ShuffledCardsetsExclude", arrayExclude);
 		}
 		Session.set("ShuffledCardsets", array);
+	},
+	"click .learnLeitner": function (event) {
+		Session.set("workloadFullscreenMode", true);
+		Router.go('box', {
+			_id: $(event.target).data('id')
+		});
+	},
+	"click .learnWozniak": function (event) {
+		Session.set("workloadFullscreenMode", true);
+		Router.go('box', {
+			_id: $(event.target).data('id')
+		});
+	},
+	"click .learnSelect": function (event) {
+		Session.set("activeCardset", $(event.target).data('id'));
 	}
 });
 
@@ -163,18 +197,26 @@ Template.cardsetRow.helpers({
 			return TAPi18n.__('set-list.inactiveLearnphase');
 		}
 	},
+	getWorkloadType: function () {
+		let leitner = getLeitnerCount(this);
+		let wozniak = getWozniakCount(this);
+		if (leitner !== 0 && wozniak === 0) {
+			return "learnLeitner";
+		} else if (leitner === 0 && wozniak !== 0) {
+			return "learnWozniak";
+		} else if (leitner !== 0 && wozniak !== 0) {
+			return "learnSelect";
+		} else {
+			return "";
+		}
+	},
+	gotWorkloadForBothTypes: function () {
+		let leitner = getLeitnerCount(this);
+		let wozniak = getWozniakCount(this);
+		return leitner !== 0 && wozniak !== 0;
+	},
 	getWorkload: function () {
-		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		actualDate.setHours(0, 0, 0, 0);
-		let count = Leitner.find({
-			cardset_id: this._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count() + Wozniak.find({
-			cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
-				$lte: actualDate
-			}
-		}).count();
+		let count = getLeitnerCount(this) + getWozniakCount(this);
 		switch (count) {
 			case 0:
 				return TAPi18n.__('set-list.noCardsToLearn');
@@ -310,6 +352,31 @@ Template.cardsetsConfirmLearnForm.events({
 		$('#confirmLearnModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteLeitner", Session.get('cardsetId'));
 			Meteor.call("deleteWozniak", Session.get('cardsetId'));
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * selectModeForm
+ * ############################################################################
+ */
+
+Template.selectModeForm.events({
+	'click #learnBox': function () {
+		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
+			Session.set("workloadFullscreenMode", true);
+			Router.go('box', {
+				_id: Session.get("activeCardset")
+			});
+		}).modal('hide');
+	},
+	'click #learnMemo': function () {
+		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
+			Session.set("workloadFullscreenMode", true);
+			Router.go('memo', {
+				_id: Session.get("activeCardset")
+			});
 		}).modal('hide');
 	}
 });
