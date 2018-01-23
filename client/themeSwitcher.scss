@@ -2,8 +2,8 @@
 @import "themes/theme-contrast";
 
 $themes: (
-        theme-default: map-merge(changing-colors-definitions(),theme-default()),
-        theme-contrast: map-merge(changing-colors-definitions(),theme-contrast())
+        theme-default: map-merge(changing-colors-definitions(), theme-default()),
+        theme-contrast: map-merge(changing-colors-definitions(), theme-contrast())
 );
 
 @each $theme, $map in $themes {
@@ -165,6 +165,11 @@ $themes: (
 
     .bs-callout-info {
       border-left-color: $primary-color;
+    }
+
+    #toggleFullscreen, .learnLeitner, .learnWozniak, .learnSelect  {
+      cursor: pointer;
+      color: $primary-color;
     }
   }
 }

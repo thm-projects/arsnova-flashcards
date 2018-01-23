@@ -314,11 +314,30 @@ function resizeFlashcards() {
 }
 
 /**
+ * Function checks if route is a Box
+ * @return {Boolean} Return true, when the current route is a Box.
+ */
+function isBox() {
+	return Router.current().route.getName() === "box";
+}
+
+/**
+ * Function checks if route is a Cardset
+ * @return {Boolean} Return true, when route is a Memo.
+ */
+function isMemo() {
+	return Router.current().route.getName() === "memo";
+}
+
+/**
  * Toggle the card view between fullscreen and normal mode
  */
 export function toggleFullscreen(forceOff = false, isEditor = false) {
 	isEditorFullscreen = isEditor;
-	if (Session.get('fullscreen') || forceOff) {
+	if (forceOff && (!isBox() && !isMemo())) {
+		Session.set("workloadFullscreenMode", false);
+	}
+	if ((Session.get('fullscreen') || forceOff)) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "100px");
 		$("#answerOptions").css("margin-top", "0");
@@ -428,14 +447,6 @@ let additionalButtons = [
 ];
 
 /**
- * Function checks if route is a Box
- * @return {Boolean} Return true, when the current route is a Box.
- */
-function isBox() {
-	return Router.current().route.getName() === "box";
-}
-
-/**
  * Function checks if route is a Cardset
  * @return {Boolean} Return true, when route is a Cardset.
  */
@@ -443,13 +454,6 @@ function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid";
 }
 
-/**
- * Function checks if route is a Cardset
- * @return {Boolean} Return true, when route is a Memo.
- */
-function isMemo() {
-	return Router.current().route.getName() === "memo";
-}
 
 function getCardsetCards() {
 	let query = "";
@@ -963,6 +967,9 @@ Template.flashcards.onRendered(function () {
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
 		$(".box").removeClass("disableCardTransition");
 	});
+	if (Session.get("workloadFullscreenMode")) {
+		toggleFullscreen();
+	}
 });
 
 Template.flashcards.helpers({
@@ -1157,7 +1164,15 @@ Template.flashcards.events({
 		Session.set('modifiedCard', $(evt.target).data('id'));
 	},
 	"click #toggleFullscreen": function () {
-		toggleFullscreen();
+		if (Session.get("workloadFullscreenMode")) {
+			Session.set("workloadFullscreenMode", false);
+			toggleFullscreen();
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		} else {
+			toggleFullscreen();
+		}
 	}
 });
 
