@@ -384,20 +384,7 @@ Meteor.startup(function () {
 		);
 	}
 
-	let cardsets = Cardsets.find({skillLevel: {$exists: true}}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Cardsets.update({
-				_id: cardsets[i]._id
-			},
-			{
-				$unset: {
-					skillLevel: 1
-				}
-			}
-		);
-	}
-
-	cardsets = Cardsets.find({moduleLink: {$exists: false}}).fetch();
+	let cardsets = Cardsets.find({moduleLink: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
 				_id: cardsets[i]._id
