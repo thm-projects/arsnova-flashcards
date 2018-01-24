@@ -584,6 +584,11 @@ Template.cardsetSidebar.helpers({
 	}
 });
 
+
+Template.cardsetSidebar.onRendered(function () {
+	Meteor.subscribe("cards");
+});
+
 /*
 * ############################################################################
 * cardsetInfoBox
