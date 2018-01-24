@@ -9,94 +9,76 @@ import {check} from "meteor/check";
 
 export const Cards = new Mongo.Collection("cards");
 
+
 if (Meteor.isServer) {
+	let universityFilter = {$ne: null};
+	if (Meteor.settings.public.university.singleUniversity) {
+		universityFilter = Meteor.settings.public.university.default;
+	}
 	Meteor.publish("cards", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			let paidCardsets = Paid.find({user_id: this.userId}).map(function (paid) {
+				return paid.cardset_id;
+			});
 			if (Roles.userIsInRole(this.userId, [
 					'admin',
 					'editor',
 					'lecturer'
 				])) {
-				if (Meteor.settings.public.university.singleUniversity) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({
-								$or: [
-									{college: Meteor.settings.public.university.default}
-								]
-							}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				} else {
-					return Cards.find();
-				}
+				return Cards.find({
+					cardset_id: {
+						$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+							return cardset._id;
+						})
+					}
+				});
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
-				if (Meteor.settings.public.university.singleUniversity) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({
+				return Cards.find({
+					cardset_id: {
+						$in: Cardsets.find(
+							{
+								college: universityFilter,
 								$or: [
 									{owner: this.userId},
 									{visible: true},
-									{college: Meteor.settings.public.university.default}
+									{cardset_id: {$in: paidCardsets}}
 								]
 							}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				} else {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({
-								$or: [
-									{owner: this.userId},
-									{visible: true}
-								]
-							}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				}
+							return cardset._id;
+						})
+					}
+				});
 			} else if (Roles.userIsInRole(this.userId, 'university')) {
-				if (Meteor.settings.public.university.singleUniversity) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({
-								visible: true,
-								college: Meteor.settings.public.university.default,
-								kind: {$in: ['free', 'edu']}
-							}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
+				return Cards.find(
+					{
+						$or: [
+							{
+								cardset_id: {
+									$in: Cardsets.find(
+										{
+											college: universityFilter,
+											visible: true,
+											kind: {$in: ['free', 'edu']}
+										}).map(function (cardset) {
+										return cardset._id;
+									})
+								}
+							},
+							{cardset_id: {$in: paidCardsets}}
+						]
 					});
-				} else {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({
-								visible: true,
-								kind: {$in: ['free', 'edu']}
-							}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				}
 			} else {
-				if (Meteor.settings.public.university.singleUniversity) {
-					return Cards.find({
+				return Cards.find(
+					{
 						$or: [
 							//is owner
 							{
 								cardset_id: {
-									$in: Cardsets.find({
-										owner: this.userId,
-										college: Meteor.settings.public.university.default
-									}).map(function (cardset) {
+									$in: Cardsets.find(
+										{
+											college: universityFilter,
+											owner: this.userId
+										}).map(function (cardset) {
 										return cardset._id;
 									})
 								}
@@ -104,85 +86,37 @@ if (Meteor.isServer) {
 							//is visible and is free
 							{
 								cardset_id: {
-									$in: Cardsets.find({
-										visible: true,
-										kind: 'free',
-										college: Meteor.settings.public.university.default
-									}).map(function (cardset) {
+									$in: Cardsets.find(
+										{
+											college: universityFilter,
+											visible: true,
+											kind: 'free'
+										}).map(function (cardset) {
 										return cardset._id;
 									})
 								}
 							},
-							//is visible and has bought
+							//has bought
 							{
 								cardset_id: {
-									$in: Paid.find({
-										user_id: this.userId,
-										college: Meteor.settings.public.university.default,
-										cardset_id: {
-											$in: Cardsets.find({visible: true}).map(function (cardset) {
-												return cardset._id;
-											})
-										}
-									}).map(function (paid) {
-										return paid.cardset_id;
+									$in: Cardsets.find(
+										{
+											_id: {$in: paidCardsets},
+											college: universityFilter
+										}).map(function (cardset) {
+										return cardset._id;
 									})
 								}
 							}
 						]
 					});
-				} else {
-					return Cards.find({
-						$or: [
-							//is owner
-							{
-								cardset_id: {
-									$in: Cardsets.find({owner: this.userId}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							},
-							//is visible and is free
-							{
-								cardset_id: {
-									$in: Cardsets.find({
-										visible: true,
-										kind: 'free'
-									}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							},
-							//is visible and has bought
-							{
-								cardset_id: {
-									$in: Paid.find({
-										user_id: this.userId,
-										cardset_id: {
-											$in: Cardsets.find({visible: true}).map(function (cardset) {
-												return cardset._id;
-											})
-										}
-									}).map(function (paid) {
-										return paid.cardset_id;
-									})
-								}
-							}
-						]
-					});
-				}
 			}
 		}
 	});
 
 	Meteor.publish("previewCards", function (cardset_id) {
 		check(cardset_id, String);
-
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (this.userId === Cardsets.findOne({_id: cardset_id}).owner) {
-				return Cards.find({cardset_id: cardset_id});
-			}
-
 			let count = Cards.find({cardset_id: cardset_id}).count();
 			let cardIdArray = Cards.find({cardset_id: cardset_id}, {_id: 1}).map(function (card) {
 				return card._id;

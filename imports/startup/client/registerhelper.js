@@ -233,14 +233,14 @@ Template.registerHelper("hasCardsetPermission", function (_id) {
 	let userId = Meteor.userId();
 	let cardsetKind = cardset.kind;
 
-	var hasRole = false;
+	let hasRole = false;
 	if (Roles.userIsInRole(userId, 'pro') ||
 		(Roles.userIsInRole(userId, 'lecturer')) ||
 		(Roles.userIsInRole(userId, 'admin')) ||
 		(Roles.userIsInRole(userId, 'editor')) ||
 		(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
 		(cardsetKind === 'free') ||
-		(Paid.find({cardset_id: cardset._id, user_id: userId}).count() === 1)) {
+		(Paid.find({cardset_id: cardset._id, user_id: userId}).count())) {
 		hasRole = true;
 	}
 	return (this.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;

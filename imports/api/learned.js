@@ -7,140 +7,85 @@ export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
 export const Wozniak = new Mongo.Collection("wozniak");
 
+
 if (Meteor.isServer) {
+	let universityFilter = {$ne: null};
+	if (Meteor.settings.public.university.singleUniversity) {
+		universityFilter = Meteor.settings.public.university.default;
+	}
 	Meteor.publish("leitner", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Leitner.find({
-					$or: [
-						{user_id: this.userId},
-						{
-							cardset_id: {
-								$in: Cardsets.find({
-									$or: [
-										{owner: this.userId},
-										{editors: {$in: [this.userId]}}
-									],
-									learningActive: true,
-									college: Meteor.settings.public.university.default
-								}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
-						}
-					]
-				});
-			} else {
-				return Leitner.find({
-					$or: [
-						{user_id: this.userId},
-						{
-							cardset_id: {
-								$in: Cardsets.find({
+			return Leitner.find({
+				$or: [
+					{user_id: this.userId},
+					{
+						cardset_id: {
+							$in: Cardsets.find(
+								{
+									college: universityFilter,
 									$or: [
 										{owner: this.userId},
 										{editors: {$in: [this.userId]}}
 									],
 									learningActive: true
 								}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
+								return cardset._id;
+							})
 						}
-					]
-				});
-			}
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Leitner.find({
-					user_id: this.userId,
-					cardset_id: {
-						$in: Cardsets.find({
-							college: Meteor.settings.public.university.default
-						}).map(function (cardset) {
-							return cardset._id;
-						})
 					}
-				});
-			} else {
-				return Leitner.find({user_id: this.userId});
-			}
+				]
+			});
+		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			return Leitner.find({
+				user_id: this.userId,
+				cardset_id: {
+					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+						return cardset._id;
+					})
+				}
+			});
 		}
 	});
 	Meteor.publish("wozniak", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Wozniak.find({
-					$or: [
-						{user_id: this.userId},
-						{
-							cardset_id: {
-								$in: Cardsets.find({
-									$or: [
-										{owner: this.userId}
-									],
-									college: Meteor.settings.public.university.default
-								}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
-						}
-					]
-				});
-			} else {
-				return Wozniak.find({
-					$or: [
-						{user_id: this.userId},
-						{
-							cardset_id: {
-								$in: Cardsets.find({
+			return Wozniak.find({
+				$or: [
+					{user_id: this.userId},
+					{
+						cardset_id: {
+							$in: Cardsets.find(
+								{
+									college: universityFilter,
 									$or: [
 										{owner: this.userId}
 									]
 								}).map(function (cardset) {
-									return cardset._id;
-								})
-							}
+								return cardset._id;
+							})
 						}
-					]
-				});
-			}
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Wozniak.find({
-					user_id: this.userId,
-					cardset_id: {
-						$in: Cardsets.find({
-							$or: [
-								{college: Meteor.settings.public.university.default}
-							]
-						}).map(function (cardset) {
-							return cardset._id;
-						})
 					}
-				});
-			} else {
-				return Wozniak.find({user_id: this.userId});
-			}
+				]
+			});
+		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+			return Wozniak.find({
+				user_id: this.userId,
+				cardset_id: {
+					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+						return cardset._id;
+					})
+				}
+			});
 		}
 	});
 	Meteor.publish("allLearned", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
-			if (Meteor.settings.public.university.singleUniversity) {
-				return Leitner.find({
-					cardset_id: {
-						$in: Cardsets.find({
-							$or: [
-								{college: Meteor.settings.public.university.default}
-							]
-						}).map(function (cardset) {
-							return cardset._id;
-						})
-					}
-				});
-			} else {
-				return Leitner.find({});
-			}
+			return Leitner.find({
+				cardset_id: {
+					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+						return cardset._id;
+					})
+				}
+			});
 		}
 	});
 
