@@ -60,7 +60,7 @@ function initializeContent() {
 		Session.set('lectureText', '');
 	}
 
-	if (Session.get('cardType') === 1 && Session.get('centerTextElement') === undefined) {
+	if ((Session.get('cardType') === 1 || Session.get('cardType') === 3) && Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
 	} else if (Session.get('centerTextElement') === undefined) {
 		Session.set('centerTextElement', [false, false, false, false]);
@@ -630,7 +630,7 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
-						if (cardType === 1) {
+						if (cardType === 1 || cardType === 3) {
 							Session.set('centerTextElement', [true, true, false, false]);
 						} else {
 							Session.set('centerTextElement', [false, false, false, false]);
@@ -655,7 +655,7 @@ function saveCard(card_id, returnToCardset) {
 				Session.set('backText', '');
 				Session.set('hintText', '');
 				Session.set('lectureText', '');
-				if (cardType === 1) {
+				if (cardType === 1 || cardType === 3) {
 					Session.set('centerTextElement', [true, true, false, false]);
 				} else {
 					Session.set('centerTextElement', [false, false, false, false]);
@@ -895,6 +895,12 @@ Template.cardType.events({
 		centerTextElement[0] = false;
 		centerTextElement[1] = false;
 		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardType3": function () {
+		let centerTextElement = Session.get('centerTextElement');
+		centerTextElement[0] = true;
+		centerTextElement[1] = true;
+		Session.set('centerTextElement', centerTextElement);
 	}
 });
 
@@ -908,6 +914,9 @@ Template.cardType.onRendered(function () {
 	});
 	$(this.find('#cardType2')).on('click change keypress paste focus textInput input', function () {
 		defaultToFront(Number($('#cardType2').data('type')));
+	});
+	$(this.find('#cardType3')).on('click change keypress paste focus textInput input', function () {
+		defaultToFront(Number($('#cardType3').data('type')));
 	});
 });
 
