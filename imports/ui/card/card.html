@@ -54,17 +54,13 @@
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
-                                                                                                     1}}col-sm-6{{/if}}{{#if
-                        isCardType 2}}col-sm-6{{/if}}"
-                tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                tabindex="4">{{#if isCardType 2}}{{_ "cardType2"}}{{else}}{{#if isCardType 3}}{{_
+                "cardType3"}}{{else}}{{_ "frontside"}}{{/if}}{{/if}}</button>
         <button id="editBack" type="button"
-                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
-                                                                                                     2}}col-sm-6{{/if}}{{#if
-                        isCardType
-                        1}}col-sm-6{{/if}}"
-                tabindex="6">{{#unless isCardType 2}}{{_ "backside"}}{{else}}{{_
-                "backsideCardType2"}}{{/unless}}</button>
+                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                tabindex="6">{{#if isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if isCardType 3}}{{_
+                "backsideCardType3"}}{{else}}{{_ "backside"}}{{/if}}{{/if}}</button>
         {{#unless isCardType 2}}
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
@@ -90,7 +86,7 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType2" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+        <label id="cardType2" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
                 <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
@@ -99,7 +95,16 @@
             {{/if}}
             {{_ "cardType2"}}
         </label>
-        <label id="cardType0" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+        <label id="cardType3" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
+               data-type="3">
+            {{#if isCardType 3}}
+                <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
+            {{else}}
+                <input type="radio" name="cardType" value="3" data-type="3">
+            {{/if}}
+            {{_ "cardType3"}}
+        </label>
+        <label id="cardType0" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
                 <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
@@ -108,7 +113,7 @@
             {{/if}}
             {{_ "cardType0"}}
         </label>
-        <label id="cardType1" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+        <label id="cardType1" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
                 <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
@@ -268,32 +273,34 @@
                                         {{/unless}}
                                         {{#unless isEditMode}}
                                             {{#unless isCardType 2}}
-                                                {{#if isCardType 0}}
-                                                    {{#if lecture}}
-                                                        <a href="#" id="showLecture">
+                                                {{#unless isCardType 3}}
+                                                    {{#if isCardType 0}}
+                                                        {{#if lecture}}
+                                                            <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-education"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                        </a>
-                                                    {{/if}}
-                                                    {{#if hint}}
-                                                        <a href="#" id="showHint">
+                                                            </a>
+                                                        {{/if}}
+                                                        {{#if hint}}
+                                                            <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                                        </a>
+                                                            </a>
+                                                        {{/if}}
                                                     {{/if}}
-                                                {{/if}}
-                                                {{#if isCardType 1}}
-                                                    <a href="#" id="showLecture">
+                                                    {{#if isCardType 1}}
+                                                        <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-book"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                    </a>
-                                                {{/if}}
+                                                        </a>
+                                                    {{/if}}
+                                                {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
@@ -314,14 +321,16 @@
                                         {{getCardTypeName}}
                                         <span class="cardFrontHeader"
                                               style="display: {{#if isCardType 1}}{{#if
-                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{#unless
-                                                isCardType 2}}{{_ "frontside"}}{{else}}{{_
-                                                "cardType2"}}{{/unless}}</span><span
+                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{#if
+                                                isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
+                                                isCardType 3}}{{_ "cardType3"}}{{else}}{{_
+                                                "frontside"}}{{/if}}{{/if}}</span><span
                                             class="cardBackHeader"
                                             style="display: {{#if isCardType 1}}{{#unless
-                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#unless
-                                            isCardType 2}}{{_ "backside"}}{{else}}{{_
-                                            "backsideCardType2"}}{{/unless}}</span>
+                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
+                                            isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
+                                            isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{_
+                                            "backside"}}{{/if}}{{/if}}</span>
                                         ({{getDifficultyName}})
                                     </div>
                                     {{#unless isCardType 2}}
@@ -335,8 +344,8 @@
                                         </div>
                                     {{/unless}}
                                     <span id="toggleFullscreen"
-                                       class="fullscreen"
-                                       data-type="cardNavigation">
+                                          class="fullscreen"
+                                          data-type="cardNavigation">
                                                 <span class="glyphicon glyphicon-fullscreen"
                                                       data-type="cardNavigation"></span>
                                     </span>
