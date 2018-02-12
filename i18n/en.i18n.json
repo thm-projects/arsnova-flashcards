@@ -591,6 +591,14 @@
     "category": "Category",
     "description": "Rating"
   },
+  "learning-goal": {
+    "level1": "Remembrance",
+    "level2": "Comprehension",
+    "level3": "Apply",
+    "level4": "Analyze",
+    "level5": "Evaluation",
+    "level6": "Creation"
+  },
   "permission": "Permission denied",
   "nocards": "No cards available",
   "learnPhaseActiveHeader": "Learning-Phase active",

@@ -117,7 +117,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   border-color: $input_difficulty3;
 }
 
-#cardType .btn-white.active {
+#cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
   color: white !important;
   background-color: $input_difficulty2 !important;
 }
@@ -601,4 +601,16 @@ img.cardside {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#learningGoalLevelGroup {
+  margin-top: 0 !important;
+  padding: 0;
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+  #learningGoalLevelGroup > .btn-raised {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }

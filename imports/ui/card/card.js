@@ -23,6 +23,7 @@ function defaultData() {
 	Session.set('difficultyColor', 0);
 	Session.set('cardType', 2);
 	Session.set('centerTextElement', [false, false, false, false]);
+	Session.set('learningGoalLevel', 0);
 }
 
 function isTextCentered() {
@@ -50,6 +51,10 @@ function initializeContent() {
 
 	if (Session.get('difficultyColor') === undefined) {
 		Session.set('difficultyColor', 0);
+	}
+
+	if (Session.get('learningGoalLevel') === undefined) {
+		Session.set('learningGoalLevel', 0);
 	}
 
 	if (Session.get('cardType') === undefined) {
@@ -516,6 +521,7 @@ function getEditModeCard() {
 		"_id": id,
 		"subject": Session.get('subjectEditorText'),
 		"difficulty": Session.get('difficultyColor'),
+		"learningGoalLevel": Session.get('learningGoalLevel'),
 		"front": Session.get('frontText'),
 		"back": Session.get('backText'),
 		"hint": Session.get('hintText'),
@@ -567,6 +573,7 @@ function saveCard(card_id, returnToCardset) {
 	let cardType = Session.get('cardType');
 	let centerTextElement = Session.get('centerTextElement');
 	let date = Session.get('cardDate');
+	let learningGoalLevel = Session.get('learningGoalLevel');
 	if (lectureText === undefined) {
 		lectureText = '';
 	}
@@ -614,7 +621,7 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -626,6 +633,7 @@ function saveCard(card_id, returnToCardset) {
 						$('#contentEditor').val('');
 						$('#editor').attr('data-content', '');
 						Session.set('difficultyColor', 0);
+						Session.set('learningGoalLevel', 0);
 						Session.set('frontText', '');
 						Session.set('backText', '');
 						Session.set('hintText', '');
@@ -642,7 +650,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date);
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel));
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				defaultData();
@@ -651,6 +659,7 @@ function saveCard(card_id, returnToCardset) {
 				});
 			} else {
 				Session.set('difficultyColor', 0);
+				Session.set('learningGoalLevel', 0);
 				Session.set('frontText', '');
 				Session.set('backText', '');
 				Session.set('hintText', '');
@@ -755,6 +764,7 @@ Template.editor.helpers({
 			Session.set('lectureText', this.lecture);
 			Session.set('centerTextElement', this.centerTextElement);
 			Session.set('difficultyColor', this.difficulty);
+			Session.set('learningGoalLevel', this.learningGoalLevel);
 		}
 	},
 	isCardType: function (type) {
@@ -865,6 +875,26 @@ Template.difficultyEditor.events({
 	}
 });
 
+/*
+ * ############################################################################
+ * learningGoalLevel
+ * ############################################################################
+ */
+
+Template.learningGoalLevel.helpers({
+	isLearningGoalLevelChecked: function (learningGoalLevel) {
+		return learningGoalLevel <= Session.get('learningGoalLevel');
+	},
+	isLearningGoalLevel: function (learningGoalLevel) {
+		return learningGoalLevel === Session.get('learningGoalLevel');
+	}
+});
+
+Template.learningGoalLevel.events({
+	'click #learningGoalLevelGroup': function (event) {
+		Session.set('learningGoalLevel', Number($(event.target).data('lvl')));
+	}
+});
 /*
  * ############################################################################
  * cardType

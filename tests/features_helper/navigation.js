@@ -29,7 +29,7 @@ module.exports = {
 		}
 	},
 	logout: function () {
-		browser.waitForExist('#logout', global.threshold);
+		browser.waitForVisible('#logout', global.threshold);
 		browser.click('#logout');
 	},
 	selectMyCardset: function () {

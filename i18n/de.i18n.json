@@ -558,6 +558,14 @@
     "category": "Kategorie",
     "description": "Beschreibung"
   },
+  "learning-goal": {
+    "level1": "Erinnern",
+    "level2": "Verstehen",
+    "level3": "Anwenden",
+    "level4": "Analysieren",
+    "level5": "Bewerten",
+    "level6": "Erschaffen"
+  },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase aktiv",

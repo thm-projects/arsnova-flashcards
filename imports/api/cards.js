@@ -190,13 +190,16 @@ var CardsSchema = new SimpleSchema({
 	date: {
 		type: Date,
 		optional: true
+	},
+	learningGoalLevel: {
+		type: Number
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerTextElement, date) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerTextElement, date, learningGoalLevel) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -208,6 +211,7 @@ Meteor.methods({
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
+		check(learningGoalLevel, Number);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
@@ -231,7 +235,8 @@ Meteor.methods({
 			cardType: cardType,
 			lecture: lecture,
 			centerTextElement: centerTextElement,
-			date: date
+			date: date,
+			learningGoalLevel: learningGoalLevel
 		}, function (err, card) {
 			card_id = card;
 		});
@@ -270,7 +275,7 @@ Meteor.methods({
 				if (card.lecture !== undefined) {
 					lecture = card.lecture;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date);
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date, card.learningGoalLevel);
 				return true;
 			}
 		} else {
@@ -344,7 +349,7 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerTextElement, date) {
+	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerTextElement, date, learningGoalLevel) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -355,6 +360,7 @@ Meteor.methods({
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
+		check(learningGoalLevel, Number);
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
@@ -380,7 +386,8 @@ Meteor.methods({
 				cardType: cardType,
 				lecture: lecture,
 				centerTextElement: centerTextElement,
-				date: date
+				date: date,
+				learningGoalLevel: learningGoalLevel
 			}
 		});
 		Cardsets.update(card.cardset_id, {
