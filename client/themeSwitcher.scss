@@ -171,5 +171,13 @@ $themes: (
       cursor: pointer;
       color: $primary-color;
     }
+
+    #swapOrder {
+      color: $divider-color;
+    }
+
+    .swappedOrder {
+      color: $primary-color !important;
+    }
   }
 }

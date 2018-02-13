@@ -132,7 +132,11 @@ function prepareBack() {
 }
 
 function turnFront(adjustEditWindow = false) {
-	Session.set('isFront', true);
+	if (Session.get('reverseViewOrder')) {
+		Session.set('isQuestionSide', false);
+	} else {
+		Session.set('isQuestionSide', true);
+	}
 	if (isEditMode() && adjustEditWindow) {
 		prepareFront();
 	}
@@ -148,7 +152,11 @@ function turnFront(adjustEditWindow = false) {
 }
 
 function turnBack(adjustEditWindow = false) {
-	Session.set('isFront', false);
+	if (Session.get('reverseViewOrder')) {
+		Session.set('isQuestionSide', true);
+	} else {
+		Session.set('isQuestionSide', false);
+	}
 	if (isEditMode() && adjustEditWindow) {
 		prepareBack();
 	}
@@ -178,13 +186,13 @@ function defaultToFront(cardType) {
 
 function editFront() {
 	prepareFront();
-	$(".clicktoflip").css('display',"");
+	$(".clicktoflip").css('display', "");
 	turnFront();
 }
 
 function editBack() {
 	prepareBack();
-	$(".clicktoflip").css('display',"");
+	$(".clicktoflip").css('display', "");
 	turnBack();
 }
 
@@ -207,7 +215,7 @@ function editLecture() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-default').addClass('btn-primary');
 	}
-	$(".clicktoflip").css('display',"none");
+	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
 }
@@ -231,7 +239,7 @@ function editHint() {
 	if (Session.get('cardType') === 0) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
-	$(".clicktoflip").css('display',"none");
+	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
 }
@@ -354,7 +362,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		if (lastEditMode === 2 && lastEditMode === 3) {
 			$(".cardFrontHeader").css('display', "none");
 			$(".cardBackHeader").css('display', "none");
-			$(".clicktoflip").css('display',"none");
+			$(".clicktoflip").css('display', "none");
 		}
 		if (!isEditor) {
 			switch (lastEditMode) {
@@ -380,7 +388,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		} else {
 			$(".cardFrontHeader").css('display', "");
 		}
-		$(".clicktoflip").css('display',"");
+		$(".clicktoflip").css('display', "");
 		$(".box").removeClass("disableCardTransition");
 		$("#theme-wrapper").css("margin-top", "20px");
 		$("#answerOptions").css("margin-top", "-80px");
@@ -1190,10 +1198,18 @@ Template.flashcards.events({
 	"click #swapOrder": function () {
 		if (Session.get('reverseViewOrder')) {
 			Session.set('reverseViewOrder', false);
-			turnFront();
+			if (isEditMode()) {
+				turnFront(true);
+			} else {
+				turnFront();
+			}
 		} else {
 			Session.set('reverseViewOrder', true);
-			turnBack();
+			if (isEditMode()) {
+				turnBack(true);
+			} else {
+				turnBack();
+			}
 		}
 	},
 	"click #editCard": function (evt) {
@@ -1305,7 +1321,6 @@ Meteor.startup(function () {
 						}
 						break;
 					case 38:
-						Session.set('isFront', true);
 						if (isEditMode()) {
 							turnFront(true);
 						} else {
@@ -1320,7 +1335,6 @@ Meteor.startup(function () {
 						}
 						break;
 					case 40:
-						Session.set('isFront', false);
 						if (isEditMode()) {
 							turnBack(true);
 						} else {
