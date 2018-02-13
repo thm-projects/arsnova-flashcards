@@ -41,6 +41,7 @@
         {{> leaveLearnPhaseForm}}
         {{> leaveCardsetForm}}
         {{> leaveEditorsForm}}
+        {{> chooseFlashcardsToLearn}}
         {{onEditmodalClose}}
     {{/unless}}
     {{#if hasCardsetPermission this._id}}
@@ -359,7 +360,8 @@
             {{#unless learningActive}}
                 <div id="set-details-learn-region">
                     <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning" target="_blank">
+                        <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning"
+                                                                         target="_blank">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                         </a></span>
 
@@ -375,6 +377,10 @@
                         <button id="learnMemo"
                                 class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
                                 "memo"}}</button>
+                        <button id="learnChoice"
+                                class="btn btn-raised btn-success choice btn-block" {{disableIfOffline}}
+                                data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
+                                "learnSelection"}}</button>
                         {{#if learningLeitner}}
                             <button id="leitnerProgress"
                                     class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
@@ -566,6 +572,231 @@
         {{/if}}
         {{> cardsetConfirmForm}}
     </div>
+</template>
+
+<template name="chooseFlashcardsToLearn">
+    <div class="modal fade" id="chooseFlashcardsModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="chooseFlashcardsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="chooseFlashcardsTitle" class="modal-title">{{_ "learnSelection"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bs-callout bs-callout-info selectionInfo">
+                        {{#if getCardCount -1 -1}}
+                            <a href="#" id="createCardFilter" class="btn btn-raised btn-success"
+                               role="button" {{disableIfOffline}}>{{_ "filter-cards.filter"}}
+                            </a>
+                        {{/if}}
+                        <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal"
+                           aria-hidden="true">{{_
+                                "declinecard"}}</a>
+                        <span class="text">
+                            {{_ "filter-cards.infoText"}} {{getCardCount -1 -1}}
+                        </span>
+                    </div>
+                    <br>
+                    <span class="col-xs-12 poolHeaderBottom">
+                        {{_ "difficulty"}}
+                    </span>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "difficulty0"}}
+                                                <span class="cell badge cardsetBadge">
+                                                    {{getCardCount 0 0}}
+                                                </span>
+                                            </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=0 item=0}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "difficulty1"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 0 1}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=0 item=1}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "difficulty2"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 0 2}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=0 item=2}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "difficulty3"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 0 3}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=0 item=3}}
+                        </span>
+                    </div>
+                    <span class="col-xs-12 poolHeaderBottom">
+                        {{_ "cardType"}}
+                    </span>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "cardType0"}}
+                                                <span class="cell badge cardsetBadge">
+                                                    {{getCardCount 1 0}}
+                                                </span>
+                                            </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=1 item=0}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "cardType1"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 1}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=1 item=1}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "cardType2"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 2}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=1 item=2}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "cardType3"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 3}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=1 item=3}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "cardType4"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 4}}
+                        </span>
+                    </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                            {{> chooseFlashcardsToLearnButton category=1 item=4}}
+                        </span>
+                    </div>
+                    {{#if gotLearningGoalType}}
+                        <span class="col-xs-12 poolHeaderBottom">
+                            {{_ "learning-goal.name"}}
+                        </span>
+                        <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "learning-goal.level1"}}
+                                                <span class="cell badge cardsetBadge">
+                                                    {{getCardCount 2 0}}
+                                                </span>
+                                            </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=0}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level2"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 2 1}}
+                        </span>
+                    </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=1}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level3"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 2 2}}
+                        </span>
+                    </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=2}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level4"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 2 3}}
+                        </span>
+                    </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=3}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level5"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 2 4}}
+                        </span>
+                    </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=4}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level6"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 2 5}}
+                        </span>
+                    </span>
+                            <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                {{> chooseFlashcardsToLearnButton category=2 item=5}}
+                            </span>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="chooseFlashcardsToLearnButton">
+    {{#if inFlashcardFilterSelection category item}}
+        <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
+           data-category="{{category}}" data-item="{{item}}">
+            <i class="fa fa-minus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+                "admin.cardset.removeFromWordcloud"}}
+        </a>
+    {{else}}
+        <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
+           data-category="{{category}}" data-item="{{item}}">
+            <i class="fa fa-plus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+                "admin.cardset.addToWordcloud"}}
+        </a>
+    {{/if}}
 </template>
 
 <template name="deleteCardsForm">

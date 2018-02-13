@@ -591,6 +591,136 @@ Template.cardsetSidebar.onRendered(function () {
 
 /*
 * ############################################################################
+* chooseFlashcardsToLearn
+* ############################################################################
+*/
+
+Template.chooseFlashcardsToLearn.created = function () {
+	let chooseFlashcardsFilter = [];
+	chooseFlashcardsFilter[0] = [];
+	chooseFlashcardsFilter[1] = [];
+	chooseFlashcardsFilter[2] = [];
+	Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
+};
+
+Template.chooseFlashcardsToLearn.helpers({
+	getCardCount: function (category, item) {
+		let cardsetFilter = Router.current().params._id;
+		if (this.shuffled) {
+			cardsetFilter = {$in: this.cardGroups};
+		}
+		if (category === 0) {
+			return Cards.find({cardset_id: cardsetFilter, difficulty: item}).count();
+		} else if (category === 1) {
+			return Cards.find({cardset_id: cardsetFilter, cardType: item}).count();
+		} else if (category === 2) {
+			return Cards.find({
+				cardset_id: cardsetFilter,
+				cardType: {$in: [0, 4]},
+				learningGoalLevel: {$gte: (item)}
+			}).count();
+		} else {
+			let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+			if ((chooseFlashcardsFilter[0].length + chooseFlashcardsFilter[1].length + chooseFlashcardsFilter[2].length) === 0) {
+				return 0;
+			}
+			let difficultyFilter = {$ne: null};
+			let cardTypeFilter = {$ne: null};
+			let learningGoalLevelFilter = {$ne: null};
+			if (chooseFlashcardsFilter[0].length) {
+				difficultyFilter = {$in: chooseFlashcardsFilter[0]};
+			}
+			if (chooseFlashcardsFilter[1].length) {
+				cardTypeFilter = {$in: chooseFlashcardsFilter[1]};
+			}
+			if (chooseFlashcardsFilter[2].length) {
+				learningGoalLevelFilter = {$in: chooseFlashcardsFilter[2]};
+			}
+			return Cards.find({
+				cardset_id: cardsetFilter,
+				difficulty: difficultyFilter,
+				cardType: cardTypeFilter,
+				learningGoalLevel: learningGoalLevelFilter
+			}).count();
+		}
+	},
+	gotLearningGoalType: function () {
+		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+		if (chooseFlashcardsFilter[1].includes(0) || chooseFlashcardsFilter[1].includes(4)) {
+			return true;
+		} else {
+			chooseFlashcardsFilter[2] = [];
+			Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
+			return false;
+		}
+	}
+});
+
+Template.chooseFlashcardsToLearn.events({
+	"click #createCardFilter": function () {
+		$('#chooseFlashcardsModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+	}
+});
+
+Template.cardsetSidebar.onRendered(function () {
+	$('#chooseFlashcardsModal').on('hidden.bs.modal', function () {
+		let chooseFlashcardsFilter = [""];
+		chooseFlashcardsFilter[0] = [];
+		chooseFlashcardsFilter[1] = [];
+		chooseFlashcardsFilter[2] = [];
+		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
+	});
+});
+
+/*
+* ############################################################################
+* chooseFlashcardsToLearnButton
+* ############################################################################
+*/
+
+Template.chooseFlashcardsToLearnButton.helpers({
+	inFlashcardFilterSelection: function (category, item) {
+		return Session.get('chooseFlashcardsFilter')[category].includes(item);
+	}
+});
+
+Template.chooseFlashcardsToLearnButton.events({
+	"click .addCardFilter": function (event) {
+		let category = $(event.target).data('category');
+		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+		let item = $(event.target).data('item');
+		if (category !== 2) {
+			chooseFlashcardsFilter[category].push(item);
+		} else {
+			chooseFlashcardsFilter[category] = [];
+			for (let i = 0; i <= item; i++) {
+				chooseFlashcardsFilter[category].push(i);
+			}
+		}
+		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
+	},
+	"click .removeCardFilter": function (event) {
+		let category = $(event.target).data('category');
+		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+		let item = $(event.target).data('item');
+		if (category !== 2) {
+			let pos = chooseFlashcardsFilter[category].indexOf(item);
+			chooseFlashcardsFilter[category].splice(pos, 1);
+		} else {
+			chooseFlashcardsFilter[category] = [];
+			if (item !== 0) {
+				for (let i = 0; i <= item; i++) {
+					chooseFlashcardsFilter[category].push(i);
+				}
+			}
+		}
+		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
+	}
+});
+/*
+* ############################################################################
 * cardsetInfoBox
 * ############################################################################
 */

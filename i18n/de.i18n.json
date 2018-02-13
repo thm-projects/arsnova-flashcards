@@ -568,6 +568,10 @@
     "level5": "Bewerten",
     "level6": "Erschaffen"
   },
+  "filter-cards": {
+    "filter": "Filtern",
+    "infoText": "Anzahl ausgewählter Karten:"
+  },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase aktiv",
@@ -585,8 +589,10 @@
   "learn": "Lernmodus",
   "manage": "Verwalten",
   "selection": "Auswahl",
+  "filter": "Filter",
   "learnfile": "Lernen nach Leitner",
   "memo": "Lernen nach Woźniak",
+  "learnSelection": "Lernen nach Auswahl",
   "leitnerProgress": "Mein Lernstand nach Leitner",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
