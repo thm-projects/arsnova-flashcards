@@ -592,7 +592,10 @@ button:disabled {
 
 .md-header .fa, .md-header .center-button, .md-header .fullscreen-button {
   margin: 0 auto;
-  font-size: 24px;
+  font-size: 22px;
+  @media (min-width: 1200px) {
+    font-size: 24px;
+  }
   padding: 3px 6px;
   color: $color_thm_gray;
   border-radius: 5px;

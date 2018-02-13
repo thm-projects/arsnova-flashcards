@@ -380,7 +380,7 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType) {
 			default:
 				return '';
 		}
-	} else if (cardType === 1 || cardType === 3) {
+	} else if (cardType === 1 || cardType === 3 || cardType === 4) {
 		switch (difficulty) {
 			case 0:
 				return 'box-difficulty-Vocabulary0';
