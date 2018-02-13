@@ -54,17 +54,13 @@
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
-                                                                                                     1}}col-sm-6{{/if}}{{#if
-                        isCardType 2}}col-sm-6{{/if}}"
-                tabindex="4">{{#unless isCardType 2}}{{_ "frontside"}}{{else}}{{_ "cardType2"}}{{/unless}}</button>
+                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                tabindex="4">{{#if isCardType 2}}{{_ "cardType2"}}{{else}}{{#if isCardType 3}}{{_
+                "cardType3"}}{{else}}{{_ "frontside"}}{{/if}}{{/if}}</button>
         <button id="editBack" type="button"
-                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{/if}}{{#if isCardType
-                                                                                                     2}}col-sm-6{{/if}}{{#if
-                        isCardType
-                        1}}col-sm-6{{/if}}"
-                tabindex="6">{{#unless isCardType 2}}{{_ "backside"}}{{else}}{{_
-                "backsideCardType2"}}{{/unless}}</button>
+                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                tabindex="6">{{#if isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if isCardType 3}}{{_
+                "backsideCardType3"}}{{else}}{{_ "backside"}}{{/if}}{{/if}}</button>
         {{#unless isCardType 2}}
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
@@ -79,6 +75,9 @@
     </div>
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
+        {{#if isCardType 0}}
+            {{> learningGoalLevel}}
+        {{/if}}
     </div>
     {{> btnCard}}
     {{isTextCentered}}
@@ -90,7 +89,7 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType2" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+        <label id="cardType2" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
                 <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
@@ -99,7 +98,16 @@
             {{/if}}
             {{_ "cardType2"}}
         </label>
-        <label id="cardType0" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+        <label id="cardType3" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
+               data-type="3">
+            {{#if isCardType 3}}
+                <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
+            {{else}}
+                <input type="radio" name="cardType" value="3" data-type="3">
+            {{/if}}
+            {{_ "cardType3"}}
+        </label>
+        <label id="cardType0" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
                 <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
@@ -108,7 +116,7 @@
             {{/if}}
             {{_ "cardType0"}}
         </label>
-        <label id="cardType1" class="col-xs-12 col-sm-4 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+        <label id="cardType1" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
                 <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
@@ -183,6 +191,83 @@
     </div>
 </template>
 
+<template name="learningGoalLevel">
+    <div id="learningGoalLevelGroup" class="form-group btn-group col-xs-12" role="group" data-toggle="buttons">
+        <label id="learningGoalLevel0"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             0}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 0}}active{{/if}}"
+               data-lvl="0">
+            {{#if isLearningGoalLevel 0}}
+                <input type="radio" name="learningGoalLevel" value="0" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="0">
+            {{/if}}
+            {{_ "learning-goal.level1"}}
+        </label>
+        <label id="learningGoalLevel1"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             1}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 1}}active{{/if}}"
+               data-lvl="1">
+            {{#if isLearningGoalLevel 1}}
+                <input type="radio" name="learningGoalLevel" value="1" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="1">
+            {{/if}}
+            {{_ "learning-goal.level2"}}
+        </label>
+        <label id="learningGoalLevel2"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             2}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 2}}active{{/if}}"
+               data-lvl="2">
+            {{#if isLearningGoalLevel 2}}
+                <input type="radio" name="learningGoalLevel" value="2" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="2">
+            {{/if}}
+            {{_ "learning-goal.level3"}}
+        </label>
+        <label id="learningGoalLevel3"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             3}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 3}}active{{/if}}"
+               data-lvl="3">
+            {{#if isLearningGoalLevel 3}}
+                <input type="radio" name="learningGoalLevel" value="3" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="3">
+            {{/if}}
+            {{_ "learning-goal.level4"}}
+        </label>
+        <label id="learningGoalLevel4"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             4}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 4}}active{{/if}}"
+               data-lvl="4">
+            {{#if isLearningGoalLevel 4}}
+                <input type="radio" name="learningGoalLevel" value="4" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="4">
+            {{/if}}
+            {{_ "learning-goal.level5"}}
+        </label>
+        <label id="learningGoalLevel5"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             5}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 5}}active{{/if}}"
+               data-lvl="5">
+            {{#if isLearningGoalLevel 5}}
+                <input type="radio" name="learningGoalLevel" value="5" checked tabindex="2">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="5">
+            {{/if}}
+            {{_ "learning-goal.level6"}}
+        </label>
+    </div>
+</template>
+
 <template name="contentEditor">
     <form>
         <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
@@ -253,47 +338,36 @@
                                                 </a>
                                             {{/if}}
                                         {{/if}}
-                                        {{#unless isActiveRoute 'newCard'}}
-                                            {{#unless isActiveRoute 'editCard'}}
-                                                {{#if isCardType 1}}
-                                                    <a id="swapOrder"
-                                                       class="btn-editCard btn btn-raised btn-default btn-xs {{#if
-                                                               reversedViewOrder}}pressed{{/if}} "
-                                                       href="#" data-type="cardNavigation">
-                                                        <i class="material-icons"
-                                                           data-type="cardNavigation">swap_vert</i>
-                                                    </a>
-                                                {{/if}}
-                                            {{/unless}}
-                                        {{/unless}}
                                         {{#unless isEditMode}}
                                             {{#unless isCardType 2}}
-                                                {{#if isCardType 0}}
-                                                    {{#if lecture}}
-                                                        <a href="#" id="showLecture">
+                                                {{#unless isCardType 3}}
+                                                    {{#if isCardType 0}}
+                                                        {{#if lecture}}
+                                                            <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-education"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                        </a>
-                                                    {{/if}}
-                                                    {{#if hint}}
-                                                        <a href="#" id="showHint">
+                                                            </a>
+                                                        {{/if}}
+                                                        {{#if hint}}
+                                                            <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                                        </a>
+                                                            </a>
+                                                        {{/if}}
                                                     {{/if}}
-                                                {{/if}}
-                                                {{#if isCardType 1}}
-                                                    <a href="#" id="showLecture">
+                                                    {{#if isCardType 1}}
+                                                        <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-book"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                    </a>
-                                                {{/if}}
+                                                        </a>
+                                                    {{/if}}
+                                                {{/unless}}
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
@@ -314,14 +388,16 @@
                                         {{getCardTypeName}}
                                         <span class="cardFrontHeader"
                                               style="display: {{#if isCardType 1}}{{#if
-                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{#unless
-                                                isCardType 2}}{{_ "frontside"}}{{else}}{{_
-                                                "cardType2"}}{{/unless}}</span><span
+                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{#if
+                                                isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
+                                                isCardType 3}}{{_ "cardType3"}}{{else}}{{_
+                                                "frontside"}}{{/if}}{{/if}}</span><span
                                             class="cardBackHeader"
                                             style="display: {{#if isCardType 1}}{{#unless
-                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#unless
-                                            isCardType 2}}{{_ "backside"}}{{else}}{{_
-                                            "backsideCardType2"}}{{/unless}}</span>
+                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
+                                            isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
+                                            isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{_
+                                            "backside"}}{{/if}}{{/if}}</span>
                                         ({{getDifficultyName}})
                                     </div>
                                     {{#unless isCardType 2}}
@@ -334,9 +410,14 @@
                                             <span class="hidden-xs">{{_ "turn"}}</span>
                                         </div>
                                     {{/unless}}
+                                    <a href="#" id="swapOrder" class="{{#if
+                                            reversedViewOrder}}swappedOrder{{/if}}" data-type="cardNavigation">
+                                                <span class="material-icons"
+                                                      data-type="cardNavigation">swap_vert</span>
+                                    </a>
                                     <span id="toggleFullscreen"
-                                       class="fullscreen"
-                                       data-type="cardNavigation">
+                                          class="fullscreen"
+                                          data-type="cardNavigation">
                                                 <span class="glyphicon glyphicon-fullscreen"
                                                       data-type="cardNavigation"></span>
                                     </span>

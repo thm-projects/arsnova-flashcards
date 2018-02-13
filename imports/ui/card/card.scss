@@ -117,11 +117,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   border-color: $input_difficulty3;
 }
 
-#cardType3 {
-  border-right: 0 !important;
-}
-
-#cardType .btn-white.active {
+#cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
   color: white !important;
   background-color: $input_difficulty2 !important;
 }
@@ -360,25 +356,21 @@ img.cardside {
   font-size: 26px;
 }
 
-#swapOrder {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0 7px 0 0;
-  padding: 0 10px 1px 10px;
-  z-index: 20;
-}
-
 #swapOrder .material-icons {
-  font-size: 22px;
+  font-size: 30px;
 }
 
-.fullscreen {
+.fullscreen, #swapOrder {
   float: right;
   margin-top: 30px;
-  margin-right: -40px;
+  margin-right: -60px;
   font-size: 22px;
   z-index: 100;
+}
+
+#swapOrder {
+  margin-top: 25px;
+  margin-right: -10px;
 }
 
 .btn-editCardset {
@@ -605,4 +597,16 @@ img.cardside {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#learningGoalLevelGroup {
+  margin-top: 0 !important;
+  padding: 0;
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+  #learningGoalLevelGroup > .btn-raised {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
