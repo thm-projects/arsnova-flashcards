@@ -19,7 +19,7 @@ Session.set('animationPlaying', false);
 
 Template.learnAlgorithms.onCreated(function () {
 	Session.set('modifiedCard', undefined);
-	Session.set('isFront', true);
+	Session.set('isQuestionSide', true);
 	if (ActiveRoute.name('box')) {
 		Meteor.subscribe('leitner');
 	}
@@ -90,8 +90,8 @@ Template.learnAnswerOptions.onRendered(function () {
 });
 
 Template.learnAnswerOptions.helpers({
-	isFront: function () {
-		return Session.get('isFront');
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
 	},
 	isAnimationPlaying: function () {
 		return Session.get('animationPlaying');

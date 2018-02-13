@@ -356,25 +356,21 @@ img.cardside {
   font-size: 26px;
 }
 
-#swapOrder {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0 7px 0 0;
-  padding: 0 10px 1px 10px;
-  z-index: 20;
-}
-
 #swapOrder .material-icons {
-  font-size: 22px;
+  font-size: 30px;
 }
 
-.fullscreen {
+.fullscreen, #swapOrder {
   float: right;
   margin-top: 30px;
-  margin-right: -40px;
+  margin-right: -60px;
   font-size: 22px;
   z-index: 100;
+}
+
+#swapOrder {
+  margin-top: 25px;
+  margin-right: -10px;
 }
 
 .btn-editCardset {
