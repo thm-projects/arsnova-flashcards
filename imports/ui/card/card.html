@@ -75,7 +75,9 @@
     </div>
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
-        {{> learningGoalLevel}}
+        {{#if isCardType 0}}
+            {{> learningGoalLevel}}
+        {{/if}}
     </div>
     {{> btnCard}}
     {{isTextCentered}}
