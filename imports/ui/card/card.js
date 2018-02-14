@@ -1344,7 +1344,7 @@ Meteor.startup(function () {
 			toggleFullscreen(true);
 		}
 		if (Session.get('fullscreen')) {
-			if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 37:
 						if ($('#leftCarouselControl').click()) {
@@ -1372,6 +1372,82 @@ Meteor.startup(function () {
 							turnBack(true);
 						} else {
 							turnBack();
+						}
+						break;
+					case 48:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate0').click();
+						}
+						break;
+					case 49:
+						if (!Session.get('isQuestionSide')) {
+							if (Router.current().route.getName() === "box") {
+								$('#known').click();
+							} else {
+								$('#memoRate1').click();
+							}
+						}
+						break;
+					case 50:
+						if (!Session.get('isQuestionSide')) {
+							if (Router.current().route.getName() === "box") {
+								$('#notknown').click();
+							} else {
+								$('#memoRate2').click();
+							}
+						}
+						break;
+					case 51:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate3').click();
+						}
+						break;
+					case 52:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate4').click();
+						}
+						break;
+					case 53:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate5').click();
+						}
+						break;
+					case 96:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate0').click();
+						}
+						break;
+					case 97:
+						if (!Session.get('isQuestionSide')) {
+							if (Router.current().route.getName() === "box") {
+								$('#known').click();
+							} else {
+								$('#memoRate1').click();
+							}
+						}
+						break;
+					case 98:
+						if (!Session.get('isQuestionSide')) {
+							if (Router.current().route.getName() === "box") {
+								$('#notknown').click();
+							} else {
+								$('#memoRate2').click();
+							}
+						}
+						break;
+					case 99:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate3').click();
+						}
+						break;
+					case 100:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate4').click();
+						}
+						break;
+					case 101:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate5').click();
 						}
 						break;
 				}
