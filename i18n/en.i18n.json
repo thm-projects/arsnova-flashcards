@@ -601,6 +601,10 @@
     "level5": "Evaluation",
     "level6": "Creation"
   },
+  "filter-cards": {
+    "filter": "Filter",
+    "infoText": "Number of selected cards:"
+  },
   "permission": "Permission denied",
   "nocards": "No cards available",
   "learnPhaseActiveHeader": "Learning-Phase active",
@@ -618,8 +622,10 @@
   "learn": "Learn",
   "manage": "Manage",
   "selection": "Selection",
-  "learnfile": "Learn by Leitner",
-  "memo": "Learn by Wozniak",
+  "filter": "Filter",
+  "learnfile": "Learning by Leitner",
+  "memo": "Learning by Wozniak",
+  "learnSelection": "Learning by Selection",
   "leitnerProgress": "My learning progress",
   "resetLearnfile": "Reset learn by Leitner",
   "resetWozniak": "Reset learn by Wozniak",
