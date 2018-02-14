@@ -97,7 +97,7 @@ function prepareFront() {
 		lastEditMode = Session.get('activeEditMode');
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 5);
+	$('#contentEditor').attr('tabindex', 6);
 	$('#contentEditor').val(Session.get('frontText'));
 	$('#editor').attr('data-content', Session.get('frontText'));
 	$('#editFront').removeClass('btn-default').addClass('btn-primary');
@@ -120,7 +120,7 @@ function prepareBack() {
 		lastEditMode = Session.get('activeEditMode');
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 7);
+	$('#contentEditor').attr('tabindex', 8);
 	$('#contentEditor').val(Session.get('backText'));
 	$('#editor').attr('data-content', Session.get('backText'));
 	$('#editBack').removeClass('btn-default').addClass('btn-primary');
@@ -206,7 +206,7 @@ function editLecture() {
 		lastEditMode = Session.get('activeEditMode');
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 9);
+	$('#contentEditor').attr('tabindex', 10);
 	$('#contentEditor').val(Session.get('lectureText'));
 	$('#editor').attr('data-content', Session.get('lectureText'));
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
@@ -230,7 +230,7 @@ function editHint() {
 		lastEditMode = Session.get('activeEditMode');
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 11);
+	$('#contentEditor').attr('tabindex', 12);
 	$('#contentEditor').val(Session.get('hintText'));
 	$('#editor').attr('data-content', Session.get('hintText'));
 	$('#editHint').removeClass('btn-default').addClass('btn-primary');
@@ -850,7 +850,6 @@ Template.contentEditor.rendered = function () {
 	if (!ActiveRoute.name('editCard')) {
 		Session.set('frontText', '');
 	}
-	$(".md-header").append($("#cardType"));
 	$(".center-button").text('vertical_align_center');
 	$(".fullscreen-button").addClass('glyphicon-fullscreen');
 };
@@ -882,7 +881,6 @@ Template.subjectEditor.events({
 });
 
 Template.subjectEditor.rendered = function () {
-	$('#subjectEditor').focus();
 	Session.set('subjectEditorText', $('#subjectEditor').val());
 };
 

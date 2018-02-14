@@ -40,6 +40,7 @@
     "search": "Suche",
     "frontend": "Frontend",
     "backend": "Backend",
+    "help": "Hilfe",
     "none": "Ohne"
   },
   "contact": {
@@ -559,6 +560,7 @@
     "description": "Beschreibung"
   },
   "learning-goal": {
+    "name": "Lernziel-Niveau",
     "level1": "Erinnern",
     "level2": "Verstehen",
     "level3": "Anwenden",

@@ -48,6 +48,7 @@
     "search": "Search",
     "frontend": "Front end",
     "backend": "Back end",
+    "help": "Help",
     "none": "None"
   },
   "contact": {
@@ -592,8 +593,9 @@
     "description": "Rating"
   },
   "learning-goal": {
-    "level1": "Remembrance",
-    "level2": "Comprehension",
+    "name": "Learning Goal Level",
+    "level1": "Remind",
+    "level2": "Comprehend",
     "level3": "Apply",
     "level4": "Analyze",
     "level5": "Evaluation",

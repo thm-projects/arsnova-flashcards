@@ -526,11 +526,7 @@ img.cardside {
   font-weight: bold;
 }
 
-#subject > h5 {
-  padding-top: 0;
-}
-
-#difficulty h5 {
+#cardType h5, #difficulty h5 {
   @media(min-width: 992px) {
     padding-top: 0;
   }
@@ -560,7 +556,7 @@ img.cardside {
   }
 }
 
-#editor, .editorNavigation, #preview, .actionButtons, #cardType {
+#editor, .editorNavigation, #preview, .actionButtons {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -583,17 +579,6 @@ img.cardside {
   margin-bottom: 0;
 }
 
-#cardType {
-  @media(min-width: 992px) {
-    margin-top: 7px;
-    margin-right: -85px !important;
-    @media(min-width: 1200px) {
-      margin-right: -105px !important;
-    }
-    float: right;
-  }
-}
-
 .center-align {
   position: relative;
   float: left;
@@ -604,12 +589,60 @@ img.cardside {
 
 #learningGoalLevelGroup {
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
   padding: 0;
 }
 
-@media(min-width: 768px) and (max-width: 991px) {
+@media(min-width: 992px) {
   #learningGoalLevelGroup > .btn-raised {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+@media(max-width: 992px) {
+  #learningGoalLevel {
+    padding-left: 0;
+  }
+  #cardType {
+    padding-right: 0;
+  }
+}
+
+#cardType {
+  padding-left: 0;
+}
+
+#cardType1 {
+  border-right: 0 !important;
+}
+
+#learningGoalLevel {
+  padding-right: 0;
+}
+
+#learningGoalLevelGroup > .btn-raised {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-weight: bold;
+  font-size: 13px !important;
+}
+
+@media(max-width: 767px) {
+  #cardType {
+    margin-top: -50px;
+  }
+  #cardType3 {
+    border-right: none !important;
+  }
+  #cardType0 {
+    border-right: none !important;
+  }
+  #cardType1 {
+    border-bottom: none !important;
+  }
+  #learningGoalLevelGroup > .btn-raised {
+    padding-top: 19px;
+    padding-bottom: 20px;
   }
 }
