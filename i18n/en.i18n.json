@@ -592,8 +592,9 @@
     "description": "Rating"
   },
   "learning-goal": {
-    "level1": "Remembrance",
-    "level2": "Comprehension",
+    "name": "Learning Goal Level",
+    "level1": "Remind",
+    "level2": "Comprehend",
     "level3": "Apply",
     "level4": "Analyze",
     "level5": "Evaluation",

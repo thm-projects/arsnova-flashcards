@@ -36,9 +36,9 @@
 
 <template name="editor">
     {{getContent}}
-    <div id="subject" class="col-md-6 cardtext editorElement">
-        <h5>{{_ "cardsubject"}}</h5>
-        {{> subjectEditor}}
+    <div id="cardType" class="col-md-6 cardtext editorToolbar">
+        <h5>{{_ "cardType"}}</h5>
+        {{> cardType}}
     </div>
     <div id="difficulty" class="col-md-6 cardtext editorElement">
         {{#unless isCardType 2}}
@@ -48,38 +48,42 @@
         {{/unless}}
         {{> difficultyEditor}}
     </div>
-    <div id="cardType" class="col-xs-12 col-md-7 cardtext editorToolbar">
-        {{> cardType}}
+    <div id="subject" class="col-md-6 cardtext editorElement">
+        <h5>{{_ "cardsubject"}}</h5>
+        {{> subjectEditor}}
+    </div>
+    <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
+        {{#unless isCardType 1}}
+            {{#unless isCardType 2}}
+                {{#unless isCardType 3}}
+                    <h5>{{_ "learning-goal.name"}}</h5>
+                    {{> learningGoalLevel}}
+                {{/unless}}
+            {{/unless}}
+        {{/unless}}
     </div>
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
                 class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="4">{{getFrontTitle}}</button>
+                tabindex="5">{{getFrontTitle}}</button>
         <button id="editBack" type="button"
                 class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="6">{{getBackTitle}}</button>
+                tabindex="7">{{getBackTitle}}</button>
         {{#unless isCardType 2}}
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                        tabindex="8">{{_
+                        tabindex="9">{{_
                         "lecture"}}</button>
                 <button id="editHint" type="button"
                         class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                        tabindex="10">{{_
+                        tabindex="11">{{_
                         "hint"}}</button>
             {{/if}}
         {{/unless}}
     </div>
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
-        {{#unless isCardType 1}}
-            {{#unless isCardType 2}}
-                {{#unless isCardType 3}}
-                    {{> learningGoalLevel}}
-                {{/unless}}
-            {{/unless}}
-        {{/unless}}
     </div>
     {{> btnCard}}
     {{isTextCentered}}
@@ -91,46 +95,46 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType2" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+        <label id="cardType2" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
-                <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
+                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="1" data-type="2" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
             {{_ "cardType2"}}
         </label>
-        <label id="cardType3" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
+        <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
             {{#if isCardType 3}}
-                <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
+                <input type="radio" id="tabFocus" name="cardType" value="3" checked tabindex="1" data-type="3" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="3" data-type="3">
             {{/if}}
             {{_ "cardType3"}}
         </label>
-        <label id="cardType4" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
+        <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
             {{#if isCardType 4}}
-                <input type="radio" name="cardType" value="4" checked tabindex="3" data-type="4">
+                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="1" data-type="4" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
             {{_ "cardType4"}}
         </label>
-        <label id="cardType0" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+        <label id="cardType0" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
-                <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
+                <input type="radio" id="tabFocus" name="cardType" value="0" checked tabindex="1" data-type="0" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="0" data-type="0">
             {{/if}}
             {{_ "cardType0"}}
         </label>
-        <label id="cardType1" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
-                <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
+                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="1" data-type="1" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="1" data-type="1">
             {{/if}}
@@ -210,7 +214,7 @@
                        isLearningGoalLevel 0}}active{{/if}}"
                data-lvl="0">
             {{#if isLearningGoalLevel 0}}
-                <input type="radio" name="learningGoalLevel" value="0" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="0" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="0">
             {{/if}}
@@ -222,7 +226,7 @@
                        isLearningGoalLevel 1}}active{{/if}}"
                data-lvl="1">
             {{#if isLearningGoalLevel 1}}
-                <input type="radio" name="learningGoalLevel" value="1" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="1" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="1">
             {{/if}}
@@ -234,7 +238,7 @@
                        isLearningGoalLevel 2}}active{{/if}}"
                data-lvl="2">
             {{#if isLearningGoalLevel 2}}
-                <input type="radio" name="learningGoalLevel" value="2" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="2" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="2">
             {{/if}}
@@ -246,7 +250,7 @@
                        isLearningGoalLevel 3}}active{{/if}}"
                data-lvl="3">
             {{#if isLearningGoalLevel 3}}
-                <input type="radio" name="learningGoalLevel" value="3" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="3" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="3">
             {{/if}}
@@ -258,7 +262,7 @@
                        isLearningGoalLevel 4}}active{{/if}}"
                data-lvl="4">
             {{#if isLearningGoalLevel 4}}
-                <input type="radio" name="learningGoalLevel" value="4" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="4" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="4">
             {{/if}}
@@ -270,7 +274,7 @@
                        isLearningGoalLevel 5}}active{{/if}}"
                data-lvl="5">
             {{#if isLearningGoalLevel 5}}
-                <input type="radio" name="learningGoalLevel" value="5" checked tabindex="2">
+                <input type="radio" name="learningGoalLevel" value="5" checked tabindex="4">
             {{else}}
                 <input type="radio" name="learningGoalLevel" value="5">
             {{/if}}
@@ -286,15 +290,11 @@
 </template>
 
 <template name="subjectEditor">
-    <form tabindex="1">
+    <form>
         {{#if isActiveRoute 'newCard'}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
-                   tabindex="-1"
-                   autofocus>
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}" tabindex="3">
         {{else}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}"
-                   tabindex="-1"
-                   autofocus>
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="3">
         {{/if}}
     </form>
 </template>
@@ -303,20 +303,20 @@
     <div class="actionButtons editorElement">
         <br>
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}} tabindex="12">
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}} tabindex="13">
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="13">
+                class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="14">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2" tabindex="14">{{_
+        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
                         class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
-                        tabindex="15">{{_
+                        tabindex="16">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
                         class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
