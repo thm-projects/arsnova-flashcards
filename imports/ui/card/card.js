@@ -646,7 +646,7 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
-						if (cardType === 1 || cardType === 3) {
+						if (cardType === 1 || cardType === 3 || cardType === 4) {
 							Session.set('centerTextElement', [true, true, false, false]);
 						} else {
 							Session.set('centerTextElement', [false, false, false, false]);
@@ -672,7 +672,7 @@ function saveCard(card_id, returnToCardset) {
 				Session.set('backText', '');
 				Session.set('hintText', '');
 				Session.set('lectureText', '');
-				if (cardType === 1 || cardType === 3) {
+				if (cardType === 1 || cardType === 3 || cardType === 4) {
 					Session.set('centerTextElement', [true, true, false, false]);
 				} else {
 					Session.set('centerTextElement', [false, false, false, false]);
@@ -761,6 +761,18 @@ Template.editor.events({
 });
 
 Template.editor.helpers({
+	getBackTitle: function () {
+		switch (Session.get('cardType')) {
+			case 2:
+				return TAPi18n.__('backsideCardType2');
+			case 3:
+				return TAPi18n.__('backsideCardType3');
+			case 4:
+				return TAPi18n.__('backsideCardType4');
+			default:
+				return TAPi18n.__('backside');
+		}
+	},
 	getContent: function () {
 		if (Router.current().route.getName() === "newCard") {
 			initializeContent();
@@ -773,6 +785,18 @@ Template.editor.helpers({
 			Session.set('centerTextElement', this.centerTextElement);
 			Session.set('difficultyColor', this.difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
+		}
+	},
+	getFrontTitle: function () {
+		switch (Session.get('cardType')) {
+			case 2:
+				return TAPi18n.__('cardType2');
+			case 3:
+				return TAPi18n.__('cardType3');
+			case 4:
+				return TAPi18n.__('frontsideCardType4');
+			default:
+				return TAPi18n.__('frontside');
 		}
 	},
 	isCardType: function (type) {
@@ -939,6 +963,12 @@ Template.cardType.events({
 		centerTextElement[0] = true;
 		centerTextElement[1] = true;
 		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardType4": function () {
+		let centerTextElement = Session.get('centerTextElement');
+		centerTextElement[0] = true;
+		centerTextElement[1] = true;
+		Session.set('centerTextElement', centerTextElement);
 	}
 });
 
@@ -955,6 +985,9 @@ Template.cardType.onRendered(function () {
 	});
 	$(this.find('#cardType3')).on('click change keypress paste focus textInput input', function () {
 		defaultToFront(Number($('#cardType3').data('type')));
+	});
+	$(this.find('#cardType4')).on('click change keypress paste focus textInput input', function () {
+		defaultToFront(Number($('#cardType4').data('type')));
 	});
 });
 
@@ -1103,6 +1136,8 @@ Template.flashcards.helpers({
 				return TAPi18n.__('cardType0');
 			case 1:
 				return TAPi18n.__('cardType1');
+			case 4:
+				return TAPi18n.__('cardType4');
 		}
 	},
 	getDifficultyName: function () {

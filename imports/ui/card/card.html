@@ -48,19 +48,17 @@
         {{/unless}}
         {{> difficultyEditor}}
     </div>
-    <div id="cardType" class="col-xs-12 col-md-5 cardtext editorToolbar">
+    <div id="cardType" class="col-xs-12 col-md-7 cardtext editorToolbar">
         {{> cardType}}
     </div>
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         <h5 class="editorElement">{{_ "content"}}</h5>
         <button id="editFront" type="button"
                 class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="4">{{#if isCardType 2}}{{_ "cardType2"}}{{else}}{{#if isCardType 3}}{{_
-                "cardType3"}}{{else}}{{_ "frontside"}}{{/if}}{{/if}}</button>
+                tabindex="4">{{getFrontTitle}}</button>
         <button id="editBack" type="button"
                 class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="6">{{#if isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if isCardType 3}}{{_
-                "backsideCardType3"}}{{else}}{{_ "backside"}}{{/if}}{{/if}}</button>
+                tabindex="6">{{getBackTitle}}</button>
         {{#unless isCardType 2}}
             {{#if isCardType 0}}
                 <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
@@ -75,9 +73,13 @@
     </div>
     <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
         {{> contentEditor}}
-        {{#if isCardType 0}}
-            {{> learningGoalLevel}}
-        {{/if}}
+        {{#unless isCardType 1}}
+            {{#unless isCardType 2}}
+                {{#unless isCardType 3}}
+                    {{> learningGoalLevel}}
+                {{/unless}}
+            {{/unless}}
+        {{/unless}}
     </div>
     {{> btnCard}}
     {{isTextCentered}}
@@ -89,7 +91,7 @@
 
 <template name="cardType">
     <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType2" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+        <label id="cardType2" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
                 <input type="radio" name="cardType" value="2" checked tabindex="3" data-type="2">
@@ -98,7 +100,7 @@
             {{/if}}
             {{_ "cardType2"}}
         </label>
-        <label id="cardType3" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
+        <label id="cardType3" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
             {{#if isCardType 3}}
                 <input type="radio" name="cardType" value="3" checked tabindex="3" data-type="3">
@@ -107,7 +109,16 @@
             {{/if}}
             {{_ "cardType3"}}
         </label>
-        <label id="cardType0" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
+        <label id="cardType4" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
+               data-type="4">
+            {{#if isCardType 4}}
+                <input type="radio" name="cardType" value="4" checked tabindex="3" data-type="4">
+            {{else}}
+                <input type="radio" name="cardType" value="4" data-type="4">
+            {{/if}}
+            {{_ "cardType4"}}
+        </label>
+        <label id="cardType0" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
                 <input type="radio" name="cardType" value="0" checked tabindex="3" data-type="0">
@@ -116,7 +127,7 @@
             {{/if}}
             {{_ "cardType0"}}
         </label>
-        <label id="cardType1" class="col-xs-12 col-sm-3 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+        <label id="cardType1" class="col-xs-12 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
                 <input type="radio" name="cardType" value="1" checked tabindex="3" data-type="1">
@@ -390,14 +401,16 @@
                                               style="display: {{#if isCardType 1}}{{#if
                                                       reversedViewOrder}}none{{/if}}{{/if}}">{{#if
                                                 isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
-                                                isCardType 3}}{{_ "cardType3"}}{{else}}{{_
-                                                "frontside"}}{{/if}}{{/if}}</span><span
+                                                isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
+                                                isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
+                                                "frontside"}}{{/if}}{{/if}}{{/if}}</span><span
                                             class="cardBackHeader"
                                             style="display: {{#if isCardType 1}}{{#unless
                                                     reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
                                             isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
-                                            isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{_
-                                            "backside"}}{{/if}}{{/if}}</span>
+                                            isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
+                                            isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
+                                            "backside"}}{{/if}}{{/if}}{{/if}}</span>
                                         ({{getDifficultyName}})
                                     </div>
                                     {{#unless isCardType 2}}

@@ -586,7 +586,10 @@ img.cardside {
 #cardType {
   @media(min-width: 992px) {
     margin-top: 7px;
-    margin-right: 10px !important;
+    margin-right: -85px !important;
+    @media(min-width: 1200px) {
+      margin-right: -105px !important;
+    }
     float: right;
   }
 }
