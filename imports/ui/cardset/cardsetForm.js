@@ -304,6 +304,24 @@ Template.cardsetForm.helpers({
  * ############################################################################
  */
 
+let additionalButtons = [
+	[{
+		name: "groupCustom",
+		data: [{
+			name: 'cmdPics',
+			title: 'Image',
+			icon: 'fa fa-file-image-o',
+			callback: image
+		}, {
+			name: "cmdTex",
+			title: "Tex",
+			icon: "fa fa-superscript",
+			callback: tex
+		}
+		]
+	}]
+];
+
 Template.cardsetFormContent.onRendered(function () {
 	$("#setDescription").markdown({
 		autofocus: false,
@@ -320,22 +338,7 @@ Template.cardsetFormContent.onRendered(function () {
 					});
 			}
 		},
-		additionalButtons: [
-			[{
-				name: "groupCustom",
-				data: [{
-					name: 'cmdPics',
-					title: 'Image',
-					icon: 'fa fa-file-image-o',
-					callback: image
-				}, {
-					name: "cmdTex",
-					title: "Tex",
-					icon: "fa fa-superscript",
-					callback: tex
-				}]
-			}]
-		]
+		additionalButtons: additionalButtons
 	});
 	$('#setCardsetModal').on('hidden.bs.modal', function () {
 		if (!shuffleRoute()) {
