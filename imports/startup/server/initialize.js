@@ -152,7 +152,8 @@ var initTestNotificationsLearned = function () {
 			"interval": 0,
 			"active": true,
 			"nextDate": new Date(),
-			"currentDate": new Date()
+			"currentDate": new Date(),
+			"skipped": 0
 		},
 		{
 			"_id": "NotificationsTestLearned2",
@@ -166,7 +167,8 @@ var initTestNotificationsLearned = function () {
 			"interval": 0,
 			"active": true,
 			"nextDate": new Date(),
-			"currentDate": new Date()
+			"currentDate": new Date(),
+			"skipped": 0
 		},
 		{
 			"_id": "NotificationsTestLearned3",
@@ -180,7 +182,8 @@ var initTestNotificationsLearned = function () {
 			"interval": 0,
 			"active": true,
 			"nextDate": new Date(),
-			"currentDate": new Date()
+			"currentDate": new Date(),
+			"skipped": 0
 		},
 		{
 			"_id": "NotificationsTestLearned4",
@@ -194,7 +197,8 @@ var initTestNotificationsLearned = function () {
 			"interval": 0,
 			"active": true,
 			"nextDate": new Date(),
-			"currentDate": new Date()
+			"currentDate": new Date(),
+			"skipped": 0
 		},
 		{
 			"_id": "NotificationsTestLearned5",
@@ -208,7 +212,8 @@ var initTestNotificationsLearned = function () {
 			"interval": 0,
 			"active": true,
 			"nextDate": new Date(),
-			"currentDate": new Date()
+			"currentDate": new Date(),
+			"skipped": 0
 		}
 	];
 };
@@ -495,6 +500,32 @@ Meteor.startup(function () {
 			{
 				multi: true
 			});
+	}
+
+	let leitner = Leitner.find({skipped: {$exists: false}}).fetch();
+	for (let i = 0; i < leitner.length; i++) {
+		Leitner.update({
+				_id: leitner[i]._id
+			},
+			{
+				$set: {
+					skipped: 0
+				}
+			}
+		);
+	}
+
+	let wozniak = Wozniak.find({skipped: {$exists: false}}).fetch();
+	for (let i = 0; i < wozniak.length; i++) {
+		Wozniak.update({
+				_id: wozniak[i]._id
+			},
+			{
+				$set: {
+					skipped: 0
+				}
+			}
+		);
 	}
 
 	ColorThemes.remove({});

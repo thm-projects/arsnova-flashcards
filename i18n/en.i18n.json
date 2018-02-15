@@ -527,6 +527,7 @@
   },
   "cardmemo": {
     "showanswer": "Show answer",
+    "skipanswer": "Skip",
     "rateanswer": "Rate your answer",
     "rate0": "Blackout",
     "rate1": "Wrong answer, but reminds on the right one",

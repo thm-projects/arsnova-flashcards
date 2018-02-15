@@ -95,6 +95,11 @@ Template.learnAnswerOptions.helpers({
 	},
 	isAnimationPlaying: function () {
 		return Session.get('animationPlaying');
+	},
+	gotOneCardLeft: function () {
+		if (Session.get('isQuestionSide')) {
+			return $('.carousel-inner > .item').length === 1;
+		}
 	}
 });
 
@@ -102,6 +107,19 @@ Template.learnAnswerOptions.events({
 	"click #learnShowAnswer": function () {
 		turnCard();
 		$('html, body').animate({scrollTop: '0px'}, 300);
+	},
+	"click #skipAnswer": function () {
+		let skippedCard = $('.carousel-inner > .active').attr('data-id');
+		$('.carousel').carousel('next');
+		$('html, body').animate({scrollTop: '0px'}, 300);
+		$('#cardCarousel').on('slid.bs.carousel', function () {
+			if (ActiveRoute.name('box')) {
+				Meteor.call('skipCard', Router.current().params._id, skippedCard, 0);
+			} else {
+				Meteor.call('skipCard', Router.current().params._id, skippedCard, 1);
+			}
+			Session.set('animationPlaying', false);
+		});
 	},
 	"click #known": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');

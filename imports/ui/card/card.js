@@ -500,11 +500,10 @@ function getLeitnerCards() {
 		active: true
 	}, {
 		sort: {
-			currentDate: 1
-		},
-		limit: 2
+			currentDate: 1,
+			skipped: -1
+		}
 	});
-
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
 			_id: learnedCard.card_id
@@ -559,7 +558,8 @@ function getMemoCards() {
 		}
 	}, {
 		sort: {
-			nextDate: 1
+			nextDate: 1,
+			priority: 1
 		},
 		limit: 2
 	});
