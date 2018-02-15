@@ -43,10 +43,12 @@
         {{#unless isAnimationPlaying}}
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
-                    <div class="btn-group">
-                        <button id="learnShowAnswer" class="btn btn-primary btn-raised answer show-answer"
-                                title="success">{{_ "cardmemo.showanswer"}}</button>
-                    </div>
+                    <a href="#" id="learnShowAnswer" class="btn btn-primary btn-raised answer show-answer"
+                       title="success">{{_ "cardmemo.showanswer"}}</a>
+                    {{#unless gotOneCardLeft}}
+                        <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
+                           title="success">{{_ "cardmemo.skipanswer"}}</a>
+                    {{/unless}}
                 </div>
             {{else}}
                 <div id="learn-navigation" class="btn-group btn-group-justified">
