@@ -240,7 +240,8 @@ Meteor.methods({
 					box: 1,
 					active: false,
 					nextDate: new Date(),
-					currentDate: new Date()
+					currentDate: new Date(),
+					skipped: 0
 				}
 			}, {multi: true});
 			Meteor.call("setCards", cardset, user, true);
@@ -341,7 +342,8 @@ Meteor.methods({
 						}, {
 							$set: {
 								active: true,
-								currentDate: new Date()
+								currentDate: new Date(),
+								skipped: 0
 							}
 						});
 					}

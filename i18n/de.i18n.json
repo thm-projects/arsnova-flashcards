@@ -518,6 +518,7 @@
   },
   "cardmemo": {
     "showanswer": "Zeige Antwort",
+    "skipanswer": "Überspringen",
     "rateanswer": "Bewerte deine Antwort",
     "rate0": "Blackout",
     "rate1": "Falsche Antwort, aber an die richtige erinnert",
