@@ -889,6 +889,7 @@ Template.contentEditor.rendered = function () {
 	$(".center-button").text('vertical_align_center');
 	$(".fullscreen-button").addClass('glyphicon-fullscreen');
 	$($(".fa-list-ol").parent()).after($(".fa-check-square").parent());
+	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
 };
 
 Template.contentEditor.events({

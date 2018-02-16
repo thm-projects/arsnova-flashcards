@@ -345,6 +345,7 @@ Template.cardsetFormContent.onRendered(function () {
 			cleanModal();
 		}
 	});
+	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
 });
 
 Template.cardsetFormContent.helpers({
