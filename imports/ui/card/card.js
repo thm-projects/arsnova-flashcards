@@ -279,7 +279,7 @@ export function tex(e) {
 
 	if (selected.length === 0) {
 		// Give extra word
-		chunk = e.__localize('tex');
+		chunk = e.__localize('\\int_{\\mathbb{R}^2} e^{-|x|^2} \\mathrm{d}x = \\pi');
 	} else {
 		chunk = selected.text;
 	}
@@ -448,11 +448,48 @@ let additionalButtons = [
 				}
 			}
 		}, {
-			name: 'cmdFullscreen',
-			title: 'fullscreen',
-			icon: 'glyphicon fullscreen-button',
-			callback: function () {
-				toggleFullscreen(false, true);
+			name: 'cmdTask',
+			title: 'Task',
+			icon: 'fa fa-check-square',
+			callback: function (e) {
+				// Prepend/Give - surround the selection
+				let chunk, cursor, selected = e.getSelection();
+
+				// transform selection and set the cursor into chunked text
+				if (selected.length === 0) {
+					// Give extra word
+					chunk = e.__localize('list task here');
+
+					e.replaceSelection('* [ ]  ' + chunk);
+					// Set the cursor
+					cursor = selected.start + 7;
+				} else {
+					if (selected.text.indexOf('\n') < 0) {
+						chunk = selected.text;
+
+						e.replaceSelection('* [ ]  ' + chunk);
+
+						// Set the cursor
+						cursor = selected.start + 7;
+					} else {
+						let list = [];
+
+						list = selected.text.split('\n');
+						chunk = list[0];
+
+						$.each(list, function (k, v) {
+							list[k] = '* [ ]  ' + v;
+						});
+
+						e.replaceSelection('\n\n' + list.join('\n'));
+
+						// Set the cursor
+						cursor = selected.start + 4;
+					}
+				}
+
+				// Set the cursor
+				e.setSelection(cursor, cursor + chunk.length);
 			}
 		}
 		]
@@ -560,8 +597,7 @@ function getMemoCards() {
 		sort: {
 			nextDate: 1,
 			priority: 1
-		},
-		limit: 2
+		}
 	});
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
@@ -852,6 +888,7 @@ Template.contentEditor.rendered = function () {
 	}
 	$(".center-button").text('vertical_align_center');
 	$(".fullscreen-button").addClass('glyphicon-fullscreen');
+	$($(".fa-list-ol").parent()).after($(".fa-check-square").parent());
 };
 
 Template.contentEditor.events({

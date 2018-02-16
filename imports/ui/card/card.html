@@ -98,7 +98,7 @@
         <label id="cardType2" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
                data-type="2">
             {{#if isCardType 2}}
-                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="1" data-type="2" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="2" data-type="2">
             {{else}}
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
@@ -107,7 +107,7 @@
         <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
             {{#if isCardType 3}}
-                <input type="radio" id="tabFocus" name="cardType" value="3" checked tabindex="1" data-type="3" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="3" checked tabindex="2" data-type="3">
             {{else}}
                 <input type="radio" name="cardType" value="3" data-type="3">
             {{/if}}
@@ -116,7 +116,7 @@
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
             {{#if isCardType 4}}
-                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="1" data-type="4" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4" autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
@@ -125,7 +125,7 @@
         <label id="cardType0" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
             {{#if isCardType 0}}
-                <input type="radio" id="tabFocus" name="cardType" value="0" checked tabindex="1" data-type="0" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="0" checked tabindex="2" data-type="0">
             {{else}}
                 <input type="radio" name="cardType" value="0" data-type="0">
             {{/if}}
@@ -134,7 +134,7 @@
         <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
             {{#if isCardType 1}}
-                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="1" data-type="1" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
             {{else}}
                 <input type="radio" name="cardType" value="1" data-type="1">
             {{/if}}
@@ -151,7 +151,7 @@
                        isDifficultyChecked 0}}active{{/if}}"
                data-color="0">
             {{#if isDifficultyChecked 0}}
-                <input type="radio" name="difficulty" value="0" checked tabindex="2">
+                <input type="radio" name="difficulty" value="0" checked tabindex="3">
             {{else}}
                 <input type="radio" name="difficulty" value="0">
             {{/if}}
@@ -165,7 +165,7 @@
                class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}"
                data-color="1">
             {{#if isDifficultyChecked 1}}
-                <input type="radio" name="difficulty" value="1" checked tabindex="2">
+                <input type="radio" name="difficulty" value="1" checked tabindex="3">
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
@@ -179,7 +179,7 @@
                class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}"
                data-color="2">
             {{#if isDifficultyChecked 2}}
-                <input type="radio" name="difficulty" value="2" checked tabindex="2">
+                <input type="radio" name="difficulty" value="2" checked tabindex="3">
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
@@ -193,7 +193,7 @@
                class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}"
                data-color="3">
             {{#if isDifficultyChecked 3}}
-                <input type="radio" name="difficulty" value="3" checked tabindex="2">
+                <input type="radio" name="difficulty" value="3" checked tabindex="3">
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
@@ -292,9 +292,9 @@
 <template name="subjectEditor">
     <form>
         {{#if isActiveRoute 'newCard'}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}" tabindex="3">
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}" tabindex="1" autofocus>
         {{else}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="3">
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="1" autofocus>
         {{/if}}
     </form>
 </template>
