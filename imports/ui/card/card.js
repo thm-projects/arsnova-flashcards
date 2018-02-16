@@ -1200,6 +1200,22 @@ Template.flashcards.helpers({
 			}
 		}
 	},
+	getLearningGoalName: function () {
+		switch (this.learningGoalLevel) {
+			case 0:
+				return TAPi18n.__('learning-goal.level1');
+			case 1:
+				return TAPi18n.__('learning-goal.level2');
+			case 2:
+				return TAPi18n.__('learning-goal.level3');
+			case 3:
+				return TAPi18n.__('learning-goal.level4');
+			case 4:
+				return TAPi18n.__('learning-goal.level5');
+			case 5:
+				return TAPi18n.__('learning-goal.level6');
+		}
+	},
 	isCardType: function (type) {
 		return type === this.cardType;
 	},
