@@ -279,7 +279,7 @@ export function tex(e) {
 
 	if (selected.length === 0) {
 		// Give extra word
-		chunk = e.__localize('tex');
+		chunk = e.__localize('\\int_{\\mathbb{R}^2} e^{-|x|^2} \\mathrm{d}x = \\pi');
 	} else {
 		chunk = selected.text;
 	}
