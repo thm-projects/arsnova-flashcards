@@ -8,6 +8,7 @@ import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
+import {skipAnswer} from "../learn/learn.js";
 
 /*
  * ############################################################################
@@ -1398,13 +1399,16 @@ Meteor.startup(function () {
 			toggleFullscreen(true);
 		}
 		if (Session.get('fullscreen')) {
-			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 37:
 						if ($('#leftCarouselControl').click()) {
 							$('#showHintModal').modal('hide');
 							$('body').removeClass('modal-open');
 							$('.modal-backdrop').remove();
+						}
+						if (Session.get('isQuestionSide')) {
+							skipAnswer(false);
 						}
 						break;
 					case 38:
@@ -1419,6 +1423,9 @@ Meteor.startup(function () {
 							$('#showHintModal').modal('hide');
 							$('body').removeClass('modal-open');
 							$('.modal-backdrop').remove();
+						}
+						if (Session.get('isQuestionSide')) {
+							skipAnswer();
 						}
 						break;
 					case 40:
@@ -1435,20 +1442,12 @@ Meteor.startup(function () {
 						break;
 					case 49:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#known').click();
-							} else {
-								$('#memoRate1').click();
-							}
+							$('#memoRate1').click();
 						}
 						break;
 					case 50:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#notknown').click();
-							} else {
-								$('#memoRate2').click();
-							}
+							$('#memoRate2').click();
 						}
 						break;
 					case 51:
@@ -1466,6 +1465,25 @@ Meteor.startup(function () {
 							$('#memoRate5').click();
 						}
 						break;
+					case 78:
+						if (!Session.get('isQuestionSide')) {
+							$('#notknown').click();
+						}
+						break;
+					case 89:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
+					case 90:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
 					case 96:
 						if (!Session.get('isQuestionSide')) {
 							$('#memoRate0').click();
@@ -1473,20 +1491,12 @@ Meteor.startup(function () {
 						break;
 					case 97:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#known').click();
-							} else {
-								$('#memoRate1').click();
-							}
+							$('#memoRate1').click();
 						}
 						break;
 					case 98:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#notknown').click();
-							} else {
-								$('#memoRate2').click();
-							}
+							$('#memoRate2').click();
 						}
 						break;
 					case 99:

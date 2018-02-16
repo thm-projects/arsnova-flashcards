@@ -11,6 +11,24 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
+export function skipAnswer(scrollRight = true) {
+	let skippedCard = $('.carousel-inner > .active').attr('data-id');
+	if (scrollRight) {
+		$('.carousel').carousel('next');
+	} else {
+		$('.carousel').carousel('prev');
+	}
+	$('html, body').animate({scrollTop: '0px'}, 300);
+	$('#cardCarousel').on('slid.bs.carousel', function () {
+		if (ActiveRoute.name('box')) {
+			Meteor.call('skipCard', Router.current().params._id, skippedCard, 0);
+		} else {
+			Meteor.call('skipCard', Router.current().params._id, skippedCard, 1);
+		}
+		Session.set('animationPlaying', false);
+	});
+}
+
 /*
  * ############################################################################
  * learnAlgorithms
@@ -109,17 +127,7 @@ Template.learnAnswerOptions.events({
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #skipAnswer": function () {
-		let skippedCard = $('.carousel-inner > .active').attr('data-id');
-		$('.carousel').carousel('next');
-		$('html, body').animate({scrollTop: '0px'}, 300);
-		$('#cardCarousel').on('slid.bs.carousel', function () {
-			if (ActiveRoute.name('box')) {
-				Meteor.call('skipCard', Router.current().params._id, skippedCard, 0);
-			} else {
-				Meteor.call('skipCard', Router.current().params._id, skippedCard, 1);
-			}
-			Session.set('animationPlaying', false);
-		});
+		skipAnswer();
 	},
 	"click #known": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
