@@ -44,10 +44,10 @@
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
                     <a href="#" id="learnShowAnswer" class="btn btn-success btn-raised answer show-answer"
-                       title="success">{{_ "cardmemo.showanswer"}}</a>
+                       title="success">{{_ "cardmemo.showanswer"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</a>
                     {{#unless gotOneCardLeft}}
                         <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
-                           title="success">{{_ "cardmemo.skipanswer"}}</a>
+                           title="success">{{_ "cardmemo.skipanswer"}} {{#if fullscreenActive}}( {{_ "arrowKeys"}} ){{/if}}</a>
                     {{/unless}}
                 </div>
             {{else}}
@@ -55,11 +55,11 @@
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
                             <button class="btn btn-raised btn-danger answer card-fail" id="notknown">{{_
-                                    "notknow"}}</button>
+                                    "notknow"}} {{#if fullscreenActive}}( {{_ "key" key='n'}} ){{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button class="btn btn-raised btn-success answer card-success" id="known">{{_
-                                    "know"}}</button>
+                                    "know"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</button>
                         </div>
                     {{/if}}
                     {{#if isActiveRoute 'memo'}}

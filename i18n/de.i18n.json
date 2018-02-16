@@ -613,6 +613,8 @@
   "difficultyNotes1": "Übung",
   "difficultyNotes2": "Seminar",
   "difficultyNotes3": "Vortrag",
+  "arrowKeys": "Pfeiltasten",
+  "key": "__key__ Taste",
   "cardType": "Kartentyp",
   "cardType0": "Lernkarte",
   "cardType1": "Vokabel",
