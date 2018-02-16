@@ -42,7 +42,7 @@
   "navbar-collapse": {
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
-    "pool": "Pool",
+    "pool": "Topic Pool",
     "myprofile": "My profile",
     "billing": "Billing",
     "search": "Search",
@@ -646,6 +646,8 @@
   "difficultyNotes1": "Practice",
   "difficultyNotes2": "Seminar",
   "difficultyNotes3": "Presentation",
+  "arrowKeys": "Arrow Keys",
+  "key": "__key__ Key",
   "cardType": "Card type",
   "cardType0": "Flashcard",
   "cardType1": "Vocabulary",

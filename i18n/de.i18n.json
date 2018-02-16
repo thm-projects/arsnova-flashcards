@@ -34,7 +34,7 @@
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
     "learndecks": "Lernpensum",
-    "pool": "Pool",
+    "pool": "Themen-Pool",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Suche",
@@ -613,6 +613,8 @@
   "difficultyNotes1": "Übung",
   "difficultyNotes2": "Seminar",
   "difficultyNotes3": "Vortrag",
+  "arrowKeys": "Pfeiltasten",
+  "key": "__key__ Taste",
   "cardType": "Kartentyp",
   "cardType0": "Lernkarte",
   "cardType1": "Vokabel",

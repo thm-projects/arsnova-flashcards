@@ -43,23 +43,23 @@
         {{#unless isAnimationPlaying}}
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
-                    <a href="#" id="learnShowAnswer" class="btn btn-primary btn-raised answer show-answer"
-                       title="success">{{_ "cardmemo.showanswer"}}</a>
+                    <a href="#" id="learnShowAnswer" class="btn btn-success btn-raised answer show-answer"
+                       title="success">{{_ "cardmemo.showanswer"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</a>
                     {{#unless gotOneCardLeft}}
                         <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
-                           title="success">{{_ "cardmemo.skipanswer"}}</a>
+                           title="success">{{_ "cardmemo.skipanswer"}} {{#if fullscreenActive}}( {{_ "arrowKeys"}} ){{/if}}</a>
                     {{/unless}}
                 </div>
             {{else}}
                 <div id="learn-navigation" class="btn-group btn-group-justified">
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-primary answer card-success" id="known">{{_
-                                    "know"}}</button>
+                            <button class="btn btn-raised btn-danger answer card-fail" id="notknown">{{_
+                                    "notknow"}} {{#if fullscreenActive}}( {{_ "key" key='n'}} ){{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-default answer card-fail" id="notknown">{{_
-                                    "notknow"}}</button>
+                            <button class="btn btn-raised btn-success answer card-success" id="known">{{_
+                                    "know"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</button>
                         </div>
                     {{/if}}
                     {{#if isActiveRoute 'memo'}}
