@@ -529,7 +529,7 @@
     "memotext": "Vergleiche die Antwort mit der aus deiner Erinnerung und bewerte sie auf einer Skala von 0 bis 5. Anhand deiner Bewertung wird der Zeitpunkt für die nächste Wiederholung der Lernkarte berechnet."
   },
   "memo-endscreen": {
-    "text": "Lerneinheit abgeschlossen",
+    "text": "Lernpensum abgeschlossen",
     "back": "Zurück zum Kartensatz"
   },
   "memo-empty": {
@@ -551,7 +551,7 @@
     "comment": "Kommentar"
   },
   "learn-endscreen": {
-    "success": "Lerneinheit abgeschlossen",
+    "success": "Lernpensum abgeschlossen",
     "back2": "Zurück zum Kartensatz"
   },
   "carddeck-table": {
@@ -688,11 +688,11 @@
   "backbuttonStatistics": "Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
-  "box_status": "Eine Karte übrig",
+  "box_status": "Eine Karte zu lernen",
   "box_stats": "Lernstatistik anzeigen",
-  "box_status_plural": "__count__ Karten übrig",
-  "leitner_status": "Noch eine Karte übrig für die aktuelle Lerneinheit",
-  "leitner_status_plural": "Noch __count__ Karten übrig in der aktuellen Lerneinheit",
+  "box_status_plural": "__count__ Karten zu lernen",
+  "leitner_status": "Noch eine Karte zu lernen",
+  "leitner_status_plural": "Noch __count__ Karten zu lernen",
   "box_export": "Lernstatistik exportieren",
   "box_export_birth_name": "Name",
   "box_export_given_name": "Vorname",
