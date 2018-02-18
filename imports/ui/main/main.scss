@@ -458,6 +458,7 @@ button:disabled {
   font-weight: bold;
   font-size: 12px;
   color: $white;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1199px) {
@@ -536,7 +537,7 @@ button:disabled {
 
 @media (min-width: 768px) and (max-width: 991px) {
   #input-search {
-    width: 120px;
+    width: 80px;
   }
 
 }
@@ -677,4 +678,8 @@ button:disabled {
 #back-button {
   margin-left: 0;
   margin-bottom: 20px;
+}
+
+th {
+  text-transform: uppercase;
 }

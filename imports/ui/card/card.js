@@ -8,6 +8,7 @@ import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
+import {skipAnswer} from "../learn/learn.js";
 
 /*
  * ############################################################################
@@ -889,6 +890,7 @@ Template.contentEditor.rendered = function () {
 	$(".center-button").text('vertical_align_center');
 	$(".fullscreen-button").addClass('glyphicon-fullscreen');
 	$($(".fa-list-ol").parent()).after($(".fa-check-square").parent());
+	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
 };
 
 Template.contentEditor.events({
@@ -1200,6 +1202,22 @@ Template.flashcards.helpers({
 			}
 		}
 	},
+	getLearningGoalName: function () {
+		switch (this.learningGoalLevel) {
+			case 0:
+				return TAPi18n.__('learning-goal.level1');
+			case 1:
+				return TAPi18n.__('learning-goal.level2');
+			case 2:
+				return TAPi18n.__('learning-goal.level3');
+			case 3:
+				return TAPi18n.__('learning-goal.level4');
+			case 4:
+				return TAPi18n.__('learning-goal.level5');
+			case 5:
+				return TAPi18n.__('learning-goal.level6');
+		}
+	},
 	isCardType: function (type) {
 		return type === this.cardType;
 	},
@@ -1381,13 +1399,16 @@ Meteor.startup(function () {
 			toggleFullscreen(true);
 		}
 		if (Session.get('fullscreen')) {
-			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 37:
 						if ($('#leftCarouselControl').click()) {
 							$('#showHintModal').modal('hide');
 							$('body').removeClass('modal-open');
 							$('.modal-backdrop').remove();
+						}
+						if (Session.get('isQuestionSide')) {
+							skipAnswer(false);
 						}
 						break;
 					case 38:
@@ -1402,6 +1423,9 @@ Meteor.startup(function () {
 							$('#showHintModal').modal('hide');
 							$('body').removeClass('modal-open');
 							$('.modal-backdrop').remove();
+						}
+						if (Session.get('isQuestionSide')) {
+							skipAnswer();
 						}
 						break;
 					case 40:
@@ -1418,20 +1442,12 @@ Meteor.startup(function () {
 						break;
 					case 49:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#known').click();
-							} else {
-								$('#memoRate1').click();
-							}
+							$('#memoRate1').click();
 						}
 						break;
 					case 50:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#notknown').click();
-							} else {
-								$('#memoRate2').click();
-							}
+							$('#memoRate2').click();
 						}
 						break;
 					case 51:
@@ -1449,6 +1465,25 @@ Meteor.startup(function () {
 							$('#memoRate5').click();
 						}
 						break;
+					case 78:
+						if (!Session.get('isQuestionSide')) {
+							$('#notknown').click();
+						}
+						break;
+					case 89:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
+					case 90:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
 					case 96:
 						if (!Session.get('isQuestionSide')) {
 							$('#memoRate0').click();
@@ -1456,20 +1491,12 @@ Meteor.startup(function () {
 						break;
 					case 97:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#known').click();
-							} else {
-								$('#memoRate1').click();
-							}
+							$('#memoRate1').click();
 						}
 						break;
 					case 98:
 						if (!Session.get('isQuestionSide')) {
-							if (Router.current().route.getName() === "box") {
-								$('#notknown').click();
-							} else {
-								$('#memoRate2').click();
-							}
+							$('#memoRate2').click();
 						}
 						break;
 					case 99:

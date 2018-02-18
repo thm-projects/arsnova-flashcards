@@ -79,6 +79,11 @@
                                         </div>
 
                                         <ul class="nav navbar-nav navbar-right">
+                                            <li id="helpBtn">
+                                                <a href="{{#if isActiveRoute
+                                                               regex='box|memo'}}/learn{{else}}/about{{/if}}"
+                                                   target="_blank">{{_ "navbar-collapse.help"}}</a>
+                                            </li>
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-adminpanel">
                                                     <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
@@ -86,11 +91,6 @@
                                                     </a>
                                                 </li>
                                             {{/if}}
-                                            <li id="helpBtn">
-                                                <a href="{{#if isActiveRoute
-                                                               regex='box|memo'}}/learn{{else}}/about{{/if}}"
-                                                   target="_blank">{{_ "navbar-collapse.help"}}</a>
-                                            </li>
                                             <li id="notificationsBtn" class="dropdown">
                                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                     <i class="fa fa-bell"></i> {{#if countNotifications}}

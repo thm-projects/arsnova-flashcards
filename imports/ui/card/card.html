@@ -116,7 +116,8 @@
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
             {{#if isCardType 4}}
-                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4" autofocus>
+                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4"
+                       autofocus>
             {{else}}
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
@@ -292,9 +293,11 @@
 <template name="subjectEditor">
     <form>
         {{#if isActiveRoute 'newCard'}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}" tabindex="1" autofocus>
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
+                   tabindex="1" autofocus>
         {{else}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}" tabindex="1" autofocus>
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}"
+                   tabindex="1" autofocus>
         {{/if}}
     </form>
 </template>
@@ -303,7 +306,7 @@
     <div class="actionButtons editorElement">
         <br>
         <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-2" {{disableIfOffline}} tabindex="13">
+                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="13">
             {{_ "savecard"}}
         </button>
         <button id="cardSaveReturn"
@@ -386,32 +389,40 @@
                                         {{#if isCardset}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 <strong>{{_ "preview"}}:</strong>
-                                                {{cardsIndex @index}}/{{getCardsetCount false}} <br>
+                                                {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
                                             {{else}}
-                                                {{cardsIndex @index}}/{{getCardsetCount true}}<br>
+                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount true}}<br>
                                             {{/unless}}
                                         {{/if}}
                                         {{#if isBox}}
                                             {{_ "leitner_status" count=countLeitner}}
                                             <br>
                                         {{/if}}
-                                        <span>{{getCardsetName}}</span><br>
-                                        {{getCardTypeName}}
+                                        <span><span class="hidden-xs">{{_ "admin.cardset.header"}}:</span> <strong>{{getCardsetName}}</strong>
+                                            <span class="hidden-xs">{{_ "cardType"}}
+                                                :</span> <strong>{{getCardTypeName}}</strong> (</span>
                                         <span class="cardFrontHeader"
                                               style="display: {{#if isCardType 1}}{{#if
-                                                      reversedViewOrder}}none{{/if}}{{/if}}">{{#if
+                                                      reversedViewOrder}}none{{/if}}{{/if}}"><strong>{{#if
                                                 isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
                                                 isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
                                                 isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
-                                                "frontside"}}{{/if}}{{/if}}{{/if}}</span><span
+                                                "frontside"}}{{/if}}{{/if}}{{/if}}</strong></span><span
                                             class="cardBackHeader"
                                             style="display: {{#if isCardType 1}}{{#unless
-                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
+                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}"><strong>{{#if
                                             isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
                                             isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
                                             isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
-                                            "backside"}}{{/if}}{{/if}}{{/if}}</span>
-                                        ({{getDifficultyName}})
+                                            "backside"}}{{/if}}{{/if}}{{/if}}</strong></span>)<br>
+                                        <span class="hidden-xs">{{_ "difficulty"}}:</span> <strong>{{getDifficultyName}}</strong>
+                                        {{#unless isCardType 1}}
+                                            {{#unless isCardType 2}}
+                                                {{#unless isCardType 3}}
+                                                    <span class="hidden-xs">{{_ "learning-goal.name"}}:</span> <strong>{{getLearningGoalName}}</strong>
+                                                {{/unless}}
+                                            {{/unless}}
+                                        {{/unless}}
                                     </div>
                                     {{#unless isCardType 2}}
                                         <div id="clicktoflip" class="clicktoflip">
