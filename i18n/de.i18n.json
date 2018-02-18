@@ -34,7 +34,7 @@
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
     "learndecks": "Lernpensum",
-    "pool": "Themen-Pool",
+    "pool": "Themen",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Suche",
@@ -212,8 +212,8 @@
     "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle ein Thema aus dem Pool oder mische einen neuen Kartensatz aus mehreren Themen.",
-    "emptytextlistNoShuffle": "Wähle ein Thema aus dem Pool.",
+    "emptytextlist": "Wähle ein Thema aus oder mische einen neuen Kartensatz aus mehreren Themen.",
+    "emptytextlistNoShuffle": "Wähle ein Thema aus.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
