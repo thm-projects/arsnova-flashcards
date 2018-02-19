@@ -452,6 +452,13 @@ let additionalButtons = [
 				}
 			}
 		}, {
+			name: 'cmdFullscreen',
+			title: 'fullscreen',
+			icon: 'glyphicon fullscreen-button',
+			callback: function () {
+				toggleFullscreen(false, true);
+			}
+		}, {
 			name: 'cmdTask',
 			title: 'Task',
 			icon: 'fa fa-check-square',

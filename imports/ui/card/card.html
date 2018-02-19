@@ -32,8 +32,8 @@
 
 <template name="editor">
     {{getContent}}
-    <div class="row {{#unless fullscreenActive}}firstEditorRow{{/unless}}">
-        <div id="cardType" class="col-md-6 cardtext editorToolbar">
+    <div class="row editorElement">
+        <div id="cardType" class="col-md-6 cardtext editorElement">
             <h5>{{_ "cardType"}}</h5>
             {{> cardType}}
         </div>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-lg-6">
+        <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
