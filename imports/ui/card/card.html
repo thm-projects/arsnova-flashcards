@@ -319,16 +319,16 @@
                 class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="14">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
+        <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
                         tabindex="16">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
             {{/if}}
         {{/if}}
     </div>
