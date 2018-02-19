@@ -32,7 +32,7 @@
 
 <template name="editor">
     {{getContent}}
-    <div class="row editorElement">
+    <div class="row firstEditorRow editorElement">
         <div id="cardType" class="col-md-6 cardtext editorElement">
             <h5>{{_ "cardType"}}</h5>
             {{> cardType}}
@@ -88,18 +88,15 @@
                 {{> contentEditor}}
             </div>
         </div>
-        <span class="col-xs-12 hidden-lg">
-            {{> btnCard}}
-        </span>
         {{isTextCentered}}
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
             {{> flashcards cardset=this}}
         </div>
+        <span class="col-xs-12 editorButtonGroup">
+            {{> btnCard}}
+        </span>
     </div>
-    <span class="visible-lg">
-        {{> btnCard}}
-    </span>
 </template>
 
 <template name="cardType">

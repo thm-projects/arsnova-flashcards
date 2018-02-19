@@ -309,6 +309,17 @@ export function resizeAnswers() {
 let editorFullScreenActive = false;
 
 /**
+ * Move the action buttons before or after the preview window
+ */
+function moveEditorButtonGroup() {
+	if ($(window).width() >= 1200) {
+		$('.editorButtonGroup').insertAfter("#preview");
+	} else {
+		$('.editorButtonGroup').insertBefore("#preview");
+	}
+}
+
+/**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
@@ -859,6 +870,13 @@ Template.editor.onCreated(function () {
 		toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
+});
+
+Template.editor.onRendered(function () {
+	moveEditorButtonGroup();
+	$(window).resize(function () {
+		moveEditorButtonGroup();
+	});
 });
 
 /*
