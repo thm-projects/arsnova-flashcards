@@ -423,6 +423,8 @@ img.cardside {
   line-height: 28px;
   font-size: 18px;
   vertical-align: bottom;
+  overflow-y: auto;
+  overflow-x: visible;
   p {
     margin: 0;
   }
