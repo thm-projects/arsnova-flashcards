@@ -6,9 +6,7 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if isCardsetOwner this._id}}
-                <div class="container">
-                    {{> editor}}
-                </div>
+                {{> editor}}
             {{else}}
                 <h4>{{_ "permission"}}</h4>
             {{/if}}
@@ -24,9 +22,7 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if isEditor}}
-                <div class="container">
-                    {{> editor}}
-                </div>
+                {{> editor}}
             {{else}}
                 <h4>{{_ "permission"}}</h4>
             {{/if}}
@@ -36,61 +32,74 @@
 
 <template name="editor">
     {{getContent}}
-    <div id="cardType" class="col-md-6 cardtext editorToolbar">
-        <h5>{{_ "cardType"}}</h5>
-        {{> cardType}}
-    </div>
-    <div id="difficulty" class="col-md-6 cardtext editorElement">
-        {{#unless isCardType 2}}
-            <h5>{{_ "difficulty"}}</h5>
-        {{else}}
-            <h5>{{_ "difficultyNotes"}}</h5>
-        {{/unless}}
-        {{> difficultyEditor}}
-    </div>
-    <div id="subject" class="col-md-6 cardtext editorElement">
-        <h5>{{_ "cardsubject"}}</h5>
-        {{> subjectEditor}}
-    </div>
-    <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
-        {{#unless isCardType 1}}
+    <div class="row editorElement">
+        <div id="cardType" class="col-md-6 cardtext editorElement">
+            <h5>{{_ "cardType"}}</h5>
+            {{> cardType}}
+        </div>
+        <div id="difficulty" class="col-md-6 cardtext editorElement">
             {{#unless isCardType 2}}
-                {{#unless isCardType 3}}
-                    <h5>{{_ "learning-goal.name"}}</h5>
-                    {{> learningGoalLevel}}
+                <h5>{{_ "difficulty"}}</h5>
+            {{else}}
+                <h5>{{_ "difficultyNotes"}}</h5>
+            {{/unless}}
+            {{> difficultyEditor}}
+        </div>
+    </div>
+    <div class="row">
+        <div id="subject" class="col-md-6 cardtext editorElement">
+            <h5>{{_ "cardsubject"}}</h5>
+            {{> subjectEditor}}
+        </div>
+        <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
+            {{#unless isCardType 1}}
+                {{#unless isCardType 2}}
+                    {{#unless isCardType 3}}
+                        <h5>{{_ "learning-goal.name"}}</h5>
+                        {{> learningGoalLevel}}
+                    {{/unless}}
                 {{/unless}}
             {{/unless}}
-        {{/unless}}
+        </div>
     </div>
-    <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
-        <h5 class="editorElement">{{_ "content"}}</h5>
-        <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="5">{{getFrontTitle}}</button>
-        <button id="editBack" type="button"
-                class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
-                tabindex="7">{{getBackTitle}}</button>
-        {{#unless isCardType 2}}
-            {{#if isCardType 0}}
-                <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                        tabindex="9">{{_
-                        "lecture"}}</button>
-                <button id="editHint" type="button"
-                        class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                        tabindex="11">{{_
-                        "hint"}}</button>
-            {{/if}}
-        {{/unless}}
+    <div class="row">
+        <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
+            <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
+            <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
+                <button id="editFront" type="button"
+                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        tabindex="5">{{getFrontTitle}}</button>
+                <button id="editBack" type="button"
+                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        tabindex="7">{{getBackTitle}}</button>
+                {{#unless isCardType 2}}
+                    {{#if isCardType 0}}
+                        <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                                tabindex="9">{{_
+                                "lecture"}}</button>
+                        <button id="editHint" type="button"
+                                class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                                tabindex="11">{{_
+                                "hint"}}</button>
+                    {{/if}}
+                {{/unless}}
+            </div>
+            <div id="editor" class="cardtext editorToolbar" data-content="{{front}}">
+                {{> contentEditor}}
+            </div>
+        </div>
+        <span class="col-xs-12 hidden-lg">
+            {{> btnCard}}
+        </span>
+        {{isTextCentered}}
+        <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
+            <h5 class="editorElement">{{_ "previewEdit"}}</h5>
+            {{> flashcards cardset=this}}
+        </div>
     </div>
-    <div id="editor" class="col-xs-12 cardtext editorToolbar" data-content="{{front}}">
-        {{> contentEditor}}
-    </div>
-    {{> btnCard}}
-    {{isTextCentered}}
-    <div id="preview" class="col-xs-12 cardtext">
-        <h5 class="editorElement">{{_ "previewEdit"}}</h5>
-        {{> flashcards cardset=this}}
-    </div>
+    <span class="visible-lg">
+        {{> btnCard}}
+    </span>
 </template>
 
 <template name="cardType">
@@ -391,14 +400,16 @@
                                                 <strong>{{_ "preview"}}:</strong>
                                                 {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
                                             {{else}}
-                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount true}}<br>
+                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
+                                                    "of"}} {{getCardsetCount true}}<br>
                                             {{/unless}}
                                         {{/if}}
                                         {{#if isBox}}
                                             {{_ "leitner_status" count=countLeitner}}
                                             <br>
                                         {{/if}}
-                                        <span><span class="hidden-xs">{{_ "admin.cardset.header"}}:</span> <strong>{{getCardsetName}}</strong>
+                                        <span><span class="hidden-xs">{{_ "admin.cardset.header"}}
+                                            :</span> <strong>{{getCardsetName}}</strong>
                                             <span class="hidden-xs">{{_ "cardType"}}
                                                 :</span> <strong>{{getCardTypeName}}</strong> (</span>
                                         <span class="cardFrontHeader"
@@ -415,11 +426,13 @@
                                             isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
                                             isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
                                             "backside"}}{{/if}}{{/if}}{{/if}}</strong></span>)<br>
-                                        <span class="hidden-xs">{{_ "difficulty"}}:</span> <strong>{{getDifficultyName}}</strong>
+                                        <span class="hidden-xs">{{_ "difficulty"}}:</span>
+                                        <strong>{{getDifficultyName}}</strong>
                                         {{#unless isCardType 1}}
                                             {{#unless isCardType 2}}
                                                 {{#unless isCardType 3}}
-                                                    <span class="hidden-xs">{{_ "learning-goal.name"}}:</span> <strong>{{getLearningGoalName}}</strong>
+                                                    <span class="hidden-xs">{{_ "learning-goal.name"}}:</span>
+                                                    <strong>{{getLearningGoalName}}</strong>
                                                 {{/unless}}
                                             {{/unless}}
                                         {{/unless}}

@@ -284,6 +284,7 @@ body {
     font-size: 18px;
     padding: 10px 0 0 0;
     margin: 0;
+    text-align: center;
   }
 
   li {
@@ -642,6 +643,10 @@ button:disabled {
 #thm-top-navigation a {
   padding-left: 10px !important;
   padding-right: 10px !important;
+}
+
+.dropup {
+  margin-bottom: 0;
 }
 
 .dropup, .navbar-nav > li {

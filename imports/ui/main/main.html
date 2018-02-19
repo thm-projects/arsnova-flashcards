@@ -11,7 +11,7 @@
                 {{else}}
                     {{> completeProfileModal}}
                     <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="container thm-header">
+                        <div class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} thm-header">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
@@ -163,16 +163,19 @@
                 {{/if}}
             {{/if}}
         {{/unless}}
-        <div id="main" class="container">
+        <div id="main" class="{{#if isActiveRoute
+                                    regex='newCard|editCard'}}{{#if
+                fullscreenActive}}container{{else}}container-fluid col-lg-offset-1{{/if}}{{else}}container{{/if}}">
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="row">
+            <div class="row {{#if isActiveRoute regex='newCard|editCard'}}{{#unless
+                    fullscreenActive}}col-lg-11{{/unless}}{{/if}}">
                 {{> yield}}
             </div>
         </div>
 
         {{#unless fullscreenActive}}
             <div id="footer" class="footer">
-                <ul class="container dropup">
+                <ul class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
                     <li class="col-xs-2 col-sm-1">
                         <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
                             <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
