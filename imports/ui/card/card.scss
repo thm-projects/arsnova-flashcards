@@ -473,6 +473,8 @@ img.cardside {
 .editorNavigation {
   margin-top: 0;
   margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .editorNavigation >.btn-primary:hover {
@@ -519,48 +521,17 @@ img.cardside {
   }
 }
 
-.cardtext h5 {
+.cardtext h5, .editorHeader {
   margin: 0;
   padding-top: 20px;
   padding-bottom: 5px;
   font-weight: bold;
 }
 
-#cardType h5, #difficulty h5 {
-  @media(min-width: 992px) {
-    padding-top: 0;
-  }
-}
-
 .copyCardset a:link {
   display: block;
   cursor: pointer;
   text-decoration: none;
-}
-
-#subject {
-  margin-left: 0;
-  padding-left: 0;
-  @media(max-width: 991px) {
-    margin-right: 0;
-    padding-right: 0;
-  }
-}
-
-#difficulty {
-  margin-right: 0;
-  padding-right: 0;
-  @media(max-width: 991px) {
-    margin-left: 0;
-    padding-left: 0;
-  }
-}
-
-#editor, .editorNavigation, #preview, .actionButtons {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .clicktoflip {
@@ -593,37 +564,12 @@ img.cardside {
   padding: 0;
 }
 
-@media(min-width: 992px) {
-  #learningGoalLevelGroup > .btn-raised {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media(max-width: 992px) {
-  #learningGoalLevel {
-    padding-left: 0;
-  }
-  #cardType {
-    padding-right: 0;
-  }
-}
-
-#cardType {
-  padding-left: 0;
-}
-
 #cardType1 {
   border-right: 0 !important;
 }
 
-#learningGoalLevel {
-  padding-right: 0;
-}
-
 #learningGoalLevelGroup > .btn-raised {
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding: 9px 5px 9px 5px;
   font-weight: bold;
   font-size: 13px !important;
 }
@@ -645,4 +591,13 @@ img.cardside {
     padding-top: 19px;
     padding-bottom: 20px;
   }
+}
+
+#editorToolbar > .btn {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.firstEditorRow {
+  margin-top: -30px;
 }
