@@ -405,30 +405,36 @@
                                             {{_ "leitner_status" count=countLeitner}}
                                             <br>
                                         {{/if}}
-                                        <span><span class="hidden-xs">{{_ "admin.cardset.header"}}
-                                            :</span> <strong>{{getCardsetName}}</strong>
-                                            <span class="hidden-xs">{{_ "cardType"}}
-                                                :</span> <strong>{{getCardTypeName}}</strong> (</span>
-                                        <span class="cardFrontHeader"
-                                              style="display: {{#if isCardType 1}}{{#if
-                                                      reversedViewOrder}}none{{/if}}{{/if}}"><strong>{{#if
-                                                isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
-                                                isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
-                                                isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
-                                                "frontside"}}{{/if}}{{/if}}{{/if}}</strong></span><span
-                                            class="cardBackHeader"
-                                            style="display: {{#if isCardType 1}}{{#unless
-                                                    reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}"><strong>{{#if
-                                            isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
-                                            isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
-                                            isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
-                                            "backside"}}{{/if}}{{/if}}{{/if}}</strong></span>)<br>
-                                        <span class="hidden-xs">{{_ "difficulty"}}:</span>
+                                        <span><strong>{{getCardsetName}}</strong>
+                                            {{#unless isCardType 2}}
+                                                | {{_ "cardType"}}: <strong>{{getCardTypeName}}</strong> (<span
+                                                    class="cardFrontHeader"
+                                                    style="display: {{#if isCardType 1}}{{#if
+                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{#if
+                                                    isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
+                                                    "frontside"}}{{/if}}{{/if}}{{/if}})</span><span
+                                                    class="cardBackHeader"
+                                                    style="display: {{#if isCardType 1}}{{#unless
+                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
+                                                    isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
+                                                    "backside"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
+                                        {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
                                         <strong>{{getDifficultyName}}</strong>
+                                        {{#if isCardType 2}}
+                                            <span class="cardBackHeader"
+                                                  style="display: {{#if isCardType 1}}{{#unless
+                                                          reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
+                                            ({{_ "backsideCardType2"}})
+                                            </span>
+                                        {{/if}}
                                         {{#unless isCardType 1}}
                                             {{#unless isCardType 2}}
                                                 {{#unless isCardType 3}}
-                                                    <span class="hidden-xs">{{_ "learning-goal.name"}}:</span>
+                                                     | {{_ "learning-goal.name"}}:
                                                     <strong>{{getLearningGoalName}}</strong>
                                                 {{/unless}}
                                             {{/unless}}
