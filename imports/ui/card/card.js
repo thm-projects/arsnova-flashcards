@@ -326,17 +326,17 @@ function resizeFlashcards() {
 	let newFlashcardBodyHeight;
 	if (editorFullScreenActive) {
 		newFlashcardBodyHeight = ($(window).height() * 0.78);
-		$('#contentEditor').css('min-height', newFlashcardBodyHeight);
+		$('#contentEditor').css('height', newFlashcardBodyHeight);
 	} else {
-		$('#contentEditor').css('min-height', 'unset');
+		$('#contentEditor').css('height', 'unset');
 		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
-		$('.cardContent').css('min-height', newFlashcardBodyHeight);
+		$('.cardContent').css('height', newFlashcardBodyHeight);
 		if ($(window).width() >= 1200) {
-			$('#contentEditor').css('min-height', (newFlashcardBodyHeight - 3));
+			$('#contentEditor').css('height', (newFlashcardBodyHeight - 3));
 		}
 		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 		$('.center-align').css('margin-top', newCenterTextHeight);
-		$('.dictionaryFrame').css('min-height', newFlashcardBodyHeight);
+		$('.dictionaryFrame').css('height', newFlashcardBodyHeight);
 	}
 	setTimeout(resizeFlashcards, 125);
 }
