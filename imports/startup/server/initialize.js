@@ -477,6 +477,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({college: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					college: Meteor.settings.public.university.default
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find({shuffled: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({

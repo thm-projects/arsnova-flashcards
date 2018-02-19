@@ -224,7 +224,7 @@ Meteor.methods({
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 */
 	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups) {
-		if (Meteor.settings.public.university.singleUniversity) {
+		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
 		check(name, String);
