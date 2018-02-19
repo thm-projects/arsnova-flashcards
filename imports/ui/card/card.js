@@ -309,6 +309,17 @@ export function resizeAnswers() {
 let editorFullScreenActive = false;
 
 /**
+ * Move the action buttons before or after the preview window
+ */
+function moveEditorButtonGroup() {
+	if ($(window).width() >= 1200) {
+		$('.editorButtonGroup').insertAfter("#preview");
+	} else {
+		$('.editorButtonGroup').insertBefore("#preview");
+	}
+}
+
+/**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
@@ -320,6 +331,9 @@ function resizeFlashcards() {
 		$('#contentEditor').css('min-height', 'unset');
 		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
 		$('.cardContent').css('min-height', newFlashcardBodyHeight);
+		if ($(window).width() >= 1200) {
+			$('#contentEditor').css('min-height', (newFlashcardBodyHeight - 3));
+		}
 		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 		$('.center-align').css('margin-top', newCenterTextHeight);
 		$('.dictionaryFrame').css('min-height', newFlashcardBodyHeight);
@@ -447,6 +461,13 @@ let additionalButtons = [
 					centerTextElement[editMode] = true;
 					Session.set('centerTextElement', centerTextElement);
 				}
+			}
+		}, {
+			name: 'cmdFullscreen',
+			title: 'fullscreen',
+			icon: 'glyphicon fullscreen-button',
+			callback: function () {
+				toggleFullscreen(false, true);
 			}
 		}, {
 			name: 'cmdTask',
@@ -849,6 +870,13 @@ Template.editor.onCreated(function () {
 		toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
+});
+
+Template.editor.onRendered(function () {
+	moveEditorButtonGroup();
+	$(window).resize(function () {
+		moveEditorButtonGroup();
+	});
 });
 
 /*
