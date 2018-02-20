@@ -48,12 +48,12 @@
     "search": "Search",
     "frontend": "Front end",
     "backend": "Back end",
-    "help": "Help",
     "none": "None"
   },
   "contact": {
     "about": "THMcards",
     "learning": "Learning",
+    "help": "Help",
     "faq": "FAQ",
     "impressum": "Legal Notice",
     "datenschutz": "Data Protection",

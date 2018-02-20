@@ -14,6 +14,10 @@
                                                                                               href="{{pathFor
                                                                                                       route='learning'}}">{{_
                     "contact.learning"}}</a></li>
+            <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}}"><a id="help"
+                                                                                              href="{{pathFor
+                                                                                                      route='help'}}">{{_
+                    "contact.help"}}</a></li>
             <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
                     route='faq'}}">{{_ "contact.faq"}}</a></li>
             <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum"
@@ -35,6 +39,9 @@
         {{/if}}
         {{#if isActiveRoute 'learning'}}
             {{> learning}}
+        {{/if}}
+        {{#if isActiveRoute 'help'}}
+            {{> help}}
         {{/if}}
         {{#if isActiveRoute 'faq'}}
             {{> faq}}
@@ -209,6 +216,17 @@
                 Wiederholung der Lernkarte
                 berechnet.
             </p>
+        </div>
+    </div>
+</template>
+
+<template name="help">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Hilfe
+        </div>
+        <div class="panel-body">
+
         </div>
     </div>
 </template>
