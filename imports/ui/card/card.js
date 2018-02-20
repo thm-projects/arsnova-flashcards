@@ -331,7 +331,7 @@ function resizeFlashcards() {
 		$('#contentEditor').css('height', 'unset');
 		let header = $('.cardHeader').height();
 		let editorAdjustment = 3;
-		if (Session.get('activeEditMode') === 2) {
+		if (Session.get('activeEditMode') >= 2) {
 			header = -3;
 			editorAdjustment = 90;
 		}

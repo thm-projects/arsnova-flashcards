@@ -10,6 +10,7 @@ $color_difficulty0: rgba(91, 192, 222, 0.3);
 $color_difficulty1: rgba(92, 184, 92, 0.3);
 $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
+$background_lecture: #D8BFD8;
 $header_line: rgba(255, 0, 0, 0.6);
 
 #difficultyGroup, #cardTypeGroup {
@@ -470,8 +471,14 @@ img.cardside {
   font-size: 16px;
 }
 
+.lectureContent {
+  border-top: 6px solid $header_line;
+  background-color: $background_lecture;
+}
+
 .cardContentDictionary {
-  padding: 26px 0 0 0;
+  border-top: 6px solid $header_line;
+  padding: 0;
 }
 
 .dictionaryFrame {

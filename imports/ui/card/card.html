@@ -355,7 +355,8 @@
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType}}-header"
-                                     style="{{#if isHintPreview}}display: none{{/if}}">
+                                     style="{{#if isHintPreview}}display: none{{/if}}{{#if
+                                             isLecturePreview}}display: none{{/if}}">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -490,7 +491,8 @@
                                     <h3>{{subject}}</h3>
                                 </div>
                                 <div class="cardContent {{#if
-                                        isHintPreview}}hintContent{{/if}} centered cardfront {{#unless
+                                        isHintPreview}}hintContent{{/if}}{{#if
+                                        isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
                                         difficulty cardType}}{{/unless}}{{/unless}} detailfront{{@index}}"
@@ -526,9 +528,10 @@
                                 </div>
                                 {{#unless isCardType 2}}
                                     <div class="collapsed collapse"
-                                         id="collapseLecture-{{_id}}">
+                                         id="collapseLecture-{{_id}}" style="{{#if isEditMode}}display: none{{/if}}">
                                         <div class="cardContent {{#if isCardType
-                                                                      1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
+                                                                      1}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                                                isCardType 0}}lectureContent{{/if}} detaillecture{{@index}}">
 
                                             {{#if isCardType 0}}
                                                 <span class="{{#if isCentered 3}}center-align{{/if}}">
