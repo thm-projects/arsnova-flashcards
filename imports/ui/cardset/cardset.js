@@ -691,31 +691,15 @@ Template.chooseFlashcardsToLearnButton.events({
 		let category = $(event.target).data('category');
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
 		let item = $(event.target).data('item');
-		if (category !== 2) {
-			chooseFlashcardsFilter[category].push(item);
-		} else {
-			chooseFlashcardsFilter[category] = [];
-			for (let i = 0; i <= item; i++) {
-				chooseFlashcardsFilter[category].push(i);
-			}
-		}
+		chooseFlashcardsFilter[category].push(item);
 		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 	},
 	"click .removeCardFilter": function (event) {
 		let category = $(event.target).data('category');
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
 		let item = $(event.target).data('item');
-		if (category !== 2) {
-			let pos = chooseFlashcardsFilter[category].indexOf(item);
-			chooseFlashcardsFilter[category].splice(pos, 1);
-		} else {
-			chooseFlashcardsFilter[category] = [];
-			if (item !== 0) {
-				for (let i = 0; i <= item; i++) {
-					chooseFlashcardsFilter[category].push(i);
-				}
-			}
-		}
+		let pos = chooseFlashcardsFilter[category].indexOf(item);
+		chooseFlashcardsFilter[category].splice(pos, 1);
 		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 	}
 });
