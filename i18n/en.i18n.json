@@ -604,7 +604,11 @@
   },
   "filter-cards": {
     "filter": "Filter",
-    "infoText": "Number of selected cards:"
+    "infoText": "Number of selected cards:",
+    "settings": "Settings",
+    "sortText": "Sorting mode",
+    "sortMode0": "Random",
+    "sortMode1": "Alphanumeric"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",

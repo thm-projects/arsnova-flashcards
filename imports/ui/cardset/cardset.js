@@ -600,6 +600,7 @@ Template.chooseFlashcardsToLearn.created = function () {
 	chooseFlashcardsFilter[0] = [];
 	chooseFlashcardsFilter[1] = [];
 	chooseFlashcardsFilter[2] = [];
+	chooseFlashcardsFilter[3] = 0;
 	Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 };
 
@@ -653,6 +654,14 @@ Template.chooseFlashcardsToLearn.helpers({
 			Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 			return false;
 		}
+	},
+	getSortMode: function () {
+		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+		if (chooseFlashcardsFilter[3] === 0) {
+			return TAPi18n.__('filter-cards.sortMode0');
+		} else {
+			return TAPi18n.__('filter-cards.sortMode1');
+		}
 	}
 });
 
@@ -661,6 +670,15 @@ Template.chooseFlashcardsToLearn.events({
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
+	},
+	"click .sortFilter": function () {
+		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
+		if (chooseFlashcardsFilter[3] === 0) {
+			chooseFlashcardsFilter[3] = 1;
+		} else {
+			chooseFlashcardsFilter[3] = 0;
+		}
+		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 	}
 });
 

@@ -570,7 +570,11 @@
   },
   "filter-cards": {
     "filter": "Filtern",
-    "infoText": "Anzahl ausgewählter Karten:"
+    "infoText": "Anzahl ausgewählter Karten:",
+    "settings": "Einstellungen",
+    "sortText": "Sortiermodus",
+    "sortMode0": "Zufällig",
+    "sortMode1": "Alphanumerisch"
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
