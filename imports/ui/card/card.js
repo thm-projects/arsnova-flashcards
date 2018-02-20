@@ -329,10 +329,16 @@ function resizeFlashcards() {
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
 	} else {
 		$('#contentEditor').css('height', 'unset');
-		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
+		let header = $('.cardHeader').height();
+		let editorAdjustment = 3;
+		if (Session.get('activeEditMode') === 2) {
+			header = -3;
+			editorAdjustment = 90;
+		}
+		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - header;
 		$('.cardContent').css('height', newFlashcardBodyHeight);
 		if ($(window).width() >= 1200) {
-			$('#contentEditor').css('height', (newFlashcardBodyHeight - 3));
+			$('#contentEditor').css('height', (newFlashcardBodyHeight - editorAdjustment));
 		}
 		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 		$('.center-align').css('margin-top', newCenterTextHeight);
@@ -1061,11 +1067,11 @@ Template.cardType.onRendered(function () {
 
 /*
  * ############################################################################
- * cardHint
+ * cardHintContent
  * ############################################################################
  */
 
-Template.cardHint.helpers({
+Template.cardHintContent.helpers({
 	getSubject: function () {
 		if (isEditMode()) {
 			return Session.get('subjectEditorText');
@@ -1091,6 +1097,9 @@ Template.cardHint.helpers({
 		} else {
 			return Cards.findOne({_id: Session.get('selectedHint')}).cardType === type;
 		}
+	},
+	isHintPreview: function () {
+		return (Session.get('activeEditMode') === 2 && isEditMode());
 	}
 });
 

@@ -452,6 +452,24 @@ img.cardside {
   }
 }
 
+.hintContent {
+  padding: 10px;
+  background-color: lighten($color_thm_gray, 20%);
+  color: white;
+}
+
+.hintContent .close {
+  color: white;
+}
+
+.hintContent .modal-header {
+  border-bottom: 1px solid white;
+}
+
+.hintContent .modal-body {
+  font-size: 16px;
+}
+
 .cardContentDictionary {
   padding: 26px 0 0 0;
 }

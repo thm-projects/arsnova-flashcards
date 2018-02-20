@@ -18,11 +18,12 @@ $color_orange_pool: $color_thm_orange;
 $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
+$default_font: 'Roboto';
 
 html {
   position: relative;
   min-height: 100%;
-  font-family: 'Roboto';
+  font-family: $default_font !important;
   background-color: $color_mercury_approx;
 }
 

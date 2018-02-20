@@ -354,7 +354,8 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{getCardBackground difficulty cardType}}-header">
+                                <div class="cardHeader {{getCardBackground difficulty cardType}}-header"
+                                     style="{{#if isHintPreview}}display: none{{/if}}">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -488,7 +489,9 @@
                                     </div>
                                     <h3>{{subject}}</h3>
                                 </div>
-                                <div class="cardContent centered cardfront {{#unless isHintPreview}}{{#unless
+                                <div class="cardContent {{#if
+                                        isHintPreview}}hintContent{{/if}} centered cardfront {{#unless
+                                        isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
                                         difficulty cardType}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#if
@@ -500,9 +503,7 @@
                                             </span>
                                         {{/if}}
                                         {{#if isHintPreview}}
-                                            <span class="{{#if isCentered 2}}center-align{{/if}}">
-                                                {{#mathjax}}{{hint}}{{/mathjax}}
-                                            </span>
+                                            {{> cardHintContent}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
                                             <span class="{{#if isCentered 3}}center-align{{/if}}">
@@ -609,28 +610,34 @@
     </div>
 </template>
 
-<template name="cardHint">
-    <div class="modal fade" id="showHintModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
-                            "hint"}}{{/if}}{{#if isCardType 2}}{{_
-                            "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
-                            "cardType4Hint"}}{{/if}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-12">
+<template name="cardHintContent">
+    <div class="modal-header">
+        {{#unless isHintPreview}}
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        {{/unless}}
+        <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
+                "hint"}}{{/if}}{{#if isCardType 2}}{{_
+                "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
+                "cardType4Hint"}}{{/if}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12">
                                 <span class="{{#if isCentered}}center-align{{/if}}">
                                     {{#mathjax}}{{getHint}}{{/mathjax}}
                                 </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardHint">
+    <div class="modal fade" id="showHintModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content hintContent">
+                {{> cardHintContent}}
             </div>
         </div>
     </div>
