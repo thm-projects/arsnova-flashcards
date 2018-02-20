@@ -599,6 +599,18 @@
                     </div>
                     <br>
                     <span class="col-xs-12 poolHeaderBottom">
+                        {{_ "filter-cards.settings"}}
+                    </span>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "filter-cards.sortText"}}
+                                            </span>
+                        <span class="cell col-xs-6 poolText panelUnit panelUnitNoBorder">
+                                    <a class="btn btn-block btn-raised btn-default btn-sm shuffleButton sortFilter">{{getSortMode}}
+                            </a>
+                        </span>
+                    </div>
+                    <span class="col-xs-12 poolHeaderBottom">
                         {{_ "difficulty"}}
                     </span>
                     <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
