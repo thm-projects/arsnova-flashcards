@@ -636,6 +636,8 @@
   "content": "Inhalt",
   "lecture": "Vertiefung",
   "turn": "umdrehen",
+  "cardType2Hint": "Literatur",
+  "cardType4Hint": "Videoquelle",
   "hint": "Hinweis",
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",

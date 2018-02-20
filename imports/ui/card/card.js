@@ -857,8 +857,9 @@ Template.editor.helpers({
 				return TAPi18n.__('frontside');
 		}
 	},
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	},
 	isTextCentered: function () {
 		isTextCentered();
@@ -961,8 +962,9 @@ Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (difficulty) {
 		return difficulty === Session.get('difficultyColor');
 	},
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	}
 });
 
@@ -999,8 +1001,9 @@ Template.learningGoalLevel.events({
  */
 
 Template.cardType.helpers({
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	}
 });
 
@@ -1080,6 +1083,13 @@ Template.cardHint.helpers({
 	isCentered: function () {
 		if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
+		}
+	},
+	isCardType: function (type) {
+		if (isEditMode()) {
+			return Session.get('cardType') === type;
+		} else {
+			return Cards.findOne({_id: Session.get('selectedHint')}).cardType === type;
 		}
 	}
 });
@@ -1246,8 +1256,9 @@ Template.flashcards.helpers({
 				return TAPi18n.__('learning-goal.level6');
 		}
 	},
-	isCardType: function (type) {
-		return type === this.cardType;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');

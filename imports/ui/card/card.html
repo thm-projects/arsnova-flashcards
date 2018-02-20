@@ -67,21 +67,30 @@
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                                                                                                              2
+                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
                 <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                                                                                                              2
+                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="7">{{getBackTitle}}</button>
-                {{#unless isCardType 2}}
-                    {{#if isCardType 0}}
-                        <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                                tabindex="9">{{_
-                                "lecture"}}</button>
+                {{#if isCardType 0}}
+                    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                            tabindex="9">{{_
+                            "lecture"}}</button>
+                {{/if}}
+                {{#unless isCardType 1}}
+                    {{#unless isCardType 3}}
                         <button id="editHint" type="button"
-                                class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                                tabindex="11">{{_
-                                "hint"}}</button>
-                    {{/if}}
+                                class="btn btn-default btn-raised col-xs-12 {{#if isCardType
+                                                                                  0}}col-sm-3{{else}}col-sm-4{{/if}}"
+                                tabindex="11">{{#if isCardType 0}}{{_
+                                "hint"}}{{/if}}{{#if isCardType 2}}{{_
+                                "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
+                                "cardType4Hint"}}{{/if}}</button>
+                    {{/unless}}
                 {{/unless}}
             </div>
             <div id="editor" class="cardtext editorToolbar" data-content="{{front}}">
@@ -359,35 +368,35 @@
                                             {{/if}}
                                         {{/if}}
                                         {{#unless isEditMode}}
-                                            {{#unless isCardType 2}}
-                                                {{#unless isCardType 3}}
-                                                    {{#if isCardType 0}}
-                                                        {{#if lecture}}
-                                                            <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-                                                            </a>
-                                                        {{/if}}
-                                                        {{#if hint}}
-                                                            <a href="#" id="showHint">
-                                                    <span class="glyphicon glyphicon-info-sign"
-                                                          data-id="{{_id}}" data-type="cardNavigation"
-                                                          data-toggle="modal"
-                                                          data-target="#showHintModal"></span>
-                                                            </a>
-                                                        {{/if}}
-                                                    {{/if}}
-                                                    {{#if isCardType 1}}
+                                            {{#unless isCardType 3}}
+                                                {{#if isCardType 0}}
+                                                    {{#if lecture}}
                                                         <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                    <span class="glyphicon glyphicon glyphicon-education"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                                         </a>
                                                     {{/if}}
-                                                {{/unless}}
+                                                {{/if}}
+                                                {{#if isCardType 0 2 4}}
+                                                    {{#if hint}}
+                                                        <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
+                                                          data-id="{{_id}}" data-type="cardNavigation"
+                                                          data-toggle="modal"
+                                                          data-target="#showHintModal"></span>
+                                                        </a>
+                                                    {{/if}}
+                                                {{/if}}
+                                                {{#if isCardType 1}}
+                                                    <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                    </a>
+                                                {{/if}}
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
@@ -431,13 +440,9 @@
                                             ({{_ "backsideCardType2"}})
                                             </span>
                                         {{/if}}
-                                        {{#unless isCardType 1}}
-                                            {{#unless isCardType 2}}
-                                                {{#unless isCardType 3}}
-                                                     | {{_ "learning-goal.name"}}:
-                                                    <strong>{{getLearningGoalName}}</strong>
-                                                {{/unless}}
-                                            {{/unless}}
+                                        {{#unless isCardType 1 2 3}}
+                                            | {{_ "learning-goal.name"}}:
+                                            <strong>{{getLearningGoalName}}</strong>
                                         {{/unless}}
                                     </div>
                                     {{#unless isCardType 2}}
@@ -610,7 +615,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{_ "hint"}}</h4>
+                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
+                            "hint"}}{{/if}}{{#if isCardType 2}}{{_
+                            "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
+                            "cardType4Hint"}}{{/if}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">

@@ -670,6 +670,8 @@
   "content": "Content",
   "lecture": "Lecture",
   "turn": "turn",
+  "cardType2Hint": "Literature",
+  "cardType4Hint": "Video source",
   "hint": "Hint",
   "copyCardTitle": "Copy card",
   "copyCardText": "Select the cardset in which you want to copy this card.",
