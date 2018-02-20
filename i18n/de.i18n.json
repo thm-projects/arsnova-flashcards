@@ -40,12 +40,12 @@
     "search": "Suche",
     "frontend": "Frontend",
     "backend": "Backend",
-    "help": "Hilfe",
     "none": "Ohne"
   },
   "contact": {
     "about": "THMcards",
     "learning": "Lernen",
+    "help": "Hilfe",
     "faq": "FAQ",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
