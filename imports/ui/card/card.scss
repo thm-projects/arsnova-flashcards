@@ -6,6 +6,7 @@ $background_difficultyNote0: #FEFFD1;
 $background_difficulty1: #edffed;
 $background_difficulty2: #edfbff;
 $background_difficulty3: #ffeded;
+$color_difficultyNote0: rgba(251, 186, 0, 0.3);
 $color_difficulty0: rgba(91, 192, 222, 0.3);
 $color_difficulty1: rgba(92, 184, 92, 0.3);
 $color_difficulty2: rgba(91, 192, 222, 0.3);
@@ -181,7 +182,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
 }
 
-.box-difficulty0 {
+.box-difficultyLined0 {
   background: repeating-linear-gradient(
                   to bottom,
                   $white,
@@ -191,7 +192,21 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
-.box-difficultyNote0 {
+.box-difficultyLinedNote0 {
+  background: repeating-linear-gradient(
+                  to bottom,
+                  $background_difficultyNote0,
+                  $background_difficultyNote0 26px,
+                  $color_difficultyNote0 26px,
+                  $color_difficultyNote0 28px
+  );
+}
+
+.box-difficultyBlan0 {
+  background-color: $white;
+}
+
+.box-difficultyBlankNote0 {
   background-color: $background_difficultyNote0;
 }
 
@@ -211,7 +226,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: darken($background_difficultyNote0, 15%);
 }
 
-.box-difficulty1 {
+.box-difficultyLined1 {
   background: repeating-linear-gradient(
                   to bottom,
                   $background_difficulty1,
@@ -221,11 +236,11 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
-.box-difficulty-Vocabulary0 {
+.box-difficultyBlank0 {
   background-color: $white;
 }
 
-.box-difficultyNote1 {
+.box-difficultyBlank1 {
   background-color: $background_difficulty1;
 }
 
@@ -237,7 +252,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: darken($color_difficulty1, 15%);
 }
 
-.box-difficulty2 {
+.box-difficultyLined2 {
   background: repeating-linear-gradient(
                   to bottom,
                   $background_difficulty2,
@@ -247,7 +262,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
-.box-difficultyNote2 {
+.box-difficultyBlank2 {
   background-color: $background_difficulty2;
 }
 
@@ -259,7 +274,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: darken($color_difficulty2, 15%);
 }
 
-.box-difficulty3 {
+.box-difficultyLined3 {
   background: repeating-linear-gradient(
                   to bottom,
                   $background_difficulty3,
@@ -269,7 +284,7 @@ $header_line: rgba(255, 0, 0, 0.6);
   );
 }
 
-.box-difficultyNote3 {
+.box-difficultyBlank3 {
   background: $background_difficulty3;
 }
 
@@ -281,23 +296,23 @@ $header_line: rgba(255, 0, 0, 0.6);
   background: darken($color_difficulty3, 15%);
 }
 
-.box-difficulty0-header, .box-difficulty-Vocabulary0-header {
+.box-difficultyBlank0-header, .box-difficultyLined0-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
 }
 
-.box-difficultyNote0-header {
+.box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
 }
 
-.box-difficulty1-header, .box-difficultyNote1-header {
+.box-difficultyBlank1-header, .box-difficultyLined1-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty1 5px, $background_difficulty1 100%);
 }
 
-.box-difficulty2-header, .box-difficultyNote2-header {
+.box-difficultyBlank2-header, .box-difficultyLined2-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty2 5px, $background_difficulty2 100%);
 }
 
-.box-difficulty3-header, .box-difficultyNote3-header {
+.box-difficultyBlank3-header, .box-difficultyLined3-header {
   background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty3 5px, $background_difficulty3 100%);
 }
 

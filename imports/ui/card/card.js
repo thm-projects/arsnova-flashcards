@@ -25,6 +25,7 @@ function defaultData() {
 	Session.set('cardType', 2);
 	Session.set('centerTextElement', [false, false, false, false]);
 	Session.set('learningGoalLevel', 0);
+	Session.set('backgroundStyle', 0);
 }
 
 function isTextCentered() {
@@ -56,6 +57,10 @@ function initializeContent() {
 
 	if (Session.get('learningGoalLevel') === undefined) {
 		Session.set('learningGoalLevel', 0);
+	}
+
+	if (Session.get('backgroundStyle') === undefined) {
+		Session.set('backgroundStyle', 0);
 	}
 
 	if (Session.get('cardType') === undefined) {
@@ -469,8 +474,19 @@ let additionalButtons = [
 				}
 			}
 		}, {
+			name: 'cmdBackgroundStyle',
+			title: 'Background Style',
+			icon: 'fa fa-paint-brush',
+			callback: function () {
+				if (Session.get('backgroundStyle') === 1) {
+					Session.set('backgroundStyle', 0);
+				} else {
+					Session.set('backgroundStyle', 1);
+				}
+			}
+		}, {
 			name: 'cmdFullscreen',
-			title: 'fullscreen',
+			title: 'Fullscreen',
 			icon: 'glyphicon fullscreen-button',
 			callback: function () {
 				toggleFullscreen(false, true);
@@ -594,6 +610,7 @@ function getEditModeCard() {
 		"subject": Session.get('subjectEditorText'),
 		"difficulty": Session.get('difficultyColor'),
 		"learningGoalLevel": Session.get('learningGoalLevel'),
+		"backgroundStyle": Session.get('backgroundStyle'),
 		"front": Session.get('frontText'),
 		"back": Session.get('backText'),
 		"hint": Session.get('hintText'),
@@ -646,6 +663,7 @@ function saveCard(card_id, returnToCardset) {
 	let centerTextElement = Session.get('centerTextElement');
 	let date = Session.get('cardDate');
 	let learningGoalLevel = Session.get('learningGoalLevel');
+	let backgroundStyle = Session.get('backgroundStyle');
 	if (lectureText === undefined) {
 		lectureText = '';
 	}
@@ -693,7 +711,7 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -710,6 +728,7 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
+						Session.set('backgroundStyle', 0);
 						if (cardType === 1 || cardType === 3 || cardType === 4) {
 							Session.set('centerTextElement', [true, true, false, false]);
 						} else {
@@ -722,7 +741,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel));
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle));
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				defaultData();
@@ -736,6 +755,7 @@ function saveCard(card_id, returnToCardset) {
 				Session.set('backText', '');
 				Session.set('hintText', '');
 				Session.set('lectureText', '');
+				Session.set('backgroundStyle', 0);
 				if (cardType === 1 || cardType === 3 || cardType === 4) {
 					Session.set('centerTextElement', [true, true, false, false]);
 				} else {
@@ -849,6 +869,7 @@ Template.editor.helpers({
 			Session.set('centerTextElement', this.centerTextElement);
 			Session.set('difficultyColor', this.difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
+			Session.set('backgroundStyle', this.backgroundStyle);
 		}
 	},
 	getFrontTitle: function () {

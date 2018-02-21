@@ -354,7 +354,7 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{getCardBackground difficulty cardType}}-header"
+                                <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
                                      style="{{#if isHintPreview}}display: none{{/if}}{{#if
                                              isLecturePreview}}display: none{{/if}}">
                                     <div class="leftHeader">
@@ -495,7 +495,7 @@
                                         isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
-                                        difficulty cardType}}{{/unless}}{{/unless}} detailfront{{@index}}"
+                                        difficulty cardType backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditMode}}
@@ -519,7 +519,7 @@
                                     {{/if}}
                                 </div>
                                 <div class="cardContent centered cardback {{getCardBackground
-                                        difficulty cardType}} detailback{{@index}}"
+                                        difficulty cardType backgroundStyle}} detailback{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if isCentered 1}}center-align{{/if}}">
