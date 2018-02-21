@@ -37,6 +37,9 @@ Meteor.methods({
 			if (item.learningGoalLevel === undefined) {
 				item.learningGoalLevel = 0;
 			}
+			if (item.backgroundStyle === undefined) {
+				item.backgroundStyle = 0;
+			}
 			if (item.centerTextElement === undefined) {
 				if (item.cardType === 1) {
 					item.centerTextElement = [true, true, false, false];
@@ -88,7 +91,8 @@ Meteor.methods({
 					cardType: item.cardType,
 					lecture: lecture,
 					centerTextElement: item.centerTextElement,
-					learningGoalLevel: item.learningGoalLevel
+					learningGoalLevel: item.learningGoalLevel,
+					backgroundStyle: item.backgroundStyle
 				});
 			}
 		}

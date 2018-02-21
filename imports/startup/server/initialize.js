@@ -77,7 +77,8 @@ var initTestNotificationsCards = function () {
 			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
-			"learningGoalLevel": 0
+			"learningGoalLevel": 0,
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -91,7 +92,8 @@ var initTestNotificationsCards = function () {
 			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
-			"learningGoalLevel": 1
+			"learningGoalLevel": 1,
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -105,7 +107,8 @@ var initTestNotificationsCards = function () {
 			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
-			"learningGoalLevel": 2
+			"learningGoalLevel": 2,
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -119,7 +122,8 @@ var initTestNotificationsCards = function () {
 			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
-			"learningGoalLevel": 3
+			"learningGoalLevel": 3,
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -133,7 +137,8 @@ var initTestNotificationsCards = function () {
 			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
-			"learningGoalLevel": 4
+			"learningGoalLevel": 4,
+			"backgroundStyle": 0
 		}
 	];
 };
@@ -402,6 +407,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					learningGoalLevel: 0
+				}
+			}
+		);
+	}
+
+	cards = Cards.find({backgroundStyle: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					backgroundStyle: 0
 				}
 			}
 		);

@@ -80,9 +80,9 @@
 
                                         <ul class="nav navbar-nav navbar-right">
                                             <li id="helpBtn">
-                                                <a href="{{#if isActiveRoute
-                                                               regex='box|memo'}}/learn{{else}}/about{{/if}}"
-                                                   target="_blank">{{_ "navbar-collapse.help"}}</a>
+                                                <a href="{{pathFor
+                                                        route='help'}}"
+                                                   target="_blank">{{_ "contact.help"}}</a>
                                             </li>
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-adminpanel">

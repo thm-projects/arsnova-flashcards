@@ -25,6 +25,7 @@ function defaultData() {
 	Session.set('cardType', 2);
 	Session.set('centerTextElement', [false, false, false, false]);
 	Session.set('learningGoalLevel', 0);
+	Session.set('backgroundStyle', 0);
 }
 
 function isTextCentered() {
@@ -58,6 +59,10 @@ function initializeContent() {
 		Session.set('learningGoalLevel', 0);
 	}
 
+	if (Session.get('backgroundStyle') === undefined) {
+		Session.set('backgroundStyle', 0);
+	}
+
 	if (Session.get('cardType') === undefined) {
 		Session.set('cardType', 2);
 	}
@@ -87,6 +92,71 @@ function isEditMode() {
 
 let lastEditMode = 0;
 let isEditorFullscreen = false;
+
+function setPlaceholderText() {
+	let placeholderText = "";
+	switch (Session.get('activeEditMode')) {
+		case 0:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.front');
+					break;
+				case 1:
+					placeholderText = TAPi18n.__('card.cardType1.placeholders.front');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.front');
+					break;
+				case 3:
+					placeholderText = TAPi18n.__('card.cardType3.placeholders.front');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.front');
+					break;
+			}
+			break;
+		case 1:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.back');
+					break;
+				case 1:
+					placeholderText = TAPi18n.__('card.cardType1.placeholders.back');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.back');
+					break;
+				case 3:
+					placeholderText = TAPi18n.__('card.cardType3.placeholders.back');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.back');
+					break;
+			}
+			break;
+		case 2:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.hint');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.hint');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.hint');
+					break;
+			}
+			break;
+		case 3:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.lecture');
+					break;
+			}
+			break;
+	}
+	$("#contentEditor").attr('placeholder', placeholderText);
+}
 
 function prepareFront() {
 	isTextCentered();
@@ -189,12 +259,14 @@ function editFront() {
 	prepareFront();
 	$(".clicktoflip").css('display', "");
 	turnFront();
+	setPlaceholderText();
 }
 
 function editBack() {
 	prepareBack();
 	$(".clicktoflip").css('display', "");
 	turnBack();
+	setPlaceholderText();
 }
 
 function editLecture() {
@@ -219,6 +291,7 @@ function editLecture() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
+	setPlaceholderText();
 }
 
 function editHint() {
@@ -243,6 +316,7 @@ function editHint() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
+	setPlaceholderText();
 }
 
 /**
@@ -329,10 +403,16 @@ function resizeFlashcards() {
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
 	} else {
 		$('#contentEditor').css('height', 'unset');
-		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - $('.cardHeader').height();
+		let header = $('.cardHeader').height();
+		let editorAdjustment = 3;
+		if (Session.get('activeEditMode') >= 2) {
+			header = -3;
+			editorAdjustment = 90;
+		}
+		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - header;
 		$('.cardContent').css('height', newFlashcardBodyHeight);
 		if ($(window).width() >= 1200) {
-			$('#contentEditor').css('height', (newFlashcardBodyHeight - 3));
+			$('#contentEditor').css('height', (newFlashcardBodyHeight - editorAdjustment));
 		}
 		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 		$('.center-align').css('margin-top', newCenterTextHeight);
@@ -463,8 +543,19 @@ let additionalButtons = [
 				}
 			}
 		}, {
+			name: 'cmdBackgroundStyle',
+			title: 'Background Style',
+			icon: 'fa fa-paint-brush',
+			callback: function () {
+				if (Session.get('backgroundStyle') === 1) {
+					Session.set('backgroundStyle', 0);
+				} else {
+					Session.set('backgroundStyle', 1);
+				}
+			}
+		}, {
 			name: 'cmdFullscreen',
-			title: 'fullscreen',
+			title: 'Fullscreen',
 			icon: 'glyphicon fullscreen-button',
 			callback: function () {
 				toggleFullscreen(false, true);
@@ -588,6 +679,7 @@ function getEditModeCard() {
 		"subject": Session.get('subjectEditorText'),
 		"difficulty": Session.get('difficultyColor'),
 		"learningGoalLevel": Session.get('learningGoalLevel'),
+		"backgroundStyle": Session.get('backgroundStyle'),
 		"front": Session.get('frontText'),
 		"back": Session.get('backText'),
 		"hint": Session.get('hintText'),
@@ -640,6 +732,7 @@ function saveCard(card_id, returnToCardset) {
 	let centerTextElement = Session.get('centerTextElement');
 	let date = Session.get('cardDate');
 	let learningGoalLevel = Session.get('learningGoalLevel');
+	let backgroundStyle = Session.get('backgroundStyle');
 	if (lectureText === undefined) {
 		lectureText = '';
 	}
@@ -687,7 +780,7 @@ function saveCard(card_id, returnToCardset) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), function (error, result) {
+			Meteor.call("addCard", card_id, subject, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -704,6 +797,7 @@ function saveCard(card_id, returnToCardset) {
 						Session.set('backText', '');
 						Session.set('hintText', '');
 						Session.set('lectureText', '');
+						Session.set('backgroundStyle', 0);
 						if (cardType === 1 || cardType === 3 || cardType === 4) {
 							Session.set('centerTextElement', [true, true, false, false]);
 						} else {
@@ -712,11 +806,12 @@ function saveCard(card_id, returnToCardset) {
 						window.scrollTo(0, 0);
 						$('#editFront').click();
 						$('#difficulty0').click();
+						setPlaceholderText();
 					}
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel));
+			Meteor.call("updateCard", card_id, subject, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle));
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				defaultData();
@@ -730,6 +825,7 @@ function saveCard(card_id, returnToCardset) {
 				Session.set('backText', '');
 				Session.set('hintText', '');
 				Session.set('lectureText', '');
+				Session.set('backgroundStyle', 0);
 				if (cardType === 1 || cardType === 3 || cardType === 4) {
 					Session.set('centerTextElement', [true, true, false, false]);
 				} else {
@@ -822,13 +918,13 @@ Template.editor.helpers({
 	getBackTitle: function () {
 		switch (Session.get('cardType')) {
 			case 2:
-				return TAPi18n.__('backsideCardType2');
+				return TAPi18n.__('card.cardType2.back');
 			case 3:
-				return TAPi18n.__('backsideCardType3');
+				return TAPi18n.__('card.cardType3.back');
 			case 4:
-				return TAPi18n.__('backsideCardType4');
+				return TAPi18n.__('card.cardType4.back');
 			default:
-				return TAPi18n.__('backside');
+				return TAPi18n.__('card.cardType0.back');
 		}
 	},
 	getContent: function () {
@@ -843,22 +939,24 @@ Template.editor.helpers({
 			Session.set('centerTextElement', this.centerTextElement);
 			Session.set('difficultyColor', this.difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
+			Session.set('backgroundStyle', this.backgroundStyle);
 		}
 	},
 	getFrontTitle: function () {
 		switch (Session.get('cardType')) {
 			case 2:
-				return TAPi18n.__('cardType2');
+				return TAPi18n.__('card.cardType2.front');
 			case 3:
-				return TAPi18n.__('cardType3');
+				return TAPi18n.__('card.cardType3.front');
 			case 4:
-				return TAPi18n.__('frontsideCardType4');
+				return TAPi18n.__('card.cardType4.front');
 			default:
-				return TAPi18n.__('frontside');
+				return TAPi18n.__('card.cardType0.front');
 		}
 	},
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	},
 	isTextCentered: function () {
 		isTextCentered();
@@ -877,6 +975,7 @@ Template.editor.onRendered(function () {
 	$(window).resize(function () {
 		moveEditorButtonGroup();
 	});
+	setPlaceholderText();
 });
 
 /*
@@ -961,8 +1060,9 @@ Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (difficulty) {
 		return difficulty === Session.get('difficultyColor');
 	},
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	}
 });
 
@@ -999,8 +1099,9 @@ Template.learningGoalLevel.events({
  */
 
 Template.cardType.helpers({
-	isCardType: function (type) {
-		return Session.get('cardType') === type;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	}
 });
 
@@ -1034,6 +1135,9 @@ Template.cardType.events({
 		centerTextElement[0] = true;
 		centerTextElement[1] = true;
 		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardTypeGroup": function () {
+		setPlaceholderText();
 	}
 });
 
@@ -1058,11 +1162,11 @@ Template.cardType.onRendered(function () {
 
 /*
  * ############################################################################
- * cardHint
+ * cardHintContent
  * ############################################################################
  */
 
-Template.cardHint.helpers({
+Template.cardHintContent.helpers({
 	getSubject: function () {
 		if (isEditMode()) {
 			return Session.get('subjectEditorText');
@@ -1081,6 +1185,16 @@ Template.cardHint.helpers({
 		if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
+	},
+	isCardType: function (type) {
+		if (isEditMode()) {
+			return Session.get('cardType') === type;
+		} else if (Session.get('selectedHint') !== undefined) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).cardType === type;
+		}
+	},
+	isHintPreview: function () {
+		return (Session.get('activeEditMode') === 2 && isEditMode());
 	}
 });
 
@@ -1198,11 +1312,11 @@ Template.flashcards.helpers({
 	getCardTypeName: function () {
 		switch (this.cardType) {
 			case 0:
-				return TAPi18n.__('cardType0');
+				return TAPi18n.__('card.cardType0.name');
 			case 1:
-				return TAPi18n.__('cardType1');
+				return TAPi18n.__('card.cardType1.name');
 			case 4:
-				return TAPi18n.__('cardType4');
+				return TAPi18n.__('card.cardType4.name');
 		}
 	},
 	getDifficultyName: function () {
@@ -1246,8 +1360,9 @@ Template.flashcards.helpers({
 				return TAPi18n.__('learning-goal.level6');
 		}
 	},
-	isCardType: function (type) {
-		return type === this.cardType;
+	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
+		let cardTypeArray = [type1, type2, type3, type4];
+		return cardTypeArray.includes(Session.get('cardType'));
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
