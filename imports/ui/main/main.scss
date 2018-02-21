@@ -690,3 +690,9 @@ button:disabled {
 th {
   text-transform: uppercase;
 }
+
+#contentEditor::placeholder {
+  font-size: 28px;
+  text-align: center;
+  padding-top: 10%;
+}

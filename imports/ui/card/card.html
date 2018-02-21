@@ -79,7 +79,7 @@
                 {{#if isCardType 0}}
                     <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                             tabindex="9">{{_
-                            "lecture"}}</button>
+                            "card.cardType0.lecture"}}</button>
                 {{/if}}
                 {{#unless isCardType 1}}
                     {{#unless isCardType 3}}
@@ -87,9 +87,9 @@
                                 class="btn btn-default btn-raised col-xs-12 {{#if isCardType
                                                                                   0}}col-sm-3{{else}}col-sm-4{{/if}}"
                                 tabindex="11">{{#if isCardType 0}}{{_
-                                "hint"}}{{/if}}{{#if isCardType 2}}{{_
-                                "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
-                                "cardType4Hint"}}{{/if}}</button>
+                                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
+                                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
+                                "card.cardType4.hint"}}{{/if}}</button>
                     {{/unless}}
                 {{/unless}}
             </div>
@@ -117,7 +117,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
-            {{_ "cardType2"}}
+            {{_ "card.cardType2.name"}}
         </label>
         <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
@@ -126,7 +126,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="3" data-type="3">
             {{/if}}
-            {{_ "cardType3"}}
+            {{_ "card.cardType3.name"}}
         </label>
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
@@ -136,7 +136,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
-            {{_ "cardType4"}}
+            {{_ "card.cardType4.name"}}
         </label>
         <label id="cardType0" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
@@ -145,7 +145,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="0" data-type="0">
             {{/if}}
-            {{_ "cardType0"}}
+            {{_ "card.cardType0.name"}}
         </label>
         <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
@@ -155,7 +155,7 @@
                 <input type="radio" name="cardType" value="1" data-type="1">
             {{/if}}
 
-            {{_ "cardType1"}}
+            {{_ "card.cardType1.name"}}
         </label>
     </div>
 </template>
@@ -301,7 +301,7 @@
 
 <template name="contentEditor">
     <form>
-        <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
+        <textarea id="contentEditor" name="content" placeholder="" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
     </form>
 </template>
 
@@ -422,24 +422,24 @@
                                                     class="cardFrontHeader"
                                                     style="display: {{#if isCardType 1}}{{#if
                                                             reversedViewOrder}}none{{/if}}{{/if}}">{{#if
-                                                    isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
-                                                    isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
-                                                    isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
-                                                    "frontside"}}{{/if}}{{/if}}{{/if}})</span><span
+                                                    isCardType 2}}{{_ "card.cardType2.name"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "card.cardType3.name"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "card.cardType4.front"}}{{else}}{{_
+                                                    "card.cardType0.front"}}{{/if}}{{/if}}{{/if}})</span><span
                                                     class="cardBackHeader"
                                                     style="display: {{#if isCardType 1}}{{#unless
                                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
-                                                    isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
-                                                    isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
-                                                    isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
-                                                    "backside"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
+                                                    isCardType 2}}{{_ "card.cardType2.back"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "card.cardType3.back"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "card.cardType4.back"}}{{else}}{{_
+                                                    "card.cardType0.back"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
                                         {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
                                         <strong>{{getDifficultyName}}</strong>
                                         {{#if isCardType 2}}
                                             <span class="cardBackHeader"
                                                   style="display: {{#if isCardType 1}}{{#unless
                                                           reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                            ({{_ "backsideCardType2"}})
+                                            ({{_ "card.cardType2.back"}})
                                             </span>
                                         {{/if}}
                                         {{#unless isCardType 1 2 3}}
@@ -619,9 +619,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         {{/unless}}
         <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
-                "hint"}}{{/if}}{{#if isCardType 2}}{{_
-                "cardType2Hint"}}{{/if}}{{#if isCardType 4}}{{_
-                "cardType4Hint"}}{{/if}}</h4>
+                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
+                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
+                "card.cardType4.hint"}}{{/if}}</h4>
     </div>
     <div class="modal-body">
         <div class="form-horizontal">

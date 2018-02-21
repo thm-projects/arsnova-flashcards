@@ -93,6 +93,71 @@ function isEditMode() {
 let lastEditMode = 0;
 let isEditorFullscreen = false;
 
+function setPlaceholderText() {
+	let placeholderText = "";
+	switch (Session.get('activeEditMode')) {
+		case 0:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.front');
+					break;
+				case 1:
+					placeholderText = TAPi18n.__('card.cardType1.placeholders.front');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.front');
+					break;
+				case 3:
+					placeholderText = TAPi18n.__('card.cardType3.placeholders.front');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.front');
+					break;
+			}
+			break;
+		case 1:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.back');
+					break;
+				case 1:
+					placeholderText = TAPi18n.__('card.cardType1.placeholders.back');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.back');
+					break;
+				case 3:
+					placeholderText = TAPi18n.__('card.cardType3.placeholders.back');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.back');
+					break;
+			}
+			break;
+		case 2:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.hint');
+					break;
+				case 2:
+					placeholderText = TAPi18n.__('card.cardType2.placeholders.hint');
+					break;
+				case 4:
+					placeholderText = TAPi18n.__('card.cardType4.placeholders.hint');
+					break;
+			}
+			break;
+		case 3:
+			switch (Session.get('cardType')) {
+				case 0:
+					placeholderText = TAPi18n.__('card.cardType0.placeholders.lecture');
+					break;
+			}
+			break;
+	}
+	$("#contentEditor").attr('placeholder', placeholderText);
+}
+
 function prepareFront() {
 	isTextCentered();
 	if (Session.get('activeEditMode') === 1) {
@@ -194,12 +259,14 @@ function editFront() {
 	prepareFront();
 	$(".clicktoflip").css('display', "");
 	turnFront();
+	setPlaceholderText();
 }
 
 function editBack() {
 	prepareBack();
 	$(".clicktoflip").css('display', "");
 	turnBack();
+	setPlaceholderText();
 }
 
 function editLecture() {
@@ -224,6 +291,7 @@ function editLecture() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
+	setPlaceholderText();
 }
 
 function editHint() {
@@ -248,6 +316,7 @@ function editHint() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
+	setPlaceholderText();
 }
 
 /**
@@ -737,6 +806,7 @@ function saveCard(card_id, returnToCardset) {
 						window.scrollTo(0, 0);
 						$('#editFront').click();
 						$('#difficulty0').click();
+						setPlaceholderText();
 					}
 				}
 			});
@@ -848,13 +918,13 @@ Template.editor.helpers({
 	getBackTitle: function () {
 		switch (Session.get('cardType')) {
 			case 2:
-				return TAPi18n.__('backsideCardType2');
+				return TAPi18n.__('card.cardType2.back');
 			case 3:
-				return TAPi18n.__('backsideCardType3');
+				return TAPi18n.__('card.cardType3.back');
 			case 4:
-				return TAPi18n.__('backsideCardType4');
+				return TAPi18n.__('card.cardType4.back');
 			default:
-				return TAPi18n.__('backside');
+				return TAPi18n.__('card.cardType0.back');
 		}
 	},
 	getContent: function () {
@@ -875,13 +945,13 @@ Template.editor.helpers({
 	getFrontTitle: function () {
 		switch (Session.get('cardType')) {
 			case 2:
-				return TAPi18n.__('cardType2');
+				return TAPi18n.__('card.cardType2.front');
 			case 3:
-				return TAPi18n.__('cardType3');
+				return TAPi18n.__('card.cardType3.front');
 			case 4:
-				return TAPi18n.__('frontsideCardType4');
+				return TAPi18n.__('card.cardType4.front');
 			default:
-				return TAPi18n.__('frontside');
+				return TAPi18n.__('card.cardType0.front');
 		}
 	},
 	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
@@ -905,6 +975,7 @@ Template.editor.onRendered(function () {
 	$(window).resize(function () {
 		moveEditorButtonGroup();
 	});
+	setPlaceholderText();
 });
 
 /*
@@ -1064,6 +1135,9 @@ Template.cardType.events({
 		centerTextElement[0] = true;
 		centerTextElement[1] = true;
 		Session.set('centerTextElement', centerTextElement);
+	},
+	"click #cardTypeGroup": function () {
+		setPlaceholderText();
 	}
 });
 
@@ -1238,11 +1312,11 @@ Template.flashcards.helpers({
 	getCardTypeName: function () {
 		switch (this.cardType) {
 			case 0:
-				return TAPi18n.__('cardType0');
+				return TAPi18n.__('card.cardType0.name');
 			case 1:
-				return TAPi18n.__('cardType1');
+				return TAPi18n.__('card.cardType1.name');
 			case 4:
-				return TAPi18n.__('cardType4');
+				return TAPi18n.__('card.cardType4.name');
 		}
 	},
 	getDifficultyName: function () {

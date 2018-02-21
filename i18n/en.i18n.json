@@ -310,7 +310,6 @@
     "saved": "Settings saved!",
     "canceled": "Amendments rejected!",
     "error": "Incorrect entries!",
-
     "settings": {
       "name": "Profile",
       "delete": "Delete user profile",
@@ -610,6 +609,60 @@
     "sortMode0": "Random",
     "sortMode1": "Alphanumeric"
   },
+  "card": {
+    "cardType0": {
+      "name": "Flashcard",
+      "front": "Frontside",
+      "back": "Backside",
+      "lecture": "Lecture",
+      "hint": "Hint",
+      "placeholders": {
+        "front": "Frontside",
+        "back": "Backside",
+        "hint": "Hint",
+        "lecture": "Lecture"
+      }
+    },
+    "cardType1": {
+      "name": "Vocabulary",
+      "front": "Frontside",
+      "back": "Backside",
+      "placeholders": {
+        "front": "Frontside",
+        "back": "Backside"
+      }
+    },
+    "cardType2": {
+      "name": "Notes",
+      "front": "Frontside",
+      "back": "Rework",
+      "hint": "Literature",
+      "placeholders": {
+        "front": "Frontside",
+        "back": "Rework",
+        "hint": "Literature"
+      }
+    },
+    "cardType3": {
+      "name": "Technical term",
+      "front": "Frontside",
+      "back": "Definition",
+      "placeholders": {
+        "front": "Frontside",
+        "back": "Definition"
+      }
+    },
+    "cardType4": {
+      "name": "Explanatory Video",
+      "front": "Explanatory Video",
+      "back": "Control Question",
+      "placeholders": {
+        "front": "Front",
+        "back": "Back",
+        "hint": "Hint"
+      }
+    }
+  },
   "permission": "Permission denied",
   "nocards": "No cards available",
   "learnPhaseActiveHeader": "Learning-Phase active",
@@ -653,30 +706,17 @@
   "arrowKeys": "Arrow Keys",
   "key": "__key__ Key",
   "cardType": "Card type",
-  "cardType0": "Flashcard",
-  "cardType1": "Vocabulary",
-  "cardType2": "Notes",
-  "cardType3": "Technical term",
-  "cardType4": "Control Card",
-  "frontside": "Front",
-  "frontsideCardType4": "Explanatory Video",
-  "backside": "Back",
-  "backsideCardType2": "Rework",
-  "backsideCardType3": "Definition",
-  "backsideCardType4": "Control Question",
   "preview": "Preview",
   "previewEdit": "Preview",
   "of": "of",
   "content": "Content",
-  "lecture": "Lecture",
   "turn": "turn",
   "cardType2Hint": "Literature",
   "cardType4Hint": "Video source",
-  "hint": "Hint",
   "copyCardTitle": "Copy card",
   "copyCardText": "Select the cardset in which you want to copy this card.",
   "copycardSuccess": "Card copied",
-  "cardsubject":  "Subject",
+  "cardsubject": "Subject",
   "options": "Options",
   "fronttext_required": "The front field is required!",
   "backtext_required": "The back field is required!",
@@ -994,8 +1034,8 @@
     "textEnding": "Today ends the learning-phase of the cardset ",
     "subjectReset": "THMcards: Your learning-progress is going to be resetted for the cardset ",
     "textReset": "your learning-progress has been resetted due to inactivity. ",
-    "mailCard" : "the cardset ",
-    "mailCard1" : " needs your attention!\n\n",
+    "mailCard": "the cardset ",
+    "mailCard1": " needs your attention!\n\n",
     "newCards1": "After checking your ongoing learning phase we recognized, that ",
     "textIntro": "Hello ",
     "textIntro1": ",\n\n it is time, to take a look at your cards!\n\n",
