@@ -1094,7 +1094,7 @@ Template.cardHintContent.helpers({
 	isCardType: function (type) {
 		if (isEditMode()) {
 			return Session.get('cardType') === type;
-		} else {
+		} else if (Session.get('selectedHint') !== undefined) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).cardType === type;
 		}
 	},
