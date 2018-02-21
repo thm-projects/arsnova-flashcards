@@ -67,21 +67,30 @@
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                                                                                                              2
+                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
                 <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}col-sm-6{{/if}}"
+                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                                                                                                              2
+                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="7">{{getBackTitle}}</button>
-                {{#unless isCardType 2}}
-                    {{#if isCardType 0}}
-                        <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                                tabindex="9">{{_
-                                "lecture"}}</button>
+                {{#if isCardType 0}}
+                    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                            tabindex="9">{{_
+                            "card.cardType0.lecture"}}</button>
+                {{/if}}
+                {{#unless isCardType 1}}
+                    {{#unless isCardType 3}}
                         <button id="editHint" type="button"
-                                class="btn btn-default btn-raised col-xs-12 col-sm-3"
-                                tabindex="11">{{_
-                                "hint"}}</button>
-                    {{/if}}
+                                class="btn btn-default btn-raised col-xs-12 {{#if isCardType
+                                                                                  0}}col-sm-3{{else}}col-sm-4{{/if}}"
+                                tabindex="11">{{#if isCardType 0}}{{_
+                                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
+                                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
+                                "card.cardType4.hint"}}{{/if}}</button>
+                    {{/unless}}
                 {{/unless}}
             </div>
             <div id="editor" class="cardtext editorToolbar" data-content="{{front}}">
@@ -108,7 +117,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
-            {{_ "cardType2"}}
+            {{_ "card.cardType2.name"}}
         </label>
         <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
@@ -117,7 +126,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="3" data-type="3">
             {{/if}}
-            {{_ "cardType3"}}
+            {{_ "card.cardType3.name"}}
         </label>
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
@@ -127,7 +136,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
-            {{_ "cardType4"}}
+            {{_ "card.cardType4.name"}}
         </label>
         <label id="cardType0" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
                data-type="0">
@@ -136,7 +145,7 @@
             {{else}}
                 <input type="radio" name="cardType" value="0" data-type="0">
             {{/if}}
-            {{_ "cardType0"}}
+            {{_ "card.cardType0.name"}}
         </label>
         <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">
@@ -146,7 +155,7 @@
                 <input type="radio" name="cardType" value="1" data-type="1">
             {{/if}}
 
-            {{_ "cardType1"}}
+            {{_ "card.cardType1.name"}}
         </label>
     </div>
 </template>
@@ -292,7 +301,7 @@
 
 <template name="contentEditor">
     <form>
-        <textarea id="contentEditor" name="content" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
+        <textarea id="contentEditor" name="content" placeholder="" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
     </form>
 </template>
 
@@ -319,16 +328,16 @@
                 class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="14">
             {{_ "savecardReturn"}}
         </button>
-        <button id="cardCancel" class="btn btn-default btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
+        <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
                 "declinecard"}}</button>
         {{#if isEditMode}}
             {{#if isCardsetOwner this.cardset_id}}
                 <button id="cardDelete"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
+                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
                         tabindex="16">{{_
                         "deletecard"}}</button>
                 <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
+                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
             {{/if}}
         {{/if}}
     </div>
@@ -345,7 +354,9 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{getCardBackground difficulty cardType}}-header">
+                                <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
+                                     style="{{#if isHintPreview}}display: none{{/if}}{{#if
+                                             isLecturePreview}}display: none{{/if}}">
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -359,35 +370,35 @@
                                             {{/if}}
                                         {{/if}}
                                         {{#unless isEditMode}}
-                                            {{#unless isCardType 2}}
-                                                {{#unless isCardType 3}}
-                                                    {{#if isCardType 0}}
-                                                        {{#if lecture}}
-                                                            <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-                                                            </a>
-                                                        {{/if}}
-                                                        {{#if hint}}
-                                                            <a href="#" id="showHint">
-                                                    <span class="glyphicon glyphicon-info-sign"
-                                                          data-id="{{_id}}" data-type="cardNavigation"
-                                                          data-toggle="modal"
-                                                          data-target="#showHintModal"></span>
-                                                            </a>
-                                                        {{/if}}
-                                                    {{/if}}
-                                                    {{#if isCardType 1}}
+                                            {{#unless isCardType 3}}
+                                                {{#if isCardType 0}}
+                                                    {{#if lecture}}
                                                         <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                    <span class="glyphicon glyphicon glyphicon-education"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                                         </a>
                                                     {{/if}}
-                                                {{/unless}}
+                                                {{/if}}
+                                                {{#if isCardType 0 2 4}}
+                                                    {{#if hint}}
+                                                        <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
+                                                          data-id="{{_id}}" data-type="cardNavigation"
+                                                          data-toggle="modal"
+                                                          data-target="#showHintModal"></span>
+                                                        </a>
+                                                    {{/if}}
+                                                {{/if}}
+                                                {{#if isCardType 1}}
+                                                    <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                    </a>
+                                                {{/if}}
                                             {{/unless}}
                                         {{/unless}}
                                     </div>
@@ -411,33 +422,29 @@
                                                     class="cardFrontHeader"
                                                     style="display: {{#if isCardType 1}}{{#if
                                                             reversedViewOrder}}none{{/if}}{{/if}}">{{#if
-                                                    isCardType 2}}{{_ "cardType2"}}{{else}}{{#if
-                                                    isCardType 3}}{{_ "cardType3"}}{{else}}{{#if
-                                                    isCardType 4}}{{_ "frontsideCardType4"}}{{else}}{{_
-                                                    "frontside"}}{{/if}}{{/if}}{{/if}})</span><span
+                                                    isCardType 2}}{{_ "card.cardType2.name"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "card.cardType3.name"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "card.cardType4.front"}}{{else}}{{_
+                                                    "card.cardType0.front"}}{{/if}}{{/if}}{{/if}})</span><span
                                                     class="cardBackHeader"
                                                     style="display: {{#if isCardType 1}}{{#unless
                                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
-                                                    isCardType 2}}{{_ "backsideCardType2"}}{{else}}{{#if
-                                                    isCardType 3}}{{_ "backsideCardType3"}}{{else}}{{#if
-                                                    isCardType 4}}{{_ "backsideCardType4"}}{{else}}{{_
-                                                    "backside"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
+                                                    isCardType 2}}{{_ "card.cardType2.back"}}{{else}}{{#if
+                                                    isCardType 3}}{{_ "card.cardType3.back"}}{{else}}{{#if
+                                                    isCardType 4}}{{_ "card.cardType4.back"}}{{else}}{{_
+                                                    "card.cardType0.back"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
                                         {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
                                         <strong>{{getDifficultyName}}</strong>
                                         {{#if isCardType 2}}
                                             <span class="cardBackHeader"
                                                   style="display: {{#if isCardType 1}}{{#unless
                                                           reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                            ({{_ "backsideCardType2"}})
+                                            ({{_ "card.cardType2.back"}})
                                             </span>
                                         {{/if}}
-                                        {{#unless isCardType 1}}
-                                            {{#unless isCardType 2}}
-                                                {{#unless isCardType 3}}
-                                                     | {{_ "learning-goal.name"}}:
-                                                    <strong>{{getLearningGoalName}}</strong>
-                                                {{/unless}}
-                                            {{/unless}}
+                                        {{#unless isCardType 1 2 3}}
+                                            | {{_ "learning-goal.name"}}:
+                                            <strong>{{getLearningGoalName}}</strong>
                                         {{/unless}}
                                     </div>
                                     {{#unless isCardType 2}}
@@ -483,9 +490,12 @@
                                     </div>
                                     <h3>{{subject}}</h3>
                                 </div>
-                                <div class="cardContent centered cardfront {{#unless isHintPreview}}{{#unless
+                                <div class="cardContent {{#if
+                                        isHintPreview}}hintContent{{/if}}{{#if
+                                        isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
+                                        isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
-                                        difficulty cardType}}{{/unless}}{{/unless}} detailfront{{@index}}"
+                                        difficulty cardType backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditMode}}
@@ -495,9 +505,7 @@
                                             </span>
                                         {{/if}}
                                         {{#if isHintPreview}}
-                                            <span class="{{#if isCentered 2}}center-align{{/if}}">
-                                                {{#mathjax}}{{hint}}{{/mathjax}}
-                                            </span>
+                                            {{> cardHintContent}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
                                             <span class="{{#if isCentered 3}}center-align{{/if}}">
@@ -511,7 +519,7 @@
                                     {{/if}}
                                 </div>
                                 <div class="cardContent centered cardback {{getCardBackground
-                                        difficulty cardType}} detailback{{@index}}"
+                                        difficulty cardType backgroundStyle}} detailback{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if isCentered 1}}center-align{{/if}}">
@@ -520,9 +528,10 @@
                                 </div>
                                 {{#unless isCardType 2}}
                                     <div class="collapsed collapse"
-                                         id="collapseLecture-{{_id}}">
+                                         id="collapseLecture-{{_id}}" style="{{#if isEditMode}}display: none{{/if}}">
                                         <div class="cardContent {{#if isCardType
-                                                                      1}}cardContentDictionary{{/if}} centered cardlecture detaillecture{{@index}}">
+                                                                      1}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                                                isCardType 0}}lectureContent{{/if}} detaillecture{{@index}}">
 
                                             {{#if isCardType 0}}
                                                 <span class="{{#if isCentered 3}}center-align{{/if}}">
@@ -604,25 +613,34 @@
     </div>
 </template>
 
-<template name="cardHint">
-    <div class="modal fade" id="showHintModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{_ "hint"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-12">
+<template name="cardHintContent">
+    <div class="modal-header">
+        {{#unless isHintPreview}}
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        {{/unless}}
+        <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
+                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
+                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
+                "card.cardType4.hint"}}{{/if}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12">
                                 <span class="{{#if isCentered}}center-align{{/if}}">
                                     {{#mathjax}}{{getHint}}{{/mathjax}}
                                 </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardHint">
+    <div class="modal fade" id="showHintModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content hintContent">
+                {{> cardHintContent}}
             </div>
         </div>
     </div>

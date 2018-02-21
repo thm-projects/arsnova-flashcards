@@ -366,43 +366,40 @@ Template.registerHelper("getLearnphase", function (state) {
 	}
 });
 
-Template.registerHelper("getCardBackground", function (difficulty, cardType) {
-	if (cardType === 0) {
+Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+	if (backgroundStyle === 1) {
 		switch (difficulty) {
 			case 0:
-				return 'box-difficulty0';
+				if (cardType === 2) {
+					return 'box-difficultyLinedNote0';
+				} else {
+					return 'box-difficultyLined0';
+				}
+				break;
 			case 1:
-				return 'box-difficulty1';
+				return 'box-difficultyLined1';
 			case 2:
-				return 'box-difficulty2';
+				return 'box-difficultyLined2';
 			case 3:
-				return 'box-difficulty3';
-			default:
-				return '';
-		}
-	} else if (cardType === 1 || cardType === 3 || cardType === 4) {
-		switch (difficulty) {
-			case 0:
-				return 'box-difficulty-Vocabulary0';
-			case 1:
-				return 'box-difficultyNote1';
-			case 2:
-				return 'box-difficultyNote2';
-			case 3:
-				return 'box-difficultyNote3';
+				return 'box-difficultyLined3';
 			default:
 				return '';
 		}
 	} else {
 		switch (difficulty) {
 			case 0:
-				return 'box-difficultyNote0';
+				if (cardType === 2) {
+					return 'box-difficultyBlankNote0';
+				} else {
+					return 'box-difficultyBlank0';
+				}
+				break;
 			case 1:
-				return 'box-difficultyNote1';
+				return 'box-difficultyBlank1';
 			case 2:
-				return 'box-difficultyNote2';
+				return 'box-difficultyBlank2';
 			case 3:
-				return 'box-difficultyNote3';
+				return 'box-difficultyBlank3';
 			default:
 				return '';
 		}

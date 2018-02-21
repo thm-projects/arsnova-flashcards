@@ -576,6 +576,61 @@
     "sortMode0": "Zufällig",
     "sortMode1": "Alphanumerisch"
   },
+  "card": {
+    "cardType0": {
+      "name": "Lernfrage",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "hint": "Hinweis",
+      "lecture": "Vertiefung",
+      "placeholders": {
+        "front": "Vorderseite",
+        "back": "Rückseite",
+        "hint": "Hinweis",
+        "lecture": "Vertiefung"
+      }
+    },
+    "cardType1": {
+      "name": "Fremdwort",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "placeholders": {
+        "front": "Vorderseite",
+        "back": "Rückseite"
+      }
+    },
+    "cardType2": {
+      "name": "Mitschrift",
+      "front": "Mitschrift",
+      "back": "Nachbearbeitung",
+      "hint": "Literatur",
+      "placeholders": {
+        "front": "Mitschrift",
+        "back": "Nachbearbeitung",
+        "hint": "Literatur"
+      }
+    },
+    "cardType3": {
+      "name": "Fachbegriff",
+      "front": "Fachbegriff",
+      "back": "Definition",
+      "placeholders": {
+        "front": "Fachbegriff",
+        "back": "Definition"
+      }
+    },
+    "cardType4": {
+      "name": "Erklärvideo",
+      "front": "Erklärvideo",
+      "back": "Kontrollfrage",
+      "hint": "Videoquelle",
+      "placeholders": {
+        "front": "Erklärvideo",
+        "back": "Kontrollfrage",
+        "hint": "Videoquelle"
+      }
+    }
+  },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase aktiv",
@@ -619,24 +674,11 @@
   "arrowKeys": "Pfeiltasten",
   "key": "__key__ Taste",
   "cardType": "Typ",
-  "cardType0": "Lernfrage",
-  "cardType1": "Fremdwort",
-  "cardType2": "Mitschrift",
-  "cardType3": "Fachbegriff",
-  "cardType4": "Erklärvideo",
-  "frontside": "Vorderseite",
-  "frontsideCardType4": "Erklärvideo",
-  "backside": "Rückseite",
-  "backsideCardType2": "Nachbearbeitung",
-  "backsideCardType3": "Definition",
-  "backsideCardType4": "Kontrollfrage",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",
   "content": "Inhalt",
-  "lecture": "Vertiefung",
   "turn": "umdrehen",
-  "hint": "Hinweis",
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
