@@ -62,7 +62,7 @@ $themes: (
       }
     }
 
-    .panel-body {
+    .panel-body, .md-footer, .cardContent, #showHintModal {
       a {
         color: $hyperlink;
       }
