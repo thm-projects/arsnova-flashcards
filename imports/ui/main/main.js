@@ -94,7 +94,9 @@ Template.main.events({
 	},
 	'click .lang': function (event) {
 		event.preventDefault();
-		TAPi18n.setLanguage($(event.target).data('lang'));
+		let language = $(event.target).data('lang');
+		TAPi18n.setLanguage(language);
+		Session.set('activeLanguage', language);
 	}
 });
 
