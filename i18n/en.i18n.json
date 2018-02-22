@@ -656,6 +656,7 @@
       "name": "Explanatory Video",
       "front": "Explanatory Video",
       "back": "Control Question",
+      "hint": "Video source",
       "placeholders": {
         "front": "Front",
         "back": "Back",
