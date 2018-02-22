@@ -90,6 +90,15 @@ function isEditMode() {
 	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
 }
 
+function isCardType(cardType1, cardType2, cardType3, cardType4, activeCardType) {
+	let cardTypeArray = [cardType1, cardType2, cardType3, cardType4];
+	if (isEditMode())  {
+		return cardTypeArray.includes(Session.get('cardType'));
+	} else {
+		return cardTypeArray.includes(activeCardType);
+	}
+}
+
 let lastEditMode = 0;
 let isEditorFullscreen = false;
 
@@ -842,7 +851,7 @@ function saveCard(card_id, returnToCardset) {
 
 Template.btnCard.helpers({
 	isEditMode: function () {
-		return ActiveRoute.name('editCard');
+		return isEditMode();
 	},
 	learningActive: function () {
 		return Cardsets.findOne(Router.current().params._id).learningActive;
@@ -954,9 +963,8 @@ Template.editor.helpers({
 				return TAPi18n.__('card.cardType0.front');
 		}
 	},
-	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
-		let cardTypeArray = [type1, type2, type3, type4];
-		return cardTypeArray.includes(Session.get('cardType'));
+	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
+		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	},
 	isTextCentered: function () {
 		isTextCentered();
@@ -1060,9 +1068,8 @@ Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (difficulty) {
 		return difficulty === Session.get('difficultyColor');
 	},
-	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
-		let cardTypeArray = [type1, type2, type3, type4];
-		return cardTypeArray.includes(Session.get('cardType'));
+	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
+		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	}
 });
 
@@ -1099,9 +1106,8 @@ Template.learningGoalLevel.events({
  */
 
 Template.cardType.helpers({
-	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
-		let cardTypeArray = [type1, type2, type3, type4];
-		return cardTypeArray.includes(Session.get('cardType'));
+	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
+		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	}
 });
 
@@ -1186,12 +1192,8 @@ Template.cardHintContent.helpers({
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
 	},
-	isCardType: function (type) {
-		if (isEditMode()) {
-			return Session.get('cardType') === type;
-		} else if (Session.get('selectedHint') !== undefined) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).cardType === type;
-		}
+	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
+		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	},
 	isHintPreview: function () {
 		return (Session.get('activeEditMode') === 2 && isEditMode());
@@ -1360,9 +1362,8 @@ Template.flashcards.helpers({
 				return TAPi18n.__('learning-goal.level6');
 		}
 	},
-	isCardType: function (type1, type2 = -1, type3 = -1, type4 = -1) {
-		let cardTypeArray = [type1, type2, type3, type4];
-		return cardTypeArray.includes(Session.get('cardType'));
+	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
+		return isCardType(cardType1, cardType2, cardType3, cardType4, this.cardType);
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
