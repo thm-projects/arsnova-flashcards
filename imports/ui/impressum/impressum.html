@@ -15,8 +15,8 @@
                                                                                                       route='learning'}}">{{_
                     "contact.learning"}}</a></li>
             <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}}"><a id="help"
-                                                                                              href="{{pathFor
-                                                                                                      route='help'}}">{{_
+                                                                                          href="{{pathFor
+                                                                                                  route='help'}}">{{_
                     "contact.help"}}</a></li>
             <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
                     route='faq'}}">{{_ "contact.faq"}}</a></li>
@@ -61,82 +61,102 @@
 <template name="about">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Die alternative Lernplattform der THM
+            {{#if isActiveLanguage 'de'}}
+                Die alternative Lernplattform der THM
+            {{else}}
+
+            {{/if}}
         </div>
         <div class="panel-body">
-            <p>
-                THMcards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der Technischen
-                Hochschule Mittelhessen, THM, entwickelt worden.
-                Das <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md" target="_blank">Open-Source-Projekt</a>
-                wurde in der
-                <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">Arbeitsgemeinschaft
-                    Qualität in Lehre und Studium (AG QLS)</a>
-                konzipiert. Entwicklung und Betrieb werden mit <a
-                    href="https://www.thm.de/zqe/unsere-aufgaben/qsl-mittel.html" target="_blank"> QSL-Mitteln der
-                THM</a> gefördert.
-            </p>
-            <p>
-                THMcards ist keine herkömmliche Lernkartei-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a>
-                oder
-                <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
-                Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das Mitschreiben
-                in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
-                THMcards versteht sich als <b>vorlesungsbegleitende Lernplattform</b>, als ein virtueller Ort,
-                wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeitung der Mitschrift, Lernkarten
-                erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
-                — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
-            </p>
-            <p>
-                Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu bewerten,
-                um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über den
-                Semesterverlauf zu vergeben.
-                Das Lernen gemäß den in THMcards implementierten Wiederholungs-Algorithmen von
-                <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
-                <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
-                    Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über die
-                Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
-                siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference 2018</a>:
-            </p>
-            <hr>
-            <p>
-                <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against
-                    Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</a>
-            </p>
-            <p>
-                Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the week
-                before examination and forgotten a month after. Although we have known about the very low long-term
-                knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic
-                prevails because it works—at least for passing exams. As university lecturers, we seldom received a
-                training on effective teaching and learning strategies. However, we can follow the evidence-based
-                recommendations from cognitive and educational psychology on how to structure a course to distribute
-                learning. With new pedagogical apps at hand, we can implement <a
-                    href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a> against
-                procrastination in our course design. This paper outlines a pedagogical project to be conducted across
-                several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on
-                spacing learning events over time. The recommendations are implemented by using <a
-                    href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
-                question-and-answer apps for quizzing in class and self-quizzing at home.
-            </p>
-            <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
-                 alt="forgetting curve" class="img-responsive center-block"/>
-            <p class="text-center">
-                Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: "Spaced
-                Repetition"</a>
-            </p>
-            <hr>
-            <p>
-                Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle
-                <b>Edu-Kartensätze</b> im Pool von THMcards.
-                Hierbei handelt es sich um Kartensätze, die von Lehrenden der THM für ihre Module erstellt wurden.
-                Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder
-                Google+) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis WS
-                18/19 im kostenlosen Testbetrieb</b>),
-                siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
-                THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur freien
-                Verfügung stellen.
-                Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität von einer
-                Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
-            </p>
+            {{#if isActiveLanguage 'de'}}
+                <p>
+                    THMcards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der
+                    Technischen
+                    Hochschule Mittelhessen, THM, entwickelt worden.
+                    Das <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md" target="_blank">Open-Source-Projekt</a>
+                    wurde in der
+                    <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">Arbeitsgemeinschaft
+                        Qualität in Lehre und Studium (AG QLS)</a>
+                    konzipiert. Entwicklung und Betrieb werden mit <a
+                        href="https://www.thm.de/zqe/unsere-aufgaben/qsl-mittel.html" target="_blank"> QSL-Mitteln der
+                    THM</a> gefördert.
+                </p>
+                <p>
+                    THMcards ist keine herkömmliche Lernkartei-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a>
+                    oder
+                    <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
+                    Denn THMcards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das
+                    Mitschreiben
+                    in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
+                    THMcards versteht sich als <b>vorlesungsbegleitende Lernplattform</b>, als ein virtueller Ort,
+                    wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeitung der Mitschrift, Lernkarten
+                    erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
+                    — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
+                </p>
+                <p>
+                    Das Konzept von THMcards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu
+                    bewerten,
+                    um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über
+                    den
+                    Semesterverlauf zu vergeben.
+                    Das Lernen gemäß den in THMcards implementierten Wiederholungs-Algorithmen von
+                    <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
+                    <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
+                        Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über
+                    die
+                    Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
+                    siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference
+                    2018</a>:
+                </p>
+                <hr>
+                <p>
+                    <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against
+                        Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course
+                        Design</a>
+                </p>
+                <p>
+                    Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the
+                    week
+                    before examination and forgotten a month after. Although we have known about the very low long-term
+                    knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic
+                    prevails because it works—at least for passing exams. As university lecturers, we seldom received a
+                    training on effective teaching and learning strategies. However, we can follow the evidence-based
+                    recommendations from cognitive and educational psychology on how to structure a course to distribute
+                    learning. With new pedagogical apps at hand, we can implement <a
+                        href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a>
+                    against
+                    procrastination in our course design. This paper outlines a pedagogical project to be conducted
+                    across
+                    several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on
+                    spacing learning events over time. The recommendations are implemented by using <a
+                        href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
+                    question-and-answer apps for quizzing in class and self-quizzing at home.
+                </p>
+                <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
+                     alt="forgetting curve" class="img-responsive center-block"/>
+                <p class="text-center">
+                    Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: "Spaced
+                    Repetition"</a>
+                </p>
+                <hr>
+                <p>
+                    Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle
+                    <b>Edu-Kartensätze</b> im Pool von THMcards.
+                    Hierbei handelt es sich um Kartensätze, die von Lehrenden der THM für ihre Module erstellt wurden.
+                    Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder
+                    Google+) anmelden, können Edu-Kartensätze einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis WS
+                    18/19 im kostenlosen Testbetrieb</b>),
+                    siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
+                    THM-Studierende können private Kartensätze anlegen und diese in einem Pool der Allgemeinheit zur
+                    freien
+                    Verfügung stellen.
+                    Abonnentinnen und Abonnenten können ihre Kartensätze, deren formale und inhaltliche Qualität von
+                    einer
+                    Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
+                </p>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -144,78 +164,86 @@
 <template name="learning">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Wie du auf THMcards effektiv mit Karten lernst
+            {{#if isActiveLanguage 'de'}}
+                Wie du auf THMcards effektiv mit Karten lernst
+            {{else}}
+
+            {{/if}}
         </div>
 
         <div class="panel-body">
-            <p>
-                Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise
-                lernen:
-            </p>
-            <ul>
-                <li>
-                    nach der 5-Fächer-Lernmethode von Sebastian Leitner
-                </li>
-                <li>
-                    nach der SuperMemo-Lernmethode von Piotr Woźniak
-                </li>
-                <li>
-                    nach der Schwierigkeit des Stoffes:
-                    Allgemein, Einsteiger, Fortgeschritten, Experte
-                </li>
-                <li>
-                    nach den Lernzielstufen der Karten (<a
-                        href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/"
-                        target="_blank">Taxonomie von Anderson et al.</a>):<br/>
-                    Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Erschaffen
-                </li>
-                <li>
-                    in der alphabetischen Reihenfolge der Kartentitel
-                </li>
-                <li>
-                    in zufälliger Reihenfolge
-                </li>
-            </ul>
-            <p>
-                Die ersten beiden Methoden sind die effektivsten im Sinne des langfristigen Erinnerns, siehe die
-                wissenschaftlichen Studien, zitiert in unserem <a href="{{pathFor route='about'}}">Paper</a>.
-                Die Methoden beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren
-                Zeitabschnitten.
-                Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in
-                der Woche vor der Klausur statt.
-            </p>
-            <p>
-                Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger werdenden
-                Abständen zum wiederholten Lernen vor.
-                Nicht erinnerte Karten werden ins erste Fach zurückgelegt.
-                Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
-                Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3), monatlich
-                (3→4) und vierteljährlich (4→5) — vergleiche mit den Vergessenskurven in diesem <a
-                    href="{{pathFor route='about'}}">Bild</a>.
-                Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten
-                wird von der Lehrperson vorgegeben.
-            </p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
-                 alt="Leitner-Lernmethode" class="img-responsive center-block"/>
-            <p class="text-center">
-                Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia:
-                "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
-            </p>
-            <p>
-                Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie
-                leicht
-                oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a
-                    href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu
-                berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie
-                auf
-                einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche
-                Antwort, aber
-                leicht an die richtige erinnert (ach ja!)", "Richtige Antwort nach längerem Überlegen", "Richtige
-                Antwort nach
-                kurzem Zögern" bis "Sofort und richtig". Anhand deiner Bewertung wird der Zeitpunkt für die nächste
-                Wiederholung der Lernkarte
-                berechnet.
-            </p>
+            {{#if isActiveLanguage 'de'}}
+                <p>
+                    Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise
+                    lernen:
+                </p>
+                <ul>
+                    <li>
+                        nach der 5-Fächer-Lernmethode von Sebastian Leitner
+                    </li>
+                    <li>
+                        nach der SuperMemo-Lernmethode von Piotr Woźniak
+                    </li>
+                    <li>
+                        nach der Schwierigkeit des Stoffes:
+                        Allgemein, Einsteiger, Fortgeschritten, Experte
+                    </li>
+                    <li>
+                        nach den Lernzielstufen der Karten (<a
+                            href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/"
+                            target="_blank">Taxonomie von Anderson et al.</a>):<br/>
+                        Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Erschaffen
+                    </li>
+                    <li>
+                        in der alphabetischen Reihenfolge der Kartentitel
+                    </li>
+                    <li>
+                        in zufälliger Reihenfolge
+                    </li>
+                </ul>
+                <p>
+                    Die ersten beiden Methoden sind die effektivsten im Sinne des langfristigen Erinnerns, siehe die
+                    wissenschaftlichen Studien, zitiert in unserem <a href="{{pathFor route='about'}}">Paper</a>.
+                    Die Methoden beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren
+                    Zeitabschnitten.
+                    Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in
+                    der Woche vor der Klausur statt.
+                </p>
+                <p>
+                    Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger werdenden
+                    Abständen zum wiederholten Lernen vor.
+                    Nicht erinnerte Karten werden ins erste Fach zurückgelegt.
+                    Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
+                    Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3), monatlich
+                    (3→4) und vierteljährlich (4→5) — vergleiche mit den Vergessenskurven in diesem <a
+                        href="{{pathFor route='about'}}">Bild</a>.
+                    Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten
+                    wird von der Lehrperson vorgegeben.
+                </p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                     alt="Leitner-Lernmethode" class="img-responsive center-block"/>
+                <p class="text-center">
+                    Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia:
+                    "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
+                </p>
+                <p>
+                    Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie
+                    leicht
+                    oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a
+                        href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu
+                    berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie
+                    auf
+                    einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche
+                    Antwort, aber
+                    leicht an die richtige erinnert (ach ja!)", "Richtige Antwort nach längerem Überlegen", "Richtige
+                    Antwort nach
+                    kurzem Zögern" bis "Sofort und richtig". Anhand deiner Bewertung wird der Zeitpunkt für die nächste
+                    Wiederholung der Lernkarte
+                    berechnet.
+                </p>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -223,10 +251,18 @@
 <template name="help">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Hilfe
+            {{#if isActiveLanguage 'de'}}
+                Hilfe
+            {{else}}
+
+            {{/if}}
         </div>
         <div class="panel-body">
+            {{#if isActiveLanguage 'de'}}
 
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -234,149 +270,157 @@
 <template name="faq">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Häufig gestellte Fragen zu THMcards
+            {{#if isActiveLanguage 'de'}}
+                Häufig gestellte Fragen zu THMcards
+            {{else}}
+
+            {{/if}}
         </div>
         <div class="panel-body">
-            <ol>
-                <li>
-                    <p style="color: #9C132D;">
-                        Warum nicht mit Karteikarten aus Papier lernen?
-                    </p>
-                    <br/>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
-                         alt="Lernkartei analog" class="img-responsive center-block"/>
-                    <br/>
-                    <p>
-                        Den digitalen Karten fehlt zwar die Haptik des Papiers, dafür haben sie aber unbestreitbare
-                        Vorteile:
-                    </p>
-                    <ul>
-                        <li>
-                            Sie sind so transportabel und mobil nutzbar wie dein Smartphone.
-                        </li>
-                        <li>
-                            Sie sind multimedial: Du kannst Bilder, Podcasts und Videos beliebig einfügen.
-                        </li>
-                        <li>
-                            Sie stellen die kompliziertesten mathematischen Formeln in LaTeX sauber dar.
-                        </li>
-                        <li>
-                            Das Wissen aus allen Modulen deines Studiums befindet sich an einem Ort und du kannst es
-                            jederzeit mit einem Klick wiederfinden.
-                        </li>
-                        <li>
-                            Sie werden dir zum Lernen automatisch zur richtigen Zeit wieder vorgelegt. Push-Nachrichten
-                            auf dein Handy erinnern dich ans Lernen.
-                        </li>
-                        <li>
-                            Sie kosten nichts.
-                        </li>
-                    </ul>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?
-                    </p>
-                    <p>
-                        Hier hat die Lehrperson die <b>Bonus-Option</b> aktiviert.
-                        Wenn du nach der <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">5-Fächer-Methode
-                        von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte,
-                        anrechenbar auf die Klausurnote, erwerben.
-                        Das hängt natürlich von deiner Dozentin oder deinem Dozenten ab.
-                        Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im Browser
-                        deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum hingewiesen.
-                        Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach
-                        "Gelernt" befinden, siehe den Button "Mein Lernstand nach Leitner".
-                    </p>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Warum sollen einmal gelernte Karten in immer längeren Abständen wiederholt werden?
-                    </p>
-                    <p>
-                        Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden
-                        Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen, siehe
-                        auf der Seite <a href="{{pathFor route='about'}}">THMcards</a>.
-                        Schneller und cooler erklärt das aber Daniel Hunold im Video:
-                    </p>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Is62XAmgrRQ?rel=0"
-                                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
-                        </iframe>
-                    </div>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Wie kann ich Kartensätze an meine Kommilitonen weitergeben?
-                    </p>
-                    <p>
-                        Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free" oder
-                        du exportierst den einzelnen Kartensatz als Datei.
-                    </p>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Ich habe gesehen, dass es auch den <b>Kartentyp "Mitschrift"</b> gibt. Wie kann ich eine
-                        Vorlesung mit THMcards sinnvoll mitschreiben?
-                    </p>
-                    <p>
-                        Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder
-                        Tablet schreiben.
-                        Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
-                        Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder in
-                        die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift" per
-                        Link einfügen.
-                        Die Rückseite dient dir zur Nachbearbeitung der Vorlesung.
-                    </p>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bunphvhgd9M?rel=0"
-                                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
-                        </iframe>
-                    </div>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Kann ich als Student/in einer anderen Hochschule THMcards nutzen?
-                    </p>
-                    <p>
-                        Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die <a
-                            href="{{pathFor route='agb'}}">AGB</a>.
-                    </p>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop installieren
-                        und anpassen (als <b>"My Cards"</b>) und offline mit den lokal gehaltenen Kartensätzen
-                        lernen?
-                    </p>
-                    <p>
-                        Ja, THMcards ist Open Source. Eine <a
-                            href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a>
-                        findest du im THM-Gitlab.
-                    </p>
-                </li>
-                <hr/>
-                <li>
-                    <p style="color: #9C132D;">
-                        Wenn ich als Dozent/in, Student/in oder Open-Source-Programmierer/in eine Frage zur <b>Nutzung
-                        oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
-                    </p>
-                    <p>
-                        Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a>
-                        genannten Personen.
-                        Bug Reports, Feature und Pull Requests kannst du auch auf <a
-                            href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
-                        schreiben.
-                    </p>
-                </li>
-                <hr/>
-            </ol>
+            {{#if isActiveLanguage 'de'}}
+                <ol>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Warum nicht mit Karteikarten aus Papier lernen?
+                        </p>
+                        <br/>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
+                             alt="Lernkartei analog" class="img-responsive center-block"/>
+                        <br/>
+                        <p>
+                            Den digitalen Karten fehlt zwar die Haptik des Papiers, dafür haben sie aber unbestreitbare
+                            Vorteile:
+                        </p>
+                        <ul>
+                            <li>
+                                Sie sind so transportabel und mobil nutzbar wie dein Smartphone.
+                            </li>
+                            <li>
+                                Sie sind multimedial: Du kannst Bilder, Podcasts und Videos beliebig einfügen.
+                            </li>
+                            <li>
+                                Sie stellen die kompliziertesten mathematischen Formeln in LaTeX sauber dar.
+                            </li>
+                            <li>
+                                Das Wissen aus allen Modulen deines Studiums befindet sich an einem Ort und du kannst es
+                                jederzeit mit einem Klick wiederfinden.
+                            </li>
+                            <li>
+                                Sie werden dir zum Lernen automatisch zur richtigen Zeit wieder vorgelegt. Push-Nachrichten
+                                auf dein Handy erinnern dich ans Lernen.
+                            </li>
+                            <li>
+                                Sie kosten nichts.
+                            </li>
+                        </ul>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?
+                        </p>
+                        <p>
+                            Hier hat die Lehrperson die <b>Bonus-Option</b> aktiviert.
+                            Wenn du nach der <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">5-Fächer-Methode
+                            von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte,
+                            anrechenbar auf die Klausurnote, erwerben.
+                            Das hängt natürlich von deiner Dozentin oder deinem Dozenten ab.
+                            Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im Browser
+                            deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum hingewiesen.
+                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach
+                            "Gelernt" befinden, siehe den Button "Mein Lernstand nach Leitner".
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Warum sollen einmal gelernte Karten in immer längeren Abständen wiederholt werden?
+                        </p>
+                        <p>
+                            Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden
+                            Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen, siehe
+                            auf der Seite <a href="{{pathFor route='about'}}">THMcards</a>.
+                            Schneller und cooler erklärt das aber Daniel Hunold im Video:
+                        </p>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Is62XAmgrRQ?rel=0"
+                                    frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Wie kann ich Kartensätze an meine Kommilitonen weitergeben?
+                        </p>
+                        <p>
+                            Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free" oder
+                            du exportierst den einzelnen Kartensatz als Datei.
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Ich habe gesehen, dass es auch den <b>Kartentyp "Mitschrift"</b> gibt. Wie kann ich eine
+                            Vorlesung mit THMcards sinnvoll mitschreiben?
+                        </p>
+                        <p>
+                            Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder
+                            Tablet schreiben.
+                            Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
+                            Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder in
+                            die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift" per
+                            Link einfügen.
+                            Die Rückseite dient dir zur Nachbearbeitung der Vorlesung.
+                        </p>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bunphvhgd9M?rel=0"
+                                    frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Kann ich als Student/in einer anderen Hochschule THMcards nutzen?
+                        </p>
+                        <p>
+                            Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die <a
+                                href="{{pathFor route='agb'}}">AGB</a>.
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop installieren
+                            und anpassen (als <b>"My Cards"</b>) und offline mit den lokal gehaltenen Kartensätzen
+                            lernen?
+                        </p>
+                        <p>
+                            Ja, THMcards ist Open Source. Eine <a
+                                href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a>
+                            findest du im THM-Gitlab.
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Wenn ich als Dozent/in, Student/in oder Open-Source-Programmierer/in eine Frage zur <b>Nutzung
+                            oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
+                        </p>
+                        <p>
+                            Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a>
+                            genannten Personen.
+                            Bug Reports, Feature und Pull Requests kannst du auch auf <a
+                                href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
+                            schreiben.
+                        </p>
+                    </li>
+                    <hr/>
+                </ol>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -384,54 +428,62 @@
 <template name="impressum">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Impressum gemäß Telemediengesetz
+            {{#if isActiveLanguage 'de'}}
+                Impressum gemäß Telemediengesetz
+            {{else}}
+
+            {{/if}}
         </div>
 
         <div class="panel-body">
-            <h4>Dienstanbieter</h4>
-            <p>
-                Der Betrieb der Webanwendung <b>THMcards</b> unter <a href="https://arsnova.cards" target="_blank">
-                arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der TransMIT-Gesellschaft
-                für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
-            </p>
-            <p>
-                Kerkrader Straße 3 <br/>
-                D-35394 Gießen
-            </p>
-            <p>
-                c/o THM – Technische Hochschule Mittelhessen <br/>
-                Fachbereich MNI – Mathematik, Naturwissenschaften und Informatik <br/>
-                Prof. Dr.-Ing. habil. Klaus Quibeldey-Cirkel <br/>
-                Lehrstuhl für Softwaretechnik
-            </p>
-            <p>
-                Wiesenstraße 14 <br/>
-                D-35390 Gießen
-            </p>
-            <p>
-                Telefon: +49 641 309-2450 <br/>
-                E-Mail: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
-            </p>
-            <p>
-                Sitz der Gesellschaft: Gießen <br/>
-                Website: <a href="https://www.transmit.de" target="_blank">https://www.transmit.de</a><br/>
-                Rechtsform: GmbH <br/>
-                Amtsgericht: Gießen HRB 3036 <br/>
-                USt-IdNr.: DE 188 685 037
-            </p>
-            <hr/>
-            <h4>Support</h4>
-            <p>
-                Technische Fragen zur WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
-            </p>
-            <p>
-                Fragen zur Konzeption und zum didaktischen Einsatz der Lernplattform THMcards: <a
-                    href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
-            </p>
-            <p>
-                Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues"
-                                                target="_blank">GitHub</a>
-            </p>
+            {{#if isActiveLanguage 'de'}}
+                <h4>Dienstanbieter</h4>
+                <p>
+                    Der Betrieb der Webanwendung <b>THMcards</b> unter <a href="https://arsnova.cards" target="_blank">
+                    arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der TransMIT-Gesellschaft
+                    für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
+                </p>
+                <p>
+                    Kerkrader Straße 3 <br/>
+                    D-35394 Gießen
+                </p>
+                <p>
+                    c/o THM – Technische Hochschule Mittelhessen <br/>
+                    Fachbereich MNI – Mathematik, Naturwissenschaften und Informatik <br/>
+                    Prof. Dr.-Ing. habil. Klaus Quibeldey-Cirkel <br/>
+                    Lehrstuhl für Softwaretechnik
+                </p>
+                <p>
+                    Wiesenstraße 14 <br/>
+                    D-35390 Gießen
+                </p>
+                <p>
+                    Telefon: +49 641 309-2450 <br/>
+                    E-Mail: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
+                </p>
+                <p>
+                    Sitz der Gesellschaft: Gießen <br/>
+                    Website: <a href="https://www.transmit.de" target="_blank">https://www.transmit.de</a><br/>
+                    Rechtsform: GmbH <br/>
+                    Amtsgericht: Gießen HRB 3036 <br/>
+                    USt-IdNr.: DE 188 685 037
+                </p>
+                <hr/>
+                <h4>Support</h4>
+                <p>
+                    Technische Fragen zur WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
+                </p>
+                <p>
+                    Fragen zur Konzeption und zum didaktischen Einsatz der Lernplattform THMcards: <a
+                        href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
+                </p>
+                <p>
+                    Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                                    target="_blank">GitHub</a>
+                </p>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -439,273 +491,281 @@
 <template name="agb">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Allgemeine Geschäftsbestimmungen
+            {{#if isActiveLanguage 'de'}}
+                Allgemeine Geschäftsbestimmungen
+            {{else}}
+
+            {{/if}}
         </div>
         <div class="panel-body">
-            <h4>Nutzungsbestimmungen</h4>
-            <p>
-            <ul>
-                <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw. dem
-                    Benutzer
-                    (im Folgenden der besseren Lesbarkeit wegen verkürzt "Benutzer" genannt) und
-                    THMcards geregelt. Die Webapp THMcards ist eine kostenlose Dienstleistung der
-                    TransMIT-Gesellschaft für Technologietransfer mbH, Projektbereich für mobile Anwendungen mit der
-                    Anschrift: Kerkrader Straße 3, 35394 Gießen, Deutschland.
-                </li>
-                <li>Alle Studierende der Technischen Hochschule Mittelhessen, THM, dürfen THMcards für ihre
-                    Zwecke verwenden, solange dabei nicht gegen deutsches oder EU-Recht verstoßen wird.
-                </li>
-                <li>THMcards ist ein kostenloser Webservice (Software as a Service). Die Software ist <a
-                        href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open Source</a>
-                    und steht unter der <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU
-                        General Public License Version 3</a>.
-                </li>
-                <li>Neben dem eigentlichen Lernkartendienst bietet THMcards optional die Möglichkeit, kostenpflichtige
-                    Lerninhalte von anderen Benutzern der Plattform zu nutzen. Die folgenden Geschäftsbedingungen
-                    sollen das Rechtsverhältnis zwischen dem Benutzer, THMcards und den Autoren, die
-                    kostenpflichtige Lerninhalte anbieten, regeln.
-                </li>
-                <li>Um THMcards nutzen zu können, muss die Vertragsbedingung angenommen werden. Sollte der Benutzer
-                    die Vertragsbedingung nicht annehmen, wird dieser Dienst nicht freigeschaltet.
-                </li>
-                <li>Der Vertrag wird vom Benutzer angenommen, wenn dieser bei der ersten Anmeldung am System die
-                    Allgemeinen Geschäftsbedingungen mit der Schaltfläche „Akzeptieren“ einwilligt.
-                </li>
-                <li>Mit der Annahme der Vertragsbindung wird akzeptiert, dass THMcards bei wichtigen Änderungen,
-                    Ankündigungen oder beim Starten einer Lernphase E-Mails oder im System integrierte Nachrichten
-                    an den Benutzer sendet.
-                </li>
-                <li>Wenn bei THMcards Kartensätze gekauft werden (optional), kommt zwischen dem Benutzer und
-                    THMcards ein rechtsgültiger Vertrag zustande. Nach der Bezahlung können die ausgewählten
-                    Kartensätze vom Benutzer vollständig eingesehen und gelernt werden.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Regeln bei der Nutzung von THMcards</h4>
-            <p>
-            <ul>
-                <li>
-                    Bei der Benutzung von THMcards versichert der Benutzer, dass
-                    <ul>
-                        <li>alle von ihm angegebenen Informationen im System wahrheitsgetreu und richtig sind,</li>
-                        <li>gegen keine geltenden Gesetze verstoßen wird,</li>
-                        <li>er für alles, was unter dem Nutzernamen geschieht, verantwortlich ist.</li>
-                    </ul>
-                </li>
-                <li>Bei der Benutzung sind keine rassistischen, hetzerischen oder beleidigenden Äußerungen in
-                    jeglicher hier möglichen Form erlaubt.
-                </li>
-                <li>THMcards behält sich das Recht vor, Benutzer, die sich nicht an die Regeln halten, zu sperren.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Verlässlichkeit und Verfügbarkeit von THMcards</h4>
-            <p>
-            <ul>
-                <li>Eine ununterbrochene Verfügbarkeit von THMcards ist technisch nicht möglich. Wartungs- und
-                    Update-Maßnahmen des Dienstes sowie unvorhersehbare Störungen, wie z. B. Ausfälle beim Internet-,
-                    Server- oder Stromprovider, können zu vorübergehenden Behinderungen der Erreichbarkeit des
-                    Dienstes führen. THMcards ist bemüht, den Online-Dienst zuverlässig und störungsfrei wie möglich
-                    zu betreiben, soweit dies technisch möglich ist.
-                </li>
-                <li>Jeder Benutzer ist bei einem Ausfall des Dienstes für seine eigenen Inhalte selbst
-                    verantwortlich. Hierfür sollte regelmäßig die Export-Funktion des jeweiligen Kartensatzes
-                    genutzt werden, um eigene Inhalte sicherzustellen, wenn THMcards ausfallen sollte.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Passwörter und Sicherheit des Benutzerkontos</h4>
-            <p>
-            <ul>
-                <li>Jeder Benutzer ist alleine für die Geheimhaltung seines Passwortes des Benutzerkontos
-                    verantwortlich.
-                </li>
-                <li>Sollte ein Benutzer darauf aufmerksam werden, dass das Benutzerkonto unbefugt durch einen
-                    Dritten benutzt wird, ist er dazu verpflichtet, THMcards umgehend zu benachrichtigen.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Datenschutz</h4>
-            <p>
-            <ul>
-                <li>THMcards achtet auf die Privatsphäre der Benutzer. Sämtliche datenschutzrechtliche Bestimmungen
-                    werden eingehalten. Persönliche Daten wie E-Mail-Adresse oder Anmeldedaten werden nicht an
-                    Dritte weitergegeben, außer in Fällen einer gesetzlichen Verpflichtung.
-                </li>
-                <li>Gespeicherte Lernstatistiken und Batches eines Benutzers bleiben ebenfalls geschützt, solange
-                    der Benutzer die Möglichkeit zur Einsicht nicht explizit anderen Benutzern von THMcards erlaubt
-                    hat (Öffentlichmachung des Benutzerprofils). Dies geschieht implizit, sollte ein Benutzer die
-                    Rolle eines „Pro-Users“ oder „Lecturer-Users“ erlangen.
-                </li>
-                <li>Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten
-                    Kartensätze gelöscht. Das Benutzerkonto kann unter den Einstellungen des Profils gelöscht
-                    werden.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Inhalte auf THMcards</h4>
-            <p>
-            <ul>
-                <li>Jeder Benutzer von THMcards ist für alle Inhalte, die er eingibt und speichert (z. B. Texte,
-                    Bilder), selbst verantwortlich.
-                </li>
-                <li>Jeder Benutzer bestätigt gegenüber THMcards, dass er über sämtliche Rechte, Vollmachten und
-                    Befugnisse verfügt, um seine Inhalte zu veröffentlichen.
-                </li>
-                <li>Jeder Benutzer erkennt an, dass er allein für alle Inhalte, die er während der Nutzung von
-                    THMcards erstellt, überträgt oder darstellt und die Auswirkungen seiner Handlungen
-                    (einschließlich vorhandener Verluste oder Schäden, die THMcards oder Dritten hierbei entstehen
-                    können), verantwortlich ist.
-                </li>
-                <li>Sollte ein Benutzer Inhalte erstellen, die gegen geltendes Recht verstoßen, behält sich THMcards
-                    das Recht vor, diese Inhalte zu löschen.
-                </li>
-                <li>Lerninhalte, die von Benutzern selbstständig erarbeitetet und öffentlich zur Verfügung gestellt
-                    wurden, dürfen gemäß der im Kartensatz angegebenen <a href="https://creativecommons.org/licenses/"
-                                                                          target="_blank">Creative Commons License</a>
-                    weiterverwendet werden.
-                </li>
-                <li>Bei nicht veröffentlichten Lerninhalten, die nicht das Urheberrecht Dritter verletzen, liegt das
-                    Urheberrecht beim Benutzer.
-                </li>
-                <li>Jedem Benutzer ist bekannt, dass veröffentlichte Lerninhalte von anderen Benutzern von THMcards
-                    weiterverwendet werden können. Da die veröffentlichten Inhalte nach Löschung des Benutzers
-                    weiterhin bestehen bleiben, erklärt sich jeder Benutzer damit einverstanden, dass die
-                    veröffentlichten Inhalte weiterhin von anderen Benutzern verwendet werden dürfen und anderen zur
-                    Verfügung gestellt werden können.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>THMcards FREE und THMcards PRO (derzeit im kostenlosen Testbetrieb)</h4>
-            <p>
-            <ul>
-                <li>THMcards ist in der Free-Version kostenlos nutzbar, jedoch können nicht alle Lerninhalte der
-                    Plattform eingesehen werden.
-                </li>
-                <li>Die Pro-Version von THMcards ist erhältlich, sobald der Benutzer den zum Zeitpunkt des
-                    jeweiligen Vertragsabschlusses gültigen Preis für eine Leistungsbeschreibung zahlt.
-                </li>
-                <li>Die Gebühren für die Pro-Version und der kostenpflichtigen Lerninhalte ergeben sich aus der zum
-                    Zeitpunkt des jeweiligen Vertragsabschlusses gültigen Preis- und Leistungsbeschreibung bzw. aus dem
-                    Preis der käuflichen Lerninhalte und enthalten die gesetzliche Mehrwertsteuer.
-                </li>
-                <li>Die Laufzeit der Pro-Version wird bis zur Kündigung automatisch jeden Monat erneuert.</li>
-                <li>Entscheidet sich ein Benutzer von THMcards nach Ablauf der Pro-Version für die Free-Version,
-                    erklärt sich dieser damit einverstanden, dass er THMcards erst nutzen kann, wenn er die
-                    Leistungsbeschreibung der Free-Version erfüllt.
-                </li>
-                <li>THMcards bedient sich der Dienste von Dritten, um Einkäufe oder finanzielle Transaktionen
-                    abzuwickeln. Diese werden im Bestellprozess deutlich bezeichnet.
-                </li>
-                <li>Die Vertragsbedingungen bleiben wirksam, bis sie von dem Benutzer oder von THMcards gekündigt
-                    werden.
-                </li>
-                <li>Die Kündigung der Free-Version von THMcards erfolgt durch die Löschung des Accounts. Dies ist
-                    unter den Einstellungen des Profils möglich.
-                </li>
-                <li>Die Pro-Version kann vom Benutzer jederzeit gekündigt werden und hat bis zum Ablauf des
-                    monatlichen Abrechnungszeitraums weiterhin die Möglichkeit, THMcards zu nutzen.
-                </li>
-                <li>THMcards gewährt keine Rückerstattungen oder Gutschriften für nicht vollständig genutzte Monate
-                    oder nicht genutzte Lerninhalte.
-                </li>
-                <li>
-                    THMcards kann den Vertrag mit dem Benutzer jederzeit kündigen, falls:
-                    <ul>
-                        <li>der Benutzer gegen Bestimmungen der Vertragsbedingungen verstößt,</li>
-                        <li>THMcards vom Anbieter nicht mehr betrieben wird.</li>
-                    </ul>
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Widerrufsrecht</h4>
-            <p>
-            <ul>
-                <li>Der Benutzer hat das Recht, seine Vertragserklärung innerhalb von 14 Tagen ohne Angaben von
-                    Gründen zu widerrufen. Die Frist beginnt ab dem Tag des Vertragsabschlusses.
-                </li>
-                <li>Um den Widerruf auszuüben, muss eine eindeutige Erklärung über den Entschluss, den Vertrag zu
-                    widerrufen, auf einem dauerhaften Datenträger (z.B. ein Brief, Telefax, E-Mail) gesendet werden.
-                    Die Erklärung ist an folgende Adresse zu richten: Technische Hochschule Mittelhessen,
-                    Wiesenstraße 14, 35390 Gießen, Deutschland, E-Mail: <a
-                            href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>.
-                </li>
-                <li>Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung der Mitteilung über die
-                    Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist.
-                </li>
-                <li>Bei einem wirksamen Widerruf sind die beiderseits empfangenen Leistungen zurück zu gewähren,
-                    soweit es möglich ist (Löschung des Benutzers).
-                </li>
-                <li>Die Erstattung empfangener Leistungen muss innerhalb von 14 Tagen erfolgen. Die Frist beginnt
-                    beim Benutzer mit der Absendung der Widerrufserklärung, für uns mit dem Empfang. Für die
-                    Rückerstattung von Zahlungen verwenden wir dasselbe Zahlungsmittel, das bei der Ursprünglichen
-                    Transaktion eingesetzt wurde, es sei denn, es wurde ausdrücklich etwas anderes vereinbart. Es
-                    werden in keinem Fall bei der Rückzahlung weitere Entgelte berechnet.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Gewährleistung</h4>
-            <p>
-            <ul>
-                <li>THMcards übernimmt keine Verantwortung für die von Benutzern bereitgestellten Lerninhalte und
-                    macht sich diese auch nicht zu eigen.
-                </li>
-                <li>THMcards bietet lediglich den technischen Dienst zur Erstellung, Speicherung und des Austausches
-                    der erstellten Lerninhalte.
-                </li>
-                <li>Eine ständige Überprüfung aller eingestellter Inhalte auf mögliche Rechtsverletzungen ist nicht
-                    realisierbar und findet daher grundsätzlich nicht statt.
-                </li>
-                <li>THMcards reagiert nach berechtigtem Hinweis auf Rechtsverstöße und behält sich vor, straf- oder
-                    haftungsrechtliche Inhalte unverzüglich zu löschen.
-                </li>
-                <li>Die Korrektheit eingestellter Lerninhalte wird von THMcards nicht gewährleistet. Alle
-                    Lerninhalte werden von den Benutzern des Systems erstellt und/oder verändert. Eine Überprüfung
-                    auf Korrektheit ist seitens THMcards hierbei nicht möglich.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Änderungen der Vertragsbedingungen</h4>
-            <p>
-            <ul>
-                <li>THMcards behält sich das Recht vor, Änderungen an diesen Allgemeinen Geschäftsbedingungen
-                    vorzunehmen.
-                </li>
-                <li>Die Benutzer von THMcards werden über E-Mail oder durch eine Nachricht im System über Änderungen
-                    der Allgemeinen Geschäftsbedingungen informiert. Die Änderungen werden wirksam, wenn der
-                    Benutzer nicht innerhalb 14 Tage nach Zugang der Information den Änderungen widerspricht. In der
-                    E-Mail oder Nachricht wird gesondert auf die Widerspruchsmöglichkeit und deren Frist hingewiesen.
-                </li>
-                <li>Im Übrigen gelten die gesetzlichen Gewährleistungsvorschriften.</li>
-                <li>THMcards behält sich das Recht vor, bei Widerspruch der geänderten Geschäftsbedingungen das
-                    Nutzungsverhältnis zu kündigen und zu beenden. Der Benutzer hat das Recht, das
-                    Vertragsverhältnis innerhalb von 4 Wochen nach Änderung der Allgemeinen Geschäftsbedingungen bis
-                    zum Ende des nächsten Monats zu kündigen.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <h4>Sonstige Bedingungen</h4>
-            <p>
-            <ul>
-                <li>Für den Lern- und Prüfungserfolg gibt es seitens THMcards keine Gewährleistung.</li>
-                <li>Verstößt ein Benutzer gegen diese Allgemeinen Geschäftsbedingungen, behält sich THMcards das
-                    Recht vor, von diesem Benutzer eingestellte Inhalte zu löschen. Bei mehrmaligem Verstoß des
-                    Benutzers, wird das entsprechende Benutzerkonto gesperrt.
-                </li>
-            </ul>
-            </p>
-            <br/>
-            <p>Stand: 10.01.2018</p>
+            {{#if isActiveLanguage 'de'}}
+                <h4>Nutzungsbestimmungen</h4>
+                <p>
+                <ul>
+                    <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw. dem
+                        Benutzer
+                        (im Folgenden der besseren Lesbarkeit wegen verkürzt "Benutzer" genannt) und
+                        THMcards geregelt. Die Webapp THMcards ist eine kostenlose Dienstleistung der
+                        TransMIT-Gesellschaft für Technologietransfer mbH, Projektbereich für mobile Anwendungen mit der
+                        Anschrift: Kerkrader Straße 3, 35394 Gießen, Deutschland.
+                    </li>
+                    <li>Alle Studierende der Technischen Hochschule Mittelhessen, THM, dürfen THMcards für ihre
+                        Zwecke verwenden, solange dabei nicht gegen deutsches oder EU-Recht verstoßen wird.
+                    </li>
+                    <li>THMcards ist ein kostenloser Webservice (Software as a Service). Die Software ist <a
+                            href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open Source</a>
+                        und steht unter der <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU
+                            General Public License Version 3</a>.
+                    </li>
+                    <li>Neben dem eigentlichen Lernkartendienst bietet THMcards optional die Möglichkeit, kostenpflichtige
+                        Lerninhalte von anderen Benutzern der Plattform zu nutzen. Die folgenden Geschäftsbedingungen
+                        sollen das Rechtsverhältnis zwischen dem Benutzer, THMcards und den Autoren, die
+                        kostenpflichtige Lerninhalte anbieten, regeln.
+                    </li>
+                    <li>Um THMcards nutzen zu können, muss die Vertragsbedingung angenommen werden. Sollte der Benutzer
+                        die Vertragsbedingung nicht annehmen, wird dieser Dienst nicht freigeschaltet.
+                    </li>
+                    <li>Der Vertrag wird vom Benutzer angenommen, wenn dieser bei der ersten Anmeldung am System die
+                        Allgemeinen Geschäftsbedingungen mit der Schaltfläche „Akzeptieren“ einwilligt.
+                    </li>
+                    <li>Mit der Annahme der Vertragsbindung wird akzeptiert, dass THMcards bei wichtigen Änderungen,
+                        Ankündigungen oder beim Starten einer Lernphase E-Mails oder im System integrierte Nachrichten
+                        an den Benutzer sendet.
+                    </li>
+                    <li>Wenn bei THMcards Kartensätze gekauft werden (optional), kommt zwischen dem Benutzer und
+                        THMcards ein rechtsgültiger Vertrag zustande. Nach der Bezahlung können die ausgewählten
+                        Kartensätze vom Benutzer vollständig eingesehen und gelernt werden.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Regeln bei der Nutzung von THMcards</h4>
+                <p>
+                <ul>
+                    <li>
+                        Bei der Benutzung von THMcards versichert der Benutzer, dass
+                        <ul>
+                            <li>alle von ihm angegebenen Informationen im System wahrheitsgetreu und richtig sind,</li>
+                            <li>gegen keine geltenden Gesetze verstoßen wird,</li>
+                            <li>er für alles, was unter dem Nutzernamen geschieht, verantwortlich ist.</li>
+                        </ul>
+                    </li>
+                    <li>Bei der Benutzung sind keine rassistischen, hetzerischen oder beleidigenden Äußerungen in
+                        jeglicher hier möglichen Form erlaubt.
+                    </li>
+                    <li>THMcards behält sich das Recht vor, Benutzer, die sich nicht an die Regeln halten, zu sperren.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Verlässlichkeit und Verfügbarkeit von THMcards</h4>
+                <p>
+                <ul>
+                    <li>Eine ununterbrochene Verfügbarkeit von THMcards ist technisch nicht möglich. Wartungs- und
+                        Update-Maßnahmen des Dienstes sowie unvorhersehbare Störungen, wie z. B. Ausfälle beim Internet-,
+                        Server- oder Stromprovider, können zu vorübergehenden Behinderungen der Erreichbarkeit des
+                        Dienstes führen. THMcards ist bemüht, den Online-Dienst zuverlässig und störungsfrei wie möglich
+                        zu betreiben, soweit dies technisch möglich ist.
+                    </li>
+                    <li>Jeder Benutzer ist bei einem Ausfall des Dienstes für seine eigenen Inhalte selbst
+                        verantwortlich. Hierfür sollte regelmäßig die Export-Funktion des jeweiligen Kartensatzes
+                        genutzt werden, um eigene Inhalte sicherzustellen, wenn THMcards ausfallen sollte.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Passwörter und Sicherheit des Benutzerkontos</h4>
+                <p>
+                <ul>
+                    <li>Jeder Benutzer ist alleine für die Geheimhaltung seines Passwortes des Benutzerkontos
+                        verantwortlich.
+                    </li>
+                    <li>Sollte ein Benutzer darauf aufmerksam werden, dass das Benutzerkonto unbefugt durch einen
+                        Dritten benutzt wird, ist er dazu verpflichtet, THMcards umgehend zu benachrichtigen.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Datenschutz</h4>
+                <p>
+                <ul>
+                    <li>THMcards achtet auf die Privatsphäre der Benutzer. Sämtliche datenschutzrechtliche Bestimmungen
+                        werden eingehalten. Persönliche Daten wie E-Mail-Adresse oder Anmeldedaten werden nicht an
+                        Dritte weitergegeben, außer in Fällen einer gesetzlichen Verpflichtung.
+                    </li>
+                    <li>Gespeicherte Lernstatistiken und Batches eines Benutzers bleiben ebenfalls geschützt, solange
+                        der Benutzer die Möglichkeit zur Einsicht nicht explizit anderen Benutzern von THMcards erlaubt
+                        hat (Öffentlichmachung des Benutzerprofils). Dies geschieht implizit, sollte ein Benutzer die
+                        Rolle eines „Pro-Users“ oder „Lecturer-Users“ erlangen.
+                    </li>
+                    <li>Bei der Löschung eines Benutzerkontos von THMcards werden alle persönlichen Daten und privaten
+                        Kartensätze gelöscht. Das Benutzerkonto kann unter den Einstellungen des Profils gelöscht
+                        werden.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Inhalte auf THMcards</h4>
+                <p>
+                <ul>
+                    <li>Jeder Benutzer von THMcards ist für alle Inhalte, die er eingibt und speichert (z. B. Texte,
+                        Bilder), selbst verantwortlich.
+                    </li>
+                    <li>Jeder Benutzer bestätigt gegenüber THMcards, dass er über sämtliche Rechte, Vollmachten und
+                        Befugnisse verfügt, um seine Inhalte zu veröffentlichen.
+                    </li>
+                    <li>Jeder Benutzer erkennt an, dass er allein für alle Inhalte, die er während der Nutzung von
+                        THMcards erstellt, überträgt oder darstellt und die Auswirkungen seiner Handlungen
+                        (einschließlich vorhandener Verluste oder Schäden, die THMcards oder Dritten hierbei entstehen
+                        können), verantwortlich ist.
+                    </li>
+                    <li>Sollte ein Benutzer Inhalte erstellen, die gegen geltendes Recht verstoßen, behält sich THMcards
+                        das Recht vor, diese Inhalte zu löschen.
+                    </li>
+                    <li>Lerninhalte, die von Benutzern selbstständig erarbeitetet und öffentlich zur Verfügung gestellt
+                        wurden, dürfen gemäß der im Kartensatz angegebenen <a href="https://creativecommons.org/licenses/"
+                                                                              target="_blank">Creative Commons License</a>
+                        weiterverwendet werden.
+                    </li>
+                    <li>Bei nicht veröffentlichten Lerninhalten, die nicht das Urheberrecht Dritter verletzen, liegt das
+                        Urheberrecht beim Benutzer.
+                    </li>
+                    <li>Jedem Benutzer ist bekannt, dass veröffentlichte Lerninhalte von anderen Benutzern von THMcards
+                        weiterverwendet werden können. Da die veröffentlichten Inhalte nach Löschung des Benutzers
+                        weiterhin bestehen bleiben, erklärt sich jeder Benutzer damit einverstanden, dass die
+                        veröffentlichten Inhalte weiterhin von anderen Benutzern verwendet werden dürfen und anderen zur
+                        Verfügung gestellt werden können.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>THMcards FREE und THMcards PRO (derzeit im kostenlosen Testbetrieb)</h4>
+                <p>
+                <ul>
+                    <li>THMcards ist in der Free-Version kostenlos nutzbar, jedoch können nicht alle Lerninhalte der
+                        Plattform eingesehen werden.
+                    </li>
+                    <li>Die Pro-Version von THMcards ist erhältlich, sobald der Benutzer den zum Zeitpunkt des
+                        jeweiligen Vertragsabschlusses gültigen Preis für eine Leistungsbeschreibung zahlt.
+                    </li>
+                    <li>Die Gebühren für die Pro-Version und der kostenpflichtigen Lerninhalte ergeben sich aus der zum
+                        Zeitpunkt des jeweiligen Vertragsabschlusses gültigen Preis- und Leistungsbeschreibung bzw. aus dem
+                        Preis der käuflichen Lerninhalte und enthalten die gesetzliche Mehrwertsteuer.
+                    </li>
+                    <li>Die Laufzeit der Pro-Version wird bis zur Kündigung automatisch jeden Monat erneuert.</li>
+                    <li>Entscheidet sich ein Benutzer von THMcards nach Ablauf der Pro-Version für die Free-Version,
+                        erklärt sich dieser damit einverstanden, dass er THMcards erst nutzen kann, wenn er die
+                        Leistungsbeschreibung der Free-Version erfüllt.
+                    </li>
+                    <li>THMcards bedient sich der Dienste von Dritten, um Einkäufe oder finanzielle Transaktionen
+                        abzuwickeln. Diese werden im Bestellprozess deutlich bezeichnet.
+                    </li>
+                    <li>Die Vertragsbedingungen bleiben wirksam, bis sie von dem Benutzer oder von THMcards gekündigt
+                        werden.
+                    </li>
+                    <li>Die Kündigung der Free-Version von THMcards erfolgt durch die Löschung des Accounts. Dies ist
+                        unter den Einstellungen des Profils möglich.
+                    </li>
+                    <li>Die Pro-Version kann vom Benutzer jederzeit gekündigt werden und hat bis zum Ablauf des
+                        monatlichen Abrechnungszeitraums weiterhin die Möglichkeit, THMcards zu nutzen.
+                    </li>
+                    <li>THMcards gewährt keine Rückerstattungen oder Gutschriften für nicht vollständig genutzte Monate
+                        oder nicht genutzte Lerninhalte.
+                    </li>
+                    <li>
+                        THMcards kann den Vertrag mit dem Benutzer jederzeit kündigen, falls:
+                        <ul>
+                            <li>der Benutzer gegen Bestimmungen der Vertragsbedingungen verstößt,</li>
+                            <li>THMcards vom Anbieter nicht mehr betrieben wird.</li>
+                        </ul>
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Widerrufsrecht</h4>
+                <p>
+                <ul>
+                    <li>Der Benutzer hat das Recht, seine Vertragserklärung innerhalb von 14 Tagen ohne Angaben von
+                        Gründen zu widerrufen. Die Frist beginnt ab dem Tag des Vertragsabschlusses.
+                    </li>
+                    <li>Um den Widerruf auszuüben, muss eine eindeutige Erklärung über den Entschluss, den Vertrag zu
+                        widerrufen, auf einem dauerhaften Datenträger (z.B. ein Brief, Telefax, E-Mail) gesendet werden.
+                        Die Erklärung ist an folgende Adresse zu richten: Technische Hochschule Mittelhessen,
+                        Wiesenstraße 14, 35390 Gießen, Deutschland, E-Mail: <a
+                                href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>.
+                    </li>
+                    <li>Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung der Mitteilung über die
+                        Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist.
+                    </li>
+                    <li>Bei einem wirksamen Widerruf sind die beiderseits empfangenen Leistungen zurück zu gewähren,
+                        soweit es möglich ist (Löschung des Benutzers).
+                    </li>
+                    <li>Die Erstattung empfangener Leistungen muss innerhalb von 14 Tagen erfolgen. Die Frist beginnt
+                        beim Benutzer mit der Absendung der Widerrufserklärung, für uns mit dem Empfang. Für die
+                        Rückerstattung von Zahlungen verwenden wir dasselbe Zahlungsmittel, das bei der Ursprünglichen
+                        Transaktion eingesetzt wurde, es sei denn, es wurde ausdrücklich etwas anderes vereinbart. Es
+                        werden in keinem Fall bei der Rückzahlung weitere Entgelte berechnet.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Gewährleistung</h4>
+                <p>
+                <ul>
+                    <li>THMcards übernimmt keine Verantwortung für die von Benutzern bereitgestellten Lerninhalte und
+                        macht sich diese auch nicht zu eigen.
+                    </li>
+                    <li>THMcards bietet lediglich den technischen Dienst zur Erstellung, Speicherung und des Austausches
+                        der erstellten Lerninhalte.
+                    </li>
+                    <li>Eine ständige Überprüfung aller eingestellter Inhalte auf mögliche Rechtsverletzungen ist nicht
+                        realisierbar und findet daher grundsätzlich nicht statt.
+                    </li>
+                    <li>THMcards reagiert nach berechtigtem Hinweis auf Rechtsverstöße und behält sich vor, straf- oder
+                        haftungsrechtliche Inhalte unverzüglich zu löschen.
+                    </li>
+                    <li>Die Korrektheit eingestellter Lerninhalte wird von THMcards nicht gewährleistet. Alle
+                        Lerninhalte werden von den Benutzern des Systems erstellt und/oder verändert. Eine Überprüfung
+                        auf Korrektheit ist seitens THMcards hierbei nicht möglich.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Änderungen der Vertragsbedingungen</h4>
+                <p>
+                <ul>
+                    <li>THMcards behält sich das Recht vor, Änderungen an diesen Allgemeinen Geschäftsbedingungen
+                        vorzunehmen.
+                    </li>
+                    <li>Die Benutzer von THMcards werden über E-Mail oder durch eine Nachricht im System über Änderungen
+                        der Allgemeinen Geschäftsbedingungen informiert. Die Änderungen werden wirksam, wenn der
+                        Benutzer nicht innerhalb 14 Tage nach Zugang der Information den Änderungen widerspricht. In der
+                        E-Mail oder Nachricht wird gesondert auf die Widerspruchsmöglichkeit und deren Frist hingewiesen.
+                    </li>
+                    <li>Im Übrigen gelten die gesetzlichen Gewährleistungsvorschriften.</li>
+                    <li>THMcards behält sich das Recht vor, bei Widerspruch der geänderten Geschäftsbedingungen das
+                        Nutzungsverhältnis zu kündigen und zu beenden. Der Benutzer hat das Recht, das
+                        Vertragsverhältnis innerhalb von 4 Wochen nach Änderung der Allgemeinen Geschäftsbedingungen bis
+                        zum Ende des nächsten Monats zu kündigen.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Sonstige Bedingungen</h4>
+                <p>
+                <ul>
+                    <li>Für den Lern- und Prüfungserfolg gibt es seitens THMcards keine Gewährleistung.</li>
+                    <li>Verstößt ein Benutzer gegen diese Allgemeinen Geschäftsbedingungen, behält sich THMcards das
+                        Recht vor, von diesem Benutzer eingestellte Inhalte zu löschen. Bei mehrmaligem Verstoß des
+                        Benutzers, wird das entsprechende Benutzerkonto gesperrt.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <p>Stand: 10.01.2018</p>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
@@ -713,151 +773,159 @@
 <template name="datenschutz">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Datenschutzerklärung und Verfahrensverzeichnis
+            {{#if isActiveLanguage 'de'}}
+                Datenschutzerklärung und Verfahrensverzeichnis
+            {{else}}
+
+            {{/if}}
         </div>
         <div class="panel-body">
-            <h4>Grundsatz</h4>
-            <p>
-                Ihre personenbezogenen Daten werden vertraulich behandelt. Sämtliche Handlungen sind an die
-                gesetzlichen Grundlagen des Hessischen Datenschutzgesetzes (HDSG), dem Telemediengesetz (TMG) sowie
-                dieser Datenschutzerklärung gebunden. Dies wird von der TransMIT GmH als Betreiber von THMcards
-                garantiert.
-            </p>
-            <br/>
-            <h4>Erheben und Nutzen von Daten</h4>
-            <p>
-                Wir erheben, verarbeiten und nutzen personenbezogene Daten nur, soweit sie für die Begründung,
-                inhaltliche Ausgestaltung und Abwicklung Ihrer Bestellung erforderlich sind (Bestandsdaten).
-                Personenbezogene Daten über die Inanspruchnahme von THMcards (Nutzungsdaten) erheben, verarbeiten
-                und nutzen wir nur, soweit dies erforderlich ist, um dem Benutzer die Inanspruchnahme des Systems zu
-                ermöglichen oder abzurechnen.
-            </p>
-            <br/>
-            <h4>Anwendungsdaten</h4>
-            <p>
-                THMcards sammelt Inhalte und sonstige Informationen, die der Benutzer bereitstellt, wenn er die
-                Plattform nutzt. Dazu gehört auch der Anmeldename sowie Anmeldeservice bei der Registrierung, das
-                Erstellen und Veröffentlichen von Lerninhalten und das Versenden von Nachrichten bzw. die Meldungen
-                an die Administratoren. Dies können Informationen über die von Benutzern bereitgestellten Inhalte
-                sein oder solche, die in ihnen enthalten sind, z. B. das Datum, an dem ein Lerninhalt erstellt wurde.
-                Des Weiteren sammelt THMcards Informationen über das Bereitstellen von Lerninhalten, das
-                Lernverhalten im Rahmen von Lernphasen sowie die Bewertungen.
-            </p>
-            <br/>
-            <h4>Zugriffsdaten</h4>
-            <p>
-                Personenbezogene Daten werden nur im technisch notwendige Umfang von THMcards erhoben. Außer
-                Anmeldename und Anmeldeservice des Benutzers sowie Datum und Uhrzeit der Registrierung werden keine
-                personenbezogenen Daten gespeichert.
-            </p>
-            <br/>
-            <h4>Webserver-Logdateien</h4>
-            <p>
-                Wir erheben und speichern automatisch Informationen in Log Files, die Ihr Browser automatisch an uns
-                übermittelt. Dies sind:
-            <ul>
-                <li>Browsertyp/ Browserversion</li>
-                <li>verwendetes Betriebssystem</li>
-                <li>Referrer URL</li>
-                <li>Hostname des zugreifenden Rechners</li>
-                <li>Uhrzeit der Serveranfrage</li>
-            </ul>
-            Diese Daten sind nicht bestimmten Personen zuordbar. Eine Zusammenführung dieser Daten mit anderen
-            Datenquellen wird nicht vorgenommen.
-            </p>
-            <br/>
-            <h4>Cookies</h4>
-            <p>
-                Die Internetseiten verwenden teilweise so genannte Cookies. Diese dienen dazu, unser Angebot
-                nutzerfreundlicher, effektiver und sicherer zu gestalten. Cookies sind kleine Textdateien, die auf
-                Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die meisten der von uns verwendeten
-                Cookies sind so genannte „Session-Cookies“. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.
-                Cookies beeinträchtigen Ihren Rechner nicht und enthalten keine Viren.
-            </p>
-            <p>
-                Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und
-                diese nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell
-                ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren.
-                Durch die Deaktivierung der Cookies kann es zu Einschränkungen der Funktionalität der Plattform
-                kommen.
-            </p>
-            <br/>
-            <h4>Sicherheit</h4>
-            <p>
-                Es wurden umfangreiche technische und betriebliche Schutzvorkehrungen getroffen, um Ihre Daten vor
-                zufälligen oder vorsätzlichen Manipulationen, Verlust, Zerstörung oder dem Zugriff unberechtigter
-                Personen zu schützen. Die Sicherheitsverfahren werden regelmäßig überprüft und dem technologischen
-                Fortschritt angepasst. Datenübertragungen im Internet (z. B. bei der Kommunikation per E-Mail) können
-                jedoch Sicherheitslücken aufweisen, sodass ein lückenloser Schutz der Daten vor dem Zugriff durch
-                Dritte nicht möglich ist.
-            </p>
-            <br/>
-            <h4>Datenübermittlungen an Dritte</h4>
-            <p>
-                Eine Übermittlung Ihrer Daten an Dritte findet nicht statt, es sei denn, die Betreiber von THMcards
-                sind gesetzlich dazu verpflichtet. Soweit externe Dienstleister mit Ihren personenbezogenen Daten in
-                Kontakt kommen, wird durch rechtliche, technische und organisatorische Maßnahmen sowie durch
-                regelmäßige Kontrollen sichergestellt, dass diese die Vorschriften der Datenschutzgesetze einhalten.
-            </p>
-            <br/>
-            <h4>Links zu Webseiten anderer Anbieter</h4>
-            <p>
-                THMcards kann Links zu Webseiten anderer Anbieter enthalten, auf die sich diese Datenschutzerklärung
-                nicht bezieht. Soweit mit der Nutzung der Internetseiten anderer Anbieter die Erhebung, Verarbeitung
-                oder Nutzung personenbezogener Daten verbunden ist, beachten Sie bitte die Datenschutzhinweise der
-                jeweiligen Anbieter.
-            </p>
-            <br/>
-            <h4>Einbindung von Diensten und Inhalten Dritter</h4>
-            <p>
-                Es kann vorkommen, dass angebotene Lerninhalte von THMcards Inhalte Dritter, wie zum Beispiel Videos
-                von YouTube und Vimeo oder Grafiken von anderen Webseiten, eingebunden werden. Dies setzt voraus,
-                dass die Anbieter dieser Inhalte die IP-Adresse der Benutzer/innen wahrnehmen. Ohne die IP-Adresse
-                können die Inhalte nicht an den Browser gesendet werden.
-            </p>
-            <br/>
-            <h4>Zahlungsinformationen</h4>
-            <p>
-                Wird THMcards für Einkäufe oder finanzielle Transaktionen genutzt (beispielsweise wenn ein
-                Kartensatz gekauft oder ein Abonnement abgeschlossen wird), werden von THMcards keine
-                Zahlungsinformationen gespeichert. Alle Transaktionen werden über den Dienst <a
-                    href="https://www.braintreepayments.com/en-de" target="_blank">Braintree</a> abgewickelt.
-                Dort werden alle Konto- und Authentifizierungsinformationen und Angaben zur Abrechnung gesammelt.
-            </p>
-            <br/>
-            <h4>Übrige Datenerfassung</h4>
-            <p>
-                Weitergehende personenbezogene Daten werden nur erfasst, wenn Sie diese Angaben freiwillig, etwa im
-                Rahmen einer Dozenten-Anfrage, angeben. Soweit Sie uns personenbezogene Daten zur Verfügung gestellt
-                haben, werden diese nur zur Beantwortung Ihrer Anfragen, zur Abwicklung mit Ihnen geschlossener
-                Verträge, zur Auswertung der Lernphasen und für die technische Administration gespeichert und
-                verarbeitet.
-            </p>
-            <br/>
-            <h4>Widerspruchsrecht und Auskunftsrecht</h4>
-            <p>
-                Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen
-                Daten, deren Herkunft und Empfänger, den Zweck der Datenverarbeitung sowie ein Recht auf
-                Berichtigung, Sperrung oder Löschung dieser Daten.
-            </p>
-            <p>
-                Bei Unklarheiten oder Anregungen wenden Sie sich an folgende E-Mail-Adresse oder an die im Impressum
-                angegebenen Kontaktdaten: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
-            </p>
-            <br/>
-            <h4>Verfahrensverzeichnis</h4>
-            <p>
-                Eine Übersicht über die in THMcards gespeicherten Daten finden Sie im
-                <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verfahrensverzeichnis</a>.
-            </p>
-            <br/>
-            <h4>Änderungen der Datenschutzerklärung</h4>
-            <p>
-                Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit unter Beachtung der geltenden
-                Datenschutzvorschriften zu ändern.
-            </p>
-            <br/>
-            <p>Stand: 10.01.2018</p>
+            {{#if isActiveLanguage 'de'}}
+                <h4>Grundsatz</h4>
+                <p>
+                    Ihre personenbezogenen Daten werden vertraulich behandelt. Sämtliche Handlungen sind an die
+                    gesetzlichen Grundlagen des Hessischen Datenschutzgesetzes (HDSG), dem Telemediengesetz (TMG) sowie
+                    dieser Datenschutzerklärung gebunden. Dies wird von der TransMIT GmH als Betreiber von THMcards
+                    garantiert.
+                </p>
+                <br/>
+                <h4>Erheben und Nutzen von Daten</h4>
+                <p>
+                    Wir erheben, verarbeiten und nutzen personenbezogene Daten nur, soweit sie für die Begründung,
+                    inhaltliche Ausgestaltung und Abwicklung Ihrer Bestellung erforderlich sind (Bestandsdaten).
+                    Personenbezogene Daten über die Inanspruchnahme von THMcards (Nutzungsdaten) erheben, verarbeiten
+                    und nutzen wir nur, soweit dies erforderlich ist, um dem Benutzer die Inanspruchnahme des Systems zu
+                    ermöglichen oder abzurechnen.
+                </p>
+                <br/>
+                <h4>Anwendungsdaten</h4>
+                <p>
+                    THMcards sammelt Inhalte und sonstige Informationen, die der Benutzer bereitstellt, wenn er die
+                    Plattform nutzt. Dazu gehört auch der Anmeldename sowie Anmeldeservice bei der Registrierung, das
+                    Erstellen und Veröffentlichen von Lerninhalten und das Versenden von Nachrichten bzw. die Meldungen
+                    an die Administratoren. Dies können Informationen über die von Benutzern bereitgestellten Inhalte
+                    sein oder solche, die in ihnen enthalten sind, z. B. das Datum, an dem ein Lerninhalt erstellt wurde.
+                    Des Weiteren sammelt THMcards Informationen über das Bereitstellen von Lerninhalten, das
+                    Lernverhalten im Rahmen von Lernphasen sowie die Bewertungen.
+                </p>
+                <br/>
+                <h4>Zugriffsdaten</h4>
+                <p>
+                    Personenbezogene Daten werden nur im technisch notwendige Umfang von THMcards erhoben. Außer
+                    Anmeldename und Anmeldeservice des Benutzers sowie Datum und Uhrzeit der Registrierung werden keine
+                    personenbezogenen Daten gespeichert.
+                </p>
+                <br/>
+                <h4>Webserver-Logdateien</h4>
+                <p>
+                    Wir erheben und speichern automatisch Informationen in Log Files, die Ihr Browser automatisch an uns
+                    übermittelt. Dies sind:
+                <ul>
+                    <li>Browsertyp/ Browserversion</li>
+                    <li>verwendetes Betriebssystem</li>
+                    <li>Referrer URL</li>
+                    <li>Hostname des zugreifenden Rechners</li>
+                    <li>Uhrzeit der Serveranfrage</li>
+                </ul>
+                Diese Daten sind nicht bestimmten Personen zuordbar. Eine Zusammenführung dieser Daten mit anderen
+                Datenquellen wird nicht vorgenommen.
+                </p>
+                <br/>
+                <h4>Cookies</h4>
+                <p>
+                    Die Internetseiten verwenden teilweise so genannte Cookies. Diese dienen dazu, unser Angebot
+                    nutzerfreundlicher, effektiver und sicherer zu gestalten. Cookies sind kleine Textdateien, die auf
+                    Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die meisten der von uns verwendeten
+                    Cookies sind so genannte „Session-Cookies“. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.
+                    Cookies beeinträchtigen Ihren Rechner nicht und enthalten keine Viren.
+                </p>
+                <p>
+                    Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und
+                    diese nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell
+                    ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren.
+                    Durch die Deaktivierung der Cookies kann es zu Einschränkungen der Funktionalität der Plattform
+                    kommen.
+                </p>
+                <br/>
+                <h4>Sicherheit</h4>
+                <p>
+                    Es wurden umfangreiche technische und betriebliche Schutzvorkehrungen getroffen, um Ihre Daten vor
+                    zufälligen oder vorsätzlichen Manipulationen, Verlust, Zerstörung oder dem Zugriff unberechtigter
+                    Personen zu schützen. Die Sicherheitsverfahren werden regelmäßig überprüft und dem technologischen
+                    Fortschritt angepasst. Datenübertragungen im Internet (z. B. bei der Kommunikation per E-Mail) können
+                    jedoch Sicherheitslücken aufweisen, sodass ein lückenloser Schutz der Daten vor dem Zugriff durch
+                    Dritte nicht möglich ist.
+                </p>
+                <br/>
+                <h4>Datenübermittlungen an Dritte</h4>
+                <p>
+                    Eine Übermittlung Ihrer Daten an Dritte findet nicht statt, es sei denn, die Betreiber von THMcards
+                    sind gesetzlich dazu verpflichtet. Soweit externe Dienstleister mit Ihren personenbezogenen Daten in
+                    Kontakt kommen, wird durch rechtliche, technische und organisatorische Maßnahmen sowie durch
+                    regelmäßige Kontrollen sichergestellt, dass diese die Vorschriften der Datenschutzgesetze einhalten.
+                </p>
+                <br/>
+                <h4>Links zu Webseiten anderer Anbieter</h4>
+                <p>
+                    THMcards kann Links zu Webseiten anderer Anbieter enthalten, auf die sich diese Datenschutzerklärung
+                    nicht bezieht. Soweit mit der Nutzung der Internetseiten anderer Anbieter die Erhebung, Verarbeitung
+                    oder Nutzung personenbezogener Daten verbunden ist, beachten Sie bitte die Datenschutzhinweise der
+                    jeweiligen Anbieter.
+                </p>
+                <br/>
+                <h4>Einbindung von Diensten und Inhalten Dritter</h4>
+                <p>
+                    Es kann vorkommen, dass angebotene Lerninhalte von THMcards Inhalte Dritter, wie zum Beispiel Videos
+                    von YouTube und Vimeo oder Grafiken von anderen Webseiten, eingebunden werden. Dies setzt voraus,
+                    dass die Anbieter dieser Inhalte die IP-Adresse der Benutzer/innen wahrnehmen. Ohne die IP-Adresse
+                    können die Inhalte nicht an den Browser gesendet werden.
+                </p>
+                <br/>
+                <h4>Zahlungsinformationen</h4>
+                <p>
+                    Wird THMcards für Einkäufe oder finanzielle Transaktionen genutzt (beispielsweise wenn ein
+                    Kartensatz gekauft oder ein Abonnement abgeschlossen wird), werden von THMcards keine
+                    Zahlungsinformationen gespeichert. Alle Transaktionen werden über den Dienst <a
+                        href="https://www.braintreepayments.com/en-de" target="_blank">Braintree</a> abgewickelt.
+                    Dort werden alle Konto- und Authentifizierungsinformationen und Angaben zur Abrechnung gesammelt.
+                </p>
+                <br/>
+                <h4>Übrige Datenerfassung</h4>
+                <p>
+                    Weitergehende personenbezogene Daten werden nur erfasst, wenn Sie diese Angaben freiwillig, etwa im
+                    Rahmen einer Dozenten-Anfrage, angeben. Soweit Sie uns personenbezogene Daten zur Verfügung gestellt
+                    haben, werden diese nur zur Beantwortung Ihrer Anfragen, zur Abwicklung mit Ihnen geschlossener
+                    Verträge, zur Auswertung der Lernphasen und für die technische Administration gespeichert und
+                    verarbeitet.
+                </p>
+                <br/>
+                <h4>Widerspruchsrecht und Auskunftsrecht</h4>
+                <p>
+                    Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen
+                    Daten, deren Herkunft und Empfänger, den Zweck der Datenverarbeitung sowie ein Recht auf
+                    Berichtigung, Sperrung oder Löschung dieser Daten.
+                </p>
+                <p>
+                    Bei Unklarheiten oder Anregungen wenden Sie sich an folgende E-Mail-Adresse oder an die im Impressum
+                    angegebenen Kontaktdaten: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
+                </p>
+                <br/>
+                <h4>Verfahrensverzeichnis</h4>
+                <p>
+                    Eine Übersicht über die in THMcards gespeicherten Daten finden Sie im
+                    <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verfahrensverzeichnis</a>.
+                </p>
+                <br/>
+                <h4>Änderungen der Datenschutzerklärung</h4>
+                <p>
+                    Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit unter Beachtung der geltenden
+                    Datenschutzvorschriften zu ändern.
+                </p>
+                <br/>
+                <p>Stand: 10.01.2018</p>
+            {{else}}
+
+            {{/if}}
         </div>
     </div>
 </template>
