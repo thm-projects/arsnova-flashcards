@@ -2,17 +2,16 @@ $input_difficulty0: #FFFFFF;
 $input_difficulty1: #5cb85c;
 $input_difficulty2: #5bc0de;
 $input_difficulty3: #d9534f;
-$background_difficultyNote0: #FEFFD1;
-$background_difficulty1: #edffed;
+$background_difficultyNote0: #ECEEDA;
+$background_difficulty1: #EDF0E9;
 $background_difficulty2: #edfbff;
-$background_difficulty3: #ffeded;
-$color_difficultyNote0: rgba(251, 186, 0, 0.3);
+$background_difficulty3: #F2E9EC;
+$color_difficultyNote0: #F8E1AE;
 $color_difficulty0: rgba(91, 192, 222, 0.3);
 $color_difficulty1: rgba(92, 184, 92, 0.3);
 $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
-$background_lecture: #D8BFD8;
-$header_line: rgba(255, 0, 0, 0.6);
+$background_lecture: #E9E8F3;
 
 #difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
@@ -187,8 +186,8 @@ $header_line: rgba(255, 0, 0, 0.6);
                   to bottom,
                   $white,
                   $white 26px,
-                  $color_difficulty0 26px,
-                  $color_difficulty0 28px
+                  #E6EAE9 26px,
+                  #E6EAE9 28px
   );
 }
 
@@ -297,23 +296,23 @@ $header_line: rgba(255, 0, 0, 0.6);
 }
 
 .box-difficultyBlank0-header, .box-difficultyLined0-header {
-  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $white 5px, $white 100%);
+  background: linear-gradient(to top, $color_difficulty0 0px, $color_difficulty0 4px, $white 5px, $white 100%);
 }
 
 .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
-  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
+  background: linear-gradient(to top, $color_difficultyNote0 0px, $color_difficultyNote0 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
 }
 
 .box-difficultyBlank1-header, .box-difficultyLined1-header {
-  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty1 5px, $background_difficulty1 100%);
+  background: linear-gradient(to top, $color_difficulty1 0px, $color_difficulty1 4px, $background_difficulty1 5px, $background_difficulty1 100%);
 }
 
 .box-difficultyBlank2-header, .box-difficultyLined2-header {
-  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty2 5px, $background_difficulty2 100%);
+  background: linear-gradient(to top, $color_difficulty2 0px, $color_difficulty2 4px, $background_difficulty2 5px, $background_difficulty2 100%);
 }
 
 .box-difficultyBlank3-header, .box-difficultyLined3-header {
-  background: linear-gradient(to top, $header_line 0px, $header_line 4px, $background_difficulty3 5px, $background_difficulty3 100%);
+  background: linear-gradient(to top, $color_difficulty3 0px, $color_difficulty3 4px, $background_difficulty3 5px, $background_difficulty3 100%);
 }
 
 .btn-showPictureDetails {
@@ -487,12 +486,10 @@ img.cardside {
 }
 
 .lectureContent {
-  border-top: 6px solid $header_line;
   background-color: $background_lecture;
 }
 
 .cardContentDictionary {
-  border-top: 6px solid $header_line;
   padding: 0;
 }
 
