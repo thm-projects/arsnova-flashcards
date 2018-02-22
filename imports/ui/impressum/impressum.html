@@ -64,11 +64,98 @@
             {{#if isActiveLanguage 'de'}}
                 Die alternative Lernplattform der THM
             {{else}}
-
+                The alternative learning platform of the THM
             {{/if}}
         </div>
         <div class="panel-body">
             {{#if isActiveLanguage 'de'}}
+                <p>
+                    THMcards is designed for <b>writing and learning by means of cards</b> in the courses of study of the
+                    technical support
+                    University of Applied Sciences Mittelhessen, THM.
+                    The <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md" target="_blank">Open-Source-Projekt</a>
+                    was created in the
+                    <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">
+                    consortium
+                        Quality in teaching and study (AG QLS)</a>
+                    concept. Development and operation are supported by <a
+                        href="https://www.thm.de/zqe/unsere-aufgaben/qsl-mittel.html" target="_blank">QSL funds of the
+                    THM</a> funded.
+                </p>
+                <p>
+                    THMcards is not a traditional flashcard app like <a href="https://quizlet.com/" target="_blank">Quizlet</a>
+                    or
+                    <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
+                    THMcards not only supports learning with digital flashcards, but also the
+                    notes
+                    in lectures and a bonus award for continuous writing and learning.
+                    THMcards sees itself as a <b>learning platform that accompanies the lectures</b>, as a virtual place,
+                    where learning time with cognitive activities (co-writing, post-editing of transcriptions, learning cards
+                    repetitive answering of learning questions) is spent intensively.
+                    Unlike Moodle, which is mostly used as a distribution platform for scripts.
+                </p>
+                <p>
+                    The concept of THMcards allows the teacher to objectively assess the students' learning process.
+                    evaluate,
+                    so that <b>bonus points for regular notes and repeated learning</b> about
+                    this
+                    the course of the semester.
+                    Learning according to the repetition algorithms implemented in THMcards of
+                    <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> or
+                    <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
+                        Woźniak</a> has been proven to be the most effective learning strategy for providing long-term learning content - via
+                    that
+                    Examinations and study beyond - to keep in mind,
+                    see our contribution to the <a href="http://site.aace.org/" target="_blank">SITE Conference
+                    2018</a>:
+                </p>
+                <hr>
+                <p>
+                    <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">Against
+                        Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course
+                        Design</a>
+                </p>
+                <p>
+                    Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the
+                    week
+                    before examination and forgotten a month after. Although we have known about the very low long-term
+                    knowledge retention of cramming since Ebbinghaus’ "forgetting curve" in 1885, this learning tactic
+                    prevails because it works—at least for passing exams. As university lecturers, we seldom received a
+                    training on effective teaching and learning strategies. However, we can follow the evidence-based
+                    recommendations from cognitive and educational psychology on how to structure a course to distribute
+                    learning. With new pedagogical apps at hand, we can implement <a
+                        href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a>
+                    against
+                    procrastination in our course design. This paper outlines a pedagogical project to be conducted
+                    across
+                    several consecutive semesters. The project follows the "What Works Clearinghouse" practice guide on
+                    spacing learning events over time. The recommendations are implemented by using <a
+                        href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
+                    question-and-answer apps for quizzing in class and self-quizzing at home.
+                </p>
+                <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
+                     alt="forgetting curve" class="img-responsive center-block"/>
+                <p class="text-center">
+                    Picture source: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: "Spaced
+                    Repetition"</a>
+                </p>
+                <hr>
+                <p>
+                    Students of the THM have free access to all of the following information via their <b>CAS access</b>
+                    <b>Edu card sets</b> in the pool of THMcards.
+                    These are sets of maps created by THM teachers for their modules.
+                    Students from other universities who register via a network account (Facebook, Twitter or
+                    Google+), you can purchase Edu card sets individually or as a <b>pro subscription</b> (<b>up to WS
+                    18/19 in free trial operation</b>),
+                    see the <a href="{{pathFor route='agb'}}">general terms and conditions</a>.
+                    THM students can create private sets of cards and place them in a pool of cards for the general public.
+                    spare
+                    make available.
+                    Subscribers can change their card sets, their formal and content quality from
+                    another
+                    Instructor who has been tested THM, can also offer them for sale as pro card sets.
+                </p>
+            {{else}}
                 <p>
                     THMcards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der
                     Technischen
@@ -154,8 +241,6 @@
                     einer
                     Lehrperson der THM geprüft wurde, auch als Pro-Kartensätze zum Kauf anbieten.
                 </p>
-            {{else}}
-
             {{/if}}
         </div>
     </div>
@@ -167,14 +252,15 @@
             {{#if isActiveLanguage 'de'}}
                 Wie du auf THMcards effektiv mit Karten lernst
             {{else}}
-
+                How to learn effectively with cards on THMcards
             {{/if}}
         </div>
 
         <div class="panel-body">
             {{#if isActiveLanguage 'de'}}
                 <p>
-                    Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und Weise
+                    Auf THMcards kannst du die Lernkarten und Mitschriften eines Kartensatzes auf verschiedene Art und
+                    Weise
                     lernen:
                 </p>
                 <ul>
@@ -206,15 +292,18 @@
                     wissenschaftlichen Studien, zitiert in unserem <a href="{{pathFor route='about'}}">Paper</a>.
                     Die Methoden beruhen auf dem <b>Prinzip des Verteilten Lernens</b>, also dem Lernen in mehreren
                     Zeitabschnitten.
-                    Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig in
+                    Das unter Studierenden weit verbreitete, aber ineffektive Bulimielernen findet dagegen nur einmalig
+                    in
                     der Woche vor der Klausur statt.
                 </p>
                 <p>
-                    Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger werdenden
+                    Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger
+                    werdenden
                     Abständen zum wiederholten Lernen vor.
                     Nicht erinnerte Karten werden ins erste Fach zurückgelegt.
                     Auf diese Weise werden schwierige Lernkarten häufiger wiederholt als einfache.
-                    Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3), monatlich
+                    Die Intervalle zwischen den Fächern betragen in der Regel: täglich (1→2), wöchentlich (2→3),
+                    monatlich
                     (3→4) und vierteljährlich (4→5) — vergleiche mit den Vergessenskurven in diesem <a
                         href="{{pathFor route='about'}}">Bild</a>.
                     Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten
@@ -227,11 +316,13 @@
                     "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
                 </p>
                 <p>
-                    Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung, wie
+                    Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung,
+                    wie
                     leicht
                     oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem <a
                         href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a> neu
-                    berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie
+                    berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest
+                    sie
                     auf
                     einer 6-stufigen Skala von "Blackout", "Falsche Antwort, aber an die richtige erinnert", "Falsche
                     Antwort, aber
@@ -242,7 +333,80 @@
                     berechnet.
                 </p>
             {{else}}
-
+                <p>
+                    On THMcards you can download the study cards and notes of a set of cards in different ways and in different formats.
+                    melody
+                    to learn:
+                </p>
+                <ul>
+                    <li>
+                        according to the 5-subject learning method by Sebastian Leitner
+                    </li>
+                    <li>
+                        according to the SuperMemo learning method of Piotr Wo? niak
+                    </li>
+                    <li>
+                        according to the difficulty of the matter:
+                        General, Beginners, Advanced, Expert
+                    </li>
+                    <li>
+                        according to the learning objectives of the maps (<a
+                            href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/"
+                            target="_blank">Taxonomie of Anderson et al.</a>):<br/>
+                        Remember, Understand, Apply, Analyze, Evaluate, Create
+                    </li>
+                    <li>
+                        in alphabetical order of the map titles
+                    </li>
+                    <li>
+                        in random order
+                    </li>
+                </ul>
+                <p>
+                    The first two methods are the most effective in the sense of long-term memory, see the
+                    scientific studies, cited in our <a href="{{pathFor route='about'}}">Paper</a>.
+                    The methods are based on the <b>principle of distributed learning</b>, i. e. learning in several ways
+                    Time periods.
+                    In contrast, bulimia learning, which is widespread among students but is ineffective, only takes place once a year.
+                    in
+                    of the week before the exam.
+                </p>
+                <p>
+                    <b>Leitner's 5-subject learning method</b> places cards that have already been learned in certain longer periods of time.
+                    expect
+                    distances for repeated learning.
+                    Cards that are not remembered will be placed in the first compartment.
+                    In this way, difficult flashcards are repeated more often than simple flashcards.
+                    The intervals between subjects are usually: daily (1?2) and weekly (2?3),
+                    once a month
+                    (3?4) and quarterly (4?5) - compare with the forgetting curves in this <a
+                        href="{{pathFor route='about'}}">picture</a>.
+                    Cards in the last compartment are regarded as permanently learned. The maximum daily number of cards to learn
+                    is given by the teacher.
+                </p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                     alt="Leitner-Lernmethode" class="img-responsive center-block"/>
+                <p class="text-center">
+                    Picture source: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia:
+                    "Flash card"</a> — At the beginning all cards are in box 1.
+                </p>
+                <p>
+                    With the <b>SuperMemo learning method from Woźniak</b>, the distances are calculated according to your assessment,
+                    as
+                    mild
+                    or hard to remember the answer, individually new according to the <a
+                        href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2 algorithm</a>
+                    is calculated. You compare your answer with the answer on the back of the card and rate it
+                    she
+                    up
+                    of a 6-stage scale of "Blackout","Wrong answer, but reminiscent of the right one","Wrong one
+                    Answer, but
+                    slightly reminds me of the right answer (after all, yes!)","Correct answer after a long time of deliberation","Right answer after a long period of reflection
+                    Answer after
+                    short hesitation" to "Immediately and correctly". Based on your rating, the time will be set for the next
+                    Repeating the flashcard
+                    is calculated.
+                </p>
             {{/if}}
         </div>
     </div>
@@ -273,7 +437,7 @@
             {{#if isActiveLanguage 'de'}}
                 Häufig gestellte Fragen zu THMcards
             {{else}}
-
+                Frequently asked questions about THMcards
             {{/if}}
         </div>
         <div class="panel-body">
@@ -306,7 +470,8 @@
                                 jederzeit mit einem Klick wiederfinden.
                             </li>
                             <li>
-                                Sie werden dir zum Lernen automatisch zur richtigen Zeit wieder vorgelegt. Push-Nachrichten
+                                Sie werden dir zum Lernen automatisch zur richtigen Zeit wieder vorgelegt.
+                                Push-Nachrichten
                                 auf dein Handy erinnern dich ans Lernen.
                             </li>
                             <li>
@@ -317,7 +482,8 @@
                     <hr/>
                     <li>
                         <p style="color: #9C132D;">
-                            Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen wird?
+                            Was bedeutet es, wenn bei einem Kartensatz auf eine <b>"aktive Lernphase"</b> hingewiesen
+                            wird?
                         </p>
                         <p>
                             Hier hat die Lehrperson die <b>Bonus-Option</b> aktiviert.
@@ -325,9 +491,12 @@
                             von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte,
                             anrechenbar auf die Klausurnote, erwerben.
                             Das hängt natürlich von deiner Dozentin oder deinem Dozenten ab.
-                            Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im Browser
-                            deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum hingewiesen.
-                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach
+                            Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor THMcards im
+                            Browser
+                            deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum
+                            hingewiesen.
+                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten
+                            Fach
                             "Gelernt" befinden, siehe den Button "Mein Lernstand nach Leitner".
                         </p>
                     </li>
@@ -338,7 +507,8 @@
                         </p>
                         <p>
                             Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden
-                            Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen, siehe
+                            Intervallen so wichtig sind, findest du in unserem Paper mit wissenschaftlichen Belegen,
+                            siehe
                             auf der Seite <a href="{{pathFor route='about'}}">THMcards</a>.
                             Schneller und cooler erklärt das aber Daniel Hunold im Video:
                         </p>
@@ -354,7 +524,8 @@
                             Wie kann ich Kartensätze an meine Kommilitonen weitergeben?
                         </p>
                         <p>
-                            Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free" oder
+                            Entweder du veröffentlichst die Kartensätze im "Pool" von THMcards in der Kategorie "Free"
+                            oder
                             du exportierst den einzelnen Kartensatz als Datei.
                         </p>
                     </li>
@@ -368,8 +539,10 @@
                             Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder
                             Tablet schreiben.
                             Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
-                            Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder in
-                            die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift" per
+                            Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder
+                            in
+                            die Cloud von Google &amp; Co. Das Foto kannst du dann auf eine Karte vom Typ "Mitschrift"
+                            per
                             Link einfügen.
                             Die Rückseite dient dir zur Nachbearbeitung der Vorlesung.
                         </p>
@@ -385,14 +558,16 @@
                             Kann ich als Student/in einer anderen Hochschule THMcards nutzen?
                         </p>
                         <p>
-                            Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die <a
-                                href="{{pathFor route='agb'}}">AGB</a>.
+                            Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">THMcards</a> oder die
+                            <a
+                                    href="{{pathFor route='agb'}}">AGB</a>.
                         </p>
                     </li>
                     <hr/>
                     <li>
                         <p style="color: #9C132D;">
-                            Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop installieren
+                            Ich kenne mich mit der Linux-Konsole gut aus. Kann ich THMcards auf meinem Laptop
+                            installieren
                             und anpassen (als <b>"My Cards"</b>) und offline mit den lokal gehaltenen Kartensätzen
                             lernen?
                         </p>
@@ -409,17 +584,168 @@
                             oder Weiterentwicklung von THMcards</b> habe, an wen kann ich mich wenden?
                         </p>
                         <p>
-                            Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a>
+                            Schreibe einfach eine Mail an eine der im <a
+                                href="{{pathFor route='impressum'}}">Impressum</a>
                             genannten Personen.
                             Bug Reports, Feature und Pull Requests kannst du auch auf <a
-                                href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a>
+                                href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                target="_blank">GitHub</a>
                             schreiben.
                         </p>
                     </li>
                     <hr/>
                 </ol>
             {{else}}
-
+                <ol>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Why not learn with paper index cards?
+                        </p>
+                        <br/>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
+                             alt="Lernkartei analog" class="img-responsive center-block"/>
+                        <br/>
+                        <p>
+                            The digital maps lack the haptics of paper, but they have indisputable advantages.
+                            Advantages:
+                        </p>
+                        <ul>
+                            <li>
+                                They are as portable and mobile as your smartphone.
+                            </li>
+                            <li>
+                                They are multimedia: you can insert pictures, podcasts and videos as you like.
+                            </li>
+                            <li>
+                                They represent the most complicated mathematical formulas in LaTeX cleanly.
+                            </li>
+                            <li>
+                                The knowledge from all the modules of your studies is in one place and you can do it in one place.
+                                at any time with one click.
+                            </li>
+                            <li>
+                                They are automatically returned to you at the right time for learning.
+                                push messages
+                                on your phone remind you of learning.
+                            </li>
+                            <li>
+                                They cost nothing.
+                            </li>
+                        </ul>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            What does it mean when a set of cards refers to an <b>"active learning phase"?</b>
+                        </p>
+                        <p>
+                            Here the teacher has activated the <b>bonus option</b>.
+                            If you're using the <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">fivefold method,
+                            of Sebastian Leitner's</a> cards regularly, you can earn bonus points,
+                            creditable to the examination grade.
+                            That depends on your teacher, of course.
+                            In this case, you will be sent a <b>message</b> to your mobile phone (if you have previously used THMcards in the
+                            browser
+                            on your smartphone) and/or by <b>e-mail</b> to your study workload.
+                            is indicated.
+                            You will only receive the bonus if, at the end of the active learning phase, all cards in the last
+                            compartment
+                            "Learned", see the button "My level according to Leitner".
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Why should one day learn cards be repeated at ever longer intervals?
+                        </p>
+                        <p>
+                            A detailed explanation as to why <b>repetitions of the lessons learnt</b> in longer periods of time are necessary.
+                            Intervals are so important, you will find in our paper with scientific evidence,
+                            see
+                            on the <a href="{{pathFor route='about'}}">THMcards</a> page.
+                            But Daniel Hunold explains this faster and cooler in the video:
+                        </p>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Is62XAmgrRQ?rel=0"
+                                    frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            How can I pass on sets of cards to my fellow students?
+                        </p>
+                        <p>
+                            Either you publish the sets of cards in the "Pool" of THMcards in the category "Free".
+                            or
+                            you export the individual deck as a file.
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            I have seen that there is also the type of <b>card "Mitschrift"</b>. How can I get a
+                            Write your lecture with THMcards?
+                        </p>
+                        <p>
+                            As a digitally affine person, as a "digital native", you could take notes with your laptop or computer.
+                            Write tablet.
+                            But handwriting with colours and pictures is better, as Daniel Hunold explains in the video.
+                            After the lecture, take a picture of your transcript and upload it to your dropbox or your computer.
+                            in
+                            the cloud of Google &amp; Co. You can put the photo on a "transcript" type card.
+                            by
+                            Insert link.
+                            The back of the page is used for post-processing the lecture.
+                        </p>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bunphvhgd9M?rel=0"
+                                    frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            Can I use THMcards as a student at another university?
+                        </p>
+                        <p>
+                            Yes, see the last paragraph under <a href="{{pathFor route='about'}}">THMcards</a> or the
+                            <a href="{{pathFor route='agb'}}">AGB</a>
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            I know a lot about the Linux console. Can I use THMcards on my laptop?
+                            install
+                            and customize (as <b>"My Cards"</b>) and offline with the locally held decks of cards
+                            to learn?
+                        </p>
+                        <p>
+                            Yes, THMcards is Open Source. An <a
+                                href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">installation guide</a>
+                            can be found at THM-Gitlab.
+                        </p>
+                    </li>
+                    <hr/>
+                    <li>
+                        <p style="color: #9C132D;">
+                            As a lecturer, student or open source programmer, if I have a question about <b>using
+                            or further development of THMcards</b>, who can I contact?
+                        </p>
+                        <p>
+                            Just send an email to one of the persons listed in the <a
+                                href="{{pathFor route='impressum'}}">legal notice.</a>
+                            Bug reports, features and pull requests can also be found on <a
+                                href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                target="_blank">GitHub</a>
+                            write.
+                        </p>
+                    </li>
+                    <hr/>
+                </ol>
             {{/if}}
         </div>
     </div>
@@ -431,7 +757,7 @@
             {{#if isActiveLanguage 'de'}}
                 Impressum gemäß Telemediengesetz
             {{else}}
-
+                Imprint according to Telemediengesetz
             {{/if}}
         </div>
 
@@ -440,7 +766,8 @@
                 <h4>Dienstanbieter</h4>
                 <p>
                     Der Betrieb der Webanwendung <b>THMcards</b> unter <a href="https://arsnova.cards" target="_blank">
-                    arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der TransMIT-Gesellschaft
+                    arsnova.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der
+                    TransMIT-Gesellschaft
                     für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
                 </p>
                 <p>
@@ -482,7 +809,51 @@
                                                     target="_blank">GitHub</a>
                 </p>
             {{else}}
-
+                <h4>Service provider</h4>
+                <p>
+                    The operation of the web application <b>THMcards</b> under <a href="https://arsnova.cards" target="_blank">
+                    arsnova.cards </a> is a free service (software as a service) of the
+                    TransMIT company
+                    for Technologietransfer mbH, project area for mobile applications.
+                </p>
+                <p>
+                    Kerkrader Straße 3 <br/>
+                    D-35394 Gießen
+                </p>
+                <p>
+                    c/o THM – Technische Hochschule Mittelhessen <br/>
+                    Faculty MNI - Mathematics, Natural Sciences and Computer Science <br/>
+                    Prof. Dr.-Ing. habil. Klaus Quibeldey-Cirkel <br/>
+                    Chair of Software Engineering
+                </p>
+                <p>
+                    Wiesenstraße 14 <br/>
+                    D-35390 Gießen
+                </p>
+                <p>
+                    Phone: +49 641 309-2450 <br/>
+                    Email: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>
+                </p>
+                <p>
+                    Seat of the company: Gießen <br/>
+                    Web site: <a href="https://www.transmit.de" target="_blank">https://www.transmit.de</a><br/>
+                    Legal status: GmbH <br/>
+                    District court: Gießen HRB 3036 <br/>
+                    USt-IdNr.: DE 188 685 037
+                </p>
+                <hr/>
+                <h4>Support</h4>
+                <p>
+                    Technical questions about WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
+                </p>
+                <p>
+                    Questions on the conception and didactic use of the THMcards learning platform: <a
+                        href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
+                </p>
+                <p>
+                    Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                                    target="_blank">GitHub</a>
+                </p>
             {{/if}}
         </div>
     </div>
@@ -494,7 +865,7 @@
             {{#if isActiveLanguage 'de'}}
                 Allgemeine Geschäftsbestimmungen
             {{else}}
-
+                General terms and conditions of business
             {{/if}}
         </div>
         <div class="panel-body">
@@ -502,7 +873,8 @@
                 <h4>Nutzungsbestimmungen</h4>
                 <p>
                 <ul>
-                    <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw. dem
+                    <li>Die Nutzung von THMcards wird durch eine rechtliche Vereinbarung zwischen der Benutzerin bzw.
+                        dem
                         Benutzer
                         (im Folgenden der besseren Lesbarkeit wegen verkürzt "Benutzer" genannt) und
                         THMcards geregelt. Die Webapp THMcards ist eine kostenlose Dienstleistung der
@@ -517,7 +889,8 @@
                         und steht unter der <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU
                             General Public License Version 3</a>.
                     </li>
-                    <li>Neben dem eigentlichen Lernkartendienst bietet THMcards optional die Möglichkeit, kostenpflichtige
+                    <li>Neben dem eigentlichen Lernkartendienst bietet THMcards optional die Möglichkeit,
+                        kostenpflichtige
                         Lerninhalte von anderen Benutzern der Plattform zu nutzen. Die folgenden Geschäftsbedingungen
                         sollen das Rechtsverhältnis zwischen dem Benutzer, THMcards und den Autoren, die
                         kostenpflichtige Lerninhalte anbieten, regeln.
@@ -562,7 +935,8 @@
                 <p>
                 <ul>
                     <li>Eine ununterbrochene Verfügbarkeit von THMcards ist technisch nicht möglich. Wartungs- und
-                        Update-Maßnahmen des Dienstes sowie unvorhersehbare Störungen, wie z. B. Ausfälle beim Internet-,
+                        Update-Maßnahmen des Dienstes sowie unvorhersehbare Störungen, wie z. B. Ausfälle beim
+                        Internet-,
                         Server- oder Stromprovider, können zu vorübergehenden Behinderungen der Erreichbarkeit des
                         Dienstes führen. THMcards ist bemüht, den Online-Dienst zuverlässig und störungsfrei wie möglich
                         zu betreiben, soweit dies technisch möglich ist.
@@ -623,8 +997,9 @@
                         das Recht vor, diese Inhalte zu löschen.
                     </li>
                     <li>Lerninhalte, die von Benutzern selbstständig erarbeitetet und öffentlich zur Verfügung gestellt
-                        wurden, dürfen gemäß der im Kartensatz angegebenen <a href="https://creativecommons.org/licenses/"
-                                                                              target="_blank">Creative Commons License</a>
+                        wurden, dürfen gemäß der im Kartensatz angegebenen <a
+                                href="https://creativecommons.org/licenses/"
+                                target="_blank">Creative Commons License</a>
                         weiterverwendet werden.
                     </li>
                     <li>Bei nicht veröffentlichten Lerninhalten, die nicht das Urheberrecht Dritter verletzen, liegt das
@@ -649,7 +1024,8 @@
                         jeweiligen Vertragsabschlusses gültigen Preis für eine Leistungsbeschreibung zahlt.
                     </li>
                     <li>Die Gebühren für die Pro-Version und der kostenpflichtigen Lerninhalte ergeben sich aus der zum
-                        Zeitpunkt des jeweiligen Vertragsabschlusses gültigen Preis- und Leistungsbeschreibung bzw. aus dem
+                        Zeitpunkt des jeweiligen Vertragsabschlusses gültigen Preis- und Leistungsbeschreibung bzw. aus
+                        dem
                         Preis der käuflichen Lerninhalte und enthalten die gesetzliche Mehrwertsteuer.
                     </li>
                     <li>Die Laufzeit der Pro-Version wird bis zur Kündigung automatisch jeden Monat erneuert.</li>
@@ -740,7 +1116,8 @@
                     <li>Die Benutzer von THMcards werden über E-Mail oder durch eine Nachricht im System über Änderungen
                         der Allgemeinen Geschäftsbedingungen informiert. Die Änderungen werden wirksam, wenn der
                         Benutzer nicht innerhalb 14 Tage nach Zugang der Information den Änderungen widerspricht. In der
-                        E-Mail oder Nachricht wird gesondert auf die Widerspruchsmöglichkeit und deren Frist hingewiesen.
+                        E-Mail oder Nachricht wird gesondert auf die Widerspruchsmöglichkeit und deren Frist
+                        hingewiesen.
                     </li>
                     <li>Im Übrigen gelten die gesetzlichen Gewährleistungsvorschriften.</li>
                     <li>THMcards behält sich das Recht vor, bei Widerspruch der geänderten Geschäftsbedingungen das
@@ -764,7 +1141,277 @@
                 <br/>
                 <p>Stand: 10.01.2018</p>
             {{else}}
-
+                <h4>Terms of use</h4>
+                <p>
+                <ul>
+                    <li>The use of THMcards is governed by a legal agreement between the user and THMcards.
+                        that
+                        user
+                        (hereinafter referred to as "User" for the sake of better readability) and
+                        THMcards. The Webapp THMcards is a free service of the
+                        TransMIT-Gesellschaft für Technologietransfer mbH, Project area for mobile applications using the
+                        Address: Kerkrader Straße 3,35394 Gießen, Germany.
+                    </li>
+                    <li>All students of the Technical University of Mittelhessen, THM, may apply for THMcards for their
+                        purposes, as long as they do not violate German or EU law.
+                    </li>
+                    <li>THMcards is a free web service (Software as a Service). The software is <a
+                            href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open Source</a>
+                        and is located under the GNU
+                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU
+                            General Public License Version 3</a>.
+                    </li>
+                    <li>In addition to the actual flashcard service, THMcards also offers the option of a flashcard service,
+                        chargeable
+                        use learning content from other users of the platform. The following terms and conditions
+                        the legal relationship between the user, THMcards and the authors, who are responsible for the content of this web site.
+                        offer and regulate learning content that is subject to a fee.
+                    </li>
+                    <li>In order to use THMcards, the contract requirement must be accepted. If the user should
+                        does not accept the contract condition, this service will not be activated.
+                    </li>
+                    <li>The contract is accepted by the user, if he/she is logged on to the system for the first time when he/she is logged on to the system.
+                        General Terms and Conditions with the "Accept" button.
+                    </li>
+                    <li>With the acceptance of the contract, THMcards accepts that in case of important changes,
+                        Announcements or when starting a learning phase e-mails or messages integrated in the system
+                        to the user.
+                    </li>
+                    <li>If THMcards card sets are purchased (optional) from THMcards, the user and
+                        THMcards concludes a legally valid contract. After payment, the selected
+                        map sets can be fully viewed and learned by the user.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Rules for using THMcards</h4>
+                <p>
+                <ul>
+                    <li>
+                        When using THMcards, the user assures that
+                        <ul>
+                            <li>all information provided by him/her in the system is truthful and correct,</li>
+                            <li>does not violate any applicable laws,</li>
+                            <li>he is responsible for everything that happens under the user name.</li>
+                        </ul>
+                    </li>
+                    <li>There are no racist, inflammatory or insulting statements in the use of this website.
+                        in any form possible here.
+                    </li>
+                    <li>THMcards reserves the right to block users who do not abide by the rules.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Reliability and availability of THMcards</h4>
+                <p>
+                <ul>
+                    <li>An uninterrupted availability of THMcards is technically not possible. Maintenance and
+                        Update measures of the service as well as unforeseeable disruptions, e. g. breakdowns in the event of a system failure.
+                        Internet,
+                        Server or power provider, may cause temporary disruptions to the accessibility of the site.
+                        of my service. THMcards makes every effort to ensure that the online service is as reliable and trouble-free as possible.
+                        as far as technically possible.
+                    </li>
+                    <li>In the event of a service failure, each user is responsible for his or her own content.
+                        responsible. For this purpose, the export function of the respective card set should be activated regularly.
+                        to ensure your own content should THMcards fail.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Passwords and account security</h4>
+                <p>
+                <ul>
+                    <li>Each user is solely responsible for maintaining the confidentiality of his or her password.
+                        responsible.
+                    </li>
+                    <li>Should a user become aware that the user account is being used unauthorized by a
+                        If THMcards is used by third parties, he is obliged to inform THMcards immediately.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Protection of privacy</h4>
+                <p>
+                <ul>
+                    <li>THMcards respects the privacy of its users. All data protection regulations
+                        are adhered to. Personal data such as e-mail address or login details will not be passed on to third parties.
+                        third parties, except in cases of a legal obligation.
+                    </li>
+                    <li>Saved learning statistics and batches of a user are also protected as long as
+                        the user does not explicitly allow other users of THMcards to view it
+                        (publication of the user profile). This is done implicitly if a user should call the
+                        attain the role of a "Pro-User" or "Lecturer-User".
+                    </li>
+                    <li>When deleting a user account of THMcards all personal data and private data will be deleted.
+                        card sets deleted. The user account can be deleted under the profile settings
+                        will be.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Content on THMcards</h4>
+                <p>
+                <ul>
+                    <li>Every user of THMcards is responsible for all content that he enters and saves (e. g. texts),
+                        pictures), self responsible.
+                    </li>
+                    <li>Each user confirms to THMcards that he/she is aware of all rights, powers of attorney and rights of attorney.
+                        authorizations to publish its contents.
+                    </li>
+                    <li>Each user acknowledges that he/she is solely responsible for all content that he/she has provided during the use of
+                        THMcards creates, transmits or displays and the effects of its actions.
+                        (including any loss or damage incurred by THMcards or third parties as a result thereof)
+                        is responsible.
+                    </li>
+                    <li>Should a user create content that violates applicable law, THMcards reserves the right to
+                        the right to delete these contents.
+                    </li>
+                    <li>Learning content created by users independently and made available to the public
+                        according to the <a
+                                href="https://creativecommons.org/licenses/"
+                                target="_blank">Creative Commons License</a> stated in the card set.
+                        can be further used.
+                    </li>
+                    <li>In the case of unpublished learning content that does not infringe the copyright of third parties, the following applies
+                        Copyright by the user.
+                    </li>
+                    <li>Every user is aware that published learning content from other users of THMcards
+                        can be re-used. Since the published contents are protected by copyright after deletion of the user
+                        each user declares his or her agreement to the fact that the
+                        may continue to be used by other users and others for the sole purpose of providing content to third parties.
+                        can be provided.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>THMcards FREE and THMcards PRO (currently in free trial operation)</h4>
+                <p>
+                <ul>
+                    <li>THMcards can be used free of charge in the free version, but not all learning contents of the THMcards can be used.
+                        platform can be viewed.
+                    </li>
+                    <li>The Pro-version of THMcards is available as soon as the user has received the THMcards at the time of installation.
+                        valid price for a description of performance.
+                    </li>
+                    <li>The fees for the Pro version and the paid learning content are based on the amount of money that you have paid for.
+                        valid price and service description valid at the time the respective contract is concluded or from
+                        that
+                        Price of the learning content available for purchase and includes the statutory value added tax.
+                    </li>
+                    <li>The duration of the Pro version is automatically renewed every month until cancellation.</li>
+                    <li>If a user of THMcards decides for the free version after the end of the Pro version,
+                        agrees that he/she can only use THMcards when he/she has received the
+                        performance description of the free version fulfilled.
+                    </li>
+                    <li>THMcards uses the services of third parties in order to make purchases or financial transactions.
+                        to be processed. These are clearly marked in the ordering process.
+                    </li>
+                    <li>The Terms and Conditions shall remain in effect until terminated by the User or THMcards
+                        will be.
+                    </li>
+                    <li>The cancellation of the free version of THMcards is done by deleting the account. This is
+                        under the profile settings.
+                    </li>
+                    <li>The Pro version can be cancelled by the user at any time and has to be cancelled by the end of the trial period.
+                        The option to use THMcards is still available for monthly billing periods.
+                    </li>
+                    <li>THMcards does not grant refunds or credits for incomplete months.
+                        or unused learning content.
+                    </li>
+                    <li>
+                        THMcards may terminate the contract with the user at any time, if:
+                        <ul>
+                            <li>the user violates the terms of the contract,</li>
+                            <li>THMcards is no longer operated by the provider.</li>
+                        </ul>
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Right of withdrawal</h4>
+                <p>
+                <ul>
+                    <li>The user has the right to withdraw his declaration of contract within 14 days without giving any details of
+                        reasons to revoke. The period begins from the date of conclusion of the contract.
+                    </li>
+                    <li>In order to exercise the revocation, it is necessary to have a clear statement of the decision to withdraw from the contract.
+                        can be sent on a permanent data carrier (e. g. letter, fax, e-mail).
+                        The declaration must be sent to the following address: Technical University Mittelhessen,
+                        Wiesenstraße 14,35390 Gießen, Germany, E-Mail: <a
+                                href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>.
+                    </li>
+                    <li>In order to comply with the revocation period, it is sufficient to send the notice of revocation in good time.
+                        Exercise of the right of withdrawal before expiry of the cancellation period.
+                    </li>
+                    <li>In the event of an effective revocation, the services received by both parties must be returned,
+                        as far as possible (deletion of the user).
+                    </li>
+                    <li>The refund of services received must be made within 14 days. The period begins
+                        in the case of the user with the dispatch of the revocation declaration, for us with the receipt. For the
+                        We will use the same method of payment as that used for the original payment.
+                        transaction unless expressly agreed otherwise. E flat
+                        under no circumstances will any further fees be charged upon repayment.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Warranty</h4>
+                <p>
+                <ul>
+                    <li>THMcards does not accept any responsibility for the learning content and content provided by users.
+                        does not adopt it as its own.
+                    </li>
+                    <li>THMcards offers only the technical service for creating, storing and exchanging data.
+                        of the created learning content.
+                    </li>
+                    <li>A permanent review of all posted contents for possible legal infringements is not permitted.
+                        and therefore does not take place.
+                    </li>
+                    <li>THMcards reacts to legal infringements after a justified reference and reserves the right to take legal action, criminal or criminal offence.
+                        to delete the contents of liability law without delay.
+                    </li>
+                    <li>THMcards does not guarantee the correctness of the learning content. All All
+                        Learning content is created and/or modified by users of the system. A review
+                        THMcards cannot be held responsible for correctness.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Changes to the Contractual Terms and Conditions</h4>
+                <p>
+                <ul>
+                    <li>THMcards reserves the right to change these terms and conditions at any time.
+                        to be carried out.
+                    </li>
+                    <li>The users of THMcards are informed by e-mail or by a message in the system about changes to the system.
+                        of the General Terms and Conditions. The changes take effect when the
+                        User does not object to the changes within 14 days after receipt of the information. In the
+                        E-mail or message will be sent separately for the possibility of objection and its deadline.
+                        is indicated.
+                    </li>
+                    <li>In all other respects, the statutory warranty provisions shall apply.</li>
+                    <li>THMcards reserves the right, in case of contradiction of the changed terms and conditions of business, to change the terms and conditions.
+                        terminate and terminate the user relationship. The user has the right to change the
+                        Contractual relationship within 4 weeks after amendment of the General Terms and Conditions of Business until
+                        by the end of next month.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <h4>Other conditions</h4>
+                <p>
+                <ul>
+                    <li>THMcards does not guarantee the learning and examination success.</li>
+                    <li>If a user violates these general terms and conditions, THMcards reserves the right to change these terms and conditions.
+                        right to delete content posted by this user. In case of repeated violation of the
+                        user, the corresponding user account is blocked.
+                    </li>
+                </ul>
+                </p>
+                <br/>
+                <p>Last update: 10.01.2018</p>
             {{/if}}
         </div>
     </div>
@@ -776,7 +1423,7 @@
             {{#if isActiveLanguage 'de'}}
                 Datenschutzerklärung und Verfahrensverzeichnis
             {{else}}
-
+                Privacy policy and procedures
             {{/if}}
         </div>
         <div class="panel-body">
@@ -804,7 +1451,8 @@
                     Plattform nutzt. Dazu gehört auch der Anmeldename sowie Anmeldeservice bei der Registrierung, das
                     Erstellen und Veröffentlichen von Lerninhalten und das Versenden von Nachrichten bzw. die Meldungen
                     an die Administratoren. Dies können Informationen über die von Benutzern bereitgestellten Inhalte
-                    sein oder solche, die in ihnen enthalten sind, z. B. das Datum, an dem ein Lerninhalt erstellt wurde.
+                    sein oder solche, die in ihnen enthalten sind, z. B. das Datum, an dem ein Lerninhalt erstellt
+                    wurde.
                     Des Weiteren sammelt THMcards Informationen über das Bereitstellen von Lerninhalten, das
                     Lernverhalten im Rahmen von Lernphasen sowie die Bewertungen.
                 </p>
@@ -852,7 +1500,8 @@
                     Es wurden umfangreiche technische und betriebliche Schutzvorkehrungen getroffen, um Ihre Daten vor
                     zufälligen oder vorsätzlichen Manipulationen, Verlust, Zerstörung oder dem Zugriff unberechtigter
                     Personen zu schützen. Die Sicherheitsverfahren werden regelmäßig überprüft und dem technologischen
-                    Fortschritt angepasst. Datenübertragungen im Internet (z. B. bei der Kommunikation per E-Mail) können
+                    Fortschritt angepasst. Datenübertragungen im Internet (z. B. bei der Kommunikation per E-Mail)
+                    können
                     jedoch Sicherheitslücken aufweisen, sodass ein lückenloser Schutz der Daten vor dem Zugriff durch
                     Dritte nicht möglich ist.
                 </p>
@@ -924,7 +1573,149 @@
                 <br/>
                 <p>Stand: 10.01.2018</p>
             {{else}}
-
+                <h4>Guiding principle</h4>
+                <p>
+                    Your personal data will be treated confidentially. All actions are directed to the
+                    legal foundations of the Hessian Data Protection Act (HDSG), the Telemedia Act (TMG) and
+                    of this data protection declaration. This is done by TransMIT GmH as the operator of THMcards
+                    guaranteed
+                </p>
+                <br/>
+                <h4>Collection and use of data</h4>
+                <p>
+                    We collect, process and use personal data only insofar as they are necessary for the justification,
+                    content design and processing of your order are necessary (stock data).
+                    Collecting and processing personal data on the use of THMcards (usage data)
+                    and we only use it to the extent necessary to inform the user about the use of the system.
+                    allow or account for.
+                </p>
+                <br/>
+                <h4>Application data</h4>
+                <p>
+                    THMcards collects content and other information provided by the user when using the THMcards.
+                    platform. This also includes the login name and registration service during the registration process, the
+                    Creating and publishing learning content and sending messages or messages
+                    to the administrators. This may include information about the content provided by users, such as
+                    or those contained in them, such as the date on which a learning content is created.
+                    was.
+                    In addition, THMcards collects information about the provision of learning content that can be used to
+                    Learning behaviour in the context of learning phases and evaluations.
+                </p>
+                <br/>
+                <h4>Access data</h4>
+                <p>
+                    Personal data is only collected by THMcards to the technically necessary extent. Outside
+                    Login name and login service of the user as well as date and time of registration will not be used.
+                    personal data is stored.
+                </p>
+                <br/>
+                <h4>Web server log files</h4>
+                <p>
+                    We automatically collect and store information in log files that your browser automatically sends to us.
+                    transmitted. These are:
+                <ul>
+                    <li>Browser type / browser version</li>
+                    <li>operating system used</li>
+                    <li>Referrer URL</li>
+                    <li>Host name of the accessing computer</li>
+                    <li>Time of the server request</li>
+                </ul>
+                These data cannot be attributed to specific persons. A combination of these data with others
+                Data sources are not used.
+                </p>
+                <br/>
+                <h4>Cookies</h4>
+                <p>
+                    Some of the Internet pages use so-called cookies. These are used to make our offer
+                    more user-friendly, effective and safer. Cookies are small text files that are stored on your computer.
+                    on your computer and stored by your browser. The majority of the
+                    Cookies are so-called "session cookies". They are automatically deleted at the end of your visit.
+                    Cookies do not affect your computer and do not contain viruses.
+                </p>
+                <p>
+                    You can set your browser in such a way that you will be informed about the setting of cookies and that your browser will not accept cookies.
+                    allow them only in individual cases, the acceptance of cookies for certain cases or in general.
+                    and activate the automatic deletion of cookies when you close your browser.
+                    The deactivation of cookies can lead to restrictions on the functionality of the platform.
+                    come.
+                </p>
+                <br/>
+                <h4>Precept</h4>
+                <p>
+                    Extensive technical and operational precautions have been taken to protect your data from unauthorized access.
+                    accidental or intentional manipulation, loss, destruction or access to unauthorized data by unauthorized persons.
+                    to protect people. The safety procedures are regularly reviewed and adapted to the technological progress of the company.
+                    Progress adapted. Data transmissions on the Internet (e. g. when communicating via e-mail)
+                    be able
+                    However, there are security gaps, which means that data is completely protected against access by
+                    third party is not possible.
+                </p>
+                <br/>
+                <h4>Data transfers to third parties</h4>
+                <p>
+                    Your data will not be passed on to third parties unless the operators of THMcards
+                    are legally obliged to do so. As far as external service providers with your personal data in
+                    contact is ensured by legal, technical and organizational measures as well as by
+                    regular checks to ensure that they comply with the provisions of the data protection laws.
+                </p>
+                <br/>
+                <h4>Links to websites of other providers</h4>
+                <p>
+                    THMcards may contain links to websites of other providers to which this privacy statement may refer.
+                    is not related. As far as with the use of the Internet pages of other providers the collection, processing and use of data is prohibited.
+                    or use of personal data, please note the data protection information provided by the
+                    respective provider.
+                </p>
+                <br/>
+                <h4>Integration of third-party services and content</h4>
+                <p>
+                    It is possible that the learning content offered by THMcards may contain third party content, such as videos
+                    of YouTube and Vimeo or graphics from other websites. This presupposes,
+                    that the providers of this content perceive the IP address of the user. Without the IP address
+                    the contents cannot be sent to the browser.
+                </p>
+                <br/>
+                <h4>Payment information</h4>
+                <p>
+                    If THMcards are used for purchases or financial transactions (for example, if a
+                    card set or a subscription is purchased), THMcards does not charge any fees for the purchase of a card set.
+                    Payment information saved. All transactions are handled by the <a href="https://www.braintreepayments.com/en-de" target="_blank">Braintree</a>  service.
+                    It collects all account and authentication information and billing information.
+                </p>
+                <br/>
+                <h4>Other data acquisition</h4>
+                <p>
+                    Further personal data will only be collected if you provide this information voluntarily, for example in the
+                    frame of a teacher request. Insofar as you provide us with personal data
+                    will only be closed for the purpose of answering your enquiries and processing with you.
+                    contracts, for the evaluation of the learning phases and for technical administration.
+                    processed.
+                </p>
+                <br/>
+                <h4>Right of objection and right to information</h4>
+                <p>
+                    You have the right to free information about your stored personal data at any time.
+                    data, their origin and recipient, the purpose of the data processing as well as a right to
+                    Correction, blocking or deletion of this data.
+                </p>
+                <p>
+                    If you have any questions or suggestions, please contact us at the following e-mail address or in the imprint
+                    contact details provided: <a href="mailto:klaus.quibeldey-cirkel@transmit.de">klaus.quibeldey-cirkel@transmit.de</a>.
+                </p>
+                <br/>
+                <h4>Procedure log</h4>
+                <p>
+                    An overview of the data stored in THMcards can be found in the
+                    <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Procedures directory</a>.
+                </p>
+                <br/>
+                <h4>Changes to the Privacy Policy</h4>
+                <p>
+                    We reserve the right to update this data protection declaration at any time in compliance with the applicable laws and regulations.
+                    privacy policy.
+                </p>
+                <br/>
+                <p>Last update: 10.01.2018</p>
             {{/if}}
         </div>
     </div>
