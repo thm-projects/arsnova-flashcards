@@ -35,6 +35,7 @@
     "carddecks": "Meine Kartensätze",
     "learndecks": "Lernpensum",
     "pool": "Themen",
+    "course": "Kurs",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Suche",
@@ -629,6 +630,13 @@
         "back": "Kontrollfrage",
         "hint": "Videoquelle"
       }
+    }
+  },
+  "course": {
+    "list": {
+      "selectCourse": "Kurs auswählen",
+      "createCourse": "Kurs erstellen",
+      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt."
     }
   },
   "permission": "Zugriff verweigert",

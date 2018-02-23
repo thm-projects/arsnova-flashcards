@@ -43,6 +43,7 @@
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
     "pool": "Topic Pool",
+    "course": "Course",
     "myprofile": "My profile",
     "billing": "Billing",
     "search": "Search",
@@ -662,6 +663,13 @@
         "back": "Back",
         "hint": "Hint"
       }
+    }
+  },
+  "course": {
+    "list": {
+      "selectCourse": "Select Course",
+      "createCourse": "Create a course",
+      "empty": "You have not yet created or selected a course."
     }
   },
   "permission": "Permission denied",

@@ -1,0 +1,198 @@
+//colors
+$color_mountain_mist_approx: rgb(153, 153, 153);
+$white: rgb(255, 255, 255);
+$black_50: rgba(0, 0, 0, 0.5);
+$color_storm_dust_approx: rgb(102, 102, 102);
+$color_orange_pool: rgb(255, 153, 51);
+$color_item_separator: #b2b2b2;
+
+//fonts
+$font_0: Georgia;
+$font_1: serif;
+
+hr {
+  margin: 10px 0;
+}
+
+.ellipsis > *, .ellipsis {
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+
+.cardsetHeaderTop {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: $white;
+}
+
+.cardsetHeaderBottom {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  background-color: $color_orange_pool;
+  color: $white;
+}
+
+.cardsetLabel {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: $color_mountain_mist_approx;
+  text-shadow: 0 1px 0 $black_50;
+  text-transform: uppercase;
+}
+
+.emptyCellList {
+  padding-top: 33px !important;
+}
+
+.emptyTextList {
+  color: $color_storm_dust_approx;
+  font-family: $font_0, $font_1;
+  font-style: italic;
+}
+
+.btn-newSet {
+  margin-bottom: 27px;
+  margin-top: 20px;
+}
+
+.cardsetBadge {
+  float: right;
+}
+
+#newSetDescription {
+  resize: none;
+}
+
+.table th {
+  background-color: $white;
+}
+
+ul.nav-list li.active {
+  font-weight: bold;
+}
+
+.module {
+  margin-left: 0.1em !important;
+  margin-right: 0.1em !important;
+}
+
+#info_license img {
+  width: 20px;
+  margin-right: 3px;
+}
+
+.longButton {
+  text-align: left;
+  padding-left: 15px;
+  width: calc(100% - 25px);
+  margin-bottom: 7px;
+}
+
+.dropdown-menu {
+  margin-left: 12px;
+}
+
+.btn-group {
+  margin: 10px 0px;
+}
+
+.btn-toolbar .btn {
+  padding: 10px 17px;
+}
+
+.btn-group ul {
+  padding: 0px;
+  li {
+    padding: 10px 0px;
+  }
+}
+
+input, textarea {
+  padding: 0px 5px !important;
+}
+
+.form-control {
+  margin-bottom: -1px !important;
+}
+
+.glyphicon-plus {
+  color: $white;
+}
+
+#learn-list-region, #set-list-region {
+  .empty-list {
+    background-color: $white;
+    padding-top: 10px;
+  }
+  .deleteLearned {
+    cursor: pointer;
+  }
+}
+
+.shuffleButton {
+  margin: -5px 0 0 0;
+}
+
+@media (min-width: 992px) {
+  #set-list-region .tip-content, #learn-list-region .tip-content {
+    margin-left: 285px;
+  }
+}
+
+.label-free {
+  background-color: $color_free_btn;
+}
+
+.label-edu {
+  background-color: $color_edu_btn;
+}
+
+.label-pro {
+  background-color: $color_pro_btn;
+}
+
+.label-private {
+  background-color: $color_thm_red;
+}
+
+.licenseInfoCreate {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 992px) {
+  #removeShuffledCards {
+    float: right;
+  }
+}
+
+.labelLearning {
+  font-size: 80% !important;
+}
+
+.moduleRadioButtonGroup {
+  margin-top: -10px;
+}
+
+.moduleRadioButtonLabel {
+  color: $white !important;
+}
+
+@media (max-width: 767px) {
+  .radio-inline {
+    margin-left: 0!important;
+  }
+}
