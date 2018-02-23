@@ -71,16 +71,16 @@
                                                                                                               2
                                                                                                               4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
-                <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
-                                                                                                              2
-                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                        tabindex="7">{{getBackTitle}}</button>
                 {{#if isCardType 0}}
                     <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
                             tabindex="9">{{_
                             "card.cardType0.lecture"}}</button>
                 {{/if}}
+                <button id="editBack" type="button"
+                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                                                                                                              2
+                                                                                                              4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                        tabindex="7">{{getBackTitle}}</button>
                 {{#unless isCardType 1}}
                     {{#unless isCardType 3}}
                         <button id="editHint" type="button"
@@ -301,7 +301,8 @@
 
 <template name="contentEditor">
     <form>
-        <textarea id="contentEditor" name="content" placeholder="" data-provide="markdown" rows="10" tabindex="5">{{front}}</textarea>
+        <textarea id="contentEditor" name="content" placeholder="" data-provide="markdown" rows="10"
+                  tabindex="5">{{front}}</textarea>
     </form>
 </template>
 
@@ -370,35 +371,35 @@
                                             {{/if}}
                                         {{/if}}
                                         {{#unless isEditMode}}
-                                                {{#if isCardType 0}}
-                                                    {{#if lecture}}
-                                                        <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-                                                        </a>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if isCardType 0 2 4}}
-                                                    {{#if hint}}
-                                                        <a href="#" id="showHint">
-                                                    <span class="glyphicon glyphicon-info-sign"
-                                                          data-id="{{_id}}" data-type="cardNavigation"
-                                                          data-toggle="modal"
-                                                          data-target="#showHintModal"></span>
-                                                        </a>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if isCardType 1}}
+                                            {{#if isCardType 0}}
+                                                {{#if lecture}}
                                                     <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                    <span class="glyphicon glyphicon glyphicon-education"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
                                                     </a>
                                                 {{/if}}
-                                            {{/unless}}
+                                            {{/if}}
+                                            {{#if isCardType 0 2 4}}
+                                                {{#if hint}}
+                                                    <a href="#" id="showHint">
+                                                    <span class="glyphicon glyphicon-info-sign"
+                                                          data-id="{{_id}}" data-type="cardNavigation"
+                                                          data-toggle="modal"
+                                                          data-target="#showHintModal"></span>
+                                                    </a>
+                                                {{/if}}
+                                            {{/if}}
+                                            {{#if isCardType 1}}
+                                                <a href="#" id="showLecture">
+                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                          data-type="cardNavigation"
+                                                          data-toggle="collapse"
+                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                </a>
+                                            {{/if}}
+                                        {{/unless}}
                                     </div>
                                     <div class="cardNumber">
                                         {{#if isCardset}}
@@ -430,7 +431,8 @@
                                                     isCardType 2}}{{_ "card.cardType2.back"}}{{else}}{{#if
                                                     isCardType 3}}{{_ "card.cardType3.back"}}{{else}}{{#if
                                                     isCardType 4}}{{_ "card.cardType4.back"}}{{else}}{{_
-                                                    "card.cardType0.back"}}{{/if}}{{/if}}{{/if}})</span>{{/unless}}</span><br>
+                                                    "card.cardType0.back"}}{{/if}}{{/if}}{{/if}}
+                                                )</span>{{/unless}}</span><br>
                                         {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
                                         <strong>{{getDifficultyName}}</strong>
                                         {{#if isCardType 2}}
@@ -493,7 +495,8 @@
                                         isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
-                                        difficulty cardType backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
+                                        difficulty cardType
+                                        backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if isCardType 1}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditMode}}
