@@ -36,6 +36,10 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
+Template.registerHelper("isActiveLanguage", function (language) {
+	return Session.get('activeLanguage') === language;
+});
+
 
 Template.registerHelper("getNextCardTime", function () {
 	let nextCardDate = Leitner.findOne({

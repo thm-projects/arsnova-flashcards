@@ -579,24 +579,24 @@
   "card": {
     "cardType0": {
       "name": "Lernfrage",
-      "front": "Vorderseite",
-      "back": "Rückseite",
+      "front": "Frage",
+      "back": "Antwort",
       "hint": "Hinweis",
       "lecture": "Vertiefung",
       "placeholders": {
-        "front": "Vorderseite",
-        "back": "Rückseite",
+        "front": "Frage",
+        "back": "Antwort",
         "hint": "Hinweis",
         "lecture": "Vertiefung"
       }
     },
     "cardType1": {
       "name": "Fremdwort",
-      "front": "Vorderseite",
-      "back": "Rückseite",
+      "front": "Fremdwort",
+      "back": "Übersetzung",
       "placeholders": {
-        "front": "Vorderseite",
-        "back": "Rückseite"
+        "front": "Fremdwort",
+        "back": "Übersetzung"
       }
     },
     "cardType2": {
@@ -663,14 +663,14 @@
   "points": "Punkte",
   "difficulty": "Level",
   "difficulty0": "Allgemein",
-  "difficulty1": "Einsteiger",
+  "difficulty1": "Einsteiger/in",
   "difficulty2": "Fortgeschritten",
-  "difficulty3": "Experte",
+  "difficulty3": "Experte/Expertin",
   "difficultyNotes": "Veranstaltung",
   "difficultyNotes0": "Vorlesung",
   "difficultyNotes1": "Übung",
   "difficultyNotes2": "Seminar",
-  "difficultyNotes3": "Vortrag",
+  "difficultyNotes3": "Praktikum",
   "arrowKeys": "Pfeiltasten",
   "key": "__key__ Taste",
   "cardType": "Typ",
