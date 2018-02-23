@@ -579,24 +579,24 @@
   "card": {
     "cardType0": {
       "name": "Lernfrage",
-      "front": "Vorderseite",
-      "back": "Rückseite",
+      "front": "Frage",
+      "back": "Antwort",
       "hint": "Hinweis",
       "lecture": "Vertiefung",
       "placeholders": {
-        "front": "Vorderseite",
-        "back": "Rückseite",
+        "front": "Frage",
+        "back": "Antwort",
         "hint": "Hinweis",
         "lecture": "Vertiefung"
       }
     },
     "cardType1": {
       "name": "Fremdwort",
-      "front": "Vorderseite",
-      "back": "Rückseite",
+      "front": "Fremdwort",
+      "back": "Übersetzung",
       "placeholders": {
-        "front": "Vorderseite",
-        "back": "Rückseite"
+        "front": "Fremdwort",
+        "back": "Übersetzung"
       }
     },
     "cardType2": {
