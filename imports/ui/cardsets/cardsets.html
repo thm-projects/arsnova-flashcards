@@ -6,7 +6,7 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if isActiveRoute 'create'}}
-                {{> cardsetForm}}
+                {{> cardsetCourseIterationForm}}
                 {{> create}}
             {{/if}}
 
@@ -15,7 +15,7 @@
             {{/if}}
 
             {{#if isActiveRoute 'shuffle'}}
-                {{> cardsetForm}}
+                {{> cardsetCourseIterationForm}}
                 {{> shuffle}}
             {{/if}}
         {{/if}}
@@ -38,7 +38,7 @@
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
                                data-toggle="modal"
-                               data-target="#setCardsetModal" {{disableIfOffline}}>{{_
+                               data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>{{_
                                     "set-list.shuffle"}}</a>
                         {{/if}}
                         <span class="text">
@@ -94,7 +94,7 @@
         {{/unless}}
         {{#if cardsetList.count}}
             <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                    data-target="#setCardsetModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
             {{> shuffle}}
@@ -224,7 +224,7 @@
                 </span>
                 <br>
                 <button id="setListEmpty" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
-                        data-target="#setCardsetModal">{{_ "set-list-empty.newset"}}</button>
+                        data-target="#setCardsetCourseFormModal">{{_ "set-list-empty.newset"}}</button>
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}

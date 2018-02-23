@@ -1,0 +1,87 @@
+<template name="courseIterations">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{> cardsetCourseIterationForm}}
+            {{> courseIterationsList}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="courseIterationsList">
+    <div id="learn-list-region" class="col-md-12">
+        {{#if courseIterationsList.count}}
+            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                {{_ "course.list.createCourse"}}
+            </button>
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-sm-3 col-md-4 hidden-xs poolHeaderBottom">{{_ "course.list.course"}}</span>
+                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "course.list.category"}}</span>
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "course.list.module"}}</span>
+                <span class="col-sm-1 col-md-2 hidden-xs poolHeaderBottom">{{_ "course.list.course"}}</span>
+                <span class="col-sm-3 col-md-1 hidden-xs poolHeaderBottom">{{_ "course.list.progress"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "course.list.manage"}}</span>
+            </div>
+            {{#each courseIterationsList}}
+                <div class="col-xs-12 panel panel-default {{#if
+                        oddRow
+                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    {{> courseIterationsRow extendContext 'index' @index}}
+                </div>
+            {{/each}}
+        {{else}}
+            {{> courseIterationsEmpty}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="courseIterationsEmpty">
+    <div class="empty-list">
+        <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
+                <span class="emptyTextList">
+                    {{_ "course.list.empty"}}
+                </span>
+                <br>
+                <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                        data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                    {{_ "course.list.createCourse"}}
+                </button>
+            <br>
+            <br>
+        </div>
+    </div>
+</template>
+
+<template name="courseIterationsRow">
+    <div class="cardsetName">
+        <div class="tip-content">{{#if gotDescription
+                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}</div>
+        <a href="" class="panelUnitBorder field-tip"
+           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
+                "set-list.topic"}}
+            :</span>
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 poolText panelUnit"
+                  data-id="{{this._id}}">
+                <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
+                    {{this.name}}
+                </span>
+                <span class="cell badge cardsetBadge" data-id="{{this._id}}">
+                    {{countCards this._id}}
+                </span>
+            </span>
+        </a>
+    </div>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.description"}}
+        :</span>
+    <span class="cell col-xs-7  panelUnit poolText ellipsis">
+        {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}
+    </span>
+</template>

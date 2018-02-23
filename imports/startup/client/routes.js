@@ -65,8 +65,8 @@ Router.route('/create', {
 });
 
 Router.route('/course', {
-	name: 'course',
-	template: 'courses'
+	name: 'courseIterations',
+	template: 'CourseIterations'
 });
 
 Router.route('/learn', {

@@ -11,7 +11,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/learn.js";
-import "./cardsetForm.js";
+import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 
 Meteor.subscribe("cardsets");
@@ -153,7 +153,7 @@ Template.cardset.events({
 		$("#cardSetDelete").css('display', "none");
 		$("#cardSetConfirm").css('display', "");
 
-		$('#setCardsetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseFormModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");
 			$("#cardSetConfirm").css('display', "none");
 		});
@@ -161,7 +161,7 @@ Template.cardset.events({
 	'click #cardSetConfirm': function () {
 		var id = this._id;
 
-		$('#setCardsetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
 			Router.go('create');
 		}).modal('hide');

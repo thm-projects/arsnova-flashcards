@@ -2,7 +2,7 @@ import {AdminSettings} from "./adminSettings.js";
 import {Cards} from "./cards.js";
 import {Cardsets} from "./cardsets.js";
 import {CollegesCourses} from "./colleges_courses.js";
-import {Courses} from "./courses.js";
+import {Courses} from "./courseIterations.js";
 import {Experience} from "./experience.js";
 import {Leitner, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";

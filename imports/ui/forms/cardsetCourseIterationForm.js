@@ -1,11 +1,15 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import "./cardsetForm.html";
+import "./cardsetCourseIterationForm.html";
 import {image, tex} from '/imports/ui/card/card.js';
 
-function newCardsetRoute() {
-	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
+function newCardsetCourseIterationRoute() {
+	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
+}
+
+function courseIterationRoute() {
+	return Router.current().route.getName() === 'courseIterations';
 }
 
 function shuffleRoute() {
@@ -36,12 +40,12 @@ function deactivateModule() {
 
 export function cleanModal() {
 	let previousCollegeName, previousCourseName;
-	if (!newCardsetRoute()) {
+	if (!newCardsetCourseIterationRoute()) {
 		previousCollegeName = Session.get('previousCollegeName');
 		previousCourseName = Session.get('previousCourseName');
 	}
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setName').val(Session.get("ShuffleTemplate").name);
 		} else {
@@ -54,7 +58,7 @@ export function cleanModal() {
 	$('#setName').css('border-color', '');
 	$('#helpSetName').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setDescription').val(Session.get("ShuffleTemplate").description);
 		} else {
@@ -68,7 +72,7 @@ export function cleanModal() {
 	$('#helpSetDescription').html('');
 	$('.md-footer').html(' ');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setModule').val(Session.get("ShuffleTemplate").module);
 		} else {
@@ -81,7 +85,7 @@ export function cleanModal() {
 	$('#setModule').css('border-color', '');
 	$('#helpSetModule').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setModuleShort').val(Session.get("ShuffleTemplate").moduleToken);
 		} else {
@@ -94,7 +98,7 @@ export function cleanModal() {
 	$('#setModuleShort').css('border-color', '');
 	$('#helpSetModuleShort').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setModuleNum').val(Session.get("ShuffleTemplate").moduleNum);
 		} else {
@@ -107,7 +111,7 @@ export function cleanModal() {
 	$('#setModuleNum').css('border-color', '');
 	$('#helpSetModuleNum').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setModuleLink').val(Session.get("ShuffleTemplate").moduleLink);
 		} else {
@@ -120,7 +124,7 @@ export function cleanModal() {
 	$('#setModuleLink').css('border-color', '');
 	$('#helpSetModuleLink').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute() && Session.get("ShuffleTemplate").college !== "" && Session.get("ShuffleTemplate").college !== undefined) {
 			$('#setCollege').html(Session.get("ShuffleTemplate").college);
 			$('#setCollege').val(Session.get("ShuffleTemplate").college);
@@ -150,7 +154,7 @@ export function cleanModal() {
 	$('.setCollegeDropdown').css('border-color', '');
 	$('#helpSetCollege').html('');
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute() && Session.get("ShuffleTemplate").course !== "" && Session.get("ShuffleTemplate").course !== undefined) {
 			$('#setCourse').html(Session.get("ShuffleTemplate").course);
 			$('#setCourse').val(Session.get("ShuffleTemplate").course);
@@ -172,7 +176,7 @@ export function cleanModal() {
 	$('#helpSetCourse').html('');
 
 
-	if (newCardsetRoute()) {
+	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
 			$('#setDescription').val(Session.get("ShuffleTemplate").description);
 		} else {
@@ -263,7 +267,7 @@ export function saveCardset() {
 		}
 		college = $('#setCollege').val();
 		course = $('#setCourse').val();
-		if (newCardsetRoute()) {
+		if (newCardsetCourseIterationRoute()) {
 			if (shuffleRoute()) {
 				shuffled = true;
 				cardGroups = Session.get("ShuffledCardsets");
@@ -271,15 +275,26 @@ export function saveCardset() {
 				shuffled = false;
 				cardGroups = [];
 			}
-			Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
-			$('#setCardsetModal').modal('hide');
-			$('#setCardsetModal').on('hidden.bs.modal', function () {
-				Router.go('create');
+			if (courseIterationRoute()) {
+				Meteor.call("addCourseIteration", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+			} else {
+				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
+			}
+
+			$('#setCardsetCourseIterationFormModal').modal('hide');
+			$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
+				if (!courseIterationRoute()) {
+					Router.go('create');
+				}
 			});
 			return true;
-		} else if (cardsetRoute()) {
-			Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
-			$('#setCardsetModal').modal('hide');
+		} else if (cardsetRoute() || courseIterationRoute()) {
+			if (courseIterationRoute()) {
+				Meteor.call("updateCourseIteration", name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+			} else {
+				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+			}
+			$('#setCardsetCourseIterationFormModal').modal('hide');
 			return true;
 		}
 		return false;
@@ -288,19 +303,22 @@ export function saveCardset() {
 
 /*
  * ############################################################################
- * cardsetForm
+ * cardsetCourseIterationForm
  * ############################################################################
  */
 
-Template.cardsetForm.helpers({
-	isNewCardset: function () {
-		return newCardsetRoute();
+Template.cardsetCourseIterationForm.helpers({
+	isCourseIteration: function () {
+		return courseIterationRoute();
+	},
+	isNew: function () {
+		return newCardsetCourseIterationRoute();
 	}
 });
 
 /*
  * ############################################################################
- * cardsetFormContent
+ * cardsetCourseIterationFormContent
  * ############################################################################
  */
 
@@ -322,7 +340,7 @@ let additionalButtons = [
 	}]
 ];
 
-Template.cardsetFormContent.onRendered(function () {
+Template.cardsetCourseIterationFormContent.onRendered(function () {
 	$("#setDescription").markdown({
 		autofocus: false,
 		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
@@ -340,7 +358,7 @@ Template.cardsetFormContent.onRendered(function () {
 		},
 		additionalButtons: additionalButtons
 	});
-	$('#setCardsetModal').on('hidden.bs.modal', function () {
+	$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 		if (!shuffleRoute()) {
 			cleanModal();
 		}
@@ -348,7 +366,7 @@ Template.cardsetFormContent.onRendered(function () {
 	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
 });
 
-Template.cardsetFormContent.helpers({
+Template.cardsetCourseIterationFormContent.helpers({
 	isDisabled: function (college) {
 		if (college !== "" && college !== undefined) {
 			return "";
@@ -382,8 +400,11 @@ Template.cardsetFormContent.helpers({
 			return course;
 		}
 	},
-	isNewCardset: function () {
-		return newCardsetRoute();
+	isCourseIteration: function () {
+		return courseIterationRoute();
+	},
+	isNew: function () {
+		return newCardsetCourseIterationRoute();
 	},
 	isModuleActive: function () {
 		return Session.get('moduleActive');
@@ -427,7 +448,7 @@ Template.cardsetFormContent.helpers({
 	}
 });
 
-Template.cardsetFormContent.events({
+Template.cardsetCourseIterationFormContent.events({
 	'click #cardSetSave': function () {
 		saveCardset();
 	},

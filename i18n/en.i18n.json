@@ -668,8 +668,21 @@
   "course": {
     "list": {
       "selectCourse": "Select Course",
-      "createCourse": "Create a course",
-      "empty": "You have not yet created or selected a course."
+      "createCourse": "Create a Course",
+      "empty": "You have not yet created or selected a course.",
+      "courseIteration": "Course",
+      "category": "Category",
+      "module": "Module",
+      "course": "Course",
+      "progress": "Progress",
+      "manage": "Manage"
+    },
+    "modal": {
+      "new": "Create a new course",
+      "placeholder": {
+        "name": "Title of the course",
+        "description": "Description for the content of this course"
+      }
     }
   },
   "permission": "Permission denied",

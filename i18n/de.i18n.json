@@ -636,7 +636,21 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt."
+      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt.",
+      "courseIteration": "Kurs",
+      "category": "Kategorie",
+      "module": "Modul",
+      "course": "Studiengang",
+      "progress": "Fortschritt",
+      "manage": "Verwalten"
+    },
+    "modal": {
+      "new": "Neuen Kurs anlegen",
+      "saveNew": "Kurs anlegen",
+      "placeholder": {
+        "name": "Thema des Kurses",
+        "description": "Lernziele und Lerninhalte"
+      }
     }
   },
   "permission": "Zugriff verweigert",
