@@ -533,12 +533,17 @@ img.cardside {
   @media(max-width: 767px) {
     border-left: 0;
     border-right: 0;
-    border-top: 1px solid $color_btn_inactive;
+    border-bottom: 1px solid $color_btn_inactive;
   }
 }
 
-#editLecture {
-  border-right: 1px solid $color_btn_inactive;
+#editHint {
+  @media(min-width: 768px) {
+    border-left: 1px solid $color_btn_inactive;
+  }
+}
+
+#editLecture {;
   @media(max-width: 767px) {
     border-bottom: 1px solid $color_btn_inactive;
   }
