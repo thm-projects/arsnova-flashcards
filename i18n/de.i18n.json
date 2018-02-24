@@ -125,7 +125,7 @@
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
-    "title": "Lernphase starten",
+    "title": "Bonus-Lernphase starten",
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
@@ -147,9 +147,9 @@
     "cards": "Karten"
   },
   "confirmEndLearn-form": {
-    "title": "Lernphase beenden",
-    "warnTitle": "Du bist im Begriff, die Lernphase zu beenden!",
-    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Willst du wirklich fortfahren?",
+    "title": "Bonus-Lernphase beenden",
+    "warnTitle": "Du bist im Begriff, die Bonus-Lernphase zu beenden!",
+    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Bonus-Auswertung mehr möglich! Willst du wirklich fortfahren?",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen"
   },
@@ -159,7 +159,7 @@
   },
   "set-list": {
     "name": "Name",
-    "category": "Kategorie",
+    "category": "Zugang",
     "module": "Modul",
     "description": "Beschreibung",
     "licence": "Lizenz",
@@ -651,7 +651,7 @@
   "filter": "Filter",
   "learnfile": "Wiederholungen nach Leitner",
   "memo": "Wiederholungen nach Woźniak",
-  "learnSelection": "Lernen nach Auswahl",
+  "learnSelection": "Karten fürs Lernen auswählen",
   "leitnerProgress": "Mein Lernstand nach Leitner",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
