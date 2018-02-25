@@ -42,21 +42,21 @@ function createTagCloud() {
 		return;
 	}
 
-	let heightAdjustment = 130;
+	let heightAdjustment = 90;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
-	let textScale = 1.3;
+	let textScale = 1.2;
 	let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 512);
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 512;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
-			drawOutOfBound: false,
 			list: list,
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			shape: "diamond",
+			drawOutOfBound: false,
 			rotateRatio: 1.0,
 			rotationSteps: 2.0,
 			minRotation: wordRotation,

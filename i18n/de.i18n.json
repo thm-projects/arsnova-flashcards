@@ -93,7 +93,7 @@
     "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
   },
   "confirm-enter-learnphase": {
-    "title": "Aktiver Lernphase beitreten",
+    "title": "Aktiver Lernphase mit Bonusvergabe beitreten",
     "text": "Durch deinen Beitritt erlaubst du der Autorin bzw. dem Autor des Kartensatzes folgenden Zugriff auf deine Daten:",
     "text2": "Diese Daten werden nur zur Bonusvergabe verwendet.",
     "enter": "Beitreten",
@@ -125,8 +125,8 @@
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THMcards abgemeldet."
   },
   "confirmLearn-form": {
-    "title": "Lernphase starten",
-    "text": "Willst du die Lernphase wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
+    "title": "Bonus-Lernphase starten",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -147,9 +147,9 @@
     "cards": "Karten"
   },
   "confirmEndLearn-form": {
-    "title": "Lernphase beenden",
-    "warnTitle": "Du bist im Begriff, die Lernphase zu beenden!",
-    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Auswertung mehr möglich! Willst du wirklich fortfahren?",
+    "title": "Bonus-Lernphase beenden",
+    "warnTitle": "Du bist im Begriff, die Bonus-Lernphase zu beenden!",
+    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Bonus-Auswertung mehr möglich! Willst du wirklich fortfahren?",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen"
   },
@@ -159,12 +159,12 @@
   },
   "set-list": {
     "name": "Name",
-    "category": "Kategorie",
+    "category": "Zugang",
     "module": "Modul",
     "description": "Beschreibung",
     "licence": "Lizenz",
-    "availability": "Kategorie",
-    "topic": "Thema",
+    "availability": "Zugang",
+    "topic": "Thema des Kartensatzes",
     "college": "Hochschule",
     "course": "Studiengang",
     "author": "Autor/in",
@@ -172,14 +172,14 @@
     "everyone": "Alle",
     "everything": "Alle",
     "reset": "Zurücksetzen",
-    "rating": "Sterne",
+    "rating": "Bewertung",
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
-    "learnphase": "Bonus-Option",
-    "activeLearnphase": "Aktiv",
-    "inactiveLearnphase": "Inaktiv",
-    "learnphaseInfo": "Über diese Lernphase",
+    "learnphase": "Bonus",
+    "activeLearnphase": "Bonus",
+    "inactiveLearnphase": "Bonusphase abgelaufen",
+    "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
     "cardsetInfo": "Über diesen __type__ Kartensatz",
     "cardsetInfoStatic": "Über diesen Kartensatz",
     "shuffleCardsets": "Kartensätze mischen",
@@ -212,8 +212,8 @@
     "newset": "Neuen Kartensatz anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle ein Thema aus oder mische einen neuen Kartensatz aus mehreren Themen.",
-    "emptytextlistNoShuffle": "Wähle ein Thema aus.",
+    "emptytextlist": "Wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
+    "emptytextlistNoShuffle": "Wähle einen Kartensatz aus.",
     "browseCardset": "Kartensatz auswählen"
   },
   "modal-dialog": {
@@ -633,8 +633,8 @@
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
-  "learnPhaseActiveHeader": "Lernphase aktiv",
-  "learnPhaseActiveBody": "Manuelles Lernen nach Leitner und Woźniak ist deaktiviert.",
+  "learnPhaseActiveHeader": "Lernphase mit Bonusvergabe aktiv",
+  "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
@@ -649,9 +649,9 @@
   "manage": "Verwalten",
   "selection": "Auswahl",
   "filter": "Filter",
-  "learnfile": "Lernen nach Leitner",
-  "memo": "Lernen nach Woźniak",
-  "learnSelection": "Lernen nach Auswahl",
+  "learnfile": "Wiederholungen nach Leitner",
+  "memo": "Wiederholungen nach Woźniak",
+  "learnSelection": "Karten fürs Lernen auswählen",
   "leitnerProgress": "Mein Lernstand nach Leitner",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
@@ -700,8 +700,8 @@
   "reset": "Zurücksetzen",
   "deleteCards": "Karten löschen",
   "confirmcard": "Sicher?",
-  "savecard": "Speichern und neue Karte",
-  "savecardReturn": "Speichern und zurück",
+  "savecard": "Speichern & neue Karte",
+  "savecardReturn": "Speichern & zurück",
   "savecardSuccess": "Karte wurde gespeichert",
   "deletecardSuccess": "Karte wurde gelöscht",
   "insertpicture": "Bild einfügen",
@@ -826,8 +826,8 @@
     "lecturerRequest": "Dozentenanfrage",
     "yes": "Ja",
     "no": "Nein",
-    "editLearning": "Lernphase-Einstellungen",
-    "updateLearning": "Lernphase aktualisieren",
+    "editLearning": "Bonus-Einstellungen",
+    "updateLearning": "Bonus-Einstellungen aktualisieren",
     "confirm-form": {
       "cardsets": {
         "title": "Kartensatz löschen",
@@ -907,8 +907,8 @@
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
       "removeFromWordcloud": "Entfernen",
-      "updateLearningFailure": "Fehler beim Aktualisieren der Lernphase",
-      "updateLearningSuccess": "Lernphase erfolgreich aktualisiert"
+      "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
+      "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
     },
     "card": {
       "header": "Karte",
@@ -973,7 +973,7 @@
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund für die Sperrung: ",
-    "memo": "Lernen nach Woźniak ist gesperrt, solange der Kartensatz eine aktive Lernphase hat.",
+    "memo": "Lernen nach Woźniak ist gesperrt, solange die Bonusoption aktiv ist.",
     "back": "Zurück"
   },
   "first-login": {
