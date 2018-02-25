@@ -52,7 +52,6 @@ function createTagCloud() {
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 512;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
 		{
-			drawOutOfBound: false,
 			list: list,
 			gridSize: gridSize,
 			weightFactor: weightFactor,
