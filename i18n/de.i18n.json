@@ -35,6 +35,7 @@
     "carddecks": "Meine Kartensätze",
     "learndecks": "Lernpensum",
     "pool": "Themen",
+    "course": "Kurs",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Suche",
@@ -628,6 +629,31 @@
         "front": "Erklärvideo",
         "back": "Kontrollfrage",
         "hint": "Videoquelle"
+      }
+    }
+  },
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Kurs löschen",
+      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
+    },
+    "list": {
+      "selectCourse": "Kurs auswählen",
+      "createCourse": "Kurs erstellen",
+      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt.",
+      "courseIteration": "Kurs",
+      "category": "Kategorie",
+      "module": "Modul",
+      "course": "Studiengang",
+      "progress": "Fortschritt",
+      "manage": "Verwalten"
+    },
+    "modal": {
+      "new": "Neuen Kurs anlegen",
+      "saveNew": "Kurs anlegen",
+      "placeholder": {
+        "name": "Thema des Kurses",
+        "description": "Lernziele und Lerninhalte"
       }
     }
   },

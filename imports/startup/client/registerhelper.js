@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
+import {CourseIterations} from "../../api/courseIterations.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Leitner} from "../../api/learned.js";
@@ -178,7 +179,11 @@ Template.registerHelper("singleUniversity", function () {
 
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function (cardset_id) {
-	return Cardsets.findOne({_id: cardset_id}).quantity;
+	if (Router.current().route.getName() === 'courseIterations') {
+		return CourseIterations.findOne({_id: cardset_id}).quantity;
+	} else {
+		return Cardsets.findOne({_id: cardset_id}).quantity;
+	}
 });
 
 // Returns all Cards of a Carddeck
@@ -218,7 +223,7 @@ Template.registerHelper("getTimestamp", function () {
 	return moment(this.date).locale(getUserLanguage()).format('LLLL');
 });
 
-// Returns all Courses
+// Returns all courses
 Template.registerHelper("getCourses", function () {
 	var query = {};
 	if (Session.get('poolFilterCollege')) {

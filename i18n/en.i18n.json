@@ -43,6 +43,7 @@
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
     "pool": "Topic Pool",
+    "course": "Course",
     "myprofile": "My profile",
     "billing": "Billing",
     "search": "Search",
@@ -661,6 +662,30 @@
         "front": "Front",
         "back": "Back",
         "hint": "Hint"
+      }
+    }
+  },
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Delete Course",
+      "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
+    },
+    "list": {
+      "selectCourse": "Select Course",
+      "createCourse": "Create a Course",
+      "empty": "You have not yet created or selected a course.",
+      "courseIteration": "Course",
+      "category": "Category",
+      "module": "Module",
+      "course": "Course",
+      "progress": "Progress",
+      "manage": "Manage"
+    },
+    "modal": {
+      "new": "Create a new course",
+      "placeholder": {
+        "name": "Title of the course",
+        "description": "Learning objectives and content"
       }
     }
   },

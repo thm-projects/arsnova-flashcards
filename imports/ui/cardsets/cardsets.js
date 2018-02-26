@@ -6,7 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
-import {cleanModal} from "../cardset/cardsetForm.js";
+import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
 
 Session.setDefault('cardsetId', undefined);

@@ -1,0 +1,165 @@
+<template name="courseIterations">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{> cardsetCourseIterationForm}}
+            {{> courseIterationDeleteForm}}
+            {{> courseIterationsList}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="courseIterationsList">
+    <div id="course-list-region" class="col-md-12">
+        {{#if courseIterationsList.count}}
+            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                {{_ "courseIteration.list.createCourse"}}
+            </button>
+            <div class="responsive-utilities-test visible-on">
+                <span class="col-sm-3 col-md-4 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
+                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "courseIteration.list.category"}}</span>
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
+                <span class="col-sm-1 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
+                <span class="col-sm-3 col-md-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.manage"}}</span>
+            </div>
+            {{#each courseIterationsList}}
+                <div class="col-xs-12 panel panel-default {{#if
+                        oddRow
+                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    {{> courseIterationsRow extendContext 'index' @index}}
+                </div>
+            {{/each}}
+        {{else}}
+            {{> courseIterationsEmpty}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="courseIterationsEmpty">
+    <div class="empty-list">
+        <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
+                <span class="emptyTextList">
+                    {{_ "courseIteration.list.empty"}}
+                </span>
+            <br>
+            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                {{_ "courseIteration.list.createCourse"}}
+            </button>
+            <br>
+            <br>
+        </div>
+    </div>
+</template>
+
+<template name="courseIterationsRow">
+    <div class="cardsetName">
+        <div class="tip-content">{{#if gotDescription
+                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
+                "set-list.noDescription"}}{{/if}}</div>
+        <a href="" class="panelUnitBorder field-tip"
+           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
+                "set-list.topic"}}
+            :</span>
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 poolText panelUnit"
+                  data-id="{{this._id}}">
+                <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
+                    {{this.name}}
+                </span>
+                <span class="cell badge cardsetBadge" data-id="{{this._id}}">
+                    {{countCards this._id}}
+                </span>
+            </span>
+        </a>
+    </div>
+    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.category"}}
+        :</span>
+    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+        {{#if this.category}}
+            {{this.category}}
+        {{else}}
+            {{_ "navbar-collapse.none"}}
+        {{/if}}
+    </span>
+    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.module"}}
+        :</span>
+    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+        {{#if this.module}}
+            {{this.module}}
+        {{else}}
+            {{_ "navbar-collapse.none"}}
+        {{/if}}
+    </span>
+    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.course"}}
+        :</span>
+    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+        {{#if this.course}}
+            {{this.course}}
+        {{else}}
+            {{_ "navbar-collapse.none"}}
+        {{/if}}
+    </span>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.levelOfLearning"}}
+        :</span>
+    <a href="#">
+            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit">
+           <i class="glyphicon glyphicon glyphicon-stats"></i>
+        </span>
+    </a>
+    <span class="col-xs-12 col-sm-1 manageCourseIteration">
+            <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
+               title='{{_ "courseIteration.confirm-form-delete.title"}}' data-id="{{this._id}}">
+            <span class="cell col-xs-6 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+                  data-id="{{this._id}}">
+           <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
+        </span>
+    </a>
+    <a id class="panelUnitBorder deleteCourseIteration" {{disableIfOffline}}
+       title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal" data-target="#confirmDeleteModal"
+       data-id="{{this._id}}">
+            <span class="cell col-xs-6 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+                  data-id="{{this._id}}">
+           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
+        </span>
+    </a>
+    </span>
+</template>
+
+<template name="courseIterationDeleteForm">
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmDeleteModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="confirmDeleteModalTitle" class="modal-title">{{_
+                            "courseIteration.confirm-form-delete.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "courseIteration.confirm-form-delete.text"}}</p>
+                    <br/>
+                    <hr/>
+
+                    <button id="deleteCourseIteration"
+                            class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
+                            "courseIteration.confirm-form-delete.title"}}</button>
+                    <button id="cancelDelete" class="btn btn-raised pull-right" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

@@ -28,7 +28,7 @@
     {{#unless fullscreenActive}}
         {{> cardsetInfo}}
         {{> showLicense}}
-        {{> cardsetForm}}
+        {{> cardsetCourseIterationForm}}
         {{> cardsetImportForm}}
         {{> cardsetPublishForm}}
         {{> cardsetStartLearnForm}}
@@ -288,7 +288,7 @@
                     <div class="btn-group btn-group-raised">
                         <button id="editCardset" class="btn btn-raised btn-default" type="button"
                                 data-toggle="modal"
-                                data-target="#setCardsetModal" {{disableIfOffline}}>
+                                data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
                             <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                         </button>
                     </div>

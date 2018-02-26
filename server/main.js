@@ -21,6 +21,7 @@ import "../imports/api/cardsetUserlist.js";
 import "../imports/api/cardsets.js";
 import "../imports/api/cards.js";
 import "../imports/api/colleges_courses.js";
+import "../imports/api/courseIterations.js";
 import "../imports/api/experience.js";
 import "../imports/api/ratings.js";
 import "../imports/api/notifications.js";
