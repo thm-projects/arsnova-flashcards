@@ -665,7 +665,11 @@
       }
     }
   },
-  "course": {
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Delete Course",
+      "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
+    },
     "list": {
       "selectCourse": "Select Course",
       "createCourse": "Create a Course",
@@ -681,7 +685,7 @@
       "new": "Create a new course",
       "placeholder": {
         "name": "Title of the course",
-        "description": "Description for the content of this course"
+        "description": "Learning objectives and content"
       }
     }
   },

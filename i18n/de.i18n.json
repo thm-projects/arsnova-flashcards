@@ -632,7 +632,11 @@
       }
     }
   },
-  "course": {
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Kurs löschen",
+      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
+    },
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",

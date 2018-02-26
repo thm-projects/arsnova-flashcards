@@ -17,17 +17,7 @@ if (Meteor.isServer) {
 				'editor'
 			])) {
 			return CourseIterations.find({college: universityFilter});
-		} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
-			return CourseIterations.find(
-				{
-					college: universityFilter,
-					$or: [
-						{visible: true},
-						{request: true},
-						{owner: this.userId}
-					]
-				});
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		}  else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			return CourseIterations.find(
 				{
 					college: universityFilter,
@@ -223,5 +213,24 @@ Meteor.methods({
 				course: course.trim()
 			}
 		});
+	},
+	/**
+	 * Delete selected course from database if user is auhorized.
+	 * @param {String} id - Database id of the course to be deleted
+	 */
+	deleteCourseIteration: function (id) {
+		check(id, String);
+		// Make sure only the task owner can make a task private
+		let courseIteration = CourseIterations.findOne(id);
+
+		if (!Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+			if (!Meteor.userId() || courseIteration.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+		}
+		CourseIterations.remove(id);
 	}
 });

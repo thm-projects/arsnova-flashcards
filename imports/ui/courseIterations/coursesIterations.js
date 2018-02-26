@@ -8,8 +8,9 @@ import "./coursesIterations.js";
 import "./coursesIterations.html";
 import {cleanModal} from "../forms/cardsetCourseIterationForm";
 
-Session.setDefault('courseId', undefined);
+Session.set('courseIterationId', undefined);
 Session.set('moduleActive', true);
+Meteor.subscribe("courseIterations");
 
 Meteor.subscribe("courses");
 
@@ -48,5 +49,25 @@ Template.courseIterationsRow.helpers({
 		if (text !== "" && text !== undefined) {
 			return true;
 		}
+	}
+});
+
+Template.courseIterationsRow.events({
+	'click .deleteCourseIteration': function (event) {
+		Session.set('courseIterationId', $(event.target).data('id'));
+	}
+});
+
+/*
+ * ############################################################################
+ * courseIterationDeleteForm
+ * ############################################################################
+ */
+
+Template.courseIterationDeleteForm.events({
+	'click #deleteCourseIteration': function () {
+		$('#confirmDeleteModal').on('hidden.bs.modal', function () {
+			Meteor.call("deleteCourseIteration", Session.get('courseIterationId'));
+		}).modal('hide');
 	}
 });

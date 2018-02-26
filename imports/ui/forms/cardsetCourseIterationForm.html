@@ -9,7 +9,7 @@
                         <h4 id="setCardsetCourseIterationFormModalTitle" class="modal-title">
                             {{#if isNew}}
                                 {{#if isCourseIteration}}
-                                    {{_ "course.modal.new"}}
+                                    {{_ "courseIteration.modal.new"}}
                                     {{else}}
                                     {{_ "modal-dialog.newcarddeck"}}
                                     {{/if}}
@@ -33,7 +33,7 @@
                        for="setName">{{_ "modal-dialog.name"}}</label>
                 <div class="col-md-9">
                     <input class="form-control" type="text" id="setName"
-                           placeholder="{{#if isCourseIteration}}{{_ "course.modal.placeholder.name"}}{{else}}{{_ "modal-dialog.nameplaceholder"}}{{/if}}"
+                           placeholder="{{#if isCourseIteration}}{{_ "courseIteration.modal.placeholder.name"}}{{else}}{{_ "modal-dialog.nameplaceholder"}}{{/if}}"
                            value="{{#if isNew}}{{getShuffleName}}{{else}}{{name}}{{/if}}">
                     <span id="helpSetName" class="help-block name"></span>
                 </div>
@@ -63,7 +63,7 @@
                             isModuleActive}}{{_ "modal-dialog.optional"}}{{/unless}}</label>
                     <div class="col-md-10">
                                          <textarea class="form-control" data-provide="markdown" rows="6"
-                                                   placeholder="{{_ "modal-dialog.descriptionplaceholder"}}"
+                                                   placeholder="{{#if isCourseIteration}}{{_ "courseIteration.modal.placeholder.description"}}{{else}}{{_ "modal-dialog.descriptionplaceholder"}}{{/if}}"
                                                    id="setDescription"
                                                    value="{{#if
                                                            isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>

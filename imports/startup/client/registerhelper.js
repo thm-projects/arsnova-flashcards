@@ -179,7 +179,7 @@ Template.registerHelper("singleUniversity", function () {
 
 // Returns the number of cards in a carddeck
 Template.registerHelper("countCards", function (cardset_id) {
-	if (Router.current().route.getName() === 'course') {
+	if (Router.current().route.getName() === 'courseIterations') {
 		return CourseIterations.findOne({_id: cardset_id}).quantity;
 	} else {
 		return Cardsets.findOne({_id: cardset_id}).quantity;
