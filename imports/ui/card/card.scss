@@ -5,13 +5,14 @@ $input_difficulty3: #d9534f;
 $background_difficultyNote0: ivory;
 $background_difficulty1: honeydew;
 $background_difficulty2: lightcyan;
-$background_difficulty3: mistyrose;
+$background_difficulty3: mistyrosgite;
 $color_difficultyNote0: #F8E1AE;
 $color_difficulty0: #E6EAE9;
 $color_difficulty1: rgba(92, 184, 92, 0.3);
 $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $background_lecture: lavender;
+$background_hint: lightseagreen;
 
 #difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
@@ -469,7 +470,7 @@ img.cardside {
 
 .hintContent {
   padding: 10px;
-  background-color: lighten($color_thm_gray, 20%);
+  background-color: $background_hint;
   color: white;
 }
 
