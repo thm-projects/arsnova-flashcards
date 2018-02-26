@@ -153,7 +153,7 @@ Template.cardset.events({
 		$("#cardSetDelete").css('display', "none");
 		$("#cardSetConfirm").css('display', "");
 
-		$('#setCardsetCourseFormModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");
 			$("#cardSetConfirm").css('display', "none");
 		});
@@ -161,7 +161,7 @@ Template.cardset.events({
 	'click #cardSetConfirm': function () {
 		var id = this._id;
 
-		$('#setCardsetCourseFormModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
 			Router.go('create');
 		}).modal('hide');
