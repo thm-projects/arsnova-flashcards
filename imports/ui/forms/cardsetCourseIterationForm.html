@@ -41,14 +41,14 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                                 <span class="moduleRadioButtonGroup">
-                                    <label class="moduleRadioButtonLabel radio-inline"><input type="radio"
+                                    <label id="enableModule" class="moduleRadioButtonLabel radio-inline"><input type="radio"
                                                                                               class="moduleRadioButton"
                                                                                               name="optradio"
                                                                                               value="true"
                                                                                               checked="{{#if
                                                                                                       isModuleActive}}checked{{/if}}">{{_
                                             "modal-dialog.moduleActivated"}}</label>
-                                <label class="moduleRadioButtonLabel radio-inline"><input type="radio"
+                                <label id="disableModule" class="moduleRadioButtonLabel radio-inline"><input type="radio"
                                                                                           class="moduleRadioButton"
                                                                                           name="optradio" value="false"
                                                                                           checked="{{#unless

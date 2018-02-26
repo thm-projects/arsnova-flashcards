@@ -186,8 +186,8 @@ export function cleanModal() {
 		$('#setDescription').val(Session.get('previousDescription'));
 	}
 
-	if (createRoute()) {
-		activateModule();
+	if (createRoute() || courseIterationRoute()) {
+		deactivateModule();
 	} else if (shuffleRoute()) {
 		if (Session.get("ShuffleTemplate").moduleActive) {
 			activateModule();

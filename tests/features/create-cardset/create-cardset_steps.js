@@ -25,6 +25,7 @@ module.exports = function () {
 
 	this.Then(/^he is redirected to the new cardset form$/, function () {
 		navigation.contentVisible('#setCardsetCourseIterationFormModalTitle');
+		navigation.clickElement('#enableModule');
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {

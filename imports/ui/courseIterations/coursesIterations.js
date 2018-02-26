@@ -38,6 +38,12 @@ Template.courseIterationsList.helpers({
 	}
 });
 
+Template.courseIterationsList.events({
+	'click #createCourse': function () {
+		cleanModal();
+	}
+});
+
 /*
  * ############################################################################
  * courseIterationsRow
@@ -55,6 +61,19 @@ Template.courseIterationsRow.helpers({
 Template.courseIterationsRow.events({
 	'click .deleteCourseIteration': function (event) {
 		Session.set('courseIterationId', $(event.target).data('id'));
+	}
+});
+
+
+/*
+ * ############################################################################
+ * courseIterationsEmpty
+ * ############################################################################
+ */
+
+Template.courseIterationsEmpty.events({
+	'click #createCourse': function () {
+		cleanModal();
 	}
 });
 
