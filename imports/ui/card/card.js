@@ -456,7 +456,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 	}
 	if ((Session.get('fullscreen') || forceOff)) {
 		Session.set('fullscreen', false);
-		$("#theme-wrapper").css("margin-top", "100px");
+		$("#theme-wrapper").css("margin-top", "70px");
 		$("#answerOptions").css("margin-top", "0");
 		$(".editorElement").css("display", '');
 		$("#preview").css("display", "unset");
