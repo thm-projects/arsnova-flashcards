@@ -60,11 +60,11 @@
 
 <template name="about">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Die alternative Lernplattform der THM
+                <h1>Die alternative Lernplattform der THM</h1>
             {{else}}
-                The alternative learning platform of the THM
+                <h1>The alternative learning platform of the THM</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
@@ -254,11 +254,11 @@
 
 <template name="learning">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Wie du auf THMcards effektiv mit Karten lernst
+                <h1>Wie du auf THMcards effektiv mit Karten lernst</h1>
             {{else}}
-                How to learn effectively with cards on THMcards
+                <h1>How to learn effectively with cards on THMcards</h1>
             {{/if}}
         </div>
 
@@ -428,18 +428,43 @@
 
 <template name="help">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Hilfe
+                <h1>Hilfe</h1>
             {{else}}
-                Help
+                <h1>Help</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
+                <h2 id="poolHelp">Themen</h2>
+
+                <h2 id="courseIterationsHelp">Kurse</h2>
+
+                <h2 id="createHelp">Meine Kartensätze</h2>
+                <h3 id="shuffleHelp">Kartensätze mischen</h3>
+
+                <h2 id="studyWorkloadHelp">Mein Lernpensum</h2>
+                <h3 id="progressUserHelp">Mein Lernstand</h3>
+
+                <h2 id="cardsetHelp">Kartensatz</h2>
+                <h3 id="editCardHelp">Karte bearbeiten</h3>
+                <h3 id="leitnerHelp">Wiederholungen nach Leitner</h3>
+                <h3 id="wozniakHelp">Wiederholungen nach Woźniak</h3>
+                <h3 id="selectionHelp">Karten fürs Lernen auswählen</h3>
+                <h3 id="cardsetEditorsHelp">Bearbeitungsrechte</h3>
+                <h3 id="progressCardsetHelp">Lernstatistik der Lernphase</h3>
+
+                <h2>Profil</h2>
+                <h3 id="profileOverviewHelp">Lernaktivität</h3>
+                <h3 id="profileMembershipHelp">Mitgliedschaft</h3>
+                <h3 id="profileBillingHelp">Abrechnung</h3>
+                <h3 id="profileNotificationsHelp">Benachrichtigungen</h3>
+                <h3 id="profileSettingsHelp">Mein Profil</h3>
+                <h3 id="profileRequestHelp">Pro-Anfragen / Kartensatzfreigabe</h3>
+                <h2 id="learningHelp">Lernmodus</h2>
 
             {{else}}
-
             {{/if}}
         </div>
     </div>
@@ -447,11 +472,11 @@
 
 <template name="faq">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Häufig gestellte Fragen zu THMcards
+                <h1>Häufig gestellte Fragen zu THMcards</h1>
             {{else}}
-                Frequently asked questions about THMcards
+                <h1>Frequently asked questions about THMcards</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
@@ -775,11 +800,11 @@
 
 <template name="impressum">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Impressum gemäß Telemediengesetz
+                <h1>Impressum gemäß Telemediengesetz</h1>
             {{else}}
-                Imprint according to Telemediengesetz
+                <h1>Imprint according to Telemediengesetz</h1>
             {{/if}}
         </div>
 
@@ -884,11 +909,11 @@
 
 <template name="agb">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Allgemeine Geschäftsbestimmungen
+                <h1>Allgemeine Geschäftsbestimmungen</h1>
             {{else}}
-                General terms and conditions of business
+                <h1>General terms and conditions of business</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
@@ -1471,11 +1496,11 @@
 
 <template name="datenschutz">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                Datenschutzerklärung und Verfahrensverzeichnis
+                <h1>Datenschutzerklärung und Verfahrensverzeichnis</h1>
             {{else}}
-                Privacy policy and procedures
+                <h1>Privacy policy and procedures</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
