@@ -715,11 +715,14 @@ th {
 }
 
 .thm-numbering {
+  margin-top: 0.7em;
+  margin-left: -0.7em;
   counter-reset: item;
   list-style: none;
 }
 
 .thm-numbering ol {
+  margin-left: -1.5em;
   counter-reset: subitem;
   list-style: none;
 }
