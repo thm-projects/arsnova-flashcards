@@ -258,7 +258,7 @@ body {
 }
 
 #theme-wrapper {
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 #theme-wrapper-no-nav {
@@ -642,9 +642,21 @@ button:disabled {
   color: $color_thm_orange;
 }
 
+#main-nav {
+  background: unset !important;
+}
+
+.navbar-fixed-top {
+  min-height: 36px !important;
+}
+
 #thm-top-navigation a {
-  padding-left: 7px !important;
-  padding-right: 7px !important;
+  padding: 8px 7px !important;
+}
+
+#searchDropdown {
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
 .dropup {
