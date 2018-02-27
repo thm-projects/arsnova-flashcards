@@ -316,7 +316,8 @@
       "delete": "Delete user profile",
       "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile.",
       "appearance": "Appearance",
-      "theme": "Color theme"
+      "theme": "Color theme",
+      "language": "Language"
     }
   },
   "profil-header": {
@@ -1079,5 +1080,9 @@
     "language": "Choose a language",
     "info": "About THMcards",
     "connection": "Connection Status"
+  },
+  "language": {
+    "german": "German",
+    "english": "English"
   }
 }

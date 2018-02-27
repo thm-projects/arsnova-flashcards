@@ -305,7 +305,8 @@
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Erscheinungsbild",
-      "theme": "Farbauswahl"
+      "theme": "Farbauswahl",
+      "language": "Sprache"
     }
   },
   "profil-header": {
@@ -1045,5 +1046,9 @@
     "language": "Wähle eine Sprache",
     "info": "Über THMcards",
     "connection": "Verbindungsstatus"
+  },
+  "language": {
+    "german": "Deutsch",
+    "english": "Englisch"
   }
 }

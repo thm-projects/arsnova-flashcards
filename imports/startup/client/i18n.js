@@ -1,10 +1,28 @@
 import {Session} from "meteor/session";
+import {Meteor} from "meteor/meteor";
 
 //------------------------ GET LANGUAGE FROM USER
 
-getUserLanguage = function () {
-	return navigator.language.substr(0, 2);
-};
+export function getUserLanguage() {
+	if (Meteor.userId()) {
+		let language = Meteor.users.findOne(Meteor.userId()).selectedLanguage;
+		if (language !== undefined) {
+			return language;
+		} else {
+			let navigatorLanguage = navigator.language.substr(0, 2);
+			switch (navigatorLanguage) {
+				case "de":
+					Meteor.call("updateLanguage", "de", Meteor.userId());
+					return "de";
+				default:
+					Meteor.call("updateLanguage", "en", Meteor.userId());
+					return "en";
+			}
+		}
+	} else {
+		return navigator.language.substr(0, 2);
+	}
+}
 
 
 //------------------------ LOADING I18N
