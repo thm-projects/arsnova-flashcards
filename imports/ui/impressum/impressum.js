@@ -11,7 +11,7 @@ import {Session} from "meteor/session";
 
 Template.contact.events({
 	'click #back-button': function () {
-		Router.go('home');
+		window.history.back();
 	}
 });
 
