@@ -697,8 +697,71 @@ th {
   padding-top: 10%;
 }
 
+.info-tab h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
 .info-tab h2 {
   font-size: 20px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.info-tab h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.thm-numbering {
+  margin-top: 0.7em;
+  margin-left: -0.7em;
+  counter-reset: item;
+  list-style: none;
+}
+
+.thm-numbering ol {
+  margin-left: -1.5em;
+  counter-reset: subitem;
+  list-style: none;
+}
+
+.thm-numbering li {
+  counter-increment: item;
+  margin-bottom: 0.7em;
+}
+
+.thm-numbering ol li {
+  counter-increment: subitem;
+  margin-bottom: 0.7em;
+}
+
+.thm-numbering li:before {
+  margin-left: -2em;
+  margin-right: 0.5em;
+  content: counter(item);
+  background: $color_thm_orange;
+  border-radius: 100%;
+  color: white;
+  width: 1.5em;
+  text-align: center;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.thm-numbering ol li:before {
+  content: counter(subitem);
+  background: $color_thm_gray;
+}
+
+.thm-numbering-standalone {
+  margin-right: 0.3em;
+  background: $color_thm_orange;
+  border-radius: 100%;
+  color: white;
+  width: 1.5em;
+  text-align: center;
+  display: inline-block;
+  font-weight: bold;
 }
