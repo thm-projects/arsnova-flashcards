@@ -277,16 +277,19 @@ export function saveCardset() {
 			}
 			if (courseIterationRoute()) {
 				Meteor.call("addCourseIteration", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+				$('#setCardsetCourseIterationFormModal').modal('hide');
 			} else {
-				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups);
+				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, function (error, result) {
+					$('#setCardsetCourseIterationFormModal').modal('hide');
+					if (result) {
+						$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
+							Router.go('cardsetdetailsid', {
+								_id: result
+							});
+						});
+					}
+				});
 			}
-
-			$('#setCardsetCourseIterationFormModal').modal('hide');
-			$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
-				if (!courseIterationRoute()) {
-					Router.go('create');
-				}
-			});
 			return true;
 		} else if (cardsetRoute() || courseIterationRoute()) {
 			if (courseIterationRoute()) {

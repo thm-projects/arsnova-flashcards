@@ -62,11 +62,6 @@ module.exports = function () {
 		navigation.clickElement('#cardSetSave');
 	});
 
-	this.Then(/^he should select the created cardset$/, function () {
-		navigation.contentVisible('.modal-open', false);
-		navigation.selectCardsetLink(3);
-	});
-
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {
 		navigation.clickElement('#editCardset');
 		navigation.compareContent('#setName', title, 2, 'value');
