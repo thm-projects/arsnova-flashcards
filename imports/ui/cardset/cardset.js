@@ -9,13 +9,13 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
+import {getUserLanguage} from "../../startup/client/i18n";
 import "../card/card.js";
 import "../learn/learn.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("userData");
 Meteor.subscribe("paid");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
