@@ -11,6 +11,7 @@ import * as lib from '/client/lib.js';
 import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
+import {getUserLanguage} from "../../startup/client/i18n";
 
 Meteor.subscribe("collegesCourses");
 
