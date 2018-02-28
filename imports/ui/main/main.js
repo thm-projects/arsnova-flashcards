@@ -69,16 +69,16 @@ Template.main.events({
 		let target = "#";
 		switch (Router.current().route.getName()) {
 			case "box":
-				target +=  "leitner";
+				target += "leitner";
 				break;
 			case "cardsetdetailsid":
-				target +=  "cardset";
+				target += "cardset";
 				break;
 			case "cardseteditors":
 				target += "cardsetEditors";
 				break;
 			case "cardsetlist":
-				target +=  "cardset";
+				target += "cardset";
 				break;
 			case "cardsetstats":
 				target += "progressCardset";
@@ -87,7 +87,7 @@ Template.main.events({
 				target += "createCardset";
 				break;
 			case "courseIterations":
-				target +=  "courseIterations";
+				target += "courseIterations";
 				break;
 			case "editCard":
 				target += "editCard";
@@ -96,10 +96,10 @@ Template.main.events({
 				target += "studyWorkload";
 				break;
 			case "memo":
-				target +=  "wozniak";
+				target += "wozniak";
 				break;
 			case "pool":
-				target +=  "pool";
+				target += "pool";
 				break;
 			case "profileOverview":
 				target += "profileOverview";
@@ -123,7 +123,7 @@ Template.main.events({
 				target += "progressUser";
 				break;
 			case "shuffle":
-				target +=  "shuffle";
+				target += "shuffle";
 				break;
 			default:
 				target = undefined;
@@ -205,17 +205,6 @@ Template.main.helpers({
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
-	},
-	getLanguages: function () {
-		const obj = TAPi18n.getLanguages();
-		const languages = [];
-		for (const key in obj) {
-			if (key) {
-				languages.push({code: key, label: obj[key]});
-			}
-		}
-
-		return languages;
 	}
 });
 
@@ -234,5 +223,18 @@ Template.completeProfileModal.events({
 				_id: Meteor.userId()
 			});
 		});
+	}
+});
+
+Template.footer.helpers({
+	getLanguages: function () {
+		const obj = TAPi18n.getLanguages();
+		const languages = [];
+		for (const key in obj) {
+			if (key) {
+				languages.push({code: key, label: obj[key]});
+			}
+		}
+		return languages;
 	}
 });
