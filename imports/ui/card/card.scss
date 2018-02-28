@@ -67,10 +67,6 @@ $background_hint: lightseagreen;
   }
 }
 
-.pressed {
-  background-color: $color_btn_inactive !important;
-}
-
 #difficulty .btn-info {
   color: $input_difficulty1 !important;
   @media(min-width: 768px) {
@@ -131,10 +127,6 @@ $background_hint: lightseagreen;
 .cardNumber {
   color: $color_thm_gray;
   font-family: $font_2, $font_3, $font_4, $font_5;
-  font-size: 85%;
-  position: absolute;
-  width: 100%;
-  margin-left: -50px;
   text-align: center;
   top: 14px;
 }
@@ -143,7 +135,6 @@ $background_hint: lightseagreen;
   float: right;
   color: $color_thm_gray;
   font-family: $font_2, $font_3, $font_4, $font_5;
-  font-size: 85%;
   text-align: right;
   margin-right: -40px;
   margin-top: -7px;
@@ -354,39 +345,27 @@ img.cardside {
   left: 10px;
 }
 
-#editCard, #copyCard {
-  position: relative;
-  float: left;
-  display: block;
-  margin: 0 5px 0 0;
-  z-index: 20;
+.card-button {
+  cursor: pointer;
+  z-index: 100;
 }
 
-#showHint, .about-interval, #showLecture, #hintPreview {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0 10px 0 0;
-  padding: 0;
-  z-index: 20;
-  font-size: 26px;
-}
-
-#swapOrder .material-icons {
-  font-size: 30px;
+#showLecture, #showHint {
+  margin-left: 5px;
 }
 
 .fullscreen, #swapOrder {
   float: right;
-  margin-top: 30px;
-  margin-right: -60px;
-  font-size: 22px;
-  z-index: 100;
+  position: absolute;
+  top: 50px;
+}
+
+#toggleFullscreen {
+  right: 8px;
 }
 
 #swapOrder {
-  margin-top: 25px;
-  margin-right: -10px;
+  right: 55px;
 }
 
 .btn-editCardset {
@@ -412,7 +391,7 @@ img.cardside {
 }
 
 .disableCardTransition {
-  transition:transform 0s !important;
+  transition: transform 0s !important;
 }
 
 .back {
@@ -425,11 +404,17 @@ img.cardside {
   min-height: 90px;
   height: 100%;
   text-align: center;
-  padding: 20px 50px 0 50px;
+  font-size: 12px;
+  padding: 20px 100px 0 100px;
 
   h3 {
-    margin-bottom: 0;
+    margin-top: -20px;
+    margin-bottom: 5px;
   }
+}
+
+.cardHeader a:hover {
+  text-decoration: none;
 }
 
 .cardContent {
@@ -517,7 +502,7 @@ img.cardside {
   padding-right: 0;
 }
 
-.editorNavigation >.btn-primary:hover {
+.editorNavigation > .btn-primary:hover {
   cursor: default;
   box-shadow: none !important;
   z-index: 0 !important;
@@ -562,7 +547,7 @@ img.cardside {
 
 .actionButtons > button {
   @media(min-width: 768px) {
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -584,7 +569,7 @@ img.cardside {
   position: absolute;
   right: 10px;
   top: 13px;
-  font-style: italic;
+  font-size: 14px;
 }
 
 #cardCarousel .carousel-indicators {
@@ -636,6 +621,39 @@ img.cardside {
     padding-top: 19px;
     padding-bottom: 20px;
   }
+  .cardHeader {
+    padding: 20px 50px 0 50px;
+    font-size: 12px;
+  }
+
+  .card-button {
+    font-size: 16px;
+  }
+  .cardHeader h3 {
+    font-size: 18px;
+  }
+  .leftHeader {
+    top: 5px;
+  }
+
+  .leftHeader2 {
+    top: 63px;
+  }
+  #clicktoflip {
+    top: 8px;
+    right: 5px;
+  }
+  #swapOrder {
+    top: 35px;
+    right: 8px;
+  }
+  #toggleFullscreen{
+    top: 63px;
+    right: 8px;
+  }
+  .material-icons {
+    font-size: 16px;
+  }
 }
 
 #editorToolbar > .btn {
@@ -646,3 +664,4 @@ img.cardside {
 .firstEditorRow {
   margin-top: -30px;
 }
+

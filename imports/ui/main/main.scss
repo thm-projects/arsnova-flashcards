@@ -598,12 +598,13 @@ button:disabled {
   z-index: 150;
 }
 
-.md-header .fa, .md-header .center-button, .md-header .fullscreen-button {
+.md-editor > .md-header {
+  padding: 0;
+}
+
+.md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
   margin: 0 auto;
   font-size: 22px;
-  @media (min-width: 1200px) {
-    font-size: 24px;
-  }
   padding: 3px 6px;
   color: $color_thm_gray;
   border-radius: 5px;
@@ -611,13 +612,13 @@ button:disabled {
   background-color: $white;
 }
 
-.md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover {
+.md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover, .card-button:hover {
   background-color: $color_athens_gray_approx;
 }
 
-.md-header .pressed {
-  background-color: $color_thm_gray !important;
-  color: $color_athens_gray_approx !important;
+.material-icons.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+  background-color: lighten($color_thm_gray, 10%);
+  color: $white;
 }
 
 .md-editor > textarea {
