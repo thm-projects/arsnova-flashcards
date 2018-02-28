@@ -14,7 +14,6 @@ import "./profile.html";
 
 Meteor.subscribe("experience");
 Meteor.subscribe("notifications");
-Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
 Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {

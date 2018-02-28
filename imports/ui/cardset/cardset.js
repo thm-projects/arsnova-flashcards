@@ -16,7 +16,6 @@ import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("userData");
 Meteor.subscribe("paid");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
