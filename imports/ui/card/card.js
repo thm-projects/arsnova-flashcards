@@ -92,7 +92,7 @@ function isEditMode() {
 
 function isCardType(cardType1, cardType2, cardType3, cardType4, activeCardType) {
 	let cardTypeArray = [cardType1, cardType2, cardType3, cardType4];
-	if (isEditMode())  {
+	if (isEditMode()) {
 		return cardTypeArray.includes(Session.get('cardType'));
 	} else {
 		return cardTypeArray.includes(activeCardType);
@@ -1231,6 +1231,12 @@ Template.flashcards.onRendered(function () {
 	if (Session.get("workloadFullscreenMode")) {
 		toggleFullscreen();
 	}
+	$('#showHintModal').on('hidden.bs.modal', function () {
+		$('#showHint').children().removeClass("pressed");
+	});
+	$('#showCopyCardModal').on('hidden.bs.modal', function () {
+		$('#copyCard').children().removeClass("pressed");
+	});
 });
 
 Template.flashcards.helpers({
@@ -1419,6 +1425,7 @@ Template.flashcards.events({
 	},
 	"click #showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));
+		$('#showHint').children().addClass("pressed");
 	},
 	"click #showLecture": function (evt) {
 		setTimeout(function () {
@@ -1426,6 +1433,11 @@ Template.flashcards.events({
 				scrollTop: $($(evt.target).data('target')).offset().top
 			}, 1000);
 		}, 500);
+		if (!$('#showLecture').children().hasClass("pressed")) {
+			$('#showLecture').children().addClass("pressed");
+		} else {
+			$('#showLecture').children().removeClass("pressed");
+		}
 	},
 	"click #swapOrder": function () {
 		if (Session.get('reverseViewOrder')) {
@@ -1449,6 +1461,7 @@ Template.flashcards.events({
 	},
 	"click #copyCard": function (evt) {
 		Session.set('modifiedCard', $(evt.target).data('id'));
+		$('#copyCard').children().addClass("pressed");
 	},
 	"click #toggleFullscreen": function () {
 		if (Session.get("workloadFullscreenMode")) {
