@@ -4,9 +4,17 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import WordCloud from "wordcloud";
 import {Cloud} from "../../api/cloud.js";
+import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
+import {Session} from "meteor/session";
 
 Meteor.subscribe("wordcloud");
+
+function setActiveLanguage() {
+	let language = getUserLanguage();
+	TAPi18n.setLanguage(language);
+	Session.set('activeLanguage', language);
+}
 
 /**
  * This method nserts a hover message for the wordcloud content
@@ -79,6 +87,8 @@ Template.welcome.events({
 		Meteor.loginWithFacebook({}, function (err) {
 			if (err) {
 				throw new Meteor.Error("Facebook login failed");
+			} else {
+				setActiveLanguage();
 			}
 		});
 	},
@@ -87,6 +97,8 @@ Template.welcome.events({
 		Meteor.loginWithTwitter({}, function (err) {
 			if (err) {
 				throw new Meteor.Error("Twitter login failed");
+			} else {
+				setActiveLanguage();
 			}
 		});
 	},
@@ -95,14 +107,18 @@ Template.welcome.events({
 		Meteor.loginWithGoogle({}, function (err) {
 			if (err) {
 				throw new Meteor.Error("Google login failed");
+			} else {
+				setActiveLanguage();
 			}
 		});
 	},
 
 	'click #cas': function () {
-		Meteor.loginWithCas({}, function (err) {
+		Meteor.loginWithCas(function (err) {
 			if (err) {
 				throw new Meteor.Error("CAS login failed");
+			} else {
+				setActiveLanguage();
 			}
 		});
 	},
@@ -110,7 +126,11 @@ Template.welcome.events({
 	// Backdoor for login in acceptance tests
 	'click #BackdoorLogin': function () {
 		if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
-			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val());
+			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
+				if (result) {
+					setActiveLanguage();
+				}
+			});
 		}
 	},
 

@@ -29,7 +29,8 @@
     "about": "About THMcards",
     "learnMore": "Learn more...",
     "impressum": "Legal Notice",
-    "backButton": "Back"
+    "backButton": "Back",
+    "backToStartButton": "Back to the start page"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -316,7 +317,8 @@
       "delete": "Delete user profile",
       "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile.",
       "appearance": "Appearance",
-      "theme": "Color theme"
+      "theme": "Color theme",
+      "language": "Language"
     }
   },
   "profil-header": {
@@ -1079,5 +1081,9 @@
     "language": "Choose a language",
     "info": "About THMcards",
     "connection": "Connection Status"
+  },
+  "language": {
+    "german": "German",
+    "english": "English"
   }
 }

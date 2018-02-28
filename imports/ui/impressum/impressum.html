@@ -1,38 +1,17 @@
 <template name="contact">
     <div class="col-md-8 col-md-offset-2">
-        <button class="btn btn-raised btn-danger" id="back-button">
-            <span class="pull-left">{{_ "intro.backButton"}}</span>
-        </button>
+        {{#if currentUser}}
+            <button class="btn btn-raised btn-danger" id="backButton">
+                <span class="pull-left">{{_ "intro.backButton"}}</span>
+            </button>
+        {{else}}
+            <button class="btn btn-raised btn-danger" id="backToStartButton">
+                <span class="pull-left">{{_ "intro.backToStartButton"}}</span>
+            </button>
+        {{/if}}
     </div>
     <div id="contact" class="col-md-8 col-md-offset-2">
-        <nav class="nav nav-tabs nav-justified">
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about"
-                                                                                           href="{{pathFor
-                                                                                                   route='about'}}">{{_
-                    "contact.about"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning"
-                                                                                              href="{{pathFor
-                                                                                                      route='learning'}}">{{_
-                    "contact.learning"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}}"><a id="help"
-                                                                                          href="{{pathFor
-                                                                                                  route='help'}}">{{_
-                    "contact.help"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
-                    route='faq'}}">{{_ "contact.faq"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum"
-                                                                                               href="{{pathFor
-                                                                                                       route='impressum'}}">{{_
-                    "contact.impressum"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz"
-                                                                                         href="{{pathFor
-                                                                                                 route='agb'}}">{{_
-                    "contact.agb"}}</a></li>
-            <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb"
-                                                                                                 href="{{pathFor
-                                                                                                         route='datenschutz'}}">{{_
-                    "contact.datenschutz"}}</a></li>
-        </nav>
+        {{> contactNavigation}}
         <br>
         {{#if isActiveRoute 'about'}}
             {{> about}}
@@ -56,6 +35,37 @@
             {{> datenschutz}}
         {{/if}}
     </div>
+</template>
+
+<template name="contactNavigation">
+    <nav id="contact-nav" class="nav nav-tabs nav-justified">
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about"
+                                                                                       href="{{pathFor
+                                                                                               route='about'}}">{{_
+                "contact.about"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning"
+                                                                                          href="{{pathFor
+                                                                                                  route='learning'}}">{{_
+                "contact.learning"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}}"><a id="help"
+                                                                                      href="{{pathFor
+                                                                                              route='help'}}">{{_
+                "contact.help"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
+                route='faq'}}">{{_ "contact.faq"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum"
+                                                                                           href="{{pathFor
+                                                                                                   route='impressum'}}">{{_
+                "contact.impressum"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz"
+                                                                                     href="{{pathFor
+                                                                                             route='agb'}}">{{_
+                "contact.agb"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb"
+                                                                                             href="{{pathFor
+                                                                                                     route='datenschutz'}}">{{_
+                "contact.datenschutz"}}</a></li>
+    </nav>
 </template>
 
 <template name="about">
@@ -439,9 +449,10 @@
             {{#if isActiveLanguage 'de'}}
                 <h2 id="poolHelp">Themen</h2>
                 <a href="/img/help/de/filter_navigation.png" data-lightbox="img-1" data-title="Themen Filter">
-                    <img src="/img/help/de/filter_navigation.png" alt="Themen Filter" class="img-responsive center-block">
+                    <img src="/img/help/de/filter_navigation.png" alt="Themen Filter"
+                         class="img-responsive center-block">
                 </a>
-            <h3>Filter</h3>
+                <h3>Filter</h3>
                 <ol class="thm-numbering">
                     <li>Thema</li>
                     <li>Autor/in</li>
@@ -458,9 +469,9 @@
                     </ol>
                 </ol>
                 <h2 id="courseIterationsHelp">Kurse</h2>
-            <p>
-                Kurs erstellen <span class="thm-numbering-standalone">A</span>
-            </p>
+                <p>
+                    Kurs erstellen <span class="thm-numbering-standalone">A</span>
+                </p>
                 <h2 id="createHelp">Meine Kartensätze</h2>
                 <h3 id="shuffleHelp">Kartensätze mischen</h3>
 

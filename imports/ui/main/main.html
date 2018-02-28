@@ -11,7 +11,8 @@
                 {{else}}
                     {{> completeProfileModal}}
                     <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} thm-header">
+                        <div class="{{#unless isActiveRoute
+                                              regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} thm-header">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
@@ -177,35 +178,44 @@
                 {{> yield}}
             </div>
         </div>
-
-        {{#unless fullscreenActive}}
-            <div id="footer" class="footer">
-                <ul class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
-                    <li class="col-xs-2 col-sm-1">
-                        <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                        </a>
-                    </li>
-                    <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
-                        data-toggle="collapse" data-target="#thm-top-navigation">
-                        <a role="button" class="dropdown-toggle" data-toggle="dropdown"
-                           aria-label="{{_ "footer.language"}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
-                        </a>
-                        <ul class="dropdown-menu col-xs-12">
-                            {{#each getLanguages}}
-                                <li><a href="#" role="menuitem" class="lang"
-                                       data-lang={{code}}>{{label.name}}</a></li>
-                            {{/each}}
-                        </ul>
-                    </li>
-                    <li class="col-xs-1 pull-right">
-                        {{> connectionStatus}}
-                    </li>
-                </ul>
-            </div>
+        {{#unless currentUser}}
+            {{> footer}}
         {{/unless}}
     </div> <!-- Theme Wrapper -->
+</template>
+
+<template name="footer">
+    <div id="footer" class="footer">
+        <ul class="{{#unless isActiveRoute
+                             regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
+            {{#if isActiveRoute 'home'}}
+                <li class="hidden-xs col-sm-10">
+                    {{> contactNavigation}}
+                </li>
+                <li class="visible-xs col-xs-2 col-sm-1">
+                    <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                    </a>
+                </li>
+            {{/if}}
+            <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
+                data-toggle="collapse" data-target="#thm-top-navigation">
+                <a role="button" class="dropdown-toggle" data-toggle="dropdown"
+                   aria-label="{{_ "footer.language"}}">
+                    <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                </a>
+                <ul class="dropdown-menu col-xs-12">
+                    {{#each getLanguages}}
+                        <li><a href="#" role="menuitem" class="lang"
+                               data-lang={{code}}>{{label.name}}</a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="col-xs-1 pull-right">
+                {{> connectionStatus}}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <template name="connectionStatus">

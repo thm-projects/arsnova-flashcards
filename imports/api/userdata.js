@@ -25,6 +25,7 @@ if (Meteor.isServer) {
 						'customerId': 1,
 						'blockedtext': 1,
 						"selectedColorTheme": "default",
+						"selectedLanguage": 1,
 						"mailNotification": 1,
 						"webNotification": 1
 					}
@@ -53,7 +54,8 @@ if (Meteor.isServer) {
 						'daysInRow': 1,
 						'balance': 1,
 						"mailNotification": 1,
-						"webNotification": 1
+						"webNotification": 1,
+						"selectedLanguage": 1
 					}
 				});
 		} else {
@@ -338,6 +340,20 @@ Meteor.methods({
 		}
 
 		Roles.removeUsersFromRoles(Meteor.user()._id, 'firstLogin');
+	},
+	/** Function saves the given language to the given user
+	 *  @param {string} selectedLanguage - The id of the selected language
+	 *  @param {string} id - The id of the user
+	 * */
+	updateLanguage: function (selectedLanguage, id) {
+		check(selectedLanguage, String);
+		check(id, String);
+
+		Meteor.users.update(id, {
+			$set: {
+				"selectedLanguage": selectedLanguage
+			}
+		});
 	},
 	/** Function saves the given colorTheme to the given user
 	 *  @param {string} selectedColorTheme - The id of the selected color theme
