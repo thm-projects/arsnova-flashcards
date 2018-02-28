@@ -29,7 +29,8 @@
     "about": "Was ist THMcards?",
     "learnMore": "Learn more ...",
     "impressum": "Impressum",
-    "backButton": "Zurück"
+    "backButton": "Zurück",
+    "backToStartButton": "Zurück zur Startseite"
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",

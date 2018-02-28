@@ -181,10 +181,8 @@
         {{#unless fullscreenActive}}
             <div id="footer" class="footer">
                 <ul class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
-                    <li class="col-xs-2 col-sm-1">
-                        <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                        </a>
+                    <li class="col-sm-10">
+                        {{> contactNavigation}}
                     </li>
                     <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
                         data-toggle="collapse" data-target="#thm-top-navigation">

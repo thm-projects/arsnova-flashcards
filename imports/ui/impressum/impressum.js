@@ -10,8 +10,11 @@ import {Session} from "meteor/session";
  */
 
 Template.contact.events({
-	'click #back-button': function () {
+	'click #backButton': function () {
 		window.history.back();
+	},
+	'click #backToStartButton': function () {
+		Router.go('home');
 	}
 });
 

@@ -229,7 +229,7 @@ body {
     width: 100% !important;
   }
 
-  #contact .nav-tabs a {
+  #contact-nav a {
     text-align: left;
   }
 }
@@ -297,9 +297,7 @@ body {
   li ul li {
     height: 60px;
   }
-  li:hover {
-    background-color: $color_footer_hover;
-  }
+
   a {
     text-decoration: none;
     outline: none;
@@ -558,19 +556,24 @@ button:disabled {
   padding: 3px 5px;
 }
 
-#contact .nav-tabs {
+#contact-nav {
   -webkit-box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
   box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
 
-#contact .nav-tabs a {
+#footer #contact-nav {
+  -webkit-box-shadow: unset !important;
+  box-shadow: unset !important;
+}
+
+#contact-nav a {
   border-radius: 0;
   margin-bottom: 0;
   outline: none;
   padding: 10px;
 }
 
-#contact .nav-tabs .inactive a {
+#contact-nav .inactive a {
   color: black !important;
   background-color: #eeeeee !important;
   outline: none;
