@@ -495,7 +495,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$(".clicktoflip").css('display', "");
 		$(".box").removeClass("disableCardTransition");
 		$("#theme-wrapper").css("margin-top", "20px");
-		$("#answerOptions").css("margin-top", "-80px");
+		$("#answerOptions").css("margin-top", "-50px");
 		$(".editorElement").css("display", "none");
 		if (isEditor) {
 			$("#preview").css("display", "none");
