@@ -511,7 +511,7 @@ button:disabled {
   .panelUnit {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: dashed 1px $color_item_separator;
+    border-bottom: solid 1px $color_item_separator;
   }
 
   .panelUnitDescription {
@@ -557,7 +557,7 @@ button:disabled {
   }
 
   .panelUnit {
-    border-right: dashed 1px $color_item_separator;
+    border-right: solid 1px $color_item_separator;
   }
 }
 
