@@ -19,6 +19,9 @@ $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
 $background_hint: lightseagreen;
+$footer_info_navigation_color: black;
+$footer_info_navigation_background: $color_wild_sand_approx;
+$footer_info_navigation_border: $color_item_separator;
 $default_font: 'Roboto';
 
 html {
@@ -312,12 +315,12 @@ body {
     padding: 25px 15px;
   }
   .footer-info-navigation {
-    color: black !important;
-    background-color: $color_wild_sand_approx !important;
-    border-right: 1px solid $color_item_separator;
+    color: $footer_info_navigation_color;
+    background-color: $footer_info_navigation_background;
+    border-right: 1px solid $footer_info_navigation_border;
   }
   .footer-info-navigation:first-child {
-    border-left: 1px solid $color_item_separator;
+    border-left: 1px solid $footer_info_navigation_border;
   }
 }
 
