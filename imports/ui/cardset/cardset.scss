@@ -451,7 +451,20 @@ th .field-tip .tip-content {
   }
 }
 
-#showHintLearning, #showHintManage, #showIntervalHelp {
+#showHintLearning, #showHintManage, #showIntervalHelp, .fa-trophy {
   font-size: 18px;
   z-index: 500;
+}
+
+.red-learning-text {
+  color: $color_thm_red;
+}
+
+.green-learning-text {
+  color: $color_thm_green;
+}
+
+.fa-trophy {
+  font-size: 18px;
+  margin-right: 20px;
 }

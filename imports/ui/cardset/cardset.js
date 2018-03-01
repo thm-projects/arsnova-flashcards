@@ -760,6 +760,11 @@ Template.cardsetInfoBox.helpers({
 Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("learnerStats");
+	},
+	earnedTrophy: function () {
+		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
+		let box6Percentage = (this.box6 / totalCards) * 100;
+		return box6Percentage >= 95;
 	}
 });
 

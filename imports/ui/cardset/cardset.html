@@ -1508,7 +1508,19 @@
                                     <td>{{this.box3}}</td>
                                     <td>{{this.box4}}</td>
                                     <td>{{this.box5}}</td>
-                                    <td>{{this.box6}}</td>
+                                    <td>
+                                        {{#if earnedTrophy}}
+                                            <span class="green-learning-text">
+                                                {{this.box6}}
+                                            </span>
+
+                                            <i class="fa fa-trophy pull-right"></i>
+                                        {{else}}
+                                            <span class="red-learning-text">
+                                                {{this.box6}}
+                                            </span>
+                                        {{/if}}
+                                    </td>
                                     <td>
                                         <button data-id="{{this.user_id}}" class="btn btn-block detailed-stats"><i
                                                 class="glyphicon glyphicon glyphicon-stats"
