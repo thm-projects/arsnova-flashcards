@@ -552,6 +552,11 @@ Template.cardsetSidebar.events({
 	},
 	"click #leaveCardsetButton": function () {
 		Router.go('pool');
+	},
+	"click #showHintManage": function (event) {
+		event.stopPropagation();
+		Session.set('helpTarget', 'cardsetManageHelp');
+		Router.go('help');
 	}
 });
 
