@@ -65,7 +65,7 @@
         <a href="" class="panelUnitBorder field-tip"
            title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
-                "set-list.topic"}}
+                "set-list.topicMobile"}}
             :</span>
             <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 poolText panelUnit"
                   data-id="{{this._id}}">
@@ -78,30 +78,30 @@
             </span>
         </a>
     </div>
-    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.category"}}
         :</span>
-    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
         {{#if this.category}}
             {{this.category}}
         {{else}}
             {{_ "navbar-collapse.none"}}
         {{/if}}
     </span>
-    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.module"}}
         :</span>
-    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
         {{#if this.module}}
             {{this.module}}
         {{else}}
             {{_ "navbar-collapse.none"}}
         {{/if}}
     </span>
-    <span class="col-xs-2 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.course"}}
         :</span>
-    <span class="cell col-xs-2  panelUnit poolText ellipsis">
+    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
         {{#if this.course}}
             {{this.course}}
         {{else}}
@@ -119,7 +119,7 @@
     <span class="col-xs-12 col-sm-1 manageCourseIteration">
             <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
                title='{{_ "courseIteration.confirm-form-delete.title"}}' data-id="{{this._id}}">
-            <span class="cell col-xs-6 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
         </span>
@@ -127,7 +127,7 @@
     <a id class="panelUnitBorder deleteCourseIteration" {{disableIfOffline}}
        title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal" data-target="#confirmDeleteModal"
        data-id="{{this._id}}">
-            <span class="cell col-xs-6 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>

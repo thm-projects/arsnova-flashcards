@@ -203,6 +203,19 @@ body {
   }
 }
 
+#contact-nav a {
+  border-radius: 0;
+  margin-bottom: 0;
+  outline: none;
+  padding: 10px 0;
+}
+
+#contact-nav .inactive a {
+  color: black !important;
+  background-color: $color_wild_sand_approx !important;
+  outline: none;
+}
+
 @media(max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu {
     > li > a {
@@ -235,6 +248,7 @@ body {
 
   #contact-nav a {
     text-align: left;
+    padding: 10px;
   }
 }
 
@@ -577,19 +591,6 @@ button:disabled {
 #footer #contact-nav {
   -webkit-box-shadow: unset !important;
   box-shadow: unset !important;
-}
-
-#contact-nav a {
-  border-radius: 0;
-  margin-bottom: 0;
-  outline: none;
-  padding: 10px 0;
-}
-
-#contact-nav .inactive a {
-  color: black !important;
-  background-color: $color_wild_sand_approx !important;
-  outline: none;
 }
 
 .cardContent .lightbox-img a {
