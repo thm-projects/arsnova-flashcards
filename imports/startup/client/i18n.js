@@ -34,9 +34,11 @@ Meteor.startup(function () {
 
 	Meteor.subscribe("userData", {
 		onReady: function () {
-			TAPi18n.setLanguage(getUserLanguage())
+			let language = getUserLanguage();
+			TAPi18n.setLanguage(language)
 				.done(function () {
 					Session.set("showLoadingIndicator", false);
+					Session.set('activeLanguage', language);
 				})
 				.fail(function (error_message) {
 					// Handle the situation
