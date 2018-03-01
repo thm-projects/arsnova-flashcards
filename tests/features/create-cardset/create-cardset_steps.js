@@ -24,7 +24,8 @@ module.exports = function () {
 	});
 
 	this.Then(/^he is redirected to the new cardset form$/, function () {
-		navigation.contentVisible('#setCardsetModalTitle');
+		navigation.contentVisible('#setCardsetCourseIterationFormModalTitle');
+		navigation.clickElement('#enableModule');
 	});
 
 	this.Then(/^he should be able to edit the cardset title$/, function () {
@@ -59,11 +60,6 @@ module.exports = function () {
 
 	this.Then(/^he should push the create new cardset button$/, function () {
 		navigation.clickElement('#cardSetSave');
-	});
-
-	this.Then(/^he should select the created cardset$/, function () {
-		navigation.contentVisible('.modal-open', false);
-		navigation.selectCardsetLink(3);
 	});
 
 	this.Then(/^he should see the details of that cardset with the correct values$/, function () {

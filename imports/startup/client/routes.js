@@ -64,6 +64,11 @@ Router.route('/create', {
 	template: 'cardsets'
 });
 
+Router.route('/course', {
+	name: 'courseIterations',
+	template: 'CourseIterations'
+});
+
 Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets'

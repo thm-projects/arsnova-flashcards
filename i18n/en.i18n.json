@@ -29,7 +29,8 @@
     "about": "About THMcards",
     "learnMore": "Learn more...",
     "impressum": "Legal Notice",
-    "backButton": "Back to Start"
+    "backButton": "Back",
+    "backToStartButton": "Back to the start page"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
@@ -43,6 +44,7 @@
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
     "pool": "Topic Pool",
+    "course": "Courses",
     "myprofile": "My profile",
     "billing": "Billing",
     "search": "Search",
@@ -174,6 +176,7 @@
     "module": "Module",
     "licence": "License",
     "topic": "Topic",
+    "topicMobile": "Topic",
     "availability": "Category",
     "college": "College",
     "course": "Course",
@@ -315,7 +318,8 @@
       "delete": "Delete user profile",
       "deleteText": "If you do not think you will use THMcards again, you can delete here your user profile.",
       "appearance": "Appearance",
-      "theme": "Color theme"
+      "theme": "Color theme",
+      "language": "Language"
     }
   },
   "profil-header": {
@@ -661,6 +665,30 @@
         "front": "Front",
         "back": "Back",
         "hint": "Hint"
+      }
+    }
+  },
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Delete Course",
+      "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
+    },
+    "list": {
+      "selectCourse": "Select Course",
+      "createCourse": "Create a Course",
+      "empty": "You have not yet created or selected a course.",
+      "courseIteration": "Course",
+      "category": "Category",
+      "module": "Module",
+      "course": "Course",
+      "progress": "Progress",
+      "manage": "Manage"
+    },
+    "modal": {
+      "new": "Create a new course",
+      "placeholder": {
+        "name": "Title of the course",
+        "description": "Learning objectives and content"
       }
     }
   },
@@ -1054,5 +1082,9 @@
     "language": "Choose a language",
     "info": "About THMcards",
     "connection": "Connection Status"
+  },
+  "language": {
+    "german": "German",
+    "english": "English"
   }
 }

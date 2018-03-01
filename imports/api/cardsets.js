@@ -255,7 +255,14 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Cardsets.insert({
+		Experience.insert({
+			type: 2,
+			value: 3,
+			date: new Date(),
+			owner: Meteor.userId()
+		});
+		Meteor.call('checkLvl');
+		return Cardsets.insert({
 			name: name.trim(),
 			description: description,
 			date: new Date(),
@@ -294,13 +301,6 @@ Meteor.methods({
 			shuffled: shuffled,
 			cardGroups: cardGroups
 		});
-		Experience.insert({
-			type: 2,
-			value: 3,
-			date: new Date(),
-			owner: Meteor.userId()
-		});
-		Meteor.call('checkLvl');
 	},
 	/**
 	 * Delete selected Cardset from database if user is auhorized.

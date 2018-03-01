@@ -128,6 +128,16 @@
             {{/if}}
             {{_ "card.cardType3.name"}}
         </label>
+        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+               data-type="1">
+            {{#if isCardType 1}}
+                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
+            {{else}}
+                <input type="radio" name="cardType" value="1" data-type="1">
+            {{/if}}
+
+            {{_ "card.cardType1.name"}}
+        </label>
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
             {{#if isCardType 4}}
@@ -146,16 +156,6 @@
                 <input type="radio" name="cardType" value="0" data-type="0">
             {{/if}}
             {{_ "card.cardType0.name"}}
-        </label>
-        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
-               data-type="1">
-            {{#if isCardType 1}}
-                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
-            {{else}}
-                <input type="radio" name="cardType" value="1" data-type="1">
-            {{/if}}
-
-            {{_ "card.cardType1.name"}}
         </label>
     </div>
 </template>
@@ -361,12 +361,10 @@
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
-                                                <a id="editCard"
-                                                   class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}"
+                                                <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}"
                                                    data-type="cardNavigation">
-                                                    <i class="glyphicon glyphicon-pencil" data-id="{{_id}}"
-                                                       data-type="cardNavigation"></i>
+                                                    <span class="glyphicon glyphicon-pencil card-button" data-id="{{_id}}"
+                                                       data-type="cardNavigation"></span>
                                                 </a>
                                             {{/if}}
                                         {{/if}}
@@ -374,7 +372,7 @@
                                             {{#if isCardType 0}}
                                                 {{#if lecture}}
                                                     <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education"
+                                                    <span class="glyphicon glyphicon glyphicon-education card-button"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
@@ -384,7 +382,7 @@
                                             {{#if isCardType 0 2 4}}
                                                 {{#if hint}}
                                                     <a href="#" id="showHint">
-                                                    <span class="glyphicon glyphicon-info-sign"
+                                                    <span class="glyphicon glyphicon-info-sign card-button"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
@@ -393,7 +391,7 @@
                                             {{/if}}
                                             {{#if isCardType 1}}
                                                 <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book"
+                                                    <span class="glyphicon glyphicon glyphicon-book card-button"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
@@ -457,33 +455,24 @@
                                             <span class="hidden-xs">{{_ "turn"}}</span>
                                         </div>
                                     {{/unless}}
-                                    <a href="#" id="swapOrder" class="{{#if
-                                            reversedViewOrder}}swappedOrder{{/if}}" data-type="cardNavigation">
-                                                <span class="material-icons"
+                                    <span id="swapOrder" data-type="cardNavigation">
+                                                <span class="material-icons card-button {{#if reversedViewOrder}}pressed{{/if}}"
                                                       data-type="cardNavigation">swap_vert</span>
-                                    </a>
+                                    </span>
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
                                           data-type="cardNavigation">
-                                                <span class="glyphicon glyphicon-fullscreen"
+                                                <span class="glyphicon glyphicon-fullscreen card-button {{#if fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
                                     </span>
-                                    {{#if isCardType 2}}
-                                        <span class="cardDate">
-                                            {{getCardDate}}<br>
-                                            {{getCardTime}}
-                                        </span>
-                                    {{/if}}
                                     <br>
                                     <div class="leftHeader2">
                                         {{#if canCopyCard this.cardset_id}}
                                             {{#if isCardset}}
-                                                <a href="#" id="copyCard"
-                                                   class="btn-editCard btn btn-raised btn-default btn-xs"
-                                                   data-id="{{_id}}" data-type="cardNavigation" data-toggle="modal"
+                                                <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation" data-toggle="modal"
                                                    data-target="#showCopyCardModal">
-                                                    <i class="glyphicon glyphicon-duplicate" data-id="{{_id}}"
-                                                       data-type="cardNavigation"></i>
+                                                    <span class="glyphicon glyphicon-duplicate card-button" data-id="{{_id}}"
+                                                       data-type="cardNavigation"></span>
                                                 </a>
                                             {{/if}}
                                         {{/if}}

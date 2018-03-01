@@ -258,6 +258,9 @@ $font_5: sans-serif;
   .form-control.interval {
     width: 50px !important;
   }
+  .deleteCardsButton {
+    float: unset !important;
+  }
 }
 
 .panel-footer {
@@ -448,6 +451,7 @@ th .field-tip .tip-content {
   }
 }
 
-#showHintLearning {
+#showHintLearning, #showHintManage {
   font-size: 18px;
+  z-index: 500;
 }

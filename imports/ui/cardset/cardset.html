@@ -28,7 +28,7 @@
     {{#unless fullscreenActive}}
         {{> cardsetInfo}}
         {{> showLicense}}
-        {{> cardsetForm}}
+        {{> cardsetCourseIterationForm}}
         {{> cardsetImportForm}}
         {{> cardsetPublishForm}}
         {{> cardsetStartLearnForm}}
@@ -288,7 +288,7 @@
                     <div class="btn-group btn-group-raised">
                         <button id="editCardset" class="btn btn-raised btn-default" type="button"
                                 data-toggle="modal"
-                                data-target="#setCardsetModal" {{disableIfOffline}}>
+                                data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
                             <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                         </button>
                     </div>
@@ -323,7 +323,7 @@
                                         class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
                             </div>
                             {{#if this.quantity}}
-                                <div class="btn-group btn-group-raised pull-right">
+                                <div class="btn-group btn-group-raised deleteCardsButton pull-right">
                                     <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
                                             data-toggle="modal"
                                             data-target="#deleteCardsModal" {{disableIfOffline}}>
@@ -360,8 +360,7 @@
             {{#unless learningActive}}
                 <div id="set-details-learn-region">
                     <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning"
-                                                                         target="_blank">
+                        <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                         </a></span>
 
@@ -404,7 +403,9 @@
         <div id="set-details-learn-region">
             <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
                href="#collapseManage" data-toggle="collapse">
-                <strong>{{_ "manage"}}</strong>
+                <strong>{{_ "manage"}}<a href="#" id="showHintManage">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                </a></strong>
                 <i id="collapseMangeIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
             </a>
             <div id="collapseManage" class="collapse well well-sm">

@@ -14,7 +14,6 @@ import "./profile.html";
 
 Meteor.subscribe("experience");
 Meteor.subscribe("notifications");
-Meteor.subscribe("userData");
 Meteor.subscribe("cardsets");
 Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {
@@ -107,6 +106,12 @@ Template.profileSettings.helpers({
 			return "selected";
 		}
 	},
+	/** Function returns "selected" when the value of the selectedLanguage and the input _id are the same */
+	getSelectedLanguage: function (id) {
+		if (id === Meteor.users.findOne(Meteor.userId()).selectedLanguage) {
+			return "selected";
+		}
+	},
 	getMailNotifications: function () {
 		if (Meteor.users.findOne(Meteor.userId()).mailNotification) {
 			return "checked";
@@ -125,6 +130,9 @@ Template.profileSettings.helpers({
 	},
 	isDisabledSaveTheme: function () {
 		return Session.get("themeSettings");
+	},
+	isDisabledSaveLanguage: function () {
+		return Session.get("languageSettings");
 	}
 });
 
@@ -132,12 +140,14 @@ Template.profileSettings.helpers({
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+	Session.set("language", Meteor.users.findOne(Meteor.userId()).selectedLanguage);
 });
 
 Template.profileSettings.onCreated(function () {
 	Session.set("profileSettingsCancel", true);
 	Session.set("profileSettingsSave", true);
 	Session.set("themeSettings", true);
+	Session.set("languageSettings", true);
 });
 
 Template.profileSettings.events({
@@ -231,19 +241,37 @@ Template.profileSettings.events({
 	},
 	/** Function evaluates the currently selected color theme of the input box and saves it to the database */
 	"click #colorThemeSave": function () {
-		var selected = $('#colorThemeSelect').val();
-		var user_id = Meteor.userId();
+		let selected = $('#colorThemeSelect').val();
+		let user_id = Meteor.userId();
 
 		Session.set("themeSettings", true);
 		Meteor.call("updateColorTheme", selected, user_id);
 		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 	},
+	/** Function evaluates the currently selected language of the input box and saves it to the database */
+	"click #languageSave": function () {
+		let selected = $('#languageSelect').val();
+		let user_id = Meteor.userId();
+
+		Session.set("languageSettings", true);
+		Meteor.call("updateLanguage", selected, user_id);
+		TAPi18n.setLanguage(selected);
+		Session.set('activeLanguage', selected);
+		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
+	},
 	/** Function changes the temporary color theme when the input box changes its value */
 	"change #colorThemeSelect": function () {
-		var selected = $('#colorThemeSelect').val();
+		let selected = $('#colorThemeSelect').val();
 		Session.set("themeSettings", false);
 		// Set session variable. Will be reset to value from mongoDB when template is destroyed
 		Session.set("theme", selected);
+	},
+	/** Function changes the temporary language when the input box changes its value */
+	"change #languageSelect": function () {
+		let selected = $('#languageSelect').val();
+		Session.set("languageSettings", false);
+		// Set session variable. Will be reset to value from mongoDB when template is destroyed
+		Session.set("language", selected);
 	},
 	"click #profileSave": function () {
 		// Email validation

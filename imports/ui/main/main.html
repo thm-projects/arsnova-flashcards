@@ -11,7 +11,8 @@
                 {{else}}
                     {{> completeProfileModal}}
                     <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} thm-header">
+                        <div class="{{#unless isActiveRoute
+                                              regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} thm-header">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
@@ -36,6 +37,13 @@
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
                                                 <a href="{{pathFor route='pool'}}" id="pool">
                                                     {{_ "navbar-collapse.pool"}}
+                                                </a>
+                                            </li>
+                                            <li id="navbar-pool"
+                                                class="{{#if isActivePath regex='^\\/course'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#thm-top-navigation">
+                                                <a href="{{pathFor route='courseIterations'}}" id="course">
+                                                    {{_ "navbar-collapse.course"}}
                                                 </a>
                                             </li>
                                             <li id="navbar-ownsets"
@@ -79,10 +87,8 @@
                                         </div>
 
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li id="helpBtn">
-                                                <a href="{{pathFor
-                                                        route='help'}}"
-                                                   target="_blank">{{_ "contact.help"}}</a>
+                                            <li>
+                                                <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
                                             </li>
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-adminpanel">
@@ -172,35 +178,44 @@
                 {{> yield}}
             </div>
         </div>
-
-        {{#unless fullscreenActive}}
-            <div id="footer" class="footer">
-                <ul class="{{#unless isActiveRoute regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
-                    <li class="col-xs-2 col-sm-1">
-                        <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
-                        </a>
-                    </li>
-                    <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
-                        data-toggle="collapse" data-target="#thm-top-navigation">
-                        <a role="button" class="dropdown-toggle" data-toggle="dropdown"
-                           aria-label="{{_ "footer.language"}}">
-                            <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
-                        </a>
-                        <ul class="dropdown-menu col-xs-12">
-                            {{#each getLanguages}}
-                                <li><a href="#" role="menuitem" class="lang"
-                                       data-lang={{code}}>{{label.name}}</a></li>
-                            {{/each}}
-                        </ul>
-                    </li>
-                    <li class="col-xs-1 pull-right">
-                        {{> connectionStatus}}
-                    </li>
-                </ul>
-            </div>
+        {{#unless currentUser}}
+            {{> footer}}
         {{/unless}}
     </div> <!-- Theme Wrapper -->
+</template>
+
+<template name="footer">
+    <div id="footer" class="footer">
+        <ul class="{{#unless isActiveRoute
+                             regex='newCard|editCard'}}container{{else}}col-lg-offset-1 col-lg-10{{/unless}} dropup">
+            {{#if isActiveRoute 'home'}}
+                <li class="hidden-xs col-sm-10">
+                    {{> contactNavigation}}
+                </li>
+                <li class="visible-xs col-xs-2 col-sm-1">
+                    <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
+                        <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                    </a>
+                </li>
+            {{/if}}
+            <li id="navbar-languagepanel" class="col-xs-2 col-sm-1"
+                data-toggle="collapse" data-target="#thm-top-navigation">
+                <a role="button" class="dropdown-toggle" data-toggle="dropdown"
+                   aria-label="{{_ "footer.language"}}">
+                    <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
+                </a>
+                <ul class="dropdown-menu col-xs-12">
+                    {{#each getLanguages}}
+                        <li><a href="#" role="menuitem" class="lang"
+                               data-lang={{code}}>{{label.name}}</a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="col-xs-1 pull-right">
+                {{> connectionStatus}}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <template name="connectionStatus">
@@ -240,7 +255,7 @@
 <template name="connectionStatusModal">
     <div class="modal fade" id="connectionStatusModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content">
+            <div class="modal-content hintContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"}}</h4>

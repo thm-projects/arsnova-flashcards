@@ -29,12 +29,14 @@
     "about": "Was ist THMcards?",
     "learnMore": "Learn more ...",
     "impressum": "Impressum",
-    "backButton": "Zurück"
+    "backButton": "Zurück",
+    "backToStartButton": "Zurück zur Startseite"
   },
   "navbar-collapse": {
     "carddecks": "Meine Kartensätze",
     "learndecks": "Lernpensum",
     "pool": "Themen",
+    "course": "Kurse",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Suche",
@@ -165,6 +167,7 @@
     "licence": "Lizenz",
     "availability": "Zugang",
     "topic": "Thema des Kartensatzes",
+    "topicMobile": "Thema",
     "college": "Hochschule",
     "course": "Studiengang",
     "author": "Autor/in",
@@ -304,7 +307,8 @@
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Erscheinungsbild",
-      "theme": "Farbauswahl"
+      "theme": "Farbauswahl",
+      "language": "Sprache"
     }
   },
   "profil-header": {
@@ -628,6 +632,31 @@
         "front": "Erklärvideo",
         "back": "Kontrollfrage",
         "hint": "Videoquelle"
+      }
+    }
+  },
+  "courseIteration": {
+    "confirm-form-delete": {
+      "title": "Kurs löschen",
+      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
+    },
+    "list": {
+      "selectCourse": "Kurs auswählen",
+      "createCourse": "Kurs erstellen",
+      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt.",
+      "courseIteration": "Kurs",
+      "category": "Kategorie",
+      "module": "Modul",
+      "course": "Studiengang",
+      "progress": "Fortschritt",
+      "manage": "Verwalten"
+    },
+    "modal": {
+      "new": "Neuen Kurs anlegen",
+      "saveNew": "Kurs anlegen",
+      "placeholder": {
+        "name": "Thema des Kurses",
+        "description": "Lernziele und Lerninhalte"
       }
     }
   },
@@ -1019,5 +1048,9 @@
     "language": "Wähle eine Sprache",
     "info": "Über THMcards",
     "connection": "Verbindungsstatus"
+  },
+  "language": {
+    "german": "Deutsch",
+    "english": "Englisch"
   }
 }

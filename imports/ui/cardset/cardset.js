@@ -9,13 +9,13 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
+import {getUserLanguage} from "../../startup/client/i18n";
 import "../card/card.js";
 import "../learn/learn.js";
-import "./cardsetForm.js";
+import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("userData");
 Meteor.subscribe("paid");
 Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
@@ -153,7 +153,7 @@ Template.cardset.events({
 		$("#cardSetDelete").css('display', "none");
 		$("#cardSetConfirm").css('display', "");
 
-		$('#setCardsetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");
 			$("#cardSetConfirm").css('display', "none");
 		});
@@ -161,7 +161,7 @@ Template.cardset.events({
 	'click #cardSetConfirm': function () {
 		var id = this._id;
 
-		$('#setCardsetModal').on('hidden.bs.modal', function () {
+		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
 			Router.go('create');
 		}).modal('hide');
@@ -552,6 +552,11 @@ Template.cardsetSidebar.events({
 	},
 	"click #leaveCardsetButton": function () {
 		Router.go('pool');
+	},
+	"click #showHintManage": function (event) {
+		event.stopPropagation();
+		Session.set('helpTarget', 'cardsetManageHelp');
+		Router.go('help');
 	}
 });
 
