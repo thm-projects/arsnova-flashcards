@@ -804,6 +804,11 @@ Template.cardsetLearnActivityStatistic.events({
 			_id: Router.current().params._id,
 			user_id: $(event.target).data('id')
 		});
+	},
+	"click #showIntervalHelp": function (event) {
+		event.stopPropagation();
+		Session.set('helpTarget', 'leitnerIntervalHelp');
+		Router.go('help');
 	}
 });
 
