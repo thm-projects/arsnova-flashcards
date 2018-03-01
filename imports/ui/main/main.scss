@@ -310,6 +310,14 @@ body {
   .lang {
     padding: 25px 15px;
   }
+  .footer-info-navigation {
+    color: black !important;
+    background-color: $color_wild_sand_approx !important;
+    border-right: 1px solid $color_item_separator;
+  }
+  .footer-info-navigation:first-child {
+    border-left: 1px solid $color_item_separator;
+  }
 }
 
 #searchResults {
@@ -576,7 +584,7 @@ button:disabled {
 
 #contact-nav .inactive a {
   color: black !important;
-  background-color: #eeeeee !important;
+  background-color: $color_wild_sand_approx !important;
   outline: none;
 }
 

@@ -36,32 +36,46 @@
                     <i class="fa fa-home"></i></a></li>
             {{/unless}}
         {{/unless}}
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about"
-                                                                                       href="{{pathFor
-                                                                                               route='about'}}">{{_
-                "contact.about"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}}"><a id="learning"
-                                                                                          href="{{pathFor
-                                                                                                  route='learning'}}">{{_
-                "contact.learning"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}}"><a id="help"
-                                                                                      href="{{pathFor
-                                                                                              route='help'}}">{{_
-                "contact.help"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}}"><a id="faq" href="{{pathFor
-                route='faq'}}">{{_ "contact.faq"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}}"><a id="impressum"
-                                                                                           href="{{pathFor
-                                                                                                   route='impressum'}}">{{_
-                "contact.impressum"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}}"><a id="datenschutz"
-                                                                                     href="{{pathFor
-                                                                                             route='agb'}}">{{_
-                "contact.agb"}}</a></li>
-        <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}}"><a id="agb"
-                                                                                             href="{{pathFor
-                                                                                                     route='datenschutz'}}">{{_
-                "contact.datenschutz"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                         'home'}}footer-info-navigation{{/if}}">
+            <a id="about"
+               href="{{pathFor
+                       route='about'}}">{{_
+                    "contact.about"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'learning'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                            'home'}}footer-info-navigation{{/if}}">
+            <a id="learning"
+               href="{{pathFor
+                       route='learning'}}">{{_
+                    "contact.learning"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'help'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                        'home'}}footer-info-navigation{{/if}}">
+            <a id="help"
+               href="{{pathFor
+                       route='help'}}">{{_
+                    "contact.help"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'faq'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                       'home'}}footer-info-navigation{{/if}}">
+            <a id="faq" href="{{pathFor
+                    route='faq'}}">{{_ "contact.faq"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'impressum'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                             'home'}}footer-info-navigation{{/if}}">
+            <a id="impressum"
+               href="{{pathFor
+                       route='impressum'}}">{{_
+                    "contact.impressum"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'agb'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                       'home'}}footer-info-navigation{{/if}}">
+            <a id="datenschutz"
+               href="{{pathFor
+                       route='agb'}}">{{_
+                    "contact.agb"}}</a></li>
+        <li class="sm-12 md-2 {{#unless isActiveRoute 'datenschutz'}}inactive{{/unless}} {{#if isActiveRoute
+                                                                                               'home'}}footer-info-navigation{{/if}}">
+            <a id="agb"
+               href="{{pathFor
+                       route='datenschutz'}}">{{_
+                    "contact.datenschutz"}}</a></li>
     </nav>
 </template>
 
