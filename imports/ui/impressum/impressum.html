@@ -28,7 +28,7 @@
 
 <template name="contactNavigation">
     <nav id="contact-nav" class="nav nav-tabs nav-justified">
-        {{#unless isCurrentUser}}
+        {{#unless currentUser}}
             {{#unless isActiveRoute 'home'}}
                 <li class="sm-12 md-2 inactive"><a id="about"
                                                    href="{{pathFor
