@@ -18,6 +18,7 @@ $color_orange_pool: $color_thm_orange;
 $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
+$background_hint: lightseagreen;
 $default_font: 'Roboto';
 
 html {
@@ -794,4 +795,25 @@ th {
   text-align: center;
   display: inline-block;
   font-weight: bold;
+}
+
+.hintContent {
+  padding: 10px;
+  background-color: $background_hint;
+  color: white;
+  .table {
+    background-color: unset;
+  }
+}
+
+.hintContent .close {
+  color: white;
+}
+
+.hintContent .modal-header {
+  border-bottom: 1px solid white;
+}
+
+.hintContent .modal-body {
+  font-size: 16px;
 }

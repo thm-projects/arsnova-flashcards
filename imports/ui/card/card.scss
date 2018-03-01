@@ -5,7 +5,7 @@ $input_difficulty3: #d9534f;
 $background_difficultyNote0: ivory;
 $background_difficulty1: honeydew;
 $background_difficulty2: lightcyan;
-$background_difficulty3: mistyrose;
+$background_difficulty3: mistyrosgite;
 $color_difficultyNote0: #F8E1AE;
 $color_difficulty0: #E6EAE9;
 $color_difficulty1: rgba(92, 184, 92, 0.3);
@@ -453,24 +453,6 @@ img.cardside {
   }
 }
 
-.hintContent {
-  padding: 10px;
-  background-color: $background_hint;
-  color: white;
-}
-
-.hintContent .close {
-  color: white;
-}
-
-.hintContent .modal-header {
-  border-bottom: 1px solid white;
-}
-
-.hintContent .modal-body {
-  font-size: 16px;
-}
-
 .lectureContent {
   background-color: $background_lecture;
 }
@@ -489,7 +471,7 @@ img.cardside {
 
 #answerOptions {
   position: fixed;
-  height: 130px;
+  height: 150px;
   top: 0;
   z-index: 15;
   background-color: $color_mercury_approx;
