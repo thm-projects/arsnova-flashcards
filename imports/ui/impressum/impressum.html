@@ -1,15 +1,4 @@
 <template name="contact">
-    <div class="col-md-8 col-md-offset-2">
-        {{#if currentUser}}
-            <button class="btn btn-raised btn-danger" id="backButton">
-                <span class="pull-left">{{_ "intro.backButton"}}</span>
-            </button>
-        {{else}}
-            <button class="btn btn-raised btn-danger" id="backToStartButton">
-                <span class="pull-left">{{_ "intro.backToStartButton"}}</span>
-            </button>
-        {{/if}}
-    </div>
     <div id="contact" class="col-md-8 col-md-offset-2">
         {{> contactNavigation}}
         <br>
@@ -39,6 +28,14 @@
 
 <template name="contactNavigation">
     <nav id="contact-nav" class="nav nav-tabs nav-justified">
+        {{#unless isCurrentUser}}
+            {{#unless isActiveRoute 'home'}}
+                <li class="sm-12 md-2 inactive"><a id="about"
+                                                   href="{{pathFor
+                                                           route='home'}}">
+                    <i class="fa fa-home"></i></a></li>
+            {{/unless}}
+        {{/unless}}
         <li class="sm-12 md-2 {{#unless isActiveRoute 'about'}}inactive{{/unless}}"><a id="about"
                                                                                        href="{{pathFor
                                                                                                route='about'}}">{{_
