@@ -31,7 +31,7 @@ function drawGraph() {
 	chart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: [TAPi18n.__('subject1'), TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			labels: [TAPi18n.__('subject1') + " (" + TAPi18n.__('subjectNotLearned') + ")", TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
 				{
 					backgroundColor: chartColors.difficulty0Background,
