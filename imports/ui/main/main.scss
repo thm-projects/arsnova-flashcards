@@ -26,8 +26,8 @@ $color_footer_info_navigation_text_hover: white;
 $color_footer_info_navigation_background: $color_thm_green;
 $color_footer_info_navigation_background_hover: $color_thm_gray;
 $color_footer_info_navigation_border: white;
-$color_footer_globe: white;
-$color_footer_globe_hover: $color_thm_gray;
+$color_footer_icon: white;
+$color_footer_icon_hover: $color_thm_gray;
 $color_footer_globe_dropdown_text: $color_thm_gray;
 $color_footer_globe_dropdown_background: white;
 $color_footer_globe_dropdown_text_hover: white;
@@ -847,10 +847,10 @@ th {
   .footer-info-navigation:first-child a {
     border-left: 1px solid $color_footer_info_navigation_border;
   }
-  .glyphicon-globe {
-    color: $color_footer_globe;
+  .glyphicon-globe, .glyphicon-info-sign {
+    color: $color_footer_icon;
   }
-  .glyphicon-globe:hover {
-    color: $color_footer_globe_hover;
+  .glyphicon-globe:hover, .glyphicon-info-sign:hover {
+    color: $color_footer_icon_hover;
   }
 }
