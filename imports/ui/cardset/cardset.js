@@ -1068,6 +1068,7 @@ Template.cardsetEndLearnForm.events({
 	}
 });
 
+Session.setDefault('importType', 1);
 /*
  * ############################################################################
  * cardsetImportForm
@@ -1087,10 +1088,19 @@ Template.cardsetImportForm.onRendered(function () {
 Template.cardsetImportForm.helpers({
 	uploading: function () {
 		return Template.instance().uploading.get();
+	},
+	importType: function (importType) {
+		return Session.get('importType') === importType;
 	}
 });
 
 Template.cardsetImportForm.events({
+	"click #importType1": function () {
+		Session.set('importType', 1);
+	},
+	"click #importType2": function () {
+		Session.set('importType', 2);
+	},
 	'change [name="uploadFile"]': function (evt, tmpl) {
 		tmpl.uploading.set(true);
 		var cardset_id = Template.parentData(1)._id;

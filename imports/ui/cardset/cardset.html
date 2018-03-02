@@ -1153,11 +1153,36 @@
                     <p>{{_ "upload-form.popover-content"}}</p>
                     <a role='button' target='_blank' class='btn btn-default' href='/examples/example.json'>JSON</a>
                     <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv.txt'>CSV</a>
-                    <hr/>
+                    <h4>{{_ "upload-form.upload-type"}}</h4>
+                    <div id="importTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
+                        <label id="importType1"
+                               class="btn btn-default btn-white import-type {{#if importType 1}}active{{/if}}"
+                               data-type="1">
+                            {{#if importType 1}}
+                                <input type="radio" id="tabFocus" name="cardType" value="1" checked
+                                       data-type="1">
+                            {{else}}
+                                <input type="radio" name="cardType" value="1" data-type="1">
+                            {{/if}}
+                            {{_ "upload-form.upload-type1"}}
+                        </label>
+                        <label id="importType2"
+                               class="btn btn-default btn-white import-type {{#if importType 2}}active{{/if}}"
+                               data-type="2">
+                            {{#if importType 2}}
+                                <input type="radio" id="tabFocus" name="cardType" value="2" checked
+                                       data-type="2">
+                            {{else}}
+                                <input type="radio" name="cardType" value="2" data-type="2">
+                            {{/if}}
+                            {{_ "upload-form.upload-type2"}}
+                        </label>
+                    </div>
                 </div>
+                <hr/>
                 <div class="modal-footer">
                     {{#unless uploading}}
-                        <button id="importCancel" class="btn btn-default btn-raised col-xs-12 col-sm-3 "
+                        <button id="importCancel" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-4"
                                 data-dismiss="modal">{{_
                                 "modal-dialog.cancel"}}</button>
                         <span class="btn btn-success btn-file btn-raised col-xs-12 col-sm-4 pull-right">
@@ -1166,7 +1191,8 @@
                     {{else}}
                         <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>
                     {{/unless}}
-
+                    <br>
+                    <br>
                     <div id="uploadError"></div>
                 </div>
             </div>

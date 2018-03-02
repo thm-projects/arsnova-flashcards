@@ -173,5 +173,10 @@ $themes: (
     #showPreviewHelp {
       color: $primary-color !important;
     }
+
+    .import-type.active {
+      color: white !important;
+      background-color: $primary-color !important;
+    }
   }
 }
