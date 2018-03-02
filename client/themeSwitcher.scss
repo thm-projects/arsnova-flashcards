@@ -50,12 +50,6 @@ $themes: (
       }
     }
 
-    #footer {
-      a {
-        color: $primary-color;
-      }
-    }
-
     .row {
       a {
         color: $primary-color;
@@ -178,6 +172,11 @@ $themes: (
 
     .swappedOrder {
       color: $primary-color !important;
+    }
+
+    #contact-nav a {
+      color: white;
+      background-color: $primary-color;
     }
   }
 }

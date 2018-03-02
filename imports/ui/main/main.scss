@@ -19,7 +19,7 @@ $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
 $background_hint: lightseagreen;
-$footer_info_navigation_color: black;
+$footer_info_navigation_text: black;
 $footer_info_navigation_background: $color_wild_sand_approx;
 $footer_info_navigation_border: $color_item_separator;
 $default_font: 'Roboto';
@@ -203,7 +203,7 @@ body {
   }
 }
 
-#contact-nav a {
+#contact-nav a, #contact-nav-footer a {
   border-radius: 0;
   margin-bottom: 0;
   outline: none;
@@ -281,61 +281,6 @@ body {
 
 #theme-wrapper-no-nav {
   margin-top: 20px !important;
-}
-
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  background-color: $color_wild_sand_approx;
-  .container {
-    height: 40px;
-    margin-bottom: 0;
-    background-color: $color_wild_sand_approx;
-    text-align: center;
-  }
-  #info {
-    height: 40px;
-  }
-  .footer-icon {
-    font-size: 18px;
-    padding: 10px 0 0 0;
-    margin: 0;
-    text-align: center;
-  }
-
-  li {
-    height: 40px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li ul li {
-    height: 60px;
-  }
-
-  a {
-    text-decoration: none;
-    outline: none;
-  }
-  .dropdown-menu {
-    margin: 0;
-    padding: 0;
-    min-width: 120px;
-  }
-  .lang {
-    padding: 25px 15px;
-  }
-  .footer-info-navigation {
-    color: $footer_info_navigation_color;
-    background-color: $footer_info_navigation_background;
-    border-right: 1px solid $footer_info_navigation_border;
-  }
-  .footer-info-navigation:first-child {
-    border-left: 1px solid $footer_info_navigation_border;
-  }
 }
 
 #searchResults {
@@ -822,4 +767,59 @@ th {
 
 .hintContent .modal-body {
   font-size: 16px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: $color_wild_sand_approx;
+  .container {
+    height: 40px;
+    margin-bottom: 0;
+    background-color: $color_wild_sand_approx;
+    text-align: center;
+  }
+  #info {
+    height: 40px;
+  }
+  .footer-icon {
+    font-size: 18px;
+    padding: 10px 0 0 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  li {
+    height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li ul li {
+    height: 60px;
+  }
+
+  a {
+    text-decoration: none;
+    outline: none;
+  }
+  .dropdown-menu {
+    margin: 0;
+    padding: 0;
+    min-width: 120px;
+  }
+  .lang {
+    padding: 25px 15px;
+  }
+  .footer-info-navigation a {
+    color: $footer_info_navigation_text;
+    background-color: $footer_info_navigation_background;
+    border-right: 1px solid $footer_info_navigation_border;
+  }
+  .footer-info-navigation:first-child a {
+    border-left: 1px solid $footer_info_navigation_border;
+  }
 }
