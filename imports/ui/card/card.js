@@ -413,15 +413,17 @@ function resizeFlashcards() {
 	} else {
 		$('#contentEditor').css('height', 'unset');
 		let header = $('.cardHeader').height();
-		let editorAdjustment = 3;
+		let editorHeader = $('.btn-toolbar').height();
 		if (Session.get('activeEditMode') >= 2) {
-			header = -3;
-			editorAdjustment = 90;
+			header = 0;
+			editorHeader += 20;
 		}
+		editorHeader -= 17;
 		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - header;
 		$('.cardContent').css('height', newFlashcardBodyHeight);
 		if ($(window).width() >= 1200) {
-			$('#contentEditor').css('height', (newFlashcardBodyHeight - editorAdjustment));
+			let newEditorBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - editorHeader;
+			$('#contentEditor').css('height', (newEditorBodyHeight));
 		}
 		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
 		$('.center-align').css('margin-top', newCenterTextHeight);
