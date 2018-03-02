@@ -211,7 +211,7 @@
                     {{/each}}
                 </ul>
             </li>
-            <li class="col-xs-1 pull-right">
+            <li class="col-xs-1 {{#if isActiveRoute regex='home'}}icon-container{{/if}} pull-right">
                 {{> connectionStatus}}
             </li>
         </ul>
