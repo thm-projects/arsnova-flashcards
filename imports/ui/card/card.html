@@ -102,9 +102,7 @@
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
             {{> flashcards cardset=this}}
         </div>
-        <span class="col-xs-12 editorButtonGroup">
-            {{> btnCard}}
-        </span>
+        {{> btnCard}}
     </div>
 </template>
 
@@ -319,29 +317,37 @@
 </template>
 
 <template name="btnCard">
-    <div class="actionButtons editorElement">
-        <br>
-        <button id="cardSave"
-                class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="13">
-            {{_ "savecard"}}
-        </button>
-        <button id="cardSaveReturn"
-                class="btn btn-success btn-raised save col-xs-12 col-sm-3" {{disableIfOffline}} tabindex="14">
-            {{_ "savecardReturn"}}
-        </button>
-        <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-2" tabindex="15">{{_
-                "declinecard"}}</button>
-        {{#if isEditMode}}
-            {{#if isCardsetOwner this.cardset_id}}
-                <button id="cardDelete"
-                        class="btn btn-danger btn-raised pull-right col-xs-12 col-sm-2" {{isDisabled}}
-                        tabindex="16">{{_
-                        "deletecard"}}</button>
-                <button id="cardDeleteConfirm" style="display: none;"
-                        class="btn btn-warning btn-raised pull-right col-xs-12 col-sm-2">{{_ "confirmcard"}}</button>
-            {{/if}}
-        {{/if}}
+    <div class="col-xs-12 col-sm-9 col-md-6 editorButtonGroup">
+        <div class="actionButtons editorElement">
+            <br>
+            <button id="cardSave"
+                    class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="13">
+                {{_ "savecard"}}
+            </button>
+            <button id="cardSaveReturn"
+                    class="btn btn-success btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="14">
+                {{_ "savecardReturn"}}
+            </button>
+            <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 pull-right" tabindex="15">{{_
+                    "declinecard"}}</button>
+        </div>
     </div>
+    {{#if isEditMode}}
+        {{#if isCardsetOwner this.cardset_id}}
+            <div class="col-xs-12 col-sm-3 col-md-6 editorButtonGroup">
+                <div class="actionButtons editorElement">
+                    <br>
+                    <button id="cardDelete"
+                            class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right" {{isDisabled}}
+                            tabindex="16">{{_
+                            "deletecard"}}</button>
+                    <button id="cardDeleteConfirm" style="display: none;"
+                            class="btn btn-warning btn-raised col-xs-12 col-md-3 pull-right">{{_
+                            "confirmcard"}}</button>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
 </template>
 
 <template name="flashcards">
@@ -361,10 +367,12 @@
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
-                                                <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}" data-id="{{_id}}"
+                                                <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}"
+                                                   data-id="{{_id}}"
                                                    data-type="cardNavigation">
-                                                    <span class="glyphicon glyphicon-pencil card-button" data-id="{{_id}}"
-                                                       data-type="cardNavigation"></span>
+                                                    <span class="glyphicon glyphicon-pencil card-button"
+                                                          data-id="{{_id}}"
+                                                          data-type="cardNavigation"></span>
                                                 </a>
                                             {{/if}}
                                         {{/if}}
@@ -456,23 +464,27 @@
                                         </div>
                                     {{/unless}}
                                     <span id="swapOrder" data-type="cardNavigation">
-                                                <span class="material-icons card-button {{#if reversedViewOrder}}pressed{{/if}}"
+                                                <span class="material-icons card-button {{#if
+                                                        reversedViewOrder}}pressed{{/if}}"
                                                       data-type="cardNavigation">swap_vert</span>
                                     </span>
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
                                           data-type="cardNavigation">
-                                                <span class="glyphicon glyphicon-fullscreen card-button {{#if fullscreenActive}}pressed{{/if}}"
+                                                <span class="glyphicon glyphicon-fullscreen card-button {{#if
+                                                        fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
                                     </span>
                                     <br>
                                     <div class="leftHeader2">
                                         {{#if canCopyCard this.cardset_id}}
                                             {{#if isCardset}}
-                                                <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation" data-toggle="modal"
+                                                <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
+                                                   data-toggle="modal"
                                                    data-target="#showCopyCardModal">
-                                                    <span class="glyphicon glyphicon-duplicate card-button" data-id="{{_id}}"
-                                                       data-type="cardNavigation"></span>
+                                                    <span class="glyphicon glyphicon-duplicate card-button"
+                                                          data-id="{{_id}}"
+                                                          data-type="cardNavigation"></span>
                                                 </a>
                                             {{/if}}
                                         {{/if}}
