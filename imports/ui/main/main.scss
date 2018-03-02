@@ -19,9 +19,23 @@ $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
 $background_hint: lightseagreen;
-$footer_info_navigation_text: black;
-$footer_info_navigation_background: $color_wild_sand_approx;
-$footer_info_navigation_border: $color_item_separator;
+
+$color_footer_background: $color_wild_sand_approx;
+$color_footer_info_navigation_text: black;
+$color_footer_info_navigation_text_hover: black;
+$color_footer_info_navigation_background: $color_wild_sand_approx;
+$color_footer_info_navigation_background_hover: $color_wild_sand_approx;
+$color_footer_info_navigation_border: $color_item_separator;
+$color_footer_globe: $color_thm_gray;
+$color_footer_globe_hover: $color_thm_gray;
+$color_footer_globe_dropdown_text: black;
+$color_footer_globe_dropdown_background: white;
+$color_footer_globe_dropdown_text_hover: black;
+$color_footer_globe_dropdown_background_hover: white;
+$color_footer_websocket_connected: $color_thm_green;
+$color_footer_websocket_connecting: $color_thm_orange;
+$color_footer_websocket_disconnected: $color_thm_red;
+
 $default_font: 'Roboto';
 
 html {
@@ -601,15 +615,15 @@ button:disabled {
 }
 
 .disconnected {
-  color: $color_thm_red;
+  color: $color_footer_websocket_disconnected;
 }
 
 .connected {
-  color: $color_thm_green;
+  color: $color_footer_websocket_connected;
 }
 
 .connecting {
-  color: $color_thm_orange;
+  color: $color_footer_websocket_connecting;
 }
 
 #main-nav {
@@ -775,11 +789,11 @@ th {
   bottom: 0;
   width: 100%;
   height: 40px;
-  background-color: $color_wild_sand_approx;
+  background-color: $color_footer_background;
   .container {
     height: 40px;
     margin-bottom: 0;
-    background-color: $color_wild_sand_approx;
+    background-color: $color_footer_background;
     text-align: center;
   }
   #info {
@@ -813,13 +827,30 @@ th {
   }
   .lang {
     padding: 25px 15px;
+    color: $color_footer_globe_dropdown_text;
+    background-color: $color_footer_globe_dropdown_background;
+  }
+  .lang:hover {
+    padding: 25px 15px;
+    color: $color_footer_globe_dropdown_text_hover !important;
+    background-color: $color_footer_globe_dropdown_background_hover;
   }
   .footer-info-navigation a {
-    color: $footer_info_navigation_text;
-    background-color: $footer_info_navigation_background;
-    border-right: 1px solid $footer_info_navigation_border;
+    color: $color_footer_info_navigation_text;
+    background-color: $color_footer_info_navigation_background;
+    border-right: 1px solid $color_footer_info_navigation_border;
+  }
+  .footer-info-navigation a:hover {
+    color: $color_footer_info_navigation_text_hover;
+    background-color: $color_footer_info_navigation_background_hover;
   }
   .footer-info-navigation:first-child a {
-    border-left: 1px solid $footer_info_navigation_border;
+    border-left: 1px solid $color_footer_info_navigation_border;
+  }
+  .glyphicon-globe {
+    color: $color_footer_globe;
+  }
+  .glyphicon-globe:hover {
+    color: $color_footer_globe_hover;
   }
 }
