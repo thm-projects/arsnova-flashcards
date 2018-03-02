@@ -26,7 +26,7 @@
     }
   },
   "intro": {
-    "about": "Was ist THMcards?",
+    "about": "Was ist THM.cards?",
     "learnMore": "Learn more ...",
     "impressum": "Impressum",
     "backButton": "Zurück",
@@ -45,7 +45,7 @@
     "none": "Ohne"
   },
   "contact": {
-    "about": "THMcards",
+    "about": "THM.ards",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -123,8 +123,8 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du THMcards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THMcards abgemeldet."
+    "text": "Falls du sicher bist, dass du THM.cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THM.cards abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
@@ -305,8 +305,8 @@
     "settings": {
       "name": "Mein Profil",
       "delete": "Benutzerkonto löschen",
-      "deleteText": "Falls du sicher bist, dass du THMcards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
-      "appearance": "Erscheinungsbild",
+      "deleteText": "Falls du sicher bist, dass du THM.cards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
+      "appearance": "Einstellungen",
       "theme": "Farbauswahl",
       "language": "Sprache"
     }
@@ -978,8 +978,8 @@
       "clock": " Uhr",
       "roles": "Benutzerrollen",
       "blocked": "Benutzer/in blockieren",
-      "blockedtext": "Willst du dem User den Zugang zu THMcards verweigern?",
-      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von THMcards zu bearbeiten.",
+      "blockedtext": "Willst du dem User den Zugang zu THM.cards verweigern?",
+      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von THM.cards zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
       "blockedtext_invalid": "Gib einen Grund für die Sperrung ein!",
       "cancel": "Abbrechen",
@@ -1011,7 +1011,7 @@
     "button": "Akzeptieren"
   },
   "mailNotification": {
-    "subjectTitle": "THMcards: Heute ",
+    "subjectTitle": "THM.cards: Heute ",
     "subjectSingular1": "ist ",
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
@@ -1032,22 +1032,22 @@
     "newCards2Plural": " Karten aus dem Kartensatz ",
     "mailCard": "Der Kartensatz ",
     "mailCard1": " benötigt deine Aufmerksamkeit!\n\n",
-    "greetings": "\n\nDein THMcards-Team",
+    "greetings": "\n\nDein THM.cards-Team",
     "subjectEnding": "endet die Lernphase des Kartensatzes ",
     "textIntroEnding": "Hallo,\n\n",
     "textEnding": "heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THMcards: Deine Lernstatistik wurde zurückgesetzt für den Kartensatz ",
+    "subjectReset": "THM.cards: Deine Lernstatistik wurde zurückgesetzt für den Kartensatz ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
-    "service": "Dieser Newsletter ist ein Service von THMcards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
+    "service": "Dieser Newsletter ist ein Service von THM.cards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
-    "copyright": "© 2018 THMcards",
+    "copyright": "© 2018 THM.cards",
     "my-cardset": "Zum Kartensatz...",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
     "language": "Wähle eine Sprache",
-    "info": "Über THMcards",
+    "info": "Über THM.cards",
     "connection": "Verbindungsstatus"
   },
   "language": {
