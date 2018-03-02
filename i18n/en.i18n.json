@@ -89,6 +89,7 @@
   "upload-form": {
     "popover-content": "Here you can upload your own cards to the cardset. Currently the formats JSON and CSV (Excel, comma-separated) are supported. Please have a look at these templates:",
     "upload-title": "Import cards",
+    "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "File type",
     "upload-type1": ".cards",
     "upload-type2": "Mnemosyne",
