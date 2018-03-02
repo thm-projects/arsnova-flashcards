@@ -536,6 +536,12 @@ button:disabled {
   .panelUnit {
     border-right: solid 1px $color_item_separator;
   }
+
+  .footer {
+    .icon-container {
+      border-right: solid 1px $color_footer_info_navigation_border;
+    }
+  }
 }
 
 .badge {
