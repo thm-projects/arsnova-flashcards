@@ -425,7 +425,9 @@ function resizeFlashcards() {
 			let newEditorBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - editorHeader;
 			$('#contentEditor').css('height', (newEditorBodyHeight));
 		}
-		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
+		let contentHeight = $('.center-align').height();
+		let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
+		let newCenterTextHeight = (((newFlashcardBodyHeight - contentPadding) - contentHeight) / 2);
 		$('.center-align').css('margin-top', newCenterTextHeight);
 		$('.dictionaryFrame').css('height', newFlashcardBodyHeight);
 	}
@@ -928,6 +930,8 @@ Template.editor.events({
 Template.editor.helpers({
 	getBackTitle: function () {
 		switch (Session.get('cardType')) {
+			case 1:
+				return TAPi18n.__('card.cardType1.back');
 			case 2:
 				return TAPi18n.__('card.cardType2.back');
 			case 3:
@@ -955,6 +959,8 @@ Template.editor.helpers({
 	},
 	getFrontTitle: function () {
 		switch (Session.get('cardType')) {
+			case 1:
+				return TAPi18n.__('card.cardType1.front');
 			case 2:
 				return TAPi18n.__('card.cardType2.front');
 			case 3:

@@ -13,6 +13,8 @@ $color_difficulty2: rgba(91, 192, 222, 0.3);
 $color_difficulty3: rgba(217, 83, 79, 0.3);
 $background_lecture: papayawhip;
 $background_hint: lightseagreen;
+$color_item_selection_border: $color_item_separator;
+
 
 #difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
@@ -32,77 +34,36 @@ $background_hint: lightseagreen;
   }
 }
 
-.btn-white {
-  border-right: 1px solid $color_btn_inactive !important;
-  @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
-}
-
 .btn-white.active {
   color: $black !important;
   background-color: white !important;
-  border-color: $input_difficulty0;
-  border-right: 1px solid $color_btn_inactive !important;
-  @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
 }
 
 .btn-orange {
   color: $color_thm_orange !important;
-  border-right: 1px solid $color_btn_inactive !important;
-  @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
 }
 
 .btn-orange.active {
   color: $white !important;
   background-color: $color_thm_orange !important;
-  border-color: $input_difficulty0;
-  border-right: 1px solid $color_btn_inactive !important;
-  @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
 }
 
 #difficulty .btn-info {
   color: $input_difficulty1 !important;
-  @media(min-width: 768px) {
-    border-right: 1px solid $color_btn_inactive !important;
-    border-bottom: 0;
-  }
-  @media(max-width: 767px) {
-    border-right: 0;
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
 }
 
 #difficulty .btn-info.active {
   color: $white !important;
   background-color: $input_difficulty1;
-  border-color: $input_difficulty1;
-  @media(min-width: 768px) {
-    border-right: 1px solid $color_btn_inactive !important;
-    border-bottom: 0;
-  }
-  @media(max-width: 767px) {
-    border-right: 0;
-    border-bottom: 1px solid $color_btn_inactive !important;
-  }
 }
 
 #difficulty .btn-success {
   color: $input_difficulty2 !important;
-  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-success.active {
   color: $white !important;
   background-color: $input_difficulty2;
-  border-color: $input_difficulty2;
-  border-right: 1px solid $color_btn_inactive !important;
 }
 
 #difficulty .btn-danger {
@@ -112,7 +73,6 @@ $background_hint: lightseagreen;
 #difficulty .btn-danger.active {
   color: $white !important;
   background-color: $input_difficulty3;
-  border-color: $input_difficulty3;
 }
 
 #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
@@ -307,6 +267,31 @@ $background_hint: lightseagreen;
   background: linear-gradient(to top, $color_difficulty3 0px, $color_difficulty3 4px, $background_difficulty3 5px, $background_difficulty3 100%);
 }
 
+@media(max-width: 767px) {
+  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+    border: 2px solid $color_item_selection_border !important;
+  }
+  #cardTypeGroup *:nth-child(even), #difficultyGroup *:nth-child(even), #learningGoalLevelGroup *:nth-child(even), .editorNavigation *:nth-child(even) {
+    border-left: none !important;
+  }
+  #cardTypeGroup *:nth-child(n+3), #difficultyGroup *:nth-child(n+3), #learningGoalLevelGroup *:nth-child(n+3), .editorNavigation *:nth-child(n+3) {
+    border-top: none !important;
+  }
+  #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
+    border-right: 2px solid $color_item_selection_border !important;
+  }
+}
+
+@media(min-width: 768px) {
+  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+    border-right: 2px solid $color_item_selection_border !important;
+  }
+
+  #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .editorNavigation *:last-child {
+    border-right: none !important;
+  }
+}
+
 .btn-showPictureDetails {
   position: absolute;
   left: 45px;
@@ -499,27 +484,6 @@ img.cardside {
   }
 }
 
-#editBack, #editLecture {
-  border-left: 1px solid $color_btn_inactive;
-  @media(max-width: 767px) {
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 1px solid $color_btn_inactive;
-  }
-}
-
-#editHint {
-  @media(min-width: 768px) {
-    border-left: 1px solid $color_btn_inactive;
-  }
-}
-
-#editLecture {
-  @media(max-width: 767px) {
-    border-bottom: 1px solid $color_btn_inactive;
-  }
-}
-
 .editorBackground, .md-editor > textarea {
   background: #FFFFFF;
 }
@@ -568,19 +532,14 @@ img.cardside {
 .center-align {
   position: relative;
   float: left;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
 }
 
 #learningGoalLevelGroup {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding: 0;
-}
-
-#cardType0 {
-  border-right: 0 !important;
 }
 
 #learningGoalLevelGroup > .btn-raised {
@@ -590,12 +549,6 @@ img.cardside {
 }
 
 @media(max-width: 767px) {
-  #cardType3 {
-    border-right: none !important;
-  }
-  #cardType0 {
-    border-bottom: none !important;
-  }
   #learningGoalLevelGroup > .btn-raised {
     padding-top: 19px;
     padding-bottom: 20px;
