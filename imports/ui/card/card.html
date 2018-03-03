@@ -67,24 +67,24 @@
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                        class="btn btn-primary btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
                                                                                                               2
                                                                                                               4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
                 {{#if isCardType 0}}
-                    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-12 col-sm-3"
+                    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
                             tabindex="9">{{_
                             "card.cardType0.lecture"}}</button>
                 {{/if}}
                 <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-12 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
+                        class="btn btn-default btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if isCardType
                                                                                                               2
                                                                                                               4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="7">{{getBackTitle}}</button>
                 {{#unless isCardType 1}}
                     {{#unless isCardType 3}}
                         <button id="editHint" type="button"
-                                class="btn btn-default btn-raised col-xs-12 {{#if isCardType
+                                class="btn btn-default btn-raised col-xs-6 {{#if isCardType
                                                                                   0}}col-sm-3{{else}}col-sm-4{{/if}}"
                                 tabindex="11">{{#if isCardType 0}}{{_
                                 "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
