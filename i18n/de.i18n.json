@@ -582,16 +582,16 @@
   },
   "card": {
     "cardType0": {
-      "name": "Lernfrage",
-      "front": "Fragen zum Lernziel",
+      "name": "Lerneinheit",
+      "front": "Fragen zum Lernziel / Thema",
       "back": "Antworten",
-      "hint": "Hinweis / Literatur ",
-      "lecture": "Präsentation",
+      "hint": "Links / Literatur ",
+      "lecture": "Lerninhalt",
       "placeholders": {
-        "front": "Fragen zum Lernziel",
-        "back": "Antworten",
-        "hint": "Hinweis / Literatur",
-        "lecture": "Präsentation"
+        "front": "Fragen zur Überprüfung des Lernziels",
+        "back": "Antworten auf die Fragen zum Lernziel / Thema der Lerneinheit",
+        "hint": "Links und Literatur zur Vertiefung des Lerninhalts",
+        "lecture": "Inhalt der Lerneinheit"
       }
     },
     "cardType1": {
@@ -607,11 +607,11 @@
       "name": "Mitschrift",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
-      "hint": "Hinweis / Literatur",
+      "hint": "Offene Fragen / ToDos",
       "placeholders": {
-        "front": "Mitschrift",
-        "back": "Nachbearbeitung",
-        "hint": "Hinweis / Literatur"
+        "front": "Mitschrift zur Veranstaltung",
+        "back": "Nachbearbeitung der Lerninhalte",
+        "hint": "Noch nicht verstanden und ToDos"
       }
     },
     "cardType3": {
@@ -620,18 +620,18 @@
       "back": "Definition / Beschreibung",
       "placeholders": {
         "front": "Fachbegriff",
-        "back": "Definition / Beschreibung"
+        "back": "Definition / Beschreibung des Fachbegriffs"
       }
     },
     "cardType4": {
       "name": "Erklärvideo",
       "front": "Erklärvideo",
-      "back": "Kontrollfrage",
+      "back": "Kontrollfragen",
       "hint": "Videoquelle",
       "placeholders": {
         "front": "Erklärvideo",
-        "back": "Kontrollfrage",
-        "hint": "Videoquelle"
+        "back": "Kontrollfragen zum Video",
+        "hint": "Videoquelle und Lizenz"
       }
     }
   },
@@ -702,7 +702,7 @@
   "difficultyNotes3": "Praktikum",
   "arrowKeys": "Pfeiltasten",
   "key": "Taste __key__",
-  "cardType": "Karte",
+  "cardType": "Kartentyp",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",
@@ -711,7 +711,7 @@
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
-  "cardsubject": "Lernziel",
+  "cardsubject": "Lernziel / Thema",
   "options": "Optionen",
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
