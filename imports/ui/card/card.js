@@ -928,6 +928,8 @@ Template.editor.events({
 Template.editor.helpers({
 	getBackTitle: function () {
 		switch (Session.get('cardType')) {
+			case 1:
+				return TAPi18n.__('card.cardType1.back');
 			case 2:
 				return TAPi18n.__('card.cardType2.back');
 			case 3:
@@ -955,6 +957,8 @@ Template.editor.helpers({
 	},
 	getFrontTitle: function () {
 		switch (Session.get('cardType')) {
+			case 1:
+				return TAPi18n.__('card.cardType1.front');
 			case 2:
 				return TAPi18n.__('card.cardType2.front');
 			case 3:
