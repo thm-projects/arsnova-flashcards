@@ -425,7 +425,9 @@ function resizeFlashcards() {
 			let newEditorBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - editorHeader;
 			$('#contentEditor').css('height', (newEditorBodyHeight));
 		}
-		let newCenterTextHeight = (newFlashcardBodyHeight / 2) - 18;
+		let contentHeight = $('.center-align').height();
+		let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
+		let newCenterTextHeight = (((newFlashcardBodyHeight - contentPadding) - contentHeight) / 2);
 		$('.center-align').css('margin-top', newCenterTextHeight);
 		$('.dictionaryFrame').css('height', newFlashcardBodyHeight);
 	}
