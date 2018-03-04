@@ -22,7 +22,7 @@ var initTestNotificationsCardset = function () {
 		{
 			"_id": "NotificationsTestCardset",
 			"name": "Notifications Test",
-			"description": "This cardset tests the E-Mail and web notifications of THMCards.",
+			"description": "This cardset tests the E-Mail and web notifications of THM.cards.",
 			"date": (new Date().setFullYear(2017, 9, 5)),
 			"dateUpdated": (new Date().setFullYear(2017, 9, 5)),
 			"owner": "NotificationsTestUser",

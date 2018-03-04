@@ -117,15 +117,6 @@
             {{/if}}
             {{_ "card.cardType0.name"}}
         </label>
-        <label id="cardType2" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
-               data-type="2">
-            {{#if isCardType 2}}
-                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="2" data-type="2">
-            {{else}}
-                <input type="radio" name="cardType" value="2" data-type="2">
-            {{/if}}
-            {{_ "card.cardType2.name"}}
-        </label>
         <label id="cardType3" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
                data-type="3">
             {{#if isCardType 3}}
@@ -134,16 +125,6 @@
                 <input type="radio" name="cardType" value="3" data-type="3">
             {{/if}}
             {{_ "card.cardType3.name"}}
-        </label>
-        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
-               data-type="1">
-            {{#if isCardType 1}}
-                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
-            {{else}}
-                <input type="radio" name="cardType" value="1" data-type="1">
-            {{/if}}
-
-            {{_ "card.cardType1.name"}}
         </label>
         <label id="cardType4" class="col-xs-6 col-sm-3 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
                data-type="4">
@@ -154,6 +135,25 @@
                 <input type="radio" name="cardType" value="4" data-type="4">
             {{/if}}
             {{_ "card.cardType4.name"}}
+        </label>
+        <label id="cardType2" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
+               data-type="2">
+            {{#if isCardType 2}}
+                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="2" data-type="2">
+            {{else}}
+                <input type="radio" name="cardType" value="2" data-type="2">
+            {{/if}}
+            {{_ "card.cardType2.name"}}
+        </label>
+        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
+               data-type="1">
+            {{#if isCardType 1}}
+                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
+            {{else}}
+                <input type="radio" name="cardType" value="1" data-type="1">
+            {{/if}}
+
+            {{_ "card.cardType1.name"}}
         </label>
     </div>
 </template>
