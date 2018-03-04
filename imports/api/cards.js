@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cardsets} from "./cardsets.js";
-import {Experience} from "./experience.js";
 import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
@@ -251,13 +250,6 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
-		Experience.insert({
-			type: 3,
-			value: 2,
-			date: new Date(),
-			owner: Meteor.userId()
-		});
-		Meteor.call('checkLvl');
 		return card_id;
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
