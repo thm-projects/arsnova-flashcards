@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
-import {Experience} from "./experience.js";
 import {Leitner, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
@@ -255,13 +254,6 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		Experience.insert({
-			type: 2,
-			value: 3,
-			date: new Date(),
-			owner: Meteor.userId()
-		});
-		Meteor.call('checkLvl');
 		return Cardsets.insert({
 			name: name.trim(),
 			description: description,

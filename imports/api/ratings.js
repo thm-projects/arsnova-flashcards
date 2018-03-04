@@ -1,6 +1,5 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-import {Experience} from "./experience.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 
@@ -43,14 +42,6 @@ Meteor.methods({
 				});
 			}
 		});
-
-		Experience.insert({
-			type: 4,
-			value: 1,
-			date: new Date(),
-			owner: Meteor.userId()
-		});
-		Meteor.call('checkLvl');
 	},
 	updateRating: function (cardset_id, owner, rating) {
 		check(cardset_id, String);
