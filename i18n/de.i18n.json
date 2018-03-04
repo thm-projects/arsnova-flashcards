@@ -383,7 +383,7 @@
     "birthname-desc": "Nachname (öffentlich)",
     "givenname": "Vorname",
     "givenname-desc": "Vorname (öffentlich)",
-    "login": "Registriert via",
+    "login": "Du bist angemeldet über: ",
     "email": "E-Mail",
     "email-desc": "E-Mail-Adresse",
     "emailValidation": "E-Mail bestätigen",
@@ -630,7 +630,7 @@
       "hint": "Videoquelle",
       "placeholders": {
         "front": "Erklärvideo",
-        "back": "Kontrollfragen zum Video",
+        "back": "Kontrollfragen zum Inhalt des Videos",
         "hint": "Videoquelle und Lizenz"
       }
     }
@@ -753,8 +753,8 @@
   "subject3": "Box 3",
   "subject4": "Box 4",
   "subject5": "Box 5",
-  "subject6": "Gelernt",
-  "subjectNotLearned": "Ungelernt",
+  "subject6": "gelernt",
+  "subjectNotLearned": "neu|vergessen",
   "details": "Grafik",
   "cardCount": "Anzahl Karten",
   "subjectInfo": "Karten in der Box __box__ werden täglich wieder vorgelegt.",

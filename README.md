@@ -35,8 +35,8 @@ You can then access the app from your host machine by visiting http://localhost:
 
 ## Optional features
 
-### Authentication setup (For Google, Facebook and Twitter logins)
-1. [Create your Google api keys](https://console.developers.google.com/)
+### Authentication setup (For Google+, Facebook and Twitter logins)
+1. [Create your Google+ api keys](https://console.developers.google.com/)
 2. [Create your Facebook api keys](https://developers.facebook.com/)
 3. [Create your Twitter api keys](https://apps.twitter.com/)
 
@@ -58,7 +58,7 @@ You can then access the app from your host machine by visiting http://localhost:
 ## Contribution guide
 The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/blob/staging/CONTRIBUTING.md).
 
-## Documentation 
+## Documentation
 The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 
 ### UML Diagrams
