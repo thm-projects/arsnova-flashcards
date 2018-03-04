@@ -11,7 +11,7 @@
             {{#if isVisible}}
                 <div class="col-md-9">
                     {{#if isActiveRoute 'profileOverview'}}
-                        <div id="profileOverview">{{> profileXp}}</div>
+                        <div id="profileOverview">{{> profileOverview}}</div>
                     {{/if}}
                     {{#if isActiveRoute 'profileBilling'}}
                         <div id="profileBilling">
@@ -371,170 +371,16 @@
 </template>
 
 <!--##################################################################-->
-<!--profileXp-->
+<!--profileOverview-->
 <!--##################################################################-->
-<template name="profileXp">
+<template name="profileOverview">
     <div class="row">
-        <div class="col-md-12" id="profile-xp">
-            <div class="panel panel-default">
-                <div class="panel-heading panel-heading-experience">
-                    <h3 class="panel-title">{{_ "panel-heading-experience.experience"}}</h3>
-                </div>
-                <div class="panel-body panel-body-experience">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="well" class="well well-sm">
-                                <div class="row">
-								<span class="span1">
-                                    {{getXpTotal}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-                                    {{_ "panel-body-experience.total"}}
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpToday}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-                                    {{_ "panel-body-experience.today"}}
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpYesterday}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-                                    {{_ "panel-body-experience.yesterday"}}
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- vorgestern 1 -->
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpTwoDaysAgo}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-                                    {{_ "panel-body-experience.twoDaysAgo"}}
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Secquencer 1 -->
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpSeq1}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-									{{getDays1}} {{_ "panel-body-experience.day" count=getDays1}}
-								</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Secquencer 2 -->
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpSeq2}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-								   {{getDays2}} {{_ "panel-body-experience.day" count=2}}
-								</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Secquencer 3 -->
-                        <div class="col-md-2 col-xs-4">
-                            <div id="well" class="well well-sm">
-                                <div id="row1" class="row">
-								<span class="span2">
-                                    {{getXpSeq3}}
-                                </span>
-                                </div>
-                                <div class="row">
-								<span class="text-muted">
-								   {{getDays3}} {{_ "panel-body-experience.day" count=2}}
-								</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="text-muted">{{_ "panel-body-experience.lastredeem"}}</span>
-                            <span class="pull-right text-muted">
-                                {{getLast}}
-                            </span>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <div class="row">
-                        <div id="column2" class="col-md-2">
-                            <div class="divPic">
-							<span class="span6">
-                                {{getLvl}}
-                            </span>
-                            </div>
-                        </div>
-                        <div id="column8" class="col-md-8">
-                            <div class="progress">
-                                <div id="bar" class="progress-bar progress-bar-warning" role="progressbar"
-                                     style="width: {{getXpPercent}};">
-                                </div>
-                            </div>
-                            <small class="text-muted">
-                                <span>{{_ "pointslvl1"}}</span>
-                                <em>
-                                    <span>{{getXp}}</span>
-                                    <span>{{_ "pointslvl2"}}</span>
-                                </em>
-                                <span>{{_ "pointslvl3"}}</span>
-                            </small>
-                        </div>
-                        <div id="column2" class="col-md-2">
-                            <div class="divTrophy">
-							<span class="span7">
-                                {{getNextLvl}}
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading panel-heading-experience">
+                    <h3 class="panel-title">{{_ "profile.overview"}}</h3>
+                </div>
+                <div class="panel-body">
                     <div id="container" style="min-width: 100%;
 			max-width: 100%; min-height: 100%; max-height: 100%; margin: 0 auto">
                         {{> graph}}
