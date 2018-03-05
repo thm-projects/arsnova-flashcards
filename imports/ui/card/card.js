@@ -758,14 +758,6 @@ function saveCard(card_id, returnToCardset) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
 	}
-	if (frontText === '') {
-		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('fronttext_required'), "danger", 'growl-top-left');
-	}
-	if (cardType !== 2 && backText === '') {
-		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('backtext_required'), "danger", 'growl-top-left');
-	}
 	if (frontText.length > 10000) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
@@ -782,14 +774,8 @@ function saveCard(card_id, returnToCardset) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	let editorIsNotEmpty;
-	if (cardType === 2) {
-		editorIsNotEmpty = frontText !== '' && $('#subjectEditor').val() !== '';
-	} else {
-		editorIsNotEmpty = frontText !== '' && backText !== '' && $('#subjectEditor').val() !== '';
-	}
-	let editorsValidLength = frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 10000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000;
-	if (editorIsNotEmpty && editorsValidLength) {
+	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
+	if ($('#subjectEditor').val() !== '' && editorsValidLength) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
