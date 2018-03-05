@@ -35,6 +35,8 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
+$color_honme_button_icon: $color_thm_green;
+$color_placeholder: $color_thm_red;
 
 $default_font: 'Roboto';
 
@@ -693,10 +695,14 @@ th {
   text-transform: uppercase;
 }
 
-#contentEditor::placeholder {
+#contentEditor::placeholder, .placeholder {
+  position: relative;
+  float: left;
+  width: 100%;
   font-size: 20px;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 15%;
+  color: $color_placeholder;
 }
 
 .info-tab h1 {
@@ -831,16 +837,6 @@ th {
     padding: 0;
     min-width: 120px;
   }
-  .lang {
-    padding: 25px 15px;
-    color: $color_footer_globe_dropdown_text;
-    background-color: $color_footer_globe_dropdown_background;
-  }
-  .lang:hover {
-    padding: 25px 15px;
-    color: $color_footer_globe_dropdown_text_hover !important;
-    background-color: $color_footer_globe_dropdown_background_hover;
-  }
   .footer-info-navigation a {
     color: $color_footer_info_navigation_text;
     background-color: $color_footer_info_navigation_background;
@@ -853,10 +849,30 @@ th {
   .footer-info-navigation:first-child a {
     border-left: 1px solid $color_footer_info_navigation_border;
   }
-  .glyphicon-globe, .glyphicon-info-sign {
-    color: $color_footer_icon;
+  .icon-container a {
+    color: $color_footer_info_navigation_text;
+    background-color: $color_footer_info_navigation_background;
   }
-  .glyphicon-globe:hover, .glyphicon-info-sign:hover, .glyphicon-signal:hover {
-    color: $color_footer_icon_hover;
+  .icon-container:hover, .icon-container-info:hover {
+    color: $color_footer_info_navigation_text_hover;
+    background-color: $color_footer_info_navigation_background_hover;
   }
+  .icon-container-info {
+    border-left: 1px solid $color_footer_info_navigation_border;
+    border-right: 1px solid $color_footer_info_navigation_border;
+  }
+  .lang {
+    padding: 25px 15px;
+    color: $color_footer_globe_dropdown_text !important;
+    background-color: $color_footer_globe_dropdown_background !important;
+  }
+  .lang:hover {
+    padding: 25px 15px;
+    color: $color_footer_globe_dropdown_text_hover !important;
+    background-color: $color_footer_globe_dropdown_background_hover !important;
+  }
+}
+
+.fa-home {
+  color: $color_honme_button_icon;
 }

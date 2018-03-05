@@ -141,9 +141,9 @@
     "learningEndDesc": "In 3 Monaten",
     "learningInterval": "Lernintervalle in Tagen",
     "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
-    "notification": "Benachrichtigungen",
-    "mailNotificationCheckbox": "E-Mail",
-    "webNotificationCheckbox": "Web",
+    "notification": "Erinnerung, Karten zu lernen",
+    "mailNotificationCheckbox": "per E-Mail",
+    "webNotificationCheckbox": "per Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
     "card": "Karte",
     "cards": "Karten"
@@ -289,8 +289,8 @@
   },
   "profile": {
     "overview": "Lernaktivität",
-    "billing": "Abrechnung (kostenloser Testbetrieb)",
-    "membership": "Mitgliedschaft (kostenloser Testbetrieb)",
+    "billing": "Abrechnung",
+    "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
     "requests": "Pro-Anfragen Kartensatzfreigabe",
     "norequests": "Keine Anfragen vorhanden",
@@ -615,7 +615,7 @@
       }
     },
     "cardType3": {
-      "name": "Fachbegriff",
+      "name": "Glossar",
       "front": "Fachbegriff",
       "back": "Definition | Beschreibung",
       "placeholders": {
