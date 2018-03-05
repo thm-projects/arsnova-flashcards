@@ -50,7 +50,7 @@ function createTagCloud() {
 		return;
 	}
 
-	let heightAdjustment = 90;
+	let heightAdjustment = 98;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
@@ -75,7 +75,7 @@ function createTagCloud() {
 				return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
 			},
 			hover: wordcloudHover,
-			backgroundColor: '#EEEEEE',
+			backgroundColor: 'rgba(255,255,255,0)',
 			wait: 75
 		});
 }
