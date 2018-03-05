@@ -405,12 +405,16 @@ img.cardside {
   text-decoration: none;
 }
 
+.cardContent, #contentEditor {
+  padding: 26pt !important;
+  line-height: 28px;
+  font-size: 18px;
+  font-family: $default_font !important;
+}
+
 .cardContent {
   box-sizing: border-box;
   width: 100%;
-  padding: 26px 50px 26px 50px;
-  line-height: 28px;
-  font-size: 18px;
   vertical-align: bottom;
   overflow-y: auto;
   overflow-x: hidden;
