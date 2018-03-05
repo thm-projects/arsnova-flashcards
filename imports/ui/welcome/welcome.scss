@@ -1,10 +1,12 @@
 //colors
-$color_welcome_page_header_background: $color_athens_gray_approx;
-$color_welcome_page_canvas_border: $color_athens_gray_approx;
-$color_welcome_page_canvas_background: $color_athens_gray_approx;
-$color_welcome_page_footer_background: $color_athens_gray_approx;
+
+$color_welcome_page_header_background: rgb(255, 255, 224);
+$color_welcome_page_canvas_border: rgb(255, 255, 224);
+$color_welcome_page_canvas_background: rgb(255, 255, 224);
+$color_welcome_page_footer_background: rgb(255, 255, 224);
 $color_wild_sand_approx: rgb(245, 245, 245);
 $color_fuscous_gray_approx: rgb(85, 85, 84);
+
 #welcome {
   text-align: center;
   #slogan {
