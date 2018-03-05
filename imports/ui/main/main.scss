@@ -35,6 +35,7 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
+$color_honme_button_icon: $color_thm_green;
 
 $default_font: 'Roboto';
 
@@ -865,4 +866,8 @@ th {
     color: $color_footer_globe_dropdown_text_hover !important;
     background-color: $color_footer_globe_dropdown_background_hover !important;
   }
+}
+
+.fa-home {
+  color: $color_honme_button_icon;
 }
