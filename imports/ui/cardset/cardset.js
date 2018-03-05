@@ -212,33 +212,74 @@ Template.cardsetList.helpers({
 		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 	},
 	cardsetList: function () {
-		if (this.shuffled) {
-			return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
+		if (Router.current().route.getName() === "cardsetlistid") {
+			if (this.shuffled) {
+				return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
+			} else {
+				return Cardsets.find({_id: this._id}).fetch();
+			}
 		} else {
-			return Cardsets.find({_id: this._id}).fetch();
+			return Cardsets.find({_id: Router.current().params._id}).fetch();
+		}
+	},
+	gotCards: function () {
+		if (Router.current().route.getName() === "cardsetlistid") {
+			if (this.shuffled) {
+				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
+			} else {
+				return Cards.find({cardset_id: this._id}).count();
+			}
+		} else {
+			return Cards.find({cardset_id: Router.current().params._id, cardType: 0}).count();
 		}
 	},
 	cardSubject: function () {
-		return _.uniq(Cards.find({
-			cardset_id: this._id
-		}, {
-			cardset_id: 1,
-			subject: 1,
-			sort: {subject: 1}
-		}).fetch(), function (card) {
-			return card.subject;
-		});
+		if (Router.current().route.getName() === "cardsetlistid") {
+			return _.uniq(Cards.find({
+				cardset_id: this._id
+			}, {
+				cardset_id: 1,
+				subject: 1,
+				sort: {subject: 1}
+			}).fetch(), function (card) {
+				return card.subject;
+			});
+		} else {
+			return _.uniq(Cards.find({
+				cardset_id: this._id
+			}, {
+				cardset_id: 1,
+				subject: 1,
+				cardType: 0,
+				sort: {subject: 1}
+			}).fetch(), function (card) {
+				return card.subject;
+			});
+		}
 	},
 	cardList: function () {
-		return Cards.find({
-			cardset_id: this.cardset_id,
-			subject: this.subject
-		}, {
-			_id: 1,
-			difficulty: 1,
-			front: 1,
-			sort: {front: 1}
-		});
+		if (Router.current().route.getName() === "cardsetlistid") {
+			return Cards.find({
+				cardset_id: this.cardset_id,
+				subject: this.subject
+			}, {
+				_id: 1,
+				difficulty: 1,
+				front: 1,
+				sort: {front: 1}
+			});
+		} else {
+			return Cards.find({
+				cardset_id: this.cardset_id,
+				subject: this.subject,
+				cardType: 0
+			}, {
+				_id: 1,
+				difficulty: 1,
+				front: 1,
+				sort: {front: 1}
+			});
+		}
 	},
 	getColors: function () {
 		switch (this.kind) {
@@ -259,8 +300,15 @@ Template.cardsetList.helpers({
 
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
-		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+		if (Router.current().route.getName() === "cardsetlistid") {
+			Session.set('modifiedCard', $(evt.target).data('id'));
+			Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+		} else {
+			let learningUnit = $(evt.target).data('id');
+			Session.set('learningUnit', learningUnit);
+			Session.set('subjectText', Cards.findOne({_id: learningUnit}).subject);
+			$('#showSelectSubjectModal').modal('hide');
+		}
 	}
 });
 /*

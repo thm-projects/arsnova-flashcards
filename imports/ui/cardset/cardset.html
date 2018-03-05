@@ -348,7 +348,8 @@
                     <div class="btn-group btn-group-raised btn-group-justified">
                         <a id="btnToCardLayout"
                            class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
-                           href="/cardset/{{_id}}"><img class="cardDetailsIcon" src="/img/card_detail_icon.png"> {{_ "sidebar-nav.viewmap"}}</a>
+                           href="/cardset/{{_id}}"><img class="cardDetailsIcon" src="/img/card_detail_icon.png"> {{_
+                                "sidebar-nav.viewmap"}}</a>
                         <a id="btnToListLayout"
                            class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"
                            href="/cardsetlist/{{_id}}"><i class="fa fa-list"></i> {{_ "sidebar-nav.viewlist"}}</a>
@@ -527,8 +528,8 @@
 </template>
 
 <template name="cardsetList">
-    <div class="col-md-9" id="cardset-list">
-        {{#if this.quantity}}
+    <div class="{{#if isActiveRoute 'cardsetlistid'}}col-md-9{{/if}}" id="cardset-list">
+        {{#if gotCards}}
             {{#each cardsetList}}
                 {{#if isShuffledCardset}}
                     <div class="cardListName btn-raised {{getColors}}">
@@ -565,7 +566,9 @@
                 <tbody>
                 <tr class="empty-listitem">
                     <td colspan="3" align="center">
-                        <span style="font-family:'Georgia'">{{#mathjax}}{{_ "nocards"}}{{/mathjax}}</span>
+                        <span style="font-family:'Georgia'">
+                            {{#if isActiveRoute 'cardsetlistid'}}{{_ "nocards"}}{{else}}{{_
+                                    "learningUnit.noUnitsFound"}}{{/if}}</span>
                     </td>
                 </tr>
                 </tbody>

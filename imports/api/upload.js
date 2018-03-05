@@ -51,6 +51,9 @@ Meteor.methods({
 			if (item.date === undefined) {
 				item.date = new Date();
 			}
+			if (item.learningUnit === undefined) {
+				item.learningUnit = "";
+			}
 		}
 
 		for (let i = 0; i < data.length; i++) {
@@ -92,7 +95,8 @@ Meteor.methods({
 					lecture: lecture,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
-					backgroundStyle: item.backgroundStyle
+					backgroundStyle: item.backgroundStyle,
+					learningUnit: item.learningUnit
 				});
 			}
 		}

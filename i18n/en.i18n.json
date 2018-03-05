@@ -666,6 +666,13 @@
         "back": "Back",
         "hint": "Hint"
       }
+    },
+    "cardType5": {
+      "name": "Assessment",
+      "front": "Assessment",
+      "placeholders": {
+        "front": "Assessment"
+      }
     }
   },
   "courseIteration": {
@@ -691,6 +698,13 @@
         "description": "Learning objectives and content"
       }
     }
+  },
+  "learningUnit": {
+    "title":"Select learning aptitude",
+    "choose": "Edit...",
+    "belongsTo": "Belongs to the learning unit...",
+    "none": "Doesn't belong to a learning unit",
+    "noUnitsFound": "There are no learning units for this set of cards"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
@@ -745,7 +759,7 @@
   "copyCardTitle": "Copy card",
   "copyCardText": "Select the cardset in which you want to copy this card.",
   "copycardSuccess": "Card copied",
-  "cardsubject": "Subject",
+  "cardSubject": "Subject",
   "options": "Options",
   "fronttext_required": "The front field is required!",
   "backtext_required": "The back field is required!",
