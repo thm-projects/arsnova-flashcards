@@ -155,6 +155,7 @@ var CardsSchema = new SimpleSchema({
 	},
 	front: {
 		type: String,
+		optional: true,
 		max: 10000
 	},
 	back: {
@@ -223,9 +224,6 @@ Meteor.methods({
 		}
 		if (!cardset.shuffled) {
 			cardGroup = "0";
-		}
-		if (cardType !== 2 && (back === '' || back === undefined)) {
-			throw new Meteor.Error("Back is empty");
 		}
 		Cards.insert({
 			subject: subject.trim(),
@@ -370,9 +368,6 @@ Meteor.methods({
 			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
-		}
-		if (cardType !== 2 && (back === '' || back === undefined)) {
-			throw new Meteor.Error("Back is empty");
 		}
 		Cards.update(card_id, {
 			$set: {

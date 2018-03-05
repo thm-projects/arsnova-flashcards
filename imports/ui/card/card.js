@@ -102,11 +102,17 @@ function isCardType(cardType1, cardType2, cardType3, cardType4, activeCardType) 
 let lastEditMode = 0;
 let isEditorFullscreen = false;
 
-function setPlaceholderText() {
+function setPlaceholderText(activeMode = -1, cardType = -1) {
 	let placeholderText = "";
-	switch (Session.get('activeEditMode')) {
+	if (activeMode < 0) {
+		activeMode = Session.get('activeEditMode');
+	}
+	if (cardType < 0) {
+		cardType = Session.get('cardType');
+	}
+	switch (activeMode) {
 		case 0:
-			switch (Session.get('cardType')) {
+			switch (cardType) {
 				case 0:
 					placeholderText = TAPi18n.__('card.cardType0.placeholders.front');
 					break;
@@ -125,7 +131,7 @@ function setPlaceholderText() {
 			}
 			break;
 		case 1:
-			switch (Session.get('cardType')) {
+			switch (cardType) {
 				case 0:
 					placeholderText = TAPi18n.__('card.cardType0.placeholders.back');
 					break;
@@ -144,7 +150,7 @@ function setPlaceholderText() {
 			}
 			break;
 		case 2:
-			switch (Session.get('cardType')) {
+			switch (cardType) {
 				case 0:
 					placeholderText = TAPi18n.__('card.cardType0.placeholders.hint');
 					break;
@@ -157,7 +163,7 @@ function setPlaceholderText() {
 			}
 			break;
 		case 3:
-			switch (Session.get('cardType')) {
+			switch (cardType) {
 				case 0:
 					placeholderText = TAPi18n.__('card.cardType0.placeholders.lecture');
 					break;
@@ -165,6 +171,7 @@ function setPlaceholderText() {
 			break;
 	}
 	$("#contentEditor").attr('placeholder', placeholderText);
+	return placeholderText;
 }
 
 function prepareFront() {
@@ -253,29 +260,23 @@ function turnBack(adjustEditWindow = false) {
 
 Session.set('activeEditMode', 0);
 
-function defaultToFront(cardType) {
-	Session.set('activeEditMode', 0);
-	$('#contentEditor').val(Session.get('frontText'));
-	Session.set('cardType', cardType);
-	$('#editFront').removeClass('btn-default').addClass('btn-primary');
-	$('#editBack').removeClass('btn-primary').addClass('btn-default');
-	$('#editLecture').removeClass('btn-primary').addClass('btn-default');
-	$('#editHint').removeClass('btn-primary').addClass('btn-default');
-	turnFront();
-}
-
 function editFront() {
 	prepareFront();
 	$(".clicktoflip").css('display', "");
 	turnFront();
-	setPlaceholderText();
+}
+
+function defaultToFront(cardType) {
+	Session.set('cardType', cardType);
+	setTimeout(function () {
+		editFront();
+	}, 125);
 }
 
 function editBack() {
 	prepareBack();
 	$(".clicktoflip").css('display', "");
 	turnBack();
-	setPlaceholderText();
 }
 
 function editLecture() {
@@ -300,7 +301,6 @@ function editLecture() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
-	setPlaceholderText();
 }
 
 function editHint() {
@@ -325,7 +325,6 @@ function editHint() {
 	$(".clicktoflip").css('display', "none");
 	turnFront();
 	$(".cardFrontHeader").css('display', "none");
-	setPlaceholderText();
 }
 
 /**
@@ -758,14 +757,6 @@ function saveCard(card_id, returnToCardset) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
 	}
-	if (frontText === '') {
-		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('fronttext_required'), "danger", 'growl-top-left');
-	}
-	if (cardType !== 2 && backText === '') {
-		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('backtext_required'), "danger", 'growl-top-left');
-	}
 	if (frontText.length > 10000) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
@@ -782,14 +773,8 @@ function saveCard(card_id, returnToCardset) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	let editorIsNotEmpty;
-	if (cardType === 2) {
-		editorIsNotEmpty = frontText !== '' && $('#subjectEditor').val() !== '';
-	} else {
-		editorIsNotEmpty = frontText !== '' && backText !== '' && $('#subjectEditor').val() !== '';
-	}
-	let editorsValidLength = frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 10000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000;
-	if (editorIsNotEmpty && editorsValidLength) {
+	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
+	if ($('#subjectEditor').val() !== '' && editorsValidLength) {
 		let subject = $('#subjectEditor').val();
 		let difficulty = $('input[name=difficulty]:checked').val();
 		if (ActiveRoute.name('newCard')) {
@@ -819,7 +804,6 @@ function saveCard(card_id, returnToCardset) {
 						window.scrollTo(0, 0);
 						$('#editFront').click();
 						$('#difficulty0').click();
-						setPlaceholderText();
 					}
 				}
 			});
@@ -991,7 +975,6 @@ Template.editor.onRendered(function () {
 	$(window).resize(function () {
 		moveEditorButtonGroup();
 	});
-	setPlaceholderText();
 });
 
 /*
@@ -1043,6 +1026,11 @@ Template.contentEditor.events({
 	}
 });
 
+Template.contentEditor.helpers({
+	getPlaceholder: function () {
+		return setPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'));
+	}
+});
 
 /*
  * ############################################################################
@@ -1149,9 +1137,6 @@ Template.cardType.events({
 		centerTextElement[0] = true;
 		centerTextElement[1] = true;
 		Session.set('centerTextElement', centerTextElement);
-	},
-	"click #cardTypeGroup": function () {
-		setPlaceholderText();
 	}
 });
 
@@ -1194,6 +1179,18 @@ Template.cardHintContent.helpers({
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
+	},
+	getPlaceholder: function () {
+		return setPlaceholderText(2);
+	},
+	gotHint: function () {
+		let hint;
+		if (isEditMode()) {
+			hint = Session.get('hintText');
+		} else if (Session.get('selectedHint')) {
+			hint = Cards.findOne({_id: Session.get('selectedHint')}).hint;
+		}
+		return hint !== '' && hint !== undefined;
 	},
 	isCentered: function () {
 		if (Session.get('selectedHint')) {
@@ -1411,6 +1408,18 @@ Template.flashcards.helpers({
 		} else {
 			return this.centerTextElement[type];
 		}
+	},
+	gotBack: function () {
+		return this.back !== '' && this.back !== undefined;
+	},
+	gotFront: function () {
+		return this.front !== '' && this.front !== undefined;
+	},
+	gotLecture: function () {
+		return this.lecture !== '' && this.lecture !== undefined;
+	},
+	getPlaceholder: function (mode) {
+		return setPlaceholderText(mode, this.cardType);
 	}
 });
 
