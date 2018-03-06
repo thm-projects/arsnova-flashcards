@@ -287,7 +287,10 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
+    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?",
+    "deleteCard": "Möchtest du wirklich die Karte löschen?",
+    "cancelEditCard": "Möchtest du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden bei Bestätigung verworfen.",
+    "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
   },
   "profile": {
     "overview": "Lernaktivität",
@@ -635,6 +638,17 @@
         "back": "Kontrollfragen zum Inhalt des Videos",
         "hint": "Videoquelle und Lizenz"
       }
+    },
+    "cardType5": {
+      "name": "Prüfung",
+      "front": "Prüfungsfrage",
+      "back": "Antwort",
+      "hint": "Erläuterung",
+      "placeholders": {
+        "front": "Prüfungsfrage",
+        "back": "Antwort",
+        "hint": "Erläuterung"
+      }
     }
   },
   "courseIteration": {
@@ -663,6 +677,13 @@
         "description": "Lernziele und Lerninhalte"
       }
     }
+  },
+  "learningUnit": {
+    "title":"Lerneiheit auswählen",
+    "choose": "Bearbeiten...",
+    "belongsTo": "Gehört zur Lerneinheit...",
+    "none": "Gehört nicht zu einer Lerneinheit",
+    "noUnitsFound": "Es sind keine Lerneinheiten für diesen Kartensatz vorhanden"
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
@@ -715,7 +736,7 @@
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
-  "cardsubject": "Lernziel | Thema",
+  "cardSubject": "Lernziel | Thema",
   "options": "Optionen",
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
