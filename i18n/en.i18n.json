@@ -477,7 +477,8 @@
     "startLearning": "Start Learning-Phase",
     "stopLearning": "Stop Learning-Phase",
     "poolLicense": "License for ",
-    "leaveEditors": "Leave Editor Group"
+    "leaveEditors": "Leave Editor Group",
+    "preview": "Chargeable set of cards"
   },
   "pool": {
     "relevance": "Relevance",

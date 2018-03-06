@@ -178,5 +178,9 @@ $themes: (
       color: white;
       background-color: $primary-color;
     }
+
+    #showPreviewHelp {
+      color: $primary-color !important;
+    }
   }
 }

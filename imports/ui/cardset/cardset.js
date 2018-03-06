@@ -195,6 +195,11 @@ Template.cardsetPreview.events({
 		Router.go('profileMembership', {
 			_id: Meteor.userId()
 		});
+	},
+	"click #showPreviewHelp": function () {
+		event.stopPropagation();
+		Session.set('helpTarget', '#previewHelp');
+		Router.go('help');
 	}
 });
 
@@ -603,7 +608,7 @@ Template.cardsetSidebar.events({
 	},
 	"click #showHintManage": function (event) {
 		event.stopPropagation();
-		Session.set('helpTarget', 'cardsetManageHelp');
+		Session.set('helpTarget', '#cardsetManageHelp');
 		Router.go('help');
 	}
 });
@@ -860,7 +865,7 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click #showIntervalHelp": function (event) {
 		event.stopPropagation();
-		Session.set('helpTarget', 'leitnerIntervalHelp');
+		Session.set('helpTarget', '#leitnerIntervalHelp');
 		Router.go('help');
 	}
 });
