@@ -471,7 +471,8 @@
     "startLearning": "Lernphase starten",
     "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für ",
-    "leaveEditors": "Bearbeitergruppe verlassen"
+    "leaveEditors": "Bearbeitergruppe verlassen",
+    "preview": "Kostenpflichtiger Kartensatz"
   },
   "pool": {
     "relevance": "Relevanz",

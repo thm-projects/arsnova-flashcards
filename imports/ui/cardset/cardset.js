@@ -195,6 +195,11 @@ Template.cardsetPreview.events({
 		Router.go('profileMembership', {
 			_id: Meteor.userId()
 		});
+	},
+	"click #showPreviewHelp": function () {
+		event.stopPropagation();
+		Session.set('helpTarget', '#previewHelp');
+		Router.go('help');
 	}
 });
 
