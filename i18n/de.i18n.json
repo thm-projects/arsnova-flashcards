@@ -27,7 +27,7 @@
   },
   "intro": {
     "about": "Was ist THM.cards?",
-    "learnMore": "Learn more ...",
+    "learnMore": "Erfahre mehr darüber ...",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
@@ -141,7 +141,7 @@
     "learningEndDesc": "In 3 Monaten",
     "learningInterval": "Lernintervalle in Tagen",
     "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
-    "notification": "Erinnerung, Karten zu lernen",
+    "notification": "Wie willst du benachrichtigt werden?",
     "mailNotificationCheckbox": "per E-Mail",
     "webNotificationCheckbox": "per Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
@@ -583,7 +583,7 @@
   "card": {
     "cardType0": {
       "name": "Lerneinheit",
-      "front": "Fragen zum Lernziel",
+      "front": "Lernzielfragen",
       "back": "Antworten",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
