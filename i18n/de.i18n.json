@@ -210,12 +210,14 @@
     "noModuleShort": "ohne"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
+    "emptytextlist": "Du hast noch keinen Kartensatz erstellt.
+    Informiere dich unter \"Hilfe\", was du mit einem eigenen Kartensatz tun kannst.",
     "emptypooltextlist": "Kein Kartensatz vorhanden",
-    "newset": "Neuen Kartensatz anlegen"
+    "newset": "Kartensatz erstellen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
+    "emptytextlist": "Zum Lernen wähle einen Kartensatz aus
+    oder mische einen neuen Kartensatz aus mehreren anderen.",
     "emptytextlistNoShuffle": "Wähle einen Kartensatz aus.",
     "browseCardset": "Kartensatz auswählen"
   },
@@ -643,7 +645,9 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt.",
+      "empty": "Kurse fassen mehrere Kartensätze zusammen.
+      Sie können nur von Lehrenden erstellt werden.
+      Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
       "category": "Kategorie",
       "module": "Modul",
