@@ -22,9 +22,9 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": "THM.cards verwendet Cookies. Wenn Sie auf der Seite weitersurfen, stimmen Sie der Cookie-Nutzung zu.",
+			"message": "THM.cards verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
-			"link": "Details zum Datenschutz",
+			"link": "Datenschutzerklärung",
 			"href": "/datenschutz"
 		}
 	});
