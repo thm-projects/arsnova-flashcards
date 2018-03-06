@@ -279,6 +279,10 @@ $color_item_selection_border: $color_item_separator;
   #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
     border-right: 2px solid $color_item_selection_border !important;
   }
+
+  #cardTypeGroup *:nth-child(3), #cardTypeGroup *:nth-child(4) {
+    border-bottom: 4px solid $color_thm_red !important;
+  }
 }
 
 @media(min-width: 768px) {
@@ -288,6 +292,10 @@ $color_item_selection_border: $color_item_separator;
 
   #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .editorNavigation *:last-child {
     border-right: none !important;
+  }
+
+  #cardTypeGroup *:nth-child(4) {
+    border-right: 4px solid $color_thm_red !important;
   }
 }
 
