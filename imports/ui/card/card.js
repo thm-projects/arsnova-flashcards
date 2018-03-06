@@ -239,15 +239,17 @@ function turnFront(adjustEditWindow = false) {
 	if (isEditMode() && adjustEditWindow) {
 		prepareFront();
 	}
-	$(".cardfront-symbol").css('display', "");
-	$(".cardback-symbol").css('display', "none");
-	$(".cardfront").css('display', "");
-	$(".cardFrontHeader").css('display', "");
-	$(".cardback").css('display', "none");
-	$(".cardBackHeader").css('display', "none");
+	$(".cardfrontCheck").css('display', "");
+	$(".cardbackCheck").css('display', "none");
+	$(".box .cardfront-symbol").css('display', "");
+	$(".box .cardback-symbol").css('display', "none");
+	$(".box .cardfront").css('display', "");
+	$(".box .cardFrontHeader").css('display', "");
+	$(".box .cardback").css('display', "none");
+	$(".box .cardBackHeader").css('display', "none");
 	$(".box").removeClass("flipped");
-	$(".cardHeader").removeClass("back");
-	$(".cardContent").removeClass("back");
+	$(".box .cardHeader").removeClass("back");
+	$(".box .cardContent").removeClass("back");
 }
 
 function turnBack(adjustEditWindow = false) {
@@ -259,15 +261,17 @@ function turnBack(adjustEditWindow = false) {
 	if (isEditMode() && adjustEditWindow) {
 		prepareBack();
 	}
-	$(".cardfront-symbol").css('display', "none");
-	$(".cardback-symbol").css('display', "");
-	$(".cardfront").css('display', "none");
-	$(".cardFrontHeader").css('display', "none");
-	$(".cardback").css('display', "");
-	$(".cardBackHeader").css('display', "");
+	$(".cardbackCheck").css('display', "");
+	$(".cardfrontCheck").css('display', "none");
+	$(".box .cardfront-symbol").css('display', "none");
+	$(".box .cardback-symbol").css('display', "");
+	$(".box .cardfront").css('display', "none");
+	$(".box .cardFrontHeader").css('display', "none");
+	$(".box .cardback").css('display', "");
+	$(".box .cardBackHeader").css('display', "");
 	$(".box").addClass("flipped");
-	$(".cardHeader").addClass("back");
-	$(".cardContent").addClass("back");
+	$(".box .cardHeader").addClass("back");
+	$(".box .cardContent").addClass("back");
 }
 
 Session.set('activeEditMode', 0);
@@ -531,9 +535,9 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
  * a card or the other way around
  */
 export function turnCard(adjustEditWindow = false) {
-	if ($(".cardfront").css('display') === 'none') {
+	if ($(".cardfrontCheck").css('display') === 'none') {
 		turnFront(adjustEditWindow);
-	} else if ($(".cardback").css('display') === 'none') {
+	} else if ($(".cardbackCheck").css('display') === 'none') {
 		turnBack(adjustEditWindow);
 	}
 }

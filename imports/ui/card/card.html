@@ -546,6 +546,12 @@
                                         {{/if}}
                                     </div>
                                     <h3>{{subject}}</h3>
+                                    <span class="cardfrontCheck" style="display: {{#if isCardType 1}}{{#if
+                                            reversedViewOrder}}none{{/if}}{{/if}}"></span>
+                                    <span class="cardbackCheck"
+                                          style="display: {{#if isCardType 1}}{{#unless
+                                                  reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
+                                    </span>
                                 </div>
                                 <div class="cardContent {{#if
                                         isHintPreview}}hintContent{{/if}}{{#if
