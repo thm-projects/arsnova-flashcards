@@ -49,7 +49,7 @@
     <div class="row">
         <div id="subject" class="col-md-6 cardtext editorElement">
             <h5>{{_ "cardSubject"}}</h5>
-            {{> selectSubject}}
+            {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
         <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
@@ -322,34 +322,34 @@
 </template>
 
 <template name="subjectEditor">
-    <form class="subjectEditor {{#if isCardType 5}}col-xs-8 col-sm-9{{/if}}">
+    <form class="subjectEditor {{#if isCardType 2 5}}col-xs-8 col-sm-9{{/if}}">
         {{#if isActiveRoute 'newCard'}}
             <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
                    tabindex="1" autofocus {{isDisabled}}>
         {{else}}
-            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{subject}}"
+            <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
                    tabindex="1" autofocus {{isDisabled}}>
         {{/if}}
     </form>
-    {{#if isCardType 5}}
+    {{#if isCardType 2 5}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
-                data-target="#showSelectSubjectModal">{{_ "learningUnit.choose"}}</button>
+                data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
     {{/if}}
 </template>
 
 
-<template name="selectSubject">
-    <div class="modal fade" id="showSelectSubjectModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="showSelectSubjectTitle">
+<template name="selectLearningUnit">
+    <div class="modal fade" id="showSelectLearningUnitModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showSelectLearningUnitTitle">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="showSelectSubjectTitle" class="modal-title">{{_ "learningUnit.title"}}</h4>
+                    <h4 id="showSelectLearningUnitTitle" class="modal-title">{{_ "learningUnit.title"}}</h4>
                     <div class="modal-body">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <br>
-                                <button id="noSubject" class="btn btn-raised btn-default">{{_
+                                <button id="noLearningUnit" class="btn btn-raised btn-default">{{_
                                         "learningUnit.none"}}</button>
                                 <hr>
                                 <h5>{{_ "learningUnit.belongsTo"}}</h5>

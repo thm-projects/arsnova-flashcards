@@ -231,7 +231,7 @@ Meteor.methods({
 		if (!cardset.shuffled) {
 			cardGroup = "0";
 		}
-		if (cardType !== 5) {
+		if (cardType !== 5 || cardType !== 2) {
 			if (subject === "") {
 				throw new Meteor.Error("Missing subject");
 			}
@@ -388,6 +388,15 @@ Meteor.methods({
 			// Make sure the user is logged in and is authorized
 			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
+			}
+		}
+		if (cardType !== 5 || cardType !== 2) {
+			if (subject === "") {
+				throw new Meteor.Error("Missing subject");
+			}
+		} else {
+			if (subject === "" && learningUnit === "") {
+				throw new Meteor.Error("Missing subject or reference");
 			}
 		}
 		Cards.update(card_id, {

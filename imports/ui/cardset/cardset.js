@@ -307,7 +307,7 @@ Template.cardsetList.events({
 			let learningUnit = $(evt.target).data('id');
 			Session.set('learningUnit', learningUnit);
 			Session.set('subjectText', Cards.findOne({_id: learningUnit}).subject);
-			$('#showSelectSubjectModal').modal('hide');
+			$('#showSelectLearningUnitModal').modal('hide');
 		}
 	}
 });

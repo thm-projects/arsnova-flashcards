@@ -761,7 +761,7 @@ function saveCard(card_id, returnToCardset) {
 	let learningUnit = Session.get('learningUnit');
 	let subjectText = Session.get('subjectText');
 	let gotSubject = true;
-	if (cardType !== 5) {
+	if (cardType !== 5 || cardType !== 2) {
 		if (subjectText === "") {
 			$('#subjectEditor').css('border', '1px solid');
 			$('#subjectEditor').css('border-color', '#b94a48');
@@ -904,15 +904,15 @@ Template.btnCard.events({
 
 /*
  * ############################################################################
- * selectSubject
+ * selectLearningUnit
  * ############################################################################
  */
 
-Template.editor.events({
-	'focus #noSubject': function () {
+Template.selectLearningUnit.events({
+	'click #noLearningUnit': function () {
 		Session.set('subjectText', '');
 		Session.set('learningUnit', '');
-		$('#showSelectSubjectModal').modal('hide');
+		$('#showSelectLearningUnitModal').modal('hide');
 	}
 });
 
@@ -970,6 +970,7 @@ Template.editor.helpers({
 		if (Router.current().route.getName() === "newCard") {
 			initializeContent();
 		} else if (Router.current().route.getName() === "editCard") {
+			Session.set('subjectText', this.subject);
 			Session.set('frontText', this.front);
 			Session.set('backText', this.back);
 			Session.set('hintText', this.hint);
@@ -1082,13 +1083,21 @@ Template.contentEditor.helpers({
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
+		if ((Session.get('cardType') === 2 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
+			let card = Cards.findOne({_id: Session.get('learningUnit')});
+			if (card !== undefined && card.subject !== undefined) {
+				return card.subject ;
+			} else {
+				return "";
+			}
+		}
 		return Session.get('subjectText');
 	},
 	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
 		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	},
 	isDisabled: function () {
-		if (Session.get('cardType') === 5 && Session.get('learningUnit') !== '') {
+		if ((Session.get('cardType') === 2 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
 			return "disabled";
 		}
 		return "";
