@@ -159,6 +159,9 @@ function setPlaceholderText(activeMode = -1, cardType = -1) {
 				case 4:
 					placeholderText = TAPi18n.__('card.cardType4.placeholders.back');
 					break;
+				case 5:
+					placeholderText = TAPi18n.__('card.cardType5.placeholders.back');
+					break;
 			}
 			break;
 		case 2:
@@ -171,6 +174,9 @@ function setPlaceholderText(activeMode = -1, cardType = -1) {
 					break;
 				case 4:
 					placeholderText = TAPi18n.__('card.cardType4.placeholders.hint');
+					break;
+				case 5:
+					placeholderText = TAPi18n.__('card.cardType5.placeholders.hint');
 					break;
 			}
 			break;

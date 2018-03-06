@@ -639,9 +639,13 @@
     },
     "cardType5": {
       "name": "Prüfung",
-      "front": "Prüfung",
+      "front": "Prüfungsfrage",
+      "back": "Antwort",
+      "hint": "Erläuterung",
       "placeholders": {
-        "front": "Prüfung"
+        "front": "Prüfungsfrage",
+        "back": "Antwort",
+        "hint": "Erläuterung"
       }
     }
   },

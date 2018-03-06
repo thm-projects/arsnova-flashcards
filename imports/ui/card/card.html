@@ -70,36 +70,28 @@
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised {{#unless isCardType 5}}col-xs-6 {{#if isCardType
-                                                                                                 0}}col-sm-3{{else}}{{#if
-                                isCardType
-                                2
-                                4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}{{else}}col-xs-12{{/unless}}"
+                        class="btn btn-primary btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if
+                                isCardType 2 4 5}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
                 {{#if isCardType 0}}
                     <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
                             tabindex="9">{{_
                             "card.cardType0.lecture"}}</button>
                 {{/if}}
-                {{#unless isCardType 5}}
-                    <button id="editBack" type="button"
-                            class="btn btn-default btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if
-                                    isCardType
-                                    2
-                                    4}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                            tabindex="7">{{getBackTitle}}</button>
-                {{/unless}}
+                <button id="editBack" type="button"
+                        class="btn btn-default btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if
+                                isCardType 2 4 5}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                        tabindex="7">{{getBackTitle}}</button>
                 {{#unless isCardType 1}}
                     {{#unless isCardType 3}}
-                        {{#unless isCardType 5}}
-                            <button id="editHint" type="button"
-                                    class="btn btn-default btn-raised col-xs-6 {{#if isCardType
-                                                                                     0}}col-sm-3{{else}}col-sm-4{{/if}}"
-                                    tabindex="11">{{#if isCardType 0}}{{_
-                                    "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
-                                    "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
-                                    "card.cardType4.hint"}}{{/if}}</button>
-                        {{/unless}}
+                        <button id="editHint" type="button"
+                                class="btn btn-default btn-raised col-xs-6 {{#if isCardType
+                                                                                 0}}col-sm-3{{else}}col-sm-4{{/if}}"
+                                tabindex="11">{{#if isCardType 0}}{{_
+                                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
+                                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
+                                "card.cardType4.hint"}}{{/if}}{{#if isCardType 5}}{{_
+                                "card.cardType5.hint"}}{{/if}}</button>
                     {{/unless}}
                 {{/unless}}
             </div>
@@ -409,8 +401,7 @@
                 <div class="carousel-inner">
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
-                            <div class="{{#unless isCardType
-                                                  5}}box flashcard{{else}}box-static flashcard-static{{/unless}}">
+                            <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
                                      style="{{#if isHintPreview}}display: none{{/if}}{{#if
                                              isLecturePreview}}display: none{{/if}}">
@@ -492,7 +483,8 @@
                                                     "card.cardType1.name"}}{{/if}}{{#if isCardType 2}}{{_
                                                     "card.cardType2.back"}}{{/if}}{{#if isCardType 3}}{{_
                                                     "card.cardType3.back"}}{{/if}}{{#if isCardType 4}}{{_
-                                                    "card.cardType4.back"}}{{/if}})</span>{{/unless}}</span><br>
+                                                    "card.cardType4.back"}}{{/if}}{{#if isCardType 5}}{{_
+                                                    "card.cardType5.back"}}{{/if}})</span>{{/unless}}</span><br>
                                         {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
                                         <strong>{{getDifficultyName}}</strong>
                                         {{#if isCardType 2}}
@@ -517,13 +509,11 @@
                                             <span class="hidden-xs">{{_ "turn"}}</span>
                                         </div>
                                     {{/unless}}
-                                    {{#unless isCardType 5}}
-                                        <span id="swapOrder" data-type="cardNavigation">
+                                    <span id="swapOrder" data-type="cardNavigation">
                                                 <span class="material-icons card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
                                                       data-type="cardNavigation">swap_vert</span>
                                     </span>
-                                    {{/unless}}
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
                                           data-type="cardNavigation">

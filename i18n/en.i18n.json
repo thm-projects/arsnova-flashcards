@@ -672,9 +672,13 @@
     },
     "cardType5": {
       "name": "Assessment",
-      "front": "Assessment",
+      "front": "Audit question",
+      "back": "Answer",
+      "hint": "Explanation",
       "placeholders": {
-        "front": "Assessment"
+        "front": "Assessment",
+        "back": "Audit question",
+        "hint": "Explanation"
       }
     }
   },
