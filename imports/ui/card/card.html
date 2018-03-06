@@ -32,6 +32,8 @@
 
 <template name="editor">
     {{getContent}}
+    {{> cancelEditForm}}
+    {{> deleteCardForm}}
     <div class="row firstEditorRow editorElement">
         <div id="cardType" class="col-md-6 cardtext editorElement">
             <h5>{{_ "cardType"}}</h5>
@@ -372,11 +374,12 @@
                 {{_ "savecard"}}
             </button>
             <button id="cardSaveReturn"
-                    class="btn btn-success btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="14">
+                    class="btn btn-default btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="14">
                 {{_ "savecardReturn"}}
             </button>
             <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 pull-right"
-                    tabindex="15">{{_
+                    tabindex="15" data-toggle="modal"
+                    data-target="#cancelEditModal">{{_
                     "declinecard"}}</button>
         </div>
     </div>
@@ -387,11 +390,9 @@
                     <br>
                     <button id="cardDelete"
                             class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right" {{isDisabled}}
-                            tabindex="16">{{_
+                            tabindex="16" data-toggle="modal"
+                            data-target="#deleteCardModal">{{_
                             "deletecard"}}</button>
-                    <button id="cardDeleteConfirm" style="display: none;"
-                            class="btn btn-warning btn-raised col-xs-12 col-md-3 pull-right">{{_
-                            "confirmcard"}}</button>
                 </div>
             </div>
         {{/if}}
@@ -408,7 +409,8 @@
                 <div class="carousel-inner">
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
-                            <div class="{{#unless isCardType 5}}box flashcard{{else}}box-static flashcard-static{{/unless}}">
+                            <div class="{{#unless isCardType
+                                                  5}}box flashcard{{else}}box-static flashcard-static{{/unless}}">
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
                                      style="{{#if isHintPreview}}display: none{{/if}}{{#if
                                              isLecturePreview}}display: none{{/if}}">
@@ -773,4 +775,54 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="cancelEditForm">
+    <div class="modal fade" id="cancelEditModal" tabindex="-1" role="dialog"
+         aria-labelledby="deleteCardsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="cancelEditTitle" class="modal-title">{{_ "modal-dialog.cancelEditCardTitle"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.cancelEditCard"}}
+                    <button id="cancelEditConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                            "modal-dialog.cancelEditCardTitle"}}</button>
+                    <button id="cancelEditDismiss" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="deleteCardForm">
+    <div class="modal fade" id="deleteCardModal" tabindex="-1" role="dialog"
+         aria-labelledby="deleteCardTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="deleteCardTitle" class="modal-title">{{_ "deletecard"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.deleteCard"}}
+                    <button id="deleteCardConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                            "deleteCard"}}</button>
+                    <button id="deleteCardDismiss" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </template>

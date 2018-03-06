@@ -296,7 +296,10 @@
     "moduleShortplaceholder": "Short module name",
     "moduleNumplaceholder": "Number of the module",
     "moduleLinkplaceholder": "Link to the module description",
-    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
+    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?",
+    "deleteCard": "Do you really want to erase the card?",
+    "cancelEditCard": "Do you really want to leave editing mode? All unsaved changes will be discarded upon confirmation.",
+    "cancelEditCardTitle": "Exit editing mode"
   },
   "profile": {
     "overview": "Learning Progress",

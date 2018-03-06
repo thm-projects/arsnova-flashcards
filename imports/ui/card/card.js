@@ -879,26 +879,6 @@ Template.btnCard.events({
 	},
 	"click #cardSaveReturn": function () {
 		saveCard(this._id, true);
-	},
-	'click #cardCancel': function () {
-		defaultData();
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
-	},
-	'click #cardDelete': function () {
-		$("#cardDelete").remove();
-		$("#cardDeleteConfirm").css('display', "");
-		$('#cardDeleteConfirm').focus();
-	},
-	'click #cardDeleteConfirm': function () {
-		var id = this._id;
-		Session.set('modifiedCard', undefined);
-		Meteor.call("deleteCard", id);
-		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
 	}
 });
 
@@ -1086,7 +1066,7 @@ Template.subjectEditor.helpers({
 		if ((Session.get('cardType') === 2 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
 			let card = Cards.findOne({_id: Session.get('learningUnit')});
 			if (card !== undefined && card.subject !== undefined) {
-				return card.subject ;
+				return card.subject;
 			} else {
 				return "";
 			}
@@ -1763,4 +1743,40 @@ Meteor.startup(function () {
 			}
 		}
 	});
+});
+
+/*
+ * ############################################################################
+ * cancelEditForm
+ * ############################################################################
+ */
+
+Template.cancelEditForm.events({
+	'click #cancelEditConfirm': function () {
+		$('#cancelEditModal').on('hidden.bs.modal', function () {
+			defaultData();
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * deleteCardForm
+ * ############################################################################
+ */
+
+Template.deleteCardForm.events({
+	'click #deleteCardConfirm': function () {
+		$('#deleteCardModal').on('hidden.bs.modal', function () {
+			Session.set('modifiedCard', undefined);
+			Meteor.call("deleteCard", Router.current().params.cardid);
+			Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		}).modal('hide');
+	}
 });
