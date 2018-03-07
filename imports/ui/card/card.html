@@ -39,29 +39,27 @@
             <h5>{{_ "cardType"}}</h5>
             {{> cardType}}
         </div>
-        <div id="difficulty" class="col-md-6 cardtext editorElement">
-            {{#unless isCardType 4}}
+        {{#unless isCardType 4}}
+            <div id="difficulty" class="col-md-6 cardtext editorElement">
                 {{#unless isCardType 2}}
                     <h5>{{_ "difficulty"}}</h5>
                 {{else}}
                     <h5>{{_ "difficultyNotes"}}</h5>
                 {{/unless}}
                 {{> difficultyEditor}}
-            {{/unless}}
-        </div>
-    </div>
-    <div class="row">
+            </div>
+        {{/unless}}
         <div id="subject" class="col-md-6 cardtext editorElement">
             <h5>{{_ "cardSubject"}}</h5>
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
-        <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
-            {{#unless isCardType 1 2 3 4}}
+        {{#unless isCardType 1 2 3 4}}
+            <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
-            {{/unless}}
-        </div>
+            </div>
+        {{/unless}}
     </div>
     <div class="row">
         <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
@@ -502,7 +500,7 @@
                                                 | {{_ "learning-goal.name"}}:
                                                 <strong>{{getLearningGoalName}}</strong>
                                             {{/unless}}
-                                            {{else}}
+                                        {{else}}
                                         {{/unless}}
                                     </div>
                                     {{#unless isCardType 2}}
