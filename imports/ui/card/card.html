@@ -49,12 +49,14 @@
                 {{> difficultyEditor}}
             </div>
         {{/unless}}
+    </div>
+    <div class="row">
         <div id="subject" class="col-md-6 cardtext editorElement">
             <h5>{{getSubjectLabel}}</h5>
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
-        {{#unless isCardType 1 2 3 4}}
+        {{#unless isCardType 1 2 4}}
             <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
@@ -496,7 +498,7 @@
                                             ({{_ "card.cardType2.back"}})
                                             </span>
                                             {{/if}}
-                                            {{#unless isCardType 1 2 3}}
+                                            {{#unless isCardType 1 2}}
                                                 | {{_ "learning-goal.name"}}:
                                                 <strong>{{getLearningGoalName}}</strong>
                                             {{/unless}}
