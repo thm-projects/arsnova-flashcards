@@ -10,8 +10,6 @@ import {Chart} from "chart.js";
 let chart;
 
 let chartColors = {
-	difficulty0: 'rgba(245,170,1, 1)',
-	difficulty0Background: 'rgba(245,170,1, 0.2)',
 	difficulty1: 'rgba(92, 184, 92, 1)',
 	difficulty1Background: 'rgba(92, 184, 92, 0.2)',
 	difficulty2: 'rgba(91, 192, 222, 1)',
@@ -33,13 +31,6 @@ function drawGraph() {
 		data: {
 			labels: [TAPi18n.__('subject1') + " (" + TAPi18n.__('subjectNotLearned') + ")", TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
-				{
-					backgroundColor: chartColors.difficulty0Background,
-					borderColor: chartColors.difficulty0,
-					borderWidth: 2,
-					data: [0, 0, 0, 0, 0, 0],
-					label: TAPi18n.__('difficulty0')
-				},
 				{
 					backgroundColor: chartColors.difficulty1Background,
 					borderColor: chartColors.difficulty1,
@@ -97,20 +88,20 @@ function updateGraph() {
 			return leitner.card_id;
 		});
 	}
-	for (let k = 0; k < 4; k++) {
+	for (let k = 0; k < 3; k++) {
 		if (Router.current().route.getName() === "progress") {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {Fields: {shuffled: 1, cardGroups: 1}});
 			if (cardset.shuffled) {
 				filterCards = Cards.find({
 					cardset_id: {$in: cardset.cardGroups},
-					difficulty: k
+					difficulty: k + 1
 				}, {_id: 1}).map(function (card) {
 					return card._id;
 				});
 			} else {
 				filterCards = Cards.find({
 					cardset_id: Router.current().params._id,
-					difficulty: k
+					difficulty: k + 1
 				}, {_id: 1}).map(function (card) {
 					return card._id;
 				});
