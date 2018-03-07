@@ -629,6 +629,9 @@
         "back": "Backside",
         "hint": "Hint",
         "lecture": "Lecture"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType1": {
@@ -638,6 +641,9 @@
       "placeholders": {
         "front": "Frontside",
         "back": "Backside"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType2": {
@@ -649,6 +655,9 @@
         "front": "Frontside",
         "back": "Rework",
         "hint": "Literature"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType3": {
@@ -658,6 +667,9 @@
       "placeholders": {
         "front": "Frontside",
         "back": "Definition"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType4": {
@@ -669,6 +681,9 @@
         "front": "Citation",
         "back": "Cited person",
         "hint": "Reference"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType5": {
@@ -680,6 +695,9 @@
         "front": "Assessment",
         "back": "Audit question",
         "hint": "Explanation"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     }
   },
