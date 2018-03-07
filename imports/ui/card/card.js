@@ -188,7 +188,6 @@ function setPlaceholderText(activeMode = -1, cardType = -1) {
 			}
 			break;
 	}
-	$("#contentEditor").attr('placeholder', placeholderText);
 	return placeholderText;
 }
 
