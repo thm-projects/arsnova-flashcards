@@ -10,6 +10,7 @@ let cardTypesWithLearningUnit = [2, 3, 5, 6];
 let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
 let cardTypesWithLecture = [0];
+let cardTypesWithPresentationMode = [0];
 export let cardTypeWithNotesForDifficultyLevel = [2];
 export let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}];
 
@@ -58,6 +59,10 @@ export function gotLearningGoal(cardType) {
 
 export function gotLearningModes(cardType) {
 	return cardTypesWithLearningModes.includes(cardType);
+}
+
+export function gotPresentationMode(cardType) {
+	return cardTypesWithPresentationMode.includes(cardType);
 }
 
 export function gotDifficultyLevel(cardType) {

@@ -401,15 +401,17 @@
                     </div>
                 </div>
             </div>
-            <div id="set-details-sideBar-region col-xs-12">
-                <div class="well well-sm sidebar-nav">
-                    <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
-                    <button id="startPresentation"
-                            class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}
-                            data-toggle="modal" data-target="#chooseFlashcardsModal"><i
-                            class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
+            {{#if gotPresentation}}
+                <div id="set-details-sideBar-region col-xs-12">
+                    <div class="well well-sm sidebar-nav">
+                        <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
+                        <button id="startPresentation"
+                                class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}
+                                data-toggle="modal" data-target="#chooseFlashcardsModal"><i
+                                class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
+                    </div>
                 </div>
-            </div>
+            {{/if}}
         {{/unless}}
         {{#if gotLearningModes}}
             {{#if gotEnoughCards}}

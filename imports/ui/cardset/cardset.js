@@ -12,9 +12,10 @@ import {ReactiveVar} from "meteor/reactive-var";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "../card/card.js";
 import "../learn/learn.js";
+import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import {getCardTypeName, gotLearningModes, gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import {getCardTypeName, gotLearningModes, gotNotesForDifficultyLevel, gotPresentationMode} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -673,6 +674,9 @@ Template.cardsetSidebar.helpers({
 	gotLearningModes: function () {
 		return gotLearningModes(this.cardType);
 	},
+	gotPresentation: function () {
+		return gotPresentationMode(this.cardType);
+	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
 	},
@@ -784,6 +788,10 @@ Template.chooseFlashcards.events({
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
+		if (Session.get('chooseFlashcardsMode') === 1) {
+			event.stopPropagation();
+			Router.go('presentation', {_id: this._id});
+		}
 	},
 	"click .sortFilter": function () {
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');

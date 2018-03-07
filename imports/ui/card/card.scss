@@ -444,10 +444,9 @@ img.cardside {
   padding-right: 0;
 }
 
-.editorNavigation > .btn-primary:hover {
+.editorNavigation > .btn-primary {
   cursor: default;
   box-shadow: none !important;
-  z-index: 0 !important;
 }
 
 #editFront, #editBack, #editHint, #editLecture {
