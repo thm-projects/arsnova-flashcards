@@ -603,6 +603,12 @@ Template.leaveEditorsForm.events({
  * ############################################################################
  */
 Template.cardsetSidebar.events({
+	"click #startPresentation": function () {
+		Session.set("chooseFlashcardsMode", 1);
+	},
+	"click #learnChoice": function () {
+		Session.set("chooseFlashcardsMode", 0);
+	},
 	"click #learnBox": function () {
 		addToLeitner(this._id);
 		Router.go('box', {
@@ -696,11 +702,11 @@ Template.cardsetSidebar.onRendered(function () {
 
 /*
 * ############################################################################
-* chooseFlashcardsToLearn
+* chooseFlashcards
 * ############################################################################
 */
 
-Template.chooseFlashcardsToLearn.created = function () {
+Template.chooseFlashcards.created = function () {
 	let chooseFlashcardsFilter = [];
 	chooseFlashcardsFilter[0] = [];
 	chooseFlashcardsFilter[1] = [];
@@ -709,7 +715,7 @@ Template.chooseFlashcardsToLearn.created = function () {
 	Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 };
 
-Template.chooseFlashcardsToLearn.helpers({
+Template.chooseFlashcards.helpers({
 	getCardCount: function (category, item) {
 		let cardsetFilter = Router.current().params._id;
 		if (this.shuffled) {
@@ -767,10 +773,13 @@ Template.chooseFlashcardsToLearn.helpers({
 		} else {
 			return TAPi18n.__('filter-cards.sortMode1');
 		}
+	},
+	isPresentationMode: function () {
+		return Session.get('chooseFlashcardsMode');
 	}
 });
 
-Template.chooseFlashcardsToLearn.events({
+Template.chooseFlashcards.events({
 	"click #createCardFilter": function () {
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
@@ -787,7 +796,7 @@ Template.chooseFlashcardsToLearn.events({
 	}
 });
 
-Template.cardsetSidebar.onRendered(function () {
+Template.chooseFlashcards.onRendered(function () {
 	$('#chooseFlashcardsModal').on('hidden.bs.modal', function () {
 		let chooseFlashcardsFilter = [""];
 		chooseFlashcardsFilter[0] = [];
@@ -799,17 +808,17 @@ Template.cardsetSidebar.onRendered(function () {
 
 /*
 * ############################################################################
-* chooseFlashcardsToLearnButton
+* chooseFlashcardsButton
 * ############################################################################
 */
 
-Template.chooseFlashcardsToLearnButton.helpers({
+Template.chooseFlashcardsButton.helpers({
 	inFlashcardFilterSelection: function (category, item) {
 		return Session.get('chooseFlashcardsFilter')[category].includes(item);
 	}
 });
 
-Template.chooseFlashcardsToLearnButton.events({
+Template.chooseFlashcardsButton.events({
 	"click .addCardFilter": function (event) {
 		let category = $(event.target).data('category');
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
