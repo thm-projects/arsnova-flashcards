@@ -596,6 +596,9 @@
         "back": "Antwort auf die Lernzielfrage",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
         "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType1": {
@@ -605,6 +608,9 @@
       "placeholders": {
         "front": "Zu übersetzende Vokabel oder Phrase",
         "back": "Übersetzung"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType2": {
@@ -616,6 +622,9 @@
         "front": "Mitschrift zur Veranstaltung",
         "back": "Nachbearbeitung der Lerninhalte",
         "hint": "Noch nicht verstanden | To-do-Liste"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType3": {
@@ -625,6 +634,9 @@
       "placeholders": {
         "front": "Fachbegriff",
         "back": "Definition | Beschreibung des Fachbegriffs"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType4": {
@@ -636,6 +648,9 @@
         "front": "Zitat",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
+      },
+      "editorLabels": {
+        "subject": "Thema"
       }
     },
     "cardType5": {
@@ -647,6 +662,9 @@
         "front": "Prüfungsfrage zum Kompetenzziel | Thema",
         "back": "Antwort",
         "hint": "Begründung oder Erläuterung der Antwort"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     }
   },

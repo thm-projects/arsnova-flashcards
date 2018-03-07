@@ -971,6 +971,22 @@ Template.editor.helpers({
 				return TAPi18n.__('card.cardType0.back');
 		}
 	},
+	getSubjectLabel: function () {
+		switch (Session.get('cardType')) {
+			case 1:
+				return TAPi18n.__('card.cardType1.editorLabels.subject');
+			case 2:
+				return TAPi18n.__('card.cardType2.editorLabels.subject');
+			case 3:
+				return TAPi18n.__('card.cardType3.editorLabels.subject');
+			case 4:
+				return TAPi18n.__('card.cardType4.editorLabels.subject');
+			case 5:
+				return TAPi18n.__('card.cardType5.editorLabels.subject');
+			default:
+				return TAPi18n.__('card.cardType0.editorLabels.subject');
+		}
+	},
 	getContent: function () {
 		if (Router.current().route.getName() === "newCard") {
 			initializeContent();
