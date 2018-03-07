@@ -57,7 +57,7 @@ function initializeContent() {
 	}
 
 	if (Session.get('difficultyColor') === undefined) {
-		Session.set('difficultyColor', 0);
+		Session.set('difficultyColor', 1);
 	}
 
 	if (Session.get('learningGoalLevel') === undefined) {
@@ -289,6 +289,11 @@ function editFront() {
 }
 
 function defaultToFront(cardType) {
+	if (Session.get('cardType') === 2 && cardType !== 2 && Session.get('difficultyColor') === 0) {
+		Session.set('difficultyColor', 1);
+	} else if (Session.get('cardType') !== 2 && cardType === 2 && Session.get('difficultyColor') === 1) {
+		Session.set('difficultyColor', 0);
+	}
 	Session.set('cardType', cardType);
 	setTimeout(function () {
 		editFront();
@@ -821,7 +826,11 @@ function saveCard(card_id, returnToCardset) {
 					} else {
 						$('#contentEditor').val('');
 						$('#editor').attr('data-content', '');
-						Session.set('difficultyColor', 0);
+						if (Number(cardType) === 2) {
+							Session.set('difficultyColor', 0);
+						} else {
+							Session.set('difficultyColor', 1);
+						}
 						Session.set('learningGoalLevel', 0);
 						Session.set('frontText', '');
 						Session.set('backText', '');
@@ -836,7 +845,6 @@ function saveCard(card_id, returnToCardset) {
 						}
 						window.scrollTo(0, 0);
 						$('#editFront').click();
-						$('#difficulty0').click();
 					}
 				}
 			});
@@ -849,7 +857,11 @@ function saveCard(card_id, returnToCardset) {
 					_id: Router.current().params._id
 				});
 			} else {
-				Session.set('difficultyColor', 0);
+				if (Number(cardType) === 2) {
+					Session.set('difficultyColor', 0);
+				} else {
+					Session.set('difficultyColor', 1);
+				}
 				Session.set('learningGoalLevel', 0);
 				Session.set('frontText', '');
 				Session.set('backText', '');
@@ -1406,8 +1418,6 @@ Template.flashcards.helpers({
 			}
 		} else {
 			switch (this.difficulty) {
-				case 0:
-					return TAPi18n.__('difficulty0');
 				case 1:
 					return TAPi18n.__('difficulty1');
 				case 2:
