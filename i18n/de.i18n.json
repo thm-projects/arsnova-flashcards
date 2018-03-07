@@ -589,15 +589,15 @@
   "card": {
     "cardType0": {
       "name": "Lerneinheit",
-      "front": "Lernzielfragen",
-      "back": "Antworten",
+      "front": "Lernziel",
+      "back": "Lernziel-Review",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
       "placeholders": {
-        "front": "Fragen zur Überprüfung des Lernziels",
-        "back": "Antworten auf die Fragen zum Lernziel",
+        "front": "Frage zur Überprüfung des Lernziels",
+        "back": "Antwort auf die Lernzielfrage",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
-        "lecture": "Inhalt der Lerneinheit"
+        "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
       }
     },
     "cardType1": {
@@ -737,12 +737,12 @@
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
-  "cardSubject": "Lernziel | Thema",
+  "cardSubject": "Kompetenzziel | Thema",
   "options": "Optionen",
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "lecturetext_required": "Bitte Vertiefung ausfüllen!",
-  "cardsubject_required": "Bitte Lernziel angeben!",
+  "cardsubject_required": "Bitte Kompetenzziel oder Thema angeben!",
   "text_max": "Es sind maximal 10.000 Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
   "newcard": "Neue Karte",
