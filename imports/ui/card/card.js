@@ -813,7 +813,10 @@ function saveCard(card_id, returnToCardset) {
 	}
 	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
 	if (gotSubject && editorsValidLength) {
-		let difficulty = $('input[name=difficulty]:checked').val();
+		let difficulty = 1;
+		if (Number(cardType) !== 4) {
+			difficulty = $('input[name=difficulty]:checked').val();
+		}
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", card_id, subjectText, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
 				if (result) {
