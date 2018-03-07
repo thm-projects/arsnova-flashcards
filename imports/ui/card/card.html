@@ -128,16 +128,6 @@
             {{/if}}
             {{_ "card.cardType3.name"}}
         </label>
-        <label id="cardType4" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
-               data-type="4">
-            {{#if isCardType 4}}
-                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4"
-                       autofocus>
-            {{else}}
-                <input type="radio" name="cardType" value="4" data-type="4">
-            {{/if}}
-            {{_ "card.cardType4.name"}}
-        </label>
         <label id="cardType5" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 5}}active{{/if}}"
                data-type="5">
             {{#if isCardType 5}}
@@ -155,6 +145,16 @@
                 <input type="radio" name="cardType" value="2" data-type="2">
             {{/if}}
             {{_ "card.cardType2.name"}}
+        </label>
+        <label id="cardType4" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
+               data-type="4">
+            {{#if isCardType 4}}
+                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4"
+                       autofocus>
+            {{else}}
+                <input type="radio" name="cardType" value="4" data-type="4">
+            {{/if}}
+            {{_ "card.cardType4.name"}}
         </label>
         <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
                data-type="1">

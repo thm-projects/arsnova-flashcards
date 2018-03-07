@@ -661,14 +661,14 @@
       }
     },
     "cardType4": {
-      "name": "Explanatory Video",
-      "front": "Explanatory Video",
-      "back": "Control Question",
-      "hint": "Video source",
+      "name": "Citation",
+      "front": "Citation",
+      "back": "Cited person",
+      "hint": "Reference",
       "placeholders": {
-        "front": "Front",
-        "back": "Back",
-        "hint": "Hint"
+        "front": "Citation",
+        "back": "Cited person",
+        "hint": "Reference"
       }
     },
     "cardType5": {
