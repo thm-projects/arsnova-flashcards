@@ -210,14 +210,12 @@
     "noModuleShort": "ohne"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz erstellt.
-    Informiere dich unter \"Hilfe\", was du mit einem eigenen Kartensatz tun kannst.",
+    "emptytextlist": "Du hast noch keinen Kartensatz erstellt. Informiere dich unter \"Hilfe\", was du mit einem eigenen Kartensatz tun kannst.",
     "emptypooltextlist": "Kein Kartensatz vorhanden",
     "newset": "Kartensatz erstellen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle einen Kartensatz aus
-    oder mische einen neuen Kartensatz aus mehreren anderen.",
+    "emptytextlist": "Zum Lernen wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
     "emptytextlistNoShuffle": "Wähle einen Kartensatz aus.",
     "browseCardset": "Kartensatz auswählen"
   },
@@ -630,14 +628,14 @@
       }
     },
     "cardType4": {
-      "name": "Erklärvideo",
-      "front": "Erklärvideo",
-      "back": "Kontrollfragen",
-      "hint": "Videoquelle",
+      "name": "Zitat",
+      "front": "Zitat",
+      "back": "Zitierte Person",
+      "hint": "Quellenangabe",
       "placeholders": {
-        "front": "Erklärvideo",
-        "back": "Kontrollfragen zum Inhalt des Videos",
-        "hint": "Videoquelle und Lizenz"
+        "front": "Zitat",
+        "back": "Zitierte Person",
+        "hint": "Quellenangabe"
       }
     },
     "cardType5": {
@@ -660,9 +658,7 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Kurse fassen mehrere Kartensätze zusammen.
-      Sie können nur von Lehrenden erstellt werden.
-      Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
+      "empty": "Kurse fassen mehrere Kartensätze zusammen.Sie können nur von Lehrenden erstellt werden. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
       "category": "Kategorie",
       "module": "Modul",

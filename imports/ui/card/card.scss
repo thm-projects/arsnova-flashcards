@@ -280,8 +280,11 @@ $color_item_selection_border: $color_item_separator;
     border-right: 2px solid $color_item_selection_border !important;
   }
 
-  #cardTypeGroup *:nth-child(3), #cardTypeGroup *:nth-child(4) {
-    border-bottom: 4px solid $color_thm_red !important;
+  #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
+    border-bottom: 2px solid $color_thm_red !important;
+  }
+  #cardTypeGroup *:nth-child(3) {
+    border-right: 2px solid $color_thm_red !important;
   }
 }
 
@@ -294,7 +297,7 @@ $color_item_selection_border: $color_item_separator;
     border-right: none !important;
   }
 
-  #cardTypeGroup *:nth-child(4) {
+  #cardTypeGroup *:nth-child(3) {
     border-right: 4px solid $color_thm_red !important;
   }
 }
