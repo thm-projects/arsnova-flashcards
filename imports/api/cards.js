@@ -146,6 +146,7 @@ if (Meteor.isServer) {
 var CardsSchema = new SimpleSchema({
 	subject: {
 		type: String,
+		optional: true,
 		max: 150
 	},
 	hint: {
@@ -196,13 +197,17 @@ var CardsSchema = new SimpleSchema({
 	},
 	backgroundStyle: {
 		type: Number
+	},
+	learningUnit: {
+		type: String,
+		optional: true
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -216,6 +221,7 @@ Meteor.methods({
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
+		check(learningUnit, String);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
@@ -224,6 +230,15 @@ Meteor.methods({
 		}
 		if (!cardset.shuffled) {
 			cardGroup = "0";
+		}
+		if (cardType !== 5 || cardType !== 2) {
+			if (subject === "") {
+				throw new Meteor.Error("Missing subject");
+			}
+		} else {
+			if (subject === "" && learningUnit === "") {
+				throw new Meteor.Error("Missing subject or reference");
+			}
 		}
 		Cards.insert({
 			subject: subject.trim(),
@@ -238,7 +253,8 @@ Meteor.methods({
 			centerTextElement: centerTextElement,
 			date: date,
 			learningGoalLevel: learningGoalLevel,
-			backgroundStyle: backgroundStyle
+			backgroundStyle: backgroundStyle,
+			learningUnit: learningUnit
 		}, function (err, card) {
 			card_id = card;
 		});
@@ -261,6 +277,7 @@ Meteor.methods({
 				let hint = "";
 				let lecture = "";
 				let back = "";
+				let learningUnit = "";
 				if (card.back !== undefined) {
 					back = card.back;
 				}
@@ -270,7 +287,10 @@ Meteor.methods({
 				if (card.lecture !== undefined) {
 					lecture = card.lecture;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle);
+				if (card.learningUnit !== undefined) {
+					learningUnit = card.learningUnit;
+				}
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningUnit);
 				return true;
 			}
 		} else {
@@ -344,7 +364,7 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle) {
+	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -357,6 +377,7 @@ Meteor.methods({
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
+		check(learningUnit, String);
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
@@ -367,6 +388,15 @@ Meteor.methods({
 			// Make sure the user is logged in and is authorized
 			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
+			}
+		}
+		if (cardType !== 5 || cardType !== 2) {
+			if (subject === "") {
+				throw new Meteor.Error("Missing subject");
+			}
+		} else {
+			if (subject === "" && learningUnit === "") {
+				throw new Meteor.Error("Missing subject or reference");
 			}
 		}
 		Cards.update(card_id, {
@@ -381,7 +411,8 @@ Meteor.methods({
 				centerTextElement: centerTextElement,
 				date: date,
 				learningGoalLevel: learningGoalLevel,
-				backgroundStyle: backgroundStyle
+				backgroundStyle: backgroundStyle,
+				learningUnit: learningUnit
 			}
 		});
 		Cardsets.update(card.cardset_id, {

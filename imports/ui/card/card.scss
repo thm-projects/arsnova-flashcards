@@ -15,7 +15,6 @@ $background_lecture: papayawhip;
 $background_hint: lightseagreen;
 $color_item_selection_border: $color_item_separator;
 
-
 #difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -122,7 +121,7 @@ $color_item_selection_border: $color_item_separator;
   border-radius: 4px;
 }
 
-.box, .boxPreview {
+.box, .boxPreview, .box-static {
   border: 1px solid $color_alto_approx;
   font-family: $font_0, $font_1;
   margin: 0 auto;
@@ -280,6 +279,13 @@ $color_item_selection_border: $color_item_separator;
   #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
     border-right: 2px solid $color_item_selection_border !important;
   }
+
+  #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
+    border-bottom: 2px solid $color_thm_red !important;
+  }
+  #cardTypeGroup *:nth-child(3) {
+    border-right: 2px solid $color_thm_red !important;
+  }
 }
 
 @media(min-width: 768px) {
@@ -289,6 +295,10 @@ $color_item_selection_border: $color_item_separator;
 
   #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .editorNavigation *:last-child {
     border-right: none !important;
+  }
+
+  #cardTypeGroup *:nth-child(3) {
+    border-right: 4px solid $color_thm_red !important;
   }
 }
 
@@ -364,7 +374,7 @@ img.cardside {
   perspective: 1000px;
 }
 
-.flashcard {
+.flashcard, .flashcard-static {
   float: left;
   width: 95%;
   transform-origin: right center;
@@ -410,6 +420,19 @@ img.cardside {
   line-height: 28px;
   font-size: 18px;
   font-family: $default_font !important;
+}
+
+#subjectEditor:disabled {
+  background-color: $color_athens_gray_approx;
+}
+
+.subjectEditor {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.subjectEditorButton {
+  margin: 0;
 }
 
 .cardContent {
@@ -552,6 +575,12 @@ img.cardside {
   font-size: 13px !important;
 }
 
+@media(max-width: 768px) {
+  #learningGoalLevel {
+    clear: both;
+  }
+}
+
 @media(max-width: 767px) {
   #learningGoalLevelGroup > .btn-raised {
     padding-top: 19px;
@@ -583,7 +612,7 @@ img.cardside {
     top: 35px;
     right: 8px;
   }
-  #toggleFullscreen{
+  #toggleFullscreen {
     top: 63px;
     right: 8px;
   }
@@ -601,3 +630,6 @@ img.cardside {
   margin-top: -30px;
 }
 
+.cardSubjectRow {
+  margin-top: -3px !important;
+}

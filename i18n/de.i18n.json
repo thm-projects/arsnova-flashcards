@@ -27,7 +27,7 @@
   },
   "intro": {
     "about": "Was ist THM.cards?",
-    "learnMore": "Learn more ...",
+    "learnMore": "Erfahre mehr ...",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
@@ -141,7 +141,7 @@
     "learningEndDesc": "In 3 Monaten",
     "learningInterval": "Lernintervalle in Tagen",
     "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
-    "notification": "Erinnerung, Karten zu lernen",
+    "notification": "Wie willst du benachrichtigt werden?",
     "mailNotificationCheckbox": "per E-Mail",
     "webNotificationCheckbox": "per Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
@@ -210,12 +210,12 @@
     "noModuleShort": "ohne"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz angelegt.",
+    "emptytextlist": "Du hast noch keinen Kartensatz erstellt. Informiere dich unter \"Hilfe\", was du mit einem eigenen Kartensatz tun kannst.",
     "emptypooltextlist": "Kein Kartensatz vorhanden",
-    "newset": "Neuen Kartensatz anlegen"
+    "newset": "Kartensatz erstellen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
+    "emptytextlist": "Zum Lernen wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
     "emptytextlistNoShuffle": "Wähle einen Kartensatz aus.",
     "browseCardset": "Kartensatz auswählen"
   },
@@ -285,7 +285,10 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?"
+    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?",
+    "deleteCard": "Möchtest du wirklich die Karte löschen?",
+    "cancelEditCard": "Möchtest du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
+    "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
   },
   "profile": {
     "overview": "Lernaktivität",
@@ -466,7 +469,8 @@
     "startLearning": "Lernphase starten",
     "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für ",
-    "leaveEditors": "Bearbeitergruppe verlassen"
+    "leaveEditors": "Bearbeitergruppe verlassen",
+    "preview": "Kostenpflichtiger Kartensatz"
   },
   "pool": {
     "relevance": "Relevanz",
@@ -583,35 +587,44 @@
   "card": {
     "cardType0": {
       "name": "Lerneinheit",
-      "front": "Fragen zum Lernziel",
-      "back": "Antworten",
+      "front": "Lernziel",
+      "back": "Lernziel-Review",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
       "placeholders": {
-        "front": "Fragen zur Überprüfung des Lernziels",
-        "back": "Antworten auf die Fragen zum Lernziel",
+        "front": "Frage zur Überprüfung des Lernziels gemäß Level und Anforderung",
+        "back": "Antwort auf die Lernzielfrage",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
-        "lecture": "Inhalt der Lerneinheit"
+        "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType1": {
-      "name": "Fremdwort",
+      "name": "Vokabeln",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
-        "front": "Fremdwort",
+        "front": "Zu übersetzende Vokabel oder Phrase",
         "back": "Übersetzung"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType2": {
       "name": "Mitschrift",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
-      "hint": "Offene Fragen | ToDos",
+      "hint": "Offene Fragen | To-do",
       "placeholders": {
         "front": "Mitschrift zur Veranstaltung",
         "back": "Nachbearbeitung der Lerninhalte",
-        "hint": "Noch nicht verstanden | ToDos"
+        "hint": "Noch nicht verstanden | To-do-Liste"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType3": {
@@ -621,17 +634,37 @@
       "placeholders": {
         "front": "Fachbegriff",
         "back": "Definition | Beschreibung des Fachbegriffs"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     },
     "cardType4": {
-      "name": "Erklärvideo",
-      "front": "Erklärvideo",
-      "back": "Kontrollfragen",
-      "hint": "Videoquelle",
+      "name": "Zitat",
+      "front": "Zitat",
+      "back": "Zitierte Person",
+      "hint": "Quellenangabe",
       "placeholders": {
-        "front": "Erklärvideo",
-        "back": "Kontrollfragen zum Inhalt des Videos",
-        "hint": "Videoquelle und Lizenz"
+        "front": "Zitat",
+        "back": "Zitierte Person",
+        "hint": "Quellenangabe"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType5": {
+      "name": "Prüfung",
+      "front": "Frage",
+      "back": "Antwort",
+      "hint": "Begründung",
+      "placeholders": {
+        "front": "Prüfungsfrage zum Kompetenzziel | Thema",
+        "back": "Antwort",
+        "hint": "Begründung oder Erläuterung der Antwort"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel | Thema"
       }
     }
   },
@@ -643,7 +676,7 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Du hast noch keinen Kurs angelegt oder ausgewählt.",
+      "empty": "Kurse fassen mehrere Kartensätze zusammen.Sie können nur von Lehrenden erstellt werden. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
       "category": "Kategorie",
       "module": "Modul",
@@ -659,6 +692,13 @@
         "description": "Lernziele und Lerninhalte"
       }
     }
+  },
+  "learningUnit": {
+    "title":"Lerneiheit auswählen",
+    "choose": "Gehört zur Lerneinheit...",
+    "belongsTo": "Gehört zur Lerneinheit...",
+    "none": "Gehört nicht zu einer Lerneinheit",
+    "noUnitsFound": "Es sind keine Lerneinheiten in diesem Kartensatz vorhanden."
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
@@ -691,8 +731,7 @@
   "yourhighscore": "Dein Highscore:",
   "points": "Punkte",
   "difficulty": "Level",
-  "difficulty0": "Allgemein",
-  "difficulty1": "Einsteiger/in",
+  "difficulty1": "Basics",
   "difficulty2": "Fortgeschritten",
   "difficulty3": "Experte/Expertin",
   "difficultyNotes": "Veranstaltung",
@@ -711,12 +750,12 @@
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
-  "cardsubject": "Lernziel | Thema",
+  "cardSubject": "Kompetenzziel | Thema",
   "options": "Optionen",
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "lecturetext_required": "Bitte Vertiefung ausfüllen!",
-  "cardsubject_required": "Bitte Lernziel angeben!",
+  "cardsubject_required": "Bitte Kompetenzziel oder Thema angeben!",
   "text_max": "Es sind maximal 10.000 Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
   "newcard": "Neue Karte",

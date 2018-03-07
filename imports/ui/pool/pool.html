@@ -260,7 +260,7 @@
                 "set-list.topic"}}
         </span>
         <span class="{{#unless
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4 col-md-3{{/unless}} hidden-xs poolHeaderBottom">{{_
+                singleUniversity}}col-sm-3 col-md-3{{else}}col-sm-4 col-md-4{{/unless}} hidden-xs poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
         {{#unless singleUniversity}}
@@ -276,9 +276,6 @@
         </span>
         <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_
                 "set-list.availability"}}
-        </span>
-        <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_
-                "set-list.rating"}}
         </span>
     </div>
     {{#if getDecks.count}}
@@ -337,7 +334,7 @@
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
         <span class="col-xs-6 {{#unless
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4 col-md-3{{/unless}} poolContent poolText panelUnit poolAuthor"
+                singleUniversity}}col-sm-3 col-md-3{{else}}col-sm-4 col-md-4{{/unless}} poolContent poolText panelUnit poolAuthor"
               data-id="{{this.owner}}">{{getAuthorName
                 this.owner}}</span>
     </a>
@@ -372,14 +369,9 @@
     </a>
     <span class="col-sd-2 col-md-1 kind-label hidden-xs panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-sm-1 col-md-6 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
+            <span class="kind-label col-sm-2 col-md-12 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind this.kind}}}
-            </span>
-            <span class="col-sm-1 col-md-6 hidden-xs licenseInfo panelUnit panelUnitPrice" data-id="{{this.kind}}">
-                {{#if displayPrice}}
-                    {{{getPrice this.price}}}
-                {{/if}}
             </span>
         </a>
     </span>
@@ -395,23 +387,7 @@
             </span>
             <span class="col-xs-3 visible-xs licenseInfo panelUnit panelUnitPrice info_license_mobile"
                   data-id="{{this.kind}}">
-                {{#if displayPrice}}
-                    {{{getPrice this.price}}}
-                {{/if}}
             </span>
-        </span>
-    </a>
-    <a href="#" class="filterRating"
-       title="{{this.name}} {{_ "set-list.rating"}}: {{this.relevance}} {{_ "rating-field.stars"}}"
-       data-id={{getRelevance}}>
-        <span class="col-xs-6 visible-xs poolLabel panelUnit panelUnitNoBorder"
-              data-id={{getRelevance}}>{{_
-                "set-list.rating"}}
-            :</span>
-        <span class="col-xs-6 col-md-1 hidden-sm poolContent raterCount panelUnit panelUnitNoBorder"
-              data-id={{getRelevance}}>
-            <img src="./img/stars/stars{{getStarsRating}}.png" class="stars-rating" data-id={{getRelevance}}><span
-                class="raterCountNumber pull-right">({{this.raterCount}})</span>
         </span>
     </a>
 </template>

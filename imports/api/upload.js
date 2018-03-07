@@ -26,7 +26,7 @@ Meteor.methods({
 				item.hint = "";
 			}
 			if (item.difficulty === undefined) {
-				item.difficulty = Number(0);
+				item.difficulty = Number(1);
 			}
 			if (item.cardType === undefined) {
 				item.cardType = Number(0);
@@ -50,6 +50,9 @@ Meteor.methods({
 
 			if (item.date === undefined) {
 				item.date = new Date();
+			}
+			if (item.learningUnit === undefined) {
+				item.learningUnit = "";
 			}
 		}
 
@@ -92,7 +95,8 @@ Meteor.methods({
 					lecture: lecture,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
-					backgroundStyle: item.backgroundStyle
+					backgroundStyle: item.backgroundStyle,
+					learningUnit: item.learningUnit
 				});
 			}
 		}

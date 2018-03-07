@@ -27,7 +27,7 @@
   },
   "intro": {
     "about": "About THM.cards",
-    "learnMore": "Learn more...",
+    "learnMore": "Find out more ...",
     "impressum": "Legal Notice",
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
@@ -296,7 +296,10 @@
     "moduleShortplaceholder": "Short module name",
     "moduleNumplaceholder": "Number of the module",
     "moduleLinkplaceholder": "Link to the module description",
-    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?"
+    "deleteCards": "Do you really want to delete all cards for the cardset \"__name__\"?",
+    "deleteCard": "Do you really want to erase the card?",
+    "cancelEditCard": "Do you really want to leave editing mode? All unsaved changes will be discarded upon confirmation.",
+    "cancelEditCardTitle": "Exit editing mode"
   },
   "profile": {
     "overview": "Learning Progress",
@@ -474,7 +477,8 @@
     "startLearning": "Start Learning-Phase",
     "stopLearning": "Stop Learning-Phase",
     "poolLicense": "License for ",
-    "leaveEditors": "Leave Editor Group"
+    "leaveEditors": "Leave Editor Group",
+    "preview": "Chargeable set of cards"
   },
   "pool": {
     "relevance": "Relevance",
@@ -625,6 +629,9 @@
         "back": "Backside",
         "hint": "Hint",
         "lecture": "Lecture"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType1": {
@@ -634,6 +641,9 @@
       "placeholders": {
         "front": "Frontside",
         "back": "Backside"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType2": {
@@ -645,6 +655,9 @@
         "front": "Frontside",
         "back": "Rework",
         "hint": "Literature"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType3": {
@@ -654,17 +667,37 @@
       "placeholders": {
         "front": "Frontside",
         "back": "Definition"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     },
     "cardType4": {
-      "name": "Explanatory Video",
-      "front": "Explanatory Video",
-      "back": "Control Question",
-      "hint": "Video source",
+      "name": "Citation",
+      "front": "Citation",
+      "back": "Cited person",
+      "hint": "Reference",
       "placeholders": {
-        "front": "Front",
-        "back": "Back",
-        "hint": "Hint"
+        "front": "Citation",
+        "back": "Cited person",
+        "hint": "Reference"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
+    },
+    "cardType5": {
+      "name": "Assessment",
+      "front": "Audit question",
+      "back": "Answer",
+      "hint": "Explanation",
+      "placeholders": {
+        "front": "Assessment",
+        "back": "Audit question",
+        "hint": "Explanation"
+      },
+      "editorLabels": {
+        "subject": "Subject"
       }
     }
   },
@@ -691,6 +724,13 @@
         "description": "Learning objectives and content"
       }
     }
+  },
+  "learningUnit": {
+    "title":"Select learning aptitude",
+    "choose": "Edit...",
+    "belongsTo": "Belongs to the learning unit...",
+    "none": "Doesn't belong to a learning unit",
+    "noUnitsFound": "There are no learning units for this set of cards"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
@@ -723,8 +763,7 @@
   "yourhighscore": "Your highscore:",
   "points": "Points",
   "difficulty": "Level of Difficulty",
-  "difficulty0": "General",
-  "difficulty1": "For Beginners",
+  "difficulty1": "Basics",
   "difficulty2": "Advanced",
   "difficulty3": "Expert",
   "difficultyNotes": "Event type",
@@ -745,7 +784,7 @@
   "copyCardTitle": "Copy card",
   "copyCardText": "Select the cardset in which you want to copy this card.",
   "copycardSuccess": "Card copied",
-  "cardsubject": "Subject",
+  "cardSubject": "Subject",
   "options": "Options",
   "fronttext_required": "The front field is required!",
   "backtext_required": "The back field is required!",

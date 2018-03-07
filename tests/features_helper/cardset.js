@@ -62,6 +62,8 @@ module.exports = {
 		browser.waitForVisible('#cardCancel', global.threshold);
 		if (click) {
 			browser.click('#cardCancel');
+			browser.waitForVisible('#cancelEditConfirm', global.threshold);
+			browser.click('#cancelEditConfirm');
 		}
 	},
 	editCard: function (click = true) {
@@ -78,9 +80,9 @@ module.exports = {
 		}
 	},
 	deleteCardConfirm: function (click = true) {
-		browser.waitForVisible('#cardDeleteConfirm', global.threshold);
+		browser.waitForVisible('#deleteCardConfirm', global.threshold);
 		if (click) {
-			browser.click('#cardDeleteConfirm');
+			browser.click('#deleteCardConfirm');
 		}
 	},
 	deleteAllCards: function (click = true) {
