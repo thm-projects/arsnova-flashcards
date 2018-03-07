@@ -27,7 +27,7 @@
   },
   "intro": {
     "about": "Was ist THM.cards?",
-    "learnMore": "Erfahre mehr ...",
+    "learnMore": "Erfahre mehr…",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
@@ -598,11 +598,11 @@
         "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel | Thema"
+        "subject": "Kompetenzziel"
       }
     },
     "cardType1": {
-      "name": "Vokabeln",
+      "name": "Vokabel",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
@@ -610,7 +610,7 @@
         "back": "Übersetzung"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel | Thema"
+        "subject": "Thema"
       }
     },
     "cardType2": {
@@ -619,12 +619,12 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-do",
       "placeholders": {
-        "front": "Mitschrift zur Veranstaltung",
+        "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein.",
         "back": "Nachbearbeitung der Lerninhalte",
         "hint": "Noch nicht verstanden | To-do-Liste"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel | Thema"
+        "subject": "Thema"
       }
     },
     "cardType3": {
@@ -636,7 +636,7 @@
         "back": "Definition | Beschreibung des Fachbegriffs"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel | Thema"
+        "subject": "Thema"
       }
     },
     "cardType4": {
@@ -659,12 +659,12 @@
       "back": "Antwort",
       "hint": "Begründung",
       "placeholders": {
-        "front": "Prüfungsfrage zum Kompetenzziel | Thema",
+        "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort",
         "hint": "Begründung oder Erläuterung der Antwort"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel | Thema"
+        "subject": "Kompetenzziel"
       }
     }
   },
@@ -676,7 +676,8 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Kurse fassen mehrere Kartensätze zusammen.Sie können nur von Lehrenden erstellt werden. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
+      "empty": "Kurse fassen mehrere Kartensätze zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
+      \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
       "category": "Kategorie",
       "module": "Modul",
@@ -695,8 +696,8 @@
   },
   "learningUnit": {
     "title":"Lerneiheit auswählen",
-    "choose": "Gehört zur Lerneinheit...",
-    "belongsTo": "Gehört zur Lerneinheit...",
+    "choose": "Gehört zur Lerneinheit…",
+    "belongsTo": "Gehört zur Lerneinheit…",
     "none": "Gehört nicht zu einer Lerneinheit",
     "noUnitsFound": "Es sind keine Lerneinheiten in diesem Kartensatz vorhanden."
   },
@@ -1081,7 +1082,7 @@
     "service": "Dieser Newsletter ist ein Service von THM.cards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 THM.cards",
-    "my-cardset": "Zum Kartensatz...",
+    "my-cardset": "Zum Kartensatz…",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {

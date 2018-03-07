@@ -231,7 +231,7 @@ Meteor.methods({
 		if (!cardset.shuffled) {
 			cardGroup = "0";
 		}
-		if (cardType !== 5 || cardType !== 2) {
+		if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
 			if (subject === "") {
 				throw new Meteor.Error("Missing subject");
 			}
@@ -390,7 +390,7 @@ Meteor.methods({
 				throw new Meteor.Error("not-authorized");
 			}
 		}
-		if (cardType !== 5 || cardType !== 2) {
+		if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
 			if (subject === "") {
 				throw new Meteor.Error("Missing subject");
 			}
