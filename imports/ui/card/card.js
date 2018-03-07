@@ -775,7 +775,7 @@ function saveCard(card_id, returnToCardset) {
 	let learningUnit = Session.get('learningUnit');
 	let subjectText = Session.get('subjectText');
 	let gotSubject = true;
-	if (cardType !== 5 || cardType !== 2) {
+	if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
 		if (subjectText === "") {
 			$('#subjectEditor').css('border', '1px solid');
 			$('#subjectEditor').css('border-color', '#b94a48');
@@ -1103,7 +1103,7 @@ Template.contentEditor.helpers({
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
-		if ((Session.get('cardType') === 2 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
+		if ((Session.get('cardType') === 2 || Session.get('cardType') === 3 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
 			let card = Cards.findOne({_id: Session.get('learningUnit')});
 			if (card !== undefined && card.subject !== undefined) {
 				return card.subject;
@@ -1117,7 +1117,7 @@ Template.subjectEditor.helpers({
 		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
 	},
 	isDisabled: function () {
-		if ((Session.get('cardType') === 2 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
+		if ((Session.get('cardType') === 2 || Session.get('cardType') === 3 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
 			return "disabled";
 		}
 		return "";

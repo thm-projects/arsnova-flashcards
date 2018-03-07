@@ -39,7 +39,7 @@
             <h5>{{_ "cardType"}}</h5>
             {{> cardType}}
         </div>
-        {{#unless isCardType 4}}
+        {{#unless isCardType 3 4}}
             <div id="difficulty" class="col-md-6 cardtext editorElement">
                 {{#unless isCardType 2}}
                     <h5>{{_ "difficulty"}}</h5>
@@ -56,7 +56,7 @@
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
-        {{#unless isCardType 1 2 4}}
+        {{#unless isCardType 1 2 3 4}}
             <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
@@ -319,7 +319,7 @@
 </template>
 
 <template name="subjectEditor">
-    <form class="subjectEditor {{#if isCardType 2 5}}col-xs-8 col-sm-9{{/if}}">
+    <form class="subjectEditor {{#if isCardType 2 3 5}}col-xs-8 col-sm-9{{/if}}">
         {{#if isActiveRoute 'newCard'}}
             <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
                    tabindex="1" autofocus {{isDisabled}}>
@@ -328,7 +328,7 @@
                    tabindex="1" autofocus {{isDisabled}}>
         {{/if}}
     </form>
-    {{#if isCardType 2 5}}
+    {{#if isCardType 2 3 5}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
                 data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
     {{/if}}
