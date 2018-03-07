@@ -594,7 +594,7 @@
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
       "placeholders": {
-        "front": "Frage zur Überprüfung des Lernziels",
+        "front": "Frage zur Überprüfung des Lernziels gemäß Level und Anforderung",
         "back": "Antwort auf die Lernzielfrage",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
         "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
@@ -644,11 +644,11 @@
       "name": "Prüfung",
       "front": "Frage",
       "back": "Antwort",
-      "hint": "Erläuterung",
+      "hint": "Begründung",
       "placeholders": {
-        "front": "Prüfungsfrage",
+        "front": "Prüfungsfrage zum Kompetenzziel | Thema",
         "back": "Antwort",
-        "hint": "Erläuterung"
+        "hint": "Begründung oder Erläuterung der Antwort"
       }
     }
   },
@@ -718,7 +718,7 @@
   "points": "Punkte",
   "difficulty": "Level",
   "difficulty0": "Allgemein",
-  "difficulty1": "Einsteiger/in",
+  "difficulty1": "Basics",
   "difficulty2": "Fortgeschritten",
   "difficulty3": "Experte/Expertin",
   "difficultyNotes": "Veranstaltung",
