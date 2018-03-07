@@ -26,7 +26,7 @@ Meteor.methods({
 				item.hint = "";
 			}
 			if (item.difficulty === undefined) {
-				item.difficulty = Number(0);
+				item.difficulty = Number(1);
 			}
 			if (item.cardType === undefined) {
 				item.cardType = Number(0);

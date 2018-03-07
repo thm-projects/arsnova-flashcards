@@ -171,23 +171,26 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="difficulty0"
-               class="col-xs-6 col-sm-3 btn btn-default {{#if isCardType 2}}btn-orange{{else}}btn-white{{/if}} {{#if
-                       isDifficultyChecked 0}}active{{/if}}"
-               data-color="0">
-            {{#if isDifficultyChecked 0}}
-                <input type="radio" name="difficulty" value="0" checked tabindex="3">
-            {{else}}
-                <input type="radio" name="difficulty" value="0">
-            {{/if}}
-            {{#unless isCardType 2}}
-                {{_ "difficulty0"}}
-            {{else}}
-                {{_ "difficultyNotes0"}}
-            {{/unless}}
-        </label>
+        {{#if isCardType 2}}
+            <label id="difficulty0"
+                   class="col-xs-6 col-sm-3 btn btn-default {{#if isCardType 2}}btn-orange{{else}}btn-white{{/if}} {{#if
+                           isDifficultyChecked 0}}active{{/if}}"
+                   data-color="0">
+                {{#if isDifficultyChecked 0}}
+                    <input type="radio" name="difficulty" value="0" checked tabindex="3">
+                {{else}}
+                    <input type="radio" name="difficulty" value="0">
+                {{/if}}
+                {{#unless isCardType 2}}
+                    {{_ "difficulty0"}}
+                {{else}}
+                    {{_ "difficultyNotes0"}}
+                {{/unless}}
+            </label>
+        {{/if}}
         <label id="difficulty1"
-               class="col-xs-6 col-sm-3 btn btn-default btn-info {{#if isDifficultyChecked 1}}active{{/if}}"
+               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
+                       isDifficultyChecked 1}}active{{/if}}"
                data-color="1">
             {{#if isDifficultyChecked 1}}
                 <input type="radio" name="difficulty" value="1" checked tabindex="3">
@@ -201,7 +204,8 @@
             {{/unless}}
         </label>
         <label id="difficulty2"
-               class="col-xs-6 col-sm-3 btn btn-default btn-success {{#if isDifficultyChecked 2}}active{{/if}}"
+               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
+                       isDifficultyChecked 2}}active{{/if}}"
                data-color="2">
             {{#if isDifficultyChecked 2}}
                 <input type="radio" name="difficulty" value="2" checked tabindex="3">
@@ -215,7 +219,8 @@
             {{/unless}}
         </label>
         <label id="difficulty3"
-               class="col-xs-6 col-sm-3 btn btn-default btn-danger {{#if isDifficultyChecked 3}}active{{/if}}"
+               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
+                       isDifficultyChecked 3}}active{{/if}}"
                data-color="3">
             {{#if isDifficultyChecked 3}}
                 <input type="radio" name="difficulty" value="3" checked tabindex="3">
