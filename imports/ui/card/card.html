@@ -40,12 +40,14 @@
             {{> cardType}}
         </div>
         <div id="difficulty" class="col-md-6 cardtext editorElement">
-            {{#unless isCardType 2}}
-                <h5>{{_ "difficulty"}}</h5>
-            {{else}}
-                <h5>{{_ "difficultyNotes"}}</h5>
+            {{#unless isCardType 4}}
+                {{#unless isCardType 2}}
+                    <h5>{{_ "difficulty"}}</h5>
+                {{else}}
+                    <h5>{{_ "difficultyNotes"}}</h5>
+                {{/unless}}
+                {{> difficultyEditor}}
             {{/unless}}
-            {{> difficultyEditor}}
         </div>
     </div>
     <div class="row">
@@ -55,13 +57,9 @@
             {{> subjectEditor}}
         </div>
         <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
-            {{#unless isCardType 1}}
-                {{#unless isCardType 2}}
-                    {{#unless isCardType 3}}
-                        <h5>{{_ "learning-goal.name"}}</h5>
-                        {{> learningGoalLevel}}
-                    {{/unless}}
-                {{/unless}}
+            {{#unless isCardType 1 2 3 4}}
+                <h5>{{_ "learning-goal.name"}}</h5>
+                {{> learningGoalLevel}}
             {{/unless}}
         </div>
     </div>
@@ -490,18 +488,21 @@
                                                     "card.cardType3.back"}}{{/if}}{{#if isCardType 4}}{{_
                                                     "card.cardType4.back"}}{{/if}}{{#if isCardType 5}}{{_
                                                     "card.cardType5.back"}}{{/if}})</span>{{/unless}}</span><br>
-                                        {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
-                                        <strong>{{getDifficultyName}}</strong>
-                                        {{#if isCardType 2}}
-                                            <span class="cardBackHeader"
-                                                  style="display: {{#if isCardType 1}}{{#unless
-                                                          reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
+                                        {{#unless isCardType 4}}
+                                            {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
+                                            <strong>{{getDifficultyName}}</strong>
+                                            {{#if isCardType 2}}
+                                                <span class="cardBackHeader"
+                                                      style="display: {{#if isCardType 1}}{{#unless
+                                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                             ({{_ "card.cardType2.back"}})
                                             </span>
-                                        {{/if}}
-                                        {{#unless isCardType 1 2 3}}
-                                            | {{_ "learning-goal.name"}}:
-                                            <strong>{{getLearningGoalName}}</strong>
+                                            {{/if}}
+                                            {{#unless isCardType 1 2 3}}
+                                                | {{_ "learning-goal.name"}}:
+                                                <strong>{{getLearningGoalName}}</strong>
+                                            {{/unless}}
+                                            {{else}}
                                         {{/unless}}
                                     </div>
                                     {{#unless isCardType 2}}
@@ -540,7 +541,7 @@
                                             {{/if}}
                                         {{/if}}
                                     </div>
-                                    <h3>{{subject}}</h3>
+                                    <h3 class="{{#if isCardType 4}}cardSubjectRow{{/if}}">{{subject}}</h3>
                                     <span class="cardfrontCheck" style="display: {{#if isCardType 1}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"
