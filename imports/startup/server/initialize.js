@@ -74,7 +74,6 @@ var initTestNotificationsCards = function () {
 			"back": "Back of NotificationsTest: Card Nr. 1",
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
 			"cardset_id": "NotificationsTestCardset",
-			"cardGroup": "0",
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 0,
@@ -89,7 +88,6 @@ var initTestNotificationsCards = function () {
 			"back": "Back of NotificationsTest: Card Nr. 2",
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
 			"cardset_id": "NotificationsTestCardset",
-			"cardGroup": "0",
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 1,
@@ -104,7 +102,6 @@ var initTestNotificationsCards = function () {
 			"back": "Back of NotificationsTest: Card Nr. 3",
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
 			"cardset_id": "NotificationsTestCardset",
-			"cardGroup": "0",
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 2,
@@ -119,7 +116,6 @@ var initTestNotificationsCards = function () {
 			"back": "Back of NotificationsTest: Card Nr. 4",
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
 			"cardset_id": "NotificationsTestCardset",
-			"cardGroup": "0",
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 3,
@@ -134,7 +130,6 @@ var initTestNotificationsCards = function () {
 			"back": "Back of NotificationsTest: Card Nr. 5",
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
 			"cardset_id": "NotificationsTestCardset",
-			"cardGroup": "0",
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 4,
@@ -508,17 +503,6 @@ Meteor.startup(function () {
 				}
 			}
 		);
-		Cards.update({
-				cardset_id: cardsets[i]._id
-			},
-			{
-				$set: {
-					cardGroup: "0"
-				}
-			},
-			{
-				multi: true
-			});
 	}
 
 	cardsets = Cardsets.find({}).fetch();

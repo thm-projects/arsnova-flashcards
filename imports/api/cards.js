@@ -170,9 +170,6 @@ var CardsSchema = new SimpleSchema({
 	difficulty: {
 		type: Number
 	},
-	cardGroup: {
-		type: String
-	},
 	lecture: {
 		type: String,
 		optional: true,
@@ -207,14 +204,13 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
-		check(cardGroup, String);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
@@ -226,9 +222,6 @@ Meteor.methods({
 		let card_id = "";
 		if (cardset.owner !== Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
-		}
-		if (!cardset.shuffled) {
-			cardGroup = "0";
 		}
 		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
 			if (subject === "") {
@@ -246,7 +239,6 @@ Meteor.methods({
 			back: back,
 			cardset_id: cardset_id,
 			difficulty: difficulty,
-			cardGroup: cardGroup,
 			lecture: lecture,
 			centerTextElement: centerTextElement,
 			date: date,
@@ -409,8 +401,7 @@ Meteor.methods({
 				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
-				learningUnit: learningUnit,
-				cardType: cardset.cardType
+				learningUnit: learningUnit
 			}
 		});
 		Cardsets.update(card.cardset_id, {

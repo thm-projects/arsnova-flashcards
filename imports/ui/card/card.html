@@ -94,10 +94,15 @@
             </div>
         </div>
         {{isTextCentered}}
+        <div class="hidden-lg">
+            {{> btnCard}}
+        </div>
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
             {{> flashcards cardset=this}}
         </div>
+    </div>
+    <div class="row visible-lg">
         {{> btnCard}}
     </div>
 </template>
@@ -296,18 +301,16 @@
 </template>
 
 <template name="btnCard">
-    <div class="col-xs-12 col-sm-9 col-md-6 editorButtonGroup">
+    <div class="col-xs-12 col-sm-9 col-md-6">
         <div class="actionButtons editorElement">
             <br>
-            <button id="cardSave"
-                    class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="13">
+            <button class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4 cardSave" {{disableIfOffline}} tabindex="13">
                 {{_ "savecard"}}
             </button>
-            <button id="cardSaveReturn"
-                    class="btn btn-default btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}} tabindex="14">
+            <button class="btn btn-default btn-raised save col-xs-12 col-sm-4 cardSaveReturn" {{disableIfOffline}} tabindex="14">
                 {{_ "savecardReturn"}}
             </button>
-            <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 pull-right"
+            <button class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 cardCancel pull-right"
                     tabindex="15" data-toggle="modal"
                     data-target="#cancelEditModal">{{_
                     "declinecard"}}</button>
@@ -315,11 +318,10 @@
     </div>
     {{#if isEditMode}}
         {{#if isCardsetOwner this.cardset_id}}
-            <div class="col-xs-12 col-sm-3 col-md-6 editorButtonGroup">
+            <div class="col-xs-12 col-sm-3 col-md-6">
                 <div class="actionButtons editorElement">
                     <br>
-                    <button id="cardDelete"
-                            class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right" {{isDisabled}}
+                    <button class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right cardDelete" {{isDisabled}}
                             tabindex="16" data-toggle="modal"
                             data-target="#deleteCardModal">{{_
                             "deletecard"}}</button>
@@ -647,7 +649,7 @@
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
-                                <span class="{{#if gotHint}}{{#if isCentered}}center-align{{/if}}{{/if}}">
+                                <span class="{{#if isCentered}}center-align{{/if}}">
                                     {{#if gotHint}}
                                         {{#mathjax}}{{getHint}}{{/mathjax}}
                                     {{else}}

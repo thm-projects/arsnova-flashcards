@@ -123,7 +123,7 @@
                 <tr>
                     <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
                     <td>
-                        {{#unless isShuffledCardset this._id}}
+                        {{#unless isShuffledCardset _id}}
                             <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
                                data-target="#showLicenseModal">{{getLicense}}</a>
                         {{else}}
@@ -260,7 +260,7 @@
             {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
                     {{#unless learningActive}}
-                        {{#unless isShuffledCardset this._id}}
+                        {{#unless isShuffledCardset _id}}
                             <div class="btn-group btn-group-raised">
                                 <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
                                    href="{{pathFor 'newCard'}}"
@@ -1222,7 +1222,7 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#unless isCardsetOwner this._id}}
+            {{#unless isCardsetOwner _id}}
                 {{> access_denied_content_only}}
             {{else}}
                 <div class="container">
