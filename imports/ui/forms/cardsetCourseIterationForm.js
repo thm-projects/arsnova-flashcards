@@ -24,6 +24,10 @@ function cardsetRoute() {
 	return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === 'admin_cardset';
 }
 
+function getCardTypeName(cardType) {
+	return TAPi18n.__('card.cardType' + cardType + '.name');
+}
+
 function activateModule() {
 	$('.moduleRadioButton')[0].checked = true;
 	$('.moduleRadioButton')[1].checked = false;
@@ -57,6 +61,18 @@ export function cleanModal() {
 	$('#setNameLabel').css('color', '');
 	$('#setName').css('border-color', '');
 	$('#helpSetName').html('');
+
+	if (newCardsetCourseIterationRoute()) {
+		$('#setCardType').html(getCardTypeName(0));
+		$('#setCardType').val(0);
+	} else {
+		$('#setCardType').html(getCardTypeName(Session.get('previousCardType')));
+		$('#setCardType').val(Session.get('previousCardType'));
+	}
+
+	$('#setCardTypeLabel').css('color', '');
+	$('#setCardType').css('border-color', '');
+	$('#helpSetCardType').html('');
 
 	if (newCardsetCourseIterationRoute()) {
 		if (shuffleRoute()) {
@@ -210,6 +226,12 @@ export function saveCardset() {
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 		$('#helpSetName').css('color', '#b94a48');
 	}
+	if ($('#setCardType').val() === "") {
+		$('#setCardTypeLabel').css('color', '#b94a48');
+		$('#setCardType').css('border-color', '#b94a48');
+		$('#helpSetCardType').html(TAPi18n.__('modal-dialog.name_required'));
+		$('#helpSetCardType').css('color', '#b94a48');
+	}
 	if ($('#setDescription').val() === "" && Session.get('moduleActive')) {
 		$('#setDescriptionLabel').css('color', '#b94a48');
 		$('#setDescription').css('border-color', '#b94a48');
@@ -255,8 +277,10 @@ export function saveCardset() {
 		($('#setModuleNum').val() !== "" || !Session.get('moduleActive')) &&
 		($('#setCollege').val() !== "" || !Session.get('moduleActive') || Meteor.settings.public.university.singleUniversity) &&
 		($('#setCourse').val() !== "" || !Session.get('moduleActive'))) {
-		let name, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups;
+		let name, cardType, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled,
+			cardGroups;
 		name = $('#setName').val();
+		cardType = $('#setCardType').val();
 		description = $('#setDescription').val();
 		module = $('#setModule').val();
 		moduleShort = $('#setModuleShort').val();
@@ -279,7 +303,7 @@ export function saveCardset() {
 				Meteor.call("addCourseIteration", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#setCardsetCourseIterationFormModal').modal('hide');
 			} else {
-				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, function (error, result) {
+				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, Number(cardType), function (error, result) {
 					$('#setCardsetCourseIterationFormModal').modal('hide');
 					if (result) {
 						$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
@@ -295,7 +319,7 @@ export function saveCardset() {
 			if (courseIterationRoute()) {
 				Meteor.call("updateCourseIteration", name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 			} else {
-				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Number(cardType));
 			}
 			$('#setCardsetCourseIterationFormModal').modal('hide');
 			return true;
@@ -361,6 +385,11 @@ Template.cardsetCourseIterationFormContent.onRendered(function () {
 		},
 		additionalButtons: additionalButtons
 	});
+	$('#setCardsetCourseIterationFormModal').on('show.bs.modal', function () {
+		if (!shuffleRoute()) {
+			cleanModal();
+		}
+	});
 	$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 		if (!shuffleRoute()) {
 			cleanModal();
@@ -419,6 +448,9 @@ Template.cardsetCourseIterationFormContent.helpers({
 			return Meteor.settings.public.university.singleUniversity ? "" : "disabled";
 		}
 	},
+	getCardTypeName: function (cardType) {
+		return getCardTypeName(cardType);
+	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? "Shuffle: " + Session.get("ShuffleTemplate").name : "";
@@ -454,6 +486,13 @@ Template.cardsetCourseIterationFormContent.helpers({
 Template.cardsetCourseIterationFormContent.events({
 	'click #cardSetSave': function () {
 		saveCardset();
+	},
+	'click .cardType': function (evt) {
+		$('#setCardType').html($(evt.currentTarget).text());
+		$('#setCardType').val($(evt.currentTarget).attr("data"));
+		$('#setCardTypeLabel').css('color', '');
+		$('.setCardTypeDropdown').css('border-color', '');
+		$('#helpSetCardType').html('');
 	},
 	'click .college': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");

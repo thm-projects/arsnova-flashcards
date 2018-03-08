@@ -58,7 +58,8 @@ var initTestNotificationsCardset = function () {
 			"learners": 0,
 			"editors": [],
 			"shuffled": false,
-			"cardGroups": []
+			"cardGroups": [],
+			"cardType": 0
 		}
 	];
 };
@@ -74,11 +75,11 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
-			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 0,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -89,11 +90,11 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
-			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 1,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -104,11 +105,11 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
-			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 2,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -119,11 +120,11 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
-			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 3,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -134,11 +135,11 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
 			"cardset_id": "NotificationsTestCardset",
 			"cardGroup": "0",
-			"cardType": 0,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 4,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"cardType": 0
 		}
 	];
 };
@@ -325,19 +326,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	cards = Cards.find({cardType: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					cardType: 0
-				}
-			}
-		);
-	}
-
 	cards = Cards.find({lecture: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		Cards.update({
@@ -351,23 +339,10 @@ Meteor.startup(function () {
 		);
 	}
 
-	cards = Cards.find({cardType: 3}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					cardType: 2
-				}
-			}
-		);
-	}
-
 	cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		let centerTextElement;
-		if (cards[i].cardType === 2) {
+		if (Cardsets.findOne({_id: cards[i].cardset_id}).cardType === 2) {
 			centerTextElement = [true, true, false, false];
 		} else {
 			centerTextElement = [false, false, false, false];
@@ -420,19 +395,6 @@ Meteor.startup(function () {
 			{
 				$set: {
 					backgroundStyle: 0
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({difficulty: 0, cardType: {$ne: 2}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					difficulty: 1
 				}
 			}
 		);
@@ -521,6 +483,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({cardType: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					cardType: 0
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find({shuffled: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
@@ -544,6 +519,22 @@ Meteor.startup(function () {
 			{
 				multi: true
 			});
+	}
+
+	cardsets = Cardsets.find({}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cards.update({
+				cardset_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					cardType: cardsets[i].cardType
+				}
+			},
+			{
+				multi: true
+			}
+		);
 	}
 
 	let leitner = Leitner.find({skipped: {$exists: false}}).fetch();

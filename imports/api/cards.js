@@ -173,9 +173,6 @@ var CardsSchema = new SimpleSchema({
 	cardGroup: {
 		type: String
 	},
-	cardType: {
-		type: Number
-	},
 	lecture: {
 		type: String,
 		optional: true,
@@ -201,13 +198,16 @@ var CardsSchema = new SimpleSchema({
 	learningUnit: {
 		type: String,
 		optional: true
+	},
+	cardType: {
+		type: Number
 	}
 });
 
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	addCard: function (cardset_id, subject, hint, front, back, difficulty, cardGroup, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -215,7 +215,6 @@ Meteor.methods({
 		check(back, String);
 		check(difficulty, Number);
 		check(cardGroup, String);
-		check(cardType, Number);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
@@ -231,7 +230,7 @@ Meteor.methods({
 		if (!cardset.shuffled) {
 			cardGroup = "0";
 		}
-		if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
+		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
 			if (subject === "") {
 				throw new Meteor.Error("Missing subject");
 			}
@@ -248,13 +247,13 @@ Meteor.methods({
 			cardset_id: cardset_id,
 			difficulty: difficulty,
 			cardGroup: cardGroup,
-			cardType: cardType,
 			lecture: lecture,
 			centerTextElement: centerTextElement,
 			date: date,
 			learningGoalLevel: learningGoalLevel,
 			backgroundStyle: backgroundStyle,
-			learningUnit: learningUnit
+			learningUnit: learningUnit,
+			cardType: cardset.cardType
 		}, function (err, card) {
 			card_id = card;
 		});
@@ -364,14 +363,13 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty, cardType, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	updateCard: function (card_id, subject, hint, front, back, difficulty, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(difficulty, Number);
-		check(cardType, Number);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
@@ -390,7 +388,7 @@ Meteor.methods({
 				throw new Meteor.Error("not-authorized");
 			}
 		}
-		if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
+		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
 			if (subject === "") {
 				throw new Meteor.Error("Missing subject");
 			}
@@ -406,13 +404,13 @@ Meteor.methods({
 				front: front,
 				back: back,
 				difficulty: difficulty,
-				cardType: cardType,
 				lecture: lecture,
 				centerTextElement: centerTextElement,
 				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
-				learningUnit: learningUnit
+				learningUnit: learningUnit,
+				cardType: cardset.cardType
 			}
 		});
 		Cardsets.update(card.cardset_id, {

@@ -137,6 +137,7 @@ Template.cardset.helpers({
 		Session.set('previousModuleLink', Cardsets.findOne(Router.current().params._id).moduleLink);
 		Session.set('previousCollegeName', Cardsets.findOne(Router.current().params._id).college);
 		Session.set('previousCourseName', Cardsets.findOne(Router.current().params._id).course);
+		Session.set('previousCardType', Cardsets.findOne(Router.current().params._id).cardType);
 	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {

@@ -47,7 +47,14 @@ if (Meteor.isServer) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			universityFilter = Meteor.settings.public.university.default;
 		}
-		return Cardsets.find({college: {$ifNull: [universityFilter, {$exists: true}]}}, {fields: {_id: 1, name: 1, quantity: 1, kind: 1}});
+		return Cardsets.find({college: {$ifNull: [universityFilter, {$exists: true}]}}, {
+			fields: {
+				_id: 1,
+				name: 1,
+				quantity: 1,
+				kind: 1
+			}
+		});
 	});
 }
 
@@ -167,6 +174,9 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	cardGroups: {
 		type: [String]
+	},
+	cardType: {
+		type: Number
 	}
 });
 
@@ -221,8 +231,9 @@ Meteor.methods({
 	 * @param {String} course - Assigned university course
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
 	 * @param {String} cardGroups - The group names of the shuffled cards
+	 * @param {Number} cardType - The type that this cardset allows
 	 */
-	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups) {
+	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, cardType) {
 		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
@@ -239,6 +250,7 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 		check(shuffled, Boolean);
+		check(cardType, Number);
 		let quantity;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
@@ -291,7 +303,8 @@ Meteor.methods({
 			webNotification: true,
 			wordcloud: false,
 			shuffled: shuffled,
-			cardGroups: cardGroups
+			cardGroups: cardGroups,
+			cardType: cardType
 		});
 	},
 	/**
@@ -489,8 +502,9 @@ Meteor.methods({
 	 * @param {String} moduleLink - Link to the module description
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
+	 * @param {Number} cardType - The type that this cardset allows
 	 */
-	updateCardset: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course) {
+	updateCardset: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, cardType) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -504,9 +518,10 @@ Meteor.methods({
 		check(moduleLink, String);
 		check(college, String);
 		check(course, String);
+		check(cardType, Number);
 
 		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
+		let cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
 				'admin',
@@ -528,9 +543,23 @@ Meteor.methods({
 				moduleNum: moduleNum.trim(),
 				moduleLink: moduleLink.trim(),
 				college: college.trim(),
-				course: course.trim()
+				course: course.trim(),
+				cardType: cardType
 			}
 		});
+
+		Cards.update({
+				cardset_id: cardset._id
+			},
+			{
+				$set: {
+					cardType: cardType
+				}
+			},
+			{
+				multi: true
+			}
+		);
 	},
 	/**
 	 * Update the cardGroups of the shuffled cardset
