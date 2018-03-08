@@ -35,9 +35,10 @@
     {{> cancelEditForm}}
     {{> deleteCardForm}}
     <div class="row firstEditorRow editorElement">
-        <div id="cardType" class="col-md-6 cardtext editorElement">
-            <h5>{{_ "cardType"}}</h5>
-            {{> cardType}}
+        <div id="subject" class="col-md-6 cardtext editorElement">
+            <h5>{{getSubjectLabel}}</h5>
+            {{> selectLearningUnit}}
+            {{> subjectEditor}}
         </div>
         {{#unless isCardType 3 4}}
             <div id="difficulty" class="col-md-6 cardtext editorElement">
@@ -51,13 +52,8 @@
         {{/unless}}
     </div>
     <div class="row">
-        <div id="subject" class="col-md-6 cardtext editorElement">
-            <h5>{{getSubjectLabel}}</h5>
-            {{> selectLearningUnit}}
-            {{> subjectEditor}}
-        </div>
         {{#unless isCardType 1 2 3 4}}
-            <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
+            <div id="learningGoalLevel" class="col-md-6 col-md-offset-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
             </div>
@@ -103,67 +99,6 @@
             {{> flashcards cardset=this}}
         </div>
         {{> btnCard}}
-    </div>
-</template>
-
-<template name="cardType">
-    <div id="cardTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        <label id="cardType0" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 0}}active{{/if}}"
-               data-type="0">
-            {{#if isCardType 0}}
-                <input type="radio" id="tabFocus" name="cardType" value="0" checked tabindex="2" data-type="0">
-            {{else}}
-                <input type="radio" name="cardType" value="0" data-type="0">
-            {{/if}}
-            {{_ "card.cardType0.name"}}
-        </label>
-        <label id="cardType3" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 3}}active{{/if}}"
-               data-type="3">
-            {{#if isCardType 3}}
-                <input type="radio" id="tabFocus" name="cardType" value="3" checked tabindex="2" data-type="3">
-            {{else}}
-                <input type="radio" name="cardType" value="3" data-type="3">
-            {{/if}}
-            {{_ "card.cardType3.name"}}
-        </label>
-        <label id="cardType5" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 5}}active{{/if}}"
-               data-type="5">
-            {{#if isCardType 5}}
-                <input type="radio" id="tabFocus" name="cardType" value="5" checked tabindex="2" data-type="5">
-            {{else}}
-                <input type="radio" name="cardType" value="5" data-type="5">
-            {{/if}}
-            {{_ "card.cardType5.name"}}
-        </label>
-        <label id="cardType2" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 2}}active{{/if}}"
-               data-type="2">
-            {{#if isCardType 2}}
-                <input type="radio" id="tabFocus" name="cardType" value="2" checked tabindex="2" data-type="2">
-            {{else}}
-                <input type="radio" name="cardType" value="2" data-type="2">
-            {{/if}}
-            {{_ "card.cardType2.name"}}
-        </label>
-        <label id="cardType4" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 4}}active{{/if}}"
-               data-type="4">
-            {{#if isCardType 4}}
-                <input type="radio" id="tabFocus" name="cardType" value="4" checked tabindex="2" data-type="4"
-                       autofocus>
-            {{else}}
-                <input type="radio" name="cardType" value="4" data-type="4">
-            {{/if}}
-            {{_ "card.cardType4.name"}}
-        </label>
-        <label id="cardType1" class="col-xs-6 col-sm-2 btn btn-default btn-white {{#if isCardType 1}}active{{/if}}"
-               data-type="1">
-            {{#if isCardType 1}}
-                <input type="radio" id="tabFocus" name="cardType" value="1" checked tabindex="2" data-type="1">
-            {{else}}
-                <input type="radio" name="cardType" value="1" data-type="1">
-            {{/if}}
-
-            {{_ "card.cardType1.name"}}
-        </label>
     </div>
 </template>
 
