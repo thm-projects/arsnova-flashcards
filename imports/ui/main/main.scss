@@ -2,7 +2,7 @@
 $color_athens_gray_approx: rgb(236, 240, 241);
 $white: rgb(255, 255, 255);
 $color_bilbao_approx: rgb(50, 129, 20);
-$color_mercury_approx: rgb(223, 229, 230);
+$color_mercury_approx: transparent;
 $color_la_palma_approx: rgb(61, 156, 25);
 $color_wild_sand_approx: rgb(245, 245, 245);
 $color_slate_gray_approx: rgb(74, 92, 102);
@@ -45,6 +45,8 @@ html {
   min-height: 100%;
   font-family: $default_font !important;
   background-color: $color_mercury_approx;
+  background-image: url("/img/background/zettelkasten_wikipedia.jpg");
+  background-attachment:fixed;
 }
 
 body {
