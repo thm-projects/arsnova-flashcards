@@ -33,7 +33,7 @@
     "backToStartButton": "Zurück zur Startseite"
   },
   "navbar-collapse": {
-    "carddecks": "Meine Kartensätze",
+    "carddecks": "Meine Karteien",
     "learndecks": "Lernpensum",
     "pool": "Themen",
     "course": "Kurse",
@@ -63,19 +63,19 @@
     "pending": "Freigabe ausstehend",
     "progress": "In Bearbeitung",
     "reporteduser": "Gemeldete Benutzer/innen",
-    "reportedcardset": "Gemeldeter Kartensatz",
+    "reportedcardset": "Gemeldete Kartei",
     "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
-    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldeter Kartensatz)",
+    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldete Kartei)",
     "lecturer": "Dozenten-Anfrage",
     "heading": "Aufgaben warten!",
-    "content": "Kartensatz: ",
+    "content": "Kartei: ",
     "deadline": "\nFrist: ",
     "warning": "\nNicht Bearbeiten der Aufgaben wird deine Lernstatistik zurücksetzen.",
     "admin": "Du bist angemeldet als Admin!",
     "cards": "\nKarten: "
   },
   "input-group": {
-    "newcarddeck": "Neuer Kartensatz"
+    "newcarddeck": "Neue Kartei"
   },
   "upload-form": {
     "popover-content": "Unterstützt werden die Dateiformate JSON und CSV (Excel, kommagetrennt). Die folgenden Links zeigen die erforderliche Dateistruktur:",
@@ -91,12 +91,12 @@
     "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
-    "title": "Kartensatz verlassen",
-    "text": "Willst du diesen Kartensatz wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
+    "title": "Kartei verlassen",
+    "text": "Willst du diese Kartei wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
     "title": "Aktiver Lernphase mit Bonusvergabe beitreten",
-    "text": "Durch deinen Beitritt erlaubst du der Autorin bzw. dem Autor des Kartensatzes folgenden Zugriff auf deine Daten:",
+    "text": "Durch deinen Beitritt erlaubst du der Autorin bzw. dem Autor der Kartei folgenden Zugriff auf deine Daten:",
     "text2": "Diese Daten werden nur zur Bonusvergabe verwendet.",
     "enter": "Beitreten",
     "close": "Schließen"
@@ -104,17 +104,17 @@
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
     "title": "Aktive Lernphase verlassen",
-    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
+    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-leave-cardset": {
-    "btn-txt": "Kartensatz verlassen",
-    "title": "Kartensatz verlassen",
-    "text": "Willst du diesen Kartensatz verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diesen Kartensatz gelöscht."
+    "btn-txt": "Kartei verlassen",
+    "title": "Kartei verlassen",
+    "text": "Willst du diesen Kartei verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
     "title": "Bearbeitergruppe verlassen",
-    "text": "Willst du deine Berechtigung für den Kartensatz \"__name__\" entfernen?"
+    "text": "Willst du deine Berechtigung für die Kartei \"__name__\" entfernen?"
   },
   "complete-profile": {
     "btn-txt": "Schließen",
@@ -123,12 +123,13 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du THM.cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und privaten Kartensätze werden unwiderruflich gelöscht. Die von dir veröffentlichten Kartensätze bleiben erhalten.",
+    "text": "Falls du sicher bist, dass du THM.cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus THM.cards abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen des Kartensatzes geht hierbei verloren!",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der
+    Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -156,8 +157,8 @@
     "confirm": "Bestätigen"
   },
   "nav-list": {
-    "learn": "Kartensatz lernen",
-    "create": "Erstellte Kartensätze"
+    "learn": "Kartei lernen",
+    "create": "Angelegte Karteien"
   },
   "set-list": {
     "name": "Name",
@@ -166,12 +167,12 @@
     "description": "Beschreibung",
     "licence": "Lizenz",
     "availability": "Zugang",
-    "topic": "Thema des Kartensatzes",
+    "topic": "Thema der Kartei",
     "topicMobile": "Thema",
     "college": "Hochschule",
     "course": "Studiengang",
     "author": "Autor/in",
-    "title": "Aktuell werden folgende Kartensätze angeboten:",
+    "title": "Aktuell werden folgende Karteien angeboten:",
     "everyone": "Alle",
     "everything": "Alle",
     "reset": "Zurücksetzen",
@@ -183,13 +184,13 @@
     "activeLearnphase": "Bonus",
     "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
-    "cardsetInfo": "Über diesen __type__ Kartensatz",
-    "cardsetInfoStatic": "Über diesen Kartensatz",
-    "shuffleCardsets": "Kartensätze mischen",
+    "cardsetInfo": "Über diese __type__ Kartei",
+    "cardsetInfoStatic": "Über diese Kartei",
+    "shuffleCardsets": "Karteien mischen",
     "shuffle": "Mischen",
-    "shuffleInfoTextNew": "Neuen Kartensatz durch Hinzufügen mischen",
-    "shuffleInfoTextEdit": "Kartensatz durch Hinzufügen mischen",
-    "shuffleCardsetReferences": "Gemischte Kartensätze bearbeiten",
+    "shuffleInfoTextNew": "Neue Kartei durch Hinzufügen mischen",
+    "shuffleInfoTextEdit": "Kartei durch Hinzufügen mischen",
+    "shuffleCardsetReferences": "Gemischte Karteien bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
     "shuffleRemove": "Auswahl entfernen",
@@ -210,21 +211,22 @@
     "noModuleShort": "ohne"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keinen Kartensatz erstellt. Informiere dich unter \"Hilfe\", was du mit einem eigenen Kartensatz tun kannst.",
-    "emptypooltextlist": "Kein Kartensatz vorhanden",
-    "newset": "Kartensatz erstellen"
+    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
+    kannst.",
+    "emptypooltextlist": "Keine Kartei vorhanden",
+    "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle einen Kartensatz aus oder mische einen neuen Kartensatz aus mehreren anderen.",
-    "emptytextlistNoShuffle": "Wähle einen Kartensatz aus.",
-    "browseCardset": "Kartensatz auswählen"
+    "emptytextlist": "Zum Lernen wähle eine Kartei aus oder mische eine neue Kartei aus mehreren anderen.",
+    "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
+    "browseCardset": "Kartei auswählen"
   },
   "modal-dialog": {
-    "newcarddeck": "Neuen Kartensatz anlegen",
+    "newcarddeck": "Neue Kartei anlegen",
     "editcard": "Editieren",
-    "editreferences": "Kartensatz mischen",
+    "editreferences": "Kartei mischen",
     "name": "Thema",
-    "nameplaceholder": "Thema des Kartensatzes",
+    "nameplaceholder": "Thema der Kartei",
     "descriptionplaceholder": "Lernziele und Lerninhalte",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
@@ -240,9 +242,9 @@
     "close": "Schließen",
     "cancel": "Abbrechen",
     "createcarddeck": "Anlegen",
-    "delete": "Kartensatz löschen",
+    "delete": "Kartei löschen",
     "confirm": "Sicher?",
-    "save": "Kartensatz speichern",
+    "save": "Kartei speichern",
     "name_required": "Gib einen Namen ein!",
     "description_required": "Gib eine Beschreibung ein!",
     "category_required": "Wähle eine Kategorie!",
@@ -253,17 +255,18 @@
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
     "nd-desc": "Das Werk darf nicht verändert werden.",
     "sa-desc": "Das Werk muss nach Veränderungen unter der gleichen Lizenz weitergegeben werden.",
-    "zero-desc": "Es wurde keine Lizenz für diesen Kartensatz gewählt.",
+    "zero-desc": "Es wurde keine Lizenz für diese Kartei gewählt.",
     "saveLicense": "Lizenz speichern",
     "wrongCombination": "Diese Kombination der Lizenzen ist nicht möglich!",
-    "report": "Kartensatz melden",
+    "report": "Kartei melden",
     "cardsetowner": "Autor/in",
-    "cardsetname": "Kartensatz",
+    "cardsetname": "Kartei",
     "reason": "Grund",
     "reportuser": "Benutzer/in melden",
-    "reportcardset": "Kartensatz melden",
-    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diesen Kartensatz \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für den Kartensatz \"__name__\" zurücksetzen?",
+    "reportcardset": "Kartei melden",
+    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
+    zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -271,7 +274,7 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
-    "manageEditors": "Bearbeitungsrechte verwalten für den Kartensatz \"__name__\"",
+    "manageEditors": "Bearbeitungsrechte verwalten für die Kartei \"__name__\"",
     "module": "Modul",
     "moduleActivated": "Gehört zu einem Modul",
     "moduleDeactivated": "Ohne Modul",
@@ -285,7 +288,7 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Möchtest du wirklich alle Karten des Kartensatzes \"__name__\" löschen?",
+    "deleteCards": "Möchtest du wirklich alle Karten in der Kartei \"__name__\" löschen?",
     "deleteCard": "Möchtest du wirklich die Karte löschen?",
     "cancelEditCard": "Möchtest du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
@@ -295,7 +298,7 @@
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "requests": "Pro-Anfragen Kartensatzfreigabe",
+    "requests": "Pro-Anfragen Karteifreigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
     "accept": "Akzeptieren",
@@ -326,7 +329,7 @@
       "subscribed": "Vielen Dank für dein Abonnement!"
     },
     "downgrade": {
-      "error": "Du kannst dein Konto nicht herunterstufen, solange du Pro-Kartensätze hast!",
+      "error": "Du kannst dein Konto nicht herunterstufen, solange du Pro-Karteien hast!",
       "confirm": "Bist du sicher, das Konto zurückzustufen? Dies bedeutet, dass dein Abonnement nicht länger aktiv ist. Du kannst später jederzeit dein Konto wieder hochstufen.",
       "canceled": "Abonnement erfolgreich beendet!"
     }
@@ -337,14 +340,15 @@
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
       "free": "Create. Learn. Remember.",
-      "edu": "THM-Kartensätze frei erhältlich",
+      "edu": "THM-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
-      "pro": "Erstelle und erhalte Pro-Kartensätze",
+      "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat",
       "subscribe": "Pro-Abonnement bestellen",
-      "lecturer": "Dozentenstatus anfragen für das Erstellen von Edu-Kartensätzen und das Prüfen (mit Umsatzbeteiligung) von Pro-Kartensätzen",
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von Edu-Karteien und das Prüfen (mit Umsatzbeteiligung) von
+      Pro-Karteien",
       "send": "Anfrage abschicken",
-      "lecturerActivatet": "Du bist als Edu-Dozent/in und Prüfer/in für Pro-Kartensätze freigeschaltet.",
+      "lecturerActivatet": "Du bist als Edu-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
@@ -373,7 +377,7 @@
     },
     "purchases": {
       "header": "Zahlungshistorie",
-      "empty": "Du hast bisher noch keine Kartensätze gekauft.",
+      "empty": "Du hast bisher noch keine Karteien gekauft.",
       "boughtFor": "Gekauft für",
       "at": "am"
     }
@@ -406,7 +410,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen eines Edu-Kartensatzes nach Leitner",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer Edu-Kartei nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -431,9 +435,9 @@
   },
   "panel-body-last": {
     "login": "Login",
-    "cardset": "Kartensatz angelegt",
+    "cardset": "Kartei angelegt",
     "card": "Karte angelegt",
-    "rating": "Kartensatz bewertet"
+    "rating": "Kartei bewertet"
   },
   "panel-heading-meteor": {
     "meteor": "Meteor Statistiken"
@@ -445,7 +449,7 @@
     "game": "Spiel"
   },
   "table-meteor": {
-    "carddeck": "Kartensatz",
+    "carddeck": "Kartei",
     "yourhighscore": "Dein Highscore",
     "position": "Pos.",
     "highscore": "Highscore"
@@ -461,7 +465,8 @@
     "exportcard": "Export",
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Status",
-    "tooltip": "Erstelle mindestens 5 Karten in diesem Kartensatz und vervollständige dein Profil, um diesen zu veröffentlichen. Pro-Kartensätze können nicht wieder zurückgestuft werden!",
+    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um diesen zu veröffentlichen.
+    Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -470,7 +475,7 @@
     "stopLearning": "Lernphase beenden",
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
-    "preview": "Kostenpflichtiger Kartensatz"
+    "preview": "Kostenpflichtige Kartei"
   },
   "pool": {
     "relevance": "Relevanz",
@@ -483,7 +488,7 @@
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Aktualisiert",
-    "selectCardToLearn": "Kartensatz durch Klick auf ein Thema zum Lernpensum hinzufügen"
+    "selectCardToLearn": "Kartei durch Klick auf ein Thema zum Lernpensum hinzufügen"
   },
   "cardset": {
     "info": {
@@ -498,7 +503,7 @@
       "bought": "Gekauft",
       "deleted": "Gelöscht",
       "license": "Lizenz",
-      "shuffleLicense": "Siehe individuellen Kartensatz",
+      "shuffleLicense": "Siehe jeweilige Kartei",
       "dateUpdated": "Aktualisiert",
       "module": "Modulname",
       "moduleShort": "Kurzbezeichnung",
@@ -508,15 +513,15 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "request": {
-      "alert": "Kartensatz zur Überprüfung freigegeben",
-      "accept": "Kartensatz freigeben",
-      "decline": "Kartensatz nicht freigeben",
-      "accepted": "Kartensatz freigegeben",
-      "declined": "Kartensatz nicht freigegeben",
+      "alert": "Kartei zur Überprüfung freigegeben",
+      "accept": "Kartei freigeben",
+      "decline": "Kartei nicht freigeben",
+      "accepted": "Kartei freigegeben",
+      "declined": "Kartei nicht freigegeben",
       "reason": "Gib eine Begründung für die Ablehnung der Anfrage an"
     },
     "money": {
-      "buy": "Kartensatz kaufen",
+      "buy": "Kartei kaufen",
       "pro": "Als Premium-Nutzer/in lernen",
       "bought": "Vielen Dank für deinen Kauf!"
     },
@@ -538,11 +543,11 @@
   },
   "memo-endscreen": {
     "text": "Lernpensum abgeschlossen",
-    "back": "Zurück zum Kartensatz"
+    "back": "Zurück zur Kartei"
   },
   "memo-empty": {
     "text": "Aktuell keine nach Lernplan zu lernenden Karten",
-    "back": "Zurück zum Kartensatz"
+    "back": "Zurück zur Kartei"
   },
   "rating-field": {
     "title": " Bewerten",
@@ -551,7 +556,7 @@
     "chars": "Zeichen",
     "minchars": "Mindestens 60 Zeichen",
     "cancel": "Abbrechen",
-    "edit": "Kartensatz bewerten"
+    "edit": "Kartei bewerten"
   },
   "rating-table": {
     "name": "Name",
@@ -560,7 +565,7 @@
   },
   "learn-endscreen": {
     "success": "Lernpensum abgeschlossen",
-    "back2": "Zurück zum Kartensatz"
+    "back2": "Zurück zur Kartei"
   },
   "carddeck-table": {
     "name": "Name",
@@ -676,7 +681,7 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs erstellen",
-      "empty": "Kurse fassen mehrere Kartensätze zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
+      "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
       "category": "Kategorie",
@@ -699,7 +704,7 @@
     "choose": "Gehört zur Lerneinheit…",
     "belongsTo": "Gehört zur Lerneinheit…",
     "none": "Gehört nicht zu einer Lerneinheit",
-    "noUnitsFound": "Es sind keine Lerneinheiten in diesem Kartensatz vorhanden."
+    "noUnitsFound": "Es sind keine Lerneinheiten in dieser Kartei vorhanden."
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
@@ -709,8 +714,9 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik in diesem Kartzensatz zurückgesetzt.",
-  "learnedEverything": "Glückwunsch, du hast alle Karten aus diesem Kartensatz gelernt.",
+  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei
+  zurückgesetzt.",
+  "learnedEverything": "Glückwunsch, du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",
@@ -725,8 +731,8 @@
   "leitnerProgress": "Mein Lernstand nach Leitner",
   "resetLearnfile": "Lernen nach Leitner zurücksetzen",
   "resetWozniak": "Lernen nach Woźniak zurücksetzen",
-  "statistics": "Kartensatz-Statistik",
-  "report": "Kartensatz melden",
+  "statistics": "Kartei-Statistik",
+  "report": "Kartei melden",
   "meteor": "Meteor",
   "play": "Spielen",
   "yourhighscore": "Dein Highscore:",
@@ -742,14 +748,14 @@
   "difficultyNotes3": "Praktikum",
   "arrowKeys": "Pfeiltasten",
   "key": "Taste __key__",
-  "cardType": "Kartentyp",
+  "cardType": "Karteityp",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",
   "content": "Kartenseite",
   "turn": "umdrehen",
   "copyCardTitle": "Karte kopieren",
-  "copyCardText": "Wähle einen Kartensatz als Ziel für den Kopiervorgang.",
+  "copyCardText": "Wähle eine Kartei als Ziel für den Kopiervorgang.",
   "copycardSuccess": "Karte wurde kopiert",
   "cardSubject": "Kompetenzziel | Thema",
   "options": "Optionen",
@@ -785,7 +791,7 @@
   "valuationtext2": "Bewertungen",
   "norating": "Keine Bewertungen vorhanden",
   "createdof": "Erstellt von",
-  "backcarddecks": "Zurück zum Kartensatz",
+  "backcarddecks": "Zurück zur Kartei",
   "createdof2": "Erstellt von",
   "subject": "Box",
   "subject1": "Box 1",
@@ -800,7 +806,7 @@
   "subjectInfo": "Karten in der Box __box__ werden täglich wieder vorgelegt.",
   "subjectInfo_plural": "Karten in der Box __box__ werden nach __count__ Tagen wieder vorgelegt.",
   "leitnerCard": "Karte für derzeitige Lernphase",
-  "backbutton": "Zurück zum Kartensatz",
+  "backbutton": "Zurück zur Kartei",
   "backbuttonStatistics": "Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
@@ -815,7 +821,7 @@
   "box_export_statistics": "Statistiken",
   "box_export_mail": "E-Mail",
   "clickcart": "Klicke auf die Karte, um sie zu drehen",
-  "carddecks": "Kartensätze",
+  "carddecks": "Karteien",
   "gold": "Gold",
   "silver": "Silber",
   "bronze": "Bronze",
@@ -831,12 +837,12 @@
     "disconnected": "keine Verbindung"
   },
   "admin": {
-    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Kartensätze",
-    "learnedCardsets": "Lernstatistik des Kartensatzes",
+    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien",
+    "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand nach Leitner für: ",
     "myProgress": "Mein Lernstand nach Leitner",
     "dashboard": "Dashboard",
-    "cardsets": "Kartensätze",
+    "cardsets": "Karteien",
     "cards": "Karten",
     "users": "Benutzer/innen",
     "interval": "Lernintervalle",
@@ -866,11 +872,11 @@
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "edituser": "Benutzer/in bearbeiten",
-    "editcardset": "Kartensatz bearbeiten",
+    "editcardset": "Kartei bearbeiten",
     "editcard": "Karte bearbeiten",
     "deleteuser": "Benutzer/in löschen",
     "deletecard": "Karte löschen",
-    "deletecardset": "Kartensatz löschen",
+    "deletecardset": "Kartei löschen",
     "notifyuser": "Benutzer/in benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
@@ -890,9 +896,9 @@
     "deleteallnotifications": "Alle Nachrichten löschen",
     "optionNotPossible": "Nicht möglich (Benutzer/in gelöscht)",
     "reportedUser": "Gemeldete/r Benutzer/in",
-    "reportedCardSet": "Gemeldeter Kartensatz",
+    "reportedCardSet": "Gemeldete Kartei",
     "adminNotificationComplaintUser": "Adminbenachrichtigung (Beschwerde Benutzer/in)",
-    "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartensatz)",
+    "adminNotificationComplaintCardSet": "Adminbenachrichtigung (Beschwerde Kartei)",
     "lecturerRequest": "Dozentenanfrage",
     "yes": "Ja",
     "no": "Nein",
@@ -900,8 +906,8 @@
     "updateLearning": "Bonus-Einstellungen aktualisieren",
     "confirm-form": {
       "cardsets": {
-        "title": "Kartensatz löschen",
-        "text": "Willst du diesen Kartensatz wirklich löschen?"
+        "title": "Kartei löschen",
+        "text": "Willst du diese Kartei wirklich löschen?"
       },
       "cards": {
         "title": "Karte löschen",
@@ -932,9 +938,9 @@
       "messageUser": "Benutzer/in benachrichtigen",
       "reason": "Grund",
       "reportuser": "Beschwerde Benutzer/in",
-      "reportcardset": "Beschwerde Kartensatz",
-      "cardset": "Kartensatz",
-      "noCardsets": "Keine Kartensätze",
+      "reportcardset": "Beschwerde Kartei",
+      "cardset": "Kartei",
+      "noCardsets": "Keine Karteien",
       "text": "Weitere Informationen",
       "cancel": "Abbrechen",
       "sendMessage": "Benachrichtigung senden",
@@ -949,12 +955,12 @@
       "cancel": "Abbrechen"
     },
     "cardset": {
-      "header": "Kartensatz",
+      "header": "Kartei",
       "edit": "Bearbeite",
       "username": "Benutzer:/in",
       "userID": "Benutzer-ID:",
       "date": "Erstelldatum:",
-      "info": "Kartensatz-Informationen",
+      "info": "Kartei-Informationen",
       "settings": "Kartesatz-Einstellungen",
       "name": "Name",
       "description": "Beschreibung",
@@ -962,15 +968,15 @@
       "kind": "Kategorie",
       "price": "Verkaufspreis",
       "cancel": "Abbrechen",
-      "save": "Kartensatz speichern",
-      "delete": "Kartensatz löschen",
+      "save": "Kartei speichern",
+      "delete": "Kartei löschen",
       "confirm": "Sicher?",
       "name_required": "Gib einen Namen ein!",
       "description_required": "Gib eine Beschreibung ein!",
       "dateUpdated": "Aktualisiert:",
       "license": "Lizenz",
       "wrongCombination": "Diese Kombination der Lizenzen ist nicht möglich!",
-      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um den Kartensatz zu veröffentlichen!",
+      "noCards": "Es müssen mindestens 5 Karten erstellt werden, um die Kartei zu veröffentlichen!",
       "changeOwner": "Besitzer/in ändern",
       "changeOwnerFailure": "Benutzer/in nicht gefunden",
       "changeOwnerSuccess": "Besitzer/in erfolgreich geändert",
@@ -984,7 +990,7 @@
       "header": "Karte",
       "edit": "Bearbeite",
       "username": "Benutzer/in:",
-      "cardsetname": "Kartensatz:",
+      "cardsetname": "Kartei:",
       "info": "Karten Informationen",
       "settings": "Karten Einstellungen",
       "front": "Vorderseite",
@@ -1058,31 +1064,31 @@
     "subjectPlural2": " Karten ",
     "subjectSingular3": " ist.\n\n",
     "subjectPlural3": " sind.\n\n",
-    "subjectCardset": "aus dem Kartensatz ",
+    "subjectCardset": "aus der Kartei ",
     "subjectEnd": " zu lernen.",
     "textEnd": " zu lernen sind. ",
-    "newCards2Singular": " Karte erwartet dich im Kartensatz ",
-    "newCards2Plural": " Karten erwarten dich im Kartensatz ",
+    "newCards2Singular": " Karte erwartet dich in der Kartei ",
+    "newCards2Plural": " Karten erwarten dich in der Kartei ",
     "textIntro": "Hallo ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen!\n\n",
     "textDate1": "Du hast noch bis zum ",
     "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
-    "newCards2Singular": " Karte aus dem Kartensatz ",
-    "newCards2Plural": " Karten aus dem Kartensatz ",
-    "mailCard": "Der Kartensatz ",
+    "newCards2Singular": " Karte aus der Kartei ",
+    "newCards2Plural": " Karten aus der Kartei ",
+    "mailCard": "Die Kartei ",
     "mailCard1": " benötigt deine Aufmerksamkeit!\n\n",
     "greetings": "\n\nDein THM.cards-Team",
-    "subjectEnding": "endet die Lernphase des Kartensatzes ",
+    "subjectEnding": "endet die Lernphase der Kartei ",
     "textIntroEnding": "Hallo,\n\n",
-    "textEnding": "heute endet die Lernphase des Kartensatzes ",
-    "subjectReset": "THM.cards: Deine Lernstatistik wurde zurückgesetzt für den Kartensatz ",
+    "textEnding": "heute endet die Lernphase der Kartei ",
+    "subjectReset": "THM.cards: Deine Lernstatistik wurde zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach dem Überprüfen deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
     "service": "Dieser Newsletter ist ein Service von THM.cards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um diesen Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 THM.cards",
-    "my-cardset": "Zum Kartensatz…",
+    "my-cardset": "Zur Kartei…",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
