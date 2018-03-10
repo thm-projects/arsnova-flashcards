@@ -38,14 +38,13 @@ $color_footer_websocket_disconnected: $color_thm_red;
 $color_honme_button_icon: $color_thm_green;
 $color_placeholder: $color_thm_dark_blue;
 
-$default_font: 'Roboto';
+$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 html {
   position: relative;
   min-height: 100%;
   font-family: $default_font !important;
-  background-image: url("/img/background/zettelkasten_wikipedia.jpg");
-  background-attachment:fixed;
+  background: url("/img/background/zettelkasten_wikipedia.jpg") no-repeat center fixed;
 }
 
 body {
