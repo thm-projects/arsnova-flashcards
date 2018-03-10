@@ -1,7 +1,7 @@
 //colors
 
 $color_welcome_page_header_background: rgb(255, 255, 224);
-$color_welcome_page_canvas_border: rgb(255, 255, 224);
+$color_welcome_page_canvas_border: #80BA24;
 $color_welcome_page_canvas_background: rgb(255, 255, 224);
 $color_welcome_page_footer_background: rgb(255, 255, 224);
 $color_wild_sand_approx: rgb(245, 245, 245);
@@ -41,14 +41,14 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 
   .panel-heading {
-    padding-bottom: 60px;
+    padding-bottom: 50px;
     min-height: 177px;
     background-color: transparent;
   }
 
   .panel-footer {
     border-top: 0;
-    margin-top: 50;
+    margin-top: 40;
     min-height: 84px;
     background-color: transparent;
   }
@@ -69,8 +69,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 #tag-cloud-container {
   background-color: $color_welcome_page_canvas_background;
-  border-top: 4px solid $color_welcome_page_canvas_border;
-  border-bottom: 4px solid $color_welcome_page_canvas_border;
+  border-top: 4px solid #F5AA01;
+  border-bottom: 4px solid #F5AA01;
 }
 
 #TestingBackdoorUsername {
