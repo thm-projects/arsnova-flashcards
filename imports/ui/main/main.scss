@@ -44,7 +44,6 @@ html {
   position: relative;
   min-height: 100%;
   font-family: $default_font !important;
-  background-color: $color_mercury_approx;
   background-image: url("/img/background/zettelkasten_wikipedia.jpg");
   background-attachment:fixed;
 }
@@ -683,7 +682,7 @@ button:disabled {
   }
   label {
     float: left;
-    color: black;
+    color: white;
     margin: 0;
   }
 }

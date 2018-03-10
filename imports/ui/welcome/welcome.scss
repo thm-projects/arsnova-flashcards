@@ -9,11 +9,14 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 #welcome {
   text-align: center;
+  .panel {
+    background-color: transparent;
+  }
   #slogan {
     display: inline-block;
-    color: $color_thm_gray !important;
+    color: white !important;
     .lmargin {
-      margin-left: 5px;
+      margin-left: 10px;
     }
 
     h2 {
@@ -22,13 +25,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
       }
     }
   }
-  .carousel-caption {
-    color: $color_fuscous_gray_approx;
-    text-shadow: -1px -1px 0 $color_wild_sand_approx, 1px -1px 0 $color_wild_sand_approx, -1px 1px 0 $color_wild_sand_approx, 1px 1px 0 $color_wild_sand_approx;
-  }
-  .carousel-inner > .item > img {
-    width: 100%;
-  }
+
   #login {
     a {
       margin-right: 14px;
@@ -44,16 +41,16 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 
   .panel-heading {
-    padding-bottom: 0;
+    padding-bottom: 60px;
     min-height: 177px;
-    background-color: $color_welcome_page_header_background;
+    background-color: transparent;
   }
 
   .panel-footer {
     border-top: 0;
-    margin-top: 0;
+    margin-top: 50;
     min-height: 84px;
-    background-color: $color_welcome_page_footer_background;
+    background-color: transparent;
   }
 }
 
@@ -114,12 +111,12 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-dot {
   font-weight: bold;
-  color: $color_thm_gray;
+  color: white;
 }
 
 .color-cards {
   font-weight: bold;
-  color: $color_thm_gray;
+  color: white;
 }
 
 .logo-header-chars {

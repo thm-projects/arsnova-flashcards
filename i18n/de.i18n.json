@@ -592,7 +592,7 @@
   "card": {
     "cardType0": {
       "name": "Lerneinheit",
-      "front": "Lernziel",
+      "front": "Lernzielfrage",
       "back": "Lernziel-Review",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
@@ -603,7 +603,7 @@
         "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel"
+        "subject": "Lernziel"
       }
     },
     "cardType1": {
