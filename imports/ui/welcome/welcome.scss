@@ -41,7 +41,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 
   .panel-heading {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     min-height: 177px;
     background-color: transparent;
   }
@@ -68,9 +68,9 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 }
 
 #tag-cloud-container {
-  background-color: $color_welcome_page_canvas_background;
-  border-top: 4px solid #F5AA01;
-  border-bottom: 4px solid #F5AA01;
+  background-color: transparent;
+  //border-top: 4px solid #F5AA01;
+  //border-bottom: 4px solid #F5AA01;
 }
 
 #TestingBackdoorUsername {
