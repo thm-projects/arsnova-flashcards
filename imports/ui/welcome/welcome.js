@@ -162,7 +162,7 @@ Template.welcome.onCreated(function () {
 
 Template.welcome.onRendered(function () {
 	if (Meteor.settings.public.displayLoginButtons.displayCas) {
-		$('.panel-footer').append('<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut" alt="use CAS for login"/></a>');
+		$('.panel-footer').append('<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use CAS for login"/></a>');
 	}
 	if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
 		$('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>');
