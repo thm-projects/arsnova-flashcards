@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {image, tex} from '/imports/ui/card/card.js';
+import {getCardTypeName} from '../cardTypes/cardTypes';
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
@@ -22,10 +23,6 @@ function createRoute() {
 
 function cardsetRoute() {
 	return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === 'admin_cardset';
-}
-
-function getCardTypeName(cardType) {
-	return TAPi18n.__('card.cardType' + cardType + '.name');
 }
 
 function activateModule() {

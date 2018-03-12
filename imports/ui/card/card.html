@@ -40,54 +40,48 @@
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
-        {{#unless isCardType 3 4}}
+        {{#if gotDifficultyLevel}}
             <div id="difficulty" class="col-md-6 cardtext editorElement">
-                {{#unless isCardType 2}}
+                {{#if gotNotesForDifficultyLevel}}
                     <h5>{{_ "difficulty"}}</h5>
                 {{else}}
                     <h5>{{_ "difficultyNotes"}}</h5>
-                {{/unless}}
+                {{/if}}
                 {{> difficultyEditor}}
             </div>
-        {{/unless}}
+        {{/if}}
     </div>
     <div class="row">
-        {{#unless isCardType 1 2 3 4}}
+        {{#if gotLearningGoal}}
             <div id="learningGoalLevel" class="col-md-6 col-md-offset-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
             </div>
-        {{/unless}}
+        {{/if}}
     </div>
     <div class="row">
         <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
                 <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if
-                                isCardType 2 4 5}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                        class="btn btn-primary btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                                gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="5">{{getFrontTitle}}</button>
-                {{#if isCardType 0}}
+                {{#if gotLecture}}
                     <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
                             tabindex="9">{{_
                             "card.cardType0.lecture"}}</button>
                 {{/if}}
                 <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-6 {{#if isCardType 0}}col-sm-3{{else}}{{#if
-                                isCardType 2 4 5}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                        class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                                gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
                         tabindex="7">{{getBackTitle}}</button>
-                {{#unless isCardType 1}}
-                    {{#unless isCardType 3}}
-                        <button id="editHint" type="button"
-                                class="btn btn-default btn-raised col-xs-6 {{#if isCardType
-                                                                                 0}}col-sm-3{{else}}col-sm-4{{/if}}"
-                                tabindex="11">{{#if isCardType 0}}{{_
-                                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
-                                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
-                                "card.cardType4.hint"}}{{/if}}{{#if isCardType 5}}{{_
-                                "card.cardType5.hint"}}{{/if}}</button>
-                    {{/unless}}
-                {{/unless}}
+                {{#if gotHint}}
+                    <button id="editHint" type="button"
+                            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                            tabindex="11">{{getHintTitle}}</button>
+                {{/if}}
             </div>
             <div id="editor" class="cardtext editorToolbar" data-content="{{front}}">
                 {{> contentEditor}}
@@ -109,9 +103,10 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        {{#if isCardType 2}}
+        {{#if gotNotesForDifficultyLevel}}
             <label id="difficulty0"
-                   class="col-xs-6 col-sm-3 btn btn-default {{#if isCardType 2}}btn-orange{{else}}btn-white{{/if}} {{#if
+                   class="col-xs-6 col-sm-3 btn btn-default {{#if
+                           gotNotesForDifficultyLevel}}btn-orange{{else}}btn-white{{/if}} {{#if
                            isDifficultyChecked 0}}active{{/if}}"
                    data-color="0">
                 {{#if isDifficultyChecked 0}}
@@ -119,7 +114,7 @@
                 {{else}}
                     <input type="radio" name="difficulty" value="0">
                 {{/if}}
-                {{#unless isCardType 2}}
+                {{#unless gotNotesForDifficultyLevel}}
                     {{_ "difficulty0"}}
                 {{else}}
                     {{_ "difficultyNotes0"}}
@@ -127,7 +122,8 @@
             </label>
         {{/if}}
         <label id="difficulty1"
-               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
                        isDifficultyChecked 1}}active{{/if}}"
                data-color="1">
             {{#if isDifficultyChecked 1}}
@@ -135,14 +131,15 @@
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
-            {{#unless isCardType 2}}
+            {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty1"}}
             {{else}}
                 {{_ "difficultyNotes1"}}
             {{/unless}}
         </label>
         <label id="difficulty2"
-               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
                        isDifficultyChecked 2}}active{{/if}}"
                data-color="2">
             {{#if isDifficultyChecked 2}}
@@ -150,14 +147,15 @@
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
-            {{#unless isCardType 2}}
+            {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty2"}}
             {{else}}
                 {{_ "difficultyNotes2"}}
             {{/unless}}
         </label>
         <label id="difficulty3"
-               class="col-xs-6 {{#if isCardType 2}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
                        isDifficultyChecked 3}}active{{/if}}"
                data-color="3">
             {{#if isDifficultyChecked 3}}
@@ -165,7 +163,7 @@
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
-            {{#unless isCardType 2}}
+            {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty3"}}
             {{else}}
                 {{_ "difficultyNotes3"}}
@@ -259,7 +257,7 @@
 </template>
 
 <template name="subjectEditor">
-    <form class="subjectEditor {{#if isCardType 2 3 5}}col-xs-8 col-sm-9{{/if}}">
+    <form class="subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
         {{#if isActiveRoute 'newCard'}}
             <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
                    tabindex="1" autofocus {{isDisabled}}>
@@ -268,7 +266,7 @@
                    tabindex="1" autofocus {{isDisabled}}>
         {{/if}}
     </form>
-    {{#if isCardType 2 3 5}}
+    {{#if gotLearningUnit}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
                 data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
     {{/if}}
@@ -304,10 +302,12 @@
     <div class="col-xs-12 col-sm-9 col-md-6">
         <div class="actionButtons editorElement">
             <br>
-            <button class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4 cardSave" {{disableIfOffline}} tabindex="13">
+            <button class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4 cardSave" {{disableIfOffline}}
+                    tabindex="13">
                 {{_ "savecard"}}
             </button>
-            <button class="btn btn-default btn-raised save col-xs-12 col-sm-4 cardSaveReturn" {{disableIfOffline}} tabindex="14">
+            <button class="btn btn-default btn-raised save col-xs-12 col-sm-4 cardSaveReturn" {{disableIfOffline}}
+                    tabindex="14">
                 {{_ "savecardReturn"}}
             </button>
             <button class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 cardCancel pull-right"
@@ -358,7 +358,7 @@
                                             {{/if}}
                                         {{/if}}
                                         {{#unless isEditMode}}
-                                            {{#if isCardType 0}}
+                                            {{#if gotLecture}}
                                                 {{#if lecture}}
                                                     <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-education card-button"
@@ -368,7 +368,7 @@
                                                     </a>
                                                 {{/if}}
                                             {{/if}}
-                                            {{#if isCardType 0 2 4}}
+                                            {{#if gotHint}}
                                                 {{#if hint}}
                                                     <a href="#" id="showHint">
                                                     <span class="glyphicon glyphicon-info-sign card-button"
@@ -378,7 +378,7 @@
                                                     </a>
                                                 {{/if}}
                                             {{/if}}
-                                            {{#if isCardType 1}}
+                                            {{#if gotDictionary}}
                                                 <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-book card-button"
                                                           data-type="cardNavigation"
@@ -403,46 +403,34 @@
                                             <br>
                                         {{/if}}
                                         <span><strong>{{getCardsetName}}</strong>
-                                            {{#unless isCardType 2}}
+                                            {{#unless gotNotesForDifficultyLevel}}
                                                 | {{_ "cardType"}}: <strong>{{getCardTypeName}}</strong> (<span
                                                     class="cardFrontHeader"
-                                                    style="display: {{#if isCardType 1}}{{#if
-                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{#if isCardType
-                                                                                                         0}}{{_
-                                                    "card.cardType0.front"}}{{/if}}{{#if isCardType 1}}{{_
-                                                    "card.cardType1.name"}}{{/if}}{{#if isCardType 2}}{{_
-                                                    "card.cardType2.name"}}{{/if}}{{#if isCardType 3}}{{_
-                                                    "card.cardType3.name"}}{{/if}}{{#if isCardType 4}}{{_
-                                                    "card.cardType4.front"}}{{/if}}{{#if isCardType 5}}{{_
-                                                    "card.cardType5.front"}}{{/if}})</span><span
+                                                    style="display: {{#if gotDictionary}}{{#if
+                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{getFrontTitle}}
+                                                )</span><span
                                                     class="cardBackHeader"
-                                                    style="display: {{#if isCardType 1}}{{#unless
-                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{#if
-                                                    isCardType 0}}{{_ "card.cardType0.back"}}{{/if}}{{#if isCardType
-                                                                                                          1}}{{_
-                                                    "card.cardType1.name"}}{{/if}}{{#if isCardType 2}}{{_
-                                                    "card.cardType2.back"}}{{/if}}{{#if isCardType 3}}{{_
-                                                    "card.cardType3.back"}}{{/if}}{{#if isCardType 4}}{{_
-                                                    "card.cardType4.back"}}{{/if}}{{#if isCardType 5}}{{_
-                                                    "card.cardType5.back"}}{{/if}})</span>{{/unless}}</span><br>
-                                        {{#unless isCardType 4}}
-                                            {{#unless isCardType 2}}{{_ "difficulty"}}:{{/unless}}
+                                                    style="display: {{#if gotDictionary}}{{#unless
+                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}}
+                                                )</span>{{/unless}}</span><br>
+                                        {{#unless gotDifficultyLevel}}
+                                            {{#unless gotNotesForDifficultyLevel}}{{_ "difficulty"}}:{{/unless}}
                                             <strong>{{getDifficultyName}}</strong>
-                                            {{#if isCardType 2}}
+                                            {{#if gotNotesForDifficultyLevel}}
                                                 <span class="cardBackHeader"
-                                                      style="display: {{#if isCardType 1}}{{#unless
+                                                      style="display: {{#if gotDictionary}}{{#unless
                                                               reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                            ({{_ "card.cardType2.back"}})
+                                            ({{getBackTitle}})
                                             </span>
                                             {{/if}}
-                                            {{#unless isCardType 1 2}}
+                                            {{#if gotLearningGoal}}
                                                 | {{_ "learning-goal.name"}}:
                                                 <strong>{{getLearningGoalName}}</strong>
-                                            {{/unless}}
+                                            {{/if}}
                                         {{else}}
                                         {{/unless}}
                                     </div>
-                                    {{#unless isCardType 2}}
+                                    {{#unless gotNotesForDifficultyLevel}}
                                         <div id="clicktoflip" class="clicktoflip">
                                             <img id="iconfront" class="cardside cardfront-symbol"
                                                  src="/img/icon_front.png">
@@ -478,11 +466,11 @@
                                             {{/if}}
                                         {{/if}}
                                     </div>
-                                    <h3 class="{{#if isCardType 4}}cardSubjectRow{{/if}}">{{subject}}</h3>
-                                    <span class="cardfrontCheck" style="display: {{#if isCardType 1}}{{#if
+                                    <h3>{{subject}}</h3>
+                                    <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"
-                                          style="display: {{#if isCardType 1}}{{#unless
+                                          style="display: {{#if gotDictionary}}{{#unless
                                                   reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     </span>
                                 </div>
@@ -493,7 +481,7 @@
                                         isLecturePreview}}{{getCardBackground
                                         difficulty cardType
                                         backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
-                                     style="display: {{#if isCardType 1}}{{#if
+                                     style="display: {{#if gotDictionary}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditMode}}
                                         {{#if isFrontPreview}}
@@ -510,9 +498,9 @@
                                             {{> cardHintContent}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
-                                            <span class="{{#if gotLecture}}{{#if isCentered
+                                            <span class="{{#if gotLecturePreview}}{{#if isCentered
                                                                                  3}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                                {{#if gotLecture}}
+                                                {{#if gotLecturePreview}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
                                                     {{getPlaceholder 3}}
@@ -532,7 +520,7 @@
                                 </div>
                                 <div class="cardContent centered cardback {{getCardBackground
                                         difficulty cardType backgroundStyle}} detailback{{@index}}"
-                                     style="display: {{#if isCardType 1}}{{#unless
+                                     style="display: {{#if gotDictionary}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     <span class="{{#if gotBack}}{{#if isCentered
                                                                       1}}center-align{{/if}}{{else}}placeholder{{/if}}">
@@ -543,14 +531,13 @@
                                         {{/if}}
                                     </span>
                                 </div>
-                                {{#unless isCardType 2}}
+                                {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
                                          id="collapseLecture-{{_id}}" style="{{#if isEditMode}}display: none{{/if}}">
-                                        <div class="cardContent {{#if isCardType
-                                                                      1}}cardContentDictionary{{/if}} centered cardlecture {{#if
-                                                isCardType 0}}lectureContent{{/if}} detaillecture{{@index}}">
+                                        <div class="cardContent {{#if gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                                                gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
 
-                                            {{#if isCardType 0}}
+                                            {{#if gotLecture}}
                                                 <span class="{{#if gotLecture}}{{#if isCentered
                                                                                      3}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                                     {{#if gotLecture}}
@@ -560,7 +547,7 @@
                                                     {{/if}}
                                                 </span>
                                             {{/if}}
-                                            {{#if isCardType 1}}
+                                            {{#if gotDictionary}}
                                                 <iframe class="dictionaryFrame"
                                                         src="https://dict.tu-chemnitz.de/embed" frameborder="0"
                                                         data-type="cardNavigation">
@@ -640,10 +627,7 @@
         {{#unless isHintPreview}}
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         {{/unless}}
-        <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{#if isCardType 0}}{{_
-                "card.cardType0.hint"}}{{/if}}{{#if isCardType 2}}{{_
-                "card.cardType2.hint"}}{{/if}}{{#if isCardType 4}}{{_
-                "card.cardType4.hint"}}{{/if}}</h4>
+        <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{getHintTitle}}</h4>
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
