@@ -1,9 +1,13 @@
 body {
   > .container-fluid {
     padding: 51px 15px 0;
+    #backendNavigation {
+      margin-bottom: 0;
+    }
+
   }
   #wrapper {
-    padding-top: 51px;
+    padding-top: 35px;
     #admin-sidebar-wrapper {
       background: #000;
       float: left;
