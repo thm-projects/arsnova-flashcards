@@ -14,6 +14,7 @@ import "../card/card.js";
 import "../learn/learn.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
+import {gotLearningModes} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -620,6 +621,9 @@ Template.cardsetSidebar.helpers({
 	},
 	gotEnoughCards: function () {
 		return (this.quantity >= 1);
+	},
+	gotLearningModes: function () {
+		return gotLearningModes(this.cardType);
 	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});

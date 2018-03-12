@@ -1,14 +1,14 @@
-import "./cardTypes.html";
 import {Session} from "meteor/session";
 
 let cardTypesWithCenteredText = [1, 2, 4];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5];
 let cardTypesWithHint = [0, 2, 4, 5, 7];
+let cardTypesWithLearningModes = [0, 1, 3, 5, 6];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [0, 2, 3, 5, 6];
-let cardTypeWithNotesForDifficultyLevel = [2];
 let cardTypesWithLecture = [0];
+let cardTypeWithNotesForDifficultyLevel = [2];
 
 export function gotHint(cardType) {
 	return cardTypesWithHint.includes(cardType);
@@ -43,6 +43,10 @@ export function gotLearningUnit(cardType) {
 
 export function gotLearningGoal(cardType) {
 	return cardTypesWithLearningGoal.includes(cardType);
+}
+
+export function gotLearningModes(cardType) {
+	return cardTypesWithLearningModes.includes(cardType);
 }
 
 export function gotDifficultyLevel(cardType) {

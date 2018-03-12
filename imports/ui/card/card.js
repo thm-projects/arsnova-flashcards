@@ -16,7 +16,7 @@ import {
 	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
 	gotNotesForDifficultyLevel, gotThreeColumns,
 	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle
-} from "../cardTypes/cardTypes";
+} from "../../api/cardTypes";
 
 /*
  * ############################################################################

@@ -6,6 +6,7 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
+import {gotLearningModes} from "./cardTypes.js";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -560,6 +561,15 @@ Meteor.methods({
 				multi: true
 			}
 		);
+
+		if (!gotLearningModes(cardType)) {
+			Leitner.remove({
+				cardset_id: id
+			});
+			Wozniak.remove({
+				cardset_id: id
+			});
+		}
 	},
 	/**
 	 * Update the cardGroups of the shuffled cardset

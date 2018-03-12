@@ -3,7 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {image, tex} from '/imports/ui/card/card.js';
-import {getCardTypeName} from '../cardTypes/cardTypes';
+import {getCardTypeName} from '../../api/cardTypes';
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
