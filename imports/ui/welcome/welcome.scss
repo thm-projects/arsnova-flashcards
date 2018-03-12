@@ -16,7 +16,6 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   #slogan {
     display: inline-block;
     color: white !important;
-    //font-variant: small-caps;
     .lmargin {
       margin-left: 10px;
     }
@@ -113,7 +112,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-dot {
   font-weight: bold;
-  color: white;
+  color: $color_thm_green;
 }
 
 .color-cards {
