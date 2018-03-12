@@ -35,8 +35,23 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
-$color_honme_button_icon: $color_thm_green;
 $color_placeholder: $color_thm_dark_blue;
+
+$color_info_navigation_text: black;
+$color_info_navigation_text_active: white;
+$color_info_navigation_text_hover: white;
+$color_info_navigation_background: $color_wild_sand_approx;
+$color_info_navigation_background_active: $color_thm_gray;
+$color_info_navigation_background_hover: $color_thm_gray;
+$color_home_button_icon: $color_thm_green;
+
+$color_info_content_header_text: black;
+$color_info_content_header_background: $color_wild_sand_approx;
+$color_info_content_body_text: black;
+$color_info_content_body_background: white;
+$font_size_info_h1: 24px;
+$font_size_info_h2: 20px;
+$font_size_info_h3: 16px;
 
 $default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
@@ -227,10 +242,19 @@ body {
   padding: 10px 0;
 }
 
+#contact-nav a {
+  color: $color_info_navigation_text_active !important;
+  background-color: $color_info_navigation_background_active !important;
+}
+
 #contact-nav .inactive a {
-  color: black !important;
-  background-color: $color_wild_sand_approx !important;
-  outline: none;
+  color: $color_info_navigation_text !important;
+  background-color: $color_info_navigation_background !important;
+}
+
+#contact-nav .inactive a:hover {
+  color: $color_info_navigation_text_hover !important;
+  background-color: $color_info_navigation_background_hover !important;
 }
 
 @media(max-width: 767px) {
@@ -706,19 +730,29 @@ th {
   color: $color_placeholder;
 }
 
+.panel-heading.info-tab {
+  color: $color_info_content_header_text !important;
+  background-color: $color_info_content_header_background !important;
+}
+
+.panel-body.info-tab {
+  color: $color_info_content_body_text !important;
+  background-color: $color_info_content_body_background !important;
+}
+
 .info-tab h1 {
-  font-size: 24px;
+  font-size: $font_size_info_h1;
   margin: 0;
 }
 
 .info-tab h2 {
-  font-size: 20px;
+  font-size: $font_size_info_h2;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
 .info-tab h3 {
-  font-size: 16px;
+  font-size: $font_size_info_h3;
   margin-top: 10px;
   margin-bottom: 3px;
 }
@@ -875,6 +909,6 @@ th {
 }
 
 .fa-home {
-  color: $color_honme_button_icon;
+  color: $color_home_button_icon;
 }
 
