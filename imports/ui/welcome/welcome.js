@@ -71,9 +71,10 @@ function createTagCloud() {
 			//maxRotation: wordRotation,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 			classes: 'tip-content',
-			color: function () {
-				return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
-			},
+			//color: function () {
+			//	return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
+			//},
+			color: "white",
 			hover: wordcloudHover,
 			backgroundColor: 'rgba(255,255,255,0)',
 			wait: 75

@@ -15,8 +15,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
   #slogan {
     display: inline-block;
-    color: #F5AA01 !important;
-    font-variant: small-caps;
+    color: white !important;
+    //font-variant: small-caps;
     .lmargin {
       margin-left: 10px;
     }
@@ -113,12 +113,12 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-dot {
   font-weight: bold;
-  color: $color_thm_orange;
+  color: white;
 }
 
 .color-cards {
   font-weight: bold;
-  color: $color_thm_orange;
+  color: white;
 }
 
 .logo-header-chars {
