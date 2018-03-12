@@ -3,10 +3,10 @@ import {Session} from "meteor/session";
 
 let cardTypesWithCenteredText = [1, 2, 4];
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 7];
-let cardTypesWithHint = [0, 2, 4, 5];
-let cardTypesWithLearningGoal = [0, 5, 6, 7];
-let cardTypesWithLearningUnit = [0, 2, 3, 5];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5];
+let cardTypesWithHint = [0, 2, 4, 5, 7];
+let cardTypesWithLearningGoal = [0, 5];
+let cardTypesWithLearningUnit = [0, 2, 3, 5, 6];
 let cardTypeWithNotesForDifficultyLevel = [2];
 let cardTypesWithLecture = [0];
 
