@@ -64,7 +64,7 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			//shape: "diamond",
-			drawOutOfBound: false,
+			drawOutOfBound: true,
 			rotateRatio: 0,
 			//rotationSteps: 2,
 			//minRotation: -wordRotation,
@@ -76,7 +76,7 @@ function createTagCloud() {
 			//},
 			color: "white",
 			hover: wordcloudHover,
-			backgroundColor: 'rgba(255,255,255,0)',
+			backgroundColor: 'rgba(255,255,255, 0)',
 			wait: 75
 		});
 }

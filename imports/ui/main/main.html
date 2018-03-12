@@ -170,11 +170,12 @@
             {{/if}}
         {{/unless}}
         <div id="main" class="{{#if isActiveRoute
+                                    regex='home'}}{{else}}{{#if isActiveRoute
                                     regex='newCard|editCard'}}{{#if
-                fullscreenActive}}container{{else}}container-fluid col-lg-offset-1{{/if}}{{else}}container{{/if}}">
+                fullscreenActive}}container{{else}}container-fluid col-lg-offset-1{{/if}}{{else}}container{{/if}}{{/if}}">
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="row {{#if isActiveRoute regex='newCard|editCard'}}{{#unless
-                    fullscreenActive}}col-lg-11{{/unless}}{{/if}}">
+            <div class="{{#if isActiveRoute regex='home'}}{{else}}row {{#if isActiveRoute regex='newCard|editCard'}}{{#unless
+                    fullscreenActive}}col-lg-11{{/unless}}{{/if}}{{/if}}">
                 {{> yield}}
             </div>
         </div>
