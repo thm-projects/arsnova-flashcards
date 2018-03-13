@@ -106,18 +106,17 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-dot:before {
   content: ' \25CF';
-  font-size: 0.2em; /* Fallback for old devices */
-  font-size: 1.7vw;
+  //font-size: 0.2em; /* Fallback for old devices */
+  font-size: 2.5vw;
 }
 
 .color-dot {
-  font-weight: bold;
-  color: $color_thm_green;
+  color: $color_thm_orange;
 }
 
 .color-cards {
   font-weight: bold;
-  color: white;
+  color: $color_thm_green;
 }
 
 .logo-header-chars {
@@ -127,26 +126,16 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   margin: 5px 0;
 }
 
-.logo-header-beginning {
-  font-size: 0.8em; /* Fallback for old devices */
-  font-size: 5.2vw;
-}
-
 @media (max-width: 1025px) {
   .color-dot:before {
-    font-size: 0.3em; /* Fallback for old devices */
-    font-size: 2.55vw;
+    //font-size: 0.3em; /* Fallback for old devices */
+    font-size: 6vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    font-size: 0.75em; /* Fallback for old devices */
-    font-size: 6.75vw;
-  }
-
-  .logo-header-beginning {
-    font-size: 1.2em; /* Fallback for old devices */
-    font-size: 7.8vw;
+    //font-size: 0.75em; /* Fallback for old devices */
+    font-size: 9.75vw;
   }
 }
 
