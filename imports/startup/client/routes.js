@@ -134,10 +134,10 @@ Router.route('/cardset/:_id/newcard', {
 	}
 });
 
-Router.route('/cardset/:_id/editcard/:cardid', {
+Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	data: function () {
-		return Cards.findOne({_id: this.params.cardid});
+		return Cards.findOne({_id: this.params.card_id});
 	}
 });
 

@@ -97,6 +97,12 @@
         <div class="card card-block">
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
+                <tr>
+                    <td><strong>{{_ "cardType"}}:</strong></td>
+                    <td>
+                        {{getCardType}}
+                    </td>
+                </tr>
                 {{#if ratingEnabled}}
                     <tr>
                         <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
@@ -123,7 +129,7 @@
                 <tr>
                     <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
                     <td>
-                        {{#unless isShuffledCardset this._id}}
+                        {{#unless isShuffledCardset _id}}
                             <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
                                data-target="#showLicenseModal">{{getLicense}}</a>
                         {{else}}
@@ -260,7 +266,7 @@
             {{#if isCardsetOwner _id}}
                 <div class="panel-footer">
                     {{#unless learningActive}}
-                        {{#unless isShuffledCardset this._id}}
+                        {{#unless isShuffledCardset _id}}
                             <div class="btn-group btn-group-raised">
                                 <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
                                    href="{{pathFor 'newCard'}}"
@@ -357,49 +363,51 @@
                 </div>
             </div>
         {{/unless}}
-        {{#if gotEnoughCards}}
-            {{#unless learningActive}}
-                <div id="set-details-learn-region">
-                    <div class="well well-sm sidebar-nav">
+        {{#if gotLearningModes}}
+            {{#if gotEnoughCards}}
+                {{#unless learningActive}}
+                    <div id="set-details-learn-region">
+                        <div class="well well-sm sidebar-nav">
                         <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                         </a></span>
 
-                        {{#if isProfileCompleted this._id}}
-                            <button id="learnBox"
-                                    class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
-                                    "learnfile"}}</button>
-                        {{else}}
-                            <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
-                                    data-toggle="modal" data-target="#completeProfileModal">{{_
-                                    "learnfile"}}</button>
-                        {{/if}}
-                        <button id="learnMemo"
-                                class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
-                                "memo"}}</button>
-                        <button id="learnChoice"
-                                class="btn btn-raised btn-success choice btn-block" {{disableIfOffline}}
-                                data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
-                                "learnSelection"}}</button>
-                        {{#if learningLeitner}}
-                            <button id="leitnerProgress"
-                                    class="btn btn-raised btn-default btn-block" {{disableIfOffline}}>{{_
-                                    "leitnerProgress"}}</button>
-                        {{/if}}
-                    </div>
-                </div>
-            {{else}}
-                {{#if learningLeitner}}
-                    <div id="set-details-learn-region">
-                        <div class="well well-sm sidebar-nav">
-                            <span class="nav-header-cardset">{{_ "learn"}}</span>
-                            <button id="leitnerProgress"
-                                    class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
-                                    "leitnerProgress"}}</button>
+                            {{#if isProfileCompleted this._id}}
+                                <button id="learnBox"
+                                        class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
+                                        "learnfile"}}</button>
+                            {{else}}
+                                <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
+                                        data-toggle="modal" data-target="#completeProfileModal">{{_
+                                        "learnfile"}}</button>
+                            {{/if}}
+                            <button id="learnMemo"
+                                    class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
+                                    "memo"}}</button>
+                            <button id="learnChoice"
+                                    class="btn btn-raised btn-success choice btn-block" {{disableIfOffline}}
+                                    data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
+                                    "learnSelection"}}</button>
+                            {{#if learningLeitner}}
+                                <button id="leitnerProgress"
+                                        class="btn btn-raised btn-default btn-block" {{disableIfOffline}}>{{_
+                                        "leitnerProgress"}}</button>
+                            {{/if}}
                         </div>
                     </div>
-                {{/if}}
-            {{/unless}}
+                {{else}}
+                    {{#if learningLeitner}}
+                        <div id="set-details-learn-region">
+                            <div class="well well-sm sidebar-nav">
+                                <span class="nav-header-cardset">{{_ "learn"}}</span>
+                                <button id="leitnerProgress"
+                                        class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
+                                        "leitnerProgress"}}</button>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/unless}}
+            {{/if}}
         {{/if}}
         <div id="set-details-learn-region">
             <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
@@ -504,7 +512,8 @@
         <div id="cardsetPreview">
             <div class="panel panel-default cardsetInfo">
                 <div class="panel-body">
-                    <span class="nav-header-cardset">{{_ "sidebar-nav.preview"}}<a id="showPreviewHelp" href="#" class="field-tip">
+                    <span class="nav-header-cardset">{{_ "sidebar-nav.preview"}}<a id="showPreviewHelp" href="#"
+                                                                                   class="field-tip">
                                         <i class="glyphicon glyphicon-info-sign"></i>
                                     </a></span>
                     <form role="form">
@@ -1222,7 +1231,7 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#unless isCardsetOwner this._id}}
+            {{#unless isCardsetOwner _id}}
                 {{> access_denied_content_only}}
             {{else}}
                 <div class="container">

@@ -591,8 +591,8 @@
   },
   "card": {
     "cardType0": {
-      "name": "Lerneinheit",
-      "front": "Lernzielfrage",
+      "name": "Lernkartei",
+      "front": "Lernziel",
       "back": "Lernziel-Review",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
@@ -607,7 +607,7 @@
       }
     },
     "cardType1": {
-      "name": "Vokabel",
+      "name": "Vokabeltrainer",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
@@ -645,7 +645,7 @@
       }
     },
     "cardType4": {
-      "name": "Zitat",
+      "name": "Zitatensammlung",
       "front": "Zitat",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
@@ -670,6 +670,32 @@
       },
       "editorLabels": {
         "subject": "Kompetenzziel"
+      }
+    },
+    "cardType6": {
+      "name": "Befehlssatz",
+      "front": "Fachbegriff",
+      "back": "Definition | Beschreibung",
+      "placeholders": {
+        "front": "Fachbegriff",
+        "back": "Definition | Beschreibung des Fachbegriffs"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType7": {
+      "name": "Abstracts",
+      "front": "Abstracts",
+      "back": "Zitierte Person",
+      "hint": "Quellenangabe",
+      "placeholders": {
+        "front": "Zitat",
+        "back": "Zitierte Person",
+        "hint": "Quellenangabe"
+      },
+      "editorLabels": {
+        "subject": "Thema"
       }
     }
   },

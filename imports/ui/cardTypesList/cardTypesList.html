@@ -1,0 +1,23 @@
+<template name="cardTypesList">
+    {{#if isActiveRoute 'pool'}}
+        <li>
+            <a href="#" class="filterCardType active" data-id="">{{_ "set-list.everyone"}}</a>
+        </li>
+        {{#each getCardTypes}}
+            {{#if filterCardTypes}}
+                <li>
+                    <a href="#" class="filterCardType"
+                       data-id="{{this.cardType}}">{{getCardTypeName}}
+                        {{#if poolFilterCardType this.cardType}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each getCardTypes}}
+            <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeName}}</a></li>
+        {{/each}}
+    {{/if}}
+</template>

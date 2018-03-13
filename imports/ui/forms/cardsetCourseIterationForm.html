@@ -10,9 +10,9 @@
                             {{#if isNew}}
                                 {{#if isCourseIteration}}
                                     {{_ "courseIteration.modal.new"}}
-                                    {{else}}
+                                {{else}}
                                     {{_ "modal-dialog.newcarddeck"}}
-                                    {{/if}}
+                                {{/if}}
                             {{else}}
                                 {{_ "modal-dialog.editcard"}}
                             {{/if}}
@@ -33,26 +33,55 @@
                        for="setName">{{_ "modal-dialog.name"}}</label>
                 <div class="col-md-9">
                     <input class="form-control" type="text" id="setName"
-                           placeholder="{{#if isCourseIteration}}{{_ "courseIteration.modal.placeholder.name"}}{{else}}{{_ "modal-dialog.nameplaceholder"}}{{/if}}"
+                           placeholder="{{#if isCourseIteration}}{{_
+                                   "courseIteration.modal.placeholder.name"}}{{else}}{{_
+                                   "modal-dialog.nameplaceholder"}}{{/if}}"
                            value="{{#if isNew}}{{getShuffleName}}{{else}}{{name}}{{/if}}">
                     <span id="helpSetName" class="help-block name"></span>
+                </div>
+                <br>
+                <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
+                        "cardType"}}</label>
+                <div class="dropdown">
+                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                        <button id="setCardType" type="button"
+                                class="btn btn-raised btn-default setCardTypeDropdown longButton"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"
+                                value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
+                            {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
+                        </button>
+                        <button type="button"
+                                class="btn btn-raised dropdown-toggle setCardTypeDropdown"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu btn-raised longButton">
+                            {{> cardTypesList}}
+                        </ul>
+                        <span id="helpSetCardType" class="help-block cardType"></span>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                                 <span class="moduleRadioButtonGroup">
-                                    <label id="enableModule" class="moduleRadioButtonLabel radio-inline"><input type="radio"
-                                                                                              class="moduleRadioButton"
-                                                                                              name="optradio"
-                                                                                              value="true"
-                                                                                              checked="{{#if
-                                                                                                      isModuleActive}}checked{{/if}}">{{_
+                                    <label id="enableModule" class="moduleRadioButtonLabel radio-inline"><input
+                                            type="radio"
+                                            class="moduleRadioButton"
+                                            name="optradio"
+                                            value="true"
+                                            checked="{{#if
+                                                    isModuleActive}}checked{{/if}}">{{_
                                             "modal-dialog.moduleActivated"}}</label>
-                                <label id="disableModule" class="moduleRadioButtonLabel radio-inline"><input type="radio"
-                                                                                          class="moduleRadioButton"
-                                                                                          name="optradio" value="false"
-                                                                                          checked="{{#unless
-                                                                                                  isModuleActive}}checked{{/unless}}">{{_
+                                <label id="disableModule" class="moduleRadioButtonLabel radio-inline"><input
+                                        type="radio"
+                                        class="moduleRadioButton"
+                                        name="optradio" value="false"
+                                        checked="{{#unless
+                                                isModuleActive}}checked{{/unless}}">{{_
                                         "modal-dialog.moduleDeactivated"}}</label>
                                 </span>
                 </div>
@@ -63,7 +92,9 @@
                             isModuleActive}}{{_ "modal-dialog.optional"}}{{/unless}}</label>
                     <div class="col-md-10">
                                          <textarea class="form-control" data-provide="markdown" rows="6"
-                                                   placeholder="{{#if isCourseIteration}}{{_ "courseIteration.modal.placeholder.description"}}{{else}}{{_ "modal-dialog.descriptionplaceholder"}}{{/if}}"
+                                                   placeholder="{{#if isCourseIteration}}{{_
+                                                           "courseIteration.modal.placeholder.description"}}{{else}}{{_
+                                                           "modal-dialog.descriptionplaceholder"}}{{/if}}"
                                                    id="setDescription"
                                                    value="{{#if
                                                            isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>
@@ -130,10 +161,11 @@
                                             data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false"
                                             value="{{#unless isNew}}{{getCollege this.college
-                                                                                        0}}{{/unless}}">{{#if
+                                                                                 0}}{{/unless}}">{{#if
                                             isNew}}{{#unless isShuffleRoute}}{{_
-                                            "modal-dialog.college_required"}}{{/unless}}{{else}}{{getCollege this.college
-                                                                                                1}}{{/if}}</button>
+                                            "modal-dialog.college_required"}}{{/unless}}{{else}}{{getCollege
+                                            this.college
+                                            1}}{{/if}}</button>
                                     <button class="btn dropdown-toggle btn-raised setCollegeDropdown"
                                             type="button"
                                             data-toggle="dropdown"
@@ -163,10 +195,10 @@
                                         data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false"
                                         value="{{#unless isNew}}{{getCourse this.course
-                                                                                   0}}{{/unless}}" {{isDisabled
+                                                                            0}}{{/unless}}" {{isDisabled
                                         this.college}}>{{#if isNew}}{{#unless isShuffleRoute}}{{_
                                         "modal-dialog.course_required"}}{{/unless}}{{else}}{{getCourse this.course
-                                                                                          1}}{{/if}}</button>
+                                                                                                       1}}{{/if}}</button>
                                 <button type="button"
                                         class="btn btn-raised dropdown-toggle setCourseDropdown"
                                         data-toggle="dropdown"

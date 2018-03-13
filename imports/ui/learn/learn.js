@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {turnCard} from "../card/card.js";
 import "./learn.html";
+import {Cardsets} from "../../api/cardsets";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -45,6 +46,8 @@ Template.learnAlgorithms.onCreated(function () {
 		Meteor.subscribe("wozniak");
 	}
 	Session.set('animationPlaying', false);
+	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
+	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 });
 
 Template.learnAlgorithms.helpers({

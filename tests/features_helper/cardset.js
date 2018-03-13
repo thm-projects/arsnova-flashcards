@@ -1,4 +1,5 @@
 import * as global from "./global.js";
+import * as navigation from "./navigation";
 
 
 module.exports = {
@@ -42,14 +43,14 @@ module.exports = {
 		browser.waitForExist('#newCardBtn', global.threshold);
 		if (click) {
 			browser.click('#newCardBtn');
-			browser.waitForExist('#cardType0', global.threshold);
-			browser.click('#cardType0');
+			browser.waitForExist('#subjectEditor', global.threshold);
+			browser.click('#subjectEditor');
 		}
 	},
 	saveCard: function (click = true) {
-		browser.waitForExist('#cardSave', global.threshold);
+		browser.waitForExist('.cardSave', global.threshold);
 		if (click) {
-			browser.click('#cardSave');
+			browser.click('.cardSave');
 		}
 	},
 	saveCardReturn: function (click = true) {
@@ -61,8 +62,7 @@ module.exports = {
 	cancelCardEdit: function (click = true) {
 		browser.waitForVisible('#cardCancel', global.threshold);
 		if (click) {
-			browser.click('#cardCancel');
-			browser.waitForVisible('#cancelEditConfirm', global.threshold);
+			navigation.contentVisible('#cancelEditConfirm');
 			browser.click('#cancelEditConfirm');
 		}
 	},
@@ -80,7 +80,7 @@ module.exports = {
 		}
 	},
 	deleteCardConfirm: function (click = true) {
-		browser.waitForVisible('#deleteCardConfirm', global.threshold);
+		navigation.contentVisible('#deleteCardConfirm');
 		if (click) {
 			browser.click('#deleteCardConfirm');
 		}

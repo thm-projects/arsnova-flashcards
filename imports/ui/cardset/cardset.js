@@ -14,6 +14,7 @@ import "../card/card.js";
 import "../learn/learn.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
+import {getCardTypeName, gotLearningModes} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -94,6 +95,8 @@ Template.cardset.onCreated(function () {
 		Session.set('modifiedCard', undefined);
 	}
 	Session.set('moduleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
+	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
+	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 });
 
 Template.cardset.rendered = function () {
@@ -137,6 +140,7 @@ Template.cardset.helpers({
 		Session.set('previousModuleLink', Cardsets.findOne(Router.current().params._id).moduleLink);
 		Session.set('previousCollegeName', Cardsets.findOne(Router.current().params._id).college);
 		Session.set('previousCourseName', Cardsets.findOne(Router.current().params._id).course);
+		Session.set('previousCardType', Cardsets.findOne(Router.current().params._id).cardType);
 	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {
@@ -474,6 +478,9 @@ Template.cardsetInfoBox.helpers({
 	},
 	gotModuleLink: function () {
 		return this.moduleLink !== "" && this.moduleLink !== undefined;
+	},
+	getCardType: function () {
+		return getCardTypeName(this.cardType);
 	}
 });
 
@@ -619,6 +626,9 @@ Template.cardsetSidebar.helpers({
 	},
 	gotEnoughCards: function () {
 		return (this.quantity >= 1);
+	},
+	gotLearningModes: function () {
+		return gotLearningModes(this.cardType);
 	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});

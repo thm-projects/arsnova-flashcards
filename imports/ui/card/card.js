@@ -9,6 +9,14 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
 import {skipAnswer} from "../learn/learn.js";
+import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
+import {
+	defaultCenteredText,
+	gotDictionary,
+	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
+	gotNotesForDifficultyLevel, gotThreeColumns,
+	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle
+} from "../../api/cardTypes";
 
 /*
  * ############################################################################
@@ -16,18 +24,23 @@ import {skipAnswer} from "../learn/learn.js";
  * ############################################################################
  */
 
-function defaultData() {
-	Session.set('subjectText', '');
+function resetSessionData(resetSubject = false) {
+	let difficulty = 0;
+	if (Session.get('cardType') !== 2) {
+		difficulty = 1;
+	}
+	if (resetSubject) {
+		Session.set('subjectText', '');
+		Session.get('learningUnit', '');
+	}
 	Session.set('frontText', '');
 	Session.set('backText', '');
 	Session.set('hintText', '');
 	Session.set('lectureText', '');
-	Session.set('difficultyColor', 0);
-	Session.set('cardType', 2);
-	Session.set('centerTextElement', [false, false, false, false]);
+	Session.set('difficultyColor', difficulty);
+	defaultCenteredText();
 	Session.set('learningGoalLevel', 0);
 	Session.set('backgroundStyle', 0);
-	Session.get('learningUnit', '');
 }
 
 function isTextCentered() {
@@ -40,156 +53,16 @@ function isTextCentered() {
 	}
 }
 
-function initializeContent() {
-	if (Session.get('subjectText') === undefined) {
-		Session.set('subjectText', '');
-	}
-	if (Session.get('frontText') === undefined) {
-		Session.set('frontText', '');
-	}
-
-	if (Session.get('backText') === undefined) {
-		Session.set('backText', '');
-	}
-
-	if (Session.get('hintText') === undefined) {
-		Session.set('hintText', '');
-	}
-
-	if (Session.get('difficultyColor') === undefined) {
-		Session.set('difficultyColor', 1);
-	}
-
-	if (Session.get('learningGoalLevel') === undefined) {
-		Session.set('learningGoalLevel', 0);
-	}
-
-	if (Session.get('backgroundStyle') === undefined) {
-		Session.set('backgroundStyle', 0);
-	}
-
-	if (Session.get('cardType') === undefined) {
-		Session.set('cardType', 2);
-	}
-
-	if (Session.get('lectureText') === undefined) {
-		Session.set('lectureText', '');
-	}
-
-	if (Session.get('learningUnit') === undefined) {
-		Session.set('learningUnit', '');
-	}
-
-	if ((Session.get('cardType') === 1 || Session.get('cardType') === 3) && Session.get('centerTextElement') === undefined) {
-		Session.set('centerTextElement', [false, false, false, false]);
-	} else if (Session.get('centerTextElement') === undefined) {
-		Session.set('centerTextElement', [false, false, false, false]);
-	}
-
-	if (Session.get('cardDate') === undefined) {
-		Session.set('cardDate', new Date());
-	}
-}
-
 /**
  * Function checks if route is a card edit Mode
  * @return {Boolean} Return true, when route is new Card or edit Card.
  */
-function isEditMode() {
+export function isEditMode() {
 	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
-}
-
-function isCardType(cardType1, cardType2, cardType3, cardType4, activeCardType) {
-	let cardTypeArray = [cardType1, cardType2, cardType3, cardType4];
-	if (isEditMode()) {
-		return cardTypeArray.includes(Session.get('cardType'));
-	} else {
-		return cardTypeArray.includes(activeCardType);
-	}
 }
 
 let lastEditMode = 0;
 let isEditorFullscreen = false;
-
-function setPlaceholderText(activeMode = -1, cardType = -1) {
-	let placeholderText = "";
-	if (activeMode < 0) {
-		activeMode = Session.get('activeEditMode');
-	}
-	if (cardType < 0) {
-		cardType = Session.get('cardType');
-	}
-	switch (activeMode) {
-		case 0:
-			switch (cardType) {
-				case 0:
-					placeholderText = TAPi18n.__('card.cardType0.placeholders.front');
-					break;
-				case 1:
-					placeholderText = TAPi18n.__('card.cardType1.placeholders.front');
-					break;
-				case 2:
-					placeholderText = TAPi18n.__('card.cardType2.placeholders.front');
-					break;
-				case 3:
-					placeholderText = TAPi18n.__('card.cardType3.placeholders.front');
-					break;
-				case 4:
-					placeholderText = TAPi18n.__('card.cardType4.placeholders.front');
-					break;
-				case 5:
-					placeholderText = TAPi18n.__('card.cardType5.placeholders.front');
-					break;
-			}
-			break;
-		case 1:
-			switch (cardType) {
-				case 0:
-					placeholderText = TAPi18n.__('card.cardType0.placeholders.back');
-					break;
-				case 1:
-					placeholderText = TAPi18n.__('card.cardType1.placeholders.back');
-					break;
-				case 2:
-					placeholderText = TAPi18n.__('card.cardType2.placeholders.back');
-					break;
-				case 3:
-					placeholderText = TAPi18n.__('card.cardType3.placeholders.back');
-					break;
-				case 4:
-					placeholderText = TAPi18n.__('card.cardType4.placeholders.back');
-					break;
-				case 5:
-					placeholderText = TAPi18n.__('card.cardType5.placeholders.back');
-					break;
-			}
-			break;
-		case 2:
-			switch (cardType) {
-				case 0:
-					placeholderText = TAPi18n.__('card.cardType0.placeholders.hint');
-					break;
-				case 2:
-					placeholderText = TAPi18n.__('card.cardType2.placeholders.hint');
-					break;
-				case 4:
-					placeholderText = TAPi18n.__('card.cardType4.placeholders.hint');
-					break;
-				case 5:
-					placeholderText = TAPi18n.__('card.cardType5.placeholders.hint');
-					break;
-			}
-			break;
-		case 3:
-			switch (cardType) {
-				case 0:
-					placeholderText = TAPi18n.__('card.cardType0.placeholders.lecture');
-					break;
-			}
-			break;
-	}
-	return placeholderText;
-}
 
 function prepareFront() {
 	isTextCentered();
@@ -207,7 +80,7 @@ function prepareFront() {
 	$('#editFront').removeClass('btn-default').addClass('btn-primary');
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
-	if (Session.get('cardType') === 0) {
+	if (gotLecture(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
 }
@@ -230,7 +103,7 @@ function prepareBack() {
 	$('#editBack').removeClass('btn-default').addClass('btn-primary');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
-	if (Session.get('cardType') === 0) {
+	if (gotHint(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
 }
@@ -287,18 +160,6 @@ function editFront() {
 	turnFront();
 }
 
-function defaultToFront(cardType) {
-	if (Session.get('cardType') === 2 && cardType !== 2 && Session.get('difficultyColor') === 0) {
-		Session.set('difficultyColor', 1);
-	} else if (Session.get('cardType') !== 2 && cardType === 2 && Session.get('difficultyColor') === 1) {
-		Session.set('difficultyColor', 0);
-	}
-	Session.set('cardType', cardType);
-	setTimeout(function () {
-		editFront();
-	}, 125);
-}
-
 function editBack() {
 	prepareBack();
 	$(".clicktoflip").css('display', "");
@@ -321,7 +182,7 @@ function editLecture() {
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
-	if (Session.get('cardType') === 0) {
+	if (gotHint(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-default').addClass('btn-primary');
 	}
 	$(".clicktoflip").css('display', "none");
@@ -345,7 +206,7 @@ function editHint() {
 	$('#editHint').removeClass('btn-default').addClass('btn-primary');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
-	if (Session.get('cardType') === 0) {
+	if (gotHint(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
 	$(".clicktoflip").css('display', "none");
@@ -415,48 +276,39 @@ export function resizeAnswers() {
 }
 
 let editorFullScreenActive = false;
+let newFlashcardBodyHeight;
+let newFlashcardHeader;
 
-/**
- * Move the action buttons before or after the preview window
- */
-function moveEditorButtonGroup() {
-	if ($(window).width() >= 1200) {
-		$('.editorButtonGroup').insertAfter("#preview");
-	} else {
-		$('.editorButtonGroup').insertBefore("#preview");
-	}
+function resizeCenterContent() {
+	let contentHeight = $('.center-align').height();
+	let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
+	let newCenterTextHeight = ((((newFlashcardBodyHeight - newFlashcardHeader) - contentPadding) - contentHeight) / 2);
+	$('.center-align').css('margin-top', newCenterTextHeight);
+	$('.dictionaryFrame').css('height', (newFlashcardBodyHeight - newFlashcardHeader));
 }
 
 /**
  * Resizes flashcards to din a6 format
  */
 function resizeFlashcards() {
-	let newFlashcardBodyHeight;
 	if (editorFullScreenActive) {
 		newFlashcardBodyHeight = ($(window).height() * 0.78);
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
 	} else {
-		$('#contentEditor').css('height', 'unset');
-		let header = $('.cardHeader').height();
-		let editorHeader = $('.btn-toolbar').height();
+		newFlashcardHeader = $('.active .cardHeader').outerHeight();
+		let editorHeader = $('.btn-toolbar').outerHeight();
 		if (Session.get('activeEditMode') >= 2) {
-			header = 0;
-			editorHeader += 20;
+			newFlashcardHeader = 0;
 		}
-		editorHeader -= 17;
-		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - header;
-		$('.cardContent').css('height', newFlashcardBodyHeight);
+		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2));
+		$('.cardContent').css('height', newFlashcardBodyHeight - newFlashcardHeader);
 		if ($(window).width() >= 1200) {
-			let newEditorBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2)) - editorHeader;
-			$('#contentEditor').css('height', (newEditorBodyHeight));
+			$('#contentEditor').css('height', (newFlashcardBodyHeight - editorHeader));
+		} else {
+			$('#contentEditor').css('height', 'unset');
 		}
-		let contentHeight = $('.center-align').height();
-		let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
-		let newCenterTextHeight = (((newFlashcardBodyHeight - contentPadding) - contentHeight) / 2);
-		$('.center-align').css('margin-top', newCenterTextHeight);
-		$('.dictionaryFrame').css('height', newFlashcardBodyHeight);
+		resizeCenterContent();
 	}
-	setTimeout(resizeFlashcards, 125);
 }
 
 /**
@@ -761,6 +613,54 @@ function getMemoCards() {
 	return cards;
 }
 
+function initializeContent() {
+	if (Session.get('subjectText') === undefined) {
+		Session.set('subjectText', '');
+	}
+	if (Session.get('frontText') === undefined) {
+		Session.set('frontText', '');
+	}
+
+	if (Session.get('backText') === undefined) {
+		Session.set('backText', '');
+	}
+
+	if (Session.get('hintText') === undefined) {
+		Session.set('hintText', '');
+	}
+
+	if (Session.get('difficultyColor') === undefined) {
+		Session.set('difficultyColor', 1);
+	}
+
+	if (Session.get('learningGoalLevel') === undefined) {
+		Session.set('learningGoalLevel', 0);
+	}
+
+	if (Session.get('backgroundStyle') === undefined) {
+		Session.set('backgroundStyle', 0);
+	}
+
+	if (Session.get('cardType') === undefined) {
+		Session.set('cardType', 2);
+	}
+
+	if (Session.get('lectureText') === undefined) {
+		Session.set('lectureText', '');
+	}
+
+	if (Session.get('learningUnit') === undefined) {
+		Session.set('learningUnit', '');
+	}
+
+	defaultCenteredText();
+
+	if (Session.get('cardDate') === undefined) {
+		Session.set('cardDate', new Date());
+	}
+}
+
+
 function saveCard(card_id, returnToCardset) {
 	initializeContent();
 	let frontText = Session.get('frontText');
@@ -775,7 +675,7 @@ function saveCard(card_id, returnToCardset) {
 	let learningUnit = Session.get('learningUnit');
 	let subjectText = Session.get('subjectText');
 	let gotSubject = true;
-	if (cardType !== 2 || cardType !== 3 || cardType !== 5) {
+	if (!gotLearningUnit(cardType)) {
 		if (subjectText === "") {
 			$('#subjectEditor').css('border', '1px solid');
 			$('#subjectEditor').css('border-color', '#b94a48');
@@ -798,7 +698,7 @@ function saveCard(card_id, returnToCardset) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if (cardType !== 2 && backText.length > 10000) {
+	if (backText.length > 10000) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
@@ -806,80 +706,46 @@ function saveCard(card_id, returnToCardset) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
-	if (cardType === 0 && lectureText.length > 30000) {
+	if (gotLecture(cardType) && lectureText.length > 30000) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
 		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
 	}
 	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
 	if (gotSubject && editorsValidLength) {
 		let difficulty = 1;
-		if (Number(cardType) !== 4) {
+		if (gotDifficultyLevel(cardType)) {
 			difficulty = $('input[name=difficulty]:checked').val();
 		}
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", card_id, subjectText, hintText, frontText, backText, Number(difficulty), "0", Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
+			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, Number(difficulty), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
-						defaultData();
 						Router.go('cardsetdetailsid', {
 							_id: Router.current().params._id
 						});
 					} else {
 						$('#contentEditor').val('');
 						$('#editor').attr('data-content', '');
-						if (Number(cardType) === 2) {
-							Session.set('difficultyColor', 0);
-						} else {
-							Session.set('difficultyColor', 1);
-						}
-						Session.set('learningGoalLevel', 0);
-						Session.set('frontText', '');
-						Session.set('backText', '');
-						Session.set('hintText', '');
-						Session.set('lectureText', '');
-						Session.set('backgroundStyle', 0);
-						Session.set('learningUnit', '');
-						if (cardType === 1 || cardType === 3 || cardType === 4) {
-							Session.set('centerTextElement', [true, true, false, false]);
-						} else {
-							Session.set('centerTextElement', [false, false, false, false]);
-						}
+						resetSessionData();
 						window.scrollTo(0, 0);
 						$('#editFront').click();
 					}
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, Number(difficulty), Number(cardType), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit);
+			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, Number(difficulty), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
-				defaultData();
 				Router.go('cardsetdetailsid', {
 					_id: Router.current().params._id
 				});
 			} else {
-				if (Number(cardType) === 2) {
-					Session.set('difficultyColor', 0);
-				} else {
-					Session.set('difficultyColor', 1);
-				}
-				Session.set('learningGoalLevel', 0);
-				Session.set('frontText', '');
-				Session.set('backText', '');
-				Session.set('hintText', '');
-				Session.set('lectureText', '');
-				Session.set('backgroundStyle', 0);
-				Session.set('learningUnit', '');
-				if (cardType === 1 || cardType === 3 || cardType === 4) {
-					Session.set('centerTextElement', [true, true, false, false]);
-				} else {
-					Session.set('centerTextElement', [false, false, false, false]);
-				}
+				$('#contentEditor').val('');
+				$('#editor').attr('data-content', '');
+				resetSessionData();
 				window.scrollTo(0, 0);
-				Router.go('newCard', {
-					_id: Router.current().params._id
-				});
+				$('#editFront').click();
 			}
 		}
 	}
@@ -899,10 +765,10 @@ Template.btnCard.helpers({
 
 Template.btnCard.events({
 	"click #cardSave": function () {
-		saveCard(this._id, false);
+		saveCard(Router.current().params.card_id, false);
 	},
 	"click #cardSaveReturn": function () {
-		saveCard(this._id, true);
+		saveCard(Router.current().params.card_id, true);
 	}
 });
 
@@ -955,41 +821,22 @@ Template.editor.events({
 
 Template.editor.helpers({
 	getBackTitle: function () {
-		switch (Session.get('cardType')) {
-			case 1:
-				return TAPi18n.__('card.cardType1.back');
-			case 2:
-				return TAPi18n.__('card.cardType2.back');
-			case 3:
-				return TAPi18n.__('card.cardType3.back');
-			case 4:
-				return TAPi18n.__('card.cardType4.back');
-			case 5:
-				return TAPi18n.__('card.cardType5.back');
-			default:
-				return TAPi18n.__('card.cardType0.back');
-		}
+		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.back');
 	},
 	getSubjectLabel: function () {
-		switch (Session.get('cardType')) {
-			case 1:
-				return TAPi18n.__('card.cardType1.editorLabels.subject');
-			case 2:
-				return TAPi18n.__('card.cardType2.editorLabels.subject');
-			case 3:
-				return TAPi18n.__('card.cardType3.editorLabels.subject');
-			case 4:
-				return TAPi18n.__('card.cardType4.editorLabels.subject');
-			case 5:
-				return TAPi18n.__('card.cardType5.editorLabels.subject');
-			default:
-				return TAPi18n.__('card.cardType0.editorLabels.subject');
-		}
+		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.editorLabels.subject');
 	},
 	getContent: function () {
 		if (Router.current().route.getName() === "newCard") {
-			initializeContent();
+			resetSessionData(true);
+			Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 		} else if (Router.current().route.getName() === "editCard") {
+			let difficulty;
+			if (this.difficulty === 0 || gotDifficultyLevel(this.cardType)) {
+				difficulty = 1;
+			} else {
+				difficulty = this.difficulty;
+			}
 			Session.set('subjectText', this.subject);
 			Session.set('frontText', this.front);
 			Session.set('backText', this.back);
@@ -997,30 +844,38 @@ Template.editor.helpers({
 			Session.set('cardType', this.cardType);
 			Session.set('lectureText', this.lecture);
 			Session.set('centerTextElement', this.centerTextElement);
-			Session.set('difficultyColor', this.difficulty);
+			Session.set('difficultyColor', difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
 			Session.set('backgroundStyle', this.backgroundStyle);
 			Session.set('learningUnit', this.learningUnit);
 		}
 	},
 	getFrontTitle: function () {
-		switch (Session.get('cardType')) {
-			case 1:
-				return TAPi18n.__('card.cardType1.front');
-			case 2:
-				return TAPi18n.__('card.cardType2.front');
-			case 3:
-				return TAPi18n.__('card.cardType3.front');
-			case 4:
-				return TAPi18n.__('card.cardType4.front');
-			case 5:
-				return TAPi18n.__('card.cardType5.front');
-			default:
-				return TAPi18n.__('card.cardType0.front');
-		}
+		return getFrontTitle();
 	},
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
+	getHintTitle: function () {
+		return getHintTitle();
+	},
+	gotHint: function () {
+		return gotHint(this.cardType);
+	},
+	gotLecture: function () {
+		return gotLecture(this.cardType);
+	},
+	gotDifficultyLevel: function () {
+		return gotDifficultyLevel(this.cardType);
+	},
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(this.cardType);
+	},
+	gotLearningGoal: function () {
+		return gotLearningGoal(this.cardType);
+	},
+	gotFourColumns: function () {
+		return gotFourColumns(this.cardType);
+	},
+	gotThreeColumns: function () {
+		return gotThreeColumns(this.cardType);
 	},
 	isTextCentered: function () {
 		isTextCentered();
@@ -1032,12 +887,16 @@ Template.editor.onCreated(function () {
 		toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
+	resetSessionData(true);
 });
 
 Template.editor.onRendered(function () {
-	moveEditorButtonGroup();
 	$(window).resize(function () {
-		moveEditorButtonGroup();
+		if ($(window).width() <= 1200) {
+			$("#button-row").insertBefore($("#preview"));
+		} else {
+			$("#button-row").insertAfter($("#preview"));
+		}
 	});
 });
 
@@ -1092,7 +951,7 @@ Template.contentEditor.events({
 
 Template.contentEditor.helpers({
 	getPlaceholder: function () {
-		return setPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'));
+		return getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'));
 	}
 });
 
@@ -1113,8 +972,8 @@ Template.subjectEditor.helpers({
 		}
 		return Session.get('subjectText');
 	},
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
+	gotLearningUnit: function () {
+		return gotLearningUnit(this.cardType);
 	},
 	isDisabled: function () {
 		if ((Session.get('cardType') === 2 || Session.get('cardType') === 3 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
@@ -1145,8 +1004,8 @@ Template.difficultyEditor.helpers({
 	isDifficultyChecked: function (difficulty) {
 		return difficulty === Session.get('difficultyColor');
 	},
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(this.cardType);
 	}
 });
 
@@ -1176,72 +1035,6 @@ Template.learningGoalLevel.events({
 		Session.set('learningGoalLevel', Number($(event.target).data('lvl')));
 	}
 });
-/*
- * ############################################################################
- * cardType
- * ############################################################################
- */
-
-Template.cardType.helpers({
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
-	}
-});
-
-Template.cardType.events({
-	"click #cardType0": function () {
-		let centerTextElement = Session.get('centerTextElement');
-		centerTextElement[0] = false;
-		centerTextElement[1] = false;
-		Session.set('centerTextElement', centerTextElement);
-	},
-	"click #cardType1": function () {
-		let centerTextElement = Session.get('centerTextElement');
-		centerTextElement[0] = true;
-		centerTextElement[1] = true;
-		Session.set('centerTextElement', centerTextElement);
-	},
-	"click #cardType2": function () {
-		let centerTextElement = Session.get('centerTextElement');
-		centerTextElement[0] = false;
-		centerTextElement[1] = false;
-		Session.set('centerTextElement', centerTextElement);
-	},
-	"click #cardType3": function () {
-		let centerTextElement = Session.get('centerTextElement');
-		centerTextElement[0] = true;
-		centerTextElement[1] = true;
-		Session.set('centerTextElement', centerTextElement);
-	},
-	"click #cardType4": function () {
-		let centerTextElement = Session.get('centerTextElement');
-		centerTextElement[0] = true;
-		centerTextElement[1] = true;
-		Session.set('centerTextElement', centerTextElement);
-	}
-});
-
-Template.cardType.onRendered(function () {
-	Session.set('cardType', Number($('input[name=cardType]:checked').val()));
-	$(this.find('#cardType0')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType0').data('type')));
-	});
-	$(this.find('#cardType1')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType1').data('type')));
-	});
-	$(this.find('#cardType2')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType2').data('type')));
-	});
-	$(this.find('#cardType3')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType3').data('type')));
-	});
-	$(this.find('#cardType4')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType4').data('type')));
-	});
-	$(this.find('#cardType5')).on('click change keypress paste focus textInput input', function () {
-		defaultToFront(Number($('#cardType5').data('type')));
-	});
-});
 
 /*
  * ############################################################################
@@ -1265,7 +1058,7 @@ Template.cardHintContent.helpers({
 		}
 	},
 	getPlaceholder: function () {
-		return setPlaceholderText(2);
+		return getPlaceholderText(2);
 	},
 	gotHint: function () {
 		let hint;
@@ -1277,12 +1070,14 @@ Template.cardHintContent.helpers({
 		return hint !== '' && hint !== undefined;
 	},
 	isCentered: function () {
-		if (Session.get('selectedHint')) {
+		if (isEditMode()) {
+			return Session.get('centerTextElement')[2];
+		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
 	},
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, null);
+	getHintTitle: function () {
+		return getHintTitle();
 	},
 	isHintPreview: function () {
 		return (Session.get('activeEditMode') === 2 && isEditMode());
@@ -1300,9 +1095,9 @@ Template.flashcards.onCreated(function () {
 	Session.set('reverseViewOrder', false);
 });
 
+let resizeInterval;
 Template.flashcards.onRendered(function () {
 	Session.set('activeEditMode', 0);
-	resizeFlashcards();
 	if (Router.current().route.getName() === "cardsetdetailsid") {
 		let mc = new Hammer.Manager(document.getElementById('set-details-region'));
 		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
@@ -1326,6 +1121,20 @@ Template.flashcards.onRendered(function () {
 	$('#showCopyCardModal').on('hidden.bs.modal', function () {
 		$('#copyCard').children().removeClass("pressed");
 	});
+	new ResizeSensor($('#cardCarousel'), function () {
+		resizeFlashcards();
+	});
+	if (resizeInterval === undefined && isEditMode()) {
+		resizeInterval = setInterval(resizeCenterContent, 250);
+	}
+	resizeFlashcards();
+});
+
+Template.flashcards.onDestroyed(function () {
+	if (resizeInterval !== undefined) {
+		clearInterval(resizeInterval);
+		resizeInterval = undefined;
+	}
 });
 
 Template.flashcards.helpers({
@@ -1407,62 +1216,88 @@ Template.flashcards.helpers({
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},
 	getCardTypeName: function () {
-		switch (this.cardType) {
-			case 0:
-				return TAPi18n.__('card.cardType0.name');
-			case 1:
-				return TAPi18n.__('card.cardType1.name');
-			case 2:
-				return TAPi18n.__('card.cardType2.name');
-			case 3:
-				return TAPi18n.__('card.cardType3.name');
-			case 4:
-				return TAPi18n.__('card.cardType4.name');
-			case 5:
-				return TAPi18n.__('card.cardType5.name');
+		let activeCardType = this.cardType;
+		if (Session.get('shuffled')) {
+			activeCardType = Session.get('cardType');
 		}
+		return TAPi18n.__('card.cardType' + activeCardType + '.name');
 	},
 	getDifficultyName: function () {
-		if (this.cardType === 2) {
-			switch (this.difficulty) {
-				case 0:
-					return TAPi18n.__('difficultyNotes0');
-				case 1:
-					return TAPi18n.__('difficultyNotes1');
-				case 2:
-					return TAPi18n.__('difficultyNotes2');
-				case 3:
-					return TAPi18n.__('difficultyNotes3');
-			}
+		let activeCardType = this.cardType;
+		if (Session.get('shuffled')) {
+			activeCardType = Session.get('cardType');
+		}
+		if (activeCardType === 2) {
+			return TAPi18n.__('difficultyNotes' + this.difficulty);
 		} else {
-			switch (this.difficulty) {
-				case 1:
-					return TAPi18n.__('difficulty1');
-				case 2:
-					return TAPi18n.__('difficulty2');
-				case 3:
-					return TAPi18n.__('difficulty3');
+			let difficulty = this.difficulty;
+			if (difficulty === 0) {
+				difficulty++;
 			}
+			return TAPi18n.__('difficulty' + difficulty);
 		}
 	},
 	getLearningGoalName: function () {
-		switch (this.learningGoalLevel) {
-			case 0:
-				return TAPi18n.__('learning-goal.level1');
-			case 1:
-				return TAPi18n.__('learning-goal.level2');
-			case 2:
-				return TAPi18n.__('learning-goal.level3');
-			case 3:
-				return TAPi18n.__('learning-goal.level4');
-			case 4:
-				return TAPi18n.__('learning-goal.level5');
-			case 5:
-				return TAPi18n.__('learning-goal.level6');
+		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
+	},
+	gotHint: function () {
+		if (Session.get('shuffled')) {
+			return gotHint(Session.get('cardType'));
+		} else {
+			return gotHint(this.cardType);
 		}
 	},
-	isCardType: function (cardType1, cardType2 = -1, cardType3 = -1, cardType4 = -1) {
-		return isCardType(cardType1, cardType2, cardType3, cardType4, this.cardType);
+	gotDictionary: function () {
+		if (Session.get('shuffled')) {
+			return gotDictionary(Session.get('cardType'));
+		} else {
+			return gotDictionary(this.cardType);
+		}
+	},
+	gotLecture: function () {
+		if (Session.get('shuffled')) {
+			return gotLecture(Session.get('cardType'));
+		} else {
+			return gotLecture(this.cardType);
+		}
+	},
+	gotLecturePreview: function () {
+		return Session.get('activeEditMode') === 3 && Session.get('lectureText') && isEditMode();
+	},
+	getFrontTitle: function () {
+		if (Session.get('shuffled')) {
+			return getFrontTitle(Session.get('cardType'));
+		} else {
+			return getFrontTitle(this.cardType);
+		}
+	},
+	getBackTitle: function () {
+		if (Session.get('shuffled')) {
+			return getBackTitle(Session.get('cardType'));
+		} else {
+			return getBackTitle(this.cardType);
+		}
+	},
+	gotDifficultyLevel: function () {
+		if (Session.get('shuffled')) {
+			return gotDifficultyLevel(Session.get('cardType'));
+		} else {
+			return gotDifficultyLevel(this.cardType);
+		}
+	},
+	gotLearningGoal: function () {
+		if (Session.get('shuffled')) {
+			return gotLearningGoal(Session.get('cardType'));
+		} else {
+			return gotLearningGoal(this.cardType);
+		}
+	},
+	gotNotesForDifficultyLevel: function () {
+		if (Session.get('shuffled')) {
+			return gotNotesForDifficultyLevel(Session.get('cardType'));
+		} else {
+			return gotNotesForDifficultyLevel(this.cardType);
+		}
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
@@ -1474,7 +1309,7 @@ Template.flashcards.helpers({
 		return (Session.get('activeEditMode') === 1 && isEditMode());
 	},
 	isLecturePreview: function () {
-		if (this.cardType === 0) {
+		if (gotLecture(this.cardType)) {
 			return (Session.get('activeEditMode') === 3 && isEditMode());
 		} else {
 			return false;
@@ -1503,11 +1338,12 @@ Template.flashcards.helpers({
 	gotFront: function () {
 		return this.front !== '' && this.front !== undefined;
 	},
-	gotLecture: function () {
-		return this.lecture !== '' && this.lecture !== undefined;
-	},
 	getPlaceholder: function (mode) {
-		return setPlaceholderText(mode, this.cardType);
+		if (Session.get('shuffled')) {
+			return getPlaceholderText(mode, Session.get('cardType'));
+		} else {
+			return getPlaceholderText(mode, this.cardType);
+		}
 	}
 });
 
@@ -1792,7 +1628,6 @@ Meteor.startup(function () {
 Template.cancelEditForm.events({
 	'click #cancelEditConfirm': function () {
 		$('#cancelEditModal').on('hidden.bs.modal', function () {
-			defaultData();
 			Router.go('cardsetdetailsid', {
 				_id: Router.current().params._id
 			});
@@ -1810,7 +1645,7 @@ Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
 			Session.set('modifiedCard', undefined);
-			Meteor.call("deleteCard", Router.current().params.cardid);
+			Meteor.call("deleteCard", Router.current().params.card_id);
 			Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 			Router.go('cardsetdetailsid', {
 				_id: Router.current().params._id
