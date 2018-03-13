@@ -26,7 +26,7 @@ import {
 
 function resetSessionData(resetSubject = false) {
 	let difficulty = 0;
-	if (Session.get('cardType') !== 2) {
+	if (!gotNotesForDifficultyLevel(Session.get('cardType'))) {
 		difficulty = 1;
 	}
 	if (resetSubject) {
@@ -832,7 +832,7 @@ Template.editor.helpers({
 			Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 		} else if (Router.current().route.getName() === "editCard") {
 			let difficulty;
-			if (this.difficulty === 0 || gotDifficultyLevel(this.cardType)) {
+			if (this.difficulty === 0 && !gotNotesForDifficultyLevel(this.cardType)) {
 				difficulty = 1;
 			} else {
 				difficulty = this.difficulty;
