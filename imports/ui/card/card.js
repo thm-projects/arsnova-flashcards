@@ -1127,6 +1127,7 @@ Template.flashcards.onRendered(function () {
 	if (resizeInterval === undefined && isEditMode()) {
 		resizeInterval = setInterval(resizeCenterContent, 250);
 	}
+	resizeFlashcards();
 });
 
 Template.flashcards.onDestroyed(function () {
