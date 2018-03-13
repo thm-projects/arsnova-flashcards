@@ -6,6 +6,7 @@ import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {check} from "meteor/check";
+import {gotLearningModes} from "../imports/api/cardTypes.js";
 
 Meteor.methods({
 	/** Function adds a new user as learning
@@ -18,6 +19,9 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id});
+			if (!gotLearningModes(cardset.cardType)) {
+				throw new Meteor.Error("not-authorized");
+			}
 			if (!cardset.learningActive) {
 				Meteor.call("defaultCardsetLeitnerData", cardset, function (error, result) {
 					if (error) {
@@ -93,7 +97,7 @@ Meteor.methods({
 	addWozniakCards: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive || !gotLearningModes(cardset.cardType)) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cards;

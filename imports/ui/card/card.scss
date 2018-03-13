@@ -15,6 +15,8 @@ $background_lecture: papayawhip;
 $background_hint: lightseagreen;
 $color_item_selection_border: $color_item_separator;
 
+$color_card_header_text: $color_thm_gray;
+
 #difficultyGroup, #cardTypeGroup {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -83,16 +85,14 @@ $color_item_selection_border: $color_item_separator;
   font-size: 10px !important;
 }
 
-.cardNumber {
-  color: $color_thm_gray;
+.cardInfoCenter {
   font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: center;
-  top: 14px;
+  margin-top: 12px;
 }
 
 .cardDate {
   float: right;
-  color: $color_thm_gray;
   font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: right;
   margin-right: -40px;
@@ -351,13 +351,19 @@ img.cardside {
   margin-left: 5px;
 }
 
-.fullscreen, #swapOrder {
+.fullscreen, #swapOrder, .cardNumber {
   float: right;
   position: absolute;
   top: 50px;
 }
 
-#toggleFullscreen {
+.cardNumber {
+  font-family: $font_2, $font_3, $font_4, $font_5;
+  text-align: right;
+  top: 14px;
+}
+
+#toggleFullscreen, .cardNumber {
   right: 8px;
 }
 
@@ -399,7 +405,6 @@ img.cardside {
 
 .cardHeader {
   min-height: 90px;
-  height: 100%;
   text-align: center;
   font-size: 12px;
   padding: 20px 100px 0 100px;
@@ -409,6 +414,7 @@ img.cardside {
     margin-bottom: 0;
     padding-bottom: 5px;
   }
+  color: $color_card_header_text !important;
 }
 
 .cardHeader a:hover {
@@ -529,7 +535,7 @@ img.cardside {
 
 .cardtext h5, .editorHeader {
   margin: 0;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 5px;
   color: white;
   font-weight: bold;

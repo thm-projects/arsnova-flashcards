@@ -699,6 +699,32 @@
       "editorLabels": {
         "subject": "Subject"
       }
+    },
+    "cardType6": {
+      "name": "Instruction set",
+      "front": "Frontside",
+      "back": "Definition",
+      "placeholders": {
+        "front": "Frontside",
+        "back": "Definition"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
+    },
+    "cardType7": {
+      "name": "Abstracts",
+      "front": "Abstracts",
+      "back": "Cited person",
+      "hint": "Reference",
+      "placeholders": {
+        "front": "Citation",
+        "back": "Cited person",
+        "hint": "Reference"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
     }
   },
   "courseIteration": {

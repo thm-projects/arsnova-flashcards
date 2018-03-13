@@ -108,8 +108,12 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
-	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
-	return owner === Meteor.userId();
+	let cardset = Cardsets.findOne({"_id": cardset_id});
+	if (cardset !== undefined) {
+		return cardset.owner === Meteor.userId();
+	} else {
+		return false;
+	}
 });
 
 Template.registerHelper("isShuffleRoute", function () {

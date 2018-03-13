@@ -8,6 +8,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
+import {getCardTypeName} from "../../api/cardTypes";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -255,6 +256,9 @@ Template.cardsetRow.helpers({
 		if (text !== "" && text !== undefined) {
 			return true;
 		}
+	},
+	getCardTypeName: function () {
+		return getCardTypeName(this.cardType);
 	}
 });
 
@@ -306,7 +310,8 @@ Template.shuffle.helpers({
 			fields: {
 				name: 1,
 				description: 1,
-				quantity: 1
+				quantity: 1,
+				cardType: 1
 			},
 			sort: {name: 1}
 		});
