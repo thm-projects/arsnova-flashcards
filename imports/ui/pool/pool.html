@@ -185,55 +185,6 @@
                                 </a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" id="ratingFilter" class="dropdown-toggle ratingBtn" data-toggle="dropdown"
-                               role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                {{_ "set-list.rating"}}
-                                {{#if hasRatingFilter}}
-                                    <span class="glyphicon glyphicon-filter"></span>
-                                {{/if}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" class="filterRating active" data-id="-1">{{_ "set-list.everything"}}</a>
-                                </li>
-                                <li><a href="#" class="filterRating" data-id="0">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=0}}
-                                    {{#if poolFilterRating 0}}
-                                        <span class="glyphicon glyphicon-filter"></span>
-                                    {{/if}}
-                                </a>
-                                </li>
-                                <li><a href="#" class="filterRating" data-id="1">{{_ "set-list.ratingFilter"}}
-                                    {{#if poolFilterRating 1}}
-                                        <span class="glyphicon glyphicon-filter"></span>
-                                    {{/if}}
-                                </a>
-                                </li>
-                                <li><a href="#" class="filterRating" data-id="2">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=2}}
-                                    {{#if poolFilterRating 2}}
-                                        <span class="glyphicon glyphicon-filter"></span>
-                                    {{/if}}
-                                </a>
-                                </li>
-                                <li><a href="#" class="filterRating" data-id="3">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=3}}
-                                    {{#if poolFilterRating 3}}
-                                        <span class="glyphicon glyphicon-filter"></span>
-                                    {{/if}}
-                                </a>
-                                </li>
-                                <li><a href="#" class="filterRating" data-id="4">{{_ "set-list.ratingFilterPlural"
-                                                                                     rating=4}}
-                                    {{#if poolFilterRating 4}}
-                                        <span class="glyphicon glyphicon-filter"></span>
-                                    {{/if}}
-                                </a>
-                                </li>
-                            </ul>
-                        </li>
                         <ul class="nav navbar-nav navbar-right">
                             <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
                                  aria-label="License group" style="padding-top: 20px;">

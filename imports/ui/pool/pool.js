@@ -8,7 +8,6 @@ import {Leitner} from "../../api/learned.js";
 import "./pool.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe('ratings');
 
 var items_increment = 14;
 
@@ -49,9 +48,6 @@ function prepareQuery() {
 	}
 	if (Session.get('poolFilterLearnphase')) {
 		query.learningActive = Session.get('poolFilterLearnphase');
-	}
-	if (Session.get('poolFilterRating')) {
-		query.relevance = {$gt: Session.get('poolFilterRating')};
 	}
 }
 
@@ -228,12 +224,6 @@ Template.category.helpers({
 	poolFilterLearnphase: function (learningPhase) {
 		return Session.get('poolFilterLearnphase') === learningPhase;
 	},
-	hasRatingFilter: function () {
-		return Session.get('poolFilterRating');
-	},
-	poolFilterRating: function (rating) {
-		return Session.get('poolFilterRating') === rating;
-	},
 	moreResults: function () {
 		return checkRemainingCards();
 	},
@@ -308,15 +298,6 @@ Template.poolCardsetRow.helpers({
 		} else {
 			return false;
 		}
-	},
-	getRelevance: function () {
-		return Math.floor(this.relevance - 1);
-	},
-	getStarsRating: function () {
-		return ((Math.round(this.relevance * 2) / 2).toFixed(1) * 10);
-	},
-	displayPrice: function () {
-		return this.price !== 0 && !(this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
 	},
 	getMaximumText: function (text) {
 		const maxLength = 15;
@@ -409,10 +390,6 @@ Template.category.events({
 		});
 		Session.set('poolFilter', filter);
 	}
-});
-
-Template.category.onDestroyed(function () {
-	Session.set('poolSort', {relevance: -1});
 });
 
 Template.pool.onCreated(function () {
