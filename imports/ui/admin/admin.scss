@@ -7,9 +7,10 @@ body {
 
   }
   #wrapper {
-    padding-top: 35px;
+    padding-top: 65px;
     #admin-sidebar-wrapper {
-      background: #000;
+      background: #9C132D;
+      color: white;
       float: left;
       width: 100%;
       .sidebar-nav {
@@ -25,11 +26,11 @@ body {
             text-decoration: none;
             padding-left: 15px;
             padding-right: 15px;
-            color: #999999;
+            color: white;
             &:hover, &.active {
               text-decoration: none;
-              color: #fff;
-              background: rgba(255, 255, 255, 0.2);
+              color: white;
+              background: #F5AA01;
             }
             i {
               display: inline;
