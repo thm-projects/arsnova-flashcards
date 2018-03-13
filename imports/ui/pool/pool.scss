@@ -122,6 +122,9 @@
     .licenseInfo {
       border: none;
     }
+    .panelAvailability {
+      padding-top: 5px;
+    }
   }
 
   @media (min-width: 768px) {
@@ -130,10 +133,6 @@
         padding: 0px;
       }
       background-color: $color_thm_green;
-    }
-
-    .panelUnitKind {
-      margin-left: 30px;
     }
 
     #filterCheckbox {

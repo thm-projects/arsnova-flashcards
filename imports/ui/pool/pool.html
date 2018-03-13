@@ -56,6 +56,18 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
+                                {{_ "cardType"}}
+                                {{#if hasCardTypeFilter}}
+                                    <span class="glyphicon glyphicon-filter"></span>
+                                {{/if}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {{> cardTypesList}}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
                                 {{_ "set-list.author"}}
                                 {{#if hasAuthorFilter}}
                                     <span class="glyphicon glyphicon-filter"></span>
@@ -207,11 +219,15 @@
     <div class="responsive-utilities-test visible-on">
 
         <span class="{{#unless
-                singleUniversity}}col-sm-3{{else}}col-sm-4{{/unless}} hidden-xs poolHeaderBottom">{{_
+                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} hidden-xs poolHeaderBottom">{{_
                 "set-list.topic"}}
         </span>
         <span class="{{#unless
-                singleUniversity}}col-sm-3 col-md-3{{else}}col-sm-4 col-md-4{{/unless}} hidden-xs poolHeaderBottom">{{_
+                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} hidden-xs poolHeaderBottom">{{_
+                "cardType"}}
+        </span>
+        <span class="{{#unless
+                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} hidden-xs poolHeaderBottom">{{_
                 "set-list.author"}}
         </span>
         {{#unless singleUniversity}}
@@ -219,13 +235,13 @@
                     "set-list.college"}}
             </span>
         {{/unless}}
-        <span class="col-sm-2 hidden-xs poolHeaderBottom poolHeaderCourse">{{_
+        <span class="{{#if singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-2{{/if}} hidden-xs poolHeaderBottom poolHeaderCourse">{{_
                 "set-list.course"}}
         </span>
         <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_
                 "set-list.module"}}
         </span>
-        <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_
+        <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom">{{_
                 "set-list.availability"}}
         </span>
     </div>
@@ -281,11 +297,18 @@
             </a>
         {{/if}}
     </div>
+    <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
+        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
+            :</span>
+        <span class="col-xs-6 {{#unless
+                singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
+              data-id="{{this.cardType}}">{{getCardTypeName this.cardType}}</span>
+    </a>
     <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
         <span class="col-xs-6 {{#unless
-                singleUniversity}}col-sm-3 col-md-3{{else}}col-sm-4 col-md-4{{/unless}} poolContent poolText panelUnit poolAuthor"
+                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
               data-id="{{this.owner}}">{{getAuthorName
                 this.owner}}</span>
     </a>
@@ -305,7 +328,8 @@
                "set-list.noCourse"}}{{/if}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
-        <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCourse"
+        <span class="col-xs-6 {{#if
+                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-2{{/if}} poolContent poolText panelUnit poolCourse"
               data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_
                 "set-list.noCourse"}}{{/if}}</span>
     </a>
@@ -318,9 +342,9 @@
               data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
                 "set-list.noModuleShort"}}{{/if}}</span>
     </a>
-    <span class="col-sd-2 col-md-1 kind-label hidden-xs panelAvailability">
+    <span class="col-sm-1 kind-label hidden-xs panelAvailability">
         <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-sm-2 col-md-12 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
+            <span class="kind-label col-sm- col-md-12 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
                   data-id="{{this.kind}}">
                 {{{getKind this.kind}}}
             </span>
@@ -380,7 +404,8 @@
             "set-list.topicMobile"}}
         :</span>
     <span id="cardsetLink{{content.index}}" class="cell col-xs-6 cardsetName {{#unless
-            singleUniversity}}col-sm-3{{else}}col-sm-4{{/unless}} poolText panelUnit" data-id="{{content._id}}">
+            singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} poolText panelUnit"
+          data-id="{{content._id}}">
                 <span class="cell col-xs-8 {{#unless
                         singleUniversity}}col-sm-9{{else}}col-sm-10{{/unless}} topicName" data-id="{{content._id}}">
                     {{#if content.learningActive}}
