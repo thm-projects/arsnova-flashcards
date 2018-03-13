@@ -112,7 +112,7 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('push', function (event) {
 	var payload = event.data ? event.data.text() : 'no payload';
 	event.waitUntil(
-		self.registration.showNotification('THM.cards', {
+		self.registration.showNotification('.cards', {
 			body: payload,
 			icon: '/img/webpush_icon.png'
 		})
