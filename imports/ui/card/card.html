@@ -384,20 +384,7 @@
                                             {{/if}}
                                         {{/unless}}
                                     </div>
-                                    <div class="cardNumber">
-                                        {{#if isCardset}}
-                                            {{#unless hasCardsetPermission cardset_id}}
-                                                <strong>{{_ "preview"}}:</strong>
-                                                {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
-                                            {{else}}
-                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
-                                                    "of"}} {{getCardsetCount true}}<br>
-                                            {{/unless}}
-                                        {{/if}}
-                                        {{#if isBox}}
-                                            {{_ "leitner_status" count=countLeitner}}
-                                            <br>
-                                        {{/if}}
+                                    <div class="cardInfoCenter">
                                         <span><strong>{{getCardsetName}}</strong>
                                             {{#unless gotNotesForDifficultyLevel}}
                                                 (<span
@@ -424,16 +411,21 @@
                                         {{else}}
                                         {{/if}}
                                     </div>
-                                    {{#unless gotNotesForDifficultyLevel}}
-                                        <div id="clicktoflip" class="clicktoflip">
-                                            <img id="iconfront" class="cardside cardfront-symbol"
-                                                 src="/img/icon_front.png">
-                                            <img id="iconback" class="cardside cardback-symbol"
-                                                 src="/img/icon_back.png"
-                                                 style="display: none;">
-                                            <span class="hidden-xs">{{_ "turn"}}</span>
-                                        </div>
-                                    {{/unless}}
+                                    <div class="cardNumber">
+                                        {{#if isCardset}}
+                                            {{#unless hasCardsetPermission cardset_id}}
+                                                <strong>{{_ "preview"}}:</strong>
+                                                {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
+                                            {{else}}
+                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
+                                                    "of"}} {{getCardsetCount true}}<br>
+                                            {{/unless}}
+                                        {{/if}}
+                                        {{#if isBox}}
+                                            {{_ "leitner_status" count=countLeitner}}
+                                            <br>
+                                        {{/if}}
+                                    </div>
                                     <span id="swapOrder" data-type="cardNavigation">
                                                 <span class="material-icons card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
