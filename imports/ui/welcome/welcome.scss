@@ -15,14 +15,29 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
   #slogan {
     display: inline-block;
-    color: white !important;
+    color: $color_thm_orange !important;
     .lmargin {
-      margin-left: 10px;
+      margin-left: 20px;
     }
 
     h2 {
-      @media screen and (max-width: 667px) {
-        font-size: 20px;
+      @media screen and (min-width: 960px) {
+        font-size: 50px;
+        font-weight: bold;
+      }
+    }
+
+    h2 {
+      @media screen and (max-width: 600px) {
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+
+    h2 {
+      @media screen and (max-width: 400px) {
+        font-size: 16px;
+        font-weight: bold;
       }
     }
   }
@@ -108,6 +123,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   content: ' \25CF';
   //font-size: 0.2em; /* Fallback for old devices */
   font-size: 2.5vw;
+  vertical-align: sub;
 }
 
 .color-dot {
@@ -117,13 +133,13 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 .color-cards {
   font-weight: bold;
   color: $color_thm_green;
+  font-family: "Arial Black";
 }
 
 .logo-header-chars {
   cursor: default;
-  font-size: 0.5em; /* Fallback for old devices */
+  //font-size: 0.5em; /* Fallback for old devices */
   font-size: 4.5vw;
-  margin: 5px 0;
 }
 
 @media (max-width: 1025px) {

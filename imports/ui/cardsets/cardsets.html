@@ -66,8 +66,9 @@
                 <br>
                 {{#if shuffleList.count}}
                     <div class="responsive-utilities-test visible-on">
-                        <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                        <span class="col-sm-5 col-md-6 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                        <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                        <span class="col-sm-2 col-md-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                        <span class="col-sm-4 col-md-5 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
                         <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "selection"}}</span>
                     </div>
                     {{#each shuffleList}}
@@ -99,9 +100,10 @@
             </button>
             {{> shuffle}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-6 col-md-7 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
-                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
+                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-sm-6 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
             {{#each cardsetList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -126,8 +128,8 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
             :</span>
-            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 {{#if isActiveRoute
-                                                                                'learn'}}col-sm-3 col-md-4{{/if}} poolText panelUnit"
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-3 {{#if isActiveRoute
+                                                                                'learn'}}col-sm-3{{/if}} poolText panelUnit"
                   data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
@@ -139,12 +141,21 @@
         </a>
     </div>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "cardType"}}
+        :</span>
+    <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}col-sm-2 panelUnit{{else}}{{#if isActiveRoute
+                                                                                              'create'}}col-sm-2 panelUnit{{else}}
+        {{#if isActiveRoute 'shuffle'}}col-sm-2{{else}}{{#if isActiveRoute
+                                                                      'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
+        {{getCardTypeName this.cardType}}
+    </span>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.description"}}
         :</span>
     <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
-                                                                                              'create'}}col-sm-6 col-md-7 panelUnit{{else}}
-        {{#if isActiveRoute 'shuffle'}}col-sm-5 col-md-6{{else}}{{#if isActiveRoute
-                                                                      'editshuffle'}}col-sm-5 col-md-6{{else}}col-sm-6 col-md-7{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
+                                                                                              'create'}}col-sm-6 panelUnit{{else}}
+        {{#if isActiveRoute 'shuffle'}}col-sm-4 col-md-5{{else}}{{#if isActiveRoute
+                                                                      'editshuffle'}}col-sm-3 col-md-5{{else}}col-sm-4 col-md-6{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
         {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
                 "set-list.noDescription"}}{{/if}}
     </span>
@@ -152,7 +163,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learnphase"}}
             :</span>
-        <span class="cell col-xs-7 col-sm-2 col-md-2 panelUnit">
+        <span class="hidden-sm cell col-xs-7 col-sm-1 panelUnit">
             <span class="label {{#if this.learningActive}}label-success{{else}}label-info{{/if}} labelLearning"
                   aria-label="active learnphase label">
                 {{getLearnphaseStatus}}
@@ -209,7 +220,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription panelUnitNoBorder">{{_
                 "set-list.availability"}}
             :</span>
-        <span class="cell col-xs-5 col-sm-2 col-md-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelUnitNoBorder">
+        <span class="cell col-xs-5 col-sm-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelUnitNoBorder">
             {{{getKind this.kind}}}
         </span>
     {{/if}}
@@ -253,8 +264,9 @@
         {{> shuffle}}
         {{#if learnList.count}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-3 col-md-4 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
+                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
+                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
                 <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.levelOfLearning"}}</span>
                 <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>

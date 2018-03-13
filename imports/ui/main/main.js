@@ -8,6 +8,7 @@ import "./main.html";
 import "../welcome/welcome.js";
 import "../impressum/impressum.js";
 import "../cardsets/cardsets.js";
+import "../cardTypesList/cardTypesList.js";
 import "../courseIterations/coursesIterations.js";
 import "../learn/progress.js";
 import "../pool/pool.js";

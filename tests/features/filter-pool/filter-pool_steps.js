@@ -16,6 +16,26 @@ module.exports = function () {
 
 	/**
 	 * ---------------------------------------------------------------------
+	 * Sort by card type scenario
+	 * ---------------------------------------------------------------------
+	 */
+
+	this.When(/^user clicks on the filter by card type button$/, function () {
+		navigation.selectPool();
+		navigation.clickElement('a[class="dropdown-toggle cardTypeBtn"]');
+	});
+
+	this.Then(/^he should choose a card type/, function () {
+		navigation.clickElement('a[class="filterCardType"]');
+	});
+
+	this.Then(/^he should see the cardset list sorted by the choosen card type/, function () {
+		let cardsetListFilteredWord = navigation.getContent('.poolCardType', 1);
+		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+	});
+
+	/**
+	 * ---------------------------------------------------------------------
 	 * Sort by author scenario
 	 * ---------------------------------------------------------------------
 	 */

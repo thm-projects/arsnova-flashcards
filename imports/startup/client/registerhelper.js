@@ -12,6 +12,7 @@ import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {getUserLanguage} from "../../startup/client/i18n";
+import {gotNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("collegesCourses");
 
@@ -108,8 +109,12 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
-	var owner = Cardsets.findOne({"_id": cardset_id}).owner;
-	return owner === Meteor.userId();
+	let cardset = Cardsets.findOne({"_id": cardset_id});
+	if (cardset !== undefined) {
+		return cardset.owner === Meteor.userId();
+	} else {
+		return false;
+	}
 });
 
 Template.registerHelper("isShuffleRoute", function () {
@@ -377,6 +382,9 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
+		difficulty = 1;
+	}
 	if (backgroundStyle === 1) {
 		switch (difficulty) {
 			case 0:
@@ -429,6 +437,9 @@ Template.registerHelper("checkActiveRouteName", function () {
 });
 
 Template.registerHelper("getCardBackgroundList", function (difficulty, cardType) {
+	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
+		difficulty = 1;
+	}
 	switch (difficulty) {
 		case 0:
 			if (cardType !== 2) {

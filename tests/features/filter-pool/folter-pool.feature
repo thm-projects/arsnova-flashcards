@@ -4,6 +4,12 @@ Feature: Filter the pool
     Given User is logged in
 
   @watch
+  Scenario: User sorts by card type
+    When user clicks on the filter by card type button
+    Then he should choose a card type
+    Then he should see the cardset list sorted by the choosen card type
+
+  @watch
   Scenario: User sorts by author
     When user clicks on the filter by author button
     Then he should choose an author
