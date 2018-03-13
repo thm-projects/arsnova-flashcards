@@ -177,7 +177,8 @@ Template.welcome.onRendered(function () {
 
 	// Backdoor for login in acceptance tests
 	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
-		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use backdoor for login"/></a>');
+		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
+			' login"/></a>');
 		$('.panel-footer').append('<span class="btn-group backdoorLogin"><label id="backdoor-label">Backdoor users:</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
 			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
