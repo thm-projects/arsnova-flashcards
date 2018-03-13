@@ -409,7 +409,7 @@
                                                     style="display: {{#if gotDictionary}}{{#unless
                                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}}
                                                 )</span>{{/unless}}</span><br>
-                                        {{#unless gotDifficultyLevel}}
+                                        {{#if gotDifficultyLevel}}
                                             {{#unless gotNotesForDifficultyLevel}}{{_ "difficulty"}}:{{/unless}}
                                             <strong>{{getDifficultyName}}</strong>
                                             {{#if gotNotesForDifficultyLevel}}
@@ -424,7 +424,7 @@
                                                 <strong>{{getLearningGoalName}}</strong>
                                             {{/if}}
                                         {{else}}
-                                        {{/unless}}
+                                        {{/if}}
                                     </div>
                                     {{#unless gotNotesForDifficultyLevel}}
                                         <div id="clicktoflip" class="clicktoflip">

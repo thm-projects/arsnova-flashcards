@@ -1215,10 +1215,18 @@ Template.flashcards.helpers({
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},
 	getCardTypeName: function () {
-		return TAPi18n.__('card.cardType' + this.cardType + '.name');
+		let activeCardType = this.cardType;
+		if (Session.get('shuffled')) {
+			activeCardType = Session.get('cardType');
+		}
+		return TAPi18n.__('card.cardType' + activeCardType + '.name');
 	},
 	getDifficultyName: function () {
-		if (this.cardType === 2) {
+		let activeCardType = this.cardType;
+		if (Session.get('shuffled')) {
+			activeCardType = Session.get('cardType');
+		}
+		if (activeCardType === 2) {
 			return TAPi18n.__('difficultyNotes' + this.difficulty);
 		} else {
 			let difficulty = this.difficulty;
@@ -1232,31 +1240,63 @@ Template.flashcards.helpers({
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
 	},
 	gotHint: function () {
-		return gotHint(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotHint(Session.get('cardType'));
+		} else {
+			return gotHint(this.cardType);
+		}
 	},
 	gotDictionary: function () {
-		return gotDictionary(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotDictionary(Session.get('cardType'));
+		} else {
+			return gotDictionary(this.cardType);
+		}
 	},
 	gotLecture: function () {
-		return gotLecture(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotLecture(Session.get('cardType'));
+		} else {
+			return gotLecture(this.cardType);
+		}
 	},
 	gotLecturePreview: function () {
 		return Session.get('activeEditMode') === 3 && Session.get('lectureText') && isEditMode();
 	},
 	getFrontTitle: function () {
-		return getBackTitle(this.cardType);
+		if (Session.get('shuffled')) {
+			return getFrontTitle(Session.get('cardType'));
+		} else {
+			return getFrontTitle(this.cardType);
+		}
 	},
 	getBackTitle: function () {
-		return getFrontTitle(this.cardType);
+		if (Session.get('shuffled')) {
+			return getBackTitle(Session.get('cardType'));
+		} else {
+			return getBackTitle(this.cardType);
+		}
 	},
 	gotDifficultyLevel: function () {
-		return gotDifficultyLevel(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotDifficultyLevel(Session.get('cardType'));
+		} else {
+			return gotDifficultyLevel(this.cardType);
+		}
 	},
 	gotLearningGoal: function () {
-		return gotLearningGoal(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotLearningGoal(Session.get('cardType'));
+		} else {
+			return gotLearningGoal(this.cardType);
+		}
 	},
 	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(this.cardType);
+		if (Session.get('shuffled')) {
+			return gotNotesForDifficultyLevel(Session.get('cardType'));
+		} else {
+			return gotNotesForDifficultyLevel(this.cardType);
+		}
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
@@ -1298,7 +1338,11 @@ Template.flashcards.helpers({
 		return this.front !== '' && this.front !== undefined;
 	},
 	getPlaceholder: function (mode) {
-		return getPlaceholderText(mode, this.cardType);
+		if (Session.get('shuffled')) {
+			return getPlaceholderText(mode, Session.get('cardType'));
+		} else {
+			return getPlaceholderText(mode, this.cardType);
+		}
 	}
 });
 

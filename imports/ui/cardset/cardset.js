@@ -95,6 +95,8 @@ Template.cardset.onCreated(function () {
 		Session.set('modifiedCard', undefined);
 	}
 	Session.set('moduleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
+	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
+	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 });
 
 Template.cardset.rendered = function () {

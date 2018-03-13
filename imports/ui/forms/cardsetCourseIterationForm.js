@@ -317,6 +317,7 @@ export function saveCardset() {
 				Meteor.call("updateCourseIteration", name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 			} else {
 				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Number(cardType));
+				Session.set('cardType', Number(cardType));
 			}
 			$('#setCardsetCourseIterationFormModal').modal('hide');
 			return true;
