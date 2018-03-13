@@ -75,6 +75,7 @@
   @media (max-width: 1200px) {
     .navbar-header {
       float: none;
+      background-color: $color_thm_green;
     }
     .navbar-left, .navbar-right {
       float: none !important;
@@ -128,6 +129,7 @@
       .dropdown {
         padding: 0px;
       }
+      background-color: $color_thm_green;
     }
 
     .panelUnitKind {

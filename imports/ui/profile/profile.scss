@@ -146,13 +146,23 @@ $black: rgb(0, 0 ,0);
 }
 
 .red-passage{
- color: red;
+ color: $color_thm_red;
 }
 
 .green-passage{
-  color: green;
+  color: $color_thm_green;
 }
 
 #profilepublicoption1, #profilepublicoption2 {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.standard-membership{
+  background-color: $color_thm_green !important;
+  color: white !important;
+}
+
+.pro-membership{
+  background-color: $color_thm_orange !important;
+  color: white !important;
 }
