@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
+                            <a href="#" class="dropdown-toggle cardTypeBtn" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 {{_ "cardType"}}
                                 {{#if hasCardTypeFilter}}
@@ -301,7 +301,7 @@
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
             :</span>
         <span class="col-xs-6 {{#unless
-                singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
+                singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolCardType"
               data-id="{{this.cardType}}">{{getCardTypeName this.cardType}}</span>
     </a>
     <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
