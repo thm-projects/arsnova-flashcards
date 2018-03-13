@@ -366,17 +366,16 @@ button:disabled {
 .tip-content, #welcome-tip {
   max-lines: 1;
   visibility: hidden;
-  width: 320px;
+  width: 370px;
   text-overflow: ellipsis;
-  background-color: $color_thm_gray;
-  opacity: 0.9;
-  color: #fff;
+  background-color: $color_thm_dark_blue;
+  color: white;
   text-align: left;
-  border-radius: 6px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 20px;
   position: absolute;
   z-index: 1040;
-  bottom: 115%;
+  bottom: 100%;
 }
 
 .tip-content::after, #welcome-tip::after {
