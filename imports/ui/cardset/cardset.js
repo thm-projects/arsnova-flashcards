@@ -14,7 +14,7 @@ import "../card/card.js";
 import "../learn/learn.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import {gotLearningModes} from "../../api/cardTypes";
+import {getCardTypeName, gotLearningModes} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -478,6 +478,9 @@ Template.cardsetInfoBox.helpers({
 	},
 	gotModuleLink: function () {
 		return this.moduleLink !== "" && this.moduleLink !== undefined;
+	},
+	getCardType: function () {
+		return getCardTypeName(this.cardType);
 	}
 });
 

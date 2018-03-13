@@ -97,6 +97,12 @@
         <div class="card card-block">
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
+                <tr>
+                    <td><strong>{{_ "cardType"}}:</strong></td>
+                    <td>
+                        {{getCardType}}
+                    </td>
+                </tr>
                 {{#if ratingEnabled}}
                     <tr>
                         <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
