@@ -88,15 +88,10 @@
             </div>
         </div>
         {{isTextCentered}}
-        <div class="hidden-lg">
-            {{> btnCard}}
-        </div>
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
             {{> flashcards cardset=this}}
         </div>
-    </div>
-    <div class="row visible-lg">
         {{> btnCard}}
     </div>
 </template>
@@ -299,36 +294,37 @@
 </template>
 
 <template name="btnCard">
-    <div class="col-xs-12 col-sm-9 col-md-6">
-        <div class="actionButtons editorElement">
+    <div id="button-row" class="col-xs-12 actionButtons editorElement">
+        <div class="col-xs-12 col-sm-9 col-md-6">
             <br>
-            <button class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4 cardSave" {{disableIfOffline}}
+            <button id="cardSave"
+                    class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4" {{disableIfOffline}}
                     tabindex="13">
                 {{_ "savecard"}}
             </button>
-            <button class="btn btn-default btn-raised save col-xs-12 col-sm-4 cardSaveReturn" {{disableIfOffline}}
+            <button id="cardSaveReturn"
+                    class="btn btn-default btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}}
                     tabindex="14">
                 {{_ "savecardReturn"}}
             </button>
-            <button class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 cardCancel pull-right"
+            <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 pull-right"
                     tabindex="15" data-toggle="modal"
                     data-target="#cancelEditModal">{{_
                     "declinecard"}}</button>
         </div>
-    </div>
-    {{#if isEditMode}}
-        {{#if isCardsetOwner this.cardset_id}}
-            <div class="col-xs-12 col-sm-3 col-md-6">
-                <div class="actionButtons editorElement">
+        {{#if isEditMode}}
+            {{#if isCardsetOwner this.cardset_id}}
+                <div class="col-xs-12 col-sm-3 col-md-6">
                     <br>
-                    <button class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right cardDelete" {{isDisabled}}
+                    <button id="cardDelete"
+                            class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right" {{isDisabled}}
                             tabindex="16" data-toggle="modal"
                             data-target="#deleteCardModal">{{_
                             "deletecard"}}</button>
                 </div>
-            </div>
+            {{/if}}
         {{/if}}
-    {{/if}}
+    </div>
 </template>
 
 <template name="flashcards">
@@ -499,7 +495,7 @@
                                         {{/if}}
                                         {{#if isLecturePreview}}
                                             <span class="{{#if gotLecturePreview}}{{#if isCentered
-                                                                                 3}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                                                        3}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                                 {{#if gotLecturePreview}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
@@ -534,7 +530,8 @@
                                 {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
                                          id="collapseLecture-{{_id}}" style="{{#if isEditMode}}display: none{{/if}}">
-                                        <div class="cardContent {{#if gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                                        <div class="cardContent {{#if
+                                                gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
 
                                             {{#if gotLecture}}
