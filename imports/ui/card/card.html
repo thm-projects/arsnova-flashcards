@@ -313,16 +313,18 @@
                     "declinecard"}}</button>
         </div>
         {{#if isEditMode}}
-            {{#if isCardsetOwner this.cardset_id}}
-                <div class="col-xs-12 col-sm-3 col-md-6">
-                    <br>
-                    <button id="cardDelete"
-                            class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right" {{isDisabled}}
-                            tabindex="16" data-toggle="modal"
-                            data-target="#deleteCardModal">{{_
-                            "deletecard"}}</button>
-                </div>
-            {{/if}}
+            {{#unless learningActive}}
+                {{#if isCardsetOwner this.cardset_id}}
+                    <div class="col-xs-12 col-sm-3 col-md-6">
+                        <br>
+                        <button id="cardDelete"
+                                class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right"
+                                tabindex="16" data-toggle="modal"
+                                data-target="#deleteCardModal">{{_
+                                "deletecard"}}</button>
+                    </div>
+                {{/if}}
+            {{/unless}}
         {{/if}}
     </div>
 </template>
@@ -390,10 +392,12 @@
                                                 (<span
                                                     class="cardFrontHeader"
                                                     style="display: {{#if gotDictionary}}{{#if
-                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{getFrontTitle}})</span><span
+                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{getFrontTitle}}
+                                                )</span><span
                                                     class="cardBackHeader"
                                                     style="display: {{#if gotDictionary}}{{#unless
-                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}})</span>{{/unless}}</span><br>
+                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}}
+                                                )</span>{{/unless}}</span><br>
                                         {{#if gotDifficultyLevel}}
                                             {{#unless gotNotesForDifficultyLevel}}{{_ "difficulty"}}:{{/unless}}
                                             <strong>{{getDifficultyName}}</strong>

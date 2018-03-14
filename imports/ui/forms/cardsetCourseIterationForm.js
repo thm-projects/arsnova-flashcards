@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
+import {Cardsets} from "../../api/cardsets.js";
 import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName} from '../../api/cardTypes';
 
@@ -477,6 +478,13 @@ Template.cardsetCourseIterationFormContent.helpers({
 	getShuffleModuleLink: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").moduleLink : "";
+		}
+	},
+	learningActive: function () {
+		if (cardsetRoute()) {
+			return Cardsets.findOne({_id: Router.current().params._id}).learningActive;
+		}  else {
+			return false;
 		}
 	}
 });

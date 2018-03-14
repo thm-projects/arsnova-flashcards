@@ -757,9 +757,6 @@ Template.btnCard.helpers({
 	},
 	learningActive: function () {
 		return Cardsets.findOne(Router.current().params._id).learningActive;
-	},
-	isDisabled: function () {
-		return !(Cardsets.findOne(Router.current().params._id).learningActive) ? '' : 'disabled';
 	}
 });
 

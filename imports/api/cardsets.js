@@ -533,6 +533,10 @@ Meteor.methods({
 			}
 		}
 
+		if (cardset.learningActive) {
+			cardType = cardset.cardType;
+		}
+
 		Cardsets.update(id, {
 			$set: {
 				name: name.trim(),
