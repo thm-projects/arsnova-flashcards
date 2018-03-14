@@ -21,8 +21,15 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (min-width: 960px) {
-        font-size: 50px;
+      @media screen and (min-width: 900px) {
+        font-size: 60px;
+        font-weight: bold;
+      }
+    }
+
+    h2 {
+      @media screen and (min-width: 760px) {
+        font-size: 40px;
         font-weight: bold;
       }
     }
@@ -94,7 +101,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   padding: 12px 10px;
 }
 
-@media (max-width: 400px) {
+@media (min-width: 400px) {
   #login img {
     width: 62px !important;
   }
@@ -142,7 +149,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   font-size: 4.5vw;
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1000px) {
   .color-dot:before {
     //font-size: 0.3em; /* Fallback for old devices */
     font-size: 6vw;

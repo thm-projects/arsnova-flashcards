@@ -453,7 +453,7 @@
     <div class="panel panel-default">
         <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                <h1>Das Wichtigste zur Bedienung von .cards</h1>
+                <h1>Das Wichtigste zur Bedienung</h1>
             {{else}}
                 <h1>Help</h1>
             {{/if}}
@@ -479,8 +479,9 @@
                         hat nur Zugang zu Karteien mit dem blauen Label "Free", es sei denn, er oder sie hat ein Abonnement
                         oder zahlt einzeln für Edu- oder Pro-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
                     </li>
-                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine HTML5-App, die WebSocket-Technologie im Online-Betrieb
-                        verwendet. Ohne eine WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem
+                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine HTML5-App, die WebSocket-Technologie im
+                        Online-Betrieb
+                        verwendet. Ohne WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem
                         Browser verwaltet. Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz hast.
                     </li>
                 </ul>
@@ -488,14 +489,16 @@
                 <hr/>
                 <br/>
 
-                <h2 id="poolHelp">Veröffentlichte Karteien</h2>
+                <h2 id="poolHelp">Pool der veröffentlichten Karteien</h2>
                 <a href="/img/help/de/Pool.png" data-lightbox="img-1" data-title="Veröffentlichte Karteien">
                     <img src="/img/help/de/Pool.png" alt="Veröffentlichte Karteien"
                          class="img-responsive center-block">
                 </a>
                 <ul class="thm-numbering">
                     <li><strong>Filteroptionen:</strong> Karteien können im Tabellenkopf gefiltert werden
-                        (Thema, Autor/in, Studiengang etc.) oder durch Klick auf einen Eintrag in den Spalten rechts vom Thema.
+                        (Karteityp, Autor/in, Studiengang, Modul, Bonus) oder durch Klick auf einen Eintrag in den Spalten rechts
+                        vom
+                        Thema.
                     </li>
                     <li><strong>Auswahl einer Kartei:</strong> Klickst du auf das Thema einer bestimmten Kartei, so
                         wird die
@@ -504,39 +507,39 @@
                     </li>
                 </ul>
 
-                <hr/>
-                <br/>
+                <!--
 
-                <h2 id="courseIterationsHelp">Kurse</h2>
-                <p>
-                    Kurs erstellen <span class="thm-numbering-standalone">A</span>
-                </p>
-                <h2 id="createHelp">Meine Karteien</h2>
-                <h3 id="shuffleHelp">Karteien mischen</h3>
+    <br/>
+                    <h2 id="courseIterationsHelp">Kurse</h2>
+                    <p>
+                        Kurs erstellen <span class="thm-numbering-standalone">A</span>
+                    </p>
+                    <h2 id="createHelp">Meine Karteien</h2>
+                    <h3 id="shuffleHelp">Karteien mischen</h3>
 
-                <h2 id="studyWorkloadHelp">Mein Lernpensum</h2>
-                <h3 id="progressUserHelp">Mein Lernstand</h3>
+                    <h2 id="studyWorkloadHelp">Mein Lernpensum</h2>
+                    <h3 id="progressUserHelp">Mein Lernstand</h3>
 
-                <h2 id="cardsetHelp">Kartei</h2>
-                <h3 id="editCardHelp">Karte bearbeiten</h3>
-                <h3 id="previewHelp">Kostenpflichtige Kartei</h3>
-                <h3 id="leitnerHelp">Wiederholungen nach Leitner</h3>
-                <h3 id="leitnerIntervalHelp">Leitner Intervall</h3>
-                <h3 id="cardsetManageHelp">Kartei Vvrwalten</h3>
-                <h3 id="wozniakHelp">Wiederholungen nach Woźniak</h3>
-                <h3 id="selectionHelp">Karten fürs Lernen auswählen</h3>
-                <h3 id="cardsetEditorsHelp">Bearbeitungsrechte</h3>
-                <h3 id="progressCardsetHelp">Lernstatistik der Lernphase</h3>
+                    <h2 id="cardsetHelp">Kartei</h2>
+                    <h3 id="editCardHelp">Karte bearbeiten</h3>
+                    <h3 id="previewHelp">Kostenpflichtige Kartei</h3>
+                    <h3 id="leitnerHelp">Wiederholungen nach Leitner</h3>
+                    <h3 id="leitnerIntervalHelp">Leitner Intervall</h3>
+                    <h3 id="cardsetManageHelp">Kartei Vvrwalten</h3>
+                    <h3 id="wozniakHelp">Wiederholungen nach Woźniak</h3>
+                    <h3 id="selectionHelp">Karten fürs Lernen auswählen</h3>
+                    <h3 id="cardsetEditorsHelp">Bearbeitungsrechte</h3>
+                    <h3 id="progressCardsetHelp">Lernstatistik der Lernphase</h3>
 
-                <h2>Profil</h2>
-                <h3 id="profileOverviewHelp">Lernaktivität</h3>
-                <h3 id="profileMembershipHelp">Mitgliedschaft</h3>
-                <h3 id="profileBillingHelp">Abrechnung</h3>
-                <h3 id="profileNotificationsHelp">Benachrichtigungen</h3>
-                <h3 id="profileSettingsHelp">Mein Profil</h3>
-                <h3 id="profileRequestHelp">Pro-Anfragen / Karteifreigabe</h3>
-                <h2 id="learningHelp">Lernmodus</h2>
-
+                    <h2>Profil</h2>
+                    <h3 id="profileOverviewHelp">Lernaktivität</h3>
+                    <h3 id="profileMembershipHelp">Mitgliedschaft</h3>
+                    <h3 id="profileBillingHelp">Abrechnung</h3>
+                    <h3 id="profileNotificationsHelp">Benachrichtigungen</h3>
+                    <h3 id="profileSettingsHelp">Mein Profil</h3>
+                    <h3 id="profileRequestHelp">Pro-Anfragen / Karteifreigabe</h3>
+                    <h2 id="learningHelp">Lernmodus</h2>
+    -->
             {{else}}
             {{/if}}
         </div>
@@ -566,7 +569,7 @@
                         <p>
                             Den digitalen Karten fehlt zwar die Haptik des Papiers und die Gesamtschau
                             (Foto zum Wikipedia-Begriff <a href="https://de.wikipedia.org/wiki/Zettelkasten"
-                                                  target="_blank">Zettelkasten</a>, Kai Schreiber, CC BY-SA 2.0),
+                                                           target="_blank">Zettelkasten</a>, Kai Schreiber, CC BY-SA 2.0),
                             dafür haben sie aber unbestreitbare Vorteile:
                         </p>
                         <ul>
@@ -931,7 +934,7 @@
                 <h2>Service provider</h2>
                 <p>
                     The operation of the web application <b>.cards</b> under <a href="https://arsnova.cards"
-                                                                                   target="_blank">
+                                                                                target="_blank">
                     arsnova.cards </a> is a free service (software as a service) of the
                     TransMIT company
                     for Technologietransfer mbH, project area for mobile applications.

@@ -442,27 +442,29 @@
                     {{/if}}
                 {{/unless}}
                 {{#if enableIfPublished}}
-                    {{#if isCardsetOwner _id}}
-                        {{#if isInRole 'lecturer'}}
-                            <button id="startStopLearning"
-                                    class="btn btn-default btn-raised startStopLearn btn-block {{#if
-                                            learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
-                                    type="button"
-                                    data-toggle="modal"
-                                    data-target="{{#unless
-                                            learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
-                                {{#if learningActive}}
-                                    {{_ "sidebar-nav.stopLearning"}}
-                                {{else}}
-                                    {{_ "sidebar-nav.startLearning"}}
-                                {{/if}}
+                    {{#if gotLearningModes}}
+                        {{#if isCardsetOwner _id}}
+                            {{#if isInRole 'lecturer'}}
+                                <button id="startStopLearning"
+                                        class="btn btn-default btn-raised startStopLearn btn-block {{#if
+                                                learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
+                                        type="button"
+                                        data-toggle="modal"
+                                        data-target="{{#unless
+                                                learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                    {{#if learningActive}}
+                                        {{_ "sidebar-nav.stopLearning"}}
+                                    {{else}}
+                                        {{_ "sidebar-nav.startLearning"}}
+                                    {{/if}}
+                                </button>
+                            {{/if}}
+                        {{/if}}
+                        {{#if learningActiveAndEditor}}
+                            <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
+                                {{_ "box_stats"}}
                             </button>
                         {{/if}}
-                    {{/if}}
-                    {{#if learningActiveAndEditor}}
-                        <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
-                            {{_ "box_stats"}}
-                        </button>
                     {{/if}}
                     {{#unless isEditor}}
                         <button id="report_button"

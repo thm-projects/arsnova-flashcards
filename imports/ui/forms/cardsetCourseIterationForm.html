@@ -40,30 +40,32 @@
                     <span id="helpSetName" class="help-block name"></span>
                 </div>
                 <br>
-                <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
-                        "cardType"}}</label>
-                <div class="dropdown">
-                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                        <button id="setCardType" type="button"
-                                class="btn btn-raised btn-default setCardTypeDropdown longButton"
-                                data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"
-                                value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
-                            {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
-                        </button>
-                        <button type="button"
-                                class="btn btn-raised dropdown-toggle setCardTypeDropdown"
-                                data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only"></span>
-                        </button>
-                        <ul class="dropdown-menu btn-raised longButton">
-                            {{> cardTypesList}}
-                        </ul>
-                        <span id="helpSetCardType" class="help-block cardType"></span>
+                {{#unless learningActive}}
+                    <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
+                            "cardType"}}</label>
+                    <div class="dropdown">
+                        <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                            <button id="setCardType" type="button"
+                                    class="btn btn-raised btn-default setCardTypeDropdown longButton"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"
+                                    value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
+                                {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
+                            </button>
+                            <button type="button"
+                                    class="btn btn-raised dropdown-toggle setCardTypeDropdown"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only"></span>
+                            </button>
+                            <ul class="dropdown-menu btn-raised longButton">
+                                {{> cardTypesList}}
+                            </ul>
+                            <span id="helpSetCardType" class="help-block cardType"></span>
+                        </div>
                     </div>
-                </div>
+                {{/unless}}
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
