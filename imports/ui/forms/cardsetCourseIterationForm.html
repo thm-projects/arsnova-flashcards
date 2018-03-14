@@ -40,31 +40,42 @@
                     <span id="helpSetName" class="help-block name"></span>
                 </div>
                 <br>
-                {{#unless learningActive}}
-                    <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
-                            "cardType"}}</label>
-                    <div class="dropdown">
-                        <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                            <button id="setCardType" type="button"
-                                    class="btn btn-raised btn-default setCardTypeDropdown longButton"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"
-                                    value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
-                                {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
-                            </button>
-                            <button type="button"
-                                    class="btn btn-raised dropdown-toggle setCardTypeDropdown"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only"></span>
-                            </button>
-                            <ul class="dropdown-menu btn-raised longButton">
-                                {{> cardTypesList}}
-                            </ul>
-                            <span id="helpSetCardType" class="help-block cardType"></span>
+                {{#unless isCourseIteration}}
+                    {{#unless learningActive}}
+                        <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
+                                "cardType"}}</label>
+                        <div class="dropdown">
+                            <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                <button id="setCardType" type="button"
+                                        class="btn btn-raised btn-default setCardTypeDropdown longButton"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"
+                                        value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
+                                    {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
+                                </button>
+                                <button type="button"
+                                        class="btn btn-raised dropdown-toggle setCardTypeDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-raised longButton">
+                                    {{> cardTypesList}}
+                                </ul>
+                                <span id="helpSetCardType" class="help-block cardType"></span>
+                            </div>
                         </div>
-                    </div>
+                    {{/unless}}
+                    {{#if gotDifficultyLevel}}
+                        <br>
+                        <label id="setDifficultyLabel" class="col-md-3 control-label" for="setDifficulty">{{#if
+                                gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                                "difficulty"}}{{/if}}</label>
+                        <div id="setDifficulty" class="col-md-9 cardtext editorElement">
+                            {{> difficultyEditor}}
+                        </div>
+                    {{/if}}
                 {{/unless}}
             </div>
             <div class="panel panel-primary">
@@ -246,4 +257,75 @@
                     "modal-dialog.save"}}{{/if}}</button>
         </div>
     {{/unless}}
+</template>
+
+<template name="difficultyEditor">
+    <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
+        {{#if gotNotesForDifficultyLevel}}
+            <label id="difficulty0"
+                   class="col-xs-6 col-sm-3 btn btn-default {{#if
+                           gotNotesForDifficultyLevel}}btn-orange{{else}}btn-white{{/if}} {{#if
+                           isDifficultyChecked 0}}active{{/if}}"
+                   data-color="0">
+                {{#if isDifficultyChecked 0}}
+                    <input type="radio" name="difficulty" value="0" checked tabindex="3">
+                {{else}}
+                    <input type="radio" name="difficulty" value="0">
+                {{/if}}
+                {{#unless gotNotesForDifficultyLevel}}
+                    {{_ "difficulty0"}}
+                {{else}}
+                    {{_ "difficultyNotes0"}}
+                {{/unless}}
+            </label>
+        {{/if}}
+        <label id="difficulty1"
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
+                       isDifficultyChecked 1}}active{{/if}}"
+               data-color="1">
+            {{#if isDifficultyChecked 1}}
+                <input type="radio" name="difficulty" value="1" checked tabindex="3">
+            {{else}}
+                <input type="radio" name="difficulty" value="1">
+            {{/if}}
+            {{#unless gotNotesForDifficultyLevel}}
+                {{_ "difficulty1"}}
+            {{else}}
+                {{_ "difficultyNotes1"}}
+            {{/unless}}
+        </label>
+        <label id="difficulty2"
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
+                       isDifficultyChecked 2}}active{{/if}}"
+               data-color="2">
+            {{#if isDifficultyChecked 2}}
+                <input type="radio" name="difficulty" value="2" checked tabindex="3">
+            {{else}}
+                <input type="radio" name="difficulty" value="2">
+            {{/if}}
+            {{#unless gotNotesForDifficultyLevel}}
+                {{_ "difficulty2"}}
+            {{else}}
+                {{_ "difficultyNotes2"}}
+            {{/unless}}
+        </label>
+        <label id="difficulty3"
+               class="col-xs-6 {{#if
+                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
+                       isDifficultyChecked 3}}active{{/if}}"
+               data-color="3">
+            {{#if isDifficultyChecked 3}}
+                <input type="radio" name="difficulty" value="3" checked tabindex="3">
+            {{else}}
+                <input type="radio" name="difficulty" value="3">
+            {{/if}}
+            {{#unless gotNotesForDifficultyLevel}}
+                {{_ "difficulty3"}}
+            {{else}}
+                {{_ "difficultyNotes3"}}
+            {{/unless}}
+        </label>
+    </div>
 </template>

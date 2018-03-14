@@ -311,7 +311,8 @@ Template.shuffle.helpers({
 				name: 1,
 				description: 1,
 				quantity: 1,
-				cardType: 1
+				cardType: 1,
+				difficulty: 1
 			},
 			sort: {name: 1}
 		});

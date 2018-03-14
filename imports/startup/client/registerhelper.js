@@ -12,7 +12,7 @@ import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {getUserLanguage} from "../../startup/client/i18n";
-import {gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("collegesCourses");
 
@@ -382,13 +382,20 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+	if (!gotDifficultyLevel(cardType)) {
+		if (backgroundStyle === 1) {
+			return 'box-difficultyLined0';
+		} else {
+			return 'box-difficultyBlank0';
+		}
+	}
 	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
 		difficulty = 1;
 	}
 	if (backgroundStyle === 1) {
 		switch (difficulty) {
 			case 0:
-				if (cardType === 2) {
+				if (gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyLinedNote0';
 				} else {
 					return 'box-difficultyLined0';
@@ -406,7 +413,7 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 	} else {
 		switch (difficulty) {
 			case 0:
-				if (cardType === 2) {
+				if (gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyBlankNote0';
 				} else {
 					return 'box-difficultyBlank0';
@@ -433,29 +440,6 @@ Template.registerHelper("checkActiveRouteName", function () {
 	if (currentRoute !== Session.get('previousRouteName')) {
 		Session.set('previousRouteName', currentRoute);
 		toggleFullscreen(true);
-	}
-});
-
-Template.registerHelper("getCardBackgroundList", function (difficulty, cardType) {
-	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
-		difficulty = 1;
-	}
-	switch (difficulty) {
-		case 0:
-			if (cardType !== 2) {
-				return 'box-difficulty-list0';
-			} else {
-				return 'box-difficultyNote-list0';
-			}
-			break;
-		case 1:
-			return 'box-difficulty-list1';
-		case 2:
-			return 'box-difficulty-list2';
-		case 3:
-			return 'box-difficulty-list3';
-		default:
-			return '';
 	}
 });
 

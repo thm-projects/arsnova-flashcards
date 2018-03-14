@@ -204,13 +204,12 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, difficulty, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	addCard: function (cardset_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
-		check(difficulty, Number);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
@@ -238,7 +237,7 @@ Meteor.methods({
 			front: front,
 			back: back,
 			cardset_id: cardset_id,
-			difficulty: difficulty,
+			difficulty: cardset.difficulty,
 			lecture: lecture,
 			centerTextElement: centerTextElement,
 			date: date,
@@ -355,13 +354,12 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, difficulty, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
-		check(difficulty, Number);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
@@ -395,7 +393,6 @@ Meteor.methods({
 				hint: hint,
 				front: front,
 				back: back,
-				difficulty: difficulty,
 				lecture: lecture,
 				centerTextElement: centerTextElement,
 				date: date,

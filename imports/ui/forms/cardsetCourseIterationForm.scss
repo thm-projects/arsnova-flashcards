@@ -1,0 +1,49 @@
+#difficultyGroup {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0;
+  width: 100%;
+}
+
+#setDifficulty {
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+#setDifficulty .btn, #cardType .btn {
+  background-color: $color_button_difficulty_inactive;
+  padding: 9px 0 9px 0;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  @media(max-width: 767px) {
+    padding: 20px 0 20px 0;
+  }
+}
+
+#setDifficulty .btn-info {
+  color: $color_button_difficulty1 !important;
+}
+
+#setDifficulty .btn-info.active {
+  color: $white !important;
+  background-color: $color_button_difficulty1;
+}
+
+#setDifficulty .btn-success {
+  color: $color_button_difficulty2 !important;
+}
+
+#setDifficulty .btn-success.active {
+  color: $white !important;
+  background-color: $color_button_difficulty2;
+}
+
+#setDifficulty .btn-danger {
+  color: $color_button_difficulty3 !important;
+}
+
+#setDifficulty .btn-danger.active {
+  color: $white !important;
+  background-color: $color_button_difficulty3;
+}

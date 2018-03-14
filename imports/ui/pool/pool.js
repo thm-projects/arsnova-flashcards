@@ -6,7 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Leitner} from "../../api/learned.js";
 import "./pool.html";
-import {getCardTypeName} from "../../api/cardTypes";
+import {cardTypeWithNotesForDifficultyLevel, getCardTypeName} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 
@@ -19,6 +19,7 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterModule', false);
+Session.setDefault('poolFilterDifficulty');
 Session.setDefault('poolFilterLearnphase');
 Session.setDefault('poolFilterRating');
 Session.setDefault('poolFilter', ["free", "edu", "pro"]);
@@ -33,6 +34,8 @@ export function prepareQuery() {
 	query.kind = {$in: Session.get('poolFilter')};
 	if (Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined) {
 		query.cardType = Session.get('poolFilterCardType');
+	} else {
+		query.cardType = {$ne: Number(cardTypeWithNotesForDifficultyLevel)};
 	}
 	if (Session.get('poolFilterAuthor')) {
 		query.owner = Session.get('poolFilterAuthor');
@@ -50,6 +53,9 @@ export function prepareQuery() {
 		}
 	} else {
 		query.moduleActive = false;
+	}
+	if (Session.get('poolFilterDifficulty')) {
+		query.difficulty = Number(Session.get('poolFilterDifficulty'));
 	}
 	if (Session.get('poolFilterLearnphase')) {
 		query.learningActive = Session.get('poolFilterLearnphase');
@@ -131,6 +137,7 @@ function resetFilters() {
 	Session.set('poolFilterCourse');
 	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
+	Session.set('poolFilterDifficulty');
 	Session.set('poolFilterRating');
 	Session.set('poolFilter', ["free", "edu", "pro"]);
 	Session.set('poolFilterLearnphase');
@@ -189,6 +196,12 @@ Template.category.helpers({
 		prepareQuery();
 		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	},
+	getDifficulty: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(query, {sort: {"difficulty": 1}}).fetch(), function (item) {
+			return item.difficulty;
+		});
+	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
 	},
@@ -239,6 +252,15 @@ Template.category.helpers({
 	},
 	poolFilterModule: function (module) {
 		return Session.get('poolFilterModule') === module;
+	},
+	getDifficultyName: function () {
+		return TAPi18n.__('difficulty' + this.difficulty);
+	},
+	hasDifficultyFilter: function () {
+		return Session.get('poolFilterModule');
+	},
+	poolFilterDifficulty: function () {
+		return Session.get('poolFilterDifficulty') === this.difficulty;
 	},
 	hasLearnphaseFilter: function () {
 		return Session.get('poolFilterLearnphase');
@@ -400,6 +422,10 @@ Template.category.events({
 	},
 	'click .filterNoModule': function () {
 		Session.set('poolFilterNoModule', true);
+	},
+	'click .filterDifficulty': function (event) {
+		Session.set('poolFilterDifficulty', $(event.target).data('id'));
+		resetInfiniteBar();
 	},
 	'click .filterLearnphase': function () {
 		filterLearnphase(event);
