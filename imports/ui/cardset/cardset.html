@@ -103,6 +103,12 @@
                         {{getCardType}}
                     </td>
                 </tr>
+                <tr>
+                    <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_ "difficulty"}}{{/if}}:</strong></td>
+                    <td>
+                        {{getDifficultyName}}
+                    </td>
+                </tr>
                 {{#if ratingEnabled}}
                     <tr>
                         <td><strong>{{_ "cardset.info.rating"}}:</strong></td>

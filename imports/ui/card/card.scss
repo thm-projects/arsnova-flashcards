@@ -1,40 +1,3 @@
-$input_difficulty0: #FFFFFF;
-$input_difficulty1: #5cb85c;
-$input_difficulty2: #5bc0de;
-$input_difficulty3: #d9534f;
-$background_difficultyNote0: ivory;
-$background_difficulty1: honeydew;
-$background_difficulty2: lightcyan;
-$background_difficulty3: mistyrose;
-$color_difficultyNote0: #F8E1AE;
-$color_difficulty0: #E6EAE9;
-$color_difficulty1: rgba(92, 184, 92, 0.3);
-$color_difficulty2: rgba(91, 192, 222, 0.3);
-$color_difficulty3: rgba(217, 83, 79, 0.3);
-$background_lecture: papayawhip;
-$background_hint: lightseagreen;
-$color_item_selection_border: $color_item_separator;
-
-$color_card_header_text: $color_thm_gray;
-
-#difficultyGroup, #cardTypeGroup {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding: 0;
-  width: 100%;
-}
-
-#difficulty .btn, #cardType .btn {
-  background-color: $color_wild_sand_approx;
-  padding: 9px 0 9px 0;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
-  @media(max-width: 767px) {
-    padding: 20px 0 20px 0;
-  }
-}
-
 .btn-white.active {
   color: $black !important;
   background-color: white !important;
@@ -47,33 +10,6 @@ $color_card_header_text: $color_thm_gray;
 .btn-orange.active {
   color: $white !important;
   background-color: $color_thm_orange !important;
-}
-
-#difficulty .btn-info {
-  color: $input_difficulty1 !important;
-}
-
-#difficulty .btn-info.active {
-  color: $white !important;
-  background-color: $input_difficulty1;
-}
-
-#difficulty .btn-success {
-  color: $input_difficulty2 !important;
-}
-
-#difficulty .btn-success.active {
-  color: $white !important;
-  background-color: $input_difficulty2;
-}
-
-#difficulty .btn-danger {
-  color: $input_difficulty3 !important;
-}
-
-#difficulty .btn-danger.active {
-  color: $white !important;
-  background-color: $input_difficulty3;
 }
 
 #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {

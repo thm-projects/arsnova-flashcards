@@ -178,6 +178,9 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	cardType: {
 		type: Number
+	},
+	difficulty: {
+		type: Number
 	}
 });
 
@@ -233,8 +236,9 @@ Meteor.methods({
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 * @param {Number} cardType - The type that this cardset allows
+	 * @param {Number} difficulty - The difficulty level of the cardset
 	 */
-	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, cardType) {
+	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, cardType, difficulty) {
 		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
@@ -252,6 +256,7 @@ Meteor.methods({
 		check(course, String);
 		check(shuffled, Boolean);
 		check(cardType, Number);
+		check(difficulty, Number);
 		let quantity;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
@@ -305,7 +310,8 @@ Meteor.methods({
 			wordcloud: false,
 			shuffled: shuffled,
 			cardGroups: cardGroups,
-			cardType: cardType
+			cardType: cardType,
+			difficulty: difficulty
 		});
 	},
 	/**
@@ -504,8 +510,9 @@ Meteor.methods({
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 * @param {Number} cardType - The type that this cardset allows
+	 * @param {Number} difficulty - The difficulty level of the cardset
 	 */
-	updateCardset: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, cardType) {
+	updateCardset: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, cardType, difficulty) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
@@ -520,6 +527,7 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 		check(cardType, Number);
+		check(difficulty, Number);
 
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
@@ -549,7 +557,8 @@ Meteor.methods({
 				moduleLink: moduleLink.trim(),
 				college: college.trim(),
 				course: course.trim(),
-				cardType: cardType
+				cardType: cardType,
+				difficulty: difficulty
 			}
 		});
 
@@ -558,7 +567,8 @@ Meteor.methods({
 			},
 			{
 				$set: {
-					cardType: cardType
+					cardType: cardType,
+					difficulty: difficulty
 				}
 			},
 			{

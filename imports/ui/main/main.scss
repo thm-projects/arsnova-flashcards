@@ -1,4 +1,4 @@
-//colors
+//global
 $color_athens_gray_approx: rgb(236, 240, 241);
 $white: rgb(255, 255, 255);
 $color_bilbao_approx: rgb(50, 129, 20);
@@ -19,7 +19,9 @@ $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
 $background_hint: $color_thm_green;
+$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
+//welcome page
 $color_footer_background: $color_thm_green;
 $color_footer_info_navigation_text: white;
 $color_footer_info_navigation_text_hover: white;
@@ -37,6 +39,7 @@ $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
 $color_placeholder: $color_thm_dark_blue;
 
+//info page
 $color_info_navigation_text: black;
 $color_info_navigation_text_active: white;
 $color_info_navigation_text_hover: white;
@@ -53,7 +56,30 @@ $font_size_info_h1: 20px;
 $font_size_info_h2: 18px;
 $font_size_info_h3: 16px;
 
-$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+//editor navigation
+$color_item_selection_border: $color_item_separator;
+
+//difficulty
+$input_difficulty0: #FFFFFF;
+$input_difficulty1: #5cb85c;
+$input_difficulty2: #5bc0de;
+$input_difficulty3: #d9534f;
+$background_difficultyNote0: ivory;
+$background_difficulty1: honeydew;
+$background_difficulty2: lightcyan;
+$background_difficulty3: mistyrose;
+$background_difficulty_inactive: $color_wild_sand_approx;
+$color_difficultyNote0: #F8E1AE;
+$color_difficulty0: #E6EAE9;
+$color_difficulty1: rgba(92, 184, 92, 0.3);
+$color_difficulty2: rgba(91, 192, 222, 0.3);
+$color_difficulty3: rgba(217, 83, 79, 0.3);
+
+//card
+$background_lecture: papayawhip;
+$background_hint: lightseagreen;
+
+$color_card_header_text: $color_thm_gray;
 
 html {
   position: relative;

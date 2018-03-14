@@ -40,20 +40,8 @@
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
-        {{#if gotDifficultyLevel}}
-            <div id="difficulty" class="col-md-6 cardtext editorElement">
-                {{#if gotNotesForDifficultyLevel}}
-                    <h5>{{_ "difficulty"}}</h5>
-                {{else}}
-                    <h5>{{_ "difficultyNotes"}}</h5>
-                {{/if}}
-                {{> difficultyEditor}}
-            </div>
-        {{/if}}
-    </div>
-    <div class="row">
         {{#if gotLearningGoal}}
-            <div id="learningGoalLevel" class="col-md-6 col-md-offset-6 cardtext editorElement">
+            <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
             </div>
@@ -93,77 +81,6 @@
             {{> flashcards cardset=this}}
         </div>
         {{> btnCard}}
-    </div>
-</template>
-
-<template name="difficultyEditor">
-    <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        {{#if gotNotesForDifficultyLevel}}
-            <label id="difficulty0"
-                   class="col-xs-6 col-sm-3 btn btn-default {{#if
-                           gotNotesForDifficultyLevel}}btn-orange{{else}}btn-white{{/if}} {{#if
-                           isDifficultyChecked 0}}active{{/if}}"
-                   data-color="0">
-                {{#if isDifficultyChecked 0}}
-                    <input type="radio" name="difficulty" value="0" checked tabindex="3">
-                {{else}}
-                    <input type="radio" name="difficulty" value="0">
-                {{/if}}
-                {{#unless gotNotesForDifficultyLevel}}
-                    {{_ "difficulty0"}}
-                {{else}}
-                    {{_ "difficultyNotes0"}}
-                {{/unless}}
-            </label>
-        {{/if}}
-        <label id="difficulty1"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
-                       isDifficultyChecked 1}}active{{/if}}"
-               data-color="1">
-            {{#if isDifficultyChecked 1}}
-                <input type="radio" name="difficulty" value="1" checked tabindex="3">
-            {{else}}
-                <input type="radio" name="difficulty" value="1">
-            {{/if}}
-            {{#unless gotNotesForDifficultyLevel}}
-                {{_ "difficulty1"}}
-            {{else}}
-                {{_ "difficultyNotes1"}}
-            {{/unless}}
-        </label>
-        <label id="difficulty2"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
-                       isDifficultyChecked 2}}active{{/if}}"
-               data-color="2">
-            {{#if isDifficultyChecked 2}}
-                <input type="radio" name="difficulty" value="2" checked tabindex="3">
-            {{else}}
-                <input type="radio" name="difficulty" value="2">
-            {{/if}}
-            {{#unless gotNotesForDifficultyLevel}}
-                {{_ "difficulty2"}}
-            {{else}}
-                {{_ "difficultyNotes2"}}
-            {{/unless}}
-        </label>
-        <label id="difficulty3"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
-                       isDifficultyChecked 3}}active{{/if}}"
-               data-color="3">
-            {{#if isDifficultyChecked 3}}
-                <input type="radio" name="difficulty" value="3" checked tabindex="3">
-            {{else}}
-                <input type="radio" name="difficulty" value="3">
-            {{/if}}
-            {{#unless gotNotesForDifficultyLevel}}
-                {{_ "difficulty3"}}
-            {{else}}
-                {{_ "difficultyNotes3"}}
-            {{/unless}}
-        </label>
     </div>
 </template>
 
@@ -398,21 +315,8 @@
                                                     style="display: {{#if gotDictionary}}{{#unless
                                                             reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}}
                                                 )</span>{{/unless}}</span><br>
-                                        {{#if gotDifficultyLevel}}
-                                            {{#unless gotNotesForDifficultyLevel}}{{_ "difficulty"}}:{{/unless}}
-                                            <strong>{{getDifficultyName}}</strong>
-                                            {{#if gotNotesForDifficultyLevel}}
-                                                <span class="cardBackHeader"
-                                                      style="display: {{#if gotDictionary}}{{#unless
-                                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                            ({{getBackTitle}})
-                                            </span>
-                                            {{/if}}
-                                            {{#if gotLearningGoal}}
-                                                | {{_ "learning-goal.name"}}:
-                                                <strong>{{getLearningGoalName}}</strong>
-                                            {{/if}}
-                                        {{else}}
+                                        {{#if gotLearningGoal}}
+                                            {{_ "learning-goal.name"}}: <strong>{{getLearningGoalName}}</strong>
                                         {{/if}}
                                     </div>
                                     <div class="cardNumber">

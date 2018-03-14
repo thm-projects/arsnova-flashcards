@@ -4,7 +4,7 @@ import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
 import {image, tex} from '/imports/ui/card/card.js';
-import {getCardTypeName} from '../../api/cardTypes';
+import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
@@ -38,6 +38,18 @@ function deactivateModule() {
 	$('.moduleRadioButton')[1].checked = true;
 	$('.moduleBody').css('display', 'none');
 	Session.set('moduleActive', false);
+}
+
+function adjustDifficultyColor() {
+	if (cardsetRoute()) {
+		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+	} else {
+		let difficulty = 0;
+		if (!gotNotesForDifficultyLevel(Session.get('cardType'))) {
+			difficulty = 1;
+		}
+		Session.set('difficultyColor', difficulty);
+	}
 }
 
 export function cleanModal() {
@@ -202,6 +214,7 @@ export function cleanModal() {
 
 	if (createRoute() || courseIterationRoute()) {
 		deactivateModule();
+		Session.set('cardType', Number(0));
 	} else if (shuffleRoute()) {
 		if (Session.get("ShuffleTemplate").moduleActive) {
 			activateModule();
@@ -215,6 +228,7 @@ export function cleanModal() {
 			deactivateModule();
 		}
 	}
+	adjustDifficultyColor();
 }
 
 export function saveCardset() {
@@ -301,7 +315,7 @@ export function saveCardset() {
 				Meteor.call("addCourseIteration", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 				$('#setCardsetCourseIterationFormModal').modal('hide');
 			} else {
-				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, Number(cardType), function (error, result) {
+				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), function (error, result) {
 					$('#setCardsetCourseIterationFormModal').modal('hide');
 					if (result) {
 						$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
@@ -317,7 +331,7 @@ export function saveCardset() {
 			if (courseIterationRoute()) {
 				Meteor.call("updateCourseIteration", name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
 			} else {
-				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Number(cardType));
+				Meteor.call("updateCardset", Router.current().params._id, name, description, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Number(cardType), Session.get('difficultyColor'));
 				Session.set('cardType', Number(cardType));
 			}
 			$('#setCardsetCourseIterationFormModal').modal('hide');
@@ -483,9 +497,15 @@ Template.cardsetCourseIterationFormContent.helpers({
 	learningActive: function () {
 		if (cardsetRoute()) {
 			return Cardsets.findOne({_id: Router.current().params._id}).learningActive;
-		}  else {
+		} else {
 			return false;
 		}
+	},
+	gotDifficultyLevel: function () {
+		return gotDifficultyLevel(Session.get('cardType'));
+	},
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(Session.get('cardType'));
 	}
 });
 
@@ -494,8 +514,11 @@ Template.cardsetCourseIterationFormContent.events({
 		saveCardset();
 	},
 	'click .cardType': function (evt) {
+		let cardType = $(evt.currentTarget).attr("data");
 		$('#setCardType').html($(evt.currentTarget).text());
-		$('#setCardType').val($(evt.currentTarget).attr("data"));
+		$('#setCardType').val(cardType);
+		Session.set('cardType', Number(cardType));
+		adjustDifficultyColor();
 		$('#setCardTypeLabel').css('color', '');
 		$('.setCardTypeDropdown').css('border-color', '');
 		$('#helpSetCardType').html('');
@@ -553,5 +576,26 @@ Template.cardsetCourseIterationFormContent.events({
 			Session.set('moduleActive', false);
 			$('.moduleBody').css('display', 'none');
 		}
+	}
+});
+
+/*
+ * ############################################################################
+ * difficultyEditor
+ * ############################################################################
+ */
+
+Template.difficultyEditor.helpers({
+	isDifficultyChecked: function (difficulty) {
+		return difficulty === Session.get('difficultyColor');
+	},
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(Session.get('cardType'));
+	}
+});
+
+Template.difficultyEditor.events({
+	'click #difficultyGroup': function (event) {
+		Session.set('difficultyColor', Number($(event.target).data('color')));
 	}
 });
