@@ -14,7 +14,7 @@
 
 #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
   color: white !important;
-  background-color: $input_difficulty2 !important;
+  background-color: $color_button_difficulty2 !important;
 }
 
 .MathJax {
@@ -73,18 +73,18 @@
                   to bottom,
                   $white,
                   $white 26px,
-                  $color_difficulty0 26px,
-                  $color_difficulty0 28px
+                  $color_background_difficulty0_lines 26px,
+                  $color_background_difficulty0_lines 28px
   );
 }
 
 .box-difficultyLinedNote0 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficultyNote0,
-                  $background_difficultyNote0 26px,
-                  $color_difficultyNote0 26px,
-                  $color_difficultyNote0 28px
+                  $color_background_difficulty0_note,
+                  $color_background_difficulty0_note 26px,
+                  $color_background_difficulty0_lines_note 26px,
+                  $color_background_difficulty0_lines_note 28px
   );
 }
 
@@ -93,7 +93,7 @@
 }
 
 .box-difficultyBlankNote0 {
-  background-color: $background_difficultyNote0;
+  background-color: $color_background_difficulty0_note;
 }
 
 .box-difficulty-list0 {
@@ -101,24 +101,24 @@
 }
 
 .box-difficultyNote-list0 {
-  background: $background_difficultyNote0;
+  background: $color_background_difficulty0_note;
 }
 
 .box-difficulty-list0:hover {
-  background: darken($background_difficultyNote0, 15%);
+  background: darken($color_background_difficulty0_note, 15%);
 }
 
 .box-difficultyNote-list0:hover {
-  background: darken($background_difficultyNote0, 15%);
+  background: darken($color_background_difficulty0_note, 15%);
 }
 
 .box-difficultyLined1 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty1,
-                  $background_difficulty1 26px,
-                  $color_difficulty1 26px,
-                  $color_difficulty1 28px
+                  $color_background_difficulty1,
+                  $color_background_difficulty1 26px,
+                  $color_background_difficulty1_lines 26px,
+                  $color_background_difficulty1_lines 28px
   );
 }
 
@@ -127,79 +127,79 @@
 }
 
 .box-difficultyBlank1 {
-  background-color: $background_difficulty1;
+  background-color: $color_background_difficulty1;
 }
 
 .box-difficulty-list1 {
-  background: $color_difficulty1;
+  background: $color_background_difficulty1_lines;
 }
 
 .box-difficulty-list1:hover {
-  background: darken($color_difficulty1, 15%);
+  background: darken($color_background_difficulty1_lines, 15%);
 }
 
 .box-difficultyLined2 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty2,
-                  $background_difficulty2 26px,
-                  $color_difficulty2 26px,
-                  $color_difficulty2 28px
+                  $color_background_difficulty2,
+                  $color_background_difficulty2 26px,
+                  $color_background_difficulty2_lines 26px,
+                  $color_background_difficulty2_lines 28px
   );
 }
 
 .box-difficultyBlank2 {
-  background-color: $background_difficulty2;
+  background-color: $color_background_difficulty2;
 }
 
 .box-difficulty-list2 {
-  background: $color_difficulty2;
+  background: $color_background_difficulty2_lines;
 }
 
 .box-difficulty-list2:hover {
-  background: darken($color_difficulty2, 15%);
+  background: darken($color_background_difficulty2_lines, 15%);
 }
 
 .box-difficultyLined3 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty3,
-                  $background_difficulty3 26px,
-                  $color_difficulty3 26px,
-                  $color_difficulty3 28px
+                  $color_background_difficulty3,
+                  $color_background_difficulty3 26px,
+                  $color_background_difficulty3_lines 26px,
+                  $color_background_difficulty3_lines 28px
   );
 }
 
 .box-difficultyBlank3 {
-  background: $background_difficulty3;
+  background: $color_background_difficulty3;
 }
 
 .box-difficulty-list3 {
-  background: $color_difficulty3;
+  background: $color_background_difficulty3_lines;
 }
 
 .box-difficulty-list3:hover {
-  background: darken($color_difficulty3, 15%);
+  background: darken($color_background_difficulty3_lines, 15%);
 }
 
 .box-difficultyBlank0-header, .box-difficultyLined0-header {
-  background: linear-gradient(to top, $color_difficulty0 0px, $color_difficulty0 4px, $white 5px, $white 100%);
+  background: linear-gradient(to top, $color_background_difficulty0_lines 0px, $color_background_difficulty0_lines 4px, $white 5px, $white 100%);
 }
 
 .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
-  background: linear-gradient(to top, $color_difficultyNote0 0px, $color_difficultyNote0 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
+  background: linear-gradient(to top, $color_background_difficulty0_lines_note 0px, $color_background_difficulty0_lines_note 4px, $color_background_difficulty0_note 5px, $color_background_difficulty0_note 100%);
 }
 
 .box-difficultyBlank1-header, .box-difficultyLined1-header {
-  background: linear-gradient(to top, $color_difficulty1 0px, $color_difficulty1 4px, $background_difficulty1 5px, $background_difficulty1 100%);
+  background: linear-gradient(to top, $color_background_difficulty1_lines 0px, $color_background_difficulty1_lines 4px, $color_background_difficulty1 5px, $color_background_difficulty1 100%);
 }
 
 .box-difficultyBlank2-header, .box-difficultyLined2-header {
-  background: linear-gradient(to top, $color_difficulty2 0px, $color_difficulty2 4px, $background_difficulty2 5px, $background_difficulty2 100%);
+  background: linear-gradient(to top, $color_background_difficulty2_lines 0px, $color_background_difficulty2_lines 4px, $color_background_difficulty2 5px, $color_background_difficulty2 100%);
 }
 
 .box-difficultyBlank3-header, .box-difficultyLined3-header {
-  background: linear-gradient(to top, $color_difficulty3 0px, $color_difficulty3 4px, $background_difficulty3 5px, $background_difficulty3 100%);
+  background: linear-gradient(to top, $color_background_difficulty3_lines 0px, $color_background_difficulty3_lines 4px, $color_background_difficulty3 5px, $color_background_difficulty3 100%);
 }
 
 @media(max-width: 767px) {

@@ -12,7 +12,7 @@ import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {getUserLanguage} from "../../startup/client/i18n";
-import {gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("collegesCourses");
 
@@ -382,6 +382,13 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+	if (!gotDifficultyLevel(cardType)) {
+		if (backgroundStyle === 1) {
+			return 'box-difficultyLined0';
+		} else {
+			return 'box-difficultyBlank0';
+		}
+	}
 	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
 		difficulty = 1;
 	}
