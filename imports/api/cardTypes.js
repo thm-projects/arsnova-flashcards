@@ -8,7 +8,7 @@ let cardTypesWithLearningModes = [0, 1, 3, 5, 6];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [0, 2, 3, 5, 6];
 let cardTypesWithLecture = [0];
-let cardTypeWithNotesForDifficultyLevel = [2];
+export let cardTypeWithNotesForDifficultyLevel = [2];
 export let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}];
 
 export function gotHint(cardType) {
