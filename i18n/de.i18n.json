@@ -674,28 +674,28 @@
     },
     "cardType6": {
       "name": "Befehlssatz",
-      "front": "Fachbegriff",
+      "front": "Befehl",
       "back": "Definition | Beschreibung",
       "placeholders": {
-        "front": "Fachbegriff",
-        "back": "Definition | Beschreibung des Fachbegriffs"
+        "front": "Befehl",
+        "back": "Definition | Beschreibung des Befehls"
       },
       "editorLabels": {
         "subject": "Thema"
       }
     },
     "cardType7": {
-      "name": "Abstracts",
-      "front": "Abstracts",
+      "name": "Abstract",
+      "front": "Abstract",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "front": "Zitat",
+        "front": "Abstract",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Titel"
       }
     }
   },
