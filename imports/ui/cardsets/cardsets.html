@@ -73,9 +73,7 @@
                     </div>
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                            <div class="col-xs-12 col-sm-12 panel panel-default {{#if
-                                    oddRow
-                                    @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                            <div class="col-xs-12 col-sm-12 panel panel-default {{getCardBackground this.difficulty this.cardType 0}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                                 {{> cardsetRow extendContext 'index' @index}}
                             </div>
                         {{/unless}}
@@ -106,9 +104,7 @@
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
             {{#each cardsetList}}
-                <div class="col-xs-12 panel panel-default {{#if
-                        oddRow
-                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 0}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
@@ -273,9 +269,7 @@
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
             </div>
             {{#each learnList}}
-                <div class="col-xs-12 panel panel-default {{#if
-                        oddRow
-                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 0}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}

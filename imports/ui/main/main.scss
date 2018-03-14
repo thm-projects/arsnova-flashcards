@@ -59,6 +59,9 @@ $font_size_info_h3: 16px;
 //editor navigation
 $color_item_selection_border: $color_item_separator;
 
+//item lists
+$color_item_separator_border_bottom: lighten($color_item_separator, 45%);
+
 //difficulty
 $input_difficulty0: #FFFFFF;
 $input_difficulty1: #5cb85c;
@@ -454,6 +457,10 @@ button:disabled {
   padding: 10px;
 }
 
+.panelUnit, .cardListRow {
+  border-bottom: solid 1px $color_item_separator_border_bottom;
+}
+
 .panelUnitKind {
   margin-left: 5px;
 }
@@ -542,7 +549,6 @@ button:disabled {
   .panelUnit {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: solid 1px $color_item_separator;
   }
 
   .panelUnitDescription {
@@ -589,6 +595,10 @@ button:disabled {
 
   .panelUnit {
     border-right: solid 1px $color_item_separator;
+  }
+
+  .licenseInfo, .licenseInfoCreate {
+   border-bottom: solid 1px $color_item_separator_border_bottom !important;
   }
 
   .footer {
