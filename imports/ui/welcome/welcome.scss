@@ -101,9 +101,9 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   padding: 12px 10px;
 }
 
-@media (min-width: 400px) {
-  #login img {
-    width: 62px !important;
+@media (max-width: 360px) {
+  #google img {
+    margin-top: 15px;
   }
 
   #BackdoorLogin img, #TestingBackdoorUsername {
@@ -111,13 +111,10 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 }
 
-@media (max-width: 325px) {
-  #login img {
-    width: 50px !important;
-  }
+@media (min-width: 361px) and (max-width: 767px) {
 
   #BackdoorLogin img, #TestingBackdoorUsername {
-    margin-top: 0;
+    margin-left: -10px;
   }
 }
 
