@@ -29,7 +29,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid" id="pool-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-default hidden-lg" id="resetBtnMobile"
+                    <button class="resetFilters btn btn-raised btn-danger hidden-lg" id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pool-nav"
                             aria-expanded="false">
@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse" id="pool-nav">
                     <ul class="nav navbar-nav col-lg-12">
                         <li>
-                            <button class="resetFilters btn btn-raised btn-default visible-lg" id="resetBtn"
+                            <button class="resetFilters btn btn-raised btn-danger visible-lg" id="resetBtn"
                                     role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}}
                             </button>
                         </li>
@@ -282,7 +282,7 @@
         {{#if moreResults}}
             <a href="#" title="{{_ "set-list.moreResults"}}">
                 <div class="showMoreResults col-xs-12 panel panel-default">
-                    <span class="scrollArrow col-xs-12 glyphicon glyphicon-chevron-down"></span>
+                    <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down"></span>
                 </div>
             </a>
         {{/if}}

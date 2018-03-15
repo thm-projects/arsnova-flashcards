@@ -59,11 +59,20 @@
     padding-right: 0px;
   }
 
+  .showMoreResults {
+    background-color: $color_background_infinite_scroll !important;
+  }
+
   .scrollArrow {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 35px;
     text-align: center;
+
+  }
+
+  .infinite-scroll-icon.glyphicon-chevron-down:before {
+    color: $color_icon_infinite_scroll !important;
   }
 
   .stars-rating {
