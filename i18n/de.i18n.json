@@ -709,9 +709,9 @@
       "createCourse": "Kurs erstellen",
       "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
-      "courseIteration": "Kurs",
+      "courseIteration": "Thema des Kurses",
       "module": "Modul",
-      "course": "Kurs",
+      "course": "Studiengang",
       "progress": "Fortschritt"
     },
     "modal": {

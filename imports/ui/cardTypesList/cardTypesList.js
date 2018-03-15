@@ -5,7 +5,7 @@ import {
 	gotNotesForDifficultyLevel
 } from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
-import {query, filterCardType, prepareQuery} from "../pool/pool";
+import {filterCardType, prepareQuery} from "../filter/filter.js";
 import {Session} from "meteor/session";
 
 /*
@@ -24,6 +24,7 @@ Template.cardTypesList.helpers({
 	filterCardTypes: function () {
 		if (!gotNotesForDifficultyLevel(this.cardType)) {
 			prepareQuery();
+			let query = Session.get('filterQuery');
 			query.cardType = this.cardType;
 			return Cardsets.findOne(query);
 		}

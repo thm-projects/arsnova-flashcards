@@ -736,7 +736,7 @@
       "selectCourse": "Select Course",
       "createCourse": "Create a Course",
       "empty": "You have not yet created or selected a course.",
-      "courseIteration": "Course",
+      "courseIteration": "Course iteration",
       "module": "Module",
       "course": "Course",
       "progress": "Progress"

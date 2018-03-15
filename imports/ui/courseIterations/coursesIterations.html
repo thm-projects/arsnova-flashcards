@@ -19,10 +19,11 @@
                     data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
                 {{_ "courseIteration.list.createCourse"}}
             </button>
+            {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-3 col-md-6 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
-                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
+                <span class="col-sm-3 col-md-6 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
                 <span class="col-sm-1 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
                 <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
             </div>
             {{#each courseIterationsList}}
@@ -32,6 +33,7 @@
                     {{> courseIterationsRow extendContext 'index' @index}}
                 </div>
             {{/each}}
+            {{> infiniteScroll}}
         {{else}}
             {{> courseIterationsEmpty}}
         {{/if}}
@@ -77,21 +79,21 @@
         </a>
     </div>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-            "set-list.module"}}
-        :</span>
-    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
-        {{#if this.module}}
-            {{this.module}}
-        {{else}}
-            {{_ "navbar-collapse.none"}}
-        {{/if}}
-    </span>
-    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.course"}}
         :</span>
     <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
         {{#if this.course}}
             {{this.course}}
+        {{else}}
+            {{_ "navbar-collapse.none"}}
+        {{/if}}
+    </span>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.module"}}
+        :</span>
+    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
+        {{#if this.module}}
+            {{this.module}}
         {{else}}
             {{_ "navbar-collapse.none"}}
         {{/if}}

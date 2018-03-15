@@ -460,8 +460,8 @@ button:disabled {
   padding: 10px;
 }
 
-.panelUnit, .cardListRow {
-  border-bottom: solid 1px $color_item_separator_border_bottom;
+.panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
+  border-bottom: solid 1px $color_item_separator_border_bottom !important;
 }
 
 .panelUnitKind {
