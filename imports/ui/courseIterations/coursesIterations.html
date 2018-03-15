@@ -20,12 +20,10 @@
                 {{_ "courseIteration.list.createCourse"}}
             </button>
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-3 col-md-4 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
-                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "courseIteration.list.category"}}</span>
+                <span class="col-sm-3 col-md-6 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
                 <span class="col-sm-1 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
-                <span class="col-sm-3 col-md-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
-                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.manage"}}</span>
+                <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
             </div>
             {{#each courseIterationsList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -67,7 +65,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
             :</span>
-            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-4 poolText panelUnit"
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-6 poolText panelUnit"
                   data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
@@ -78,16 +76,6 @@
             </span>
         </a>
     </div>
-    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-            "set-list.category"}}
-        :</span>
-    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
-        {{#if this.category}}
-            {{this.category}}
-        {{else}}
-            {{_ "navbar-collapse.none"}}
-        {{/if}}
-    </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.module"}}
         :</span>

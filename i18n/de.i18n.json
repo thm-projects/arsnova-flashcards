@@ -710,11 +710,9 @@
       "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Kurs",
-      "category": "Kategorie",
       "module": "Modul",
-      "course": "Studiengang",
-      "progress": "Fortschritt",
-      "manage": "Verwalten"
+      "course": "Kurs",
+      "progress": "Fortschritt"
     },
     "modal": {
       "new": "Neuen Kurs anlegen",

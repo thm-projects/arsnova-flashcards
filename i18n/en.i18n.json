@@ -737,11 +737,9 @@
       "createCourse": "Create a Course",
       "empty": "You have not yet created or selected a course.",
       "courseIteration": "Course",
-      "category": "Category",
       "module": "Module",
       "course": "Course",
-      "progress": "Progress",
-      "manage": "Manage"
+      "progress": "Progress"
     },
     "modal": {
       "new": "Create a new course",
