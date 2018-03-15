@@ -208,7 +208,9 @@
     "noCollege": "ohne Hochschule",
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
-    "noModuleShort": "ohne"
+    "noModuleShort": "ohne",
+    "filter-info-small": "Beschreibung für tablets",
+    "filter-info-extra-small": "Beschreibung für smartphones"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun

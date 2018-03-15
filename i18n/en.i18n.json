@@ -217,7 +217,9 @@
     "noCollege": "No college",
     "noCourse": "No course",
     "noModuleLong": "No module",
-    "noModuleShort": "None"
+    "noModuleShort": "None",
+    "filter-info-small": "",
+    "filter-info-extra-small": ""
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",

@@ -11,11 +11,14 @@
             </div>
             <br>
         {{/if}}
-        <nav class="navbar navbar-default {{#if isActiveRoute 'pool'}}{{#unless selectingCardsetToLearn}}pool-filter-margin{{/unless}}{{/if}}">
+        <nav class="navbar navbar-default {{#if isActiveRoute 'pool'}}{{#unless
+                selectingCardsetToLearn}}pool-filter-margin{{/unless}}{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-danger hidden-lg" id="resetBtnMobile"
+                    <button class="resetFilters btn btn-raised btn-danger hidden-lg float-left" id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
+                    <p class="navbar-text visible-sm-inline-block">{{_ "set-list.filter-info-small"}}</p>
+                    <p class="navbar-text visible-xs-inline-block">{{_ "set-list.filter-info-extra-small"}}</p>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#filter-nav"
                             aria-expanded="false">
@@ -37,9 +40,9 @@
                                aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
                                 {{#if isActiveRoute regex='course'}}
                                     {{_ "courseIteration.list.courseIteration"}}
-                                    {{else}}
+                                {{else}}
                                     {{_ "set-list.topic"}}
-                                    {{/if}}
+                                {{/if}}
 
                                 <span class="glyphicon glyphicon-sort"></span>
                             </a>
@@ -186,7 +189,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterLearnphase active" data-id="reset">{{_ "set-list.everything"}}</a>
+                                        <a href="#" class="filterLearnphase active" data-id="reset">{{_
+                                                "set-list.everything"}}</a>
                                     </li>
                                     <li><a href="#" class="filterLearnphase" data-id="true">
                                         {{_ "set-list.activeLearnphase"}}

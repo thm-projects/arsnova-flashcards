@@ -105,6 +105,18 @@
     }
   }
 
+  @media (max-width: 991px) {
+    .navbar-toggle.collapsed {
+      margin-top: 15px;
+    }
+    #resetBtnMobile {
+      float: left;
+    }
+    .visible-xs-inline-block {
+      padding-left: 10px;
+    }
+  }
+
   @media (min-width: 768px) {
     #filterCheckbox {
       padding-bottom: 0;
