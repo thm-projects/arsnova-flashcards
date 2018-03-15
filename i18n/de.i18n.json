@@ -219,7 +219,8 @@
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle eine Kartei aus oder mische eine neue Kartei aus mehreren anderen.",
     "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
-    "browseCardset": "Kartei auswählen"
+    "browseCardset": "Kartei auswählen",
+    "browseCourse": "Alle Karteien eines Kurses auswählen"
   },
   "modal-dialog": {
     "newcarddeck": "Neue Kartei anlegen",

@@ -227,7 +227,8 @@
   "set-list-learn-empty": {
     "emptytextlist": "You aren't learning any deck of cards yet",
     "emptytextlistNoShuffle": "You aren't learning any deck of cards yet",
-    "browseCardset": "Choose a deck of cards"
+    "browseCardset": "Choose a deck of cards",
+    "browseCourse": "Select all files of a course"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
