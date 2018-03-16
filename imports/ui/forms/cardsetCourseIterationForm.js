@@ -5,6 +5,7 @@ import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
 import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
+import {adjustMarkdownToolbar} from "../card/card";
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
@@ -375,6 +376,50 @@ let additionalButtons = [
 			title: "Tex",
 			icon: "fa fa-superscript",
 			callback: tex
+		}, {
+			name: 'cmdTask',
+			title: 'Task',
+			icon: 'fa fa-check-square',
+			callback: function (e) {
+				// Prepend/Give - surround the selection
+				let chunk, cursor, selected = e.getSelection();
+
+				// transform selection and set the cursor into chunked text
+				if (selected.length === 0) {
+					// Give extra word
+					chunk = e.__localize('list task here');
+
+					e.replaceSelection('* [ ]  ' + chunk);
+					// Set the cursor
+					cursor = selected.start + 7;
+				} else {
+					if (selected.text.indexOf('\n') < 0) {
+						chunk = selected.text;
+
+						e.replaceSelection('* [ ]  ' + chunk);
+
+						// Set the cursor
+						cursor = selected.start + 7;
+					} else {
+						let list = [];
+
+						list = selected.text.split('\n');
+						chunk = list[0];
+
+						$.each(list, function (k, v) {
+							list[k] = '* [ ]  ' + v;
+						});
+
+						e.replaceSelection('\n\n' + list.join('\n'));
+
+						// Set the cursor
+						cursor = selected.start + 4;
+					}
+				}
+
+				// Set the cursor
+				e.setSelection(cursor, cursor + chunk.length);
+			}
 		}
 		]
 	}]
@@ -408,7 +453,7 @@ Template.cardsetCourseIterationFormContent.onRendered(function () {
 			cleanModal();
 		}
 	});
-	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
+	adjustMarkdownToolbar();
 });
 
 Template.cardsetCourseIterationFormContent.helpers({

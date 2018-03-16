@@ -25,6 +25,34 @@ import {
  * ############################################################################
  */
 
+export function adjustMarkdownToolbar() {
+	//btn-group 1
+	let btnGroup = $(".btn-toolbar .btn-group:nth-child(1)");
+	btnGroup.append($(".fa-bold").parent());
+	btnGroup.append($(".fa-header").parent());
+	btnGroup.append($(".fa-code").parent());
+	btnGroup.append($(".fa-link").parent());
+	btnGroup.append($(".fa-superscript").parent());
+	btnGroup.append($(".fa-quote-left").parent());
+	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
+	//btn-group 2
+	btnGroup = $(".btn-toolbar .btn-group:nth-child(2)");
+	btnGroup.append($(".fa-list").parent());
+	btnGroup.append($(".fa-list-ol").parent());
+	btnGroup.append($(".fa-check-square").parent());
+	$(".center-button").text('vertical_align_center');
+	btnGroup.append($(".center-button").parent());
+	//btn-group 3
+	btnGroup = $(".btn-toolbar .btn-group:nth-child(3)");
+	btnGroup.append($(".fa-file-image-o").parent());
+	//btn-group 4
+	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
+	btnGroup.append($(".fa-paint-brush").parent());
+	$(".fullscreen-button").addClass('glyphicon-fullscreen');
+	btnGroup.append($(".fullscreen-button").parent());
+	$(".btn-toolbar .btn-group:nth-child(5)").remove();
+}
+
 function resetSessionData(resetSubject = false) {
 	if (resetSubject) {
 		Session.set('subjectText', '');
@@ -916,10 +944,7 @@ Template.contentEditor.rendered = function () {
 	if (!ActiveRoute.name('editCard')) {
 		Session.set('frontText', '');
 	}
-	$(".center-button").text('vertical_align_center');
-	$(".fullscreen-button").addClass('glyphicon-fullscreen');
-	$($(".fa-list-ol").parent()).after($(".fa-check-square").parent());
-	$('.fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
+	adjustMarkdownToolbar();
 };
 
 Template.contentEditor.events({
