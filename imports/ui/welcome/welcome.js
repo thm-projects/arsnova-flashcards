@@ -51,7 +51,6 @@ function createTagCloud() {
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.2;
-	//let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1440);
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 450;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
@@ -60,16 +59,9 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			minSize: 14,
-			//shape: "diamond",
 			drawOutOfBound: false,
 			rotateRatio: 0,
-			//rotationSteps: 2,
-			//minRotation: -wordRotation,
-			//maxRotation: wordRotation,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-			//color: function () {
-			//	return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
-			//},
 			color: "white",
 			hover: wordcloudHover,
 			click: wordcloudClick,
