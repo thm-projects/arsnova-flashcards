@@ -1,0 +1,289 @@
+//------------------------ IMPORTS
+
+import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
+import {Cardsets} from "../../api/cardsets.js";
+import "./filter.html";
+import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
+
+Meteor.subscribe("cardsets");
+
+export let items_increment = 12;
+
+Session.setDefault('poolSortTopic', {name: 1});
+Session.setDefault('poolFilterAuthor');
+Session.setDefault('poolFilterCardType');
+Session.setDefault('poolFilterCollege');
+Session.setDefault('poolFilterCourse');
+Session.setDefault('poolFilterModule');
+Session.setDefault('poolFilterModule', false);
+Session.setDefault('poolFilterDifficulty');
+Session.setDefault('poolFilterLearnphase');
+Session.setDefault('poolFilterRating');
+Session.setDefault('poolFilter', ["free", "edu", "pro"]);
+Session.setDefault('selectedCardset');
+Session.setDefault("itemsLimit", items_increment);
+
+let filterQuery = {};
+Session.setDefault('filterQuery', filterQuery);
+
+export function prepareQuery() {
+	let query = Session.get('filterQuery');
+	query.kind = {$in: Session.get('poolFilter')};
+	if (Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined) {
+		query.cardType = Session.get('poolFilterCardType');
+	} else {
+		query.cardType = {$ne: Number(cardTypeWithNotesForDifficultyLevel)};
+	}
+	if (Session.get('poolFilterAuthor')) {
+		query.owner = Session.get('poolFilterAuthor');
+	}
+	if (Session.get('poolFilterCollege')) {
+		query.college = Session.get('poolFilterCollege');
+	}
+	if (Session.get('poolFilterCourse')) {
+		query.course = Session.get('poolFilterCourse');
+	}
+	if (!Session.get('poolFilterNoModule')) {
+		if (Session.get('poolFilterModule')) {
+			query.moduleActive = true;
+			query.module = Session.get('poolFilterModule');
+		}
+	} else {
+		query.moduleActive = false;
+	}
+	if (Session.get('poolFilterDifficulty')) {
+		query.difficulty = Number(Session.get('poolFilterDifficulty'));
+	}
+	if (Session.get('poolFilterLearnphase') !== undefined) {
+		query.learningActive = Session.get('poolFilterLearnphase');
+	}
+	Session.set('filterQuery', query);
+}
+
+export function checkRemainingCards() {
+	prepareQuery();
+	let query = Session.get('filterQuery');
+	query.visible = true;
+	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+		$(".showMoreResults").data("visible", true);
+		return true;
+	} else {
+		$(".showMoreResults").data("visible", false);
+		return false;
+	}
+}
+
+export function resetInfiniteBar() {
+	Session.set("itemsLimit", items_increment);
+	checkRemainingCards();
+}
+
+export function filterCheckbox() {
+	$("#filterCheckbox input:checkbox").each(function () {
+		if (!Session.get('poolFilter').includes($(this).val())) {
+			$(this).prop('checked', false);
+			$(this).closest("label").removeClass('active');
+		} else {
+			$(this).prop('checked', true);
+			$(this).closest("label").addClass('active');
+		}
+	});
+}
+
+export function checkFilters() {
+	if (Session.get('poolFilterCardType')) {
+		$(".filterCardTypeGroup").addClass('active');
+	} else {
+		$(".filterCardTypeGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterAuthor')) {
+		$(".filterAuthorGroup").addClass('active');
+	} else {
+		$(".filterAuthorGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterCollege')) {
+		$(".filterCollegeGroup").addClass('active');
+	} else {
+		$(".filterCollegeGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterCourse')) {
+		$(".filterCourseGroup").addClass('active');
+	} else {
+		$(".filterCourseGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterModule')) {
+		$(".filterModuleGroup").addClass('active');
+	} else {
+		$(".filterModuleGroup").removeClass('active').first();
+	}
+	if (Session.get('poolFilterLearnphase')) {
+		$(".filterLearnphase").addClass('active');
+	} else {
+		$(".filterLearnphase").removeClass('active').first();
+	}
+	filterCheckbox();
+}
+
+export function resetFilters() {
+	Session.set('poolSortTopic', {name: 1});
+	Session.set('poolFilterAuthor');
+	Session.set('poolFilterCardType');
+	Session.set('poolFilterCollege');
+	Session.set('poolFilterCourse');
+	Session.set('poolFilterNoModule', false);
+	Session.set('poolFilterModule');
+	Session.set('poolFilterDifficulty');
+	Session.set('poolFilter', ["free", "edu", "pro"]);
+	Session.set('poolFilterLearnphase');
+	Session.set('filterQuery', {});
+	checkFilters();
+	resetInfiniteBar();
+}
+
+export function filterCardType(event) {
+	Session.set('poolFilterCardType', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterAuthor(event) {
+	Session.set('poolFilterAuthor', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterCollege(event) {
+	Session.set('poolFilterCollege', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterCourse(event) {
+	Session.set('poolFilterCourse', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterModule(event) {
+	Session.set('poolFilterModule', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterLearnphase(event) {
+	let result = $(event.target).data('id');
+	if (result === "reset") {
+		Session.set('poolFilterLearnphase', undefined);
+	} else {
+		Session.set('poolFilterLearnphase', result);
+	}
+
+	resetInfiniteBar();
+}
+
+/*
+ * ############################################################################
+ * filterNavigation
+ * ############################################################################
+ */
+
+Template.filterNavigation.helpers({
+	filterAuthors: function () {
+		prepareQuery();
+		let query = Session.get('filterQuery');
+		query.owner = this._id;
+		return Cardsets.findOne(query);
+	},
+	getDifficulty: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"difficulty": 1}}).fetch(), function (item) {
+			return item.difficulty;
+		});
+	},
+	getAuthors: function () {
+		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
+	},
+	getColleges: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"college": 1}}).fetch(), function (item) {
+			return item.college;
+		});
+	},
+	getCourses: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"course": 1}}).fetch(), function (item) {
+			return item.course;
+		});
+	},
+	getModules: function () {
+		prepareQuery();
+		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"module": 1}}).fetch(), function (item) {
+			return item.moduleNum;
+		});
+	},
+	hasCardTypeFilter: function () {
+		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
+	},
+	poolFilterCardType: function (cardType) {
+		return Session.get('poolFilterCardType') === cardType;
+	},
+	hasAuthorFilter: function () {
+		return Session.get('poolFilterAuthor');
+	},
+	poolFilterAuthor: function (id) {
+		return Session.get('poolFilterAuthor') === id;
+	},
+	hasCollegeFilter: function () {
+		return Session.get('poolFilterCollege');
+	},
+	poolFilterCollege: function (college) {
+		return Session.get('poolFilterCollege') === college;
+	},
+	hasCourseFilter: function () {
+		return Session.get('poolFilterCourse');
+	},
+	poolFilterCourse: function (course) {
+		return Session.get('poolFilterCourse') === course;
+	},
+	hasModuleFilter: function () {
+		return Session.get('poolFilterModule') || Session.get('poolFilterNoModule');
+	},
+	poolFilterModule: function (module) {
+		return Session.get('poolFilterModule') === module;
+	},
+	getDifficultyName: function () {
+		return TAPi18n.__('difficulty' + this.difficulty);
+	},
+	hasDifficultyFilter: function () {
+		return Session.get('poolFilterDifficulty');
+	},
+	poolFilterDifficulty: function () {
+		return Session.get('poolFilterDifficulty') === this.difficulty;
+	},
+	hasLearnphaseFilter: function () {
+		return Session.get('poolFilterLearnphase') === true || Session.get('poolFilterLearnphase') === false;
+	},
+	poolFilterLearnphase: function (learningPhase) {
+		return Session.get('poolFilterLearnphase') === learningPhase;
+	},
+	moreResults: function () {
+		return checkRemainingCards();
+	},
+	selectingCardsetToLearn: function () {
+		return Session.get('selectingCardsetToLearn');
+	}
+});
+
+Template.filterNavigation.greeting = function () {
+	return Session.get('authors');
+};
+
+Template.infiniteScroll.helpers({
+	moreResults: function () {
+		return checkRemainingCards();
+	}
+});
+
+Template.infiniteScroll.events({
+	'click .showMoreResults': function () {
+		Session.set("itemsLimit", Session.get("itemsLimit") + items_increment);
+		checkRemainingCards();
+	}
+});

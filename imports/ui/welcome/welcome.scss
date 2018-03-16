@@ -21,15 +21,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (min-width: 900px) {
-        font-size: 60px;
-        font-weight: bold;
-      }
-    }
-
-    h2 {
-      @media screen and (min-width: 760px) {
-        font-size: 40px;
+      @media screen and (min-width: 1280px) {
+        font-size: 70px;
         font-weight: bold;
       }
     }
@@ -42,8 +35,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (max-width: 400px) {
-        font-size: 16px;
+      @media screen and (max-width: 414px) {
+        font-size: 12px;
         font-weight: bold;
       }
     }
@@ -101,9 +94,10 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   padding: 12px 10px;
 }
 
-@media (min-width: 400px) {
-  #login img {
-    width: 62px !important;
+@media (max-width: 360px) {
+  img {
+    margin-top: 15px;
+    width: 55px;
   }
 
   #BackdoorLogin img, #TestingBackdoorUsername {
@@ -111,13 +105,10 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 }
 
-@media (max-width: 325px) {
-  #login img {
-    width: 50px !important;
-  }
+@media (min-width: 361px) and (max-width: 767px) {
 
   #BackdoorLogin img, #TestingBackdoorUsername {
-    margin-top: 0;
+    margin-left: -10px;
   }
 }
 
@@ -151,18 +142,27 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 @media (max-width: 1000px) {
   .color-dot:before {
-    //font-size: 0.3em; /* Fallback for old devices */
-    font-size: 6vw;
+    font-size: 5vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    //font-size: 0.75em; /* Fallback for old devices */
-    font-size: 9.75vw;
+    font-size: 8vw;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
+  .color-dot:before {
+    font-size: 5vw;
+  }
+
+  .logo-header-chars {
+    cursor: default;
+    font-size: 8vw;
+  }
+}
+
+@media (min-width: 1024px) {
   #cards-welcome-image {
     margin-top: -10px;
   }

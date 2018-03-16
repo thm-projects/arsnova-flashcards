@@ -65,6 +65,7 @@
                 </div>
                 <br>
                 {{#if shuffleList.count}}
+                    {{> filterNavigation}}
                     <div class="responsive-utilities-test visible-on">
                         <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                         <span class="col-sm-2 col-md-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
@@ -73,9 +74,7 @@
                     </div>
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                            <div class="col-xs-12 col-sm-12 panel panel-default {{#if
-                                    oddRow
-                                    @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                            <div class="col-xs-12 col-sm-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                                 {{> cardsetRow extendContext 'index' @index}}
                             </div>
                         {{/unless}}
@@ -99,6 +98,7 @@
                 {{_ "set-list-empty.newset"}}
             </button>
             {{> shuffle}}
+            {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
@@ -106,9 +106,7 @@
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
             {{#each cardsetList}}
-                <div class="col-xs-12 panel panel-default {{#if
-                        oddRow
-                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
@@ -182,7 +180,7 @@
                 "set-list.levelOfLearning"}}
             :</span>
         <a href="progress/{{this._id}}/{{currentUser._id}}">
-            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit">
+            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense manageLearning panelUnit">
            <i class="glyphicon glyphicon glyphicon-stats"></i>
         </span>
         </a>
@@ -195,7 +193,7 @@
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
-            <span class="cell col-xs-12 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-12 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>
@@ -249,6 +247,8 @@
                 <br>
                 <button id="browseCardset" class="btn btn-raised btn-success btn-newSet">{{_
                         "set-list-learn-empty.browseCardset"}}</button>
+                <button id="browseCourse" class="btn btn-raised btn-success btn-newSet">{{_
+                        "set-list-learn-empty.browseCourse"}}</button>
             {{/if}}
         </div>
     </div>
@@ -260,9 +260,12 @@
         {{#if learnList.count}}
             <a id="browseCardset" class="btn btn-raised btn-success">{{_
                     "set-list-learn-empty.browseCardset"}}</a>
+            <a id="browseCourse" class="btn btn-raised btn-success">{{_
+                    "set-list-learn-empty.browseCourse"}}</a>
         {{/if}}
         {{> shuffle}}
         {{#if learnList.count}}
+            {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
@@ -273,9 +276,7 @@
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "manage"}}</span>
             </div>
             {{#each learnList}}
-                <div class="col-xs-12 panel panel-default {{#if
-                        oddRow
-                        @index}} altPanel {{/if}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}

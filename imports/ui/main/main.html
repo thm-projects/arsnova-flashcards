@@ -73,14 +73,13 @@
                                                  data-toggle="collapse" data-target="#thm-top-navigation">
                                                 {{#each searchCategories}}
                                                     <a href="/cardset/{{_id}}" class="list-group-item clearfix">
-                                                        <h4 class="list-group-item-heading">{{name}}</h4>
-                                                        <p class="list-group-item-text">{{description}}</p>
+                                                        <h4 class="list-group-item-heading search-subject">{{name}}</h4>
+                                                        <p class="list-group-item-text search-content">{{description}}</p>
                                                         {{#with getAuthor this.owner}}
                                                             <p class="list-group-item-text search-author">{{_
                                                                     "cardset.info.author"}}
                                                                 : {{givenname}} {{birthname}}</p>
                                                         {{/with}}
-                                                        <hr class="search-divide">
                                                     </a>
                                                 {{/each}}
                                             </div>

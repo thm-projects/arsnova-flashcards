@@ -208,7 +208,9 @@
     "noCollege": "ohne Hochschule",
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
-    "noModuleShort": "ohne"
+    "noModuleShort": "ohne",
+    "filter-info-small": "Sortier- und Filteroptionen",
+    "filter-info-extra-small": "Filteroptionen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
@@ -217,9 +219,12 @@
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine Kartei aus oder mische eine neue Kartei aus mehreren anderen.",
+    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder alle Karteien eines Kurses aus. Du kannst eine neue
+    Kartei auch aus
+    mehreren anderen mischen.",
     "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
-    "browseCardset": "Kartei auswählen"
+    "browseCardset": "Kartei auswählen",
+    "browseCourse": "Kurs auswählen"
   },
   "modal-dialog": {
     "newcarddeck": "Neue Kartei anlegen",
@@ -709,12 +714,10 @@
       "createCourse": "Kurs erstellen",
       "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
-      "courseIteration": "Kurs",
-      "category": "Kategorie",
+      "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
-      "progress": "Fortschritt",
-      "manage": "Verwalten"
+      "progress": "Fortschritt"
     },
     "modal": {
       "new": "Neuen Kurs anlegen",

@@ -1,40 +1,3 @@
-$input_difficulty0: #FFFFFF;
-$input_difficulty1: #5cb85c;
-$input_difficulty2: #5bc0de;
-$input_difficulty3: #d9534f;
-$background_difficultyNote0: ivory;
-$background_difficulty1: honeydew;
-$background_difficulty2: lightcyan;
-$background_difficulty3: mistyrose;
-$color_difficultyNote0: #F8E1AE;
-$color_difficulty0: #E6EAE9;
-$color_difficulty1: rgba(92, 184, 92, 0.3);
-$color_difficulty2: rgba(91, 192, 222, 0.3);
-$color_difficulty3: rgba(217, 83, 79, 0.3);
-$background_lecture: papayawhip;
-$background_hint: lightseagreen;
-$color_item_selection_border: $color_item_separator;
-
-$color_card_header_text: $color_thm_gray;
-
-#difficultyGroup, #cardTypeGroup {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding: 0;
-  width: 100%;
-}
-
-#difficulty .btn, #cardType .btn {
-  background-color: $color_wild_sand_approx;
-  padding: 9px 0 9px 0;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
-  @media(max-width: 767px) {
-    padding: 20px 0 20px 0;
-  }
-}
-
 .btn-white.active {
   color: $black !important;
   background-color: white !important;
@@ -49,36 +12,9 @@ $color_card_header_text: $color_thm_gray;
   background-color: $color_thm_orange !important;
 }
 
-#difficulty .btn-info {
-  color: $input_difficulty1 !important;
-}
-
-#difficulty .btn-info.active {
-  color: $white !important;
-  background-color: $input_difficulty1;
-}
-
-#difficulty .btn-success {
-  color: $input_difficulty2 !important;
-}
-
-#difficulty .btn-success.active {
-  color: $white !important;
-  background-color: $input_difficulty2;
-}
-
-#difficulty .btn-danger {
-  color: $input_difficulty3 !important;
-}
-
-#difficulty .btn-danger.active {
-  color: $white !important;
-  background-color: $input_difficulty3;
-}
-
 #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
   color: white !important;
-  background-color: $input_difficulty2 !important;
+  background-color: $color_button_difficulty2 !important;
 }
 
 .MathJax {
@@ -86,14 +22,12 @@ $color_card_header_text: $color_thm_gray;
 }
 
 .cardInfoCenter {
-  font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: center;
   margin-top: 12px;
 }
 
 .cardDate {
   float: right;
-  font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: right;
   margin-right: -40px;
   margin-top: -7px;
@@ -123,7 +57,6 @@ $color_card_header_text: $color_thm_gray;
 
 .box, .boxPreview, .box-static {
   border: 1px solid $color_alto_approx;
-  font-family: $font_0, $font_1;
   margin: 0 auto;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
@@ -137,18 +70,18 @@ $color_card_header_text: $color_thm_gray;
                   to bottom,
                   $white,
                   $white 26px,
-                  $color_difficulty0 26px,
-                  $color_difficulty0 28px
+                  $color_background_difficulty0_lines 26px,
+                  $color_background_difficulty0_lines 28px
   );
 }
 
 .box-difficultyLinedNote0 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficultyNote0,
-                  $background_difficultyNote0 26px,
-                  $color_difficultyNote0 26px,
-                  $color_difficultyNote0 28px
+                  $color_background_difficulty0_note,
+                  $color_background_difficulty0_note 26px,
+                  $color_background_difficulty0_lines_note 26px,
+                  $color_background_difficulty0_lines_note 28px
   );
 }
 
@@ -157,7 +90,7 @@ $color_card_header_text: $color_thm_gray;
 }
 
 .box-difficultyBlankNote0 {
-  background-color: $background_difficultyNote0;
+  background-color: $color_background_difficulty0_note;
 }
 
 .box-difficulty-list0 {
@@ -165,24 +98,24 @@ $color_card_header_text: $color_thm_gray;
 }
 
 .box-difficultyNote-list0 {
-  background: $background_difficultyNote0;
+  background: $color_background_difficulty0_note;
 }
 
 .box-difficulty-list0:hover {
-  background: darken($background_difficultyNote0, 15%);
+  background: darken($color_background_difficulty0_note, 15%);
 }
 
 .box-difficultyNote-list0:hover {
-  background: darken($background_difficultyNote0, 15%);
+  background: darken($color_background_difficulty0_note, 15%);
 }
 
 .box-difficultyLined1 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty1,
-                  $background_difficulty1 26px,
-                  $color_difficulty1 26px,
-                  $color_difficulty1 28px
+                  $color_background_difficulty1,
+                  $color_background_difficulty1 26px,
+                  $color_background_difficulty1_lines 26px,
+                  $color_background_difficulty1_lines 28px
   );
 }
 
@@ -191,79 +124,79 @@ $color_card_header_text: $color_thm_gray;
 }
 
 .box-difficultyBlank1 {
-  background-color: $background_difficulty1;
+  background-color: $color_background_difficulty1;
 }
 
 .box-difficulty-list1 {
-  background: $color_difficulty1;
+  background: $color_background_difficulty1_lines;
 }
 
 .box-difficulty-list1:hover {
-  background: darken($color_difficulty1, 15%);
+  background: darken($color_background_difficulty1_lines, 15%);
 }
 
 .box-difficultyLined2 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty2,
-                  $background_difficulty2 26px,
-                  $color_difficulty2 26px,
-                  $color_difficulty2 28px
+                  $color_background_difficulty2,
+                  $color_background_difficulty2 26px,
+                  $color_background_difficulty2_lines 26px,
+                  $color_background_difficulty2_lines 28px
   );
 }
 
 .box-difficultyBlank2 {
-  background-color: $background_difficulty2;
+  background-color: $color_background_difficulty2;
 }
 
 .box-difficulty-list2 {
-  background: $color_difficulty2;
+  background: $color_background_difficulty2_lines;
 }
 
 .box-difficulty-list2:hover {
-  background: darken($color_difficulty2, 15%);
+  background: darken($color_background_difficulty2_lines, 15%);
 }
 
 .box-difficultyLined3 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $background_difficulty3,
-                  $background_difficulty3 26px,
-                  $color_difficulty3 26px,
-                  $color_difficulty3 28px
+                  $color_background_difficulty3,
+                  $color_background_difficulty3 26px,
+                  $color_background_difficulty3_lines 26px,
+                  $color_background_difficulty3_lines 28px
   );
 }
 
 .box-difficultyBlank3 {
-  background: $background_difficulty3;
+  background: $color_background_difficulty3;
 }
 
 .box-difficulty-list3 {
-  background: $color_difficulty3;
+  background: $color_background_difficulty3_lines;
 }
 
 .box-difficulty-list3:hover {
-  background: darken($color_difficulty3, 15%);
+  background: darken($color_background_difficulty3_lines, 15%);
 }
 
 .box-difficultyBlank0-header, .box-difficultyLined0-header {
-  background: linear-gradient(to top, $color_difficulty0 0px, $color_difficulty0 4px, $white 5px, $white 100%);
+  background: linear-gradient(to top, $color_background_difficulty0_lines 0px, $color_background_difficulty0_lines 4px, $white 5px, $white 100%);
 }
 
 .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
-  background: linear-gradient(to top, $color_difficultyNote0 0px, $color_difficultyNote0 4px, $background_difficultyNote0 5px, $background_difficultyNote0 100%);
+  background: linear-gradient(to top, $color_background_difficulty0_lines_note 0px, $color_background_difficulty0_lines_note 4px, $color_background_difficulty0_note 5px, $color_background_difficulty0_note 100%);
 }
 
 .box-difficultyBlank1-header, .box-difficultyLined1-header {
-  background: linear-gradient(to top, $color_difficulty1 0px, $color_difficulty1 4px, $background_difficulty1 5px, $background_difficulty1 100%);
+  background: linear-gradient(to top, $color_background_difficulty1_lines 0px, $color_background_difficulty1_lines 4px, $color_background_difficulty1 5px, $color_background_difficulty1 100%);
 }
 
 .box-difficultyBlank2-header, .box-difficultyLined2-header {
-  background: linear-gradient(to top, $color_difficulty2 0px, $color_difficulty2 4px, $background_difficulty2 5px, $background_difficulty2 100%);
+  background: linear-gradient(to top, $color_background_difficulty2_lines 0px, $color_background_difficulty2_lines 4px, $color_background_difficulty2 5px, $color_background_difficulty2 100%);
 }
 
 .box-difficultyBlank3-header, .box-difficultyLined3-header {
-  background: linear-gradient(to top, $color_difficulty3 0px, $color_difficulty3 4px, $background_difficulty3 5px, $background_difficulty3 100%);
+  background: linear-gradient(to top, $color_background_difficulty3_lines 0px, $color_background_difficulty3_lines 4px, $color_background_difficulty3 5px, $color_background_difficulty3 100%);
 }
 
 @media(max-width: 767px) {
@@ -306,7 +239,6 @@ $color_card_header_text: $color_thm_gray;
   position: absolute;
   left: 45px;
   top: 11px;
-  font-family: $font_2, $font_3, $font_4, $font_5;
 }
 
 .clicktoflip {
@@ -357,12 +289,6 @@ img.cardside {
   top: 50px;
 }
 
-.cardNumber {
-  font-family: $font_2, $font_3, $font_4, $font_5;
-  text-align: right;
-  top: 14px;
-}
-
 #toggleFullscreen, .cardNumber {
   right: 8px;
 }
@@ -407,14 +333,16 @@ img.cardside {
   min-height: 90px;
   text-align: center;
   font-size: 12px;
-  padding: 20px 100px 0 100px;
+  padding: 15px 100px 0 100px;
 
-  h3 {
+  h2 {
     margin-top: -20px;
     margin-bottom: 0;
     padding-bottom: 5px;
+    font-size: $font_size_card_header_subject !important;
+    color: $color_card_header_subject !important;
+    font-weight: $font_weight_card_header_subject !important;
   }
-  color: $color_card_header_text !important;
 }
 
 .cardHeader a:hover {
@@ -425,7 +353,6 @@ img.cardside {
   padding: 26pt !important;
   line-height: 28px;
   font-size: 18px;
-  font-family: $default_font !important;
 }
 
 #subjectEditor:disabled {
@@ -601,9 +528,7 @@ img.cardside {
   .card-button {
     font-size: 16px;
   }
-  .cardHeader h3 {
-    font-size: 18px;
-  }
+
   .leftHeader {
     top: 5px;
   }
@@ -640,3 +565,28 @@ img.cardside {
 .cardSubjectRow {
   margin-top: -3px !important;
 }
+
+.cardHeaderFirstRow {
+  margin-top: 0;
+  height: 45px;
+  font-size: $font_size_card_header_first_row !important;
+  font-weight: $font_weight_card_header_first_row !important;
+  color: $color_card_header_first_row !important;
+}
+
+.cardHeaderSecondRow {
+  font-size: $font_size_card_header_second_row !important;
+  font-weight: $font_weight_card_header_second_row !important;
+  color: $color_card_header_second_row !important;
+}
+
+.cardNumber {
+  text-align: right;
+  top: 5px;
+  color: $color_card_header_card_number !important;
+  font-weight: $font_weight_card_header_number !important;
+  @media(min-width: 768px) {
+    top: 15px;
+  }
+}
+

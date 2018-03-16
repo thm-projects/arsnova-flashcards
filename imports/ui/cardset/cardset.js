@@ -14,7 +14,7 @@ import "../card/card.js";
 import "../learn/learn.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import {getCardTypeName, gotLearningModes} from "../../api/cardTypes";
+import {getCardTypeName, gotLearningModes, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -481,6 +481,16 @@ Template.cardsetInfoBox.helpers({
 	},
 	getCardType: function () {
 		return getCardTypeName(this.cardType);
+	},
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(this.cardType);
+	},
+	getDifficultyName: function () {
+		if (gotNotesForDifficultyLevel(this.cardType)) {
+			return TAPi18n.__('difficultyNotes' + this.difficulty);
+		} else {
+			return TAPi18n.__('difficulty' + this.difficulty);
+		}
 	}
 });
 

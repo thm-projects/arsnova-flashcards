@@ -15,7 +15,8 @@ import {
 	gotDictionary,
 	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
 	gotNotesForDifficultyLevel, gotThreeColumns,
-	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle
+	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
+	displaysLearningGoalInformation
 } from "../../api/cardTypes";
 
 /*
@@ -25,10 +26,6 @@ import {
  */
 
 function resetSessionData(resetSubject = false) {
-	let difficulty = 0;
-	if (!gotNotesForDifficultyLevel(Session.get('cardType'))) {
-		difficulty = 1;
-	}
 	if (resetSubject) {
 		Session.set('subjectText', '');
 		Session.get('learningUnit', '');
@@ -37,7 +34,6 @@ function resetSessionData(resetSubject = false) {
 	Session.set('backText', '');
 	Session.set('hintText', '');
 	Session.set('lectureText', '');
-	Session.set('difficultyColor', difficulty);
 	defaultCenteredText();
 	Session.set('learningGoalLevel', 0);
 	Session.set('backgroundStyle', 0);
@@ -629,10 +625,6 @@ function initializeContent() {
 		Session.set('hintText', '');
 	}
 
-	if (Session.get('difficultyColor') === undefined) {
-		Session.set('difficultyColor', 1);
-	}
-
 	if (Session.get('learningGoalLevel') === undefined) {
 		Session.set('learningGoalLevel', 0);
 	}
@@ -712,12 +704,8 @@ function saveCard(card_id, returnToCardset) {
 	}
 	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
 	if (gotSubject && editorsValidLength) {
-		let difficulty = 1;
-		if (gotDifficultyLevel(cardType)) {
-			difficulty = $('input[name=difficulty]:checked').val();
-		}
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, Number(difficulty), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
+			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -734,7 +722,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, Number(difficulty), lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit);
+			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
@@ -827,13 +815,8 @@ Template.editor.helpers({
 		if (Router.current().route.getName() === "newCard") {
 			resetSessionData(true);
 			Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
+			Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 		} else if (Router.current().route.getName() === "editCard") {
-			let difficulty;
-			if (this.difficulty === 0 && !gotNotesForDifficultyLevel(this.cardType)) {
-				difficulty = 1;
-			} else {
-				difficulty = this.difficulty;
-			}
 			Session.set('subjectText', this.subject);
 			Session.set('frontText', this.front);
 			Session.set('backText', this.back);
@@ -841,7 +824,7 @@ Template.editor.helpers({
 			Session.set('cardType', this.cardType);
 			Session.set('lectureText', this.lecture);
 			Session.set('centerTextElement', this.centerTextElement);
-			Session.set('difficultyColor', difficulty);
+			Session.set('difficultyColor', this.difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
 			Session.set('backgroundStyle', this.backgroundStyle);
 			Session.set('learningUnit', this.learningUnit);
@@ -990,27 +973,6 @@ Template.subjectEditor.events({
 Template.subjectEditor.rendered = function () {
 	Session.set('subjectText', $('#subjectEditor').val());
 };
-
-/*
- * ############################################################################
- * difficultyEditor
- * ############################################################################
- */
-
-Template.difficultyEditor.helpers({
-	isDifficultyChecked: function (difficulty) {
-		return difficulty === Session.get('difficultyColor');
-	},
-	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(this.cardType);
-	}
-});
-
-Template.difficultyEditor.events({
-	'click #difficultyGroup': function (event) {
-		Session.set('difficultyColor', Number($(event.target).data('color')));
-	}
-});
 
 /*
  * ############################################################################
@@ -1170,6 +1132,20 @@ Template.flashcards.helpers({
 		}).count();
 		return count === 1;
 	},
+	displaysLearningGoalInformation: function () {
+		if (Session.get('shuffled')) {
+			return displaysLearningGoalInformation(Session.get('cardType'));
+		} else {
+			return displaysLearningGoalInformation(this.cardType);
+		}
+	},
+	displaysSideInformation: function () {
+		if (Session.get('shuffled')) {
+			return displaysSideInformation(Session.get('cardType'));
+		} else {
+			return displaysSideInformation(this.cardType);
+		}
+	},
 	getCards: function () {
 		if (isBox()) {
 			return getLeitnerCards();
@@ -1218,21 +1194,6 @@ Template.flashcards.helpers({
 			activeCardType = Session.get('cardType');
 		}
 		return TAPi18n.__('card.cardType' + activeCardType + '.name');
-	},
-	getDifficultyName: function () {
-		let activeCardType = this.cardType;
-		if (Session.get('shuffled')) {
-			activeCardType = Session.get('cardType');
-		}
-		if (activeCardType === 2) {
-			return TAPi18n.__('difficultyNotes' + this.difficulty);
-		} else {
-			let difficulty = this.difficulty;
-			if (difficulty === 0) {
-				difficulty++;
-			}
-			return TAPi18n.__('difficulty' + difficulty);
-		}
 	},
 	getLearningGoalName: function () {
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));

@@ -1,4 +1,4 @@
-//colors
+//global
 $color_athens_gray_approx: rgb(236, 240, 241);
 $white: rgb(255, 255, 255);
 $color_bilbao_approx: rgb(50, 129, 20);
@@ -19,7 +19,9 @@ $color_btn_inactive: #9e9c9c;
 $color_item_separator: $color_thm_gray;
 $color_footer_hover: rgb(215, 215, 215);
 $background_hint: $color_thm_green;
+$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
+//welcome page
 $color_footer_background: $color_thm_green;
 $color_footer_info_navigation_text: white;
 $color_footer_info_navigation_text_hover: white;
@@ -37,6 +39,7 @@ $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
 $color_placeholder: $color_thm_dark_blue;
 
+//info page
 $color_info_navigation_text: black;
 $color_info_navigation_text_active: white;
 $color_info_navigation_text_hover: white;
@@ -53,7 +56,64 @@ $font_size_info_h1: 20px;
 $font_size_info_h2: 18px;
 $font_size_info_h3: 16px;
 
-$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+//editor navigation
+$color_item_selection_border: $color_item_separator;
+
+//item lists
+$color_item_separator_border_bottom: lighten($color_item_separator, 45%);
+$color_background_infinite_scroll: $color_thm_gray;
+$color_icon_infinite_scroll: $color_thm_orange;
+
+//difficulty
+$color_button_difficulty0: #FFFFFF;
+$color_button_difficulty1: #5cb85c;
+$color_button_difficulty2: #5bc0de;
+$color_button_difficulty3: #d9534f;
+$color_button_difficulty_inactive: $color_wild_sand_approx;
+$color_background_difficulty0_note: ivory;
+$color_background_difficulty0: White;
+$color_background_difficulty1: honeydew;
+$color_background_difficulty2: lightcyan;
+$color_background_difficulty3: mistyrose;
+$color_background_difficulty0_lines_note: #F8E1AE;
+$color_background_difficulty0_lines: #E6EAE9;
+$color_background_difficulty1_lines: rgba(92, 184, 92, 0.3);
+$color_background_difficulty2_lines: rgba(91, 192, 222, 0.3);
+$color_background_difficulty3_lines: rgba(217, 83, 79, 0.3);
+
+//card
+$background_lecture: papayawhip;
+$background_hint: lightseagreen;
+
+$color_card_header_card_number: $color_thm_gray;
+$color_card_header_first_row: $color_thm_gray;
+$color_card_header_second_row: $color_thm_gray;
+$color_card_header_subject: $color_thm_gray;
+$font_size_card_header_first_row: 12px;
+$font_size_card_header_second_row: 11px;
+$font_size_card_header_subject: 26px;
+$font_weight_card_header_number: normal;
+$font_weight_card_header_first_row: bold;
+$font_weight_card_header_second_row: normal;
+$font_weight_card_header_subject: bold;
+
+
+//search
+$color_search_results_subject_background: White;
+$color_search_results_subject_text: $color_thm_gray;
+$color_search_results_content_background: White;
+$color_search_results_content_text: $color_thm_gray;
+$color_search_results_author_background: White;
+$color_search_results_author_text: $color_thm_gray;
+$color_search_results_separator: $color_thm_gray;
+$font_size_search_results_subject: 16px;
+$font_size_search_results_content: 12px;
+$font_size_search_results_author: 12px;
+$font_weight_search_results_subject: bold;
+$font_weight_search_results_content: normal;
+$font_weight_search_results_author: normal;
+$size_search_results_separator: 4px;
+$padding_search_items: 5px 10px;
 
 html {
   position: relative;
@@ -325,12 +385,6 @@ body {
   margin-top: 20px !important;
 }
 
-#searchResults {
-  min-width: 240px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
 .modal-header, .modal-body, .modal-footer {
   margin: 0 !important;
   padding: 15px !important;
@@ -428,6 +482,10 @@ button:disabled {
   padding: 10px;
 }
 
+.panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
+  border-bottom: solid 1px $color_item_separator_border_bottom !important;
+}
+
 .panelUnitKind {
   margin-left: 5px;
 }
@@ -516,7 +574,6 @@ button:disabled {
   .panelUnit {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: solid 1px $color_item_separator;
   }
 
   .panelUnitDescription {
@@ -563,6 +620,10 @@ button:disabled {
 
   .panelUnit {
     border-right: solid 1px $color_item_separator;
+  }
+
+  .licenseInfo, .licenseInfoCreate {
+   border-bottom: solid 1px $color_item_separator_border_bottom !important;
   }
 
   .footer {
@@ -913,3 +974,42 @@ th {
   color: $color_home_button_icon;
 }
 
+#searchResults {
+  min-width: 240px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#searchResults a {
+  border-bottom: solid $size_search_results_separator $color_search_results_separator !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#searchResults a:last-child {
+  border-bottom: 0 !important;
+}
+
+.search-subject {
+  background-color: $color_search_results_subject_background !important;
+  font-size: $font-size_search_results_subject !important;
+  font-weight: $font-weight_search_results_subject;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
+
+.search-content {
+  background-color: $color_search_results_content_background !important;
+  font-size: $font-size_search_results_content !important;
+  font-weight: $font-weight_search_results_content !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
+
+.search-author {
+  background-color: $color_search_results_author_background !important;
+  font-size: $font-size_search_results_author !important;
+  font-weight: $font-weight_search_results_author !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}

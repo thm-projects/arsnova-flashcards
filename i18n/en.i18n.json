@@ -217,7 +217,9 @@
     "noCollege": "No college",
     "noCourse": "No course",
     "noModuleLong": "No module",
-    "noModuleShort": "None"
+    "noModuleShort": "None",
+    "filter-info-small": "",
+    "filter-info-extra-small": ""
   },
   "set-list-empty": {
     "emptytextlist": "You have not created any deck of cards yet",
@@ -227,7 +229,8 @@
   "set-list-learn-empty": {
     "emptytextlist": "You aren't learning any deck of cards yet",
     "emptytextlistNoShuffle": "You aren't learning any deck of cards yet",
-    "browseCardset": "Choose a deck of cards"
+    "browseCardset": "Choose a deck of cards",
+    "browseCourse": "Select all files of a course"
   },
   "modal-dialog": {
     "newcarddeck": "Create a new deck of cards",
@@ -736,12 +739,10 @@
       "selectCourse": "Select Course",
       "createCourse": "Create a Course",
       "empty": "You have not yet created or selected a course.",
-      "courseIteration": "Course",
-      "category": "Category",
+      "courseIteration": "Course iteration",
       "module": "Module",
       "course": "Course",
-      "progress": "Progress",
-      "manage": "Manage"
+      "progress": "Progress"
     },
     "modal": {
       "new": "Create a new course",
