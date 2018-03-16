@@ -21,15 +21,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (min-width: 900px) {
-        font-size: 60px;
-        font-weight: bold;
-      }
-    }
-
-    h2 {
-      @media screen and (min-width: 760px) {
-        font-size: 40px;
+      @media screen and (min-width: 1280px) {
+        font-size: 70px;
         font-weight: bold;
       }
     }
@@ -42,8 +35,8 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (max-width: 400px) {
-        font-size: 16px;
+      @media screen and (max-width: 414px) {
+        font-size: 15px;
         font-weight: bold;
       }
     }
@@ -148,18 +141,27 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 @media (max-width: 1000px) {
   .color-dot:before {
-    //font-size: 0.3em; /* Fallback for old devices */
-    font-size: 6vw;
+    font-size: 5vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    //font-size: 0.75em; /* Fallback for old devices */
-    font-size: 9.75vw;
+    font-size: 8vw;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
+  .color-dot:before {
+    font-size: 5vw;
+  }
+
+  .logo-header-chars {
+    cursor: default;
+    font-size: 8vw;
+  }
+}
+
+@media (min-width: 1024px) {
   #cards-welcome-image {
     margin-top: -10px;
   }
