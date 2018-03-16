@@ -99,13 +99,13 @@ $font_weight_card_header_subject: bold;
 
 
 //search
-$color_search_results_subject_background: White;
-$color_search_results_subject_text: $color_thm_gray;
-$color_search_results_content_background: White;
-$color_search_results_content_text: $color_thm_gray;
-$color_search_results_author_background: White;
-$color_search_results_author_text: $color_thm_gray;
-$color_search_results_separator: $color_thm_gray;
+$color_search_results_subject_background: $color_thm_dark_blue;
+$color_search_results_subject_text: white;
+$color_search_results_content_background: $color_thm_dark_blue;
+$color_search_results_content_text: white;
+$color_search_results_author_background: $color_thm_dark_blue;
+$color_search_results_author_text: white;
+$color_search_results_separator: white;
 $font_size_search_results_subject: 16px;
 $font_size_search_results_content: 12px;
 $font_size_search_results_author: 12px;
@@ -995,6 +995,7 @@ th {
 
 .search-subject {
   background-color: $color_search_results_subject_background !important;
+  color: $color_search_results_subject_text !important;
   font-size: $font-size_search_results_subject !important;
   font-weight: $font-weight_search_results_subject;
   padding: $padding_search_items !important;
@@ -1003,6 +1004,7 @@ th {
 
 .search-content {
   background-color: $color_search_results_content_background !important;
+  color: $color_search_results_content_text !important;
   font-size: $font-size_search_results_content !important;
   font-weight: $font-weight_search_results_content !important;
   padding: $padding_search_items !important;
@@ -1011,6 +1013,7 @@ th {
 
 .search-author {
   background-color: $color_search_results_author_background !important;
+  color: $color_search_results_author_text !important;
   font-size: $font-size_search_results_author !important;
   font-weight: $font-weight_search_results_author !important;
   padding: $padding_search_items !important;
