@@ -38,6 +38,7 @@ $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
 $color_placeholder: $color_thm_dark_blue;
+$size_footer_height: 40px;
 
 //info page
 $color_info_navigation_text: black;
@@ -902,7 +903,7 @@ th {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 40px;
+  height: $size_footer_height !important;
   background-color: $color_footer_background;
   .container {
     height: 40px;

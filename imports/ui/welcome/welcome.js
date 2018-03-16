@@ -47,7 +47,7 @@ function createTagCloud() {
 	}
 
 	let heightAdjustment = 98;
-	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment + 80);
+	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment + 20);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.2;
