@@ -36,7 +36,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
     h2 {
       @media screen and (max-width: 414px) {
-        font-size: 15px;
+        font-size: 12px;
         font-weight: bold;
       }
     }
@@ -95,8 +95,9 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 }
 
 @media (max-width: 360px) {
-  #google img {
+  img {
     margin-top: 15px;
+    width: 55px;
   }
 
   #BackdoorLogin img, #TestingBackdoorUsername {
