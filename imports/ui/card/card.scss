@@ -341,6 +341,7 @@ img.cardside {
     padding-bottom: 5px;
     font-size: $font_size_card_header_subject !important;
     color: $color_card_header_subject !important;
+    font-weight: $font_weight_card_header_subject !important;
   }
 }
 
@@ -569,11 +570,13 @@ img.cardside {
   margin-top: 0;
   height: 45px;
   font-size: $font_size_card_header_first_row !important;
+  font-weight: $font_weight_card_header_first_row !important;
   color: $color_card_header_first_row !important;
 }
 
 .cardHeaderSecondRow {
   font-size: $font_size_card_header_second_row !important;
+  font-weight: $font_weight_card_header_second_row !important;
   color: $color_card_header_second_row !important;
 }
 
@@ -581,6 +584,7 @@ img.cardside {
   text-align: right;
   top: 5px;
   color: $color_card_header_card_number !important;
+  font-weight: $font_weight_card_header_number !important;
   @media(min-width: 768px) {
     top: 15px;
   }
