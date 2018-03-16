@@ -21,25 +21,33 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     }
 
     h2 {
-      @media screen and (min-width: 1280px) {
-        font-size: 70px;
+      @media (max-width: 414px) {
+        font-size: 14px;
         font-weight: bold;
       }
     }
 
     h2 {
-      @media screen and (max-width: 600px) {
-        font-size: 22px;
+      @media (min-width: 415px) and (max-width: 767px) {
+        font-size: 20px;
         font-weight: bold;
       }
     }
 
     h2 {
-      @media screen and (max-width: 414px) {
-        font-size: 12px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 42px;
         font-weight: bold;
       }
     }
+
+    h2 {
+      @media (min-width: 1024px) {
+        font-size: 55px;
+        font-weight: bold;
+      }
+    }
+
   }
 
   #login {
@@ -119,7 +127,6 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 .color-dot:before {
   content: ' \25CF';
-  //font-size: 0.2em; /* Fallback for old devices */
   font-size: 2.5vw;
   vertical-align: sub;
 }
@@ -134,31 +141,36 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   font-family: "Arial Black";
 }
 
-.logo-header-chars {
-  cursor: default;
-  //font-size: 0.5em; /* Fallback for old devices */
-  font-size: 4.5vw;
-}
-
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
   .color-dot:before {
-    font-size: 5vw;
+    font-size: 10vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    font-size: 8vw;
+    font-size: 13vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .color-dot:before {
+    font-size: 10vw;
+  }
+
+  .logo-header-chars {
+    cursor: default;
+    font-size: 15vw;
   }
 }
 
 @media (min-width: 1024px) {
   .color-dot:before {
-    font-size: 5vw;
+    font-size: 7vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    font-size: 8vw;
+    font-size: 10vw;
   }
 }
 
