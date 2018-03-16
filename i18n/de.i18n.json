@@ -42,7 +42,9 @@
     "search": "Suche",
     "frontend": "Frontend",
     "backend": "Backend",
-    "none": "Ohne"
+    "none": "Ohne",
+    "info-extra-small": "Beschreibung für smartphone"
+
   },
   "contact": {
     "about": ".cards",
