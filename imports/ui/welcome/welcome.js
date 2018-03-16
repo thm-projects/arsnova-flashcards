@@ -16,10 +16,6 @@ function setActiveLanguage() {
 	Session.set('activeLanguage', language);
 }
 
-function resizeCardsImage() {
-	$('#cards-welcome-image').css('height', $('.color-cards').height());
-}
-
 /**
  * This method nserts a hover message for the wordcloud content
  *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
@@ -41,6 +37,7 @@ function wordcloudHover(item, dimension) {
  * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
  */
 function createTagCloud() {
+	$('#cards-welcome-image').css('height', $('.color-cards').height());
 	let cloud = Cloud.find({}).fetch();
 	let list = [];
 
@@ -53,7 +50,6 @@ function createTagCloud() {
 	let heightAdjustment = 98;
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment + 20);
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
-	resizeCardsImage();
 	let textScale = 1.2;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1440);
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 450;
@@ -179,7 +175,7 @@ Template.welcome.onRendered(function () {
 		createTagCloud();
 	});
 	$("#cards-welcome-image").load(function () {
-		resizeCardsImage();
+		createTagCloud();
 	});
 	$(window).resize(function () {
 		createTagCloud();
