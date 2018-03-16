@@ -209,8 +209,8 @@
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
     "noModuleShort": "ohne",
-    "filter-info-small": "Beschreibung für tablets",
-    "filter-info-extra-small": "Beschreibung für smartphones"
+    "filter-info-small": "Sortier- und Filteroptionen",
+    "filter-info-extra-small": "Filteroptionen"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
@@ -219,10 +219,12 @@
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine Kartei aus oder mische eine neue Kartei aus mehreren anderen.",
+    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder alle Karteien eines Kurses aus. Du kannst eine neue
+    Kartei auch aus
+    mehreren anderen mischen.",
     "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
     "browseCardset": "Kartei auswählen",
-    "browseCourse": "Alle Karteien eines Kurses auswählen"
+    "browseCourse": "Kurs auswählen"
   },
   "modal-dialog": {
     "newcarddeck": "Neue Kartei anlegen",
