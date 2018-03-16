@@ -97,6 +97,24 @@ $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
 $font_weight_card_header_subject: bold;
 
+
+//search
+$color_search_results_subject_background: White;
+$color_search_results_subject_text: $color_thm_gray;
+$color_search_results_content_background: White;
+$color_search_results_content_text: $color_thm_gray;
+$color_search_results_author_background: White;
+$color_search_results_author_text: $color_thm_gray;
+$color_search_results_separator: $color_thm_gray;
+$font_size_search_results_subject: 16px;
+$font_size_search_results_content: 12px;
+$font_size_search_results_author: 12px;
+$font_weight_search_results_subject: bold;
+$font_weight_search_results_content: normal;
+$font_weight_search_results_author: normal;
+$size_search_results_separator: 4px;
+$padding_search_items: 5px 10px;
+
 html {
   position: relative;
   min-height: 100%;
@@ -365,12 +383,6 @@ body {
 
 #theme-wrapper-no-nav {
   margin-top: 20px !important;
-}
-
-#searchResults {
-  min-width: 240px;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .modal-header, .modal-body, .modal-footer {
@@ -962,3 +974,42 @@ th {
   color: $color_home_button_icon;
 }
 
+#searchResults {
+  min-width: 240px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#searchResults a {
+  border-bottom: solid $size_search_results_separator $color_search_results_separator !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#searchResults a:last-child {
+  border-bottom: 0 !important;
+}
+
+.search-subject {
+  background-color: $color_search_results_subject_background !important;
+  font-size: $font-size_search_results_subject !important;
+  font-weight: $font-weight_search_results_subject;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
+
+.search-content {
+  background-color: $color_search_results_content_background !important;
+  font-size: $font-size_search_results_content !important;
+  font-weight: $font-weight_search_results_content !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
+
+.search-author {
+  background-color: $color_search_results_author_background !important;
+  font-size: $font-size_search_results_author !important;
+  font-weight: $font-weight_search_results_author !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
