@@ -757,7 +757,6 @@ button:disabled {
 }
 
 #searchResults {
-  max-height: 400px;
   overflow-y: scroll;
 }
 
@@ -975,9 +974,13 @@ th {
 }
 
 #searchResults {
-  min-width: 240px;
+  position: absolute;
+  float: left;
+  width: 300px;
   padding-top: 0;
   padding-bottom: 0;
+  z-index: 1000;
+  margin: 0 !important;
 }
 
 #searchResults a {

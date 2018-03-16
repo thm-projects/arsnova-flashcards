@@ -30,6 +30,15 @@ Session.setDefault("selectingCardsetToLearn", false);
 Session.setDefault('helpTarget', undefined);
 
 
+function adjustSearchResultWindowSize() {
+	let destination = $('#input-search');
+	let target = $('#searchResults');
+	let offsetTop = (destination.offset().top + destination.height());
+	target.css('max-height', ($(window).height() - offsetTop));
+	target.css('left', destination.offset().left);
+	target.css('top', offsetTop);
+}
+
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {
@@ -146,6 +155,10 @@ Template.main.events({
 		} else {
 			$('#searchDropdown').removeClass("open");
 		}
+		adjustSearchResultWindowSize();
+	},
+	'click #input-search': function () {
+		adjustSearchResultWindowSize();
 	},
 	'click #searchResults': function () {
 		$('#searchDropdown').removeClass("open");
@@ -212,6 +225,14 @@ Template.main.helpers({
 Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
 	Meteor.call("initUser");
+	adjustSearchResultWindowSize();
+	$(window).resize(function () {
+		adjustSearchResultWindowSize();
+	});
+	$("html, body").click(function () {
+		$('#input-search').val('');
+		Session.set("searchValue", undefined);
+	});
 });
 
 Template.completeProfileModal.events({

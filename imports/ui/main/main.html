@@ -29,6 +29,20 @@
                                 </div>
 
                                 <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div id="searchResults" class="dropdown-menu list-group" style="{{#if searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}"
+                                     data-toggle="collapse" data-target="#thm-top-navigation">
+                                    {{#each searchCategories}}
+                                        <a href="/cardset/{{_id}}" class="list-group-item clearfix">
+                                            <h4 class="list-group-item-heading search-subject">{{name}}</h4>
+                                            <p class="list-group-item-text search-content">{{description}}</p>
+                                            {{#with getAuthor this.owner}}
+                                                <p class="list-group-item-text search-author">{{_
+                                                        "cardset.info.author"}}
+                                                    : {{givenname}} {{birthname}}</p>
+                                            {{/with}}
+                                        </a>
+                                    {{/each}}
+                                </div>
                                 <div class="collapse navbar-collapse" id="thm-top-navigation">
                                     {{#if currentUser}}
                                         <ul id="navbar" class="nav navbar-nav">
@@ -70,20 +84,6 @@
                                                    autocomplete="off" spellcheck="off" data-source="search"
                                                    data-template="search"
                                                    placeholder="{{_ "navbar-collapse.search"}}">
-                                            <div id="searchResults" class="dropdown-menu list-group"
-                                                 data-toggle="collapse" data-target="#thm-top-navigation">
-                                                {{#each searchCategories}}
-                                                    <a href="/cardset/{{_id}}" class="list-group-item clearfix">
-                                                        <h4 class="list-group-item-heading search-subject">{{name}}</h4>
-                                                        <p class="list-group-item-text search-content">{{description}}</p>
-                                                        {{#with getAuthor this.owner}}
-                                                            <p class="list-group-item-text search-author">{{_
-                                                                    "cardset.info.author"}}
-                                                                : {{givenname}} {{birthname}}</p>
-                                                        {{/with}}
-                                                    </a>
-                                                {{/each}}
-                                            </div>
                                         </div>
 
                                         <ul class="nav navbar-nav navbar-right">
