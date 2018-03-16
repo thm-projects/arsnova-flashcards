@@ -19,22 +19,18 @@ function setActiveLanguage() {
 /**
  * This method nserts a hover message for the wordcloud content
  *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
- *  @param {Object} dimension - X and Y Positions relative to the canvas
  */
+function wordcloudClick(item) {
+	Session.set('wordcloudItem', item);
+	$('#wordcloudModal').modal('show');
+}
+
 function wordcloudHover(item, dimension) {
-	if (dimension === undefined) {
-		$('#welcome-tip').css({'visibility': 'hidden'});
-		return;
-	}
-	let heightAdjustment = $('#login').height() + $('#tag-cloud-canvas').height() + 30;
-	let widthAdjustment;
-	if ($('#tag-cloud-canvas').width() < 600) {
-		widthAdjustment = 20;
+	if (dimension !== undefined) {
+		$('#tag-cloud-canvas').css('cursor', 'pointer');
 	} else {
-		widthAdjustment = dimension.x;
+		$('#tag-cloud-canvas').css('cursor', 'unset');
 	}
-	$('#welcome-tip').html("<p>" + item[3] + "</p>");
-	$('#welcome-tip').css({'visibility': 'visible', 'left': widthAdjustment, 'bottom': heightAdjustment});
 }
 
 /**
@@ -55,7 +51,6 @@ function createTagCloud() {
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
 	document.getElementById('cards-welcome-image').height = $('.color-cards').height();
 	let textScale = 1.2;
-	//let wordRotation = 0.7853981634;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1440);
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 450;
 	WordCloud(document.getElementById('tag-cloud-canvas'),
@@ -64,19 +59,12 @@ function createTagCloud() {
 			gridSize: gridSize,
 			weightFactor: weightFactor,
 			minSize: 14,
-			//shape: "diamond",
 			drawOutOfBound: false,
 			rotateRatio: 0,
-			//rotationSteps: 2,
-			//minRotation: -wordRotation,
-			//maxRotation: wordRotation,
 			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-			classes: 'tip-content',
-			//color: function () {
-			//	return (['#002878', '#78B925', '#F5AA01'])[Math.floor(Math.random() * 3)];
-			//},
 			color: "white",
 			hover: wordcloudHover,
+			click: wordcloudClick,
 			backgroundColor: 'rgba(255,255,255, 0)',
 			wait: 75
 		});
@@ -145,20 +133,13 @@ Template.welcome.events({
 	}
 });
 
-Template.welcome.onCreated(function () {
-	var supportsOrientationChange = "onorientationchange" in window,
-		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-
-	window.addEventListener(orientationEvent, function () {
-		if (Router.current().route.getName() === "home") {
-			createTagCloud();
-		}
-	}, false);
-	$(window).resize(function () {
-		if (Router.current().route.getName() === "home") {
-			createTagCloud();
-		}
-	});
+Template.wordcloudModal.helpers({
+	getWordcloudSubject: function () {
+		return Session.get('wordcloudItem')[0];
+	},
+	getWordcloudContent: function () {
+		return Session.get('wordcloudItem')[3];
+	}
 });
 
 Template.welcome.onRendered(function () {
