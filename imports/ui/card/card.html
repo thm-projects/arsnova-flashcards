@@ -303,26 +303,30 @@
                                             {{/if}}
                                         {{/unless}}
                                     </div>
-                                    <div class="cardInfoCenter">
-                                        <span><strong>{{getCardsetName}}</strong>
-                                            {{#unless gotNotesForDifficultyLevel}}
-                                                (<span
-                                                    class="cardFrontHeader"
+                                    <div class="cardHeaderCenter cardHeaderFirstRow">
+                                        <strong>{{getCardsetName}}</strong><br>
+                                        {{#if displaysSideInformation}}
+                                            <span
+                                                    class="cardFrontHeader cardHeaderSecondRow"
                                                     style="display: {{#if gotDictionary}}{{#if
-                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{getFrontTitle}}
-                                                )</span><span
-                                                    class="cardBackHeader"
-                                                    style="display: {{#if gotDictionary}}{{#unless
-                                                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{getBackTitle}}
-                                                )</span>{{/unless}}</span><br>
-                                        {{#if gotLearningGoal}}
-                                            {{_ "learning-goal.name"}}: <strong>{{getLearningGoalName}}</strong>
+                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{_
+                                                    "sidebar-nav.view"}}: {{getFrontTitle}}
+                                                </span><span
+                                                class="cardBackHeader cardHeaderSecondRow"
+                                                style="display: {{#if gotDictionary}}{{#unless
+                                                        reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
+                                                "sidebar-nav.view"}}: {{getBackTitle}}
+                                                </span>
+                                        {{/if}}
+                                        {{#if displaysLearningGoalInformation}}
+                                            <span class="cardHeaderSecondRow">{{#if displaysSideInformation}}|{{/if}}
+                                                {{_ "learning-goal.name"}}: {{getLearningGoalName}}</span>
                                         {{/if}}
                                     </div>
-                                    <div class="cardNumber">
+                                    <div class="cardNumber cardHeaderFirstRow">
                                         {{#if isCardset}}
                                             {{#unless hasCardsetPermission cardset_id}}
-                                                <strong>{{_ "preview"}}:</strong>
+                                                {{_ "preview"}}:
                                                 {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
                                             {{else}}
                                                 {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
@@ -360,7 +364,7 @@
                                             {{/if}}
                                         {{/if}}
                                     </div>
-                                    <h3>{{subject}}</h3>
+                                    <h2>{{subject}}</h2>
                                     <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"

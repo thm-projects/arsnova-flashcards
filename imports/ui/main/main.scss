@@ -85,7 +85,17 @@ $color_background_difficulty3_lines: rgba(217, 83, 79, 0.3);
 $background_lecture: papayawhip;
 $background_hint: lightseagreen;
 
-$color_card_header_text: $color_thm_gray;
+$color_card_header_card_number: $color_thm_gray;
+$color_card_header_first_row: $color_thm_gray;
+$color_card_header_second_row: $color_thm_gray;
+$color_card_header_subject: $color_thm_gray;
+$font_size_card_header_first_row: 12px;
+$font_size_card_header_second_row: 11px;
+$font_size_card_header_subject: 26px;
+$font_weight_card_header_number: normal;
+$font_weight_card_header_first_row: bold;
+$font_weight_card_header_second_row: normal;
+$font_weight_card_header_subject: bold;
 
 html {
   position: relative;

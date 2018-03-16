@@ -15,7 +15,8 @@ import {
 	gotDictionary,
 	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
 	gotNotesForDifficultyLevel, gotThreeColumns,
-	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle
+	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
+	displaysLearningGoalInformation
 } from "../../api/cardTypes";
 
 /*
@@ -1130,6 +1131,20 @@ Template.flashcards.helpers({
 			cardset_id: cardset._id
 		}).count();
 		return count === 1;
+	},
+	displaysLearningGoalInformation: function () {
+		if (Session.get('shuffled')) {
+			return displaysLearningGoalInformation(Session.get('cardType'));
+		} else {
+			return displaysLearningGoalInformation(this.cardType);
+		}
+	},
+	displaysSideInformation: function () {
+		if (Session.get('shuffled')) {
+			return displaysSideInformation(Session.get('cardType'));
+		} else {
+			return displaysSideInformation(this.cardType);
+		}
 	},
 	getCards: function () {
 		if (isBox()) {

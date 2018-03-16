@@ -22,14 +22,12 @@
 }
 
 .cardInfoCenter {
-  font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: center;
   margin-top: 12px;
 }
 
 .cardDate {
   float: right;
-  font-family: $font_2, $font_3, $font_4, $font_5;
   text-align: right;
   margin-right: -40px;
   margin-top: -7px;
@@ -59,7 +57,6 @@
 
 .box, .boxPreview, .box-static {
   border: 1px solid $color_alto_approx;
-  font-family: $font_0, $font_1;
   margin: 0 auto;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
@@ -242,7 +239,6 @@
   position: absolute;
   left: 45px;
   top: 11px;
-  font-family: $font_2, $font_3, $font_4, $font_5;
 }
 
 .clicktoflip {
@@ -293,12 +289,6 @@ img.cardside {
   top: 50px;
 }
 
-.cardNumber {
-  font-family: $font_2, $font_3, $font_4, $font_5;
-  text-align: right;
-  top: 14px;
-}
-
 #toggleFullscreen, .cardNumber {
   right: 8px;
 }
@@ -343,14 +333,16 @@ img.cardside {
   min-height: 90px;
   text-align: center;
   font-size: 12px;
-  padding: 20px 100px 0 100px;
+  padding: 15px 100px 0 100px;
 
-  h3 {
+  h2 {
     margin-top: -20px;
     margin-bottom: 0;
     padding-bottom: 5px;
+    font-size: $font_size_card_header_subject !important;
+    color: $color_card_header_subject !important;
+    font-weight: $font_weight_card_header_subject !important;
   }
-  color: $color_card_header_text !important;
 }
 
 .cardHeader a:hover {
@@ -361,7 +353,6 @@ img.cardside {
   padding: 26pt !important;
   line-height: 28px;
   font-size: 18px;
-  font-family: $default_font !important;
 }
 
 #subjectEditor:disabled {
@@ -537,9 +528,7 @@ img.cardside {
   .card-button {
     font-size: 16px;
   }
-  .cardHeader h3 {
-    font-size: 18px;
-  }
+
   .leftHeader {
     top: 5px;
   }
@@ -576,3 +565,28 @@ img.cardside {
 .cardSubjectRow {
   margin-top: -3px !important;
 }
+
+.cardHeaderFirstRow {
+  margin-top: 0;
+  height: 45px;
+  font-size: $font_size_card_header_first_row !important;
+  font-weight: $font_weight_card_header_first_row !important;
+  color: $color_card_header_first_row !important;
+}
+
+.cardHeaderSecondRow {
+  font-size: $font_size_card_header_second_row !important;
+  font-weight: $font_weight_card_header_second_row !important;
+  color: $color_card_header_second_row !important;
+}
+
+.cardNumber {
+  text-align: right;
+  top: 5px;
+  color: $color_card_header_card_number !important;
+  font-weight: $font_weight_card_header_number !important;
+  @media(min-width: 768px) {
+    top: 15px;
+  }
+}
+
