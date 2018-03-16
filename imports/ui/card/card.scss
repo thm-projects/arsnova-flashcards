@@ -289,14 +289,6 @@ img.cardside {
   top: 50px;
 }
 
-.cardNumber {
-  text-align: right;
-  top: 5px;
-  @media(min-width: 768px) {
-    top: 15px;
-  }
-}
-
 #toggleFullscreen, .cardNumber {
   right: 8px;
 }
@@ -348,8 +340,8 @@ img.cardside {
     margin-bottom: 0;
     padding-bottom: 5px;
     font-size: $font_size_card_header_subject !important;
+    color: $color_card_header_subject !important;
   }
-  color: $color_card_header_text !important;
 }
 
 .cardHeader a:hover {
@@ -577,9 +569,20 @@ img.cardside {
   margin-top: 0;
   height: 45px;
   font-size: $font_size_card_header_first_row !important;
+  color: $color_card_header_first_row !important;
 }
 
 .cardHeaderSecondRow {
   font-size: $font_size_card_header_second_row !important;
+  color: $color_card_header_second_row !important;
+}
+
+.cardNumber {
+  text-align: right;
+  top: 5px;
+  color: $color_card_header_card_number !important;
+  @media(min-width: 768px) {
+    top: 15px;
+  }
 }
 
