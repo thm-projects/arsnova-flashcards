@@ -50,7 +50,8 @@
     "search": "Search",
     "frontend": "Front end",
     "backend": "Back end",
-    "none": "None"
+    "none": "None",
+    "info-extra-small": ""
   },
   "contact": {
     "about": ".cards",
