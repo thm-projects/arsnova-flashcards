@@ -182,6 +182,6 @@ Template.welcome.onRendered(function () {
 		resizeCardsImage();
 	});
 	$(window).resize(function () {
-		resizeCardsImage();
+		createTagCloud();
 	});
 });
