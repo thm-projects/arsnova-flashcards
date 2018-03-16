@@ -392,7 +392,7 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
 		difficulty = 1;
 	}
-	if (backgroundStyle === 1) {
+	if (backgroundStyle === 0) {
 		switch (difficulty) {
 			case 0:
 				if (gotNotesForDifficultyLevel(cardType)) {

@@ -48,7 +48,7 @@
     {{#if getDecks.count}}
         {{#each getDecks}}
             <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
-                                                                          0}} cardsetInfo responsive-utilities-test visible-on">
+                                                                          1}} cardsetInfo responsive-utilities-test visible-on">
                 {{> poolCardsetRow extendContext 'index' @index}}
             </div>
         {{/each}}
