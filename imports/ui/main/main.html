@@ -109,7 +109,7 @@
                                                         <h4 class="menu-title">{{_ "notifications.title"}}</h4>
                                                         {{#if getNotifications.count}}
                                                             <button id="clearBtn" type="button"
-                                                                    class="btn btn-default pull-right">{{_
+                                                                    class="btn btn-default notification-button pull-right">{{_
                                                                     "notifications.clearAll"}}</button>
                                                         {{/if}}
                                                     </div>
@@ -134,7 +134,7 @@
                                                     <li class="divider"></li>
                                                     <div class="notification-footer">
                                                         <a href="{{pathFor 'profileNotifications' _id=currentUser._id}}"
-                                                           type="button" class="btn btn-info"
+                                                           type="button" class="btn btn-info notification-button"
                                                            data-toggle="collapse"
                                                            data-target="#thm-top-navigation">
                                                             {{_ "notifications.viewAll"}} <i

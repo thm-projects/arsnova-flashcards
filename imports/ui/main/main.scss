@@ -97,6 +97,8 @@ $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
 $font_weight_card_header_subject: bold;
 
+//notifications
+$color_notification_text_smartphones: white;
 
 //search
 $color_search_results_subject_background: $color_thm_dark_blue;
@@ -351,6 +353,10 @@ body {
   #contact-nav a {
     text-align: left;
     padding: 10px;
+  }
+
+  .notification-heading, .notification-item, .notification-footer, .notification-button  {
+    color: $color_notification_text_smartphones !important;
   }
 }
 
