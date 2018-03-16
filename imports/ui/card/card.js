@@ -45,6 +45,8 @@ export function adjustMarkdownToolbar() {
 	//btn-group 3
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(3)");
 	btnGroup.append($(".fa-file-image-o").parent());
+	btnGroup.append($(".fa-youtube").parent());
+	btnGroup.append($(".fa-vimeo").parent());
 	//btn-group 4
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
 	btnGroup.append($(".fa-paint-brush").parent());
@@ -473,6 +475,18 @@ let additionalButtons = [
 			icon: 'glyphicon fullscreen-button',
 			callback: function () {
 				toggleFullscreen(false, true);
+			}
+		}, {
+			name: 'cmdYouTube',
+			title: 'YouTube',
+			icon: 'fa fa-youtube',
+			callback: function () {
+			}
+		}, {
+			name: 'cmdVimeo',
+			title: 'Vimeo',
+			icon: 'fa fa-vimeo',
+			callback: function () {
 			}
 		}, {
 			name: 'cmdTask',

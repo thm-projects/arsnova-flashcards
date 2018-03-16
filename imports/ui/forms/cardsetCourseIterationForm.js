@@ -377,6 +377,18 @@ let additionalButtons = [
 			icon: "fa fa-superscript",
 			callback: tex
 		}, {
+			name: 'cmdYouTube',
+			title: 'YouTube',
+			icon: 'fa fa-youtube',
+			callback: function () {
+			}
+		}, {
+			name: 'cmdVimeo',
+			title: 'Vimeo',
+			icon: 'fa fa-vimeo',
+			callback: function () {
+			}
+		}, {
 			name: 'cmdTask',
 			title: 'Task',
 			icon: 'fa fa-check-square',
