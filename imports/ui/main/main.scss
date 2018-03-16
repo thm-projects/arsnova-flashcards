@@ -118,6 +118,11 @@ $font_weight_search_results_author: normal;
 $size_search_results_separator: 4px;
 $padding_search_items: 5px 10px;
 
+
+//cookie consent
+$color_cookie_consent_link: $color_thm_dark_blue;
+$text_decoration_cookie_consent_link: none;
+
 html {
   position: relative;
   min-height: 100%;
@@ -1034,4 +1039,9 @@ th {
 
 .btn-toolbar .btn-group {
   margin-right: 5px;
+}
+
+.cc-link {
+  color: $color_cookie_consent_link !important;
+  text-decoration: $text_decoration_cookie_consent_link !important;
 }
