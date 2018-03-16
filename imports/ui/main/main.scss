@@ -1013,3 +1013,8 @@ th {
   padding: $padding_search_items !important;
   margin: 0;
 }
+
+.navbar-fixed-top .navbar-text {
+  margin-top: 14px !important;
+  margin-bottom: 0;
+}
