@@ -256,7 +256,7 @@
     "description_required": "Gib eine Beschreibung ein!",
     "category_required": "Wähle eine Kategorie!",
     "price": "Verkaufspreis",
-    "publish": "Status speichern",
+    "publish": "Zugangskategorie speichern",
     "modules": "Rechtemodule",
     "by-desc": "Der Name der Urheberin oder des Urhebers muss genannt werden.",
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
@@ -346,7 +346,7 @@
       "header": "Mitgliedschaft (derzeit kostenloser Testbetrieb)",
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
-      "free": "Create. Learn. Remember.",
+      "free": "Organize. Learn. Remember.",
       "edu": "Edu-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Karteien",
@@ -471,7 +471,7 @@
     "importcard": "Import",
     "exportcard": "Export",
     "manageEditors": "Bearbeitungsrechte",
-    "publish": "Status",
+    "publish": "Zugang festlegen",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um diesen zu veröffentlichen.
     Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
@@ -600,7 +600,7 @@
     "cardType0": {
       "name": "Lernkartei",
       "front": "Lernziel",
-      "back": "Lernziel-Review",
+      "back": "Review",
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
       "placeholders": {
@@ -719,7 +719,7 @@
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
-      "progress": "Fortschritt"
+      "progress": "Lernstand"
     },
     "modal": {
       "new": "Neuen Kurs anlegen",
