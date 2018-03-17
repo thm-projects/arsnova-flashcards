@@ -9,6 +9,10 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 #welcome {
   text-align: center;
+  margin-top: -40px;
+  @media (min-width: 1200px) {
+    margin-top: -60px;
+  }
   .panel {
     background-color: transparent;
     box-shadow: none;
@@ -52,6 +56,11 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
   #login {
     margin-bottom: $size_footer_height !important;
+    margin-top: 20px;
+    padding-top: 0;
+    @media (max-height: 500px) {
+      margin-top: 0;
+    }
     a {
       margin-right: 14px;
       &:last-child {
@@ -67,13 +76,15 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
   .panel-heading {
     padding-bottom: 20px;
+    @media (max-height: 500px) {
+      padding-bottom: 0;
+    }
     min-height: 177px;
     background-color: transparent;
   }
 
   .panel-footer {
     border-top: 0;
-    margin-top: 40;
     min-height: 84px;
     background-color: transparent;
   }
@@ -94,8 +105,6 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
 
 #tag-cloud-container {
   background-color: transparent;
-  //border-top: 4px solid #F5AA01;
-  //border-bottom: 4px solid #F5AA01;
 }
 
 #TestingBackdoorUsername {

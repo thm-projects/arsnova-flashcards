@@ -38,6 +38,13 @@ function wordcloudHover(item, dimension) {
  */
 function createTagCloud() {
 	$('#cards-welcome-image').css('height', $('.color-cards').height());
+	if ($(window).height() <= 500) {
+		$('#tag-cloud-canvas').css('height', '0');
+		$('#tag-cloud-container').css('height', '0');
+		return;
+	}
+	$('#tag-cloud-canvas').css('height', 'unset');
+	$('#tag-cloud-container').css('height', 'unset');
 	let cloud = Cloud.find({}).fetch();
 	let list = [];
 
@@ -46,10 +53,8 @@ function createTagCloud() {
 	} else {
 		return;
 	}
-
-	let heightAdjustment = 98;
-	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').height() + $('#login').height() + $('#footer').height() + heightAdjustment + 20);
-	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;// 750;
+	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true));
+	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
 	let textScale = 1.2;
 	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1440);
 	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 450;
