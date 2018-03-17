@@ -533,7 +533,7 @@
       "bought": "Vielen Dank für deinen Kauf!"
     },
     "alert": {
-      "addedToWorkload": "Zu meinem Lernpensum hinzugefügt"
+      "addedToWorkload": "Zu deinem Lernpensum hinzugefügt"
     }
   },
   "cardmemo": {
@@ -714,8 +714,9 @@
     },
     "list": {
       "selectCourse": "Kurs auswählen",
-      "createCourse": "Kurs erstellen",
-      "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
+      "createCourse": "Kurs anlegen",
+      "empty": "Ein Kurs fasst mehrere Karteien zusammen. Jeder kann Kurse anlegen. Informiere
+      dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
