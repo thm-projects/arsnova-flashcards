@@ -104,7 +104,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_ "difficulty"}}{{/if}}:</strong></td>
+                    <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                            "difficulty"}}{{/if}}:</strong></td>
                     <td>
                         {{getDifficultyName}}
                     </td>
@@ -1167,64 +1168,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label"
-                               for="newSetDescription">{{_ "modal-dialog.kind"}}:</label>
-                        <div class="controls">
-                            <div id="publishKind" class="btn-group"
-                                 data-toggle="buttons">
-                                <label id="kindoption0"
-                                       class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
-                                    <input type="radio" name="kind" value="personal" id="kind_private">
-                                    <div>Private</div>
-                                </label>
-                                <label id="kindoption1"
-                                       class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
-                                    <input type="radio" name="kind" value="free" id="free">
-                                    <div>Free</div>
-                                </label>
-                                {{#if isInRole 'lecturer'}}
-                                    <label id="kindoption2"
-                                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="edu" id="kind_edu">
-                                        <div>Edu</div>
-                                    </label>
-                                {{/if}}
-                                {{#if isInRole 'pro'}}
-                                    <label id="kindoption3"
-                                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
-                                        <input type="radio" name="kind" value="pro" id="kind_pro">
-                                        <div>Pro</div>
-                                    </label>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                    {{#if kindWithPrice}}
-                        <div class="form-group">
-                            <label id="publishPriceLabel" class="col-md-3 control-label"
-                                   for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <select id="publishPrice" class="form-control">
-                                        <option {{priceIsSelected 0.99}}>{{getPrice "0.99" false}}</option>
-                                        <option {{priceIsSelected 1.99}}>{{getPrice "1.99" false}}</option>
-                                        <option {{priceIsSelected 2.99}}>{{getPrice "2.99" false}}</option>
-                                        <option {{priceIsSelected 3.99}}>{{getPrice "3.99" false}}</option>
-                                        <option {{priceIsSelected 4.99}}>{{getPrice "4.99" false}}</option>
-                                        <option {{priceIsSelected 5.99}}>{{getPrice "5.99" false}}</option>
-                                        <option {{priceIsSelected 6.99}}>{{getPrice "6.99" false}}</option>
-                                        <option {{priceIsSelected 7.99}}>{{getPrice "7.99" false}}</option>
-                                        <option {{priceIsSelected 8.99}}>{{getPrice "8.99" false}}</option>
-                                        <option {{priceIsSelected 9.99}}>{{getPrice "9.99" false}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    {{/if}}
+                <div class="modal-body row">
+                    {{> publishKind}}
                 </div>
                 <div class="modal-footer">
+                    <br>
                     <button id="cardsetCancel" class="btn btn-default btn-raised pull-left"
                             data-dismiss="modal">{{_ "modal-dialog.cancel"}}</button>
                     <button id="cardsetPublish"
@@ -1236,6 +1184,62 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+</template>
+
+<template name="publishKind">
+    <div class="form-group">
+        <label class="col-md-3  control-label"
+               for="newSetDescription">{{_ "set-list.availability"}}:</label>
+        <div class="controls col-md-9">
+            <div id="publishKind" class="btn-group-justified"
+                 data-toggle="buttons">
+                <label id="kindoption0"
+                       class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}">
+                    <input type="radio" name="kind" value="personal" id="kind_private">
+                    <div>Private</div>
+                </label>
+                <label id="kindoption1"
+                       class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
+                    <input type="radio" name="kind" value="free" id="free">
+                    <div>Free</div>
+                </label>
+                {{#if isInRole 'lecturer'}}
+                    <label id="kindoption2"
+                           class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
+                        <input type="radio" name="kind" value="edu" id="kind_edu">
+                        <div>Edu</div>
+                    </label>
+                {{/if}}
+                {{#unless isInRole regex='lecturer|pro'}}
+                    <label id="kindoption3"
+                           class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
+                        <input type="radio" name="kind" value="pro" id="kind_pro">
+                        <div>Pro</div>
+                    </label>
+                {{/unless}}
+            </div>
+        </div>
+    </div>
+    {{#if kindWithPrice}}
+        <div class="form-group">
+            <label id="publishPriceLabel" class="col-md-3 control-label"
+                   for="publishPrice">{{_ "modal-dialog.price"}} (€)</label>
+            <div class="col-md-9">
+                <select id="publishPrice" class="form-control">
+                    <option {{priceIsSelected 0.99}}>{{getPrice "0.99" false}}</option>
+                    <option {{priceIsSelected 1.99}}>{{getPrice "1.99" false}}</option>
+                    <option {{priceIsSelected 2.99}}>{{getPrice "2.99" false}}</option>
+                    <option {{priceIsSelected 3.99}}>{{getPrice "3.99" false}}</option>
+                    <option {{priceIsSelected 4.99}}>{{getPrice "4.99" false}}</option>
+                    <option {{priceIsSelected 5.99}}>{{getPrice "5.99" false}}</option>
+                    <option {{priceIsSelected 6.99}}>{{getPrice "6.99" false}}</option>
+                    <option {{priceIsSelected 7.99}}>{{getPrice "7.99" false}}</option>
+                    <option {{priceIsSelected 8.99}}>{{getPrice "8.99" false}}</option>
+                    <option {{priceIsSelected 9.99}}>{{getPrice "9.99" false}}</option>
+                </select>
+            </div>
+        </div>
+    {{/if}}
 </template>
 
 <template name="cardsetManageEditors">

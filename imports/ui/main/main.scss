@@ -153,7 +153,7 @@ body {
   background-color: $color_thm_green !important;
 }
 
-.btn-raised.btn-warning {
+.btn-raised.btn-warning, .btn-warning.active {
   color: $white !important;
   background-color: $color_thm_red !important;
 }

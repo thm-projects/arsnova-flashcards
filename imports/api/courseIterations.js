@@ -95,6 +95,14 @@ const CourseIterationsSchema = new SimpleSchema({
 	cardsetsGroup: {
 		type: [String],
 		optional: true
+	},
+	semester: {
+		type: Number
+	},
+	price: {
+		type: Number,
+		decimal: true,
+		optional: true
 	}
 });
 
@@ -115,8 +123,10 @@ Meteor.methods({
 	 * @param {String} moduleLink - Link to the module description
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
+	 * @param {String} semester - Semester that the course belongs to
+	 * @param {String} price - Price for the course
 	 */
-	addCourseIteration: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course) {
+	addCourseIteration: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, semester, price) {
 		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
@@ -132,9 +142,15 @@ Meteor.methods({
 		check(moduleLink, String);
 		check(college, String);
 		check(course, String);
+		check(semester, Number);
+		check(price, Number);
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
+		}
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
+			kind = "personal";
+			price = Number(0);
 		}
 		CourseIterations.insert({
 			name: name.trim(),
@@ -156,7 +172,9 @@ Meteor.methods({
 			moduleNum: moduleNum.trim(),
 			moduleLink: moduleLink.trim(),
 			college: college.trim(),
-			course: course.trim()
+			course: course.trim(),
+			price: price.toString().replace(",", "."),
+			semester: semester
 		});
 	},
 	/**
