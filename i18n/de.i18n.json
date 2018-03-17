@@ -205,7 +205,7 @@
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
     "none": "ohne",
-    "levelOfLearning": "Lernstand",
+    "levelOfLearning": "Statistik",
     "noDescription": "Keine Beschreibung vorhanden",
     "noCollege": "ohne Hochschule",
     "noCourse": "ohne Studiengang",
@@ -533,7 +533,7 @@
       "bought": "Vielen Dank für deinen Kauf!"
     },
     "alert": {
-      "addedToWorkload": "Zu meinem Lernpensum hinzugefügt"
+      "addedToWorkload": "Zu deinem Lernpensum hinzugefügt"
     }
   },
   "cardmemo": {
@@ -707,19 +707,23 @@
     }
   },
   "courseIteration": {
+    "name": "Kurs",
     "confirm-form-delete": {
       "title": "Kurs löschen",
       "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
     },
     "list": {
       "selectCourse": "Kurs auswählen",
-      "createCourse": "Kurs erstellen",
-      "empty": "Kurse fassen mehrere Karteien zusammen. Sie können nur von Lehrenden erstellt werden. Informiere dich unter
+      "createCourse": "Kurs anlegen",
+      "empty": "Ein Kurs fasst mehrere Karteien zusammen. Jeder kann Kurse anlegen. Informiere
+      dich unter
       \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
-      "progress": "Lernstand"
+      "progress": "Statistik",
+      "semester": "Semester",
+      "semesterList": "__count__. Semester"
     },
     "modal": {
       "new": "Neuen Kurs anlegen",

@@ -78,6 +78,39 @@
                     {{/if}}
                 {{/unless}}
             </div>
+            {{#if isCourseIteration}}
+                <div class="form-group setdetails name">
+                    <label id="setSemesterLabel" class="col-md-3 control-label" for="setSemester">{{_
+                            "courseIteration.list.semester"}}</label>
+                    <div class="dropdown">
+                        <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                            <button id="setSemester" type="button"
+                                    class="btn btn-raised btn-default setSemesterDropdown longButton"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"
+                                    value="{{#if isNew}}1{{else}}{{semester}}{{/if}}">
+                                {{#if isNew}}{{_ "courseIteration.list.semesterList" count=1}}{{else}}{{_
+                                        "courseIteration.list.semesterList"
+                                        count=semester}}{{/if}}
+                            </button>
+                            <button type="button"
+                                    class="btn btn-raised dropdown-toggle setSemesterDropdown"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only"></span>
+                            </button>
+                            <ul class="dropdown-menu btn-raised longButton">
+                                {{>semesterList}}
+                            </ul>
+                            <span id="helpSetSemester" class="help-block semester"></span>
+                        </div>
+                    </div>
+                </div>
+                {{#unless isInRole 'university'}}
+                    {{> publishKind}}
+                {{/unless}}
+            {{/if}}
             <div class="panel panel-primary">
                 <div class="panel-heading">
                                 <span class="moduleRadioButtonGroup">
@@ -257,6 +290,25 @@
                     "modal-dialog.save"}}{{/if}}</button>
         </div>
     {{/unless}}
+</template>
+
+<template name="semesterList">
+    <li class="semester" value="1" data="1"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=1}}</a></li>
+    <li class="semester" value="2" data="2"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=2}}</a></li>
+    <li class="semester" value="3" data="3"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=3}}</a></li>
+    <li class="semester" value="4" data="4"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=4}}</a></li>
+    <li class="semester" value="5" data="5"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=5}}</a></li>
+    <li class="semester" value="6" data="6"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=6}}</a></li>
+    <li class="semester" value="7" data="7"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=7}}</a></li>
+    <li class="semester" value="8" data="8"><a
+            href="#">{{_ "courseIteration.list.semesterList" count=8}}</a></li>
 </template>
 
 <template name="difficultyEditor">

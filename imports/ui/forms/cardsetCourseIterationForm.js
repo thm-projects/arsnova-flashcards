@@ -81,6 +81,12 @@ export function cleanModal() {
 		$('#setCardType').val(Session.get('previousCardType'));
 	}
 
+	if (newCardsetCourseIterationRoute()) {
+		$('#setSemester').html(TAPi18n.__('courseIteration.list.semesterList', {count: 1}));
+		$('#setSemester').val(1);
+		Session.set('semester', Number(1));
+	}
+
 	$('#setCardTypeLabel').css('color', '');
 	$('#setCardType').css('border-color', '');
 	$('#helpSetCardType').html('');
@@ -230,6 +236,11 @@ export function cleanModal() {
 		}
 	}
 	adjustDifficultyColor();
+	if (courseIterationRoute()) {
+		$('#publishKind > label').removeClass('active');
+		$('#kindoption0').addClass('active');
+		Session.set('kindWithPrice', undefined);
+	}
 }
 
 export function saveCardset() {
@@ -313,7 +324,15 @@ export function saveCardset() {
 				cardGroups = [];
 			}
 			if (courseIterationRoute()) {
-				Meteor.call("addCourseIteration", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course);
+				let kind = $('#publishKind > .active > input').val();
+				let price = 0;
+				if (kind === undefined || kind === "") {
+					kind = "personal";
+				}
+				if (kind === 'edu' || kind === 'pro') {
+					price = $('#publishPrice').val();
+				}
+				Meteor.call("addCourseIteration", name, description, false, true, kind, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Session.get('semester'), Number(price));
 				$('#setCardsetCourseIterationFormModal').modal('hide');
 			} else {
 				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), function (error, result) {
@@ -579,6 +598,15 @@ Template.cardsetCourseIterationFormContent.events({
 		$('#setCardTypeLabel').css('color', '');
 		$('.setCardTypeDropdown').css('border-color', '');
 		$('#helpSetCardType').html('');
+	},
+	'click .semester': function (evt) {
+		let semester = $(evt.currentTarget).attr("data");
+		$('#setSemester').html($(evt.currentTarget).text());
+		$('#setSemester').val(semester);
+		Session.set('semester', Number(semester));
+		$('#setSemesterLabel').css('color', '');
+		$('.setSemesterDropdown').css('border-color', '');
+		$('#helpSemesterType').html('');
 	},
 	'click .college': function (evt) {
 		var collegeName = $(evt.currentTarget).attr("data");

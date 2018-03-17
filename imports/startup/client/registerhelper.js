@@ -383,7 +383,7 @@ Template.registerHelper("getLearnphase", function (state) {
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
 	if (!gotDifficultyLevel(cardType)) {
-		if (backgroundStyle === 1) {
+		if (backgroundStyle === 0) {
 			return 'box-difficultyLined0';
 		} else {
 			return 'box-difficultyBlank0';

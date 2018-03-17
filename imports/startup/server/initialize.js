@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
+import {CourseIterations} from "../../api/courseIterations.js";
 import {ColorThemes} from "../../api/theme.js";
 import {Learned, Leitner, Wozniak} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
@@ -544,6 +545,21 @@ Meteor.startup(function () {
 			{
 				$set: {
 					skipped: 0
+				}
+			}
+		);
+	}
+
+	let courseIterations = CourseIterations.find({price: {$exists: false}}).fetch();
+	for (let i = 0; i < courseIterations.length; i++) {
+		CourseIterations.update({
+				_id: courseIterations[i]._id
+			},
+			{
+				$set: {
+					kind: "personal",
+					price: Number(0),
+					semester: Number(1)
 				}
 			}
 		);

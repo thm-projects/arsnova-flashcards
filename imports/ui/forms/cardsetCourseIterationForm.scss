@@ -47,3 +47,35 @@
   color: $white !important;
   background-color: $color_button_difficulty3;
 }
+
+#setCardsetCourseIterationFormModal {
+  ul > li {
+    background-color: $color_cardset_form_list_background !important;
+    padding-top: $size_cardset_form_list_padding !important;
+    padding-bottom: $size_cardset_form_list_padding !important;
+    border-bottom: solid $size_cardset_form_list_border $color_cardset_form_border !important;
+    cursor: pointer;
+    a {
+      color: $color_cardset_form_list_text !important;
+      font-size: $font_size_cardset_form_list !important;
+      font-weight: $font_weight_cardset_form_list !important;
+    }
+  }
+  ul > li:last-child {
+    border-bottom: 0 !important;
+  }
+  ul > li:hover {
+
+    background-color: $color_cardset_form_list_background_hover !important;
+    a {
+      color: $color_cardset_form_list_text_hover !important;
+    }
+  }
+  ul > li.active {
+    cursor: unset;
+    background-color: $color_cardset_form_list_background_active !important;
+    a {
+      color: $color_cardset_form_list_text_active !important;
+    }
+  }
+}

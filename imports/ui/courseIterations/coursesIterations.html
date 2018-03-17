@@ -21,9 +21,11 @@
             </button>
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-5 col-md-6 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
+                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
+                <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.list.semester"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
                 <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
             </div>
             {{#each courseIterationsList}}
@@ -33,7 +35,6 @@
                     {{> courseIterationsRow extendContext 'index' @index}}
                 </div>
             {{/each}}
-            {{> infiniteScroll}}
         {{else}}
             {{> courseIterationsEmpty}}
         {{/if}}
@@ -67,7 +68,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
            :</span>
-            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-5 col-md-6 poolText panelUnit"
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-3 poolText panelUnit"
                   data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
@@ -78,6 +79,12 @@
             </span>
         </a>
     </div>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.availability"}}
+        :</span>
+    <span class="cell col-xs-7 col-md-2 hidden-sm panelUnit poolText ellipsis">
+        {{_ "courseIteration.list.semesterList" count=this.semester}}
+    </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.course"}}
        :</span>
@@ -99,17 +106,26 @@
         {{/if}}
     </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "set-list.availability"}}
+        :</span>
+    <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit poolText ellipsis panelIconColumn">
+        {{{getKind this.kind}}}
+    </span>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.levelOfLearning"}}
        :</span>
     <a href="#">
-            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit">
+            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit panelIconColumn">
            <i class="glyphicon glyphicon glyphicon-stats"></i>
         </span>
     </a>
-    <span class="col-xs-12 col-sm-2 col-md-1 manageCourseIteration">
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "options"}}
+        :</span>
+    <span class="col-xs-7 col-sm-2 col-md-1 manageCourseIteration">
             <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
                title='{{_ "courseIteration.confirm-form-delete.title"}}' data-id="{{this._id}}">
-            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
         </span>
@@ -117,7 +133,7 @@
     <a id class="panelUnitBorder deleteCourseIteration" {{disableIfOffline}}
        title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal" data-target="#confirmDeleteModal"
        data-id="{{this._id}}">
-            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>

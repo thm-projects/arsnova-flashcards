@@ -732,6 +732,7 @@
     }
   },
   "courseIteration": {
+    "name": "Course",
     "confirm-form-delete": {
       "title": "Delete Course",
       "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
@@ -743,7 +744,9 @@
       "courseIteration": "Course iteration",
       "module": "Module",
       "course": "Course",
-      "progress": "Progress"
+      "progress": "Progress",
+      "semester": "Semester",
+      "semesterList": "__count__. Semester"
     },
     "modal": {
       "new": "Create a new course",

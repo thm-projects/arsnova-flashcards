@@ -34,7 +34,7 @@ Template.courseIterations.onRendered(function () {
 
 Template.courseIterationsList.helpers({
 	courseIterationsList: function () {
-		return CourseIterations.find();
+		return CourseIterations.find({owner: Meteor.userId()});
 	}
 });
 

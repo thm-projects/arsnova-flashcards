@@ -28,6 +28,10 @@ Session.setDefault("itemsLimit", items_increment);
 let filterQuery = {};
 Session.setDefault('filterQuery', filterQuery);
 
+function isPool() {
+	return Router.current().route.getName() === "pool";
+}
+
 export function prepareQuery() {
 	let query = Session.get('filterQuery');
 	query.kind = {$in: Session.get('poolFilter')};
@@ -135,7 +139,11 @@ export function resetFilters() {
 	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
 	Session.set('poolFilterDifficulty');
-	Session.set('poolFilter', ["free", "edu", "pro"]);
+	if (isPool()) {
+		Session.set('poolFilter', ["free", "edu", "pro"]);
+	} else {
+		Session.set('poolFilter', ["personal", "free", "edu", "pro"]);
+	}
 	Session.set('poolFilterLearnphase');
 	Session.set('filterQuery', {});
 	checkFilters();
@@ -221,6 +229,9 @@ Template.filterNavigation.helpers({
 	hasCardTypeFilter: function () {
 		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
 	},
+	hasCourseIterationFilter: function () {
+		return false;
+	},
 	poolFilterCardType: function (cardType) {
 		return Session.get('poolFilterCardType') === cardType;
 	},
@@ -235,6 +246,9 @@ Template.filterNavigation.helpers({
 	},
 	poolFilterCollege: function (college) {
 		return Session.get('poolFilterCollege') === college;
+	},
+	hasSemesterFilter: function () {
+		return false;
 	},
 	hasCourseFilter: function () {
 		return Session.get('poolFilterCourse');

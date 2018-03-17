@@ -118,6 +118,18 @@ $font_weight_search_results_author: normal;
 $size_search_results_separator: 0px;
 $padding_search_items: 5px 15px;
 
+//cardset form
+$color_cardset_form_list_background: $color_athens_gray_approx;
+$color_cardset_form_list_text: black;
+$color_cardset_form_border: black;
+$color_cardset_form_list_background_hover: $color_btn_inactive;
+$color_cardset_form_list_text_hover: white;
+$color_cardset_form_list_background_active: $color_athens_gray_approx;
+$color_cardset_form_list_text_active: black;
+$size_cardset_form_list_border: 2px;
+$size_cardset_form_list_padding: 10px;
+$font_size_cardset_form_list: 14px;
+$font_weight_cardset_form_list: normal;
 
 //cookie consent
 $color_cookie_consent_link: $color_thm_dark_blue;
@@ -153,7 +165,7 @@ body {
   background-color: $color_thm_green !important;
 }
 
-.btn-raised.btn-warning {
+.btn-raised.btn-warning, .btn-warning.active {
   color: $white !important;
   background-color: $color_thm_red !important;
 }
@@ -496,10 +508,9 @@ button:disabled {
 
 .panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
   border-bottom: solid 1px $color_item_separator_border_bottom !important;
-}
-
-.panelUnitKind {
-  margin-left: 5px;
+  @media (max-width: 767px) {
+    border-bottom: 0 !important;
+  }
 }
 
 .panelUnitPrice {
@@ -1045,4 +1056,10 @@ th {
 .cc-link {
   color: $color_cookie_consent_link !important;
   text-decoration: $text_decoration_cookie_consent_link !important;
+}
+
+.panelIconColumn {
+  @media (min-width: 768px) {
+    text-align: center;
+  }
 }

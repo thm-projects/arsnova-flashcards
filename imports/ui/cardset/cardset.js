@@ -1171,18 +1171,6 @@ Template.cardsetPublishForm.onRendered(function () {
 	});
 });
 
-Template.cardsetPublishForm.helpers({
-	kindWithPrice: function () {
-		return Session.get('kindWithPrice');
-	},
-	kindIsActive: function (kind) {
-		return kind === this.kind;
-	},
-	priceIsSelected: function (price) {
-		return price === this.price ? 'selected' : '';
-	}
-});
-
 Template.cardsetPublishForm.events({
 	'shown.bs.modal #publishModal': function () {
 		Session.set('kindWithPrice', false);
@@ -1225,7 +1213,28 @@ Template.cardsetPublishForm.events({
 
 		Meteor.call("publishCardset", Router.current().params._id, kind, price, visible);
 		$('#publishModal').modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * publishKind
+ * ############################################################################
+ */
+
+Template.publishKind.helpers({
+	kindWithPrice: function () {
+		return Session.get('kindWithPrice');
 	},
+	kindIsActive: function (kind) {
+		return kind === this.kind;
+	},
+	priceIsSelected: function (price) {
+		return price === this.price ? 'selected' : '';
+	}
+});
+
+Template.publishKind.events({
 	'change #publishKind': function () {
 		var kind = $('#publishKind input[name=kind]:checked').val();
 		var kindWithPrice = (kind === 'edu' || kind === 'pro');
