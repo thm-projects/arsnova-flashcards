@@ -496,6 +496,9 @@ button:disabled {
 
 .panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
   border-bottom: solid 1px $color_item_separator_border_bottom !important;
+  @media (max-width: 768px) {
+    border-bottom: 0 !important;
+  }
 }
 
 .panelUnitKind {
