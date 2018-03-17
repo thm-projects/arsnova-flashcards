@@ -720,7 +720,9 @@
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
-      "progress": "Lernstand"
+      "progress": "Lernstand",
+      "semester": "Semester",
+      "semesterList": "__count__. Semester"
     },
     "modal": {
       "new": "Neuen Kurs anlegen",
@@ -825,8 +827,6 @@
   "createdof": "Erstellt von",
   "backcarddecks": "Zurück zur Kartei",
   "createdof2": "Erstellt von",
-  "semester": "Semester",
-  "semesterList": "__count__. Semester",
   "subject": "Box",
   "subject1": "Box 1",
   "subject2": "Box 2",

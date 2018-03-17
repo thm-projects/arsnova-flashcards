@@ -82,7 +82,7 @@ export function cleanModal() {
 	}
 
 	if (newCardsetCourseIterationRoute()) {
-		$('#setSemester').html(TAPi18n.__('semesterList', {count: 1}));
+		$('#setSemester').html(TAPi18n.__('courseIteration.list.semesterList', {count: 1}));
 		$('#setSemester').val(1);
 		Session.set('semester', Number(1));
 	}
