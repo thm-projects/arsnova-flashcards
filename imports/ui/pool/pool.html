@@ -92,16 +92,16 @@
         {{/if}}
     </div>
     <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
             :</span>
-        <span class="col-xs-6 {{#unless
+        <span class="col-xs-7 {{#unless
                 singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolCardType"
               data-id="{{this.cardType}}">{{getCardTypeName this.cardType}}</span>
     </a>
     <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
             :</span>
-        <span class="col-xs-6 {{#unless
+        <span class="col-xs-7 {{#unless
                 singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
               data-id="{{this.owner}}">{{getAuthorName
                 this.owner}}</span>
@@ -110,9 +110,9 @@
         <a href="#" class="filterCollege"
            title="Filter {{_ "set-list.college"}}: {{#if this.moduleActive}}{{this.college}}{{else}}{{_
                    "set-list.noCollege"}}{{/if}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit"
+        <span class="col-xs-5 visible-xs poolLabel panelUnit"
               data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-            <span class="col-xs-6 col-sm-2 poolContent poolText panelUnit poolCollege"
+            <span class="col-xs-7 col-sm-2 poolContent poolText panelUnit poolCollege"
                   data-id="{{this.college}}">{{#if this.moduleActive}}{{this.college}}{{else}}{{_
                     "set-list.noCollege"}}{{/if}}</span>
         </a>
@@ -120,9 +120,9 @@
     <a href="#" class="filterCourse"
        title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_
                "set-list.noCourse"}}{{/if}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
                 "set-list.course"}}:</span>
-        <span class="col-xs-6 {{#if
+        <span class="col-xs-7 {{#if
                 singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-2{{/if}} poolContent poolText panelUnit poolCourse"
               data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_
                 "set-list.noCourse"}}{{/if}}</span>
@@ -130,9 +130,9 @@
     <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}"
        title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_
                "set-list.noModuleLong"}}{{/if}}">
-        <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
                 "set-list.module"}}:</span>
-        <span class="col-xs-6 col-md-1 hidden-sm poolContent poolText panelUnit poolModule"
+        <span class="col-xs-7 col-md-1 hidden-sm poolContent poolText panelUnit poolModule"
               data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
                 "set-list.noModuleShort"}}{{/if}}</span>
     </a>
@@ -145,10 +145,10 @@
     <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
         <span class="col-xs-12 visible-xs poolLabel poolText panelAvailability panelUnitNoBorder"
               data-id="{{this.kind}}">
-            <span class="col-xs-6 visible-xs poolLabel panelUnit"
+            <span class="col-xs-5 visible-xs poolLabel panelUnit"
                   data-id="{{this.kind}}">{{_
                     "set-list.availability"}}:</span>
-            <span class="kind-label col-xs-6 visible-xs licenseInfo panelUnit panelUnitKind info_license_mobile"
+            <span class="kind-label col-xs-7 visible-xs licenseInfo panelUnit panelUnitKind info_license_mobile"
                   data-id="{{this.kind}}">
                 {{{getKind this.kind}}}
             </span>
@@ -189,10 +189,10 @@
 </template>
 
 <template name="poolTitleContent">
-    <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
+    <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topicMobile"}}
         :</span>
-    <span id="cardsetLink{{content.index}}" class="cell col-xs-6 cardsetName {{#unless
+    <span id="cardsetLink{{content.index}}" class="cell col-xs-7 cardsetName {{#unless
             singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} poolText panelUnit"
           data-id="{{content._id}}">
                 <span class="cell col-xs-8 {{#unless

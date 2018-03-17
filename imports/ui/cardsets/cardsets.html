@@ -74,7 +74,9 @@
                     </div>
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                            <div class="col-xs-12 col-sm-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                            <div class="col-xs-12 col-sm-12 panel panel-default {{getCardBackground this.difficulty
+                                                                                                    this.cardType
+                                                                                                    1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                                 {{> cardsetRow extendContext 'index' @index}}
                             </div>
                         {{/unless}}
@@ -106,7 +108,8 @@
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
             {{#each cardsetList}}
-                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
+                                                                              1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
@@ -125,7 +128,7 @@
            title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
-           :</span>
+            :</span>
             <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-3 {{#if isActiveRoute
                                                                                 'learn'}}col-sm-3{{/if}} poolText panelUnit"
                   data-id="{{this._id}}">
@@ -140,16 +143,16 @@
     </div>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "cardType"}}
-       :</span>
+        :</span>
     <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}col-sm-2 panelUnit{{else}}{{#if isActiveRoute
-                                                                                              'create'}}col-sm-2 panelUnit{{else}}
+                                                                                            'create'}}col-sm-2 panelUnit{{else}}
         {{#if isActiveRoute 'shuffle'}}col-sm-2{{else}}{{#if isActiveRoute
-                                                                      'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
+                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
         {{getCardTypeName this.cardType}}
     </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.description"}}
-       :</span>
+        :</span>
     <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
                                                                                               'create'}}col-sm-6 panelUnit{{else}}
         {{#if isActiveRoute 'shuffle'}}col-sm-4 col-md-5{{else}}{{#if isActiveRoute
@@ -160,7 +163,7 @@
     {{#if isActiveRoute 'learn'}}
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learnphase"}}
-           :</span>
+            :</span>
         <span class="hidden-sm cell col-xs-7 col-sm-1 panelUnit panelIconColumn">
             <span class="label {{#if this.learningActive}}label-success{{else}}label-info{{/if}} labelLearning"
                   aria-label="active learnphase label">
@@ -169,16 +172,16 @@
         </span>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.workload"}}
-           :</span>
+            :</span>
         <span class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-           data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
+              data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
         <span class="cell col-xs-7 col-sm-2 panelUnit" data-id="{{this._id}}">
             {{getWorkload}}
         </span>
         </span>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.levelOfLearning"}}
-           :</span>
+            :</span>
         <a href="progress/{{this._id}}/{{currentUser._id}}">
             <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense manageLearning panelUnit panelIconColumn">
            <i class="glyphicon glyphicon glyphicon-stats"></i>
@@ -186,14 +189,17 @@
         </a>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learningMode"}}
-           :</span>
+            :</span>
         <span class="cell col-xs-7 col-sm-3 col-md-2 panelUnit">
             {{getLearningMode}}
         </span>
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
-            <span class="cell col-xs-12 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelIconColumn"
+                    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                            "options"}}
+                        :</span>
+            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>
@@ -217,7 +223,7 @@
     {{#if isActiveRoute 'create'}}
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription panelUnitNoBorder">{{_
                 "set-list.availability"}}
-           :</span>
+            :</span>
         <span class="cell col-xs-5 col-sm-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn">
             {{{getKind this.kind}}}
         </span>
@@ -275,7 +281,8 @@
                 <span class="col-sm-4 col-md-3 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
             </div>
             {{#each learnList}}
-                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType 1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
+                                                                              1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
@@ -301,7 +308,8 @@
                             class="btn btn-raised btn-success learn" {{disableIfOffline}} data-dismiss="modal">{{_
                             "learnfile"}}</button>
                     <button id="learnMemo"
-                            class="btn btn-raised btn-success memo pull-right" {{disableIfOffline}} data-dismiss="modal">{{_
+                            class="btn btn-raised btn-success memo pull-right" {{disableIfOffline}}
+                            data-dismiss="modal">{{_
                             "memo"}}</button>
                 </div>
                 <br>

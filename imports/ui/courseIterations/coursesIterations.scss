@@ -1,3 +1,9 @@
 .deleteCourseIteration, .editCourseIteration {
   cursor: pointer;
 }
+
+.manageCourseIteration {
+  @media (max-width: 767px) {
+    padding-left: 0;
+  }
+}
