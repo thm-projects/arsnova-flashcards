@@ -9,7 +9,7 @@ import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 
-export let items_increment = 12;
+export let items_increment = 9;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
