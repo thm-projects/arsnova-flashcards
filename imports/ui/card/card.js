@@ -49,7 +49,7 @@ export function adjustMarkdownToolbar() {
 	btnGroup.append($(".fa-vimeo").parent());
 	//btn-group 4
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
-	btnGroup.append($(".fa-paint-brush").parent());
+	btnGroup.append($(".editorBrush").parent());
 	$(".fullscreen-button").addClass('glyphicon-fullscreen');
 	btnGroup.append($(".fullscreen-button").parent());
 	$(".btn-toolbar .btn-group:nth-child(5)").remove();
@@ -461,7 +461,7 @@ let additionalButtons = [
 		}, {
 			name: 'cmdBackgroundStyle',
 			title: 'Background Style',
-			icon: 'fa fa-paint-brush',
+			icon: 'fa fa-paint-brush editorBrush',
 			callback: function () {
 				if (Session.get('backgroundStyle') === 1) {
 					Session.set('backgroundStyle', 0);

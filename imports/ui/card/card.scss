@@ -283,7 +283,7 @@ img.cardside {
   margin-left: 5px;
 }
 
-.fullscreen, #swapOrder, .cardNumber {
+.fullscreen, #swapOrder, .cardNumber, #changeStyle {
   float: right;
   position: absolute;
   top: 50px;
@@ -294,7 +294,12 @@ img.cardside {
 }
 
 #swapOrder {
+  top: 51px;
   right: 55px;
+}
+
+#changeStyle {
+  right: 102px;
 }
 
 .btn-editCardset {
@@ -333,7 +338,7 @@ img.cardside {
   min-height: 90px;
   text-align: center;
   font-size: 12px;
-  padding: 15px 100px 0 100px;
+  padding: 15px 150px 0 150px;
 
   h2 {
     margin-top: -20px;
@@ -521,7 +526,7 @@ img.cardside {
     padding-bottom: 20px;
   }
   .cardHeader {
-    padding: 20px 50px 0 50px;
+    padding: 20px 75px 0 75px;
     font-size: 12px;
   }
 
@@ -547,6 +552,10 @@ img.cardside {
   #toggleFullscreen {
     top: 63px;
     right: 8px;
+  }
+  #changeStyle {
+    top: 63px;
+    right: 43px;
   }
 }
 
