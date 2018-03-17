@@ -65,9 +65,10 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 
   .panel-heading {
-    padding-bottom: 20px;
-    min-height: 177px;
+    //padding-bottom: 10px;
+    //min-height: 177px;
     background-color: transparent;
+    margin-top: -35px;
   }
 
   .panel-footer {
