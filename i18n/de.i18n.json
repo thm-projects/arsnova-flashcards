@@ -205,7 +205,7 @@
     "wozniak": "Woźniak",
     "both": "Leitner & Woźniak",
     "none": "ohne",
-    "levelOfLearning": "Lernstand",
+    "levelOfLearning": "Statistik",
     "noDescription": "Keine Beschreibung vorhanden",
     "noCollege": "ohne Hochschule",
     "noCourse": "ohne Studiengang",
@@ -721,7 +721,7 @@
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
-      "progress": "Lernstand",
+      "progress": "Statistik",
       "semester": "Semester",
       "semesterList": "__count__. Semester"
     },
