@@ -552,7 +552,7 @@ Meteor.startup(function () {
 
 	let courseIterations = CourseIterations.find({price: {$exists: false}}).fetch();
 	for (let i = 0; i < courseIterations.length; i++) {
-		courseIterations.update({
+		CourseIterations.update({
 				_id: courseIterations[i]._id
 			},
 			{
