@@ -326,6 +326,9 @@ export function saveCardset() {
 			if (courseIterationRoute()) {
 				let kind = $('#publishKind > .active > input').val();
 				let price = 0;
+				if (kind === undefined || kind === "") {
+					kind = "personal";
+				}
 				if (kind === 'edu' || kind === 'pro') {
 					price = $('#publishPrice').val();
 				}
