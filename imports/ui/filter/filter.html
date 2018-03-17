@@ -17,7 +17,8 @@
                 <div class="navbar-header">
                     <button class="resetFilters btn btn-raised btn-danger hidden-lg float-left" id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
-                    <p class="navbar-text visible-sm-inline-block visible-md-inline-block">{{_ "set-list.filter-info-small"}}</p>
+                    <p class="navbar-text visible-sm-inline-block visible-md-inline-block">{{_
+                            "set-list.filter-info-small"}}</p>
                     <p class="navbar-text visible-xs-inline-block">{{_ "set-list.filter-info-extra-small"}}</p>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#filter-nav"
@@ -63,7 +64,7 @@
                             </li>
                         {{/unless}}
                         {{#if isActiveRoute
-                                  regex='create|learn'}}
+                              regex='create|learn'}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle cardTypeBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
@@ -136,6 +137,25 @@
                                     </ul>
                                 </li>
                             {{/unless}}
+                        {{/if}}
+                        {{#if isActiveRoute
+                              regex='course'}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle semesterBtn" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="semesterBtn">
+                                    {{_ "courseIteration.list.semester"}}
+                                    {{#if hasSemesterFilter}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="filterSemester active" data-id="">{{_
+                                                "set-list.everything"}}</a>
+                                    </li>
+                                    {{> semesterList}}
+                                </ul>
+                            </li>
                         {{/if}}
                         {{#unless isActiveRoute
                                   regex='create|learn|shuffle'}}
@@ -251,17 +271,23 @@
                             </ul>
                         </li>
                         {{#if isActiveRoute
-                              regex='pool|create'}}
+                              regex='pool|course|create'}}
                             <ul class="nav navbar-nav navbar-right">
                                 <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
                                      aria-label="License group" style="padding-top: 20px;">
-                                    <label class="btn btn-default btn-info btn-sm active">
+                                    {{#if isActiveRoute regex='create|course'}}
+                                        <label class="btn btn-warning btn-sm active">
+                                            <input type="checkbox" autocomplete="off" value="personal" checked="">
+                                            Private
+                                        </label>
+                                    {{/if}}
+                                    <label class="btn btn-info btn-sm active">
                                         <input type="checkbox" autocomplete="off" value="free" checked=""> Free
                                     </label>
-                                    <label class="btn btn-default btn-success btn-sm active">
+                                    <label class="btn btn-success btn-sm active">
                                         <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
                                     </label>
-                                    <label class="btn btn-default btn-danger btn-sm active">
+                                    <label class="btn btn-danger btn-sm active">
                                         <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
                                     </label>
                                 </div>
