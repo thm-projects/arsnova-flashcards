@@ -102,11 +102,11 @@ $font_weight_card_header_subject: bold;
 $color_notification_text_smartphones: white;
 
 //search
-$color_search_results_subject_background: $color_thm_orange;
+$color_search_results_subject_background: $color_thm_green;
 $color_search_results_subject_text: white;
-$color_search_results_content_background: $color_thm_dark_blue;
+$color_search_results_content_background: $color_thm_gray;
 $color_search_results_content_text: white;
-$color_search_results_author_background: $color_thm_dark_blue;
+$color_search_results_author_background: $color_thm_gray;
 $color_search_results_author_text: white;
 $color_search_results_separator: white;
 $font_size_search_results_subject: 16px;
@@ -1012,6 +1012,7 @@ th {
   font-weight: $font-weight_search_results_subject;
   padding: $padding_search_items !important;
   margin: 0;
+  line-height: normal !important;
 }
 
 .search-content {
