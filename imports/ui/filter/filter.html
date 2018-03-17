@@ -63,6 +63,23 @@
                             </li>
                         {{/unless}}
                         {{#if isActiveRoute
+                                  regex='create|learn'}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle cardTypeBtn" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{_ "courseIteration.name"}}
+                                    {{#if hasCourseIterationFilter}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {{/if}}
+                        {{#if isActiveRoute
                               regex='pool'}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"

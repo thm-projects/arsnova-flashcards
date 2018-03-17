@@ -732,6 +732,7 @@
     }
   },
   "courseIteration": {
+    "name": "Course",
     "confirm-form-delete": {
       "title": "Delete Course",
       "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."

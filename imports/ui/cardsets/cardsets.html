@@ -103,7 +103,8 @@
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
                 <span class="col-sm-6 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "set-list.availability"}}</span>
             </div>
@@ -144,12 +145,19 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "cardType"}}
         :</span>
-    <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}col-sm-2 panelUnit{{else}}{{#if isActiveRoute
-                                                                                            'create'}}col-sm-2 panelUnit{{else}}
+    <span class="cell col-xs-7 {{#if isActiveRoute regex='create|learn'}}col-sm-2 col-md-1 panelUnit{{else}}
         {{#if isActiveRoute 'shuffle'}}col-sm-2{{else}}{{#if isActiveRoute
-                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
+                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis">
         {{getCardTypeName this.cardType}}
     </span>
+    {{#if isActiveRoute regex='create|learn'}}
+        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                "courseIteration.name"}}
+            :</span>
+        <span class="cell col-xs-7 {{#if isActiveRoute regex='create|learn'}}hidden-sm col-md-1 panelUnit{{/if}}">
+            {{_ "set-list.none"}}
+        </span>
+    {{/if}}
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.description"}}
         :</span>
@@ -274,7 +282,8 @@
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-2  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-sm-2 col-md-1  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
+                <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
                 <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
                 <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.levelOfLearning"}}</span>

@@ -221,6 +221,9 @@ Template.filterNavigation.helpers({
 	hasCardTypeFilter: function () {
 		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
 	},
+	hasCourseIterationFilter: function () {
+		return false;
+	},
 	poolFilterCardType: function (cardType) {
 		return Session.get('poolFilterCardType') === cardType;
 	},
