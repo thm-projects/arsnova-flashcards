@@ -93,14 +93,14 @@
     </div>
     <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
-           :</span>
+            :</span>
         <span class="col-xs-6 {{#unless
                 singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolCardType"
               data-id="{{this.cardType}}">{{getCardTypeName this.cardType}}</span>
     </a>
     <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
         <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
-           :</span>
+            :</span>
         <span class="col-xs-6 {{#unless
                 singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
               data-id="{{this.owner}}">{{getAuthorName
@@ -136,14 +136,12 @@
               data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
                 "set-list.noModuleShort"}}{{/if}}</span>
     </a>
-    <span class="col-sm-1 kind-label hidden-xs panelAvailability">
-        <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="kind-label col-sm- col-md-12 hidden-xs licenseInfo panelUnit panelUnitNoBorder pool-{{this.kind}}"
+    <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
+            <span class="cell col-sm-1 hidden-xs poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
                   data-id="{{this.kind}}">
                 {{{getKind this.kind}}}
             </span>
-        </a>
-    </span>
+    </a>
     <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
         <span class="col-xs-12 visible-xs poolLabel poolText panelAvailability panelUnitNoBorder"
               data-id="{{this.kind}}">
@@ -193,7 +191,7 @@
 <template name="poolTitleContent">
     <span class="col-xs-6 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
             "set-list.topicMobile"}}
-       :</span>
+        :</span>
     <span id="cardsetLink{{content.index}}" class="cell col-xs-6 cardsetName {{#unless
             singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} poolText panelUnit"
           data-id="{{content._id}}">

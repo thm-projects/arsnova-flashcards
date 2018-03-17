@@ -496,13 +496,9 @@ button:disabled {
 
 .panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
   border-bottom: solid 1px $color_item_separator_border_bottom !important;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     border-bottom: 0 !important;
   }
-}
-
-.panelUnitKind {
-  margin-left: 5px;
 }
 
 .panelUnitPrice {
@@ -1048,4 +1044,10 @@ th {
 .cc-link {
   color: $color_cookie_consent_link !important;
   text-decoration: $text_decoration_cookie_consent_link !important;
+}
+
+.panelIconColumn {
+  @media (min-width: 768px) {
+    text-align: center;
+  }
 }
