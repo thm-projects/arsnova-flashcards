@@ -118,6 +118,18 @@ $font_weight_search_results_author: normal;
 $size_search_results_separator: 0px;
 $padding_search_items: 5px 15px;
 
+//cardset form
+$color_cardset_form_list_background: $color_athens_gray_approx;
+$color_cardset_form_list_text: black;
+$color_cardset_form_border: black;
+$color_cardset_form_list_background_hover: $color_btn_inactive;
+$color_cardset_form_list_text_hover: white;
+$color_cardset_form_list_background_active: $color_athens_gray_approx;
+$color_cardset_form_list_text_active: black;
+$size_cardset_form_list_border: 2px;
+$size_cardset_form_list_padding: 10px;
+$font_size_cardset_form_list: 14px;
+$font_weight_cardset_form_list: normal;
 
 //cookie consent
 $color_cookie_consent_link: $color_thm_dark_blue;
