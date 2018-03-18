@@ -107,9 +107,9 @@
                         </div>
                     </div>
                 </div>
-                {{#unless isInRole 'university'}}
+                {{#if isInRole 'admin,editor,lecturer,pro'}}
                     {{> publishKind}}
-                {{/unless}}
+                {{/if}}
             {{/if}}
             <div class="panel panel-primary">
                 <div class="panel-heading">
