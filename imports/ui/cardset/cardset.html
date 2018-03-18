@@ -1203,20 +1203,20 @@
                     <input type="radio" name="kind" value="free" id="free">
                     <div>Free</div>
                 </label>
-                {{#if isInRole 'lecturer'}}
+                {{#if isInRole 'admin,editor,lecturer'}}
                     <label id="kindoption2"
                            class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                         <input type="radio" name="kind" value="edu" id="kind_edu">
                         <div>Edu</div>
                     </label>
                 {{/if}}
-                {{#unless isInRole regex='lecturer|pro'}}
+                {{#if isInRole 'admin,editor,lecturer,pro'}}
                     <label id="kindoption3"
                            class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                         <input type="radio" name="kind" value="pro" id="kind_pro">
                         <div>Pro</div>
                     </label>
-                {{/unless}}
+                {{/if}}
             </div>
         </div>
     </div>
