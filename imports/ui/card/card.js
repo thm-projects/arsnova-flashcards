@@ -51,7 +51,7 @@ export function adjustMarkdownToolbar() {
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
 	btnGroup.append($(".btn-toolbar .editorBrush").parent());
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
-	btnGroup.append($(".btn-toolbar.fullscreen-button").parent());
+	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
 	$(".btn-toolbar .btn-group:nth-child(5)").remove();
 }
 
