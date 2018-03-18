@@ -1210,13 +1210,13 @@
                         <div>Edu</div>
                     </label>
                 {{/if}}
-                {{#unless isInRole regex='lecturer|pro'}}
+                {{#if isInRole 'lecturer'}}
                     <label id="kindoption3"
                            class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                         <input type="radio" name="kind" value="pro" id="kind_pro">
                         <div>Pro</div>
                     </label>
-                {{/unless}}
+                {{/if}}
             </div>
         </div>
     </div>
