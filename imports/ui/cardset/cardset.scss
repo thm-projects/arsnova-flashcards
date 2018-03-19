@@ -465,11 +465,8 @@ th .field-tip .tip-content {
 
 .fa-trophy {
   font-size: 18px;
-  //margin-right: 20px;
 }
 
-.cardDetailsIcon {
-  vertical-align: unset;
-  height: 14px;
-  width: auto;
+.fa-square {
+  transform: scale(1.35, 1) !important;
 }
