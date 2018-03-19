@@ -6,7 +6,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
 import {adjustMarkdownToolbar} from "../card/card";
-import {getTargetAudienceAbbreviation, getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
+import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
@@ -597,13 +597,8 @@ Template.cardsetCourseIterationFormContent.helpers({
 	},
 	gotSemester: function () {
 		return gotSemester(Session.get('targetAudience'));
-	},
-	getTargetAudiences: function () {
-		return targetAudienceOrder;
-	},
-	getTargetAudienceName: function (targetAudience) {
-		return getTargetAudienceName(targetAudience);
 	}
+
 });
 
 Template.cardsetCourseIterationFormContent.events({
@@ -712,5 +707,19 @@ Template.difficultyEditor.helpers({
 Template.difficultyEditor.events({
 	'click #difficultyGroup': function (event) {
 		Session.set('difficultyColor', Number($(event.target).data('color')));
+	}
+});
+
+/*
+ * ############################################################################
+ * targetAudienceList
+ * ############################################################################
+ */
+Template.targetAudienceList.helpers({
+	getTargetAudiences: function () {
+		return targetAudienceOrder;
+	},
+	getTargetAudienceName: function (targetAudience) {
+		return getTargetAudienceName(targetAudience);
 	}
 });

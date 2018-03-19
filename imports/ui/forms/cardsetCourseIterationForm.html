@@ -100,10 +100,7 @@
                                 <span class="sr-only"></span>
                             </button>
                             <ul class="dropdown-menu btn-raised longButton">
-                                {{#each getTargetAudiences}}
-                                    <li class="targetAudience" value="{{this.targetAudience}}" data="{{this.targetAudience}}"><a
-                                            href="#">{{getTargetAudienceName this.targetAudience}}</a></li>
-                                    {{/each}}
+                                {{> targetAudienceList}}
                             </ul>
                             <span id="helpSetTargetAudience" class="help-block targetAudience"></span>
                         </div>
@@ -343,6 +340,13 @@
             href="#">{{_ "courseIteration.list.semesterList" count=7}}</a></li>
     <li class="semester" value="8" data="8"><a
             href="#">{{_ "courseIteration.list.semesterList" count=8}}</a></li>
+</template>
+
+<template name="targetAudienceList">
+    {{#each getTargetAudiences}}
+        <li class="targetAudience" value="{{this.targetAudience}}" data="{{this.targetAudience}}"><a
+                href="#">{{getTargetAudienceName this.targetAudience}}</a></li>
+    {{/each}}
 </template>
 
 <template name="difficultyEditor">

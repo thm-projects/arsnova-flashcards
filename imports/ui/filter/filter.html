@@ -141,6 +141,23 @@
                         {{#if isActiveRoute
                               regex='course'}}
                             <li class="dropdown">
+                                <a href="#" class="dropdown-toggle targetAudienceBtn" data-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="targetAudienceBtn">
+                                    {{_ "courseIteration.targetAudience"}}
+                                    {{#if hasTargetAudienceFilter}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="filterTargetAudience active" data-id="">{{_
+                                                "set-list.everything"}}</a>
+                                    </li>
+                                    {{> targetAudienceList}}
+                                </ul>
+                            </li>
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle semesterBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="semesterBtn">
                                     {{_ "courseIteration.list.semester"}}
@@ -244,32 +261,35 @@
                                 </ul>
                             </li>
                         {{/if}}
-                        <li class="dropdown">
-                            <a href="#" id="difficultyFilter" class="dropdown-toggle moduleBtn" data-toggle="dropdown"
-                               role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                {{_ "difficulty"}}
-                                {{#if hasDifficultyFilter}}
-                                    <span class="glyphicon glyphicon-filter"></span>
-                                {{/if}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" class="filterDifficulty active" data-id="">{{_
-                                            "set-list.everything"}}</a>
-                                </li>
-                                {{#each getDifficulty}}
+                        {{#unless isActiveRoute regex='course'}}
+                            <li class="dropdown">
+                                <a href="#" id="difficultyFilter" class="dropdown-toggle moduleBtn"
+                                   data-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{_ "difficulty"}}
+                                    {{#if hasDifficultyFilter}}
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                    {{/if}}
+                                </a>
+                                <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterDifficulty"
-                                           data-id="{{this.difficulty}}">{{getDifficultyName}}
-                                            {{#if poolFilterDifficulty}}
-                                                <span class="glyphicon glyphicon-filter"></span>
-                                            {{/if}}
-                                        </a>
+                                        <a href="#" class="filterDifficulty active" data-id="">{{_
+                                                "set-list.everything"}}</a>
                                     </li>
-                                {{/each}}
-                            </ul>
-                        </li>
+                                    {{#each getDifficulty}}
+                                        <li>
+                                            <a href="#" class="filterDifficulty"
+                                               data-id="{{this.difficulty}}">{{getDifficultyName}}
+                                                {{#if poolFilterDifficulty}}
+                                                    <span class="glyphicon glyphicon-filter"></span>
+                                                {{/if}}
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        {{/unless}}
                         {{#if isActiveRoute
                               regex='pool|course|create'}}
                             <ul class="nav navbar-nav navbar-right">
