@@ -1227,7 +1227,11 @@ Template.publishKind.helpers({
 		return Session.get('kindWithPrice');
 	},
 	kindIsActive: function (kind) {
-		return kind === this.kind;
+		if (kind === 'personal' && this.kind === undefined) {
+			return true;
+		} else {
+			return kind === this.kind;
+		}
 	},
 	priceIsSelected: function (price) {
 		return price === this.price ? 'selected' : '';
