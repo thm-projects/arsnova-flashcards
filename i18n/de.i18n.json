@@ -722,7 +722,7 @@
       "module": "Modul",
       "course": "Studiengang",
       "progress": "Statistik",
-      "semester": "Semester",
+      "semester": "Fachsemester",
       "semesterList": "__count__. Semester"
     },
     "modal": {
