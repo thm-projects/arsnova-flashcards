@@ -148,53 +148,6 @@
                     </div>
                 </div>
                 <div class="moduleBody" style="display: {{#unless isModuleActive}}none{{/unless}}">
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleLabel" class="col-md-3 control-label"
-                               for="setModule">{{_ "modal-dialog.module"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModule"
-                                   placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
-                            <span id="helpSetModule" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleShortLabel" class="col-md-3 control-label"
-                               for="setModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleShort"
-                                   placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
-                            <span id="helpSetModuleShort" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleNumLabel" class="col-md-3 control-label"
-                               for="setModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleNum"
-                                   placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
-                            <span id="helpSetModuleNum" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleLinkLabel" class="col-md-3 control-label"
-                               for="setModuleLink">{{_
-                                "modal-dialog.moduleLink"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleLink"
-                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleLink}}{{else}}{{moduleLink}}{{/if}}">
-                        </div>
-                    </div><!-- / module textfield -->
                     {{#unless singleUniversity}}
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories module">
@@ -263,6 +216,53 @@
                             </div>
                         </div>
                     </div><!-- / course Dropdown -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLabel" class="col-md-3 control-label"
+                               for="setModule">{{_ "modal-dialog.module"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModule"
+                                   placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
+                            <span id="helpSetModule" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleShortLabel" class="col-md-3 control-label"
+                               for="setModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleShort"
+                                   placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
+                            <span id="helpSetModuleShort" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleNumLabel" class="col-md-3 control-label"
+                               for="setModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleNum"
+                                   placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
+                            <span id="helpSetModuleNum" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLinkLabel" class="col-md-3 control-label"
+                               for="setModuleLink">{{_
+                                "modal-dialog.moduleLink"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleLink"
+                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleLink}}{{else}}{{moduleLink}}{{/if}}">
+                        </div>
+                    </div><!-- / module textfield -->
                 </div>
             </div>
         </div>
