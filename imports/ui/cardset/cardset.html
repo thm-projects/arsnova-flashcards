@@ -322,17 +322,11 @@
                     {{/unless}}
                     {{#unless isDisabled}}
                         {{#unless learningActive}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="publishCardset" class="btn btn-default" type="button"
-                                        data-toggle="modal"
-                                        data-target="#publishModal" {{disableIfOffline}}>
-                                    <i class="fa fa-eye"></i> {{getStatus}}
-                                </button>
-                                <button id="publishTooltip" type="button" class="btn btn-default"
-                                        data-toggle="tooltip"
-                                        title="{{_ "sidebar-nav.tooltip"}}">
-                                    <i class="fa fa-question"></i></button>
-                            </div>
+                            <button id="publishCardset" class="btn btn-raised btn-default" type="button"
+                                    data-toggle="modal"
+                                    data-target="#publishModal" {{disableIfOffline}}>
+                                <i class="fa fa-eye"></i> {{getStatus}}
+                            </button>
                         {{/unless}}
                     {{/unless}}
                     {{#unless learningActive}}
