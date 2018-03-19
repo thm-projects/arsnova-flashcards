@@ -13,3 +13,7 @@ export function gotSemester(targetAudience) {
 export function getTargetAudienceName(targetAudience) {
 	return TAPi18n.__('courseIteration.targetAudience' + targetAudience + '.name');
 }
+
+export function getTargetAudienceAbbreviation(targetAudience) {
+	return TAPi18n.__('courseIteration.targetAudience' + targetAudience + '.abbreviation');
+}

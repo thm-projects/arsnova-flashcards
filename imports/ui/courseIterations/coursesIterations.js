@@ -7,6 +7,7 @@ import {CourseIterations} from "../../api/courseIterations.js";
 import "./coursesIterations.js";
 import "./coursesIterations.html";
 import {cleanModal} from "../forms/cardsetCourseIterationForm";
+import {getTargetAudienceAbbreviation} from "../../api/targetAudience";
 
 Session.set('courseIterationId', undefined);
 Session.set('moduleActive', true);
@@ -55,6 +56,9 @@ Template.courseIterationsRow.helpers({
 		if (text !== "" && text !== undefined) {
 			return true;
 		}
+	},
+	getTargetAudienceAbbreviation: function (targetAudience) {
+		return getTargetAudienceAbbreviation(targetAudience);
 	}
 });
 

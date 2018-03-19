@@ -6,7 +6,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
 import {adjustMarkdownToolbar} from "../card/card";
-import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
+import {getTargetAudienceAbbreviation, getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
