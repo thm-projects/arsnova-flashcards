@@ -44,7 +44,6 @@
     "backend": "Backend",
     "none": "Ohne",
     "info-extra-small": "Hauptmenü"
-
   },
   "contact": {
     "about": ".cards",
@@ -131,7 +130,11 @@
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der
-    Kartei geht hierbei verloren!",
+    Kartei
+    geht
+    hierbei
+    verloren!
+    ",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -216,14 +219,20 @@
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
-    kannst.",
+    kannst.
+    ",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder alle Karteien eines Kurses aus. Du kannst eine neue
-    Kartei auch aus
-    mehreren anderen mischen.",
+    Kartei
+    auch
+    aus
+    mehreren
+    anderen
+    mischen.
+    ",
     "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
@@ -273,7 +282,9 @@
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
     "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen?",
+    zurücksetzen
+    ?
+    ",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -353,7 +364,8 @@
       "month": "Monat",
       "subscribe": "Pro-Abonnement bestellen",
       "lecturer": "Dozentenstatus anfragen für das Anlegen von Edu-Karteien und das Prüfen (mit Umsatzbeteiligung) von
-      Pro-Karteien",
+      Pro-Karteien
+      ",
       "send": "Anfrage abschicken",
       "lecturerActivatet": "Du bist als Edu-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
@@ -473,7 +485,13 @@
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Zugang festlegen",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um diesen zu veröffentlichen.
-    Pro-Karteien können nicht wieder zurückgestuft werden!",
+    Pro-Karteien
+    können
+    nicht
+    wieder
+    zurückgestuft
+    werden!
+    ",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -708,6 +726,7 @@
   },
   "courseIteration": {
     "name": "Kurs",
+    "targetAudience": "Zielgruppe",
     "confirm-form-delete": {
       "title": "Kurs löschen",
       "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
@@ -715,9 +734,7 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Kurs anlegen",
-      "empty": "Ein Kurs fasst mehrere Karteien zusammen. Jeder kann Kurse anlegen. Informiere
-      dich unter
-      \"Hilfe\", was du mit einem Kurs tun kannst.",
+      "empty": "Ein Kurs fasst mehrere Karteien zusammen. Jeder kann Kurse anlegen. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
@@ -732,10 +749,34 @@
         "name": "Thema des Kurses",
         "description": "Lernziele und Lerninhalte"
       }
+    },
+    "targetAudience1": {
+      "name": "Privat",
+      "abbreviation": "Privat"
+    },
+    "targetAudience2": {
+      "name": "Vorkurs",
+      "abbreviation": "VK"
+    },
+    "targetAudience3": {
+      "name": "Brückenkurs",
+      "abbreviation": "BK"
+    },
+    "targetAudience4": {
+      "name": "Bachelor",
+      "abbreviation": "BA"
+    },
+    "targetAudience5": {
+      "name": "Master",
+      "abbreviation": "MA"
+    },
+    "targetAudience6": {
+      "name": "Weiterbildung",
+      "abbreviation": "W"
     }
   },
   "learningUnit": {
-    "title":"Lerneiheit auswählen",
+    "title": "Lerneiheit auswählen",
     "choose": "Lerneinheit…",
     "belongsTo": "Gehört zur Lerneinheit…",
     "none": "Gehört nicht zu einer Lerneinheit",
@@ -750,7 +791,8 @@
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
   "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei
-  zurückgesetzt.",
+  zurückgesetzt.
+  ",
   "learnedEverything": "Glückwunsch, du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",

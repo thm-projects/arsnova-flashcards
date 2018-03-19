@@ -733,6 +733,7 @@
   },
   "courseIteration": {
     "name": "Course",
+    "targetAudience": "Target Audience",
     "confirm-form-delete": {
       "title": "Delete Course",
       "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
@@ -754,6 +755,30 @@
         "name": "Title of the course",
         "description": "Learning objectives and content"
       }
+    },
+    "targetAudience1": {
+      "name": "Private",
+      "abbreviation": "Private"
+    },
+    "targetAudience2": {
+      "name": "Pre-course",
+      "abbreviation": "PC"
+    },
+    "targetAudience3": {
+      "name": "Bridge Course",
+      "abbreviation": "BC"
+    },
+    "targetAudience4": {
+      "name": "Bachelor",
+      "abbreviation": "BA"
+    },
+    "targetAudience5": {
+      "name": "Master",
+      "abbreviation": "MA"
+    },
+    "targetAudience6": {
+      "name": "Advanced Training",
+      "abbreviation": "AT"
     }
   },
   "learningUnit": {

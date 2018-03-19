@@ -565,6 +565,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	courseIterations = CourseIterations.find({targetAudience: {$exists: false}}).fetch();
+	for (let i = 0; i < courseIterations.length; i++) {
+		CourseIterations.update({
+				_id: courseIterations[i]._id
+			},
+			{
+				$set: {
+					targetAudience: Number(1)
+				}
+			}
+		);
+	}
+
 	ColorThemes.remove({});
 	for (let theme in themes) {
 		if (themes.hasOwnProperty(theme)) {

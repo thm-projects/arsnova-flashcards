@@ -80,35 +80,69 @@
             </div>
             {{#if isCourseIteration}}
                 <div class="form-group setdetails name">
-                    <label id="setSemesterLabel" class="col-md-3 control-label" for="setSemester">{{_
+                    <label id="setTargetAudienceLabel" class="col-md-3 control-label" for="setTargetAudience">{{_
                             "courseIteration.list.semester"}}</label>
                     <div class="dropdown">
                         <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                            <button id="setSemester" type="button"
-                                    class="btn btn-raised btn-default setSemesterDropdown longButton"
+                            <button id="setTargetAudience" type="button"
+                                    class="btn btn-raised btn-default setTargetAudienceDropdown longButton"
                                     data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"
-                                    value="{{#if isNew}}1{{else}}{{semester}}{{/if}}">
-                                {{#if isNew}}{{_ "courseIteration.list.semesterList" count=1}}{{else}}{{_
-                                        "courseIteration.list.semesterList"
-                                        count=semester}}{{/if}}
+                                    value="{{#if isNew}}1{{else}}{{targetAudience}}{{/if}}">
+                                {{#if isNew}}{{_ "courseIteration.targetAudience"}}{{else}}{{getTargetAudienceName
+                                        targetAudience}}{{/if}}
                             </button>
                             <button type="button"
-                                    class="btn btn-raised dropdown-toggle setSemesterDropdown"
+                                    class="btn btn-raised dropdown-toggle setTargetAudienceDropdown"
                                     data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
                                 <span class="sr-only"></span>
                             </button>
                             <ul class="dropdown-menu btn-raised longButton">
-                                {{>semesterList}}
+                                {{#each getTargetAudiences}}
+                                    <li class="targetAudience" value="{{this.targetAudience}}" data="{{this.targetAudience}}"><a
+                                            href="#">{{getTargetAudienceName this.targetAudience}}</a></li>
+                                    {{/each}}
                             </ul>
-                            <span id="helpSetSemester" class="help-block semester"></span>
+                            <span id="helpSetTargetAudience" class="help-block targetAudience"></span>
                         </div>
                     </div>
                 </div>
-                {{#if isInRole 'admin,editor,lecturer,pro'}}
-                    {{> publishKind}}
+                {{#if gotSemester}}
+                    <div class="form-group setdetails name">
+                        <label id="setSemesterLabel" class="col-md-3 control-label" for="setSemester">{{_
+                                "courseIteration.list.semester"}}</label>
+                        <div class="dropdown">
+                            <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                <button id="setSemester" type="button"
+                                        class="btn btn-raised btn-default setSemesterDropdown longButton"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"
+                                        value="{{#if isNew}}1{{else}}{{semester}}{{/if}}">
+                                    {{#if isNew}}{{_ "courseIteration.list.semesterList" count=1}}{{else}}{{_
+                                            "courseIteration.list.semesterList"
+                                            count=semester}}{{/if}}
+                                </button>
+                                <button type="button"
+                                        class="btn btn-raised dropdown-toggle setSemesterDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-raised longButton">
+                                    {{>semesterList}}
+                                </ul>
+                                <span id="helpSetSemester" class="help-block semester"></span>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#if gotAccessControl}}
+                    {{#if isInRole 'admin,editor,lecturer,pro'}}
+                        {{> publishKind}}
+                    {{/if}}
                 {{/if}}
             {{/if}}
             <div class="panel panel-primary">

@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
+import {gotAccessControl} from "./targetAudience";
 
 export const CourseIterations = new Mongo.Collection("courseIterations");
 
@@ -103,6 +104,9 @@ const CourseIterationsSchema = new SimpleSchema({
 		type: Number,
 		decimal: true,
 		optional: true
+	},
+	targetAudience: {
+		type: Number
 	}
 });
 
@@ -124,9 +128,10 @@ Meteor.methods({
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 * @param {String} semester - Semester that the course belongs to
-	 * @param {String} price - Price for the course
+	 * @param {String} price - Price for the course iteration
+	 * @param {String} targetAudience - The target audience that this course iteration is for
 	 */
-	addCourseIteration: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, semester, price) {
+	addCourseIteration: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, semester, price, targetAudience) {
 		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
@@ -144,6 +149,7 @@ Meteor.methods({
 		check(course, String);
 		check(semester, Number);
 		check(price, Number);
+		check(targetAudience, Number);
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
@@ -151,6 +157,10 @@ Meteor.methods({
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			kind = "personal";
 			price = Number(0);
+		}
+		if (!gotAccessControl(targetAudience)) {
+			visible = false;
+			kind = "private";
 		}
 		CourseIterations.insert({
 			name: name.trim(),
@@ -174,7 +184,8 @@ Meteor.methods({
 			college: college.trim(),
 			course: course.trim(),
 			price: price.toString().replace(",", "."),
-			semester: semester
+			semester: semester,
+			targetAudience: 1
 		});
 	},
 	/**
