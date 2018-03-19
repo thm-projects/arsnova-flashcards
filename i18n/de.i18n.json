@@ -736,7 +736,7 @@
   },
   "learningUnit": {
     "title":"Lerneiheit auswählen",
-    "choose": "Gehört zur Lerneinheit…",
+    "choose": "Lerneinheit…",
     "belongsTo": "Gehört zur Lerneinheit…",
     "none": "Gehört nicht zu einer Lerneinheit",
     "noUnitsFound": "Es sind keine Lerneinheiten in dieser Kartei vorhanden."
