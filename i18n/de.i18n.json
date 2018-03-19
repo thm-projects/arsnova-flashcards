@@ -312,7 +312,7 @@
     "decline": "Ablehnen",
     "save": "Speichern",
     "cancel": "Abbrechen",
-    "saved": "Einstellungen wurden gespeichert!",
+    "saved": "Die neuen Einstellungen wurden gespeichert!",
     "canceled": "Änderungen wurden verworfen!",
     "error": "Fehlerhafte Einträge!",
     "settings": {
@@ -792,7 +792,7 @@
   "turn": "umdrehen",
   "copyCardTitle": "Karte kopieren",
   "copyCardText": "Wähle eine Kartei als Ziel für den Kopiervorgang.",
-  "copycardSuccess": "Karte wurde kopiert",
+  "copycardSuccess": "Die Karte wurde kopiert",
   "cardSubject": "Kompetenzziel | Thema",
   "options": "Optionen",
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
@@ -813,8 +813,8 @@
   "confirmcard": "Sicher?",
   "savecard": "Speichern & neue Karte",
   "savecardReturn": "Speichern & zurück",
-  "savecardSuccess": "Karte wurde gespeichert",
-  "deletecardSuccess": "Karte wurde gelöscht",
+  "savecardSuccess": "Die Karte wurde gespeichert",
+  "deletecardSuccess": "Die Karte wurde gelöscht",
   "insertpicture": "Bild einfügen",
   "insertpicture2": "Bild einfügen",
   "pointslvl1": "Noch",
@@ -987,7 +987,7 @@
       "title": "Dozenten-Anfrage",
       "no": "Anfrage ablehnen",
       "yes": "Anfrage zustimmen",
-      "text": "Anfrage wurde bearbeitet",
+      "text": "Deine Anfrage wurde bearbeitet",
       "cancel": "Abbrechen"
     },
     "cardset": {
