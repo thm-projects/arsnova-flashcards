@@ -85,9 +85,7 @@ export function cleanModal() {
 	if (newCardsetCourseIterationRoute()) {
 		$('#setTargetAudience').html(getTargetAudienceName(1));
 		$('#setTargetAudience').val(1);
-	} else {
-		$('#setTargetAudience').html(getCardTypeName(Session.get('previousTargetAudience')));
-		$('#setTargetAudience').val(Session.get('previousTargetAudience'));
+		Session.set('targetAudience', Number(1));
 	}
 
 	if (newCardsetCourseIterationRoute()) {
@@ -341,7 +339,7 @@ export function saveCardset() {
 				if (kind === 'edu' || kind === 'pro') {
 					price = $('#publishPrice').val();
 				}
-				Meteor.call("addCourseIteration", name, description, false, true, kind, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Session.get('semester'), Number(price), Session.get('targetAudience'));
+				Meteor.call("addCourseIteration", name, description, false, true, kind, Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, Session.get('semester'), price, Session.get('targetAudience'));
 				$('#setCardsetCourseIterationFormModal').modal('hide');
 			} else {
 				Meteor.call("addCardset", name, description, false, true, 'personal', Session.get('moduleActive'), module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), function (error, result) {

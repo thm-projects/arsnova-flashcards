@@ -148,7 +148,6 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 		check(semester, Number);
-		check(price, Number);
 		check(targetAudience, Number);
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
@@ -160,7 +159,7 @@ Meteor.methods({
 		}
 		if (!gotAccessControl(targetAudience)) {
 			visible = false;
-			kind = "private";
+			kind = "personal";
 		}
 		CourseIterations.insert({
 			name: name.trim(),
@@ -185,7 +184,7 @@ Meteor.methods({
 			course: course.trim(),
 			price: price.toString().replace(",", "."),
 			semester: semester,
-			targetAudience: 1
+			targetAudience: targetAudience
 		});
 	},
 	/**
