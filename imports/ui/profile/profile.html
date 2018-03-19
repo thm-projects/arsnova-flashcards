@@ -274,31 +274,31 @@
                 <h4 class="panel-title">{{_ "profile.settings.appearance"}}</h4>
             </div>
             <div class="panel-body">
-                <div class="form-group">
+                <div class="form-group row">
                     <label for="sel1">{{_ "profile.settings.theme"}}:</label>
                     <select class="form-control" id="colorThemeSelect">
                         {{#each getColorThemes}}
                             <option {{getSelectedColorThemes}} value="{{_id}}">{{name}}</option>
                         {{/each}}
                     </select>
+                    {{#unless isDisabledSaveTheme}}
+                        <button id="colorThemeSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                                "profile.save"}}</button>
+                    {{/unless}}
                 </div>
-                {{#unless isDisabledSaveTheme}}
-                    <button id="colorThemeSave" type="button"
-                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
-                            "profile.save"}}</button>
-                {{/unless}}
-                <div class="form-group">
+                <div class="form-group row">
                     <label for="sel2">{{_ "profile.settings.language"}}:</label>
                     <select class="form-control" id="languageSelect">
                         <option {{getSelectedLanguage "en"}} value="en">{{_ "language.english"}}</option>
                         <option {{getSelectedLanguage "de"}} value="de">{{_ "language.german"}}</option>
                     </select>
+                    {{#unless isDisabledSaveLanguage}}
+                        <button id="languageSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                                "profile.save"}}</button>
+                    {{/unless}}
                 </div>
-                {{#unless isDisabledSaveLanguage}}
-                    <button id="languageSave" type="button"
-                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
-                            "profile.save"}}</button>
-                {{/unless}}
             </div>
         </div>
         <div class="panel panel-default">
