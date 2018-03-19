@@ -194,3 +194,16 @@ input, textarea {
     margin-left: 0!important;
   }
 }
+
+
+#learn-list-region .tip-content {
+  @media (min-width: 768px) {
+    margin-left: 120px;
+  }
+  @media (min-width: 992px) {
+    margin-left: 180px;
+  }
+  @media (min-width: 1200px) {
+    margin-left: 190px;
+  }
+}
