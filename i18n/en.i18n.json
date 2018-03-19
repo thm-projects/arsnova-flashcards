@@ -738,6 +738,7 @@
       "title": "Delete Course",
       "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
     },
+    "manage": "Manage Course",
     "list": {
       "selectCourse": "Select Course",
       "createCourse": "Create a Course",
