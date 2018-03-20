@@ -138,6 +138,10 @@ $font_weight_cardset_form_list: normal;
 $color_cookie_consent_link: $color_thm_dark_blue;
 $text_decoration_cookie_consent_link: none;
 
+//under development modal
+$color_under_development_modal_text: white;
+$color_under_development_modal_background: $color_thm_orange;
+
 html {
   position: relative;
   min-height: 100%;
@@ -1074,4 +1078,17 @@ th {
   @media (min-width: 768px) {
     text-align: center;
   }
+}
+
+#underDevelopmentModal {
+  z-index: 2000;
+}
+
+.underDevelopmentContent {
+  padding: 10px;
+  .modal-header {
+    border-bottom: 1px solid $color_under_development_modal_text !important;
+  }
+  color: $color_under_development_modal_text !important;
+  background-color: $color_under_development_modal_background !important;
 }

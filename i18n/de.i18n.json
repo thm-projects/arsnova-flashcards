@@ -777,11 +777,13 @@
     }
   },
   "learningUnit": {
-    "title": "Lerneiheit auswählen",
+    "chooseIndex": "Lernkartei auswählen",
+    "chooseUnit": "Gehört zur Lerneinheit…",
     "choose": "Lerneinheit…",
-    "belongsTo": "Gehört zur Lerneinheit…",
     "none": "Gehört nicht zu einer Lerneinheit",
-    "noUnitsFound": "Es sind keine Lerneinheiten in dieser Kartei vorhanden."
+    "noUnitsFound": "Es sind keine Lerneinheiten in dieser Kartei vorhanden.",
+    "save": "Speichern",
+    "cancel": "Zurück"
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
@@ -1177,5 +1179,9 @@
   "language": {
     "german": "Deutsch",
     "english": "Englisch"
+  },
+  "underDevelopment": {
+    "title": "In Entwicklung",
+    "text": "Dieses Feature befindet sich in Entwicklung."
   }
 }

@@ -49,6 +49,8 @@ export function adjustMarkdownToolbar() {
 	btnGroup.append($(".btn-toolbar .fa-vimeo").parent());
 	//btn-group 4
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
+	btnGroup.append($(".btn-toolbar .fa-sort-numeric-asc").parent());
+	btnGroup.append($(".btn-toolbar .fa-lock").parent());
 	btnGroup.append($(".btn-toolbar .editorBrush").parent());
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
 	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
@@ -58,7 +60,8 @@ export function adjustMarkdownToolbar() {
 function resetSessionData(resetSubject = false) {
 	if (resetSubject) {
 		Session.set('subjectText', '');
-		Session.get('learningUnit', '');
+		Session.set('learningUnit', "0");
+		Session.set('learningIndex', "0");
 	}
 	Session.set('frontText', '');
 	Session.set('backText', '');
@@ -481,12 +484,28 @@ let additionalButtons = [
 			title: 'YouTube',
 			icon: 'fa fa-youtube',
 			callback: function () {
+				$("#underDevelopmentModal").modal("show");
 			}
 		}, {
 			name: 'cmdVimeo',
 			title: 'Vimeo',
 			icon: 'fa fa-vimeo',
 			callback: function () {
+				$("#underDevelopmentModal").modal("show");
+			}
+		}, {
+			name: 'cmdSetCardnumber',
+			title: 'Set the Card Number',
+			icon: 'fa fa-sort-numeric-asc',
+			callback: function () {
+				$("#underDevelopmentModal").modal("show");
+			}
+		}, {
+			name: 'cmdLock',
+			title: 'Lock',
+			icon: 'fa fa-lock',
+			callback: function () {
+				$("#underDevelopmentModal").modal("show");
 			}
 		}, {
 			name: 'cmdTask',
@@ -683,8 +702,12 @@ function initializeContent() {
 		Session.set('lectureText', '');
 	}
 
+	if (Session.get('learningIndex') === undefined) {
+		Session.set('learningIndex', '0');
+	}
+
 	if (Session.get('learningUnit') === undefined) {
-		Session.set('learningUnit', '');
+		Session.set('learningUnit', '0');
 	}
 
 	defaultCenteredText();
@@ -706,6 +729,7 @@ function saveCard(card_id, returnToCardset) {
 	let date = Session.get('cardDate');
 	let learningGoalLevel = Session.get('learningGoalLevel');
 	let backgroundStyle = Session.get('backgroundStyle');
+	let learningIndex = Session.get('learningIndex');
 	let learningUnit = Session.get('learningUnit');
 	let subjectText = Session.get('subjectText');
 	let gotSubject = true;
@@ -717,7 +741,7 @@ function saveCard(card_id, returnToCardset) {
 			gotSubject = false;
 		}
 	} else {
-		if (subjectText === "" && learningUnit === "") {
+		if (subjectText === "" && learningUnit === "0") {
 			$('#subjectEditor').css('border', '1px solid');
 			$('#subjectEditor').css('border-color', '#b94a48');
 			Bert.alert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
@@ -747,7 +771,7 @@ function saveCard(card_id, returnToCardset) {
 	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
 	if (gotSubject && editorsValidLength) {
 		if (ActiveRoute.name('newCard')) {
-			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit, function (error, result) {
+			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 				if (result) {
 					Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 					if (returnToCardset) {
@@ -764,7 +788,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningUnit);
+			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
@@ -805,10 +829,39 @@ Template.btnCard.events({
  * ############################################################################
  */
 
+Template.selectLearningUnit.helpers({
+	getCardsetId: function () {
+		return Session.get('tempLearningIndex');
+	},
+	getCardsetName: function () {
+		if (Session.get('tempLearningIndex') === "0") {
+			return TAPi18n.__('learningUnit.none');
+		} else {
+			return Cardsets.findOne({_id: Session.get('tempLearningIndex')}).name;
+		}
+	},
+	gotLearningIndex: function () {
+		return Session.get('tempLearningIndex') !== "0";
+	},
+	learningIndex: function () {
+		return Cardsets.find({cardType: 0, visible: true, kind: {$in: ['free', 'edu']}}, {fields: {name: 1}});
+	}
+});
+
 Template.selectLearningUnit.events({
-	'click #noLearningUnit': function () {
-		Session.set('subjectText', '');
-		Session.set('learningUnit', '');
+	'click .learningIndex': function (evt) {
+		let learningIndex = $(evt.currentTarget).attr("data");
+		Session.set('tempLearningIndex', learningIndex);
+		$('#setLearningIndexLabel').css('color', '');
+		$('.setLearningIndexDropdown').css('border-color', '');
+		$('#helpLearningIndexType').html('');
+		if (learningIndex === "0") {
+			$('#showSelectLearningUnitModal').modal('hide');
+			Session.set('learningIndex', "0");
+			Session.set('learningUnit', "0");
+		}
+	},
+	'click #learningUnitCancel': function () {
 		$('#showSelectLearningUnitModal').modal('hide');
 	}
 });
@@ -870,6 +923,7 @@ Template.editor.helpers({
 			Session.set('learningGoalLevel', this.learningGoalLevel);
 			Session.set('backgroundStyle', this.backgroundStyle);
 			Session.set('learningUnit', this.learningUnit);
+			Session.set('learningIndex', this.learningIndex);
 		}
 	},
 	getFrontTitle: function () {
@@ -981,7 +1035,7 @@ Template.contentEditor.helpers({
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
-		if ((Session.get('cardType') === 2 || Session.get('cardType') === 3 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
+		if (gotLearningUnit(Session.get('cardType')) && Session.get('learningUnit') !== "0") {
 			let card = Cards.findOne({_id: Session.get('learningUnit')});
 			if (card !== undefined && card.subject !== undefined) {
 				return card.subject;
@@ -995,7 +1049,7 @@ Template.subjectEditor.helpers({
 		return gotLearningUnit(this.cardType);
 	},
 	isDisabled: function () {
-		if ((Session.get('cardType') === 2 || Session.get('cardType') === 3 || Session.get('cardType') === 5) && Session.get('learningUnit') !== '') {
+		if (Session.get('learningUnit') !== "0") {
 			return "disabled";
 		}
 		return "";
@@ -1006,6 +1060,10 @@ Template.subjectEditor.events({
 	'keyup #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
 		Session.set('subjectText', $('#subjectEditor').val());
+	},
+	'click .subjectEditorButton': function () {
+		Session.set('tempLearningIndex', Session.get('learningIndex'));
+		Session.set('tempLearningUnit', Session.get('learningUnit'));
 	}
 });
 
