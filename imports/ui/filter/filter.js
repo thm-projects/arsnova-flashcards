@@ -250,6 +250,9 @@ Template.filterNavigation.helpers({
 	hasSemesterFilter: function () {
 		return false;
 	},
+	hasTargetAudienceFilter: function () {
+		return false;
+	},
 	hasCourseFilter: function () {
 		return Session.get('poolFilterCourse');
 	},

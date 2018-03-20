@@ -80,35 +80,66 @@
             </div>
             {{#if isCourseIteration}}
                 <div class="form-group setdetails name">
-                    <label id="setSemesterLabel" class="col-md-3 control-label" for="setSemester">{{_
+                    <label id="setTargetAudienceLabel" class="col-md-3 control-label" for="setTargetAudience">{{_
                             "courseIteration.list.semester"}}</label>
                     <div class="dropdown">
                         <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                            <button id="setSemester" type="button"
-                                    class="btn btn-raised btn-default setSemesterDropdown longButton"
+                            <button id="setTargetAudience" type="button"
+                                    class="btn btn-raised btn-default setTargetAudienceDropdown longButton"
                                     data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"
-                                    value="{{#if isNew}}1{{else}}{{semester}}{{/if}}">
-                                {{#if isNew}}{{_ "courseIteration.list.semesterList" count=1}}{{else}}{{_
-                                        "courseIteration.list.semesterList"
-                                        count=semester}}{{/if}}
+                                    value="{{#if isNew}}1{{else}}{{targetAudience}}{{/if}}">
+                                {{#if isNew}}{{_ "courseIteration.targetAudience"}}{{else}}{{getTargetAudienceName
+                                        targetAudience}}{{/if}}
                             </button>
                             <button type="button"
-                                    class="btn btn-raised dropdown-toggle setSemesterDropdown"
+                                    class="btn btn-raised dropdown-toggle setTargetAudienceDropdown"
                                     data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
                                 <span class="sr-only"></span>
                             </button>
                             <ul class="dropdown-menu btn-raised longButton">
-                                {{>semesterList}}
+                                {{> targetAudienceList}}
                             </ul>
-                            <span id="helpSetSemester" class="help-block semester"></span>
+                            <span id="helpSetTargetAudience" class="help-block targetAudience"></span>
                         </div>
                     </div>
                 </div>
-                {{#if isInRole 'admin,editor,lecturer,pro'}}
-                    {{> publishKind}}
+                {{#if gotSemester}}
+                    <div class="form-group setdetails name">
+                        <label id="setSemesterLabel" class="col-md-3 control-label" for="setSemester">{{_
+                                "courseIteration.list.semester"}}</label>
+                        <div class="dropdown">
+                            <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                <button id="setSemester" type="button"
+                                        class="btn btn-raised btn-default setSemesterDropdown longButton"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"
+                                        value="{{#if isNew}}1{{else}}{{semester}}{{/if}}">
+                                    {{#if isNew}}{{_ "courseIteration.list.semesterList" count=1}}{{else}}{{_
+                                            "courseIteration.list.semesterList"
+                                            count=semester}}{{/if}}
+                                </button>
+                                <button type="button"
+                                        class="btn btn-raised dropdown-toggle setSemesterDropdown"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-raised longButton">
+                                    {{>semesterList}}
+                                </ul>
+                                <span id="helpSetSemester" class="help-block semester"></span>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#if gotAccessControl}}
+                    {{#if isInRole 'admin,editor,lecturer,pro'}}
+                        {{> publishKind}}
+                    {{/if}}
                 {{/if}}
             {{/if}}
             <div class="panel panel-primary">
@@ -148,53 +179,6 @@
                     </div>
                 </div>
                 <div class="moduleBody" style="display: {{#unless isModuleActive}}none{{/unless}}">
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleLabel" class="col-md-3 control-label"
-                               for="setModule">{{_ "modal-dialog.module"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModule"
-                                   placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
-                            <span id="helpSetModule" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleShortLabel" class="col-md-3 control-label"
-                               for="setModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleShort"
-                                   placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
-                            <span id="helpSetModuleShort" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <!-- start module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleNumLabel" class="col-md-3 control-label"
-                               for="setModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleNum"
-                                   placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
-                            <span id="helpSetModuleNum" class="help-block name"></span>
-                        </div>
-                    </div><!-- / module textfield -->
-                    <div class="form-group setdetails name module">
-                        <label id="setModuleLinkLabel" class="col-md-3 control-label"
-                               for="setModuleLink">{{_
-                                "modal-dialog.moduleLink"}}</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" id="setModuleLink"
-                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
-                                   value="{{#if
-                                           isNew}}{{getShuffleModuleLink}}{{else}}{{moduleLink}}{{/if}}">
-                        </div>
-                    </div><!-- / module textfield -->
                     {{#unless singleUniversity}}
                         <!-- start college Dropdown -->
                         <div class="form-group setdetails categories module">
@@ -263,6 +247,53 @@
                             </div>
                         </div>
                     </div><!-- / course Dropdown -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLabel" class="col-md-3 control-label"
+                               for="setModule">{{_ "modal-dialog.module"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModule"
+                                   placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
+                            <span id="helpSetModule" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleShortLabel" class="col-md-3 control-label"
+                               for="setModuleShort">{{_ "modal-dialog.moduleShort"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleShort"
+                                   placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
+                            <span id="helpSetModuleShort" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <!-- start module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleNumLabel" class="col-md-3 control-label"
+                               for="setModuleNum">{{_ "modal-dialog.moduleNum"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleNum"
+                                   placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
+                            <span id="helpSetModuleNum" class="help-block name"></span>
+                        </div>
+                    </div><!-- / module textfield -->
+                    <div class="form-group setdetails name module">
+                        <label id="setModuleLinkLabel" class="col-md-3 control-label"
+                               for="setModuleLink">{{_
+                                "modal-dialog.moduleLink"}}</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="setModuleLink"
+                                   placeholder="{{_ "modal-dialog.moduleLinkplaceholder"}}"
+                                   value="{{#if
+                                           isNew}}{{getShuffleModuleLink}}{{else}}{{moduleLink}}{{/if}}">
+                        </div>
+                    </div><!-- / module textfield -->
                 </div>
             </div>
         </div>
@@ -309,6 +340,13 @@
             href="#">{{_ "courseIteration.list.semesterList" count=7}}</a></li>
     <li class="semester" value="8" data="8"><a
             href="#">{{_ "courseIteration.list.semesterList" count=8}}</a></li>
+</template>
+
+<template name="targetAudienceList">
+    {{#each getTargetAudiences}}
+        <li class="targetAudience" value="{{this.targetAudience}}" data="{{this.targetAudience}}"><a
+                href="#">{{getTargetAudienceName this.targetAudience}}</a></li>
+    {{/each}}
 </template>
 
 <template name="difficultyEditor">

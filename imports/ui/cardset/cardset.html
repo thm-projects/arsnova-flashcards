@@ -98,6 +98,23 @@
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
                 <tr>
+                    <td><strong>{{_ "cardset.info.author"}}:</strong></td>
+                    <td>
+                        {{#each getAuthors}}
+                            <a href="{{pathFor 'profileSettings'
+                                               _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
+                        {{/each}}
+                    </td>
+                </tr>
+                {{#if getReviewer}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
+                        <td><a
+                                href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                        </td>
+                    </tr>
+                {{/if}}
+                <tr>
                     <td><strong>{{_ "cardType"}}:</strong></td>
                     <td>
                         {{getCardType}}
@@ -116,27 +133,22 @@
                         {{_ "set-list.none"}}
                     </td>
                 </tr>
-                {{#if ratingEnabled}}
+                <tr>
+                    <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
+                    <td>{{this.quantity}}</td>
+                </tr>
+                {{#if hasAmount}}
+                    {{#unless canViewForFree}}
+                        <tr>
+                            <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
+                            <td>{{getPrice this.price}}</td>
+                        </tr>
+                    {{/unless}}
+                {{/if}}
+                {{#if isPurchased}}
                     <tr>
-                        <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
-                        <td>
-                            {{#if isCardsetOwner _id}}
-                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                            {{else}}
-                                {{> starsRating id='rating' rating=getAverage mutable=true}}
-                            {{/if}} ({{this.raterCount}})
-                        </td>
-                    </tr>
-                    <tr>
-                        {{#unless isCardsetOwner _id}}
-                            <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
-                            <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
-                                ({{_ "cardset.info.notRated"}}){{/unless}}</td>
-                        {{/unless}}
-                    </tr>
-                    <tr>
-                        <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
-                        <td>{{this.quantity}}</td>
+                        <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
+                        <td>{{getDateOfPurchase}}</td>
                     </tr>
                 {{/if}}
                 <tr>
@@ -151,6 +163,16 @@
                     </td>
                 </tr>
                 {{#if this.moduleActive}}
+                    {{#unless singleUniversity}}
+                        <tr>
+                            <td><strong>{{_ "cardset.info.college"}}:</strong></td>
+                            <td>{{this.college}}</td>
+                        </tr>
+                    {{/unless}}
+                    <tr>
+                        <td><strong>{{_ "cardset.info.course"}}:</strong></td>
+                        <td>{{this.course}}</td>
+                    </tr>
                     <tr>
                         <td><strong>{{_ "cardset.info.module"}}:</strong></td>
                         <td>
@@ -187,26 +209,7 @@
                             {{/if}}
                         </td>
                     </tr>
-                    {{#unless singleUniversity}}
-                        <tr>
-                            <td><strong>{{_ "cardset.info.college"}}:</strong></td>
-                            <td>{{this.college}}</td>
-                        </tr>
-                    {{/unless}}
-                    <tr>
-                        <td><strong>{{_ "cardset.info.course"}}:</strong></td>
-                        <td>{{this.course}}</td>
-                    </tr>
                 {{/if}}
-                <tr>
-                    <td><strong>{{_ "cardset.info.author"}}:</strong></td>
-                    <td>
-                        {{#each getAuthors}}
-                            <a href="{{pathFor 'profileSettings'
-                                               _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
-                        {{/each}}
-                    </td>
-                </tr>
                 <tr>
                     <td><strong>{{_ "cardset.info.release"}}:</strong></td>
                     <td>{{getDate}}</td>
@@ -215,26 +218,23 @@
                     <td><strong>{{_ "cardset.info.dateUpdated"}}:</strong></td>
                     <td>{{getDateUpdated}}</td>
                 </tr>
-                {{#if getReviewer}}
+                {{#if ratingEnabled}}
                     <tr>
-                        <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
-                        <td><a
-                                href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                        <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
+                        <td>
+                            {{#if isCardsetOwner _id}}
+                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                            {{else}}
+                                {{> starsRating id='rating' rating=getAverage mutable=true}}
+                            {{/if}} ({{this.raterCount}})
                         </td>
                     </tr>
-                {{/if}}
-                {{#if hasAmount}}
-                    {{#unless canViewForFree}}
-                        <tr>
-                            <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
-                            <td>{{getPrice this.price}}</td>
-                        </tr>
-                    {{/unless}}
-                {{/if}}
-                {{#if isPurchased}}
                     <tr>
-                        <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
-                        <td>{{getDateOfPurchase}}</td>
+                        {{#unless isCardsetOwner _id}}
+                            <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
+                            <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
+                                ({{_ "cardset.info.notRated"}}){{/unless}}</td>
+                        {{/unless}}
                     </tr>
                 {{/if}}
                 </tbody>
@@ -322,17 +322,11 @@
                     {{/unless}}
                     {{#unless isDisabled}}
                         {{#unless learningActive}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="publishCardset" class="btn btn-default" type="button"
-                                        data-toggle="modal"
-                                        data-target="#publishModal" {{disableIfOffline}}>
-                                    <i class="fa fa-eye"></i> {{getStatus}}
-                                </button>
-                                <button id="publishTooltip" type="button" class="btn btn-default"
-                                        data-toggle="tooltip"
-                                        title="{{_ "sidebar-nav.tooltip"}}">
-                                    <i class="fa fa-question"></i></button>
-                            </div>
+                            <button id="publishCardset" class="btn btn-raised btn-default" type="button"
+                                    data-toggle="modal"
+                                    data-target="#publishModal" {{disableIfOffline}}>
+                                <i class="fa fa-eye"></i> {{getStatus}}
+                            </button>
                         {{/unless}}
                     {{/unless}}
                     {{#unless learningActive}}
@@ -367,7 +361,7 @@
                     <div class="btn-group btn-group-raised btn-group-justified">
                         <a id="btnToCardLayout"
                            class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
-                           href="/cardset/{{_id}}"><img class="cardDetailsIcon" src="/img/card_detail_icon.png"> {{_
+                           href="/cardset/{{_id}}"><i class="fa fa-square"></i> {{_
                                 "sidebar-nav.viewmap"}}</a>
                         <a id="btnToListLayout"
                            class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"

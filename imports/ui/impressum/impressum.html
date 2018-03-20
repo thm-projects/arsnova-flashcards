@@ -83,15 +83,16 @@
     <div class="panel panel-default">
         <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                <h1>Die alternative Lernplattform</h1>
+                <h1>Die Lernplattform, die ihrem Namen gerecht wird</h1>
             {{else}}
                 <h1>The alternative learning platform</h1>
             {{/if}}
         </div>
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
+                <h2>Das Projekt</h2>
                 <p>
-                    .cards ist für das <b>Mitschreiben und Lernen mittels Karten</b> in den Studiengängen der
+                    .cards ist für das <b>Mitschreiben und Lernen mit Karten</b> in den Studiengängen der
                     Technischen
                     Hochschule Mittelhessen, THM, entwickelt worden.
                     Das <a href="https://git.thm.de/arsnova/flashcards/blob/master/README.md"
@@ -110,13 +111,15 @@
                     Denn .cards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das
                     Mitschreiben
                     in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
-                    .cards versteht sich als <b>vorlesungsbegleitende Lernplattform</b>, als ein virtueller Ort,
-                    wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeitung der Mitschrift, Lernkarten
+                    .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als ein virtueller Ort,
+                    wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeiten der Mitschrift, Lernkarten
                     erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
-                    — im Gegensatz zu Moodle, das meistens nur als Verteilungsplattform für Skripte dient.
+                    — im Gegensatz zu Lernplattformen wie Moodle oder ILIAS, die meistens nur als Verteilungsplattformen für
+                    Skripte dient.
                 </p>
+            <h2>Das Konzept</h2>
                 <p>
-                    Das Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu
+                    Das didaktische Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu
                     bewerten,
                     um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über
                     den
@@ -162,7 +165,7 @@
                 </p>
                 <hr>
                 <p>
-                    Studierende der THM haben über ihren <b>CAS-Zugang</b> kostenlosen Zugriff auf alle
+                    Studierende der THM haben über ihren <b>Uni-Zugang</b> (CAS) kostenlosen Zugriff auf alle
                     <b>Edu-Karteien</b> im Pool von .cards.
                     Hierbei handelt es sich um Karteien, die von Lehrenden der THM für ihre Module angelegt wurden.
                     Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder
@@ -288,9 +291,9 @@
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
                 <p>
-                    Auf .cards kannst du die Lernkarten und Mitschriften einer Kartei auf verschiedene Art und
-                    Weise
-                    lernen:
+                    Auf .cards kannst du die Karten deiner Karteien (Mitschriften, Lernkarteien, Glossare, Befehlssätze aus
+                    Programmiersprachen, Prüfungsfragen, Zitate, Abstracts und Vokabeln) auf verschiedene Art und
+                    Weise lernen:
                 </p>
                 <ul>
                     <li>
@@ -301,13 +304,13 @@
                     </li>
                     <li>
                         nach der Schwierigkeit des Stoffes:
-                        Allgemein, Einsteiger, Fortgeschritten, Experte
+                        Basics, Fortgeschritten, Experte/Expertin
                     </li>
                     <li>
                         nach den Lernzielstufen der Karten (<a
                             href="https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/"
                             target="_blank">Taxonomie von Anderson et al.</a>):<br/>
-                        Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Erschaffen
+                        Erinnern, Verstehen, Anwenden, Analysieren, Bewerten, Entwickeln
                     </li>
                     <li>
                         in der alphabetischen Reihenfolge der Kartentitel
@@ -466,16 +469,17 @@
                          class="img-responsive center-block">
                 </a>
                 <ul class="thm-numbering">
-                    <li><strong>Wortwolke:</strong> Sie zeigt dir die populärsten Karteien der Lernplattform,
-                        wobei die Schriftgröße proportional zur Anzahl der Karten ist.
-                        Wenn du mit der Maus über einen Namen fährst oder ihn antippst,
-                        siehst du die Beschreibung der Kartei.
+                    <li><strong>Wortwolke:</strong> Sie erscheint nur auf großen Displays ab Tablet-Größe und zeigt die
+                        aktuell populärsten Karteien der Plattform. Die Schriftgröße ist proportional zur Anzahl der
+                        Karten.
+                        Wenn du ein Wort in der Wolke anklickst oder antippst, siehst du die Beschreibung der Kartei.
                     </li>
                     <li><strong>Anmeldung:</strong> .cards unterscheidet zwei Anmeldeoptionen.
                         Mit dem grünen Button können sich alle Mitglieder der THM anmelden.
                         Als THM-Mitglied hast du kostenlosen freien Zugang zu allen von THM-Lehrenden veröffentlichen
                         Karteien.
-                        THM-Karteien tragen das grüne Label "Edu". Wer sich über ein Konto eines sozialen Netzwerks anmeldet,
+                        THM-Karteien tragen das grüne Label "Edu" für "Education". Wer sich über ein Konto eines sozialen
+                        Netzwerks anmeldet,
                         hat nur Zugang zu Karteien mit dem blauen Label "Free", es sei denn, er oder sie hat ein Abonnement
                         oder zahlt einzeln für Edu- oder Pro-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
                     </li>
@@ -496,7 +500,9 @@
                 </a>
                 <ul class="thm-numbering">
                     <li><strong>Filteroptionen:</strong> Karteien können im Tabellenkopf gefiltert werden
-                        (Karteityp, Autor/in, Studiengang, Modul, Bonus) oder durch Klick auf einen Eintrag in den Spalten rechts
+                        (Karteityp, Autor/in, Studiengang, Modul, Bonus, Level, Zugang) oder durch Klick auf einen Eintrag in den
+                        Spalten
+                        rechts
                         vom
                         Thema.
                     </li>
@@ -584,8 +590,10 @@
                                 Sie stellen die kompliziertesten mathematischen Formeln in LaTeX sauber dar.
                             </li>
                             <li>
-                                Sie werden dir zum Lernen zur richtigen Zeit wieder vorgelegt.
-                                Push-Nachrichten auf dein Handy erinnern dich ans Lernen.
+                                Sie werden dir zum Lernen am kognitionswissenschaftlich berechneten Tag wieder vorgelegt.
+                            </li>
+                            <li>
+                                Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen.
                             </li>
                             <li>
                                 Sie kosten nichts.
@@ -877,9 +885,9 @@
     <div class="panel panel-default">
         <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                <h1>Impressum gemäß Telemediengesetz</h1>
+                <h1>Impressum und Support</h1>
             {{else}}
-                <h1>Imprint according to Telemediengesetz</h1>
+                <h1>Imprint and Support</h1>
             {{/if}}
         </div>
 
@@ -923,7 +931,7 @@
                     Technische Fragen zur WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
                 </p>
                 <p>
-                    Fragen zur Konzeption und zum didaktischen Einsatz der Lernplattform .cards: <a
+                    Fragen zur Konzeption und zum didaktischen Einsatz von .cards: <a
                         href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
                 </p>
                 <p>
@@ -1578,7 +1586,7 @@
     <div class="panel panel-default">
         <div class="panel-heading info-tab">
             {{#if isActiveLanguage 'de'}}
-                <h1>Datenschutzerklärung und Verfahrensverzeichnis</h1>
+                <h1>Datenschutzerklärung</h1>
             {{else}}
                 <h1>Privacy policy and procedures</h1>
             {{/if}}

@@ -59,7 +59,6 @@ hr {
 
 .emptyTextList {
   color: $color_storm_dust_approx;
-  font-family: $font_0, $font_1;
   font-style: italic;
 }
 
@@ -146,12 +145,6 @@ input, textarea {
   margin: -5px 0 0 0;
 }
 
-@media (min-width: 992px) {
-  #set-list-region .tip-content, #learn-list-region .tip-content {
-    margin-left: 285px;
-  }
-}
-
 .label-free {
   background-color: $color_free_btn;
 }
@@ -198,5 +191,18 @@ input, textarea {
 @media (max-width: 767px) {
   .radio-inline {
     margin-left: 0!important;
+  }
+}
+
+
+#learn-list-region .tip-content {
+  @media (min-width: 768px) {
+    margin-left: 120px;
+  }
+  @media (min-width: 992px) {
+    margin-left: 180px;
+  }
+  @media (min-width: 1200px) {
+    margin-left: 190px;
   }
 }

@@ -122,6 +122,17 @@
 
 <template name="cardsetRow">
     <div class="cardsetName">
+        {{#if isActiveRoute 'learn'}}
+            <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+                    "set-list.workload"}}
+                :</span>
+            <span class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+                  data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
+        <span class="cell col-xs-7 col-sm-2 panelUnit" data-id="{{this._id}}">
+            {{getWorkload}}
+        </span>
+        </span>
+        {{/if}}
         <div class="tip-content">{{#if gotDescription
                                        this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
                 "set-list.noDescription"}}{{/if}}</div>
@@ -179,13 +190,10 @@
             </span>
         </span>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.workload"}}
+                "set-list.learningMode"}}
             :</span>
-        <span class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-              data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
-        <span class="cell col-xs-7 col-sm-2 panelUnit" data-id="{{this._id}}">
-            {{getWorkload}}
-        </span>
+        <span class="cell col-xs-7 col-sm-3 col-md-2 panelUnit">
+            {{getLearningMode}}
         </span>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.levelOfLearning"}}
@@ -195,12 +203,6 @@
            <i class="glyphicon glyphicon glyphicon-stats"></i>
         </span>
         </a>
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.learningMode"}}
-            :</span>
-        <span class="cell col-xs-7 col-sm-3 col-md-2 panelUnit">
-            {{getLearningMode}}
-        </span>
         <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
            title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
            data-id="{{this._id}}">
@@ -281,13 +283,14 @@
         {{#if learnList.count}}
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-2 col-md-1  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
                 <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
-                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom">{{_ "set-list.learnphase"}}</span>
-                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
-                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.levelOfLearning"}}</span>
-                <span class="col-sm-4 col-md-3 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
+                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom text-center">{{_ "set-list.learnphase"}}</span>
+                <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
+                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.levelOfLearning"}}</span>
+                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom block"></span>
             </div>
             {{#each learnList}}
                 <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType

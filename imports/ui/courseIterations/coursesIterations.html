@@ -22,11 +22,13 @@
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.targetAudience"}}</span>
                 <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.list.semester"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
-                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
                 <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
-                <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.progress"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "courseIteration.list.progress"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom block"></span>
             </div>
             {{#each courseIterationsList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -80,7 +82,13 @@
         </a>
     </div>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-            "set-list.availability"}}
+            "courseIteration.targetAudience"}}
+        :</span>
+    <span class="cell col-xs-7 col-md-1 hidden-sm panelUnit poolText ellipsis">
+        {{getTargetAudienceAbbreviation this.targetAudience}}
+    </span>
+    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
+            "courseIteration.list.semester"}}
         :</span>
     <span class="cell col-xs-7 col-md-2 hidden-sm panelUnit poolText ellipsis">
         {{_ "courseIteration.list.semesterList" count=this.semester}}
@@ -98,7 +106,7 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.module"}}
        :</span>
-    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
+    <span class="cell col-xs-7 col-sm-1  panelUnit poolText ellipsis">
         {{#if this.module}}
             {{this.module}}
         {{else}}
@@ -124,7 +132,7 @@
         :</span>
     <span class="col-xs-7 col-sm-2 col-md-1 manageCourseIteration">
             <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
-               title='{{_ "courseIteration.confirm-form-delete.title"}}' data-id="{{this._id}}">
+               title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}">
             <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
