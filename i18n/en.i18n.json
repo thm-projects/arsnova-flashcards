@@ -783,11 +783,13 @@
     }
   },
   "learningUnit": {
-    "title":"Select learning aptitude",
+    "chooseIndex": "Select an index",
+    "chooseUnit": "Belongs to the learning unit…",
     "choose": "Edit…",
-    "belongsTo": "Belongs to the learning unit…",
     "none": "Doesn't belong to a learning unit",
-    "noUnitsFound": "There are no learning units for this set of cards"
+    "noUnitsFound": "There are no learning units for this set of cards",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
