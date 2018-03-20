@@ -49,6 +49,7 @@ export function adjustMarkdownToolbar() {
 	btnGroup.append($(".btn-toolbar .fa-vimeo").parent());
 	//btn-group 4
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
+	btnGroup.append($(".btn-toolbar .fa-sort-numeric-asc").parent());
 	btnGroup.append($(".btn-toolbar .fa-lock").parent());
 	btnGroup.append($(".btn-toolbar .editorBrush").parent());
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
@@ -488,6 +489,13 @@ let additionalButtons = [
 			name: 'cmdVimeo',
 			title: 'Vimeo',
 			icon: 'fa fa-vimeo',
+			callback: function () {
+				$("#underDevelopmentModal").modal("show");
+			}
+		}, {
+			name: 'cmdSetCardnumber',
+			title: 'Set the Card Number',
+			icon: 'fa fa-sort-numeric-asc',
 			callback: function () {
 				$("#underDevelopmentModal").modal("show");
 			}
