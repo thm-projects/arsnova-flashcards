@@ -81,7 +81,7 @@
             {{#if isCourseIteration}}
                 <div class="form-group setdetails name">
                     <label id="setTargetAudienceLabel" class="col-md-3 control-label" for="setTargetAudience">{{_
-                            "courseIteration.list.semester"}}</label>
+                            "courseIteration.targetAudience"}}</label>
                     <div class="dropdown">
                         <div class="btn-group col-xs-12 col-sm-12 col-md-9">
                             <button id="setTargetAudience" type="button"
@@ -89,7 +89,7 @@
                                     data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"
                                     value="{{#if isNew}}1{{else}}{{targetAudience}}{{/if}}">
-                                {{#if isNew}}{{_ "courseIteration.targetAudience"}}{{else}}{{getTargetAudienceName
+                                {{#if isNew}}{{_ "courseIteration.targetAudience1.name"}}{{else}}{{getTargetAudienceName
                                         targetAudience}}{{/if}}
                             </button>
                             <button type="button"
