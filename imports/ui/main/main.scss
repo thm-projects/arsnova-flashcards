@@ -118,6 +118,9 @@ $font_weight_search_results_author: normal;
 $size_search_results_separator: 0px;
 $padding_search_items: 5px 15px;
 
+//form group
+$color_form_group_label: black;
+
 //cardset form
 $color_cardset_form_list_background: $color_athens_gray_approx;
 $color_cardset_form_list_text: black;
@@ -431,6 +434,9 @@ button:disabled {
 
 .form-group {
   margin-top: 5px !important;
+  label {
+    color: $color_form_group_label !important;
+  }
 }
 
 .text-dark {
