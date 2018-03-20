@@ -612,7 +612,8 @@
                     <div class="bs-callout bs-callout-info selectionInfo">
                         {{#if getCardCount -1 -1}}
                             <a href="#" id="createCardFilter" class="btn btn-raised btn-success"
-                               role="button" {{disableIfOffline}}>{{_ "filter-cards.filter"}}
+                               role="button" {{disableIfOffline}} data-toggle="modal"
+                               data-target="#underDevelopmentModal">{{_ "filter-cards.filter"}}
                             </a>
                         {{/if}}
                         <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal"

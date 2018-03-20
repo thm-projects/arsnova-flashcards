@@ -1183,5 +1183,9 @@
   "language": {
     "german": "German",
     "english": "English"
+  },
+  "underDevelopment": {
+    "title": "Under Development",
+    "text": "This feature is under development."
   }
 }

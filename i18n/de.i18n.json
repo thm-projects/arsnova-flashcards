@@ -1177,5 +1177,9 @@
   "language": {
     "german": "Deutsch",
     "english": "Englisch"
+  },
+  "underDevelopment": {
+    "title": "In Entwicklung",
+    "text": "Dieses Feature befindet sich in Entwicklung."
   }
 }

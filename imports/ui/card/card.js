@@ -481,12 +481,14 @@ let additionalButtons = [
 			title: 'YouTube',
 			icon: 'fa fa-youtube',
 			callback: function () {
+				$("#underDevelopmentModal").modal("show");
 			}
 		}, {
 			name: 'cmdVimeo',
 			title: 'Vimeo',
 			icon: 'fa fa-vimeo',
 			callback: function () {
+				$("#underDevelopmentModal").modal("show");
 			}
 		}, {
 			name: 'cmdTask',
