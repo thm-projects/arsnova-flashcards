@@ -49,6 +49,7 @@ export function adjustMarkdownToolbar() {
 	btnGroup.append($(".btn-toolbar .fa-vimeo").parent());
 	//btn-group 4
 	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
+	btnGroup.append($(".btn-toolbar .fa-lock").parent());
 	btnGroup.append($(".btn-toolbar .editorBrush").parent());
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
 	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
@@ -487,6 +488,13 @@ let additionalButtons = [
 			name: 'cmdVimeo',
 			title: 'Vimeo',
 			icon: 'fa fa-vimeo',
+			callback: function () {
+				$("#underDevelopmentModal").modal("show");
+			}
+		}, {
+			name: 'cmdLock',
+			title: 'Lock',
+			icon: 'fa fa-lock',
 			callback: function () {
 				$("#underDevelopmentModal").modal("show");
 			}
