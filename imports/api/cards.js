@@ -192,6 +192,10 @@ var CardsSchema = new SimpleSchema({
 	backgroundStyle: {
 		type: Number
 	},
+	learningIndex: {
+		type: String,
+		optional: true
+	},
 	learningUnit: {
 		type: String,
 		optional: true
@@ -204,7 +208,7 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	addCard: function (cardset_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -215,6 +219,7 @@ Meteor.methods({
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
+		check(learningIndex, String);
 		check(learningUnit, String);
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
@@ -243,6 +248,7 @@ Meteor.methods({
 			date: date,
 			learningGoalLevel: learningGoalLevel,
 			backgroundStyle: backgroundStyle,
+			learningIndex: learningIndex,
 			learningUnit: learningUnit,
 			cardType: cardset.cardType
 		}, function (err, card) {
@@ -354,7 +360,7 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningUnit) {
+	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -365,6 +371,7 @@ Meteor.methods({
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
+		check(learningIndex, String);
 		check(learningUnit, String);
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
@@ -398,6 +405,7 @@ Meteor.methods({
 				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
+				learningIndex: learningIndex,
 				learningUnit: learningUnit
 			}
 		});

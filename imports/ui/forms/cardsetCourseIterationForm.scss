@@ -48,7 +48,7 @@
   background-color: $color_button_difficulty3;
 }
 
-#setCardsetCourseIterationFormModal {
+#setCardsetCourseIterationFormModal, #showSelectLearningUnitModal {
   ul > li {
     background-color: $color_cardset_form_list_background !important;
     padding-top: $size_cardset_form_list_padding !important;

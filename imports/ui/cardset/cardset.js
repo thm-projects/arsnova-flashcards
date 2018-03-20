@@ -228,7 +228,7 @@ Template.cardsetList.helpers({
 				return Cardsets.find({_id: this._id}).fetch();
 			}
 		} else {
-			return Cardsets.find({_id: Router.current().params._id}).fetch();
+			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
 	gotCards: function () {
@@ -239,7 +239,7 @@ Template.cardsetList.helpers({
 				return Cards.find({cardset_id: this._id}).count();
 			}
 		} else {
-			return Cards.find({cardset_id: Router.current().params._id, cardType: 0}).count();
+			return Cards.find({cardset_id: Session.get('tempLearningIndex'), cardType: 0}).count();
 		}
 	},
 	cardSubject: function () {
@@ -314,6 +314,7 @@ Template.cardsetList.events({
 			Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 		} else {
 			let learningUnit = $(evt.target).data('id');
+			Session.set('learningIndex', Session.get('tempLearningIndex'));
 			Session.set('learningUnit', learningUnit);
 			Session.set('subjectText', Cards.findOne({_id: learningUnit}).subject);
 			$('#showSelectLearningUnitModal').modal('hide');
