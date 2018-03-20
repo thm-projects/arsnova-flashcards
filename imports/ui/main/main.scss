@@ -118,6 +118,9 @@ $font_weight_search_results_author: normal;
 $size_search_results_separator: 0px;
 $padding_search_items: 5px 15px;
 
+//form group
+$color_form_group_label: black;
+
 //cardset form
 $color_cardset_form_list_background: $color_athens_gray_approx;
 $color_cardset_form_list_text: black;
@@ -431,6 +434,9 @@ button:disabled {
 
 .form-group {
   margin-top: 5px !important;
+  label {
+    color: $color_form_group_label !important;
+  }
 }
 
 .text-dark {
@@ -504,7 +510,7 @@ button:disabled {
 }
 
 .panelUnit {
-  padding: 10px;
+  padding: 10px 5px;
 }
 
 .panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
@@ -512,6 +518,10 @@ button:disabled {
   @media (max-width: 767px) {
     border-bottom: 0 !important;
   }
+}
+
+.manageCourseIteration {
+  padding: 0;
 }
 
 .panelUnitPrice {
@@ -550,7 +560,7 @@ button:disabled {
 }
 
 .poolHeaderBottom {
-  padding: 5px 10px;
+  padding: 5px;
   font-weight: bold;
   font-size: 12px;
   color: $white;
@@ -587,6 +597,7 @@ button:disabled {
 
 .topicName {
   padding-left: 0;
+  padding-right: 0;
 }
 
 @media (max-width: 767px) {

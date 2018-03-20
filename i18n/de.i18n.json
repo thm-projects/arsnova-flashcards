@@ -757,23 +757,23 @@
     },
     "targetAudience2": {
       "name": "Vorkurs",
-      "abbreviation": "VK"
+      "abbreviation": "Vorkurs"
     },
     "targetAudience3": {
       "name": "Brückenkurs",
-      "abbreviation": "BK"
+      "abbreviation": "Brückenkurs"
     },
     "targetAudience4": {
-      "name": "Bachelor",
-      "abbreviation": "BA"
+      "name": "Bachelorkurs",
+      "abbreviation": "Bachelorkurs"
     },
     "targetAudience5": {
-      "name": "Master",
-      "abbreviation": "MA"
+      "name": "Masterkurs",
+      "abbreviation": "Masterkurs"
     },
     "targetAudience6": {
       "name": "Weiterbildung",
-      "abbreviation": "W"
+      "abbreviation": "Weiterbildung"
     }
   },
   "learningUnit": {
