@@ -225,15 +225,10 @@
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder alle Karteien eines Kurses aus. Du kannst eine neue
-    Kartei
-    auch
-    aus
-    mehreren
-    anderen
-    mischen.
-    ",
-    "emptytextlistNoShuffle": "Wähle eine Kartei aus.",
+    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus.
+    Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
+    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus
+    oder alle Karteien eines Kurses.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
   },
@@ -1180,6 +1175,6 @@
   },
   "underDevelopment": {
     "title": "In Entwicklung",
-    "text": "Dieses Feature befindet sich in Entwicklung."
+    "text": "Dieses Feature befindet sich in der Entwicklung und wird rechtzeitig zum Sommersemester 2018 verfügbar sein."
   }
 }
