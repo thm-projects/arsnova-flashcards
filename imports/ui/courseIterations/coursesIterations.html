@@ -21,14 +21,15 @@
             </button>
             {{> filterNavigation}}
             <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
-                <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.targetAudience"}}</span>
+                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.courseIteration"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "set-list.author"}}</span>
+                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.targetAudience"}}</span>
                 <span class="col-md-2 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.list.semester"}}</span>
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
-                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "courseIteration.list.progress"}}</span>
-                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom block"></span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom block"></span>
             </div>
             {{#each courseIterationsList}}
                 <div class="col-xs-12 panel panel-default {{#if
@@ -70,7 +71,7 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
            :</span>
-            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-3 poolText panelUnit"
+            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-2 poolText panelUnit"
                   data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
                     {{this.name}}
@@ -81,10 +82,17 @@
             </span>
         </a>
     </div>
+    <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
+        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
+            :</span>
+        <span class="col-xs-7 col-sm-2 col-md-1 poolContent poolText panelUnit poolAuthor"
+              data-id="{{this.owner}}">{{getAuthorName
+                this.owner}}</span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "courseIteration.targetAudience"}}
         :</span>
-    <span class="cell col-xs-7 col-md-1 hidden-sm panelUnit poolText ellipsis">
+    <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit poolText ellipsis">
         {{getTargetAudienceAbbreviation this.targetAudience}}
     </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
@@ -116,7 +124,7 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.availability"}}
         :</span>
-    <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit poolText ellipsis panelIconColumn">
+    <span class="cell col-xs-7 col-sm-1 panelUnit poolText ellipsis panelIconColumn">
         {{{getKind this.kind}}}
     </span>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
@@ -130,7 +138,7 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "options"}}
         :</span>
-    <span class="col-xs-7 col-sm-2 col-md-1 manageCourseIteration">
+    <span class="col-xs-7 col-sm-1 manageCourseIteration">
             <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
                title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}">
             <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"

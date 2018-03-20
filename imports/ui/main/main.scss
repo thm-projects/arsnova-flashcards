@@ -504,7 +504,7 @@ button:disabled {
 }
 
 .panelUnit {
-  padding: 10px;
+  padding: 10px 5px;
 }
 
 .panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
@@ -512,6 +512,10 @@ button:disabled {
   @media (max-width: 767px) {
     border-bottom: 0 !important;
   }
+}
+
+.manageCourseIteration {
+  padding: 0;
 }
 
 .panelUnitPrice {
@@ -550,7 +554,7 @@ button:disabled {
 }
 
 .poolHeaderBottom {
-  padding: 5px 10px;
+  padding: 5px;
   font-weight: bold;
   font-size: 12px;
   color: $white;
@@ -587,6 +591,7 @@ button:disabled {
 
 .topicName {
   padding-left: 0;
+  padding-right: 0;
 }
 
 @media (max-width: 767px) {
