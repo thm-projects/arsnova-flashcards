@@ -43,6 +43,10 @@
     color: $white;
   }
 
+  .navbar-nav > li > a {
+    padding: 20px 10px;
+  }
+
   @media (max-width: 1200px) {
     .navbar-header {
       float: none;
