@@ -8,7 +8,6 @@ import {Notifications} from "./notifications.js";
 import {Paid} from "./paid.js";
 import {Ratings} from "./ratings.js";
 import {Categories} from "./settings.js";
-import {Cloud} from "./cloud.js";
 
 Ground.Collection(Meteor.users);
 Ground.Collection(AdminSettings);
@@ -22,4 +21,3 @@ Ground.Collection(Notifications);
 Ground.Collection(Paid);
 Ground.Collection(Ratings);
 Ground.Collection(Categories);
-Ground.Collection(Cloud);

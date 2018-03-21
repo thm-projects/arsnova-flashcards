@@ -18,7 +18,8 @@
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
                                     {{#if currentUser}}
-                                        <p class="navbar-text visible-xs-inline-block">{{_ "navbar-collapse.info-extra-small"}}</p>
+                                        <p class="navbar-text visible-xs-inline-block">{{_
+                                                "navbar-collapse.info-extra-small"}}</p>
                                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                                 data-target="#thm-top-navigation" aria-expanded="false">
                                             <span class="sr-only">Toggle navigation</span>
@@ -30,7 +31,8 @@
                                 </div>
 
                                 <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div id="searchResults" class="dropdown-menu list-group" style="{{#if searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}"
+                                <div id="searchResults" class="dropdown-menu list-group" style="{{#if
+                                        searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}"
                                      data-toggle="collapse" data-target="#thm-top-navigation">
                                     {{#each searchCategories}}
                                         <a href="/cardset/{{_id}}" class="list-group-item clearfix">
@@ -80,13 +82,19 @@
                                         <div id="searchDropdown"
                                              class="navbar-form navbar-left input-append btn-group"
                                              role="search">
-                                            <input id="input-search" class="form-control typeahead" name="search"
-                                                   type="text"
-                                                   autocomplete="off" spellcheck="off" data-source="search"
-                                                   data-template="search"
-                                                   placeholder="{{_ "navbar-collapse.search"}}">
+                                            <div class="searchItem col-xs-9">
+                                                <input id="input-search" class="form-control typeahead" name="search"
+                                                       type="text"
+                                                       autocomplete="off" spellcheck="off" data-source="search"
+                                                       data-template="search"
+                                                       placeholder="{{_ "navbar-collapse.search"}}">
+                                            </div>
+                                            {{#if searchActive}}
+                                                <div id="clearSearch" class="searchItem col-xs-3">
+                                                    <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                                </div>
+                                            {{/if}}
                                         </div>
-
                                         <ul class="nav navbar-nav navbar-right">
                                             <li>
                                                 <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
@@ -172,10 +180,11 @@
         {{/unless}}
         <div id="main" class="{{#if isActiveRoute
                                     regex='home'}}{{else}}{{#if isActiveRoute
-                                    regex='newCard|editCard'}}{{#if
+                                                                regex='newCard|editCard'}}{{#if
                 fullscreenActive}}container{{else}}container-fluid col-lg-offset-1{{/if}}{{else}}container{{/if}}{{/if}}">
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="{{#if isActiveRoute regex='home'}}{{else}}row{{#if isActiveRoute regex='newCard|editCard'}}{{#unless
+            <div class="{{#if isActiveRoute regex='home'}}{{else}}row{{#if isActiveRoute
+                                                                           regex='newCard|editCard'}}{{#unless
                     fullscreenActive}}col-lg-11{{/unless}}{{/if}}{{/if}}">
                 {{> yield}}
             </div>

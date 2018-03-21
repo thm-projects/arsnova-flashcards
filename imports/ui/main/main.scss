@@ -643,6 +643,17 @@ button:disabled {
     width: 280px;
     font-size: 11px;
   }
+
+  #searchDropdown {
+    margin: 0 0 0 -7px !important;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+  #input-search {
+    margin: 0;
+    border: none;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -922,7 +933,7 @@ th {
   color: white;
 }
 
-.hintContent .modal-header {
+.hintContent .modal-header, .wordCloudDescription {
   border-bottom: 1px solid white;
 }
 
@@ -1091,4 +1102,16 @@ th {
   }
   color: $color_under_development_modal_text !important;
   background-color: $color_under_development_modal_background !important;
+}
+
+#clearSearch {
+  font-size: 22px;
+  cursor: pointer;
+  .glyphicon-remove-circle {
+    padding-left: 7px;
+  }
+}
+
+.searchItem {
+  padding: 0 !important;
 }

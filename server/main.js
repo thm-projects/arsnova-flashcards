@@ -19,6 +19,5 @@ import "../imports/api/upload.js";
 import "../imports/api/userdata.js";
 import "../imports/api/webPushSubscriptions.js";
 import "./leitner.js";
-import "./wordcloud.js";
 
 WebApp.addHtmlAttributeHook(() => ({lang: 'de'}));

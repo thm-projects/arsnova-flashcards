@@ -2,6 +2,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
+import {Session} from "meteor/session";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -21,7 +22,10 @@ Router.configure({
 
 Router.route('/home', {
 	name: 'home',
-	template: 'welcome'
+	template: 'welcome',
+	data: function () {
+		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
+	}
 });
 
 Router.route('about', {

@@ -3,12 +3,12 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import WordCloud from "wordcloud";
-import {Cloud} from "../../api/cloud.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
 import {Session} from "meteor/session";
 
-Meteor.subscribe("wordcloud");
+Meteor.subscribe("cardsets");
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
@@ -21,7 +21,7 @@ function setActiveLanguage() {
  *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
  */
 function wordcloudClick(item) {
-	Session.set('wordcloudItem', item);
+	Session.set('wordcloudItem', item[2]);
 	$('#wordcloudModal').modal('show');
 }
 
@@ -39,40 +39,57 @@ function wordcloudHover(item, dimension) {
 function createTagCloud() {
 	$('#cards-welcome-image').css('height', $('.color-cards').height());
 	if ($(window).height() <= 500) {
-		$('#tag-cloud-canvas').css('height', '0');
-		$('#tag-cloud-container').css('height', '0');
-		return;
-	}
-	$('#tag-cloud-canvas').css('height', 'unset');
-	$('#tag-cloud-container').css('height', 'unset');
-	let cloud = Cloud.find({}).fetch();
-	let list = [];
-
-	if (cloud.length > 0) {
-		list = cloud[0].list;
+		document.getElementById('tag-cloud-container').height = 0;
+		document.getElementById('tag-cloud-canvas').height = 0;
 	} else {
-		return;
+		document.getElementById('tag-cloud-container').height = 'unset';
+		document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
+		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true));
+		if ($(window).width() > 700 && $(window).height() > 700) {
+			let textScale = 1.2;
+			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);
+			let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-canvas').width() / 450;
+			let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
+			let minimumSize = 10;
+			let biggestCardsetSize = 0;
+			let list = [];
+
+			cloud.forEach(function (cloud) {
+				if (cloud.quantity > biggestCardsetSize) {
+					biggestCardsetSize = cloud.quantity;
+				}
+			});
+
+			cloud.forEach(function (cloud) {
+				let name = cloud.name;
+
+				if (name.length > 30) {
+					name = name.substring(0, 30) + "…";
+				}
+				let quantitiy = cloud.quantity / biggestCardsetSize * 40;
+				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
+				list.push([name, Number(quantitiy), cloud._id]);
+			});
+			list.sort(function (a, b) {
+				return (b[0].length * b[1]) - (a[0].length * a[1]);
+			});
+			WordCloud(document.getElementById('tag-cloud-canvas'),
+				{
+					list: list,
+					gridSize: gridSize,
+					weightFactor: weightFactor,
+					minSize: 14,
+					drawOutOfBound: false,
+					rotateRatio: 0,
+					fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
+					color: "white",
+					hover: wordcloudHover,
+					click: wordcloudClick,
+					backgroundColor: 'rgba(255,255,255, 0)',
+					wait: 75
+				});
+		}
 	}
-	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true));
-	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
-	let textScale = 1.2;
-	let gridSize = Math.round(16 * $('#tag-cloud-container').width() / 1440);
-	let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-container').width() / 450;
-	WordCloud(document.getElementById('tag-cloud-canvas'),
-		{
-			list: list,
-			gridSize: gridSize,
-			weightFactor: weightFactor,
-			minSize: 14,
-			drawOutOfBound: false,
-			rotateRatio: 0,
-			fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-			color: "white",
-			hover: wordcloudHover,
-			click: wordcloudClick,
-			backgroundColor: 'rgba(255,255,255, 0)',
-			wait: 75
-		});
 }
 
 //------------------------ LOGIN EVENT
@@ -135,15 +152,6 @@ Template.welcome.events({
 				throw new Meteor.Error("Logout failed");
 			}
 		});
-	}
-});
-
-Template.wordcloudModal.helpers({
-	getWordcloudSubject: function () {
-		return Session.get('wordcloudItem')[0];
-	},
-	getWordcloudContent: function () {
-		return Session.get('wordcloudItem')[3];
 	}
 });
 
