@@ -17,29 +17,56 @@ if (Meteor.isServer) {
 		universityFilter = Meteor.settings.public.university.default;
 	}
 	Meteor.publish("cardsets", function () {
-		if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-			return Cardsets.find({college: universityFilter});
-		} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
-			return Cardsets.find(
+		if (this.userId) {
+			if (Roles.userIsInRole(this.userId, [
+					'admin',
+					'editor'
+				])) {
+				return Cardsets.find({college: universityFilter});
+			} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
+				return Cardsets.find(
+					{
+						college: universityFilter,
+						$or: [
+							{visible: true},
+							{request: true},
+							{owner: this.userId}
+						]
+					});
+			} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				return Cardsets.find(
+					{
+						college: universityFilter,
+						$or: [
+							{visible: true},
+							{owner: this.userId}
+						]
+					});
+			}
+		} else {
+			return Cardsets.find({wordcloud: true, college: universityFilter},
 				{
-					college: universityFilter,
-					$or: [
-						{visible: true},
-						{request: true},
-						{owner: this.userId}
-					]
-				});
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return Cardsets.find(
-				{
-					college: universityFilter,
-					$or: [
-						{visible: true},
-						{owner: this.userId}
-					]
+					fields:
+						{
+							_id: 1,
+							owner: 1,
+							name: 1,
+							quantity: 1,
+							kind: 1,
+							description: 1,
+							cardType: 1,
+							difficulty: 1,
+							college: 1,
+							course: 1,
+							moduleActive: 1,
+							module: 1,
+							moduleToken: 1,
+							moduleNum: 1,
+							date: 1,
+							dateUpdated: 1,
+							wordcloud: 1,
+							cardGroups: 1
+						}
 				});
 		}
 	});
@@ -348,7 +375,6 @@ Meteor.methods({
 		Ratings.remove({
 			cardset_id: id
 		});
-		Meteor.call("updateWordsForWordcloud");
 	},
 	deleteCards: function (id) {
 		check(id, String);

@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Leitner} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
+import {Session} from "meteor/session";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -9,7 +10,17 @@ import {check} from "meteor/check";
  * @returns {*} - Degree + givenname + birthname
  */
 export function getAuthorName(owner) {
-	var author = Meteor.users.findOne({"_id": owner});
+	let author;
+	if (Router.current().route.getName() === "home") {
+		Meteor.call('getWordcloudUserName', owner, function (error, result) {
+			if (result) {
+				Session.set('wordcloudAuthor', result);
+			}
+		});
+		author = Session.get('wordcloudAuthor');
+	} else {
+		author = Meteor.users.findOne({"_id": owner});
+	}
 	if (author) {
 		var degree = "";
 		if (author.profile.title) {
@@ -48,8 +59,8 @@ function getCardsetInfo(cardset) {
 		[TAPi18n.__('cardset.info.college'), cardset.college],
 		[TAPi18n.__('cardset.info.course'), cardset.course],
 		[TAPi18n.__('cardset.info.author'), getAuthorName(cardset.owner)],
-		[TAPi18n.__('cardset.info.release'),  moment(cardset.date).locale("de").format('LL')],
-		[TAPi18n.__('cardset.info.dateUpdated'),  moment(cardset.dateUpdated).locale("de").format('LL')]
+		[TAPi18n.__('cardset.info.release'), moment(cardset.date).locale("de").format('LL')],
+		[TAPi18n.__('cardset.info.dateUpdated'), moment(cardset.dateUpdated).locale("de").format('LL')]
 	];
 }
 
@@ -227,6 +238,17 @@ Meteor.methods({
 				{
 					$pull: {editors: Meteor.userId()}
 				});
+		}
+	},
+	getWordcloudUserName: function (owner_id) {
+		if (Cardsets.findOne({owner: owner_id, wordcloud: true, visible: true})) {
+			return Meteor.users.findOne({_id: owner_id}, {
+				fields: {
+					"profile.title": 1,
+					"profile.givenname": 1,
+					"profile.birthname": 1
+				}
+			});
 		}
 	}
 });
