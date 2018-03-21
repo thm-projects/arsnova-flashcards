@@ -205,6 +205,9 @@ Template.main.helpers({
 			return undefined;
 		}
 	},
+	searchActive: function () {
+		return Session.get("searchValue") !== "" && Session.get("searchValue") !== undefined;
+	},
 	isActiveProfile: function () {
 		if (ActiveRoute.name(/^profile/)) {
 			return Router.current().params._id === Meteor.userId();

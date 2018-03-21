@@ -1103,3 +1103,15 @@ th {
   color: $color_under_development_modal_text !important;
   background-color: $color_under_development_modal_background !important;
 }
+
+#clearSearch {
+  font-size: 22px;
+  cursor: pointer;
+  .glyphicon-remove-circle {
+    padding-left: 7px;
+  }
+}
+
+.searchItem {
+  padding: 0 !important;
+}
