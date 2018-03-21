@@ -336,20 +336,24 @@
                     </div>
                     {{#unless isShuffledCardset this._id}}
                         {{#if isPublished}}
-                            <button id="selectLicense" class="btn btn-default btn-raised" type="button"
-                                    data-toggle="modal"
-                                    data-target="#selectLicenseModal" {{disableIfOffline}}>
-                                <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
-                            </button>
+                            <div class="btn-group btn-group-raised">
+                                <button id="selectLicense" class="btn btn-default btn-raised" type="button"
+                                        data-toggle="modal"
+                                        data-target="#selectLicenseModal" {{disableIfOffline}}>
+                                    <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                                </button>
+                            </div>
                         {{/if}}
                     {{/unless}}
                     {{#unless isDisabled}}
                         {{#unless learningActive}}
-                            <button id="publishCardset" class="btn btn-raised btn-default" type="button"
-                                    data-toggle="modal"
-                                    data-target="#publishModal" {{disableIfOffline}}>
-                                <i class="fa fa-eye"></i> {{getStatus}}
-                            </button>
+                            <div class="btn-group btn-group-raised">
+                                <button id="publishCardset" class="btn btn-raised btn-default" type="button"
+                                        data-toggle="modal"
+                                        data-target="#publishModal" {{disableIfOffline}}>
+                                    <i class="fa fa-eye"></i> {{getStatus}}
+                                </button>
+                            </div>
                         {{/unless}}
                     {{/unless}}
                     {{#unless learningActive}}
@@ -1164,7 +1168,7 @@
                         </label>
                         <label id="importType2"
                                class="btn btn-default btn-white import-type {{#if importType 2}}active{{/if}}"
-                               data-type="2"  data-toggle="modal"
+                               data-type="2" data-toggle="modal"
                                data-target="#underDevelopmentModal">
                             {{#if importType 2}}
                                 <input type="radio" id="tabFocus" name="cardType" value="2" checked
@@ -1181,7 +1185,8 @@
                         <p>{{_ "upload-form.popover-content"}}</p>
                         <a role='button' target='_blank' class='btn btn-default'
                            href='/examples/example.json'>JSON</a>
-                        <a role='button' target='_blank' class='btn btn-default' href='/examples/example.csv.txt'>CSV</a>
+                        <a role='button' target='_blank' class='btn btn-default'
+                           href='/examples/example.csv.txt'>CSV</a>
                     {{/if}}
                     <hr/>
                 </div>
