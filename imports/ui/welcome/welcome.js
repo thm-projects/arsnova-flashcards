@@ -3,12 +3,12 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import WordCloud from "wordcloud";
-import {Cloud} from "../../api/cloud.js";
+import {Cardsets} from "../../api/cardsets.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
 import {Session} from "meteor/session";
 
-Meteor.subscribe("wordcloud");
+Meteor.subscribe("cardsets");
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
@@ -21,7 +21,7 @@ function setActiveLanguage() {
  *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
  */
 function wordcloudClick(item) {
-	Session.set('wordcloudItem', item);
+	Session.set('wordcloudItem', item[2]);
 	$('#wordcloudModal').modal('show');
 }
 
@@ -45,14 +45,29 @@ function createTagCloud() {
 	}
 	$('#tag-cloud-canvas').css('height', 'unset');
 	$('#tag-cloud-container').css('height', 'unset');
-	let cloud = Cloud.find({}).fetch();
-	let list = [];
+	let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
 
-	if (cloud.length > 0) {
-		list = cloud[0].list;
-	} else {
-		return;
-	}
+	let minimumSize = 10;
+	let biggestCardsetSize = 0;
+	cloud.forEach(function (cloud) {
+		if (cloud.quantity > biggestCardsetSize) {
+			biggestCardsetSize = cloud.quantity;
+		}
+	});
+	let list = [];
+	cloud.forEach(function (cloud) {
+		let name = cloud.name;
+
+		if (name.length > 30) {
+			name = name.substring(0, 30) + "…";
+		}
+		let quantitiy = cloud.quantity / biggestCardsetSize * 40;
+		quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
+		list.push([name, Number(quantitiy), cloud._id]);
+	});
+	list.sort(function (a, b) {
+		return (b[0].length * b[1]) - (a[0].length * a[1]);
+	});
 	document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true));
 	document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
 	let textScale = 1.2;
@@ -135,15 +150,6 @@ Template.welcome.events({
 				throw new Meteor.Error("Logout failed");
 			}
 		});
-	}
-});
-
-Template.wordcloudModal.helpers({
-	getWordcloudSubject: function () {
-		return Session.get('wordcloudItem')[0];
-	},
-	getWordcloudContent: function () {
-		return Session.get('wordcloudItem')[3];
 	}
 });
 

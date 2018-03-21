@@ -97,150 +97,173 @@
         <div class="card card-block">
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
-                <tr>
-                    <td><strong>{{_ "cardset.info.author"}}:</strong></td>
-                    <td>
-                        {{#each getAuthors}}
-                            <a href="{{pathFor 'profileSettings'
-                                               _id=this._id}}">{{this.profile.givenname}} {{this.profile.birthname}} </a>
-                        {{/each}}
-                    </td>
-                </tr>
-                {{#if getReviewer}}
-                    <tr>
-                        <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
-                        <td><a
-                                href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
-                        </td>
-                    </tr>
-                {{/if}}
-                <tr>
-                    <td><strong>{{_ "cardType"}}:</strong></td>
-                    <td>
-                        {{getCardType}}
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                            "difficulty"}}{{/if}}:</strong></td>
-                    <td>
-                        {{getDifficultyName}}
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>{{_ "courseIteration.name"}}:</strong></td>
-                    <td>
-                        {{_ "set-list.none"}}
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
-                    <td>{{this.quantity}}</td>
-                </tr>
-                {{#if hasAmount}}
-                    {{#unless canViewForFree}}
-                        <tr>
-                            <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
-                            <td>{{getPrice this.price}}</td>
-                        </tr>
-                    {{/unless}}
-                {{/if}}
-                {{#if isPurchased}}
-                    <tr>
-                        <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
-                        <td>{{getDateOfPurchase}}</td>
-                    </tr>
-                {{/if}}
-                <tr>
-                    <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
-                    <td>
-                        {{#unless isShuffledCardset _id}}
-                            <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
-                               data-target="#showLicenseModal">{{getLicense}}</a>
-                        {{else}}
-                            {{_ "cardset.info.shuffleLicense"}}
-                        {{/unless}}
-                    </td>
-                </tr>
-                {{#if this.moduleActive}}
-                    {{#unless singleUniversity}}
-                        <tr>
-                            <td><strong>{{_ "cardset.info.college"}}:</strong></td>
-                            <td>{{this.college}}</td>
-                        </tr>
-                    {{/unless}}
-                    <tr>
-                        <td><strong>{{_ "cardset.info.course"}}:</strong></td>
-                        <td>{{this.course}}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>{{_ "cardset.info.module"}}:</strong></td>
-                        <td>
-                            {{#if gotModuleLink}}
-                                <a href="{{this.moduleLink}}" target="_blank">
-                                    {{this.module}}
-                                </a>
-                            {{else}}
-                                {{this.module}}
-                            {{/if}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>{{_ "cardset.info.moduleShort"}}:</strong></td>
-                        <td>
-                            {{#if gotModuleLink}}
-                                <a href="{{this.moduleLink}}" target="_blank">
-                                    {{this.moduleToken}}
-                                </a>
-                            {{else}}
-                                {{this.moduleToken}}
-                            {{/if}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>{{_ "cardset.info.moduleNum"}}:</strong></td>
-                        <td>
-                            {{#if gotModuleLink}}
-                                <a href="{{this.moduleLink}}" target="_blank">
-                                    {{this.moduleNum}}
-                                </a>
-                            {{else}}
-                                {{this.moduleNum}}
-                            {{/if}}
-                        </td>
-                    </tr>
-                {{/if}}
-                <tr>
-                    <td><strong>{{_ "cardset.info.release"}}:</strong></td>
-                    <td>{{getDate}}</td>
-                </tr>
-                <tr>
-                    <td><strong>{{_ "cardset.info.dateUpdated"}}:</strong></td>
-                    <td>{{getDateUpdated}}</td>
-                </tr>
-                {{#if ratingEnabled}}
-                    <tr>
-                        <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
-                        <td>
-                            {{#if isCardsetOwner _id}}
-                                {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                            {{else}}
-                                {{> starsRating id='rating' rating=getAverage mutable=true}}
-                            {{/if}} ({{this.raterCount}})
-                        </td>
-                    </tr>
-                    <tr>
-                        {{#unless isCardsetOwner _id}}
-                            <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
-                            <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
-                                ({{_ "cardset.info.notRated"}}){{/unless}}</td>
-                        {{/unless}}
-                    </tr>
-                {{/if}}
+                {{> cardsetInfoBoxContent}}
                 </tbody>
             </table>
         </div>
     </div>
+</template>
+
+<template name="cardsetInfoBoxContent">
+    <tr>
+        <td><strong>{{_ "cardset.info.author"}}:</strong></td>
+        <td>
+            {{#each getAuthors}}
+                {{#unless isActiveRoute "home"}}
+                    <a href="{{pathFor 'profileSettings' _id=this._id}}">{{getAuthorName
+                            this.owner}} </a>
+                {{else}}
+                    {{getAuthorName
+                            this.owner}}
+                {{/unless}}
+            {{/each}}
+        </td>
+    </tr>
+    {{#unless isActiveRoute "home"}}
+        {{#if getReviewer}}
+            <tr>
+                <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
+                <td><a
+                        href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                </td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+    {{#if isActiveRoute "home"}}
+        <tr>
+            <td><strong>{{_ "set-list.category"}}:</strong></td>
+            <td>
+                {{this.kind}}
+            </td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td><strong>{{_ "cardType"}}:</strong></td>
+        <td>
+            {{getCardType}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                "difficulty"}}{{/if}}:</strong></td>
+        <td>
+            {{getDifficultyName}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>{{_ "courseIteration.name"}}:</strong></td>
+        <td>
+            {{_ "set-list.none"}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
+        <td>{{this.quantity}}</td>
+    </tr>
+    {{#unless isActiveRoute "home"}}
+        {{#if hasAmount}}
+            {{#unless canViewForFree}}
+                <tr>
+                    <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
+                    <td>{{getPrice this.price}}</td>
+                </tr>
+            {{/unless}}
+        {{/if}}
+        {{#if isPurchased}}
+            <tr>
+                <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
+                <td>{{getDateOfPurchase}}</td>
+            </tr>
+        {{/if}}
+        <tr>
+            <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
+            <td>
+                {{#unless isShuffledCardset _id}}
+                    <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
+                       data-target="#showLicenseModal">{{getLicense}}</a>
+                {{else}}
+                    {{_ "cardset.info.shuffleLicense"}}
+                {{/unless}}
+            </td>
+        </tr>
+    {{/unless}}
+    {{#if this.moduleActive}}
+        {{#unless singleUniversity}}
+            <tr>
+                <td><strong>{{_ "cardset.info.college"}}:</strong></td>
+                <td>{{this.college}}</td>
+            </tr>
+        {{/unless}}
+        <tr>
+            <td><strong>{{_ "cardset.info.course"}}:</strong></td>
+            <td>{{this.course}}</td>
+        </tr>
+        <tr>
+            <td><strong>{{_ "cardset.info.module"}}:</strong></td>
+            <td>
+                {{#if gotModuleLink}}
+                    <a href="{{this.moduleLink}}" target="_blank">
+                        {{this.module}}
+                    </a>
+                {{else}}
+                    {{this.module}}
+                {{/if}}
+            </td>
+        </tr>
+        <tr>
+            <td><strong>{{_ "cardset.info.moduleShort"}}:</strong></td>
+            <td>
+                {{#if gotModuleLink}}
+                    <a href="{{this.moduleLink}}" target="_blank">
+                        {{this.moduleToken}}
+                    </a>
+                {{else}}
+                    {{this.moduleToken}}
+                {{/if}}
+            </td>
+        </tr>
+        <tr>
+            <td><strong>{{_ "cardset.info.moduleNum"}}:</strong></td>
+            <td>
+                {{#if gotModuleLink}}
+                    <a href="{{this.moduleLink}}" target="_blank">
+                        {{this.moduleNum}}
+                    </a>
+                {{else}}
+                    {{this.moduleNum}}
+                {{/if}}
+            </td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td><strong>{{_ "cardset.info.release"}}:</strong></td>
+        <td>{{getDate}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{_ "cardset.info.dateUpdated"}}:</strong></td>
+        <td>{{getDateUpdated}}</td>
+    </tr>
+    {{#unless isActiveLanguage "home"}}
+        {{#if ratingEnabled}}
+            <tr>
+                <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
+                <td>
+                    {{#if isCardsetOwner _id}}
+                        {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                    {{else}}
+                        {{> starsRating id='rating' rating=getAverage mutable=true}}
+                    {{/if}} ({{this.raterCount}})
+                </td>
+            </tr>
+            <tr>
+                {{#unless isCardsetOwner _id}}
+                    <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
+                    <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
+                        ({{_ "cardset.info.notRated"}}){{/unless}}</td>
+                {{/unless}}
+            </tr>
+        {{/if}}
+    {{/unless}}
 </template>
 
 <template name="cardsetInfo">

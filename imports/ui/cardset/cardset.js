@@ -418,36 +418,6 @@ Template.cardsetInfoBox.onRendered(function () {
 });
 
 Template.cardsetInfoBox.helpers({
-	canViewForFree: function () {
-		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
-	},
-	ratingEnabled: function () {
-		return this.ratings === true;
-	},
-	hasRated: function () {
-		var count = Ratings.find({
-			cardset_id: this._id,
-			user: Meteor.userId()
-		}).count();
-		var cardset = Cardsets.findOne(this._id);
-		if (cardset !== null) {
-			return count !== 0;
-		}
-	},
-	getUserRating: function () {
-		var userrating = Ratings.findOne({
-			cardset_id: this._id,
-			user: Meteor.userId()
-		});
-		if (userrating) {
-			return userrating.rating;
-		} else {
-			return 0;
-		}
-	},
-	hasAmount: function () {
-		return this.kind === 'pro' || this.kind === 'edu';
-	},
 	getColors: function () {
 		switch (this.kind) {
 			case "personal":
@@ -466,6 +436,57 @@ Template.cardsetInfoBox.helpers({
 			shuffled = TAPi18n.__('admin.shuffled') + " ";
 		}
 		return shuffled;
+	}
+});
+
+
+/*
+ * ############################################################################
+ * cardsetInfoBoxContent
+ * ############################################################################
+ */
+
+Template.cardsetInfoBoxContent.helpers({
+	canViewForFree: function () {
+		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
+	},
+	ratingEnabled: function () {
+		return this.ratings === true;
+	},
+	hasRated: function () {
+		var count = Ratings.find({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		}).count();
+		var cardset = Cardsets.findOne(this._id);
+		if (cardset !== null) {
+			return count !== 0;
+		}
+	}, getAuthors: function () {
+		let cardsets = this.cardGroups;
+		let owner_id = [];
+		cardsets.push(this._id);
+		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+			return item.owner;
+		});
+		owners.forEach(function (element) {
+			owner_id.push(element.owner);
+		});
+		return owners;
+	},
+	getUserRating: function () {
+		var userrating = Ratings.findOne({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		});
+		if (userrating) {
+			return userrating.rating;
+		} else {
+			return 0;
+		}
+	},
+	hasAmount: function () {
+		return this.kind === 'pro' || this.kind === 'edu';
 	},
 	isPurchased: function () {
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
@@ -495,7 +516,7 @@ Template.cardsetInfoBox.helpers({
 	}
 });
 
-Template.cardsetInfoBox.events({
+Template.cardsetInfoBoxContent.events({
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');
@@ -510,6 +531,7 @@ Template.cardsetInfoBox.events({
 		}
 	}
 });
+
 /*
  * ############################################################################
  * leaveLearnPhaseForm
@@ -808,21 +830,6 @@ Template.chooseFlashcardsToLearnButton.events({
 Template.cardsetInfoBox.events({
 	"click #collapseCardsetInfoButton": function () {
 		changeCollapseIcon("#collapseCardsetInfoIcon");
-	}
-});
-
-Template.cardsetInfoBox.helpers({
-	getAuthors: function () {
-		let cardsets = this.cardGroups;
-		let owner_id = [];
-		cardsets.push(Router.current().params._id);
-		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-			return item.owner;
-		});
-		owners.forEach(function (element) {
-			owner_id.push(element.owner);
-		});
-		return Meteor.users.find({_id: {$in: owner_id}}, {sort: {'profile.birthname': 1}, fields: {profile: 1}});
 	}
 });
 

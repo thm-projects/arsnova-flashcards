@@ -18,15 +18,4 @@ export class CronScheduler {
 		});
 		SyncedCron.start();
 	}
-	startWordCron () {
-		SyncedCron.add({
-			name: "wordCron",
-			schedule: function (parser) {
-				return parser.recur().on('02:00:00').time();
-			},
-			job: function () {
-				Meteor.call("updateWordsForWordcloud");
-			}
-		});
-	}
 }

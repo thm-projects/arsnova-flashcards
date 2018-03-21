@@ -655,8 +655,5 @@ Meteor.startup(function () {
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
 		Leitner.insert(testNotificationsLearned[learned]);
 	}
-
-	Meteor.call("updateWordsForWordcloud");
 	cronScheduler.startCron();
-	cronScheduler.startWordCron();
 });

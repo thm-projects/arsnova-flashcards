@@ -34,18 +34,24 @@
             <div class="modal-content hintContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="wordcloudTitle" class="modal-title">{{getWordcloudSubject}}</h4>
+                    <h4 id="wordcloudTitle" class="modal-title">{{this.name}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-md-12">
+                            <div class="col-md-12 wordCloudDescription">
                                 <table class="table">
                                     <tr>
                                         <td>
-                                            {{getWordcloudContent}}
+                                            {{this.description}}
                                         </td>
                                     </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <table class="table">
+                                    {{> cardsetInfoBoxContent}}
                                 </table>
                             </div>
                         </div>

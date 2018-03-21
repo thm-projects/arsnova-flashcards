@@ -216,12 +216,24 @@ Template.registerHelper("isShuffledCardset", function (cardset_id) {
 
 // Returns the locale date
 Template.registerHelper("getDate", function () {
-	return moment(this.date).locale(getUserLanguage()).format('LL');
+	let date;
+	if (Router.current().route.getName() === "welcome") {
+		date = Session.get('wordcloudItem')[10];
+	} else {
+		date = this.date;
+	}
+	return moment(date).locale(getUserLanguage()).format('LL');
 });
 
 // Returns the locale date
 Template.registerHelper("getDateUpdated", function () {
-	return moment(this.dateUpdated).locale(getUserLanguage()).format('LL');
+	let dateUpdated;
+	if (Router.current().route.getName() === "welcome") {
+		dateUpdated = Session.get('wordcloudItem')[11];
+	} else {
+		dateUpdated = this.dateUpdated;
+	}
+	return moment(dateUpdated).locale(getUserLanguage()).format('LL');
 });
 
 // Returns the locale date with time
