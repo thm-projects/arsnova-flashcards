@@ -55,7 +55,7 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
 
   #login {
-    margin-bottom: 30px !important;
+    margin-bottom: $size_footer_height !important;
     margin-top: 20px;
     padding-top: 0;
     @media (max-height: 500px) {
