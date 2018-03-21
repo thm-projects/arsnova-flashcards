@@ -81,6 +81,10 @@
   "upload-form": {
     "popover-content": "Unterstützt werden die Dateiformate JSON und CSV (Excel, kommagetrennt). Die folgenden Links zeigen die erforderliche Dateistruktur:",
     "upload-title": "Karten importieren",
+    "upload-card-title-placeholder": "Mnemosyne Import",
+    "upload-type": "Dateiformat",
+    "upload-type1": ".cards",
+    "upload-type2": "Mnemosyne",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
     "success": "Karten erfolgreich importiert!",

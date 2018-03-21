@@ -80,14 +80,13 @@ $font_5: sans-serif;
 }
 
 .btn-file {
+  margin-top: 0;
   position: relative;
   overflow: hidden;
   input[type=file] {
     position: absolute;
     top: 0;
     right: 0;
-    min-width: 100%;
-    min-height: 100%;
     font-size: 100px;
     text-align: right;
     filter: alpha(opacity=0);
@@ -97,6 +96,10 @@ $font_5: sans-serif;
     cursor: inherit;
     display: block;
   }
+}
+
+#uploadError {
+  text-align: center;
 }
 
 #pictureModal .modal-header {
@@ -469,4 +472,8 @@ th .field-tip .tip-content {
 
 .fa-square {
   transform: scale(1.35, 1) !important;
+}
+
+.import-type:last-child {
+  border-right: 0 !important;
 }

@@ -402,6 +402,9 @@ Template.cardsetInfo.events({
 	},
 	'click #editShuffle': function () {
 		Router.go('editshuffle', {_id: Router.current().params._id});
+	},
+	'click #importCardsBtn': function () {
+		Session.set('importType', 1);
 	}
 });
 
@@ -1068,6 +1071,7 @@ Template.cardsetEndLearnForm.events({
 	}
 });
 
+Session.setDefault('importType', 1);
 /*
  * ############################################################################
  * cardsetImportForm
@@ -1087,55 +1091,69 @@ Template.cardsetImportForm.onRendered(function () {
 Template.cardsetImportForm.helpers({
 	uploading: function () {
 		return Template.instance().uploading.get();
+	},
+	importType: function (importType) {
+		return Session.get('importType') === importType;
 	}
 });
 
 Template.cardsetImportForm.events({
+	"click #importType1": function () {
+		Session.set('importType', 1);
+	},
+	"click #importType2": function () {
+		Session.set('importType', 2);
+	},
 	'change [name="uploadFile"]': function (evt, tmpl) {
 		tmpl.uploading.set(true);
-		var cardset_id = Template.parentData(1)._id;
+		let cardset_id = Template.parentData(1)._id;
+		let importType = Session.get('importType');
+		if (importType === 1) {
+			if (evt.target.files[0].name.match(/\.(json)$/)) {
+				var reader = new FileReader();
+				reader.onload = function () {
+					try {
+						var res = $.parseJSON('[' + this.result + ']');
 
-		if (evt.target.files[0].name.match(/\.(json)$/)) {
-			var reader = new FileReader();
-			reader.onload = function () {
-				try {
-					var res = $.parseJSON('[' + this.result + ']');
-
-					Meteor.call('parseUpload', res, cardset_id, function (error) {
-						if (error) {
-							tmpl.uploading.set(false);
-							$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
-						} else {
-							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
-							$('#importModal').modal('toggle');
-						}
-					});
-				} catch (e) {
-					tmpl.uploading.set(false);
-					$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + e.message + '</div>');
-				}
-			};
-			reader.readAsText(evt.target.files[0]);
-		} else if (evt.target.files[0].name.match(/\.(csv)$/)) {
-			Papa.parse(evt.target.files[0], {
-				header: true,
-				complete: function (results) {
-					Meteor.call('parseUpload', results.data, cardset_id, function (error) {
-						if (error) {
-							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-top-left');
-						} else {
-							tmpl.uploading.set(false);
-							Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
-							$('#importModal').modal('toggle');
-						}
-					});
-				}
-			});
+						Meteor.call('parseUpload', res, cardset_id, Number(importType), function (error) {
+							if (error) {
+								tmpl.uploading.set(false);
+								$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
+							} else {
+								tmpl.uploading.set(false);
+								Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
+								$('#importModal').modal('toggle');
+							}
+						});
+					} catch (e) {
+						tmpl.uploading.set(false);
+						$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + e.message + '</div>');
+					}
+				};
+				reader.readAsText(evt.target.files[0]);
+			} else if (evt.target.files[0].name.match(/\.(csv)$/)) {
+				Papa.parse(evt.target.files[0], {
+					header: true,
+					complete: function (results) {
+						Meteor.call('parseUpload', results.data, cardset_id, Number(importType), function (error) {
+							if (error) {
+								tmpl.uploading.set(false);
+								Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-top-left');
+							} else {
+								tmpl.uploading.set(false);
+								Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
+								$('#importModal').modal('toggle');
+							}
+						});
+					}
+				});
+			} else {
+				tmpl.uploading.set(false);
+				$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-file') + '</div>');
+			}
 		} else {
 			tmpl.uploading.set(false);
-			$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-file') + '</div>');
+			$('#importModal').modal('toggle');
 		}
 	}
 });
