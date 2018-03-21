@@ -242,6 +242,13 @@ $font_5: sans-serif;
     background-color: $color_pro_btn;
     border-color: $color_pro_btn;
   }
+
+  .btn-warning {
+    color: $color_thm_red !important;
+  }
+  .btn-warning.active {
+    color: $white !important;
+  }
 }
 
 @media (min-width: 768px) {
