@@ -38,7 +38,7 @@ function wordcloudHover(item, dimension) {
  */
 function createTagCloud() {
 	$('#cards-welcome-image').css('height', $('.color-cards').height());
-	if ($(window).height() <= 500) {
+	if ($(window).height() <= 450) {
 		document.getElementById('tag-cloud-container').height = 0;
 		document.getElementById('tag-cloud-canvas').height = 0;
 	} else {
