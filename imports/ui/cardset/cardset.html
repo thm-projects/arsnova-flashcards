@@ -106,7 +106,7 @@
 
 <template name="cardsetInfoBoxContent">
     <tr>
-        <td><strong>{{_ "cardset.info.author"}}:</strong></td>
+        <td>{{_ "cardset.info.author"}}:</td>
         <td>
             {{#each getAuthors}}
                 {{#unless isActiveRoute "home"}}
@@ -122,7 +122,7 @@
     {{#unless isActiveRoute "home"}}
         {{#if getReviewer}}
             <tr>
-                <td><strong>{{_ "cardset.info.reviewer"}}:</strong></td>
+                <td>{{_ "cardset.info.reviewer"}}:</td>
                 <td><a
                         href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
                 </td>
@@ -131,52 +131,52 @@
     {{/unless}}
     {{#if isActiveRoute "home"}}
         <tr>
-            <td><strong>{{_ "set-list.category"}}:</strong></td>
+            <td>{{_ "set-list.category"}}:</td>
             <td>
                 {{this.kind}}
             </td>
         </tr>
     {{/if}}
     <tr>
-        <td><strong>{{_ "cardType"}}:</strong></td>
+        <td>{{_ "cardType"}}:</td>
         <td>
             {{getCardType}}
         </td>
     </tr>
     <tr>
-        <td><strong>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                "difficulty"}}{{/if}}:</strong></td>
+        <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                "difficulty"}}{{/if}}:</td>
         <td>
             {{getDifficultyName}}
         </td>
     </tr>
     <tr>
-        <td><strong>{{_ "courseIteration.name"}}:</strong></td>
+        <td>{{_ "courseIteration.name"}}:</td>
         <td>
             {{_ "set-list.none"}}
         </td>
     </tr>
     <tr>
-        <td><strong>{{_ "cardset.info.quantity"}}:</strong></td>
+        <td>{{_ "cardset.info.quantity"}}:</td>
         <td>{{this.quantity}}</td>
     </tr>
     {{#unless isActiveRoute "home"}}
         {{#if hasAmount}}
             {{#unless canViewForFree}}
                 <tr>
-                    <td><strong>{{_ "cardset.info.amount"}}:</strong></td>
+                    <td>{{_ "cardset.info.amount"}}:</td>
                     <td>{{getPrice this.price}}</td>
                 </tr>
             {{/unless}}
         {{/if}}
         {{#if isPurchased}}
             <tr>
-                <td><strong>{{_ "cardset.info.bought"}}:</strong></td>
+                <td>{{_ "cardset.info.bought"}}:</td>
                 <td>{{getDateOfPurchase}}</td>
             </tr>
         {{/if}}
         <tr>
-            <td><strong id="license_strong">{{_ "cardset.info.license"}}:</strong></td>
+            <td>{{_ "cardset.info.license"}}:</td>
             <td>
                 {{#unless isShuffledCardset _id}}
                     <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
@@ -190,16 +190,16 @@
     {{#if this.moduleActive}}
         {{#unless singleUniversity}}
             <tr>
-                <td><strong>{{_ "cardset.info.college"}}:</strong></td>
+                <td>{{_ "cardset.info.college"}}:</td>
                 <td>{{this.college}}</td>
             </tr>
         {{/unless}}
         <tr>
-            <td><strong>{{_ "cardset.info.course"}}:</strong></td>
+            <td>{{_ "cardset.info.course"}}:</td>
             <td>{{this.course}}</td>
         </tr>
         <tr>
-            <td><strong>{{_ "cardset.info.module"}}:</strong></td>
+            <td>{{_ "cardset.info.module"}}:</td>
             <td>
                 {{#if gotModuleLink}}
                     <a href="{{this.moduleLink}}" target="_blank">
@@ -211,7 +211,7 @@
             </td>
         </tr>
         <tr>
-            <td><strong>{{_ "cardset.info.moduleShort"}}:</strong></td>
+            <td>{{_ "cardset.info.moduleShort"}}:</td>
             <td>
                 {{#if gotModuleLink}}
                     <a href="{{this.moduleLink}}" target="_blank">
@@ -223,7 +223,7 @@
             </td>
         </tr>
         <tr>
-            <td><strong>{{_ "cardset.info.moduleNum"}}:</strong></td>
+            <td>{{_ "cardset.info.moduleNum"}}:</td>
             <td>
                 {{#if gotModuleLink}}
                     <a href="{{this.moduleLink}}" target="_blank">
@@ -236,17 +236,17 @@
         </tr>
     {{/if}}
     <tr>
-        <td><strong>{{_ "cardset.info.release"}}:</strong></td>
+        <td>{{_ "cardset.info.release"}}:</td>
         <td>{{getDate}}</td>
     </tr>
     <tr>
-        <td><strong>{{_ "cardset.info.dateUpdated"}}:</strong></td>
+        <td>{{_ "cardset.info.dateUpdated"}}:</td>
         <td>{{getDateUpdated}}</td>
     </tr>
     {{#unless isActiveLanguage "home"}}
         {{#if ratingEnabled}}
             <tr>
-                <td><strong>{{_ "cardset.info.rating"}}:</strong></td>
+                <td>{{_ "cardset.info.rating"}}:</td>
                 <td>
                     {{#if isCardsetOwner _id}}
                         {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
@@ -257,7 +257,7 @@
             </tr>
             <tr>
                 {{#unless isCardsetOwner _id}}
-                    <td><strong>{{_ "cardset.info.userRating"}}:</strong></td>
+                    <td>{{_ "cardset.info.userRating"}}:</td>
                     <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
                         ({{_ "cardset.info.notRated"}}){{/unless}}</td>
                 {{/unless}}
@@ -1638,27 +1638,27 @@
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
                 <tr>
-                    <td><strong>{{_ "set-list.learnphase"}}:</strong></td>
+                    <td>{{_ "set-list.learnphase"}}:</td>
                     <td>{{getLearningStatus}}</td>
                 </tr>
                 <tr>
-                    <td><strong>{{_ "pool.activeLearners"}}:</strong></td>
+                    <td>{{_ "pool.activeLearners"}}:</td>
                     <td>{{this.learners}}</td>
                 </tr>
                 <tr>
-                    <td><strong>{{_ "confirmLearn-form.maxCards"}}:</strong></td>
+                    <td>{{_ "confirmLearn-form.maxCards"}}:</td>
                     <td>{{getWorkload}}</td>
                 </tr>
                 <tr>
-                    <td><strong>{{_ "confirmLearn-form.daysBeforeReset"}}:</strong></td>
+                    <td>{{_ "confirmLearn-form.daysBeforeReset"}}:</td>
                     <td>{{getDeadline}}</td>
                 </tr>
                 <tr>
-                    <td><strong>{{_ "confirmLearn-form.learningStart"}}:</strong></td>
+                    <td>{{_ "confirmLearn-form.learningStart"}}:</td>
                     <td>{{getDateStart}}</td>
                 </tr>
                 <tr>
-                    <td><strong>{{_ "confirmLearn-form.learningEnd"}}:</strong></td>
+                    <td>{{_ "confirmLearn-form.learningEnd"}}:</td>
                     <td>{{getDateEnd}}</td>
                 </tr>
                 </tbody>
