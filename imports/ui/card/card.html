@@ -401,7 +401,7 @@
                                             {{/if}}
                                         {{/if}}
                                     </div>
-                                    <h2>{{subject}}</h2>
+                                    <h2>{{#if gotLearningUnit}}<a class="cardHeaderLink" href="/cardset/{{getLearningIndex}}/card/{{getLearningUnit}}" target="_blank">{{subject}}</a>{{else}}{{subject}}{{/if}}</h2>
                                     <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"

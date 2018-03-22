@@ -51,7 +51,7 @@
         {{#unless fullscreenActive}}
             {{> cardsetSidebar}}
         {{/unless}}
-        {{#if isActiveRoute 'cardsetdetailsid'}}
+        {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}
             {{else}}
@@ -392,7 +392,7 @@
                     <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
                     <div class="btn-group btn-group-raised btn-group-justified">
                         <a id="btnToCardLayout"
-                           class="btn btn-default btn-cardLayout {{#if isActiveRoute 'cardsetdetailsid'}}active{{/if}}"
+                           class="btn btn-default btn-cardLayout {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}active{{/if}}"
                            href="/cardset/{{_id}}"><i class="fa fa-square"></i> {{_
                                 "sidebar-nav.viewmap"}}</a>
                         <a id="btnToListLayout"

@@ -561,7 +561,7 @@ let additionalButtons = [
  * @return {Boolean} Return true, when route is a Cardset.
  */
 function isCardset() {
-	return Router.current().route.getName() === "cardsetdetailsid";
+	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
 
@@ -1215,6 +1215,23 @@ Template.flashcards.helpers({
 	},
 	isMemo: function () {
 		return isMemo();
+	},
+	getLearningIndex: function () {
+		if (isEditMode()) {
+			return Session.get('learningIndex');
+		} else {
+			return this.learningIndex;
+		}
+	},
+	getLearningUnit: function () {
+		if (isEditMode()) {
+			return Session.get('learningUnit');
+		} else {
+			return this.learningUnit;
+		}
+	},
+	gotLearningUnit: function () {
+		return (gotLearningUnit(this.cardType) && this.learningUnit !== "0");
 	},
 	isEditMode: function () {
 		return (isEditMode() && !Session.get('fullscreen'));
