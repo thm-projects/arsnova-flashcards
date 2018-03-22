@@ -15,7 +15,10 @@ import "../learn/learn.js";
 import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import {getCardTypeName, gotLearningModes, gotNotesForDifficultyLevel, gotPresentationMode} from "../../api/cardTypes";
+import {
+	getCardTypeName, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
+	gotPresentationMode
+} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -713,9 +716,7 @@ Template.cardsetSidebar.onRendered(function () {
 Template.chooseFlashcards.created = function () {
 	let chooseFlashcardsFilter = [];
 	chooseFlashcardsFilter[0] = [];
-	chooseFlashcardsFilter[1] = [];
-	chooseFlashcardsFilter[2] = [];
-	chooseFlashcardsFilter[3] = 0;
+	chooseFlashcardsFilter[1] = [0, 1, 2, 3, 4, 5];
 	Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 };
 
@@ -726,53 +727,33 @@ Template.chooseFlashcards.helpers({
 			cardsetFilter = {$in: this.cardGroups};
 		}
 		if (category === 0) {
-			return Cards.find({cardset_id: cardsetFilter, difficulty: item}).count();
+			return 0;
 		} else if (category === 1) {
-			return Cards.find({cardset_id: cardsetFilter, cardType: item}).count();
-		} else if (category === 2) {
 			return Cards.find({
 				cardset_id: cardsetFilter,
-				cardType: {$in: [0, 4]},
-				learningGoalLevel: {$gte: (item)}
+				learningGoalLevel: item
 			}).count();
 		} else {
 			let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
-			if ((chooseFlashcardsFilter[0].length + chooseFlashcardsFilter[1].length + chooseFlashcardsFilter[2].length) === 0) {
+			if ((chooseFlashcardsFilter[1].length) === 0) {
 				return 0;
 			}
-			let difficultyFilter = {$ne: null};
-			let cardTypeFilter = {$ne: null};
 			let learningGoalLevelFilter = {$ne: null};
-			if (chooseFlashcardsFilter[0].length) {
-				difficultyFilter = {$in: chooseFlashcardsFilter[0]};
-			}
 			if (chooseFlashcardsFilter[1].length) {
-				cardTypeFilter = {$in: chooseFlashcardsFilter[1]};
-			}
-			if (chooseFlashcardsFilter[2].length) {
-				learningGoalLevelFilter = {$in: chooseFlashcardsFilter[2]};
+				learningGoalLevelFilter = {$in: chooseFlashcardsFilter[1]};
 			}
 			return Cards.find({
 				cardset_id: cardsetFilter,
-				difficulty: difficultyFilter,
-				cardType: cardTypeFilter,
 				learningGoalLevel: learningGoalLevelFilter
 			}).count();
 		}
 	},
-	gotLearningGoalType: function () {
-		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
-		if (chooseFlashcardsFilter[1].includes(0) || chooseFlashcardsFilter[1].includes(4)) {
-			return true;
-		} else {
-			chooseFlashcardsFilter[2] = [];
-			Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
-			return false;
-		}
+	gotLearningGoal: function () {
+		return gotLearningGoal(this.cardType);
 	},
 	getSortMode: function () {
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
-		if (chooseFlashcardsFilter[3] === 0) {
+		if (chooseFlashcardsFilter[0] === 0) {
 			return TAPi18n.__('filter-cards.sortMode0');
 		} else {
 			return TAPi18n.__('filter-cards.sortMode1');
@@ -795,10 +776,10 @@ Template.chooseFlashcards.events({
 	},
 	"click .sortFilter": function () {
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');
-		if (chooseFlashcardsFilter[3] === 0) {
-			chooseFlashcardsFilter[3] = 1;
+		if (chooseFlashcardsFilter[0] === 0) {
+			chooseFlashcardsFilter[0] = 1;
 		} else {
-			chooseFlashcardsFilter[3] = 0;
+			chooseFlashcardsFilter[0] = 0;
 		}
 		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 	}
@@ -808,8 +789,7 @@ Template.chooseFlashcards.onRendered(function () {
 	$('#chooseFlashcardsModal').on('hidden.bs.modal', function () {
 		let chooseFlashcardsFilter = [""];
 		chooseFlashcardsFilter[0] = [];
-		chooseFlashcardsFilter[1] = [];
-		chooseFlashcardsFilter[2] = [];
+		chooseFlashcardsFilter[1] = [0, 1, 2, 3, 4, 5];
 		Session.set('chooseFlashcardsFilter', chooseFlashcardsFilter);
 	});
 });

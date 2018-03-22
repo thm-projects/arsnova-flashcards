@@ -627,6 +627,22 @@ function getLeitnerCards() {
 	return cards;
 }
 
+function getPresentationCards() {
+	let query = {};
+	if (Session.get('chooseFlashcardsFilter')[0]) {
+		query.subject = 1;
+		query.front = 1;
+	}
+	return Cards.find({
+		cardset_id: Router.current().params._id,
+		learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
+	}, {
+		sort: {
+			query
+		}
+	});
+}
+
 /**
  * Get the Session Data of the card
  * @return {Collection} The Session Data of the card.
@@ -976,7 +992,7 @@ Template.contentNavigation.helpers({
 	},
 	gotThreeColumns: function () {
 		return gotThreeColumns(this.cardType);
-	},
+	}
 });
 
 Template.contentNavigation.onCreated(function () {
@@ -1303,7 +1319,7 @@ Template.flashcards.helpers({
 			return getEditModeCard();
 		}
 		if (isPresentation()) {
-			return getCardsetCards();
+			return getPresentationCards();
 		}
 	},
 	countBox: function () {

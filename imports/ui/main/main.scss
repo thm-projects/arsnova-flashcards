@@ -518,7 +518,7 @@ button:disabled {
   padding: 10px 5px;
 }
 
-.panelUnit, .cardListRow, .manageCourseIteration, .manageLearning {
+.panelUnit, .cardListRow {
   border-bottom: solid 1px $color_item_separator_border_bottom !important;
   @media (max-width: 767px) {
     border-bottom: 0 !important;
@@ -550,10 +550,6 @@ button:disabled {
   padding-left: 8px;
   font-weight: bold;
   background-color: $color_wild_sand_approx;
-}
-
-.panelUnitNoBorder {
-  border: none !important;
 }
 
 .poolHeaderTop {
