@@ -93,6 +93,7 @@
   }
 
   @media (max-width: 767px) {
+    margin: 0 !important;
     .resetFilters {
       margin-left: 20px;
     }
@@ -106,7 +107,14 @@
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1199px) {
+    .navbar-nav.col-lg-12 {
+      margin-left: 0 !important;
+    }
+    #filterCheckbox {
+      margin-left: 0 !important;
+      padding-left: 10px !important;
+    }
     .navbar-toggle.collapsed {
       margin-top: 15px;
     }
@@ -118,7 +126,13 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
+    #filterCheckbox {
+      margin-left: 15px !important;
+    }
+  }
+
+  @media (min-width: 1200px) {
     #filterCheckbox {
       padding-bottom: 0;
       padding-right: 10px;
