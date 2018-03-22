@@ -58,7 +58,7 @@ export function adjustMarkdownToolbar() {
 }
 
 function resetSessionData(resetSubject = false) {
-	if (resetSubject) {
+	if (resetSubject && Session.get('cameFromEditMode') === false) {
 		Session.set('subjectText', '');
 		Session.set('learningUnit', "0");
 		Session.set('learningIndex', "0");
@@ -70,6 +70,7 @@ function resetSessionData(resetSubject = false) {
 	defaultCenteredText();
 	Session.set('learningGoalLevel', 0);
 	Session.set('backgroundStyle', 0);
+	Session.set('cameFromEditMode');
 }
 
 function isTextCentered() {
@@ -561,7 +562,7 @@ let additionalButtons = [
  * @return {Boolean} Return true, when route is a Cardset.
  */
 function isCardset() {
-	return Router.current().route.getName() === "cardsetdetailsid";
+	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
 
@@ -795,11 +796,10 @@ function saveCard(card_id, returnToCardset) {
 					_id: Router.current().params._id
 				});
 			} else {
-				$('#contentEditor').val('');
-				$('#editor').attr('data-content', '');
-				resetSessionData();
-				window.scrollTo(0, 0);
-				$('#editFront').click();
+				Session.set('cameFromEditMode', true);
+				Router.go('newCard', {
+					_id: Router.current().params._id
+				});
 			}
 		}
 	}
@@ -1215,6 +1215,23 @@ Template.flashcards.helpers({
 	},
 	isMemo: function () {
 		return isMemo();
+	},
+	getLearningIndex: function () {
+		if (isEditMode()) {
+			return Session.get('learningIndex');
+		} else {
+			return this.learningIndex;
+		}
+	},
+	getLearningUnit: function () {
+		if (isEditMode()) {
+			return Session.get('learningUnit');
+		} else {
+			return this.learningUnit;
+		}
+	},
+	gotLearningUnit: function () {
+		return (gotLearningUnit(this.cardType) && this.learningUnit !== "0");
 	},
 	isEditMode: function () {
 		return (isEditMode() && !Session.get('fullscreen'));

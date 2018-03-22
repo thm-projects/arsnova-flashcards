@@ -91,6 +91,16 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	data: function () {
+		Session.set('modifiedCard', this.params.card_id);
+		return Cardsets.findOne({_id: this.params._id});
+	}
+});
+
+Router.route('/cardset/:_id/card/:card_id', {
+	name: 'cardsetcard',
+	template: 'cardsetAccess',
+	data: function () {
+		Session.set('modifiedCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
