@@ -65,7 +65,8 @@ if (Meteor.isServer) {
 							date: 1,
 							dateUpdated: 1,
 							wordcloud: 1,
-							cardGroups: 1
+							cardGroups: 1,
+							license: 1
 						}
 				});
 		}

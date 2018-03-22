@@ -145,7 +145,8 @@
     </tr>
     <tr>
         <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                "difficulty"}}{{/if}}:</td>
+                "difficulty"}}{{/if}}:
+        </td>
         <td>
             {{getDifficultyName}}
         </td>
@@ -175,18 +176,22 @@
                 <td>{{getDateOfPurchase}}</td>
             </tr>
         {{/if}}
-        <tr>
-            <td>{{_ "cardset.info.license"}}:</td>
-            <td>
-                {{#unless isShuffledCardset _id}}
+    {{/unless}}
+    <tr>
+        <td>{{_ "cardset.info.license"}}:</td>
+        <td>
+            {{#unless isShuffledCardset _id}}
+                {{#if isActiveRoute "home"}}
+                    <span id="info_license">{{getLicense}}</span>
+                {{else}}
                     <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
                        data-target="#showLicenseModal">{{getLicense}}</a>
-                {{else}}
-                    {{_ "cardset.info.shuffleLicense"}}
-                {{/unless}}
-            </td>
-        </tr>
-    {{/unless}}
+                {{/if}}
+            {{else}}
+                {{_ "cardset.info.shuffleLicense"}}
+            {{/unless}}
+        </td>
+    </tr>
     {{#if this.moduleActive}}
         {{#unless singleUniversity}}
             <tr>
