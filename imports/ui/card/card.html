@@ -169,14 +169,14 @@
 </template>
 
 <template name="subjectEditor">
-    <form class="subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
-        <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
-               tabindex="1" autofocus {{isDisabled}}>
-    </form>
     {{#if gotLearningUnit}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
                 data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
     {{/if}}
+    <form class="subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
+        <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
+               tabindex="1" autofocus {{isDisabled}}>
+    </form>
 </template>
 
 

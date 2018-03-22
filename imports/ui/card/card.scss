@@ -363,6 +363,10 @@ img.cardside {
   background-attachment: local;
 }
 
+#subjectEditor {
+  height: 36px !important;
+}
+
 #subjectEditor:disabled {
   background-color: $color_athens_gray_approx;
 }
