@@ -996,7 +996,7 @@ Template.contentNavigation.helpers({
 });
 
 Template.contentNavigation.onCreated(function () {
-	if (Session.get('fullscreen')) {
+	if (Session.get('fullscreen') && !isPresentation()) {
 		toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
