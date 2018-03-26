@@ -1,0 +1,34 @@
+<template name="presentation">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if hasPermission}}
+                {{#if isProfileCompleted this._id}}
+                    {{> presentationView}}
+                {{else}}
+                    {{> access_denied_profile_incomplete_content_only}}
+                {{/if}}
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="presentationView">
+    <div class="row">
+        {{#if fullscreenActive}}
+            {{> contentNavigation}}
+        {{/if}}
+        {{> contentNavigation}}
+    </div>
+    <div class="row">
+        {{> flashcards}}
+    </div>
+    <div class="row">
+        {{> learnBackButton}}
+    </div>
+</template>

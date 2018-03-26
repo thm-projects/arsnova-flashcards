@@ -181,6 +181,14 @@ Router.route('/memo/:_id', {
 	}
 });
 
+Router.route('/presentation/:_id', {
+	name: 'presentation',
+	template: 'presentation',
+	data: function () {
+		return Cardsets.findOne({_id: this.params._id});
+	}
+});
+
 Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile'

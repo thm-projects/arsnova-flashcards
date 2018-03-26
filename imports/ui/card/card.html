@@ -50,27 +50,7 @@
     <div class="row">
         <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
-            <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
-                <button id="editFront" type="button"
-                        class="btn btn-primary btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                                gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                        tabindex="5">{{getFrontTitle}}</button>
-                {{#if gotLecture}}
-                    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
-                            tabindex="9">{{_
-                            "card.cardType0.lecture"}}</button>
-                {{/if}}
-                <button id="editBack" type="button"
-                        class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                                gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                        tabindex="7">{{getBackTitle}}</button>
-                {{#if gotHint}}
-                    <button id="editHint" type="button"
-                            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                            tabindex="11">{{getHintTitle}}</button>
-                {{/if}}
-            </div>
+            {{> contentNavigation}}
             <div id="editor" class="cardtext editorToolbar" data-content="{{front}}">
                 {{> contentEditor}}
             </div>
@@ -81,6 +61,30 @@
             {{> flashcards cardset=this}}
         </div>
         {{> btnCard}}
+    </div>
+</template>
+
+<template name="contentNavigation">
+    <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
+        <button id="editFront" type="button"
+                class="btn btn-primary btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                        gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                tabindex="5">{{getFrontTitle}}</button>
+        {{#if gotLecture}}
+            <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
+                    tabindex="9">{{_
+                    "card.cardType0.lecture"}}</button>
+        {{/if}}
+        <button id="editBack" type="button"
+                class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                        gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                tabindex="7">{{getBackTitle}}</button>
+        {{#if gotHint}}
+            <button id="editHint" type="button"
+                    class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                            gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                    tabindex="11">{{getHintTitle}}</button>
+        {{/if}}
     </div>
 </template>
 
@@ -303,7 +307,7 @@
                                                 </a>
                                             {{/if}}
                                         {{/if}}
-                                        {{#unless isEditMode}}
+                                        {{#unless isEditModeOrPresentation}}
                                             {{#if gotLecture}}
                                                 {{#if lecture}}
                                                     <a href="#" id="showLecture">
@@ -418,7 +422,7 @@
                                         backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if gotDictionary}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
-                                    {{#if isEditMode}}
+                                    {{#if isEditModeOrPresentation}}
                                         {{#if isFrontPreview}}
                                             <span class="{{#if gotFront}}{{#if isCentered
                                                                                0}}center-align{{/if}}{{else}}placeholder{{/if}}">
@@ -430,7 +434,7 @@
                                             </span>
                                         {{/if}}
                                         {{#if isHintPreview}}
-                                            {{> cardHintContent}}
+                                            {{> cardHintContent presentationSubject=this.subject presentationHint=this.hint}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
                                             <span class="{{#if gotLecturePreview}}{{#if isCentered
@@ -468,7 +472,7 @@
                                 </div>
                                 {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
-                                         id="collapseLecture-{{_id}}" style="{{#if isEditMode}}display: none{{/if}}">
+                                         id="collapseLecture-{{_id}}" style="{{#if isEditModeOrPresentation}}display: none{{/if}}">
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
@@ -496,7 +500,7 @@
                         </div>
                     {{/each}}
                 </div>
-                {{#if isCardset}}
+                {{#if isCardsetOrPresentation}}
                     {{#unless cardCountOne}}
                         <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
                            data-slide="prev">
@@ -563,15 +567,15 @@
         {{#unless isHintPreview}}
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         {{/unless}}
-        <h4 id="showHintTitle" class="modal-title">{{getSubject}}: {{getHintTitle}}</h4>
+        <h4 id="showHintTitle" class="modal-title">{{getSubject presentationSubject}}: {{getHintTitle}}</h4>
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
             <div class="form-group">
-                <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
+                <div class="col-md-12 {{#unless gotHint presentationHint}}placeholder{{/unless}}">
                                 <span class="{{#if isCentered}}center-align{{/if}}">
-                                    {{#if gotHint}}
-                                        {{#mathjax}}{{getHint}}{{/mathjax}}
+                                    {{#if gotHint presentationHint}}
+                                        {{#mathjax}}{{getHint presentationHint}}{{/mathjax}}
                                     {{else}}
                                         {{getPlaceholder}}
                                     {{/if}}

@@ -488,6 +488,11 @@
     "leaveEditors": "Leave Editor Group",
     "preview": "Chargeable set of cards"
   },
+  "presentation": {
+    "title": "Presentation",
+    "create": "Start a presentation",
+    "start": "Start"
+  },
   "pool": {
     "relevance": "Relevance",
     "name": "Name",
