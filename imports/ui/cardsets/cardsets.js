@@ -10,7 +10,8 @@ import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
 import {getCardTypeName} from "../../api/cardTypes";
 import {
-	filterAuthor, filterCardType, filterCheckbox, filterCollege, filterCourse, filterModule, prepareQuery,
+	filterAuthor, filterCardType, filterCheckbox, filterCollege, filterCourse, filterLearnphase, filterModule,
+	prepareQuery,
 	resetFilters
 } from "../filter/filter";
 
@@ -87,13 +88,11 @@ Template.learn.helpers({
 				learnCardsets.push(wozniakCard.cardset_id);
 			}
 		});
-		return Cardsets.find({
-			_id: {
-				$in: learnCardsets
-			}
-		}, {
-			sort: {name: 1}
-		});
+		prepareQuery();
+		Session.set('cardsetIdFilter', learnCardsets);
+		let query = Session.get('filterQuery');
+		query._id = {$in: Session.get('cardsetIdFilter')};
+		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	}
 });
 
@@ -105,6 +104,10 @@ Template.learn.events({
 		Session.set("selectingCardsetToLearn", true);
 		Router.go('pool');
 	}
+});
+
+Template.learn.onCreated(function () {
+	resetFilters();
 });
 
 /*
@@ -194,6 +197,9 @@ Template.cardsetRow.events({
 	},
 	'click .filterCourse': function (event) {
 		filterCourse(event);
+	},
+	'click .filterLearningPhase': function (event) {
+		filterLearnphase(event);
 	},
 	'click .filterModule': function (event) {
 		filterModule(event);

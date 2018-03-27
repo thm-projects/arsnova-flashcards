@@ -19,7 +19,7 @@ Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterModule', false);
 Session.setDefault('poolFilterDifficulty', undefined);
-Session.setDefault('poolFilterLearnphase');
+Session.setDefault('poolFilterLearnphase', undefined);
 Session.setDefault('poolFilterRating');
 Session.setDefault('poolFilter', ["personal", "free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
@@ -28,12 +28,16 @@ Session.setDefault("itemsLimit", items_increment);
 let filterQuery = {};
 Session.setDefault('filterQuery', filterQuery);
 
-function isPool() {
+function isPoolRoute() {
 	return Router.current().route.getName() === "pool";
 }
 
 function isCreateRoute() {
 	return Router.current().route.getName() === "create";
+}
+
+function isLearnRoute() {
+	return Router.current().route.getName() === "learn";
 }
 
 export function prepareQuery() {
@@ -76,6 +80,9 @@ export function prepareQuery() {
 export function checkRemainingCards() {
 	prepareQuery();
 	let query = Session.get('filterQuery');
+	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
+		query._id = {$in: Session.get('cardsetIdFilter')};
+	}
 	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
@@ -145,7 +152,7 @@ export function resetFilters() {
 	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
 	Session.set('poolFilterDifficulty', undefined);
-	if (isPool()) {
+	if (isPoolRoute()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 	} else {
 		Session.set('poolFilter', ["personal", "free", "edu", "pro"]);

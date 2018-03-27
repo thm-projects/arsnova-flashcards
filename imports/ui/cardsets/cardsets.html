@@ -187,12 +187,14 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learnphase"}}
             :</span>
-        <span class="hidden-sm cell col-xs-7 col-sm-1 panelUnit panelIconColumn">
+    <a href="#" class="filterLearningPhase" title="Filter {{_ "set-list.learnphase"}}: {{getLearnphaseStatus}}">
+        <span class="hidden-sm cell col-xs-7 col-sm-1 panelUnit panelIconColumn" data-id="{{#if this.learningActive}}true{{else}}false{{/if}}">
             <span class="label {{#if this.learningActive}}label-success{{else}}label-info{{/if}} labelLearning"
-                  aria-label="active learnphase label">
+                  aria-label="active learnphase label" data-id="{{#if this.learningActive}}true{{else}}false{{/if}}">
                 {{getLearnphaseStatus}}
             </span>
         </span>
+    </a>
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.learningMode"}}
             :</span>
@@ -309,6 +311,7 @@
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
+            {{> infiniteScroll}}
         {{else}}
             {{> cardsetEmpty}}
         {{/if}}
