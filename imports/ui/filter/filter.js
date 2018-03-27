@@ -18,10 +18,10 @@ Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterModule', false);
-Session.setDefault('poolFilterDifficulty');
+Session.setDefault('poolFilterDifficulty', undefined);
 Session.setDefault('poolFilterLearnphase');
 Session.setDefault('poolFilterRating');
-Session.setDefault('poolFilter', ["free", "edu", "pro"]);
+Session.setDefault('poolFilter', ["personal", "free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
 
@@ -32,8 +32,12 @@ function isPool() {
 	return Router.current().route.getName() === "pool";
 }
 
+function isCreateRoute() {
+	return Router.current().route.getName() === "create";
+}
+
 export function prepareQuery() {
-	let query = Session.get('filterQuery');
+	let query = {};
 	query.kind = {$in: Session.get('poolFilter')};
 	if (Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined) {
 		query.cardType = Session.get('poolFilterCardType');
@@ -42,6 +46,9 @@ export function prepareQuery() {
 	}
 	if (Session.get('poolFilterAuthor')) {
 		query.owner = Session.get('poolFilterAuthor');
+	}
+	if (isCreateRoute()) {
+		query.owner = Meteor.userId();
 	}
 	if (Session.get('poolFilterCollege')) {
 		query.college = Session.get('poolFilterCollege');
@@ -57,7 +64,7 @@ export function prepareQuery() {
 	} else {
 		query.moduleActive = false;
 	}
-	if (Session.get('poolFilterDifficulty')) {
+	if (Session.get('poolFilterDifficulty') !== undefined) {
 		query.difficulty = Number(Session.get('poolFilterDifficulty'));
 	}
 	if (Session.get('poolFilterLearnphase') !== undefined) {
@@ -69,7 +76,6 @@ export function prepareQuery() {
 export function checkRemainingCards() {
 	prepareQuery();
 	let query = Session.get('filterQuery');
-	query.visible = true;
 	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
@@ -138,7 +144,7 @@ export function resetFilters() {
 	Session.set('poolFilterCourse');
 	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
-	Session.set('poolFilterDifficulty');
+	Session.set('poolFilterDifficulty', undefined);
 	if (isPool()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 	} else {
@@ -191,6 +197,57 @@ export function filterLearnphase(event) {
  * filterNavigation
  * ############################################################################
  */
+
+Template.filterNavigation.events({
+	'click #resetBtn': function () {
+		resetFilters();
+	},
+	'click #resetBtnMobile': function () {
+		resetFilters();
+	},
+	'click #topicBtn': function () {
+		var sort = Session.get('poolSortTopic');
+		if (sort.name === 1) {
+			Session.set('poolSortTopic', {name: -1});
+		} else {
+			Session.set('poolSortTopic', {name: 1});
+		}
+	},
+	'click .filterAuthor': function (event) {
+		filterAuthor(event);
+	},
+	'click .filterCollege': function (event) {
+		filterCollege(event);
+	},
+	'click .filterCourse': function (event) {
+		filterCourse(event);
+	},
+	'click .filterModule': function (event) {
+		Session.set('poolFilterNoModule', false);
+		filterModule(event);
+	},
+	'click .filterNoModule': function () {
+		Session.set('poolFilterNoModule', true);
+	},
+	'click .filterNoDifficulty': function () {
+		Session.set('poolFilterDifficulty', undefined);
+		resetInfiniteBar();
+	},
+	'click .filterDifficulty': function (event) {
+		Session.set('poolFilterDifficulty', $(event.target).data('id'));
+		resetInfiniteBar();
+	},
+	'click .filterLearnphase': function () {
+		filterLearnphase(event);
+	},
+	'change #filterCheckbox': function () {
+		var filter = [];
+		$("#filterCheckbox input:checkbox:checked").each(function () {
+			filter.push($(this).val());
+		});
+		Session.set('poolFilter', filter);
+	}
+});
 
 Template.filterNavigation.helpers({
 	filterAuthors: function () {
@@ -279,9 +336,6 @@ Template.filterNavigation.helpers({
 	},
 	poolFilterLearnphase: function (learningPhase) {
 		return Session.get('poolFilterLearnphase') === learningPhase;
-	},
-	moreResults: function () {
-		return checkRemainingCards();
 	},
 	selectingCardsetToLearn: function () {
 		return Session.get('selectingCardsetToLearn');

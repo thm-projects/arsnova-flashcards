@@ -77,7 +77,7 @@ Template.registerHelper("getKind", function (kind) {
 		case "pro":
 			return '<span class="label label-pro panelUnitKind" data-id="pro">Pro</span>';
 		case "personal":
-			return '<span class="label label-private panelUnitKind" data-id="pro">Private</span>';
+			return '<span class="label label-private panelUnitKind" data-id="personal">Private</span>';
 		default:
 			return '<span class="label label-default panelUnitKind">Undefined!</span>';
 	}

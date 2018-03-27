@@ -114,6 +114,7 @@
                     {{> cardsetRow extendContext 'index' @index}}
                 </div>
             {{/each}}
+            {{> infiniteScroll}}
         {{else}}
             {{> cardsetEmpty}}
         {{/if}}
@@ -156,11 +157,14 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "cardType"}}
         :</span>
+    <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
     <span class="cell col-xs-7 {{#if isActiveRoute regex='create|learn'}}col-sm-2 col-md-1 panelUnit{{else}}
         {{#if isActiveRoute 'shuffle'}}col-sm-2{{else}}{{#if isActiveRoute
-                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis">
+                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis"
+          data-id="{{this.cardType}}">
         {{getCardTypeName this.cardType}}
     </span>
+    </a>
     {{#if isActiveRoute regex='create|learn'}}
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "courseIteration.name"}}
@@ -234,9 +238,12 @@
         <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
                 "set-list.availability"}}
             :</span>
-        <span class="cell col-xs-5 col-sm-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelIconColumn">
-            {{{getKind this.kind}}}
-        </span>
+        <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
+            <span class="cell col-xs-5 col-sm-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelIconColumn"
+                  data-id="{{this.kind}}">
+                {{{getKind this.kind}}}
+            </span>
+        </a>
     {{/if}}
 </template>
 
@@ -289,9 +296,11 @@
                 <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
                 <span class="col-sm-2 col-md-1  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
                 <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
-                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom text-center">{{_ "set-list.learnphase"}}</span>
+                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom text-center">{{_
+                        "set-list.learnphase"}}</span>
                 <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
-                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.levelOfLearning"}}</span>
+                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom text-center">{{_
+                        "set-list.levelOfLearning"}}</span>
                 <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom block"></span>
             </div>
             {{#each learnList}}

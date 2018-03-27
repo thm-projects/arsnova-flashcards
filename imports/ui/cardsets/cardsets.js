@@ -9,6 +9,10 @@ import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
 import {getCardTypeName} from "../../api/cardTypes";
+import {
+	filterAuthor, filterCardType, filterCheckbox, filterCollege, filterCourse, filterModule, prepareQuery,
+	resetFilters
+} from "../filter/filter";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -42,21 +46,20 @@ function getWozniakCount(cardset) {
 
 Template.create.helpers({
 	cardsetList: function () {
-		return Cardsets.find({
-			owner: Meteor.userId()
-		}, {
-			sort: {name: 1}
-		});
+		prepareQuery();
+		return Cardsets.find(Session.get('filterQuery'), {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
 	}
 });
 
 Template.create.onCreated(function () {
+	resetFilters();
 	Session.set('moduleActive', true);
 });
 
 Template.create.onRendered(function () {
 	cleanModal();
 });
+
 /*
  * ############################################################################
  * learn
@@ -179,6 +182,31 @@ Template.cardsetRow.events({
 	},
 	"click .learnSelect": function (event) {
 		Session.set("activeCardset", $(event.target).data('id'));
+	},
+	'click .filterAuthor': function (event) {
+		filterAuthor(event);
+	},
+	'click .filterCardType': function (event) {
+		filterCardType(event);
+	},
+	'click .filterCollege': function (event) {
+		filterCollege(event);
+	},
+	'click .filterCourse': function (event) {
+		filterCourse(event);
+	},
+	'click .filterModule': function (event) {
+		filterModule(event);
+	},
+	'click .filterCheckbox': function (event) {
+		Session.set('poolFilter', [$(event.target).data('id')]);
+		filterCheckbox();
+	},
+	'click .showLicense': function (event) {
+		Session.set('selectedCardset', $(event.target).data('id'));
+	},
+	'click .poolText ': function (event) {
+		Session.set('selectedCardset', $(event.target).data('id'));
 	}
 });
 
