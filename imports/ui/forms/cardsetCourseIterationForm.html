@@ -324,29 +324,48 @@
 </template>
 
 <template name="semesterList">
-    <li class="semester" value="1" data="1"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=1}}</a></li>
-    <li class="semester" value="2" data="2"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=2}}</a></li>
-    <li class="semester" value="3" data="3"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=3}}</a></li>
-    <li class="semester" value="4" data="4"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=4}}</a></li>
-    <li class="semester" value="5" data="5"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=5}}</a></li>
-    <li class="semester" value="6" data="6"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=6}}</a></li>
-    <li class="semester" value="7" data="7"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=7}}</a></li>
-    <li class="semester" value="8" data="8"><a
-            href="#">{{_ "courseIteration.list.semesterList" count=8}}</a></li>
+    {{#if this.filter}}
+        {{#each getSemesters}}
+            {{#if displaySemester}}
+                <li class="filterSemester semester" value="{{this.semester}}" data-id="{{this.semester}}"><a
+                        href="#" data-id="{{this.semester}}">{{_ "courseIteration.list.semesterList"
+                                                                 count=this.semester}}
+                    {{#if activeFilter}}
+                        <span class="glyphicon glyphicon-filter"></span>
+                    {{/if}}
+                </a>
+                </li>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each getSemesters}}
+            <li class="filterSemester semester" value="{{this.semester}}" data-id="{{this.semester}}"><a
+                    href="#" data-id="{{this.semester}}">{{_ "courseIteration.list.semesterList"
+                                                             count=this.semester}}</a></li>
+        {{/each}}
+    {{/if}}
 </template>
 
 <template name="targetAudienceList">
-    {{#each getTargetAudiences}}
-        <li class="targetAudience" value="{{this.targetAudience}}" data="{{this.targetAudience}}"><a
-                href="#">{{getTargetAudienceName this.targetAudience}}</a></li>
-    {{/each}}
+    {{#if this.filter}}
+        {{#each getTargetAudiences}}
+            {{#if displayTargetAudience}}
+                <li class="filterTargetAudience targetAudience" value="{{this.targetAudience}}" data-id="{{this.targetAudience}}"><a
+                        href="#" data-id="{{this.targetAudience}}">{{getTargetAudienceName this.targetAudience}}
+                    {{#if activeFilter}}
+                        <span class="glyphicon glyphicon-filter"></span>
+                    {{/if}}
+                </a>
+                </li>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each getTargetAudiences}}
+            <li class="targetAudience" value="{{this.targetAudience}}" data-id="{{this.targetAudience}}"><a
+                    href="#" data-id="{{this.targetAudience}}">{{getTargetAudienceName this.targetAudience}}</a></li>
+        {{/each}}
+    {{/if}}
+
 </template>
 
 <template name="difficultyEditor">

@@ -7,6 +7,8 @@ import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
 import {adjustMarkdownToolbar} from "../card/card";
 import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
+import {CourseIterations} from "../../api/courseIterations";
+import {prepareQuery} from "../filter/filter";
 
 function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle' || Router.current().route.getName() === 'courseIterations';
@@ -616,7 +618,7 @@ Template.cardsetCourseIterationFormContent.events({
 		$('#helpSetCardType').html('');
 	},
 	'click .semester': function (evt) {
-		let semester = $(evt.currentTarget).attr("data");
+		let semester = Number($(event.target).data('id'));
 		$('#setSemester').html($(evt.currentTarget).text());
 		$('#setSemester').val(semester);
 		Session.set('semester', Number(semester));
@@ -645,7 +647,7 @@ Template.cardsetCourseIterationFormContent.events({
 		$('#helpSetCourse').html('');
 	},
 	'click .targetAudience': function (evt) {
-		let targetAudience = $(evt.currentTarget).attr("data");
+		let targetAudience = Number($(event.target).data('id'));
 		$('#setTargetAudience').html($(evt.currentTarget).text());
 		$('#setTargetAudience').val(targetAudience);
 		Session.set('targetAudience', Number(targetAudience));
@@ -710,6 +712,37 @@ Template.difficultyEditor.events({
 	}
 });
 
+
+/*
+ * ############################################################################
+ * targetAudienceList
+ * ############################################################################
+ */
+Template.semesterList.helpers({
+	getSemesters: function () {
+		return [
+			{semester: 1},
+			{semester: 2},
+			{semester: 3},
+			{semester: 4},
+			{semester: 5},
+			{semester: 6},
+			{semester: 7},
+			{semester: 8}
+		];
+	},
+	displaySemester: function () {
+		prepareQuery();
+		let query = Session.get('filterQuery');
+		query.semester = this.semester;
+		return CourseIterations.findOne(query);
+	},
+	activeFilter: function () {
+		return Session.get('poolFilterSemester') === this.semester;
+	}
+});
+
+
 /*
  * ############################################################################
  * targetAudienceList
@@ -721,5 +754,14 @@ Template.targetAudienceList.helpers({
 	},
 	getTargetAudienceName: function (targetAudience) {
 		return getTargetAudienceName(targetAudience);
+	},
+	displayTargetAudience: function () {
+		prepareQuery();
+		let query = Session.get('filterQuery');
+		query.targetAudience = this.targetAudience;
+		return CourseIterations.findOne(query);
+	},
+	activeFilter: function () {
+		return Session.get('poolFilterTargetAudience') === this.targetAudience;
 	}
 });
