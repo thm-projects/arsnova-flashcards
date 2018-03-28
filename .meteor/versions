@@ -46,6 +46,7 @@ diff-sequence@1.1.0
 dispatch:kernel@0.0.6
 dispatch:request-animation-frame@0.0.1
 dynamic-import@0.3.0
+east5th:package-scan@0.0.5
 easy:search@2.2.1
 easysearch:components@2.2.1
 easysearch:core@2.2.0
