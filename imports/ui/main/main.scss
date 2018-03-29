@@ -61,7 +61,7 @@ $font_size_info_h3: 16px;
 $color_item_selection_border: $color_item_separator;
 
 //item lists
-$color_item_separator_border_bottom: lighten($color_item_separator, 45%);
+$color_item_separator_border_bottom: $color_thm_gray;
 $color_background_infinite_scroll: $color_thm_gray;
 $color_icon_infinite_scroll: $color_thm_orange;
 

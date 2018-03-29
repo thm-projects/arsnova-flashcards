@@ -97,29 +97,40 @@
         <div class="card card-block">
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
-                {{> cardsetInfoBoxContent}}
+                {{> cardsetInfoBoxContentOne}}
+                {{> cardsetInfoBoxContentTwo}}
                 </tbody>
             </table>
         </div>
     </div>
 </template>
 
-<template name="cardsetInfoBoxContent">
-    <tr>
-        <td>{{_ "cardset.info.author"}}:</td>
-        <td>
-            {{#each getAuthors}}
-                {{#unless isActiveRoute "home"}}
-                    <a href="{{pathFor 'profileSettings' _id=this._id}}">{{getAuthorName
-                            this.owner}} </a>
-                {{else}}
-                    {{getAuthorName
-                            this.owner}}
-                {{/unless}}
-            {{/each}}
-        </td>
-    </tr>
-    {{#unless isActiveRoute "home"}}
+<template name="cardsetInfoBoxContentOne">
+    {{#unless isActiveRoute regex="create|course|learn|pool|shuffle"}}
+        <tr>
+            <td>{{_ "cardset.info.author"}}:</td>
+            <td>
+                {{#each getAuthors}}
+                    {{#unless isActiveRoute "home"}}
+                        <a href="{{pathFor 'profileSettings' _id=this._id}}">{{getAuthorName
+                                this.owner}} </a>
+                    {{else}}
+                        {{getAuthorName
+                                this.owner}}
+                    {{/unless}}
+                {{/each}}
+            </td>
+        </tr>
+    {{/unless}}
+    {{#if isActiveRoute regex="learn"}}
+        <tr>
+            <td>{{_ "set-list.learningMode"}}:</td>
+            <td>
+                {{getLearningMode}}
+            </td>
+        </tr>
+    {{/if}}
+    {{#unless isActiveRoute regex="home"}}
         {{#if getReviewer}}
             <tr>
                 <td>{{_ "cardset.info.reviewer"}}:</td>
@@ -129,7 +140,7 @@
             </tr>
         {{/if}}
     {{/unless}}
-    {{#if isActiveRoute "home"}}
+    {{#if isActiveRoute regex="home"}}
         <tr>
             <td>{{_ "set-list.category"}}:</td>
             <td>
@@ -137,61 +148,94 @@
             </td>
         </tr>
     {{/if}}
-    <tr>
-        <td>{{_ "cardType"}}:</td>
-        <td>
-            {{getCardType}}
-        </td>
-    </tr>
-    <tr>
-        <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                "difficulty"}}{{/if}}:
-        </td>
-        <td>
-            {{getDifficultyName}}
-        </td>
-    </tr>
+    {{#unless isActiveRoute regex="course"}}
+        <tr>
+            <td>{{_ "cardType"}}:</td>
+            <td>
+                {{getCardType}}
+            </td>
+        </tr>
+        <tr>
+            <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                    "difficulty"}}{{/if}}:
+            </td>
+            <td>
+                {{getDifficultyName}}
+            </td>
+        </tr>
+    {{/unless}}
+    {{#if isActiveRoute regex="course"}}
+        <tr>
+            <td>{{_ "courseIteration.targetAudience"}}:</td>
+            <td>
+                {{getTargetAudience}}
+            </td>
+        </tr>
+        <tr>
+            <td>{{_ "courseIteration.list.semester"}}:</td>
+            <td>
+                {{_ "courseIteration.list.semesterList" count=this.semester}}
+            </td>
+        </tr>
+    {{/if}}
     <tr>
         <td>{{_ "courseIteration.name"}}:</td>
         <td>
             {{_ "set-list.none"}}
         </td>
     </tr>
-    <tr>
-        <td>{{_ "cardset.info.quantity"}}:</td>
-        <td>{{this.quantity}}</td>
-    </tr>
-    {{#unless isActiveRoute "home"}}
-        {{#if hasAmount}}
-            {{#unless canViewForFree}}
-                <tr>
-                    <td>{{_ "cardset.info.amount"}}:</td>
-                    <td>{{getPrice this.price}}</td>
-                </tr>
-            {{/unless}}
-        {{/if}}
-        {{#if isPurchased}}
+    {{#unless isActiveRoute regex="course"}}
+        {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
             <tr>
-                <td>{{_ "cardset.info.bought"}}:</td>
-                <td>{{getDateOfPurchase}}</td>
+                <td>{{_ "cardset.info.quantity"}}:</td>
+                <td>{{this.quantity}}</td>
             </tr>
-        {{/if}}
-    {{/unless}}
-    <tr>
-        <td>{{_ "cardset.info.license"}}:</td>
-        <td>
-            {{#unless isShuffledCardset _id}}
-                {{#if isActiveRoute "home"}}
-                    <span id="info_license">{{getLicense}}</span>
+        {{/unless}}
+        {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
+            {{#if hasAmount}}
+                {{#unless canViewForFree}}
+                    <tr>
+                        <td>{{_ "cardset.info.amount"}}:</td>
+                        <td>{{getPrice this.price}}</td>
+                    </tr>
+                {{/unless}}
+            {{/if}}
+            {{#if isPurchased}}
+                <tr>
+                    <td>{{_ "cardset.info.bought"}}:</td>
+                    <td>{{getDateOfPurchase}}</td>
+                </tr>
+            {{/if}}
+        {{/unless}}
+        <tr>
+            <td>{{_ "cardset.info.license"}}:</td>
+            <td>
+                {{#unless isShuffledCardset _id}}
+                    {{#if isActiveRoute "home"}}
+                        <span class="info_license showLicense">{{getLicense this._id}}</span>
+                    {{else}}
+                        <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
+                           data-target="#showLicenseModal">{{getLicense this._id}}</a>
+                    {{/if}}
                 {{else}}
-                    <a id="info_license" href="#" data-id="{{_id}}" data-toggle="modal"
-                       data-target="#showLicenseModal">{{getLicense}}</a>
-                {{/if}}
-            {{else}}
-                {{_ "cardset.info.shuffleLicense"}}
-            {{/unless}}
-        </td>
-    </tr>
+                    {{_ "cardset.info.shuffleLicense"}}
+                {{/unless}}
+            </td>
+        </tr>
+    {{/unless}}
+    {{#if isActiveRoute regex="create|learn|pool|shuffle"}}
+        <tr>
+            <td>{{_ "cardset.info.release"}}:</td>
+            <td>{{getDate}}</td>
+        </tr>
+        <tr>
+            <td>{{_ "cardset.info.dateUpdated"}}:</td>
+            <td>{{getDateUpdated}}</td>
+        </tr>
+    {{/if}}
+</template>
+
+<template name="cardsetInfoBoxContentTwo">
     {{#if this.moduleActive}}
         {{#unless singleUniversity}}
             <tr>
@@ -240,15 +284,17 @@
             </td>
         </tr>
     {{/if}}
-    <tr>
-        <td>{{_ "cardset.info.release"}}:</td>
-        <td>{{getDate}}</td>
-    </tr>
-    <tr>
-        <td>{{_ "cardset.info.dateUpdated"}}:</td>
-        <td>{{getDateUpdated}}</td>
-    </tr>
-    {{#unless isActiveLanguage "home"}}
+    {{#unless isActiveRoute regex="create|learn|pool"}}
+        <tr>
+            <td>{{_ "cardset.info.release"}}:</td>
+            <td>{{getDate}}</td>
+        </tr>
+        <tr>
+            <td>{{_ "cardset.info.dateUpdated"}}:</td>
+            <td>{{getDateUpdated}}</td>
+        </tr>
+    {{/unless}}
+    {{#unless isActiveRoute regex="home|course"}}
         {{#if ratingEnabled}}
             <tr>
                 <td>{{_ "cardset.info.rating"}}:</td>
@@ -256,7 +302,11 @@
                     {{#if isCardsetOwner _id}}
                         {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
                     {{else}}
-                        {{> starsRating id='rating' rating=getAverage mutable=true}}
+                        {{#unless isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                            {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                        {{else}}
+                            {{> starsRating id='rating' rating=getAverage mutable=true}}
+                        {{/unless}}
                     {{/if}} ({{this.raterCount}})
                 </td>
             </tr>
@@ -392,7 +442,8 @@
                     <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
                     <div class="btn-group btn-group-raised btn-group-justified">
                         <a id="btnToCardLayout"
-                           class="btn btn-default btn-cardLayout {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}active{{/if}}"
+                           class="btn btn-default btn-cardLayout {{#if isActiveRoute
+                                                                       regex='cardsetdetailsid|cardsetcard'}}active{{/if}}"
                            href="/cardset/{{_id}}"><i class="fa fa-square"></i> {{_
                                 "sidebar-nav.viewmap"}}</a>
                         <a id="btnToListLayout"

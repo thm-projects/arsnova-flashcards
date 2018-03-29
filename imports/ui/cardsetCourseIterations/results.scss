@@ -1,0 +1,114 @@
+.resultItem {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 7px;
+  @media(min-width: 768px) {
+    margin-bottom: 10px;
+  }
+}
+
+.resultItemHeader {
+  color: white;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @media(min-width: 768px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+.resultItemHeaderRightArea {
+  font-size: 16px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  @media(min-width: 768px) {
+    padding-top: 12px;
+    padding-bottom: 13px;
+  }
+}
+
+.resultItemHeaderLeftArea {
+  background-color: white;
+}
+
+.resultItemHeaderLeftArea a {
+  color: $color_global_link !important;
+  padding: 0;
+}
+
+.resultItemHeaderRightArea {
+  background-color: $color_thm_gray !important;
+}
+
+.resultItemHeaderRightArea i {
+  color: white !important;
+}
+
+.resultTableContent {
+  padding: 0;
+}
+
+.resultTableContent table {
+  margin: 0;
+}
+
+.resultFree {
+  background-color: $color_free_btn;
+}
+
+.resultPro {
+  background-color: $color_thm_orange;
+}
+
+.resultEdu {
+  background-color: $color_edu_btn;
+}
+
+.resultPersonal {
+  background-color: $color_thm_red;
+}
+
+.resultDescription {
+  color: white;
+  padding: 15px;
+}
+
+.resultDescription p {
+  margin: 0;
+}
+
+.resultNavigationElement {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.resultName {
+  padding-right: 30px !important;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.resultBadge, .shuffleButton {
+  position: absolute;
+  float: right;
+  right: 10px;
+  bottom: 5px;
+  @media(min-width: 768px) {
+    bottom: 15px;
+  }
+}
+
+.shuffleButton {
+  right: 55px;
+}
+
+.resultsHeader {
+  background-color: $color_thm_gray !important;
+  color: white !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}

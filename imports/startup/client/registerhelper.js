@@ -71,15 +71,15 @@ Template.registerHelper("getNextCardTime", function () {
 Template.registerHelper("getKind", function (kind) {
 	switch (kind) {
 		case "free":
-			return '<span class="label label-free panelUnitKind" data-id="free">Free</span>';
+			return '<span class="label label-free" data-id="free">Free</span>';
 		case "edu":
-			return '<span class="label label-edu panelUnitKind" data-id="edu">Edu</span>';
+			return '<span class="label label-edu" data-id="edu">Edu</span>';
 		case "pro":
-			return '<span class="label label-pro panelUnitKind" data-id="pro">Pro</span>';
+			return '<span class="label label-pro" data-id="pro">Pro</span>';
 		case "personal":
-			return '<span class="label label-private panelUnitKind" data-id="personal">Private</span>';
+			return '<span class="label label-private" data-id="personal">Private</span>';
 		default:
-			return '<span class="label label-default panelUnitKind">Undefined!</span>';
+			return '<span class="label label-default">Undefined!</span>';
 	}
 });
 
@@ -322,26 +322,26 @@ Template.registerHelper("getAuthor", function (owner) {
 });
 
 // Return the cardset license
-Template.registerHelper("getLicense", function () {
+Template.registerHelper("getLicense", function (_id) {
 	var licenseString = "";
 
 	if (this.license.length > 0) {
 		if (this.license.includes('by')) {
-			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" />');
+			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + _id + '" />');
 		}
 		if (this.license.includes('nc')) {
-			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" />');
+			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + _id + '" />');
 		}
 		if (this.license.includes('nd')) {
-			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" />');
+			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + _id + '" />');
 		}
 		if (this.license.includes('sa')) {
-			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" />');
+			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + _id + '" />');
 		}
 
 		return new Spacebars.SafeString(licenseString);
 	} else {
-		return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" />');
+		return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + _id + '" />');
 	}
 });
 

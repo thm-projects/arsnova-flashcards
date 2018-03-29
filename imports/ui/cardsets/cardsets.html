@@ -5,6 +5,7 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
+            {{> showLicense}}
             {{#if isActiveRoute 'create'}}
                 {{> cardsetCourseIterationForm}}
                 {{> create}}
@@ -66,19 +67,9 @@
                 <br>
                 {{#if shuffleList.count}}
                     {{> filterNavigation}}
-                    <div class="responsive-utilities-test visible-on">
-                        <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                        <span class="col-sm-2 col-md-2 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
-                        <span class="col-sm-4 col-md-5 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
-                        <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "selection"}}</span>
-                    </div>
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                            <div class="col-xs-12 col-sm-12 panel panel-default {{getCardBackground this.difficulty
-                                                                                                    this.cardType
-                                                                                                    1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                                {{> cardsetRow extendContext 'index' @index}}
-                            </div>
+                                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
                         {{/unless}}
                     {{/each}}
                 {{else}}
@@ -101,152 +92,14 @@
             </button>
             {{> shuffle}}
             {{> filterNavigation}}
-            <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-2 col-md-1 hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
-                <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
-                <span class="col-sm-6 hidden-xs poolHeaderBottom">{{_ "set-list.description"}}</span>
-                <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
-            </div>
             {{#each cardsetList}}
-                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
-                                                                              1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                    {{> cardsetRow extendContext 'index' @index}}
-                </div>
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
             {{> cardsetEmpty}}
         {{/if}}
     </div>
-</template>
-
-<template name="cardsetRow">
-    <div class="cardsetName">
-        {{#if isActiveRoute 'learn'}}
-            <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                    "set-list.workload"}}
-                :</span>
-            <span class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-                  data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
-        <span class="cell col-xs-7 col-sm-2 panelUnit" data-id="{{this._id}}">
-            {{getWorkload}}
-        </span>
-        </span>
-        {{/if}}
-        <div class="tip-content">{{#if gotDescription
-                                       this.description}}{{#markdown}}{{this.description}}{{/markdown}}{{else}}{{_
-                "set-list.noDescription"}}{{/if}}</div>
-        <a href="{{getLink _id}}" class="panelUnitBorder field-tip"
-           title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
-                "set-list.topicMobile"}}
-            :</span>
-            <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-3 {{#if isActiveRoute
-                                                                                'learn'}}col-sm-3{{/if}} poolText panelUnit"
-                  data-id="{{this._id}}">
-                <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
-                    {{this.name}}
-                </span>
-                <span class="cell badge cardsetBadge" data-id="{{this._id}}">
-                    {{countCards this._id}}
-                </span>
-            </span>
-        </a>
-    </div>
-    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-            "cardType"}}
-        :</span>
-    <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
-    <span class="cell col-xs-7 {{#if isActiveRoute regex='create|learn'}}col-sm-2 col-md-1 panelUnit{{else}}
-        {{#if isActiveRoute 'shuffle'}}col-sm-2{{else}}{{#if isActiveRoute
-                                                             'editshuffle'}}col-sm-3 col-md-2{{else}}col-sm-3 col-md-2{{/if}}{{/if}} panelUnit {{/if}} poolText ellipsis"
-          data-id="{{this.cardType}}">
-        {{getCardTypeName this.cardType}}
-    </span>
-    </a>
-    {{#if isActiveRoute regex='create|learn'}}
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "courseIteration.name"}}
-            :</span>
-        <span class="cell col-xs-7 {{#if isActiveRoute regex='create|learn'}}hidden-sm col-md-1 panelUnit{{/if}}">
-            {{_ "set-list.none"}}
-        </span>
-    {{/if}}
-    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-            "set-list.description"}}
-        :</span>
-    <span class="cell col-xs-7 {{#if isActiveRoute 'learn'}}visible-xs panelUnit{{else}}{{#if isActiveRoute
-                                                                                              'create'}}col-sm-6 panelUnit{{else}}
-        {{#if isActiveRoute 'shuffle'}}col-sm-4 col-md-5{{else}}{{#if isActiveRoute
-                                                                      'editshuffle'}}col-sm-3 col-md-5{{else}}col-sm-4 col-md-6{{/if}}{{/if}} panelUnit {{/if}}{{/if}} poolText ellipsis">
-        {{#if gotDescription this.description}}{{this.description}}{{else}}{{_
-                "set-list.noDescription"}}{{/if}}
-    </span>
-    {{#if isActiveRoute 'learn'}}
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.learnphase"}}
-            :</span>
-    <a href="#" class="filterLearningPhase" title="Filter {{_ "set-list.learnphase"}}: {{getLearnphaseStatus}}">
-        <span class="hidden-sm cell col-xs-7 col-sm-1 panelUnit panelIconColumn" data-id="{{#if this.learningActive}}true{{else}}false{{/if}}">
-            <span class="label {{#if this.learningActive}}label-success{{else}}label-info{{/if}} labelLearning"
-                  aria-label="active learnphase label" data-id="{{#if this.learningActive}}true{{else}}false{{/if}}">
-                {{getLearnphaseStatus}}
-            </span>
-        </span>
-    </a>
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.learningMode"}}
-            :</span>
-        <span class="cell col-xs-7 col-sm-3 col-md-2 panelUnit">
-            {{getLearningMode}}
-        </span>
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.levelOfLearning"}}
-            :</span>
-        <a href="progress/{{this._id}}/{{currentUser._id}}">
-            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense manageLearning panelUnit panelIconColumn">
-           <i class="glyphicon glyphicon glyphicon-stats"></i>
-        </span>
-        </a>
-        <a class="panelUnitBorder deleteLearned" {{disableIfOffline}}
-           title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
-           data-id="{{this._id}}">
-                    <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                            "options"}}
-                        :</span>
-            <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelIconColumn"
-                  data-id="{{this._id}}">
-           <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
-        </span>
-        </a>
-    {{/if}}
-    {{#if isShuffleRoute}}
-        <span class="cell col-xs-5 col-sm-3 col-md-2 poolText panelUnit panelUnitDescription panelUnitLicense">
-            {{#if inShuffleSelection this._id}}
-                <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeShuffleCardset"
-                   data-id="{{this._id}}">
-                    <i class="fa fa-minus" data-id="{{this._id}}"></i> {{_ "admin.cardset.removeFromWordcloud"}}
-                </a>
-            {{else}}
-                <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addShuffleCardset"
-                   data-id="{{this._id}}">
-                    <i class="fa fa-plus" data-id="{{this._id}}"></i> {{_ "admin.cardset.addToWordcloud"}}
-                </a>
-            {{/if}}
-        </span>
-    {{/if}}
-    {{#if isActiveRoute 'create'}}
-        <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
-                "set-list.availability"}}
-            :</span>
-        <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="cell col-xs-5 col-sm-1 poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelIconColumn"
-                  data-id="{{this.kind}}">
-                {{{getKind this.kind}}}
-            </span>
-        </a>
-    {{/if}}
 </template>
 
 <template name="cardsetEmpty">
@@ -293,23 +146,8 @@
         {{> shuffle}}
         {{#if learnList.count}}
             {{> filterNavigation}}
-            <div class="responsive-utilities-test visible-on">
-                <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "set-list.workload"}}</span>
-                <span class="col-sm-3 hidden-xs poolHeaderBottom">{{_ "set-list.topic"}}</span>
-                <span class="col-sm-2 col-md-1  hidden-xs poolHeaderBottom">{{_ "cardType"}}</span>
-                <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_ "courseIteration.name"}}</span>
-                <span class="col-md-1  hidden-xs hidden-sm poolHeaderBottom text-center">{{_
-                        "set-list.learnphase"}}</span>
-                <span class="col-sm-3 col-md-2 hidden-xs poolHeaderBottom">{{_ "set-list.learningMode"}}</span>
-                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom text-center">{{_
-                        "set-list.levelOfLearning"}}</span>
-                <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom block"></span>
-            </div>
             {{#each learnList}}
-                <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
-                                                                              1}} cardsetInfo cardsetRow responsive-utilities-test visible-on">
-                    {{> cardsetRow extendContext 'index' @index}}
-                </div>
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
