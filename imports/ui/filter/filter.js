@@ -4,36 +4,52 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
+import {CourseIterations} from "../../api/courseIterations.js";
 import "./filter.html";
 import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("courseIterations");
 
 export let items_increment = 9;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
+Session.setDefault('poolFilterAudience');
 Session.setDefault('poolFilterCardType');
 Session.setDefault('poolFilterCollege');
 Session.setDefault('poolFilterCourse');
+Session.setDefault('poolFilterSemester');
 Session.setDefault('poolFilterModule');
 Session.setDefault('poolFilterModule', false);
-Session.setDefault('poolFilterDifficulty');
-Session.setDefault('poolFilterLearnphase');
+Session.setDefault('poolFilterDifficulty', undefined);
+Session.setDefault('poolFilterLearnphase', undefined);
 Session.setDefault('poolFilterRating');
-Session.setDefault('poolFilter', ["free", "edu", "pro"]);
+Session.setDefault('poolFilter', ["personal", "free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
 
 let filterQuery = {};
 Session.setDefault('filterQuery', filterQuery);
 
-function isPool() {
+function isPoolRoute() {
 	return Router.current().route.getName() === "pool";
 }
 
+function isCreateRoute() {
+	return Router.current().route.getName() === "create";
+}
+
+function isCourseIterationRoute() {
+	return Router.current().route.getName() === "courseIterations";
+}
+
+function isLearnRoute() {
+	return Router.current().route.getName() === "learn";
+}
+
 export function prepareQuery() {
-	let query = Session.get('filterQuery');
+	let query = {};
 	query.kind = {$in: Session.get('poolFilter')};
 	if (Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined) {
 		query.cardType = Session.get('poolFilterCardType');
@@ -43,11 +59,20 @@ export function prepareQuery() {
 	if (Session.get('poolFilterAuthor')) {
 		query.owner = Session.get('poolFilterAuthor');
 	}
+	if (Session.get('poolFilterTargetAudience')) {
+		query.targetAudience = Session.get('poolFilterTargetAudience');
+	}
+	if (isCreateRoute()) {
+		query.owner = Meteor.userId();
+	}
 	if (Session.get('poolFilterCollege')) {
 		query.college = Session.get('poolFilterCollege');
 	}
 	if (Session.get('poolFilterCourse')) {
 		query.course = Session.get('poolFilterCourse');
+	}
+	if (Session.get('poolFilterSemester')) {
+		query.semester = Session.get('poolFilterSemester');
 	}
 	if (!Session.get('poolFilterNoModule')) {
 		if (Session.get('poolFilterModule')) {
@@ -57,7 +82,7 @@ export function prepareQuery() {
 	} else {
 		query.moduleActive = false;
 	}
-	if (Session.get('poolFilterDifficulty')) {
+	if (Session.get('poolFilterDifficulty') !== undefined) {
 		query.difficulty = Number(Session.get('poolFilterDifficulty'));
 	}
 	if (Session.get('poolFilterLearnphase') !== undefined) {
@@ -69,7 +94,9 @@ export function prepareQuery() {
 export function checkRemainingCards() {
 	prepareQuery();
 	let query = Session.get('filterQuery');
-	query.visible = true;
+	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
+		query._id = {$in: Session.get('cardsetIdFilter')};
+	}
 	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
@@ -133,13 +160,15 @@ export function checkFilters() {
 export function resetFilters() {
 	Session.set('poolSortTopic', {name: 1});
 	Session.set('poolFilterAuthor');
+	Session.set('poolFilterTargetAudience');
 	Session.set('poolFilterCardType');
 	Session.set('poolFilterCollege');
 	Session.set('poolFilterCourse');
 	Session.set('poolFilterNoModule', false);
 	Session.set('poolFilterModule');
-	Session.set('poolFilterDifficulty');
-	if (isPool()) {
+	Session.set('poolFilterSemester');
+	Session.set('poolFilterDifficulty', undefined);
+	if (isPoolRoute()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 	} else {
 		Session.set('poolFilter', ["personal", "free", "edu", "pro"]);
@@ -160,6 +189,11 @@ export function filterAuthor(event) {
 	resetInfiniteBar();
 }
 
+export function filterTargetAudience(event) {
+	Session.set('poolFilterTargetAudience', Number($(event.target).data('id')));
+	resetInfiniteBar();
+}
+
 export function filterCollege(event) {
 	Session.set('poolFilterCollege', $(event.target).data('id'));
 	resetInfiniteBar();
@@ -167,6 +201,11 @@ export function filterCollege(event) {
 
 export function filterCourse(event) {
 	Session.set('poolFilterCourse', $(event.target).data('id'));
+	resetInfiniteBar();
+}
+
+export function filterSemester(event) {
+	Session.set('poolFilterSemester', Number($(event.target).data('id')));
 	resetInfiniteBar();
 }
 
@@ -192,12 +231,73 @@ export function filterLearnphase(event) {
  * ############################################################################
  */
 
+Template.filterNavigation.events({
+	'click #resetBtn': function () {
+		resetFilters();
+	},
+	'click #resetBtnMobile': function () {
+		resetFilters();
+	},
+	'click #topicBtn': function () {
+		var sort = Session.get('poolSortTopic');
+		if (sort.name === 1) {
+			Session.set('poolSortTopic', {name: -1});
+		} else {
+			Session.set('poolSortTopic', {name: 1});
+		}
+	},
+	'click .filterAuthor': function (event) {
+		filterAuthor(event);
+	},
+	'click .filterTargetAudience': function (event) {
+		filterTargetAudience(event);
+	},
+	'click .filterCollege': function (event) {
+		filterCollege(event);
+	},
+	'click .filterCourse': function (event) {
+		filterCourse(event);
+	},
+	'click .filterSemester': function (event) {
+		filterSemester(event);
+	},
+	'click .filterModule': function (event) {
+		Session.set('poolFilterNoModule', false);
+		filterModule(event);
+	},
+	'click .filterNoModule': function () {
+		Session.set('poolFilterNoModule', true);
+	},
+	'click .filterNoDifficulty': function () {
+		Session.set('poolFilterDifficulty', undefined);
+		resetInfiniteBar();
+	},
+	'click .filterDifficulty': function (event) {
+		Session.set('poolFilterDifficulty', $(event.target).data('id'));
+		resetInfiniteBar();
+	},
+	'click .filterLearnphase': function () {
+		filterLearnphase(event);
+	},
+	'change #filterCheckbox': function () {
+		var filter = [];
+		$("#filterCheckbox input:checkbox:checked").each(function () {
+			filter.push($(this).val());
+		});
+		Session.set('poolFilter', filter);
+	}
+});
+
 Template.filterNavigation.helpers({
 	filterAuthors: function () {
 		prepareQuery();
 		let query = Session.get('filterQuery');
 		query.owner = this._id;
-		return Cardsets.findOne(query);
+		if (isCourseIterationRoute()) {
+			return CourseIterations.findOne(query);
+		} else {
+			return Cardsets.findOne(query);
+		}
 	},
 	getDifficulty: function () {
 		prepareQuery();
@@ -210,21 +310,43 @@ Template.filterNavigation.helpers({
 	},
 	getColleges: function () {
 		prepareQuery();
-		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"college": 1}}).fetch(), function (item) {
-			return item.college;
-		});
+		if (isCourseIterationRoute()) {
+			return _.uniq(CourseIterations.find(Session.get('filterQuery'), {sort: {"college": 1}}).fetch(), function (item) {
+				return item.college;
+			});
+		} else {
+			return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"college": 1}}).fetch(), function (item) {
+				return item.college;
+			});
+		}
 	},
 	getCourses: function () {
 		prepareQuery();
-		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"course": 1}}).fetch(), function (item) {
-			return item.course;
-		});
+		let query = Session.get('filterQuery');
+		query.moduleActive = true;
+		if (isCourseIterationRoute()) {
+			return _.uniq(CourseIterations.find(query, {sort: {"course": 1}}).fetch(), function (item) {
+				return item.course;
+			});
+		} else {
+			return _.uniq(Cardsets.find(query, {sort: {"course": 1}}).fetch(), function (item) {
+				return item.course;
+			});
+		}
 	},
 	getModules: function () {
 		prepareQuery();
-		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"module": 1}}).fetch(), function (item) {
-			return item.moduleNum;
-		});
+		let query = Session.get('filterQuery');
+		query.moduleActive = true;
+		if (isCourseIterationRoute()) {
+			return _.uniq(CourseIterations.find(query, {sort: {"module": 1}}).fetch(), function (item) {
+				return item.moduleNum;
+			});
+		} else {
+			return _.uniq(Cardsets.find(query, {sort: {"module": 1}}).fetch(), function (item) {
+				return item.moduleNum;
+			});
+		}
 	},
 	hasCardTypeFilter: function () {
 		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
@@ -248,10 +370,10 @@ Template.filterNavigation.helpers({
 		return Session.get('poolFilterCollege') === college;
 	},
 	hasSemesterFilter: function () {
-		return false;
+		return Session.get('poolFilterSemester');
 	},
 	hasTargetAudienceFilter: function () {
-		return false;
+		return Session.get('poolFilterTargetAudience');
 	},
 	hasCourseFilter: function () {
 		return Session.get('poolFilterCourse');
@@ -279,9 +401,6 @@ Template.filterNavigation.helpers({
 	},
 	poolFilterLearnphase: function (learningPhase) {
 		return Session.get('poolFilterLearnphase') === learningPhase;
-	},
-	moreResults: function () {
-		return checkRemainingCards();
 	},
 	selectingCardsetToLearn: function () {
 		return Session.get('selectingCardsetToLearn');

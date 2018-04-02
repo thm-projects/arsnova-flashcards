@@ -12,10 +12,8 @@ import {
 	filterCollege,
 	filterCheckbox,
 	filterCourse,
-	filterLearnphase,
 	filterModule,
 	resetFilters,
-	resetInfiniteBar,
 	prepareQuery
 } from "../filter/filter.js";
 import {getCardTypeName} from "../../api/cardTypes.js";
@@ -141,53 +139,6 @@ Template.poolCardsetRow.events({
 	},
 	'click .poolText ': function (event) {
 		Session.set('selectedCardset', $(event.target).data('id'));
-	}
-});
-
-Template.category.events({
-	'click #resetBtn': function () {
-		resetFilters();
-	},
-	'click #resetBtnMobile': function () {
-		resetFilters();
-	},
-	'click #topicBtn': function () {
-		var sort = Session.get('poolSortTopic');
-		if (sort.name === 1) {
-			Session.set('poolSortTopic', {name: -1});
-		} else {
-			Session.set('poolSortTopic', {name: 1});
-		}
-	},
-	'click .filterAuthor': function (event) {
-		filterAuthor(event);
-	},
-	'click .filterCollege': function (event) {
-		filterCollege(event);
-	},
-	'click .filterCourse': function (event) {
-		filterCourse(event);
-	},
-	'click .filterModule': function (event) {
-		Session.set('poolFilterNoModule', false);
-		filterModule(event);
-	},
-	'click .filterNoModule': function () {
-		Session.set('poolFilterNoModule', true);
-	},
-	'click .filterDifficulty': function (event) {
-		Session.set('poolFilterDifficulty', $(event.target).data('id'));
-		resetInfiniteBar();
-	},
-	'click .filterLearnphase': function () {
-		filterLearnphase(event);
-	},
-	'change #filterCheckbox': function () {
-		var filter = [];
-		$("#filterCheckbox input:checkbox:checked").each(function () {
-			filter.push($(this).val());
-		});
-		Session.set('poolFilter', filter);
 	}
 });
 

@@ -1,5 +1,5 @@
 <template name="cardTypesList">
-    {{#if isActiveRoute 'pool'}}
+    {{#if this.filter}}
         <li>
             <a href="#" class="filterCardType active" data-id="">{{_ "set-list.everyone"}}</a>
         </li>

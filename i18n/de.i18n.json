@@ -501,6 +501,11 @@
     "leaveEditors": "Bearbeitergruppe verlassen",
     "preview": "Kostenpflichtige Kartei"
   },
+  "presentation": {
+    "title": "Präsentation",
+    "create": "Präsentation starten",
+    "start": "Starten"
+  },
   "pool": {
     "relevance": "Relevanz",
     "name": "Name",

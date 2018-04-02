@@ -59,7 +59,7 @@
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
-                                    {{> cardTypesList}}
+                                    {{> cardTypesList filter=true}}
                                 </ul>
                             </li>
                         {{/unless}}
@@ -75,7 +75,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+                                        <a href="#" class="filterNoCourseIteration active" data-id="">{{_ "set-list.everyone"}}</a>
+                                        <a href="#" class="filterCourseIteration active" data-id="0">{{_ "set-list.none"}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,7 +155,7 @@
                                         <a href="#" class="filterTargetAudience active" data-id="">{{_
                                                 "set-list.everything"}}</a>
                                     </li>
-                                    {{> targetAudienceList}}
+                                    {{> targetAudienceList filter=true}}
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -170,7 +171,7 @@
                                         <a href="#" class="filterSemester active" data-id="">{{_
                                                 "set-list.everything"}}</a>
                                     </li>
-                                    {{> semesterList}}
+                                    {{> semesterList filter=true}}
                                 </ul>
                             </li>
                         {{/if}}
@@ -274,7 +275,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterDifficulty active" data-id="">{{_
+                                        <a href="#" class="filterNoDifficulty active">{{_
                                                 "set-list.everything"}}</a>
                                     </li>
                                     {{#each getDifficulty}}

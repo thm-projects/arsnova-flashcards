@@ -148,9 +148,9 @@ $themes: (
       color: $primary-text;
     }
 
-    .editorNavigation > .btn-primary:hover {
+    .editorNavigation > .btn-primary {
       background-color: $primary-color !important;
-      color: white;
+      color: white !important;
     }
 
     .bs-callout-info {

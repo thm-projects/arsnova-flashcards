@@ -28,7 +28,8 @@
                 <span class="col-sm-2 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.course"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom">{{_ "courseIteration.list.module"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "set-list.availability"}}</span>
-                <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_ "courseIteration.list.progress"}}</span>
+                <span class="col-sm-1 hidden-xs poolHeaderBottom text-center">{{_
+                        "courseIteration.list.progress"}}</span>
                 <span class="col-sm-1 hidden-xs poolHeaderBottom block"></span>
             </div>
             {{#each courseIterationsList}}
@@ -38,6 +39,7 @@
                     {{> courseIterationsRow extendContext 'index' @index}}
                 </div>
             {{/each}}
+            {{> infiniteScroll}}
         {{else}}
             {{> courseIterationsEmpty}}
         {{/if}}
@@ -70,7 +72,7 @@
            title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
         <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this._id}}">{{_
                 "set-list.topicMobile"}}
-           :</span>
+            :</span>
             <span id="cardsetLink{{index}}" class="cell col-xs-7 col-sm-2 poolText panelUnit"
                   data-id="{{this._id}}">
                 <span class="cell col-xs-9 topicName" data-id="{{this._id}}">
@@ -92,44 +94,62 @@
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "courseIteration.targetAudience"}}
         :</span>
-    <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit poolText ellipsis">
+    <a href="#" class="filterTargetAudience"
+       title="Filter {{_ "courseIteration.targetAudience"}}: {{getTargetAudienceName this.targetAudience}}">
+    <span class="cell col-xs-7 col-sm-2 col-md-1 panelUnit poolText ellipsis" data-id="{{this.targetAudience}}">
         {{getTargetAudienceAbbreviation this.targetAudience}}
     </span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "courseIteration.list.semester"}}
         :</span>
-    <span class="cell col-xs-7 col-md-2 hidden-sm panelUnit poolText ellipsis">
+    <a href="#" class="filterSemester"
+       title="Filter {{_ "courseIteration.list.semester"}}: {{this.semester}}">
+    <span class="cell col-xs-7 col-md-2 hidden-sm panelUnit poolText ellipsis" data-id="{{this.semester}}">
         {{_ "courseIteration.list.semesterList" count=this.semester}}
     </span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.course"}}
-       :</span>
-    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis">
+        :</span>
+    <a href="#" class="filterCourse"
+       title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_
+               "set-list.noCourse"}}{{/if}}">
+    <span class="cell col-xs-7 col-sm-2  panelUnit poolText ellipsis" data-id="{{this.course}}">
         {{#if this.course}}
             {{this.course}}
         {{else}}
             {{_ "navbar-collapse.none"}}
         {{/if}}
     </span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.module"}}
-       :</span>
-    <span class="cell col-xs-7 col-sm-1  panelUnit poolText ellipsis">
+        :</span>
+    <a href="#" class="filterModule"
+       title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_
+               "set-list.noModuleLong"}}{{/if}}">
+    <span class="cell col-xs-7 col-sm-1  panelUnit poolText ellipsis"
+          data-id="{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
+                  "set-list.noModuleShort"}}{{/if}}">
         {{#if this.module}}
             {{this.module}}
         {{else}}
             {{_ "navbar-collapse.none"}}
         {{/if}}
     </span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.availability"}}
         :</span>
-    <span class="cell col-xs-7 col-sm-1 panelUnit poolText ellipsis panelIconColumn">
+    <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
+    <span class="cell col-xs-7 col-sm-1 panelUnit poolText ellipsis panelIconColumn" data-id="{{this.kind}}">
         {{{getKind this.kind}}}
     </span>
+    </a>
     <span class="col-xs-5 visible-xs poolLabel panelUnit panelUnitDescription">{{_
             "set-list.levelOfLearning"}}
-       :</span>
+        :</span>
     <a href="#">
             <span class="cell col-xs-7 col-sm-1 poolText panelUnit panelUnitDescription panelUnitLicense panelUnit panelIconColumn">
            <i class="glyphicon glyphicon glyphicon-stats"></i>
@@ -142,7 +162,7 @@
             <a class="panelUnitBorder editCourseIteration" {{disableIfOffline}}
                title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
                data-target="#underDevelopmentModal">
-            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
         </span>
@@ -150,7 +170,7 @@
     <a id class="panelUnitBorder deleteCourseIteration" {{disableIfOffline}}
        title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal" data-target="#confirmDeleteModal"
        data-id="{{this._id}}">
-            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelUnitNoBorder panelIconColumn"
+            <span class="cell col-xs-2 col-sm-6 panelUnit panelUnitDescription panelUnitLicense panelIconColumn"
                   data-id="{{this._id}}">
            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
         </span>
