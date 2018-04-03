@@ -15,7 +15,7 @@ session@1.1.7
 standard-minifier-css@1.4.0   # CSS minifier run for production mode
 standard-minifier-js@2.3.1    # JS minifier run for production mode
 es5-shim@4.7.0                # ECMAScript 5 compatibility for older browsers.
-ecmascript@0.10.0              # Enable ECMAScript2015+ syntax in app code
+ecmascript@0.10.6              # Enable ECMAScript2015+ syntax in app code
 
 fourseven:scss
 tap:i18n
