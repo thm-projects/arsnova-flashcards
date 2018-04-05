@@ -25,6 +25,7 @@
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
+            {{> shuffle}}
             {{> courseIterationsEmpty}}
         {{/if}}
     </div>
@@ -37,7 +38,7 @@
                     {{_ "courseIteration.list.empty"}}
                 </span>
             <br>
-            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet btn-newSet" data-toggle="modal"
                     data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
                 {{_ "courseIteration.list.createCourse"}}
             </button>
