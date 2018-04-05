@@ -97,7 +97,13 @@ export function checkRemainingCards() {
 	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
 		query._id = {$in: Session.get('cardsetIdFilter')};
 	}
-	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+	let count;
+	if (isCourseIterationRoute()) {
+		count = CourseIterations.find(query).count();
+	} else {
+		count = Cardsets.find(query).count();
+	}
+	if (count > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
 	} else {
