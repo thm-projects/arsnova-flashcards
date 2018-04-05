@@ -19,6 +19,7 @@ import {
 	getCardTypeName, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
 	gotPresentationMode
 } from "../../api/cardTypes";
+import {getTargetAudienceName} from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -450,11 +451,135 @@ Template.cardsetInfoBox.helpers({
 
 /*
  * ############################################################################
- * cardsetInfoBoxContent
+ * cardsetInfoBoxContentOne
  * ############################################################################
  */
 
-Template.cardsetInfoBoxContent.helpers({
+Template.cardsetInfoBoxContentOne.helpers({
+	canViewForFree: function () {
+		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
+	},
+	ratingEnabled: function () {
+		return this.ratings === true;
+	},
+	hasRated: function () {
+		var count = Ratings.find({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		}).count();
+		var cardset = Cardsets.findOne(this._id);
+		if (cardset !== null) {
+			return count !== 0;
+		}
+	}, getAuthors: function () {
+		let cardsets = this.cardGroups;
+		let owner_id = [];
+		cardsets.push(this._id);
+		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+			return item.owner;
+		});
+		owners.forEach(function (element) {
+			owner_id.push(element.owner);
+		});
+		return owners;
+	},
+	getUserRating: function () {
+		var userrating = Ratings.findOne({
+			cardset_id: this._id,
+			user: Meteor.userId()
+		});
+		if (userrating) {
+			return userrating.rating;
+		} else {
+			return 0;
+		}
+	},
+	hasAmount: function () {
+		return this.kind === 'pro' || this.kind === 'edu';
+	},
+	isPurchased: function () {
+		return Paid.findOne({cardset_id: this._id}) !== undefined;
+	},
+	getDateOfPurchase: function () {
+		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
+	},
+	getReviewer: function () {
+		var reviewer = Meteor.users.findOne(this.reviewer);
+		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
+	},
+	gotModuleLink: function () {
+		return this.moduleLink !== "" && this.moduleLink !== undefined;
+	},
+	getCardType: function () {
+		return getCardTypeName(this.cardType);
+	},
+	gotNotesForDifficultyLevel: function () {
+		return gotNotesForDifficultyLevel(this.cardType);
+	},
+	getDifficultyName: function () {
+		if (gotNotesForDifficultyLevel(this.cardType)) {
+			return TAPi18n.__('difficultyNotes' + this.difficulty);
+		} else {
+			return TAPi18n.__('difficulty' + this.difficulty);
+		}
+	},
+	getLearningMode: function () {
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		actualDate.setHours(0, 0, 0, 0);
+		let count = 0;
+		if (Leitner.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
+			count += 1;
+		}
+		if (Wozniak.find({
+				cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
+					$lte: actualDate
+				}
+			}).count()) {
+			count += 2;
+		}
+		switch (count) {
+			case 0:
+				return TAPi18n.__('set-list.none');
+			case 1:
+				return TAPi18n.__('set-list.leitner');
+			case 2:
+				return TAPi18n.__('set-list.wozniak');
+			case 3:
+				return TAPi18n.__('set-list.both');
+		}
+	},
+	getTargetAudience: function () {
+		return getTargetAudienceName(this.targetAudience);
+	}
+});
+
+Template.cardsetInfoBoxContentOne.events({
+	'click #rating': function () {
+		var cardset_id = Template.parentData(1)._id;
+		var rating = $('#rating').data('userrating');
+		var count = Ratings.find({
+			cardset_id: cardset_id,
+			user: Meteor.userId()
+		}).count();
+		if (count === 0) {
+			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+		} else {
+			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
+		}
+	},
+	'click .showLicense': function (event) {
+		event.preventDefault();
+		Session.set('selectedCardset', $(event.target).data('id'));
+	}
+});
+
+/*
+ * ############################################################################
+ * cardsetInfoBoxContentTwo
+ * ############################################################################
+ */
+
+Template.cardsetInfoBoxContentTwo.helpers({
 	canViewForFree: function () {
 		return (this.kind === "edu" && (Roles.userIsInRole(Meteor.userId(), ['university', 'lecturer'])));
 	},
@@ -524,7 +649,7 @@ Template.cardsetInfoBoxContent.helpers({
 	}
 });
 
-Template.cardsetInfoBoxContent.events({
+Template.cardsetInfoBoxContentTwo.events({
 	'click #rating': function () {
 		var cardset_id = Template.parentData(1)._id;
 		var rating = $('#rating').data('userrating');

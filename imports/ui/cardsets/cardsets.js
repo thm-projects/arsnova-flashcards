@@ -8,9 +8,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
-import {getCardTypeName} from "../../api/cardTypes";
 import {
-	filterAuthor, filterCardType, filterCheckbox, filterCollege, filterCourse, filterLearnphase, filterModule,
 	prepareQuery,
 	resetFilters
 } from "../filter/filter";
@@ -19,25 +17,6 @@ Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
 
 Meteor.subscribe("cardsets");
-
-
-function getLeitnerCount(cardset) {
-	return Leitner.find({
-		cardset_id: cardset._id,
-		user_id: Meteor.userId(),
-		active: true
-	}).count();
-}
-
-function getWozniakCount(cardset) {
-	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-	actualDate.setHours(0, 0, 0, 0);
-	return Wozniak.find({
-		cardset_id: cardset._id, user_id: Meteor.userId(), nextDate: {
-			$lte: actualDate
-		}
-	}).count();
-}
 
 /*
  * ############################################################################
@@ -112,192 +91,6 @@ Template.learn.onCreated(function () {
 
 /*
  * ############################################################################
- * cardsetRow
- * ############################################################################
- */
-
-Template.cardsetRow.events({
-	"click .addShuffleCardset": function (event) {
-		let array = Session.get("ShuffledCardsets");
-		let arrayExclude = Session.get("ShuffledCardsetsExclude");
-		let cardset = Cardsets.findOne({_id: $(event.target).data('id')}, {shuffled: 1, cardGroups: 1});
-		if (cardset.shuffled) {
-			for (let i = 0; i < cardset.cardGroups.length; i++) {
-				if (!array.includes(cardset.cardGroups[i])) {
-					array.push(cardset.cardGroups[i]);
-				}
-			}
-			arrayExclude.push($(event.target).data('id'));
-			Session.set("ShuffledCardsetsExclude", arrayExclude);
-		} else {
-			array.push($(event.target).data('id'));
-		}
-		Session.set("ShuffledCardsets", array);
-	},
-	"click .removeShuffleCardset": function (event) {
-		let array = Session.get("ShuffledCardsets");
-		let arrayExclude = Session.get("ShuffledCardsetsExclude");
-		let cardset = Cardsets.findOne({_id: $(event.target).data('id')}, {shuffled: 1, cardGroups: 1});
-		if (cardset.shuffled) {
-			array = jQuery.grep(array, function (value) {
-				for (let i = 0; i < cardset.cardGroups.length; i++) {
-					if (value === cardset.cardGroups[i]) {
-						return false;
-					}
-				}
-				return true;
-			});
-			arrayExclude = jQuery.grep(arrayExclude, function (value) {
-				return value !== $(event.target).data('id');
-			});
-			Session.set("ShuffledCardsetsExclude", arrayExclude);
-		} else {
-			array = jQuery.grep(array, function (value) {
-				return value !== $(event.target).data('id');
-			});
-			for (let i = 0; i < Session.get("ShuffledCardsetsExclude").length; i++) {
-				cardset = Cardsets.findOne({_id: Session.get("ShuffledCardsetsExclude")[i]}, {cardGroups: 1});
-				let brokenHeart = true;
-				for (let k = 0; k < cardset.cardGroups.length; k++) {
-					if (array.includes(cardset.cardGroups[k])) {
-						brokenHeart = false;
-					}
-				}
-				if (brokenHeart) {
-					arrayExclude.splice(i, 1);
-				}
-			}
-			Session.set("ShuffledCardsetsExclude", arrayExclude);
-		}
-		Session.set("ShuffledCardsets", array);
-	},
-	"click .learnLeitner": function (event) {
-		Session.set("workloadFullscreenMode", true);
-		Router.go('box', {
-			_id: $(event.target).data('id')
-		});
-	},
-	"click .learnWozniak": function (event) {
-		Session.set("workloadFullscreenMode", true);
-		Router.go('box', {
-			_id: $(event.target).data('id')
-		});
-	},
-	"click .learnSelect": function (event) {
-		Session.set("activeCardset", $(event.target).data('id'));
-	},
-	'click .filterAuthor': function (event) {
-		filterAuthor(event);
-	},
-	'click .filterCardType': function (event) {
-		filterCardType(event);
-	},
-	'click .filterCollege': function (event) {
-		filterCollege(event);
-	},
-	'click .filterCourse': function (event) {
-		filterCourse(event);
-	},
-	'click .filterLearningPhase': function (event) {
-		filterLearnphase(event);
-	},
-	'click .filterModule': function (event) {
-		filterModule(event);
-	},
-	'click .filterCheckbox': function (event) {
-		Session.set('poolFilter', [$(event.target).data('id')]);
-		filterCheckbox();
-	},
-	'click .showLicense': function (event) {
-		Session.set('selectedCardset', $(event.target).data('id'));
-	},
-	'click .poolText ': function (event) {
-		Session.set('selectedCardset', $(event.target).data('id'));
-	}
-});
-
-Template.cardsetRow.helpers({
-	inShuffleSelection: function (cardset_id) {
-		if (Session.get("ShuffledCardsets").includes(cardset_id) || Session.get("ShuffledCardsetsExclude").includes(cardset_id)) {
-			return true;
-		}
-	},
-	getLink: function (cardset_id) {
-		return ActiveRoute.name('shuffle') ? "#" : ("/cardset/" + cardset_id);
-	},
-	getLearnphaseStatus: function () {
-		if (this.learningActive) {
-			return TAPi18n.__('set-list.activeLearnphase');
-		} else {
-			return TAPi18n.__('set-list.inactiveLearnphase');
-		}
-	},
-	getWorkloadType: function () {
-		let leitner = getLeitnerCount(this);
-		let wozniak = getWozniakCount(this);
-		if (leitner !== 0 && wozniak === 0) {
-			return "learnLeitner";
-		} else if (leitner === 0 && wozniak !== 0) {
-			return "learnWozniak";
-		} else if (leitner !== 0 && wozniak !== 0) {
-			return "learnSelect";
-		} else {
-			return "";
-		}
-	},
-	gotWorkloadForBothTypes: function () {
-		let leitner = getLeitnerCount(this);
-		let wozniak = getWozniakCount(this);
-		return leitner !== 0 && wozniak !== 0;
-	},
-	getWorkload: function () {
-		let count = getLeitnerCount(this) + getWozniakCount(this);
-		switch (count) {
-			case 0:
-				return TAPi18n.__('set-list.noCardsToLearn');
-			case 1:
-				return TAPi18n.__('set-list.cardsToLearn');
-			default:
-				return count + TAPi18n.__('set-list.cardsToLearnPlural');
-		}
-	},
-	getLearningMode: function () {
-		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		actualDate.setHours(0, 0, 0, 0);
-		let count = 0;
-		if (Leitner.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
-			count += 1;
-		}
-		if (Wozniak.find({
-				cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
-					$lte: actualDate
-				}
-			}).count()) {
-			count += 2;
-		}
-		switch (count) {
-			case 0:
-				return TAPi18n.__('set-list.none');
-			case 1:
-				return TAPi18n.__('set-list.leitner');
-			case 2:
-				return TAPi18n.__('set-list.wozniak');
-			case 3:
-				return TAPi18n.__('set-list.both');
-		}
-	},
-	gotDescription: function (text) {
-		if (text !== "" && text !== undefined) {
-			return true;
-		}
-	},
-	getCardTypeName: function () {
-		return getCardTypeName(this.cardType);
-	}
-});
-
-/*
- * ############################################################################
  * shuffle
  * ############################################################################
  */
@@ -346,7 +139,9 @@ Template.shuffle.helpers({
 				description: 1,
 				quantity: 1,
 				cardType: 1,
-				difficulty: 1
+				difficulty: 1,
+				kind: 1,
+				owner: 1
 			},
 			sort: {name: 1}
 		});
