@@ -20,7 +20,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         {{#if isActiveRoute regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton">
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
                 <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                    data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
                     {{getWorkload}}
@@ -34,12 +34,12 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton">
+                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
                   regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton"
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton {{getCardBackground this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 <a href="#" class="authorProfile" data-id="{{this.owner}}">
                     {{getAuthorName this.owner}}
