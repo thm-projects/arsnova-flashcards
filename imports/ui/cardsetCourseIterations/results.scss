@@ -1,0 +1,129 @@
+.resultItem {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: $margin_bottom_item !important;
+  @media(min-width: 768px) {
+    margin-bottom: $margin_bottom_item !important;
+  }
+}
+
+.resultItem .card {
+  background-color: $color_item_background !important;
+  color: $color_item_text !important;
+}
+
+.resultItem table {
+  background-color: $color_item_background !important;
+}
+
+.resultItemHeader {
+  color: $color_item_text;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @media(min-width: 768px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+.resultItemHeaderRightArea {
+  font-size: 16px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  @media(min-width: 768px) {
+    padding-top: 12px;
+    padding-bottom: 13px;
+    padding-left: calc(75% + 15px);
+    padding-right: 15px;
+  }
+  background-color: $color_item_background !important;
+}
+
+.resultItemHeaderLeftArea a {
+  color: $color_global_link !important;
+  padding: 0;
+}
+
+.resultItemHeaderRightArea i {
+  color: $color_item_icon !important;
+}
+
+.resultTableContent {
+  margin-top: 15px;
+  padding: 0;
+}
+
+.resultTableContent table {
+  margin: 0;
+}
+
+.resultFree {
+  background-color: $color_free_btn;
+}
+
+.resultPro {
+  background-color: $color_thm_orange;
+}
+
+.resultEdu {
+  background-color: $color_edu_btn;
+}
+
+.resultPersonal {
+  background-color: $color_thm_red;
+}
+
+.resultDescription {
+  color: $color_item_description_text;
+  background-color: $color_item_description_background;
+  margin: 15px 0 0;
+  padding: 15px;
+}
+
+.resultDescription a {
+  color: $color_global_link !important;
+}
+
+.resultNavigationElement {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.resultName, .authorProfile {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.resultName {
+  padding-right: 30px !important;
+}
+
+.resultBadge {
+  position: absolute;
+  float: right;
+  right: 10px;
+  bottom: 5px;
+  @media(min-width: 768px) {
+    bottom: 15px;
+  }
+}
+
+.resultsHeader {
+  background-color: $color_item_background !important;
+  color: $color_item_text !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.shuffleButton {
+  top: 3px;
+  margin-left: 20px;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}

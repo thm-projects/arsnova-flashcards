@@ -11,7 +11,7 @@ import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");
 
-export let items_increment = 9;
+export let items_increment = 7;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');
@@ -97,7 +97,13 @@ export function checkRemainingCards() {
 	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
 		query._id = {$in: Session.get('cardsetIdFilter')};
 	}
-	if (Cardsets.find(query).count() > Session.get("itemsLimit")) {
+	let count;
+	if (isCourseIterationRoute()) {
+		count = CourseIterations.find(query).count();
+	} else {
+		count = Cardsets.find(query).count();
+	}
+	if (count > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
 	} else {

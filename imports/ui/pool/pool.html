@@ -15,145 +15,14 @@
 
 <template name="category">
     {{> filterNavigation}}
-    <div class="responsive-utilities-test visible-on">
-
-        <span class="{{#unless
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} hidden-xs poolHeaderBottom">{{_
-                "set-list.topic"}}
-        </span>
-        <span class="{{#unless
-                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} hidden-xs poolHeaderBottom">{{_
-                "cardType"}}
-        </span>
-        <span class="{{#unless
-                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} hidden-xs poolHeaderBottom">{{_
-                "set-list.author"}}
-        </span>
-        {{#unless singleUniversity}}
-            <span class="col-sm-2 hidden-xs poolHeaderBottom poolHeaderCollege">{{_
-                    "set-list.college"}}
-            </span>
-        {{/unless}}
-        <span class="{{#if
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-2{{/if}} hidden-xs poolHeaderBottom poolHeaderCourse">{{_
-                "set-list.course"}}
-        </span>
-        <span class="col-md-1 hidden-xs hidden-sm poolHeaderBottom">{{_
-                "set-list.module"}}
-        </span>
-        <span class="col-sm-1 col-md-1 hidden-xs poolHeaderBottom text-center">{{_
-                "set-list.availability"}}
-        </span>
-    </div>
     {{#if getDecks.count}}
         {{#each getDecks}}
-            <div class="col-xs-12 panel panel-default {{getCardBackground this.difficulty this.cardType
-                                                                          1}} cardsetInfo responsive-utilities-test visible-on">
-                {{> poolCardsetRow extendContext 'index' @index}}
-            </div>
+                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
         {{/each}}
         {{> infiniteScroll}}
     {{else}}
         {{> poolCardsetEmpty}}
     {{/if}}
-</template>
-
-<template name="poolCardsetRow">
-    <div class="cardsetName">
-        <div class="tip-content">{{#if gotDescription description}}{{#markdown}}{{getMaximumText
-                description}}{{/markdown}}{{else}}{{_
-                "set-list.noDescription"}}{{/if}}</div>
-        {{#if this.learningActive}}
-            {{#if isProfileCompleted this._id}}
-                {{#if isAlreadyLearning}}
-                    <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-                       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-                        {{>poolTitleContent content=this}}
-                    </a>
-                {{else}}
-                    <a href="#" class="panelUnitBorder field-tip"
-                       title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-                       data-toggle="modal" data-target="#enterActiveLearnphaseModal">
-                        {{>poolTitleContent content=this}}
-                    </a>
-                {{/if}}
-            {{else}}
-                <a href="#" class="panelUnitBorder field-tip"
-                   title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})"
-                   data-toggle="modal" data-target="#completeProfileModal">
-                    {{>poolTitleContent content=this}}
-                </a>
-            {{/if}}
-        {{else}}
-            <a href="/cardset/{{_id}}" class="panelUnitBorder field-tip"
-               title="{{_ "set-list.topic"}}: {{this.name}} ({{_ "pool.quantity"}}: {{countCards this._id}})">
-                {{>poolTitleContent content=this}}
-            </a>
-        {{/if}}
-    </div>
-    <a href="#" class="filterCardType" title="Filter {{_ "cardType"}}: {{getCardTypeName this.cardType}}">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.cardType}}">{{_ "cardType"}}
-            :</span>
-        <span class="col-xs-7 {{#unless
-                singleUniversity}}col-sm-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolCardType"
-              data-id="{{this.cardType}}">{{getCardTypeName this.cardType}}</span>
-    </a>
-    <a href="#" class="filterAuthor" title="Filter {{_ "set-list.author"}}: {{getAuthorName this.owner}}">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.owner}}">{{_ "set-list.author"}}
-            :</span>
-        <span class="col-xs-7 {{#unless
-                singleUniversity}}col-sm-2 col-md-2{{else}}col-sm-2 col-md-2{{/unless}} poolContent poolText panelUnit poolAuthor"
-              data-id="{{this.owner}}">{{getAuthorName
-                this.owner}}</span>
-    </a>
-    {{#unless singleUniversity}}
-        <a href="#" class="filterCollege"
-           title="Filter {{_ "set-list.college"}}: {{#if this.moduleActive}}{{this.college}}{{else}}{{_
-                   "set-list.noCollege"}}{{/if}}">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit"
-              data-id="{{this.college}}">{{_ "set-list.college"}}:</span>
-            <span class="col-xs-7 col-sm-2 poolContent poolText panelUnit poolCollege"
-                  data-id="{{this.college}}">{{#if this.moduleActive}}{{this.college}}{{else}}{{_
-                    "set-list.noCollege"}}{{/if}}</span>
-        </a>
-    {{/unless}}
-    <a href="#" class="filterCourse"
-       title="Filter {{_ "set-list.course"}}: {{#if this.moduleActive}}{{this.course}}{{else}}{{_
-               "set-list.noCourse"}}{{/if}}">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.course}}">{{_
-                "set-list.course"}}:</span>
-        <span class="col-xs-7 {{#if
-                singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-2{{/if}} poolContent poolText panelUnit poolCourse"
-              data-id="{{this.course}}">{{#if this.moduleActive}}{{this.course}}{{else}}{{_
-                "set-list.noCourse"}}{{/if}}</span>
-    </a>
-    <a href="#" class="{{#if this.moduleActive}}filterModule{{else}}filterNoModule{{/if}}"
-       title="Filter {{_ "set-list.module"}}: {{#if this.moduleActive}}{{this.module}}{{else}}{{_
-               "set-list.noModuleLong"}}{{/if}}">
-        <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{this.module}}">{{_
-                "set-list.module"}}:</span>
-        <span class="col-xs-7 col-md-1 hidden-sm poolContent poolText panelUnit poolModule"
-              data-id="{{this.module}}">{{#if this.moduleActive}}{{this.moduleToken}}{{else}}{{_
-                "set-list.noModuleShort"}}{{/if}}</span>
-    </a>
-    <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-            <span class="cell col-sm-1 hidden-xs poolText panelUnit licenseInfoCreate panelUnitDescription panelUnitLicense panelIconColumn"
-                  data-id="{{this.kind}}">
-                {{{getKind this.kind}}}
-            </span>
-    </a>
-    <a href="#" class="filterCheckbox" title="Filter {{_ "set-list.availability"}}: {{this.kind}}">
-        <span class="col-xs-12 visible-xs poolLabel poolText panelAvailability"
-              data-id="{{this.kind}}">
-            <span class="col-xs-5 visible-xs poolLabel panelUnit"
-                  data-id="{{this.kind}}">{{_
-                    "set-list.availability"}}:</span>
-            <span class="kind-label col-xs-7 visible-xs licenseInfo panelUnit panelUnitKind info_license_mobile"
-                  data-id="{{this.kind}}">
-                {{{getKind this.kind}}}
-            </span>
-        </span>
-    </a>
 </template>
 
 <template name="enterActiveLearnphaseModal">
@@ -186,28 +55,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-</template>
-
-<template name="poolTitleContent">
-    <span class="col-xs-5 visible-xs poolLabel panelUnit" data-id="{{content._id}}">{{_
-            "set-list.topicMobile"}}
-        :</span>
-    <span id="cardsetLink{{content.index}}" class="cell col-xs-7 cardsetName {{#unless
-            singleUniversity}}col-sm-3 col-md-2{{else}}col-sm-4{{/unless}} poolText panelUnit"
-          data-id="{{content._id}}">
-                <span class="cell col-xs-8 {{#unless
-                        singleUniversity}}col-sm-9{{else}}col-sm-10{{/unless}} topicName" data-id="{{content._id}}">
-                    {{#if content.learningActive}}
-                        <span class="label label-success" aria-label="active learnphase label"
-                              data-id="{{content._id}}">{{_
-                                "set-list.activeLearnphase"}}</span>
-                    {{/if}}
-                    {{content.name}}
-                </span>
-                <span class="cell badge cardsetBadge" data-id="{{content._id}}">
-                    {{countCards content._id}}
-                </span>
-            </span>
 </template>
 
 <template name="poolCardsetEmpty">

@@ -31,7 +31,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen card type/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.poolCardType', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -51,7 +51,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen author$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.poolAuthor', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -71,7 +71,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen college$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.poolCollege', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -91,7 +91,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen course$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.poolCourse', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -111,7 +111,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list sorted by the choosen module$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.poolModule', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -127,7 +127,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list filtered by the unselected free license group$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.pool-edu, .pool-pro', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -143,7 +143,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list filtered by the unselected edu license group$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.pool-free, .pool-pro', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 
 	/**
@@ -159,7 +159,7 @@ module.exports = function () {
 
 	this.Then(/^he should see the cardset list filtered by the unselected pro license group$/, function () {
 		let cardsetListFilteredWord = navigation.getContent('.pool-free, .pool-edu', 1);
-		navigation.compareContent('.topicName', cardsetListFilteredWord, 1);
+		navigation.compareContent('.resultName', cardsetListFilteredWord, 1);
 	});
 	this.Then(/^they log out$/, function () {
 		navigation.logout();

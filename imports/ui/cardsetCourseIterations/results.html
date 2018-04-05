@@ -1,0 +1,134 @@
+<template name="cardsetCourseIterationResultRow">
+    {{#if firstItem this.index}}
+        {{#if isActiveRoute regex="learn"}}
+            <div class="hidden-xs col-sm-2 resultsHeader">
+                <strong>{{_ "set-list.workload"}}</strong>
+            </div>
+        {{/if}}
+        <div class="hidden-xs {{#if isActiveRoute
+                                    regex="learn"}}col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} resultsHeader">
+            <strong>{{_ "set-list.topic"}}</strong>
+        </div>
+        {{#unless isActiveRoute regex="learn"}}
+            <div class="hidden-xs col-sm-3 resultsHeader">
+                <strong>{{_ "set-list.author"}}</strong>
+            </div>
+        {{/unless}}
+        <div class="hidden-xs col-sm-3 resultsHeader">
+            <strong>{{_ "set-list.category"}}</strong>
+        </div>
+    {{/if}}
+    <div class="resultItem col-xs-12">
+        {{#if isActiveRoute regex="learn"}}
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
+                <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+                   data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
+                    {{getWorkload}}
+                </a>
+                {{#if this.learningActive}}
+                    <span class="label label-success labelLearning"
+                          aria-label="active learnphase label" data-id="true">
+                        {{getLearnphaseStatus}}
+                    </span>
+                {{/if}}
+            </div>
+        {{/if}}
+        <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
+                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
+            {{> poolTitleContent}}
+        </div>
+        {{#unless isActiveRoute
+                  regex="learn"}}
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton {{getCardBackground this.difficulty this.cardType 1}}"
+                 data-id="{{this.owner}}">
+                <a href="#" class="authorProfile col-xs-12" data-id="{{this.owner}}">
+                    {{getAuthorName this.owner}}
+                </a>
+            </div>
+        {{/unless}}
+        <div class="resultItemHeader align-middle resultItemHeaderRightArea btn-default btn-raised collapseButton">
+            {{{getKind this.kind}}}
+            {{#if isActiveRoute regex="shuffle"}}
+                {{#if inShuffleSelection this._id}}
+                    <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
+                       data-id="{{this._id}}">
+                        <i class="fa fa-minus" data-id="{{this._id}}"></i>
+                    </a>
+                {{else}}
+                    <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
+                       data-id="{{this._id}}">
+                        <i class="fa fa-plus" data-id="{{this._id}}"></i>
+                    </a>
+                {{/if}}
+            {{/if}}
+            {{#if isActiveRoute regex="course"}}
+                <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
+                   title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
+                   data-target="#underDevelopmentModal">
+                    <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
+                </a>
+                <a class="resultNavigationElement deleteCourseIteration" {{disableIfOffline}}
+                   title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                   data-target="#confirmDeleteModal"
+                   data-id="{{this._id}}">
+                    <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
+                </a>
+            {{/if}}
+            {{#if isActiveRoute regex="learn"}}
+                <a class="resultNavigationElement" href="progress/{{this._id}}/{{currentUser._id}}">
+                    <i class="glyphicon glyphicon glyphicon-stats"></i>
+                </a>
+                <a class="resultNavigationElement deleteLearned" {{disableIfOffline}}
+                   title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
+                   data-id="{{this._id}}">
+                    <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
+                </a>
+            {{/if}}
+            <a class="collapseCardsetInfoButton pull-right" data-toggle="collapse" href="#collapseCardsetInfo{{this.index}}">
+                <i class="glyphicon glyphicon-collapse-down pull-right collapseCardsetInfoIcon"></i>
+            </a>
+        </div>
+        <div class="collapse" id="collapseCardsetInfo{{this.index}}">
+            <div class="card card-block">
+                <div class="col-xs-12">
+                    {{#if this.description}}
+                        <div class="resultDescription">
+                            {{#mathjax}}{{this.description}}{{/mathjax}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="hidden-xs resultTableContent col-sm-6">
+                    <table class="table table-sm infoBoxTable">
+                        <tbody>
+                        {{> cardsetInfoBoxContentOne}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="hidden-xs resultTableContent col-sm-6">
+                    <table class="table table-sm infoBoxTable">
+                        <tbody>
+                        {{> cardsetInfoBoxContentTwo}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="visible-xs col-xs-12 resultTableContent">
+                    <table class="table table-sm infoBoxTable">
+                        <tbody>
+                        {{> cardsetInfoBoxContentOne}}
+                        {{> cardsetInfoBoxContentTwo}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="poolTitleContent">
+    <a href="#" id="cardsetLink{{this.index}}" class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
+        {{this.name}}
+    </a>
+    <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
+        {{countCards this._id}}
+    </span>
+</template>
