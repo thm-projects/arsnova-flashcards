@@ -5,7 +5,7 @@
                 <strong>{{_ "set-list.workload"}}</strong>
             </div>
         {{/if}}
-            <div class="hidden-xs {{#if isActiveRoute regex="learn"}}col-sm-7{{else}}col-xs-7 {{#if isActiveRoute regex="shuffle"}}col-sm-5 col-md-6{{else}}col-sm-6{{/if}}{{/if}} resultsHeader">
+            <div class="hidden-xs {{#if isActiveRoute regex="learn"}}col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} resultsHeader">
                 <strong>{{_ "set-list.topic"}}</strong>
             </div>
         {{#unless isActiveRoute regex="learn"}}
@@ -13,7 +13,7 @@
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
         {{/unless}}
-            <div class="hidden-xs {{#if isActiveRoute regex="shuffle"}}col-sm-4{{else}}col-sm-3{{/if}} col-md-3 resultsHeader">
+            <div class="hidden-xs col-sm-3 resultsHeader">
                 <strong>{{_ "set-list.category"}}</strong>
             </div>
     {{/if}}
@@ -33,8 +33,7 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                               regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 {{#if isActiveRoute
-                                                                                                      regex="shuffle"}}col-sm-5 col-md-6{{else}}col-sm-6{{/if}}{{/if}}  collapseButton">
+                                               regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
@@ -51,12 +50,12 @@
                 {{#if inShuffleSelection this._id}}
                     <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
                        data-id="{{this._id}}">
-                        <i class="fa fa-minus" data-id="{{this._id}}"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                        <i class="fa fa-minus" data-id="{{this._id}}"></i>
                     </a>
                 {{else}}
                     <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
                        data-id="{{this._id}}">
-                        <i class="fa fa-plus" data-id="{{this._id}}"></i> {{_ "admin.cardset.addToWordcloud"}}
+                        <i class="fa fa-plus" data-id="{{this._id}}"></i>
                     </a>
                 {{/if}}
             {{/if}}

@@ -91,7 +91,7 @@
   text-overflow: ellipsis;
 }
 
-.resultBadge, .shuffleButton {
+.resultBadge {
   position: absolute;
   float: right;
   right: 10px;
@@ -101,10 +101,6 @@
   }
 }
 
-.shuffleButton {
-  right: 55px;
-}
-
 .resultsHeader {
   background-color: $color_thm_gray !important;
   color: white !important;
@@ -112,4 +108,11 @@
   padding-bottom: 5px;
   margin-bottom: 15px;
   font-size: 12px;
+}
+
+.shuffleButton {
+  top: 3px;
+  margin-left: 20px;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
 }
