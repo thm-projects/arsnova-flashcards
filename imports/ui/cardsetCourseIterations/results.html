@@ -91,9 +91,11 @@
         <div class="collapse" id="collapseCardsetInfo{{this.index}}">
             <div class="card card-block">
                 <div class="col-xs-12">
-                    <div class="resultDescription">
-                        {{#mathjax}}{{this.description}}{{/mathjax}}
-                    </div>
+                    {{#if this.description}}
+                        <div class="resultDescription">
+                            {{#mathjax}}{{this.description}}{{/mathjax}}
+                        </div>
+                    {{/if}}
                 </div>
                 <div class="hidden-xs resultTableContent col-sm-6">
                     <table class="table table-sm infoBoxTable">
