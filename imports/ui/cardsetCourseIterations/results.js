@@ -125,6 +125,13 @@ Template.cardsetCourseIterationResultRow.events({
 		Router.go('cardsetdetailsid', {
 			_id: $(event.target).data('id')
 		});
+	},
+	'click .collapseCardsetInfoButton': function (event) {
+		if ($(event.target).hasClass('glyphicon-collapse-up')) {
+			$(event.target).addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
+		} else {
+			$(event.target).addClass('glyphicon-collapse-up').removeClass('glyphicon-collapse-down');
+		}
 	}
 });
 
