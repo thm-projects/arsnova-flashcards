@@ -22,10 +22,15 @@
   font-size: 16px;
   padding-top: 2px;
   padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
   @media(min-width: 768px) {
     padding-top: 12px;
     padding-bottom: 13px;
+    padding-left: calc(75% + 15px);
+    padding-right: 15px;
   }
+  background-color: $color_thm_gray !important;
 }
 
 .resultItemHeaderLeftArea {
@@ -35,10 +40,6 @@
 .resultItemHeaderLeftArea a {
   color: $color_global_link !important;
   padding: 0;
-}
-
-.resultItemHeaderRightArea {
-  background-color: $color_thm_gray !important;
 }
 
 .resultItemHeaderRightArea i {

@@ -45,8 +45,7 @@
                 </a>
             </div>
         {{/unless}}
-        <div class="resultItemHeader align-middle resultItemHeaderRightArea col-xs-12 {{#if isActiveRoute
-                                                          regex="shuffle"}}col-sm-4{{else}}col-sm-3{{/if}} col-md-3 btn-default btn-raised collapseButton">
+        <div class="resultItemHeader align-middle resultItemHeaderRightArea btn-default btn-raised collapseButton">
             {{{getKind this.kind}}}
             {{#if isActiveRoute regex="shuffle"}}
                 {{#if inShuffleSelection this._id}}
