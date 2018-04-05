@@ -7,6 +7,15 @@
   }
 }
 
+.resultItem .card {
+  background-color: $color_thm_gray !important;
+  color: white !important;
+}
+
+.resultItem table {
+  background-color: $color_thm_gray !important;
+}
+
 .resultItemHeader {
   color: white;
   font-size: 12px;
@@ -71,12 +80,10 @@
 }
 
 .resultDescription {
-  color: white;
+  color: black;
+  background-color: white;
+  margin: 15px 0;
   padding: 15px;
-}
-
-.resultDescription p {
-  margin: 0;
 }
 
 .resultNavigationElement {
