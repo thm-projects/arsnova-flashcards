@@ -83,6 +83,10 @@
   padding: 15px;
 }
 
+.resultDescription a {
+  color: $color_global_link !important;
+}
+
 .resultNavigationElement {
   margin-left: 10px;
   cursor: pointer;
