@@ -92,11 +92,14 @@
   cursor: pointer;
 }
 
-.resultName {
-  padding-right: 30px !important;
+.resultName, .authorProfile {
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
+}
+
+.resultName {
+  padding-right: 30px !important;
 }
 
 .resultBadge {
