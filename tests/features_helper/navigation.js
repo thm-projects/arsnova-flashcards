@@ -7,11 +7,7 @@ function agreeCookies() {
 }
 
 function setResolution() {
-	browser.setViewportSize({
-		width: 1280,
-		height: 768
-	});
-	browser.windowHandleSize();
+	browser.windowHandleMaximize('current');
 }
 
 module.exports = {
@@ -49,6 +45,9 @@ module.exports = {
 	},
 	selectCardsetLink: function (number) {
 		number = number - 1;
+		if (browser.isVisible('#showMoreResults')) {
+			browser.click('#showMoreResults', global.threshold);
+		}
 		browser.waitForVisible('#cardsetLink' + number, global.threshold);
 		browser.click('#cardsetLink' + number);
 		browser.waitForExist(".carousel-inner", global.threshold);

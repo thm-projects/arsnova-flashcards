@@ -10,7 +10,7 @@ module.exports = function () {
 	});
 	this.Given(/^User is on the my cardset view$/, function () {
 		navigation.selectMyCardset();
-		oldCardsetCount = navigation.getContent('.cardsetRow', 1);
+		oldCardsetCount = navigation.getContent('.resultItem', 1);
 		navigation.contentVisible('#newCardSet');
 	});
 	this.When(/^User clicks on a cardset that he owns$/, function () {
@@ -36,7 +36,7 @@ module.exports = function () {
 		navigation.checkUrl(global.createRoute);
 	});
 	this.Then(/^he should not see the deleted cardset there$/, function () {
-		navigation.compareContent('.cardsetRow', --oldCardsetCount, 1);
+		navigation.compareContent('.resultItem', --oldCardsetCount, 1);
 		navigation.logout();
 	});
 };

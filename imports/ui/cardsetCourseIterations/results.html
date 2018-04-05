@@ -125,7 +125,7 @@
 </template>
 
 <template name="poolTitleContent">
-    <a href="#" class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
+    <a href="#" id="cardsetLink{{this.index}}" class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
         {{this.name}}
     </a>
     <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
