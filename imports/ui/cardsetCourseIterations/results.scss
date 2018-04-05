@@ -1,23 +1,23 @@
 .resultItem {
   padding-left: 0;
   padding-right: 0;
-  margin-bottom: 7px;
+  margin-bottom: $margin_bottom_item !important;
   @media(min-width: 768px) {
-    margin-bottom: 10px;
+    margin-bottom: $margin_bottom_item !important;
   }
 }
 
 .resultItem .card {
-  background-color: $color_thm_gray !important;
-  color: white !important;
+  background-color: $color_item_background !important;
+  color: $color_item_text !important;
 }
 
 .resultItem table {
-  background-color: $color_thm_gray !important;
+  background-color: $color_item_background !important;
 }
 
 .resultItemHeader {
-  color: white;
+  color: $color_item_text;
   font-size: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -39,7 +39,7 @@
     padding-left: calc(75% + 15px);
     padding-right: 15px;
   }
-  background-color: $color_thm_gray !important;
+  background-color: $color_item_background !important;
 }
 
 .resultItemHeaderLeftArea a {
@@ -48,7 +48,7 @@
 }
 
 .resultItemHeaderRightArea i {
-  color: white !important;
+  color: $color_item_icon !important;
 }
 
 .resultTableContent {
@@ -77,8 +77,8 @@
 }
 
 .resultDescription {
-  color: black;
-  background-color: white;
+  color: $color_item_description_text;
+  background-color: $color_item_description_background;
   margin: 15px 0 0;
   padding: 15px;
 }
@@ -110,8 +110,8 @@
 }
 
 .resultsHeader {
-  background-color: $color_thm_gray !important;
-  color: white !important;
+  background-color: $color_item_background !important;
+  color: $color_item_text !important;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 15px;
