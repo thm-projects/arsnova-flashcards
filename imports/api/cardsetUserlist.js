@@ -35,6 +35,8 @@ export function getAuthorName(owner) {
 		} else {
 			return author.profile.givenname + " " + author.profile.birthname;
 		}
+	} else {
+		return TAPi18n.__('admin.deletedUser');
 	}
 }
 
