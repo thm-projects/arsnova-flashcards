@@ -325,7 +325,9 @@
     {{#if moreResults}}
         <a href="#" title="{{_ "set-list.moreResults"}}">
             <div id="showMoreResults" class="showMoreResults col-xs-12 panel panel-default">
-                <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down"></span>
+                <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
+                    <span class="resultCounter">{{getCurrentResults}}</span>
+                </span>
             </div>
         </a>
     {{/if}}

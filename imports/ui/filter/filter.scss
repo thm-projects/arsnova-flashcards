@@ -143,7 +143,7 @@
 }
 
 .showMoreResults {
-  background-color: $color_background_infinite_scroll !important;
+  background-color: $color_infinite_scroll_background !important;
 }
 
 .scrollArrow {
@@ -151,5 +151,17 @@
   padding-bottom: 0px;
   font-size: 25px;
   text-align: center;
-  color: $color_icon_infinite_scroll !important;
+  color: $color_infinite_scroll_icon !important;
+}
+
+.resultCounter {
+  position: absolute;
+  float: left;
+  display: inline-block;
+  margin-top: $margin-top_infinite_scroll_text !important;
+  margin-left: 15px;
+  font-family: $default_font !important;
+  font-size: $font_size_infinite_scroll_text !important;
+  color: $color_infinite_scroll_text !important;
+  font-weight: $font_weight_infinite_scroll_text !important;
 }

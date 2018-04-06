@@ -618,6 +618,10 @@
     "sortMode0": "Zufällig",
     "sortMode1": "Alphanumerisch"
   },
+  "infinite-scroll": {
+    "remainingCardsets": "__current__ von __total__ Karteien",
+    "remainingCourses": "__current__ von __total__ Kursen"
+  },
   "card": {
     "cardType0": {
       "name": "Lernkartei",
