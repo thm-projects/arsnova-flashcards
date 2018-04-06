@@ -630,6 +630,10 @@
     "sortMode0": "Random",
     "sortMode1": "Alphanumeric"
   },
+  "infinite-scroll": {
+    "remainingCardsets": "__current__ of __total__ Cardsets",
+    "remainingCourses": "__current__ of __total__ Courses"
+  },
   "card": {
     "cardType0": {
       "name": "Flashcard",

@@ -97,20 +97,20 @@ export function checkRemainingCards() {
 	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
 		query._id = {$in: Session.get('cardsetIdFilter')};
 	}
-	let count;
+	let totalResults;
 	if (isCourseIterationRoute()) {
-		count = CourseIterations.find(query).count();
+		totalResults = CourseIterations.find(query).count();
 	} else {
-		count = Cardsets.find(query).count();
+		totalResults = Cardsets.find(query).count();
 	}
-	if (count > Session.get("itemsLimit")) {
+	if (totalResults > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
+		Session.set("totalResults", totalResults);
 		return true;
 	} else {
 		$(".showMoreResults").data("visible", false);
 		return false;
-	}
-}
+	}}
 
 export function resetInfiniteBar() {
 	Session.set("itemsLimit", items_increment);
@@ -253,39 +253,48 @@ Template.filterNavigation.events({
 		}
 	},
 	'click .filterAuthor': function (event) {
+		resetInfiniteBar();
 		filterAuthor(event);
 	},
 	'click .filterTargetAudience': function (event) {
+		resetInfiniteBar();
 		filterTargetAudience(event);
 	},
 	'click .filterCollege': function (event) {
+		resetInfiniteBar();
 		filterCollege(event);
 	},
 	'click .filterCourse': function (event) {
+		resetInfiniteBar();
 		filterCourse(event);
 	},
 	'click .filterSemester': function (event) {
+		resetInfiniteBar();
 		filterSemester(event);
 	},
 	'click .filterModule': function (event) {
+		resetInfiniteBar();
 		Session.set('poolFilterNoModule', false);
 		filterModule(event);
 	},
 	'click .filterNoModule': function () {
+		resetInfiniteBar();
 		Session.set('poolFilterNoModule', true);
 	},
 	'click .filterNoDifficulty': function () {
-		Session.set('poolFilterDifficulty', undefined);
 		resetInfiniteBar();
+		Session.set('poolFilterDifficulty', undefined);
 	},
 	'click .filterDifficulty': function (event) {
-		Session.set('poolFilterDifficulty', $(event.target).data('id'));
 		resetInfiniteBar();
+		Session.set('poolFilterDifficulty', $(event.target).data('id'));
 	},
 	'click .filterLearnphase': function () {
+		resetInfiniteBar();
 		filterLearnphase(event);
 	},
 	'change #filterCheckbox': function () {
+		resetInfiniteBar();
 		var filter = [];
 		$("#filterCheckbox input:checkbox:checked").each(function () {
 			filter.push($(this).val());
@@ -420,6 +429,13 @@ Template.filterNavigation.greeting = function () {
 Template.infiniteScroll.helpers({
 	moreResults: function () {
 		return checkRemainingCards();
+	},
+	getCurrentResults: function () {
+		if (isCourseIterationRoute()) {
+			return TAPi18n.__('infinite-scroll.remainingCourses', {current: Session.get("itemsLimit"), total: Session.get("totalResults")});
+		} else {
+			return TAPi18n.__('infinite-scroll.remainingCardsets', {current: Session.get("itemsLimit"), total: Session.get("totalResults")});
+		}
 	}
 });
 

@@ -55,7 +55,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "cardType"}}
                                     {{#if hasCardTypeFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -70,7 +70,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "courseIteration.name"}}
                                     {{#if hasCourseIterationFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -88,7 +88,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "set-list.author"}}
                                     {{#if hasAuthorFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -101,7 +101,7 @@
                                                 <a href="#" class="filterAuthor"
                                                    data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}
                                                     {{#if poolFilterAuthor this._id}}
-                                                        <span class="glyphicon glyphicon-filter"></span>
+                                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                                     {{/if}}
                                                 </a>
                                             </li>
@@ -115,7 +115,7 @@
                                        aria-haspopup="true" aria-expanded="false">
                                         {{_ "set-list.college"}}
                                         {{#if hasCollegeFilter}}
-                                            <span class="glyphicon glyphicon-filter"></span>
+                                            <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                         {{/if}}
                                     </a>
                                     <ul class="dropdown-menu">
@@ -147,7 +147,7 @@
                                    aria-haspopup="true" aria-expanded="false" id="targetAudienceBtn">
                                     {{_ "courseIteration.targetAudience"}}
                                     {{#if hasTargetAudienceFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -163,7 +163,7 @@
                                    aria-haspopup="true" aria-expanded="false" id="semesterBtn">
                                     {{_ "courseIteration.list.semester"}}
                                     {{#if hasSemesterFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -182,7 +182,7 @@
                                    aria-haspopup="true" aria-expanded="false" id="collegeBtn">
                                     {{_ "set-list.course"}}
                                     {{#if hasCourseFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -209,7 +209,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "set-list.module"}}
                                     {{#if hasModuleFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -239,7 +239,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "set-list.learnphase"}}
                                     {{#if hasLearnphaseFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -270,7 +270,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "difficulty"}}
                                     {{#if hasDifficultyFilter}}
-                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -325,7 +325,9 @@
     {{#if moreResults}}
         <a href="#" title="{{_ "set-list.moreResults"}}">
             <div id="showMoreResults" class="showMoreResults col-xs-12 panel panel-default">
-                <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down"></span>
+                <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
+                    <span class="resultCounter">{{getCurrentResults}}</span>
+                </span>
             </div>
         </a>
     {{/if}}
