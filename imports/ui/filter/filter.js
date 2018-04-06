@@ -91,19 +91,19 @@ export function prepareQuery() {
 	Session.set('filterQuery', query);
 }
 
+let totalResults;
 export function checkRemainingCards() {
 	prepareQuery();
 	let query = Session.get('filterQuery');
 	if (isLearnRoute() && Session.get('cardsetIdFilter') !== undefined) {
 		query._id = {$in: Session.get('cardsetIdFilter')};
 	}
-	let count;
 	if (isCourseIterationRoute()) {
-		count = CourseIterations.find(query).count();
+		totalResults = CourseIterations.find(query).count();
 	} else {
-		count = Cardsets.find(query).count();
+		totalResults = Cardsets.find(query).count();
 	}
-	if (count > Session.get("itemsLimit")) {
+	if (totalResults > Session.get("itemsLimit")) {
 		$(".showMoreResults").data("visible", true);
 		return true;
 	} else {
@@ -420,6 +420,13 @@ Template.filterNavigation.greeting = function () {
 Template.infiniteScroll.helpers({
 	moreResults: function () {
 		return checkRemainingCards();
+	},
+	getCurrentResults: function () {
+		if (isCourseIterationRoute()) {
+			return TAPi18n.__('infinite-scroll.remainingCourses', {current: Session.get("itemsLimit"), total: totalResults});
+		} else {
+			return TAPi18n.__('infinite-scroll.remainingCardsets', {current: Session.get("itemsLimit"), total: totalResults});
+		}
 	}
 });
 

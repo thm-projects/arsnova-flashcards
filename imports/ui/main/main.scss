@@ -62,8 +62,12 @@ $color_item_selection_border: $color_item_separator;
 
 //item lists
 $color_item_separator_border_bottom: $color_thm_gray;
-$color_background_infinite_scroll: $color_thm_gray;
-$color_icon_infinite_scroll: $color_thm_orange;
+$color_infinite_scroll_background: $color_thm_gray;
+$color_infinite_scroll_icon: $color_thm_orange;
+$color_infinite_scroll_text: white;
+$margin-top_infinite_scroll_text: 5px;
+$font_size_infinite_scroll_text: 14px;
+$font_weight_infinite_scroll_text: bold;
 $color_item_background: $color_thm_gray;
 $color_item_icon: white;
 $color_item_description_background: white;
