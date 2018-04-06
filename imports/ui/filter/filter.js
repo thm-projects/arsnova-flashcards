@@ -253,39 +253,48 @@ Template.filterNavigation.events({
 		}
 	},
 	'click .filterAuthor': function (event) {
+		resetInfiniteBar();
 		filterAuthor(event);
 	},
 	'click .filterTargetAudience': function (event) {
+		resetInfiniteBar();
 		filterTargetAudience(event);
 	},
 	'click .filterCollege': function (event) {
+		resetInfiniteBar();
 		filterCollege(event);
 	},
 	'click .filterCourse': function (event) {
+		resetInfiniteBar();
 		filterCourse(event);
 	},
 	'click .filterSemester': function (event) {
+		resetInfiniteBar();
 		filterSemester(event);
 	},
 	'click .filterModule': function (event) {
+		resetInfiniteBar();
 		Session.set('poolFilterNoModule', false);
 		filterModule(event);
 	},
 	'click .filterNoModule': function () {
+		resetInfiniteBar();
 		Session.set('poolFilterNoModule', true);
 	},
 	'click .filterNoDifficulty': function () {
-		Session.set('poolFilterDifficulty', undefined);
 		resetInfiniteBar();
+		Session.set('poolFilterDifficulty', undefined);
 	},
 	'click .filterDifficulty': function (event) {
-		Session.set('poolFilterDifficulty', $(event.target).data('id'));
 		resetInfiniteBar();
+		Session.set('poolFilterDifficulty', $(event.target).data('id'));
 	},
 	'click .filterLearnphase': function () {
+		resetInfiniteBar();
 		filterLearnphase(event);
 	},
 	'change #filterCheckbox': function () {
+		resetInfiniteBar();
 		var filter = [];
 		$("#filterCheckbox input:checkbox:checked").each(function () {
 			filter.push($(this).val());
