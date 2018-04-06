@@ -11,7 +11,7 @@ import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");
 
-export let items_increment = 7;
+export let items_increment = 6;
 
 Session.setDefault('poolSortTopic', {name: 1});
 Session.setDefault('poolFilterAuthor');

@@ -752,7 +752,7 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Lernziele und Lerninhalte"
+        "description": "Angestrebte Kompetenzen und Übersicht zu den Lerninhalten"
       }
     },
     "targetAudience1": {
