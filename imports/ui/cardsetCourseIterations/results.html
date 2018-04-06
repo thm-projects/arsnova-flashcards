@@ -20,7 +20,8 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         {{#if isActiveRoute regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground
+                    this.difficulty this.cardType 1}}">
                 <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                    data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
                     {{getWorkload}}
@@ -34,12 +35,14 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton {{getCardBackground this.difficulty this.cardType 1}}">
+                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}col-xs-7 col-sm-6{{/if}} collapseButton {{getCardBackground
+                this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
                   regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton {{getCardBackground this.difficulty this.cardType 1}}"
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton {{getCardBackground
+                    this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 <a href="#" class="authorProfile col-xs-12" data-id="{{this.owner}}">
                     {{getAuthorName this.owner}}
@@ -71,7 +74,9 @@
                    title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
                    data-target="#confirmDeleteModal"
                    data-id="{{this._id}}">
-                    <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
+                    <i class="{{#if isActiveRoute
+                                              regex="course"}}fa fa-trash{{else}}glyphicon glyphicon-log-out{{/if}}"
+                       data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
             {{#if isActiveRoute regex="learn"}}
@@ -84,7 +89,8 @@
                     <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
-            <a class="collapseCardsetInfoButton pull-right" data-toggle="collapse" href="#collapseCardsetInfo{{this.index}}">
+            <a class="collapseCardsetInfoButton pull-right" data-toggle="collapse"
+               href="#collapseCardsetInfo{{this.index}}">
                 <i class="glyphicon glyphicon-collapse-down pull-right collapseCardsetInfoIcon"></i>
             </a>
         </div>
@@ -125,7 +131,8 @@
 </template>
 
 <template name="poolTitleContent">
-    <a href="#" id="cardsetLink{{this.index}}" class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
+    <a href="#" id="cardsetLink{{this.index}}"
+       class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
         {{this.name}}
     </a>
     <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
