@@ -276,9 +276,10 @@ export function image(e) {
 		chunk = selected.text;
 	}
 
-	link = prompt(e.__localize('Insert Image Hyperlink'), 'http://');
+	link = prompt(e.__localize('Füge den Link zum Bild ein. Die Verbindung muss sicher sein, d. h., der Link beginnt mit' +
+		' https://... '), 'https://');
 
-	if (link !== null && link !== '' && link !== 'http://' && link.substr(0, 4) === 'http') {
+	if (link !== null && link !== '' && link !== 'https://' && link.substr(0, 5) === 'https') {
 		var sanitizedLink = $('<div>' + link + '</div>').text();
 
 		// transform selection and set the cursor into chunked text
