@@ -1,8 +1,7 @@
 import "./cardTypesList.html";
 import {Template} from "meteor/templating";
 import {
-	cardTypesOrder, getCardTypeName,
-	gotNotesForDifficultyLevel
+	cardTypesOrder, getCardTypeName
 } from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
 import {filterCardType, prepareQuery} from "../filter/filter.js";
@@ -22,12 +21,10 @@ Template.cardTypesList.helpers({
 		return getCardTypeName(this.cardType);
 	},
 	filterCardTypes: function () {
-		if (!gotNotesForDifficultyLevel(this.cardType)) {
-			prepareQuery();
-			let query = Session.get('filterQuery');
-			query.cardType = this.cardType;
-			return Cardsets.findOne(query);
-		}
+		prepareQuery();
+		let query = Session.get('filterQuery');
+		query.cardType = this.cardType;
+		return Cardsets.findOne(query);
 	},
 	poolFilterCardType: function (cardType) {
 		return Session.get('poolFilterCardType') === cardType;
