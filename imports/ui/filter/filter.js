@@ -6,7 +6,6 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {CourseIterations} from "../../api/courseIterations.js";
 import "./filter.html";
-import {cardTypeWithNotesForDifficultyLevel} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");
@@ -53,8 +52,6 @@ export function prepareQuery() {
 	query.kind = {$in: Session.get('poolFilter')};
 	if (Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined) {
 		query.cardType = Session.get('poolFilterCardType');
-	} else {
-		query.cardType = {$ne: Number(cardTypeWithNotesForDifficultyLevel)};
 	}
 	if (Session.get('poolFilterAuthor')) {
 		query.owner = Session.get('poolFilterAuthor');
