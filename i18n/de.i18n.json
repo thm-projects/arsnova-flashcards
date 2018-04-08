@@ -34,12 +34,12 @@
   },
   "navbar-collapse": {
     "carddecks": "Meine Karteien",
-    "learndecks": "Lernpensum",
-    "pool": "Themen",
+    "learndecks": "Mein Lernpensum",
+    "pool": "Themen-Pool",
     "course": "Kurse",
     "myprofile": "Konto",
     "billing": "Abrechnung",
-    "search": "Suche",
+    "search": "Suchen...",
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",
@@ -242,7 +242,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Lernziele und Lerninhalte",
+    "descriptionplaceholder": "Beschreibung des Themas (bei Lernkarteien: Lernziele und Lerninhalte)",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -293,7 +293,7 @@
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für die Kartei \"__name__\"",
     "module": "Modul",
-    "moduleActivated": "Gehört zu einem Modul",
+    "moduleActivated": "Gehört zu einer Lehreinheit (Modul)",
     "moduleDeactivated": "Ohne Modul",
     "module_required": "Gib den vollen Titel des Moduls an!",
     "moduleShort": "Kurzbezeichnung",
@@ -633,10 +633,10 @@
         "front": "Frage zur Überprüfung des Lernziels gemäß Level und Anforderung",
         "back": "Antwort auf die Lernzielfrage",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
-        "lecture": "Inhalt der Lerneinheit (5-7 Minuten Vortrag oder Lernpensum)"
+        "lecture": "Erläuterungen des Lerngegenstands"
       },
       "editorLabels": {
-        "subject": "Lernziel"
+        "subject": "Lernziel (kurz gefasst)"
       }
     },
     "cardType1": {
@@ -645,10 +645,10 @@
       "back": "Übersetzung",
       "placeholders": {
         "front": "Zu übersetzende Vokabel oder Phrase",
-        "back": "Übersetzung"
+        "back": "Übersetzung (Empfehlung: https://www.deepl.com)"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Thema oder Sprachsituation"
       }
     },
     "cardType2": {
@@ -662,7 +662,7 @@
         "hint": "Noch nicht verstanden | To-do-Liste"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Thema der Lehrstunde"
       }
     },
     "cardType3": {
@@ -671,10 +671,10 @@
       "back": "Definition | Beschreibung",
       "placeholders": {
         "front": "Fachbegriff",
-        "back": "Definition | Beschreibung des Fachbegriffs"
+        "back": "Definition oder Beschreibung des Fachbegriffs"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Fachgebiet"
       }
     },
     "cardType4": {
@@ -688,7 +688,7 @@
         "hint": "Quellenangabe"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Thema des Zitats"
       }
     },
     "cardType5": {
@@ -702,7 +702,7 @@
         "hint": "Begründung oder Erläuterung der Antwort"
       },
       "editorLabels": {
-        "subject": "Kompetenzziel"
+        "subject": "Zu prüfendes Kompetenzziel"
       }
     },
     "cardType6": {
@@ -711,10 +711,10 @@
       "back": "Definition | Beschreibung",
       "placeholders": {
         "front": "Befehl",
-        "back": "Definition | Beschreibung des Befehls"
+        "back": "Definition oder Beschreibung des Befehls"
       },
       "editorLabels": {
-        "subject": "Thema"
+        "subject": "Anwendungskontext des Befehls"
       }
     },
     "cardType7": {
@@ -728,7 +728,7 @@
         "hint": "Quellenangabe"
       },
       "editorLabels": {
-        "subject": "Titel"
+        "subject": "Titel des Volltextes"
       }
     }
   },
@@ -737,7 +737,8 @@
     "targetAudience": "Zielgruppe",
     "confirm-form-delete": {
       "title": "Kurs löschen",
-      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht."
+      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs
+      gelöscht. Die zum Kurs gehörenden Karteien bleiben erhalten."
     },
     "manage": "Kurs verwalten",
     "list": {
@@ -752,11 +753,11 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Neuen Kurs anlegen",
+      "new": "Neuen Kurs anlegen (Zusammenfassung mehrerer Karteien)",
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Angestrebte Kompetenzen und Übersicht zu den Lerninhalten"
+        "description": "Lernziel und Übersicht zu den Lerninhalten"
       }
     },
     "targetAudience1": {
@@ -1190,6 +1191,6 @@
   },
   "underDevelopment": {
     "title": "In Entwicklung",
-    "text": "Dieses Feature befindet sich in der Entwicklung und wird rechtzeitig zum Sommersemester 2018 verfügbar sein."
+    "text": "Dieses Feature befindet sich in der Entwicklung und wird im Laufe des Sommersemesters 2018 verfügbar sein."
   }
 }
