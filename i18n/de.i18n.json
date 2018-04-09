@@ -242,7 +242,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Beschreibung des Themas (bei Lernkarteien: Lernziele und Lerninhalte)",
+    "descriptionplaceholder": "Beschreibung der Kartei (bei Lernkarteien: Lernziele und Lerninhalte)",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -757,7 +757,8 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Lernziel und Übersicht zu den Lerninhalten"
+        "description": "Kompetenzziele des Kurses: Was soll ich nach dem Lernen aller Karten des Kurses langfristig wissen und
+        können?"
       }
     },
     "targetAudience1": {
@@ -787,10 +788,10 @@
   },
   "learningUnit": {
     "chooseIndex": "Lernkartei auswählen",
-    "chooseUnit": "Gehört zur Lerneinheit…",
-    "choose": "Lerneinheit…",
-    "none": "Gehört nicht zu einer Lerneinheit",
-    "noUnitsFound": "Es sind keine Lerneinheiten in dieser Kartei vorhanden.",
+    "chooseUnit": "Bezieht sich auf die Lernkarte...",
+    "choose": "Gehört zur Lernkartei...",
+    "none": "Gehört nicht zu einer Lernkartei",
+    "noUnitsFound": "Es sind keine Lernkarteien vorhanden.",
     "save": "Speichern",
     "cancel": "Zurück"
   },
