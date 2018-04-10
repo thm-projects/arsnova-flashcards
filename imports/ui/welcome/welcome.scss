@@ -19,39 +19,31 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
   }
   #slogan {
     display: inline-block;
+    text-align: left;
     color: $color_thm_orange !important;
     .lmargin {
       margin-left: 20px;
     }
 
     h2 {
+      padding-top: 0;
       @media (max-width: 414px) {
         font-size: 14px;
         font-weight: bold;
       }
-    }
-
-    h2 {
       @media (min-width: 415px) and (max-width: 767px) {
         font-size: 20px;
         font-weight: bold;
       }
-    }
-
-    h2 {
       @media (min-width: 768px) and (max-width: 1023px) {
         font-size: 42px;
         font-weight: bold;
       }
-    }
-
-    h2 {
       @media (min-width: 1024px) {
         font-size: 55px;
         font-weight: bold;
       }
     }
-
   }
 
   #login {
@@ -88,19 +80,19 @@ $color_fuscous_gray_approx: rgb(85, 85, 84);
     min-height: 84px;
     background-color: transparent;
   }
-}
 
-.item {
-  height: 300px;
-}
+  .item {
+    height: 300px;
+  }
 
-.item img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  .item img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 #tag-cloud-container {

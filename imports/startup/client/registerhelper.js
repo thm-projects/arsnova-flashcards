@@ -5,7 +5,6 @@ import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
-import {Showdown} from 'meteor/markdown';
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
 import {getAuthorName} from "../../api/cardsetUserlist.js";
@@ -479,23 +478,15 @@ Template.registerHelper("getMaximumText", function (text) {
 	return text;
 });
 
-const converter = new Showdown.converter({
-	simplifiedAutoLink: true,
-	strikethrough: true,
-	tables: true
-});
-
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		x = x.split("\n");
-		x = lib.parseGithubFlavoredMarkdown(x);
-		return lib.setLightBoxes(converter.makeHtml(x));
+		return lib.setLightBoxes(window.markdeep.format(x, true));
 	}
 });
 
 Template.registerHelper('mathjax', helper.getTemplate());
-MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js';
+MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js';
 MeteorMathJax.defaultConfig = {
 	config: ["TeX-AMS-MML_HTMLorMML.js"],
 	jax: ["input/TeX", "input/MathML", "output/HTML-CSS", "output/NativeMML", "output/PreviewHTML"],
