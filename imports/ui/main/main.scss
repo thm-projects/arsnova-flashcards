@@ -711,11 +711,6 @@ button:disabled {
   margin: auto;
 }
 
-.cardContent .lightbox-img img {
-  width: unset !important;
-  display: unset !important;
-}
-
 .lightbox-container {
   text-align: center;
 }
@@ -863,6 +858,7 @@ th {
 .info-tab h1 {
   font-size: $font_size_info_h1;
   margin: 0;
+  padding-top: 0;
 }
 
 .info-tab h2 {
