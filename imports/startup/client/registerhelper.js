@@ -70,7 +70,7 @@ Template.registerHelper("getNextCardTime", function () {
 });
 
 Template.registerHelper("getKind", function (kind) {
-	switch (kind) {
+	switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
 		case "free":
 			return '<span class="label label-free" data-id="free">Free</span>';
 		case "edu":
@@ -483,7 +483,7 @@ Template.registerHelper("getMaximumText", function (text) {
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		return DOMPurify.sanitize(lib.setLightBoxes(window.markdeep.format(x, true)), DOMPurifyConfig);
+		return DOMPurify.sanitize(lib.setLightBoxes(window.markdeep.format(x, true)));
 	}
 });
 

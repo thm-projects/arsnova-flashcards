@@ -31,7 +31,7 @@ Template.admin_cards.helpers({
 				"cardset_id": card.cardset_id,
 				"cardsetname": DOMPurify.sanitize(cardset.name, DOMPurifyConfig),
 				"user_id": cardset.owner,
-				"username": DOMPurify.sanitize(getAuthorName(cardset.owner, DOMPurifyConfig)),
+				"username": DOMPurify.sanitize(getAuthorName(cardset.owner), DOMPurifyConfig),
 				"userDeleted": cardset.userDeleted
 			});
 		});

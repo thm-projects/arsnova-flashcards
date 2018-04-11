@@ -7,6 +7,7 @@ import {Cardsets} from "../../../api/cardsets.js";
 import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_users.html";
 import "./admin_user.js";
+import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../../api/dompurify.js";
 
 Meteor.subscribe('allUsers');

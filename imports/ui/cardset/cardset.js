@@ -20,6 +20,8 @@ import {
 	gotPresentationMode
 } from "../../api/cardTypes";
 import {getTargetAudienceName} from "../../api/targetAudience";
+import DOMPurify from 'dompurify';
+import {DOMPurifyConfig} from "../../api/dompurify.js";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -341,7 +343,7 @@ Template.cardsetInfo.onRendered(function () {
 
 Template.cardsetInfo.helpers({
 	getKind: function () {
-		switch (this.kind) {
+		switch (DOMPurify.sanitize(this.kind, DOMPurifyConfig)) {
 			case "personal":
 				return '<span class="label label-warning">Private</span>';
 			case "free":
