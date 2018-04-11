@@ -7,7 +7,7 @@ import {Cardsets} from "../../../api/cardsets.js";
 import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_users.html";
 import "./admin_user.js";
-
+import {DOMPurifyConfig} from "../../../api/dompurify.js";
 
 Meteor.subscribe('allUsers');
 
@@ -27,7 +27,7 @@ Template.admin_users.helpers({
 		users.forEach(function (user) {
 			dateString = moment(user.createdAt).locale(getUserLanguage()).format('LL');
 			date = moment(user.createdAt).format("YYYY-MM-DD");
-			fields.push({"_id": user._id, "profilename": user.profile.name, "dateString": dateString, "date": date});
+			fields.push({"_id": user._id, "profilename": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date});
 		});
 
 		return fields;

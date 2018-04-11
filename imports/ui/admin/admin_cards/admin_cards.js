@@ -8,6 +8,8 @@ import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_cards.html";
 import "./admin_card.js";
 import {getAuthorName} from "../../../api/cardsetUserlist.js";
+import DOMPurify from 'dompurify';
+import {DOMPurifyConfig} from "../../../api/dompurify.js";
 
 /*
  * ############################################################################
@@ -24,12 +26,12 @@ Template.admin_cards.helpers({
 			var cardset = Cardsets.findOne({_id: card.cardset_id});
 			fields.push({
 				"_id": card._id,
-				"front": card.front,
-				"back": card.back,
+				"front": DOMPurify.sanitize(card.front, DOMPurifyConfig),
+				"back": DOMPurify.sanitize(card.back, DOMPurifyConfig),
 				"cardset_id": card.cardset_id,
-				"cardsetname": cardset.name,
+				"cardsetname": DOMPurify.sanitize(cardset.name, DOMPurifyConfig),
 				"user_id": cardset.owner,
-				"username": getAuthorName(cardset.owner),
+				"username": DOMPurify.sanitize(getAuthorName(cardset.owner, DOMPurifyConfig)),
 				"userDeleted": cardset.userDeleted
 			});
 		});
