@@ -7,6 +7,7 @@ import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 import {gotLearningModes} from "./cardTypes.js";
+import DOMPurify from 'dompurify';
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -571,7 +572,6 @@ Meteor.methods({
 		if (cardset.learningActive) {
 			cardType = cardset.cardType;
 		}
-
 		Cardsets.update(id, {
 			$set: {
 				name: name.trim(),

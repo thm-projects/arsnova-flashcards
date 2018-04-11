@@ -12,6 +12,7 @@ import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {getUserLanguage} from "../../startup/client/i18n";
 import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import DOMPurify from 'dompurify';
 
 Meteor.subscribe("collegesCourses");
 
@@ -481,7 +482,7 @@ Template.registerHelper("getMaximumText", function (text) {
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		return lib.setLightBoxes(window.markdeep.format(x, true));
+		return DOMPurify.sanitize(lib.setLightBoxes(window.markdeep.format(x, true)));
 	}
 });
 
