@@ -12,6 +12,8 @@ import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {getUserLanguage} from "../../startup/client/i18n";
 import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import DOMPurify from 'dompurify';
+import {DOMPurifyConfig} from "../../api/dompurify.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -68,7 +70,7 @@ Template.registerHelper("getNextCardTime", function () {
 });
 
 Template.registerHelper("getKind", function (kind) {
-	switch (kind) {
+	switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
 		case "free":
 			return '<span class="label label-free" data-id="free">Free</span>';
 		case "edu":
@@ -481,7 +483,7 @@ Template.registerHelper("getMaximumText", function (text) {
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		return lib.setLightBoxes(window.markdeep.format(x, true));
+		return DOMPurify.sanitize(lib.setLightBoxes(window.markdeep.format(x, true)));
 	}
 });
 

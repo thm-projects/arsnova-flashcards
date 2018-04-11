@@ -253,4 +253,5 @@ url@1.2.0
 webapp@1.5.0
 webapp-hashing@1.0.9
 wtfzn:bootstrap-markdown@2.8.0
+wtfzn:dompurify@0.6.1
 zimme:active-route@2.3.2
