@@ -12,10 +12,8 @@ export function getUserLanguage() {
 			let navigatorLanguage = navigator.language.substr(0, 2);
 			switch (navigatorLanguage) {
 				case "de":
-					Meteor.call("updateLanguage", "de", Meteor.userId());
 					return "de";
 				default:
-					Meteor.call("updateLanguage", "en", Meteor.userId());
 					return "en";
 			}
 		}
