@@ -18,6 +18,7 @@ import {
 	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
 	displaysLearningGoalInformation
 } from "../../api/cardTypes";
+import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 
 /*
  * ############################################################################
@@ -782,27 +783,27 @@ function saveCard(card_id, returnToCardset) {
 			gotSubject = false;
 		}
 	}
-	if ($('#subjectEditor').val().length > 150) {
+	if ($('#subjectEditor').val().length > subjectMaxLength) {
 		$('#subjectEditor .form-control').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('cardsubject_max'), "danger", 'growl-top-left');
+		Bert.alert(TAPi18n.__('cardsubject_max', {max: subjectMaxLength}), "danger", 'growl-top-left');
 	}
-	if (frontText.length > 10000) {
+	if (frontText.length > frontMaxLength) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
+		Bert.alert(TAPi18n.__('text_max', {max: frontMaxLength}), "danger", 'growl-top-left');
 	}
-	if (backText.length > 10000) {
+	if (backText.length > backMaxLength) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
+		Bert.alert(TAPi18n.__('text_max', {max: backMaxLength}), "danger", 'growl-top-left');
 	}
-	if (hintText.length > 10000) {
+	if (hintText.length > hintMaxLength) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
+		Bert.alert(TAPi18n.__('text_max', {max: hintMaxLength}), "danger", 'growl-top-left');
 	}
-	if (gotLecture(cardType) && lectureText.length > 30000) {
+	if (gotLecture(cardType) && lectureText.length > lectureMaxLength) {
 		$('#editor .md-editor').css('border-color', '#b94a48');
-		Bert.alert(TAPi18n.__('text_max'), "danger", 'growl-top-left');
+		Bert.alert(TAPi18n.__('text_max', {max: lectureMaxLength}), "danger", 'growl-top-left');
 	}
-	let editorsValidLength = (frontText.length <= 10000 && backText.length <= 10000 && lectureText.length <= 30000 && $('#subjectEditor').val().length <= 150 && hintText.length <= 10000);
+	let editorsValidLength = (frontText.length <= frontMaxLength && backText.length <= backMaxLength && lectureText.length <= lectureMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && hintText.length <= hintMaxLength);
 	if (gotSubject && editorsValidLength) {
 		if (ActiveRoute.name('newCard')) {
 			Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {

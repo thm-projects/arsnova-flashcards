@@ -7,7 +7,11 @@ import {Paid} from "./paid.js";
 import {check} from "meteor/check";
 
 export const Cards = new Mongo.Collection("cards");
-
+export const frontMaxLength = 100000;
+export const backMaxLength = 100000;
+export const hintMaxLength = 100000;
+export const lectureMaxLength = 300000;
+export const subjectMaxLength = 255;
 
 if (Meteor.isServer) {
 	let universityFilter = {$ne: null};
@@ -147,22 +151,22 @@ var CardsSchema = new SimpleSchema({
 	subject: {
 		type: String,
 		optional: true,
-		max: 150
+		max: subjectMaxLength
 	},
 	hint: {
 		type: String,
 		optional: true,
-		max: 10000
+		max: hintMaxLength
 	},
 	front: {
 		type: String,
 		optional: true,
-		max: 10000
+		max: frontMaxLength
 	},
 	back: {
 		type: String,
 		optional: true,
-		max: 10000
+		max: backMaxLength
 	},
 	cardset_id: {
 		type: String
@@ -173,7 +177,7 @@ var CardsSchema = new SimpleSchema({
 	lecture: {
 		type: String,
 		optional: true,
-		max: 30000
+		max: lectureMaxLength
 	},
 	centerText: {
 		type: Boolean,
