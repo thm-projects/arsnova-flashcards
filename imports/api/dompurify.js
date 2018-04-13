@@ -1,4 +1,3 @@
 export const DOMPurifyConfig = {
-	FORBID_TAGS: ['style'],
-	FORBID_ATTR: ['style']
+	FORBID_TAGS: ['style']
 };
