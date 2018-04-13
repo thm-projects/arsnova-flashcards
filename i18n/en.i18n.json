@@ -681,9 +681,11 @@
       "name": "Technical term",
       "front": "Frontside",
       "back": "Definition",
+      "hint": "Literature",
       "placeholders": {
         "front": "Frontside",
-        "back": "Definition"
+        "back": "Definition",
+        "hint": "Literature"
       },
       "editorLabels": {
         "subject": "Subject"

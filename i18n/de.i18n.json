@@ -669,9 +669,11 @@
       "name": "Glossar",
       "front": "Fachbegriff",
       "back": "Definition | Beschreibung",
+      "hint": "Links | Literatur ",
       "placeholders": {
         "front": "Fachbegriff",
-        "back": "Definition oder Beschreibung des Fachbegriffs"
+        "back": "Definition oder Beschreibung des Fachbegriffs",
+        "hint": "Links | Literatur zur Vertiefung des Lerninhalts"
       },
       "editorLabels": {
         "subject": "Fachgebiet"
