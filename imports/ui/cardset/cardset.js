@@ -319,7 +319,10 @@ Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
 		if (Router.current().route.getName() === "cardsetlistid") {
 			Session.set('modifiedCard', $(evt.target).data('id'));
-			Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+			Router.go('cardsetcard', {
+				_id: Router.current().params._id,
+				card_id: $(evt.target).data('id')
+			});
 		} else {
 			let learningUnit = $(evt.target).data('id');
 			Session.set('learningIndex', Session.get('tempLearningIndex'));
