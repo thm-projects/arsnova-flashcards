@@ -164,8 +164,8 @@ html {
 
 body {
   margin: 0 0 70px;
-  background: no-repeat center fixed;
-  background-color: $color_mercury_approx;
+  background: $color_mercury_approx no-repeat fixed center;
+  background-size: cover;
   > .container {
     padding: 80px 15px 0;
   }
