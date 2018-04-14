@@ -281,9 +281,7 @@
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
     "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen
-    ?
-    ",
+    zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -330,7 +328,7 @@
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du .cards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
-      "theme": "Farbauswahl",
+      "theme": "Hintergrundbild",
       "language": "Sprache"
     }
   },

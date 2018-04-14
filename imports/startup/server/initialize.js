@@ -11,10 +11,10 @@ import {Ratings} from "../../api/ratings";
 var initColorThemes = function () {
 	return [{
 		"_id": "default",
-		"name": "Default"
+		"name": "Foto aus Wikipedia zum Thema \"Zettelkasten\" von Kai Schreiber, CC BY-SA 2.0"
 	}, {
 		"_id": "contrast",
-		"name": "Contrast"
+		"name": "Ohne Hintergrundbild und mit mehr Kontrast"
 	}];
 };
 
