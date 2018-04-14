@@ -187,6 +187,11 @@ Template.main.events({
 Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
+			if (Session.get('theme') === "default") {
+				$("body").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
+			} else {
+				$("body").css("background-image", "none");
+			}
 			return "theme-" + Session.get("theme");
 		}
 	},

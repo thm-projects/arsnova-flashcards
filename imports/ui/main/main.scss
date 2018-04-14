@@ -2,7 +2,7 @@
 $color_athens_gray_approx: rgb(236, 240, 241);
 $white: rgb(255, 255, 255);
 $color_bilbao_approx: rgb(50, 129, 20);
-$color_mercury_approx: transparent;
+$color_mercury_approx: rgb(223, 229, 230);
 $color_la_palma_approx: rgb(61, 156, 25);
 $color_wild_sand_approx: rgb(245, 245, 245);
 $color_slate_gray_approx: rgb(74, 92, 102);
@@ -158,14 +158,14 @@ $color_under_development_modal_background: $color_thm_orange;
 html {
   position: relative;
   min-height: 100%;
-  background: url("/img/background/zettelkasten_wikipedia.jpg") no-repeat center fixed;
   background-size: cover;
   font-family: $default_font !important;
 }
 
 body {
   margin: 0 0 70px;
-  background-color: $color_mercury_approx;
+  background: $color_mercury_approx no-repeat fixed center;
+  background-size: cover;
   > .container {
     padding: 80px 15px 0;
   }
@@ -711,11 +711,6 @@ button:disabled {
   margin: auto;
 }
 
-.cardContent .lightbox-img img {
-  width: unset !important;
-  display: unset !important;
-}
-
 .lightbox-container {
   text-align: center;
 }
@@ -863,6 +858,7 @@ th {
 .info-tab h1 {
   font-size: $font_size_info_h1;
   margin: 0;
+  padding-top: 0;
 }
 
 .info-tab h2 {

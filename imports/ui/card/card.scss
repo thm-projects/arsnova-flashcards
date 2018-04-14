@@ -389,22 +389,6 @@ img.cardside {
   p {
     margin: 0;
   }
-  .lightbox-img {
-
-    img {
-      width: 100%;
-      max-width: 375px;
-      position: static;
-      display: block;
-      z-index: 20;
-    }
-
-    .emojiImage {
-      position: unset;
-      width: auto;
-      display: initial;
-    }
-  }
 
   hr {
     display: block;
@@ -471,7 +455,7 @@ img.cardside {
   }
 }
 
-.cardtext h5, .editorHeader {
+.cardtext > h5, .editorHeader {
   margin: 0;
   padding-top: 15px;
   padding-bottom: 5px;

@@ -124,7 +124,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Dein Benutzerprofil ist unvollständig. Um den \"Lernen nach Leitner\"-Modus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
+    "text": "Dein Benutzerprofil ist unvollständig. Um einen Lernmodus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
@@ -281,9 +281,7 @@
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
     "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen
-    ?
-    ",
+    zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -330,7 +328,7 @@
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du .cards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
-      "theme": "Farbauswahl",
+      "theme": "Hintergrundbild",
       "language": "Sprache"
     }
   },
@@ -669,9 +667,11 @@
       "name": "Glossar",
       "front": "Fachbegriff",
       "back": "Definition | Beschreibung",
+      "hint": "Links | Literatur ",
       "placeholders": {
         "front": "Fachbegriff",
-        "back": "Definition oder Beschreibung des Fachbegriffs"
+        "back": "Definition oder Beschreibung des Fachbegriffs",
+        "hint": "Links | Literatur zur Vertiefung des Lerninhalts"
       },
       "editorLabels": {
         "subject": "Fachgebiet"
@@ -853,8 +853,8 @@
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "lecturetext_required": "Bitte Vertiefung ausfüllen!",
   "cardsubject_required": "Bitte Kompetenzziel oder Thema angeben!",
-  "text_max": "Es sind maximal 10.000 Zeichen erlaubt!",
-  "cardsubject_max": "Es sind nur 150 Zeichen erlaubt!",
+  "text_max": "Es sind maximal __max__ Zeichen erlaubt!",
+  "cardsubject_max": "Es sind nur __max__ Zeichen erlaubt!",
   "newcard": "Neue Karte",
   "editcard": "Karte bearbeiten",
   "showpicture": "Bild anzeigen",

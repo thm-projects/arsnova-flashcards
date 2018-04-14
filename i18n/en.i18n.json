@@ -132,7 +132,7 @@
   "complete-profile": {
     "btn-txt": "Close",
     "title": "User profile incomplete",
-    "text": "Your user profile is incomplete. Please enter your first, last name and email in order to use the \"learn by Leitner\" mode."
+    "text": "Your user profile is incomplete. Please enter your first, last name and email in order to use a learning mode."
   },
   "confirm-form-profile": {
     "title": "Delete user profile",
@@ -681,9 +681,11 @@
       "name": "Technical term",
       "front": "Frontside",
       "back": "Definition",
+      "hint": "Literature",
       "placeholders": {
         "front": "Frontside",
-        "back": "Definition"
+        "back": "Definition",
+        "hint": "Literature"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -862,8 +864,8 @@
   "backtext_required": "The back field is required!",
   "lecturetext_required": "The lecture field is required!",
   "cardsubject_required": "The subject field is required!",
-  "text_max": "No more than 10000 characters allowed!",
-  "cardsubject_max": "No more than 150 characters allowed!",
+  "text_max": "No more than __max__ characters allowed!",
+  "cardsubject_max": "No more than __max__ characters allowed!",
   "newcard": "New card",
   "editcard": "Edit card",
   "showpicture": "Show image",

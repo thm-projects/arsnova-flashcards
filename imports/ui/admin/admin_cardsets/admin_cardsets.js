@@ -8,6 +8,8 @@ import {getAuthorName} from "../../../api/cardsetUserlist.js";
 import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
+import DOMPurify from 'dompurify';
+import {DOMPurifyConfig} from "../../../api/dompurify.js";
 
 /*
  * ############################################################################
@@ -37,10 +39,10 @@ Template.admin_cardsets.helpers({
 			}
 			fields.push({
 				"_id": cardset._id,
-				"name": cardset.name,
-				"kind": kind,
+				"name": DOMPurify.sanitize(cardset.name, DOMPurifyConfig),
+				"kind": DOMPurify.sanitize(kind, DOMPurifyConfig),
 				"wordcloud": cardset.wordcloud,
-				"username": getAuthorName(cardset.owner),
+				"username": DOMPurify.sanitize(getAuthorName(cardset.owner), DOMPurifyConfig),
 				"owner": cardset.owner,
 				"userDeleted": cardset.userDeleted,
 				"dateString": dateString,
