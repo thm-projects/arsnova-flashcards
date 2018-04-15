@@ -359,7 +359,7 @@ img.cardside {
 .cardContent, #contentEditor {
   padding: 26pt !important;
   line-height: 28px;
-  font-size: 18px;
+  font-size: $font_size_card_content;
   background-attachment: local;
 }
 
@@ -388,6 +388,7 @@ img.cardside {
   overflow-x: hidden;
   p {
     margin: 0;
+    margin-top: $font_size_card_content;
   }
 
   hr {
