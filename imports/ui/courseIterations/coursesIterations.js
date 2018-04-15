@@ -74,8 +74,17 @@ Template.courseIterationsEmpty.events({
 
 Template.courseIterationDeleteForm.events({
 	'click #deleteCourseIteration': function () {
-		$('#confirmDeleteModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteCourseIteration", Session.get('courseIterationId'));
-		}).modal('hide');
+		const alsoDeleteDecks = $('#alsoDeleteAssociatedDecks').is(":checked");
+		Meteor.call("deleteCourseIteration", Session.get('courseIterationId'), alsoDeleteDecks, (error, result) => {
+			if (error) {
+				if (error.error === "not-implemented") {
+					$("#underDevelopmentModal").modal("show");
+				} else {
+					console.error(error);
+				}
+			} else {
+				$('#confirmDeleteModal').modal('hide');
+			}
+		});
 	}
 });

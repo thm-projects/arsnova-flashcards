@@ -751,6 +751,7 @@
     "targetAudience": "Audience",
     "confirm-form-delete": {
       "title": "Delete Course",
+      "alsoDeleteAssociatedDecks": "Delete associated decks",
       "text": "Do you really want to delete this course? If you confirm the process, the learning statistics for this course will be deleted."
     },
     "manage": "Manage Course",
