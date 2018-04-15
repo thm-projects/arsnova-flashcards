@@ -483,7 +483,10 @@ Template.registerHelper("getMaximumText", function (text) {
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		return DOMPurify.sanitize(lib.setLightBoxes(window.markdeep.format(x, true)), DOMPurifyConfig);
+		x = window.markdeep.format(x, true);
+		x = DOMPurify.sanitize(x, DOMPurifyConfig);
+		x = lib.setLightBoxes(x);
+		return lib.setLinkTarget(x);
 	}
 });
 

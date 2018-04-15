@@ -17,3 +17,18 @@ export function setLightBoxes(content) {
 	// otherwise only the first element in content will be returned by .html()
 	return $('<div/>').append(element).html();
 }
+
+/** Adds target _blank to all links
+ *  @param {string} content - Text that contains the href
+ *  @returns {string} - The modified text
+ * */
+export function setLinkTarget(content) {
+	var element = $(content);
+	$(element).find('a').each(function () {
+		let href = $(this).attr('href');
+		if (/^#/.test(href) === false && /^mailto/.test(href) === false) {
+			$(this).attr('target', '_blank');
+		}
+	});
+	return $('<div/>').append(element).html();
+}
