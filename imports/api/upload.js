@@ -16,13 +16,14 @@ Meteor.methods({
 			for (let i = 0; i < data.length; i++) {
 				let item = data[i];
 
-				if (item.front === undefined || item.front === "") {
-					throw new Meteor.Error("entry number: " + i, "front missing");
-				} else if (item.back === undefined || item.back === "") {
-					throw new Meteor.Error("entry number: " + i, "back missing");
-				}
 				if (item.subject === undefined) {
 					item.subject = "Kein Titel";
+				}
+				if (item.front === undefined) {
+					item.front = "";
+				}
+				if (item.back === undefined) {
+					item.back = "";
 				}
 				if (item.hint === undefined) {
 					item.hint = "";
@@ -76,28 +77,26 @@ Meteor.methods({
 					lecture = item.lecture;
 				}
 
-				if (item.front !== "") {
-					let hlcodeReplacement = "\n```\n";
-					let regex = /<hlcode>|<\/hlcode>/g;
-					front = front.replace(regex, hlcodeReplacement);
-					back = back.replace(regex, hlcodeReplacement);
+				let hlcodeReplacement = "\n```\n";
+				let regex = /<hlcode>|<\/hlcode>/g;
+				front = front.replace(regex, hlcodeReplacement);
+				back = back.replace(regex, hlcodeReplacement);
 
-					Cards.insert({
-						subject: subject,
-						difficulty: item.difficulty,
-						front: front,
-						back: back,
-						hint: hint,
-						cardset_id: cardset_id,
-						cardGroup: -1,
-						cardType: item.cardType,
-						lecture: lecture,
-						centerTextElement: item.centerTextElement,
-						learningGoalLevel: item.learningGoalLevel,
-						backgroundStyle: item.backgroundStyle,
-						learningUnit: item.learningUnit
-					});
-				}
+				Cards.insert({
+					subject: subject,
+					difficulty: item.difficulty,
+					front: front,
+					back: back,
+					hint: hint,
+					cardset_id: cardset_id,
+					cardGroup: -1,
+					cardType: item.cardType,
+					lecture: lecture,
+					centerTextElement: item.centerTextElement,
+					learningGoalLevel: item.learningGoalLevel,
+					backgroundStyle: item.backgroundStyle,
+					learningUnit: item.learningUnit
+				});
 			}
 		} else {
 			for (let i = 0; i < data.length; i++) {
