@@ -75,7 +75,7 @@ Template.courseIterationsEmpty.events({
 Template.courseIterationDeleteForm.events({
 	'click #deleteCourseIteration': function () {
 		const alsoDeleteDecks = $('#alsoDeleteAssociatedDecks').is(":checked");
-		Meteor.call("deleteCourseIteration", Session.get('courseIterationId'), alsoDeleteDecks, (error, result) => {
+		Meteor.call("deleteCourseIteration", Session.get('courseIterationId'), alsoDeleteDecks, (error) => {
 			if (error) {
 				if (error.error === "not-implemented") {
 					$("#underDevelopmentModal").modal("show");
