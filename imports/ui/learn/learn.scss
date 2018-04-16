@@ -55,3 +55,10 @@ $font_1: serif;
 #memoRate1 {
   border-right: 4px solid $color_thm_red;
 }
+
+#answerOptions {
+  position: fixed;
+  height: 130px;
+  top: 0;
+  z-index: 15;
+}

@@ -357,9 +357,9 @@ img.cardside {
 }
 
 .cardContent, #contentEditor {
-  padding: 26pt !important;
+  padding: 13pt 26pt !important;
   line-height: 28px;
-  font-size: 18px;
+  font-size: $font_size_card_content;
   background-attachment: local;
 }
 
@@ -386,8 +386,9 @@ img.cardside {
   vertical-align: bottom;
   overflow-y: auto;
   overflow-x: hidden;
-  p {
+  p:nth-child(n+3) {
     margin: 0;
+    margin-top: $font_size_card_content * 1.5;
   }
 
   hr {
@@ -411,14 +412,6 @@ img.cardside {
 
 .emptyCard {
   padding: 50px;
-}
-
-#answerOptions {
-  position: fixed;
-  height: 130px;
-  top: 0;
-  z-index: 15;
-  background-color: $color_mercury_approx;
 }
 
 .editorNavigation {
@@ -595,4 +588,8 @@ img.cardside {
 
 .cardHeaderLink {
   color: $color_global_link !important;
+}
+
+.placeholder {
+  margin-top: 0 !important;
 }

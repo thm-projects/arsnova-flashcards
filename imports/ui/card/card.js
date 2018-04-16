@@ -66,6 +66,7 @@ export function adjustMarkdownToolbar() {
 }
 
 function resetSessionData(resetSubject = false) {
+	defaultCenteredText(Session.get('cardType'));
 	if (resetSubject && Session.get('cameFromEditMode') === false) {
 		Session.set('subjectText', '');
 		Session.set('learningUnit', "0");
@@ -75,7 +76,6 @@ function resetSessionData(resetSubject = false) {
 	Session.set('backText', '');
 	Session.set('hintText', '');
 	Session.set('lectureText', '');
-	defaultCenteredText();
 	Session.set('learningGoalLevel', 0);
 	Session.set('backgroundStyle', 0);
 	Session.set('cameFromEditMode');
@@ -745,8 +745,6 @@ function initializeContent() {
 		Session.set('learningUnit', '0');
 	}
 
-	defaultCenteredText();
-
 	if (Session.get('cardDate') === undefined) {
 		Session.set('cardDate', new Date());
 	}
@@ -915,9 +913,9 @@ Template.editor.helpers({
 	},
 	getContent: function () {
 		if (Router.current().route.getName() === "newCard") {
-			resetSessionData(true);
 			Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 			Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+			resetSessionData(true);
 		} else if (Router.current().route.getName() === "editCard") {
 			Session.set('subjectText', this.subject);
 			Session.set('frontText', this.front);
@@ -1482,7 +1480,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if (Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage")) {
+		if (Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") &&  !$(evt.target).is('a, a *')) {
 			if (isEditMode() && !Session.get('fullscreen')) {
 				turnCard(true);
 			} else {

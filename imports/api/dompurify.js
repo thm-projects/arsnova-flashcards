@@ -1,4 +1,5 @@
 export const DOMPurifyConfig = {
 	FORBID_TAGS: ['style'],
-	FORBID_ATTR: ['style']
+	ADD_TAGS: ['iframe'],
+	FORBID_ATTR: ['srcdoc']
 };

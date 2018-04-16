@@ -1249,6 +1249,7 @@ Template.cardsetImportForm.events({
 								$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
 							} else {
 								tmpl.uploading.set(false);
+								Session.set('modifiedCard', undefined);
 								Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}
