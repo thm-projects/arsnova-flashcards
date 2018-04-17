@@ -33,6 +33,14 @@ export function updateNavigation() {
 	Session.set('cardType', Number(cardType));
 }
 
+function checkBackgroundStyle() {
+	if (Session.get('backgroundStyle')) {
+		$(".editorBrush").addClass('pressed');
+	} else {
+		$(".editorBrush").removeClass('pressed');
+	}
+}
+
 export function adjustMarkdownToolbar() {
 	//btn-group 1
 	let btnGroup = $(".btn-toolbar .btn-group:nth-child(1)");
@@ -60,6 +68,7 @@ export function adjustMarkdownToolbar() {
 	btnGroup.append($(".btn-toolbar .fa-sort-numeric-asc").parent());
 	btnGroup.append($(".btn-toolbar .fa-lock").parent());
 	btnGroup.append($(".btn-toolbar .editorBrush").parent());
+	checkBackgroundStyle();
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
 	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
 	$(".btn-toolbar .btn-group:nth-child(5)").remove();
@@ -933,6 +942,12 @@ Template.editor.helpers({
 	},
 	isTextCentered: function () {
 		isTextCentered();
+	}
+});
+
+Template.editor.events({
+	'click .editorBrush': function () {
+		checkBackgroundStyle();
 	}
 });
 
