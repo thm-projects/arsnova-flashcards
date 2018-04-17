@@ -3,6 +3,17 @@ import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
+import {gotSidesSwapped} from "../../api/cardTypes";
+
+function setEditMode(cardType) {
+	if (gotSidesSwapped(cardType)) {
+		Session.set('activeEditMode', 1);
+		Session.set('lastEditMode', 1);
+	} else {
+		Session.set('activeEditMode', 0);
+		Session.set('lastEditMode', 0);
+	}
+}
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -144,14 +155,18 @@ Router.route('/cardsetlist/:_id', {
 Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	data: function () {
-		return Cardsets.findOne({_id: this.params._id});
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		setEditMode(cardset.cardType);
+		return cardset;
 	}
 });
 
 Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	data: function () {
-		return Cards.findOne({_id: this.params.card_id});
+		let card = Cards.findOne({_id: this.params.card_id});
+		setEditMode(card.cardType);
+		return card;
 	}
 });
 
