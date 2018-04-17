@@ -745,9 +745,17 @@ button:disabled {
   background-color: $color_athens_gray_approx;
 }
 
-.material-icons.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+.material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
   background-color: lighten($color_thm_gray, 10%);
   color: $white;
+}
+
+.md-editor {
+  .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+    background-color: $color_thm_orange;
+    border-color: $color_thm_orange;
+    color: $white;
+  }
 }
 
 .md-editor > textarea {
@@ -797,9 +805,9 @@ button:disabled {
   margin-bottom: 0;
 }
 
-.dropup, .navbar-nav > li {
+.dropdown, .dropup, .navbar-nav > li {
   .dropdown-menu {
-    max-height: 300px;
+    max-height: 400px;
     overflow-y: scroll;
   }
   button {
@@ -1126,4 +1134,8 @@ th {
 
 .searchItem {
   padding: 0 !important;
+}
+
+.thm-header .navbar-toggle {
+  margin-right: 0;
 }

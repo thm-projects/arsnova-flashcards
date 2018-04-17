@@ -60,6 +60,10 @@
   margin: 0;
 }
 
+.resultTableContent a {
+  color: $color_global_link !important;
+}
+
 .resultFree {
   background-color: $color_free_btn;
 }
