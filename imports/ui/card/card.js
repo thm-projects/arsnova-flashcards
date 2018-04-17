@@ -876,7 +876,7 @@ Template.selectLearningUnit.helpers({
 		return Session.get('tempLearningIndex') !== "0";
 	},
 	learningIndex: function () {
-		return Cardsets.find({cardType: 0, visible: true, kind: {$in: ['free', 'edu']}}, {fields: {name: 1}});
+		return Cardsets.find({cardType: 0, visible: true, kind: {$in: ['free', 'edu']}}, {sort: {name: 1}, fields: {name: 1}});
 	}
 });
 
