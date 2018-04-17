@@ -6,11 +6,11 @@
             </div>
         {{/if}}
         <div class="hidden-xs {{#if isActiveRoute
-                                    regex="learn"}}col-sm-7{{else}}{{#if isActiveRoute
+                                    regex="learn"}}col-sm-4{{else}}{{#if isActiveRoute
                                                                          regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} resultsHeader">
             <strong>{{_ "set-list.topic"}}</strong>
         </div>
-        {{#unless isActiveRoute regex="create|learn"}}
+        {{#unless isActiveRoute regex="create"}}
             <div class="hidden-xs col-sm-3 resultsHeader">
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
@@ -36,14 +36,16 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                    regex="learn"}}col-xs-8 col-sm-7{{else}}{{#if isActiveRoute
-                                                                                                                  regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+                                                                    regex="learn"}}col-xs-8 col-sm-4{{else}}{{#if
+                isActiveRoute
+                regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
-                  regex="create|learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-5 col-sm-3 collapseButton {{getCardBackground
+                  regex="create"}}
+            <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
+                                                                        regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 <a href="#" class="authorProfile col-xs-12" data-id="{{this.owner}}">
@@ -77,7 +79,7 @@
                    data-target="#confirmDeleteModal"
                    data-id="{{this._id}}">
                     <i class="{{#if isActiveRoute
-                                              regex="course"}}fa fa-trash{{else}}glyphicon glyphicon-log-out{{/if}}"
+                                    regex="course"}}fa fa-trash{{else}}glyphicon glyphicon-log-out{{/if}}"
                        data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
