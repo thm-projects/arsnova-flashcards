@@ -745,9 +745,17 @@ button:disabled {
   background-color: $color_athens_gray_approx;
 }
 
-.material-icons.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+.material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
   background-color: lighten($color_thm_gray, 10%);
   color: $white;
+}
+
+.md-editor {
+  .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+    background-color: $color_thm_orange;
+    border-color: $color_thm_orange;
+    color: $white;
+  }
 }
 
 .md-editor > textarea {
