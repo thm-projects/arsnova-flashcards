@@ -11,6 +11,7 @@ let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
 let cardTypesWithLecture = [0];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7];
+let cardTypesWithSwappedSides = [6];
 export let cardTypeWithNotesForDifficultyLevel = [2];
 export let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}];
 
@@ -75,6 +76,10 @@ export function gotNotesForDifficultyLevel(cardType) {
 
 export function gotDictionary(cardType) {
 	return cardTypesWithDictionary.includes(cardType);
+}
+
+export function gotSidesSwapped(cardType) {
+	return cardTypesWithSwappedSides.includes(cardType);
 }
 
 export function defaultCenteredText(cardType) {

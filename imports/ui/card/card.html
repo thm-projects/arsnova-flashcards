@@ -66,26 +66,50 @@
 
 <template name="contentNavigation">
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
-        <button id="editFront" type="button"
-                class="btn btn-primary btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                        gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                tabindex="5">{{getFrontTitle}}</button>
+        {{#unless gotSidesSwapped}}
+            {{> contentNavigationFront tabindex=5}}
+        {{else}}
+            {{> contentNavigationBack tabindex=5}}
+        {{/unless}}
         {{#if gotLecture}}
-            <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
-                    tabindex="9">{{_
-                    "card.cardType0.lecture"}}</button>
+            {{> contentNavigationLecture tabindex=9}}
         {{/if}}
-        <button id="editBack" type="button"
-                class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                        gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                tabindex="7">{{getBackTitle}}</button>
+        {{#unless gotSidesSwapped}}
+            {{> contentNavigationBack tabindex=7}}
+        {{else}}
+            {{> contentNavigationFront tabindex=7}}
+        {{/unless}}
         {{#if gotHint}}
-            <button id="editHint" type="button"
-                    class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                            gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
-                    tabindex="11">{{getHintTitle}}</button>
+            {{> contentNavigationHint tabindex=11}}
         {{/if}}
     </div>
+</template>
+
+<template name="contentNavigationFront">
+    <button id="editFront" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getFrontTitle}}</button>
+</template>
+
+<template name="contentNavigationLecture">
+    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
+            tabindex="{{tabindex}}">{{_
+            "card.cardType0.lecture"}}</button>
+</template>
+
+<template name="contentNavigationBack">
+    <button id="editBack" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getBackTitle}}</button>
+</template>
+
+<template name="contentNavigationHint">
+    <button id="editHint" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getHintTitle}}</button>
 </template>
 
 <template name="learningGoalLevel">
@@ -168,7 +192,7 @@
 <template name="contentEditor">
     <form>
         <textarea id="contentEditor" name="content" placeholder="{{getPlaceholder}}" data-provide="markdown" rows="10"
-                  tabindex="5">{{front}}</textarea>
+                  tabindex="5">{{#unless gotSidesSwapped}}{{front}}{{else}}{{back}}{{/unless}}</textarea>
     </form>
 </template>
 
