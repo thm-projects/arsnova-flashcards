@@ -192,7 +192,7 @@ Meteor.methods({
 			if (user === undefined) {
 				Meteor.users.update(Meteor.user()._id, {
 					$set: {
-						visible: true,
+						visible: false,
 						email: "",
 						birthname: "",
 						givenname: "",
