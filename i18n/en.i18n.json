@@ -615,12 +615,18 @@
   },
   "learning-goal": {
     "name": "Learning Goal Level",
-    "level1": "Remind",
-    "level2": "Comprehend",
+    "level1": "Remember",
+    "level1Placeholder": "Formulate the requirement \"remember\" with one of the following verbs: retrieve, list, enumerate, name, describe, label, explain, identify, reproduce, reproduce, repeat or know.",
+    "level2": "Understanding",
+    "level2Placeholder": "Formulate the requirement \"understanding\" with one of the following verbs: derive, abstract, justify, describe, define, discuss, explain, explain, formulate, illustrate, interpret, classify, paraphrase, close, sketch, distinguish, illustrate, clarify or summarize.",
     "level3": "Apply",
-    "level4": "Analyze",
-    "level5": "Evaluation",
-    "level6": "Creation"
+    "level3Placeholder": "Formulate the requirement \"Apply\" with one of the following verbs: justify, perform, develop, handle, implement, solve, use, implement or transfer.",
+    "level4": "Analysing",
+    "level4Placeholder": "Formulate the requirement \"analysing\" with one of the following verbs: select, classify, classify, research, recognise, develop, highlight, interpret, prove, organise, test, structure, test, distinguish, examine or compare.",
+    "level5": "Evaluate",
+    "level5Placeholder": "Formulate the requirement \"evaluate\" with one of the following verbs: evaluate, evaluate, assess, assess, understand, classify, decide, determine, evaluate, question or check.",
+    "level6": "Creating",
+    "level6Placeholder": "Formulate the requirement \"creating\" with one of the following verbs: design, develop, generate, generate, combine, construct, conceive, coordinate, produce, modify, produce, connect, assemble or assemble."
   },
   "filter-cards": {
     "filter": "Filter",

@@ -1072,7 +1072,7 @@ Template.contentEditor.events({
 
 Template.contentEditor.helpers({
 	getPlaceholder: function () {
-		return getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'));
+		return getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
 	}
 });
 
@@ -1473,9 +1473,9 @@ Template.flashcards.helpers({
 	},
 	getPlaceholder: function (mode) {
 		if (Session.get('shuffled')) {
-			return getPlaceholderText(mode, Session.get('cardType'));
+			return getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
 		} else {
-			return getPlaceholderText(mode, this.cardType);
+			return getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
 		}
 	}
 });

@@ -109,13 +109,16 @@ export function getBackTitle(cardType = -1) {
 	return TAPi18n.__('card.cardType' + activeCardType + '.back');
 }
 
-export function getPlaceholderText(activeMode = -1, cardType = -1) {
+export function getPlaceholderText(activeMode = -1, cardType = -1, learningGoalLevel = -1) {
 	let side;
 	if (activeMode < 0) {
 		activeMode = Session.get('activeEditMode');
 	}
 	if (cardType < 0) {
 		cardType = Session.get('cardType');
+	}
+	if (activeMode === 0 && gotLearningGoal(cardType)) {
+		return TAPi18n.__('learning-goal.level' + (++learningGoalLevel) + 'Placeholder');
 	}
 	switch (activeMode) {
 		case 0:

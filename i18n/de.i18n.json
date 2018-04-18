@@ -602,11 +602,17 @@
   "learning-goal": {
     "name": "Anforderung",
     "level1": "Erinnern",
+    "level1Placeholder": "Formuliere die Anforderung \"Erinnern\" mit einem der folgenden Verben: abrufen, auflisten, aufzählen, benennen, beschreiben, bezeichnen, darlegen, identifizieren, reproduzieren, wiedergeben, wiederholen oder wissen.",
     "level2": "Verstehen",
+    "level2Placeholder": "Formuliere die Anforderung \"Verstehen\" mit einem der folgenden Verben: ableiten, abstrahieren, begründen, beschreiben, definieren, diskutieren, erklären, erläutern, formulieren, illustrieren, interpretieren, klassifizieren, paraphrasieren, schließen, skizzieren, unterscheiden, veranschaulichen, verdeutlichen oder zusammenfassen.",
     "level3": "Anwenden",
+    "level3Placeholder": "Formuliere die Anforderung \"Anwenden\" mit einem der folgenden Verben: begründen, durchführen, erarbeiten, handhaben, implementieren, lösen, nutzen realisieren oder übertragen.",
     "level4": "Analysieren",
+    "level4Placeholder": "Formuliere die Anforderung \"Analysieren\" mit einem der folgenden Verben: auswählen, einteilen, einordnen, erforschen, erkennen, erschließen, hervorheben, interpretieren, nachweisen, organisieren, prüfen, strukturieren, testen, unterscheiden, untersuchen oder vergleichen.",
     "level5": "Bewerten",
-    "level6": "Entwickeln"
+    "level5Placeholder": "Formuliere die Anforderung \"Bewerten\" mit einem der folgenden Verben: auswerten, begutachten, beurteilen, durchschauen, einstufen, entscheiden, ermitteln, evaluieren, hinterfragen oder überprüfen.",
+    "level6": "Entwickeln",
+    "level6Placeholder": "Formuliere die Anforderung \"Erschaffen\" mit einem der folgenden Verben: entwerfen, entwickeln, erzeugen, generieren, kombinieren, konstruieren, konzipieren, koordinieren, herstellen, modifizieren, produzieren, verbinden, zusammenfügen oder zusammenstellen."
   },
   "filter-cards": {
     "filter": "Filtern",
