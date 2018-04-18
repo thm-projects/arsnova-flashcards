@@ -39,15 +39,21 @@
 }
 
 .carousel-control {
-  color: $black;
-  width: 7%;
-  z-index: 5;
+  color: $color_navigation_arrows !important;
+  font-size: $font_size_navigation_arrows !important;
+  opacity: 1;
+  width: $padding_card_content_horizontal;
   &.left {
     @extend %extend_1;
   }
   &.right {
     @extend %extend_1;
   }
+}
+
+#rightCarouselControl {
+  width: $padding_card_content_horizontal - 12pt;
+  margin-right: 12pt;
 }
 
 .carousel-inner {
@@ -357,7 +363,7 @@ img.cardside {
 }
 
 .cardContent, #contentEditor {
-  padding: 13pt 26pt !important;
+  padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
   line-height: 28px;
   font-size: $font_size_card_content;
   background-attachment: local;
@@ -384,7 +390,7 @@ img.cardside {
   box-sizing: border-box;
   width: 100%;
   vertical-align: bottom;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   p:nth-child(n+3) {
     margin: 0;
