@@ -405,7 +405,10 @@
                                             {{/if}}
                                         {{/if}}
                                     </div>
-                                    <h2>{{#if gotLearningUnit}}<a class="cardHeaderLink" href="/cardset/{{getLearningIndex}}/card/{{getLearningUnit}}" target="_blank">{{subject}}</a>{{else}}{{subject}}{{/if}}</h2>
+                                    <h2>{{#if gotLearningUnit}}<a class="cardHeaderLink"
+                                                                  href="/cardset/{{getLearningIndex}}/card/{{getLearningUnit}}"
+                                                                  target="_blank">{{subject}}</a>{{else}}{{subject}}{{/if}}
+                                    </h2>
                                     <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"
@@ -429,7 +432,9 @@
                                                 {{#if gotFront}}
                                                     {{#mathjax}}{{front}}{{/mathjax}}
                                                 {{else}}
-                                                    {{getPlaceholder 0}}
+                                                    {{#unless isEditMode}}
+                                                        {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
+                                                    {{/unless}}
                                                 {{/if}}
                                             </span>
                                         {{/if}}
@@ -442,7 +447,9 @@
                                                 {{#if gotLecturePreview}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
-                                                    {{getPlaceholder 3}}
+                                                    {{#unless isEditMode}}
+                                                        {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
+                                                    {{/unless}}
                                                 {{/if}}
                                             </span>
                                         {{/if}}
@@ -452,7 +459,7 @@
                                             {{#if gotFront}}
                                                 {{#mathjax}}{{front}}{{/mathjax}}
                                             {{else}}
-                                                {{getPlaceholder 0}}
+                                                {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
                                             {{/if}}
                                         </span>
                                     {{/if}}
@@ -466,13 +473,16 @@
                                         {{#if gotBack}}
                                             {{#mathjax}}{{back}}{{/mathjax}}
                                         {{else}}
-                                            {{getPlaceholder 1}}
+                                            {{#unless isEditMode}}
+                                                {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
+                                            {{/unless}}
                                         {{/if}}
                                     </span>
                                 </div>
                                 {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
-                                         id="collapseLecture-{{_id}}" style="{{#if isEditModeOrPresentation}}display: none{{/if}}">
+                                         id="collapseLecture-{{_id}}"
+                                         style="{{#if isEditModeOrPresentation}}display: none{{/if}}">
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
@@ -482,8 +492,6 @@
                                                                                      3}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                                     {{#if gotLecture}}
                                                         {{#mathjax}}{{lecture}}{{/mathjax}}
-                                                    {{else}}
-                                                        {{getPlaceholder 3}}
                                                     {{/if}}
                                                 </span>
                                             {{/if}}
@@ -577,7 +585,9 @@
                                     {{#if gotHint presentationHint}}
                                         {{#mathjax}}{{getHint presentationHint}}{{/mathjax}}
                                     {{else}}
-                                        {{getPlaceholder}}
+                                        {{#unless isEditMode}}
+                                            {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                                        {{/unless}}
                                     {{/if}}
                                 </span>
                 </div>
