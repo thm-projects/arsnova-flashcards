@@ -1186,6 +1186,9 @@ Template.cardHintContent.helpers({
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
 	},
+	isEditMode: function () {
+		return isEditMode();
+	},
 	getHintTitle: function () {
 		return getHintTitle();
 	},
@@ -1400,7 +1403,7 @@ Template.flashcards.helpers({
 		if (isEditMode()) {
 			return Session.get('activeEditMode') === 3 && Session.get('lectureText');
 		} else {
-			return Session.get('activeEditMode') === 3 && this.lecture !== "";
+			return Session.get('activeEditMode') === 3 && (this.lecture !== "" && this.lecture !== undefined);
 		}
 	},
 	getFrontTitle: function () {
