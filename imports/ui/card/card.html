@@ -429,7 +429,7 @@
                                                 {{#if gotFront}}
                                                     {{#mathjax}}{{front}}{{/mathjax}}
                                                 {{else}}
-                                                    {{getPlaceholder 0}}
+                                                    {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
                                                 {{/if}}
                                             </span>
                                         {{/if}}
@@ -442,7 +442,7 @@
                                                 {{#if gotLecturePreview}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
-                                                    {{getPlaceholder 3}}
+                                                    {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
                                                 {{/if}}
                                             </span>
                                         {{/if}}
@@ -452,7 +452,7 @@
                                             {{#if gotFront}}
                                                 {{#mathjax}}{{front}}{{/mathjax}}
                                             {{else}}
-                                                {{getPlaceholder 0}}
+                                                {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
                                             {{/if}}
                                         </span>
                                     {{/if}}
@@ -466,7 +466,7 @@
                                         {{#if gotBack}}
                                             {{#mathjax}}{{back}}{{/mathjax}}
                                         {{else}}
-                                            {{getPlaceholder 1}}
+                                            {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
                                         {{/if}}
                                     </span>
                                 </div>
@@ -483,7 +483,7 @@
                                                     {{#if gotLecture}}
                                                         {{#mathjax}}{{lecture}}{{/mathjax}}
                                                     {{else}}
-                                                        {{getPlaceholder 3}}
+                                                        {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
                                                     {{/if}}
                                                 </span>
                                             {{/if}}
@@ -577,7 +577,7 @@
                                     {{#if gotHint presentationHint}}
                                         {{#mathjax}}{{getHint presentationHint}}{{/mathjax}}
                                     {{else}}
-                                        {{getPlaceholder}}
+                                        {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
                                     {{/if}}
                                 </span>
                 </div>
