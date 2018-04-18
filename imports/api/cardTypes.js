@@ -1,5 +1,13 @@
 import {Session} from "meteor/session";
 
+//0: Lernkartei / Flashcard
+//1: Vokabeltrainer / Vocabulary
+//2: Mitschrift / Notes
+//3: Glossar / Glossary
+//4: Zitatensammlung / Citation
+//5: Prüfung / Exam
+//6: Befehlssatz / Command set
+//7: Abstract
 let cardTypesWithCenteredText = [1, 2, 4];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5];

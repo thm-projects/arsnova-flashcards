@@ -684,7 +684,7 @@
       }
     },
     "cardType3": {
-      "name": "Technical term",
+      "name": "Glossary",
       "front": "Frontside",
       "back": "Definition",
       "hint": "Literature",
@@ -712,7 +712,7 @@
       }
     },
     "cardType5": {
-      "name": "Assessment",
+      "name": "Exam",
       "front": "Audit question",
       "back": "Answer",
       "hint": "Explanation",
@@ -726,8 +726,8 @@
       }
     },
     "cardType6": {
-      "name": "Instruction set",
-      "front": "Frontside",
+      "name": "Command set",
+      "front": "Command",
       "back": "Definition",
       "placeholders": {
         "front": "Frontside",
@@ -738,8 +738,8 @@
       }
     },
     "cardType7": {
-      "name": "Abstracts",
-      "front": "Abstracts",
+      "name": "Abstract",
+      "front": "Abstract",
       "back": "Cited person",
       "hint": "Reference",
       "placeholders": {
