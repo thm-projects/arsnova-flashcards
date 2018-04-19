@@ -14,6 +14,7 @@ import {getUserLanguage} from "../../startup/client/i18n";
 import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
+import "/client/markdeep.js";
 
 Meteor.subscribe("collegesCourses");
 
