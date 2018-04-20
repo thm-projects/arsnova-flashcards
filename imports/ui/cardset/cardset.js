@@ -108,8 +108,6 @@ Template.cardset.onCreated(function () {
 });
 
 Template.cardset.rendered = function () {
-	Meteor.subscribe("previewCards", Router.current().params._id);
-
 	var customerId = Meteor.user().customerId;
 	if ($('#payment-form').length) {
 		Meteor.call('getClientToken', customerId, function (error, clientToken) {
@@ -216,7 +214,10 @@ Template.cardsetPreview.events({
 });
 
 Template.cardsetPreview.onCreated(function () {
-	Cards._collection.remove({cardset_id: Router.current().params._id});
+	if (Router.current().params._id) {
+		Cards._collection.remove({cardset_id: Router.current().params._id});
+		Meteor.subscribe("previewCards", Router.current().params._id);
+	}
 });
 
 /*
@@ -833,7 +834,7 @@ Template.cardsetSidebar.helpers({
 });
 
 
-Template.cardsetSidebar.onRendered(function () {
+Template.cardsetSidebar.onCreated(function () {
 	Meteor.subscribe("cards");
 });
 
