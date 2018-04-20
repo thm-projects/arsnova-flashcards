@@ -24,10 +24,10 @@ if (Meteor.isServer) {
 				return paid.cardset_id;
 			});
 			if (Roles.userIsInRole(this.userId, [
-					'admin',
-					'editor',
-					'lecturer'
-				])) {
+				'admin',
+				'editor',
+				'lecturer'
+			])) {
 				return Cards.find({
 					cardset_id: {
 						$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
@@ -52,74 +52,50 @@ if (Meteor.isServer) {
 					}
 				});
 			} else if (Roles.userIsInRole(this.userId, 'university')) {
-				return Cards.find(
-					{
-						$or: [
+				return Cards.find({
+					cardset_id: {
+						$in: Cardsets.find(
 							{
-								cardset_id: {
-									$in: Cardsets.find(
-										{
-											college: universityFilter,
-											visible: true,
-											kind: {$in: ['free', 'edu']}
-										}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							},
-							{cardset_id: {$in: paidCardsets}}
-						]
-					});
+								college: universityFilter,
+								$or: [
+									{owner: this.userId},
+									{
+										visible: true,
+										kind: {$in: ['free', 'edu']}
+									},
+									{cardset_id: {$in: paidCardsets}}
+								]
+							}).map(function (cardset) {
+							return cardset._id;
+						})
+					}
+				});
 			} else {
-				return Cards.find(
-					{
-						$or: [
-							//is owner
+				return Cards.find({
+					cardset_id: {
+						$in: Cardsets.find(
 							{
-								cardset_id: {
-									$in: Cardsets.find(
-										{
-											college: universityFilter,
-											owner: this.userId
-										}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							},
-							//is visible and is free
-							{
-								cardset_id: {
-									$in: Cardsets.find(
-										{
-											college: universityFilter,
-											visible: true,
-											kind: 'free'
-										}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							},
-							//has bought
-							{
-								cardset_id: {
-									$in: Cardsets.find(
-										{
-											_id: {$in: paidCardsets},
-											college: universityFilter
-										}).map(function (cardset) {
-										return cardset._id;
-									})
-								}
-							}
-						]
-					});
+								college: universityFilter,
+								$or: [
+									{owner: this.userId},
+									{
+										visible: true,
+										kind: {$in: ['free']}
+									},
+									{cardset_id: {$in: paidCardsets}}
+								]
+							}).map(function (cardset) {
+							return cardset._id;
+						})
+					}
+				});
 			}
 		}
 	});
 
 	Meteor.publish("previewCards", function (cardset_id) {
 		check(cardset_id, String);
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Cardsets.findOne({_id: cardset_id}).visible === true) {
 			let count = Cards.find({cardset_id: cardset_id}).count();
 			let cardIdArray = Cards.find({cardset_id: cardset_id}, {_id: 1}).map(function (card) {
 				return card._id;
@@ -343,9 +319,9 @@ Meteor.methods({
 		var card = Cards.findOne({_id: card_id});
 		if (card !== undefined) {
 			if (!Roles.userIsInRole(this.userId, [
-					'admin',
-					'editor'
-				])) {
+				'admin',
+				'editor'
+			])) {
 				throw new Meteor.Error("not-authorized");
 			}
 
@@ -381,9 +357,9 @@ Meteor.methods({
 		var cardset = Cardsets.findOne(card.cardset_id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			// Make sure the user is logged in and is authorized
 			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
