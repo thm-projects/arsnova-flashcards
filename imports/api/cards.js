@@ -95,7 +95,7 @@ if (Meteor.isServer) {
 
 	Meteor.publish("previewCards", function (cardset_id) {
 		check(cardset_id, String);
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Cardsets.findOne({_id: cardset_id}).visible === true) {
 			let count = Cards.find({cardset_id: cardset_id}).count();
 			let cardIdArray = Cards.find({cardset_id: cardset_id}, {_id: 1}).map(function (card) {
 				return card._id;
