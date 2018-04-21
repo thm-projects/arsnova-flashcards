@@ -600,19 +600,19 @@
     "description": "Beschreibung"
   },
   "learning-goal": {
-    "name": "Anforderung",
-    "level1": "Erinnern",
-    "level1Placeholder": "Formuliere die Anforderung \"Erinnern\" mit einem der folgenden Verben:\n\nabrufen, auflisten, aufzählen, benennen, beschreiben, bezeichnen, darlegen, identifizieren, reproduzieren, wiedergeben, wiederholen oder wissen.",
-    "level2": "Verstehen",
-    "level2Placeholder": "Formuliere die Anforderung \"Verstehen\" mit einem der folgenden Verben:\n\nableiten, abstrahieren, begründen, beschreiben, definieren, diskutieren, erklären, erläutern, formulieren, illustrieren, interpretieren, klassifizieren, paraphrasieren, schließen, skizzieren, unterscheiden, veranschaulichen, verdeutlichen oder zusammenfassen.",
-    "level3": "Anwenden",
-    "level3Placeholder": "Formuliere die Anforderung \"Anwenden\" mit einem der folgenden Verben:\n\nbegründen, durchführen, erarbeiten, handhaben, implementieren, lösen, nutzen realisieren oder übertragen.",
-    "level4": "Analysieren",
-    "level4Placeholder": "Formuliere die Anforderung \"Analysieren\" mit einem der folgenden Verben:\n\nauswählen, einteilen, einordnen, erforschen, erkennen, erschließen, hervorheben, interpretieren, nachweisen, organisieren, prüfen, strukturieren, testen, unterscheiden, untersuchen oder vergleichen.",
+    "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
+    "level1": "Verstehen",
+    "level1Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Verstehen\"! Verwende hierfür eins der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level2": "Anwenden",
+    "level2Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Anwenden\"! Verwende hierfür eins der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, bedienen, berechnen, deuten, durchführen, erstellen.",
+    "level3": "Analysieren",
+    "level3Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Analysieren\"! Verwende hierfür eins der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level4": "Synthetisieren",
+    "level4Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Synthetisieren\"! Verwende hierfür eins der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
     "level5": "Bewerten",
-    "level5Placeholder": "Formuliere die Anforderung \"Bewerten\" mit einem der folgenden Verben:\n\nauswerten, begutachten, beurteilen, durchschauen, einstufen, entscheiden, ermitteln, evaluieren, hinterfragen oder überprüfen.",
-    "level6": "Entwickeln",
-    "level6Placeholder": "Formuliere die Anforderung \"Erschaffen\" mit einem der folgenden Verben:\n\nentwerfen, entwickeln, erzeugen, generieren, kombinieren, konstruieren, konzipieren, koordinieren, herstellen, modifizieren, produzieren, verbinden, zusammenfügen oder zusammenstellen."
+    "level5Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Bewerten\"! Verwende hierfür eins der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level6": "Innovieren",
+    "level6Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Innovieren\"! Verwende hierfür eins der folgenden Verben:\n\nschöpferisch arbeiten, erfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -634,17 +634,17 @@
       "hint": "Links | Literatur ",
       "lecture": "Lerninhalt",
       "placeholders": {
-        "front": "Frage zur Überprüfung des Lernziels gemäß Level und Anforderung",
-        "back": "Antwort auf die Lernzielfrage",
+        "front": "",
+        "back": "Gib eine Zusammenfassung des Lernziels!\n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
         "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
-        "lecture": "Erläuterungen des Lerngegenstands"
+        "lecture": "Erläutere hier den Lerngegenstand!\n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
-        "subject": "Lernziel (kurz gefasst)"
+        "subject": "Was soll gelernt werden? (kurz gefasstes Lernziel)"
       }
     },
     "cardType1": {
-      "name": "Vokabeltrainer",
+      "name": "Vokabelkartei",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
@@ -659,11 +659,11 @@
       "name": "Mitschrift",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
-      "hint": "Offene Fragen | To-do",
+      "hint": "Offene Fragen | To-dos",
       "placeholders": {
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein.",
-        "back": "Nachbearbeitung der Lerninhalte",
-        "hint": "Noch nicht verstanden | To-do-Liste"
+        "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen des Editors!\n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-Do-Liste ab!",
+        "hint": "Notiere hier, was du während der Veranstaltung noch nicht verstanden hast, und schreibe die Hausaufgaben als Liste auf!"
       },
       "editorLabels": {
         "subject": "Thema der Lehrstunde"
@@ -673,11 +673,11 @@
       "name": "Glossar",
       "front": "Fachbegriff",
       "back": "Definition | Beschreibung",
-      "hint": "Links | Literatur ",
+      "hint": "Literatur zum Fachbegriff ",
       "placeholders": {
         "front": "Fachbegriff",
         "back": "Definition oder Beschreibung des Fachbegriffs",
-        "hint": "Links | Literatur zur Vertiefung des Lerninhalts"
+        "hint": "Literatur zur Vertiefung"
       },
       "editorLabels": {
         "subject": "Fachgebiet"
@@ -685,7 +685,7 @@
     },
     "cardType4": {
       "name": "Zitatensammlung",
-      "front": "Zitat",
+      "front": "Wörtliches Zitat",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
@@ -699,13 +699,13 @@
     },
     "cardType5": {
       "name": "Prüfung",
-      "front": "Frage",
-      "back": "Antwort",
+      "front": "Prüfungsfrage",
+      "back": "Erwartete Antwort",
       "hint": "Begründung",
       "placeholders": {
         "front": "Prüfungsfrage zum Kompetenzziel",
-        "back": "Antwort",
-        "hint": "Begründung oder Erläuterung der Antwort"
+        "back": "Antwort auf die Prüfungsfrage",
+        "hint": "Begründung oder Erläuterung der Antwort\n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter \"Gehört zur Lernkartei...\"), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
       },
       "editorLabels": {
         "subject": "Zu prüfendes Kompetenzziel"
@@ -713,11 +713,11 @@
     },
     "cardType6": {
       "name": "Befehlssatz",
-      "front": "Befehl",
-      "back": "Definition | Beschreibung",
+      "front": "Wie lautet der Befehl?",
+      "back": "Was soll der Befehl bewirken?",
       "placeholders": {
-        "front": "Befehl",
-        "back": "Definition oder Beschreibung des Befehls"
+        "front": "Syntax des Befehls \n\nVerwende die Code-Formatierung (Button \"</>\")!",
+        "back": "Semantik des Befehls"
       },
       "editorLabels": {
         "subject": "Anwendungskontext des Befehls"
