@@ -729,9 +729,11 @@
       "name": "Command set",
       "front": "Command",
       "back": "Definition",
+      "hint": "Online API",
       "placeholders": {
         "front": "Frontside",
-        "back": "Definition"
+        "back": "Definition",
+        "hint": "Online API"
       },
       "editorLabels": {
         "subject": "Subject"

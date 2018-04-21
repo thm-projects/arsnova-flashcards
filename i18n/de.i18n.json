@@ -715,9 +715,11 @@
       "name": "Befehlssatz",
       "front": "Wie lautet der Befehl?",
       "back": "Was soll der Befehl bewirken?",
+      "hint": "Online API",
       "placeholders": {
         "front": "Syntax des Befehls \n\nVerwende die Code-Formatierung (Button \"</>\")!",
-        "back": "Semantik des Befehls"
+        "back": "Semantik des Befehls",
+        "hint": "Online API"
       },
       "editorLabels": {
         "subject": "Anwendungskontext des Befehls"

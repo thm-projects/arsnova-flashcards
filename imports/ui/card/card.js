@@ -1198,20 +1198,11 @@ Template.learningGoalLevel.events({
  */
 
 Template.cardHintContent.helpers({
-	getSubject: function (presentationSubject = undefined) {
-		if (isEditMode()) {
-			return Session.get('subjectText');
-		} else if (isPresentation()) {
-			return presentationSubject;
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
-		}
-	},
-	getHint: function (presentationHint = undefined) {
+	getHint: function () {
 		if (isEditMode()) {
 			return Session.get('hintText');
 		} else if (isPresentation()) {
-			return presentationHint;
+			return this.hint;
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
@@ -1219,12 +1210,12 @@ Template.cardHintContent.helpers({
 	getPlaceholder: function () {
 		return getPlaceholderText(2);
 	},
-	gotHint: function (presentationHint = undefined) {
+	gotHint: function () {
 		let hint;
 		if (isEditMode()) {
 			hint = Session.get('hintText');
 		} else if (isPresentation()) {
-			hint = presentationHint;
+			hint = this.hint;
 		} else if (Session.get('selectedHint')) {
 			hint = Cards.findOne({_id: Session.get('selectedHint')}).hint;
 		}
@@ -1248,6 +1239,47 @@ Template.cardHintContent.helpers({
 	}
 });
 
+
+/*
+ * ############################################################################
+ * cardSubject
+ * ############################################################################
+ */
+Template.cardSubject.helpers({
+	getSubject: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
+		} else {
+			return this.subject;
+		}
+	},
+	gotLearningUnit: function () {
+		if (Session.get('selectedHint')) {
+			let card = Cards.findOne({_id: Session.get('selectedHint')});
+			return (gotLearningUnit(card.cardType) && card.learningUnit !== "0");
+		} else {
+			return (gotLearningUnit(this.cardType) && this.learningUnit !== "0");
+		}
+	},
+	getLearningIndex: function () {
+		if (isEditMode()) {
+			return Session.get('learningIndex');
+		} else if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).learningIndex;
+		} else {
+			return this.learningIndex;
+		}
+	},
+	getLearningUnit: function () {
+		if (isEditMode()) {
+			return Session.get('learningUnit');
+		} else if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).learningUnit;
+		} else {
+			return this.learningUnit;
+		}
+	}
+});
 /*
  * ############################################################################
  * flashcards
@@ -1257,6 +1289,7 @@ Template.cardHintContent.helpers({
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
+	Session.set('selectedHint', undefined);
 });
 
 let resizeInterval;
@@ -1283,6 +1316,7 @@ Template.flashcards.onRendered(function () {
 	}
 	$('#showHintModal').on('hidden.bs.modal', function () {
 		$('#showHint').children().removeClass("pressed");
+		Session.set('selectedHint', undefined);
 	});
 	$('#showCopyCardModal').on('hidden.bs.modal', function () {
 		$('#copyCard').children().removeClass("pressed");
@@ -1328,23 +1362,6 @@ Template.flashcards.helpers({
 	},
 	isMemo: function () {
 		return isMemo();
-	},
-	getLearningIndex: function () {
-		if (isEditMode()) {
-			return Session.get('learningIndex');
-		} else {
-			return this.learningIndex;
-		}
-	},
-	getLearningUnit: function () {
-		if (isEditMode()) {
-			return Session.get('learningUnit');
-		} else {
-			return this.learningUnit;
-		}
-	},
-	gotLearningUnit: function () {
-		return (gotLearningUnit(this.cardType) && this.learningUnit !== "0");
 	},
 	isEditMode: function () {
 		return (isEditMode() && !Session.get('fullscreen'));
