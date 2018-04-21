@@ -37,7 +37,7 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
-$color_placeholder: $color_thm_dark_blue;
+$color_placeholder: $color_thm_gray;
 $size_footer_height: 40px;
 
 //info page
@@ -851,9 +851,10 @@ th {
   position: relative;
   float: left;
   width: 100%;
-  font-size: 20px;
+  font-size: 16px;
+  font-style: italic;
   text-align: left;
-  padding-top: 15%;
+  padding-top: 7%;
   color: $color_placeholder;
 }
 
