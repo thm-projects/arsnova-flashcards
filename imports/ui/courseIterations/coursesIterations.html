@@ -61,8 +61,10 @@
                 <div class="modal-body">
                     <p>{{_ "courseIteration.confirm-form-delete.text"}}</p>
                     <br/>
-					<input type="checkbox" id="alsoDeleteAssociatedDecks" value="false"/>
-					<label for="alsoDeleteAssociatedDecks">{{_ "courseIteration.confirm-form-delete.alsoDeleteAssociatedDecks"}}</label>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="alsoDeleteAssociatedDecks" value="false"/>
+						<label for="alsoDeleteAssociatedDecks" class="form-check-label">{{_ "courseIteration.confirm-form-delete.alsoDeleteAssociatedDecks"}}</label>
+					</div>
                     <hr/>
 
                     <button id="deleteCourseIteration"
