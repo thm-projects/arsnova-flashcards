@@ -37,7 +37,7 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
-$color_placeholder: $color_thm_gray;
+$color_placeholder: $color_thm_orange;
 $size_footer_height: 40px;
 
 //info page
@@ -847,17 +847,6 @@ th {
   text-transform: uppercase;
 }
 
-#contentEditor::placeholder, .placeholder {
-  position: relative;
-  float: left;
-  width: 100%;
-  font-size: 16px;
-  font-style: italic;
-  text-align: left;
-  padding-top: 7%;
-  color: $color_placeholder;
-}
-
 .panel-heading.info-tab {
   color: $color_info_content_header_text !important;
   background-color: $color_info_content_header_background !important;
@@ -1142,4 +1131,13 @@ th {
 
 .thm-header .navbar-toggle {
   margin-right: 0;
+}
+
+::placeholder {
+  padding-top: 5% !important;
+  padding-left: 5pt !important;
+  color: $color_placeholder !important;
+  opacity: 1;
+  font-size: 12pt !important;
+  font-style: italic;
 }
