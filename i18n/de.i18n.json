@@ -602,17 +602,17 @@
   "learning-goal": {
     "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
     "level1": "Verstehen",
-    "level1Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Verstehen\"! Verwende hierfür eins der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level1Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Verstehen»! Verwende hierfür eins der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "Anwenden",
-    "level2Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Anwenden\"! Verwende hierfür eins der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, bedienen, berechnen, deuten, durchführen, erstellen.",
+    "level2Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Anwenden»! Verwende hierfür eins der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
     "level3": "Analysieren",
-    "level3Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Analysieren\"! Verwende hierfür eins der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level3Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Analysieren»! Verwende hierfür eins der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Synthetisieren\"! Verwende hierfür eins der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
+    "level4Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Synthetisieren»! Verwende hierfür eins der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
     "level5": "Bewerten",
-    "level5Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Bewerten\"! Verwende hierfür eins der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level5Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Bewerten»! Verwende hierfür eins der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
-    "level6Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe \"Innovieren\"! Verwende hierfür eins der folgenden Verben:\n\nschöpferisch arbeiten, erfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
+    "level6Placeholder": "Formuliere das Lernziel auf der Kompetenzstufe «Innovieren»! Verwende hierfür eins der folgenden Verben:\n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -636,7 +636,7 @@
       "placeholders": {
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels!\n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
-        "hint": "Links | Literatur zur Vertiefung des Lerninhalts",
+        "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf!\n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
         "lecture": "Erläutere hier den Lerngegenstand!\n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
@@ -663,7 +663,7 @@
       "placeholders": {
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein.",
         "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen des Editors!\n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-Do-Liste ab!",
-        "hint": "Notiere hier, was du während der Veranstaltung noch nicht verstanden hast, und schreibe die Hausaufgaben als Liste auf!"
+        "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase.\n\nSchreibe die Hausaufgaben als «Task-Liste» auf, siehe Formatierungsoptionen für Listen!"
       },
       "editorLabels": {
         "subject": "Thema der Lehrstunde"
@@ -705,7 +705,7 @@
       "placeholders": {
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
-        "hint": "Begründung oder Erläuterung der Antwort\n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter \"Gehört zur Lernkartei...\"), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
+        "hint": "Begründung oder Erläuterung der Antwort\n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter «Gehört zur Lernkartei...»), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
       },
       "editorLabels": {
         "subject": "Zu prüfendes Kompetenzziel"
@@ -715,11 +715,11 @@
       "name": "Befehlssatz",
       "front": "Wie lautet der Befehl?",
       "back": "Was soll der Befehl bewirken?",
-      "hint": "Online API",
+      "hint": "Online-API",
       "placeholders": {
         "front": "Syntax des Befehls \n\nVerwende die Code-Formatierung (Button \"</>\")!",
         "back": "Semantik des Befehls",
-        "hint": "Online API"
+        "hint": "Verlinke hier auf die Online-API des Befehls!"
       },
       "editorLabels": {
         "subject": "Anwendungskontext des Befehls"
