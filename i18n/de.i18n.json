@@ -745,6 +745,7 @@
     "targetAudience": "Zielgruppe",
     "confirm-form-delete": {
       "title": "Kurs löschen",
+      "alsoDeleteAssociatedDecks": "Dazugehörige Karteien löschen",
       "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs
       gelöscht. Die zum Kurs gehörenden Karteien bleiben erhalten."
     },
