@@ -243,22 +243,28 @@ Meteor.methods({
 		});
 	},
 	/**
-	 * Delete selected course from database if user is auhorized.
+	 * Delete selected course (and associated decks) from database if user is auhorized.
 	 * @param {String} id - Database id of the course to be deleted
+	 * @param {Boolean} andCardDecks - true, if associated card decks should be deleted too
 	 */
-	deleteCourseIteration: function (id) {
+	deleteCourseIteration: function (id, andCardDecks) {
 		check(id, String);
 		// Make sure only the task owner can make a task private
 		let courseIteration = CourseIterations.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || courseIteration.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
 		}
-		CourseIterations.remove(id);
+
+		if (andCardDecks) {
+			throw new Meteor.Error("not-implemented");
+		} else {
+			CourseIterations.remove(id);
+		}
 	}
 });

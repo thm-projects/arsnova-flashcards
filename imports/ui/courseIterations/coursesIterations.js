@@ -73,9 +73,26 @@ Template.courseIterationsEmpty.events({
  */
 
 Template.courseIterationDeleteForm.events({
+	'click #alsoDeleteAssociatedDecks': function () {
+		if ($('#alsoDeleteAssociatedDecks').is(":checked")) {
+			$("#underDevelopmentModal").modal("show");
+			$('#alsoDeleteAssociatedDecks').attr("checked", false);
+		}
+	},
 	'click #deleteCourseIteration': function () {
-		$('#confirmDeleteModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteCourseIteration", Session.get('courseIterationId'));
-		}).modal('hide');
+		// Uncheck following line, if course cards feature is implemented.
+		// const alsoDeleteDecks = $('#alsoDeleteAssociatedDecks').is(":checked");
+		const alsoDeleteDecks = false;
+		Meteor.call("deleteCourseIteration", Session.get('courseIterationId'), alsoDeleteDecks, (error) => {
+			if (error) {
+				if (error.error === "not-implemented") {
+					$("#underDevelopmentModal").modal("show");
+				} else {
+					console.error(error);
+				}
+			} else {
+				$('#confirmDeleteModal').modal('hide');
+			}
+		});
 	}
 });

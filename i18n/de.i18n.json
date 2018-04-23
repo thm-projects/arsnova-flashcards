@@ -602,17 +602,17 @@
   "learning-goal": {
     "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
     "level1": "Verstehen",
-    "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "Anwenden",
-    "level2Placeholder": "Du hast die Kompetenzstufe «Anwenden» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
+    "level2Placeholder": "Du hast die Kompetenzstufe «Anwenden» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
     "level3": "Analysieren",
-    "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
     "level5": "Bewerten",
-    "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
-    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit eins der folgenden Verben:\n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
+    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -745,8 +745,8 @@
     "targetAudience": "Zielgruppe",
     "confirm-form-delete": {
       "title": "Kurs löschen",
-      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs
-      gelöscht. Die zum Kurs gehörenden Karteien bleiben erhalten."
+      "alsoDeleteAssociatedDecks": "Dazugehörige Karteien löschen",
+      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht. Die zum Kurs gehörenden Karteien bleiben erhalten, es sei denn, du aktivierst die folgende Option."
     },
     "manage": "Kurs verwalten",
     "list": {
