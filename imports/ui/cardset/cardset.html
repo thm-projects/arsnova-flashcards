@@ -438,6 +438,17 @@
 <template name="cardsetSidebar">
     <div id="sidebar" class="col-md-3">
         {{#unless learningActiveAndNotEditor}}
+            {{#if gotPresentation}}
+                <div id="set-details-sideBar-region col-xs-12">
+                    <div class="well well-sm sidebar-nav">
+                        <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
+                        <button id="startPresentation"
+                                class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}
+                                data-toggle="modal" data-target="#chooseFlashcardsModal"><i
+                                class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
+                    </div>
+                </div>
+            {{/if}}
             <div id="set-details-sideBar-region col-xs-12">
                 <div class="well well-sm sidebar-nav">
                     <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
@@ -453,17 +464,6 @@
                     </div>
                 </div>
             </div>
-            {{#if gotPresentation}}
-                <div id="set-details-sideBar-region col-xs-12">
-                    <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
-                        <button id="startPresentation"
-                                class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}
-                                data-toggle="modal" data-target="#chooseFlashcardsModal"><i
-                                class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
-                    </div>
-                </div>
-            {{/if}}
         {{/unless}}
         {{#if gotLearningModes}}
             {{#if gotEnoughCards}}
