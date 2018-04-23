@@ -896,13 +896,13 @@ Template.chooseFlashcards.helpers({
 });
 
 Template.chooseFlashcards.events({
-	"click #createCardFilter": function () {
+	"click #createCardFilter": function (event) {
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		if (Session.get('chooseFlashcardsMode') === 1) {
-			event.stopPropagation();
 			Router.go('presentation', {_id: this._id});
+			event.stopPropagation();
 		}
 	},
 	"click .sortFilter": function () {
