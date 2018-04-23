@@ -231,7 +231,7 @@ Meteor.methods({
 			learningIndex: learningIndex,
 			learningUnit: learningUnit,
 			cardType: cardset.cardType
-		}, function (err, card) {
+		}, {trimStrings: false}, function (err, card) {
 			card_id = card;
 		});
 		Cardsets.update(cardset_id, {
@@ -388,7 +388,7 @@ Meteor.methods({
 				learningIndex: learningIndex,
 				learningUnit: learningUnit
 			}
-		});
+		}, {trimStrings: false});
 		Cardsets.update(card.cardset_id, {
 			$set: {
 				dateUpdated: new Date()

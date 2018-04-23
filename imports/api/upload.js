@@ -83,7 +83,7 @@ Meteor.methods({
 				back = back.replace(regex, hlcodeReplacement);
 
 				Cards.insert({
-					subject: subject,
+					subject: subject.trim(),
 					difficulty: item.difficulty,
 					front: front,
 					back: back,
@@ -96,7 +96,7 @@ Meteor.methods({
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
 					learningUnit: item.learningUnit
-				});
+				}, {trimStrings: false});
 			}
 		} else {
 			for (let i = 0; i < data.length; i++) {
@@ -115,7 +115,7 @@ Meteor.methods({
 					centerTextElement: [true, true, false, false],
 					learningGoalLevel: 0,
 					backgroundStyle: 0
-				});
+				}, {trimStrings: false});
 			}
 		}
 		Cardsets.update(cardset_id, {
