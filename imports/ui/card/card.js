@@ -133,8 +133,10 @@ function prepareFront() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 6);
-	$('#contentEditor').val(Session.get('frontText'));
-	$('#editor').attr('data-content', Session.get('frontText'));
+	if (!isPresentation()) {
+		$('#contentEditor').val(Session.get('frontText'));
+		$('#editor').attr('data-content', Session.get('frontText'));
+	}
 	$('#editFront').removeClass('btn-default').addClass('btn-primary');
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
@@ -156,8 +158,10 @@ function prepareBack() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 8);
-	$('#contentEditor').val(Session.get('backText'));
-	$('#editor').attr('data-content', Session.get('backText'));
+	if (!isPresentation()) {
+		$('#contentEditor').val(Session.get('backText'));
+		$('#editor').attr('data-content', Session.get('backText'));
+	}
 	$('#editBack').removeClass('btn-default').addClass('btn-primary');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
@@ -231,8 +235,10 @@ function editLecture() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 10);
-	$('#contentEditor').val(Session.get('lectureText'));
-	$('#editor').attr('data-content', Session.get('lectureText'));
+	if (!isPresentation()) {
+		$('#contentEditor').val(Session.get('lectureText'));
+		$('#editor').attr('data-content', Session.get('lectureText'));
+	}
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editHint').removeClass('btn-primary').addClass('btn-default');
@@ -255,8 +261,10 @@ function editHint() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 12);
-	$('#contentEditor').val(Session.get('hintText'));
-	$('#editor').attr('data-content', Session.get('hintText'));
+	if (!isPresentation()) {
+		$('#contentEditor').val(Session.get('hintText'));
+		$('#editor').attr('data-content', Session.get('hintText'));
+	}
 	$('#editHint').removeClass('btn-default').addClass('btn-primary');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
@@ -455,9 +463,17 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
  */
 export function turnCard(adjustEditWindow = false) {
 	if ($(".cardfrontCheck").css('display') === 'none') {
-		turnFront(adjustEditWindow);
+		if (isPresentation()) {
+			editFront();
+		} else {
+			turnFront(adjustEditWindow);
+		}
 	} else if ($(".cardbackCheck").css('display') === 'none') {
-		turnBack(adjustEditWindow);
+		if (isPresentation()) {
+			editBack();
+		} else {
+			turnBack(adjustEditWindow);
+		}
 	}
 }
 
@@ -1555,13 +1571,36 @@ Template.flashcards.helpers({
 
 Template.flashcards.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		if (Session.get('reverseViewOrder')) {
-			turnBack();
+		if (gotSidesSwapped(this.cardType)) {
+			if (Session.get('reverseViewOrder')) {
+				if (isPresentation) {
+					editFront();
+				} else {
+					turnFront();
+				}
+			} else {
+				if (isPresentation) {
+					editBack();
+				} else {
+					turnBack();
+				}
+			}
 		} else {
-			turnFront();
+			if (Session.get('reverseViewOrder')) {
+				if (isPresentation) {
+					editBack();
+				} else {
+					turnBack();
+				}
+			} else {
+				if (isPresentation) {
+					editFront();
+				} else {
+					turnFront();
+				}
+			}
 		}
 		if (isPresentation()) {
-			$('#editFront').click();
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				updateNavigation();
 			});
@@ -1598,14 +1637,22 @@ Template.flashcards.events({
 			if (isEditMode()) {
 				turnFront(true);
 			} else {
-				turnFront();
+				if (isPresentation()) {
+					editFront();
+				} else {
+					turnFront();
+				}
 			}
 		} else {
 			Session.set('reverseViewOrder', true);
 			if (isEditMode()) {
 				turnBack(true);
 			} else {
-				turnBack();
+				if (isPresentation()) {
+					editBack();
+				} else {
+					turnBack();
+				}
 			}
 		}
 	},
