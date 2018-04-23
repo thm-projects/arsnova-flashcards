@@ -340,7 +340,7 @@ Meteor.methods({
 			cardGroups: cardGroups,
 			cardType: cardType,
 			difficulty: difficulty
-		});
+		}, {trimStrings: false});
 	},
 	/**
 	 * Delete selected Cardset from database if user is auhorized.
@@ -587,7 +587,7 @@ Meteor.methods({
 				cardType: cardType,
 				difficulty: difficulty
 			}
-		});
+		}, {trimStrings: false});
 
 		Cards.update({
 				cardset_id: cardset._id

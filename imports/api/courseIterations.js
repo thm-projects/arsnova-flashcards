@@ -185,7 +185,7 @@ Meteor.methods({
 			price: price.toString().replace(",", "."),
 			semester: semester,
 			targetAudience: targetAudience
-		});
+		}, {trimStrings: false});
 	},
 	/**
 	 * Updates the selected course
@@ -240,7 +240,7 @@ Meteor.methods({
 				college: college.trim(),
 				course: course.trim()
 			}
-		});
+		}, {trimStrings: false});
 	},
 	/**
 	 * Delete selected course (and associated decks) from database if user is auhorized.
