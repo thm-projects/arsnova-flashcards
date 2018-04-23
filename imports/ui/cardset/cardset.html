@@ -713,10 +713,10 @@
                 <div class="modal-body">
                     <div class="bs-callout bs-callout-info selectionInfo">
                         {{#if getCardCount -1 -1}}
-                            <a href="#" id="createCardFilter" class="btn btn-raised btn-success"
-                               role="button" {{disableIfOffline}}>{{#if isPresentationMode}}{{_
+                            <button id="createCardFilter" class="btn btn-raised btn-success" {{disableIfOffline}}>{{#if
+                                    isPresentationMode}}{{_
                                     "presentation.start"}}{{else}}{{_ "filter-cards.filter"}}{{/if}}
-                            </a>
+                            </button>
                         {{/if}}
                         <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal"
                            aria-hidden="true">{{_

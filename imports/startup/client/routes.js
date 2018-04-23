@@ -200,7 +200,9 @@ Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	data: function () {
-		return Cardsets.findOne({_id: this.params._id});
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		setEditMode(cardset.cardType);
+		return cardset;
 	}
 });
 
