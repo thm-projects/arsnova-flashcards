@@ -88,7 +88,7 @@ Template.profileSettings.helpers({
 	},
 	/** Function returns "selected" when the value of the selectedLanguage and the input _id are the same */
 	getSelectedLanguage: function (id) {
-		if (id === Meteor.users.findOne(Meteor.userId()).selectedLanguage) {
+		if (id === Meteor.users.findOne(Meteor.userId()).profile.locale) {
 			return "selected";
 		}
 	},
@@ -120,7 +120,7 @@ Template.profileSettings.helpers({
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
-	Session.set("language", Meteor.users.findOne(Meteor.userId()).selectedLanguage);
+	Session.set("language", Meteor.users.findOne(Meteor.userId()).profile.locale);
 });
 
 Template.profileSettings.onCreated(function () {

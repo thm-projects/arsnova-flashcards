@@ -10,7 +10,6 @@ import * as lib from '/client/lib.js';
 import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
-import {getUserLanguage} from "../../startup/client/i18n";
 import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
@@ -44,7 +43,11 @@ Template.registerHelper("isLecturer", function () {
 });
 
 Template.registerHelper("isActiveLanguage", function (language) {
-	return Session.get('activeLanguage') === language;
+	if (Session.get('activeLanguage') === undefined) {
+		return TAPi18n.getLanguage() === language;
+	} else {
+		return Session.get('activeLanguage') === language;
+	}
 });
 
 
@@ -226,7 +229,7 @@ Template.registerHelper("getDate", function () {
 	} else {
 		date = this.date;
 	}
-	return moment(date).locale(getUserLanguage()).format('LL');
+	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
 // Returns the locale date
@@ -237,12 +240,12 @@ Template.registerHelper("getDateUpdated", function () {
 	} else {
 		dateUpdated = this.dateUpdated;
 	}
-	return moment(dateUpdated).locale(getUserLanguage()).format('LL');
+	return moment(dateUpdated).locale(Session.get('activeLanguage')).format('LL');
 });
 
 // Returns the locale date with time
 Template.registerHelper("getTimestamp", function () {
-	return moment(this.date).locale(getUserLanguage()).format('LLLL');
+	return moment(this.date).locale(Session.get('activeLanguage')).format('LLLL');
 });
 
 // Returns all courses

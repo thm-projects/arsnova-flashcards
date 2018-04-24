@@ -311,6 +311,8 @@ var isSignedIn = function () {
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
 	} else {
+		TAPi18n.setLanguage(Meteor.user().profile.locale);
+		Session.set('activeLanguage', Meteor.user().profile.locale);
 		this.next();
 	}
 };
