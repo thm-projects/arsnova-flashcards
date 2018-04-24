@@ -178,5 +178,9 @@ $themes: (
       color: white !important;
       background-color: $primary-color !important;
     }
+
+    .cardset-list-badge {
+      color: $primary-color;
+    }
   }
 }
