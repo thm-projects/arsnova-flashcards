@@ -43,7 +43,11 @@ Template.registerHelper("isLecturer", function () {
 });
 
 Template.registerHelper("isActiveLanguage", function (language) {
-	return Session.get('activeLanguage') === language;
+	if (Session.get('activeLanguage') === undefined) {
+		return TAPi18n.getLanguage() === language;
+	} else {
+		return Session.get('activeLanguage') === language;
+	}
 });
 
 
