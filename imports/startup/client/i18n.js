@@ -5,18 +5,7 @@ import {Meteor} from "meteor/meteor";
 
 export function getUserLanguage() {
 	if (Meteor.userId()) {
-		let language = Meteor.users.findOne(Meteor.userId()).selectedLanguage;
-		if (language !== undefined) {
-			return language;
-		} else {
-			let navigatorLanguage = navigator.language.substr(0, 2);
-			switch (navigatorLanguage) {
-				case "de":
-					return "de";
-				default:
-					return "en";
-			}
-		}
+		return Meteor.users.findOne(Meteor.userId()).profile.locale;
 	} else {
 		return navigator.language.substr(0, 2);
 	}

@@ -591,6 +591,22 @@ Meteor.startup(function () {
 		);
 	}
 
+	let users = Meteor.users.find({selectedLanguage: {$exists: true}}).fetch();
+	for (let i = 0; i < users.length; i++) {
+		Meteor.users.update({
+				_id: users[i]._id
+			},
+			{
+				$set: {
+					"profile.locale": users[i].selectedLanguage
+				},
+				$unset: {
+					selectedLanguage: ""
+				}
+			}
+		);
+	}
+
 	ColorThemes.remove({});
 	for (let theme in themes) {
 		if (themes.hasOwnProperty(theme)) {
