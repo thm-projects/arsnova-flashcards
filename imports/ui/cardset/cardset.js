@@ -9,7 +9,6 @@ import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {ReactiveVar} from "meteor/reactive-var";
-import {getUserLanguage} from "../../startup/client/i18n";
 import "../card/card.js";
 import "../learn/learn.js";
 import "../presentation/presentation.js";
@@ -507,7 +506,7 @@ Template.cardsetInfoBoxContentOne.helpers({
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
 	},
 	getDateOfPurchase: function () {
-		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
+		return moment(Paid.findOne({cardset_id: this._id}).date).locale(Session.get('activeLanguage')).format('LL');
 	},
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
@@ -631,7 +630,7 @@ Template.cardsetInfoBoxContentTwo.helpers({
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
 	},
 	getDateOfPurchase: function () {
-		return moment(Paid.findOne({cardset_id: this._id}).date).locale(getUserLanguage()).format('LL');
+		return moment(Paid.findOne({cardset_id: this._id}).date).locale(Session.get('activeLanguage')).format('LL');
 	},
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
@@ -802,8 +801,8 @@ Template.cardsetSidebar.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
 	},
-	gotEnoughCards: function () {
-		return (this.quantity >= 1);
+	gotEnoughCardsToFilter: function () {
+		return (this.quantity >= 3);
 	},
 	gotLearningModes: function () {
 		return gotLearningModes(this.cardType);
@@ -896,13 +895,13 @@ Template.chooseFlashcards.helpers({
 });
 
 Template.chooseFlashcards.events({
-	"click #createCardFilter": function () {
+	"click #createCardFilter": function (event) {
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		if (Session.get('chooseFlashcardsMode') === 1) {
-			event.stopPropagation();
 			Router.go('presentation', {_id: this._id});
+			event.stopPropagation();
 		}
 	},
 	"click .sortFilter": function () {

@@ -3,7 +3,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import {Notifications} from "../../../api/notifications.js";
-import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_notifications.html";
 
 /*
@@ -55,7 +54,7 @@ Template.admin_notifications.helpers({
 		var user = null;
 
 		notifications.forEach(function (notification) {
-			dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');
+			dateString = moment(notification.date).locale(Session.get('activeLanguage')).format('LLLL');
 			date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
 			sender = Meteor.users.findOne({_id: notification.origin});
@@ -187,7 +186,7 @@ Template.admin_notifications.helpers({
 		var request = null;
 
 		notifications.forEach(function (notification) {
-			dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');
+			dateString = moment(notification.date).locale(Session.get('activeLanguage')).format('LLLL');
 			date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
 			sender = Meteor.users.findOne({_id: notification.origin});
@@ -279,7 +278,7 @@ Template.admin_notifications.helpers({
 		var user = null;
 
 		notifications.forEach(function (notification) {
-			dateString = moment(notification.date).locale(getUserLanguage()).format('LLLL');
+			dateString = moment(notification.date).locale(Session.get('activeLanguage')).format('LLLL');
 			date = moment(notification.date).format("YYYY-MM-DD-h-mm");
 
 			sender = Meteor.users.findOne({_id: notification.origin});

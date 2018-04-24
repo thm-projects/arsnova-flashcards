@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_user.html";
 
 
@@ -30,7 +29,7 @@ Template.admin_user.helpers({
 		return null;
 	},
 	getDateUser: function () {
-		return moment(this.createdAt).locale(getUserLanguage()).format('LL');
+		return moment(this.createdAt).locale(Session.get('activeLanguage')).format('LL');
 	},
 	getLvl: function () {
 		if (this.lvl === undefined) {
@@ -48,7 +47,7 @@ Template.admin_user.helpers({
 	},
 	getLastLogin: function (lastLogin) {
 		if (lastLogin) {
-			return moment(this.status.lastLogin.date).locale(getUserLanguage()).format('LLL');
+			return moment(this.status.lastLogin.date).locale(Session.get('activeLanguage')).format('LLL');
 		} else {
 			return null;
 		}
@@ -61,7 +60,7 @@ Template.admin_user.helpers({
 		var kind = null;
 
 		cardsets.forEach(function (cardset) {
-			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
+			dateString = moment(cardset.date).locale(Session.get('activeLanguage')).format('LL');
 			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';

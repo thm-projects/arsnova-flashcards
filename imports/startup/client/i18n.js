@@ -4,22 +4,13 @@ import {Meteor} from "meteor/meteor";
 //------------------------ GET LANGUAGE FROM USER
 
 export function getUserLanguage() {
+	let language;
 	if (Meteor.userId()) {
-		let language = Meteor.users.findOne(Meteor.userId()).selectedLanguage;
-		if (language !== undefined) {
-			return language;
-		} else {
-			let navigatorLanguage = navigator.language.substr(0, 2);
-			switch (navigatorLanguage) {
-				case "de":
-					return "de";
-				default:
-					return "en";
-			}
-		}
+		language = Meteor.users.findOne(Meteor.userId()).profile.locale;
 	} else {
-		return navigator.language.substr(0, 2);
+		language = navigator.language.substr(0, 2);
 	}
+	Session.set('activeLanguage', language);
 }
 
 
@@ -32,11 +23,10 @@ Meteor.startup(function () {
 
 	Meteor.subscribe("userData", {
 		onReady: function () {
-			let language = getUserLanguage();
-			TAPi18n.setLanguage(language)
+			getUserLanguage();
+			TAPi18n.setLanguage(Session.get('activeLanguage'))
 				.done(function () {
 					Session.set("showLoadingIndicator", false);
-					Session.set('activeLanguage', language);
 				})
 				.fail(function (error_message) {
 					// Handle the situation

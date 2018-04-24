@@ -20,7 +20,3 @@ Session.set('animationPlaying', false);
 Template.presentationView.onRendered(function () {
 	updateNavigation();
 });
-
-Template.presentationView.helpers({});
-
-Template.presentationView.events({});

@@ -200,7 +200,9 @@ Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	data: function () {
-		return Cardsets.findOne({_id: this.params._id});
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		setEditMode(cardset.cardType);
+		return cardset;
 	}
 });
 
@@ -309,6 +311,8 @@ var isSignedIn = function () {
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
 	} else {
+		TAPi18n.setLanguage(Meteor.user().profile.locale);
+		Session.set('activeLanguage', Meteor.user().profile.locale);
 		this.next();
 	}
 };

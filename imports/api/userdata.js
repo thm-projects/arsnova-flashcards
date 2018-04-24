@@ -16,6 +16,7 @@ if (Meteor.isServer) {
 						'profile.birthname': 1,
 						'profile.givenname': 1,
 						'profile.title': 1,
+						'profile.locale': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -46,6 +47,7 @@ if (Meteor.isServer) {
 						'profile.birthname': 1,
 						'profile.givenname': 1,
 						'profile.title': 1,
+						'profile.locale': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -201,7 +203,8 @@ Meteor.methods({
 						daysInRow: 0,
 						selectedColorTheme: "default",
 						mailNotification: true,
-						webNotification: false
+						webNotification: false,
+						"profile.locale": "de"
 					}
 				});
 			}
@@ -351,7 +354,7 @@ Meteor.methods({
 
 		Meteor.users.update(id, {
 			$set: {
-				"selectedLanguage": selectedLanguage
+				"profile.locale": selectedLanguage
 			}
 		});
 	},
