@@ -27,7 +27,9 @@ Template.registerHelper('extendContext', function (key, value) {
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
-	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	} else if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
 		return this.owner === Meteor.userId() || this.visible === true || this.request === true;
 	} else {
 		return this.owner === Meteor.userId() || this.visible === true;
