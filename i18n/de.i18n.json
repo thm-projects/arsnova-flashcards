@@ -242,7 +242,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Beschreibung der Kartei\n\n(bei Lernkarteien: Lernziele und Lerninhalte)",
+    "descriptionplaceholder": "Beschreibung der Kartei \n\n(bei Lernkarteien: Lernziele und Lerninhalte)",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -602,17 +602,17 @@
   "learning-goal": {
     "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
     "level1": "Verstehen",
-    "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "Anwenden",
-    "level2Placeholder": "Du hast die Kompetenzstufe «Anwenden» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
+    "level2Placeholder": "Du hast die Kompetenzstufe «Anwenden» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
     "level3": "Analysieren",
-    "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
     "level5": "Bewerten",
-    "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
-    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben:\n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
+    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -635,9 +635,9 @@
       "lecture": "Lerninhalt",
       "placeholders": {
         "front": "",
-        "back": "Gib eine Zusammenfassung des Lernziels!\n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
-        "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf!\n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
-        "lecture": "Erläutere hier den Lerngegenstand!\n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
+        "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
+        "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
+        "lecture": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
         "subject": "Was soll gelernt werden? (kurz gefasstes Lernziel)"
@@ -661,9 +661,9 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
       "placeholders": {
-        "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein.\n\nÜberarbeite zuhause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
-        "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen des Editors!\n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-Do-Liste ab!",
-        "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase.\n\nSchreibe die Hausaufgaben als «Task-Liste» auf, siehe Formatierungsoptionen für Listen!"
+        "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein. \n\nÜberarbeite zuhause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
+        "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen des Editors! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-Do-Liste ab!",
+        "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die Hausaufgaben als «Task-Liste» auf, siehe Formatierungsoptionen für Listen!"
       },
       "editorLabels": {
         "subject": "Thema der Lehrstunde"
@@ -705,7 +705,7 @@
       "placeholders": {
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
-        "hint": "Begründung oder Erläuterung der Antwort\n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter «Gehört zur Lernkartei...»), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
+        "hint": "Begründung oder Erläuterung der Antwort \n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter «Gehört zur Lernkartei...»), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
       },
       "editorLabels": {
         "subject": "Zu prüfendes Kompetenzziel"
@@ -1160,25 +1160,25 @@
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
     "subjectPlural2": " Karten ",
-    "subjectSingular3": " ist.\n\n",
-    "subjectPlural3": " sind.\n\n",
+    "subjectSingular3": " ist. \n\n",
+    "subjectPlural3": " sind. \n\n",
     "subjectCardset": "aus der Kartei ",
     "subjectEnd": " zu lernen.",
     "textEnd": " zu lernen sind. ",
     "newCards2Singular": " Karte erwartet dich in der Kartei ",
     "newCards2Plural": " Karten erwarten dich in der Kartei ",
     "textIntro": "Hallo ",
-    "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen!\n\n",
+    "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen! \n\n",
     "textDate1": "Du hast noch bis zum ",
     "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "newCards1": "Nach einer Prüfung deiner aktuellen Lernphase, konnte festgestellt werden, dass ",
     "newCards2Singular": " Karte aus der Kartei ",
     "newCards2Plural": " Karten aus der Kartei ",
     "mailCard": "Die Kartei ",
-    "mailCard1": " benötigt deine Aufmerksamkeit!\n\n",
-    "greetings": "\n\nDein .cards-Team",
+    "mailCard1": " benötigt deine Aufmerksamkeit! \n\n",
+    "greetings": " \n\nDein .cards-Team",
     "subjectEnding": "endet die Lernphase der Kartei ",
-    "textIntroEnding": "Hallo,\n\n",
+    "textIntroEnding": "Hallo, \n\n",
     "textEnding": "heute endet die Lernphase der Kartei ",
     "subjectReset": ".cards: Deine Lernstatistik wurde zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
