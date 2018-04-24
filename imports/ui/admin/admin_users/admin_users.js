@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_users.html";
 import "./admin_user.js";
 import DOMPurify from 'dompurify';
@@ -26,7 +25,7 @@ Template.admin_users.helpers({
 		var date = null;
 
 		users.forEach(function (user) {
-			dateString = moment(user.createdAt).locale(getUserLanguage()).format('LL');
+			dateString = moment(user.createdAt).locale(Session.get('activeLanguage')).format('LL');
 			date = moment(user.createdAt).format("YYYY-MM-DD");
 			fields.push({"_id": user._id, "profilename": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date});
 		});

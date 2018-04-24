@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
 import {getAuthorName} from "../../../api/cardsetUserlist.js";
-import {getUserLanguage} from "../../../startup/client/i18n";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
 import DOMPurify from 'dompurify';
@@ -26,7 +25,7 @@ Template.admin_cardsets.helpers({
 		var kind = null;
 
 		cardsets.forEach(function (cardset) {
-			dateString = moment(cardset.date).locale(getUserLanguage()).format('LL');
+			dateString = moment(cardset.date).locale(Session.get('activeLanguage')).format('LL');
 			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
