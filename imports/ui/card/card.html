@@ -553,15 +553,12 @@
 </template>
 
 <template name="flashcardsEmpty">
-    <div class="{{#if isActiveRoute 'cardsetdetailsid'}}col-md-9{{/if}} flip-container" id="set-details-region">
+    <div class="flip-container" id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="box flashcard emptyCard">
-                            {{#if isActiveRoute 'cardsetdetailsid'}}
-                                <h4>{{_ "nocards"}}</h4>
-                            {{/if}}
                             {{#if isActiveRoute 'box'}}
                                 <h4>{{_ "learnedEverything"}}</h4>
                             {{/if}}

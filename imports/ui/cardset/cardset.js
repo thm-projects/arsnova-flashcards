@@ -802,8 +802,8 @@ Template.cardsetSidebar.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
 	},
-	gotEnoughCards: function () {
-		return (this.quantity >= 1);
+	gotEnoughCardsToFilter: function () {
+		return (this.quantity >= 3);
 	},
 	gotLearningModes: function () {
 		return gotLearningModes(this.cardType);
