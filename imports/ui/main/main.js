@@ -18,7 +18,6 @@ import "../admin/admin.js";
 import "../access_denied/access_denied.js";
 import "../first_login/first_login.js";
 import "../../api/groundDB.js";
-import {getUserLanguage} from "../../startup/client/i18n";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -233,7 +232,7 @@ Template.main.helpers({
 
 Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
-	Meteor.call("initUser", getUserLanguage());
+	Meteor.call("initUser");
 	adjustSearchResultWindowSize();
 	$(window).resize(function () {
 		adjustSearchResultWindowSize();

@@ -182,7 +182,7 @@ Meteor.methods({
 		}
 		return name;
 	},
-	initUser: function (userLanguage) {
+	initUser: function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
 			var user = Meteor.users.findOne({
 				_id: Meteor.userId(),
@@ -204,7 +204,7 @@ Meteor.methods({
 						selectedColorTheme: "default",
 						mailNotification: true,
 						webNotification: false,
-						"profile.locale": userLanguage
+						"profile.locale": "de"
 					}
 				});
 			}
