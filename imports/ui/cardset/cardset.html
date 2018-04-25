@@ -55,7 +55,9 @@
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}
             {{else}}
-                {{> flashcards cardset=this}}
+                {{#if this.quantity}}
+                    {{> flashcards cardset=this}}
+                {{/if}}
             {{/if}}
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
@@ -65,7 +67,9 @@
         {{#unless fullscreenActive}}
             {{> cardsetPreview}}
         {{/unless}}
-        {{> flashcards cardset=this}}
+        {{#if this.quantity}}
+            {{> flashcards cardset=this}}
+        {{/if}}
     {{/if}}
 </template>
 
