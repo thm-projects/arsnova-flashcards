@@ -12,6 +12,7 @@ let cardTypesWithCenteredText = [1, 2, 4];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5];
 let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7];
+let cardTypesWithAlternativeHintStyle = [3];
 let cardTypesWithLearningModes = [0, 1, 3, 5, 6];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [2, 3, 5];
@@ -56,6 +57,10 @@ export function gotFourColumns(cardType) {
 
 export function gotThreeColumns(cardType) {
 	return getColumnCount(cardType) === 3;
+}
+
+export function gotAlternativeHintStyle(cardType) {
+	return cardTypesWithAlternativeHintStyle.includes(cardType);
 }
 
 export function gotLearningUnit(cardType) {

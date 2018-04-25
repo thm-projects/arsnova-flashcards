@@ -312,7 +312,7 @@
 </template>
 
 <template name="flashcards">
-    {{> cardHint}}
+    {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
     <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-md-9{{/unless}}{{/if}} flip-container"
          id="set-details-region">
@@ -449,7 +449,7 @@
                                     </span>
                                 </div>
                                 <div class="cardContent {{#if
-                                        isHintPreview}}hintContent{{/if}}{{#if
+                                        isHintPreview}}{{#if gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
                                         isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
@@ -629,7 +629,7 @@
 <template name="cardHint">
     <div class="modal fade" id="showHintModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content hintContent">
+            <div class="modal-content {{#if gotAlternativeHintStyle cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
                 {{> cardHintContent}}
             </div>
         </div>
