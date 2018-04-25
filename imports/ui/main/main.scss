@@ -1178,7 +1178,7 @@ th {
   margin-right: 0;
 }
 
-::placeholder {
+::placeholder, .placeholder {
   padding-top: 5% !important;
   padding-left: 5pt !important;
   color: $color_placeholder !important;
