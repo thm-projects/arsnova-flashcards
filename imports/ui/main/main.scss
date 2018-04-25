@@ -761,6 +761,12 @@ button:disabled {
   color: $white;
 }
 
+.glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover {
+  background-color: $color_thm_orange;
+  border-color: $color_thm_orange;
+  color: $white;
+}
+
 .md-editor {
   .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
     background-color: $color_thm_orange;
