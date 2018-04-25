@@ -297,6 +297,13 @@ img.cardside {
   top: 50px;
 }
 
+.endPresentation {
+  position: absolute;
+  float: right;
+  top: 15px;
+  right: 8px;
+}
+
 #toggleFullscreen, .cardNumber {
   right: 8px;
 }
@@ -544,6 +551,10 @@ img.cardside {
   #toggleFullscreen {
     top: 63px;
     right: 8px;
+  }
+  .endPresentation {
+    top: 35px;
+    right: 43px;
   }
   #changeStyle {
     top: 63px;

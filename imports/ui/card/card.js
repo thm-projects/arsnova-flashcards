@@ -16,7 +16,7 @@ import {
 	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
 	gotNotesForDifficultyLevel, gotThreeColumns,
 	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
-	displaysLearningGoalInformation, gotSidesSwapped
+	displaysLearningGoalInformation, gotSidesSwapped, gotAlternativeHintStyle
 } from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 
@@ -1209,6 +1209,17 @@ Template.learningGoalLevel.events({
 
 /*
  * ############################################################################
+ * cardHint
+ * ############################################################################
+ */
+
+Template.cardHint.helpers({
+	gotAlternativeHintStyle: function (cardType) {
+		return gotAlternativeHintStyle(cardType);
+	}
+});
+/*
+ * ############################################################################
  * cardHintContent
  * ############################################################################
  */
@@ -1254,7 +1265,6 @@ Template.cardHintContent.helpers({
 		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
-
 
 /*
  * ############################################################################
@@ -1376,6 +1386,9 @@ Template.flashcards.helpers({
 	isCardsetOrPresentation: function () {
 		return isCardset() || isPresentation();
 	},
+	isPresentation: function () {
+		return isPresentation();
+	},
 	isMemo: function () {
 		return isMemo();
 	},
@@ -1425,6 +1438,9 @@ Template.flashcards.helpers({
 		if (isPresentation()) {
 			return getPresentationCards();
 		}
+	},
+	gotAlternativeHintStyle: function () {
+		return gotAlternativeHintStyle(this.cardType);
 	},
 	countBox: function () {
 		var maxIndex = Leitner.find({
