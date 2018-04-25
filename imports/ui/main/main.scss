@@ -229,6 +229,13 @@ body {
   font-size: 14px !important;
 }
 
+_::-webkit-full-page-media, _:future, :root 
+#input-search {
+  padding: 2px 2px;
+  font-size: 14px !important;
+  line-height: 30px;
+}
+
 .navbar-default {
   background-color: $color_la_palma_approx;
   border-color: $color_bilbao_approx;
