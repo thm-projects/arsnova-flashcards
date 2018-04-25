@@ -491,7 +491,13 @@
   "presentation": {
     "title": "Presentation",
     "create": "Start a presentation",
-    "start": "Start"
+    "start": "Start",
+    "end-modal": {
+      "title": "End presentation",
+      "description": "Do you want to finish the current presentation?",
+      "confirm": "End presentation",
+      "cancel": "Cancel"
+    }
   },
   "pool": {
     "relevance": "Relevance",

@@ -414,6 +414,11 @@
                                                         reversedViewOrder}}pressed{{/if}}"
                                                       data-type="cardNavigation">swap_vert</span>
                                     </span>
+                                    {{#if isPresentation}}
+                                        <span class="glyphicon glyphicon-log-out card-button endPresentation"
+                                              data-type="cardNavigation" data-toggle="modal"
+                                              data-target="#endPresentationModal"></span>
+                                    {{/if}}
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
                                           data-type="cardNavigation">

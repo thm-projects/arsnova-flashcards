@@ -1376,6 +1376,9 @@ Template.flashcards.helpers({
 	isCardsetOrPresentation: function () {
 		return isCardset() || isPresentation();
 	},
+	isPresentation: function () {
+		return isPresentation();
+	},
 	isMemo: function () {
 		return isMemo();
 	},
