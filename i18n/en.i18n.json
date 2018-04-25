@@ -615,6 +615,7 @@
   },
   "learning-goal": {
     "name": "Learning Goal Level",
+    "cardName": "Learning Goal",
     "level1": "Remember",
     "level1Placeholder": "Formulate the requirement \"remember\" with one of the following verbs: \n\nretrieve, list, enumerate, name, describe, label, explain, identify, reproduce, reproduce, repeat or know.",
     "level2": "Understanding",
