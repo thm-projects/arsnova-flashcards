@@ -697,9 +697,10 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="chooseFlashcardsTitle" class="modal-title">{{#if isPresentationMode}}{{_
-                            "presentation.create"}}{{else}}{{_ "learnSelection"}}{{/if}}</h4>
+                            "presentation.create"}}{{else}}{{_ "learnSelection"}}{{/if}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="bs-callout bs-callout-info selectionInfo">
@@ -843,8 +844,9 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="deleteCardsTitle" class="modal-title">{{_ "deleteCards"}}</h4>
+                    <h4 id="deleteCardsTitle" class="modal-title">{{_ "deleteCards"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     {{_ "modal-dialog.deleteCards" name= this.name}}
@@ -868,8 +870,9 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="resetLeitnerTitle" class="modal-title">{{_ "resetLearnfile"}}</h4>
+                    <h4 id="resetLeitnerTitle" class="modal-title">{{_ "resetLearnfile"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     {{_ "modal-dialog.resetLeitner" name= this.name }}
@@ -893,8 +896,9 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="resetMemoTitle" class="modal-title">{{_ "resetWozniak"}}</h4>
+                    <h4 id="resetMemoTitle" class="modal-title">{{_ "resetWozniak"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     {{_ "modal-dialog.resetWozniak" name= this.name }}
@@ -916,9 +920,10 @@
     <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveLearnPhaseTitle">
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <div class="modal-header">
-                    <h4 id="leaveLearnPhaseTitle" class="modal-title">{{_ "confirm-leave-learnphase.title"}}</h4>
+                    <h4 id="leaveLearnPhaseTitle" class="modal-title">{{_ "confirm-leave-learnphase.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-leave-learnphase.text"}}</p>
@@ -938,9 +943,10 @@
     <div class="modal fade" id="leaveCardsetModal" tabindex="-1" role="dialog" aria-labelledby="leaveCardsetTitle">
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <div class="modal-header">
-                    <h4 id="leaveCardsetTitle" class="modal-title">{{_ "confirm-leave-cardset.title"}}</h4>
+                    <h4 id="leaveCardsetTitle" class="modal-title">{{_ "confirm-leave-cardset.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-leave-cardset.text"}}</p>
@@ -960,9 +966,10 @@
     <div class="modal fade" id="leaveEditorsModal" tabindex="-1" role="dialog" aria-labelledby="leaveEditorsTitle">
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <div class="modal-header">
-                    <h4 id="leaveEditorsTitle" class="modal-title">{{_ "confirm-leave-editors.title"}}</h4>
+                    <h4 id="leaveEditorsTitle" class="modal-title">{{_ "confirm-leave-editors.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-leave-editors.text" name= this.name}}</p>
@@ -984,8 +991,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}</h4>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -1070,8 +1078,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}</h4>
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -1096,8 +1105,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmModalTitle" class="modal-title">{{_ "confirm-form.title"}}</h4>
+                    <h4 id="confirmModalTitle" class="modal-title">{{_ "confirm-form.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-form.text"}}</p>
@@ -1123,8 +1133,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}</h4>
+                    <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div id="importTypeGroup" class="form-group btn-group" role="group" data-toggle="buttons">
@@ -1192,8 +1203,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}</h4>
+                    <h4 id="confirmModalTitle" class="modal-title">{{_ "sidebar-nav.publish"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body row">
                     {{> publishKind}}
@@ -1328,8 +1340,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}</h4>
+                    <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -1401,8 +1414,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="reportModalTitle" class="modal-title">{{_ "modal-dialog.report"}}</h4>
+                    <h4 id="reportModalTitle" class="modal-title">{{_ "modal-dialog.report"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -1646,9 +1660,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="showLicenseTitle" class="modal-title">{{_ "sidebar-nav.poolLicense"}} {{_ "set-list.topic"}}
-                        : {{getTopic}}</h4>
+                        : {{getTopic}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">

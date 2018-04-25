@@ -242,9 +242,10 @@
          aria-labelledby="completeProfileTitle">
         <div class="modal-dialog">
             <div class="modal-content  modal-content-for-buttons xs-12">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <div class="modal-header">
-                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}</h4>
+                    <h4 id="completeProfileTitle" class="modal-title">{{_ "complete-profile.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "complete-profile.text"}}</p>
@@ -270,7 +271,8 @@
             <div class="modal-content hintContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"}}</h4>
+                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"}}
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
@@ -299,8 +301,9 @@
         <div class="modal-dialog" aria-labelledby="showUnderDevelopmentTitle">
             <div class="modal-content underDevelopmentContent">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="underDevelopmentTitle" class="modal-title">{{_ "underDevelopment.title"}}</h4>
+                    <h4 id="underDevelopmentTitle" class="modal-title">{{_ "underDevelopment.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">

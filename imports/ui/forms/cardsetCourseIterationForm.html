@@ -5,7 +5,6 @@
             <div class="modal-content">
                 {{#unless isActiveRoute 'admin_cardset'}}
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 id="setCardsetCourseIterationFormModalTitle" class="modal-title">
                             {{#if isNew}}
                                 {{#if isCourseIteration}}
@@ -16,6 +15,7 @@
                             {{else}}
                                 {{_ "modal-dialog.editcard"}}
                             {{/if}}
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </h4>
                     </div>
                 {{/unless}}
@@ -347,7 +347,8 @@
     {{#if this.filter}}
         {{#each getTargetAudiences}}
             {{#if displayTargetAudience}}
-                <li class="filterTargetAudience targetAudience" value="{{this.targetAudience}}" data-id="{{this.targetAudience}}"><a
+                <li class="filterTargetAudience targetAudience" value="{{this.targetAudience}}"
+                    data-id="{{this.targetAudience}}"><a
                         href="#" data-id="{{this.targetAudience}}">{{getTargetAudienceName this.targetAudience}}
                     {{#if activeFilter}}
                         <span class="glyphicon glyphicon-filter"></span>

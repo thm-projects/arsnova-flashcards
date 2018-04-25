@@ -434,6 +434,14 @@ body {
   margin-top: 20px !important;
 }
 
+.modal-header .close {
+  margin-top: -10px;
+}
+
+.modal-header h4 {
+  padding-top: 0;
+}
+
 .modal-header, .modal-body, .modal-footer {
   margin: 0 !important;
   padding: 15px !important;
