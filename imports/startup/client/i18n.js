@@ -8,7 +8,7 @@ export function getUserLanguage() {
 	if (Meteor.userId()) {
 		language = Meteor.users.findOne(Meteor.userId()).profile.locale;
 	} else {
-		language = navigator.language.substr(0, 2);
+		language = "de";
 	}
 	Session.set('activeLanguage', language);
 }

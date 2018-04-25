@@ -69,7 +69,7 @@
                     {{> filterNavigation}}
                     {{#each shuffleList}}
                         {{#unless isActiveCardset}}
-                                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                            {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
                         {{/unless}}
                     {{/each}}
                 {{else}}
@@ -93,7 +93,7 @@
             {{> shuffle}}
             {{> filterNavigation}}
             {{#each cardsetList}}
-                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
@@ -147,7 +147,7 @@
         {{#if learnList.count}}
             {{> filterNavigation}}
             {{#each learnList}}
-                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
@@ -163,8 +163,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="selectModeToLearnTitle" class="modal-title">{{_ "learn"}}</h4>
+                    <h4 id="selectModeToLearnTitle" class="modal-title">{{_ "learn"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <hr/>
@@ -191,8 +192,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirm-form-learn.title"}}</h4>
+                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirm-form-learn.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-form-learn.text"}}</p>
