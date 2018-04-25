@@ -601,6 +601,7 @@
   },
   "learning-goal": {
     "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
+    "cardName": "Kompetenzstufe",
     "level1": "Verstehen",
     "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "Anwenden",
