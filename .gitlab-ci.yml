@@ -7,8 +7,6 @@ variables:
 chimp:
   stage: test
   only:
-    - master
-    - staging
     - /^v[0-9]+/
   tags:
     - nodejs
