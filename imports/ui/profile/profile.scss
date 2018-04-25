@@ -1,10 +1,5 @@
-//colors
-$white: rgb(255, 255, 255);
-$black: rgb(0, 0 ,0);
-
 .badgeFooterProgress {
   margin-top: 8px;
-  background-color: $white;
 }
 
 .progress-bar {
@@ -71,7 +66,6 @@ $black: rgb(0, 0 ,0);
 
 .span6{
   font-weight: bold;
-  color: #000;
   font-size: 13px;
   padding-top: 5px;
   display: inline-block;
@@ -79,7 +73,6 @@ $black: rgb(0, 0 ,0);
 
 .span7{
   font-weight: bold;
-  color: #fff;
   font-size: 13px;
   padding-top: 5px;
   display: inline-block;
@@ -89,7 +82,6 @@ $black: rgb(0, 0 ,0);
   margin: 0;
   margin-bottom: 15px;
   text-align: center;
-  background-color: lightblue;
 }
 
 #column2 {
@@ -125,14 +117,6 @@ $black: rgb(0, 0 ,0);
   margin: 0 auto
 }
 
-.profilepublic-rb-text-color {
-  color: $white !important;
-}
-
-.profilepublic-rb-text-color:hover {
-  color: $black !important;
-}
-
 .panel-body {
   padding: 15px;
 }
@@ -145,24 +129,6 @@ $black: rgb(0, 0 ,0);
  margin-top: 2em;
 }
 
-.red-passage{
- color: $color_thm_red;
-}
-
-.green-passage{
-  color: $color_thm_green;
-}
-
 #profilepublicoption1, #profilepublicoption2 {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-
-.standard-membership{
-  background-color: $color_thm_green !important;
-  color: white !important;
-}
-
-.pro-membership{
-  background-color: $color_thm_orange !important;
-  color: white !important;
 }

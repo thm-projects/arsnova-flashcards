@@ -8,75 +8,543 @@ $themes: (
 
 @each $theme, $map in $themes {
   .#{$theme} {
-    $primary-color: map-get($map, "primary-color");
+    //global colors
+    $thm_dark_blue: map-get($map, "thm_dark_blue");
+    $thm_orange: map-get($map, "thm_orange");
+    $thm_red: map-get($map, "thm_red");
+    $thm_gray: map-get($map, "thm_gray");
+    $thm_green: map-get($map, "thm_green");
+    $athens_gray_approx: map-get($map, "athens_gray_approx");
+    $white: map-get($map, "white");
+    $bilbao_approx: map-get($map, "bilbao_approx");
+    $mercury_approx: map-get($map, "mercury_approx");
+    $la_palma_approx: map-get($map, "la_palma_approx");
+    $wild_sand_approx: map-get($map, "wild_sand_approx");
+    $slate_gray_approx: map-get($map, "slate_gray_approx");
+    $alto_approx: map-get($map, "alto_approx");
+    $storm_dust_approx: map-get($map, "storm_dust_approx");
+    $mountain_mist_approx: map-get($map, "mountain_mist_approx");
+    $primary: map-get($map, "primary");
     $accent: map-get($map, "accent");
-    $primary-text: map-get($map, "primary-text");
-    $secondary-text: map-get($map, "secondary-text");
-    $divider-color: map-get($map, "divider-color");
+    $primary_text: map-get($map, "primary_text");
+    $secondary_text: map-get($map, "secondary_text");
+    $divider: map-get($map, "divider_color");
     $accent_300: map-get($map, "accent_300");
+    $background: map-get($map, "background");
     $hyperlink: map-get($map, "hyperlink");
+    //global button and label colors
+    $free_background: map-get($map, "free_background");
+    $free_text: map-get($map, "free_text");
+    $edu_background: map-get($map, "edu_background");
+    $edu_text: map-get($map, "edu_text");
+    $pro_background: map-get($map, "pro_background");
+    $pro_text: map-get($map, "pro_text");
+    $private_background: map-get($map, "private_background");
+    $private_text: map-get($map, "private_text");
+    $danger_background: map-get($map, "danger_background");
+    $danger_text: map-get($map, "danger_text");
+    $info_background: map-get($map, "info_background");
+    $info_text: map-get($map, "info_text");
+    $success_background: map-get($map, "success_background");
+    $success_text: map-get($map, "success_text");
+    $warning_background: map-get($map, "warning_background");
+    $warning_text: map-get($map, "warning_text");
+    $disabled_background: map-get($map, "disabled_background");
+    $disabled_text: map-get($map, "disabled_text");
+    //navbar
+    $navbar_background: map-get($map, "navbar_background");
+    $navbar_text: map-get($map, "navbar_text");
+    $navbar_text_hover: map-get($map, "navbar_text_hover");
+    //welcome page colors
+    $footer_background: map-get($map, "footer_background");
+    $footer_info_navigation_text: map-get($map, "footer_info_navigation_text");
+    $footer_info_navigation_text_hover: map-get($map, "footer_info_navigation_text_hover");
+    $footer_info_navigation_background: map-get($map, "footer_info_navigation_background");
+    $footer_info_navigation_background_hover: map-get($map, "footer_info_navigation_background_hover");
+    $footer_info_navigation_border: map-get($map, "footer_info_navigation_border");
+    $footer_icon: map-get($map, "footer_icon");
+    $footer_icon_hover: map-get($map, "footer_icon_hover");
+    $footer_globe_dropdown_text: map-get($map, "footer_globe_dropdown_text");
+    $footer_globe_dropdown_background: map-get($map, "footer_globe_dropdown_background");
+    $footer_globe_dropdown_text_hover: map-get($map, "footer_globe_dropdown_text_hover");
+    $footer_globe_dropdown_background_hover: map-get($map, "footer_globe_dropdown_background_hover");
+    $footer_websocket_connected: map-get($map, "footer_websocket_connected");
+    $footer_websocket_connecting: map-get($map, "footer_websocket_connecting");
+    $footer_websocket_disconnected: map-get($map, "footer_websocket_disconnected");
+    $placeholder: map-get($map, "placeholder");
+    //info page colors
+    $info_navigation_text: map-get($map, "info_navigation_text");
+    $info_navigation_text_active: map-get($map, "info_navigation_text_active");
+    $info_navigation_text_hover: map-get($map, "info_navigation_text_hover");
+    $info_navigation_background: map-get($map, "info_navigation_background");
+    $info_navigation_background_active: map-get($map, "info_navigation_background_active");
+    $info_navigation_background_hover: map-get($map, "info_navigation_background_hover");
+    $home_button_icon: map-get($map, "home_button_icon");
+    $info_content_header_text: map-get($map, "info_content_header_text");
+    $info_content_header_background: map-get($map, "info_content_header_background");
+    $info_content_body_text: map-get($map, "info_content_body_text");
+    $info_content_body_background: map-get($map, "info_content_body_background");
+    //editor navigation colors
+    $item_selection_border: map-get($map, "item_selection_border");
+    //item lists colors
+    $filter_navigation_icon: map-get($map, "filter_navigation_icon");
+    $item_separator_border_bottom: map-get($map, "item_separator_border_bottom");
+    $infinite_scroll_background: map-get($map, "infinite_scroll_background");
+    $infinite_scroll_icon: map-get($map, "infinite_scroll_icon");
+    $infinite_scroll_text: map-get($map, "infinite_scroll_text");
+    $item_background: map-get($map, "item_background");
+    $item_icon: map-get($map, "item_icon");
+    $item_author_text: map-get($map, "item_author_text");
+    $item_description_background: map-get($map, "item_description_background");
+    $item_description_text: map-get($map, "item_description_text");
+    $item_text: map-get($map, "item_text");
+    //difficulty colors
+    $button_difficulty1: map-get($map, "button_difficulty1");
+    $button_difficulty2: map-get($map, "button_difficulty2");
+    $button_difficulty3: map-get($map, "button_difficulty3");
+    $button_difficulty_inactive: map-get($map, "button_difficulty_inactive");
+    $background_difficulty0_note: map-get($map, "background_difficulty0_note");
+    $background_difficulty0: map-get($map, "background_difficulty0");
+    $background_difficulty1: map-get($map, "background_difficulty1");
+    $background_difficulty2: map-get($map, "background_difficulty2");
+    $background_difficulty3: map-get($map, "background_difficulty3");
+    $background_difficulty0_lines_note: map-get($map, "background_difficulty0_lines_note");
+    $background_difficulty0_lines: map-get($map, "background_difficulty0_lines");
+    $background_difficulty1_lines: map-get($map, "background_difficulty1_lines");
+    $background_difficulty2_lines: map-get($map, "background_difficulty2_lines");
+    $background_difficulty3_lines: map-get($map, "background_difficulty3_lines");
+    //card colors
+    $background_lecture: map-get($map, "background_lecture");
+    $background_hint: map-get($map, "background_hint");
+    $background_hint_alternative: map-get($map, "background_hint_alternative");
+    $hint_text: map-get($map, "hint_text");
+    $hint_text_alternative: map-get($map, "hint_text_alternative");
+    $hint_link: map-get($map, "hint_link");
+    $hint_link_alternative: map-get($map, "hint_link_alternative");
+    $hint_placeholder: map-get($map, "hint_placeholder");
+    $hint_placeholder_alternative: map-get($map, "hint_placeholder_alternative");
+    $hint_header_border: map-get($map, "hint_header_border");
+    $hint_header_border_alternative: map-get($map, "hint_header_border_alternative");
+    $navigation_arrows: map-get($map, "navigation_arrows");
+    $card_header_card_number: map-get($map, "card_header_card_number");
+    $card_header_first_row: map-get($map, "card_header_first_row");
+    $card_header_second_row: map-get($map, "card_header_second_row");
+    $card_header_subject: map-get($map, "card_header_subject");
+    //markdeep editor
+    $markdeep_help_text: map-get($map, "markdeep_help_text");
+    $markdeep_help_background: map-get($map, "markdeep_help_background");
+    $markdeep_help_border: map-get($map, "markdeep_help_border");
+    //notification colors
+    $notification_text_smartphones: map-get($map, "notification_text_smartphones");
+    //search colors
+    $search_results_subject_background: map-get($map, "search_results_subject_background");
+    $search_results_subject_text: map-get($map, "search_results_subject_text");
+    $search_results_content_background: map-get($map, "search_results_content_background");
+    $search_results_content_text: map-get($map, "search_results_content_text");
+    $search_results_author_background: map-get($map, "search_results_author_background");
+    $search_results_author_text: map-get($map, "search_results_author_text");
+    $search_results_separator: map-get($map, "search_results_separator");
+    $search_divide: map-get($map, "search_divide");
+    //form group colors
+    $form_group_label: map-get($map, "form_group_label");
+    //cardset form colors
+    $cardset_form_list_background: map-get($map, "cardset_form_list_background");
+    $cardset_form_list_text: map-get($map, "cardset_form_list_text");
+    $cardset_form_border: map-get($map, "cardset_form_border");
+    $cardset_form_list_background_hover: map-get($map, "cardset_form_list_background_hover");
+    $cardset_form_list_text_hover: map-get($map, "cardset_form_list_text_hover");
+    $cardset_form_list_background_active: map-get($map, "cardset_form_list_background_active");
+    $cardset_form_list_text_active: map-get($map, "cardset_form_list_text_active");
+    //cookie consent colors
+    $cookie_consent_link: map-get($map, "cookie_consent_link");
+    //under development modal colors
+    $under_development_modal_text: map-get($map, "under_development_modal_text");
+    $under_development_modal_background: map-get($map, "under_development_modal_background");
+
+    body {
+      background-color: $background !important;
+    }
+
+    li.active {
+      a {
+        color: $white !important;
+      }
+    }
+
+    #thm-top-navigation {
+      .active {
+        background-color: $thm_green !important;
+        color: $white !important;
+      }
+      a {
+        color: white !important;
+      }
+    }
+
+    .block {
+      background-color: $white !important;
+    }
+
+    .btn-raised.btn-success {
+      color: $success_text !important;
+      background-color: $success_background !important;
+    }
+
+    .btn-raised.btn-info {
+      color: $info_text !important;
+      background-color: $info_background !important;
+    }
+
+    .btn-raised.btn-warning, .btn-warning.active {
+      color: $warning_text !important;
+      background-color: $warning_background !important;
+    }
+
+    .btn-raised.btn-danger {
+      color: $danger_text !important;
+      background-color: $danger_background !important;
+    }
+
+    .search-divide {
+      color: $search_divide !important;
+      background-color: $search_divide !important;
+    }
 
     .navbar.navbar-default {
-      background-color: $primary-color;
+      background-color: $navbar_background !important;
+      .navbar-text {
+        color: $navbar_text !important;
+
+      }
+      &:hover {
+        color: $navbar_text_hover !important;
+      }
     }
 
-    .navbar-default .navbar-nav > .active > a,
-    .navbar-default .navbar-nav > .open > a {
-      background-color: $accent;
+    #contact-nav a {
+      color: $info_navigation_text_active !important;
+      background-color: $info_navigation_background_active !important;
     }
 
-    .poolHeaderBottom {
-      background-color: $primary-color;
+    #contact-nav .inactive a {
+      color: $info_navigation_text !important;
+      background-color: $info_navigation_background !important;
+    }
+
+    #contact-nav .inactive a:hover {
+      color: $info_navigation_text_hover !important;
+      background-color: $info_navigation_background_hover !important;
+    }
+
+    @media(max-width: 767px) {
+      .notification-heading, .notification-item, .notification-footer, .notification-button {
+        color: $notification_text_smartphones !important;
+      }
+    }
+
+    button:disabled {
+      color: $disabled_text !important;
+      background-color: $disabled_background !important;
+    }
+
+    .modal-body .form-group {
+      label {
+        color: $form_group_label !important;
+      }
+    }
+
+    .label-info {
+      color: $info_text !important;
+      background-color: $info_background !important;
+    }
+
+    .label-warning {
+      color: $warning_text !important;
+      background-color: $warning_background !important;
+    }
+
+    .label-danger {
+      color: $danger_text !important;
+      background-color: $danger_background !important;
+    }
+
+    .label-success {
+      color: $success_text !important;
+      background-color: $success_background !important;
+    }
+
+    .panelUnit, .cardListRow {
+      border-bottom: solid 1px $item_separator_border_bottom !important;
+    }
+
+    @media (min-width: 768px) {
+      .altPanel {
+        background-color: $wild_sand_approx !important;
+      }
+
+      .panelUnit {
+        border-right-color: $item_selection_border !important;
+      }
+
+      .licenseInfo, .licenseInfoCreate {
+        border-bottom-color: $item_separator_border_bottom !important;
+      }
+
+      .footer {
+        .icon-container {
+          border-right-color: $footer_info_navigation_border !important;
+        }
+      }
+    }
+
+    .fa-home {
+      color: $thm_gray !important;
+    }
+
+    .md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+      color: $thm_gray !important;
+      border-color: $thm_gray !important;
+      background-color: $white !important;
+    }
+
+    .md-header .markdeep-help {
+      color: $markdeep_help_text !important;
+      background-color: $markdeep_help_background !important;
+      border-color: $markdeep_help_border !important;
+    }
+
+    .md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover, .card-button:hover {
+      background-color: $athens_gray_approx;
+    }
+
+    .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+      background-color: lighten($thm_gray, 10%) !important;
+      color: $white !important;
+    }
+
+    .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover, .endPresentation, .endPresentation:hover {
+      background-color: $thm_orange !important;
+      border-color: $thm_orange !important;
+      color: $white !important;
+    }
+
+    .md-editor {
+      .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+        background-color: $thm_orange !important;
+        border-color: $thm_orange !important;
+        color: $white !important;
+      }
+    }
+
+    .disconnected {
+      color: $footer_websocket_disconnected !important;
+    }
+
+    .connected {
+      color: $footer_websocket_connected !important;
+    }
+
+    .connecting {
+      color: $footer_websocket_connecting !important;
+    }
+
+    .backdoorLogin {
+      label {
+        color: white !important;
+      }
+    }
+
+    .panel-heading.info-tab {
+      color: $info_content_header_text !important;
+      background-color: $info_content_header_background !important;
+    }
+
+    .panel-body.info-tab {
+      color: $info_content_body_text !important;
+      background-color: $info_content_body_background !important;
+    }
+
+    .thm-numbering li:before {
+      background: $thm_orange !important;
+      color: white !important;
+    }
+
+    .thm-numbering ol li:before {
+      background: $thm_gray !important;
+    }
+
+    .thm-numbering-standalone {
+      background: $thm_orange !important;
+      color: white !important;
+    }
+
+    .hintContent {
+      background-color: $background_hint !important;
+      color: $hint_text !important;
+      a {
+        color: $hint_link !important;
+      }
+      .placeholder {
+        color: $hint_placeholder !important;
+      }
+    }
+
+    .hintContentAlternative {
+      background-color: $background_hint_alternative !important;
+      color: $hint_text_alternative !important;
+      a {
+        color: $hint_link_alternative !important;
+      }
+      .placeholder {
+        color: $hint_placeholder_alternative !important;
+      }
+    }
+
+    .hintContent .close {
+      color: $thm_orange;
+    }
+
+    .hintContent .modal-header, .wordCloudDescription {
+      border-bottom-color: $hint_header_border !important;
+    }
+
+    .hintContentAlternative .modal-header {
+      border-bottom-color: $hint_header_border_alternative !important;
+    }
+
+    .footer {
+      background-color: $footer_background !important;
+      .container {
+        background-color: $footer_background !important;
+      }
+      .footer-info-navigation a {
+        color: $footer_info_navigation_text;
+        background-color: $footer_info_navigation_background !important;
+        border-right-color: $footer_info_navigation_border !important;
+      }
+      .footer-info-navigation a:hover {
+        color: $footer_info_navigation_text_hover !important;
+        background-color: $footer_info_navigation_background_hover !important;
+      }
+      .footer-info-navigation:first-child a {
+        border-left-color: $footer_info_navigation_border !important;
+      }
+      .icon-container a {
+        color: $footer_info_navigation_text !important;
+        background-color: $footer_info_navigation_background !important;
+      }
+      .icon-container:hover, .icon-container-info:hover {
+        color: $footer_info_navigation_text_hover !important;
+        background-color: $footer_info_navigation_background_hover !important;
+      }
+      .icon-container-info {
+        border-left-color: $footer_info_navigation_border !important;
+        border-right-color: $footer_info_navigation_border !important;
+      }
+      .icon-container .lang {
+        color: $footer_globe_dropdown_text !important;
+        background-color: $footer_globe_dropdown_background !important;
+      }
+      .icon-container .lang:hover {
+        color: $footer_globe_dropdown_text_hover !important;
+        background-color: $footer_globe_dropdown_background_hover !important;
+      }
+    }
+
+    .fa-home {
+      color: $home_button_icon !important;
+    }
+
+    #searchResults a {
+      border-bottom-color: $search_results_separator !important;
+    }
+
+    .search-subject {
+      background-color: $search_results_subject_background !important;
+      color: $search_results_subject_text !important;
+    }
+
+    .search-content {
+      background-color: $search_results_content_background !important;
+      color: $search_results_content_text !important;
+    }
+
+    .search-author {
+      background-color: $search_results_author_background !important;
+      color: $search_results_author_text !important;
+    }
+
+    .cc-link {
+      color: $cookie_consent_link !important;
+    }
+
+    .underDevelopmentContent {
+      .modal-header {
+        border-bottom-color: $under_development_modal_text !important;
+      }
+      color: $under_development_modal_text !important;
+      background-color: $under_development_modal_background !important;
+    }
+
+    ::placeholder {
+      color: $placeholder !important;
+    }
+
+    #poolCaption {
+      background-color: $wild_sand_approx !important;
+    }
+
+    .filterCardsHeader {
+      background-color: $primary !important;
+      color: $secondary-text !important;
     }
 
     .cardsetHeaderBottom {
-      background-color: $accent;
-    }
-
-    #newCardSet {
-      background-color: $primary-color;
-      color: $accent;
+      background-color: $accent !important;
     }
 
     #pool-category-region {
       .cardsetInfo {
         a {
-          color: $primary-color;
+          color: $primary !important;
         }
       }
     }
 
     .row {
       a {
-        color: $primary-color;
+        color: $primary !important;
+      }
+
+    }
+
+    .container table {
+      background-color: $white !important;
+    }
+
+    .panel-footer, .sidebar-nav {
+      .btn-default > .fa {
+        color: black !important;
       }
     }
 
     .panel-body, .md-footer, .cardContent, #showHintModal {
       a {
-        color: $hyperlink;
+        color: $hyperlink !important;
       }
     }
 
     .btn.btn-raised.btn-primary {
-      background-color: $primary-color;
-    }
-
-    .btn.btn-raised:not(.btn-link):hover.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-primary, .btn-group-raised .btn:not(.btn-link):hover.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):hover.btn-primary, .btn.btn-raised:not(.btn-link):focus.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-primary, .btn-group-raised .btn:not(.btn-link):focus.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.btn-primary, .btn.btn-raised:not(.btn-link).active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-primary, .btn-group-raised .btn:not(.btn-link).active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link).active.btn-primary, .btn.btn-raised:not(.btn-link):active.btn-primary, .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-primary, .btn-group-raised .btn:not(.btn-link):active.btn-primary, .btn-group-raised .input-group-btn .btn:not(.btn-link):active.btn-primary {
-      background-color: $accent_300;
-    }
-
-    button#setListEmpty.btn.btn-raised.btn-primary.btn-newSet
-    .panel.panel-primary > .panel-heading {
-      background-color: $primary-color;
+      background-color: $primary !important;
+      color: $white !important;
     }
 
     .panel.panel-primary > .panel-heading {
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     .form-group.is-focused .form-control {
-      background-image: linear-gradient($primary-color, $primary-color), linear-gradient($divider-color, $divider-color);
+      background-image: linear-gradient($primary, $primary), linear-gradient($divider, $divider) !important;
     }
 
     textarea {
@@ -84,15 +552,15 @@ $themes: (
     }
 
     .form-group.is-focused label.control-label {
-      color: $primary-color;
+      color: $primary !important;
     }
 
     .dropdown-menu li a:hover {
-      color: $primary-color;
+      color: $primary !important;
     }
 
     .nav-tabs {
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     .navbar-default .navbar-toggle:hover {
@@ -100,87 +568,799 @@ $themes: (
     }
 
     .info {
-      color: $primary-color;
+      color: $primary !important;
     }
 
     .navbar.navbar-default .dropdown-menu li > a:hover {
-      color: $primary-color;
+      color: $primary !important;
     }
 
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     li.dropdown.open a.dropdown-toggle {
-      background-color: $accent;
+      background-color: $accent !important;
     }
 
     li.dropdown.open ul.dropdown-menu a:hover {
-      color: $primary-text;
+      color: $primary-text !important;
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
-      border-bottom: 3px solid $primary-color;
+      border-bottom: 3px solid $primary !important;
     }
 
     .cardListSubject th {
       color: white;
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     .cardContent hr {
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     #frontTextFooter hr, #backTextFooter hr {
-      background-color: $primary-color;
+      background-color: $primary !important;
     }
 
     .md-editor > .md-header {
-      background: $primary-color;
+      background: $primary !important;
     }
 
     .md-editor {
-      border: 1px solid $primary-color;
-    }
-
-    .btn-primary:hover {
-      color: $primary-text;
-    }
-
-    .editorNavigation > .btn-primary {
-      background-color: $primary-color !important;
-      color: white !important;
+      border: 1px solid $primary !important;
     }
 
     .bs-callout-info {
-      border-left-color: $primary-color;
+      border-left-color: $primary !important;
     }
 
-    .learnLeitner, .learnWozniak, .learnSelect  {
+    .learnLeitner, .learnWozniak, .learnSelect {
       cursor: pointer;
-      color: $primary-color;
+      color: $primary !important;
     }
 
     #swapOrder {
-      color: $divider-color;
+      color: $divider !important;
     }
 
     .swappedOrder {
-      color: $primary-color !important;
+      color: $primary !important;
     }
 
     #showPreviewHelp {
-      color: $primary-color !important;
+      color: $primary !important;
     }
 
     .import-type.active {
       color: white !important;
-      background-color: $primary-color !important;
+      background-color: $primary !important;
     }
 
     .cardset-list-badge {
-      color: $primary-color;
+      color: $primary !important;
+    }
+
+    //access_denied
+    #access-denied-admin {
+      background-color: white !important;
+      color: #333 !important;
+      border-color: #ddd !important;
+    }
+
+    //admin
+    #wrapper {
+      #admin-sidebar-wrapper {
+        background: #9C132D !important;
+        color: white !important;
+        .sidebar-nav {
+          li {
+            a {
+              color: white !important;
+              &:hover, &.active {
+                color: white !important;
+                background: #F5AA01 !important;
+              }
+            }
+          }
+        }
+      }
+      #admin-content-wrapper {
+        .content-header {
+          h1 {
+            color: white !important;
+          }
+          small {
+            color: white !important;
+          }
+        }
+        .content {
+          .admin_table {
+            background-color: #f9f9f9 !important;
+            border-color: white !important;
+            .clearfix {
+              border-bottom-color: #ddd !important;
+            }
+            table {
+              border-bottom-color: #ddd !important;
+            }
+          }
+          .dashboard-box {
+            .small-box {
+              border-color: #ddd !important;
+              background-color: white !important;
+              .small-box-footer {
+                background-color: #f5f5f5 !important;
+              }
+            }
+          }
+        }
+        .content.box-admin {
+          border-top-color: white !important;
+          border-bottom-color: white !important;
+          background-color: #f9f9f9 !important;
+          .box-body-admin {
+            .box-button-admin {
+              border-top-color: #ddd !important;
+            }
+          }
+        }
+      }
+    }
+
+    @media(min-width: 768px) {
+      body {
+        #wrapper {
+          #admin-sidebar-wrapper {
+            .sidebar-nav {
+              li {
+                a {
+                  &:hover, &.active {
+                    border-left-color: #3d9c19 !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //card
+    .btn-white.active {
+      color: black !important;
+      background-color: white !important;
+    }
+
+    .btn-orange {
+      color: $thm_orange !important;
+    }
+
+    .btn-orange.active {
+      color: $white !important;
+      background-color: $thm_orange !important;
+    }
+
+    #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
+      color: white !important;
+      background-color: $button_difficulty2 !important;
+    }
+
+    .carousel-control {
+      color: $navigation_arrows !important;
+    }
+
+    .box, .boxPreview, .box-static {
+      background-color: $white !important;
+    }
+
+    .box-difficultyLined0 {
+      background: repeating-linear-gradient(
+                      to bottom,
+                      $background_difficulty0,
+                      $background_difficulty0 26px,
+                      $background_difficulty0_lines 26px,
+                      $background_difficulty0_lines 28px
+      ) !important;
+    }
+
+    .box-difficultyLinedNote0 {
+      background: repeating-linear-gradient(
+                      to bottom,
+                      $background_difficulty0_note,
+                      $background_difficulty0_note 26px,
+                      $background_difficulty0_lines_note 26px,
+                      $background_difficulty0_lines_note 28px
+      ) !important;
+    }
+
+    .box-difficultyBlan0 {
+      background-color: $background_difficulty0 !important;
+    }
+
+    .box-difficultyBlankNote0 {
+      background-color: $background_difficulty0_note !important;
+    }
+
+    .box-difficulty-list0 {
+      background: $background_difficulty0 !important;
+    }
+
+    .box-difficultyNote-list0 {
+      background: $background_difficulty0_note !important;
+    }
+
+    .box-difficulty-list0:hover {
+      background: darken($background_difficulty0_note, 15%) !important;
+    }
+
+    .box-difficultyNote-list0:hover {
+      background: darken($background_difficulty0_note, 15%) !important;
+    }
+
+    .box-difficultyLined1 {
+      background: repeating-linear-gradient(
+                      to bottom,
+                      $background_difficulty1,
+                      $background_difficulty1 26px,
+                      $background_difficulty1_lines 26px,
+                      $background_difficulty1_lines 28px
+      ) !important;
+    }
+
+    .box-difficultyBlank0 {
+      background-color: $background_difficulty0 !important;
+    }
+
+    .box-difficultyBlank1 {
+      background-color: $background_difficulty1 !important;
+    }
+
+    .box-difficulty-list1 {
+      background: $background_difficulty1_lines !important;
+    }
+
+    .box-difficulty-list1:hover {
+      background: darken($background_difficulty1_lines, 15%) !important;
+    }
+
+    .box-difficultyLined2 {
+      background: repeating-linear-gradient(
+                      to bottom,
+                      $background_difficulty2,
+                      $background_difficulty2 26px,
+                      $background_difficulty2_lines 26px,
+                      $background_difficulty2_lines 28px
+      ) !important;
+    }
+
+    .box-difficultyBlank2 {
+      background-color: $background_difficulty2 !important;
+    }
+
+    .box-difficulty-list2 {
+      background: $background_difficulty2_lines !important;
+    }
+
+    .box-difficulty-list2:hover {
+      background: darken($background_difficulty2_lines, 15%) !important;
+    }
+
+    .box-difficultyLined3 {
+      background: repeating-linear-gradient(
+                      to bottom,
+                      $background_difficulty3,
+                      $background_difficulty3 26px,
+                      $background_difficulty3_lines 26px,
+                      $background_difficulty3_lines 28px
+      ) !important;
+    }
+
+    .box-difficultyBlank3 {
+      background: $background_difficulty3 !important;
+    }
+
+    .box-difficulty-list3 {
+      background: $background_difficulty3_lines !important;
+    }
+
+    .box-difficulty-list3:hover {
+      background: darken($background_difficulty3_lines, 15%) !important;
+    }
+
+    .box-difficultyBlank0-header, .box-difficultyLined0-header {
+      background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 4px, $background_difficulty0 5px, $background_difficulty0 100%) !important;
+    }
+
+    .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
+      background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 4px, $background_difficulty0_note 5px, $background_difficulty0_note 100%) !important;
+    }
+
+    .box-difficultyBlank1-header, .box-difficultyLined1-header {
+      background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 4px, $background_difficulty1 5px, $background_difficulty1 100%) !important;
+    }
+
+    .box-difficultyBlank2-header, .box-difficultyLined2-header {
+      background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 4px, $background_difficulty2 5px, $background_difficulty2 100%) !important;
+    }
+
+    .box-difficultyBlank3-header, .box-difficultyLined3-header {
+      background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 4px, $background_difficulty3 5px, $background_difficulty3 100%) !important;
+    }
+
+    @media(max-width: 767px) {
+      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+        border-color: $item_selection_border !important;
+      }
+      #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
+        border-right-color: $item_selection_border !important;
+      }
+
+      #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
+        border-bottom-color: $thm_red !important;
+      }
+      #cardTypeGroup *:nth-child(3) {
+        border-right-color: $thm_red !important;
+      }
+    }
+
+    @media(min-width: 768px) {
+      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+        border-right-color: $item_selection_border !important;
+      }
+
+      #cardTypeGroup *:nth-child(3) {
+        border-right-color: $thm_red !important;
+      }
+    }
+
+    .clicktoflip {
+      color: $storm_dust_approx !important;
+    }
+
+    .cardHeader {
+      h2 {
+        color: $card_header_subject !important;
+      }
+    }
+
+    #subjectEditor:disabled {
+      background-color: $athens_gray_approx !important;
+    }
+
+    .lectureContent {
+      background-color: $background_lecture !important;
+    }
+
+    .editorBackground, .md-editor > textarea {
+      background: #FFFFFF !important;
+    }
+
+    .cardtext > h5, .editorHeader {
+      color: white !important;
+    }
+
+    .cardHeaderFirstRow {
+      color: $card_header_first_row !important;
+    }
+
+    .cardHeaderSecondRow {
+      color: $card_header_second_row !important;
+    }
+
+    .cardNumber {
+      color: $card_header_card_number !important;
+    }
+
+    .cardHeaderLink {
+      color: $hyperlink !important;
+    }
+
+    //cardset
+    .cardListName {
+      color: $white !important;
+    }
+
+    .nav-header-cardset {
+      color: $mountain_mist_approx !important;
+    }
+
+    .btn-file {
+      input[type=file] {
+        background: $white !important;
+      }
+    }
+
+    .bs-callout {
+      border-color: #eee !important;
+    }
+
+    .bs-callout-info {
+      background-color: $white !important;
+    }
+
+    #publishKind, #publishKindAdmin {
+      .btn-info {
+        color: $info_background !important;
+      }
+
+      .btn-default.active {
+        color: black !important;
+      }
+
+      .btn-info.active {
+        color: $info_text !important;
+        background-color: $info_background !important;
+        border-color: $info_background !important;
+      }
+
+      .btn-success {
+        color: $success_background !important;
+      }
+
+      .btn-success.active {
+        color: $success_text !important;
+        background-color: $success_background !important;
+        border-color: $success_background !important;
+      }
+
+      .btn-danger {
+        color: $danger_background !important;
+      }
+
+      .btn-danger.active {
+        color: $danger_text !important;
+        background-color: $danger_background !important;
+        border-color: $danger_background !important;
+      }
+
+      .btn-warning {
+        color: $warning_background !important;
+      }
+      .btn-warning.active {
+        color: $warning_text !important;
+        background-color: $warning_background !important;
+        border-color: $warning_background !important;
+      }
+    }
+
+    #declineRequestReason {
+      background-color: $white !important;
+    }
+
+    .red-learning-text {
+      color: $thm_red !important;
+    }
+
+    .green-learning-text {
+      color: $thm_green !important;
+    }
+
+    .cardset-list-badge {
+      background-color: $white !important;
+    }
+
+    //cardsetCourseIterations
+    .resultItem .card {
+      background-color: $item_background !important;
+      color: $item_text !important;
+    }
+
+    .resultItem table {
+      background-color: $item_background !important;
+    }
+
+    .resultItemHeader {
+      color: $item_text !important;
+    }
+
+    .resultItemHeaderAuthor {
+      color: $item_author_text !important;
+    }
+
+    .resultItemHeaderRightArea {
+      background-color: $item_background !important;
+    }
+
+    .resultItemHeaderLeftArea a {
+      color: $hyperlink !important;
+    }
+
+    .resultItemHeaderRightArea i {
+      color: $item_icon !important;
+    }
+
+    .resultTableContent a {
+      color: $hyperlink !important;
+    }
+
+    .resultFree {
+      background-color: $free_background !important;
+    }
+
+    .resultPro {
+      background-color: $pro_background !important;
+    }
+
+    .resultEdu {
+      background-color: $edu_background !important;
+    }
+
+    .resultPersonal {
+      background-color: $private_background !important;
+    }
+
+    .resultDescription {
+      color: $item_description_text !important;
+      background-color: $item_description_background !important;
+    }
+
+    .resultDescription a {
+      color: $hyperlink !important;
+    }
+
+    .resultsHeader {
+      background-color: $item_background !important;
+      color: $item_text !important;
+    }
+
+    //cardsets
+    .cardsetHeaderTop {
+      background-color: $white !important;
+    }
+
+    .cardsetHeaderBottom {
+      background-color: $thm_orange !important;
+      color: $white !important;
+    }
+
+    .cardsetLabel {
+      color: black;
+    }
+
+    .nav-header {
+      color: $mountain_mist_approx !important;
+    }
+
+    .emptyTextList {
+      color: $storm_dust_approx !important;
+    }
+
+    .glyphicon-plus {
+      color: $white !important;
+    }
+
+    #course-list-region, #learn-list-region, #set-list-region {
+      .empty-list {
+        background-color: $white !important;
+      }
+    }
+
+    .label-free {
+      background-color: $free_background !important;
+    }
+
+    .label-edu {
+      background-color: $edu_background !important;
+    }
+
+    .label-pro {
+      background-color: $pro_background !important;
+    }
+
+    .label-private {
+      background-color: $private_background !important;
+    }
+
+    .moduleRadioButtonLabel {
+      color: $white !important;
+    }
+
+    //courseIterations
+    .form-check-label {
+      color: #5f5f5f !important;
+    }
+
+    //filter
+    #filter-nav-wrapper, #filter-nav {
+      background-color: $thm_green !important;
+
+      .dropdown-toggle, .navbar-text {
+        color: $white !important;
+      }
+
+      .btn-warning, .btn-info, .btn-success, .btn-danger {
+        background-color: $disabled_background !important;
+        border-color: $disabled_background !important;
+        color: $disabled_text !important;
+      }
+
+      .btn-info.active {
+        color: $info_text !important;
+        background-color: $info_background !important;
+        border-color: $info_background !important;
+      }
+
+      .btn-success.active {
+        color: $success_text !important;
+        background-color: $success_background !important;
+        border-color: $success_background !important;
+      }
+
+      .btn-danger.active, #resetBtn, #resetBtnMobile {
+        color: $danger_text !important;
+        background-color: $danger_background !important;
+        border-color: $danger_background !important;
+      }
+
+      .btn-warning.active {
+        color: $warning_text !important;
+        background-color: $warning_background !important;
+        border-color: $warning_background !important;
+      }
+    }
+
+    .showMoreResults {
+      background-color: $infinite_scroll_background !important;
+    }
+
+    .scrollArrow {
+      color: $infinite_scroll_icon !important;
+    }
+
+    .resultCounter {
+      color: $infinite_scroll_text !important;
+    }
+
+    .navigationFilterIcon {
+      color: $filter_navigation_icon !important;
+    }
+    //forms - cardsetCourseIterationForm
+    #setDifficulty .btn, #cardType .btn {
+      background-color: $button_difficulty_inactive !important;
+    }
+
+    #setDifficulty .btn-info {
+      color: $button_difficulty1 !important;
+    }
+
+    #setDifficulty .btn-info.active {
+      color: $white !important;
+      background-color: $button_difficulty1 !important;
+    }
+
+    #setDifficulty .btn-success {
+      color: $button_difficulty2 !important;
+    }
+
+    #setDifficulty .btn-success.active {
+      color: $white !important;
+      background-color: $button_difficulty2 !important;
+    }
+
+    #setDifficulty .btn-danger {
+      color: $button_difficulty3 !important;
+    }
+
+    #setDifficulty .btn-danger.active {
+      color: $white !important;
+      background-color: $button_difficulty3 !important;
+    }
+
+    #setCardsetCourseIterationFormModal, #showSelectLearningUnitModal {
+      ul > li {
+        background-color: $cardset_form_list_background !important;
+        border-bottom-color: $cardset_form_border !important;
+        a {
+          color: $cardset_form_list_text !important;
+        }
+      }
+      ul > li:hover {
+        background-color: $cardset_form_list_background_hover !important;
+        a {
+          color: $cardset_form_list_text_hover !important;
+        }
+      }
+      ul > li.active {
+        background-color: $cardset_form_list_background_active !important;
+        a {
+          color: $cardset_form_list_text_active !important;
+        }
+      }
+    }
+    //learn
+    .learn-cardHelptext {
+      color: $storm_dust_approx !important;
+    }
+
+    #memoRate1 {
+      border-right-color: $thm_red !important;
+    }
+
+    //welcome
+    #welcome {
+      .panel {
+        background-color: transparent !important;
+      }
+      #slogan {
+        color: $thm_orange !important;
+      }
+      .panel-heading {
+        background-color: transparent !important;
+      }
+
+      .panel-footer {
+        background-color: transparent !important;
+      }
+    }
+
+    #learnBoxDisabled {
+      background-color: $warning_background !important;
+      color: $warning_text !important;
+    }
+
+    #tag-cloud-container {
+      background-color: transparent !important;
+    }
+
+    #TestingBackdoorUsername {
+      background-color: #ffffff !important;
+    }
+
+    .color-THM {
+      color: $thm_green !important;
+    }
+
+    .color-dot {
+      color: $thm_orange !important;
+    }
+
+    .color-cards {
+      color: $thm_green !important;
+    }
+
+    //profile
+    .badgeFooterProgress {
+      background-color: $white !important;
+    }
+
+    .span6 {
+      color: #000 !important;
+    }
+
+    .span7 {
+      color: #fff !important;
+    }
+
+    #well {
+      background-color: lightblue !important;
+    }
+
+    .profilepublic-rb-text-color {
+      color: $white !important;
+    }
+
+    .profilepublic-rb-text-color:hover {
+      color: black !important;
+    }
+
+    .red-passage {
+      color: $thm_red !important;
+    }
+
+    .green-passage {
+      color: $thm_green !important;
+    }
+
+    .standard-membership {
+      background-color: $thm_green !important;
+      color: white !important;
+    }
+
+    .pro-membership {
+      background-color: $thm_orange !important;
+      color: white !important;
     }
   }
 }

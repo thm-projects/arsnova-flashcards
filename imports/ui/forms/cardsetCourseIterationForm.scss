@@ -11,7 +11,6 @@
 }
 
 #setDifficulty .btn, #cardType .btn {
-  background-color: $color_button_difficulty_inactive;
   padding: 9px 0 9px 0;
   font-weight: bold;
   font-size: 13px;
@@ -21,42 +20,13 @@
   }
 }
 
-#setDifficulty .btn-info {
-  color: $color_button_difficulty1 !important;
-}
-
-#setDifficulty .btn-info.active {
-  color: $white !important;
-  background-color: $color_button_difficulty1;
-}
-
-#setDifficulty .btn-success {
-  color: $color_button_difficulty2 !important;
-}
-
-#setDifficulty .btn-success.active {
-  color: $white !important;
-  background-color: $color_button_difficulty2;
-}
-
-#setDifficulty .btn-danger {
-  color: $color_button_difficulty3 !important;
-}
-
-#setDifficulty .btn-danger.active {
-  color: $white !important;
-  background-color: $color_button_difficulty3;
-}
-
 #setCardsetCourseIterationFormModal, #showSelectLearningUnitModal {
   ul > li {
-    background-color: $color_cardset_form_list_background !important;
     padding-top: $size_cardset_form_list_padding !important;
     padding-bottom: $size_cardset_form_list_padding !important;
-    border-bottom: solid $size_cardset_form_list_border $color_cardset_form_border !important;
+    border-bottom: solid $size_cardset_form_list_border !important;
     cursor: pointer;
     a {
-      color: $color_cardset_form_list_text !important;
       font-size: $font_size_cardset_form_list !important;
       font-weight: $font_weight_cardset_form_list !important;
     }
@@ -64,18 +34,7 @@
   ul > li:last-child {
     border-bottom: 0 !important;
   }
-  ul > li:hover {
-
-    background-color: $color_cardset_form_list_background_hover !important;
-    a {
-      color: $color_cardset_form_list_text_hover !important;
-    }
-  }
   ul > li.active {
     cursor: unset;
-    background-color: $color_cardset_form_list_background_active !important;
-    a {
-      color: $color_cardset_form_list_text_active !important;
-    }
   }
 }

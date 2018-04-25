@@ -1,11 +1,184 @@
 @function theme-contrast() {
+  //global sass colors
+  $thm_dark_blue: #003BD1;
+  $thm_orange: #F5AA01;
+  $thm_red: #9C132D;
+  $thm_gray: #4A5C66;
+  $thm_green: #80BA24;
+  $athens_gray_approx: rgb(236, 240, 241);
+  $white: rgb(255, 255, 255);
+  $bilbaoapprox: rgb(50, 129, 20);
+  $mercury_approx: rgb(223, 229, 230);
+  $la_palma_approx: rgb(61, 156, 25);
+  $wild_sand_approx: rgb(245, 245, 245);
+  $slate_gray_approx: rgb(74, 92, 102);
+  $alto_approx: rgb(221, 221, 221);
+  $storm_dust_approx: rgb(102, 102, 102);
+  $mountain_mist_approx: rgb(153, 153, 153);
+  $orange_pool: $thm_orange;
+  $btn_inactive: #9e9c9c;
+  $item_separator: $thm_gray;
+  $footer_hover: rgb(215, 215, 215);
+  $hyperlink: $thm_dark_blue;
+  $primary: black;
+  $accent: $thm_gray;
+  $primary_text: black;
+  $secondary_text: $thm_gray;
+  $divider: $thm_gray;
+  $accent_300: $thm_gray;
+  $background: $mercury_approx;
   @return (
-          primary-color: #212121,
-          accent: #616161,
-          primary-text: #000000,
-          secondary-text: #373737,
-          divider-color: #BDBDBD,
-          accent_300: #616161,
-          hyperlink: #003BD1
+    //global colors
+          "thm_dark_blue":$thm_dark_blue,
+          "thm_orange":$thm_orange,
+          "thm_red":$thm_red,
+          "thm_gray":$thm_gray,
+          "thm_green":$thm_green,
+          "athens_gray_approx":$athens_gray_approx,
+          "white":$white,
+          "bilbao_approx":$bilbaoapprox,
+          "mercury_approx":$mercury_approx,
+          "la_palma_approx":$la_palma_approx,
+          "wild_sand_approx":$wild_sand_approx,
+          "slate_gray_approx":$slate_gray_approx,
+          "$alto_approx":$alto_approx,
+          "$storm_dust_approx":$storm_dust_approx,
+          "$mountain_mist_approx":$mountain_mist_approx,
+          "primary": $primary,
+          "accent": $accent,
+          "primary_text": $primary_text,
+          "secondary_text": $secondary_text,
+          "divider": $divider,
+          "accent_300": $accent_300,
+          "background": $background,
+          "hyperlink": $hyperlink,
+    //global button and label colors
+          "free_background": $thm_dark_blue,
+          "free_text": $white,
+          "edu_background": $thm_green,
+          "edu_text": $white,
+          "pro_background": $thm_orange,
+          "pro_text": $white,
+          "private_background": $thm_red,
+          "private_text": $white,
+          "danger_background": $thm_orange,
+          "danger_text": $white,
+          "info_background": $thm_dark_blue,
+          "info_text": $white,
+          "success_background": $thm_green,
+          "success_text": $white,
+          "warning_background": $thm_red,
+          "warning_text": $white,
+          "disabled_background": $slate_gray_approx,
+          "disabled_text": $mercury_approx,
+    //navbar
+          "navbar_background": black,
+          "navbar_text": $thm_gray,
+          "navbar_text_hover": $white,
+    //welcome page colors
+          "footer_background":$thm_green,
+          "footer_info_navigation_text": white,
+          "footer_info_navigation_text_hover": white,
+          "footer_info_navigation_background": $thm_green,
+          "footer_info_navigation_background_hover": $thm_gray,
+          "footer_info_navigation_border": white,
+          "footer_icon": white,
+          "footer_icon_hover": $thm_gray,
+          "footer_globe_dropdown_text": $thm_gray,
+          "footer_globe_dropdown_background": white,
+          "footer_globe_dropdown_text_hover": white,
+          "footer_globe_dropdown_background_hover": $thm_gray,
+          "footer_websocket_connected": white,
+          "footer_websocket_connecting": $thm_orange,
+          "footer_websocket_disconnected": $thm_red,
+          "placeholder": $thm_orange,
+    //info page colors
+          "info_navigation_text": $thm_gray,
+          "info_navigation_text_active": white,
+          "info_navigation_text_hover": white,
+          "info_navigation_background": LightGoldenRodYellow,
+          "info_navigation_background_active": $thm_gray,
+          "info_navigation_background_hover": $thm_gray,
+          "home_button_icon": $thm_green,
+          "info_content_header_text": white,
+          "info_content_header_background": $thm_green,
+          "info_content_body_text": $thm_gray,
+          "info_content_body_background": LightGoldenRodYellow,
+    //editor navigation colors
+          "item_selection_border": $item_separator,
+    //item lists colors
+          "filter_navigation_icon": $thm_gray,
+          "item_separator_border_bottom": $thm_gray,
+          "infinite_scroll_background": $thm_gray,
+          "infinite_scroll_icon": $thm_orange,
+          "infinite_scroll_text": white,
+          "item_background": $thm_gray,
+          "item_icon": white,
+          "item_author_text": black,
+          "item_description_background": white,
+          "item_description_text": black,
+          "item_text": white,
+    //difficulty colors
+          "button_difficulty1": #5cb85c,
+          "button_difficulty2": #5bc0de,
+          "button_difficulty3": #d9534f,
+          "button_difficulty_inactive": $wild_sand_approx,
+          "background_difficulty0_note": ivory,
+          "background_difficulty0": LightGoldenRodYellow,
+          "background_difficulty1": honeydew,
+          "background_difficulty2": lightcyan,
+          "background_difficulty3": mistyrose,
+          "background_difficulty0_lines_note": #F8E1AE,
+          "background_difficulty0_lines": PaleGoldenRod,
+          "background_difficulty1_lines": rgba(92, 184, 92, 0.3),
+          "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
+          "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
+    //card colors
+          "background_lecture": LightGoldenRodYellow,
+          "background_hint": LightGoldenRodYellow,
+          "background_hint_alternative": LightGoldenRodYellow,
+          "hint_text": $thm_gray,
+          "hint_text_alternative": $thm_gray,
+          "hint_link": $thm_orange,
+          "hint_link_alternative": $hyperlink,
+          "hint_placeholder": $thm_green,
+          "hint_placeholder_alternative": $thm_orange,
+          "hint_header_border": $thm_orange,
+          "hint_header_border_alternative": $thm_orange,
+          "navigation_arrows": $thm_gray,
+          "card_header_card_number": $thm_gray,
+          "card_header_first_row": $thm_gray,
+          "card_header_second_row": $thm_gray,
+          "card_header_subject": $thm_gray,
+    //markdeep editor
+          "markdeep_help_text": $white,
+          "markdeep_help_background": $thm_orange,
+          "markdeep_help_border": $thm_orange,
+    //notification colors
+          "notification_text_smartphones": white,
+    //search colors
+          "search_results_subject_background": $thm_green,
+          "search_results_subject_text": white,
+          "search_results_content_background": LightGoldenRodYellow,
+          "search_results_content_text": $thm_gray,
+          "search_results_author_background": $thm_gray,
+          "search_results_author_text": white,
+          "search_results_separator": white,
+          "search_divide:": $thm_gray,
+    //form group colors
+          "form_group_label": black,
+    //cardset form colors
+          "cardset_form_list_background": $athens_gray_approx,
+          "cardset_form_list_text": black,
+          "cardset_form_border": black,
+          "cardset_form_list_background_hover": $btn_inactive,
+          "cardset_form_list_text_hover": white,
+          "cardset_form_list_background_active": $athens_gray_approx,
+          "cardset_form_list_text_active": black,
+    //cookie consent colors
+          "cookie_consent_link": $thm_dark_blue,
+    //under development modal colors
+          "under_development_modal_text": white,
+          "under_development_modal_background": $thm_orange
   );
 }
