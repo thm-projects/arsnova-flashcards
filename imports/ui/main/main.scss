@@ -99,8 +99,10 @@ $background_hint: $color_thm_dark_blue;
 $background_hint_alternative: $white;
 $color_hint_text: $white;
 $color_hint_text_alternative: black;
-$color_hint_link: $color_thm_green;
+$color_hint_link: $white;
 $color_hint_link_alternative: $color_global_link;
+$hint_link_decoration: underline;
+$hint_link_alternative_decoration: underline;
 $color_hint_placeholder: $color_thm_green;
 $color_hint_placeholder_alternative: $color_thm_orange;
 $color_hint_header_border: $white;
@@ -961,6 +963,7 @@ th {
   color: $color_hint_text !important;
   a {
     color: $color_hint_link !important;
+    text-decoration: $hint_link_decoration !important;
   }
   .placeholder {
     color: $color_hint_placeholder !important;
@@ -972,6 +975,7 @@ th {
   color: $color_hint_text_alternative !important;
   a {
     color: $color_hint_link_alternative !important;
+    text-decoration: $hint_link_alternative_decoration !important;
   }
   .placeholder {
     color: $color_hint_placeholder_alternative !important;
