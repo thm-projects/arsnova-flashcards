@@ -961,9 +961,11 @@ th {
 .hintContent {
   background-color: $background_hint !important;
   color: $color_hint_text !important;
+  font-family: $default_font !important;
   a {
     color: $color_hint_link !important;
     text-decoration: $hint_link_decoration !important;
+    font-family: $default_font !important;
   }
   .placeholder {
     color: $color_hint_placeholder !important;
@@ -973,9 +975,11 @@ th {
 .hintContentAlternative {
   background-color: $background_hint_alternative !important;
   color: $color_hint_text_alternative !important;
+  font-family: $default_font !important;
   a {
     color: $color_hint_link_alternative !important;
     text-decoration: $hint_link_alternative_decoration !important;
+    font-family: $default_font !important;
   }
   .placeholder {
     color: $color_hint_placeholder_alternative !important;
