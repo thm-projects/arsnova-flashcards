@@ -1401,6 +1401,9 @@ Template.flashcards.helpers({
 	box: function () {
 		return Session.get("selectedBox");
 	},
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
+	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');
 		var count = Cards.find({

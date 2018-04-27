@@ -403,16 +403,13 @@
                                             <br>
                                         {{/if}}
                                     </div>
-                                    <span id="changeStyle"
-                                          data-type="cardNavigation" data-toggle="modal"
-                                          data-target="#underDevelopmentModal">
-                                                <span class="glyphicon fa fa-paint-brush card-button"
-                                                      data-type="cardNavigation"></span>
+                                    <span id="turnCard">
+                                                <span class="fa fa-refresh card-button {{#unless isQuestionSide}}pressed{{/unless}}"></span>
                                     </span>
                                     <span id="swapOrder" data-type="cardNavigation">
                                                 <i class="fa fa-anchor card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
-                                                      data-type="cardNavigation"></i>
+                                                   data-type="cardNavigation"></i>
                                     </span>
                                     {{#if isPresentation}}
                                         <span class="glyphicon glyphicon-log-out card-button endPresentation"
@@ -449,7 +446,8 @@
                                     </span>
                                 </div>
                                 <div class="cardContent {{#if
-                                        isHintPreview}}{{#if gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
+                                        isHintPreview}}{{#if
+                                        gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
                                         isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
                                         isLecturePreview}}{{getCardBackground
@@ -629,7 +627,8 @@
 <template name="cardHint">
     <div class="modal fade" id="showHintModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content {{#if gotAlternativeHintStyle cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
+            <div class="modal-content {{#if gotAlternativeHintStyle
+                                            cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
                 {{> cardHintContent}}
             </div>
         </div>
