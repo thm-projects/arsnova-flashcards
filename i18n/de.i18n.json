@@ -843,6 +843,7 @@
   "yourhighscore": "Dein Highscore:",
   "points": "Punkte",
   "difficulty": "Level",
+  "difficulty0": "Allgemein",
   "difficulty1": "Basics",
   "difficulty2": "Fortgeschritten",
   "difficulty3": "Experte/Expertin",
@@ -1208,5 +1209,10 @@
   "underDevelopment": {
     "title": "In Entwicklung",
     "text": "Dieses Feature befindet sich in der Entwicklung und wird im Laufe des Sommersemesters 2018 verfügbar sein."
+  },
+  "markdeep": {
+    "editor": {
+      "help": "Hilfe"
+    }
   }
 }

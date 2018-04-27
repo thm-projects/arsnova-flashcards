@@ -99,8 +99,10 @@ $background_hint: $color_thm_dark_blue;
 $background_hint_alternative: $white;
 $color_hint_text: $white;
 $color_hint_text_alternative: black;
-$color_hint_link: $color_thm_green;
+$color_hint_link: $white;
 $color_hint_link_alternative: $color_global_link;
+$hint_link_decoration: underline;
+$hint_link_alternative_decoration: underline;
 $color_hint_placeholder: $color_thm_green;
 $color_hint_placeholder_alternative: $color_thm_orange;
 $color_hint_header_border: $white;
@@ -121,6 +123,15 @@ $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
 $font_weight_card_header_subject: bold;
+
+
+//markdeep editor
+$color_markdeep_help_text: $white;
+$color_markdeep_help_background: $color_thm_orange;
+$color_markdeep_help_border: $color_thm_orange;
+$font_family_markdeep_help: $default_font;
+$font_size_markdeep_help: 20px;
+$font_weight_markdeep_help: normal;
 
 //notifications
 $color_notification_text_smartphones: white;
@@ -759,6 +770,18 @@ button:disabled {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+.md-header .markdeep-help {
+  color: $color_markdeep_help_text !important;
+  background-color: $color_markdeep_help_background !important;
+  border-color: $color_markdeep_help_border !important;
+}
+
+.markdeep-help-text {
+  font-family: $font_family_markdeep_help !important;
+  font-size: $font_size_markdeep_help !important;
+  font-weight: $font_weight_markdeep_help !important;
+}
+
 .md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover, .card-button:hover {
   background-color: $color_athens_gray_approx;
 }
@@ -959,8 +982,11 @@ th {
 .hintContent {
   background-color: $background_hint !important;
   color: $color_hint_text !important;
+  font-family: $default_font !important;
   a {
     color: $color_hint_link !important;
+    text-decoration: $hint_link_decoration !important;
+    font-family: $default_font !important;
   }
   .placeholder {
     color: $color_hint_placeholder !important;
@@ -970,8 +996,11 @@ th {
 .hintContentAlternative {
   background-color: $background_hint_alternative !important;
   color: $color_hint_text_alternative !important;
+  font-family: $default_font !important;
   a {
     color: $color_hint_link_alternative !important;
+    text-decoration: $hint_link_alternative_decoration !important;
+    font-family: $default_font !important;
   }
   .placeholder {
     color: $color_hint_placeholder_alternative !important;

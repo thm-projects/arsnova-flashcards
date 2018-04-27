@@ -71,7 +71,9 @@ export function adjustMarkdownToolbar() {
 	checkBackgroundStyle();
 	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
 	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
-	$(".btn-toolbar .btn-group:nth-child(5)").remove();
+	Session.get('activeLanguage');
+	$('.markdeep-help').html('<span class="markdeep-help-text"></span>');
+	$('.markdeep-help-text').text(" " + TAPi18n.__('markdeep.editor.help','',Session.get('activeLanguage')));
 }
 
 function resetSessionData(resetSubject = false) {
@@ -594,6 +596,13 @@ let additionalButtons = [
 
 				// Set the cursor
 				e.setSelection(cursor, cursor + chunk.length);
+			}
+		}, {
+			name: 'cmdMarkdeepHelp',
+			title: 'Markdeep Help',
+			icon: 'fa fa-lightbulb-o card-button markdeep-help',
+			callback: function () {
+				window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
 			}
 		}
 		]
@@ -1316,6 +1325,7 @@ Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
+	Session.set('isQuestionSide', true);
 });
 
 let resizeInterval;
@@ -1400,6 +1410,9 @@ Template.flashcards.helpers({
 	},
 	box: function () {
 		return Session.get("selectedBox");
+	},
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');

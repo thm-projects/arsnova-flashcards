@@ -853,6 +853,7 @@
   "yourhighscore": "Your highscore:",
   "points": "Points",
   "difficulty": "Level of Difficulty",
+  "difficulty0": "General",
   "difficulty1": "Basics",
   "difficulty2": "Advanced",
   "difficulty3": "Expert",
@@ -1220,5 +1221,10 @@
   "underDevelopment": {
     "title": "Under Development",
     "text": "This feature is under development."
+  },
+  "markdeep": {
+    "editor": {
+      "help": "Help"
+    }
   }
 }
