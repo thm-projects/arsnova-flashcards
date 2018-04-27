@@ -297,6 +297,10 @@ img.cardside {
   top: 50px;
 }
 
+#turnCard {
+  top: top+1px;
+}
+
 .endPresentation {
   position: absolute;
   float: right;
@@ -557,7 +561,7 @@ img.cardside {
     right: 43px;
   }
   #turnCard {
-    top: 63px;
+    top: 64px;
     right: 43px;
   }
 }
