@@ -1325,6 +1325,7 @@ Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
+	Session.set('isQuestionSide', true);
 });
 
 let resizeInterval;
