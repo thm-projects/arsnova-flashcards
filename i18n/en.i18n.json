@@ -1221,5 +1221,10 @@
   "underDevelopment": {
     "title": "Under Development",
     "text": "This feature is under development."
+  },
+  "markdeep": {
+    "editor": {
+      "help": "Help"
+    }
   }
 }

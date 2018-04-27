@@ -1209,5 +1209,10 @@
   "underDevelopment": {
     "title": "In Entwicklung",
     "text": "Dieses Feature befindet sich in der Entwicklung und wird im Laufe des Sommersemesters 2018 verfügbar sein."
+  },
+  "markdeep": {
+    "editor": {
+      "help": "Hilfe"
+    }
   }
 }

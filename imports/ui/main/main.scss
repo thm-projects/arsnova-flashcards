@@ -124,6 +124,15 @@ $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
 $font_weight_card_header_subject: bold;
 
+
+//markdeep editor
+$color_markdeep_help_text: $white;
+$color_markdeep_help_background: $color_thm_orange;
+$color_markdeep_help_border: $color_thm_orange;
+$font_family_markdeep_help: $default_font;
+$font_size_markdeep_help: 20px;
+$font_weight_markdeep_help: normal;
+
 //notifications
 $color_notification_text_smartphones: white;
 
@@ -759,6 +768,18 @@ button:disabled {
   background-color: $white;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.md-header .markdeep-help {
+  color: $color_markdeep_help_text !important;
+  background-color: $color_markdeep_help_background !important;
+  border-color: $color_markdeep_help_border !important;
+}
+
+.markdeep-help-text {
+  font-family: $font_family_markdeep_help !important;
+  font-size: $font_size_markdeep_help !important;
+  font-weight: $font_weight_markdeep_help !important;
 }
 
 .md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover, .card-button:hover {

@@ -462,6 +462,13 @@ let additionalButtons = [
 				// Set the cursor
 				e.setSelection(cursor, cursor + chunk.length);
 			}
+		}, {
+			name: 'cmdMarkdeepHelp',
+			title: 'Markdeep Help',
+			icon: 'fa fa-lightbulb-o card-button markdeep-help',
+			callback: function () {
+				window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
+			}
 		}
 		]
 	}]
