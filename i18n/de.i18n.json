@@ -242,7 +242,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Beschreibung der Kartei \n\n(bei Lernkarteien: Lernziele und Lerninhalte)",
+    "descriptionplaceholder": "Beschreibung der Kartei: Worum geht es? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nDie Beschreibung wird überall auf der .cards-Plattform angezeigt. Um in der Metapher vom \"Schuhkarton als Zettelkasten\" zu bleiben: Hier ist die Beschriftung, das Klebeetikett auf dem Schuhkarton, gemeint.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -637,9 +637,9 @@
     "cardType0": {
       "name": "Lernkartei",
       "front": "Lernziel",
-      "back": "Review",
+      "back": "Zusammenfassung",
       "hint": "Links | Literatur ",
-      "lecture": "Lerninhalt",
+      "lecture": "Darstellung des Lerninhalts",
       "placeholders": {
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
@@ -1212,7 +1212,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Hilfe"
+      "help": "Formatierung"
     }
   }
 }

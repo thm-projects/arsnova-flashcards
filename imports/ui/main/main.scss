@@ -236,8 +236,7 @@ body {
 }
 
 #input-search {
-  padding: 2px 2px;
-  font-size: 14px !important;
+  line-height: 30pt !important;
 }
 
 .navbar-default {
@@ -699,7 +698,6 @@ button:disabled {
   #input-search {
     width: 80px;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -1207,7 +1205,7 @@ th {
   margin-right: 0;
 }
 
-::placeholder, .placeholder {
+::placeholder {
   padding-top: 5% !important;
   padding-left: 5pt !important;
   color: $color_placeholder !important;
