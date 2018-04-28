@@ -37,7 +37,7 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
-$color_placeholder: $color_thm_red;
+$color_placeholder: $color_thm_orange;
 $size_footer_height: 40px;
 
 //info page
@@ -236,15 +236,7 @@ body {
 }
 
 #input-search {
-  padding: 2px 2px;
-  font-size: 14px !important;
-}
-
-_::-webkit-full-page-media, _:future, :root
-#input-search {
-  padding: 2px 2px;
-  font-size: 14px !important;
-  line-height: 30px;
+  line-height: 30pt !important;
 }
 
 .navbar-default {
@@ -706,7 +698,6 @@ button:disabled {
   #input-search {
     width: 80px;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -1214,7 +1205,7 @@ th {
   margin-right: 0;
 }
 
-::placeholder, .placeholder {
+::placeholder {
   padding-top: 5% !important;
   padding-left: 5pt !important;
   color: $color_placeholder !important;
