@@ -37,7 +37,7 @@ $color_footer_globe_dropdown_background_hover: $color_thm_gray;
 $color_footer_websocket_connected: white;
 $color_footer_websocket_connecting: $color_thm_orange;
 $color_footer_websocket_disconnected: $color_thm_red;
-$color_placeholder: $color_thm_orange;
+$color_placeholder: $color_thm_red;
 $size_footer_height: 40px;
 
 //info page
@@ -240,7 +240,7 @@ body {
   font-size: 14px !important;
 }
 
-_::-webkit-full-page-media, _:future, :root 
+_::-webkit-full-page-media, _:future, :root
 #input-search {
   padding: 2px 2px;
   font-size: 14px !important;
