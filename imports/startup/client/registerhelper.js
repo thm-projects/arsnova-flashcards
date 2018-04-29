@@ -416,8 +416,6 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 			case 0:
 				if (gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyLinedNote0';
-				} else {
-					return 'box-difficultyLined0';
 				}
 				break;
 			case 1:
@@ -434,8 +432,6 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 			case 0:
 				if (gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyBlankNote0';
-				} else {
-					return 'box-difficultyBlank0';
 				}
 				break;
 			case 1:
