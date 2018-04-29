@@ -15,7 +15,7 @@ import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 import {
-	getCardTypeName, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
+	getCardTypeName, gotDifficultyLevel, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
 	gotPresentationMode
 } from "../../api/cardTypes";
 import {getTargetAudienceName} from "../../api/targetAudience";
@@ -525,7 +525,11 @@ Template.cardsetInfoBoxContentOne.helpers({
 		if (gotNotesForDifficultyLevel(this.cardType)) {
 			return TAPi18n.__('difficultyNotes' + this.difficulty);
 		} else {
-			return TAPi18n.__('difficulty' + this.difficulty);
+			if (!gotDifficultyLevel(this.cardType)) {
+				return TAPi18n.__('difficulty0');
+			} else {
+				return TAPi18n.__('difficulty' + this.difficulty);
+			}
 		}
 	},
 	getLearningMode: function () {
