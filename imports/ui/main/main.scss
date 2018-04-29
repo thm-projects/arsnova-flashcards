@@ -130,8 +130,8 @@ $color_markdeep_help_text: $white;
 $color_markdeep_help_background: $color_thm_orange;
 $color_markdeep_help_border: $color_thm_orange;
 $font_family_markdeep_help: $default_font;
-$font_size_markdeep_help: 20px;
-$font_weight_markdeep_help: normal;
+$font_size_markdeep_help: 12pt;
+$font_weight_markdeep_help: bold;
 
 //notifications
 $color_notification_text_smartphones: white;
@@ -1210,6 +1210,6 @@ th {
   padding-left: 5pt !important;
   color: $color_placeholder !important;
   opacity: 1;
-  font-size: 12pt !important;
+  font-size: 11pt !important;
   font-style: italic;
 }
