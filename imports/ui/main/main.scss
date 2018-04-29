@@ -71,24 +71,24 @@ $font_size_infinite_scroll_text: 12px;
 $font_weight_infinite_scroll_text: bold;
 $color_item_background: $color_thm_gray;
 $color_item_icon: white;
+$color_item_author_text: black;
 $color_item_description_background: white;
 $color_item_description_text: black;
 $color_item_text: white;
 $margin_bottom_item: 10px;
 
 //difficulty
-$color_button_difficulty0: #FFFFFF;
 $color_button_difficulty1: #5cb85c;
 $color_button_difficulty2: #5bc0de;
 $color_button_difficulty3: #d9534f;
 $color_button_difficulty_inactive: $color_wild_sand_approx;
 $color_background_difficulty0_note: ivory;
-$color_background_difficulty0: White;
+$color_background_difficulty0: LightGoldenRodYellow;
 $color_background_difficulty1: honeydew;
 $color_background_difficulty2: lightcyan;
 $color_background_difficulty3: mistyrose;
 $color_background_difficulty0_lines_note: #F8E1AE;
-$color_background_difficulty0_lines: #E6EAE9;
+$color_background_difficulty0_lines: PaleGoldenRod;
 $color_background_difficulty1_lines: rgba(92, 184, 92, 0.3);
 $color_background_difficulty2_lines: rgba(91, 192, 222, 0.3);
 $color_background_difficulty3_lines: rgba(217, 83, 79, 0.3);
@@ -139,8 +139,8 @@ $color_notification_text_smartphones: white;
 //search
 $color_search_results_subject_background: $color_thm_green;
 $color_search_results_subject_text: white;
-$color_search_results_content_background: $color_thm_gray;
-$color_search_results_content_text: white;
+$color_search_results_content_background: LightGoldenRodYellow;
+$color_search_results_content_text: $color_thm_gray;
 $color_search_results_author_background: $color_thm_gray;
 $color_search_results_author_text: white;
 $color_search_results_separator: white;
@@ -1111,7 +1111,15 @@ th {
 #searchResults {
   position: absolute;
   float: left;
-  width: 300px;
+  @media(max-width: 768px) {
+    width: 300px;
+  }
+  @media(min-width: 769px) {
+    width: 600px;
+  }
+  @media(min-width: 1200px) {
+    width: 800px;
+  }
   padding-top: 0;
   padding-bottom: 0;
   z-index: 1000;

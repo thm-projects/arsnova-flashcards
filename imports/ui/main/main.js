@@ -145,7 +145,6 @@ Template.main.events({
 	'click #logout': function (event) {
 		event.preventDefault();
 		Meteor.logout();
-		Router.go('home');
 	},
 	'keyup #input-search': function (event) {
 		event.preventDefault();

@@ -745,6 +745,12 @@
       "editorLabels": {
         "subject": "Titel des Volltextes"
       }
+    },
+    "tooltip": {
+      "endPresentation": "Präsentation beenden",
+      "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
+      "turnCard": "Oder klick einfach auf die Karte.",
+      "lockSide": "Rückseite wird zur Vorderseite"
     }
   },
   "courseIteration": {
