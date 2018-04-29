@@ -109,6 +109,8 @@
                                     {{/each}}
                                 </ul>
                             </li>
+                        {{/if}}
+                        {{#if isActiveRoute regex='course'}}
                             {{#unless singleUniversity}}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle collegeBtn" data-toggle="dropdown" role="button"
@@ -176,7 +178,7 @@
                             </li>
                         {{/if}}
                         {{#unless isActiveRoute
-                                  regex='create|learn|shuffle'}}
+                                  regex='pool|create|learn|shuffle'}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle courseBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="collegeBtn">
