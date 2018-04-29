@@ -74,8 +74,8 @@
 .box-difficultyLined0 {
   background: repeating-linear-gradient(
                   to bottom,
-                  $white,
-                  $white 26px,
+                  $color_background_difficulty0,
+                  $color_background_difficulty0 26px,
                   $color_background_difficulty0_lines 26px,
                   $color_background_difficulty0_lines 28px
   );
@@ -92,7 +92,7 @@
 }
 
 .box-difficultyBlan0 {
-  background-color: $white;
+  background-color: $color_background_difficulty0;
 }
 
 .box-difficultyBlankNote0 {
@@ -100,7 +100,7 @@
 }
 
 .box-difficulty-list0 {
-  background: $white;
+  background: $color_background_difficulty0;
 }
 
 .box-difficultyNote-list0 {
@@ -126,7 +126,7 @@
 }
 
 .box-difficultyBlank0 {
-  background-color: $white;
+  background-color: $color_background_difficulty0;
 }
 
 .box-difficultyBlank1 {
@@ -186,7 +186,7 @@
 }
 
 .box-difficultyBlank0-header, .box-difficultyLined0-header {
-  background: linear-gradient(to top, $color_background_difficulty0_lines 0px, $color_background_difficulty0_lines 4px, $white 5px, $white 100%);
+  background: linear-gradient(to top, $color_background_difficulty0_lines 0px, $color_background_difficulty0_lines 4px, $color_background_difficulty0 5px, $color_background_difficulty0 100%);
 }
 
 .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
