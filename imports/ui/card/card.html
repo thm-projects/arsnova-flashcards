@@ -403,10 +403,10 @@
                                             <br>
                                         {{/if}}
                                     </div>
-                                    <span id="turnCard">
+                                    <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}">
                                                 <span class="fa fa-refresh card-button {{#unless isQuestionSide}}pressed{{/unless}}"></span>
                                     </span>
-                                    <span id="swapOrder" data-type="cardNavigation">
+                                    <span id="swapOrder" data-type="cardNavigation" title="{{_ "card.tooltip.lockSide"}}">
                                                 <i class="fa fa-anchor card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
                                                    data-type="cardNavigation"></i>
@@ -418,7 +418,7 @@
                                     {{/if}}
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
-                                          data-type="cardNavigation">
+                                          data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
                                                 <span class="glyphicon glyphicon-fullscreen card-button {{#if
                                                         fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
