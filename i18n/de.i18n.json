@@ -124,7 +124,7 @@
   "complete-profile": {
     "btn-txt": "Schließen",
     "title": "Nutzerprofil unvollständig",
-    "text": "Dein Benutzerprofil ist unvollständig. Um einen Lernmodus nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
+    "text": "Dein Benutzerprofil ist unvollständig. Um einen Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
@@ -242,7 +242,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Beschreibung der Kartei: Worum geht es? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nDie Beschreibung wird überall auf der .cards-Plattform angezeigt. Um in der Metapher vom \"Schuhkarton als Zettelkasten\" zu bleiben: Hier ist die Beschriftung, das Klebeetikett auf dem Schuhkarton, gemeint.",
+    "descriptionplaceholder": "Worum geht es? Was soll gelernt werden? Wer ist die Zielgruppe dieser Kartei? \n\nDie Beschreibung wird überall auf der Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -291,7 +291,7 @@
     "course_required": "Wähle einen Studiengang",
     "manageEditors": "Bearbeitungsrechte verwalten für die Kartei \"__name__\"",
     "module": "Modul",
-    "moduleActivated": "Gehört zu einer Lehreinheit (Modul)",
+    "moduleActivated": "Zugehöriges Modul",
     "moduleDeactivated": "Ohne Modul",
     "module_required": "Gib den vollen Titel des Moduls an!",
     "moduleShort": "Kurzbezeichnung",
@@ -401,7 +401,7 @@
   "panel-body": {
     "name": "Kennung",
     "title": "Titel",
-    "title-desc": "Akademischer Titel (öffentlich)",
+    "title-desc": "Akademischer Titel",
     "birthname": "Nachname",
     "birthname-desc": "Nachname (öffentlich)",
     "givenname": "Vorname",
@@ -412,7 +412,7 @@
     "emailValidation": "E-Mail bestätigen",
     "emailValidation-desc": "E-Mail-Adresse wiederholen",
     "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
-    "profilepublic": "Profil öffentlich",
+    "profilepublic": "Profil ist öffentlich?",
     "profilepublicoption1": "Ja",
     "profilepublicoption2": "Nein",
     "profileprivate": "Profil ist privat",
@@ -481,7 +481,7 @@
     "exportcard": "Export",
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Zugang festlegen",
-    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um diesen zu veröffentlichen.
+    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen.
     Pro-Karteien
     können
     nicht
@@ -521,7 +521,7 @@
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Aktualisiert",
-    "selectCardToLearn": "Kartei durch Klick auf ein Thema zum Lernpensum hinzufügen"
+    "selectCardToLearn": "Such dir eine Kartei aus, deren Karten du lernen willst! Mit einem Klick auf das Thema der Kartei nimmst du sie in dein Lernpensum."
   },
   "cardset": {
     "info": {
@@ -749,7 +749,7 @@
   },
   "courseIteration": {
     "name": "Kurs",
-    "targetAudience": "Zielgruppe",
+    "targetAudience": "Kurstyp",
     "confirm-form-delete": {
       "title": "Kurs löschen",
       "alsoDeleteAssociatedDecks": "Dazugehörige Karteien löschen",
@@ -772,8 +772,7 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Kompetenzziele des Kurses: Was soll ich nach dem Lernen aller Karten des Kurses langfristig wissen und
-        können?"
+        "description": "Nenne die Kompetenzziele des Kurses: Was soll ich nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können? \n\nFormuliere die zu erreichenden Kompetenzen auf den Kompetenzstufen: Verstehen ➔︎ Anwenden ➔ Analysieren ➔ Synthetisieren ➔ Bewerten ➔ Innovieren. \n\nWähle zur Formulierung eines Kompetenzziels ein Verb aus der Vorschlagsliste, siehe unter Hilfe."
       }
     },
     "targetAudience1": {
@@ -797,7 +796,7 @@
       "abbreviation": "Masterkurs"
     },
     "targetAudience6": {
-      "name": "Weiterbildung",
+      "name": "Weiterbildungskurs",
       "abbreviation": "Weiterbildung"
     }
   },
@@ -1120,7 +1119,7 @@
       "service": "Service:",
       "date": "Beigetreten:",
       "lvl": "Level:",
-      "visible": "Profil öffentlich",
+      "visible": "Profil ist öffentlich?",
       "option1": "Ja",
       "option2": "Nein",
       "email": "E-Mail",
@@ -1212,7 +1211,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatierung"
+      "help": "Format"
     }
   }
 }
