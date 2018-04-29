@@ -747,8 +747,9 @@
       }
     },
     "tooltip": {
-      "fullscreen": "Mit ESCAPE kommst du wieder auf die Normalansicht.",
-      "turnCard": "Geht auch, indem du auf die Karte klickst.",
+      "endPresentation": "Präsentation beenden",
+      "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
+      "turnCard": "Oder klick einfach auf die Karte.",
       "lockSide": "Rückseite wird zur Vorderseite"
     }
   },
