@@ -100,13 +100,7 @@
             <td>{{_ "cardset.info.author"}}:</td>
             <td>
                 {{#each getAuthors}}
-                    {{#unless isActiveRoute "home"}}
-                        <a href="{{pathFor 'profileSettings' _id=this._id}}">{{getAuthorName
-                                this.owner}} </a>
-                    {{else}}
-                        {{getAuthorName
-                                this.owner}}
-                    {{/unless}}
+                    {{getAuthorName this.owner}}
                 {{/each}}
             </td>
         </tr>
