@@ -1112,7 +1112,15 @@ th {
 #searchResults {
   position: absolute;
   float: left;
-  width: 300px;
+  @media(max-width: 768px) {
+    width: 300px;
+  }
+  @media(min-width: 769px) {
+    width: 600px;
+  }
+  @media(min-width: 1200px) {
+    width: 800px;
+  }
   padding-top: 0;
   padding-bottom: 0;
   z-index: 1000;
