@@ -44,13 +44,11 @@
         </div>
         {{#unless isActiveRoute
                   regex="create"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
+            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea {{#if isActiveRoute
                                                                         regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
-                <a href="#" class="authorProfile col-xs-12" data-id="{{this.owner}}">
-                    {{getAuthorName this.owner}}
-                </a>
+                {{getAuthorName this.owner}}
             </div>
         {{/unless}}
         <div class="resultItemHeader align-middle resultItemHeaderRightArea btn-default btn-raised collapseButton">
