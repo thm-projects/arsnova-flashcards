@@ -31,9 +31,6 @@ Meteor.methods({
 				if (item.difficulty === undefined) {
 					item.difficulty = Number(0);
 				}
-				if (item.cardType === undefined) {
-					item.cardType = Number(0);
-				}
 				if (item.lecture === undefined) {
 					item.lecture = "";
 				}
@@ -44,7 +41,7 @@ Meteor.methods({
 					item.backgroundStyle = 0;
 				}
 				if (item.centerTextElement === undefined) {
-					if (item.cardType === 1) {
+					if (cardset.cardType === 1) {
 						item.centerTextElement = [true, true, false, false];
 					} else {
 						item.centerTextElement = [false, false, false, false];
@@ -59,7 +56,7 @@ Meteor.methods({
 			for (let i = 0; i < data.length; i++) {
 				let item = data[i];
 
-				let subject, front, back, hint, cardType, lecture;
+				let subject, front, back, hint, lecture;
 				try {
 					// If the string is UTF-8, this will work and not throw an error.
 					subject = decodeURIComponent(encodeURIComponent(item.subject));
@@ -73,7 +70,6 @@ Meteor.methods({
 					front = item.front;
 					back = item.back;
 					hint = item.hint;
-					cardType = item.cardType;
 					lecture = item.lecture;
 				}
 
@@ -90,7 +86,7 @@ Meteor.methods({
 					hint: hint,
 					cardset_id: cardset_id,
 					cardGroup: -1,
-					cardType: item.cardType,
+					cardType: cardset.cardType,
 					lecture: lecture,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
