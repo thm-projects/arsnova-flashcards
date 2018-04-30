@@ -41,10 +41,10 @@ $color_placeholder: $color_thm_orange;
 $size_footer_height: 40px;
 
 //info page
-$color_info_navigation_text: black;
+$color_info_navigation_text: $color_thm_gray;
 $color_info_navigation_text_active: white;
 $color_info_navigation_text_hover: white;
-$color_info_navigation_background: $color_wild_sand_approx;
+$color_info_navigation_background: LightGoldenRodYellow;
 $color_info_navigation_background_active: $color_thm_gray;
 $color_info_navigation_background_hover: $color_thm_gray;
 $color_home_button_icon: $color_thm_green;
@@ -72,8 +72,8 @@ $font_weight_infinite_scroll_text: bold;
 $color_item_background: $color_thm_gray;
 $color_item_icon: white;
 $color_item_author_text: black;
-$color_item_description_background: white;
-$color_item_description_text: black;
+$color_item_description_background: LightGoldenRodYellow;
+$color_item_description_text: $color_thm_gray;
 $color_item_text: white;
 $margin_bottom_item: 10px;
 
@@ -1006,8 +1006,9 @@ th {
 }
 
 .hintContent .close {
-  color: white;
+  color: $color_thm_orange;
   opacity: 1;
+  font-size: 30pt;
 }
 
 .hintContent .modal-header, .wordCloudDescription {
