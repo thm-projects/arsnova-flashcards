@@ -220,16 +220,18 @@
 
 <template name="cardsetInfoBoxContentTwo">
     {{#if this.moduleActive}}
-        {{#unless singleUniversity}}
+        {{#if isActiveRoute regex="course"}}
+            {{#unless singleUniversity}}
+                <tr>
+                    <td>{{_ "cardset.info.college"}}:</td>
+                    <td>{{this.college}}</td>
+                </tr>
+            {{/unless}}
             <tr>
-                <td>{{_ "cardset.info.college"}}:</td>
-                <td>{{this.college}}</td>
+                <td>{{_ "cardset.info.course"}}:</td>
+                <td>{{this.course}}</td>
             </tr>
-        {{/unless}}
-        <tr>
-            <td>{{_ "cardset.info.course"}}:</td>
-            <td>{{this.course}}</td>
-        </tr>
+        {{/if}}
         <tr>
             <td>{{_ "cardset.info.module"}}:</td>
             <td>
