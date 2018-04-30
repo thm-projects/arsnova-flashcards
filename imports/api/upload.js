@@ -28,9 +28,6 @@ Meteor.methods({
 				if (item.hint === undefined) {
 					item.hint = "";
 				}
-				if (item.difficulty === undefined) {
-					item.difficulty = Number(0);
-				}
 				if (item.lecture === undefined) {
 					item.lecture = "";
 				}
@@ -80,7 +77,7 @@ Meteor.methods({
 
 				Cards.insert({
 					subject: subject.trim(),
-					difficulty: item.difficulty,
+					difficulty: cardset.difficulty,
 					front: front,
 					back: back,
 					hint: hint,
@@ -100,7 +97,7 @@ Meteor.methods({
 				console.log(item[0]);
 				Cards.insert({
 					subject: TAPi18n.__('upload-card-title-placeholder'),
-					difficulty: 0,
+					difficulty: cardset.difficulty,
 					front: item[0],
 					back: item[1],
 					hint: "",
