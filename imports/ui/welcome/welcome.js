@@ -63,8 +63,8 @@ function createTagCloud() {
 			cloud.forEach(function (cloud) {
 				let name = cloud.name;
 
-				if (name.length > 30) {
-					name = name.substring(0, 30) + "…";
+				if (name.length > 20) {
+					name = name.substring(0, 20) + "…";
 				}
 				let quantitiy = cloud.quantity / biggestCardsetSize * 40;
 				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
@@ -78,15 +78,15 @@ function createTagCloud() {
 					list: list,
 					gridSize: gridSize,
 					weightFactor: weightFactor,
-					minSize: 14,
+					minSize: 12,
 					drawOutOfBound: false,
 					rotateRatio: 0,
 					fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-					color: "white",
+					color: "LightGoldenRodYellow",
 					hover: wordcloudHover,
 					click: wordcloudClick,
 					backgroundColor: 'rgba(255,255,255, 0)',
-					wait: 75
+					wait: 800
 				});
 		}
 	}
