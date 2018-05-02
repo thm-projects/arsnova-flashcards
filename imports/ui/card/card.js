@@ -1507,6 +1507,18 @@ Template.flashcards.helpers({
 			return gotDictionary(this.cardType);
 		}
 	},
+	getDictionarySearchText: function () {
+		let searchText;
+		if (Session.get('isQuestionSide')) {
+			searchText = this.front.trim();
+		} else {
+			searchText = this.back.trim();
+		}
+		let wordCount = searchText.split(/\s+/);
+		if (wordCount.length === 1) {
+			return "&query=" + searchText;
+		}
+	},
 	gotLecture: function () {
 		if (Session.get('shuffled')) {
 			return gotLecture(Session.get('cardType'));
