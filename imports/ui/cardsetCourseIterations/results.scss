@@ -7,17 +7,7 @@
   }
 }
 
-.resultItem .card {
-  background-color: $color_item_background !important;
-  color: $color_item_text !important;
-}
-
-.resultItem table {
-  background-color: $color_item_background !important;
-}
-
 .resultItemHeader {
-  color: $color_item_text;
   font-size: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -25,10 +15,6 @@
     padding-top: 15px;
     padding-bottom: 15px;
   }
-}
-
-.resultItemHeaderAuthor {
-  color: $color_item_author_text;
 }
 
 .resultItemHeaderRightArea {
@@ -43,16 +29,10 @@
     padding-left: calc(75% + 15px);
     padding-right: 15px;
   }
-  background-color: $color_item_background !important;
 }
 
 .resultItemHeaderLeftArea a {
-  color: $color_global_link !important;
   padding: 0;
-}
-
-.resultItemHeaderRightArea i {
-  color: $color_item_icon !important;
 }
 
 .resultTableContent {
@@ -64,35 +44,9 @@
   margin: 0;
 }
 
-.resultTableContent a {
-  color: $color_global_link !important;
-}
-
-.resultFree {
-  background-color: $color_free_btn;
-}
-
-.resultPro {
-  background-color: $color_thm_orange;
-}
-
-.resultEdu {
-  background-color: $color_edu_btn;
-}
-
-.resultPersonal {
-  background-color: $color_thm_red;
-}
-
 .resultDescription {
-  color: $color_item_description_text;
-  background-color: $color_item_description_background;
   margin: 15px 0 0;
   padding: 15px;
-}
-
-.resultDescription a {
-  color: $color_global_link !important;
 }
 
 .resultNavigationElement {
@@ -121,8 +75,6 @@
 }
 
 .resultsHeader {
-  background-color: $color_item_background !important;
-  color: $color_item_text !important;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 15px;
@@ -138,4 +90,8 @@
 
 .fa-trash {
   font-size: 19px;
+}
+
+.resultTableContent a {
+  text-decoration: underline !important;
 }

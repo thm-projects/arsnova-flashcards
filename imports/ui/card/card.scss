@@ -1,22 +1,3 @@
-.btn-white.active {
-  color: $black !important;
-  background-color: white !important;
-}
-
-.btn-orange {
-  color: $color_thm_orange !important;
-}
-
-.btn-orange.active {
-  color: $white !important;
-  background-color: $color_thm_orange !important;
-}
-
-#cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
-  color: white !important;
-  background-color: $color_button_difficulty2 !important;
-}
-
 .MathJax {
   font-size: 10px !important;
 }
@@ -39,7 +20,6 @@
 }
 
 .carousel-control {
-  color: $color_navigation_arrows !important;
   font-size: $font_size_navigation_arrows !important;
   opacity: 1;
   width: $padding_card_content_horizontal;
@@ -62,152 +42,19 @@
 }
 
 .box, .boxPreview, .box-static {
-  border: 1px solid $color_alto_approx;
+  border: 1px solid;
   margin: 0 auto;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
-  background-color: $white;
   //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow: 0 0 5px $black_20, inset 0 0 50px $black_10;
+  box-shadow: 0 0 5px gray, inset 0 0 50px gray;
 }
 
-.box-difficultyLined0 {
-  background: repeating-linear-gradient(
-                  to bottom,
-                  $color_background_difficulty0,
-                  $color_background_difficulty0 26px,
-                  $color_background_difficulty0_lines 26px,
-                  $color_background_difficulty0_lines 28px
-  );
-}
 
-.box-difficultyLinedNote0 {
-  background: repeating-linear-gradient(
-                  to bottom,
-                  $color_background_difficulty0_note,
-                  $color_background_difficulty0_note 26px,
-                  $color_background_difficulty0_lines_note 26px,
-                  $color_background_difficulty0_lines_note 28px
-  );
-}
-
-.box-difficultyBlan0 {
-  background-color: $color_background_difficulty0;
-}
-
-.box-difficultyBlankNote0 {
-  background-color: $color_background_difficulty0_note;
-}
-
-.box-difficulty-list0 {
-  background: $color_background_difficulty0;
-}
-
-.box-difficultyNote-list0 {
-  background: $color_background_difficulty0_note;
-}
-
-.box-difficulty-list0:hover {
-  background: darken($color_background_difficulty0_note, 15%);
-}
-
-.box-difficultyNote-list0:hover {
-  background: darken($color_background_difficulty0_note, 15%);
-}
-
-.box-difficultyLined1 {
-  background: repeating-linear-gradient(
-                  to bottom,
-                  $color_background_difficulty1,
-                  $color_background_difficulty1 26px,
-                  $color_background_difficulty1_lines 26px,
-                  $color_background_difficulty1_lines 28px
-  );
-}
-
-.box-difficultyBlank0 {
-  background-color: $color_background_difficulty0;
-}
-
-.box-difficultyBlank1 {
-  background-color: $color_background_difficulty1;
-}
-
-.box-difficulty-list1 {
-  background: $color_background_difficulty1_lines;
-}
-
-.box-difficulty-list1:hover {
-  background: darken($color_background_difficulty1_lines, 15%);
-}
-
-.box-difficultyLined2 {
-  background: repeating-linear-gradient(
-                  to bottom,
-                  $color_background_difficulty2,
-                  $color_background_difficulty2 26px,
-                  $color_background_difficulty2_lines 26px,
-                  $color_background_difficulty2_lines 28px
-  );
-}
-
-.box-difficultyBlank2 {
-  background-color: $color_background_difficulty2;
-}
-
-.box-difficulty-list2 {
-  background: $color_background_difficulty2_lines;
-}
-
-.box-difficulty-list2:hover {
-  background: darken($color_background_difficulty2_lines, 15%);
-}
-
-.box-difficultyLined3 {
-  background: repeating-linear-gradient(
-                  to bottom,
-                  $color_background_difficulty3,
-                  $color_background_difficulty3 26px,
-                  $color_background_difficulty3_lines 26px,
-                  $color_background_difficulty3_lines 28px
-  );
-}
-
-.box-difficultyBlank3 {
-  background: $color_background_difficulty3;
-}
-
-.box-difficulty-list3 {
-  background: $color_background_difficulty3_lines;
-}
-
-.box-difficulty-list3:hover {
-  background: darken($color_background_difficulty3_lines, 15%);
-}
-
-.box-difficultyBlank0-header, .box-difficultyLined0-header {
-  background: linear-gradient(to top, $color_background_difficulty0_lines 0px, $color_background_difficulty0_lines 4px, $color_background_difficulty0 5px, $color_background_difficulty0 100%);
-}
-
-.box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
-  background: linear-gradient(to top, $color_background_difficulty0_lines_note 0px, $color_background_difficulty0_lines_note 4px, $color_background_difficulty0_note 5px, $color_background_difficulty0_note 100%);
-}
-
-.box-difficultyBlank1-header, .box-difficultyLined1-header {
-  background: linear-gradient(to top, $color_background_difficulty1_lines 0px, $color_background_difficulty1_lines 4px, $color_background_difficulty1 5px, $color_background_difficulty1 100%);
-}
-
-.box-difficultyBlank2-header, .box-difficultyLined2-header {
-  background: linear-gradient(to top, $color_background_difficulty2_lines 0px, $color_background_difficulty2_lines 4px, $color_background_difficulty2 5px, $color_background_difficulty2 100%);
-}
-
-.box-difficultyBlank3-header, .box-difficultyLined3-header {
-  background: linear-gradient(to top, $color_background_difficulty3_lines 0px, $color_background_difficulty3_lines 4px, $color_background_difficulty3 5px, $color_background_difficulty3 100%);
-}
 
 @media(max-width: 767px) {
   #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
-    border: 2px solid $color_item_selection_border !important;
+    border: 2px solid !important;
   }
   #cardTypeGroup *:nth-child(even), #difficultyGroup *:nth-child(even), #learningGoalLevelGroup *:nth-child(even), .editorNavigation *:nth-child(even) {
     border-left: none !important;
@@ -216,20 +63,20 @@
     border-top: none !important;
   }
   #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
-    border-right: 2px solid $color_item_selection_border !important;
+    border-right: 2px solid !important;
   }
 
   #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
-    border-bottom: 2px solid $color_thm_red !important;
+    border-bottom: 2px solid !important;
   }
   #cardTypeGroup *:nth-child(3) {
-    border-right: 2px solid $color_thm_red !important;
+    border-right: 2px solid !important;
   }
 }
 
 @media(min-width: 768px) {
   #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
-    border-right: 2px solid $color_item_selection_border !important;
+    border-right: 2px solid !important;
   }
 
   #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .editorNavigation *:last-child {
@@ -237,7 +84,7 @@
   }
 
   #cardTypeGroup *:nth-child(3) {
-    border-right: 4px solid $color_thm_red !important;
+    border-right: 4px solid !important;
   }
 }
 
@@ -248,7 +95,6 @@
 }
 
 .clicktoflip {
-  color: $color_storm_dust_approx;
   font-style: italic;
 }
 
@@ -364,7 +210,6 @@ img.cardside {
     margin-bottom: 0;
     padding-bottom: 5px;
     font-size: $font_size_card_header_subject !important;
-    color: $color_card_header_subject !important;
     font-weight: $font_weight_card_header_subject !important;
   }
 }
@@ -382,10 +227,6 @@ img.cardside {
 
 #subjectEditor {
   height: 36px !important;
-}
-
-#subjectEditor:disabled {
-  background-color: $color_athens_gray_approx;
 }
 
 .subjectEditor {
@@ -413,10 +254,6 @@ img.cardside {
     height: 4px;
     border: 0;
   }
-}
-
-.lectureContent {
-  background-color: $background_lecture;
 }
 
 .cardContentDictionary {
@@ -449,10 +286,6 @@ img.cardside {
   }
 }
 
-.editorBackground, .md-editor > textarea {
-  background: #FFFFFF;
-}
-
 .actionButtons .btn:not(:first-of-type) {
   @media(min-width: 768px) {
     margin-left: 15px;
@@ -469,7 +302,6 @@ img.cardside {
   margin: 0;
   padding-top: 15px;
   padding-bottom: 5px;
-  color: white;
   font-weight: bold;
 }
 
@@ -480,7 +312,6 @@ img.cardside {
 }
 
 .clicktoflip {
-  color: $color_storm_dust_approx;
   position: absolute;
   right: 10px;
   top: 13px;
@@ -584,19 +415,16 @@ img.cardside {
   height: 45px;
   font-size: $font_size_card_header_first_row !important;
   font-weight: $font_weight_card_header_first_row !important;
-  color: $color_card_header_first_row !important;
 }
 
 .cardHeaderSecondRow {
   font-size: $font_size_card_header_second_row !important;
   font-weight: $font_weight_card_header_second_row !important;
-  color: $color_card_header_second_row !important;
 }
 
 .cardNumber {
   text-align: right;
   top: 5px;
-  color: $color_card_header_card_number !important;
   font-weight: $font_weight_card_header_number !important;
   @media(min-width: 768px) {
     top: 15px;
@@ -605,10 +433,6 @@ img.cardside {
 
 .fa-lock {
   width: 36px;
-}
-
-.cardHeaderLink {
-  color: $color_global_link !important;
 }
 
 .placeholder {
