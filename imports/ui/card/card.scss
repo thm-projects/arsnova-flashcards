@@ -147,6 +147,13 @@ img.cardside {
   top: top+1px;
 }
 
+#copyCard {
+  position: absolute;
+  float: left;
+  left: 11px;
+  top: 48px;
+}
+
 .endPresentation {
   position: absolute;
   float: right;
@@ -165,6 +172,13 @@ img.cardside {
 
 #turnCard {
   right: 102px;
+}
+
+.showLectureImage {
+  position: absolute;
+  top: 0;
+  left: 45px;
+  height: 67px;
 }
 
 .btn-editCardset {
@@ -387,13 +401,25 @@ img.cardside {
     top: 63px;
     right: 8px;
   }
-  .endPresentation {
+  .endPresentation, #copyCard {
     top: 35px;
     right: 43px;
   }
   #turnCard {
     top: 64px;
     right: 43px;
+  }
+
+  #copyCard {
+    float: right;
+    text-align: right;
+    right: 42px;
+  }
+
+  .showLectureImage {
+    top: 35px;
+    left: 0;
+    height: 48px;
   }
 }
 

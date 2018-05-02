@@ -325,6 +325,17 @@
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
                                      style="{{#if isHintPreview}}display: none{{/if}}{{#if
                                              isLecturePreview}}display: none{{/if}}">
+                                    {{#if canCopyCard this.cardset_id}}
+                                        {{#if isCardset}}
+                                            <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
+                                               data-toggle="modal"
+                                               data-target="#showCopyCardModal">
+                                                    <span class="glyphicon glyphicon-duplicate card-button"
+                                                          data-id="{{_id}}"
+                                                          data-type="cardNavigation"></span>
+                                            </a>
+                                        {{/if}}
+                                    {{/if}}
                                     <div class="leftHeader">
                                         {{#if isCardEditor this.cardset_id}}
                                             {{#if isCardset}}
@@ -360,10 +371,11 @@
                                             {{/if}}
                                             {{#if gotDictionary}}
                                                 <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-book card-button"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
+                                                    <img class="card-button showLectureImage"
+                                                         data-type="cardNavigation"
+                                                         data-toggle="collapse"
+                                                         data-target="#collapseLecture-{{_id}}"
+                                                         src="/img/beolingus.png">
                                                 </a>
                                             {{/if}}
                                         {{/unless}}
@@ -404,9 +416,11 @@
                                         {{/if}}
                                     </div>
                                     <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}">
-                                                <span class="fa fa-refresh card-button {{#unless isQuestionSide}}pressed{{/unless}}"></span>
+                                                <span class="fa fa-refresh card-button {{#unless
+                                                        isQuestionSide}}pressed{{/unless}}"></span>
                                     </span>
-                                    <span id="swapOrder" data-type="cardNavigation" title="{{_ "card.tooltip.lockSide"}}">
+                                    <span id="swapOrder" data-type="cardNavigation"
+                                          title="{{_ "card.tooltip.lockSide"}}">
                                                 <i class="fa fa-anchor card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
                                                    data-type="cardNavigation"></i>
@@ -414,7 +428,8 @@
                                     {{#if isPresentation}}
                                         <span class="glyphicon glyphicon-log-out card-button endPresentation"
                                               data-type="cardNavigation" data-toggle="modal"
-                                              data-target="#endPresentationModal" title="{{_ "card.tooltip.endPresentation"}}"></span>
+                                              data-target="#endPresentationModal"
+                                              title="{{_ "card.tooltip.endPresentation"}}"></span>
                                     {{/if}}
                                     <span id="toggleFullscreen"
                                           class="fullscreen"
@@ -424,19 +439,6 @@
                                                       data-type="cardNavigation"></span>
                                     </span>
                                     <br>
-                                    <div class="leftHeader2">
-                                        {{#if canCopyCard this.cardset_id}}
-                                            {{#if isCardset}}
-                                                <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
-                                                   data-toggle="modal"
-                                                   data-target="#showCopyCardModal">
-                                                    <span class="glyphicon glyphicon-duplicate card-button"
-                                                          data-id="{{_id}}"
-                                                          data-type="cardNavigation"></span>
-                                                </a>
-                                            {{/if}}
-                                        {{/if}}
-                                    </div>
                                     <h2>{{> cardSubject this}}</h2>
                                     <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
@@ -527,7 +529,8 @@
                                             {{/if}}
                                             {{#if gotDictionary}}
                                                 <iframe class="dictionaryFrame"
-                                                        src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}" frameborder="0"
+                                                        src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
+                                                        frameborder="0"
                                                         data-type="cardNavigation">
                                                 </iframe>
                                             {{/if}}
