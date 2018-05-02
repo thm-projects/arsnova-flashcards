@@ -560,6 +560,12 @@
     },
     "alert": {
       "addedToWorkload": "Zu deinem Lernpensum hinzugefügt"
+    },
+    "confirm-form-delete": {
+      "title": "Kartei löschen",
+      "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
+      "success": "Kartei wurde erfolgreich gelöscht",
+      "failure": "Kartei konnte nicht gelöscht werden"
     }
   },
   "cardmemo": {
@@ -1096,6 +1102,7 @@
       "removeFromWordcloud": "Entfernen",
       "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
       "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
+
     },
     "card": {
       "header": "Karte",

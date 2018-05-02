@@ -45,7 +45,7 @@
         {{#unless isActiveRoute
                   regex="create"}}
             <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                        regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
+                                                                                               regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}
@@ -66,19 +66,17 @@
                     </a>
                 {{/if}}
             {{/if}}
-            {{#if isActiveRoute regex="course"}}
+            {{#if isActiveRoute regex="create|course"}}
                 <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
                    title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
                    data-target="#underDevelopmentModal">
                     <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                 </a>
-                <a class="resultNavigationElement deleteCourseIteration" {{disableIfOffline}}
-                   title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                   data-target="#confirmDeleteModal"
-                   data-id="{{this._id}}">
-                    <i class="{{#if isActiveRoute
-                                    regex="course"}}fa fa-trash{{else}}glyphicon glyphicon-log-out{{/if}}"
-                       data-id="{{this._id}}"></i>
+                <a class="resultNavigationElement {{#if isActiveRoute
+                                                        regex="create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}} title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                        data-target="{{#if isActiveRoute regex="create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
+                        data-id="{{this._id}}">
+                    <i class="fa fa-trash" data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
             {{#if isActiveRoute regex="learn"}}
