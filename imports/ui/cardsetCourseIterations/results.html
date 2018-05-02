@@ -36,16 +36,14 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                    regex="learn"}}col-xs-8 col-sm-4{{else}}{{#if
-                isActiveRoute
-                regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+                                                                    regex="learn"}} col-xs-8 col-sm-4{{else}}col-xs-12{{/if}} {{#if isActiveRoute
+                                                                                                                                    regex="create"}}col-sm-9{{else}}col-sm-6{{/if}} collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
                   regex="create"}}
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                                               regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs col-sm-3 collapseButton {{getCardBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}

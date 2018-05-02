@@ -94,17 +94,15 @@
 </template>
 
 <template name="cardsetInfoBoxContentOne">
-    {{#unless isActiveRoute regex="create|course|pool|shuffle"}}
-        <tr class="{{#if isActiveRoute
-                         regex="learn"}}visible-xs{{/if}}">
-            <td>{{_ "cardset.info.author"}}:</td>
-            <td>
-                {{#each getAuthors}}
-                    {{getAuthorName this.owner}}
-                {{/each}}
-            </td>
-        </tr>
-    {{/unless}}
+    <tr class="{{#if isActiveRoute
+                     regex="pool|course|create|learn|shuffle"}}visible-xs{{/if}}">
+        <td>{{_ "cardset.info.author"}}:</td>
+        <td>
+            {{#each getAuthors}}
+                {{getAuthorName this.owner}}
+            {{/each}}
+        </td>
+    </tr>
     {{#if isActiveRoute regex="learn"}}
         <tr>
             <td>{{_ "set-list.learningMode"}}:</td>
