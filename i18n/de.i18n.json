@@ -636,7 +636,7 @@
     "sortMode1": "Alphanumerisch"
   },
   "filter-pool": {
-    "wordcloud": "Empfehlung",
+    "wordcloud": "Von der Redaktion empfohlen",
     "wordcloudTrue": "Mit Empfehlung",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle"
