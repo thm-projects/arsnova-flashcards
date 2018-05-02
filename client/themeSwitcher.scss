@@ -98,6 +98,7 @@ $themes: (
     $item_description_background: map-get($map, "item_description_background");
     $item_description_text: map-get($map, "item_description_text");
     $item_text: map-get($map, "item_text");
+    $item_content_link: map-get($map, "item_content_link");
     //difficulty colors
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
@@ -1072,7 +1073,7 @@ $themes: (
     }
 
     .resultTableContent a {
-      color: $hyperlink !important;
+      color: $item_content_link !important;
     }
 
     .resultFree {
