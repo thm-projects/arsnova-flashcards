@@ -271,11 +271,12 @@ img.cardside {
 }
 
 .cardContentDictionary {
-  padding: 0;
+  overflow-y: hidden;
 }
 
 .dictionaryFrame {
   width: 100%;
+  padding: 0;
 }
 
 .emptyCard {
