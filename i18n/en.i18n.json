@@ -649,6 +649,12 @@
     "sortMode0": "Random",
     "sortMode1": "Alphanumeric"
   },
+  "filter-pool": {
+    "wordcloud": "Word-Cloud",
+    "wordcloudTrue": "In Word-Cloud",
+    "wordcloudFalse": "Not in Word-Cloud",
+    "wordcloudEveryting": "All"
+  },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",
     "remainingCourses": "__current__ of __total__ Courses"
