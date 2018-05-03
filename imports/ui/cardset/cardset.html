@@ -229,43 +229,43 @@
                 <td>{{_ "cardset.info.course"}}:</td>
                 <td>{{this.course}}</td>
             </tr>
-        {{/if}}
-        <tr>
-            <td>{{_ "cardset.info.module"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+            <tr>
+                <td>{{_ "cardset.info.module"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.module}}
+                        </a>
+                    {{else}}
                         {{this.module}}
-                    </a>
-                {{else}}
-                    {{this.module}}
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.moduleShort"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{_ "cardset.info.moduleShort"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.moduleToken}}
+                        </a>
+                    {{else}}
                         {{this.moduleToken}}
-                    </a>
-                {{else}}
-                    {{this.moduleToken}}
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.moduleNum"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{_ "cardset.info.moduleNum"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.moduleNum}}
+                        </a>
+                    {{else}}
                         {{this.moduleNum}}
-                    </a>
-                {{else}}
-                    {{this.moduleNum}}
-                {{/if}}
-            </td>
-        </tr>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/if}}
     {{/if}}
     {{#unless isActiveRoute regex="create|learn|pool"}}
         <tr>
