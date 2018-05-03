@@ -1,10 +1,10 @@
 <template name="main">
     {{checkActiveRouteName}}
-    {{> connectionStatusModal}}
-    {{> underDevelopmentModal}}
     <div id="{{#if currentUser}}{{#if isInRole
                                       'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
          class="{{getTheme}}">
+        {{> connectionStatusModal}}
+        {{> underDevelopmentModal}}
         {{#unless fullscreenActive}}
             {{#if currentUser}}
                 {{#if isInRole 'firstLogin'}}
@@ -57,6 +57,20 @@
                                                     {{_ "navbar-collapse.pool"}}
                                                 </a>
                                             </li>
+                                            <li id="navbar-learn-decks"
+                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#thm-top-navigation">
+                                                <a href="{{pathFor route='learn'}}" id="learnsets">
+                                                    {{_ "navbar-collapse.learndecks"}}
+                                                </a>
+                                            </li>
+                                            <li id="navbar-own-decks"
+                                                class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#thm-top-navigation">
+                                                <a href="{{pathFor route='create'}}" id="cardsets">
+                                                    {{_ "navbar-collapse.carddecks"}}
+                                                </a>
+                                            </li>
                                             <li id="navbar-course-iterations"
                                                 class="{{#if isActivePath regex='^\\/course'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
@@ -64,41 +78,37 @@
                                                     {{_ "navbar-collapse.course"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-ownsets"
-                                                class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
-                                                data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='create'}}" id="cardsets">
-                                                    {{_ "navbar-collapse.carddecks"}}
-                                                </a>
-                                            </li>
-                                            <li id="navbar-ownsets"
-                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
-                                                data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                    {{_ "navbar-collapse.learndecks"}}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div id="searchDropdown"
-                                             class="navbar-form navbar-left input-append btn-group"
-                                             role="search">
-                                            <div class="searchItem col-xs-9">
-                                                <input id="input-search" class="form-control typeahead" name="search"
-                                                       type="text"
-                                                       autocomplete="off" spellcheck="off" data-source="search"
-                                                       data-template="search"
-                                                       placeholder="{{_ "navbar-collapse.search"}}">
-                                            </div>
-                                            {{#if searchActive}}
-                                                <div id="clearSearch" class="searchItem col-xs-3">
-                                                    <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                            <li id="searchDropdown"
+                                                 class="navbar-form navbar-left input-append btn-group"
+                                                 role="search">
+                                                <div class="searchItem col-xs-9">
+                                                    <input id="input-search" class="form-control typeahead" name="search"
+                                                           type="text"
+                                                           autocomplete="off" spellcheck="off" data-source="search"
+                                                           data-template="search"
+                                                           placeholder="{{_ "navbar-collapse.search"}}">
                                                 </div>
-                                            {{/if}}
-                                        </div>
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li>
+                                                {{#if searchActive}}
+                                                    <div id="clearSearch" class="searchItem col-xs-3">
+                                                        <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                                    </div>
+                                                {{/if}}
+                                            </li>
+                                            <li id="navbar-help"
+                                                class="{{#if isActiveRoute regex='help'}}active{{/if}}">
                                                 <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
                                             </li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {{#if isInRole 'admin, editor'}}
+                                                <li id="navbar-all-decks"
+                                                    class="{{#if isActiveRoute regex='alldecks'}}active{{/if}}"
+                                                    data-toggle="collapse" data-target="#thm-top-navigation">
+                                                    <a href="{{pathFor route='alldecks'}}" id="learnsets">
+                                                        {{_ "navbar-collapse.alldecks"}}
+                                                    </a>
+                                                </li>
+                                            {{/if}}
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-adminpanel">
                                                     <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
@@ -164,7 +174,7 @@
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li><a href="#" id="logout"><i
+                                            <li id="navbar-logout"><a href="#" id="logout"><i
                                                     class="glyphicon glyphicon-log-out"></i>
                                             </a></li>
                                         </ul>

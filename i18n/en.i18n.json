@@ -43,6 +43,7 @@
   "navbar-collapse": {
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
+    "alldecks": "All decks",
     "pool": "Topics",
     "course": "Courses",
     "myprofile": "My profile",
@@ -549,6 +550,12 @@
     },
     "alert": {
       "addedToWorkload": "Added to Workload"
+    },
+    "confirm-form-delete": {
+      "title": "Delete cardset",
+      "text": "Do you really want to delete this cardset? If you confirm the process, the learning statistics for this cardset and the corresponding cards will be deleted.",
+      "success": "Cardset was successfully deleted",
+      "failure": "Cardset could not be deleted"
     }
   },
   "cardmemo": {
@@ -642,6 +649,12 @@
     "sortText": "Sorting mode",
     "sortMode0": "Random",
     "sortMode1": "Alphanumeric"
+  },
+  "filter-pool": {
+    "wordcloud": "Word-Cloud",
+    "wordcloudTrue": "In Word-Cloud",
+    "wordcloudFalse": "Not in Word-Cloud",
+    "wordcloudEveryting": "All"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",

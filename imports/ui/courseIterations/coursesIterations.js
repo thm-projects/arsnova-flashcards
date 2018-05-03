@@ -91,7 +91,7 @@ Template.courseIterationDeleteForm.events({
 					console.error(error);
 				}
 			} else {
-				$('#confirmDeleteModal').modal('hide');
+				$('#confirmDeleteCourseIterationModal').modal('hide');
 			}
 		});
 	}

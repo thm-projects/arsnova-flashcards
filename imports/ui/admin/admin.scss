@@ -9,8 +9,6 @@ body {
   #wrapper {
     padding-top: 65px;
     #admin-sidebar-wrapper {
-      background: #9C132D;
-      color: white;
       float: left;
       width: 100%;
       .sidebar-nav {
@@ -26,11 +24,8 @@ body {
             text-decoration: none;
             padding-left: 15px;
             padding-right: 15px;
-            color: white;
             &:hover, &.active {
               text-decoration: none;
-              color: white;
-              background: #F5AA01;
             }
             i {
               display: inline;
@@ -59,23 +54,20 @@ body {
         h1 {
           font-size: 28px;
           margin: 0;
-          color: white;
         }
         small {
           font-size: 16px;
-          color: white;
         }
       }
       .content {
         min-height: 250px;
         .admin_table {
-          background-color: #f9f9f9;
           padding-top: 20px;
           border-radius: 3px;
-          border-top: 4px solid white;
-          border-bottom: 4px solid white;
+          border-top: 4px solid;
+          border-bottom: 4px solid;
           .clearfix {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid;
             .reactive-table-options {
               float: left !important;
               .reactive-table-filter {
@@ -85,7 +77,7 @@ body {
             }
           }
           table {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid;
             .getpointer {
               cursor: pointer;
             }
@@ -120,11 +112,10 @@ body {
           }
           .small-box {
             border-radius: 3px;
-            border: 1px solid #ddd;
+            border: 1px solid;
             position: relative;
             display: block;
             margin-bottom: 20px;
-            background-color: white;
             .inner {
               padding: 10px;
               h3 {
@@ -148,21 +139,19 @@ body {
               padding: 3px 0;
               display: block;
               z-index: 10px;
-              background-color: #f5f5f5;
               text-decoration: none;
             }
           }
         }
       }
       .content.box-admin {
-        border-top: 4px solid white;
+        border-top: 4px solid;
         border-radius: 3px;
-        border-bottom: 4px solid white;
-        background-color: #f9f9f9;
+        border-bottom: 4px solid;
         .box-body-admin {
           padding: 10px;
           .box-button-admin {
-            border-top: 1px solid #ddd;
+            border-top: 1px solid;
             padding-top: 20px;
           }
           .reactive-table-filter {
@@ -229,9 +218,6 @@ body {
             a {
               padding: 0;
               border-left: 3px solid transparent;
-              &:hover, &.active {
-                border-left-color: #3d9c19;
-              }
             }
           }
         }

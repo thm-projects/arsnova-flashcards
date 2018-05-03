@@ -9,10 +9,6 @@ export const Wozniak = new Mongo.Collection("wozniak");
 
 
 if (Meteor.isServer) {
-	let universityFilter = {$ne: null};
-	if (Meteor.settings.public.university.singleUniversity) {
-		universityFilter = Meteor.settings.public.university.default;
-	}
 	Meteor.publish("leitner", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
 			return Leitner.find({
@@ -22,7 +18,6 @@ if (Meteor.isServer) {
 						cardset_id: {
 							$in: Cardsets.find(
 								{
-									college: universityFilter,
 									$or: [
 										{owner: this.userId},
 										{editors: {$in: [this.userId]}}
@@ -39,7 +34,7 @@ if (Meteor.isServer) {
 			return Leitner.find({
 				user_id: this.userId,
 				cardset_id: {
-					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+					$in: Cardsets.find({}).map(function (cardset) {
 						return cardset._id;
 					})
 				}
@@ -55,7 +50,6 @@ if (Meteor.isServer) {
 						cardset_id: {
 							$in: Cardsets.find(
 								{
-									college: universityFilter,
 									$or: [
 										{owner: this.userId}
 									]
@@ -70,7 +64,7 @@ if (Meteor.isServer) {
 			return Wozniak.find({
 				user_id: this.userId,
 				cardset_id: {
-					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+					$in: Cardsets.find({}).map(function (cardset) {
 						return cardset._id;
 					})
 				}
@@ -81,7 +75,7 @@ if (Meteor.isServer) {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			return Leitner.find({
 				cardset_id: {
-					$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+					$in: Cardsets.find({}).map(function (cardset) {
 						return cardset._id;
 					})
 				}

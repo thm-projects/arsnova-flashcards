@@ -33,7 +33,6 @@ Template.create.helpers({
 
 Template.create.onCreated(function () {
 	resetFilters();
-	Session.set('moduleActive', true);
 });
 
 Template.create.onRendered(function () {
@@ -213,5 +212,24 @@ Template.selectModeForm.events({
 				_id: Session.get("activeCardset")
 			});
 		}).modal('hide');
+	}
+});
+
+/*
+ * ############################################################################
+ * cardsetDeleteForm
+ * ############################################################################
+ */
+
+Template.cardsetDeleteForm.events({
+	'click #deleteCardset': function () {
+		Meteor.call("deleteCardset", Session.get('cardsetId'), (error) => {
+			if (error) {
+				Bert.alert(TAPi18n.__('cardset.confirm-form-delete.failure'), "danger", 'growl-top-left');
+			} else {
+				Bert.alert(TAPi18n.__('cardset.confirm-form-delete.success'), "success", 'growl-top-left');
+			}
+			$('#confirmDeleteCardsetModal').modal('hide');
+		});
 	}
 });

@@ -43,12 +43,6 @@ var initTestNotificationsCardset = function () {
 				"nd"
 			],
 			"userDeleted": false,
-			"moduleActive": true,
-			"module": "Notifications Test",
-			"moduleToken": "NT",
-			"moduleNum": "CS1024",
-			"college": "THM",
-			"course": "BA-Informatik",
 			"learningActive": false,
 			"maxCards": 0,
 			"daysBeforeReset": 0,
@@ -397,20 +391,7 @@ Meteor.startup(function () {
 		);
 	}
 
-	let cardsets = Cardsets.find({moduleLink: {$exists: false}}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Cardsets.update({
-				_id: cardsets[i]._id
-			},
-			{
-				$set: {
-					moduleLink: ""
-				}
-			}
-		);
-	}
-
-	cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
+	let cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
 				_id: cardsets[i]._id
@@ -418,19 +399,6 @@ Meteor.startup(function () {
 			{
 				$set: {
 					wordcloud: false
-				}
-			}
-		);
-	}
-
-	cardsets = Cardsets.find({moduleActive: {$exists: false}}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Cardsets.update({
-				_id: cardsets[i]._id
-			},
-			{
-				$set: {
-					moduleActive: true
 				}
 			}
 		);
@@ -462,19 +430,6 @@ Meteor.startup(function () {
 			{
 				$set: {
 					editors: []
-				}
-			}
-		);
-	}
-
-	cardsets = Cardsets.find({college: {$exists: false}}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Cardsets.update({
-				_id: cardsets[i]._id
-			},
-			{
-				$set: {
-					college: Meteor.settings.public.university.default
 				}
 			}
 		);

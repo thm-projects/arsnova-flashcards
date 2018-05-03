@@ -75,14 +75,16 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" class="filterNoCourseIteration active" data-id="">{{_ "set-list.everyone"}}</a>
-                                        <a href="#" class="filterCourseIteration active" data-id="0">{{_ "set-list.none"}}</a>
+                                        <a href="#" class="filterNoCourseIteration active" data-id="">{{_
+                                                "set-list.everyone"}}</a>
+                                        <a href="#" class="filterCourseIteration active" data-id="0">{{_
+                                                "set-list.none"}}</a>
                                     </li>
                                 </ul>
                             </li>
                         {{/if}}
                         {{#if isActiveRoute
-                              regex='pool|course'}}
+                              regex='pool|course|alldecks'}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
@@ -178,7 +180,7 @@
                             </li>
                         {{/if}}
                         {{#unless isActiveRoute
-                                  regex='pool|create|learn|shuffle'}}
+                                  regex='pool|create|learn|alldecks|shuffle'}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle courseBtn" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="collegeBtn">
@@ -234,7 +236,7 @@
                             </li>
                         {{/unless}}
                         {{#if isActiveRoute
-                              regex='pool|learn'}}
+                              regex='pool|learn|alldecks'}}
                             <li class="dropdown">
                                 <a href="#" id="learnphaseFilter" class="dropdown-toggle" data-toggle="dropdown"
                                    role="button"
@@ -293,12 +295,47 @@
                                 </ul>
                             </li>
                         {{/unless}}
+                        {{#if isActiveRoute regex='pool|alldecks'}}
+                            <li class="dropdown">
+                                <a href="#" id="wordcloudFilter" class="dropdown-toggle wordcloudBtn"
+                                   data-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{_ "filter-pool.wordcloud"}}
+                                    {{#if hasWordcloudFilter}}
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                                    {{/if}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="filterNoWordcloud">{{_
+                                                "filter-pool.wordcloudEveryting"}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="filterWordcloud"
+                                           data-id="true">{{_ "filter-pool.wordcloudTrue"}}
+                                            {{#if poolFilterWordcloud "true"}}
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                            {{/if}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="filterWordcloud"
+                                           data-id="false">{{_ "filter-pool.wordcloudFalse"}}
+                                            {{#if poolFilterWordcloud "false"}}
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                            {{/if}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {{/if}}
                         {{#if isActiveRoute
-                              regex='pool|course|create'}}
+                              regex='alldecks|pool|course|create'}}
                             <ul class="nav navbar-nav navbar-right">
                                 <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
                                      aria-label="License group" style="padding-top: 20px;">
-                                    {{#if isActiveRoute regex='create|course'}}
+                                    {{#if isActiveRoute regex='alldecks|create|course'}}
                                         <label class="btn btn-warning btn-sm active">
                                             <input type="checkbox" autocomplete="off" value="personal" checked="">
                                             Private

@@ -60,6 +60,9 @@ Template.cardsetCourseIterationResultRow.events({
 	'click .deleteCourseIteration': function (event) {
 		Session.set('courseIterationId', $(event.target).data('id'));
 	},
+	'click .deleteCardset': function (event) {
+		Session.set('cardsetId', $(event.target).data('id'));
+	},
 	"click .removeShuffleCardset": function (event) {
 		let array = Session.get("ShuffledCardsets");
 		let arrayExclude = Session.get("ShuffledCardsetsExclude");

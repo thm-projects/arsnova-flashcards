@@ -36,16 +36,14 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                    regex="learn"}}col-xs-8 col-sm-4{{else}}{{#if
-                isActiveRoute
-                regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+                                                                    regex="learn"}} col-xs-8 col-sm-4{{else}}col-xs-12{{/if}} {{#if isActiveRoute
+                                                                                                                                    regex="create"}}col-sm-9{{else}}col-sm-6{{/if}} collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
                   regex="create"}}
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea {{#if isActiveRoute
-                                                                        regex="learn"}}hidden-xs{{else}}col-xs-5{{/if}} col-sm-3 collapseButton {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs col-sm-3 collapseButton {{getCardBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}
@@ -66,19 +64,17 @@
                     </a>
                 {{/if}}
             {{/if}}
-            {{#if isActiveRoute regex="course"}}
+            {{#if isActiveRoute regex="alldecks|create|course"}}
                 <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
                    title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
                    data-target="#underDevelopmentModal">
                     <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                 </a>
-                <a class="resultNavigationElement deleteCourseIteration" {{disableIfOffline}}
-                   title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                   data-target="#confirmDeleteModal"
-                   data-id="{{this._id}}">
-                    <i class="{{#if isActiveRoute
-                                    regex="course"}}fa fa-trash{{else}}glyphicon glyphicon-log-out{{/if}}"
-                       data-id="{{this._id}}"></i>
+                <a class="resultNavigationElement {{#if isActiveRoute
+                                                        regex="alldecks|create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}} title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                        data-target="{{#if isActiveRoute regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
+                        data-id="{{this._id}}">
+                    <i class="fa fa-trash" data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
             {{#if isActiveRoute regex="learn"}}

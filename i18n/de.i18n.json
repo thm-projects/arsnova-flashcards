@@ -35,6 +35,7 @@
   "navbar-collapse": {
     "carddecks": "Meine Karteien",
     "learndecks": "Lernpensum",
+    "alldecks": "Alle Karteien",
     "pool": "Themen-Pool",
     "course": "Kurse",
     "myprofile": "Konto",
@@ -560,6 +561,12 @@
     },
     "alert": {
       "addedToWorkload": "Zu deinem Lernpensum hinzugefügt"
+    },
+    "confirm-form-delete": {
+      "title": "Kartei löschen",
+      "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
+      "success": "Kartei wurde erfolgreich gelöscht",
+      "failure": "Kartei konnte nicht gelöscht werden"
     }
   },
   "cardmemo": {
@@ -628,6 +635,12 @@
     "sortText": "Sortiermodus",
     "sortMode0": "Zufällig",
     "sortMode1": "Alphanumerisch"
+  },
+  "filter-pool": {
+    "wordcloud": "Von der .cards-Redaktion empfohlen",
+    "wordcloudTrue": "Mit Empfehlung",
+    "wordcloudFalse": "Ohne Empfehlung",
+    "wordcloudEveryting": "Alle"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
@@ -1096,6 +1109,7 @@
       "removeFromWordcloud": "Entfernen",
       "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
       "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
+
     },
     "card": {
       "header": "Karte",

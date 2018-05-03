@@ -82,6 +82,9 @@ export function prepareQuery() {
 	if (Session.get('poolFilterDifficulty') !== undefined) {
 		query.difficulty = Number(Session.get('poolFilterDifficulty'));
 	}
+	if (Session.get('poolFilterWordcloud') !== undefined) {
+		query.wordcloud = Session.get('poolFilterWordcloud');
+	}
 	if (Session.get('poolFilterLearnphase') !== undefined) {
 		query.learningActive = Session.get('poolFilterLearnphase');
 	}
@@ -171,6 +174,7 @@ export function resetFilters() {
 	Session.set('poolFilterModule');
 	Session.set('poolFilterSemester');
 	Session.set('poolFilterDifficulty', undefined);
+	Session.set('poolFilterWordcloud', undefined);
 	if (isPoolRoute()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 	} else {
@@ -282,9 +286,17 @@ Template.filterNavigation.events({
 		resetInfiniteBar();
 		Session.set('poolFilterDifficulty', undefined);
 	},
+	'click .filterNoWordcloud': function () {
+		resetInfiniteBar();
+		Session.set('poolFilterWordcloud', undefined);
+	},
 	'click .filterDifficulty': function (event) {
 		resetInfiniteBar();
 		Session.set('poolFilterDifficulty', $(event.target).data('id'));
+	},
+	'click .filterWordcloud': function (event) {
+		resetInfiniteBar();
+		Session.set('poolFilterWordcloud', $(event.target).data('id'));
 	},
 	'click .filterLearnphase': function () {
 		resetInfiniteBar();
@@ -407,6 +419,12 @@ Template.filterNavigation.helpers({
 	},
 	poolFilterDifficulty: function () {
 		return Session.get('poolFilterDifficulty') === this.difficulty;
+	},
+	hasWordcloudFilter: function () {
+		return Session.get('poolFilterWordcloud') !== undefined;
+	},
+	poolFilterWordcloud: function (inWordcloud) {
+		return Session.get('poolFilterWordcloud').toString() === inWordcloud;
 	},
 	hasLearnphaseFilter: function () {
 		return Session.get('poolFilterLearnphase') === true || Session.get('poolFilterLearnphase') === false;

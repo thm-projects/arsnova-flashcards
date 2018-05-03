@@ -94,17 +94,15 @@
 </template>
 
 <template name="cardsetInfoBoxContentOne">
-    {{#unless isActiveRoute regex="create|course|pool|shuffle"}}
-        <tr class="{{#if isActiveRoute
-                         regex="learn"}}visible-xs{{/if}}">
-            <td>{{_ "cardset.info.author"}}:</td>
-            <td>
-                {{#each getAuthors}}
-                    {{getAuthorName this.owner}}
-                {{/each}}
-            </td>
-        </tr>
-    {{/unless}}
+    <tr class="{{#if isActiveRoute
+                     regex="pool|course|create|learn|shuffle"}}visible-xs{{/if}}">
+        <td>{{_ "cardset.info.author"}}:</td>
+        <td>
+            {{#each getAuthors}}
+                {{getAuthorName this.owner}}
+            {{/each}}
+        </td>
+    </tr>
     {{#if isActiveRoute regex="learn"}}
         <tr>
             <td>{{_ "set-list.learningMode"}}:</td>
@@ -231,43 +229,43 @@
                 <td>{{_ "cardset.info.course"}}:</td>
                 <td>{{this.course}}</td>
             </tr>
-        {{/if}}
-        <tr>
-            <td>{{_ "cardset.info.module"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+            <tr>
+                <td>{{_ "cardset.info.module"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.module}}
+                        </a>
+                    {{else}}
                         {{this.module}}
-                    </a>
-                {{else}}
-                    {{this.module}}
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.moduleShort"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{_ "cardset.info.moduleShort"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.moduleToken}}
+                        </a>
+                    {{else}}
                         {{this.moduleToken}}
-                    </a>
-                {{else}}
-                    {{this.moduleToken}}
-                {{/if}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.moduleNum"}}:</td>
-            <td>
-                {{#if gotModuleLink}}
-                    <a href="{{this.moduleLink}}" target="_blank">
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{_ "cardset.info.moduleNum"}}:</td>
+                <td>
+                    {{#if gotModuleLink}}
+                        <a href="{{this.moduleLink}}" target="_blank">
+                            {{this.moduleNum}}
+                        </a>
+                    {{else}}
                         {{this.moduleNum}}
-                    </a>
-                {{else}}
-                    {{this.moduleNum}}
-                {{/if}}
-            </td>
-        </tr>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/if}}
     {{/if}}
     {{#unless isActiveRoute regex="create|learn|pool"}}
         <tr>
@@ -714,7 +712,7 @@
                         </span>
                     </div>
                     <br>
-                    <span class="col-xs-12 poolHeaderBottom">
+                    <span class="col-xs-12 listHeader">
                         {{_ "filter-cards.settings"}}
                     </span>
                     <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
@@ -727,7 +725,7 @@
                         </span>
                     </div>
                     {{#if gotLearningGoal}}
-                        <span class="col-xs-12 poolHeaderBottom">
+                        <span class="col-xs-12 listHeader">
                             {{_ "learning-goal.name"}}
                         </span>
                         {{#if getCardCount 1 0}}
@@ -1546,24 +1544,14 @@
                                     </a>
                                 </th>
                                 <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]
-                                    <div class="tip-content"><p>{{_ "subjectInfo" box=1
-                                                                    count=this.learningInterval.[0]}}</p></div>
                                 </th>
                                 <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]
-                                    <div class="tip-content"><p>{{_ "subjectInfo" box=2
-                                                                    count=this.learningInterval.[1]}}</p></div>
                                 </th>
                                 <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]
-                                    <div class="tip-content"><p>{{_ "subjectInfo" box=3
-                                                                    count=this.learningInterval.[2]}}</p></div>
                                 </th>
                                 <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]
-                                    <div class="tip-content"><p>{{_ "subjectInfo" box=4
-                                                                    count=this.learningInterval.[3]}}</p></div>
                                 </th>
                                 <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]
-                                    <div class="tip-content"><p>{{_ "subjectInfo" box=5
-                                                                    count=this.learningInterval.[4]}}</p></div>
                                 </th>
                                 <th>{{_ "subject6"}}</th>
                                 <th>{{_ "details"}}</th>
