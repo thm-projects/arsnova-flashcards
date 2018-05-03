@@ -12,21 +12,16 @@ export const Cardsets = new Mongo.Collection("cardsets");
 
 
 if (Meteor.isServer) {
-	let universityFilter = {$ne: null};
-	if (Meteor.settings.public.university.singleUniversity) {
-		universityFilter = Meteor.settings.public.university.default;
-	}
 	Meteor.publish("cardsets", function () {
 		if (this.userId) {
 			if (Roles.userIsInRole(this.userId, [
 					'admin',
 					'editor'
 				])) {
-				return Cardsets.find({college: universityFilter});
+				return Cardsets.find({});
 			} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
 				return Cardsets.find(
 					{
-						college: universityFilter,
 						$or: [
 							{visible: true},
 							{request: true},
@@ -36,7 +31,6 @@ if (Meteor.isServer) {
 			} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				return Cardsets.find(
 					{
-						college: universityFilter,
 						$or: [
 							{visible: true},
 							{owner: this.userId}
@@ -44,7 +38,7 @@ if (Meteor.isServer) {
 					});
 			}
 		} else {
-			return Cardsets.find({wordcloud: true, college: universityFilter},
+			return Cardsets.find({wordcloud: true},
 				{
 					fields:
 						{
@@ -56,12 +50,6 @@ if (Meteor.isServer) {
 							description: 1,
 							cardType: 1,
 							difficulty: 1,
-							college: 1,
-							course: 1,
-							moduleActive: 1,
-							module: 1,
-							moduleToken: 1,
-							moduleNum: 1,
 							date: 1,
 							dateUpdated: 1,
 							wordcloud: 1,
@@ -147,33 +135,6 @@ const CardsetsSchema = new SimpleSchema({
 	userDeleted: {
 		type: Boolean
 	},
-	moduleActive: {
-		type: Boolean
-	},
-	module: {
-		type: String,
-		optional: true
-	},
-	moduleToken: {
-		type: String,
-		optional: true
-	},
-	moduleNum: {
-		type: String,
-		optional: true
-	},
-	moduleLink: {
-		type: String,
-		optional: true
-	},
-	college: {
-		type: String,
-		optional: true
-	},
-	course: {
-		type: String,
-		optional: true
-	},
 	learningActive: {
 		type: Boolean
 	},
@@ -254,34 +215,17 @@ Meteor.methods({
 	 * @param {Boolean} visible - Visibility of the cardset
 	 * @param {Boolean} ratings - Rating of the cardset
 	 * @param {String} kind - Type of cards
-	 * @param {Boolean} moduleActive - Does the cardset use a module
-	 * @param {String} module - Modulename
-	 * @param {String} moduleShort - Abbreviation for the module
-	 * @param {String} moduleNum - Number of the module
-	 * @param {String} moduleLink - Link to the module description
-	 * @param {String} college - Assigned university
-	 * @param {String} course - Assigned university course
 	 * @param {Boolean} shuffled - Is the cardset made out of shuffled cards
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
 	 */
-	addCardset: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, shuffled, cardGroups, cardType, difficulty) {
-		if (Meteor.settings.public.university.singleUniversity || college === "") {
-			college = Meteor.settings.public.university.default;
-		}
+	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty) {
 		check(name, String);
 		check(description, String);
 		check(visible, Boolean);
 		check(ratings, Boolean);
 		check(kind, String);
-		check(moduleActive, Boolean);
-		check(module, String);
-		check(moduleShort, String);
-		check(moduleNum, String);
-		check(moduleLink, String);
-		check(college, String);
-		check(course, String);
 		check(shuffled, Boolean);
 		check(cardType, Number);
 		check(difficulty, Number);
@@ -319,13 +263,6 @@ Meteor.methods({
 			quantity: quantity,
 			license: [],
 			userDeleted: false,
-			moduleActive: moduleActive,
-			module: module.trim(),
-			moduleToken: moduleShort.trim(),
-			moduleNum: moduleNum.trim(),
-			moduleLink: moduleLink.trim(),
-			college: college.trim(),
-			course: course.trim(),
 			learningActive: false,
 			maxCards: 0,
 			daysBeforeReset: 0,
@@ -529,30 +466,13 @@ Meteor.methods({
 	 * @param {String} id - ID of the cardset to be updated
 	 * @param {String} name - Title of the cardset
 	 * @param {String} description - Description for the content of the cardset
-	 * @param {Boolean} moduleActive - Does the cardset use a module
-	 * @param {String} module - Module name
-	 * @param {String} moduleShort - Abbreviation for the module
-	 * @param {String} moduleNum - Number of the module
-	 * @param {String} moduleLink - Link to the module description
-	 * @param {String} college - Assigned university
-	 * @param {String} course - Assigned university course
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
 	 */
-	updateCardset: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, cardType, difficulty) {
-		if (Meteor.settings.public.university.singleUniversity) {
-			college = Meteor.settings.public.university.default;
-		}
+	updateCardset: function (id, name, description, cardType, difficulty) {
 		check(id, String);
 		check(name, String);
 		check(description, String);
-		check(moduleActive, Boolean);
-		check(module, String);
-		check(moduleShort, String);
-		check(moduleNum, String);
-		check(moduleLink, String);
-		check(college, String);
-		check(course, String);
 		check(cardType, Number);
 		check(difficulty, Number);
 
@@ -577,13 +497,6 @@ Meteor.methods({
 				name: name.trim(),
 				description: description,
 				dateUpdated: new Date(),
-				moduleActive: moduleActive,
-				module: module.trim(),
-				moduleToken: moduleShort.trim(),
-				moduleNum: moduleNum.trim(),
-				moduleLink: moduleLink.trim(),
-				college: college.trim(),
-				course: course.trim(),
 				cardType: cardType,
 				difficulty: difficulty
 			}

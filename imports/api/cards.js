@@ -14,10 +14,6 @@ export const lectureMaxLength = 300000;
 export const subjectMaxLength = 255;
 
 if (Meteor.isServer) {
-	let universityFilter = {$ne: null};
-	if (Meteor.settings.public.university.singleUniversity) {
-		universityFilter = Meteor.settings.public.university.default;
-	}
 	Meteor.publish("cards", function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			let paidCardsets = Paid.find({user_id: this.userId}).map(function (paid) {
@@ -30,7 +26,7 @@ if (Meteor.isServer) {
 			])) {
 				return Cards.find({
 					cardset_id: {
-						$in: Cardsets.find({college: universityFilter}).map(function (cardset) {
+						$in: Cardsets.find({}).map(function (cardset) {
 							return cardset._id;
 						})
 					}
@@ -40,7 +36,6 @@ if (Meteor.isServer) {
 					cardset_id: {
 						$in: Cardsets.find(
 							{
-								college: universityFilter,
 								$or: [
 									{owner: this.userId},
 									{visible: true},
@@ -56,7 +51,6 @@ if (Meteor.isServer) {
 					cardset_id: {
 						$in: Cardsets.find(
 							{
-								college: universityFilter,
 								$or: [
 									{owner: this.userId},
 									{
@@ -75,7 +69,6 @@ if (Meteor.isServer) {
 					cardset_id: {
 						$in: Cardsets.find(
 							{
-								college: universityFilter,
 								$or: [
 									{owner: this.userId},
 									{

@@ -100,7 +100,6 @@ Template.cardset.onCreated(function () {
 		Session.set('activeCardsetID', Router.current().params._id);
 		Session.set('modifiedCard', undefined);
 	}
-	Session.set('moduleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
@@ -138,13 +137,6 @@ Template.cardset.helpers({
 	'onEditmodalClose': function () {
 		Session.set('previousName', Cardsets.findOne(Router.current().params._id).name);
 		Session.set('previousDescription', Cardsets.findOne(Router.current().params._id).description);
-		Session.set('previousModuleActive', Cardsets.findOne(Router.current().params._id).moduleActive);
-		Session.set('previousModule', Cardsets.findOne(Router.current().params._id).module);
-		Session.set('previousModuleShort', Cardsets.findOne(Router.current().params._id).moduleToken);
-		Session.set('previousModuleNum', Cardsets.findOne(Router.current().params._id).moduleNum);
-		Session.set('previousModuleLink', Cardsets.findOne(Router.current().params._id).moduleLink);
-		Session.set('previousCollegeName', Cardsets.findOne(Router.current().params._id).college);
-		Session.set('previousCourseName', Cardsets.findOne(Router.current().params._id).course);
 		Session.set('previousCardType', Cardsets.findOne(Router.current().params._id).cardType);
 	},
 	'selectedForLearning': function () {
