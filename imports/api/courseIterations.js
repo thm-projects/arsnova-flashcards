@@ -66,9 +66,6 @@ const CourseIterationsSchema = new SimpleSchema({
 	userDeleted: {
 		type: Boolean
 	},
-	moduleActive: {
-		type: Boolean
-	},
 	module: {
 		type: String,
 		optional: true
@@ -120,7 +117,6 @@ Meteor.methods({
 	 * @param {Boolean} visible - Visibility of the course
 	 * @param {Boolean} ratings - Rating of the course
 	 * @param {String} kind - Type of cards
-	 * @param {Boolean} moduleActive - Does the course use a module
 	 * @param {String} module - Modulename
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
@@ -131,7 +127,7 @@ Meteor.methods({
 	 * @param {String} price - Price for the course iteration
 	 * @param {String} targetAudience - The target audience that this course iteration is for
 	 */
-	addCourseIteration: function (name, description, visible, ratings, kind, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course, semester, price, targetAudience) {
+	addCourseIteration: function (name, description, visible, ratings, kind, module, moduleShort, moduleNum, moduleLink, college, course, semester, price, targetAudience) {
 		if (Meteor.settings.public.university.singleUniversity || college === "") {
 			college = Meteor.settings.public.university.default;
 		}
@@ -140,7 +136,6 @@ Meteor.methods({
 		check(visible, Boolean);
 		check(ratings, Boolean);
 		check(kind, String);
-		check(moduleActive, Boolean);
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
@@ -175,7 +170,6 @@ Meteor.methods({
 			raterCount: 0,
 			quantity: 0,
 			userDeleted: false,
-			moduleActive: moduleActive,
 			module: module.trim(),
 			moduleToken: moduleShort.trim(),
 			moduleNum: moduleNum.trim(),
@@ -192,7 +186,6 @@ Meteor.methods({
 	 * @param {String} id - ID of the cardset to be updated
 	 * @param {String} name - Title of the cardset
 	 * @param {String} description - Description for the content of the cardset
-	 * @param {Boolean} moduleActive - Does the cardset use a module
 	 * @param {String} module - Module name
 	 * @param {String} moduleShort - Abbreviation for the module
 	 * @param {String} moduleNum - Number of the module
@@ -200,14 +193,13 @@ Meteor.methods({
 	 * @param {String} college - Assigned university
 	 * @param {String} course - Assigned university course
 	 */
-	updateCourseIteration: function (id, name, description, moduleActive, module, moduleShort, moduleNum, moduleLink, college, course) {
+	updateCourseIteration: function (id, name, description, module, moduleShort, moduleNum, moduleLink, college, course) {
 		if (Meteor.settings.public.university.singleUniversity) {
 			college = Meteor.settings.public.university.default;
 		}
 		check(id, String);
 		check(name, String);
 		check(description, String);
-		check(moduleActive, Boolean);
 		check(module, String);
 		check(moduleShort, String);
 		check(moduleNum, String);
@@ -232,7 +224,6 @@ Meteor.methods({
 				name: name.trim(),
 				description: description,
 				dateUpdated: new Date(),
-				moduleActive: moduleActive,
 				module: module.trim(),
 				moduleToken: moduleShort.trim(),
 				moduleNum: moduleNum.trim(),
