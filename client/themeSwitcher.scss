@@ -313,6 +313,10 @@ $themes: (
       label {
         color: $form_group_label !important;
       }
+      .import-type.active {
+        color: white !important;
+        background-color: $primary !important;
+      }
     }
 
     .label-info {
@@ -693,11 +697,6 @@ $themes: (
 
     #showPreviewHelp {
       color: $primary !important;
-    }
-
-    .import-type.active {
-      color: white !important;
-      background-color: $primary !important;
     }
 
     .cardset-list-badge {
