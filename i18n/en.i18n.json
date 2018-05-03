@@ -43,6 +43,7 @@
   "navbar-collapse": {
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
+    "alldecks": "All decks",
     "pool": "Topics",
     "course": "Courses",
     "myprofile": "My profile",

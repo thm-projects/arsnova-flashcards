@@ -8,7 +8,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		check(importType, Number);
 		var cardset = Cardsets.findOne(cardset_id);
-		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (cardset.owner !== Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 

@@ -64,15 +64,15 @@
                     </a>
                 {{/if}}
             {{/if}}
-            {{#if isActiveRoute regex="create|course"}}
+            {{#if isActiveRoute regex="alldecks|create|course"}}
                 <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
                    title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
                    data-target="#underDevelopmentModal">
                     <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                 </a>
                 <a class="resultNavigationElement {{#if isActiveRoute
-                                                        regex="create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}} title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                        data-target="{{#if isActiveRoute regex="create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
+                                                        regex="alldecks|create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}} title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                        data-target="{{#if isActiveRoute regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
                         data-id="{{this._id}}">
                     <i class="fa fa-trash" data-id="{{this._id}}"></i>
                 </a>

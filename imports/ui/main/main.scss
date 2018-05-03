@@ -1,6 +1,9 @@
 //global
 $default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
+//navbar
+$size_navbar_alldecks_border: 3px;
+
 //welcome page
 $size_footer_height: 40px;
 
@@ -92,7 +95,9 @@ body {
 }
 
 #input-search {
+  width: 180px;
   line-height: 30pt !important;
+  padding-right: 30px !important;
 }
 
 .navbar-default {
@@ -136,6 +141,11 @@ body {
     }
     .glyphicon {
       margin-right: 5px;
+    }
+  }
+  @media(min-width: 768px) {
+    #navbar-all-decks {
+      border-left: $size_navbar_alldecks_border solid !important;
     }
   }
 }
@@ -346,12 +356,6 @@ button {
   #input-search {
     margin: 0;
     border: none;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  #input-search {
-    width: 80px;
   }
 }
 
@@ -750,8 +754,9 @@ th {
 #clearSearch {
   font-size: 22px;
   cursor: pointer;
+  z-index: 1000 !important;
   .glyphicon-remove-circle {
-    padding-left: 7px;
+    padding-left: 2px;
   }
 }
 

@@ -64,14 +64,14 @@
                                                     {{_ "navbar-collapse.course"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-ownsets"
+                                            <li id="navbar-own-decks"
                                                 class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
                                                 <a href="{{pathFor route='create'}}" id="cardsets">
                                                     {{_ "navbar-collapse.carddecks"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-ownsets"
+                                            <li id="navbar-learn-decks"
                                                 class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
                                                 <a href="{{pathFor route='learn'}}" id="learnsets">
@@ -96,7 +96,17 @@
                                             {{/if}}
                                         </div>
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li>
+                                            {{#if isInRole 'admin, editor'}}
+                                                <li id="navbar-all-decks"
+                                                    class="{{#if isActiveRoute regex='alldecks'}}active{{/if}}"
+                                                    data-toggle="collapse" data-target="#thm-top-navigation">
+                                                    <a href="{{pathFor route='alldecks'}}" id="learnsets">
+                                                        {{_ "navbar-collapse.alldecks"}}
+                                                    </a>
+                                                </li>
+                                            {{/if}}
+                                            <li id="navbar-help"
+                                                class="{{#if isActiveRoute regex='help'}}active{{/if}}">
                                                 <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
                                             </li>
                                             {{#if isInRole 'admin, editor'}}
@@ -164,7 +174,7 @@
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li><a href="#" id="logout"><i
+                                            <li id="navbar-logout"><a href="#" id="logout"><i
                                                     class="glyphicon glyphicon-log-out"></i>
                                             </a></li>
                                         </ul>

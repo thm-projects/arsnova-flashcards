@@ -33,7 +33,6 @@ Template.create.helpers({
 
 Template.create.onCreated(function () {
 	resetFilters();
-	Session.set('moduleActive', true);
 });
 
 Template.create.onRendered(function () {
