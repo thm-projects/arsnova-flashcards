@@ -57,11 +57,11 @@
                                                     {{_ "navbar-collapse.pool"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-course-iterations"
-                                                class="{{#if isActivePath regex='^\\/course'}}active{{/if}}"
+                                            <li id="navbar-learn-decks"
+                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='courseIterations'}}" id="course">
-                                                    {{_ "navbar-collapse.course"}}
+                                                <a href="{{pathFor route='learn'}}" id="learnsets">
+                                                    {{_ "navbar-collapse.learndecks"}}
                                                 </a>
                                             </li>
                                             <li id="navbar-own-decks"
@@ -71,30 +71,34 @@
                                                     {{_ "navbar-collapse.carddecks"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-learn-decks"
-                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
+                                            <li id="navbar-course-iterations"
+                                                class="{{#if isActivePath regex='^\\/course'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                    {{_ "navbar-collapse.learndecks"}}
+                                                <a href="{{pathFor route='courseIterations'}}" id="course">
+                                                    {{_ "navbar-collapse.course"}}
                                                 </a>
                                             </li>
-                                        </ul>
-                                        <div id="searchDropdown"
-                                             class="navbar-form navbar-left input-append btn-group"
-                                             role="search">
-                                            <div class="searchItem col-xs-9">
-                                                <input id="input-search" class="form-control typeahead" name="search"
-                                                       type="text"
-                                                       autocomplete="off" spellcheck="off" data-source="search"
-                                                       data-template="search"
-                                                       placeholder="{{_ "navbar-collapse.search"}}">
-                                            </div>
-                                            {{#if searchActive}}
-                                                <div id="clearSearch" class="searchItem col-xs-3">
-                                                    <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                            <li id="searchDropdown"
+                                                 class="navbar-form navbar-left input-append btn-group"
+                                                 role="search">
+                                                <div class="searchItem col-xs-9">
+                                                    <input id="input-search" class="form-control typeahead" name="search"
+                                                           type="text"
+                                                           autocomplete="off" spellcheck="off" data-source="search"
+                                                           data-template="search"
+                                                           placeholder="{{_ "navbar-collapse.search"}}">
                                                 </div>
-                                            {{/if}}
-                                        </div>
+                                                {{#if searchActive}}
+                                                    <div id="clearSearch" class="searchItem col-xs-3">
+                                                        <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                                    </div>
+                                                {{/if}}
+                                            </li>
+                                            <li id="navbar-help"
+                                                class="{{#if isActiveRoute regex='help'}}active{{/if}}">
+                                                <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
+                                            </li>
+                                        </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-all-decks"
@@ -105,10 +109,6 @@
                                                     </a>
                                                 </li>
                                             {{/if}}
-                                            <li id="navbar-help"
-                                                class="{{#if isActiveRoute regex='help'}}active{{/if}}">
-                                                <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
-                                            </li>
                                             {{#if isInRole 'admin, editor'}}
                                                 <li id="navbar-adminpanel">
                                                     <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
