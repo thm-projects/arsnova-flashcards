@@ -35,6 +35,7 @@
   "navbar-collapse": {
     "carddecks": "Meine Karteien",
     "learndecks": "Lernpensum",
+    "alldecks": "Alle Karteien",
     "pool": "Themen-Pool",
     "course": "Kurse",
     "myprofile": "Konto",

@@ -96,6 +96,15 @@
                                             {{/if}}
                                         </div>
                                         <ul class="nav navbar-nav navbar-right">
+                                        {{#if isInRole 'admin, editor'}}
+                                                <li id="navbar-ownsets"
+                                                    class="{{#if isActiveRoute regex='alldecks'}}active{{/if}}"
+                                                    data-toggle="collapse" data-target="#thm-top-navigation">
+                                                    <a href="{{pathFor route='alldecks'}}" id="learnsets">
+                                                        {{_ "navbar-collapse.alldecks"}}
+                                                    </a>
+                                                </li>
+                                            {{/if}}
                                             <li>
                                                 <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
                                             </li>

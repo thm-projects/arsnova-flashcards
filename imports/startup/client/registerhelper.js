@@ -107,6 +107,9 @@ Template.registerHelper("canShuffle", function () {
 });
 
 Template.registerHelper("canCopyCard", function (cardset_id) {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
 	let owner = Cardsets.findOne({"_id": cardset_id}).owner;
 	return (Roles.userIsInRole(Meteor.userId(), ['admin']) || (owner === Meteor.userId())) && Cardsets.find({
 		owner: Meteor.userId(),
@@ -116,6 +119,9 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
 	let cardset = Cardsets.findOne({"_id": cardset_id});
 	if (cardset !== undefined) {
 		return cardset.owner === Meteor.userId();
@@ -147,6 +153,9 @@ Template.registerHelper("learningActiveAndEditor", function () {
 });
 
 Template.registerHelper("isEditor", function () {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
 	if (Router.current().params._id) {
 		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
@@ -154,6 +163,9 @@ Template.registerHelper("isEditor", function () {
 });
 
 Template.registerHelper("isCardEditor", function (cardset_id) {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
 	let cardset = Cardsets.findOne({_id: cardset_id});
 	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
 });

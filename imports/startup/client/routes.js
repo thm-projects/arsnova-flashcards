@@ -74,6 +74,11 @@ Router.route('datenschutz', {
 	template: 'contact'
 });
 
+Router.route('/alldecks', {
+	name: 'alldecks',
+	template: 'cardsets'
+});
+
 Router.route('/create', {
 	name: 'create',
 	template: 'cardsets'

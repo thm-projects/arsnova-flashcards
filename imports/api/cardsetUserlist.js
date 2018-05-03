@@ -186,10 +186,10 @@ Meteor.methods({
 
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		let editorsDataArray = [];
-		if (Meteor.userId() === cardset.owner) {
+		if (Meteor.userId() === cardset.owner || Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {
 			let editors = Meteor.users.find({
 				_id: {$ne: cardset.owner},
-				roles: {$in: ['admin', 'editor', 'lecturer']}
+				roles: {$nin: ['admin', 'editor'],$in: ['lecturer']}
 			}).fetch();
 			for (let i = 0; i < editors.length; i++) {
 				editorsDataArray.push({
