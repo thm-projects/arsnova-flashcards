@@ -83,9 +83,6 @@
 
 <template name="create">
     <div class="col-md-12" id="set-list-region">
-        {{#unless cardsetList.count}}
-            {{> shuffle}}
-        {{/unless}}
         {{#if cardsetList.count}}
             {{#if isActiveRoute 'create'}}
                 <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
@@ -93,14 +90,20 @@
                     {{_ "set-list-empty.newset"}}
                 </button>
             {{/if}}
-            {{> shuffle}}
-            {{> filterNavigation}}
+        {{/if}}
+        {{> shuffle}}
+        {{> filterNavigation}}
+        {{#if cardsetList.count}}
             {{#each cardsetList}}
                 {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
             {{/each}}
             {{> infiniteScroll}}
         {{else}}
-            {{> cardsetEmpty}}
+            {{#if isActiveRoute 'create'}}
+                {{> cardsetEmpty}}
+            {{else}}
+                {{> poolCardsetEmpty}}
+            {{/if}}
         {{/if}}
     </div>
 </template>
