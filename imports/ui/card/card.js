@@ -19,6 +19,7 @@ import {
 	displaysLearningGoalInformation, gotSidesSwapped, gotAlternativeHintStyle
 } from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
+import {isTextCentered} from "../markdeepEditor/navigation";
 
 /*
  * ############################################################################
@@ -41,41 +42,6 @@ function checkBackgroundStyle() {
 	}
 }
 
-export function adjustMarkdownToolbar() {
-	//btn-group 1
-	let btnGroup = $(".btn-toolbar .btn-group:nth-child(1)");
-	btnGroup.append($(".btn-toolbar .fa-bold").parent());
-	btnGroup.append($(".btn-toolbar .fa-header").parent());
-	btnGroup.append($(".btn-toolbar .fa-code").parent());
-	btnGroup.append($(".btn-toolbar .fa-link").parent());
-	btnGroup.append($(".btn-toolbar .fa-superscript").parent());
-	btnGroup.append($(".btn-toolbar .fa-quote-left").parent());
-	$('.btn-toolbar .fa-quote-left').addClass('fa-quote-right').removeClass('fa-quote-left');
-	//btn-group 2
-	btnGroup = $(".btn-toolbar .btn-group:nth-child(2)");
-	btnGroup.append($(".btn-toolbar .fa-list").parent());
-	btnGroup.append($(".btn-toolbar .fa-list-ol").parent());
-	btnGroup.append($(".btn-toolbar .fa-check-square").parent());
-	$(".center-button").text('vertical_align_center');
-	btnGroup.append($(".center-button").parent());
-	//btn-group 3
-	btnGroup = $(".btn-toolbar .btn-group:nth-child(3)");
-	btnGroup.append($(".btn-toolbar .fa-file-image-o").parent());
-	btnGroup.append($(".btn-toolbar .fa-youtube").parent());
-	btnGroup.append($(".btn-toolbar .fa-vimeo").parent());
-	//btn-group 4
-	btnGroup = $(".btn-toolbar .btn-group:nth-child(4)");
-	btnGroup.append($(".btn-toolbar .fa-sort-numeric-asc").parent());
-	btnGroup.append($(".btn-toolbar .fa-lock").parent());
-	btnGroup.append($(".btn-toolbar .editorBrush").parent());
-	checkBackgroundStyle();
-	$(".btn-toolbar .fullscreen-button").addClass('glyphicon-fullscreen');
-	btnGroup.append($(".btn-toolbar .fullscreen-button").parent());
-	Session.get('activeLanguage');
-	$('.markdeep-help').html('<span class="markdeep-help-text"></span>');
-	$('.markdeep-help-text').text(" " + TAPi18n.__('markdeep.editor.help','',Session.get('activeLanguage')));
-}
-
 function resetSessionData(resetSubject = false) {
 	defaultCenteredText(Session.get('cardType'));
 	if (resetSubject && Session.get('cameFromEditMode') === false) {
@@ -90,16 +56,6 @@ function resetSessionData(resetSubject = false) {
 	Session.set('learningGoalLevel', 0);
 	Session.set('backgroundStyle', 0);
 	Session.set('cameFromEditMode');
-}
-
-function isTextCentered() {
-	let centerTextElement = Session.get('centerTextElement');
-	let editMode = Session.get('activeEditMode');
-	if (centerTextElement !== undefined && centerTextElement[editMode]) {
-		$(".center-button").addClass('pressed');
-	} else {
-		$(".center-button").removeClass('pressed');
-	}
 }
 
 /**
@@ -361,11 +317,12 @@ function resizeFlashcards() {
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
 	} else {
 		newFlashcardHeader = $('.active .cardHeader').outerHeight();
-		let editorHeader = $('.btn-toolbar').outerHeight();
+		let editorHeader = $('#markdeepNavigation').outerHeight();
 		if (Session.get('activeEditMode') >= 2) {
 			newFlashcardHeader = 0;
 		}
-		newFlashcardBodyHeight = ($('#cardCarousel').width() / Math.sqrt(2));
+		let newFlashcardWidth = $('#cardCarousel').width();
+		newFlashcardBodyHeight = (newFlashcardWidth / Math.sqrt(2));
 		$('.cardContent').css('height', newFlashcardBodyHeight - newFlashcardHeader);
 		if ($(window).width() >= 1200) {
 			$('#contentEditor').css('height', (newFlashcardBodyHeight - editorHeader));
@@ -478,136 +435,6 @@ export function turnCard(adjustEditWindow = false) {
 		}
 	}
 }
-
-let additionalButtons = [
-	[{
-		name: "groupCustom",
-		data: [{
-			name: 'cmdPics',
-			title: 'Image',
-			icon: 'fa fa-file-image-o',
-			callback: image
-		}, {
-			name: "cmdTex",
-			title: "Tex",
-			icon: "fa fa-superscript",
-			callback: tex
-		}, {
-			name: 'cmdCenter',
-			title: 'Center',
-			icon: 'material-icons center-button',
-			callback: function () {
-				let centerTextElement = Session.get('centerTextElement');
-				let editMode = Session.get('activeEditMode');
-				if (centerTextElement[editMode]) {
-					centerTextElement[editMode] = false;
-					Session.set('centerTextElement', centerTextElement);
-				} else {
-					centerTextElement[editMode] = true;
-					Session.set('centerTextElement', centerTextElement);
-				}
-			}
-		}, {
-			name: 'cmdBackgroundStyle',
-			title: 'Background Style',
-			icon: 'fa fa-paint-brush editorBrush',
-			callback: function () {
-				if (Session.get('backgroundStyle') === 1) {
-					Session.set('backgroundStyle', 0);
-				} else {
-					Session.set('backgroundStyle', 1);
-				}
-			}
-		}, {
-			name: 'cmdFullscreen',
-			title: 'Fullscreen',
-			icon: 'glyphicon fullscreen-button',
-			callback: function () {
-				toggleFullscreen(false, true);
-			}
-		}, {
-			name: 'cmdYouTube',
-			title: 'YouTube',
-			icon: 'fa fa-youtube',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdVimeo',
-			title: 'Vimeo',
-			icon: 'fa fa-vimeo',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdSetCardnumber',
-			title: 'Set the Card Number',
-			icon: 'fa fa-sort-numeric-asc',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdLock',
-			title: 'Lock',
-			icon: 'fa fa-lock',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdTask',
-			title: 'Task',
-			icon: 'fa fa-check-square',
-			callback: function (e) {
-				// Prepend/Give - surround the selection
-				let chunk, cursor, selected = e.getSelection();
-
-				// transform selection and set the cursor into chunked text
-				if (selected.length === 0) {
-					// Give extra word
-					chunk = e.__localize('list task here');
-
-					e.replaceSelection('* [ ]  ' + chunk);
-					// Set the cursor
-					cursor = selected.start + 7;
-				} else {
-					if (selected.text.indexOf('\n') < 0) {
-						chunk = selected.text;
-
-						e.replaceSelection('* [ ]  ' + chunk);
-
-						// Set the cursor
-						cursor = selected.start + 7;
-					} else {
-						let list = [];
-
-						list = selected.text.split('\n');
-						chunk = list[0];
-
-						$.each(list, function (k, v) {
-							list[k] = '* [ ]  ' + v;
-						});
-
-						e.replaceSelection('\n\n' + list.join('\n'));
-
-						// Set the cursor
-						cursor = selected.start + 4;
-					}
-				}
-
-				// Set the cursor
-				e.setSelection(cursor, cursor + chunk.length);
-			}
-		}, {
-			name: 'cmdMarkdeepHelp',
-			title: 'Markdeep Help',
-			icon: 'fa fa-lightbulb-o card-button markdeep-help',
-			callback: function () {
-				window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
-			}
-		}
-		]
-	}]
-];
 
 /**
  * Function checks if route is a Cardset
@@ -1097,58 +924,6 @@ Template.contentNavigationHint.helpers({
 	},
 	gotThreeColumns: function () {
 		return gotThreeColumns(Session.get('cardType'));
-	}
-});
-
-/*
- * ############################################################################
- * contentEditor
- * ############################################################################
- */
-
-Template.contentEditor.rendered = function () {
-	$("#contentEditor").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		iconlibrary: "fa",
-		onChange: function (e) {
-			var content = e.getContent();
-			$('#editor').attr('data-content', content);
-			switch (Session.get('activeEditMode')) {
-				case 0:
-					Session.set('frontText', content);
-					break;
-				case 1:
-					Session.set('backText', content);
-					break;
-				case 2:
-					Session.set('hintText', content);
-					break;
-				case 3:
-					Session.set('lectureText', content);
-					break;
-			}
-		},
-		additionalButtons: additionalButtons
-	});
-	isTextCentered();
-	adjustMarkdownToolbar();
-};
-
-Template.contentEditor.events({
-	'keyup #contentEditor': function () {
-		$('#contentEditor .md-editor').css('border-color', '');
-		$('#helpNewContent').html('');
-	}
-});
-
-Template.contentEditor.helpers({
-	getPlaceholder: function () {
-		return getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
-	},
-	gotSidesSwapped: function () {
-		return gotSidesSwapped(this.cardType);
 	}
 });
 

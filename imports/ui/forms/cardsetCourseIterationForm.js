@@ -3,9 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
-import {image, tex} from '/imports/ui/card/card.js';
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
-import {adjustMarkdownToolbar} from "../card/card";
 import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
@@ -41,7 +39,7 @@ function adjustDifficultyColor() {
 export function cleanModal() {
 	if (shuffleRoute()) {
 		$('#setName').val(Session.get("ShuffleTemplate").name);
-	} else if (courseIterationRoute()) {
+	} else if (newCardsetCourseIterationRoute()) {
 		$('#setName').val('');
 	} else {
 		$('#setName').val(Session.get('previousName'));
@@ -75,16 +73,15 @@ export function cleanModal() {
 	$('#helpSetCardType').html('');
 
 	if (shuffleRoute()) {
-		$('#setDescription').val(Session.get("ShuffleTemplate").description);
-	} else if (courseIterationRoute()) {
-		$('#setDescription').val('');
+		$('#contentEditor').val(Session.get("ShuffleTemplate").description);
+	} else if (newCardsetCourseIterationRoute()) {
+		$('#contentEditor').val('');
 	} else {
-		$('#setDescription').val(Session.get('previousDescription'));
+		$('#contentEditor').val(Session.get('previousDescription'));
 	}
 	$('#setDescriptionLabel').css('color', '');
-	$('#setDescription').css('border-color', '');
+	$('#contentEditor').css('border-color', '');
 	$('#helpSetDescription').html('');
-	$('.md-footer').html(' ');
 
 	if (courseIterationRoute()) {
 		$('#setModule').val('');
@@ -135,7 +132,7 @@ export function cleanModal() {
 
 
 	if (courseIterationRoute()) {
-		$('#setDescription').val('');
+		$('#contentEditor').val('');
 	}
 
 	if (newCardsetCourseIterationRoute()) {
@@ -148,6 +145,7 @@ export function cleanModal() {
 		$('#kindoption0').addClass('active');
 		Session.set('kindWithPrice', undefined);
 	}
+	$('#contentEditor').css('height', 'unset');
 }
 
 export function saveCardset() {
@@ -163,9 +161,9 @@ export function saveCardset() {
 		$('#helpSetCardType').html(TAPi18n.__('modal-dialog.name_required'));
 		$('#helpSetCardType').css('color', '#b94a48');
 	}
-	if ($('#setDescription').val() === "") {
+	if ($('#contentEditor').val() === "") {
 		$('#setDescriptionLabel').css('color', '#b94a48');
-		$('#setDescription').css('border-color', '#b94a48');
+		$('#contentEditor').css('border-color', '#b94a48');
 		$('#helpSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 		$('#helpSetDescription').css('color', '#b94a48');
 	}
@@ -202,7 +200,7 @@ export function saveCardset() {
 		$('#helpSetCourse').css('color', '#b94a48');
 	}
 	if ($('#setName').val() !== "" &&
-		($('#setDescription').val() !== "") &&
+		($('#contentEditor').val() !== "") &&
 		($('#setModule').val() !== "" || !courseIterationRoute()) &&
 		($('#setModuleShort').val() !== "" || !courseIterationRoute()) &&
 		($('#setModuleNum').val() !== "" || !courseIterationRoute()) &&
@@ -212,7 +210,7 @@ export function saveCardset() {
 			cardGroups;
 		name = $('#setName').val();
 		cardType = $('#setCardType').val();
-		description = $('#setDescription').val();
+		description = $('#contentEditor').val();
 		module = $('#setModule').val();
 		moduleShort = $('#setModuleShort').val();
 		moduleNum = $('#setModuleNum').val();
@@ -294,107 +292,7 @@ Template.cardsetCourseIterationForm.helpers({
  * ############################################################################
  */
 
-let additionalButtons = [
-	[{
-		name: "groupCustom",
-		data: [{
-			name: 'cmdPics',
-			title: 'Image',
-			icon: 'fa fa-file-image-o',
-			callback: image
-		}, {
-			name: "cmdTex",
-			title: "Tex",
-			icon: "fa fa-superscript",
-			callback: tex
-		}, {
-			name: 'cmdYouTube',
-			title: 'YouTube',
-			icon: 'fa fa-youtube',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdVimeo',
-			title: 'Vimeo',
-			icon: 'fa fa-vimeo',
-			callback: function () {
-				$("#underDevelopmentModal").modal("show");
-			}
-		}, {
-			name: 'cmdTask',
-			title: 'Task',
-			icon: 'fa fa-check-square',
-			callback: function (e) {
-				// Prepend/Give - surround the selection
-				let chunk, cursor, selected = e.getSelection();
-
-				// transform selection and set the cursor into chunked text
-				if (selected.length === 0) {
-					// Give extra word
-					chunk = e.__localize('list task here');
-
-					e.replaceSelection('* [ ]  ' + chunk);
-					// Set the cursor
-					cursor = selected.start + 7;
-				} else {
-					if (selected.text.indexOf('\n') < 0) {
-						chunk = selected.text;
-
-						e.replaceSelection('* [ ]  ' + chunk);
-
-						// Set the cursor
-						cursor = selected.start + 7;
-					} else {
-						let list = [];
-
-						list = selected.text.split('\n');
-						chunk = list[0];
-
-						$.each(list, function (k, v) {
-							list[k] = '* [ ]  ' + v;
-						});
-
-						e.replaceSelection('\n\n' + list.join('\n'));
-
-						// Set the cursor
-						cursor = selected.start + 4;
-					}
-				}
-
-				// Set the cursor
-				e.setSelection(cursor, cursor + chunk.length);
-			}
-		}, {
-			name: 'cmdMarkdeepHelp',
-			title: 'Markdeep Help',
-			icon: 'fa fa-lightbulb-o card-button markdeep-help',
-			callback: function () {
-				window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
-			}
-		}
-		]
-	}]
-];
-
 Template.cardsetCourseIterationFormContent.onRendered(function () {
-	$("#setDescription").markdown({
-		autofocus: false,
-		hiddenButtons: ["cmdPreview", "cmdImage", "cmdItalic"],
-		fullscreen: false,
-		iconlibrary: "fa",
-		footer: "<p></p>",
-		onChange: function (e) {
-			var content = e.getContent();
-			if (content !== "") {
-				Meteor.promise("convertMarkdown", content)
-					.then(function (rendered) {
-						$(".md-footer").html(rendered);
-					});
-			}
-		},
-		additionalButtons: additionalButtons
-	});
 	$('#setCardsetCourseIterationFormModal').on('show.bs.modal', function () {
 		if (!shuffleRoute()) {
 			cleanModal();
@@ -405,7 +303,6 @@ Template.cardsetCourseIterationFormContent.onRendered(function () {
 			cleanModal();
 		}
 	});
-	adjustMarkdownToolbar();
 });
 
 Template.cardsetCourseIterationFormContent.helpers({
@@ -567,9 +464,9 @@ Template.cardsetCourseIterationFormContent.events({
 		$('#setName').css('border-color', '');
 		$('#helpSetName').html('');
 	},
-	'keyup #setDescription': function () {
+	'keyup #contentEditor': function () {
 		$('#setDescriptionLabel').css('color', '');
-		$('#setDescription').css('border-color', '');
+		$('#contentEditor').css('border-color', '');
 		$('#helpSetDescription').html('');
 	},
 	'keyup #setModule': function () {

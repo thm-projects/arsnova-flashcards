@@ -1,0 +1,17 @@
+<template name="markdeepContent">
+    {{#if isActiveRoute regex="editCard|newCard"}}
+        <form>
+        <textarea id="contentEditor" class="card" name="content" placeholder="{{getPlaceholder}}" data-provide="markdown" rows="10"
+                  tabindex="5">{{#unless gotSidesSwapped}}{{front}}{{else}}{{back}}{{/unless}}</textarea>
+        </form>
+    {{else}}
+        <textarea class="form-control" data-provide="markdown" rows="10"
+                  placeholder="{{#if isCourseIteration}}{{_
+                          "courseIteration.modal.placeholder.description"}}{{else}}{{_
+                          "modal-dialog.descriptionplaceholder"}}{{/if}}"
+                  id="contentEditor"
+                  value="{{#if
+                          isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>
+        <span id="helpSetDescription" class="help-block description"></span>
+    {{/if}}
+</template>

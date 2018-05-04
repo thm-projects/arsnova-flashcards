@@ -232,7 +232,7 @@ img.cardside {
   text-decoration: none;
 }
 
-.cardContent, #contentEditor {
+.cardContent {
   padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
   line-height: 28px;
   font-size: $font_size_card_content;
