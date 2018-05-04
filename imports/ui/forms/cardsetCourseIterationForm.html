@@ -143,14 +143,8 @@
                 {{/if}}
             {{/if}}
             <div class="form-group setdetails description module">
-                                         <textarea class="form-control" data-provide="markdown" rows="12"
-                                                   placeholder="{{#if isCourseIteration}}{{_
-                                                           "courseIteration.modal.placeholder.description"}}{{else}}{{_
-                                                           "modal-dialog.descriptionplaceholder"}}{{/if}}"
-                                                   id="setDescription"
-                                                   value="{{#if
-                                                           isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>
-                <span id="helpSetDescription" class="help-block description"></span>
+                {{> markdeepNavigation}}
+                {{> markdeepContent}}
             </div>
             {{#if isCourseIteration}}
                 {{#unless singleUniversity}}

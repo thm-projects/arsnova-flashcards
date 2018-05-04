@@ -1,0 +1,12 @@
+#contentEditor {
+  resize: none;
+  width: 100%;
+  border: 1px solid !important;
+  line-height: 28px;
+  font-size: $font_size_card_content;
+  background-attachment: local;
+}
+
+#contentEditor.card {
+  padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
+}

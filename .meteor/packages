@@ -35,7 +35,6 @@ tap:i18n-db
 aldeed:collection2
 okgrow:promise
 themeteorchef:bert
-wtfzn:bootstrap-markdown
 easy:search
 barbatus:stars-rating
 rexzh0u:kramed
@@ -53,7 +52,6 @@ percolate:synced-cron
 browser-policy@1.1.0
 check@1.3.0
 shell-server@0.3.1
-markdown@1.0.12
 tsega:bootstrap3-lightbox
 polyroid:font-roboto
 ground:db
