@@ -367,19 +367,19 @@ $themes: (
       color: $thm_gray !important;
     }
 
-    .md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+    #markdeepNavigation .fa, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
       color: $thm_gray !important;
       border-color: $thm_gray !important;
       background-color: $white !important;
     }
 
-    .md-header .markdeep-help {
+    #markdeepNavigation .markdeep-help {
       color: $markdeep_help_text !important;
       background-color: $markdeep_help_background !important;
       border-color: $markdeep_help_border !important;
     }
 
-    .md-header .fa:hover, .md-header .center-button:hover, .md-header .fullscreen-button:hover, .card-button:hover {
+    #markdeepNavigation .fa:hover, #markdeepNavigation .markdeep-center:hover, #markdeepNavigation .markdeep-fullscreen:hover, .card-button:hover {
       background-color: $athens_gray_approx;
     }
 
@@ -394,12 +394,16 @@ $themes: (
       color: $white !important;
     }
 
-    .md-editor {
+    #markdeepNavigation {
       .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
         background-color: $thm_orange !important;
         border-color: $thm_orange !important;
         color: $white !important;
       }
+    }
+
+    #contentEditor {
+      border-color: $primary !important;
     }
 
     .disconnected {
@@ -594,7 +598,7 @@ $themes: (
       }
     }
 
-    .panel-body, .md-footer, .cardContent, #showHintModal {
+    .panel-body, .cardContent, #showHintModal {
       a {
         color: $hyperlink !important;
       }
@@ -670,11 +674,11 @@ $themes: (
       background-color: $primary !important;
     }
 
-    .md-editor > .md-header {
+    #markdeepNavigation {
       background: $primary !important;
     }
 
-    .md-editor {
+    #markdeepNavigation {
       border: 1px solid $primary !important;
     }
 
@@ -1132,7 +1136,7 @@ $themes: (
       background-color: $background_lecture !important;
     }
 
-    .editorBackground, .md-editor > textarea {
+    .editorBackground, #contentEditor {
       background: #FFFFFF !important;
     }
 
