@@ -61,9 +61,9 @@ $themes: (
     $navbar_alldecks_text: map-get($map, "navbar_alldecks_text");
     $navbar_alldecks_text_hover: map-get($map, "navbar_alldecks_text_hover");
     $navbar_alldecks_text_active: map-get($map, "navbar_alldecks_text_active");
-    $navbar_alldecks_border: map-get($map, "$navbar_alldecks_border");
-    $navbar_alldecks_border_hover: map-get($map, "$navbar_alldecks_border_hover");
-    $navbar_alldecks_border_active: map-get($map, "$navbar_alldecks_border_active");
+    $navbar_alldecks_border: map-get($map, "navbar_alldecks_border");
+    $navbar_alldecks_border_hover: map-get($map, "navbar_alldecks_border_hover");
+    $navbar_alldecks_border_active: map-get($map, "navbar_alldecks_border_active");
     $navbar_create_background: map-get($map, "navbar_create_background");
     $navbar_create_background_hover: map-get($map, "navbar_create_background_hover");
     $navbar_create_background_active: map-get($map, "navbar_create_background_active");
@@ -777,17 +777,17 @@ $themes: (
       color: $navbar_search_icon !important;
     }
 
-    #navbar-all-decks a {
+    #navbar-all-decks {
       background-color: $navbar_alldecks_background !important;
       color: $navbar_alldecks_text !important;
       border-color: $navbar_alldecks_border !important;
     }
-    #navbar-all-decks a:hover {
+    #navbar-all-decks:hover {
       background-color: $navbar_alldecks_background_hover !important;
       color: $navbar_alldecks_text_hover !important;
       border-color: $navbar_alldecks_border_hover !important;
     }
-    #navbar-all-decks.active a, #navbar-all-decks.active a:hover  {
+    #navbar-all-decks.active, #navbar-all-decks.active a:hover  {
       background-color: $navbar_alldecks_background_active !important;
       color: $navbar_alldecks_text_active !important;
       border-color: $navbar_alldecks_border_active !important;
