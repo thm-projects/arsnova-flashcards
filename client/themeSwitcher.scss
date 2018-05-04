@@ -175,6 +175,12 @@ $themes: (
     $background_difficulty1_lines: map-get($map, "background_difficulty1_lines");
     $background_difficulty2_lines: map-get($map, "background_difficulty2_lines");
     $background_difficulty3_lines: map-get($map, "background_difficulty3_lines");
+    //cardset colors
+    $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
+    $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
+    $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
+    $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
+    $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
     //card colors
     $background_lecture: map-get($map, "background_lecture");
     $background_hint: map-get($map, "background_hint");
@@ -1161,6 +1167,23 @@ $themes: (
     }
 
     //cardset
+    .markdeepCardset {
+      background-color: $cardset_markdeep_background !important;
+    }
+
+    .markdeepCardsetContent {
+      color: $cardset_markdeep_text !important;
+      a {
+        color: $cardset_markdeep_link !important;
+      }
+      .placeholder {
+        color: $cardset_markdeep_placeholder !important;
+      }
+      hr {
+        border-color: $cardset_markdeep_header_border !important;
+      }
+    }
+
     .cardListName {
       color: $white !important;
     }

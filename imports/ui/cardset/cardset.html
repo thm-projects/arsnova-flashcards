@@ -308,12 +308,11 @@
     <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6 col-md-8">
-                        <div class="">
-                            <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
-                            <hr> {{#mathjax}}{{description}}{{/mathjax}}
-                        </div>
+                <div class="row markdeepCardset">
+                    <div class="col-sm-6 col-md-8 markdeepCardsetContent">
+                        <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
+                        <hr>
+                        {{#mathjax}}{{description}}{{/mathjax}}
                     </div>
                     <div class="col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">

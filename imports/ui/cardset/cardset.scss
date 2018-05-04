@@ -287,25 +287,11 @@
 #collapseCardsetInfoButton {
   float: none;
   z-index: 50;
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#collapseCardsetInfo {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #collapseLearningPhaseInfoButton {
   float: none;
   z-index: 50;
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#collapseLearningPhaseInfo {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 -4px 17px 0 rgba(0, 0, 0, 0.2), 0 -4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .collapseCardsetInfoContainer {
@@ -385,6 +371,13 @@ th .field-tip {
     margin-top: 2px;
     margin-right: 0;
   }
+  .panel-body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .panel-footer {
+    margin-top: 0;
+  }
 }
 
 #showHintLearning, #showHintManage, #showIntervalHelp, #showPreviewHelp, .fa-trophy {
@@ -406,4 +399,13 @@ th .field-tip {
 
 .cardset-list-badge {
   float:right;
+}
+
+.markdeepCardset {
+  padding-bottom: 15px;
+}
+
+.markdeepCardsetContent {
+  padding: $padding_cardset_content_vertical$padding_cardset_content_horizontal !important;
+  font-size: $font_size_cardset_content !important;
 }
