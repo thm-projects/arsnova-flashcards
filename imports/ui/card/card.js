@@ -732,7 +732,7 @@ Template.selectLearningUnit.helpers({
 	getCardsetName: function () {
 		if (Session.get('tempLearningIndex') === "0") {
 			return TAPi18n.__('learningUnit.none');
-		} else {
+		} else if (Session.get('tempLearningIndex') !== undefined) {
 			return Cardsets.findOne({_id: Session.get('tempLearningIndex')}).name;
 		}
 	},
@@ -1364,8 +1364,10 @@ Template.flashcards.helpers({
 	},
 	isCentered: function (type) {
 		if (isEditModeOrPresentation()) {
-			let centerTextElement = Session.get('centerTextElement');
-			return centerTextElement[type];
+			if (Session.get('centerTextElement') !== undefined) {
+				let centerTextElement = Session.get('centerTextElement');
+				return centerTextElement[type];
+			}
 		} else {
 			return this.centerTextElement[type];
 		}

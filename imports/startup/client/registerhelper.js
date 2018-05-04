@@ -230,7 +230,9 @@ Template.registerHelper("getSignal", function () {
 });
 
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
-	return Cardsets.findOne({_id: cardset_id}).shuffled;
+	if (cardset_id !== undefined) {
+		return Cardsets.findOne({_id: cardset_id}).shuffled;
+	}
 });
 
 // Returns the locale date
@@ -341,20 +343,20 @@ Template.registerHelper("getAuthor", function (owner) {
 });
 
 // Return the cardset license
-Template.registerHelper("getLicense", function (_id) {
+Template.registerHelper("getLicense", function (_id, license) {
 	var licenseString = "";
 
-	if (this.license.length > 0) {
-		if (this.license.includes('by')) {
+	if (license.length > 0) {
+		if (license.includes('by')) {
 			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + _id + '" />');
 		}
-		if (this.license.includes('nc')) {
+		if (license.includes('nc')) {
 			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + _id + '" />');
 		}
-		if (this.license.includes('nd')) {
+		if (license.includes('nd')) {
 			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + _id + '" />');
 		}
-		if (this.license.includes('sa')) {
+		if (license.includes('sa')) {
 			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + _id + '" />');
 		}
 
