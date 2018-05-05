@@ -7,6 +7,7 @@ import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '.
 import TargetAudience from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
+import {CollegesCourses} from "../../api/colleges_courses";
 
 export function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations' || Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
@@ -409,6 +410,11 @@ Template.cardsetCourseIterationFormContent.helpers({
 	},
 	courseIterationGotModule: function () {
 		return TargetAudience.gotModule(Session.get('targetAudience'));
+	},
+	getCourses: function () {
+		return _.uniq(CollegesCourses.find({college: Session.get('college')}, {sort: {course: 1}}).fetch(), function (item) {
+			return item.course;
+		});
 	}
 });
 
@@ -439,7 +445,7 @@ Template.cardsetCourseIterationFormContent.events({
 		var collegeName = $(evt.currentTarget).attr("data");
 		$('#setCollege').html(collegeName);
 		$('#setCollege').val(collegeName);
-		Session.set('poolFilterCollege', collegeName);
+		Session.set('college', collegeName);
 		$('#setCourse').html((TAPi18n.__('modal-dialog.course_required')));
 		$('#setCourse').val('');
 		$('#setCollegeLabel').css('color', '');
@@ -538,7 +544,7 @@ Template.semesterList.helpers({
 		return CourseIterations.findOne(query);
 	},
 	activeFilter: function () {
-		return Session.get('poolFilterSemester') === this.semester;
+		return Session.get('semester') === this.semester;
 	}
 });
 
