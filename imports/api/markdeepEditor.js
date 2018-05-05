@@ -2,11 +2,11 @@ import {Session} from "meteor/session";
 import {toggleFullscreen} from "../ui/card/card";
 
 class MarkdeepEditor {
-	help () {
+	static help () {
 		window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
 	}
 
-	center () {
+	static center () {
 		let centerTextElement = Session.get('centerTextElement');
 		let editMode = Session.get('activeEditMode');
 		if (centerTextElement[editMode]) {
@@ -18,15 +18,15 @@ class MarkdeepEditor {
 		}
 	}
 
-	orderCards () {
+	static orderCards () {
 		$("#underDevelopmentModal").modal("show");
 	}
 
-	lockCardSide () {
+	static lockCardSide () {
 		$("#underDevelopmentModal").modal("show");
 	}
 
-	changeBackgroundStyle () {
+	static changeBackgroundStyle () {
 		if (Session.get('backgroundStyle') === 1) {
 			Session.set('backgroundStyle', 0);
 		} else {
@@ -34,7 +34,7 @@ class MarkdeepEditor {
 		}
 	}
 
-	toggleFullscreen () {
+	static toggleFullscreen () {
 		toggleFullscreen(false, true);
 	}
 }
