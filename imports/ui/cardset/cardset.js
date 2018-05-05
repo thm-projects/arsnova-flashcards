@@ -468,17 +468,19 @@ Template.cardsetInfoBoxContentOne.helpers({
 		if (cardset !== null) {
 			return count !== 0;
 		}
-	}, getAuthors: function () {
-		let cardsets = this.cardGroups;
-		let owner_id = [];
-		cardsets.push(this._id);
-		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-			return item.owner;
-		});
-		owners.forEach(function (element) {
-			owner_id.push(element.owner);
-		});
-		return owners;
+	}, getAuthors: function (cardset) {
+		if (cardset !== undefined && cardset !== null) {
+			let cardsets = cardset.cardGroups;
+			let owner_id = [];
+			cardsets.push(cardset._id);
+			let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+				return item.owner;
+			});
+			owners.forEach(function (element) {
+				owner_id.push(element.owner);
+			});
+			return owners;
+		}
 	},
 	getUserRating: function () {
 		var userrating = Ratings.findOne({
@@ -596,17 +598,6 @@ Template.cardsetInfoBoxContentTwo.helpers({
 		if (cardset !== null) {
 			return count !== 0;
 		}
-	}, getAuthors: function () {
-		let cardsets = this.cardGroups;
-		let owner_id = [];
-		cardsets.push(this._id);
-		let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-			return item.owner;
-		});
-		owners.forEach(function (element) {
-			owner_id.push(element.owner);
-		});
-		return owners;
 	},
 	getUserRating: function () {
 		var userrating = Ratings.findOne({

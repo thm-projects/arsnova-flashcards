@@ -98,7 +98,7 @@
                      regex="pool|course|create|learn|shuffle"}}visible-xs{{/if}}">
         <td>{{_ "cardset.info.author"}}:</td>
         <td>
-            {{#each getAuthors}}
+            {{#each getAuthors this}}
                 {{getAuthorName this.owner}}
             {{/each}}
         </td>
@@ -193,10 +193,10 @@
             <td>
                 {{#unless isShuffledCardset _id}}
                     {{#if isActiveRoute "home"}}
-                        <span class="info_license showLicense">{{getLicense this._id}}</span>
+                        <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
                     {{else}}
                         <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
-                           data-target="#showLicenseModal">{{getLicense this._id}}</a>
+                           data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
                     {{/if}}
                 {{else}}
                     {{_ "cardset.info.shuffleLicense"}}
@@ -308,12 +308,11 @@
     <div id="cardsetInfoDetail" class="col-md-12">
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6 col-md-8">
-                        <div class="">
-                            <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
-                            <hr> {{#mathjax}}{{description}}{{/mathjax}}
-                        </div>
+                <div class="row markdeepCardset">
+                    <div class="col-sm-6 col-md-8 markdeepCardsetContent">
+                        <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
+                        <hr>
+                        {{#mathjax}}{{description}}{{/mathjax}}
                     </div>
                     <div class="col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">

@@ -198,7 +198,7 @@
     "cardsetInfoStatic": "Über diese Kartei",
     "shuffleCardsets": "Karteien mischen",
     "shuffle": "Mischen",
-    "shuffleInfoTextNew": "Neue Kartei durch Hinzufügen mischen",
+    "shuffleInfoTextNew": "Erstell dir eine thematisch gemischte Kartei durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Kartei durch Hinzufügen mischen",
     "shuffleCardsetReferences": "Gemischte Karteien bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
@@ -242,8 +242,8 @@
     "editcard": "Editieren",
     "editreferences": "Kartei mischen",
     "name": "Thema",
-    "nameplaceholder": "Thema der Kartei",
-    "descriptionplaceholder": "Worum geht es? Was soll gelernt werden? Wer ist die Zielgruppe dieser Kartei? \n\nDie Beschreibung wird überall auf der Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "nameplaceholder": "Wie lautet das Thema der Kartei?",
+    "descriptionplaceholder": "Beschreibung des Inhalts der Kartei: \n\nWorum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -400,7 +400,7 @@
     }
   },
   "panel-body": {
-    "name": "Kennung",
+    "name": "Login-Kennung",
     "title": "Titel",
     "title-desc": "Akademischer Titel",
     "birthname": "Nachname",
@@ -478,8 +478,8 @@
     "viewmap": "Karte",
     "viewlist": "Liste",
     "createcard": "Neue Karte",
-    "importcard": "Import",
-    "exportcard": "Export",
+    "importcard": "Karten importieren",
+    "exportcard": "Karten exportieren",
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Zugang festlegen",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen.
@@ -522,7 +522,7 @@
     "license": "Lizenz",
     "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Aktualisiert",
-    "selectCardToLearn": "Such dir eine Kartei aus, deren Karten du lernen willst! Mit einem Klick auf das Thema der Kartei nimmst du sie in dein Lernpensum."
+    "selectCardToLearn": "Mit einem Klick auf das Thema einer Kartei nimmst du sie in dein Lernpensum auf."
   },
   "cardset": {
     "info": {
@@ -791,7 +791,7 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Nenne die Kompetenzziele des Kurses: Was soll ich nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können? \n\nFormuliere die zu erreichenden Kompetenzen auf den Kompetenzstufen: Verstehen ➔︎ Anwenden ➔ Analysieren ➔ Synthetisieren ➔ Bewerten ➔ Innovieren. \n\nWähle zur Formulierung eines Kompetenzziels ein Verb aus der Vorschlagsliste, siehe unter Hilfe."
+        "description": "Nenne die Kompetenzziele des Kurses: Was soll man nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können? \n\nFormuliere die zu erreichenden Kompetenzen auf den Kompetenzstufen: Verstehen ➔︎ Anwenden ➔ Analysieren ➔ Synthetisieren ➔ Bewerten ➔ Innovieren. \n\nWähle zur Formulierung eines Kompetenzziels ein Verb aus der Vorschlagsliste, siehe unter Hilfe."
       }
     },
     "targetAudience1": {
@@ -1231,7 +1231,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatieren mit Markdeep"
+      "help": "Formatiere deinen Text mit \"Markdeep\"..."
     }
   }
 }

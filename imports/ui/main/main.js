@@ -34,12 +34,14 @@ Session.setDefault('helpTarget', undefined);
 
 
 function adjustSearchResultWindowSize() {
-	let destination = $('#input-search');
-	let target = $('#searchResults');
-	let offsetTop = (destination.offset().top + destination.height());
-	target.css('max-height', ($(window).height() - offsetTop));
-	target.css('left', destination.offset().left);
-	target.css('top', offsetTop);
+	if (Meteor.userId()) {
+		let destination = $('#input-search');
+		let target = $('#searchResults');
+		let offsetTop = (destination.offset().top + destination.height());
+		target.css('max-height', ($(window).height() - offsetTop));
+		target.css('left', destination.offset().left);
+		target.css('top', offsetTop);
+	}
 }
 
 function connectionStatus() {

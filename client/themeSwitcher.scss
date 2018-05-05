@@ -61,9 +61,9 @@ $themes: (
     $navbar_alldecks_text: map-get($map, "navbar_alldecks_text");
     $navbar_alldecks_text_hover: map-get($map, "navbar_alldecks_text_hover");
     $navbar_alldecks_text_active: map-get($map, "navbar_alldecks_text_active");
-    $navbar_alldecks_border: map-get($map, "$navbar_alldecks_border");
-    $navbar_alldecks_border_hover: map-get($map, "$navbar_alldecks_border_hover");
-    $navbar_alldecks_border_active: map-get($map, "$navbar_alldecks_border_active");
+    $navbar_alldecks_border: map-get($map, "navbar_alldecks_border");
+    $navbar_alldecks_border_hover: map-get($map, "navbar_alldecks_border_hover");
+    $navbar_alldecks_border_active: map-get($map, "navbar_alldecks_border_active");
     $navbar_create_background: map-get($map, "navbar_create_background");
     $navbar_create_background_hover: map-get($map, "navbar_create_background_hover");
     $navbar_create_background_active: map-get($map, "navbar_create_background_active");
@@ -175,6 +175,12 @@ $themes: (
     $background_difficulty1_lines: map-get($map, "background_difficulty1_lines");
     $background_difficulty2_lines: map-get($map, "background_difficulty2_lines");
     $background_difficulty3_lines: map-get($map, "background_difficulty3_lines");
+    //cardset colors
+    $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
+    $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
+    $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
+    $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
+    $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
     //card colors
     $background_lecture: map-get($map, "background_lecture");
     $background_hint: map-get($map, "background_hint");
@@ -771,17 +777,17 @@ $themes: (
       color: $navbar_search_icon !important;
     }
 
-    #navbar-all-decks a {
+    #navbar-all-decks {
       background-color: $navbar_alldecks_background !important;
       color: $navbar_alldecks_text !important;
       border-color: $navbar_alldecks_border !important;
     }
-    #navbar-all-decks a:hover {
+    #navbar-all-decks:hover {
       background-color: $navbar_alldecks_background_hover !important;
       color: $navbar_alldecks_text_hover !important;
       border-color: $navbar_alldecks_border_hover !important;
     }
-    #navbar-all-decks.active a, #navbar-all-decks.active a:hover  {
+    #navbar-all-decks.active, #navbar-all-decks.active a:hover  {
       background-color: $navbar_alldecks_background_active !important;
       color: $navbar_alldecks_text_active !important;
       border-color: $navbar_alldecks_border_active !important;
@@ -1161,6 +1167,23 @@ $themes: (
     }
 
     //cardset
+    .markdeepCardset {
+      background-color: $cardset_markdeep_background !important;
+    }
+
+    .markdeepCardsetContent {
+      color: $cardset_markdeep_text !important;
+      a {
+        color: $cardset_markdeep_link !important;
+      }
+      .placeholder {
+        color: $cardset_markdeep_placeholder !important;
+      }
+      hr {
+        border-color: $cardset_markdeep_header_border !important;
+      }
+    }
+
     .cardListName {
       color: $white !important;
     }

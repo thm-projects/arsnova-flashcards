@@ -110,7 +110,8 @@ export function checkRemainingCards() {
 	} else {
 		$(".showMoreResults").data("visible", false);
 		return false;
-	}}
+	}
+}
 
 export function resetInfiniteBar() {
 	Session.set("itemsLimit", items_increment);
@@ -424,7 +425,9 @@ Template.filterNavigation.helpers({
 		return Session.get('poolFilterWordcloud') !== undefined;
 	},
 	poolFilterWordcloud: function (inWordcloud) {
-		return Session.get('poolFilterWordcloud').toString() === inWordcloud;
+		if (Session.get('poolFilterWordcloud') !== undefined) {
+			return Session.get('poolFilterWordcloud').toString() === inWordcloud;
+		}
 	},
 	hasLearnphaseFilter: function () {
 		return Session.get('poolFilterLearnphase') === true || Session.get('poolFilterLearnphase') === false;
@@ -447,9 +450,15 @@ Template.infiniteScroll.helpers({
 	},
 	getCurrentResults: function () {
 		if (isCourseIterationRoute()) {
-			return TAPi18n.__('infinite-scroll.remainingCourses', {current: Session.get("itemsLimit"), total: Session.get("totalResults")});
+			return TAPi18n.__('infinite-scroll.remainingCourses', {
+				current: Session.get("itemsLimit"),
+				total: Session.get("totalResults")
+			});
 		} else {
-			return TAPi18n.__('infinite-scroll.remainingCardsets', {current: Session.get("itemsLimit"), total: Session.get("totalResults")});
+			return TAPi18n.__('infinite-scroll.remainingCardsets', {
+				current: Session.get("itemsLimit"),
+				total: Session.get("totalResults")
+			});
 		}
 	}
 });
