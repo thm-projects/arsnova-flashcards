@@ -79,10 +79,11 @@
                                                 </a>
                                             </li>
                                             <li id="searchDropdown"
-                                                 class="navbar-form navbar-left input-append btn-group"
-                                                 role="search">
+                                                class="navbar-form navbar-left input-append btn-group"
+                                                role="search">
                                                 <div class="searchItem col-xs-9">
-                                                    <input id="input-search" class="form-control typeahead" name="search"
+                                                    <input id="input-search" class="form-control typeahead"
+                                                           name="search"
                                                            type="text"
                                                            autocomplete="off" spellcheck="off" data-source="search"
                                                            data-template="search"
@@ -94,6 +95,8 @@
                                                     </div>
                                                 {{/if}}
                                             </li>
+                                        </ul>
+                                        <ul class="nav navbar-nav">
                                             <li id="navbar-help"
                                                 class="{{#if isActiveRoute regex='help'}}active{{/if}}">
                                                 <a href="#" id="helpBtn">{{_ "contact.help"}}</a>
