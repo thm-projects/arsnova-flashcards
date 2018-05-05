@@ -309,19 +309,23 @@
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
                 <div class="row markdeepCardset">
-                    <div class="col-sm-6 col-md-8 markdeepCardsetContent">
+                    <div class="col-xs-12 {{#if learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
                         <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
-                        <hr>
-                        {{#mathjax}}{{description}}{{/mathjax}}
                     </div>
-                    <div class="col-sm-6 col-md-4 infoBox">
+                    <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">
                         {{> cardsetInfoBox}}
                     </span>
-                        {{#if learningActive}}
-                            {{> learningPhaseInfoBox}}
-                        {{/if}}
                     </div>
+                    {{#if learningActive}}
+                        <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
+                            {{> learningPhaseInfoBox}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="row markdeepCardset markdeepCardsetContent">
+                    <hr>
+                    {{#mathjax}}{{description}}{{/mathjax}}
                 </div>
             </div>
             {{#if isLecturerAndHasRequest}}
