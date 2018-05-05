@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
-import {gotAccessControl} from "./targetAudience";
+import TargetAudience from "./targetAudience";
 
 export const CourseIterations = new Mongo.Collection("courseIterations");
 
@@ -152,7 +152,7 @@ Meteor.methods({
 			kind = "personal";
 			price = Number(0);
 		}
-		if (!gotAccessControl(targetAudience)) {
+		if (!TargetAudience.gotAccessControl(targetAudience)) {
 			visible = false;
 			kind = "personal";
 		}

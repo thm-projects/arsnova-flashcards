@@ -18,9 +18,9 @@ import {
 	getCardTypeName, gotDifficultyLevel, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
 	gotPresentationMode
 } from "../../api/cardTypes";
-import {getTargetAudienceName} from "../../api/targetAudience";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
+import TargetAudience from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -552,7 +552,7 @@ Template.cardsetInfoBoxContentOne.helpers({
 		}
 	},
 	getTargetAudience: function () {
-		return getTargetAudienceName(this.targetAudience);
+		return TargetAudience.getTargetAudienceName(this.targetAudience);
 	}
 });
 
