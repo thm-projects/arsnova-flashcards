@@ -4,9 +4,10 @@ import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
 import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
-import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrder} from "../../api/targetAudience";
+import TargetAudience from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
+import {CollegesCourses} from "../../api/colleges_courses";
 
 export function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations' || Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
@@ -57,7 +58,7 @@ export function cleanModal() {
 	}
 
 	if (courseIterationRoute()) {
-		$('#setTargetAudience').html(getTargetAudienceName(1));
+		$('#setTargetAudience').html(TargetAudience.getTargetAudienceName(1));
 		$('#setTargetAudience').val(1);
 		Session.set('targetAudience', Number(1));
 	}
@@ -201,26 +202,34 @@ export function saveCardset() {
 	}
 	if ($('#setName').val() !== "" &&
 		($('#contentEditor').val() !== "") &&
-		($('#setModule').val() !== "" || !courseIterationRoute()) &&
-		($('#setModuleShort').val() !== "" || !courseIterationRoute()) &&
-		($('#setModuleNum').val() !== "" || !courseIterationRoute()) &&
-		($('#setCollege').val() !== "" || (Meteor.settings.public.university.singleUniversity && !courseIterationRoute())) &&
-		($('#setCourse').val() !== "" || !courseIterationRoute())) {
+		($('#setModule').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
+		($('#setModuleShort').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
+		($('#setModuleNum').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
+		($('#setCollege').val() !== "" || (Meteor.settings.public.university.singleUniversity && (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience'))))) &&
+		($('#setCourse').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience'))))) {
 		let name, cardType, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled,
 			cardGroups;
 		name = $('#setName').val();
 		cardType = $('#setCardType').val();
 		description = $('#contentEditor').val();
-		module = $('#setModule').val();
-		moduleShort = $('#setModuleShort').val();
-		moduleNum = $('#setModuleNum').val();
-		moduleLink = $('#setModuleLink').val();
-		if (moduleLink === undefined) {
-			moduleLink = "";
-		}
 		if (courseIterationRoute()) {
-			college = $('#setCollege').val();
-			course = $('#setCourse').val();
+			if (TargetAudience.gotModule(Session.get('targetAudience'))) {
+				college = $('#setCollege').val();
+				course = $('#setCourse').val();
+				module = $('#setModule').val();
+				moduleShort = $('#setModuleShort').val();
+				moduleNum = $('#setModuleNum').val();
+			} else {
+				college = "";
+				course = "";
+				module = "";
+				moduleShort = "";
+				moduleNum = "";
+			}
+			moduleLink = $('#setModuleLink').val();
+			if (moduleLink === undefined) {
+				moduleLink = "";
+			}
 		} else {
 			college = Meteor.settings.public.university.default;
 			course = "";
@@ -394,12 +403,19 @@ Template.cardsetCourseIterationFormContent.helpers({
 		return gotNotesForDifficultyLevel(Session.get('cardType'));
 	},
 	gotAccessControl: function () {
-		return gotAccessControl(Session.get('targetAudience'));
+		return TargetAudience.gotAccessControl(Session.get('targetAudience'));
 	},
 	gotSemester: function () {
-		return gotSemester(Session.get('targetAudience'));
+		return TargetAudience.gotSemester(Session.get('targetAudience'));
+	},
+	courseIterationGotModule: function () {
+		return TargetAudience.gotModule(Session.get('targetAudience'));
+	},
+	getCourses: function () {
+		return _.uniq(CollegesCourses.find({college: Session.get('college')}, {sort: {course: 1}}).fetch(), function (item) {
+			return item.course;
+		});
 	}
-
 });
 
 Template.cardsetCourseIterationFormContent.events({
@@ -429,7 +445,7 @@ Template.cardsetCourseIterationFormContent.events({
 		var collegeName = $(evt.currentTarget).attr("data");
 		$('#setCollege').html(collegeName);
 		$('#setCollege').val(collegeName);
-		Session.set('poolFilterCollege', collegeName);
+		Session.set('college', collegeName);
 		$('#setCourse').html((TAPi18n.__('modal-dialog.course_required')));
 		$('#setCourse').val('');
 		$('#setCollegeLabel').css('color', '');
@@ -446,10 +462,10 @@ Template.cardsetCourseIterationFormContent.events({
 		$('#helpSetCourse').html('');
 	},
 	'click .targetAudience': function (evt) {
-		let targetAudience = Number($(event.target).data('id'));
+		let targetAudienceId = Number($(event.target).data('id'));
 		$('#setTargetAudience').html($(evt.currentTarget).text());
-		$('#setTargetAudience').val(targetAudience);
-		Session.set('targetAudience', Number(targetAudience));
+		$('#setTargetAudience').val(targetAudienceId);
+		Session.set('targetAudience', Number(targetAudienceId));
 		$('#setTargetAudienceLabel').css('color', '');
 		$('.setTargetAudienceDropdown').css('border-color', '');
 		$('#helpSetTargetAudience').html('');
@@ -528,7 +544,7 @@ Template.semesterList.helpers({
 		return CourseIterations.findOne(query);
 	},
 	activeFilter: function () {
-		return Session.get('poolFilterSemester') === this.semester;
+		return Session.get('semester') === this.semester;
 	}
 });
 
@@ -540,10 +556,10 @@ Template.semesterList.helpers({
  */
 Template.targetAudienceList.helpers({
 	getTargetAudiences: function () {
-		return targetAudienceOrder;
+		return TargetAudience.getTargetAudienceOrder();
 	},
 	getTargetAudienceName: function (targetAudience) {
-		return getTargetAudienceName(targetAudience);
+		return TargetAudience.getTargetAudienceName(targetAudience);
 	},
 	displayTargetAudience: function () {
 		prepareQuery();
