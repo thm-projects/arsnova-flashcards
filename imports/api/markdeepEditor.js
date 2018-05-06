@@ -3,7 +3,7 @@ import {toggleFullscreen} from "../ui/card/card";
 
 class MarkdeepEditor {
 	static help () {
-		window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
+		window.open("https://arsnova.cards/cardset/nqA6A8CyYNbEceyw9", "_blank");
 	}
 
 	static center () {
