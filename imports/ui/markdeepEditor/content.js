@@ -3,6 +3,7 @@ import {getPlaceholderText, gotSidesSwapped} from "../../api/cardTypes";
 import {Template} from "meteor/templating";
 import "./content.html";
 import {isTextCentered} from "./navigation";
+import {courseIterationRoute, newCardsetCourseIterationRoute} from "../forms/cardsetCourseIterationForm";
 
 /*
  * ############################################################################
@@ -41,5 +42,16 @@ Template.markdeepContent.helpers({
 	},
 	gotSidesSwapped: function () {
 		return gotSidesSwapped(this.cardType);
+	},
+	getShuffleDescription: function () {
+		if (Session.get("ShuffleTemplate") !== undefined) {
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").description : "";
+		}
+	},
+	isCourseIteration: function () {
+		return courseIterationRoute();
+	},
+	isNew: function () {
+		return newCardsetCourseIterationRoute();
 	}
 });

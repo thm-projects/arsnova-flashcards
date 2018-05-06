@@ -8,11 +8,11 @@ import {getTargetAudienceName, gotAccessControl, gotSemester, targetAudienceOrde
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
 
-function newCardsetCourseIterationRoute() {
+export function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations' || Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
 }
 
-function courseIterationRoute() {
+export function courseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations';
 }
 
@@ -358,11 +358,6 @@ Template.cardsetCourseIterationFormContent.helpers({
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? "Shuffle: " + Session.get("ShuffleTemplate").name : "";
-		}
-	},
-	getShuffleDescription: function () {
-		if (Session.get("ShuffleTemplate") !== undefined) {
-			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").description : "";
 		}
 	},
 	getShuffleModule: function () {
