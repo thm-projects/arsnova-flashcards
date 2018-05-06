@@ -229,6 +229,7 @@
 
   .infoBox {
     padding: 10px;
+    padding-bottom: 0;
   }
 }
 
@@ -408,4 +409,18 @@ th .field-tip {
 .markdeepCardsetContent {
   padding: $padding_cardset_content_vertical$padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
+}
+
+.markdeepCardset:first-child, .markdeepCardsetContent:first-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.markdeepCardset:last-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+#cardsetTitle {
+  margin-bottom: 0;
 }

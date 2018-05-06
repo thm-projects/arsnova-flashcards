@@ -3,8 +3,6 @@ import {Template} from "meteor/templating";
 import "./navigation.html";
 import MarkdeepEditor from "../../api/markdeepEditor.js";
 
-let markdeepEditor = new MarkdeepEditor();
-
 export function isTextCentered() {
 	let centerTextElement = Session.get('centerTextElement');
 	let editMode = Session.get('activeEditMode');
@@ -22,22 +20,22 @@ export function isTextCentered() {
  */
 Template.markdeepNavigation.events({
 	'click .markdeep-help': function ()  {
-		markdeepEditor.help();
+		MarkdeepEditor.help();
 	},
 	'click .markdeep-center': function () {
-		markdeepEditor.center();
+		MarkdeepEditor.center();
 	},
 	'click .markdeep-card-order': function ()  {
-		markdeepEditor.orderCards();
+		MarkdeepEditor.orderCards();
 	},
 	'click .markdeep-lock': function () {
-		markdeepEditor.lockCardSide();
+		MarkdeepEditor.lockCardSide();
 	},
 	'click .markdeep-background-style': function () {
-		markdeepEditor.changeBackgroundStyle();
+		MarkdeepEditor.changeBackgroundStyle();
 	},
 	'click .markdeep-fullscreen': function () {
-		markdeepEditor.toggleFullscreen();
+		MarkdeepEditor.toggleFullscreen();
 	}
 });
 
