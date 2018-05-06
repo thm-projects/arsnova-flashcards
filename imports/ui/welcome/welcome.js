@@ -63,8 +63,8 @@ function createTagCloud() {
 			cloud.forEach(function (cloud) {
 				let name = cloud.name;
 
-				if (name.length > 20) {
-					name = name.substring(0, 20) + "…";
+				if (name.length > 25) {
+					name = name.substring(0, 25) + "…";
 				}
 				let quantitiy = cloud.quantity / biggestCardsetSize * 40;
 				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
