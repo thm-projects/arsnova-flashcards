@@ -135,6 +135,19 @@ Template.cardsetCourseIterationResultRow.events({
 		} else {
 			$(event.target).addClass('glyphicon-collapse-up').removeClass('glyphicon-collapse-down');
 		}
+	},
+	'click .exportCardset': function (event) {
+		let name = $(event.target).data('name');
+		Meteor.call('exportCardset', $(event.target).data('id'), function (error, result) {
+			if (error) {
+				Bert.alert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
+			} else {
+				let exportData = new Blob([result], {
+					type: "application/json"
+				});
+				saveAs(exportData, name + moment().format('_YYYY_MM_DD') + ".json");
+			}
+		});
 	}
 });
 

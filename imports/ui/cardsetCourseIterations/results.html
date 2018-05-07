@@ -102,6 +102,13 @@
                     <i class="fa fa-trash" data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
+            {{#if isActiveRoute regex="alldecks|create"}}
+                {{#unless this.shuffled}}
+                    <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
+                       data-name="{{this.name}}"><i class="fa fa-cloud-download" data-id="{{this._id}}"
+                                                    data-name="{{this.name}}"></i></a>
+                {{/unless}}
+            {{/if}}
             {{#if isActiveRoute regex="learn"}}
                 <a class="resultNavigationElement" href="progress/{{this._id}}/{{currentUser._id}}">
                     <i class="glyphicon glyphicon glyphicon-stats"></i>
