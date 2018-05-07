@@ -387,33 +387,17 @@ Template.cardsetInfo.helpers({
 
 Template.cardsetInfo.events({
 	'click #exportCardsBtn': function () {
-		var cardset = Cardsets.findOne(this._id);
-		var cards = Cards.find({
-			cardset_id: this._id
-		}, {
-			fields: {
-				'cardset_id': 0,
-				'cardGroup': 0,
-				'_id': 0
-			}, sort: {
-				'subject': 1,
-				'front': 1
+		let name = this.name;
+		Meteor.call('exportCards', this._id, function (error, result) {
+			if (error) {
+				Bert.alert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
+			} else {
+				let exportData = new Blob([result], {
+					type: "application/json"
+				});
+				saveAs(exportData, name + moment().format('_YYYY_MM_DD') + ".json");
 			}
-		}).fetch();
-
-		var cardsString = '';
-
-		for (var i = 0; i < cards.length; i++) {
-			cardsString += JSON.stringify(cards[i]);
-			if (i < cards.length - 1) {
-				cardsString += ", ";
-			}
-		}
-
-		var exportData = new Blob([cardsString], {
-			type: "application/json"
 		});
-		saveAs(exportData, cardset.name + ".json");
 	},
 	'click #editShuffle': function () {
 		Router.go('editshuffle', {_id: Router.current().params._id});

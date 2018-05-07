@@ -15,6 +15,7 @@ import "../imports/api/learned.js";
 import "../imports/api/notifications.js";
 import "../imports/api/paid.js";
 import "../imports/api/ratings.js";
+import "../imports/api/export.js";
 import "../imports/api/upload.js";
 import "../imports/api/userdata.js";
 import "../imports/api/webPushSubscriptions.js";
