@@ -73,7 +73,10 @@ Meteor.methods({
 		}
 		cardset.originalAuthor = getOriginalAuthorName(cardset.owner);
 		let cardsetString = JSON.stringify(cardset);
-		cardsetString += exportCards(cardset_id);
+		let cardString = exportCards(cardset_id);
+		if (cardString.length) {
+			cardsetString += (", " + cardString);
+		}
 		return cardsetString;
 	}
 });

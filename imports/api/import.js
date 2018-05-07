@@ -4,7 +4,7 @@ import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 
 Meteor.methods({
-	parseUpload: function (data, cardset_id, importType) {
+	importCards: function (data, cardset_id, importType) {
 		check(cardset_id, String);
 		check(importType, Number);
 		var cardset = Cardsets.findOne(cardset_id);

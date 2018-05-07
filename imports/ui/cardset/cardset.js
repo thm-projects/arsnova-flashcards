@@ -1222,7 +1222,7 @@ Template.cardsetImportForm.events({
 					try {
 						var res = $.parseJSON('[' + this.result + ']');
 
-						Meteor.call('parseUpload', res, cardset_id, Number(importType), function (error) {
+						Meteor.call('importCards', res, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
 								$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
@@ -1243,7 +1243,7 @@ Template.cardsetImportForm.events({
 				Papa.parse(evt.target.files[0], {
 					header: true,
 					complete: function (results) {
-						Meteor.call('parseUpload', results.data, cardset_id, Number(importType), function (error) {
+						Meteor.call('importCards', results.data, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
 								Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-top-left');
