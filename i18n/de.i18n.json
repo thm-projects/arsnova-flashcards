@@ -231,9 +231,24 @@
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus.
-    Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
+    Du
+    kannst
+    eine
+    neue
+    Kartei
+    auch
+    aus
+    mehreren
+    anderen
+    mischen.
+    ",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus
-    oder die Karteien eines Kurses.",
+    oder
+    die
+    Karteien
+    eines
+    Kurses.
+    ",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
   },
@@ -282,7 +297,9 @@
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
     "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen?",
+    zurücksetzen
+    ?
+    ",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -1118,7 +1135,6 @@
       "removeFromWordcloud": "Entfernen",
       "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
       "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
-
     },
     "card": {
       "header": "Karte",
@@ -1264,5 +1280,9 @@
       "short": "Privat",
       "long": "Privat"
     }
+  },
+  "import": {
+    "cardset": "Kartei importieren",
+    "wrongFormatCardset": "Datei enthält keine Kartei"
   }
 }

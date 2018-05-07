@@ -1276,5 +1276,9 @@
       "short": "Private",
       "long": "Private"
     }
+  },
+  "import": {
+    "cardset": "Import Cardset",
+    "wrongFormatCardset": "File is not a cardset"
   }
 }
