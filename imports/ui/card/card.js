@@ -364,7 +364,8 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#answerOptions").css("margin-top", "0");
 		$(".editorElement").css("display", '');
 		$("#preview").css("display", "unset");
-		$(".editorToolbar").css("display", '');
+		$("#markdeepNavigation").css("display", '');
+		$("#markdeepEditorContent").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
 		editorFullScreenActive = false;
 		lastEditMode = Session.get('lastEditMode');
@@ -407,7 +408,8 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 			editorFullScreenActive = true;
 			$(".fullscreen-button").addClass("pressed");
 		} else {
-			$(".editorToolbar").css("display", "none");
+			$("#markdeepNavigation").css("display", "none");
+			$("#markdeepEditorContent").css("display", 'none');
 			lastEditMode = Session.get('activeEditMode');
 			if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
 				Session.set('activeEditMode', 0);
