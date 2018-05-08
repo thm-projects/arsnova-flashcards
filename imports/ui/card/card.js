@@ -364,7 +364,8 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#answerOptions").css("margin-top", "0");
 		$(".editorElement").css("display", '');
 		$("#preview").css("display", "unset");
-		$(".editorToolbar").css("display", '');
+		$("#markdeepNavigation").css("display", '');
+		$("#markdeepEditorContent").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
 		editorFullScreenActive = false;
 		lastEditMode = Session.get('lastEditMode');
@@ -407,7 +408,8 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 			editorFullScreenActive = true;
 			$(".fullscreen-button").addClass("pressed");
 		} else {
-			$(".editorToolbar").css("display", "none");
+			$("#markdeepNavigation").css("display", "none");
+			$("#markdeepEditorContent").css("display", 'none');
 			lastEditMode = Session.get('activeEditMode');
 			if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
 				Session.set('activeEditMode', 0);
@@ -489,20 +491,27 @@ function getLeitnerCards() {
 	return cards;
 }
 
-function getPresentationCards() {
+function getPresentationCards(countCards = false) {
 	let query = {};
 	if (Session.get('chooseFlashcardsFilter')[0]) {
 		query.subject = 1;
 		query.front = 1;
 	}
-	return Cards.find({
-		cardset_id: Router.current().params._id,
-		learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
-	}, {
-		sort: {
-			query
-		}
-	});
+	if (countCards) {
+		return Cards.find({
+			cardset_id: Router.current().params._id,
+			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
+		}).count();
+	} else {
+		return Cards.find({
+			cardset_id: Router.current().params._id,
+			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
+		}, {
+			sort: {
+				query
+			}
+		});
+	}
 }
 
 /**
@@ -1191,6 +1200,9 @@ Template.flashcards.helpers({
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');
+		if (isPresentation()) {
+			return getPresentationCards(true) === 1;
+		}
 		var count = Cards.find({
 			cardset_id: cardset._id
 		}).count();
@@ -1249,6 +1261,9 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	getCardsetCount: function (getQuantityValue) {
+		if (isPresentation()) {
+			return getPresentationCards(true);
+		}
 		if (getQuantityValue) {
 			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 		} else {

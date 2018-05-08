@@ -114,8 +114,12 @@ export function cleanModal() {
 
 	if (courseIterationRoute()) {
 		$('#setCollege').html(TAPi18n.__('modal-dialog.college_required'));
-		$('#setCollege').val('');
-		if (!Meteor.settings.public.university.singleUniversity) {
+
+		if (Meteor.settings.public.university.singleUniversity) {
+			$('#setCollege').val(Meteor.settings.public.university.default);
+			Session.set('college', Meteor.settings.public.university.default);
+		} else {
+			$('#setCollege').val('');
 			$('.setCourseDropdown').attr('disabled', true);
 		}
 	}
@@ -316,13 +320,13 @@ Template.cardsetCourseIterationFormContent.onRendered(function () {
 
 Template.cardsetCourseIterationFormContent.helpers({
 	isDisabled: function (college) {
-		if (college !== "" && college !== undefined) {
-			return "";
+		if (college === "" && college === undefined) {
+			return "disabled";
 		} else {
-			if (!Meteor.settings.public.university.singleUniversity) {
-				return "disabled";
-			} else {
+			if (Meteor.settings.public.university.singleUniversity) {
 				return "";
+			} else {
+				return "disabled";
 			}
 		}
 	},

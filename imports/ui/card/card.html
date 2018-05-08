@@ -394,7 +394,7 @@
                                         {{/if}}
                                     </div>
                                     <div class="cardNumber cardHeaderFirstRow">
-                                        {{#if isCardset}}
+                                        {{#if isCardsetOrPresentation}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 {{_ "preview"}}:
                                                 {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
