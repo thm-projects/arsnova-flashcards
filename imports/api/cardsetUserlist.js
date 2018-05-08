@@ -22,19 +22,19 @@ export function getAuthorName(owner) {
 		author = Meteor.users.findOne({"_id": owner});
 	}
 	if (author) {
-		var degree = "";
-		if (author.profile.title) {
-			degree = author.profile.title;
-		}
-		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-			return author.profile.givenname;
-		}
-		if (degree !== "") {
-			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
+		let name = "";
+		if (author.profile.birthname) {
+			name +=  author.profile.birthname;
 		} else {
-			return author.profile.givenname + " " + author.profile.birthname;
+			return author.profile.name + "(" + TAPi18n.__('complete-profile.title') + ")";
 		}
+		if (author.profile.givenname) {
+			name +=  (", " + author.profile.givenname);
+		}
+		if (author.profile.title) {
+			name +=  (", " + author.profile.title);
+		}
+		return name;
 	} else {
 		return TAPi18n.__('admin.deletedUser');
 	}

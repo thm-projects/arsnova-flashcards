@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {CourseIterations} from "../../api/courseIterations.js";
 import "./filter.html";
+import {getAuthorName} from "../../api/cardsetUserlist";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");
@@ -437,6 +438,9 @@ Template.filterNavigation.helpers({
 	},
 	selectingCardsetToLearn: function () {
 		return Session.get('selectingCardsetToLearn');
+	},
+	getAuthorName: function () {
+		return getAuthorName(this._id);
 	}
 });
 

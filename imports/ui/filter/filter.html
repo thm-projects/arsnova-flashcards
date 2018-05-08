@@ -101,7 +101,7 @@
                                         {{#if filterAuthors}}
                                             <li>
                                                 <a href="#" class="filterAuthor"
-                                                   data-id="{{this._id}}">{{this.profile.title}} {{this.profile.givenname}} {{this.profile.birthname}}
+                                                   data-id="{{this._id}}">{{getAuthorName}}
                                                     {{#if poolFilterAuthor this._id}}
                                                         <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                                     {{/if}}
