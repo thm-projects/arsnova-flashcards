@@ -491,20 +491,27 @@ function getLeitnerCards() {
 	return cards;
 }
 
-function getPresentationCards() {
+function getPresentationCards(countCards = false) {
 	let query = {};
 	if (Session.get('chooseFlashcardsFilter')[0]) {
 		query.subject = 1;
 		query.front = 1;
 	}
-	return Cards.find({
-		cardset_id: Router.current().params._id,
-		learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
-	}, {
-		sort: {
-			query
-		}
-	});
+	if (countCards) {
+		return Cards.find({
+			cardset_id: Router.current().params._id,
+			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
+		}).count();
+	} else {
+		return Cards.find({
+			cardset_id: Router.current().params._id,
+			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
+		}, {
+			sort: {
+				query
+			}
+		});
+	}
 }
 
 /**
@@ -1193,6 +1200,9 @@ Template.flashcards.helpers({
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');
+		if (isPresentation()) {
+			return getPresentationCards(true) === 1;
+		}
 		var count = Cards.find({
 			cardset_id: cardset._id
 		}).count();
@@ -1251,6 +1261,9 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	getCardsetCount: function (getQuantityValue) {
+		if (isPresentation()) {
+			return getPresentationCards(true);
+		}
 		if (getQuantityValue) {
 			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 		} else {
