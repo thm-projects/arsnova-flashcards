@@ -26,7 +26,7 @@ export function getAuthorName(owner) {
 		if (author.profile.birthname) {
 			name +=  author.profile.birthname;
 		} else {
-			return author.profile.name + "(" + TAPi18n.__('complete-profile.title') + ")";
+			return author.profile.name + " (" + TAPi18n.__('complete-profile.title') + ")";
 		}
 		if (author.profile.givenname) {
 			name +=  (", " + author.profile.givenname);
