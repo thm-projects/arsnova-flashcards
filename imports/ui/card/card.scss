@@ -42,12 +42,8 @@
 }
 
 .box, .boxPreview, .box-static {
-  border: 1px solid;
   margin: 0 auto;
-  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
   border-radius: 4px;
-  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow: 0 0 5px gray, inset 0 0 50px gray;
 }
 
 
