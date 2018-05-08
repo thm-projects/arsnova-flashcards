@@ -20,4 +20,4 @@ import "../imports/api/userdata.js";
 import "../imports/api/webPushSubscriptions.js";
 import "./leitner.js";
 
-WebApp.addHtmlAttributeHook(() => ({lang: 'de'}));
+WebApp.addHtmlAttributeHook(() => ({lang: 'de', charset: 'utf-8'}));
