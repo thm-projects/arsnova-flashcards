@@ -339,6 +339,33 @@ Template.filterNavigation.events({
 });
 
 Template.filterNavigation.helpers({
+	getSortTopicIcon: function () {
+		switch (Session.get('poolSortTopic').name) {
+			case 1:
+				return '<i class="fa fa-sort-alpha-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-alpha-desc"></i>';
+
+		}
+	},
+	getSortCreatedDateIcon: function () {
+		switch (Session.get('poolSortTopic').date) {
+			case 1:
+				return '<i class="fa fa-sort-numeric-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-numeric-desc"></i>';
+
+		}
+	},
+	getSortUpdatedDateIcon: function () {
+		switch (Session.get('poolSortTopic').dateUpdated) {
+			case 1:
+				return '<i class="fa fa-sort-numeric-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-numeric-desc"></i>';
+
+		}
+	},
 	filterAuthors: function () {
 		prepareQuery();
 		let query = Session.get('filterQuery');
