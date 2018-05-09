@@ -654,7 +654,8 @@
     "wordcloud": "Word-Cloud",
     "wordcloudTrue": "In Word-Cloud",
     "wordcloudFalse": "Not in Word-Cloud",
-    "wordcloudEveryting": "All"
+    "wordcloudEveryting": "All",
+    "from": "From"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",

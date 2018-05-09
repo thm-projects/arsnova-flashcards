@@ -246,6 +246,15 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
+Template.registerHelper("getMomentsDate", function (date) {
+	return moment(date).locale(Session.get('activeLanguage')).format("D MMMM YYYY");
+});
+
+Template.registerHelper("getMomentsDateShort", function (date) {
+	return moment(date).locale(Session.get('activeLanguage')).format("D MMM YY");
+});
+
+
 // Returns the locale date
 Template.registerHelper("getDateUpdated", function () {
 	let dateUpdated;

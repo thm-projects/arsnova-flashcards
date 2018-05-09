@@ -157,6 +157,11 @@ export function checkFilters() {
 	} else {
 		$(".filterModuleGroup").removeClass('active').first();
 	}
+	if (Session.get('poolFilterUpdatedDate')) {
+		$(".filterUpdatedDateGroup").addClass('active');
+	} else {
+		$(".filterUpdatedDateGroup").removeClass('active').first();
+	}
 	if (Session.get('poolFilterLearnphase')) {
 		$(".filterLearnphase").addClass('active');
 	} else {
@@ -177,6 +182,8 @@ export function resetFilters() {
 	Session.set('poolFilterSemester');
 	Session.set('poolFilterDifficulty', undefined);
 	Session.set('poolFilterWordcloud', undefined);
+	Session.set('poolFilterCreatedDate', undefined);
+	Session.set('poolFilterUpdatedDate', undefined);
 	if (isPoolRoute()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
 	} else {
@@ -223,6 +230,7 @@ export function filterModule(event) {
 	resetInfiniteBar();
 }
 
+
 export function filterLearnphase(event) {
 	let result = $(event.target).data('id');
 	if (result === "reset") {
@@ -248,8 +256,8 @@ Template.filterNavigation.events({
 		resetFilters();
 	},
 	'click #topicBtn': function () {
-		var sort = Session.get('poolSortTopic');
-		if (sort.name === 1) {
+		let sort = Session.get('poolSortTopic');
+		if (sort.name === undefined || sort.name === 1) {
 			Session.set('poolSortTopic', {name: -1});
 		} else {
 			Session.set('poolSortTopic', {name: 1});
@@ -267,6 +275,14 @@ Template.filterNavigation.events({
 		resetInfiniteBar();
 		filterCollege(event);
 	},
+	'click .createdDateBtn': function () {
+		let sort = Session.get('poolSortTopic');
+		if (sort.date === undefined || sort.date === 1) {
+			Session.set('poolSortTopic', {date: -1});
+		} else {
+			Session.set('poolSortTopic', {date: 1});
+		}
+	},
 	'click .filterCourse': function (event) {
 		resetInfiniteBar();
 		filterCourse(event);
@@ -279,6 +295,14 @@ Template.filterNavigation.events({
 		resetInfiniteBar();
 		Session.set('poolFilterNoModule', false);
 		filterModule(event);
+	},
+	'click .updatedDateBtn': function () {
+		let sort = Session.get('poolSortTopic');
+		if (sort.dateUpdated === undefined || sort.dateUpdated === 1) {
+			Session.set('poolSortTopic', {dateUpdated: -1});
+		} else {
+			Session.set('poolSortTopic', {dateUpdated: 1});
+		}
 	},
 	'click .filterNoModule': function () {
 		resetInfiniteBar();
@@ -315,6 +339,33 @@ Template.filterNavigation.events({
 });
 
 Template.filterNavigation.helpers({
+	getSortTopicIcon: function () {
+		switch (Session.get('poolSortTopic').name) {
+			case 1:
+				return '<i class="fa fa-sort-alpha-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-alpha-desc"></i>';
+
+		}
+	},
+	getSortCreatedDateIcon: function () {
+		switch (Session.get('poolSortTopic').date) {
+			case 1:
+				return '<i class="fa fa-sort-numeric-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-numeric-desc"></i>';
+
+		}
+	},
+	getSortUpdatedDateIcon: function () {
+		switch (Session.get('poolSortTopic').dateUpdated) {
+			case 1:
+				return '<i class="fa fa-sort-numeric-asc"></i>';
+			case-1:
+				return '<i class="fa fa-sort-numeric-desc"></i>';
+
+		}
+	},
 	filterAuthors: function () {
 		prepareQuery();
 		let query = Session.get('filterQuery');
@@ -374,6 +425,11 @@ Template.filterNavigation.helpers({
 			});
 		}
 	},
+	getUpdatedDates: function () {
+		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"dateUpdated": -1}}).fetch(), function (item) {
+			return moment(item.dateUpdated).format("DD.MM.YYYY");
+		});
+	},
 	hasCardTypeFilter: function () {
 		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
 	},
@@ -391,6 +447,12 @@ Template.filterNavigation.helpers({
 	},
 	hasCollegeFilter: function () {
 		return Session.get('poolFilterCollege');
+	},
+	hasCreatedDateFilter: function () {
+		return Session.get('poolFilterCreatedDate');
+	},
+	hasUpdatedDateFilter: function () {
+		return Session.get('poolFilterUpdatedDate');
 	},
 	poolFilterCollege: function (college) {
 		return Session.get('poolFilterCollege') === college;
@@ -435,6 +497,16 @@ Template.filterNavigation.helpers({
 	},
 	poolFilterLearnphase: function (learningPhase) {
 		return Session.get('poolFilterLearnphase') === learningPhase;
+	},
+	poolFilterCreatedDate: function (date) {
+		if (Session.get('poolFilterCreatedDate')) {
+			return moment(Session.get('poolFilterCreatedDate')).startOf('day').unix() === moment(date).startOf('day').unix();
+		}
+	},
+	poolFilterUpdatedDate: function (dateUpdated) {
+		if (Session.get('poolFilterUpdatedDate')) {
+			return moment(Session.get('poolFilterUpdatedDate')).startOf('day').unix() === moment(dateUpdated).startOf('day').unix();
+		}
 	},
 	selectingCardsetToLearn: function () {
 		return Session.get('selectingCardsetToLearn');
