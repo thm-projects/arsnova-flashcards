@@ -3,8 +3,9 @@
   width: 100%;
   border: 1px solid !important;
   line-height: 28px;
-  font-size: $font_size_card_content;
+  font-size: $font_size_card_content !important;
   background-attachment: local;
+  font-family: $font_family_markdeep_editor_content !important;
 }
 
 #contentEditor.card {

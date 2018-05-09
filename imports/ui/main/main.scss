@@ -32,6 +32,7 @@ $font_weight_card_header_second_row: normal;
 $font_weight_card_header_subject: bold;
 $hint_link_decoration: underline;
 $hint_link_alternative_decoration: underline;
+$text_transform_card_header_subject: uppercase;
 
 //cardset
 $font_size_cardset_content: 12pt;
@@ -40,6 +41,7 @@ $padding_cardset_content_vertical: 10pt;
 
 //markdeep editor
 $font_family_markdeep_help: $default_font;
+$font_family_markdeep_editor_content: 'Roboto Mono', monospace;
 $font_size_markdeep_help: 12pt;
 $font_weight_markdeep_help: bold;
 
