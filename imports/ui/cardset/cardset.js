@@ -231,6 +231,9 @@ Template.cardsetList.helpers({
 			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
+	cleanFrontText: function (text) {
+		return	text.replace(/[*]/g,"");
+	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
 			if (this.shuffled) {
