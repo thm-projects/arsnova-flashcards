@@ -112,6 +112,22 @@
                                 </ul>
                             </li>
                         {{/if}}
+                        {{#if isActiveRoute regex='pool|alldecks'}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle createdDateBtn" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{_ "pool.release"}}
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle updatedDateBtn" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{_ "pool.dateUpdated"}}
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </a>
+                            </li>
+                        {{/if}}
                         {{#if isActiveRoute regex='course'}}
                             {{#unless singleUniversity}}
                                 <li class="dropdown">

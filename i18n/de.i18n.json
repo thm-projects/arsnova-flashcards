@@ -637,10 +637,11 @@
     "sortMode1": "Alphanumerisch"
   },
   "filter-pool": {
-    "wordcloud": "Von der .cards-Redaktion empfohlen",
+    "wordcloud": ".cards Empfehlung",
     "wordcloudTrue": "Mit Empfehlung",
     "wordcloudFalse": "Ohne Empfehlung",
-    "wordcloudEveryting": "Alle"
+    "wordcloudEveryting": "Alle",
+    "from": "Ab"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
