@@ -191,8 +191,8 @@
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Bonus",
-    "activeLearnphase": "Bonus",
-    "inactiveLearnphase": "beendet",
+    "activeLearnphase": "Bonusphase aktiv",
+    "inactiveLearnphase": "Bonusphase beendet",
     "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoStatic": "Über diese Kartei",
@@ -219,8 +219,8 @@
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
     "noModuleShort": "ohne",
-    "filter-info-small": "Sortier- und Filteroptionen",
-    "filter-info-extra-small": "Filteroptionen"
+    "filter-info-small": "Karteien sortieren und filtern…",
+    "filter-info-extra-small": "Sortieren und filtern…"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
@@ -233,7 +233,7 @@
     "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus.
     Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus
-    oder alle Karteien eines Kurses.",
+    oder die Karteien eines Kurses.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
   },
@@ -565,8 +565,8 @@
     "confirm-form-delete": {
       "title": "Kartei löschen",
       "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
-      "success": "Kartei wurde erfolgreich gelöscht",
-      "failure": "Kartei konnte nicht gelöscht werden"
+      "success": "Die Kartei wurde erfolgreich gelöscht",
+      "failure": "Die Kartei konnte nicht gelöscht werden"
     }
   },
   "cardmemo": {
@@ -637,8 +637,8 @@
     "sortMode1": "Alphanumerisch"
   },
   "filter-pool": {
-    "wordcloud": ".cards Empfehlung",
-    "wordcloudTrue": "Mit Empfehlung",
+    "wordcloud": "Empfehlung",
+    "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab"
@@ -733,17 +733,17 @@
       }
     },
     "cardType6": {
-      "name": "Befehlssatz",
-      "front": "Wie lautet der Befehl?",
-      "back": "Was soll der Befehl bewirken?",
+      "name": "Anweisungssatz (Informatik)",
+      "front": "Wie lautet die Anweisung?",
+      "back": "Was soll die Anweisung bewirken?",
       "hint": "Online-API",
       "placeholders": {
-        "front": "Syntax des Befehls \n\nVerwende die Code-Formatierung (Button \"</>\")!",
-        "back": "Semantik des Befehls",
-        "hint": "Verlinke hier auf die Online-API des Befehls!"
+        "front": "Syntax der Anweisung \n\nVerwende die Code-Formatierung von Markdeep!",
+        "back": "Semantik der Anweisung",
+        "hint": "Verlinke hier auf die Online-API der Anweisung!"
       },
       "editorLabels": {
-        "subject": "Anwendungskontext des Befehls"
+        "subject": "Anwendungskontext der Anweisung"
       }
     },
     "cardType7": {
