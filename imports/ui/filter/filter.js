@@ -403,9 +403,6 @@ Template.filterNavigation.helpers({
 			return moment(item.dateUpdated).format("DD.MM.YYYY");
 		});
 	},
-	getMomentsDate: function (date) {
-		return moment(date).locale(Session.get('activeLanguage')).format("D MMMM YYYY");
-	},
 	hasCardTypeFilter: function () {
 		return Session.get('poolFilterCardType') !== "" && Session.get('poolFilterCardType') !== undefined;
 	},
