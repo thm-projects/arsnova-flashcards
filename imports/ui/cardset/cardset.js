@@ -232,7 +232,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	cleanFrontText: function (text) {
-		return	text.replace(/[*]/g,"");
+		return	text.replace(/[\][=~`#|()*_-]/g," ");
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
