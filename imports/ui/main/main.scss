@@ -19,25 +19,25 @@ $font_weight_infinite_scroll_text: bold;
 $margin_bottom_item: 10px;
 
 //card
-$font_size_navigation_arrows: 8pt;
-$padding_card_content_horizontal: 45pt;
+$font_size_navigation_arrows: 10pt;
+$padding_card_content_horizontal: 40pt;
 $padding_card_content_vertical: 13pt;
 $font_size_card_header_first_row: 12px;
-$font_size_card_header_second_row: 11px;
-$font_size_card_header_subject: 26px;
+$font_size_card_header_second_row: 10px;
+$font_size_card_header_subject: 18px;
 $font_size_card_content: 14pt;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
-$font_weight_card_header_subject: bold;
+$font_weight_card_header_subject: normal;
 $hint_link_decoration: underline;
 $hint_link_alternative_decoration: underline;
 $text_transform_card_header_subject: uppercase;
 
 //cardset
 $font_size_cardset_content: 12pt;
-$padding_cardset_content_horizontal: 10pt;
-$padding_cardset_content_vertical: 10pt;
+$padding_cardset_content_horizontal: 25pt;
+$padding_cardset_content_vertical: 5pt;
 
 //markdeep editor
 $font_family_markdeep_help: $default_font;
@@ -779,6 +779,6 @@ th {
   padding-top: 5% !important;
   padding-left: 5pt !important;
   opacity: 1;
-  font-size: 11pt !important;
+  font-size: 13pt !important;
   font-style: italic;
 }

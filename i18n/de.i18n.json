@@ -637,7 +637,7 @@
     "sortMode1": "Alphanumerisch"
   },
   "filter-pool": {
-    "wordcloud": "Empfehlung",
+    "wordcloud": "Empfohlen",
     "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
@@ -747,7 +747,7 @@
       }
     },
     "cardType7": {
-      "name": "Abstract",
+      "name": "Abstracts",
       "front": "Abstract",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
@@ -1232,7 +1232,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatiere deinen Text mit \"Markdeep\"..."
+      "help": "Formatiere mit Markdeep…"
     }
   }
 }
