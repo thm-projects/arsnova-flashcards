@@ -15,7 +15,11 @@ import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 import {
-	getCardTypeName, gotDifficultyLevel, gotLearningGoal, gotLearningModes, gotNotesForDifficultyLevel,
+	getCardTypeName,
+	gotDifficultyLevel,
+	gotLearningGoal,
+	gotLearningModes,
+	gotNotesForDifficultyLevel,
 	gotPresentationMode
 } from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
@@ -232,7 +236,21 @@ Template.cardsetList.helpers({
 		}
 	},
 	cleanFrontText: function (text) {
-		return	text.replace(/[\][=~`#|()*_-]/g," ");
+		return text
+			// Remove HTML tags
+			.replace(/<[^>]*>/g, '')
+			// Remove image mark-up
+			.replace(/[\!\[]/g, '')
+			// Remove inline links
+			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
+			// Remove blockquotes
+			.replace(/^\s{0,3}>\s?/g, '')
+			// Remove code blocks
+			.replace(/(`{3,})(.*?)\1/gm, '$2')
+			// Remove inline code
+			.replace(/`(.+?)`/g, '$1')
+			// Remove rest of mark-up
+			.replace(/[\][=~`#|()*_+-]/g," ");
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
@@ -537,10 +555,10 @@ Template.cardsetInfoBoxContentOne.helpers({
 			count += 1;
 		}
 		if (Wozniak.find({
-				cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
-					$lte: actualDate
-				}
-			}).count()) {
+			cardset_id: this._id, user_id: Meteor.userId(), nextDate: {
+				$lte: actualDate
+			}
+		}).count()) {
 			count += 2;
 		}
 		switch (count) {
