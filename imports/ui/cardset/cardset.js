@@ -237,10 +237,8 @@ Template.cardsetList.helpers({
 	},
 	cleanFrontText: function (text) {
 		return text
-			// Remove HTML tags
-			.replace(/<[^>]*>/g, '')
 			// Remove image mark-up
-			.replace(/[\!\[]/g, '')
+			.replace(/[\!][\[]/g, '')
 			// Remove inline links
 			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
 			// Remove blockquotes
@@ -250,7 +248,7 @@ Template.cardsetList.helpers({
 			// Remove inline code
 			.replace(/`(.+?)`/g, '$1')
 			// Remove rest of mark-up
-			.replace(/[\][=~`#|()*_+-]/g," ");
+			.replace(/[\][\$=~`#|*_+-]/g," ");
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
