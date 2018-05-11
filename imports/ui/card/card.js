@@ -54,7 +54,7 @@ function resetSessionData(resetSubject = false) {
 	Session.set('hintText', '');
 	Session.set('lectureText', '');
 	Session.set('learningGoalLevel', 0);
-	Session.set('backgroundStyle', 0);
+	Session.set('backgroundStyle', 1);
 	Session.set('cameFromEditMode');
 }
 
