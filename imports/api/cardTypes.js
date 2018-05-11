@@ -1,21 +1,21 @@
 import {Session} from "meteor/session";
 
 //0: Lernkartei / Flashcard
-//1: Vokabeltrainer / Vocabulary
+//1: Vokabelkartei / Vocabulary
 //2: Mitschrift / Notes
 //3: Glossar / Glossary
 //4: Zitatensammlung / Citation
 //5: Prüfung / Exam
-//6: Befehlssatz / Command set
+//6: Anweisungssatz / Command set
 //7: Abstract
-let cardTypesWithCenteredText = [1, 2, 4];
+let cardTypesWithCenteredText = [1, 3, 4, 5, 6];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5];
 let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7];
-let cardTypesWithAlternativeHintStyle = [3];
+let cardTypesWithAlternativeHintStyle = [];
 let cardTypesWithLearningModes = [0, 1, 3, 5, 6];
 let cardTypesWithLearningGoal = [0, 5];
-let cardTypesWithLearningUnit = [2, 3, 5];
+let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
 let cardTypesWithLecture = [0];
