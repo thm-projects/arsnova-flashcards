@@ -238,7 +238,7 @@ Template.cardsetList.helpers({
 	cleanFrontText: function (text) {
 		return text
 			// Remove image mark-up
-			.replace(/[\!\[]/g, '')
+			.replace(/[\!][\[]/g, '')
 			// Remove inline links
 			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
 			// Remove blockquotes
