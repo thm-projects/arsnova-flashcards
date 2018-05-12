@@ -594,10 +594,6 @@ $themes: (
 
     }
 
-    .container table {
-      background-color: $white !important;
-    }
-
     .panel-footer, .sidebar-nav {
       .btn-default > .fa {
         color: black !important;
@@ -1179,7 +1175,7 @@ $themes: (
       .placeholder {
         color: $cardset_markdeep_placeholder !important;
       }
-      hr {
+      .markdeepCardsetHeader {
         border-color: $cardset_markdeep_header_border !important;
       }
     }

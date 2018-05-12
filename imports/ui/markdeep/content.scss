@@ -1,0 +1,77 @@
+.md {
+  table {
+    width: unset;
+    background-color: unset;
+  }
+
+  code {
+    color: unset;
+    background-color: unset;
+    padding: unset;
+  }
+
+  code > .output{
+    font-weight: bold;
+    background: #FF7;
+    margin-left: -20px;
+    padding-left: 20px;
+  }
+
+  pre {
+    border: unset;
+    background: unset;
+  }
+
+  blockquote {
+    border-left: 0;
+  }
+
+  p {
+    box-sizing: unset;
+    display: block;
+    margin: 1em auto;
+    line-height: 140%;
+  }
+
+
+  pre.listing.backtick {
+    border: 0;
+    background-color: unset;
+    padding-left: unset;
+    padding-right: unset;
+  }
+
+  hr {
+    border-color: unset !important;
+  }
+
+  .lightbox-container {
+    text-align: unset;
+  }
+
+  .inverse svg.diagram {
+    background: #333;
+    stroke: #FFF;
+    fill: #FFF
+  }
+
+  .admonition {
+    border-left-width: 40px !important;
+  }
+
+  .admonition.tip::before, .admonition.warning::before, .admonition.error::before {
+    top: -3px;
+    left: -4.2rem;
+  }
+
+  .admonition.warning::before {
+    left: -4rem;
+  }
+  .calendar a, .calendar .parenthesized {
+    padding-left: 5px;
+  }
+
+  dd {
+    margin-left: 40px;
+  }
+}
