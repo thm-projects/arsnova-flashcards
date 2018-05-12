@@ -70,14 +70,14 @@
         {{else}}
             {{> contentNavigationBack tabindex=5}}
         {{/unless}}
-        {{#if gotLecture}}
-            {{> contentNavigationLecture tabindex=9}}
-        {{/if}}
         {{#unless gotSidesSwapped}}
             {{> contentNavigationBack tabindex=7}}
         {{else}}
             {{> contentNavigationFront tabindex=7}}
         {{/unless}}
+        {{#if gotLecture}}
+            {{> contentNavigationLecture tabindex=9}}
+        {{/if}}
         {{#if gotHint}}
             {{> contentNavigationHint tabindex=11}}
         {{/if}}
