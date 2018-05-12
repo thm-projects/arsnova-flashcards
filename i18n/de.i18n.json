@@ -653,7 +653,7 @@
       "front": "Lernziel",
       "back": "Zusammenfassung",
       "hint": "Links | Literatur ",
-      "lecture": "Darstellung des Lerninhalts",
+      "lecture": "Erläuterung",
       "placeholders": {
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
