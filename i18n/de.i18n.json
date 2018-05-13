@@ -622,11 +622,11 @@
     "level3": "Analysieren",
     "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, zusammensetzen, Thesen bilden, zusammenfügen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammensetzen, zusammenfügen.",
     "level5": "Bewerten",
     "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
-    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, konstruieren, konzipieren, kreieren, erzeugen."
+    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -682,12 +682,12 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
       "placeholders": {
-        "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per Link ein. \n\nÜberarbeite zuhause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
-        "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen des Editors! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-Do-Liste ab!",
-        "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die Hausaufgaben als «Task-Liste» auf, siehe Formatierungsoptionen für Listen!"
+        "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
+        "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
+        "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n- [] To-do 1 \n- [] To-do 2 \n- [] To-do … \n\nSetze ein \"x\" in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
       },
       "editorLabels": {
-        "subject": "Thema der Lehrstunde"
+        "subject": "Thema der Unterrichtsstunde"
       }
     },
     "cardType3": {
