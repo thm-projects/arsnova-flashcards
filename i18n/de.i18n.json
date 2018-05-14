@@ -622,7 +622,7 @@
     "level3": "Analysieren",
     "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammensetzen, zusammenfügen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
     "level5": "Bewerten",
     "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere das Lernziel entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
@@ -726,7 +726,7 @@
       "placeholders": {
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
-        "hint": "Begründung oder Erläuterung der Antwort \n\nFalls sich die Prüfungsfrage auf eine Lernkarte bezieht (Auswahl unter «Gehört zur Lernkartei...»), so verlinkt der Titel (siehe Vorschau) auf diese Lernkarte."
+        "hint": "Begründung oder Erläuterung der Antwort"
       },
       "editorLabels": {
         "subject": "Zu prüfendes Kompetenzziel"
