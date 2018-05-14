@@ -19,16 +19,25 @@
 
 .resultItemHeaderRightArea {
   font-size: 16px;
-  padding-top: 2px;
-  padding-bottom: 3px;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media(min-width: 768px) {
-    padding-top: 12px;
-    padding-bottom: 13px;
-    padding-left: calc(75% + 15px);
-    padding-right: 15px;
+  padding: 0;
+  height: 47px;
+  @media(max-width: 767px) {
+    height: 30px;
   }
+}
+
+.resultItemHeaderRightAreaTop {
+  line-height: 16px;
+  padding-right: 0;
+}
+
+.resultItemHeaderRightAreaBottom {
+  padding-top: 8px;
+  padding-right: 10px;
+}
+
+.resultItemHeaderRightAreaTop, .resultItemHeaderRightAreaBottom  {
+  padding-left: 0;
 }
 
 .resultDateRight {
@@ -100,4 +109,8 @@
 
 .resultTableContent a {
   text-decoration: underline !important;
+}
+
+.resultHeaderCategory {
+  padding-left: 0;
 }

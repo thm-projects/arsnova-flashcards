@@ -21,7 +21,7 @@
                 <strong>{{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span></strong>
             </div>
         {{/if}}
-        <div class="hidden-xs col-sm-3 resultsHeader">
+        <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
             <strong>{{_ "set-list.category"}}</strong>
         </div>
     {{/if}}
@@ -42,10 +42,10 @@
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
-                                                                    regex="pool|alldecks"}}col-sm-4{{else}}{{#if
+                                                                              regex="pool|alldecks"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
-                                                             regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+                                                              regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
@@ -72,57 +72,61 @@
                     this.dateUpdated}}</span>
             </div>
         {{/if}}
-        <div class="resultItemHeader align-middle resultItemHeaderRightArea btn-default btn-raised collapseButton">
-            {{{getKind this.kind 0}}}
-            {{#if isActiveRoute regex="shuffle"}}
-                {{#if inShuffleSelection this._id}}
-                    <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
-                       data-id="{{this._id}}">
-                        <i class="fa fa-minus" data-id="{{this._id}}"></i>
+        <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
+            <div class="resultItemHeaderRightAreaTop col-xs-3 col-sm-12">
+                {{{getKind this.kind}}}
+            </div>
+            <div class="resultItemHeaderRightAreaBottom col-xs-9 col-sm-12">
+                {{#if isActiveRoute regex="shuffle"}}
+                    {{#if inShuffleSelection this._id}}
+                        <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
+                           data-id="{{this._id}}">
+                            <i class="fa fa-minus" data-id="{{this._id}}"></i>
+                        </a>
+                    {{else}}
+                        <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
+                           data-id="{{this._id}}">
+                            <i class="fa fa-plus" data-id="{{this._id}}"></i>
+                        </a>
+                    {{/if}}
+                {{/if}}
+                {{#if isActiveRoute regex="alldecks|create|course"}}
+                    <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
+                       title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
+                       data-target="#underDevelopmentModal">
+                        <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                     </a>
-                {{else}}
-                    <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
+                    <a class="resultNavigationElement {{#if isActiveRoute
+                                                            regex="alldecks|create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}}
+                       title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                       data-target="{{#if isActiveRoute
+                                          regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
                        data-id="{{this._id}}">
-                        <i class="fa fa-plus" data-id="{{this._id}}"></i>
+                        <i class="fa fa-trash" data-id="{{this._id}}"></i>
                     </a>
                 {{/if}}
-            {{/if}}
-            {{#if isActiveRoute regex="alldecks|create|course"}}
-                <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
-                   title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
-                   data-target="#underDevelopmentModal">
-                    <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
+                {{#if isActiveRoute regex="alldecks|create"}}
+                    {{#unless this.shuffled}}
+                        <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
+                           data-name="{{this.name}}"><i class="fa fa-cloud-download" data-id="{{this._id}}"
+                                                        data-name="{{this.name}}"></i></a>
+                    {{/unless}}
+                {{/if}}
+                {{#if isActiveRoute regex="learn"}}
+                    <a class="resultNavigationElement" href="progress/{{this._id}}/{{currentUser._id}}">
+                        <i class="glyphicon glyphicon glyphicon-stats"></i>
+                    </a>
+                    <a class="resultNavigationElement deleteLearned" {{disableIfOffline}}
+                       title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
+                       data-id="{{this._id}}">
+                        <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
+                    </a>
+                {{/if}}
+                <a class="collapseCardsetInfoButton pull-right" data-toggle="collapse"
+                   href="#collapseCardsetInfo{{this.index}}">
+                    <i class="glyphicon glyphicon-collapse-down pull-right collapseCardsetInfoIcon"></i>
                 </a>
-                <a class="resultNavigationElement {{#if isActiveRoute
-                                                        regex="alldecks|create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}}
-                   title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                   data-target="{{#if isActiveRoute
-                                      regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
-                   data-id="{{this._id}}">
-                    <i class="fa fa-trash" data-id="{{this._id}}"></i>
-                </a>
-            {{/if}}
-            {{#if isActiveRoute regex="alldecks|create"}}
-                {{#unless this.shuffled}}
-                    <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                       data-name="{{this.name}}"><i class="fa fa-cloud-download" data-id="{{this._id}}"
-                                                    data-name="{{this.name}}"></i></a>
-                {{/unless}}
-            {{/if}}
-            {{#if isActiveRoute regex="learn"}}
-                <a class="resultNavigationElement" href="progress/{{this._id}}/{{currentUser._id}}">
-                    <i class="glyphicon glyphicon glyphicon-stats"></i>
-                </a>
-                <a class="resultNavigationElement deleteLearned" {{disableIfOffline}}
-                   title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#confirmLearnModal"
-                   data-id="{{this._id}}">
-                    <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
-                </a>
-            {{/if}}
-            <a class="collapseCardsetInfoButton pull-right" data-toggle="collapse"
-               href="#collapseCardsetInfo{{this.index}}">
-                <i class="glyphicon glyphicon-collapse-down pull-right collapseCardsetInfoIcon"></i>
-            </a>
+            </div>
         </div>
         <div class="collapse" id="collapseCardsetInfo{{this.index}}">
             <div class="card card-block">
