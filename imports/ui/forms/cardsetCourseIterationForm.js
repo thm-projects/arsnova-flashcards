@@ -145,47 +145,63 @@ export function cleanModal() {
 }
 
 export function saveCardset() {
+	let bertDelay = 1500;
+	let bertDelayMultiplier = 0;
+	let error = false;
+	let errorMessage = "<ul>";
 	if ($('#setName').val() === "") {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.name') + "</li>";
+		bertDelayMultiplier++;
 		$('#setNameLabel').addClass('text-warning');
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 	}
-	if ($('#setCardType').val() === "") {
-		$('#setCardTypeLabel').addClass('text-warning');
-		$('#helpSetCardType').html(TAPi18n.__('modal-dialog.name_required'));
-	}
 	if ($('#contentEditor').val() === "") {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.description') + "</li>";
+		bertDelayMultiplier++;
 		$('#setDescriptionLabel').addClass('text-warning');
 		$('#helpSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 	}
-	if ($('#setModule').val() === "" && courseIterationRoute()) {
+	if ($('#setModule').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.module') + "</li>";
+		bertDelayMultiplier++;
 		$('#setModuleLabel').addClass('text-warning');
 		$('#helpSetModule').html(TAPi18n.__('modal-dialog.module_required'));
 	}
-	if ($('#setModuleShort').val() === "" && courseIterationRoute()) {
+	if ($('#setModuleShort').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.moduleShort') + "</li>";
+		bertDelayMultiplier++;
 		$('#setModuleShortLabel').addClass('text-warning');
 		$('#helpSetModuleShort').html(TAPi18n.__('modal-dialog.moduleShort_required'));
 	}
-	if ($('#setModuleNum').val() === "" && courseIterationRoute()) {
+	if ($('#setModuleNum').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.moduleNum') + "</li>";
+		bertDelayMultiplier++;
 		$('#setModuleNumLabel').addClass('text-warning');
 		$('#helpSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
 	}
-	if (!Meteor.settings.public.university.singleUniversity && courseIterationRoute()) {
+	if (!Meteor.settings.public.university.singleUniversity && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
 		if ($('#setCollege').val() === "") {
+			errorMessage += "<li>" + TAPi18n.__('modal-dialog.college') + "</li>";
+			bertDelayMultiplier++;
 			$('#setCollegeLabel').addClass('text-warning');
 			$('#helpSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
 		}
 	}
-	if ($('#setCourse').val() === "" && courseIterationRoute()) {
+	if ($('#setCourse').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.course') + "</li>";
 		$('#setCourseLabel').addClass('text-warning');
 		$('#helpSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 	}
-	if ($('#setName').val() !== "" &&
-		($('#contentEditor').val() !== "") &&
-		($('#setModule').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
-		($('#setModuleShort').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
-		($('#setModuleNum').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) &&
-		($('#setCollege').val() !== "" || (Meteor.settings.public.university.singleUniversity && (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience'))))) &&
-		($('#setCourse').val() !== "" || (!courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience'))))) {
+	errorMessage += "</ul>";
+	Bert.defaults.hideDelay = bertDelay * bertDelayMultiplier;
+	Bert.alert(errorMessage, 'warning', 'growl-top-left');
+	if (!error) {
 		let name, cardType, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled,
 			cardGroups;
 		name = $('#setName').val();
@@ -256,6 +272,13 @@ export function saveCardset() {
 			return true;
 		}
 		return false;
+	} else {
+		Bert.alert({
+			title: TAPi18n.__('modal-dialog.missingFields') + ':',
+			message: errorMessage,
+			type: 'danger',
+			style: 'growl-top-left'
+		});
 	}
 }
 

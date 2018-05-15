@@ -239,6 +239,7 @@
     "browseCourse": "Select all files of a course"
   },
   "modal-dialog": {
+    "missingFields": "Missing Fields",
     "newcarddeck": "Create a new deck of cards",
     "editcard": "Edit deck of cards",
     "editreferences": "Edit references",
