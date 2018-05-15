@@ -37,7 +37,7 @@
                                    "courseIteration.modal.placeholder.name"}}{{else}}{{_
                                    "modal-dialog.nameplaceholder"}}{{/if}}"
                            value="{{#if isNew}}{{getShuffleName}}{{else}}{{name}}{{/if}}">
-                    <span id="helpSetName" class="help-block name"></span>
+                    <span id="helpSetName" class="text-warning"></span>
                 </div>
                 <br>
                 {{#unless isCourseIteration}}
@@ -63,7 +63,7 @@
                                 <ul class="dropdown-menu btn-raised longButton">
                                     {{> cardTypesList filter=false}}
                                 </ul>
-                                <span id="helpSetCardType" class="help-block cardType"></span>
+                                <span id="helpSetCardType" class="text-warning"></span>
                             </div>
                         </div>
                     {{/unless}}
@@ -102,7 +102,7 @@
                             <ul class="dropdown-menu btn-raised longButton">
                                 {{> targetAudienceList}}
                             </ul>
-                            <span id="helpSetTargetAudience" class="help-block targetAudience"></span>
+                            <span id="helpSetTargetAudience" class="text-warning"></span>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                                 <ul class="dropdown-menu btn-raised longButton">
                                     {{>semesterList}}
                                 </ul>
-                                <span id="helpSetSemester" class="help-block semester"></span>
+                                <span id="helpSetSemester" class="text-warning"></span>
                             </div>
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                                                     href="#">{{this.college}}</a></li>
                                         {{/each}}
                                     </ul>
-                                    <span id="helpSetCollege" class="help-block college"></span>
+                                    <span id="helpSetCollege" class="text-warning"></span>
                                 </div>
                             </div>
                         </div><!-- / college Dropdown -->
@@ -212,7 +212,7 @@
                                                 href="#">{{this.course}}</a></li>
                                     {{/each}}
                                 </ul>
-                                <span id="helpSetCourse" class="help-block course"></span>
+                                <span id="helpSetCourse" class="text-warning"></span>
                             </div>
                         </div>
                     </div><!-- / course Dropdown -->
@@ -225,7 +225,7 @@
                                    placeholder="{{_ "modal-dialog.moduleplaceholder"}}"
                                    value="{{#if
                                            isNew}}{{getShuffleModule}}{{else}}{{module}}{{/if}}">
-                            <span id="helpSetModule" class="help-block name"></span>
+                            <span id="helpSetModule" class="text-warning"></span>
                         </div>
                     </div><!-- / module textfield -->
                     <!-- start module textfield -->
@@ -237,7 +237,7 @@
                                    placeholder="{{_ "modal-dialog.moduleShortplaceholder"}}"
                                    value="{{#if
                                            isNew}}{{getShuffleModuleShort}}{{else}}{{moduleToken}}{{/if}}">
-                            <span id="helpSetModuleShort" class="help-block name"></span>
+                            <span id="helpSetModuleShort" class="text-warning"></span>
                         </div>
                     </div><!-- / module textfield -->
                     <!-- start module textfield -->
@@ -249,7 +249,7 @@
                                    placeholder="{{_ "modal-dialog.moduleNumplaceholder"}}"
                                    value="{{#if
                                            isNew}}{{getShuffleModuleNum}}{{else}}{{moduleNum}}{{/if}}">
-                            <span id="helpSetModuleNum" class="help-block name"></span>
+                            <span id="helpSetModuleNum" class="text-warning"></span>
                         </div>
                     </div><!-- / module textfield -->
                     <div class="form-group setdetails name module">
