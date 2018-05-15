@@ -45,8 +45,8 @@ export function cleanModal() {
 	} else {
 		$('#setName').val(Session.get('previousName'));
 	}
-	$('#setNameLabel').css('color', '');
-	$('#setName').css('border-color', '');
+	$('#setNameLabel').removeClass('text-warning');
+	$('#helpSetName').html('');
 
 	if (newCardsetCourseIterationRoute()) {
 		$('#setCardType').html(getCardTypeName(0));
@@ -67,9 +67,7 @@ export function cleanModal() {
 		$('#setSemester').val(1);
 		Session.set('semester', Number(1));
 	}
-
-	$('#setCardTypeLabel').css('color', '');
-	$('#setCardType').css('border-color', '');
+	$('#setCardTypeLabel').removeClass('text-warning');
 
 	if (shuffleRoute()) {
 		$('#contentEditor').val(Session.get("ShuffleTemplate").description);
@@ -78,32 +76,30 @@ export function cleanModal() {
 	} else {
 		$('#contentEditor').val(Session.get('previousDescription'));
 	}
-	$('#setDescriptionLabel').css('color', '');
-	$('#contentEditor').css('border-color', '');
+	$('#setDescriptionLabel').removeClass('text-warning');
+	$('#helpSetDescription').html('');
 
 	if (courseIterationRoute()) {
 		$('#setModule').val('');
 	}
-	$('#setModuleLabel').css('color', '');
-	$('#setModule').css('border-color', '');
+	$('#setModuleLabel').removeClass('text-warning');
+	$('#helpSetModule').html('');
 
 	if (courseIterationRoute()) {
 		$('#setModuleShort').val('');
 	}
-	$('#setModuleShortLabel').css('color', '');
-	$('#setModuleShort').css('border-color', '');
+	$('#setModuleShortLabel').removeClass('text-warning');
+	$('#helpSetModuleShort').html('');
 
 	if (courseIterationRoute()) {
 		$('#setModuleNum').val('');
 	}
-	$('#setModuleNumLabel').css('color', '');
-	$('#setModuleNum').css('border-color', '');
+	$('#setModuleNumLabel').removeClass('text-warning');
+	$('#helpSetModuleNum').html('');
 
 	if (courseIterationRoute()) {
 		$('#setModuleLink').val('');
 	}
-	$('#setModuleLinkLabel').css('color', '');
-	$('#setModuleLink').css('border-color', '');
 
 	if (courseIterationRoute()) {
 		$('#setCollege').html(TAPi18n.__('modal-dialog.college_required'));
@@ -116,15 +112,15 @@ export function cleanModal() {
 			$('.setCourseDropdown').attr('disabled', true);
 		}
 	}
-	$('#setCollegeLabel').css('color', '');
-	$('.setCollegeDropdown').css('border-color', '');
+	$('#setCollegeLabel').removeClass('text-warning');
+	$('#helpSetCollege').html('');
 
 	if (courseIterationRoute()) {
 		$('#setCourse').html(TAPi18n.__('modal-dialog.course_required'));
 		$('#setCourse').val('');
 	}
-	$('#setCourseLabel').css('color', '');
-	$('.setCourseDropdown').css('border-color', '');
+	$('#setCourseLabel').removeClass('text-warning');
+	$('#helpSetCourse').html('');
 
 
 	if (courseIterationRoute()) {
@@ -163,6 +159,20 @@ export function saveCardset() {
 		$('#setDescriptionLabel').addClass('text-warning');
 		$('#helpSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 	}
+	if (!Meteor.settings.public.university.singleUniversity && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		if ($('#setCollege').val() === "") {
+			errorMessage += "<li>" + TAPi18n.__('modal-dialog.college') + "</li>";
+			bertDelayMultiplier++;
+			$('#setCollegeLabel').addClass('text-warning');
+			$('#helpSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
+		}
+	}
+	if ($('#setCourse').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
+		error = true;
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.course') + "</li>";
+		$('#setCourseLabel').addClass('text-warning');
+		$('#helpSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
+	}
 	if ($('#setModule').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.module') + "</li>";
@@ -183,20 +193,6 @@ export function saveCardset() {
 		bertDelayMultiplier++;
 		$('#setModuleNumLabel').addClass('text-warning');
 		$('#helpSetModuleNum').html(TAPi18n.__('modal-dialog.moduleNum_required'));
-	}
-	if (!Meteor.settings.public.university.singleUniversity && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
-		if ($('#setCollege').val() === "") {
-			errorMessage += "<li>" + TAPi18n.__('modal-dialog.college') + "</li>";
-			bertDelayMultiplier++;
-			$('#setCollegeLabel').addClass('text-warning');
-			$('#helpSetCollege').html(TAPi18n.__('modal-dialog.college_required'));
-		}
-	}
-	if ($('#setCourse').val() === "" && (courseIterationRoute() && TargetAudience.gotModule(Session.get('targetAudience')))) {
-		error = true;
-		errorMessage += "<li>" + TAPi18n.__('modal-dialog.course') + "</li>";
-		$('#setCourseLabel').addClass('text-warning');
-		$('#helpSetCourse').html(TAPi18n.__('modal-dialog.course_required'));
 	}
 	errorMessage += "</ul>";
 	Bert.defaults.hideDelay = bertDelay * bertDelayMultiplier;
