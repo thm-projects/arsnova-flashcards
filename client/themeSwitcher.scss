@@ -198,6 +198,7 @@ $themes: (
     $card_header_first_row: map-get($map, "card_header_first_row");
     $card_header_second_row: map-get($map, "card_header_second_row");
     $card_header_subject: map-get($map, "card_header_subject");
+    $card_header_subject_placeholder: map-get($map, "card_header_subject_placeholder");
     //markdeep editor
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -1160,6 +1161,10 @@ $themes: (
 
     .cardHeaderLink {
       color: $hyperlink !important;
+    }
+
+    .subjectPlaceholder {
+      color:  $card_header_subject_placeholder !important;
     }
 
     //cardset

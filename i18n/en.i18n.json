@@ -669,6 +669,7 @@
       "lecture": "Lecture",
       "hint": "Hint",
       "placeholders": {
+        "subject": "Subject",
         "front": "Frontside",
         "back": "Backside",
         "hint": "Hint",
@@ -683,6 +684,7 @@
       "front": "Frontside",
       "back": "Backside",
       "placeholders": {
+        "subject": "Subject",
         "front": "Frontside",
         "back": "Backside"
       },
@@ -696,6 +698,7 @@
       "back": "Rework",
       "hint": "Literature",
       "placeholders": {
+        "subject": "Subject",
         "front": "Frontside",
         "back": "Rework",
         "hint": "Literature"
@@ -710,6 +713,7 @@
       "back": "Definition",
       "hint": "Literature",
       "placeholders": {
+        "subject": "Subject",
         "front": "Frontside",
         "back": "Definition",
         "hint": "Literature"
@@ -724,6 +728,7 @@
       "back": "Cited person",
       "hint": "Reference",
       "placeholders": {
+        "subject": "Subject",
         "front": "Citation",
         "back": "Cited person",
         "hint": "Reference"
@@ -738,6 +743,7 @@
       "back": "Answer",
       "hint": "Explanation",
       "placeholders": {
+        "subject": "Subject",
         "front": "Assessment",
         "back": "Audit question",
         "hint": "Explanation"
@@ -752,6 +758,7 @@
       "back": "Definition",
       "hint": "Online API",
       "placeholders": {
+        "subject": "Subject",
         "front": "Frontside",
         "back": "Definition",
         "hint": "Online API"
@@ -766,6 +773,7 @@
       "back": "Cited person",
       "hint": "Reference",
       "placeholders": {
+        "subject": "Subject",
         "front": "Citation",
         "back": "Cited person",
         "hint": "Reference"

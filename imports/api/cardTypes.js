@@ -127,6 +127,10 @@ export function getBackTitle(cardType = -1) {
 	return TAPi18n.__('card.cardType' + activeCardType + '.back');
 }
 
+export function getSubjectPlaceholderText(cardType = -1) {
+	return TAPi18n.__('card.cardType' + cardType + '.placeholders.subject');
+}
+
 export function getPlaceholderText(activeMode = -1, cardType = -1, learningGoalLevel = -1) {
 	let side;
 	if (activeMode < 0) {
