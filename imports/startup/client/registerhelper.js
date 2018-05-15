@@ -75,6 +75,36 @@ Template.registerHelper("getNextCardTime", function () {
 	return TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
 
+Template.registerHelper("getKindText", function (kind, displayType = 0) {
+	if (displayType === 0) {
+		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
+			case "free":
+				return TAPi18n.__('access-level.free.short');
+			case "edu":
+				return TAPi18n.__('access-level.edu.short');
+			case "pro":
+				return TAPi18n.__('access-level.pro.short');
+			case "personal":
+				return TAPi18n.__('access-level.private.short');
+			default:
+				return 'Undefined!';
+		}
+	} else {
+		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
+			case "free":
+				return TAPi18n.__('access-level.free.long');
+			case "edu":
+				return TAPi18n.__('access-level.edu.long');
+			case "pro":
+				return TAPi18n.__('access-level.pro.long');
+			case "personal":
+				return TAPi18n.__('access-level.private.long');
+			default:
+				return 'Undefined!';
+		}
+	}
+});
+
 Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
