@@ -72,24 +72,24 @@
                         <div class="controls">
                             <div id="publishKindAdmin" class="btn-group btn-group-kind" data-toggle="buttons">
                                 <label id="kindoption0Admin"
-                                       class="btn btn-default {{#if kindIsActive 'personal'}}active{{/if}}">
+                                       class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}">
                                     <input type="radio" name="kind" value="personal" id="kind_private_admin">
-                                    <div>Private</div>
+                                    <div>{{_ 'access-level.private.short'}}</div>
                                 </label>
                                 <label id="kindoption1Admin"
                                        class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
                                     <input type="radio" name="kind" value="free" id="kind_free_admin">
-                                    <div>Free</div>
+                                    <div>{{_ 'access-level.free.short'}}</div>
                                 </label>
                                 <label id="kindoption2Admin"
                                        class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                                     <input type="radio" name="kind" value="edu" id="kind_edu_admin">
-                                    <div>Edu</div>
+                                    <div>{{_ 'access-level.edu.short'}}</div>
                                 </label>
                                 <label id="kindoption3Admin"
                                        class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                                     <input type="radio" name="kind" value="pro" id="kind_pro_admin">
-                                    <div>Pro</div>
+                                    <div>{{_ 'access-level.pro.short'}}</div>
                                 </label>
                             </div>
                         </div>

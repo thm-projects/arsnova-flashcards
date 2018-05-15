@@ -22,8 +22,6 @@ import {
 	gotNotesForDifficultyLevel,
 	gotPresentationMode
 } from "../../api/cardTypes";
-import DOMPurify from 'dompurify';
-import {DOMPurifyConfig} from "../../api/dompurify.js";
 import TargetAudience from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");
@@ -237,7 +235,7 @@ Template.cardsetList.helpers({
 	},
 	cleanFrontText: function (text) {
 		return text
-			// Remove image mark-up
+		// Remove image mark-up
 			.replace(/[\!][\[]/g, '')
 			// Remove inline links
 			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
@@ -248,7 +246,7 @@ Template.cardsetList.helpers({
 			// Remove inline code
 			.replace(/`(.+?)`/g, '$1')
 			// Remove rest of mark-up
-			.replace(/[\][\$=~`#|*_+-]/g," ");
+			.replace(/[\][\$=~`#|*_+-]/g, " ");
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
@@ -356,28 +354,23 @@ Template.cardsetInfo.onRendered(function () {
 });
 
 Template.cardsetInfo.helpers({
-	getKind: function () {
-		switch (DOMPurify.sanitize(this.kind, DOMPurifyConfig)) {
-			case "personal":
-				return '<span class="label label-warning">Private</span>';
-			case "free":
-				return '<span class="label label-info">Free</span>';
-			case "edu":
-				return '<span class="label label-success">Edu</span>';
-			case "pro":
-				return '<span class="label label-danger">Pro</span>';
-			default:
-				return '<span class="label label-default">Undefined!</span>';
-		}
-	},
 	getStatus: function () {
 		if (this.visible) {
-			return (this.kind.charAt(0).toUpperCase() + this.kind.slice(1));
+			switch (this.kind) {
+				case "free":
+					return TAPi18n.__('access-level.free.short');
+				case "edu":
+					return TAPi18n.__('access-level.edu.short');
+				case "pro":
+					return TAPi18n.__('access-level.pro.short');
+				case "personal":
+					return TAPi18n.__('access-level.private.short');
+			}
 		} else {
 			if (this.kind === 'pro' && this.request === true) {
 				return TAPi18n.__('sidebar-nav.review');
 			} else {
-				return TAPi18n.__('sidebar-nav.private');
+				return TAPi18n.__('access-level.private.short');
 			}
 		}
 	},

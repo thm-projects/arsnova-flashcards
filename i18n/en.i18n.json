@@ -1254,5 +1254,27 @@
     "editor": {
       "help": "Formatting with Markdeep"
     }
+  },
+  "access-level": {
+    "demo": {
+      "short": "Demo",
+      "long": "Demo"
+    },
+    "free": {
+      "short": "Free",
+      "long": "Free"
+    },
+    "edu": {
+      "short": "Edu",
+      "long": "Edu"
+    },
+    "pro": {
+      "short": "Pro",
+      "long": "Pro"
+    },
+    "private": {
+      "short": "Private",
+      "long": "Private"
+    }
   }
 }

@@ -75,18 +75,33 @@ Template.registerHelper("getNextCardTime", function () {
 	return TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
 
-Template.registerHelper("getKind", function (kind) {
-	switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
-		case "free":
-			return '<span class="label label-free" data-id="free">Free</span>';
-		case "edu":
-			return '<span class="label label-edu" data-id="edu">Edu</span>';
-		case "pro":
-			return '<span class="label label-pro" data-id="pro">Pro</span>';
-		case "personal":
-			return '<span class="label label-private" data-id="personal">Private</span>';
-		default:
-			return '<span class="label label-default">Undefined!</span>';
+Template.registerHelper("getKind", function (kind, displayType = 0) {
+	if (displayType === 0) {
+		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
+			case "free":
+				return '<span class="label label-free" data-id="free">' + TAPi18n.__('access-level.free.short') + '</span>';
+			case "edu":
+				return '<span class="label label-edu" data-id="edu">' + TAPi18n.__('access-level.edu.short') + '</span>';
+			case "pro":
+				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.short') + '</span>';
+			case "personal":
+				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.short') + '</span>';
+			default:
+				return '<span class="label label-default">Undefined!</span>';
+		}
+	} else {
+		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
+			case "free":
+				return '<span class="label label-free" data-id="free">' + TAPi18n.__('access-level.free.long') + '</span>';
+			case "edu":
+				return '<span class="label label-edu" data-id="edu">' + TAPi18n.__('access-level.edu.long') + '</span>';
+			case "pro":
+				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.long') + '</span>';
+			case "personal":
+				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.long') + '</span>';
+			default:
+				return '<span class="label label-default">Undefined!</span>';
+		}
 	}
 });
 
