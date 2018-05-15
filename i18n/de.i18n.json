@@ -52,7 +52,7 @@
     "help": "Hilfe",
     "faq": "FAQ",
     "impressum": "Impressum",
-    "datenschutz": "Datenschutz",
+    "datenschutz": "EU-DSGVO",
     "agb": "AGB"
   },
   "notifications": {
@@ -1179,7 +1179,7 @@
     "back": "Zurück"
   },
   "first-login": {
-    "text": "Ich habe die Allgemeinen Geschäftsbedingungen und die Datenschutzerklärung gelesen und bin damit einverstanden.",
+    "text": "Ich habe die Allgemeinen Geschäftsbedingungen und die Datenschutzerklärung gemäß der EU-DSGVO (Datenschutz-Grundverordnung der EU) gelesen und bin damit einverstanden.",
     "button": "Akzeptieren"
   },
   "mailNotification": {
