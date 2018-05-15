@@ -16,7 +16,7 @@ import {
 	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
 	gotNotesForDifficultyLevel, gotThreeColumns,
 	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
-	displaysLearningGoalInformation, gotSidesSwapped, gotAlternativeHintStyle
+	displaysLearningGoalInformation, gotSidesSwapped, gotAlternativeHintStyle, getSubjectPlaceholderText
 } from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
@@ -953,6 +953,9 @@ Template.subjectEditor.helpers({
 		}
 		return Session.get('subjectText');
 	},
+	getSubjectPlaceholder: function () {
+		return getSubjectPlaceholderText(Session.get('cardType'));
+	},
 	gotLearningUnit: function () {
 		return gotLearningUnit(this.cardType);
 	},
@@ -1069,7 +1072,11 @@ Template.cardSubject.helpers({
 		if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		} else {
-			return this.subject;
+			if (this.subject) {
+				return this.subject;
+			} else {
+				return getSubjectPlaceholderText(Session.get('cardType'));
+			}
 		}
 	},
 	gotLearningUnit: function () {

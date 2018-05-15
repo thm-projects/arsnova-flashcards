@@ -195,7 +195,8 @@
                 data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
     {{/if}}
     <form class="subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
-        <input class="form-control editorBackground" id="subjectEditor" name="content" value="{{getSubject}}"
+        <input class="form-control editorBackground" id="subjectEditor" name="content"
+               placeholder="{{getSubjectPlaceholder}}" value="{{getSubject}}"
                tabindex="1" autofocus {{isDisabled}}>
     </form>
 </template>
@@ -301,7 +302,8 @@
 <template name="cardSubject">
     {{#if gotLearningUnit}}<a class="cardHeaderLink"
                               href="/cardset/{{getLearningIndex}}/card/{{getLearningUnit}}"
-                              target="_blank">{{getSubject}}</a>{{else}}{{getSubject}}{{/if}}
+                              target="_blank">{{getSubject}}</a>{{else}}{{#unless this.subject}}
+        <span class="subjectPlaceholder">{{getSubject}}</span>{{else}}{{getSubject}}{{/unless}}{{/if}}
 </template>
 
 <template name="flashcards">
