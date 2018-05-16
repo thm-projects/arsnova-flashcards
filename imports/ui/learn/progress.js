@@ -4,8 +4,8 @@ import {Cards} from "../../api/cards";
 import {Cardsets} from "../../api/cardsets";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {getAuthorName} from "../../api/cardsetUserlist";
 import {Chart} from "chart.js";
+import {getAuthorName} from "../../api/userdata";
 
 let chart;
 

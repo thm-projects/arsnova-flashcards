@@ -2,25 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
 import {check} from "meteor/check";
-
-function getOriginalAuthorName(owner) {
-	if (Meteor.isServer) {
-		let author = Meteor.users.findOne({"_id": owner});
-		let degree = "";
-		if (author.profile.title) {
-			degree = author.profile.title;
-		}
-		if (author.profile.givenname === undefined && author.profile.birthname === undefined) {
-			author.profile.givenname = TAPi18n.__('cardset.info.undefinedAuthor');
-			return author.profile.givenname;
-		}
-		if (degree !== "") {
-			return degree + " " + author.profile.givenname + " " + author.profile.birthname;
-		} else {
-			return author.profile.givenname + " " + author.profile.birthname;
-		}
-	}
-}
+import {getAuthorName} from "./userdata";
 
 function exportCards(cardset_id) {
 	if (Meteor.isServer) {
@@ -42,7 +24,7 @@ function exportCards(cardset_id) {
 
 		for (let i = 0; i < cards.length; i++) {
 			if (cards[i].originalAuthor === undefined) {
-				cards[i].originalAuthor = getOriginalAuthorName(owner);
+				cards[i].originalAuthor = getAuthorName(owner);
 			}
 			cardsString += JSON.stringify(cards[i]);
 			if (i < cards.length - 1) {
@@ -76,7 +58,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 		if (cardset.originalAuthor === undefined) {
-			cardset.originalAuthor = getOriginalAuthorName(cardset.owner);
+			cardset.originalAuthor = getAuthorName(cardset.owner);
 		}
 		let cardsetString = JSON.stringify(cardset);
 		let cardString = exportCards(cardset_id);

@@ -6,7 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {CourseIterations} from "../../api/courseIterations.js";
 import "./filter.html";
-import {getAuthorName} from "../../api/cardsetUserlist";
+import {getAuthorName} from "../../api/userdata";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");

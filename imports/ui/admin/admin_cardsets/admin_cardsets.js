@@ -4,11 +4,11 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import {getAuthorName} from "../../../api/cardsetUserlist.js";
 import "./admin_cardsets.html";
 import "./admin_cardset.js";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../../api/dompurify.js";
+import {getAuthorName} from "../../../api/userdata";
 
 /*
  * ############################################################################
