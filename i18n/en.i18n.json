@@ -1280,6 +1280,8 @@
   },
   "import": {
     "cardset": "Import Cardset",
-    "wrongFormatCardset": "File is not a cardset"
+    "wrongFormat": {
+      "cardset": "File is not a cardset"
+    }
   }
 }

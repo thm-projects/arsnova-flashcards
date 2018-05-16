@@ -1284,6 +1284,8 @@
   },
   "import": {
     "cardset": "Kartei importieren",
-    "wrongFormatCardset": "Datei enthält keine Kartei"
+    "wrongFormat": {
+      "cardset": "Datei enthält keine Kartei"
+    }
   }
 }

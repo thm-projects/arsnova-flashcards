@@ -3,65 +3,8 @@ import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 
-Meteor.methods({
-	importCardset: function (data) {
-		if (data[0].name === undefined) {
-			throw new Meteor.Error(TAPi18n.__('import.wrongFormatCardset'));
-		} else {
-			let cardset_id = Cardsets.insert({
-				name: data[0].name,
-				description: data[0].description,
-				date: data[0].date,
-				dateUpdated: data[0].dateUpdated,
-				editors: [],
-				owner: Meteor.userId(),
-				visible: false,
-				ratings: true,
-				kind: "personal",
-				price: 0,
-				reviewed: false,
-				reviewer: 'undefined',
-				request: false,
-				relevance: 0,
-				raterCount: 0,
-				quantity: data[0].quantity,
-				license: [],
-				userDeleted: false,
-				learningActive: false,
-				maxCards: 0,
-				daysBeforeReset: 0,
-				learningStart: 0,
-				learningEnd: 0,
-				learningInterval: [],
-				learners: 0,
-				mailNotification: true,
-				webNotification: true,
-				wordcloud: false,
-				shuffled: false,
-				cardGroups: [""],
-				cardType: data[0].cardType,
-				difficulty: data[0].difficulty,
-				originalAuthor: data[0].originalAuthor
-			}, {trimStrings: false});
-			if (cardset_id) {
-				data.shift();
-				Meteor.call('importCards', data, cardset_id, 0, function (error, result) {
-					if (result) {
-						return result;
-					}
-				});
-			} else {
-				return false;
-			}
-		}
-	},
-	importCards: function (data, cardset_id, importType) {
-		check(cardset_id, String);
-		check(importType, Number);
-		var cardset = Cardsets.findOne(cardset_id);
-		if (cardset.owner !== Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {
-			throw new Meteor.Error("not-authorized");
-		}
+function importCards(data, cardset, importType) {
+	if (Meteor.isServer) {
 		if (importType === 1) {
 			for (let i = 0; i < data.length; i++) {
 				let item = data[i];
@@ -130,7 +73,7 @@ Meteor.methods({
 					front: front,
 					back: back,
 					hint: hint,
-					cardset_id: cardset_id,
+					cardset_id: cardset._id,
 					cardGroup: -1,
 					cardType: cardset.cardType,
 					lecture: lecture,
@@ -149,7 +92,7 @@ Meteor.methods({
 					front: item.front,
 					back: item.back,
 					hint: item.hint,
-					cardset_id: cardset_id,
+					cardset_id: cardset._id,
 					cardGroup: -1,
 					cardType: cardset.cardType,
 					lecture: "",
@@ -160,11 +103,75 @@ Meteor.methods({
 				}, {trimStrings: false});
 			}
 		}
-		Cardsets.update(cardset_id, {
+		Cardsets.update(cardset._id, {
 			$set: {
-				quantity: Cards.find({cardset_id: cardset_id}).count()
+				quantity: Cards.find({cardset_id: cardset._id}).count()
 			}
 		});
-		return cardset_id;
+		return cardset._id;
+	}
+}
+
+Meteor.methods({
+	importCardset: function (data) {
+		if (!Meteor.userId()) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			if (data[0].name === undefined) {
+				throw new Meteor.Error(TAPi18n.__('import.wrongFormat.cardset'));
+			} else {
+				let cardset_id = Cardsets.insert({
+					name: data[0].name,
+					description: data[0].description,
+					date: data[0].date,
+					dateUpdated: data[0].dateUpdated,
+					editors: [],
+					owner: Meteor.userId(),
+					visible: false,
+					ratings: true,
+					kind: "personal",
+					price: 0,
+					reviewed: false,
+					reviewer: 'undefined',
+					request: false,
+					relevance: 0,
+					raterCount: 0,
+					quantity: data[0].quantity,
+					license: [],
+					userDeleted: false,
+					learningActive: false,
+					maxCards: 0,
+					daysBeforeReset: 0,
+					learningStart: 0,
+					learningEnd: 0,
+					learningInterval: [],
+					learners: 0,
+					mailNotification: true,
+					webNotification: true,
+					wordcloud: false,
+					shuffled: false,
+					cardGroups: [""],
+					cardType: data[0].cardType,
+					difficulty: data[0].difficulty,
+					originalAuthor: data[0].originalAuthor
+				}, {trimStrings: false});
+				if (cardset_id) {
+					data.shift();
+					return importCards(data, Cardsets.findOne(cardset_id), 0);
+				} else {
+					return false;
+				}
+			}
+		}
+	},
+	importCards: function (data, cardset_id, importType) {
+		check(cardset_id, String);
+		check(importType, Number);
+		let cardset = Cardsets.findOne(cardset_id);
+		if (cardset.owner !== Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			return importCards(data, cardset, importType);
+		}
 	}
 });
