@@ -73,7 +73,7 @@
             </div>
         {{/if}}
         <div class="resultItemHeader align-middle resultItemHeaderRightArea btn-default btn-raised collapseButton">
-            {{{getKind this.kind}}}
+            {{{getKind this.kind 0}}}
             {{#if isActiveRoute regex="shuffle"}}
                 {{#if inShuffleSelection this._id}}
                     <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"

@@ -357,7 +357,7 @@
       "desc": "Choose your plan below.",
       "actual": "Your current plan!",
       "free": "Create. Learn. Share",
-      "edu": "Get Edu-Flashcards for free",
+      "edu": "Get THM-Flashcards for free",
       "back": "Back to free plan",
       "pro": "Create and get Pro-Flashcards",
       "month": "month",
@@ -1006,7 +1006,7 @@
     "admin": "Admin",
     "superAdmin": "Super Admin",
     "pro": "Pro",
-    "university": "Edu",
+    "university": "THM",
     "free": "Free",
     "private": "Private",
     "shuffled": "shuffled",
@@ -1253,6 +1253,28 @@
   "markdeep": {
     "editor": {
       "help": "Formatting with Markdeep"
+    }
+  },
+  "access-level": {
+    "demo": {
+      "short": "Demo",
+      "long": "Demo"
+    },
+    "free": {
+      "short": "Free",
+      "long": "Free"
+    },
+    "edu": {
+      "short": "THM",
+      "long": "Technische Hochschule Mittelhessen"
+    },
+    "pro": {
+      "short": "Pro",
+      "long": "Pro"
+    },
+    "private": {
+      "short": "Private",
+      "long": "Private"
     }
   }
 }

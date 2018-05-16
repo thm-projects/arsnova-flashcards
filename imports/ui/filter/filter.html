@@ -353,17 +353,17 @@
                                     {{#if isActiveRoute regex='alldecks|create|course'}}
                                         <label class="btn btn-warning btn-sm active">
                                             <input type="checkbox" autocomplete="off" value="personal" checked="">
-                                            Private
+                                            {{_ 'access-level.private.short'}}
                                         </label>
                                     {{/if}}
                                     <label class="btn btn-info btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="free" checked=""> Free
+                                        <input type="checkbox" autocomplete="off" value="free" checked=""> {{_ 'access-level.free.short'}}
                                     </label>
                                     <label class="btn btn-success btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="edu" checked=""> Edu
+                                        <input type="checkbox" autocomplete="off" value="edu" checked=""> {{_ 'access-level.edu.short'}}
                                     </label>
                                     <label class="btn btn-danger btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="pro" checked=""> Pro
+                                        <input type="checkbox" autocomplete="off" value="pro" checked=""> {{_ 'access-level.pro.short'}}
                                     </label>
                                 </div>
                             </ul>
