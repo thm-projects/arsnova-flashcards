@@ -7,13 +7,13 @@ import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
-import {getAuthorName} from "../../api/cardsetUserlist.js";
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.js";
+import {getAuthorName} from "../../api/userdata";
 
 Meteor.subscribe("collegesCourses");
 

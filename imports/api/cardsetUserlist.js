@@ -2,43 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Leitner} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
-import {Session} from "meteor/session";
-
-/**
- * Returns the degree, the givenname and the birthname from the author of a cardset
- * @param owner - The database ID of the author
- * @returns {*} - Degree + givenname + birthname
- */
-export function getAuthorName(owner) {
-	let author;
-	if (Router.current().route.getName() === "home") {
-		Meteor.call('getWordcloudUserName', owner, function (error, result) {
-			if (result) {
-				Session.set('wordcloudAuthor', result);
-			}
-		});
-		author = Session.get('wordcloudAuthor');
-	} else {
-		author = Meteor.users.findOne({"_id": owner});
-	}
-	if (author) {
-		let name = "";
-		if (author.profile.birthname) {
-			name +=  author.profile.birthname;
-		} else {
-			return author.profile.name + " (" + TAPi18n.__('complete-profile.title') + ")";
-		}
-		if (author.profile.givenname) {
-			name +=  (", " + author.profile.givenname);
-		}
-		if (author.profile.title) {
-			name +=  (", " + author.profile.title);
-		}
-		return name;
-	} else {
-		return TAPi18n.__('admin.deletedUser');
-	}
-}
+import {getAuthorName} from "./userdata";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
