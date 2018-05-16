@@ -637,7 +637,7 @@
       "hint": "Links | Literatur ",
       "lecture": "Erläuterung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
         "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
@@ -652,7 +652,7 @@
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Zu übersetzende Vokabel oder Phrase",
         "back": "Übersetzung (Empfehlung: https://www.deepl.com)"
       },
@@ -666,7 +666,7 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
         "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
         "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n- [] To-do 1 \n- [] To-do 2 \n- [] To-do … \n\nSetze ein \"x\" in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
@@ -681,7 +681,7 @@
       "back": "Definition | Beschreibung",
       "hint": "Literatur zum Fachbegriff ",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Fachbegriff",
         "back": "Definition oder Beschreibung des Fachbegriffs",
         "hint": "Literatur zur Vertiefung"
@@ -696,7 +696,7 @@
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Zitat",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
@@ -711,7 +711,7 @@
       "back": "Erwartete Antwort",
       "hint": "Begründung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
         "hint": "Begründung oder Erläuterung der Antwort"
@@ -726,7 +726,7 @@
       "back": "Was soll die Anweisung bewirken?",
       "hint": "Online-API",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Syntax der Anweisung \n\nVerwende die Code-Formatierung von Markdeep!",
         "back": "Semantik der Anweisung",
         "hint": "Verlinke hier auf die Online-API der Anweisung!"
@@ -741,7 +741,7 @@
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Abstract",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
@@ -973,7 +973,7 @@
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
     "university": "THM",
-    "free": "Free",
+    "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischten",
     "lecturer": "Dozent/in",
@@ -1225,23 +1225,23 @@
   "access-level": {
     "demo": {
       "short": "Demo",
-      "long": "Demo"
+      "long": "Demo-Kartei"
     },
     "free": {
-      "short": "Free",
-      "long": "Free"
+      "short": "Frei",
+      "long": "Freier Zugang"
     },
     "edu": {
       "short": "THM",
-      "long": "Technische Hochschule Mittelhessen"
+      "long": "Nur für Mitglieder der Technischen Hochschule Mittelhessen"
     },
     "pro": {
       "short": "Pro",
-      "long": "Pro"
+      "long": "Kostenpflichtiger Zugang"
     },
     "private": {
       "short": "Privat",
-      "long": "Privat"
+      "long": "Private Kartei"
     }
   },
   "import": {
