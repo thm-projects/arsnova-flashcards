@@ -161,6 +161,7 @@ $themes: (
     $item_text: map-get($map, "item_text");
     $item_content_link: map-get($map, "item_content_link");
     //difficulty colors
+    $button_difficulty0_note: map-get($map, "button_difficulty0_note");
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
     $button_difficulty3: map-get($map, "button_difficulty3");
@@ -1446,6 +1447,15 @@ $themes: (
     //forms - cardsetCourseIterationForm
     #setDifficulty .btn, #cardType .btn {
       background-color: $button_difficulty_inactive !important;
+    }
+
+    #setDifficulty .btn-orange {
+      color: $button_difficulty0_note !important;
+    }
+
+    #setDifficulty .btn-orange.active {
+      color: $white !important;
+      background-color: $button_difficulty0_note !important;
     }
 
     #setDifficulty .btn-info {
