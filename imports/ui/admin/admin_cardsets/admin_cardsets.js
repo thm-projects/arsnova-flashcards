@@ -29,6 +29,8 @@ Template.admin_cardsets.helpers({
 			date = moment(cardset.date).format("YYYY-MM-DD");
 			if (cardset.kind === 'personal') {
 				kind = 'Private';
+			} else if (cardset.kind === 'demo') {
+				kind = 'Demo';
 			} else if (cardset.kind === 'free') {
 				kind = 'Free';
 			} else if (cardset.kind === 'edu') {
