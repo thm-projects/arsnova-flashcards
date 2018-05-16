@@ -337,6 +337,8 @@ Template.cardsetList.helpers({
 				return "btn-success";
 			case "pro":
 				return "btn-danger";
+			case "demo":
+				return "btn-demo";
 		}
 	},
 	gotReferences: function () {
@@ -453,6 +455,8 @@ Template.cardsetInfoBox.helpers({
 				return "btn-success";
 			case "pro":
 				return "btn-danger";
+			case "demo":
+				return "btn-demo";
 		}
 	},
 	getName: function () {

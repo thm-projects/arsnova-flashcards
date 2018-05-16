@@ -34,6 +34,8 @@ $themes: (
     $background: map-get($map, "background");
     $hyperlink: map-get($map, "hyperlink");
     //global button and label colors
+    $demo_background: map-get($map, "demo_background");
+    $demo_text: map-get($map, "demo_text");
     $free_background: map-get($map, "free_background");
     $free_text: map-get($map, "free_text");
     $edu_background: map-get($map, "edu_background");
@@ -291,6 +293,11 @@ $themes: (
     .btn-raised.btn-info {
       color: $info_text !important;
       background-color: $info_background !important;
+    }
+
+    .btn-raised.btn-demo, .btn-demo.active {
+      color: $demo_text !important;
+      background-color: $demo_background !important;
     }
 
     .btn-raised.btn-warning, .btn-warning.active {
@@ -1306,6 +1313,15 @@ $themes: (
         border-color: $danger_background !important;
       }
 
+      .btn-demo {
+        color: $demo_background !important;
+      }
+      .btn-demo.active {
+        color: $demo_text !important;
+        background-color: $demo_background !important;
+        border-color: $demo_background !important;
+      }
+
       .btn-warning {
         color: $warning_background !important;
       }
@@ -1360,6 +1376,10 @@ $themes: (
 
     .resultTableContent a {
       color: $item_content_link !important;
+    }
+
+    .resultDemo{
+      background-color: $demo_background !important;
     }
 
     .resultFree {
@@ -1428,6 +1448,10 @@ $themes: (
       }
     }
 
+    .label-demo {
+      background-color: $demo_background !important;
+    }
+
     .label-free {
       background-color: $free_background !important;
       color: $free_text !important;
@@ -1470,7 +1494,7 @@ $themes: (
         color: $white !important;
       }
 
-      .btn-warning, .btn-info, .btn-success, .btn-danger {
+      .btn-demo, .btn-warning, .btn-info, .btn-success, .btn-danger {
         background-color: $disabled_background !important;
         border-color: $disabled_background !important;
         color: $disabled_text !important;
@@ -1492,6 +1516,12 @@ $themes: (
         color: $danger_text !important;
         background-color: $danger_background !important;
         border-color: $danger_background !important;
+      }
+
+      .btn-demo.active {
+        color: $demo_text !important;
+        background-color: $demo_background !important;
+        border-color: $demo_background !important;
       }
 
       .btn-warning.active {
