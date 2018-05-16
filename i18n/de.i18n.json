@@ -134,12 +134,7 @@
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der
-    Kartei
-    geht
-    hierbei
-    verloren!
-    ",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren! ",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -223,32 +218,13 @@
     "filter-info-extra-small": "Sortieren und filtern…"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
-    kannst.
-    ",
+    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus.
-    Du
-    kannst
-    eine
-    neue
-    Kartei
-    auch
-    aus
-    mehreren
-    anderen
-    mischen.
-    ",
-    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus
-    oder
-    die
-    Karteien
-    eines
-    Kurses.
-    ",
+    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus. Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
+    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Kurses.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
   },
@@ -296,10 +272,7 @@
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen
-    ?
-    ",
+    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -378,9 +351,7 @@
       "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat",
       "subscribe": "Pro-Abonnement bestellen",
-      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von
-      Pro-Karteien
-      ",
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
       "send": "Anfrage abschicken",
       "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
@@ -499,14 +470,7 @@
     "exportcard": "Karten exportieren",
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Zugang festlegen",
-    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen.
-    Pro-Karteien
-    können
-    nicht
-    wieder
-    zurückgestuft
-    werden!
-    ",
+    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen. Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -863,9 +827,7 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei
-  zurückgesetzt.
-  ",
+  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei zurückgesetzt.",
   "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
