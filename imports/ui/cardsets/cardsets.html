@@ -92,6 +92,11 @@
             {{/if}}
         {{/if}}
         {{> shuffle}}
+        {{#if isActiveRoute 'create'}}
+            <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
+                {{_ "import.cardset"}} <input type="file" id="importCardset" style="display: none;">
+            </label>
+        {{/if}}
         {{> filterNavigation}}
         {{#if cardsetList.count}}
             {{#each cardsetList}}

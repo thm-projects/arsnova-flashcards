@@ -134,12 +134,7 @@
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der
-    Kartei
-    geht
-    hierbei
-    verloren!
-    ",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren! ",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -223,17 +218,13 @@
     "filter-info-extra-small": "Sortieren und filtern…"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun
-    kannst.
-    ",
+    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus.
-    Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
-    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus
-    oder die Karteien eines Kurses.",
+    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus. Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
+    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Kurses.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Kurs auswählen"
   },
@@ -281,8 +272,7 @@
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartei melden",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\"
-    zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\" zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Beschwerde absenden",
@@ -361,9 +351,7 @@
       "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat",
       "subscribe": "Pro-Abonnement bestellen",
-      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von
-      Pro-Karteien
-      ",
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
       "send": "Anfrage abschicken",
       "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
@@ -482,14 +470,7 @@
     "exportcard": "Karten exportieren",
     "manageEditors": "Bearbeitungsrechte",
     "publish": "Zugang festlegen",
-    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen.
-    Pro-Karteien
-    können
-    nicht
-    wieder
-    zurückgestuft
-    werden!
-    ",
+    "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen. Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
@@ -527,6 +508,7 @@
   "cardset": {
     "info": {
       "author": "Autor/in",
+      "originalAuthor": "Verfasser",
       "rating": "Bewertung",
       "userRating": "Deine Bewertung",
       "notRated": "Noch nicht bewertet",
@@ -655,7 +637,7 @@
       "hint": "Links | Literatur ",
       "lecture": "Erläuterung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
         "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
@@ -670,7 +652,7 @@
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Zu übersetzende Vokabel oder Phrase",
         "back": "Übersetzung (Empfehlung: https://www.deepl.com)"
       },
@@ -684,7 +666,7 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
         "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
         "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n- [] To-do 1 \n- [] To-do 2 \n- [] To-do … \n\nSetze ein \"x\" in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
@@ -699,7 +681,7 @@
       "back": "Definition | Beschreibung",
       "hint": "Literatur zum Fachbegriff ",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Fachbegriff",
         "back": "Definition oder Beschreibung des Fachbegriffs",
         "hint": "Literatur zur Vertiefung"
@@ -714,7 +696,7 @@
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Zitat",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
@@ -729,7 +711,7 @@
       "back": "Erwartete Antwort",
       "hint": "Begründung",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
         "hint": "Begründung oder Erläuterung der Antwort"
@@ -744,7 +726,7 @@
       "back": "Was soll die Anweisung bewirken?",
       "hint": "Online-API",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Syntax der Anweisung \n\nVerwende die Code-Formatierung von Markdeep!",
         "back": "Semantik der Anweisung",
         "hint": "Verlinke hier auf die Online-API der Anweisung!"
@@ -759,7 +741,7 @@
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "subject": "Kartentitel",
+        "subject": "Gib der Karte einen treffenden Titel",
         "front": "Abstract",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
@@ -845,9 +827,7 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
   "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei
-  zurückgesetzt.
-  ",
+  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei zurückgesetzt.",
   "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
@@ -993,7 +973,7 @@
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
     "university": "THM",
-    "free": "Free",
+    "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischten",
     "lecturer": "Dozent/in",
@@ -1118,7 +1098,6 @@
       "removeFromWordcloud": "Entfernen",
       "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
       "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
-
     },
     "card": {
       "header": "Karte",
@@ -1246,23 +1225,42 @@
   "access-level": {
     "demo": {
       "short": "Demo",
-      "long": "Demo"
+      "long": "Demo-Kartei"
     },
     "free": {
-      "short": "Free",
-      "long": "Free"
+      "short": "Frei",
+      "long": "Freier Zugang"
     },
     "edu": {
       "short": "THM",
-      "long": "Technische Hochschule Mittelhessen"
+      "long": "Nur für Mitglieder der Technischen Hochschule Mittelhessen"
     },
     "pro": {
       "short": "Pro",
-      "long": "Pro"
+      "long": "Kostenpflichtiger Zugang"
     },
     "private": {
       "short": "Privat",
-      "long": "Privat"
+      "long": "Private Kartei"
+    }
+  },
+  "import": {
+    "cardset": "Kartei importieren",
+    "success": {
+      "cardset": "Kartei wurde erfolgreich importiert",
+      "cards": "Karten wurden erfolgreich importiert"
+    },
+    "failure": "Fehlerhafte Dateistruktur"
+  },
+  "export": {
+    "failure": {
+      "cardset": "Kartei konnte nicht exportiert werden",
+      "cards": "Karten konnten nicht exportiert werden"
+    },
+    "filename": {
+      "export": "Export",
+      "cardset": "Kartei",
+      "cards": "Karten"
     }
   }
 }

@@ -175,6 +175,10 @@ var CardsSchema = new SimpleSchema({
 	},
 	cardType: {
 		type: Number
+	},
+	originalAuthor: {
+		type: String,
+		optional: true
 	}
 });
 

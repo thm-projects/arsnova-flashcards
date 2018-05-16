@@ -103,6 +103,14 @@
             {{/each}}
         </td>
     </tr>
+    {{#if this.originalAuthor}}
+        <tr>
+            <td>{{_ "cardset.info.originalAuthor"}}:</td>
+            <td>
+                {{this.originalAuthor}}
+            </td>
+        </tr>
+    {{/if}}
     {{#if isActiveRoute regex="learn"}}
         <tr>
             <td>{{_ "set-list.learningMode"}}:</td>
@@ -303,7 +311,8 @@
         <div class="panel panel-default cardsetInfo">
             <div class="panel-body">
                 <div class="row markdeepCardset">
-                    <div class="col-xs-12 {{#if learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
+                    <div class="col-xs-12 {{#if
+                            learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
                         <h4 id="cardsetTitle">{{{getKind kind 0}}} {{name}}</h4>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
@@ -655,7 +664,8 @@
                                 <tr>
                                     <td class="{{getCardBackground this.difficulty this.cardType 1}} cardListRow"
                                         data-id="{{this._id}}">
-                                        <div class="col-xs-11 listCard" data-id="{{this._id}}">{{cleanFrontText this.front}}</div>
+                                        <div class="col-xs-11 listCard" data-id="{{this._id}}">{{cleanFrontText
+                                                this.front}}</div>
                                         <i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"></i>
                                     </td>
                                 </tr>
