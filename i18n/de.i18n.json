@@ -356,16 +356,16 @@
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
       "free": "Organize. Learn. Remember.",
-      "edu": "Edu-Karteien frei erhältlich",
+      "edu": "THM-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat",
       "subscribe": "Pro-Abonnement bestellen",
-      "lecturer": "Dozentenstatus anfragen für das Anlegen von Edu-Karteien und das Prüfen (mit Umsatzbeteiligung) von
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von
       Pro-Karteien
       ",
       "send": "Anfrage abschicken",
-      "lecturerActivatet": "Du bist als Edu-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
+      "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
@@ -427,7 +427,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer Edu-Kartei nach Leitner",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer THM-Kartei nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -992,7 +992,7 @@
     "admin": "Admin",
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "Edu",
+    "university": "THM",
     "free": "Free",
     "private": "Privat",
     "shuffled": "gemischten",
@@ -1241,6 +1241,28 @@
   "markdeep": {
     "editor": {
       "help": "Formatiere mit Markdeep…"
+    }
+  },
+  "access-level": {
+    "demo": {
+      "short": "Demo",
+      "long": "Demo"
+    },
+    "free": {
+      "short": "Free",
+      "long": "Free"
+    },
+    "edu": {
+      "short": "THM",
+      "long": "Technische Hochschule Mittelhessen"
+    },
+    "pro": {
+      "short": "Pro",
+      "long": "Pro"
+    },
+    "private": {
+      "short": "Privat",
+      "long": "Privat"
     }
   }
 }

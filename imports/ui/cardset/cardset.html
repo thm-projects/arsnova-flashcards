@@ -125,7 +125,7 @@
         <tr>
             <td>{{_ "set-list.category"}}:</td>
             <td>
-                {{this.kind}}
+                {{{getKindText this.kind 1}}}
             </td>
         </tr>
     {{/if}}
@@ -304,7 +304,7 @@
             <div class="panel-body">
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
-                        <h4 id="cardsetTitle">{{{getKind}}} {{name}}</h4>
+                        <h4 id="cardsetTitle">{{{getKind kind 0}}} {{name}}</h4>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">
@@ -1226,25 +1226,25 @@
                 <label id="kindoption0"
                        class="btn btn-warning {{#if kindIsActive 'personal'}}active{{/if}}">
                     <input type="radio" name="kind" value="personal" id="kind_private">
-                    <div>Private</div>
+                    <div>{{_ 'access-level.private.short'}}</div>
                 </label>
                 <label id="kindoption1"
                        class="btn btn-info {{#if kindIsActive 'free'}}active{{/if}}">
                     <input type="radio" name="kind" value="free" id="free">
-                    <div>Free</div>
+                    <div>{{_ 'access-level.free.short'}}</div>
                 </label>
                 {{#if isInRole 'admin,editor,lecturer'}}
                     <label id="kindoption2"
                            class="btn btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                         <input type="radio" name="kind" value="edu" id="kind_edu">
-                        <div>Edu</div>
+                        <div>{{_ 'access-level.edu.short'}}</div>
                     </label>
                 {{/if}}
                 {{#if isInRole 'admin,editor,lecturer,pro'}}
                     <label id="kindoption3"
                            class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
                         <input type="radio" name="kind" value="pro" id="kind_pro">
-                        <div>Pro</div>
+                        <div>{{_ 'access-level.pro.short'}}</div>
                     </label>
                 {{/if}}
             </div>
