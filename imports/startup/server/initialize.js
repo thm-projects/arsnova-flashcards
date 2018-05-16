@@ -378,7 +378,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 0,
 			"difficulty": 0
@@ -411,7 +411,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 1,
 			"difficulty": 0
@@ -444,7 +444,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 2,
 			"difficulty": 0
@@ -477,7 +477,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 3,
 			"difficulty": 0
@@ -510,7 +510,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 4,
 			"difficulty": 0
@@ -543,7 +543,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 5,
 			"difficulty": 0
@@ -576,7 +576,7 @@ var initDemoCardsets = function () {
 			"wordcloud": false,
 			"learners": 0,
 			"editors": [],
-			"shuffled": true,
+			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 6,
 			"difficulty": 0
