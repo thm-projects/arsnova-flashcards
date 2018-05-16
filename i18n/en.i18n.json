@@ -516,6 +516,7 @@
   "cardset": {
     "info": {
       "author": "Author",
+      "originalAuthor": "Original Author",
       "rating": "Rating",
       "userRating": "Your rating ",
       "notRated": "Not yet rated",

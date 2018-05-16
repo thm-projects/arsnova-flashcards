@@ -544,6 +544,7 @@
   "cardset": {
     "info": {
       "author": "Autor/in",
+      "originalAuthor": "Verfasser",
       "rating": "Bewertung",
       "userRating": "Deine Bewertung",
       "notRated": "Noch nicht bewertet",

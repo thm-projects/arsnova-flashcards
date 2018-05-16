@@ -40,7 +40,8 @@ Meteor.methods({
 				shuffled: false,
 				cardGroups: [""],
 				cardType: data[0].cardType,
-				difficulty: data[0].difficulty
+				difficulty: data[0].difficulty,
+				originalAuthor: data[0].originalAuthor
 			}, {trimStrings: false});
 			if (cardset_id) {
 				data.shift();
@@ -154,7 +155,8 @@ Meteor.methods({
 					lecture: "",
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
-					backgroundStyle: item.backgroundStyle
+					backgroundStyle: item.backgroundStyle,
+					originalAuthor: item.originalAuthor
 				}, {trimStrings: false});
 			}
 		}
