@@ -161,6 +161,7 @@ $themes: (
     $item_text: map-get($map, "item_text");
     $item_content_link: map-get($map, "item_content_link");
     //difficulty colors
+    $button_difficulty0_note: map-get($map, "button_difficulty0_note");
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
     $button_difficulty3: map-get($map, "button_difficulty3");
@@ -732,7 +733,7 @@ $themes: (
       background-color: $navbar_course_background_hover !important;
       color: $navbar_course_text_hover !important;
     }
-    #navbar-course-iterations.active a, #navbar-course-iterations.active a:hover  {
+    #navbar-course-iterations.active a, #navbar-course-iterations.active a:hover {
       background-color: $navbar_course_background_active !important;
       color: $navbar_course_text_active !important;
     }
@@ -745,7 +746,7 @@ $themes: (
       background-color: $navbar_create_background_hover !important;
       color: $navbar_create_text_hover !important;
     }
-    #navbar-own-decks.active a, #navbar-own-decks.active a:hover  {
+    #navbar-own-decks.active a, #navbar-own-decks.active a:hover {
       background-color: $navbar_create_background_active !important;
       color: $navbar_create_text_active !important;
     }
@@ -758,7 +759,7 @@ $themes: (
       background-color: $navbar_learn_background_hover !important;
       color: $navbar_learn_text_hover !important;
     }
-    #navbar-learn-decks.active a, #navbar-learn-decks.active a:hover  {
+    #navbar-learn-decks.active a, #navbar-learn-decks.active a:hover {
       background-color: $navbar_learn_background_active !important;
       color: $navbar_learn_text_active !important;
     }
@@ -784,7 +785,7 @@ $themes: (
       color: $navbar_alldecks_text_hover !important;
       border-color: $navbar_alldecks_border_hover !important;
     }
-    #navbar-all-decks.active, #navbar-all-decks.active a:hover  {
+    #navbar-all-decks.active, #navbar-all-decks.active a:hover {
       background-color: $navbar_alldecks_background_active !important;
       color: $navbar_alldecks_text_active !important;
       border-color: $navbar_alldecks_border_active !important;
@@ -798,7 +799,7 @@ $themes: (
       background-color: $navbar_help_background_hover !important;
       color: $navbar_help_text_hover !important;
     }
-    #navbar-help.active a, #navbar-help.active a:hover  {
+    #navbar-help.active a, #navbar-help.active a:hover {
       background-color: $navbar_help_background_active !important;
       color: $navbar_help_text_active !important;
     }
@@ -812,7 +813,7 @@ $themes: (
       color: $navbar_backend_text_hover !important;
     }
 
-    #notificationsBtn  > .dropdown-toggle {
+    #notificationsBtn > .dropdown-toggle {
       background-color: $navbar_notifications_background !important;
       color: $navbar_notifications_text !important;
     }
@@ -834,7 +835,7 @@ $themes: (
       background-color: $navbar_profile_background_hover !important;
       color: $navbar_profile_text_hover !important;
     }
-    #navbar-profile.active a, #navbar-profile.active a:hover  {
+    #navbar-profile.active a, #navbar-profile.active a:hover {
       background-color: $navbar_profile_background_active !important;
       color: $navbar_profile_text_active !important;
     }
@@ -968,7 +969,7 @@ $themes: (
                       $background_difficulty0 26px,
                       $background_difficulty0_lines 26px,
                       $background_difficulty0_lines 28px
-      ) !important;
+      ) local !important;
     }
 
     .box-difficultyLinedNote0 {
@@ -978,7 +979,7 @@ $themes: (
                       $background_difficulty0_note 26px,
                       $background_difficulty0_lines_note 26px,
                       $background_difficulty0_lines_note 28px
-      ) !important;
+      ) local !important;
     }
 
     .box-difficultyBlan0 {
@@ -1012,7 +1013,7 @@ $themes: (
                       $background_difficulty1 26px,
                       $background_difficulty1_lines 26px,
                       $background_difficulty1_lines 28px
-      ) !important;
+      ) local !important;
     }
 
     .box-difficultyBlank0 {
@@ -1038,7 +1039,7 @@ $themes: (
                       $background_difficulty2 26px,
                       $background_difficulty2_lines 26px,
                       $background_difficulty2_lines 28px
-      ) !important;
+      ) local !important;
     }
 
     .box-difficultyBlank2 {
@@ -1060,7 +1061,7 @@ $themes: (
                       $background_difficulty3 26px,
                       $background_difficulty3_lines 26px,
                       $background_difficulty3_lines 28px
-      ) !important;
+      ) local !important;
     }
 
     .box-difficultyBlank3 {
@@ -1164,7 +1165,7 @@ $themes: (
     }
 
     .subjectPlaceholder {
-      color:  $card_header_subject_placeholder !important;
+      color: $card_header_subject_placeholder !important;
     }
 
     //cardset
@@ -1446,6 +1447,15 @@ $themes: (
     //forms - cardsetCourseIterationForm
     #setDifficulty .btn, #cardType .btn {
       background-color: $button_difficulty_inactive !important;
+    }
+
+    #setDifficulty .btn-orange {
+      color: $button_difficulty0_note !important;
+    }
+
+    #setDifficulty .btn-orange.active {
+      color: $white !important;
+      background-color: $button_difficulty0_note !important;
     }
 
     #setDifficulty .btn-info {
