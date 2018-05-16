@@ -395,7 +395,7 @@ Template.cardsetInfo.events({
 				let exportData = new Blob([result], {
 					type: "application/json"
 				});
-				saveAs(exportData, name + moment().format('_YYYY_MM_DD') + ".json");
+				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
 			}
 		});
 	},
@@ -1225,17 +1225,17 @@ Template.cardsetImportForm.events({
 						Meteor.call('importCards', res, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
-								$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
+								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
 								Session.set('modifiedCard', undefined);
-								Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
+								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}
 						});
 					} catch (e) {
 						tmpl.uploading.set(false);
-						$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + e.message + '</div>');
+						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 					}
 				};
 				reader.readAsText(evt.target.files[0]);
@@ -1246,10 +1246,10 @@ Template.cardsetImportForm.events({
 						Meteor.call('importCards', results.data, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
-								Bert.alert(TAPi18n.__('upload-form.wrong-template'), 'danger', 'growl-top-left');
+								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
-								Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
+								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}
 						});

@@ -140,12 +140,12 @@ Template.cardsetCourseIterationResultRow.events({
 		let name = $(event.target).data('name');
 		Meteor.call('exportCardset', $(event.target).data('id'), function (error, result) {
 			if (error) {
-				Bert.alert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
+				Bert.alert(TAPi18n.__('export.failure.cardset'), 'danger', 'growl-top-left');
 			} else {
 				let exportData = new Blob([result], {
 					type: "application/json"
 				});
-				saveAs(exportData, name + moment().format('_YYYY_MM_DD') + ".json");
+				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cardset') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
 			}
 		});
 	}

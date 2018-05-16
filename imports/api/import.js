@@ -117,8 +117,8 @@ Meteor.methods({
 		if (!Meteor.userId()) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (data[0].name === undefined) {
-				throw new Meteor.Error(TAPi18n.__('import.wrongFormat.cardset'));
+			if (!data[0].name) {
+				throw new Meteor.Error(TAPi18n.__('import.failure'));
 			} else {
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
@@ -165,6 +165,9 @@ Meteor.methods({
 		}
 	},
 	importCards: function (data, cardset_id, importType) {
+		if (data[0].name) {
+			throw new Meteor.Error(TAPi18n.__('import.failure'));
+		}
 		check(cardset_id, String);
 		check(importType, Number);
 		let cardset = Cardsets.findOne(cardset_id);

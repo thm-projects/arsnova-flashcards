@@ -42,10 +42,10 @@ Template.create.events({
 				let res = $.parseJSON('[' + this.result + ']');
 				Meteor.call('importCardset', res, function (error, result) {
 					if (error) {
-						$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-template') + ": " + error.message + '</div>');
+						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 					}
 					if (result) {
-						Bert.alert(TAPi18n.__('upload-form.success'), 'success', 'growl-top-left');
+						Bert.alert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
 						Router.go('cardsetdetailsid', {
 							_id: result
 						});

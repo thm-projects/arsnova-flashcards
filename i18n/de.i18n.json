@@ -1284,8 +1284,21 @@
   },
   "import": {
     "cardset": "Kartei importieren",
-    "wrongFormat": {
-      "cardset": "Datei enthält keine Kartei"
+    "success": {
+      "cardset": "Kartei wurde erfolgreich importiert",
+      "cards": "Karten wurden erfolgreich importiert"
+    },
+    "failure": "Fehlerhafte Dateistruktur"
+  },
+  "export": {
+    "failure": {
+      "cardset": "Kartei konnte nicht exportiert werden",
+      "cards": "Karten konnten nicht exportiert werden"
+    },
+    "filename": {
+      "export": "Export",
+      "cardset": "Kartei",
+      "cards": "Karten"
     }
   }
 }
