@@ -170,6 +170,10 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	difficulty: {
 		type: Number
+	},
+	originalAuthor: {
+		type: String,
+		optional: true
 	}
 });
 

@@ -27,7 +27,33 @@ Meteor.subscribe("cardsets");
 Template.create.helpers({
 	cardsetList: function () {
 		prepareQuery();
-		return Cardsets.find(Session.get('filterQuery'), {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+		return Cardsets.find(Session.get('filterQuery'), {
+			sort: Session.get('poolSortTopic'),
+			limit: Session.get('itemsLimit')
+		});
+	}
+});
+
+Template.create.events({
+	'change #importCardset': function (evt) {
+		if (evt.target.files[0].name.match(/\.(json)$/)) {
+			let reader = new FileReader();
+			reader.onload = function () {
+				let res = $.parseJSON('[' + this.result + ']');
+				Meteor.call('importCardset', res, function (error, result) {
+					if (error) {
+						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+					}
+					if (result) {
+						Bert.alert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
+						Router.go('cardsetdetailsid', {
+							_id: result
+						});
+					}
+				});
+			};
+			reader.readAsText(evt.target.files[0]);
+		}
 	}
 });
 

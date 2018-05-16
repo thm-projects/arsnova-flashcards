@@ -516,6 +516,7 @@
   "cardset": {
     "info": {
       "author": "Author",
+      "originalAuthor": "Original Author",
       "rating": "Rating",
       "userRating": "Your rating ",
       "notRated": "Not yet rated",
@@ -1275,6 +1276,25 @@
     "private": {
       "short": "Private",
       "long": "Private"
+    }
+  },
+  "import": {
+    "cardset": "Import Cardset",
+    "success": {
+      "cardset": "Cardset was successfully imported",
+      "cards": "Cards have been successfully imported"
+    },
+    "failure": "Wrong Template"
+  },
+  "export": {
+    "failure": {
+      "cardset": "Error while exporting the cardset",
+      "cards": "Error while exporting cards"
+    },
+    "filename": {
+      "export": "Export",
+      "cardset": "Cardset",
+      "cards": "Cards"
     }
   }
 }
