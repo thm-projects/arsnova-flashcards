@@ -68,10 +68,14 @@
         {{#unless gotSidesSwapped}}
             {{> contentNavigationFront tabindex=5}}
         {{else}}
-            {{> contentNavigationBack tabindex=5}}
+            {{#if gotBack}}
+                {{> contentNavigationBack tabindex=5}}
+            {{/if}}
         {{/unless}}
         {{#unless gotSidesSwapped}}
-            {{> contentNavigationBack tabindex=7}}
+            {{#if gotBack}}
+                {{> contentNavigationBack tabindex=7}}
+            {{/if}}
         {{else}}
             {{> contentNavigationFront tabindex=7}}
         {{/unless}}
@@ -87,7 +91,7 @@
 <template name="contentNavigationFront">
     <button id="editFront" type="button"
             class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
-                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+                    gotThreeColumns}}col-sm-4{{else}}{{#if gotOneColumn}}col-sm-12{{else}}col-sm-6{{/if}}{{/if}}{{/if}}"
             tabindex="{{tabindex}}">{{getFrontTitle}}</button>
 </template>
 
@@ -410,16 +414,18 @@
                                             <br>
                                         {{/if}}
                                     </div>
-                                    <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}">
+                                    {{#if gotBack}}
+                                        <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}">
                                                 <span class="fa fa-refresh card-button {{#unless
                                                         isQuestionSide}}pressed{{/unless}}"></span>
                                     </span>
-                                    <span id="swapOrder" data-type="cardNavigation"
-                                          title="{{_ "card.tooltip.lockSide"}}">
+                                        <span id="swapOrder" data-type="cardNavigation"
+                                              title="{{_ "card.tooltip.lockSide"}}">
                                                 <i class="fa fa-anchor card-button {{#if
                                                         reversedViewOrder}}pressed{{/if}}"
                                                    data-type="cardNavigation"></i>
                                     </span>
+                                    {{/if}}
                                     {{#if isPresentation}}
                                         <span class="glyphicon glyphicon-log-out card-button endPresentation"
                                               data-type="cardNavigation" data-toggle="modal"

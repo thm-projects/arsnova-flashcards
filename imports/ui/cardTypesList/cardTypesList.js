@@ -1,8 +1,6 @@
 import "./cardTypesList.html";
 import {Template} from "meteor/templating";
-import {
-	cardTypesOrder, getCardTypeName
-} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
 import {filterCardType, prepareQuery} from "../filter/filter.js";
 import {Session} from "meteor/session";
@@ -15,10 +13,10 @@ import {Session} from "meteor/session";
 
 Template.cardTypesList.helpers({
 	getCardTypes: function () {
-		return cardTypesOrder;
+		return CardType.getCardTypesOrder();
 	},
 	getCardTypeName: function () {
-		return getCardTypeName(this.cardType);
+		return CardType.getCardTypeName(this.cardType);
 	},
 	filterCardTypes: function () {
 		prepareQuery();

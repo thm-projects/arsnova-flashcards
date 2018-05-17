@@ -7,7 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./results.html";
-import {getCardTypeName} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -202,7 +202,7 @@ Template.cardsetCourseIterationResultRow.helpers({
 		}
 	},
 	getCardTypeName: function () {
-		return getCardTypeName(this.cardType);
+		return CardType.getCardTypeName(this.cardType);
 	},
 	getColors: function () {
 		switch (this.kind) {

@@ -751,6 +751,39 @@
         "subject": "Titel des Volltextes"
       }
     },
+    "cardType8": {
+      "name": "Notizen",
+      "front": "Notizen",
+      "placeholders": {
+        "subject": "Titel",
+        "front": "Vorderseite"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType9": {
+      "name": "To-dos",
+      "front": "To-dos",
+      "placeholders": {
+        "subject": "Titel",
+        "front": "Vorderseite"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType10": {
+      "name": "Fotokartei",
+      "front": "Fotokartei",
+      "placeholders": {
+        "subject": "Titel",
+        "front": "Vorderseite"
+      },
+      "editorLabels": {
+        "subject": "Thema der Unterrichtsstunde"
+      }
+    },
     "tooltip": {
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
