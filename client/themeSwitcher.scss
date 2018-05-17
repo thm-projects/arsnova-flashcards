@@ -176,6 +176,12 @@ $themes: (
     $background_difficulty1_lines: map-get($map, "background_difficulty1_lines");
     $background_difficulty2_lines: map-get($map, "background_difficulty2_lines");
     $background_difficulty3_lines: map-get($map, "background_difficulty3_lines");
+    $background_white: map-get($map, "background_white");
+    $background_white_lines: map-get($map, "background_white_lines");
+    $background_post_it: map-get($map, "background_post_it");
+    $background_post_it_lines: map-get($map, "background_post_it_lines");
+    $background_pink: map-get($map, "background_pink");
+    $background_pink_lines: map-get($map, "background_pink_lines");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -324,6 +330,10 @@ $themes: (
       .import-type.active {
         color: white !important;
         background-color: $primary !important;
+      }
+
+      label.text-warning, .text-warning {
+        color: $warning_background !important;
       }
     }
 
@@ -982,6 +992,18 @@ $themes: (
       ) local !important;
     }
 
+    .box-white {
+      background-color: $background_white !important;
+    }
+
+    .box-pink {
+      background-color: $background_pink !important;
+    }
+
+    .box-post-it {
+      background-color: $background_post_it !important;
+    }
+
     .box-difficultyBlan0 {
       background-color: $background_difficulty0 !important;
     }
@@ -1074,6 +1096,18 @@ $themes: (
 
     .box-difficulty-list3:hover {
       background: darken($background_difficulty3_lines, 15%) !important;
+    }
+
+    .box-white-header {
+      background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 4px, $background_white 5px, $background_white 100%) !important;
+    }
+
+    .box-pink-header {
+      background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 4px, $background_pink 5px, $background_pink 100%) !important;
+    }
+
+    .box-post-it-header {
+      background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 4px, $background_post_it 5px, $background_post_it 100%) !important;
     }
 
     .box-difficultyBlank0-header, .box-difficultyLined0-header {

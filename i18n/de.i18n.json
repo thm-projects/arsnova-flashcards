@@ -229,6 +229,7 @@
     "browseCourse": "Kurs auswählen"
   },
   "modal-dialog": {
+    "missingFields": "Bitte vervollständige die folgenden Felder",
     "newcarddeck": "Neue Kartei anlegen",
     "editcard": "Editieren",
     "editreferences": "Kartei mischen",
@@ -748,6 +749,39 @@
       },
       "editorLabels": {
         "subject": "Titel des Volltextes"
+      }
+    },
+    "cardType8": {
+      "name": "Notizen",
+      "front": "Notizen",
+      "placeholders": {
+        "subject": "Gib der Karte einen treffenden Titel",
+        "front": "Diese Karte ist einseitig für Notizen konzipiert."
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType9": {
+      "name": "To-dos",
+      "front": "To-dos",
+      "placeholders": {
+        "subject": "Gib der Karte einen treffenden Titel",
+        "front": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert."
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType10": {
+      "name": "Fotokartei",
+      "front": "Fotokartei",
+      "placeholders": {
+        "subject": "Gib der Karte einen treffenden Titel",
+        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert."
+      },
+      "editorLabels": {
+        "subject": "Thema der Unterrichtsstunde"
       }
     },
     "tooltip": {

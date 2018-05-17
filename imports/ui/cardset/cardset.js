@@ -14,14 +14,7 @@ import "../learn/learn.js";
 import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import {
-	getCardTypeName,
-	gotDifficultyLevel,
-	gotLearningGoal,
-	gotLearningModes,
-	gotNotesForDifficultyLevel,
-	gotPresentationMode
-} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 import TargetAudience from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");
@@ -506,16 +499,16 @@ Template.cardsetInfoBoxContentOne.helpers({
 		return this.moduleLink !== "" && this.moduleLink !== undefined;
 	},
 	getCardType: function () {
-		return getCardTypeName(this.cardType);
+		return CardType.getCardTypeName(this.cardType);
 	},
 	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(this.cardType);
+		return CardType.gotNotesForDifficultyLevel(this.cardType);
 	},
 	getDifficultyName: function () {
-		if (gotNotesForDifficultyLevel(this.cardType)) {
+		if (CardType.gotNotesForDifficultyLevel(this.cardType)) {
 			return TAPi18n.__('difficultyNotes' + this.difficulty);
 		} else {
-			if (!gotDifficultyLevel(this.cardType)) {
+			if (!CardType.gotDifficultyLevel(this.cardType)) {
 				return TAPi18n.__('difficulty0');
 			} else {
 				return TAPi18n.__('difficulty' + this.difficulty);
@@ -623,13 +616,13 @@ Template.cardsetInfoBoxContentTwo.helpers({
 		return this.moduleLink !== "" && this.moduleLink !== undefined;
 	},
 	getCardType: function () {
-		return getCardTypeName(this.cardType);
+		return CardType.getCardTypeName(this.cardType);
 	},
 	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(this.cardType);
+		return CardType.gotNotesForDifficultyLevel(this.cardType);
 	},
 	getDifficultyName: function () {
-		if (gotNotesForDifficultyLevel(this.cardType)) {
+		if (CardType.gotNotesForDifficultyLevel(this.cardType)) {
 			return TAPi18n.__('difficultyNotes' + this.difficulty);
 		} else {
 			return TAPi18n.__('difficulty' + this.difficulty);
@@ -788,10 +781,10 @@ Template.cardsetSidebar.helpers({
 		return (this.quantity >= 3);
 	},
 	gotLearningModes: function () {
-		return gotLearningModes(this.cardType);
+		return CardType.gotLearningModes(this.cardType);
 	},
 	gotPresentation: function () {
-		return gotPresentationMode(this.cardType);
+		return CardType.gotPresentationMode(this.cardType);
 	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
@@ -862,7 +855,7 @@ Template.chooseFlashcards.helpers({
 		}
 	},
 	gotLearningGoal: function () {
-		return gotLearningGoal(this.cardType);
+		return CardType.gotLearningGoal(this.cardType);
 	},
 	getSortMode: function () {
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');

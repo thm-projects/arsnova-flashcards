@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./navigation.html";
 import MarkdeepEditor from "../../api/markdeepEditor.js";
+import CardType from "../../api/cardTypes";
 
 export function isTextCentered() {
 	let centerTextElement = Session.get('centerTextElement');
@@ -48,5 +49,8 @@ Template.markdeepNavigation.helpers({
 	},
 	isFullscreenActive: function () {
 		return Session.get('fullscreen');
+	},
+	gotOneColumn: function () {
+		return CardType.gotOneColumn(Session.get('cardType'));
 	}
 });

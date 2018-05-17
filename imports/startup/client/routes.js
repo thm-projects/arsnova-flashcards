@@ -3,10 +3,10 @@ import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {gotSidesSwapped} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 
 function setEditMode(cardType) {
-	if (gotSidesSwapped(cardType)) {
+	if (CardType.gotSidesSwapped(cardType)) {
 		Session.set('activeEditMode', 1);
 		Session.set('lastEditMode', 1);
 	} else {

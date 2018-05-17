@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {getPlaceholderText, gotSidesSwapped} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 import {Template} from "meteor/templating";
 import "./content.html";
 import {isTextCentered} from "./navigation";
@@ -38,10 +38,10 @@ Template.markdeepContent.events({
 
 Template.markdeepContent.helpers({
 	getPlaceholder: function () {
-		return getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
+		return CardType.getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
 	},
 	gotSidesSwapped: function () {
-		return gotSidesSwapped(this.cardType);
+		return CardType.gotSidesSwapped(this.cardType);
 	},
 	getShuffleDescription: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {

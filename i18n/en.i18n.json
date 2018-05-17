@@ -239,6 +239,7 @@
     "browseCourse": "Select all files of a course"
   },
   "modal-dialog": {
+    "missingFields": "Missing Fields",
     "newcarddeck": "Create a new deck of cards",
     "editcard": "Edit deck of cards",
     "editreferences": "Edit references",
@@ -778,6 +779,39 @@
         "front": "Citation",
         "back": "Cited person",
         "hint": "Reference"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
+    },
+    "cardType8": {
+      "name": "Notes",
+      "front": "Notes",
+      "placeholders": {
+        "subject": "Subject",
+        "front": "Notes"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
+    },
+    "cardType9": {
+      "name": "To-do",
+      "front": "To-do",
+      "placeholders": {
+        "subject": "Subject",
+        "front": "To-do"
+      },
+      "editorLabels": {
+        "subject": "Subject"
+      }
+    },
+    "cardType10": {
+      "name": "Photo library",
+      "front": "Photo library",
+      "placeholders": {
+        "subject": "Subject",
+        "front": "Photo library"
       },
       "editorLabels": {
         "subject": "Subject"
