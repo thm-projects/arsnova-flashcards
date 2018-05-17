@@ -229,6 +229,7 @@
     "browseCourse": "Kurs auswählen"
   },
   "modal-dialog": {
+    "missingFields": "Bitte vervollständige die folgenden Felder",
     "newcarddeck": "Neue Kartei anlegen",
     "editcard": "Editieren",
     "editreferences": "Kartei mischen",

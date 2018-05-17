@@ -325,6 +325,10 @@ $themes: (
         color: white !important;
         background-color: $primary !important;
       }
+
+      label.text-warning, .text-warning {
+        color: $warning_background !important;
+      }
     }
 
     .label-info {
