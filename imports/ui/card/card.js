@@ -13,10 +13,25 @@ import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
 import {
 	defaultCenteredText,
 	gotDictionary,
-	gotDifficultyLevel, gotFourColumns, gotHint, gotLearningGoal, gotLearningUnit, gotLecture,
-	gotNotesForDifficultyLevel, gotThreeColumns,
-	getPlaceholderText, getFrontTitle, getBackTitle, getHintTitle, displaysSideInformation,
-	displaysLearningGoalInformation, gotSidesSwapped, gotAlternativeHintStyle, getSubjectPlaceholderText
+	gotDifficultyLevel,
+	gotFourColumns,
+	gotHint,
+	gotLearningGoal,
+	gotLearningUnit,
+	gotLecture,
+	gotNotesForDifficultyLevel,
+	gotThreeColumns,
+	getPlaceholderText,
+	getFrontTitle,
+	getBackTitle,
+	getHintTitle,
+	displaysSideInformation,
+	displaysLearningGoalInformation,
+	gotSidesSwapped,
+	gotAlternativeHintStyle,
+	getSubjectPlaceholderText,
+	gotBack,
+	gotOneColumn
 } from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
@@ -899,6 +914,9 @@ Template.contentNavigationFront.helpers({
 	},
 	gotThreeColumns: function () {
 		return gotThreeColumns(Session.get('cardType'));
+	},
+	gotOneColumn: function () {
+		return gotOneColumn(Session.get('cardType'));
 	}
 });
 
@@ -1395,7 +1413,11 @@ Template.flashcards.helpers({
 		}
 	},
 	gotBack: function () {
-		return this.back !== '' && this.back !== undefined;
+		if (gotBack(this.cardType)) {
+			return this.back !== '' && this.back !== undefined;
+		} else {
+			return false;
+		}
 	},
 	gotFront: function () {
 		return this.front !== '' && this.front !== undefined;
@@ -1447,7 +1469,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .box": function (evt) {
-		if (Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
+		if (!gotOneColumn(Session.get('cardType')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
 			if (isEditMode() && !Session.get('fullscreen')) {
 				turnCard(true);
 			} else {

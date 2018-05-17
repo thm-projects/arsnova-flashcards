@@ -8,6 +8,10 @@ import {Session} from "meteor/session";
 //5: Prüfung / Exam
 //6: Anweisungssatz / Command set
 //7: Abstract
+//8: Notizen / Notes
+//9: To-dos / To-do
+//10: Fotokartei / Photo library
+let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7];
 let cardTypesWithCenteredText = [1, 3, 4, 5, 6];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5];
@@ -22,7 +26,11 @@ let cardTypesWithLecture = [0];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7];
 let cardTypesWithSwappedSides = [6];
 export let cardTypeWithNotesForDifficultyLevel = [2];
-export let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}];
+export let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
+
+export function gotBack(cardType) {
+	return cardTypesWithBack.includes(cardType);
+}
 
 export function gotHint(cardType) {
 	return cardTypesWithHint.includes(cardType);
@@ -33,7 +41,10 @@ export function gotLecture(cardType) {
 }
 
 function getColumnCount(cardType) {
-	let i = 2;
+	let i = 1;
+	if (gotBack(cardType)) {
+		i++;
+	}
 	if (gotHint(cardType)) {
 		i++;
 	}
@@ -58,6 +69,11 @@ export function gotFourColumns(cardType) {
 export function gotThreeColumns(cardType) {
 	return getColumnCount(cardType) === 3;
 }
+
+export function gotOneColumn(cardType) {
+	return getColumnCount(cardType) === 1;
+}
+
 
 export function gotAlternativeHintStyle(cardType) {
 	return cardTypesWithAlternativeHintStyle.includes(cardType);
