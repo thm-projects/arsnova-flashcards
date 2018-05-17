@@ -8,8 +8,10 @@
                 <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
                 <i class="card-button fa fa-sort-numeric-asc markdeep-card-order"></i>
                 <i class="card-button fa fa-lock markdeep-lock"></i>
-                <i class="card-button fa fa-paint-brush markdeep-background-style {{#if
-                        isAlternativeBackgroundStyle}}pressed{{/if}}"></i>
+                {{#unless gotOneColumn}}
+                    <i class="card-button fa fa-paint-brush markdeep-background-style {{#if
+                            isAlternativeBackgroundStyle}}pressed{{/if}}"></i>
+                {{/unless}}
                 <i class="card-button glyphicon glyphicon-fullscreen markdeep-fullscreen {{#if
                         isFullscreenActive}}pressed{{/if}}"></i>
             {{/if}}

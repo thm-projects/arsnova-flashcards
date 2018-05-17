@@ -25,7 +25,7 @@ let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
 let cardTypesWithLecture = [0];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7];
 let cardTypesWithSwappedSides = [6];
-let cardTypeWithNotesForDifficultyLevel = [2];
+let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
 
 class CardType {
@@ -105,7 +105,7 @@ class CardType {
 	}
 
 	static gotNotesForDifficultyLevel (cardType) {
-		return cardTypeWithNotesForDifficultyLevel.includes(cardType);
+		return cardTypesWithNotesForDifficultyLevel.includes(cardType);
 	}
 
 	static gotDictionary (cardType) {

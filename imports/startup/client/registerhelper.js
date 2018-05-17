@@ -469,6 +469,14 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+	switch (cardType) {
+		case 8:
+			return 'box-post-it';
+		case 9:
+			return 'box-pink';
+		case 10:
+			return 'box-white';
+	}
 	if (!CardType.gotDifficultyLevel(cardType)) {
 		if (backgroundStyle === 0) {
 			return 'box-difficultyLined0';
