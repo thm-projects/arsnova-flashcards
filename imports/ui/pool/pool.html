@@ -14,14 +14,18 @@
 </template>
 
 <template name="category">
-    {{> filterNavigation}}
-    {{#if getDecks.count}}
-        {{#each getDecks}}
+    {{#if getDecks 0}}
+        {{> filterNavigation}}
+        {{#if getDecks 1}}
+            {{#each getDecks 2}}
                 {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-        {{/each}}
-        {{> infiniteScroll}}
+            {{/each}}
+            {{> infiniteScroll}}
+        {{else}}
+            {{> noFilterResults}}
+        {{/if}}
     {{else}}
-        {{> poolCardsetEmpty}}
+        {{> noResults}}
     {{/if}}
 </template>
 
@@ -55,13 +59,4 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-</template>
-
-<template name="poolCardsetEmpty">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 empty-list panel panel-default cardsetInfo ">
-        <br>
-        <span class="emptyTextList">{{_ "set-list-empty.emptypooltextlist"}}</span>
-        <br>
-        <br>
-    </div>
 </template>

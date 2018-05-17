@@ -160,6 +160,8 @@ $themes: (
     $item_description_text: map-get($map, "item_description_text");
     $item_text: map-get($map, "item_text");
     $item_content_link: map-get($map, "item_content_link");
+    $no_results_background: map-get($map, "no_results_background");
+    $no_results_text: map-get($map, "no_results_text");
     //difficulty colors
     $button_difficulty0_note: map-get($map, "button_difficulty0_note");
     $button_difficulty1: map-get($map, "button_difficulty1");
@@ -1632,6 +1634,11 @@ $themes: (
     .pro-membership {
       background-color: $thm_orange !important;
       color: white !important;
+    }
+
+    .no-results, .no-results-filtered {
+      background-color: $no_results_background !important;
+      color: $no_results_text !important;
     }
   }
 }

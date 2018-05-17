@@ -27,7 +27,7 @@
 <template name="shuffle">
     {{#if canShuffle}}
         {{#unless isShuffleRoute}}
-            {{#if shuffleList.count}}
+            {{#if shuffleList 0}}
                 <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
                         "set-list.shuffleCardsets"}}</a>
             {{/if}}
@@ -65,16 +65,20 @@
                                 "set-list.shuffleRemove"}}</button>
                     {{/if}}
                 </div>
-                <br>
-                {{#if shuffleList.count}}
+                {{#if shuffleList 0}}
                     {{> filterNavigation}}
-                    {{#each shuffleList}}
-                        {{#unless isActiveCardset}}
-                            {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-                        {{/unless}}
-                    {{/each}}
+                    {{#if shuffleList 1}}
+                        {{#each shuffleList 2}}
+                            {{#unless isActiveCardset}}
+                                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                            {{/unless}}
+                        {{/each}}
+                        {{> infiniteScroll}}
+                    {{else}}
+                        {{> noFilterResults}}
+                    {{/if}}
                 {{else}}
-                    {{> cardsetEmpty}}
+                    {{> noResults}}
                 {{/if}}
             </div>
         {{/unless}}
@@ -83,13 +87,11 @@
 
 <template name="create">
     <div class="col-md-12" id="set-list-region">
-        {{#if cardsetList.count}}
-            {{#if isActiveRoute 'create'}}
-                <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                        data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
-                    {{_ "set-list-empty.newset"}}
-                </button>
-            {{/if}}
+        {{#if isActiveRoute 'create'}}
+            <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                {{_ "set-list-empty.newset"}}
+            </button>
         {{/if}}
         {{> shuffle}}
         {{#if isActiveRoute 'create'}}
@@ -97,74 +99,44 @@
                 {{_ "import.cardset"}} <input type="file" id="importCardset" style="display: none;">
             </label>
         {{/if}}
-        {{> filterNavigation}}
-        {{#if cardsetList.count}}
-            {{#each cardsetList}}
-                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-            {{/each}}
-            {{> infiniteScroll}}
-        {{else}}
-            {{#if isActiveRoute 'create'}}
-                {{> cardsetEmpty}}
+        {{#if cardsetList 0}}
+            {{> filterNavigation}}
+            {{#if cardsetList 1}}
+                {{#each cardsetList 2}}
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
             {{else}}
-                {{> poolCardsetEmpty}}
+                {{> noFilterResults}}
             {{/if}}
+        {{else}}
+            {{> noResults}}
         {{/if}}
-    </div>
-</template>
-
-<template name="cardsetEmpty">
-    <div class="empty-list">
-        <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
-            {{#if isActiveRoute 'create'}}
-                <span class="emptyTextList">
-                    {{_ "set-list-empty.emptytextlist"}}
-                </span>
-                <br>
-                <button id="setListEmpty" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
-                        data-target="#setCardsetCourseIterationFormModal">{{_ "set-list-empty.newset"}}</button>
-            {{/if}}
-
-            {{#if isActiveRoute 'learn'}}
-                <span class="emptyTextList">
-                    {{#if canShuffle}}
-                        {{_ "set-list-learn-empty.emptytextlist"}}
-                    {{else}}
-                        {{_ "set-list-learn-empty.emptytextlistNoShuffle"}}
-                    {{/if}}
-                </span>
-                <br>
-                <button id="browseCardset" class="btn btn-raised btn-success btn-newSet">{{_
-                        "set-list-learn-empty.browseCardset"}}</button>
-                <button id="browseCourse" class="btn btn-raised btn-success btn-newSet" data-toggle="modal"
-                        data-target="#underDevelopmentModal">{{_
-                        "set-list-learn-empty.browseCourse"}}</button>
-            {{/if}}
-        </div>
     </div>
 </template>
 
 <template name="learn">
     {{> selectModeForm}}
+    {{> cardsetsConfirmLearnForm}}
     <div id="learn-list-region" class="col-md-12">
-        {{#if learnList.count}}
-            <a id="browseCardset" class="btn btn-raised btn-success">{{_
-                    "set-list-learn-empty.browseCardset"}}</a>
-            <a id="browseCourse" class="btn btn-raised btn-success" data-toggle="modal"
-               data-target="#underDevelopmentModal">{{_
-                    "set-list-learn-empty.browseCourse"}}</a>
-        {{/if}}
-        {{> shuffle}}
-        {{#if learnList.count}}
+        <a id="browseCardset" class="btn btn-raised btn-success">{{_
+                "set-list-learn-empty.browseCardset"}}</a>
+        <a id="browseCourse" class="btn btn-raised btn-success" data-toggle="modal"
+           data-target="#underDevelopmentModal">{{_
+                "set-list-learn-empty.browseCourse"}}</a>
+        {{#if learnList 0}}
             {{> filterNavigation}}
-            {{#each learnList}}
-                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-            {{/each}}
-            {{> infiniteScroll}}
+            {{#if learnList 1}}
+                {{#each learnList 2}}
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
         {{else}}
-            {{> cardsetEmpty}}
+            {{> noResults}}
         {{/if}}
-        {{> cardsetsConfirmLearnForm}}
     </div>
 </template>
 
