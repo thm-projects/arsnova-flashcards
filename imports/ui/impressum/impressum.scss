@@ -1,0 +1,34 @@
+@media(max-width: 767px) {
+  .modal-footer button {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
+
+  #contact-nav a {
+    text-align: left;
+    padding: 10px;
+  }
+}
+
+#contact-nav a, #contact-nav-footer a {
+  border-radius: 0;
+  margin-bottom: 0;
+  outline: none;
+  padding: 10px 0;
+}
+
+#contact-nav {
+  -webkit-box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: -3px 1px 6px 0 rgba(0, 0, 0, 0.12), -3px 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+#footer #contact-nav {
+  -webkit-box-shadow: unset !important;
+  box-shadow: unset !important;
+}
+
+.info-tab {
+  img {
+    width: unset !important;
+  }
+}
