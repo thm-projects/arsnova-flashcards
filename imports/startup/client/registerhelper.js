@@ -9,7 +9,7 @@ import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
 import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
-import {gotDifficultyLevel, gotNotesForDifficultyLevel} from "../../api/cardTypes";
+import CardType from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.js";
@@ -469,20 +469,20 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
-	if (!gotDifficultyLevel(cardType)) {
+	if (!CardType.gotDifficultyLevel(cardType)) {
 		if (backgroundStyle === 0) {
 			return 'box-difficultyLined0';
 		} else {
 			return 'box-difficultyBlank0';
 		}
 	}
-	if (difficulty === 0 && !gotNotesForDifficultyLevel(cardType)) {
+	if (difficulty === 0 && !CardType.gotNotesForDifficultyLevel(cardType)) {
 		difficulty = 1;
 	}
 	if (backgroundStyle === 0) {
 		switch (difficulty) {
 			case 0:
-				if (gotNotesForDifficultyLevel(cardType)) {
+				if (CardType.gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyLinedNote0';
 				}
 				break;
@@ -498,7 +498,7 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 	} else {
 		switch (difficulty) {
 			case 0:
-				if (gotNotesForDifficultyLevel(cardType)) {
+				if (CardType.gotNotesForDifficultyLevel(cardType)) {
 					return 'box-difficultyBlankNote0';
 				}
 				break;
