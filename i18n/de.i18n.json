@@ -737,15 +737,15 @@
       }
     },
     "cardType7": {
-      "name": "Abstracts",
-      "front": "Abstract",
-      "back": "Zitierte Person",
-      "hint": "Quellenangabe",
+      "name": "Abstracts | Exzerpte",
+      "front": "Abstract | Exzerpt",
+      "back": "Anmerkungen",
+      "hint": "Bibliografische Angaben",
       "placeholders": {
         "subject": "Gib der Karte einen treffenden Titel",
-        "front": "Abstract",
-        "back": "Zitierte Person",
-        "hint": "Quellenangabe"
+        "front": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
+        "back": "Notiere zum Beispiel die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
+        "hint": "Halte hier die bibliographischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
       },
       "editorLabels": {
         "subject": "Titel des Volltextes"
