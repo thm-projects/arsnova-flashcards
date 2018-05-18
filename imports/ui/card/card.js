@@ -360,6 +360,13 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#markdeepNavigation").css("display", '');
 		$("#markdeepEditorContent").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
+		let card_id;
+		if (Router.current().params.card_id) {
+			card_id = Router.current().params.card_id;
+		} else {
+			card_id = "-1";
+		}
+		$("#collapseLecture-" + card_id).removeClass('in');
 		editorFullScreenActive = false;
 		lastEditMode = Session.get('lastEditMode');
 		if (lastEditMode === 2 && lastEditMode === 3) {

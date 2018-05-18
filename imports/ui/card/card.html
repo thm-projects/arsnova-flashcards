@@ -368,9 +368,11 @@
                                                     </a>
                                                 {{/if}}
                                             {{/if}}
+                                        {{/unless}}
+                                        {{#unless isEditMode}}
                                             {{#if gotDictionary}}
                                                 <a href="#" id="showLecture">
-                                                    <img class="card-button showLectureImage"
+                                                    <img class="card-button showLectureImage {{#if isEditModeOrPresentation}}showLectureImagePresentation{{/if}}"
                                                          data-type="cardNavigation"
                                                          data-toggle="collapse"
                                                          data-target="#collapseLecture-{{_id}}"
@@ -515,7 +517,7 @@
                                 {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
                                          id="collapseLecture-{{_id}}"
-                                         style="{{#if isEditModeOrPresentation}}display: none{{/if}}">
+                                         style="{{#if isEditMode}}display: none{{/if}}">
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
