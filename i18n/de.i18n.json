@@ -52,7 +52,7 @@
     "help": "Hilfe",
     "faq": "FAQ",
     "impressum": "Impressum",
-    "datenschutz": "EU-DSGVO",
+    "datenschutz": "Datenschutz",
     "agb": "AGB"
   },
   "notifications": {
@@ -655,7 +655,7 @@
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an",
         "front": "Zu übersetzende Vokabel oder Phrase \n\nWenn du ein einzelnes englisches Wort eingibst, wird in der Kartenansicht \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
-        "back": "Übersetzung (Empfehlung: https://www.deepl.com)"
+        "back": "Empfehlung für die Übersetzung von Textpassagen: deepl.com"
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -744,8 +744,8 @@
       "placeholders": {
         "subject": "Gib den Titel des Volltextes an",
         "front": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
-        "back": "Notiere zum Beispiel die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
-        "hint": "Halte hier die bibliographischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
+        "back": "Notiere die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
+        "hint": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
       },
       "editorLabels": {
         "subject": "Titel des Volltextes"
@@ -755,8 +755,8 @@
       "name": "Notizen",
       "front": "Notizen",
       "placeholders": {
-        "subject": "Gib das Thema der Notiz an",
-        "front": "Diese Karte ist einseitig für Notizen konzipiert."
+        "subject": "Gib das Thema deiner Notiz an",
+        "front": "Diese Karte ist einseitig für Notizen konzipiert. Es gibt keine Rückseite."
       },
       "editorLabels": {
         "subject": "Thema"
@@ -766,8 +766,8 @@
       "name": "To-dos",
       "front": "To-dos",
       "placeholders": {
-        "subject": "Gib das Thema oder das Datum der To-dos an",
-        "front": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert."
+        "subject": "Gib das Thema oder Datum der To-dos an",
+        "front": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert.Es gibt keine Rückseite."
       },
       "editorLabels": {
         "subject": "Thema"
@@ -778,7 +778,7 @@
       "front": "Fotokartei",
       "placeholders": {
         "subject": "Gib das Thema des Fotos an",
-        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert."
+        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)"
       },
       "editorLabels": {
         "subject": "Thema des Fotos"

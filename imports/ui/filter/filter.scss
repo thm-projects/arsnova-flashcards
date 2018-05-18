@@ -1,9 +1,3 @@
-@media (min-width: 768px) {
-  .pool-filter-margin {
-    margin-top: 56px;
-  }
-}
-
 #filter-nav-wrapper, #filter-nav {
   padding: 0;
   text-align: left;
@@ -132,4 +126,21 @@
   font-family: $default_font !important;
   font-size: $font_size_infinite_scroll_text !important;
   font-weight: $font_weight_infinite_scroll_text !important;
+}
+
+.no-results, .no-results-filtered {
+  display: table;
+  height: 100px;
+  text-align:center;
+}
+
+.no-navigation {
+  @media (min-width: 768px) {
+    margin-top: 56px;
+  }
+}
+
+.no-result-text {
+  display: table-cell;
+  vertical-align: middle;
 }

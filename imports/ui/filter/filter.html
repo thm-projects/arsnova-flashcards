@@ -11,8 +11,7 @@
             </div>
             <br>
         {{/if}}
-        <nav class="navbar navbar-default {{#if isActiveRoute 'pool'}}{{#unless
-                selectingCardsetToLearn}}pool-filter-margin{{/unless}}{{/if}}">
+        <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}no-navigation{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
                     <button class="resetFilters btn btn-raised btn-danger hidden-lg float-left" id="resetBtnMobile"
@@ -357,13 +356,16 @@
                                         </label>
                                     {{/if}}
                                     <label class="btn btn-info btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="free" checked=""> {{_ 'access-level.free.short'}}
+                                        <input type="checkbox" autocomplete="off" value="free" checked=""> {{_
+                                            'access-level.free.short'}}
                                     </label>
                                     <label class="btn btn-success btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="edu" checked=""> {{_ 'access-level.edu.short'}}
+                                        <input type="checkbox" autocomplete="off" value="edu" checked=""> {{_
+                                            'access-level.edu.short'}}
                                     </label>
                                     <label class="btn btn-danger btn-sm active">
-                                        <input type="checkbox" autocomplete="off" value="pro" checked=""> {{_ 'access-level.pro.short'}}
+                                        <input type="checkbox" autocomplete="off" value="pro" checked=""> {{_
+                                            'access-level.pro.short'}}
                                     </label>
                                 </div>
                             </ul>

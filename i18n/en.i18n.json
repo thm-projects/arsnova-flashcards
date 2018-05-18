@@ -657,7 +657,8 @@
     "wordcloudTrue": "In Word-Cloud",
     "wordcloudFalse": "Not in Word-Cloud",
     "wordcloudEveryting": "All",
-    "from": "From"
+    "from": "From",
+    "noResults": "Keine Ergebnisse für diese Filtereinstellung"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",
