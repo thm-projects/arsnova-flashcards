@@ -16,6 +16,9 @@ Template.markdeepContent.rendered = function () {
 };
 
 Template.markdeepContent.events({
+	'click #contentEditor': function () {
+		Session.set('dictionaryPreview', 0);
+	},
 	'keyup #contentEditor': function () {
 		let content = $('#contentEditor').val();
 		$('#editor').attr('data-content', content);

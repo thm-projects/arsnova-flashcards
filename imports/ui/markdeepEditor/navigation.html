@@ -8,6 +8,12 @@
                 {{#unless isHintPreview}}
                     <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
                 {{/unless}}
+                {{#unless isFullscreenActive}}
+                    {{#if gotDictionary}}
+                        <i class="markdeep-dictionary fa fa-book card-button {{#if
+                                isDictionaryActive}}pressed{{/if}}"></i>
+                    {{/if}}
+                {{/unless}}
                 <i class="card-button fa fa-sort-numeric-asc markdeep-card-order"></i>
                 <i class="card-button fa fa-lock markdeep-lock"></i>
                 {{#unless gotOneColumn}}

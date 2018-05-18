@@ -115,6 +115,7 @@ function prepareFront() {
 	if (CardType.gotLecture(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
+	Session.set('dictionaryPreview', 0);
 }
 
 function prepareBack() {
@@ -145,6 +146,7 @@ function prepareBack() {
 	if (CardType.gotHint(Session.get('cardType'))) {
 		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 	}
+	Session.set('dictionaryPreview', 0);
 }
 
 function turnFront(adjustEditWindow = false) {
@@ -329,7 +331,7 @@ function resizeFlashcards() {
 	} else {
 		newFlashcardHeader = $('.active .cardHeader').outerHeight();
 		let editorHeader = $('#markdeepNavigation').outerHeight();
-		if (Session.get('activeEditMode') >= 2) {
+		if (Session.get('activeEditMode') >= 2 || Session.get('dictionaryPreview')) {
 			newFlashcardHeader = 0;
 		}
 		let newFlashcardWidth = $('#cardCarousel').width();
@@ -1203,6 +1205,9 @@ Template.cardLectureContent.helpers({
 	},
 	getPlaceholder: function (mode) {
 		return CardType.getPlaceholderText(mode, this.cardType);
+	},
+	gotDictionary: function () {
+		return CardType.gotDictionary(this.cardType);
 	}
 });
 
@@ -1405,18 +1410,6 @@ Template.flashcards.helpers({
 			return CardType.gotDictionary(this.cardType);
 		}
 	},
-	getDictionarySearchText: function () {
-		let searchText;
-		if (Session.get('isQuestionSide')) {
-			searchText = this.front.trim();
-		} else {
-			searchText = this.back.trim();
-		}
-		let wordCount = searchText.split(/\s+/);
-		if (wordCount.length === 1) {
-			return "&query=" + searchText;
-		}
-	},
 	gotLecture: function () {
 		if (Session.get('shuffled')) {
 			return CardType.gotLecture(Session.get('cardType'));
@@ -1463,13 +1456,18 @@ Template.flashcards.helpers({
 		return Session.get('reverseViewOrder');
 	},
 	isFrontPreview: function () {
-		return (Session.get('activeEditMode') === 0 && isEditModeOrPresentation());
+		return (Session.get('activeEditMode') === 0 && isEditModeOrPresentation() && !Session.get('dictionaryPreview'));
 	},
 	isLecturePreview: function () {
 		if (CardType.gotLecture(this.cardType)) {
 			return (Session.get('activeEditMode') === 3 && isEditModeOrPresentation());
 		} else {
 			return false;
+		}
+	},
+	isDictionaryPreview: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryPreview') && isEditMode();
 		}
 	},
 	isHintPreview: function () {
@@ -1580,6 +1578,27 @@ Template.flashcards.events({
 			});
 		} else {
 			toggleFullscreen();
+		}
+	}
+});
+
+/*
+ * ############################################################################
+ * cardDictionaryContent
+ * ############################################################################
+ */
+
+Template.cardDictionaryContent.helpers({
+	getDictionarySearchText: function () {
+		let searchText;
+		if (Session.get('isQuestionSide')) {
+			searchText = this.front.trim();
+		} else {
+			searchText = this.back.trim();
+		}
+		let wordCount = searchText.split(/\s+/);
+		if (wordCount.length === 1) {
+			return "&query=" + searchText;
 		}
 	}
 });
