@@ -800,7 +800,11 @@ Template.cardsetSidebar.helpers({
 		return CardType.gotLearningModes(this.cardType);
 	},
 	gotPresentation: function () {
-		return CardType.gotPresentationMode(this.cardType);
+		if (this.shuffled) {
+			return true;
+		} else {
+			return CardType.gotPresentationMode(this.cardType);
+		}
 	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});

@@ -643,7 +643,7 @@
     <div class="{{#if isActiveRoute 'cardsetlistid'}}col-md-9{{/if}}" id="cardset-list">
         {{#if gotCards}}
             {{#each cardsetList}}
-                {{#if isShuffledCardset}}
+                {{#if isShuffledCardset this._id}}
                     <div class="cardListName btn-raised {{getColors}}">
                         {{this.name}}
                     </div>

@@ -515,7 +515,13 @@ function getLeitnerCards() {
 
 function getPresentationCards(countCards = false) {
 	let sortQuery = {};
-
+	let cardsetFilter = {};
+	let cardset = Cardsets.findOne(Router.current().params._id);
+	if (cardset.shuffled) {
+		cardsetFilter = cardset.cardGroups;
+	} else {
+		cardsetFilter.push(Router.current().params._id);
+	}
 	if (Session.get('chooseFlashcardsFilter')[0]) {
 		if (CardType.gotSidesSwapped(this.cardType)) {
 			sortQuery = {subject: 1, back: 1};
@@ -525,12 +531,12 @@ function getPresentationCards(countCards = false) {
 	}
 	if (countCards) {
 		return Cards.find({
-			cardset_id: Router.current().params._id,
+			cardset_id: {$in: cardsetFilter},
 			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
 		}).count();
 	} else {
 		return Cards.find({
-			cardset_id: Router.current().params._id,
+			cardset_id: {$in: cardsetFilter},
 			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
 		}, {
 			sort: {
@@ -1321,18 +1327,10 @@ Template.flashcards.helpers({
 		return count === 1;
 	},
 	displaysLearningGoalInformation: function () {
-		if (Session.get('shuffled')) {
-			return CardType.displaysLearningGoalInformation(Session.get('cardType'));
-		} else {
-			return CardType.displaysLearningGoalInformation(this.cardType);
-		}
+		return CardType.displaysLearningGoalInformation(this.cardType);
 	},
 	displaysSideInformation: function () {
-		if (Session.get('shuffled')) {
-			return CardType.displaysSideInformation(Session.get('cardType'));
-		} else {
-			return CardType.displaysSideInformation(this.cardType);
-		}
+		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
 		if (isBox()) {
@@ -1478,7 +1476,13 @@ Template.flashcards.helpers({
 	isCentered: function (type) {
 		isCentered(type);
 	},
+	gotOneColumn: function () {
+		return CardType.gotOneColumn(this.cardType);
+	},
 	gotBack: function () {
+		if (CardType.gotOneColumn(this.cardType)) {
+			return true;
+		}
 		if (CardType.gotBack(this.cardType)) {
 			return this.back !== '' && this.back !== undefined;
 		} else {
