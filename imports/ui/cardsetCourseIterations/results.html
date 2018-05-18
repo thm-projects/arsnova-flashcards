@@ -173,3 +173,30 @@
         {{countCards this._id}}
     </span>
 </template>
+
+<template name="noFilterResults">
+    <div class="col-xs-12 no-results-filtered">
+        <div class="no-result-text">
+            {{_ "filter-pool.noResults"}}
+        </div>
+    </div>
+</template>
+
+<template name="noResults">
+    <div class="col-xs-12 no-results {{#if isActiveRoute regex='pool'}}no-navigation{{/if}}">
+        <div class="no-result-text">
+            {{#if isActiveRoute 'create'}}
+                {{_ "set-list-empty.emptytextlist"}}
+            {{/if}}
+            {{#if isActiveRoute 'learn'}}
+                {{_ "set-list-learn-empty.emptytextlist"}}
+            {{/if}}
+            {{#if isActiveRoute regex='alldecks|pool'}}
+                {{_ "set-list-empty.emptypooltextlist"}}
+            {{/if}}
+            {{#if isActiveRoute 'courseIterations'}}
+                {{_ "courseIteration.list.empty"}}
+            {{/if}}
+        </div>
+    </div>
+</template>

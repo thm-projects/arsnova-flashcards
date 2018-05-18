@@ -37,10 +37,25 @@ Template.courseIterations.onRendered(function () {
  */
 
 Template.courseIterationsList.helpers({
-	courseIterationsList: function () {
-		let query = Session.get('filterQuery');
-		prepareQuery();
-		return CourseIterations.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+	courseIterationsList: function (resultType) {
+		let query = {};
+		if (resultType !== 0) {
+			query = Session.get('filterQuery');
+			prepareQuery();
+		}
+		switch (resultType) {
+			case 0:
+			case 1:
+				return CourseIterations.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				}).count();
+			case 2:
+				return CourseIterations.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				});
+		}
 	}
 });
 
@@ -49,18 +64,6 @@ Template.courseIterationsList.onCreated(function () {
 });
 
 Template.courseIterationsList.events({
-	'click #createCourse': function () {
-		cleanModal();
-	}
-});
-
-/*
- * ############################################################################
- * courseIterationsEmpty
- * ############################################################################
- */
-
-Template.courseIterationsEmpty.events({
 	'click #createCourse': function () {
 		cleanModal();
 	}

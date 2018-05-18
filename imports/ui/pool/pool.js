@@ -19,9 +19,22 @@ Meteor.subscribe("cardsets");
  */
 
 Template.category.helpers({
-	getDecks: function () {
-		prepareQuery();
-		return Cardsets.find(Session.get('filterQuery'), {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+	getDecks: function (resultType) {
+		let query = {};
+		if (resultType !== 0) {
+			prepareQuery();
+			query = Session.get('filterQuery');
+		}
+		switch (resultType) {
+			case 0:
+			case 1:
+				return Cardsets.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				}).count();
+			case 2:
+				return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+		}
 	}
 });
 

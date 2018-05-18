@@ -14,38 +14,24 @@
 
 <template name="courseIterationsList">
     <div id="course-list-region" class="col-md-12">
-        {{#if courseIterationsList.count}}
-            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
-                {{_ "courseIteration.list.createCourse"}}
-            </button>
-            {{> filterNavigation}}
-            {{#each courseIterationsList}}
-                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-            {{/each}}
-            {{> infiniteScroll}}
-        {{else}}
+        <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+            {{_ "courseIteration.list.createCourse"}}
+        </button>
+        {{#if courseIterationsList 0}}
             {{> shuffle}}
-            {{> courseIterationsEmpty}}
+            {{> filterNavigation}}
+            {{#if courseIterationsList 1}}
+                {{#each courseIterationsList 2}}
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
+        {{else}}
+            {{> noResults}}
         {{/if}}
-    </div>
-</template>
-
-<template name="courseIterationsEmpty">
-    <div class="empty-list">
-        <div align="center" height="60" colspan="3" class="emptyCellList set-list-empty">
-                <span class="emptyTextList">
-                    {{_ "courseIteration.list.empty"}}
-                </span>
-            <br>
-            <button id="createCourse" type="button" class="btn btn-raised btn-success saveSet btn-newSet"
-                    data-toggle="modal"
-                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
-                {{_ "courseIteration.list.createCourse"}}
-            </button>
-            <br>
-            <br>
-        </div>
     </div>
 </template>
 

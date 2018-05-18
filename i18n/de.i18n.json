@@ -624,7 +624,8 @@
     "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
-    "from": "Ab"
+    "from": "Ab",
+    "noResults": "Keine Ergebnisse für diese Filtereinstellung"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",

@@ -25,12 +25,28 @@ Meteor.subscribe("cardsets");
  */
 
 Template.create.helpers({
-	cardsetList: function () {
-		prepareQuery();
-		return Cardsets.find(Session.get('filterQuery'), {
-			sort: Session.get('poolSortTopic'),
-			limit: Session.get('itemsLimit')
-		});
+	cardsetList: function (returnType) {
+		let query = {};
+		if (returnType !== 0) {
+			prepareQuery();
+			query = Session.get('filterQuery');
+		}
+		if (Router.current().route.getName() === "create") {
+			query.owner = Meteor.userId();
+		}
+		switch (returnType) {
+			case 0:
+			case 1:
+				return Cardsets.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				}).count();
+			case 2:
+				return Cardsets.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				});
+		}
 	}
 });
 
@@ -72,7 +88,7 @@ Template.create.onRendered(function () {
  */
 
 Template.learn.helpers({
-	learnList: function () {
+	learnList: function (returnType) {
 		var leitnerCards = Leitner.find({
 			user_id: Meteor.userId()
 		});
@@ -92,11 +108,23 @@ Template.learn.helpers({
 				learnCardsets.push(wozniakCard.cardset_id);
 			}
 		});
-		prepareQuery();
+		let query = {};
+		if (returnType !== 0) {
+			prepareQuery();
+			query = Session.get('filterQuery');
+		}
 		Session.set('cardsetIdFilter', learnCardsets);
-		let query = Session.get('filterQuery');
 		query._id = {$in: Session.get('cardsetIdFilter')};
-		return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+		switch (returnType) {
+			case 0:
+			case 1:
+				return Cardsets.find(query, {
+					sort: Session.get('poolSortTopic'),
+					limit: Session.get('itemsLimit')
+				}).count();
+			case 2:
+				return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+		}
 	}
 });
 
@@ -149,27 +177,50 @@ Template.shuffle.helpers({
 	shuffleInfoText: function () {
 		return TAPi18n.__('set-list.shuffleInfoText');
 	},
-	shuffleList: function () {
+	shuffleList: function (resultType) {
 		if (Router.current().route.getName() === "editshuffle") {
 			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 		}
-		return Cardsets.find({
-			$or: [
-				{owner: Meteor.userId()},
-				{kind: {$in: ["free", "edu"]}}
-			]
-		}, {
-			fields: {
-				name: 1,
-				description: 1,
-				quantity: 1,
-				cardType: 1,
-				difficulty: 1,
-				kind: 1,
-				owner: 1
-			},
-			sort: {name: 1}
-		});
+
+		switch (resultType) {
+			case 0:
+			case 1:
+				return Cardsets.find({
+					$or: [
+						{owner: Meteor.userId()},
+						{kind: {$in: ["free", "edu"]}}
+					]
+				}, {
+					fields: {
+						name: 1,
+						description: 1,
+						quantity: 1,
+						cardType: 1,
+						difficulty: 1,
+						kind: 1,
+						owner: 1
+					},
+					limit: Session.get('itemsLimit')
+				}).count();
+			case 2:
+				return Cardsets.find({
+					$or: [
+						{owner: Meteor.userId()},
+						{kind: {$in: ["free", "edu"]}}
+					]
+				}, {
+					fields: {
+						name: 1,
+						description: 1,
+						quantity: 1,
+						cardType: 1,
+						difficulty: 1,
+						kind: 1,
+						owner: 1
+					},
+					sort: {name: 1}, limit: Session.get('itemsLimit')
+				});
+		}
 	},
 	gotShuffledCards: function () {
 		if (ActiveRoute.name('shuffle')) {
