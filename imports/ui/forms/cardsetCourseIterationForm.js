@@ -141,7 +141,7 @@ export function cleanModal() {
 }
 
 export function saveCardset() {
-	let bertDelay = 1500;
+	let bertDelay = 10000;
 	let bertDelayMultiplier = 0;
 	let error = false;
 	let errorMessage = "<ul>";

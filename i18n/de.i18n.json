@@ -220,16 +220,16 @@
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei anlegen"
+    "newset": "Neue Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle eine einzelne Kartei oder die Karteien eines Kurses aus. Du kannst eine neue Kartei auch aus mehreren anderen mischen.",
+    "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Kurses.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Kurses.",
-    "browseCardset": "Kartei auswählen",
+    "browseCardset": "Thema auswählen",
     "browseCourse": "Kurs auswählen"
   },
   "modal-dialog": {
-    "missingFields": "Bitte vervollständige die folgenden Felder",
+    "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Neue Kartei anlegen",
     "editcard": "Editieren",
     "editreferences": "Kartei mischen",
@@ -638,7 +638,7 @@
       "hint": "Links | Literatur ",
       "lecture": "Erläuterung",
       "placeholders": {
-        "subject": "Gib das kurzgefasste Lernziel an",
+        "subject": "Gib das kurzgefasste Lernziel an !",
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
         "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
@@ -653,7 +653,7 @@
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
-        "subject": "Gib das Thema oder die Sprachsituation an",
+        "subject": "Gib das Thema oder die Sprachsituation an !",
         "front": "Zu übersetzende Vokabel oder Phrase \n\nWenn du ein einzelnes englisches Wort eingibst, wird in der Kartenansicht \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
         "back": "Empfehlung für die Übersetzung von Textpassagen: deepl.com"
       },
@@ -667,7 +667,7 @@
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
       "placeholders": {
-        "subject": "Gib das Thema der Unterrichtsstunde an",
+        "subject": "Gib das Thema der Unterrichtsstunde an !",
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
         "back": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
         "hint": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n- [] To-do 1 \n- [] To-do 2 \n- [] To-do … \n\nSetze ein \"x\" in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
@@ -682,7 +682,7 @@
       "back": "Definition | Beschreibung",
       "hint": "Literatur zum Fachbegriff ",
       "placeholders": {
-        "subject": "Gib das Fachgebiet an",
+        "subject": "Gib das Fachgebiet an !",
         "front": "Fachbegriff",
         "back": "Definition oder Beschreibung des Fachbegriffs",
         "hint": "Literatur zur Vertiefung"
@@ -697,7 +697,7 @@
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
-        "subject": "Gib das Thema des Zitats an",
+        "subject": "Gib das Thema des Zitats an !",
         "front": "Zitat",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
@@ -712,7 +712,7 @@
       "back": "Erwartete Antwort",
       "hint": "Begründung",
       "placeholders": {
-        "subject": "Gib das zu prüfende Kompetenzziel an",
+        "subject": "Gib das zu prüfende Kompetenzziel an !",
         "front": "Prüfungsfrage zum Kompetenzziel",
         "back": "Antwort auf die Prüfungsfrage",
         "hint": "Begründung oder Erläuterung der Antwort"
@@ -725,12 +725,12 @@
       "name": "Anweisungssatz (Informatik)",
       "front": "Wie lautet die Anweisung?",
       "back": "Was soll die Anweisung bewirken?",
-      "hint": "Online-API",
+      "hint": "Quelle | Online-API",
       "placeholders": {
-        "subject": "Gib den Anwendungskontext der Anweisung an",
+        "subject": "Gib den Anwendungskontext der Anweisung an !",
         "front": "Syntax der Anweisung \n\nVerwende die Code-Formatierung von Markdeep!",
         "back": "Semantik der Anweisung",
-        "hint": "Verlinke hier auf die Online-API der Anweisung!"
+        "hint": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
       },
       "editorLabels": {
         "subject": "Anwendungskontext der Anweisung"
@@ -742,7 +742,7 @@
       "back": "Anmerkungen",
       "hint": "Bibliografische Angaben",
       "placeholders": {
-        "subject": "Gib den Titel des Volltextes an",
+        "subject": "Gib den Titel des Volltextes an !",
         "front": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
         "back": "Notiere die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
         "hint": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
@@ -755,7 +755,7 @@
       "name": "Notizen",
       "front": "Notizen",
       "placeholders": {
-        "subject": "Gib das Thema deiner Notiz an",
+        "subject": "Gib das Thema deiner Notiz an !",
         "front": "Diese Karte ist einseitig für Notizen konzipiert. Es gibt keine Rückseite."
       },
       "editorLabels": {
@@ -766,7 +766,7 @@
       "name": "To-dos",
       "front": "To-dos",
       "placeholders": {
-        "subject": "Gib das Thema oder Datum der To-dos an",
+        "subject": "Gib das Thema oder Datum der To-dos an !",
         "front": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert.Es gibt keine Rückseite."
       },
       "editorLabels": {
@@ -777,7 +777,7 @@
       "name": "Fotokartei",
       "front": "Fotokartei",
       "placeholders": {
-        "subject": "Gib das Thema des Fotos an",
+        "subject": "Gib das Thema des Fotos an !",
         "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)"
       },
       "editorLabels": {
@@ -802,7 +802,7 @@
     "manage": "Kurs verwalten",
     "list": {
       "selectCourse": "Kurs auswählen",
-      "createCourse": "Kurs anlegen",
+      "createCourse": "Neuen Kurs anlegen",
       "empty": "Ein Kurs fasst mehrere Karteien zusammen. Jeder kann Kurse anlegen. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
@@ -909,7 +909,7 @@
   "fronttext_required": "Bitte Vorderseite ausfüllen!",
   "backtext_required": "Bitte Rückseite ausfüllen!",
   "lecturetext_required": "Bitte Vertiefung ausfüllen!",
-  "cardsubject_required": "Bitte Kompetenzziel oder Thema angeben!",
+  "cardsubject_required": "Bitte einen Titel für die Karte angeben!",
   "text_max": "Es sind maximal __max__ Zeichen erlaubt!",
   "cardsubject_max": "Es sind nur __max__ Zeichen erlaubt!",
   "newcard": "Neue Karte",
