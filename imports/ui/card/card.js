@@ -63,14 +63,11 @@ function getPlaceholder(mode) {
 	}
 }
 
-function isCentered(type) {
-	if (isEditModeOrPresentation()) {
-		if (Session.get('centerTextElement') !== undefined) {
-			let centerTextElement = Session.get('centerTextElement');
-			return centerTextElement[type];
-		}
+function isCentered(type, centerTextElement) {
+	if (isEditMode()) {
+		return Session.get('centerTextElement')[type];
 	} else {
-		return this.centerTextElement[type];
+		return centerTextElement[type];
 	}
 }
 
@@ -1152,7 +1149,7 @@ Template.cardSubject.helpers({
  */
 Template.cardFrontContent.helpers({
 	isCentered: function (type) {
-		isCentered(type);
+		return isCentered(type, this.centerTextElement);
 	},
 	gotFront: function () {
 		if (isEditMode()) {
@@ -1173,7 +1170,7 @@ Template.cardFrontContent.helpers({
  */
 Template.cardBackContent.helpers({
 	isCentered: function (type) {
-		isCentered(type);
+		return isCentered(type, this.centerTextElement);
 	},
 	gotBack: function () {
 		if (isEditMode()) {
@@ -1194,7 +1191,7 @@ Template.cardBackContent.helpers({
  */
 Template.cardLectureContent.helpers({
 	isCentered: function (type) {
-		isCentered(type);
+		return isCentered(type, this.centerTextElement);
 	},
 	gotLecture: function () {
 		if (isEditMode()) {
