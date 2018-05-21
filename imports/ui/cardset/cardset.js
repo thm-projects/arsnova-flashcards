@@ -227,7 +227,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	getPriority: function (index) {
-		return index;
+		return index + 1;
 	},
 	cleanText: function (text) {
 		return text
