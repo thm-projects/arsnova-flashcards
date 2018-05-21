@@ -319,14 +319,6 @@ let editorFullScreenActive = false;
 let newFlashcardBodyHeight;
 let newFlashcardHeader;
 
-function resizeCenterContent() {
-	let contentHeight = $('.center-align').height();
-	let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
-	let newCenterTextHeight = ((((newFlashcardBodyHeight - newFlashcardHeader) - contentPadding) - contentHeight) / 2);
-	$('.center-align').css('margin-top', newCenterTextHeight);
-	$('.dictionaryFrame').css('height', (newFlashcardBodyHeight - newFlashcardHeader));
-}
-
 /**
  * Resizes flashcards to din a6 format
  */
@@ -348,7 +340,6 @@ function resizeFlashcards() {
 		} else {
 			$('#contentEditor').css('height', 'unset');
 		}
-		resizeCenterContent();
 	}
 }
 
@@ -1082,6 +1073,8 @@ Template.cardHintContent.helpers({
 	isCentered: function () {
 		if (isEditMode()) {
 			return Session.get('centerTextElement')[2];
+		} else if (isPresentation()) {
+			return this.centerTextElement[2];
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
@@ -1148,8 +1141,12 @@ Template.cardSubject.helpers({
  * ############################################################################
  */
 Template.cardFrontContent.helpers({
-	isCentered: function (type) {
-		return isCentered(type, this.centerTextElement);
+	isCentered: function () {
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			return isCentered(1, this.centerTextElement);
+		} else {
+			return isCentered(0, this.centerTextElement);
+		}
 	},
 	gotFront: function () {
 		if (isEditMode()) {
@@ -1169,8 +1166,12 @@ Template.cardFrontContent.helpers({
  * ############################################################################
  */
 Template.cardBackContent.helpers({
-	isCentered: function (type) {
-		return isCentered(type, this.centerTextElement);
+	isCentered: function () {
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			return isCentered(0, this.centerTextElement);
+		} else {
+			return isCentered(1, this.centerTextElement);
+		}
 	},
 	gotBack: function () {
 		if (isEditMode()) {
@@ -1190,8 +1191,8 @@ Template.cardBackContent.helpers({
  * ############################################################################
  */
 Template.cardLectureContent.helpers({
-	isCentered: function (type) {
-		return isCentered(type, this.centerTextElement);
+	isCentered: function () {
+		return isCentered(3, this.centerTextElement, this.cardType);
 	},
 	gotLecture: function () {
 		if (isEditMode()) {
@@ -1251,9 +1252,6 @@ Template.flashcards.onRendered(function () {
 	new ResizeSensor($('#cardCarousel'), function () {
 		resizeFlashcards();
 	});
-	if (resizeInterval === undefined && isEditMode()) {
-		resizeInterval = setInterval(resizeCenterContent, 250);
-	}
 	resizeFlashcards();
 });
 

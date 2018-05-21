@@ -301,19 +301,19 @@
 </template>
 
 <template name="cardFrontContent">
-                                 <span class="{{#if gotFront}}{{#if isCentered
-                                                                    0}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                 <span class="{{#if gotFront}}{{#if
+                                         isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                      {{#if gotFront}}
                                          {{#mathjax}}{{front}}{{/mathjax}}
                                      {{else}}
-                                             {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
+                                         {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
                                      {{/if}}
                                  </span>
 </template>
 
 <template name="cardBackContent">
-                                   <span class="{{#if gotBack}}{{#if isCentered
-                                                                     1}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                   <span class="{{#if gotBack}}{{#if
+                                           isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                        {{#if gotBack}}
                                            {{#mathjax}}{{back}}{{/mathjax}}
                                        {{else}}
@@ -323,8 +323,8 @@
 </template>
 
 <template name="cardLectureContent">
-                                            <span class="{{#if gotLecture}}{{#if isCentered
-                                                                                 3}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                            <span class="{{#if gotLecture}}{{#if
+                                                    isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                                 {{#if gotLecture}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
@@ -609,15 +609,11 @@
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
-                                <span class="{{#if isCentered}}center-align{{/if}}">
-                                    {{#if gotHint}}
-                                        {{#mathjax}}{{getHint}}{{/mathjax}}
-                                    {{else}}
-                                        {{#unless isEditMode}}
-                                            {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
-                                        {{/unless}}
-                                    {{/if}}
-                                </span>
+                    {{#if gotHint}}
+                        {{#mathjax}}{{getHint}}{{/mathjax}}
+                    {{else}}
+                        {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                    {{/if}}
                 </div>
             </div>
         </div>
