@@ -159,6 +159,10 @@ var CardsSchema = new SimpleSchema({
 		type: Date,
 		optional: true
 	},
+	dateUpdated: {
+		type: Date,
+		optional: true
+	},
 	learningGoalLevel: {
 		type: Number
 	},
@@ -381,7 +385,8 @@ Meteor.methods({
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
 				learningIndex: learningIndex,
-				learningUnit: learningUnit
+				learningUnit: learningUnit,
+				dateUpdated: new Date()
 			}
 		}, {trimStrings: false});
 		Cardsets.update(card.cardset_id, {
