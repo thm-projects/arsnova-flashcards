@@ -20,37 +20,6 @@ import {isTextCentered} from "../markdeepEditor/navigation";
  * ############################################################################
  */
 
-export function updateNavigation() {
-	let card_id = $('.carousel-inner > .active').attr('data-id');
-	Session.set('modifiedCard', card_id);
-	let cardType = Cards.findOne({_id: card_id}).cardType;
-	Session.set('cardType', Number(cardType));
-}
-
-function checkBackgroundStyle() {
-	if (Session.get('backgroundStyle')) {
-		$(".editorBrush").addClass('pressed');
-	} else {
-		$(".editorBrush").removeClass('pressed');
-	}
-}
-
-function resetSessionData(resetSubject = false) {
-	CardType.defaultCenteredText(Session.get('cardType'));
-	if (resetSubject && Session.get('cameFromEditMode') === false) {
-		Session.set('subjectText', '');
-		Session.set('learningUnit', "0");
-		Session.set('learningIndex', "0");
-	}
-	Session.set('frontText', '');
-	Session.set('backText', '');
-	Session.set('hintText', '');
-	Session.set('lectureText', '');
-	Session.set('learningGoalLevel', 0);
-	Session.set('backgroundStyle', 1);
-	Session.set('cameFromEditMode');
-}
-
 /**
  * Function checks if route is a card edit Mode
  * @return {Boolean} Return true, when route is new Card or edit Card.
@@ -69,6 +38,56 @@ function isPresentation() {
 
 function isEditModeOrPresentation() {
 	return isEditMode() || isPresentation();
+}
+
+export function updateNavigation() {
+	let card_id = $('.carousel-inner > .active').attr('data-id');
+	Session.set('modifiedCard', card_id);
+	let cardType = Cards.findOne({_id: card_id}).cardType;
+	Session.set('cardType', Number(cardType));
+}
+
+function checkBackgroundStyle() {
+	if (Session.get('backgroundStyle')) {
+		$(".editorBrush").addClass('pressed');
+	} else {
+		$(".editorBrush").removeClass('pressed');
+	}
+}
+
+function getPlaceholder(mode) {
+	if (Session.get('shuffled')) {
+		return CardType.getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
+	} else {
+		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
+	}
+}
+
+function isCentered(type) {
+	if (isEditModeOrPresentation()) {
+		if (Session.get('centerTextElement') !== undefined) {
+			let centerTextElement = Session.get('centerTextElement');
+			return centerTextElement[type];
+		}
+	} else {
+		return this.centerTextElement[type];
+	}
+}
+
+function resetSessionData(resetSubject = false) {
+	CardType.defaultCenteredText(Session.get('cardType'));
+	if (resetSubject && Session.get('cameFromEditMode') === false) {
+		Session.set('subjectText', '');
+		Session.set('learningUnit', "0");
+		Session.set('learningIndex', "0");
+	}
+	Session.set('frontText', '');
+	Session.set('backText', '');
+	Session.set('hintText', '');
+	Session.set('lectureText', '');
+	Session.set('learningGoalLevel', 0);
+	Session.set('backgroundStyle', 1);
+	Session.set('cameFromEditMode');
 }
 
 let isEditorFullscreen = false;
@@ -1112,6 +1131,59 @@ Template.cardSubject.helpers({
 		}
 	}
 });
+
+/*
+ * ############################################################################
+ * cardFrontContent
+ * ############################################################################
+ */
+Template.cardFrontContent.helpers({
+	isCentered: function (type) {
+		isCentered(type);
+	},
+	gotFront: function () {
+		return this.front !== '' && this.front !== undefined;
+	},
+	getPlaceholder: function (mode) {
+		getPlaceholder(mode);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardBackContent
+ * ############################################################################
+ */
+Template.cardBackContent.helpers({
+	isCentered: function (type) {
+		isCentered(type);
+	},
+	gotBack: function () {
+		return this.back !== '' && this.back !== undefined;
+	},
+	getPlaceholder: function (mode) {
+		getPlaceholder(mode);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardLectureContent
+ * ############################################################################
+ */
+Template.cardLectureContent.helpers({
+	isCentered: function (type) {
+		isCentered(type);
+	},
+	gotLecture: function () {
+		return this.lecture !== "" && this.lecture !== undefined;
+	},
+	getPlaceholder: function (mode) {
+		getPlaceholder(mode);
+	}
+});
+
+
 /*
  * ############################################################################
  * flashcards
@@ -1329,13 +1401,6 @@ Template.flashcards.helpers({
 			return CardType.gotLecture(this.cardType);
 		}
 	},
-	gotLecturePreview: function () {
-		if (isEditMode()) {
-			return Session.get('activeEditMode') === 3 && Session.get('lectureText');
-		} else {
-			return Session.get('activeEditMode') === 3 && (this.lecture !== "" && this.lecture !== undefined);
-		}
-	},
 	getFrontTitle: function () {
 		if (Session.get('shuffled')) {
 			return CardType.getFrontTitle(Session.get('cardType'));
@@ -1391,14 +1456,7 @@ Template.flashcards.helpers({
 		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	},
 	isCentered: function (type) {
-		if (isEditModeOrPresentation()) {
-			if (Session.get('centerTextElement') !== undefined) {
-				let centerTextElement = Session.get('centerTextElement');
-				return centerTextElement[type];
-			}
-		} else {
-			return this.centerTextElement[type];
-		}
+		isCentered(type);
 	},
 	gotBack: function () {
 		if (CardType.gotBack(this.cardType)) {
@@ -1411,11 +1469,7 @@ Template.flashcards.helpers({
 		return this.front !== '' && this.front !== undefined;
 	},
 	getPlaceholder: function (mode) {
-		if (Session.get('shuffled')) {
-			return CardType.getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
-		} else {
-			return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
-		}
+		getPlaceholder(mode);
 	}
 });
 

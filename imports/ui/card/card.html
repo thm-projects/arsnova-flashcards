@@ -310,6 +310,45 @@
         <span class="subjectPlaceholder">{{getSubject}}</span>{{else}}{{getSubject}}{{/unless}}{{/if}}
 </template>
 
+<template name="cardFrontContent">
+                                 <span class="{{#if gotFront}}{{#if isCentered
+                                                                    0}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                     {{#if gotFront}}
+                                         {{#mathjax}}{{front}}{{/mathjax}}
+                                     {{else}}
+                                         {{#unless isPreview}}
+                                             {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
+                                         {{/unless}}
+                                     {{/if}}
+                                 </span>
+</template>
+
+<template name="cardBackContent">
+                                   <span class="{{#if gotBack}}{{#if isCentered
+                                                                     1}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                       {{#if gotBack}}
+                                           {{#mathjax}}{{back}}{{/mathjax}}
+                                       {{else}}
+                                           {{#unless isPreview}}
+                                               {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
+                                           {{/unless}}
+                                       {{/if}}
+                                   </span>
+</template>
+
+<template name="cardLectureContent">
+                                            <span class="{{#if gotLecture}}{{#if isCentered
+                                                                                        3}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                {{#if gotLecture}}
+                                                    {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                {{else}}
+                                                    {{#unless isPreview}}
+                                                        {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
+                                                    {{/unless}}
+                                                {{/if}}
+                                            </span>
+</template>
+
 <template name="flashcards">
     {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
@@ -372,7 +411,8 @@
                                         {{#unless isEditMode}}
                                             {{#if gotDictionary}}
                                                 <a href="#" id="showLecture">
-                                                    <img class="card-button showLectureImage {{#if isEditModeOrPresentation}}showLectureImagePresentation{{/if}}"
+                                                    <img class="card-button showLectureImage {{#if
+                                                            isEditModeOrPresentation}}showLectureImagePresentation{{/if}}"
                                                          data-type="cardNavigation"
                                                          data-toggle="collapse"
                                                          data-target="#collapseLecture-{{_id}}"
@@ -462,57 +502,23 @@
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditModeOrPresentation}}
                                         {{#if isFrontPreview}}
-                                            <span class="{{#if gotFront}}{{#if isCentered
-                                                                               0}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                                {{#if gotFront}}
-                                                    {{#mathjax}}{{front}}{{/mathjax}}
-                                                {{else}}
-                                                    {{#unless isEditMode}}
-                                                        {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
-                                                    {{/unless}}
-                                                {{/if}}
-                                            </span>
+                                            {{> cardFrontContent this isPreview=true}}
                                         {{/if}}
                                         {{#if isHintPreview}}
                                             {{> cardHintContent this}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
-                                            <span class="{{#if gotLecturePreview}}{{#if isCentered
-                                                                                        3}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                                {{#if gotLecturePreview}}
-                                                    {{#mathjax}}{{lecture}}{{/mathjax}}
-                                                {{else}}
-                                                    {{#unless isEditMode}}
-                                                        {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
-                                                    {{/unless}}
-                                                {{/if}}
-                                            </span>
+                                            {{> cardLectureContent this isPreview=true}}
                                         {{/if}}
                                     {{else}}
-                                        <span class="{{#if gotFront}}{{#if isCentered
-                                                                           0}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                            {{#if gotFront}}
-                                                {{#mathjax}}{{front}}{{/mathjax}}
-                                            {{else}}
-                                                {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
-                                            {{/if}}
-                                        </span>
+                                        {{> cardFrontContent this isPreview=false}}
                                     {{/if}}
                                 </div>
                                 <div class="cardContent centered cardback {{getCardBackground
                                         difficulty cardType backgroundStyle}} detailback{{@index}}"
                                      style="display: {{#if gotDictionary}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                    <span class="{{#if gotBack}}{{#if isCentered
-                                                                      1}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                        {{#if gotBack}}
-                                            {{#mathjax}}{{back}}{{/mathjax}}
-                                        {{else}}
-                                            {{#unless isEditMode}}
-                                                {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
-                                            {{/unless}}
-                                        {{/if}}
-                                    </span>
+                                    {{> cardBackContent this isPreview=true}}
                                 </div>
                                 {{#unless gotNotesForDifficultyLevel}}
                                     <div class="collapsed collapse"
@@ -521,15 +527,7 @@
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
-
-                                            {{#if gotLecture}}
-                                                <span class="{{#if gotLecture}}{{#if isCentered
-                                                                                     3}}center-align{{/if}}{{else}}placeholder{{/if}}">
-                                                    {{#if gotLecture}}
-                                                        {{#mathjax}}{{lecture}}{{/mathjax}}
-                                                    {{/if}}
-                                                </span>
-                                            {{/if}}
+                                            {{> cardLectureContent this isPreview=false}}
                                             {{#if gotDictionary}}
                                                 <iframe class="dictionaryFrame"
                                                         src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
