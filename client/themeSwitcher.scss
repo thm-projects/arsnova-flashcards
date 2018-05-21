@@ -190,6 +190,9 @@ $themes: (
     $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
     $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
     $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
+    //card list
+    $card_list_number_background: map-get($map, "card_list_number_background");
+    $card_list_number_text: map-get($map, "card_list_number_text");
     //card colors
     $background_lecture: map-get($map, "background_lecture");
     $background_hint: map-get($map, "background_hint");
@@ -1639,6 +1642,12 @@ $themes: (
     .no-results, .no-results-filtered {
       background-color: $no_results_background !important;
       color: $no_results_text !important;
+    }
+
+    //card list
+    .cardListNumber {
+      color: $card_list_number_text !important;
+      background-color: $card_list_number_background !important;
     }
   }
 }

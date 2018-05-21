@@ -226,6 +226,9 @@ Template.cardsetList.helpers({
 			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
+	getPriority: function (index) {
+		return index;
+	},
 	cleanText: function (text) {
 		return text
 		// Remove image mark-up
