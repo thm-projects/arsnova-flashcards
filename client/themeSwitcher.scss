@@ -621,6 +621,9 @@ $themes: (
       a {
         color: $hyperlink !important;
       }
+      .placeholder {
+        color: $cardset_markdeep_placeholder !important;
+      }
     }
 
     .btn.btn-raised.btn-primary {

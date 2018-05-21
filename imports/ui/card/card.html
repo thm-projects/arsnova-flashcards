@@ -65,20 +65,10 @@
 
 <template name="contentNavigation">
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
-        {{#unless gotSidesSwapped}}
-            {{> contentNavigationFront tabindex=5}}
-        {{else}}
-            {{#if gotBack}}
-                {{> contentNavigationBack tabindex=5}}
-            {{/if}}
-        {{/unless}}
-        {{#unless gotSidesSwapped}}
-            {{#if gotBack}}
-                {{> contentNavigationBack tabindex=7}}
-            {{/if}}
-        {{else}}
-            {{> contentNavigationFront tabindex=7}}
-        {{/unless}}
+        {{> contentNavigationFront tabindex=5}}
+        {{#if gotBack}}
+            {{> contentNavigationBack tabindex=7}}
+        {{/if}}
         {{#if gotLecture}}
             {{> contentNavigationLecture tabindex=9}}
         {{/if}}
@@ -316,9 +306,7 @@
                                      {{#if gotFront}}
                                          {{#mathjax}}{{front}}{{/mathjax}}
                                      {{else}}
-                                         {{#unless isPreview}}
                                              {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
-                                         {{/unless}}
                                      {{/if}}
                                  </span>
 </template>
@@ -329,22 +317,18 @@
                                        {{#if gotBack}}
                                            {{#mathjax}}{{back}}{{/mathjax}}
                                        {{else}}
-                                           {{#unless isPreview}}
-                                               {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
-                                           {{/unless}}
+                                           {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
                                        {{/if}}
                                    </span>
 </template>
 
 <template name="cardLectureContent">
                                             <span class="{{#if gotLecture}}{{#if isCentered
-                                                                                        3}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                                                 3}}center-align{{/if}}{{else}}placeholder{{/if}}">
                                                 {{#if gotLecture}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
-                                                    {{#unless isPreview}}
-                                                        {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
-                                                    {{/unless}}
+                                                    {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
                                                 {{/if}}
                                             </span>
 </template>
@@ -502,19 +486,23 @@
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditModeOrPresentation}}
                                         {{#if isFrontPreview}}
-                                            {{> cardFrontContent this isPreview=true}}
+                                            {{#if gotSidesSwapped}}
+                                                {{> cardBackContent this}}
+                                            {{else}}
+                                                {{> cardFrontContent this}}
+                                            {{/if}}
                                         {{/if}}
                                         {{#if isHintPreview}}
                                             {{> cardHintContent this}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
-                                            {{> cardLectureContent this isPreview=true}}
+                                            {{> cardLectureContent this}}
                                         {{/if}}
                                     {{else}}
                                         {{#if gotSidesSwapped}}
-                                            {{> cardBackContent this isPreview=false}}
+                                            {{> cardBackContent this}}
                                         {{else}}
-                                            {{> cardFrontContent this isPreview=false}}
+                                            {{> cardFrontContent this}}
                                         {{/if}}
                                     {{/if}}
                                 </div>
@@ -523,9 +511,9 @@
                                      style="display: {{#if gotDictionary}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     {{#if gotSidesSwapped}}
-                                        {{> cardFrontContent this isPreview=false}}
+                                        {{> cardFrontContent this}}
                                     {{else}}
-                                        {{> cardBackContent this isPreview=true}}
+                                        {{> cardBackContent this}}
                                     {{/if}}
                                 </div>
                                 {{#unless gotNotesForDifficultyLevel}}

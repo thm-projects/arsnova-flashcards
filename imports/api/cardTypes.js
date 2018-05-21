@@ -165,10 +165,18 @@ class CardType {
 		}
 		switch (activeMode) {
 			case 0:
-				side = 'front';
+				if (this.gotSidesSwapped(cardType)) {
+					side = 'back';
+				} else {
+					side = 'front';
+				}
 				break;
 			case 1:
-				side = 'back';
+				if (this.gotSidesSwapped(cardType)) {
+					side = 'front';
+				} else {
+					side = 'back';
+				}
 				break;
 			case 2:
 				side = 'hint';

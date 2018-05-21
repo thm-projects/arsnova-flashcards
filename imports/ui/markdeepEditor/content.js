@@ -21,10 +21,18 @@ Template.markdeepContent.events({
 		$('#editor').attr('data-content', content);
 		switch (Session.get('activeEditMode')) {
 			case 0:
-				Session.set('frontText', content);
+				if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+					Session.set('backText', content);
+				} else {
+					Session.set('frontText', content);
+				}
 				break;
 			case 1:
-				Session.set('backText', content);
+				if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+					Session.set('frontText', content);
+				} else {
+					Session.set('backText', content);
+				}
 				break;
 			case 2:
 				Session.set('hintText', content);
@@ -41,7 +49,7 @@ Template.markdeepContent.helpers({
 		return CardType.getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
 	},
 	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(this.cardType);
+		return CardType.gotSidesSwapped(Session.get('cardType'));
 	},
 	getShuffleDescription: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
