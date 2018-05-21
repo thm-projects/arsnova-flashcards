@@ -467,15 +467,18 @@ function isCardset() {
 
 function getCardsetCards() {
 	let query = "";
+	let sortQuery;
+	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
+		sortQuery = {subject: 1, back: 1};
+	} else {
+		sortQuery = {subject: 1, front: 1};
+	}
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: {
-				subject: 1,
-				date: 1
-			}
+			sort: sortQuery
 		});
 	} else {
-		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, date: 1}});
+		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: sortQuery});
 	}
 	query.observeChanges({
 		removed: function () {
@@ -511,10 +514,14 @@ function getLeitnerCards() {
 }
 
 function getPresentationCards(countCards = false) {
-	let query = {};
+	let sortQuery = {};
+
 	if (Session.get('chooseFlashcardsFilter')[0]) {
-		query.subject = 1;
-		query.date = 1;
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			sortQuery = {subject: 1, back: 1};
+		} else {
+			sortQuery = {subject: 1, front: 1};
+		}
 	}
 	if (countCards) {
 		return Cards.find({
@@ -527,7 +534,7 @@ function getPresentationCards(countCards = false) {
 			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
 		}, {
 			sort: {
-				query
+				sortQuery
 			}
 		});
 	}

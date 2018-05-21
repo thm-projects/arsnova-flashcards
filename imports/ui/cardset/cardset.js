@@ -283,6 +283,12 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardList: function () {
+		let sortQuery;
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			sortQuery = {back: 1};
+		} else {
+			sortQuery = {front: 1};
+		}
 		if (Router.current().route.getName() === "cardsetlistid") {
 			return Cards.find({
 				cardset_id: this.cardset_id,
@@ -293,7 +299,7 @@ Template.cardsetList.helpers({
 				front: 1,
 				back: 1,
 				cardType: 1,
-				sort: {date: 1}
+				sort: sortQuery
 			});
 		} else {
 			return Cards.find({
@@ -306,7 +312,7 @@ Template.cardsetList.helpers({
 				front: 1,
 				back: 1,
 				cardType: 1,
-				sort: {date: 1}
+				sort: sortQuery
 			});
 		}
 	},
