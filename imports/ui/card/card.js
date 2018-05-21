@@ -1062,7 +1062,7 @@ Template.cardHintContent.helpers({
 	gotHint: function () {
 		let hint;
 		if (isEditMode()) {
-			hint = Session.get('hintText');
+			return Session.get('hintText');
 		} else if (isPresentation()) {
 			hint = this.hint;
 		} else if (Session.get('selectedHint')) {
