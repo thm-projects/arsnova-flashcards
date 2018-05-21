@@ -290,7 +290,7 @@ Template.cardsetList.helpers({
 				front: 1,
 				back: 1,
 				cardType: 1,
-				sort: {front: 1}
+				sort: {date: 1}
 			});
 		} else {
 			return Cards.find({
@@ -303,7 +303,7 @@ Template.cardsetList.helpers({
 				front: 1,
 				back: 1,
 				cardType: 1,
-				sort: {front: 1}
+				sort: {date: 1}
 			});
 		}
 	},

@@ -337,7 +337,7 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
@@ -345,7 +345,6 @@ Meteor.methods({
 		check(back, String);
 		check(lecture, String);
 		check(centerTextElement, [Boolean]);
-		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
 		check(learningIndex, String);
@@ -379,7 +378,6 @@ Meteor.methods({
 				back: back,
 				lecture: lecture,
 				centerTextElement: centerTextElement,
-				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
 				learningIndex: learningIndex,

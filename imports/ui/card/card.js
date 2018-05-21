@@ -471,11 +471,11 @@ function getCardsetCards() {
 		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
 			sort: {
 				subject: 1,
-				front: 1
+				date: 1
 			}
 		});
 	} else {
-		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
+		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, date: 1}});
 	}
 	query.observeChanges({
 		removed: function () {
@@ -514,7 +514,7 @@ function getPresentationCards(countCards = false) {
 	let query = {};
 	if (Session.get('chooseFlashcardsFilter')[0]) {
 		query.subject = 1;
-		query.front = 1;
+		query.date = 1;
 	}
 	if (countCards) {
 		return Cards.find({
@@ -713,7 +713,7 @@ function saveCard(card_id, returnToCardset) {
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
+			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
