@@ -226,7 +226,7 @@ Template.cardsetList.helpers({
 			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
-	cleanFrontText: function (text) {
+	cleanText: function (text) {
 		return text
 		// Remove image mark-up
 			.replace(/[\!][\[]/g, '')
@@ -251,6 +251,9 @@ Template.cardsetList.helpers({
 		} else {
 			return Cards.find({cardset_id: Session.get('tempLearningIndex'), cardType: 0}).count();
 		}
+	},
+	gotSidesSwapped: function () {
+		return CardType.gotSidesSwapped(this.cardType);
 	},
 	cardSubject: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
@@ -285,6 +288,8 @@ Template.cardsetList.helpers({
 				_id: 1,
 				difficulty: 1,
 				front: 1,
+				back: 1,
+				cardType: 1,
 				sort: {front: 1}
 			});
 		} else {
@@ -296,6 +301,8 @@ Template.cardsetList.helpers({
 				_id: 1,
 				difficulty: 1,
 				front: 1,
+				back: 1,
+				cardType: 1,
 				sort: {front: 1}
 			});
 		}

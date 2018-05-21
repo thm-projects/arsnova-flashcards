@@ -1327,6 +1327,9 @@ Template.flashcards.helpers({
 	gotAlternativeHintStyle: function () {
 		return CardType.gotAlternativeHintStyle(this.cardType);
 	},
+	gotSidesSwapped: function () {
+		return CardType.gotSidesSwapped(this.cardType);
+	},
 	countBox: function () {
 		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
