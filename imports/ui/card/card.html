@@ -523,13 +523,16 @@
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
-                                            {{> cardLectureContent this isPreview=false}}
+                                            {{#if gotLecture}}
+                                                {{> cardLectureContent this}}
+                                            {{/if}}
                                             {{#if gotDictionary}}
                                                 <iframe class="dictionaryFrame"
                                                         src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
                                                         frameborder="0"
                                                         data-type="cardNavigation">
                                                 </iframe>
+
                                             {{/if}}
                                         </div>
                                     </div>
