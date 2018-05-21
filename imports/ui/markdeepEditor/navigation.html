@@ -5,7 +5,9 @@
         </div>
         <div class="btn-group">
             {{#if isActiveRoute regex="editCard|newCard"}}
-                <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
+                {{#unless isHintPreview}}
+                    <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
+                {{/unless}}
                 <i class="card-button fa fa-sort-numeric-asc markdeep-card-order"></i>
                 <i class="card-button fa fa-lock markdeep-lock"></i>
                 {{#unless gotOneColumn}}

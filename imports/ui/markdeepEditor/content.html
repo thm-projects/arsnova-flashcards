@@ -4,7 +4,7 @@
             <form>
         <textarea id="contentEditor" class="card" name="content" placeholder="{{getPlaceholder}}"
                   data-provide="markdown" rows="10"
-                  tabindex="5">{{#unless gotSidesSwapped}}{{front}}{{else}}{{back}}{{/unless}}</textarea>
+                  tabindex="5">{{#if gotSidesSwapped}}{{back}}{{else}}{{front}}{{/if}}</textarea>
             </form>
         {{else}}
             <textarea class="form-control" data-provide="markdown" rows="10"

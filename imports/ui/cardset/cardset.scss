@@ -1,6 +1,9 @@
 //@extend-elements
 //original selectors
 //.carousel-control.left, .carousel-control.right
+
+$padding-card-list-row: 8px;
+
 %extend_1 {
   background-image: none;
   margin-top: 90px;
@@ -333,6 +336,22 @@ th .field-tip {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-left: $padding-card-list-row * 3;
+}
+
+.cardListRow td {
+  padding: $padding-card-list-row;
+}
+
+.cardListNumber {
+  position: absolute;
+  float: left;
+  width: 15px;
+  padding: $padding-card-list-row $padding-card-list-row * 2 $padding-card-list-row $padding-card-list-row;
+  margin-top: -$padding-card-list-row;
+  margin-left: -$padding-card-list-row;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .cardListSubject tbody tr:hover {
@@ -399,7 +418,7 @@ th .field-tip {
 }
 
 .cardset-list-badge {
-  float:right;
+  float: right;
 }
 
 .markdeepCardset {
@@ -407,7 +426,7 @@ th .field-tip {
 }
 
 .markdeepCardsetContent {
-  padding: $padding_cardset_content_vertical$padding_cardset_content_horizontal !important;
+  padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
 }
 

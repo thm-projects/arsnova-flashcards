@@ -20,37 +20,6 @@ import {isTextCentered} from "../markdeepEditor/navigation";
  * ############################################################################
  */
 
-export function updateNavigation() {
-	let card_id = $('.carousel-inner > .active').attr('data-id');
-	Session.set('modifiedCard', card_id);
-	let cardType = Cards.findOne({_id: card_id}).cardType;
-	Session.set('cardType', Number(cardType));
-}
-
-function checkBackgroundStyle() {
-	if (Session.get('backgroundStyle')) {
-		$(".editorBrush").addClass('pressed');
-	} else {
-		$(".editorBrush").removeClass('pressed');
-	}
-}
-
-function resetSessionData(resetSubject = false) {
-	CardType.defaultCenteredText(Session.get('cardType'));
-	if (resetSubject && Session.get('cameFromEditMode') === false) {
-		Session.set('subjectText', '');
-		Session.set('learningUnit', "0");
-		Session.set('learningIndex', "0");
-	}
-	Session.set('frontText', '');
-	Session.set('backText', '');
-	Session.set('hintText', '');
-	Session.set('lectureText', '');
-	Session.set('learningGoalLevel', 0);
-	Session.set('backgroundStyle', 1);
-	Session.set('cameFromEditMode');
-}
-
 /**
  * Function checks if route is a card edit Mode
  * @return {Boolean} Return true, when route is new Card or edit Card.
@@ -71,6 +40,53 @@ function isEditModeOrPresentation() {
 	return isEditMode() || isPresentation();
 }
 
+export function updateNavigation() {
+	let card_id = $('.carousel-inner > .active').attr('data-id');
+	Session.set('modifiedCard', card_id);
+	let cardType = Cards.findOne({_id: card_id}).cardType;
+	Session.set('cardType', Number(cardType));
+}
+
+function checkBackgroundStyle() {
+	if (Session.get('backgroundStyle')) {
+		$(".editorBrush").addClass('pressed');
+	} else {
+		$(".editorBrush").removeClass('pressed');
+	}
+}
+
+function getPlaceholder(mode) {
+	if (Session.get('shuffled')) {
+		return CardType.getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
+	} else {
+		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
+	}
+}
+
+function isCentered(type, centerTextElement) {
+	if (isEditMode()) {
+		return Session.get('centerTextElement')[type];
+	} else {
+		return centerTextElement[type];
+	}
+}
+
+function resetSessionData(resetSubject = false) {
+	CardType.defaultCenteredText(Session.get('cardType'));
+	if (resetSubject && Session.get('cameFromEditMode') === false) {
+		Session.set('subjectText', '');
+		Session.set('learningUnit', "0");
+		Session.set('learningIndex', "0");
+	}
+	Session.set('frontText', '');
+	Session.set('backText', '');
+	Session.set('hintText', '');
+	Session.set('lectureText', '');
+	Session.set('learningGoalLevel', 0);
+	Session.set('backgroundStyle', 1);
+	Session.set('cameFromEditMode');
+}
+
 let isEditorFullscreen = false;
 
 function prepareFront() {
@@ -85,8 +101,13 @@ function prepareFront() {
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 6);
 	if (!isPresentation()) {
-		$('#contentEditor').val(Session.get('frontText'));
-		$('#editor').attr('data-content', Session.get('frontText'));
+		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+			$('#contentEditor').val(Session.get('backText'));
+			$('#editor').attr('data-content', Session.get('backText'));
+		} else {
+			$('#contentEditor').val(Session.get('frontText'));
+			$('#editor').attr('data-content', Session.get('frontText'));
+		}
 	}
 	$('#editFront').removeClass('btn-default').addClass('btn-primary');
 	$('#editBack').removeClass('btn-primary').addClass('btn-default');
@@ -110,8 +131,13 @@ function prepareBack() {
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 8);
 	if (!isPresentation()) {
-		$('#contentEditor').val(Session.get('backText'));
-		$('#editor').attr('data-content', Session.get('backText'));
+		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+			$('#contentEditor').val(Session.get('frontText'));
+			$('#editor').attr('data-content', Session.get('frontText'));
+		} else {
+			$('#contentEditor').val(Session.get('backText'));
+			$('#editor').attr('data-content', Session.get('backText'));
+		}
 	}
 	$('#editBack').removeClass('btn-default').addClass('btn-primary');
 	$('#editFront').removeClass('btn-primary').addClass('btn-default');
@@ -293,14 +319,6 @@ let editorFullScreenActive = false;
 let newFlashcardBodyHeight;
 let newFlashcardHeader;
 
-function resizeCenterContent() {
-	let contentHeight = $('.center-align').height();
-	let contentPadding = parseInt($('.cardContent').css('padding-top')) + parseInt($('.cardContent').css('padding-bottom'));
-	let newCenterTextHeight = ((((newFlashcardBodyHeight - newFlashcardHeader) - contentPadding) - contentHeight) / 2);
-	$('.center-align').css('margin-top', newCenterTextHeight);
-	$('.dictionaryFrame').css('height', (newFlashcardBodyHeight - newFlashcardHeader));
-}
-
 /**
  * Resizes flashcards to din a6 format
  */
@@ -322,7 +340,6 @@ function resizeFlashcards() {
 		} else {
 			$('#contentEditor').css('height', 'unset');
 		}
-		resizeCenterContent();
 	}
 }
 
@@ -448,15 +465,18 @@ function isCardset() {
 
 function getCardsetCards() {
 	let query = "";
+	let sortQuery;
+	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
+		sortQuery = {subject: 1, back: 1};
+	} else {
+		sortQuery = {subject: 1, front: 1};
+	}
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: {
-				subject: 1,
-				front: 1
-			}
+			sort: sortQuery
 		});
 	} else {
-		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: {subject: 1, front: 1}});
+		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: sortQuery});
 	}
 	query.observeChanges({
 		removed: function () {
@@ -492,10 +512,14 @@ function getLeitnerCards() {
 }
 
 function getPresentationCards(countCards = false) {
-	let query = {};
+	let sortQuery = {};
+
 	if (Session.get('chooseFlashcardsFilter')[0]) {
-		query.subject = 1;
-		query.front = 1;
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			sortQuery = {subject: 1, back: 1};
+		} else {
+			sortQuery = {subject: 1, front: 1};
+		}
 	}
 	if (countCards) {
 		return Cards.find({
@@ -508,7 +532,7 @@ function getPresentationCards(countCards = false) {
 			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
 		}, {
 			sort: {
-				query
+				sortQuery
 			}
 		});
 	}
@@ -685,16 +709,12 @@ function saveCard(card_id, returnToCardset) {
 						$('#editor').attr('data-content', '');
 						resetSessionData();
 						window.scrollTo(0, 0);
-						if (CardType.gotSidesSwapped(cardType)) {
-							$('#editBack').click();
-						} else {
-							$('#editFront').click();
-						}
+						$('#editFront').click();
 					}
 				}
 			});
 		} else {
-			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
+			Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 			Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 			if (returnToCardset) {
 				Router.go('cardsetdetailsid', {
@@ -857,9 +877,6 @@ Template.contentNavigation.helpers({
 	gotLecture: function () {
 		return CardType.gotLecture(this.cardType);
 	},
-	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(this.cardType);
-	},
 	gotBack: function () {
 		return CardType.gotBack(this.cardType);
 	}
@@ -880,12 +897,7 @@ Template.contentNavigation.onRendered(function () {
 			$("#button-row").insertAfter($("#preview"));
 		}
 	});
-	if (Session.get('activeEditMode') === 0) {
-		$('#editFront').click();
-	} else {
-		$(".box").addClass("disableCardTransition");
-		$('#editBack').click();
-	}
+	$('#editFront').click();
 });
 
 /*
@@ -895,7 +907,11 @@ Template.contentNavigation.onRendered(function () {
  */
 Template.contentNavigationFront.helpers({
 	getFrontTitle: function () {
-		return CardType.getFrontTitle();
+		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+			return CardType.getBackTitle();
+		} else {
+			return CardType.getFrontTitle();
+		}
 	},
 	gotFourColumns: function () {
 		return CardType.gotFourColumns(Session.get('cardType'));
@@ -915,7 +931,11 @@ Template.contentNavigationFront.helpers({
  */
 Template.contentNavigationBack.helpers({
 	getBackTitle: function () {
-		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.back');
+		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
+			return TAPi18n.__('card.cardType' + Session.get('cardType') + '.front');
+		} else {
+			return TAPi18n.__('card.cardType' + Session.get('cardType') + '.back');
+		}
 	},
 	gotFourColumns: function () {
 		return CardType.gotFourColumns(Session.get('cardType'));
@@ -1042,7 +1062,7 @@ Template.cardHintContent.helpers({
 	gotHint: function () {
 		let hint;
 		if (isEditMode()) {
-			hint = Session.get('hintText');
+			return Session.get('hintText');
 		} else if (isPresentation()) {
 			hint = this.hint;
 		} else if (Session.get('selectedHint')) {
@@ -1053,6 +1073,8 @@ Template.cardHintContent.helpers({
 	isCentered: function () {
 		if (isEditMode()) {
 			return Session.get('centerTextElement')[2];
+		} else if (isPresentation()) {
+			return this.centerTextElement[2];
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
 		}
@@ -1112,6 +1134,79 @@ Template.cardSubject.helpers({
 		}
 	}
 });
+
+/*
+ * ############################################################################
+ * cardFrontContent
+ * ############################################################################
+ */
+Template.cardFrontContent.helpers({
+	isCentered: function () {
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			return isCentered(1, this.centerTextElement);
+		} else {
+			return isCentered(0, this.centerTextElement);
+		}
+	},
+	gotFront: function () {
+		if (isEditMode()) {
+			return true;
+		} else {
+			return this.front !== '' && this.front !== undefined;
+		}
+	},
+	getPlaceholder: function (mode) {
+		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardBackContent
+ * ############################################################################
+ */
+Template.cardBackContent.helpers({
+	isCentered: function () {
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			return isCentered(0, this.centerTextElement);
+		} else {
+			return isCentered(1, this.centerTextElement);
+		}
+	},
+	gotBack: function () {
+		if (isEditMode()) {
+			return true;
+		} else {
+			return this.back !== '' && this.back !== undefined;
+		}
+	},
+	getPlaceholder: function (mode) {
+		return CardType.getPlaceholderText(mode, this.cardType);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardLectureContent
+ * ############################################################################
+ */
+Template.cardLectureContent.helpers({
+	isCentered: function () {
+		return isCentered(3, this.centerTextElement, this.cardType);
+	},
+	gotLecture: function () {
+		if (isEditMode()) {
+			return true;
+		} else {
+			return this.lecture !== '' && this.lecture !== undefined;
+		}
+	},
+	getPlaceholder: function (mode) {
+		return CardType.getPlaceholderText(mode, this.cardType);
+	}
+});
+
+
 /*
  * ############################################################################
  * flashcards
@@ -1157,9 +1252,6 @@ Template.flashcards.onRendered(function () {
 	new ResizeSensor($('#cardCarousel'), function () {
 		resizeFlashcards();
 	});
-	if (resizeInterval === undefined && isEditMode()) {
-		resizeInterval = setInterval(resizeCenterContent, 250);
-	}
 	resizeFlashcards();
 });
 
@@ -1255,6 +1347,9 @@ Template.flashcards.helpers({
 	gotAlternativeHintStyle: function () {
 		return CardType.gotAlternativeHintStyle(this.cardType);
 	},
+	gotSidesSwapped: function () {
+		return CardType.gotSidesSwapped(this.cardType);
+	},
 	countBox: function () {
 		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,
@@ -1329,13 +1424,6 @@ Template.flashcards.helpers({
 			return CardType.gotLecture(this.cardType);
 		}
 	},
-	gotLecturePreview: function () {
-		if (isEditMode()) {
-			return Session.get('activeEditMode') === 3 && Session.get('lectureText');
-		} else {
-			return Session.get('activeEditMode') === 3 && (this.lecture !== "" && this.lecture !== undefined);
-		}
-	},
 	getFrontTitle: function () {
 		if (Session.get('shuffled')) {
 			return CardType.getFrontTitle(Session.get('cardType'));
@@ -1377,9 +1465,6 @@ Template.flashcards.helpers({
 	isFrontPreview: function () {
 		return (Session.get('activeEditMode') === 0 && isEditModeOrPresentation());
 	},
-	isBackPreview: function () {
-		return (Session.get('activeEditMode') === 1 && isEditModeOrPresentation());
-	},
 	isLecturePreview: function () {
 		if (CardType.gotLecture(this.cardType)) {
 			return (Session.get('activeEditMode') === 3 && isEditModeOrPresentation());
@@ -1391,14 +1476,7 @@ Template.flashcards.helpers({
 		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	},
 	isCentered: function (type) {
-		if (isEditModeOrPresentation()) {
-			if (Session.get('centerTextElement') !== undefined) {
-				let centerTextElement = Session.get('centerTextElement');
-				return centerTextElement[type];
-			}
-		} else {
-			return this.centerTextElement[type];
-		}
+		isCentered(type);
 	},
 	gotBack: function () {
 		if (CardType.gotBack(this.cardType)) {
@@ -1411,43 +1489,23 @@ Template.flashcards.helpers({
 		return this.front !== '' && this.front !== undefined;
 	},
 	getPlaceholder: function (mode) {
-		if (Session.get('shuffled')) {
-			return CardType.getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
-		} else {
-			return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
-		}
+		getPlaceholder(mode);
 	}
 });
 
 Template.flashcards.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		if (CardType.gotSidesSwapped(this.cardType)) {
-			if (Session.get('reverseViewOrder')) {
-				if (isPresentation) {
-					editFront();
-				} else {
-					turnFront();
-				}
+		if (Session.get('reverseViewOrder')) {
+			if (isPresentation) {
+				editBack();
 			} else {
-				if (isPresentation) {
-					editBack();
-				} else {
-					turnBack();
-				}
+				turnBack();
 			}
 		} else {
-			if (Session.get('reverseViewOrder')) {
-				if (isPresentation) {
-					editBack();
-				} else {
-					turnBack();
-				}
+			if (isPresentation) {
+				editFront();
 			} else {
-				if (isPresentation) {
-					editFront();
-				} else {
-					turnFront();
-				}
+				turnFront();
 			}
 		}
 		if (isPresentation()) {

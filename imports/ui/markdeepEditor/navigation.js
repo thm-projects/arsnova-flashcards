@@ -52,5 +52,8 @@ Template.markdeepNavigation.helpers({
 	},
 	gotOneColumn: function () {
 		return CardType.gotOneColumn(Session.get('cardType'));
+	},
+	isHintPreview: function () {
+		return Session.get('activeEditMode') === 2;
 	}
 });

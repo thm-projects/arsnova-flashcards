@@ -276,6 +276,7 @@ img.cardside {
 
 .dictionaryFrame {
   width: 100%;
+  height: 100%;
   padding: 0;
 }
 
@@ -342,10 +343,14 @@ img.cardside {
 }
 
 .center-align {
-  position: relative;
-  float: left;
-  width: 100%;
+  display: table;
+  width:100%;
+  height: 100%;
   text-align: center;
+  .md {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 
 #learningGoalLevelGroup {

@@ -226,7 +226,10 @@ Template.cardsetList.helpers({
 			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
-	cleanFrontText: function (text) {
+	getPriority: function (index) {
+		return index + 1;
+	},
+	cleanText: function (text) {
 		return text
 		// Remove image mark-up
 			.replace(/[\!][\[]/g, '')
@@ -251,6 +254,9 @@ Template.cardsetList.helpers({
 		} else {
 			return Cards.find({cardset_id: Session.get('tempLearningIndex'), cardType: 0}).count();
 		}
+	},
+	gotSidesSwapped: function () {
+		return CardType.gotSidesSwapped(this.cardType);
 	},
 	cardSubject: function () {
 		if (Router.current().route.getName() === "cardsetlistid") {
@@ -277,6 +283,12 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardList: function () {
+		let sortQuery;
+		if (CardType.gotSidesSwapped(this.cardType)) {
+			sortQuery = {back: 1};
+		} else {
+			sortQuery = {front: 1};
+		}
 		if (Router.current().route.getName() === "cardsetlistid") {
 			return Cards.find({
 				cardset_id: this.cardset_id,
@@ -285,7 +297,9 @@ Template.cardsetList.helpers({
 				_id: 1,
 				difficulty: 1,
 				front: 1,
-				sort: {front: 1}
+				back: 1,
+				cardType: 1,
+				sort: sortQuery
 			});
 		} else {
 			return Cards.find({
@@ -296,7 +310,9 @@ Template.cardsetList.helpers({
 				_id: 1,
 				difficulty: 1,
 				front: 1,
-				sort: {front: 1}
+				back: 1,
+				cardType: 1,
+				sort: sortQuery
 			});
 		}
 	},

@@ -80,7 +80,9 @@ function importCards(data, cardset, importType) {
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
-					learningUnit: item.learningUnit
+					learningUnit: item.learningUnit,
+					date: item.date,
+					dateUpdated: item.dateUpdated
 				}, {trimStrings: false});
 			}
 		} else {
@@ -99,7 +101,9 @@ function importCards(data, cardset, importType) {
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
-					originalAuthor: item.originalAuthor
+					originalAuthor: item.originalAuthor,
+					date: item.date,
+					dateUpdated: item.dateUpdated
 				}, {trimStrings: false});
 			}
 		}
