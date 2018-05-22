@@ -1331,5 +1331,11 @@
       "cardset": "Cardset",
       "cards": "Cards"
     }
+  },
+  "bertAlert": {
+    "firstLogin": {
+      "title": "Welcome to .cards",
+      "message": ""
+    }
   }
 }

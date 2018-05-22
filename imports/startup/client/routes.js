@@ -308,8 +308,27 @@ var isSignedIn = function () {
 	}
 };
 
+function firstLoginBertAlert() {
+	let firstLoginItem = 'firstLogin' + Meteor.userId();
+	if (!localStorage.getItem(firstLoginItem)) {
+		Bert.defaults.hideDelay = 97200;
+		Bert.alert({
+			title: TAPi18n.__('bertAlert.firstLogin.title'),
+			message: TAPi18n.__('bertAlert.firstLogin.message'),
+			type: 'success',
+			style: 'fixed-top',
+			icon: 'fa-info'
+		});
+		Bert.defaults.hideDelay = 7;
+		localStorage.setItem(firstLoginItem, true);
+	}
+}
+
 var goToCreated = function () {
 	if (Meteor.user()) {
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
+			firstLoginBertAlert();
+		}
 		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 		let count = Leitner.find({

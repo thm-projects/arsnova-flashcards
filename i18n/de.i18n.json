@@ -1296,5 +1296,11 @@
       "cardset": "Kartei",
       "cards": "Karten"
     }
+  },
+  "bertAlert": {
+    "firstLogin": {
+      "title": "Wilkommen auf .cards",
+      "message": "Todo"
+    }
   }
 }
