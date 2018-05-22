@@ -1230,16 +1230,18 @@ Template.flashcards.onRendered(function () {
 	if (!isEditMode()) {
 		Session.set('activeEditMode', 0);
 	}
-	if (Router.current().route.getName() === "cardsetdetailsid") {
-		let mc = new Hammer.Manager(document.getElementById('set-details-region'));
-		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
-		mc.on("swipe", function (ev) {
-			if (ev.deltaX < 0) {
-				document.getElementById('rightCarouselControl').click();
-			} else {
-				document.getElementById('leftCarouselControl').click();
-			}
-		});
+	if (window.innerWidth <= 1400) {
+		if (Router.current().route.getName() === "cardsetdetailsid") {
+			let mc = new Hammer.Manager(document.getElementById('set-details-region'));
+			mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
+			mc.on("swipe", function (ev) {
+				if (ev.deltaX < 0) {
+					document.getElementById('rightCarouselControl').click();
+				} else {
+					document.getElementById('leftCarouselControl').click();
+				}
+			});
+		}
 	}
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
 		$(".box").removeClass("disableCardTransition");
