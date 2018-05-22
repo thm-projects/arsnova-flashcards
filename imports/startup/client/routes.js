@@ -308,7 +308,7 @@ var isSignedIn = function () {
 	}
 };
 
-function firstLoginBertAlert() {
+export function firstLoginBertAlert() {
 	let firstLoginItem = 'firstLogin' + Meteor.userId();
 	if (!localStorage.getItem(firstLoginItem)) {
 		Bert.defaults.hideDelay = 97200;
