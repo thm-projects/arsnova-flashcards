@@ -309,14 +309,14 @@ var isSignedIn = function () {
 };
 
 export function firstLoginBertAlert() {
-	let firstLoginItem = 'firstLogin' + Meteor.userId();
+	let firstLoginItem = 'displayedFirstLoginBertAlert';
 	if (!localStorage.getItem(firstLoginItem)) {
 		Bert.defaults.hideDelay = 97200;
 		Bert.alert({
 			title: TAPi18n.__('bertAlert.firstLogin.title'),
 			message: TAPi18n.__('bertAlert.firstLogin.message'),
-			type: 'success',
-			style: 'fixed-top',
+			type: 'warning',
+			style: 'growl-top-left',
 			icon: 'fa-info'
 		});
 		Bert.defaults.hideDelay = 7;
