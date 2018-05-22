@@ -8,6 +8,8 @@
     color: unset;
     background-color: unset;
     padding: unset;
+    white-space: pre-wrap;
+    word-break: keep-all;
   }
 
   code > .output{
@@ -39,6 +41,11 @@
     background-color: unset;
     padding-left: unset;
     padding-right: unset;
+  }
+
+  pre.listing.tilde {
+    padding: 5px 20px;
+    overflow-x: hidden;
   }
 
   hr {

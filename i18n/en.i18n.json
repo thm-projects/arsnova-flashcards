@@ -1331,5 +1331,22 @@
       "cardset": "Cardset",
       "cards": "Cards"
     }
+  },
+  "bertAlert": {
+    "firstLogin": {
+      "title": "Welcome to .cards !",
+      "message": "Take a look around the platform.
+      Here you can learn cards on a specific topic or create sets of cards for your studies.
+      </br>
+      </br>
+      The help above in the middle explains why this platform is so unique !
+      </br>
+      </br>
+      Search the topic pool for a topic that interests you.
+      Click on the small arrow to the far right of the topic to see the description of the card index.
+      Click on the topic to see the cards.
+      </br>
+      </br>"
+    }
   }
 }

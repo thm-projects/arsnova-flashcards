@@ -3,6 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./first_login.html";
+import {firstLoginBertAlert} from "../../startup/client/routes";
 
 /*
  * ############################################################################
@@ -23,7 +24,7 @@ Template.first_login_content_only.events({
 		Router.go('profileSettings', {
 			_id: Meteor.user()._id
 		});
-		document.location.reload(true);
+		firstLoginBertAlert();
 		window.scrollTo(0, 0);
 	},
 	'click #logout_first_login': function () {

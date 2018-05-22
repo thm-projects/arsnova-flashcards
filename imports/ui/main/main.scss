@@ -1,3 +1,21 @@
+//bert alert (Doesn't work in theme-switcher)
+.bert-alert.warning {
+  background: #F5AA01 !important;
+  color: #FFF !important;
+}
+.bert-alert.success {
+  background: #80BA24 !important;
+  color: #FFF !important;
+}
+.bert-alert.info {
+  background: #003BD1 !important;
+  color: #FFF !important;
+}
+.bert-alert.danger {
+  background: #9C132D !important;
+  color: #FFF !important;
+}
+
 //global
 $default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
