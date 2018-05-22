@@ -1512,7 +1512,7 @@ Template.flashcards.events({
 			});
 		}
 	},
-	"click .box": function (evt) {
+	"click .cardHeader": function (evt) {
 		if (!CardType.gotOneColumn(Session.get('cardType')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
 			if (isEditMode() && !Session.get('fullscreen')) {
 				turnCard(true);
