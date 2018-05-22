@@ -4,6 +4,12 @@ variables:
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
 
+stages:
+#  - test
+#  - build
+  - review
+#  - deploy
+
 chimp:
   stage: test
   only:
@@ -100,6 +106,37 @@ build:
   artifacts:
     paths:
       - "$BUNDLE_DIR"
+
+review:
+  stage: review
+  script:
+    - $METEOR_PORT = cut -c1-3
+    - echo $METEOR_PORT
+#    - rsync -av --delete "$BUILD_DIR" /srv/nginx/pages/$CI_BUILD_REF_SLUG
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://review.arsnova.cards:$METEOR_PORT
+    on_stop: stop_review
+  only:
+    - branches
+  except:
+    - master
+  tags:
+    - cards-review
+
+stop_review:
+  stage: review
+  script:
+    - echo $METEOR_PORT
+#    - rm -rf "$BUILD_DIR" /srv/nginx/pages/$CI_BUILD_REF_SLUG
+  variables:
+    GIT_STRATEGY: none
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
+  tags:
+    - cards-review
 
 deploy_staging:
   stage: deploy
