@@ -317,7 +317,7 @@ export function firstLoginBertAlert() {
 			message: TAPi18n.__('bertAlert.firstLogin.message'),
 			type: 'warning',
 			style: 'growl-top-left',
-			icon: 'fa-info'
+			icon: 'fa-heart'
 		});
 		Bert.defaults.hideDelay = 7;
 		localStorage.setItem(firstLoginItem, true);

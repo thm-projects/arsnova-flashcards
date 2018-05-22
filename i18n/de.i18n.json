@@ -1299,8 +1299,19 @@
   },
   "bertAlert": {
     "firstLogin": {
-      "title": "Wilkommen auf .cards",
-      "message": "Nachricht"
+      "title": "Willkommen auf .cards !",
+      "message": "Schau dich in Ruhe auf der Plattform um.
+      Hier kannst du Karten zu einem bestimmten Thema lernen oder selbst Kartensätze für dein Studium erstellen.
+      </br>
+      </br>
+      Die Hilfe oben in der Mitte erklärt dir, warum diese Plattform so einzigartig ist !
+      </br>
+      </br>
+      Suche im Themen-Pool nach einem Thema, das dich interessiert.
+      Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen.
+      Mit einem Klick auf das Thema gelangst du zu den Karten.
+      </br>
+      </br>"
     }
   }
 }
