@@ -12,10 +12,6 @@ stages:
 
 build:
   stage: build
-  only:
-    - master
-    - staging
-    - /^v[0-9]+/
   tags:
     - meteor
   image: local-nodejs-meteor:1.6
@@ -40,18 +36,18 @@ review:
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     - mkdir -p $METEOR_HOME/logs
     - mkdir -p $METEOR_HOME/app
-    - rsync -av --delete "$BUNDLE_DIR" $METEOR_HOME/app
-    - cd $METEOR_HOME
-    - cp /srv/review-apps/appctl.sh .
-    - cp /srv/review-apps/meteor-settings.json .
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" appctl.sh
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" meteor-settings.json
-    - cd app/programs/server
+    - cp /srv/review-apps/appctl.sh $METEOR_HOME
+    - cp /srv/review-apps/meteor-settings.json $METEOR_HOME
+    - cp /srv/review-apps/mongo-setup.js $METEOR_HOME
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/appctl.sh
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/meteor-settings.json
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
+    - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
+    - cd $METEOR_HOME/app/programs/server
     - npm install
-    - npm install --save fibers@^1.0.7
     - cd $METEOR_HOME
-    - ./appctl.sh restart
-    - sleep 30
+    - mongo < mongo-setup.js
+    - ./appctl.sh start
   environment:
     name: review/$CI_BUILD_REF_NAME
     url: http://review.arsnova.cards:$METEOR_PORT
