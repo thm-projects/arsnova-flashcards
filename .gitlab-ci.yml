@@ -6,39 +6,52 @@ variables:
 
 stages:
 #  - test
-#  - build
+  - build
   - review
 #  - deploy
 
-#build:
-#  stage: build
-#  only:
-#    - master
-#    - staging
-#    - /^v[0-9]+/
-#  tags:
-#    - meteor
-#  image: local-nodejs-meteor:1.6
-#  dependencies: []
-#  script:
-#    - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
-#    - npm install
-#    - meteor build --allow-superuser --server-only --directory "$BUILD_DIR"
-#    - mv /opt/meteor/package-metadata "$CI_PROJECT_DIR/"
-#  cache:
-#    paths:
-#      - package-metadata
-#      - .meteor/local
-#  artifacts:
-#    paths:
-#      - "$BUNDLE_DIR"
+build:
+  stage: build
+  only:
+    - master
+    - staging
+    - /^v[0-9]+/
+  tags:
+    - meteor
+  image: local-nodejs-meteor:1.6
+  dependencies: []
+  script:
+    - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
+    - npm install
+    - meteor build --allow-superuser --server-only --directory "$BUILD_DIR"
+    - mv /opt/meteor/package-metadata "$CI_PROJECT_DIR/"
+  cache:
+    paths:
+      - package-metadata
+      - .meteor/local
+  artifacts:
+    paths:
+      - "$BUNDLE_DIR"
 
 review:
   stage: review
   script:
     - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
-    - echo $METEOR_PORT
-#    - rsync -av --delete "$BUILD_DIR" /srv/nginx/pages/$CI_BUILD_REF_SLUG
+    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    - mkdir -p $METEOR_HOME/logs
+    - mkdir -p $METEOR_HOME/app
+    - rsync -av --delete "$BUNDLE_DIR" $METEOR_HOME/app
+    - cd $METEOR_HOME
+    - cp /srv/review-apps/appctl.sh .
+    - cp /srv/review-apps/meteor-settings.json .
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" appctl.sh
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" meteor-settings.json
+    - cd app/programs/server
+    - npm install
+    - npm install --save fibers@^1.0.7
+    - cd $METEOR_HOME
+    - ./appctl.sh restart
+    - sleep 30
   environment:
     name: review/$CI_BUILD_REF_NAME
     url: http://review.arsnova.cards:$METEOR_PORT
