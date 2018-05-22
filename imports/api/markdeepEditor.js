@@ -18,10 +18,6 @@ class MarkdeepEditor {
 		}
 	}
 
-	static orderCards () {
-		$("#underDevelopmentModal").modal("show");
-	}
-
 	static lockCardSide () {
 		$("#underDevelopmentModal").modal("show");
 	}
@@ -32,6 +28,15 @@ class MarkdeepEditor {
 		} else {
 			Session.set('backgroundStyle', 1);
 		}
+	}
+
+	static displayDictionary () {
+		if (Session.get('dictionaryPreview') === 0) {
+			Session.set('dictionaryPreview', 1);
+		} else {
+			Session.set('dictionaryPreview', 0);
+		}
+		$('#contentEditor').focus();
 	}
 
 	static toggleFullscreen () {

@@ -20,20 +20,20 @@ export function isTextCentered() {
  * ############################################################################
  */
 Template.markdeepNavigation.events({
-	'click .markdeep-help': function ()  {
+	'click .markdeep-help': function () {
 		MarkdeepEditor.help();
 	},
 	'click .markdeep-center': function () {
 		MarkdeepEditor.center();
-	},
-	'click .markdeep-card-order': function ()  {
-		MarkdeepEditor.orderCards();
 	},
 	'click .markdeep-lock': function () {
 		MarkdeepEditor.lockCardSide();
 	},
 	'click .markdeep-background-style': function () {
 		MarkdeepEditor.changeBackgroundStyle();
+	},
+	'click .markdeep-dictionary': function () {
+		MarkdeepEditor.displayDictionary();
 	},
 	'click .markdeep-fullscreen': function () {
 		MarkdeepEditor.toggleFullscreen();
@@ -44,6 +44,9 @@ Template.markdeepNavigation.helpers({
 	isCenterTextActive: function () {
 		return Session.get('centerTextElement')[Session.get('activeEditMode')];
 	},
+	isDictionaryActive: function () {
+		return Session.get('dictionaryPreview');
+	},
 	isAlternativeBackgroundStyle: function () {
 		return Session.get('backgroundStyle');
 	},
@@ -52,6 +55,9 @@ Template.markdeepNavigation.helpers({
 	},
 	gotOneColumn: function () {
 		return CardType.gotOneColumn(Session.get('cardType'));
+	},
+	gotDictionary: function () {
+		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isHintPreview: function () {
 		return Session.get('activeEditMode') === 2;
