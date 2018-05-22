@@ -333,6 +333,14 @@
                                             </span>
 </template>
 
+<template name="cardDictionaryContent">
+    <iframe class="dictionaryFrame"
+            src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
+            frameborder="0"
+            data-type="cardNavigation">
+    </iframe>
+</template>
+
 <template name="flashcards">
     {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
@@ -346,7 +354,8 @@
                             <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
                                      style="{{#if isHintPreview}}display: none{{/if}}{{#if
-                                             isLecturePreview}}display: none{{/if}}">
+                                             isLecturePreview}}display: none{{/if}}{{#if
+                                             isDictionaryPreview}}display: none{{/if}}">
                                     {{#if canCopyCard this.cardset_id}}
                                         {{#if isCardset}}
                                             <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
@@ -477,11 +486,12 @@
                                 <div class="cardContent {{#if
                                         isHintPreview}}{{#if
                                         gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
-                                        isLecturePreview}}lectureContent{{/if}} centered cardfront {{#unless
+                                        isLecturePreview}}lectureContent{{/if}}{{#if
+                                        isDictionaryPreview}}lectureContent{{/if}} centered cardfront {{#unless
                                         isHintPreview}}{{#unless
-                                        isLecturePreview}}{{getCardBackground
+                                        isLecturePreview}}{{#unless isDictionaryPreview}}{{getCardBackground
                                         difficulty cardType
-                                        backgroundStyle}}{{/unless}}{{/unless}} detailfront{{@index}}"
+                                        backgroundStyle}}{{/unless}}{{/unless}}{{/unless}} detailfront{{@index}}"
                                      style="display: {{#if gotDictionary}}{{#if
                                              reversedViewOrder}}none{{/if}}{{/if}}">
                                     {{#if isEditModeOrPresentation}}
@@ -498,6 +508,9 @@
                                         {{#if isLecturePreview}}
                                             {{> cardLectureContent this}}
                                         {{/if}}
+                                        {{#if isDictionaryPreview}}
+                                            {{> cardDictionaryContent this}}
+                                        {{/if}}
                                     {{else}}
                                         {{#if gotSidesSwapped}}
                                             {{> cardBackContent this}}
@@ -506,14 +519,20 @@
                                         {{/if}}
                                     {{/if}}
                                 </div>
-                                <div class="cardContent centered cardback {{getCardBackground
-                                        difficulty cardType backgroundStyle}} detailback{{@index}}"
+                                <div class="cardContent centered cardback {{#if
+                                        isDictionaryPreview}}lectureContent{{/if}} {{#unless
+                                        isDictionaryPreview}}{{getCardBackground
+                                        difficulty cardType backgroundStyle}}{{/unless}} detailback{{@index}}"
                                      style="display: {{#if gotDictionary}}{{#unless
                                              reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-                                    {{#if gotSidesSwapped}}
-                                        {{> cardFrontContent this}}
+                                    {{#if isDictionaryPreview}}
+                                        {{> cardDictionaryContent this}}
                                     {{else}}
-                                        {{> cardBackContent this}}
+                                        {{#if gotSidesSwapped}}
+                                            {{> cardFrontContent this}}
+                                        {{else}}
+                                            {{> cardBackContent this}}
+                                        {{/if}}
                                     {{/if}}
                                 </div>
                                 {{#unless gotNotesForDifficultyLevel}}
@@ -523,16 +542,10 @@
                                         <div class="cardContent {{#if
                                                 gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
                                                 gotLecture}}lectureContent{{/if}} detaillecture{{@index}}">
-                                            {{#if gotLecture}}
-                                                {{> cardLectureContent this}}
-                                            {{/if}}
                                             {{#if gotDictionary}}
-                                                <iframe class="dictionaryFrame"
-                                                        src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
-                                                        frameborder="0"
-                                                        data-type="cardNavigation">
-                                                </iframe>
-
+                                                {{> cardDictionaryContent}}
+                                            {{else}}
+                                                {{> cardLectureContent this}}
                                             {{/if}}
                                         </div>
                                     </div>
