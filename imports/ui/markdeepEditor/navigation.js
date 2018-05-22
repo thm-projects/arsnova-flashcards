@@ -26,9 +26,6 @@ Template.markdeepNavigation.events({
 	'click .markdeep-center': function () {
 		MarkdeepEditor.center();
 	},
-	'click .markdeep-card-order': function () {
-		MarkdeepEditor.orderCards();
-	},
 	'click .markdeep-lock': function () {
 		MarkdeepEditor.lockCardSide();
 	},

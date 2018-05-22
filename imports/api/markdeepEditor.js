@@ -18,10 +18,6 @@ class MarkdeepEditor {
 		}
 	}
 
-	static orderCards () {
-		$("#underDevelopmentModal").modal("show");
-	}
-
 	static lockCardSide () {
 		$("#underDevelopmentModal").modal("show");
 	}
