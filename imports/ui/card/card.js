@@ -1379,8 +1379,6 @@ Template.flashcards.helpers({
 	isLecturePreview: function () {
 		if (CardType.gotLecture(this.cardType)) {
 			return (Session.get('activeEditMode') === 3 && isEditModeOrPresentation());
-		} else {
-			return false;
 		}
 	},
 	isDictionaryPreview: function () {

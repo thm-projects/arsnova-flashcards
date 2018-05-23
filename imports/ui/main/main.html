@@ -1,5 +1,4 @@
 <template name="main">
-    {{checkActiveRouteName}}
     <div id="{{#if currentUser}}{{#if isInRole
                                       'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
          class="{{getTheme}}">
