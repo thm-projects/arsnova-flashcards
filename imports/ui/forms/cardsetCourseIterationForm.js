@@ -201,7 +201,11 @@ export function saveCardset() {
 		let name, cardType, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled,
 			cardGroups;
 		name = $('#setName').val();
-		cardType = $('#setCardType').val();
+		if (shuffleRoute()) {
+			cardType = -1;
+		} else {
+			cardType = $('#setCardType').val();
+		}
 		description = $('#contentEditor').val();
 		if (courseIterationRoute()) {
 			if (TargetAudience.gotModule(Session.get('targetAudience'))) {
@@ -261,6 +265,9 @@ export function saveCardset() {
 			if (courseIterationRoute()) {
 				Meteor.call("updateCourseIteration", name, description, module, moduleShort, moduleNum, moduleLink, college, course);
 			} else {
+				if (Cardsets.findOne(Router.current().params._id).shuffled) {
+					cardType = -1;
+				}
 				Meteor.call("updateCardset", Router.current().params._id, name, description, Number(cardType), Session.get('difficultyColor'));
 				Session.set('cardType', Number(cardType));
 			}
@@ -364,7 +371,7 @@ Template.cardsetCourseIterationFormContent.helpers({
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
-			return ActiveRoute.name('shuffle') ? "Shuffle: " + Session.get("ShuffleTemplate").name : "";
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").name : "";
 		}
 	},
 	getShuffleModule: function () {

@@ -550,6 +550,10 @@
       "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
       "success": "Die Kartei wurde erfolgreich gelöscht",
       "failure": "Die Kartei konnte nicht gelöscht werden"
+    },
+    "shuffled": {
+      "long": "Gemischter Kartensatz",
+      "short": "Gemischt"
     }
   },
   "cardmemo": {
@@ -636,7 +640,7 @@
       "front": "Lernziel",
       "back": "Zusammenfassung",
       "hint": "Links | Literatur ",
-      "lecture": "Erläuterung",
+      "lecture": "Präsentation",
       "placeholders": {
         "subject": "Gib das kurzgefasste Lernziel an !",
         "front": "",
@@ -654,8 +658,8 @@
       "back": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "front": "Zu übersetzende Vokabel oder Phrase \n\nWenn du ein einzelnes englisches Wort eingibst, wird in der Kartenansicht \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
-        "back": "Empfehlung für die Übersetzung von Textpassagen: deepl.com"
+        "front": "Zu übersetzende Vokabel oder Phrase \n\nWenn du nur ein einzelnes Wort eingibst und auf das Buch-Icon klicksts, wird in der Vorschau \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
+        "back": "Empfehlung für die Übersetzung eines Textes: deepl.com"
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"

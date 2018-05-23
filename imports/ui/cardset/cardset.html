@@ -137,21 +137,23 @@
             </td>
         </tr>
     {{/if}}
-    {{#unless isActiveRoute regex="course"}}
-        <tr>
-            <td>{{_ "cardType"}}:</td>
-            <td>
-                {{getCardType}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                    "difficulty"}}{{/if}}:
-            </td>
-            <td>
-                {{getDifficultyName}}
-            </td>
-        </tr>
+    {{#unless isShuffledCardset this._id}}
+        {{#unless isActiveRoute regex="course"}}
+            <tr>
+                <td>{{_ "cardType"}}:</td>
+                <td>
+                    {{getCardType}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                        "difficulty"}}{{/if}}:
+                </td>
+                <td>
+                    {{getDifficultyName}}
+                </td>
+            </tr>
+        {{/unless}}
     {{/unless}}
     {{#if isActiveRoute regex="course"}}
         <tr>
@@ -313,7 +315,8 @@
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
                             learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
-                        <h4 id="cardsetTitle">{{{getKind kind 0}}} {{name}}</h4>
+                        <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel this.shuffled}}}</div>
+                        <h4 id="cardsetTitle">{{name}}</h4>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">
@@ -432,8 +435,7 @@
                         <div class="well well-sm sidebar-nav">
                             <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
                             <button id="startPresentation"
-                                    class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}
-                                    data-toggle="modal" data-target="#chooseFlashcardsModal"><i
+                                    class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}><i
                                     class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
                         </div>
                     </div>
@@ -643,7 +645,7 @@
     <div class="{{#if isActiveRoute 'cardsetlistid'}}col-md-9{{/if}}" id="cardset-list">
         {{#if gotCards}}
             {{#each cardsetList}}
-                {{#if isShuffledCardset}}
+                {{#if isShuffledCardset this._id}}
                     <div class="cardListName btn-raised {{getColors}}">
                         {{this.name}}
                     </div>

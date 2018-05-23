@@ -353,9 +353,9 @@
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-                                     style="{{#if isHintPreview}}display: none{{/if}}{{#if
-                                             isLecturePreview}}display: none{{/if}}{{#if
-                                             isDictionaryPreview}}display: none{{/if}}">
+                                     data-cardtype="{{cardType}}" style="{{#if isHintPreview}}display: none{{/if}}{{#if
+                                        isLecturePreview}}display: none{{/if}}{{#if
+                                        isDictionaryPreview}}display: none{{/if}}">
                                     {{#if canCopyCard this.cardset_id}}
                                         {{#if isCardset}}
                                             <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
@@ -367,38 +367,36 @@
                                             </a>
                                         {{/if}}
                                     {{/if}}
-                                    <div class="leftHeader">
-                                        {{#if isCardEditor this.cardset_id}}
-                                            {{#if isCardset}}
-                                                <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}"
-                                                   data-id="{{_id}}"
-                                                   data-type="cardNavigation">
+                                    <div class="leftHeader" data-cardtype="{{cardType}}">
+                                        {{#unless isShuffledCardset}}
+                                            {{#if isCardEditor this.cardset_id}}
+                                                {{#if isCardset}}
+                                                    <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}"
+                                                       data-id="{{_id}}"
+                                                       data-type="cardNavigation">
                                                     <span class="glyphicon glyphicon-pencil card-button"
                                                           data-id="{{_id}}"
                                                           data-type="cardNavigation"></span>
-                                                </a>
+                                                    </a>
+                                                {{/if}}
                                             {{/if}}
-                                        {{/if}}
+                                        {{/unless}}
                                         {{#unless isEditModeOrPresentation}}
                                             {{#if gotLecture}}
-                                                {{#if lecture}}
-                                                    <a href="#" id="showLecture">
+                                                <a href="#" id="showLecture">
                                                     <span class="glyphicon glyphicon glyphicon-education card-button"
                                                           data-type="cardNavigation"
                                                           data-toggle="collapse"
                                                           data-target="#collapseLecture-{{_id}}"></span>
-                                                    </a>
-                                                {{/if}}
+                                                </a>
                                             {{/if}}
                                             {{#if gotHint}}
-                                                {{#if hint}}
-                                                    <a href="#" id="showHint">
+                                                <a href="#" id="showHint">
                                                     <span class="fa fa-book card-button"
                                                           data-id="{{_id}}" data-type="cardNavigation"
                                                           data-toggle="modal"
                                                           data-target="#showHintModal"></span>
-                                                    </a>
-                                                {{/if}}
+                                                </a>
                                             {{/if}}
                                         {{/unless}}
                                         {{#unless isEditMode}}
@@ -414,27 +412,30 @@
                                             {{/if}}
                                         {{/unless}}
                                     </div>
-                                    <div class="cardHeaderCenter cardHeaderFirstRow">
-                                        <strong>{{getCardsetName}}</strong><br>
+                                    <div class="cardHeaderCenter cardHeaderFirstRow" data-cardtype="{{cardType}}">
+                                        <strong data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
                                         {{#if displaysSideInformation}}
                                             <span
                                                     class="cardFrontHeader cardHeaderSecondRow"
                                                     style="display: {{#if gotDictionary}}{{#if
-                                                            reversedViewOrder}}none{{/if}}{{/if}}">{{_
+                                                            reversedViewOrder}}none{{/if}}{{/if}}"
+                                                    data-cardtype="{{cardType}}">{{_
                                                     "sidebar-nav.view"}}: {{getFrontTitle}}
                                                 </span><span
                                                 class="cardBackHeader cardHeaderSecondRow"
                                                 style="display: {{#if gotDictionary}}{{#unless
-                                                        reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">{{_
+                                                        reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}"
+                                                data-cardtype="{{cardType}}">{{_
                                                 "sidebar-nav.view"}}: {{getBackTitle}}
                                                 </span>
                                         {{/if}}
                                         {{#if displaysLearningGoalInformation}}
-                                            <span class="cardHeaderSecondRow">{{#if displaysSideInformation}}|{{/if}}
+                                            <span class="cardHeaderSecondRow" data-cardtype="{{cardType}}">{{#if
+                                                    displaysSideInformation}}|{{/if}}
                                                 {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
                                         {{/if}}
                                     </div>
-                                    <div class="cardNumber cardHeaderFirstRow">
+                                    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
                                         {{#if isCardsetOrPresentation}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 {{_ "preview"}}:
@@ -449,33 +450,38 @@
                                             <br>
                                         {{/if}}
                                     </div>
-                                    {{#if gotBack}}
-                                        <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}">
-                                                <span class="fa fa-refresh card-button {{#unless
-                                                        isQuestionSide}}pressed{{/unless}}"></span>
-                                    </span>
-                                        <span id="swapOrder" data-type="cardNavigation"
-                                              title="{{_ "card.tooltip.lockSide"}}">
-                                                <i class="fa fa-anchor card-button {{#if
-                                                        reversedViewOrder}}pressed{{/if}}"
-                                                   data-type="cardNavigation"></i>
-                                    </span>
-                                    {{/if}}
                                     {{#if isPresentation}}
                                         <span class="glyphicon glyphicon-log-out card-button endPresentation"
                                               data-type="cardNavigation" data-toggle="modal"
                                               data-target="#endPresentationModal"
                                               title="{{_ "card.tooltip.endPresentation"}}"></span>
-                                    {{/if}}
-                                    <span id="toggleFullscreen"
-                                          class="fullscreen"
-                                          data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
+                                    {{else}}
+                                        {{#unless gotOneColumn}}
+                                            {{#if gotBack}}
+                                                <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}"
+                                                      data-cardtype="{{cardType}}">
+                                                <span class="fa fa-refresh card-button {{#unless
+                                                        isQuestionSide}}pressed{{/unless}}"
+                                                      data-cardtype="{{cardType}}"></span>
+                                    </span>
+                                                <span id="swapOrder" data-type="cardNavigation"
+                                                      title="{{_ "card.tooltip.lockSide"}}">
+                                                <i class="fa fa-anchor card-button {{#if
+                                                        reversedViewOrder}}pressed{{/if}}"
+                                                   data-type="cardNavigation"></i>
+                                    </span>
+                                            {{/if}}
+                                        {{/unless}}
+                                        <span id="toggleFullscreen"
+                                              class="fullscreen"
+                                              data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
                                                 <span class="glyphicon glyphicon-fullscreen card-button {{#if
                                                         fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
                                     </span>
+                                    {{/if}}
                                     <br>
-                                    <h2>{{> cardSubject this}}</h2>
+                                    <h2 data-cardtype="{{cardType}}">{{> cardSubject this}}</h2>
                                     <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
                                             reversedViewOrder}}none{{/if}}{{/if}}"></span>
                                     <span class="cardbackCheck"
@@ -528,10 +534,14 @@
                                     {{#if isDictionaryPreview}}
                                         {{> cardDictionaryContent this}}
                                     {{else}}
-                                        {{#if gotSidesSwapped}}
+                                        {{#if gotOneColumn}}
                                             {{> cardFrontContent this}}
                                         {{else}}
-                                            {{> cardBackContent this}}
+                                            {{#if gotSidesSwapped}}
+                                                {{> cardFrontContent this}}
+                                            {{else}}
+                                                {{> cardBackContent this}}
+                                            {{/if}}
                                         {{/if}}
                                     {{/if}}
                                 </div>

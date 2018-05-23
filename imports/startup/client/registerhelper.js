@@ -7,7 +7,6 @@ import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
-import {toggleFullscreen} from "../../ui/card/card";
 import {Paid} from "../../api/paid";
 import CardType from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
@@ -102,6 +101,12 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 			default:
 				return 'Undefined!';
 		}
+	}
+});
+
+Template.registerHelper("getShuffleLabel", function (shuffled = false) {
+	if (shuffled) {
+		return '<span class="label label-shuffled" data-id="shuffled">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
 	}
 });
 
@@ -524,14 +529,6 @@ Template.registerHelper("getCardBackground", function (difficulty, cardType, bac
 
 Template.registerHelper("fullscreenActive", function () {
 	return Session.get('fullscreen');
-});
-
-Template.registerHelper("checkActiveRouteName", function () {
-	let currentRoute = Router.current().route.getName();
-	if (currentRoute !== Session.get('previousRouteName')) {
-		Session.set('previousRouteName', currentRoute);
-		toggleFullscreen(true);
-	}
 });
 
 Template.registerHelper("oddRow", function (index) {
