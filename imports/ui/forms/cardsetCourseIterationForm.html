@@ -41,41 +41,46 @@
                 </div>
                 <br>
                 {{#unless isCourseIteration}}
-                    {{#unless learningActive}}
-                        <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
-                                "cardType"}}</label>
-                        <div class="dropdown">
-                            <div class="btn-group col-xs-12 col-sm-12 col-md-9">
-                                <button id="setCardType" type="button"
-                                        class="btn btn-raised btn-default setCardTypeDropdown longButton"
-                                        data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"
-                                        value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
-                                    {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName cardType}}{{/if}}
-                                </button>
-                                <button type="button"
-                                        class="btn btn-raised dropdown-toggle setCardTypeDropdown"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only"></span>
-                                </button>
-                                <ul class="dropdown-menu btn-raised longButton">
-                                    {{> cardTypesList filter=false}}
-                                </ul>
-                                <span id="helpSetCardType" class="text-warning"></span>
-                            </div>
-                        </div>
+                    {{#unless isActiveRoute regex='shuffle'}}
+                        {{#unless isShuffledCardset this._id}}
+                            {{#unless learningActive}}
+                                <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
+                                        "cardType"}}</label>
+                                <div class="dropdown">
+                                    <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                        <button id="setCardType" type="button"
+                                                class="btn btn-raised btn-default setCardTypeDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"
+                                                value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
+                                            {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName
+                                                    cardType}}{{/if}}
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-raised dropdown-toggle setCardTypeDropdown"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu btn-raised longButton">
+                                            {{> cardTypesList filter=false}}
+                                        </ul>
+                                        <span id="helpSetCardType" class="text-warning"></span>
+                                    </div>
+                                </div>
+                            {{/unless}}
+                            {{#if gotDifficultyLevel}}
+                                <br>
+                                <label id="setDifficultyLabel" class="col-md-3 control-label" for="setDifficulty">{{#if
+                                        gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                                        "difficulty"}}{{/if}}</label>
+                                <div id="setDifficulty" class="col-md-9 cardtext editorElement">
+                                    {{> difficultyEditor}}
+                                </div>
+                            {{/if}}
+                        {{/unless}}
                     {{/unless}}
-                    {{#if gotDifficultyLevel}}
-                        <br>
-                        <label id="setDifficultyLabel" class="col-md-3 control-label" for="setDifficulty">{{#if
-                                gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                                "difficulty"}}{{/if}}</label>
-                        <div id="setDifficulty" class="col-md-9 cardtext editorElement">
-                            {{> difficultyEditor}}
-                        </div>
-                    {{/if}}
                 {{/unless}}
             </div>
             {{#if isCourseIteration}}

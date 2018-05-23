@@ -797,10 +797,22 @@ Template.cardsetSidebar.helpers({
 		return (this.quantity >= 3);
 	},
 	gotLearningModes: function () {
-		return CardType.gotLearningModes(this.cardType);
+		if (this.shuffled) {
+			for (let i = 0; i < this.cardGroups.length; i++) {
+				if (CardType.gotLearningModes(Cardsets.findOne(this.cardGroups[i]).cardType)) {
+					return true;
+				}
+			}
+		} else {
+			return CardType.gotLearningModes(this.cardType);
+		}
 	},
 	gotPresentation: function () {
-		return CardType.gotPresentationMode(this.cardType);
+		if (this.shuffled) {
+			return true;
+		} else {
+			return CardType.gotPresentationMode(this.cardType);
+		}
 	},
 	learningLeitner: function () {
 		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});

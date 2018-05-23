@@ -6,7 +6,7 @@ import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {check} from "meteor/check";
-import {gotLearningModes} from "../imports/api/cardTypes.js";
+import CardType from "../imports/api/cardTypes";
 
 Meteor.methods({
 	/** Function adds a new user as learning
@@ -19,8 +19,20 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id});
-			if (!gotLearningModes(cardset.cardType)) {
-				throw new Meteor.Error("not-authorized");
+			if (cardset.shuffled) {
+				let counter = 0;
+				for (let i = 0; i < cardset.cardGroups.length; i++) {
+					if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
+						counter++;
+					}
+				}
+				if (counter === 0) {
+					throw new Meteor.Error("not-authorized");
+				}
+			} else {
+				if (!CardType.gotLearningModes(cardset.cardType)) {
+					throw new Meteor.Error("not-authorized");
+				}
 			}
 			if (!cardset.learningActive) {
 				Meteor.call("defaultCardsetLeitnerData", cardset, function (error, result) {
@@ -28,11 +40,10 @@ Meteor.methods({
 						throw new Meteor.Error(error.statusCode, 'Error could not update default leitner data for inactive learning-phase.');
 					}
 					if (result) {
-						cardset = result;
 						if (!Leitner.findOne({
-								cardset_id: cardset._id,
-								user_id: Meteor.userId()
-							})) {
+							cardset_id: cardset._id,
+							user_id: Meteor.userId()
+						})) {
 							Meteor.call("addLeitnerCards", cardset, Meteor.userId(), function (error, result) {
 								if (error) {
 									throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in inactive learning-phase.');
@@ -48,9 +59,9 @@ Meteor.methods({
 				});
 			} else {
 				if (!Leitner.findOne({
-						cardset_id: cardset._id,
-						user_id: Meteor.userId()
-					}) && cardset.learningEnd.getTime() > new Date().getTime()) {
+					cardset_id: cardset._id,
+					user_id: Meteor.userId()
+				}) && cardset.learningEnd.getTime() > new Date().getTime()) {
 					Meteor.call("addLeitnerCards", cardset, Meteor.userId(), function (error, result) {
 						if (error) {
 							throw new Meteor.Error(error.statusCode, 'Error could not add cards for leitner in active learning-phase.');
@@ -73,16 +84,15 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cards;
+			let cardsetFilter = [cardset._id];
 			if (cardset.shuffled) {
-				cards = Cards.find({
-					cardset_id: {$in: cardset.cardGroups}
-				});
-			} else {
-				cards = Cards.find({
-					cardset_id: cardset._id,
-					card_type: {$ne: 3}
-				});
+				cardsetFilter = cardset.cardGroups;
 			}
+			cards = Cards.find({
+				cardset_id: {$in: cardsetFilter},
+				cardType: {$in: CardType.getCardTypesWithLearningModes()}
+			});
+
 			cards.forEach(function (card) {
 				Meteor.call("addLeitner", cardset._id, card._id, user_id, false);
 			});
@@ -97,21 +107,29 @@ Meteor.methods({
 	addWozniakCards: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive || !gotLearningModes(cardset.cardType)) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let cards;
 			if (cardset.shuffled) {
-				cards = Cards.find({
-					cardset_id: {$in: cardset.cardGroups},
-					card_type: {$ne: 3}
-				});
-			} else {
-				cards = Cards.find({
-					cardset_id: cardset._id,
-					card_type: {$ne: 3}
-				});
+				let counter = 0;
+				for (let i = 0; i < cardset.cardGroups.length; i++) {
+					if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
+						counter++;
+					}
+				}
+				if (counter === 0) {
+					throw new Meteor.Error("not-authorized");
+				}
 			}
+			let cards;
+			let cardsetFilter = [cardset._id];
+			if (cardset.shuffled) {
+				cardsetFilter = cardset.cardGroups;
+			}
+			cards = Cards.find({
+				cardset_id: {$in: cardsetFilter},
+				cardType: {$in: CardType.getCardTypesWithLearningModes()}
+			});
 			cards.forEach(function (card) {
 				Meteor.call("addWozniak", cardset._id, card._id, Meteor.userId(), true);
 			});
