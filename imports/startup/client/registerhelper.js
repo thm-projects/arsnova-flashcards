@@ -534,7 +534,10 @@ Template.registerHelper("fullscreenActive", function () {
 
 Template.registerHelper("checkActiveRouteName", function () {
 	let currentRoute = Router.current().route.getName();
-	if (currentRoute !== Session.get('previousRouteName')) {
+	if (currentRoute === 'presentation') {
+		toggleFullscreen();
+		Session.set('previousRouteName', currentRoute);
+	} else if (currentRoute !== Session.get('previousRouteName')) {
 		Session.set('previousRouteName', currentRoute);
 		toggleFullscreen(true);
 	}

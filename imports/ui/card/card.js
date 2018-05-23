@@ -366,7 +366,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 	if (forceOff && (!isBox() && !isMemo())) {
 		Session.set("workloadFullscreenMode", false);
 	}
-	if ((Session.get('fullscreen') || forceOff)) {
+	if ((Session.get('fullscreen') || forceOff) && !isPresentation()) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "70px");
 		$("#answerOptions").css("margin-top", "0");
@@ -1607,7 +1607,13 @@ Template.copyCard.events({
 Meteor.startup(function () {
 	$(document).on('keydown', function (event) {
 		if (event.keyCode === 27) {
-			toggleFullscreen(true);
+			if (isPresentation()) {
+				if (!$("#endPresentationModal").is(':visible')) {
+					$('#endPresentationModal').modal('show');
+				}
+			} else {
+				toggleFullscreen(true);
+			}
 		}
 		if (Session.get('fullscreen')) {
 			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
