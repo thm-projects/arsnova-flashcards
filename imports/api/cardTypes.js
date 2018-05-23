@@ -33,6 +33,10 @@ class CardType {
 		return cardTypesOrder;
 	}
 
+	static getCardTypesWithLearningModes () {
+		return cardTypesWithLearningModes;
+	}
+
 	static gotBack (cardType) {
 		return cardTypesWithBack.includes(cardType);
 	}
