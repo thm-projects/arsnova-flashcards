@@ -56,11 +56,7 @@ function checkBackgroundStyle() {
 }
 
 function getPlaceholder(mode) {
-	if (Session.get('shuffled')) {
-		return CardType.getPlaceholderText(mode, Session.get('cardType'), this.learningGoalLevel);
-	} else {
-		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
-	}
+	return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
 }
 
 function isCentered(type, centerTextElement) {
@@ -880,13 +876,13 @@ Template.contentNavigation.events({
 
 Template.contentNavigation.helpers({
 	gotHint: function () {
-		return CardType.gotHint(this.cardType);
+		return CardType.gotHint(Session.get('cardType'));
 	},
 	gotLecture: function () {
-		return CardType.gotLecture(this.cardType);
+		return CardType.gotLecture(Session.get('cardType'));
 	},
 	gotBack: function () {
-		return CardType.gotBack(this.cardType);
+		return CardType.gotBack(Session.get('cardType'));
 	}
 });
 
@@ -1387,70 +1383,34 @@ Template.flashcards.helpers({
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},
 	getCardTypeName: function () {
-		let activeCardType = this.cardType;
-		if (Session.get('shuffled')) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.name');
+		return TAPi18n.__('card.cardType' + this.cardType + '.name');
 	},
 	getLearningGoalName: function () {
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
 	},
 	gotHint: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotHint(Session.get('cardType'));
-		} else {
-			return CardType.gotHint(this.cardType);
-		}
+		return CardType.gotHint(this.cardType);
 	},
 	gotDictionary: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotDictionary(Session.get('cardType'));
-		} else {
-			return CardType.gotDictionary(this.cardType);
-		}
+		return CardType.gotDictionary(this.cardType);
 	},
 	gotLecture: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotLecture(Session.get('cardType'));
-		} else {
-			return CardType.gotLecture(this.cardType);
-		}
+		return CardType.gotLecture(this.cardType);
 	},
 	getFrontTitle: function () {
-		if (Session.get('shuffled')) {
-			return CardType.getFrontTitle(Session.get('cardType'));
-		} else {
-			return CardType.getFrontTitle(this.cardType);
-		}
+		return CardType.getFrontTitle(this.cardType);
 	},
 	getBackTitle: function () {
-		if (Session.get('shuffled')) {
-			return CardType.getBackTitle(Session.get('cardType'));
-		} else {
-			return CardType.getBackTitle(this.cardType);
-		}
+		return CardType.getBackTitle(this.cardType);
 	},
 	gotDifficultyLevel: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotDifficultyLevel(Session.get('cardType'));
-		} else {
-			return CardType.gotDifficultyLevel(this.cardType);
-		}
+		return CardType.gotDifficultyLevel(this.cardType);
 	},
 	gotLearningGoal: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotLearningGoal(Session.get('cardType'));
-		} else {
-			return CardType.gotLearningGoal(this.cardType);
-		}
+		return CardType.gotLearningGoal(this.cardType);
 	},
 	gotNotesForDifficultyLevel: function () {
-		if (Session.get('shuffled')) {
-			return CardType.gotNotesForDifficultyLevel(Session.get('cardType'));
-		} else {
-			return CardType.gotNotesForDifficultyLevel(this.cardType);
-		}
+		return CardType.gotNotesForDifficultyLevel(this.cardType);
 	},
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
@@ -1494,6 +1454,9 @@ Template.flashcards.helpers({
 	},
 	getPlaceholder: function (mode) {
 		getPlaceholder(mode);
+	},
+	isShuffledCardset: function () {
+		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 	}
 });
 
@@ -1519,7 +1482,7 @@ Template.flashcards.events({
 		}
 	},
 	"click .cardHeader": function (evt) {
-		if (!CardType.gotOneColumn(Session.get('cardType')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
+		if (!isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
 			if (isEditMode() && !Session.get('fullscreen')) {
 				turnCard(true);
 			} else {

@@ -137,21 +137,23 @@
             </td>
         </tr>
     {{/if}}
-    {{#unless isActiveRoute regex="course"}}
-        <tr>
-            <td>{{_ "cardType"}}:</td>
-            <td>
-                {{getCardType}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                    "difficulty"}}{{/if}}:
-            </td>
-            <td>
-                {{getDifficultyName}}
-            </td>
-        </tr>
+    {{#unless isShuffledCardset this._id}}
+        {{#unless isActiveRoute regex="course"}}
+            <tr>
+                <td>{{_ "cardType"}}:</td>
+                <td>
+                    {{getCardType}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                        "difficulty"}}{{/if}}:
+                </td>
+                <td>
+                    {{getDifficultyName}}
+                </td>
+            </tr>
+        {{/unless}}
     {{/unless}}
     {{#if isActiveRoute regex="course"}}
         <tr>
