@@ -425,9 +425,11 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		} else {
 			$("#markdeepNavigation").css("display", "none");
 			$("#markdeepEditorContent").css("display", 'none');
-			lastEditMode = Session.get('activeEditMode');
-			if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
-				Session.set('activeEditMode', 0);
+			if (!isPresentation()) {
+				lastEditMode = Session.get('activeEditMode');
+				if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
+					Session.set('activeEditMode', 0);
+				}
 			}
 		}
 	}
