@@ -10,6 +10,7 @@ $themes: (
   .#{$theme} {
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
+    $thm_blue: map-get($map, "thm_blue");
     $thm_orange: map-get($map, "thm_orange");
     $thm_red: map-get($map, "thm_red");
     $thm_gray: map-get($map, "thm_gray");
@@ -51,6 +52,8 @@ $themes: (
     $warning_text: map-get($map, "warning_text");
     $disabled_background: map-get($map, "disabled_background");
     $disabled_text: map-get($map, "disabled_text");
+    $shuffled_background: map-get($map, "shuffled_background");
+    $shuffled_text: map-get($map, "shuffled_text");
     //navbar
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
@@ -1421,6 +1424,11 @@ $themes: (
 
     .label-private {
       background-color: $private_background !important;
+    }
+
+    .label-shuffled {
+      background-color: $shuffled_background !important;
+      color: $shuffled_text !important;
     }
 
     .moduleRadioButtonLabel {

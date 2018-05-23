@@ -550,6 +550,10 @@
       "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
       "success": "Die Kartei wurde erfolgreich gelöscht",
       "failure": "Die Kartei konnte nicht gelöscht werden"
+    },
+    "shuffled": {
+      "long": "Gemischter Kartensatz",
+      "short": "Gemischt"
     }
   },
   "cardmemo": {

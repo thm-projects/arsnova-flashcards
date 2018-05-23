@@ -315,7 +315,8 @@
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
                             learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
-                        <h4 id="cardsetTitle">{{{getKind kind 0}}} {{name}}</h4>
+                        <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel this.shuffled}}}</div>
+                        <h4 id="cardsetTitle">{{name}}</h4>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">

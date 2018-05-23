@@ -558,6 +558,10 @@
       "text": "Do you really want to delete this cardset? If you confirm the process, the learning statistics for this cardset and the corresponding cards will be deleted.",
       "success": "Cardset was successfully deleted",
       "failure": "Cardset could not be deleted"
+    },
+    "shuffled": {
+      "long": "Shuffled Cardset",
+      "short": "Shuffled"
     }
   },
   "cardmemo": {

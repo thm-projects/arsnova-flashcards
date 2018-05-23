@@ -3,6 +3,7 @@
 @function theme-default() {
   //global sass colors
   $thm_dark_blue: #003BD1;
+  $thm_blue: #40ffed;
   $thm_orange: #F5AA01;
   $thm_red: #9C132D;
   $thm_gray: #4A5C66;
@@ -32,6 +33,7 @@
   @return (
     //global colors
           "thm_dark_blue":$thm_dark_blue,
+          "thm_blue":$thm_blue,
           "thm_orange":$thm_orange,
           "thm_red":$thm_red,
           "thm_gray":$thm_gray,
@@ -73,6 +75,8 @@
           "warning_text": $white,
           "disabled_background": $btn_inactive,
           "disabled_text": $mercury_approx,
+          "shuffled_background": $thm_blue,
+          "shuffled_text": $thm_gray,
     //navbar
           "navbar_background": $thm_gray,
           "navbar_text": white,

@@ -371,7 +371,7 @@ Template.cardsetCourseIterationFormContent.helpers({
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
-			return ActiveRoute.name('shuffle') ? "Shuffle: " + Session.get("ShuffleTemplate").name : "";
+			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").name : "";
 		}
 	},
 	getShuffleModule: function () {

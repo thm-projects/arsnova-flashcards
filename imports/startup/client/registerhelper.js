@@ -105,6 +105,12 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 	}
 });
 
+Template.registerHelper("getShuffleLabel", function (shuffled = false) {
+	if (shuffled) {
+		return '<span class="label label-shuffled" data-id="shuffled">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
+	}
+});
+
 Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
