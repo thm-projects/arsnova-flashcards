@@ -730,7 +730,7 @@ Template.leaveEditorsForm.events({
  */
 Template.cardsetSidebar.events({
 	"click #startPresentation": function () {
-		Session.set("chooseFlashcardsMode", 1);
+		Router.go('presentation', {_id: this._id});
 	},
 	"click #learnChoice": function () {
 		Session.set("chooseFlashcardsMode", 0);
@@ -899,14 +899,10 @@ Template.chooseFlashcards.helpers({
 });
 
 Template.chooseFlashcards.events({
-	"click #createCardFilter": function (event) {
+	"click #createCardFilter": function () {
 		$('#chooseFlashcardsModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
-		if (Session.get('chooseFlashcardsMode') === 1) {
-			Router.go('presentation', {_id: this._id});
-			event.stopPropagation();
-		}
 	},
 	"click .sortFilter": function () {
 		let chooseFlashcardsFilter = Session.get('chooseFlashcardsFilter');

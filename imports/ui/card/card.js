@@ -509,39 +509,6 @@ function getLeitnerCards() {
 	return cards;
 }
 
-function getPresentationCards(countCards = false) {
-	let sortQuery = {};
-	let cardsetFilter = {};
-	let cardset = Cardsets.findOne(Router.current().params._id);
-	if (cardset.shuffled) {
-		cardsetFilter = cardset.cardGroups;
-	} else {
-		cardsetFilter.push(Router.current().params._id);
-	}
-	if (Session.get('chooseFlashcardsFilter')[0]) {
-		if (CardType.gotSidesSwapped(this.cardType)) {
-			sortQuery = {subject: 1, back: 1};
-		} else {
-			sortQuery = {subject: 1, front: 1};
-		}
-	}
-	if (countCards) {
-		return Cards.find({
-			cardset_id: {$in: cardsetFilter},
-			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
-		}).count();
-	} else {
-		return Cards.find({
-			cardset_id: {$in: cardsetFilter},
-			learningGoalLevel: {$in: Session.get('chooseFlashcardsFilter')[1]}
-		}, {
-			sort: {
-				sortQuery
-			}
-		});
-	}
-}
-
 /**
  * Get the Session Data of the card
  * @return {Collection} The Session Data of the card.
@@ -1314,9 +1281,6 @@ Template.flashcards.helpers({
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');
-		if (isPresentation()) {
-			return getPresentationCards(true) === 1;
-		}
 		var count = Cards.find({
 			cardset_id: cardset._id
 		}).count();
@@ -1332,7 +1296,7 @@ Template.flashcards.helpers({
 		if (isBox()) {
 			return getLeitnerCards();
 		}
-		if (isCardset()) {
+		if (isCardset() || isPresentation()) {
 			return getCardsetCards();
 		}
 		if (isMemo()) {
@@ -1340,9 +1304,6 @@ Template.flashcards.helpers({
 		}
 		if (isEditMode()) {
 			return getEditModeCard();
-		}
-		if (isPresentation()) {
-			return getPresentationCards();
 		}
 	},
 	gotAlternativeHintStyle: function () {
@@ -1370,9 +1331,6 @@ Template.flashcards.helpers({
 		return maxIndex;
 	},
 	getCardsetCount: function (getQuantityValue) {
-		if (isPresentation()) {
-			return getPresentationCards(true);
-		}
 		if (getQuantityValue) {
 			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 		} else {
