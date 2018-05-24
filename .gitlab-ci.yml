@@ -44,6 +44,7 @@ review:
     - cp /srv/review-apps/nginx-vhost /etc/nginx/sites-available/meteor-"$NGINX_PORT"
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/appctl.sh
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/meteor-settings.json
+    - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" "$METEOR_HOME"/meteor-settings.json
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-restore.sh
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
@@ -71,8 +72,12 @@ review:
 stop_review:
   stage: review
   script:
-    - echo $METEOR_PORT
-#    - rm -rf "$BUILD_DIR" /srv/nginx/pages/$CI_BUILD_REF_SLUG
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    - cd $METEOR_HOME
+    - ./appctl.sh stop
+    - cd /srv/review-apps
+    - rm -rf $METEOR_HOME
   variables:
     GIT_STRATEGY: none
   when: manual
