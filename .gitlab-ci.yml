@@ -127,7 +127,7 @@ review:
     - mongo < mongo-setup.js
     - ./mongo-restore.sh
     - ./appctl.sh start
-    - sleep 3000
+    - sleep 60s
     - rm /etc/nginx/sites-available/meteor-"$NGINX_PORT"
     - rm /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
     - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
