@@ -248,10 +248,6 @@ $themes: (
     $under_development_modal_text: map-get($map, "under_development_modal_text");
     $under_development_modal_background: map-get($map, "under_development_modal_background");
 
-    body {
-      background-color: $background !important;
-    }
-
     li.active {
       a {
         color: $white !important;
