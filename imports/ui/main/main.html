@@ -48,7 +48,23 @@
                                 <div class="collapse navbar-collapse" id="thm-top-navigation">
                                     {{#if currentUser}}
                                         <ul id="navbar" class="nav navbar-nav">
-
+                                            <li id="searchDropdown"
+                                                class="navbar-form navbar-left input-append btn-group"
+                                                role="search">
+                                                <div class="searchItem col-xs-9">
+                                                    <input id="input-search" class="form-control typeahead"
+                                                           name="search"
+                                                           type="text"
+                                                           autocomplete="off" spellcheck="off" data-source="search"
+                                                           data-template="search"
+                                                           placeholder="{{_ "navbar-collapse.search"}}">
+                                                </div>
+                                                {{#if searchActive}}
+                                                    <div id="clearSearch" class="searchItem col-xs-3">
+                                                        <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                                                    </div>
+                                                {{/if}}
+                                            </li>
                                             <li id="navbar-pool"
                                                 class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
@@ -76,23 +92,6 @@
                                                 <a href="{{pathFor route='courseIterations'}}" id="course">
                                                     {{_ "navbar-collapse.course"}}
                                                 </a>
-                                            </li>
-                                            <li id="searchDropdown"
-                                                class="navbar-form navbar-left input-append btn-group"
-                                                role="search">
-                                                <div class="searchItem col-xs-9">
-                                                    <input id="input-search" class="form-control typeahead"
-                                                           name="search"
-                                                           type="text"
-                                                           autocomplete="off" spellcheck="off" data-source="search"
-                                                           data-template="search"
-                                                           placeholder="{{_ "navbar-collapse.search"}}">
-                                                </div>
-                                                {{#if searchActive}}
-                                                    <div id="clearSearch" class="searchItem col-xs-3">
-                                                        <i class="glyphicon glyphicon-remove-circle pull-left"></i>
-                                                    </div>
-                                                {{/if}}
                                             </li>
                                         </ul>
                                         <ul class="nav navbar-nav">

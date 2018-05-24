@@ -296,12 +296,16 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
-Template.registerHelper("getMomentsDate", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).format("D MMMM YYYY");
+Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
+	let dateFormat = "D. MMMM YYYY";
+	if (displayMinutes === true) {
+		dateFormat = "D. MMM YYYY HH:MM";
+	}
+	return moment(date).locale(Session.get('activeLanguage')).format(dateFormat);
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).format("D MMM YY");
+	return moment(date).locale(Session.get('activeLanguage')).format("D.MMM YY");
 });
 
 
@@ -558,7 +562,7 @@ Template.registerHelper("getMaximumText", function (text) {
 const helper = new MeteorMathJax.Helper({
 	useCache: true,
 	transform: function (x) {
-		x += "\n";
+		x += "\n\n";
 		x = window.markdeep.format(x, true);
 		x = DOMPurify.sanitize(x, DOMPurifyConfig);
 		x = lib.setLightBoxes(x);
