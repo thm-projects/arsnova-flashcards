@@ -39,14 +39,17 @@ review:
     - cp /srv/review-apps/appctl.sh $METEOR_HOME
     - cp /srv/review-apps/meteor-settings.json $METEOR_HOME
     - cp /srv/review-apps/mongo-setup.js $METEOR_HOME
+    - cp /srv/review-apps/mongo-restore.sh $METEOR_HOME
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/appctl.sh
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/meteor-settings.json
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-restore.sh
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
     - cd $METEOR_HOME/app/programs/server
     - npm install
     - cd $METEOR_HOME
     - mongo < mongo-setup.js
+    - ./mongo-restore.sh
     - ./appctl.sh start
   environment:
     name: review/$CI_BUILD_REF_NAME
