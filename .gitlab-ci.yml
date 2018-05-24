@@ -129,11 +129,12 @@ review:
     - ./appctl.sh start
     - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
     - sed -i "s/<branch-port>/$METEOR_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - sed -i "s/<ci-ref>/$CI_BUILD_REF_NAME/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
     - ln -s /etc/nginx/sites-available/meteor-"$NGINX_PORT" /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
     - sudo systemctl reload nginx.service
   environment:
     name: review/$CI_BUILD_REF_NAME
-    url: http://review.arsnova.cards:$NGINX_PORT
+    url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
     on_stop: stop_review
   only:
     - branches
