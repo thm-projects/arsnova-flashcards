@@ -1670,6 +1670,10 @@ $themes: (
         color: $markdeep_inline_code_text !important;
         background-color: $markdeep_inline_code_background !important;
       }
+
+      table code {
+        background-color: transparent !important;
+      }
     }
   }
 }

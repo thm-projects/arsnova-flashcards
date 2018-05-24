@@ -12,6 +12,10 @@
     font-family: $default_font !important;
   }
 
+  table code {
+    padding: 0 !important;
+  }
+
   code > .output{
     font-weight: bold;
     background: #FF7;
