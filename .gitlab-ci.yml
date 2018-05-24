@@ -121,6 +121,8 @@ review:
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
     - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-restore.sh
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
+    - cd $METEOR_HOME
+    - ./appctl.sh stop
     - cd $METEOR_HOME/app/programs/server
     - npm install
     - cd $METEOR_HOME
