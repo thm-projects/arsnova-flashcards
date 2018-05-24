@@ -26,7 +26,7 @@ module.exports = function () {
 	this.Then(/^I'll go to the leitner learning box and answer a card$/, function () {
 		navigation.back();
 		cardset.learnBox();
-		navigation.clickElement('#cardCarousel');
+		navigation.clickElement('#learnShowAnswer');
 		navigation.clickElement('#known');
 	});
 

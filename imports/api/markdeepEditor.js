@@ -18,10 +18,6 @@ class MarkdeepEditor {
 		}
 	}
 
-	static lockCardSide () {
-		$("#underDevelopmentModal").modal("show");
-	}
-
 	static changeBackgroundStyle () {
 		if (Session.get('backgroundStyle') === 1) {
 			Session.set('backgroundStyle', 0);

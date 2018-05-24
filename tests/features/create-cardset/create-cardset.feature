@@ -14,10 +14,5 @@ Scenario: User creates a new deck of cards
     Then he is redirected to the new cardset form
     Then he should be able to edit the cardset title
     And he should be able to edit the cardset description
-    And he should be able to edit the module name
-    And he should be able to edit the module initials
-    And he should be able to edit the module ID
-    And he should be able to choose a college
-    And he should be able to choose a course
     And he should push the create new cardset button
     And he should see the details of that cardset with the correct values
