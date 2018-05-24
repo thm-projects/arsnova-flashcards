@@ -4,6 +4,12 @@ variables:
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
 
+stages:
+  - test
+  - build
+  - review
+  - deploy
+
 chimp:
   stage: test
   only:
