@@ -142,8 +142,9 @@ review:
     url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
     on_stop: stop_review
   only:
-    - branches
+    - /^[[:digit:]]{3}/
   except:
+    - staging
     - master
   tags:
     - cards-review
