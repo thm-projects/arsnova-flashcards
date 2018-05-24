@@ -217,6 +217,10 @@ $themes: (
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
+    $markdeep_blockquote_background: map-get($map, "markdeep_blockquote_background");
+    $markdeep_blockquote_text: map-get($map, "markdeep_blockquote_text");
+    $markdeep_blockquote_author: map-get($map, "markdeep_blockquote_author");
+    $markdeep_blockquote_quotes: map-get($map, "markdeep_blockquote_quotes");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -1678,6 +1682,21 @@ $themes: (
       table code, .listing code {
         background-color: transparent !important;
       }
+
+      blockquote.fancyquote::before , blockquote .fancyquote::after {
+        color: $markdeep_blockquote_quotes !important;
+      }
+      blockquote {
+        background-color: $markdeep_blockquote_background !important;
+        .fancyquote {
+          color: $markdeep_blockquote_text !important;
+        }
+
+        blockquote .author {
+          color: $markdeep_blockquote_author !important;
+        }
+      }
+
     }
   }
 }
