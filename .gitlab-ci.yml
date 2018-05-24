@@ -164,6 +164,11 @@ stop_review:
   environment:
     name: review/$CI_BUILD_REF_NAME
     action: stop
+  only:
+    - /^[[:digit:]]{3}/
+  except:
+    - staging
+    - master
   tags:
     - cards-review
 
