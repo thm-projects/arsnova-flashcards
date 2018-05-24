@@ -360,14 +360,18 @@ button {
   }
 
   #searchDropdown {
-    margin: 0 0 0 -7px !important;
+    margin: 0 0 0 5px !important;
     padding: 0;
     border: none;
     box-shadow: none;
+    height: 36px;
   }
   #input-search {
     margin: 0;
     border: none;
+  }
+  #clearSearch {
+    right: 20px !important;
   }
 }
 
@@ -460,6 +464,7 @@ button {
 #searchDropdown {
   margin-top: 5px;
   margin-bottom: 0;
+  width: 140px !important;
 }
 
 .dropup {
@@ -754,12 +759,13 @@ th {
 }
 
 #clearSearch {
+  position: absolute;
+  float: right;
+  right: 5px;
+  width: 22px;
   font-size: 22px;
   cursor: pointer;
   z-index: 1000 !important;
-  .glyphicon-remove-circle {
-    padding-left: 2px;
-  }
 }
 
 .searchItem {
