@@ -4,11 +4,79 @@ variables:
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
 
-stages:
-#  - test
-  - build
-  - review
-#  - deploy
+chimp:
+  stage: test
+  only:
+    - staging
+    - /^v[0-9]+/
+  tags:
+    - nodejs
+  allow_failure: true
+  services:
+    - mongo
+  dependencies:
+    - build
+  variables:
+    PORT: "3000"
+    ROOT_URL: "http://localhost:$PORT"
+    MONGO_HOST: mongo
+    MONGO_PORT: "27017"
+    MONGO_DB: meteor-test
+    MONGO_URL: "mongodb://$MONGO_HOST:$MONGO_PORT/$MONGO_DB"
+  script:
+    - export METEOR_SETTINGS="$(cat settings_test.json)"
+    - mongo --quiet --eval "version();" --host "$MONGO_HOST"
+    - cd "$BUNDLE_DIR/programs/server" && npm install
+    - cd -
+    - node "$BUNDLE_DIR/main.js" &
+    - sleep 15
+    - ./tests/runTests.sh
+
+jshint:
+  stage: test
+  tags:
+    - nodejs
+  allow_failure: true
+  dependencies: []
+  script:
+    - echo "{}" > package.json
+    - npm install jshint@^2.9.0
+    - node_modules/jshint/bin/jshint --config .jshintrc ./client/ ./server/ ./imports/ ./i18n ./tests
+
+jscs:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install jscs
+    - node_modules/jscs/bin/jscs --config .jscsrc ./{client,imports,i18n,server,tests}/
+
+sonar:
+  stage: test
+  only:
+    - master
+    - staging
+  tags:
+    - gradle
+  allow_failure: true
+  dependencies: []
+  script:
+    - gradle sonarqube
+
+jsdoc:
+  stage: build
+  only:
+    - staging
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install
+    - jsdoc -c documentation/conf.json -t ./node_modules/ink-docstrap/template -d build/jsdoc -r
+  artifacts:
+    paths:
+      - "$BUILD_DIR/jsdoc/"
 
 build:
   stage: build
@@ -86,4 +154,20 @@ stop_review:
     action: stop
   tags:
     - cards-review
+
+sync_mirror:
+  stage: deploy
+  tags:
+    - git
+  when: always
+  allow_failure: true
+  dependencies: []
+  script:
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh && echo "$SYNC_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$SYNC_SSH_PRIVATE_KEY")
+    - git clone --bare "$CI_REPOSITORY_URL" mirror.git
+    - cd mirror.git
+    - git push --mirror "$MIRROR_REPO"
+  environment: GitHub
 
