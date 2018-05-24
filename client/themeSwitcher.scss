@@ -1671,7 +1671,7 @@ $themes: (
         background-color: $markdeep_inline_code_background !important;
       }
 
-      table code {
+      table code, .listing code {
         background-color: transparent !important;
       }
     }
