@@ -474,3 +474,10 @@ img.cardside {
 .subjectPlaceholder {
   font-style:  $font_style_card_header_subject_placeholder !important;
 }
+
+@media(min-width: 1200px) {
+  .fullscreenContent {
+    padding-left: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+    padding-right: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+  }
+}
