@@ -296,12 +296,16 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
-Template.registerHelper("getMomentsDate", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).format("D MMMM YYYY");
+Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
+	let dateFormat = "D. MMMM YYYY";
+	if (displayMinutes === true) {
+		dateFormat = "D. MMM YYYY HH:MM";
+	}
+	return moment(date).locale(Session.get('activeLanguage')).format(dateFormat);
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).format("D MMM YY");
+	return moment(date).locale(Session.get('activeLanguage')).format("D.MMM YY");
 });
 
 

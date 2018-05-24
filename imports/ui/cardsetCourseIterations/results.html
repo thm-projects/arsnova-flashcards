@@ -1,77 +1,79 @@
 <template name="cardsetCourseIterationResultRow">
-    {{#if firstItem this.index}}
-        {{#if isActiveRoute regex="learn"}}
+{{#if firstItem this.index}}
+    {{#if isActiveRoute regex="learn"}}
             <div class="hidden-xs col-sm-2 resultsHeader">
                 <strong>{{_ "set-list.workload"}}</strong>
             </div>
-        {{/if}}
+    {{/if}}
         <div class="hidden-xs {{#if isActiveRoute
                                     regex="pool|alldecks|learn"}}col-sm-4{{else}}{{#if isActiveRoute
                                                                                        regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}} resultsHeader">
             <strong>{{_ "set-list.topic"}}</strong>
         </div>
-        {{#unless isActiveRoute regex="create"}}
+    {{#unless isActiveRoute regex="create"}}
             <div class="hidden-xs {{#if isActiveRoute
                                         regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} resultsHeader">
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
-        {{/unless}}
-        {{#if isActiveRoute regex="pool|alldecks"}}
+    {{/unless}}
+    {{#if isActiveRoute regex="pool|alldecks"}}
             <div class="hidden-xs col-sm-3 resultsHeader">
                 <strong>{{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span></strong>
             </div>
-        {{/if}}
+    {{/if}}
         <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
             <strong>{{_ "set-list.category"}}</strong>
         </div>
-    {{/if}}
-    <div class="resultItem col-xs-12">
-        {{#if isActiveRoute regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground
-                    this.difficulty this.cardType 1}}">
-                <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-                   data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
-                    {{getWorkload}}
-                </a>
-                {{#if this.learningActive}}
-                    <span class="label label-success labelLearning"
-                          aria-label="active learnphase label" data-id="true">
-                        {{getLearnphaseStatus}}
-                    </span>
-                {{/if}}
-            </div>
-        {{/if}}
-        <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
-                                                                              regex="pool|alldecks"}}col-sm-4{{else}}{{#if
-                isActiveRoute
-                regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
-                                                              regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+{{/if}}
+<div class="resultItem col-xs-12">
+{{#if isActiveRoute regex="learn"}}
+        <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}">
-            {{> poolTitleContent}}
+            <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+               data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
+                {{getWorkload}}
+            </a>
+            {{#if this.learningActive}}
+                <span class="label label-success labelLearning"
+                      aria-label="active learnphase label" data-id="true">
+                    {{getLearnphaseStatus}}
+                </span>
+            {{/if}}
         </div>
-        {{#unless isActiveRoute
-                  regex="create"}}
-            <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if isActiveRoute
-                                                                                                         regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} collapseButton {{getCardBackground
-                    this.difficulty this.cardType 1}}"
-                 data-id="{{this.owner}}">
-                {{getAuthorName this.owner}}
-            </div>
-        {{/unless}}
-        {{#if isActiveRoute
-              regex="pool|alldecks"}}
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm col-sm-3 collapseButton {{getCardBackground
-                    this.difficulty this.cardType 1}}"
-                 data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
-                {{getMomentsDate  this.date}}<span class="resultDateRight">{{getMomentsDate this.dateUpdated}}</span>
-            </div>
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-md hidden-lg col-sm-3 collapseButton {{getCardBackground
-                    this.difficulty this.cardType 1}}"
-                 data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
-                {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
-                    this.dateUpdated}}</span>
-            </div>
-        {{/if}}
+{{/if}}
+    <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
+                                                                          regex="pool|alldecks"}}col-sm-4{{else}}{{#if
+            isActiveRoute
+            regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
+                                                          regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+            this.difficulty this.cardType 1}}">
+        {{> poolTitleContent}}
+    </div>
+{{#unless isActiveRoute
+          regex="create"}}
+        <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if
+                isActiveRoute
+                regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} collapseButton {{getCardBackground
+                this.difficulty this.cardType 1}}"
+             data-id="{{this.owner}}">
+            {{getAuthorName this.owner}}
+        </div>
+{{/unless}}
+{{#if isActiveRoute
+      regex="pool|alldecks"}}
+    <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm col-sm-3 collapseButton {{getCardBackground
+            this.difficulty this.cardType 1}}"
+         data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
+    {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true}}{{else}}{{getMomentsDate this.date}}{{/if}}<span
+            class="resultDateRight">{{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.dateUpdated true}}{{else}}{{getMomentsDate this.dateUpdated}}{{/if}}</span>
+    </div>
+        <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-md hidden-lg col-sm-3 collapseButton {{getCardBackground
+                this.difficulty this.cardType 1}}"
+             data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
+            {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
+                this.dateUpdated}}</span>
+        </div>
+    {{/if}}
         <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
             <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
                 {{{getKind this.kind 0}}}
@@ -163,41 +165,41 @@
             </div>
         </div>
     </div>
-</template>
+    </template>
 
-<template name="poolTitleContent">
-    <a href="#" id="cardsetLink{{this.index}}"
-       class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
-        {{this.name}}
-    </a>
-    <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
-        {{countCards this._id}}
-    </span>
-</template>
+    <template name="poolTitleContent">
+        <a href="#" id="cardsetLink{{this.index}}"
+           class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
+            {{this.name}}
+        </a>
+        <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
+            {{countCards this._id}}
+        </span>
+    </template>
 
-<template name="noFilterResults">
-    <div class="col-xs-12 no-results-filtered">
-        <div class="no-result-text">
-            {{_ "filter-pool.noResults"}}
+    <template name="noFilterResults">
+        <div class="col-xs-12 no-results-filtered">
+            <div class="no-result-text">
+                {{_ "filter-pool.noResults"}}
+            </div>
         </div>
-    </div>
-</template>
+    </template>
 
-<template name="noResults">
-    <div class="col-xs-12 no-results {{#if isActiveRoute regex='pool'}}no-navigation{{/if}}">
-        <div class="no-result-text">
-            {{#if isActiveRoute 'create'}}
-                {{_ "set-list-empty.emptytextlist"}}
-            {{/if}}
-            {{#if isActiveRoute 'learn'}}
-                {{_ "set-list-learn-empty.emptytextlist"}}
-            {{/if}}
-            {{#if isActiveRoute regex='alldecks|pool'}}
-                {{_ "set-list-empty.emptypooltextlist"}}
-            {{/if}}
-            {{#if isActiveRoute 'courseIterations'}}
-                {{_ "courseIteration.list.empty"}}
-            {{/if}}
+    <template name="noResults">
+        <div class="col-xs-12 no-results {{#if isActiveRoute regex='pool'}}no-navigation{{/if}}">
+            <div class="no-result-text">
+                {{#if isActiveRoute 'create'}}
+                    {{_ "set-list-empty.emptytextlist"}}
+                {{/if}}
+                {{#if isActiveRoute 'learn'}}
+                    {{_ "set-list-learn-empty.emptytextlist"}}
+                {{/if}}
+                {{#if isActiveRoute regex='alldecks|pool'}}
+                    {{_ "set-list-empty.emptypooltextlist"}}
+                {{/if}}
+                {{#if isActiveRoute 'courseIterations'}}
+                    {{_ "courseIteration.list.empty"}}
+                {{/if}}
+            </div>
         </div>
-    </div>
-</template>
+    </template>

@@ -274,11 +274,11 @@
     {{#unless isActiveRoute regex="create|learn|pool"}}
         <tr>
             <td>{{_ "cardset.info.release"}}:</td>
-            <td>{{getDate}}</td>
+            <td>{{getMomentsDate this.date}}</td>
         </tr>
         <tr>
             <td>{{_ "cardset.info.dateUpdated"}}:</td>
-            <td>{{getDateUpdated}}</td>
+            <td>{{getMomentsDate this.dateUpdated}}</td>
         </tr>
     {{/unless}}
     {{#unless isActiveRoute regex="home|course"}}
