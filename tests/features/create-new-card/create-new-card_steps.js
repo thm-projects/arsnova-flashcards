@@ -36,10 +36,6 @@ module.exports = function () {
 	this.When(/^he enters a text for the front of the card$/, function () {
 		navigation.setContent('#contentEditor', 'FRONTOFTHECARD');
 	});
-	this.When(/^he enters a text for the back of the card$/, function () {
-		navigation.clickElement('#editBack');
-		navigation.setContent('#contentEditor', 'BACKOFTHECARD');
-	});
 	this.When(/^he press on the save button$/, function () {
 		cardset.saveCardReturn();
 	});
@@ -50,17 +46,6 @@ module.exports = function () {
 	this.Then(/^the card should be saved$/, function () {
 		navigation.clickElement("#leftCarouselControl");
 		navigation.compareContent(".detailfront" + countBeforeCreated, "FRONTOFTHECARD", 0);
-	});
-	/**
-	 * ---------------------------------------------------------------------
-	 * Cancel card creation
-	 * ---------------------------------------------------------------------
-	 */
-	this.Then(/^he can press on the \-\-Cancel\-\- button$/, function () {
-		cardset.cancelCardEdit();
-	});
-	this.Then(/^he should be redirected back$/, function () {
-		navigation.compareUrl(url, browser.getUrl());
 	});
 	this.Then(/^they log out$/, function () {
 		navigation.logout();

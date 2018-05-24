@@ -17,11 +17,14 @@ module.exports = {
 			setResolution();
 			agreeCookies();
 			browser.waitForVisible('#TestingBackdoorUsername', global.threshold);
-			browser.click('#TestingBackdoorUsername', global.threshold);
+			this.clickElement('#TestingBackdoorUsername', global.threshold);
 			browser.waitForVisible('#' + userLogin);
-			browser.click('#' + userLogin);
+			this.clickElement('#' + userLogin);
 			browser.waitForVisible('#BackdoorLogin', global.threshold);
-			browser.click('#BackdoorLogin');
+			this.clickElement('#BackdoorLogin');
+			if (browser.isVisible(".bert-alert")) {
+				this.clickElement(".bert-alert");
+			}
 		}
 	},
 	logout: function () {
@@ -168,5 +171,10 @@ module.exports = {
 		this.selectPool();
 		browser.waitForVisible('#resetBtn', global.threshold);
 		browser.click('#resetBtn');
+	},
+	waitForModalBackdrop: function () {
+		browser.waitUntil(function () {
+			return browser.isVisible(".modal-backdrop") === false;
+		}, global.threshold, 'expected Modal to be not visible' + global.thresholdText);
 	}
 };
