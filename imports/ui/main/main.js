@@ -190,7 +190,7 @@ Template.main.events({
 Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
-			if (Session.get('theme') === "default") {
+			if (Session.get('theme') === "default" && Router.current().route.getName() !== "presentation") {
 				$("body").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
 			} else {
 				$("body").css("background-image", "none");
