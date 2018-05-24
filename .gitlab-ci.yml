@@ -20,8 +20,7 @@ chimp:
   allow_failure: true
   services:
     - mongo
-  dependencies:
-    - build
+  dependencies: []
   variables:
     PORT: "3000"
     ROOT_URL: "http://localhost:$PORT"
