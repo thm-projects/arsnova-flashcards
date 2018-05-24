@@ -5,11 +5,11 @@
   }
 
   code {
-    color: unset;
-    background-color: unset;
-    padding: unset;
+    padding: $padding_inline_code !important;
     white-space: pre-wrap;
     word-break: keep-all;
+    font-size: $font_size_card_content !important;
+    font-family: $default_font !important;
   }
 
   code > .output{

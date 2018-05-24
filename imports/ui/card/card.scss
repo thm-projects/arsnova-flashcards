@@ -236,7 +236,7 @@ img.cardside {
 .cardContent {
   padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
   line-height: 28px;
-  font-size: $font_size_card_content;
+  font-size: $font_size_card_content !important;
 }
 
 #subjectEditor {
