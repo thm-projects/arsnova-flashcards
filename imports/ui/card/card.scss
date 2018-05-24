@@ -236,7 +236,7 @@ img.cardside {
 .cardContent {
   padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
   line-height: 28px;
-  font-size: $font_size_card_content;
+  font-size: $font_size_card_content !important;
 }
 
 #subjectEditor {
@@ -473,4 +473,11 @@ img.cardside {
 
 .subjectPlaceholder {
   font-style:  $font_style_card_header_subject_placeholder !important;
+}
+
+@media(min-width: 1200px) {
+  .fullscreenContent {
+    padding-left: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+    padding-right: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+  }
 }

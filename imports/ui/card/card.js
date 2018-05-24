@@ -375,6 +375,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#markdeepNavigation").css("display", '');
 		$("#markdeepEditorContent").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
+		$(".cardContent").removeClass("fullscreenContent");
 		let card_id;
 		if (Router.current().params.card_id) {
 			card_id = Router.current().params.card_id;
@@ -418,6 +419,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#theme-wrapper").css("margin-top", "20px");
 		$("#answerOptions").css("margin-top", "-50px");
 		$(".editorElement").css("display", "none");
+		$(".cardContent").addClass("fullscreenContent");
 		if (isEditor) {
 			$("#preview").css("display", "none");
 			editorFullScreenActive = true;

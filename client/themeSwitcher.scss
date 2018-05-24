@@ -214,7 +214,10 @@ $themes: (
     $card_header_second_row: map-get($map, "card_header_second_row");
     $card_header_subject: map-get($map, "card_header_subject");
     $card_header_subject_placeholder: map-get($map, "card_header_subject_placeholder");
-    //markdeep editor
+    //markdeep colors
+    $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
+    $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
+    //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
     $markdeep_help_border: map-get($map, "markdeep_help_border");
@@ -1659,6 +1662,18 @@ $themes: (
     .cardListNumber {
       color: $card_list_number_text !important;
       background-color: $card_list_number_background !important;
+    }
+
+    //markdeep colors
+    .md {
+      code {
+        color: $markdeep_inline_code_text !important;
+        background-color: $markdeep_inline_code_background !important;
+      }
+
+      table code, .listing code {
+        background-color: transparent !important;
+      }
     }
   }
 }
