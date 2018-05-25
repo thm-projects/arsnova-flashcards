@@ -1013,6 +1013,12 @@ Template.learningGoalLevel.events({
 Template.cardHint.helpers({
 	gotAlternativeHintStyle: function (cardType) {
 		return CardType.gotAlternativeHintStyle(cardType);
+	},
+	getHintTitle: function () {
+		return CardType.getHintTitle();
+	},
+	isHintPreview: function () {
+		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
 /*
@@ -1056,12 +1062,6 @@ Template.cardHintContent.helpers({
 	},
 	isEditMode: function () {
 		return isEditMode();
-	},
-	getHintTitle: function () {
-		return CardType.getHintTitle();
-	},
-	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
 
