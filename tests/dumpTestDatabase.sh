@@ -7,8 +7,7 @@ source $DIRECTORY/helpers/scriptSettings.sh
 
 checkDirectory
 
-declare -a BLACKLISTEDFILES=("adminSettings.bson" "badges.bson" "colorThemes.bson" "cronHistory.bson" "experience.bson"
-"notifications.bson" "system.indexes.bson" "webPushSubscriptions.bson" "roles.bson"
+declare -a BLACKLISTEDFILES=("adminSettings.bson" "badges.bson" "colorThemes.bson" "cronHistory.bson" "experience.bson" "system.indexes.bson" "webPushSubscriptions.bson" "roles.bson"
 "meteor_accounts_loginServiceConfiguration.bson" "meteor_oauth_pendingCredentials.bson"
 "meteor_oauth_pendingRequestTokens.bson" "wordcloud.bson")
 
