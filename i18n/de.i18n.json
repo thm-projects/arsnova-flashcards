@@ -293,7 +293,7 @@
     "moduleLink": "Link (Optional)",
     "moduleplaceholder": "Vollständiger Titel des Moduls",
     "moduleShortplaceholder": "Abkürzung des Modultitels",
-    "moduleNumplaceholder": "Nummer des Moduls laut Modulhandbuch",
+    "moduleNumplaceholder": "Modulnummer laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
     "deleteCards": "Möchtest du wirklich alle Karten in der Kartei \"__name__\" löschen?",
     "deleteCard": "Möchtest du wirklich die Karte löschen?",
@@ -1305,10 +1305,10 @@
     "firstLogin": {
       "title": "Willkommen auf .cards !",
       "message": "Schau dich in Ruhe auf der Plattform um.
-      Hier kannst du Karten zu einem bestimmten Thema lernen oder selbst Kartensätze für dein Studium erstellen.
+      Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
-      Die Hilfe oben in der Mitte erklärt dir, warum diese Plattform so einzigartig ist !
+      Die Hilfe  in der Navigationsleiste erklärt dir, warum diese Plattform so einzigartig ist !
       </br>
       </br>
       Suche im Themen-Pool nach einem Thema, das dich interessiert.
