@@ -26,9 +26,18 @@ let cardTypesWithLecture = [0];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7];
 let cardTypesWithSwappedSides = [6];
 let cardTypesWithNotesForDifficultyLevel = [2];
+let cardTypesWithAlternativePublishLimit = [0];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
-
+let publishLimit = 5;
+let alternativePublishLimit = 1;
 class CardType {
+	static gotPublishLimit (cardType, cardQuantity) {
+		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
+			return cardQuantity >= alternativePublishLimit;
+		} else {
+			return cardQuantity >= publishLimit;
+		}
+	}
 	static getCardTypesOrder () {
 		return cardTypesOrder;
 	}
