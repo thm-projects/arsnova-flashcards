@@ -8,13 +8,6 @@
 1. Create a symbolic link to the conf files, if your openjdk version is lower than 9~b177-2
      > cd /usr/lib/jvm/java-9-openjdk-amd64   
      sudo ln -s lib conf
-
-## Windows Steps
-1. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
-1. [Install git for Windows (Shell integration)](https://git-scm.com/download/win)
-1. [Install Node.js 6.xx. 7.xx and newer won't work with chimp.](https://nodejs.org/en/)
-1. [Install MongoDB](https://www.mongodb.com)
-1. Add your MongoDB bin folder to your `PATH enviormental variable` to gain access to mongodump.exe and mongorestore.exe
 1. Install the latest Version of Firefox
 
 ## Running a test
