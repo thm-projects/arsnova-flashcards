@@ -301,11 +301,19 @@ Template.registerHelper("getMomentsDate", function (date, displayMinutes = false
 	if (displayMinutes === true) {
 		dateFormat = "D. MMM YYYY HH:MM";
 	}
-	return moment(date).locale(Session.get('activeLanguage')).format(dateFormat);
+	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
+		sameDay: '[Today] HH:MM',
+		lastDay: '[Yesterday] HH:MM',
+		sameElse: dateFormat
+	});
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).format("D.MMM YY");
+	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
+		sameDay: '[Today]',
+		lastDay: '[Yesterday]',
+		sameElse: 'D.MMM YY'
+	});
 });
 
 
