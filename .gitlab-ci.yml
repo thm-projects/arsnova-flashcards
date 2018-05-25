@@ -4,6 +4,12 @@ variables:
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
 
+stages:
+  - test
+  - build
+  - review
+  - deploy
+
 chimp:
   stage: test
   only:
@@ -14,8 +20,7 @@ chimp:
   allow_failure: true
   services:
     - mongo
-  dependencies:
-    - build
+  dependencies: []
   variables:
     PORT: "3000"
     ROOT_URL: "http://localhost:$PORT"
@@ -80,10 +85,6 @@ jsdoc:
 
 build:
   stage: build
-  only:
-    - master
-    - staging
-    - /^v[0-9]+/
   tags:
     - meteor
   image: local-nodejs-meteor:1.6
@@ -101,39 +102,75 @@ build:
     paths:
       - "$BUNDLE_DIR"
 
-deploy_staging:
-  stage: deploy
-  only:
-    - staging
-  tags:
-    - ssh
-  dependencies:
-    - build
-    - jsdoc
+review:
+  stage: review
   script:
-    - chmod -R a+rX,ug+w "build"
-    - eval $(ssh-agent -s)
-    - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
-    - scp -r "build/bundle/"* "$NEW_STAGING_SSH_URL"
-    - scp -r "build/jsdoc" "$NEW_STAGING_SSH_URL"
-  environment: staging
-
-deploy_production:
-  stage: deploy
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - NGINX_PORT=1`echo $METEOR_PORT`
+    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    - mkdir -p $METEOR_HOME/logs
+    - mkdir -p $METEOR_HOME/app
+    - rm -f /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - rm -f /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
+    - cp /srv/review-apps/appctl.sh $METEOR_HOME
+    - cp /srv/review-apps/meteor-settings.json $METEOR_HOME
+    - cp /srv/review-apps/mongo-setup.js $METEOR_HOME
+    - cp /srv/review-apps/mongo-restore.sh $METEOR_HOME
+    - cp /srv/review-apps/nginx-vhost /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/appctl.sh
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/meteor-settings.json
+    - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" "$METEOR_HOME"/meteor-settings.json
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-restore.sh
+    - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
+    - cd $METEOR_HOME
+    - ./appctl.sh stop
+    - cd $METEOR_HOME/app/programs/server
+    - npm install
+    - cd $METEOR_HOME
+    - mongo < mongo-setup.js
+    - ./mongo-restore.sh
+    - ./appctl.sh start
+    - sleep 45s
+    - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - sed -i "s/<branch-port>/$METEOR_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - sed -i "s/<ci-ref>/$CI_BUILD_REF_NAME/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
+    - ln -s /etc/nginx/sites-available/meteor-"$NGINX_PORT" /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
+    - sudo systemctl reload nginx.service
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
+    on_stop: stop_review
   only:
+    - /^[[:digit:]]{3}/
+  except:
+    - staging
     - master
   tags:
-    - ssh
-  dependencies:
-    - build
+    - cards-review
+
+stop_review:
+  stage: review
   script:
-    - chmod -R a+rX,ug+w "build"
-    - eval $(ssh-agent -s)
-    - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
-    - scp -r "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
-  environment: production
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    - cd $METEOR_HOME
+    - ./appctl.sh stop
+    - cd /srv/review-apps
+    - rm -rf $METEOR_HOME
+  variables:
+    GIT_STRATEGY: none
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
+  only:
+    - /^[[:digit:]]{3}/
+  except:
+    - staging
+    - master
+  tags:
+    - cards-review
 
 sync_mirror:
   stage: deploy
@@ -150,3 +187,4 @@ sync_mirror:
     - cd mirror.git
     - git push --mirror "$MIRROR_REPO"
   environment: GitHub
+
