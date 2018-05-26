@@ -381,18 +381,16 @@
                             <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                         </button>
                     </div>
+                    {{#unless isShuffledCardset this._id}}
+                        <div class="btn-group btn-group-raised">
+                            <button id="selectLicense" class="btn btn-default btn-raised" type="button"
+                                    data-toggle="modal"
+                                    data-target="#selectLicenseModal" {{disableIfOffline}}>
+                                <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                            </button>
+                        </div>
+                    {{/unless}}
                     {{#unless isDisabled}}
-                        {{#unless isShuffledCardset this._id}}
-                            {{#if isPublished}}
-                                <div class="btn-group btn-group-raised">
-                                    <button id="selectLicense" class="btn btn-default btn-raised" type="button"
-                                            data-toggle="modal"
-                                            data-target="#selectLicenseModal" {{disableIfOffline}}>
-                                        <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
-                                    </button>
-                                </div>
-                            {{/if}}
-                        {{/unless}}
                         {{#unless learningActive}}
                             <div class="btn-group btn-group-raised">
                                 <button id="publishCardset" class="btn btn-raised btn-default" type="button"
