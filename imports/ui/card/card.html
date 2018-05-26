@@ -66,11 +66,11 @@
 <template name="contentNavigation">
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         {{> contentNavigationFront tabindex=5}}
-        {{#if gotBack}}
-            {{> contentNavigationBack tabindex=7}}
-        {{/if}}
         {{#if gotLecture}}
-            {{> contentNavigationLecture tabindex=9}}
+            {{> contentNavigationLecture tabindex=7}}
+        {{/if}}
+        {{#if gotBack}}
+            {{> contentNavigationBack tabindex=9}}
         {{/if}}
         {{#if gotHint}}
             {{> contentNavigationHint tabindex=11}}
@@ -353,9 +353,7 @@
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-                                     data-cardtype="{{cardType}}" style="{{#if isHintPreview}}display: none{{/if}}{{#if
-                                        isLecturePreview}}display: none{{/if}}{{#if
-                                        isDictionaryPreview}}display: none{{/if}}">
+                                     data-cardtype="{{cardType}}">
                                     {{#if canCopyCard this.cardset_id}}
                                         {{#if isCardset}}
                                             <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
@@ -368,6 +366,12 @@
                                         {{/if}}
                                     {{/if}}
                                     <div class="leftHeader" data-cardtype="{{cardType}}">
+                                        {{#if isPresentation}}
+                                            {{#if cardActive @index}}
+                                                <div class="presentation-clock">
+                                                </div>
+                                            {{/if}}
+                                        {{/if}}
                                         {{#unless isShuffledCardset}}
                                             {{#if isCardEditor this.cardset_id}}
                                                 {{#if isCardset}}
@@ -414,7 +418,7 @@
                                     </div>
                                     <div class="cardHeaderCenter cardHeaderFirstRow" data-cardtype="{{cardType}}">
                                         <strong data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
-                                        {{#unless isPresentation}}
+                                        {{#unless isEditModeOrPresentation}}
                                             {{#if displaysSideInformation}}
                                                 <span
                                                         class="cardFrontHeader cardHeaderSecondRow"
@@ -433,7 +437,7 @@
                                         {{/unless}}
                                         {{#if displaysLearningGoalInformation}}
                                             <span class="cardHeaderSecondRow" data-cardtype="{{cardType}}">{{#unless
-                                                    isPresentation}}{{#if
+                                                    isEditModeOrPresentation}}{{#if
                                                     displaysSideInformation}}|{{/if}}{{/unless}}
                                                 {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
                                         {{/if}}
@@ -627,13 +631,6 @@
 </template>
 
 <template name="cardHintContent">
-    <div class="modal-header">
-        <h4 id="showHintTitle" class="modal-title">{{> cardSubject}}: {{getHintTitle}}
-            {{#unless isHintPreview}}
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            {{/unless}}
-        </h4>
-    </div>
     <div class="modal-body">
         <div class="form-horizontal">
             <div class="form-group">
@@ -654,6 +651,13 @@
         <div class="modal-dialog" aria-labelledby="showHintTitle">
             <div class="modal-content {{#if gotAlternativeHintStyle
                                             cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
+                <div class="modal-header">
+                    <h4 id="showHintTitle" class="modal-title">{{> cardSubject}}: {{getHintTitle}}
+                        {{#unless isHintPreview}}
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        {{/unless}}
+                    </h4>
+                </div>
                 {{> cardHintContent}}
             </div>
         </div>

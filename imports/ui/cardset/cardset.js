@@ -384,10 +384,7 @@ Template.cardsetInfo.helpers({
 		}
 	},
 	isDisabled: function () {
-		return !!(this.quantity < 5 || this.reviewed || this.request);
-	},
-	isPublished: function () {
-		return (this.kind === 'personal');
+		return (!CardType.gotPublishLimit(this.cardType, this.quantity) || this.reviewed || this.request);
 	},
 	isLecturerAndHasRequest: function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());

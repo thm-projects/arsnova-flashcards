@@ -61,13 +61,13 @@
 {{/unless}}
 {{#if isActiveRoute
       regex="pool|alldecks"}}
-    <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm col-sm-3 collapseButton {{getCardBackground
+    <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardBackground
             this.difficulty this.cardType 1}}"
          data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
     {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true}}{{else}}{{getMomentsDate this.date}}{{/if}}<span
             class="resultDateRight">{{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.dateUpdated true}}{{else}}{{getMomentsDate this.dateUpdated}}{{/if}}</span>
     </div>
-        <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-md hidden-lg col-sm-3 collapseButton {{getCardBackground
+        <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}"
              data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
             {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort

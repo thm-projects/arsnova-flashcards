@@ -126,7 +126,7 @@ function prepareBack() {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 8);
+	$('#contentEditor').attr('tabindex', 10);
 	if (!isPresentation()) {
 		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 			$('#contentEditor').val(Session.get('frontText'));
@@ -209,7 +209,7 @@ function editLecture() {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 10);
+	$('#contentEditor').attr('tabindex', 8);
 	if (!isPresentation()) {
 		$('#contentEditor').val(Session.get('lectureText'));
 		$('#editor').attr('data-content', Session.get('lectureText'));
@@ -1013,6 +1013,12 @@ Template.learningGoalLevel.events({
 Template.cardHint.helpers({
 	gotAlternativeHintStyle: function (cardType) {
 		return CardType.gotAlternativeHintStyle(cardType);
+	},
+	getHintTitle: function () {
+		return CardType.getHintTitle();
+	},
+	isHintPreview: function () {
+		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
 /*
@@ -1056,12 +1062,6 @@ Template.cardHintContent.helpers({
 	},
 	isEditMode: function () {
 		return isEditMode();
-	},
-	getHintTitle: function () {
-		return CardType.getHintTitle();
-	},
-	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
 
@@ -1618,8 +1618,18 @@ Meteor.startup(function () {
 			}
 		}
 		if (Session.get('fullscreen')) {
-			if ([37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
+					case 32:
+						if ($('#rightCarouselControl').click()) {
+							$('#showHintModal').modal('hide');
+							$('body').removeClass('modal-open');
+							$('.modal-backdrop').remove();
+						}
+						if (Session.get('isQuestionSide')) {
+							skipAnswer();
+						}
+						break;
 					case 37:
 						if ($('#leftCarouselControl').click()) {
 							$('#showHintModal').modal('hide');
