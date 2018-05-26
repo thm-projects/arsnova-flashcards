@@ -10,10 +10,6 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
-let clockInterval;
-function updateMomentsClock() {
-	$('.presentation-clock').html(moment().format('HH:MM'));
-}
 
 /*
  * ############################################################################
@@ -23,18 +19,8 @@ function updateMomentsClock() {
 
 Template.presentationView.onRendered(function () {
 	updateNavigation();
-	updateMomentsClock();
-	clockInterval = setInterval(function () {
-		updateMomentsClock();
-	}, 5000);
 });
 
-Template.presentationView.onDestroyed(function () {
-	if (clockInterval !== undefined) {
-		clearInterval(clockInterval);
-		clockInterval = undefined;
-	}
-});
 /*
  * ############################################################################
  * endPresentationModal
