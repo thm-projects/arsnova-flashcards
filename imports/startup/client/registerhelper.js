@@ -296,22 +296,46 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
+
+function getCalendarString(type = '', minutes = '') {
+	let today = '[Today]';
+	let yesterday = '[Yesterday]';
+	if (Session.get('activeLanguage') === 'de') {
+		if (minutes !== '') {
+			minutes = '[ um ]' + minutes;
+		}
+		today = '[Heute]';
+		yesterday = '[Gestern]';
+	} else {
+		if (minutes !== '') {
+			minutes = '[ at ]' + minutes;
+		}
+	}
+	switch (type) {
+		case "today":
+			return today + minutes;
+		case "yesterday":
+			return yesterday + minutes;
+	}
+}
+
 Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
+	let minutes = "HH:MM";
 	let dateFormat = "D. MMMM YYYY";
 	if (displayMinutes === true) {
-		dateFormat = "D. MMM YYYY HH:MM";
+		dateFormat = "D. MMM YYYY " + minutes;
 	}
 	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-		sameDay: '[Today] HH:MM',
-		lastDay: '[Yesterday] HH:MM',
+		sameDay: getCalendarString("today", minutes),
+		lastDay: getCalendarString("yesterday", minutes),
 		sameElse: dateFormat
 	});
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {
 	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-		sameDay: '[Today]',
-		lastDay: '[Yesterday]',
+		sameDay: getCalendarString("today"),
+		lastDay: getCalendarString("yesterday"),
 		sameElse: 'D.MMM YY'
 	});
 });
