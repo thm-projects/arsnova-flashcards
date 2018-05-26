@@ -126,7 +126,7 @@ function prepareBack() {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 8);
+	$('#contentEditor').attr('tabindex', 10);
 	if (!isPresentation()) {
 		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 			$('#contentEditor').val(Session.get('frontText'));
@@ -209,7 +209,7 @@ function editLecture() {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 	}
 	$('#contentEditor').focus();
-	$('#contentEditor').attr('tabindex', 10);
+	$('#contentEditor').attr('tabindex', 8);
 	if (!isPresentation()) {
 		$('#contentEditor').val(Session.get('lectureText'));
 		$('#editor').attr('data-content', Session.get('lectureText'));

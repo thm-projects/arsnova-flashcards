@@ -66,11 +66,11 @@
 <template name="contentNavigation">
     <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
         {{> contentNavigationFront tabindex=5}}
-        {{#if gotBack}}
-            {{> contentNavigationBack tabindex=7}}
-        {{/if}}
         {{#if gotLecture}}
-            {{> contentNavigationLecture tabindex=9}}
+            {{> contentNavigationLecture tabindex=7}}
+        {{/if}}
+        {{#if gotBack}}
+            {{> contentNavigationBack tabindex=9}}
         {{/if}}
         {{#if gotHint}}
             {{> contentNavigationHint tabindex=11}}
