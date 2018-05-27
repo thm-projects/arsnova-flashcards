@@ -302,7 +302,7 @@ function getCalendarString(type = '', minutes = '') {
 	let yesterday = '[Yesterday]';
 	if (Session.get('activeLanguage') === 'de') {
 		if (minutes !== '') {
-			minutes = '[ um ]' + minutes;
+			minutes = '[ ]' + minutes;
 		}
 		today = '[Heute]';
 		yesterday = '[Gestern]';
@@ -320,10 +320,10 @@ function getCalendarString(type = '', minutes = '') {
 }
 
 Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
-	let minutes = "HH:MM";
+	let minutes = "H:MM";
 	let dateFormat = "D. MMMM YYYY";
 	if (displayMinutes === true) {
-		dateFormat = "D. MMM YYYY " + minutes;
+		dateFormat = "D. MMM YY " + minutes;
 	}
 	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
 		sameDay: getCalendarString("today", minutes),
