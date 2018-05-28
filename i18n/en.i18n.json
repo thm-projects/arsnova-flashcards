@@ -822,6 +822,19 @@
         "subject": "Subject"
       }
     },
+    "cardType11": {
+      "name": "Quiz",
+      "front": "Question",
+      "back": "Answer",
+      "placeholders": {
+        "subject": "Enter the topic or question!",
+        "front": "Enter the topic or question of your quiz!",
+        "back": "Enter the answer to your quiz!"
+      },
+      "editorLabels": {
+        "subject": "Topic or question"
+      }
+    },
     "tooltip": {
       "endPresentation": "Close presentation",
       "fullscreen": "With ESCAPE you get back to the normal view.",

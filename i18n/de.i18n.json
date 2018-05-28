@@ -788,6 +788,19 @@
         "subject": "Thema des Fotos"
       }
     },
+    "cardType11": {
+      "name": "Quiz",
+      "front": "Frage",
+      "back": "Antwort",
+      "placeholders": {
+        "subject": "Gib das Thema oder die Frage an !",
+        "front": "Gib das Thema oder die Frage deines Quiz an !",
+        "back": "Gib die Antwort deines Quiz an !"
+      },
+      "editorLabels": {
+        "subject": "Thema oder Frage"
+      }
+    },
     "tooltip": {
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
