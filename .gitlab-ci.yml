@@ -117,7 +117,7 @@ review:
     url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
     on_stop: stop_review
   only:
-    - /^[[:digit:]]{3}/
+    - /^[[:digit:]]+?(?=-)/
   except:
     - staging
     - master
@@ -127,7 +127,7 @@ review:
 stop_review:
   stage: review
   script:
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     - cd $METEOR_HOME
     - ./appctl.sh stop
@@ -140,7 +140,7 @@ stop_review:
     name: review/$CI_BUILD_REF_NAME
     action: stop
   only:
-    - /^[[:digit:]]{3}/
+    - /^[[:digit:]]+?(?=-)/
   except:
     - staging
     - master
