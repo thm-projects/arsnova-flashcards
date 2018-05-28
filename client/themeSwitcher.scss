@@ -251,6 +251,14 @@ $themes: (
     //under development modal colors
     $under_development_modal_text: map-get($map, "under_development_modal_text");
     $under_development_modal_background: map-get($map, "under_development_modal_background");
+    //presentation colors
+    $presentation_clock_circle: map-get($map, "presentation_clock_circle");
+    $presentation_clock_background: map-get($map, "presentation_clock_background");
+    $presentation_clock_center_circle: map-get($map, "presentation_clock_center_circle");
+    $presentation_clock_hour_marks: map-get($map, "presentation_clock_hour_marks");
+    $presentation_clock_hour_arm: map-get($map, "presentation_clock_hour_arm");
+    $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
+    $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
 
     li.active {
       a {
@@ -1683,7 +1691,7 @@ $themes: (
         background-color: transparent !important;
       }
 
-      blockquote.fancyquote::before , blockquote .fancyquote::after {
+      blockquote.fancyquote::before, blockquote .fancyquote::after {
         color: $markdeep_blockquote_quotes !important;
       }
       blockquote {
@@ -1697,6 +1705,33 @@ $themes: (
         }
       }
 
+    }
+    //presentation colors
+    .clockbox, #clock {
+      .circle {
+        fill: $presentation_clock_background !important;
+        stroke: $presentation_clock_circle !important;
+      }
+
+      .mid-circle {
+        fill: $presentation_clock_center_circle !important;
+      }
+
+      .hour-marks {
+        stroke: $presentation_clock_hour_marks !important;
+      }
+
+      .hour-arm {
+        stroke: $presentation_clock_hour_arm !important;
+      }
+
+      .minute-arm {
+        stroke: $presentation_clock_minute_arm !important;
+      }
+
+      .second-arm {
+        stroke: $presentation_clock_second_arm !important;
+      }
     }
   }
 }
