@@ -107,44 +107,17 @@ chimp:
 review:
   stage: review
   script:
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
-    - NGINX_PORT=1`echo $METEOR_PORT`
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
-    - mkdir -p $METEOR_HOME/logs
     - mkdir -p $METEOR_HOME/app
-    - rm -f /etc/nginx/sites-available/meteor-"$NGINX_PORT"
-    - rm -f /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
-    - cp /srv/review-apps/appctl.sh $METEOR_HOME
-    - cp /srv/review-apps/meteor-settings.json $METEOR_HOME
-    - cp /srv/review-apps/mongo-setup.js $METEOR_HOME
-    - cp /srv/review-apps/mongo-restore.sh $METEOR_HOME
-    - cp /srv/review-apps/nginx-vhost /etc/nginx/sites-available/meteor-"$NGINX_PORT"
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/appctl.sh
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/meteor-settings.json
-    - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" "$METEOR_HOME"/meteor-settings.json
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-setup.js
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" "$METEOR_HOME"/mongo-restore.sh
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
-    - cd $METEOR_HOME
-    - ./appctl.sh stop
-    - cd $METEOR_HOME/app/programs/server
-    - npm install
-    - cd $METEOR_HOME
-    - mongo < mongo-setup.js
-    - ./mongo-restore.sh
-    - ./appctl.sh start
-    - sleep 45s
-    - sed -i "s/<branch-nginx-port>/$NGINX_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
-    - sed -i "s/<branch-port>/$METEOR_PORT/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
-    - sed -i "s/<ci-ref>/$CI_BUILD_REF_NAME/g" /etc/nginx/sites-available/meteor-"$NGINX_PORT"
-    - ln -s /etc/nginx/sites-available/meteor-"$NGINX_PORT" /etc/nginx/sites-enabled/meteor-"$NGINX_PORT"
-    - sudo systemctl reload nginx.service
+    - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_BUILD_REF_NAME
   environment:
     name: review/$CI_BUILD_REF_NAME
     url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
     on_stop: stop_review
   only:
-    - /^[[:digit:]]{3}/
+    - /^[[:digit:]]+?(?=-)/
   except:
     - staging
     - master
@@ -154,7 +127,7 @@ review:
 stop_review:
   stage: review
   script:
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     - cd $METEOR_HOME
     - ./appctl.sh stop
@@ -167,7 +140,7 @@ stop_review:
     name: review/$CI_BUILD_REF_NAME
     action: stop
   only:
-    - /^[[:digit:]]{3}/
+    - /^[[:digit:]]+?(?=-)/
   except:
     - staging
     - master

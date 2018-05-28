@@ -11,7 +11,7 @@ Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
 
-function run_the_clock() {
+function updatePresentationClock() {
 	let date = new Date();
 	let hr = date.getHours();
 	let min = date.getMinutes();
@@ -60,9 +60,9 @@ Template.endPresentationModal.events({
  */
 let clockInterval;
 Template.presentationClock.onRendered(function () {
-	run_the_clock();
+	updatePresentationClock();
 	if (clockInterval === undefined) {
-		clockInterval = setInterval(run_the_clock, 1000);
+		clockInterval = setInterval(updatePresentationClock, 1000);
 	}
 });
 
