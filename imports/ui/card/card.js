@@ -13,6 +13,7 @@ import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
 import CardType from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
+import MarkdeepEditor from "../../api/markdeepEditor.js";
 
 /*
  * ############################################################################
@@ -1618,8 +1619,13 @@ Meteor.startup(function () {
 			}
 		}
 		if (Session.get('fullscreen')) {
-			if ([32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([9, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
+					case 9:
+						if (isPresentation()) {
+							MarkdeepEditor.cardSideNavigation();
+						}
+						break;
 					case 32:
 						if ($('#rightCarouselControl').click()) {
 							$('#showHintModal').modal('hide');
