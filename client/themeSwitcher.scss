@@ -144,6 +144,7 @@ $themes: (
     $info_navigation_background_active: map-get($map, "info_navigation_background_active");
     $info_navigation_background_hover: map-get($map, "info_navigation_background_hover");
     $home_button_icon: map-get($map, "home_button_icon");
+    $home_button_icon_hover: map-get($map, "home_button_icon_hover");
     $info_content_header_text: map-get($map, "info_content_header_text");
     $info_content_header_background: map-get($map, "info_content_header_background");
     $info_content_body_text: map-get($map, "info_content_body_text");
@@ -560,6 +561,10 @@ $themes: (
 
     .fa-home {
       color: $home_button_icon !important;
+    }
+
+    #about:hover i, .fa-home:hover {
+      color: $home_button_icon_hover !important;
     }
 
     #searchResults a {
