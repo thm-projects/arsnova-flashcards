@@ -476,7 +476,10 @@ button {
 
 .dropdown, .dropup, .navbar-nav > li {
   .dropdown-menu {
-    max-height: 400px;
+    max-height: 575px;
+    @media(max-width: 767px) {
+      max-height: 225px;
+    }
     overflow-y: scroll;
   }
   button {
