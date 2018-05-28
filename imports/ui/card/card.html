@@ -341,6 +341,17 @@
     </iframe>
 </template>
 
+<template name="cardHintContentPreview">
+    <span class="{{#if gotHint}}{{#if
+            isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+        {{#if gotHint}}
+            {{#mathjax}}{{hint}}{{/mathjax}}
+        {{else}}
+            {{#mathjax}}{{getPlaceholder 2}}{{/mathjax}}
+        {{/if}}
+    </span>
+</template>
+
 <template name="flashcards">
     {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
@@ -515,7 +526,7 @@
                                             {{/if}}
                                         {{/if}}
                                         {{#if isHintPreview}}
-                                            {{> cardHintContent this}}
+                                            {{> cardHintContentPreview this}}
                                         {{/if}}
                                         {{#if isLecturePreview}}
                                             {{> cardLectureContent this}}

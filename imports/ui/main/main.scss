@@ -593,17 +593,13 @@ th {
 }
 
 .hintContent {
-  font-family: $default_font !important;
   a {
-    font-family: $default_font !important;
     text-decoration: $hint_link_decoration !important;
   }
 }
 
 .hintContentAlternative {
-  font-family: $default_font !important;
   a {
-    font-family: $default_font !important;
     text-decoration: $hint_link_alternative_decoration !important;
   }
 }

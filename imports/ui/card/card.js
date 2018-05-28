@@ -1022,6 +1022,7 @@ Template.cardHint.helpers({
 		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
+
 /*
  * ############################################################################
  * cardHintContent
@@ -1185,6 +1186,25 @@ Template.cardLectureContent.helpers({
 	}
 });
 
+/*
+ * ############################################################################
+ * cardHintContentPreview
+ * ############################################################################
+ */
+
+Template.cardHintContentPreview.helpers({
+	getPlaceholder: function (mode) {
+		if (isPresentation()) {
+			return CardType.getPlaceholderText(mode, this.cardType);
+		}
+	},
+	gotHint: function () {
+		return this.hint !== '' && this.hint !== undefined;
+	},
+	isCentered: function () {
+		return isCentered(2, this.centerTextElement, this.cardType);
+	}
+});
 
 /*
  * ############################################################################
@@ -1352,7 +1372,7 @@ Template.flashcards.helpers({
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
 	},
 	gotHint: function () {
-		return CardType.gotHint(this.cardType);
+		return (CardType.gotHint(this.cardType) && this.hint !== "" && this.hint !== undefined);
 	},
 	gotDictionary: function () {
 		return CardType.gotDictionary(this.cardType);
