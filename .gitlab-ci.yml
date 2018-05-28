@@ -107,7 +107,7 @@ chimp:
 review:
   stage: review
   script:
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | head -c3)0
+    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     - mkdir -p $METEOR_HOME/app
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
