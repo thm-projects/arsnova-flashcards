@@ -13,6 +13,7 @@ import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
 import CardType from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
+import MarkdeepEditor from "../../api/markdeepEditor.js";
 
 /*
  * ############################################################################
@@ -1021,6 +1022,7 @@ Template.cardHint.helpers({
 		return (Session.get('activeEditMode') === 2 && isEditModeOrPresentation());
 	}
 });
+
 /*
  * ############################################################################
  * cardHintContent
@@ -1184,6 +1186,25 @@ Template.cardLectureContent.helpers({
 	}
 });
 
+/*
+ * ############################################################################
+ * cardHintContentPreview
+ * ############################################################################
+ */
+
+Template.cardHintContentPreview.helpers({
+	getPlaceholder: function (mode) {
+		if (isPresentation()) {
+			return CardType.getPlaceholderText(mode, this.cardType);
+		}
+	},
+	gotHint: function () {
+		return this.hint !== '' && this.hint !== undefined;
+	},
+	isCentered: function () {
+		return isCentered(2, this.centerTextElement, this.cardType);
+	}
+});
 
 /*
  * ############################################################################
@@ -1351,7 +1372,7 @@ Template.flashcards.helpers({
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
 	},
 	gotHint: function () {
-		return CardType.gotHint(this.cardType);
+		return (CardType.gotHint(this.cardType) && this.hint !== "" && this.hint !== undefined);
 	},
 	gotDictionary: function () {
 		return CardType.gotDictionary(this.cardType);
@@ -1618,8 +1639,13 @@ Meteor.startup(function () {
 			}
 		}
 		if (Session.get('fullscreen')) {
-			if ([32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([9, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
+					case 9:
+						if (isPresentation()) {
+							MarkdeepEditor.cardSideNavigation();
+						}
+						break;
 					case 32:
 						if ($('#rightCarouselControl').click()) {
 							$('#showHintModal').modal('hide');

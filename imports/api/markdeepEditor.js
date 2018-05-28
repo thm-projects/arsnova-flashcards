@@ -18,6 +18,18 @@ class MarkdeepEditor {
 		}
 	}
 
+	static cardSideNavigation () {
+		let navigationLength = $(".editorNavigation > button").length;
+		let index = ($(".btn-primary").index(".editorNavigation > button"));
+		++index;
+		if (index >= navigationLength) {
+			index = 1;
+		} else {
+			++index;
+		}
+		$(".editorNavigation > button:nth-child(" + index + ")").click();
+	}
+
 	static changeBackgroundStyle () {
 		if (Session.get('backgroundStyle') === 1) {
 			Session.set('backgroundStyle', 0);
