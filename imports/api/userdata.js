@@ -243,7 +243,7 @@ Meteor.methods({
 						lastOnAt: new Date(),
 						daysInRow: 0,
 						selectedColorTheme: "default",
-						mailNotification: true,
+						mailNotification: false,
 						webNotification: false,
 						"profile.locale": "de"
 					}

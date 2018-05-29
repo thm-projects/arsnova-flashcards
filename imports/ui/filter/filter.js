@@ -13,7 +13,9 @@ Meteor.subscribe("courseIterations");
 
 export let items_increment = 6;
 
-Session.setDefault('poolSortTopic', {name: 1});
+
+
+Session.setDefault('poolSortTopic');
 Session.setDefault('poolFilterAuthor');
 Session.setDefault('poolFilterAudience');
 Session.setDefault('poolFilterCardType');
@@ -46,6 +48,10 @@ function isCourseIterationRoute() {
 
 function isLearnRoute() {
 	return Router.current().route.getName() === "learn";
+}
+
+function isAllDecksRoute() {
+	return Router.current().route.getName() === "alldecks";
 }
 
 export function prepareQuery() {
@@ -171,7 +177,11 @@ export function checkFilters() {
 }
 
 export function resetFilters() {
-	Session.set('poolSortTopic', {name: 1});
+	if (isAllDecksRoute()) {
+		Session.set('poolSortTopic', {dateUpdated: -1});
+	} else {
+		Session.set('poolSortTopic', {name: 1});
+	}
 	Session.set('poolFilterAuthor');
 	Session.set('poolFilterTargetAudience');
 	Session.set('poolFilterCardType');
