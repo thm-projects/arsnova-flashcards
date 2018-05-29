@@ -485,13 +485,7 @@
   "presentation": {
     "title": "Präsentation",
     "create": "Präsentation starten",
-    "start": "Starten",
-    "end-modal": {
-      "title": "Präsentation beenden",
-      "description": "Möchtest du die derzeitige Präsentation beenden?",
-      "confirm": "Präsentation beenden",
-      "cancel": "Abbrechen"
-    }
+    "start": "Starten"
   },
   "pool": {
     "relevance": "Relevanz",

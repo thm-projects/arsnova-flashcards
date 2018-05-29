@@ -36,25 +36,6 @@ Template.presentationView.onRendered(function () {
 
 /*
  * ############################################################################
- * endPresentationModal
- * ############################################################################
- */
-
-Template.endPresentationModal.events({
-	"click #endPresentationConfirm": function () {
-		$('#endPresentationModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
-		$('#endPresentationModal').on('hidden.bs.modal', function () {
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
-			});
-		});
-	}
-});
-
-/*
- * ############################################################################
  * presentationClock
  * ############################################################################
  */
