@@ -9,6 +9,7 @@ import {ColorThemes} from "../../api/theme.js";
 import {Paid} from "../../api/paid.js";
 import {Notifications} from "../../api/notifications.js";
 import "./profile.html";
+import {firstLoginBertAlert} from "../../startup/client/routes";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("cardsets");
@@ -128,6 +129,10 @@ Template.profileSettings.onCreated(function () {
 	Session.set("profileSettingsSave", true);
 	Session.set("themeSettings", true);
 	Session.set("languageSettings", true);
+});
+
+Template.profileSettings.onRendered(function () {
+	firstLoginBertAlert();
 });
 
 Template.profileSettings.events({

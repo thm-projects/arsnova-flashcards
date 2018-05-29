@@ -323,8 +323,8 @@ var isSignedIn = function () {
 };
 
 export function firstLoginBertAlert() {
-	let firstLoginItem = 'displayedFirstLoginBertAlert';
-	if (!localStorage.getItem(firstLoginItem)) {
+	let firstTimeLogin = 'displayedFirstLoginBertAlert';
+	if (localStorage.getItem(firstTimeLogin) === "true") {
 		Bert.defaults.hideDelay = 97200;
 		Bert.alert({
 			title: TAPi18n.__('bertAlert.firstLogin.title'),
@@ -334,7 +334,7 @@ export function firstLoginBertAlert() {
 			icon: 'fa-heart'
 		});
 		Bert.defaults.hideDelay = 7;
-		localStorage.setItem(firstLoginItem, true);
+		localStorage.setItem(firstTimeLogin, "false");
 	}
 }
 
