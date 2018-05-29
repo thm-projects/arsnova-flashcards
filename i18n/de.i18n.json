@@ -484,7 +484,7 @@
   },
   "presentation": {
     "title": "Präsentation",
-    "create": "Präsentation starten",
+    "create": "Karten präsentieren",
     "start": "Starten",
     "list": {
       "back":"Zurück zur Präsentation"
@@ -1318,7 +1318,8 @@
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
-      Die Hilfe  in der Navigationsleiste erklärt dir, warum diese Plattform so einzigartig ist !
+      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Lernpensum\", \"Meine Karteien\" und \"Kurse\"
+      dient dir als Einstieg in die großartigen Features von .cards, schau dir dazu auch die Hilfe und Demo-Karteien an!
       </br>
       </br>
       Suche im Themen-Pool nach einem Thema, das dich interessiert.
