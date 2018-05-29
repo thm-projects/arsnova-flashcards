@@ -372,15 +372,6 @@ Meteor.methods({
 				}
 			}
 
-			//always make sure that at least mailNotifications are checked for the user
-			if (!user.mailNotification && !user.webNotification) {
-				Meteor.users.update(user._id, {
-					$set: {
-						mailNotification: true
-					}
-				});
-			}
-
 			if (user.mailNotification && Meteor.call("mailsEnabled")) {
 				try {
 					var mail = new MailNotifier();

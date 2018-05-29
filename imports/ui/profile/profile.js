@@ -327,21 +327,19 @@ Template.profileSettings.events({
 					validName = true;
 				}
 				if (validEmail && validName && validBirthName && validGivenName) {
-					var mailNotification = document.getElementById('mailNotificationCheckbox').checked;
-					var webNotification = document.getElementById('webNotificationCheckbox').checked;
-					if (mailNotification || webNotification) {
-						$('#inputEmailValidation').val('');
-						$('#inputEmailValidationForm').addClass("hidden");
-						Session.set("profileSettingsSave", true);
-						Session.set("profileSettingsCancel", true);
-						Meteor.call("updateUsersEmail", email);
-						Meteor.call("updateUsersBirthName", birthname, user_id);
-						Meteor.call("updateUsersGivenName", givenname, user_id);
-						Meteor.call("updateUsersProfileState", true, user_id);
-						Meteor.call("updateUsersName", result, user_id);
-						Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
-						Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
-					}
+					let mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+					let webNotification = document.getElementById('webNotificationCheckbox').checked;
+					$('#inputEmailValidation').val('');
+					$('#inputEmailValidationForm').addClass("hidden");
+					Session.set("profileSettingsSave", true);
+					Session.set("profileSettingsCancel", true);
+					Meteor.call("updateUsersEmail", email);
+					Meteor.call("updateUsersBirthName", birthname, user_id);
+					Meteor.call("updateUsersGivenName", givenname, user_id);
+					Meteor.call("updateUsersProfileState", true, user_id);
+					Meteor.call("updateUsersName", result, user_id);
+					Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+					Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 				} else {
 					Bert.alert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');
 				}
@@ -349,19 +347,9 @@ Template.profileSettings.events({
 		});
 	},
 	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
-		if (!document.getElementById('mailNotificationCheckbox').checked && !document.getElementById('webNotificationCheckbox').checked) {
-			Session.set("profileSettingsSave", true);
-			Session.set("profileSettingsCancel", false);
-			$('#mailNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").addClass('has-warning');
-			$('#errorNotification').html(TAPi18n.__('confirmLearn-form.notificationError'));
-		} else {
-			Session.set("profileSettingsSave", false);
-			Session.set("profileSettingsCancel", false);
-			$('#mailNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#webNotificationCheckbox').parents("div.form-group").removeClass('has-warning');
-			$('#errorNotification').html('');
-		}
+		Session.set("profileSettingsSave", false);
+		Session.set("profileSettingsCancel", false);
+		$('#errorNotification').html('');
 	},
 	"click #profileCancel": function () {
 		var user = Meteor.users.findOne(Meteor.userId());
