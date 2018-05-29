@@ -19,9 +19,9 @@ function updatePresentationClock() {
 	let hrPosition = hr * 360 / 12 + ((min * 360 / 60) / 12);
 	let minPosition = min * 360 / 60;
 	let secPosition = sec * 360 / 60;
-	$("#hour").css("transform","rotate(" + hrPosition + "deg)");
-	$("#minute").css("transform","rotate(" + minPosition + "deg)");
-	$("#second").css("transform","rotate(" + secPosition + "deg)");
+	$("#hour").css("transform", "rotate(" + hrPosition + "deg)");
+	$("#minute").css("transform", "rotate(" + minPosition + "deg)");
+	$("#second").css("transform", "rotate(" + secPosition + "deg)");
 }
 
 /*
@@ -33,6 +33,16 @@ function updatePresentationClock() {
 Template.presentationView.onRendered(function () {
 	updateNavigation();
 });
+
+
+Template.presentationView.events({
+	"click #backToPresentation": function () {
+		Router.go('presentation', {
+			_id: Router.current().params._id
+		});
+	}
+});
+
 
 /*
  * ############################################################################
