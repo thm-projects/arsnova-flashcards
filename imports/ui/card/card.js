@@ -1529,6 +1529,11 @@ Template.flashcards.events({
 		} else {
 			toggleFullscreen();
 		}
+	},
+	"click .endPresentation": function () {
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
@@ -1639,7 +1644,7 @@ Meteor.startup(function () {
 			}
 		}
 		if (Session.get('fullscreen')) {
-			if ([9, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
+			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
 						if (isPresentation()) {
@@ -1654,6 +1659,11 @@ Meteor.startup(function () {
 						}
 						if (Session.get('isQuestionSide')) {
 							skipAnswer();
+						}
+						break;
+					case 27:
+						if (isPresentation()) {
+							$(".endPresentation").click();
 						}
 						break;
 					case 37:

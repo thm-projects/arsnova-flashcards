@@ -328,6 +328,8 @@ Template.registerHelper("getMomentsDate", function (date, displayMinutes = false
 	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
 		sameDay: getCalendarString("today", minutes),
 		lastDay: getCalendarString("yesterday", minutes),
+		nextWeek: dateFormat,
+		lastWeek: dateFormat,
 		sameElse: dateFormat
 	});
 });
@@ -336,6 +338,8 @@ Template.registerHelper("getMomentsDateShort", function (date) {
 	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
 		sameDay: getCalendarString("today"),
 		lastDay: getCalendarString("yesterday"),
+		nextWeek: 'D.MMM YY',
+		lastWeek: 'D.MMM YY',
 		sameElse: 'D.MMM YY'
 	});
 });
