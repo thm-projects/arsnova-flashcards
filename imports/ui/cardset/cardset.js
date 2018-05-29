@@ -216,7 +216,7 @@ Template.cardsetList.helpers({
 		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 	},
 	cardsetList: function () {
-		if (Router.current().route.getName() === "cardsetlistid") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			if (this.shuffled) {
 				return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
 			} else {
@@ -245,7 +245,7 @@ Template.cardsetList.helpers({
 			.replace(/[\][\$=~`#|*_+-]/g, " ");
 	},
 	gotCards: function () {
-		if (Router.current().route.getName() === "cardsetlistid") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			if (this.shuffled) {
 				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
 			} else {
@@ -259,7 +259,7 @@ Template.cardsetList.helpers({
 		return CardType.gotSidesSwapped(this.cardType);
 	},
 	cardSubject: function () {
-		if (Router.current().route.getName() === "cardsetlistid") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			return _.uniq(Cards.find({
 				cardset_id: this._id
 			}, {
@@ -289,7 +289,7 @@ Template.cardsetList.helpers({
 		} else {
 			sortQuery = {front: 1};
 		}
-		if (Router.current().route.getName() === "cardsetlistid") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			return Cards.find({
 				cardset_id: this.cardset_id,
 				subject: this.subject
@@ -335,12 +335,18 @@ Template.cardsetList.helpers({
 
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
-		if (Router.current().route.getName() === "cardsetlistid") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			Session.set('modifiedCard', $(evt.target).data('id'));
-			Router.go('cardsetcard', {
-				_id: Router.current().params._id,
-				card_id: $(evt.target).data('id')
-			});
+			if (Router.current().route.getName() === "presentationlist") {
+				Router.go('presentation', {
+					_id: Router.current().params._id
+				});
+			} else {
+				Router.go('cardsetcard', {
+					_id: Router.current().params._id,
+					card_id: $(evt.target).data('id')
+				});
+			}
 		} else {
 			let learningUnit = $(evt.target).data('id');
 			Session.set('learningIndex', Session.get('tempLearningIndex'));

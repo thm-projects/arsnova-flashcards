@@ -201,12 +201,19 @@ Router.route('/memo/:_id', {
 	}
 });
 
+Router.route('/presentationlist/:_id', {
+	name: 'presentationlist',
+	template: 'presentation',
+	data: function () {
+		return Cardsets.findOne({_id: this.params._id});
+	}
+});
+
 Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
-		return cardset;
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 

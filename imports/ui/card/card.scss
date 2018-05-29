@@ -150,11 +150,15 @@ img.cardside {
   top: 48px;
 }
 
-.endPresentation {
+.endPresentation, .selectCard {
   position: absolute;
   float: right;
   top: 50px;
   right: 8px;
+}
+
+.selectCard {
+  right: 55px;
 }
 
 #toggleFullscreen, .cardNumber {
@@ -409,8 +413,14 @@ img.cardside {
   }
   .endPresentation, #copyCard {
     top: 35px;
-    right: 43px;
+    right: 5px;
   }
+
+  .selectCard {
+    top: 35px;
+    right: 40px;
+  }
+
   #turnCard {
     top: 64px;
     right: 43px;

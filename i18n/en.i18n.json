@@ -493,7 +493,10 @@
   "presentation": {
     "title": "Presentation",
     "create": "Start a presentation",
-    "start": "Start"
+    "start": "Start",
+    "list": {
+      "back":"Back to the presentation"
+    }
   },
   "pool": {
     "relevance": "Relevance",

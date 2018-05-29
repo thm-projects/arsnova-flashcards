@@ -485,7 +485,10 @@
   "presentation": {
     "title": "Präsentation",
     "create": "Präsentation starten",
-    "start": "Starten"
+    "start": "Starten",
+    "list": {
+      "back":"Zurück zur Präsentation"
+    }
   },
   "pool": {
     "relevance": "Relevanz",

@@ -34,7 +34,7 @@ export function isEditMode() {
  * @return {Boolean} Return true, when route is a presentation view.
  */
 function isPresentation() {
-	return Router.current().route.getName() === "presentation";
+	return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist");
 }
 
 function isEditModeOrPresentation() {
@@ -1532,6 +1532,12 @@ Template.flashcards.events({
 	},
 	"click .endPresentation": function () {
 		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
+	},
+	"click .selectCard": function (evt) {
+		Session.set('modifiedCard', $(evt.target).data('id'));
+		Router.go('presentationlist', {
 			_id: Router.current().params._id
 		});
 	}
