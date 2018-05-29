@@ -15,7 +15,7 @@ if [ -z "$CALLED_FROM_SCRIPT" ] ; then
     exit 0
 fi
 
-if [ $DISPLAY -n ] ; then
+if [ -n "$DISPLAY" ] ; then
         xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp --ddp=http://localhost:3000 --path=$testDir $1 --browser=firefox
 else
      ./node_modules/.bin/chimp .config/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=firefox
