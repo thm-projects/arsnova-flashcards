@@ -20,9 +20,6 @@ Template.first_login_content_only.events({
 	},
 	'click #accept_button': function () {
 		Meteor.call('removeFirstLogin');
-		Router.go('profileSettings', {
-			_id: Meteor.user()._id
-		});
 		localStorage.setItem("displayedFirstLoginBertAlert", "true");
 		window.scrollTo(0, 0);
 		document.location.reload(true);

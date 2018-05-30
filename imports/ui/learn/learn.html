@@ -6,11 +6,7 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-                {{#if isProfileCompleted this._id}}
-                    {{> learnAlgorithms}}
-                {{else}}
-                    {{> access_denied_profile_incomplete_content_only}}
-                {{/if}}
+                {{> learnAlgorithms}}
             {{else}}
                 <h4>{{_ "permission"}}</h4>
             {{/if}}
@@ -43,10 +39,12 @@
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
                     <a href="#" id="learnShowAnswer" class="btn btn-success btn-raised answer show-answer"
-                       title="success">{{_ "cardmemo.showanswer"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</a>
+                       title="success">{{_ "cardmemo.showanswer"}} {{#if fullscreenActive}}
+                        ( {{_ "key" key='y'}} ){{/if}}</a>
                     {{#unless gotOneCardLeft}}
                         <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
-                           title="success">{{_ "cardmemo.skipanswer"}} {{#if fullscreenActive}}( {{_ "arrowKeys"}} ){{/if}}</a>
+                           title="success">{{_ "cardmemo.skipanswer"}} {{#if fullscreenActive}}
+                            ( {{_ "arrowKeys"}} ){{/if}}</a>
                     {{/unless}}
                 </div>
             {{else}}

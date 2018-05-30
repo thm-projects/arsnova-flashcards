@@ -462,24 +462,12 @@
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                         </a></span>
 
-                            {{#if isProfileCompleted this._id}}
                                 <button id="learnBox"
                                         class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
                                         "learnfile"}}</button>
-                            {{else}}
-                                <button class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}
-                                        data-toggle="modal" data-target="#completeProfileModal">{{_
-                                        "learnfile"}}</button>
-                            {{/if}}
-                            {{#if isProfileCompleted this._id}}
                                 <button id="learnMemo"
                                         class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
                                         "memo"}}</button>
-                            {{else}}
-                                <button class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}
-                                        data-toggle="modal" data-target="#completeProfileModal">{{_
-                                        "memo"}}</button>
-                            {{/if}}
                             {{#if gotEnoughCardsToFilter this.quanity}}
                                 <button id="learnChoice"
                                         class="btn btn-raised btn-success choice btn-block" {{disableIfOffline}}
