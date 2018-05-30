@@ -2,7 +2,7 @@ Feature: Create a new Card
   A user to the site wants to create a new card in his own cardset
 
   Scenario: Create a new card
-    Given User is on the poolview with username "standard"
+    Given User is on the poolview with username
     And he is on the view of a cardset
     When the user clicks on the --create a new card-- button
     And he is redirected to the --New card-- view
