@@ -307,7 +307,8 @@ Meteor.methods({
 				}
 			}
 			if (!cardset.learningActive) {
-				if (defaultCardsetLeitnerData(cardset)) {
+				cardset = defaultCardsetLeitnerData(cardset);
+				if (cardset.maxCards !== 0) {
 					if (!Leitner.findOne({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId()
