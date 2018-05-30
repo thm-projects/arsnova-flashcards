@@ -1362,5 +1362,16 @@
       </br>
       </br>"
     }
+  },
+  "backdoor": {
+    "title": "Backdoor Users",
+    "superAdmin": "Super Admin aka Admin",
+    "admin": "Admin aka Editor",
+    "pro": "Pro User",
+    "lecturer": "Lecturer",
+    "edu": "Student",
+    "standard": "Standard User",
+    "blocked": "Blocked User",
+    "firstLogin": "First Login"
   }
 }
