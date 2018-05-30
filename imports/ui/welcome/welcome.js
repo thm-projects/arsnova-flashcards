@@ -155,35 +155,51 @@ Template.welcome.events({
 	}
 });
 
-Template.welcome.onRendered(function () {
-	if (Meteor.settings.public.displayLoginButtons.displayCas) {
-		$('.panel-footer').append('<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use CAS for login"/></a>');
-	}
-	if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
-		$('.panel-footer').append('<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>');
-	}
-	if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
-		$('.panel-footer').append('<a id="twitter" href=""><img src="img/social_twitter_box_white.png" alt="use twitter for login"/></a>');
-	}
-	if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
-		$('.panel-footer').append('<a id="google" href=""><img src="img/social_google_box_white.png" alt="use google for login"/></a>');
-	}
+Template.welcome.helpers({
+	getLoginButtons: function () {
+		let loginButtons = "";
+		if (Meteor.settings.public.displayLoginButtons.displayCas) {
+			loginButtons += '<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use CAS for login"/></a>';
+		}
+		if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
+			loginButtons += '<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>';
+		}
+		if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
+			loginButtons += '<a id="twitter" href=""><img src="img/social_twitter_box_white.png" alt="use twitter for login"/></a>';
+		}
+		if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
+			loginButtons += '<a id="google" href=""><img src="img/social_google_box_white.png" alt="use google for login"/></a>';
+		}
 
-	// Backdoor for login in acceptance tests
-	if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
-		$('.panel-footer').append('<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
-			' login"/></a>');
-		$('.panel-footer').append('<span class="btn-group backdoorLogin"><label id="backdoor-label">Backdoor users:</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
-			'<option id="adminLogin" value="admin">admin  (Back end access)</option>' +
-			'<option id="editorLogin" value="editor">editor (Back end access)</option>' +
-			'<option id="standardLogin" value="standard">standard</option>' +
-			'<option id="universityLogin" value="university">university</option>' +
-			'<option id="lecturerLogin" value="lecturer">lecturer</option>' +
-			'<option id="proLogin" value="pro">pro</option>' +
-			'<option id="blockedLogin" value="blocked">blocked</option>' +
-			'<option id="firstLogin" value="firstLogin">firstLogin</option>' +
-			'</select></span>');
+		// Backdoor for login in acceptance tests
+		if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
+			let title = TAPi18n.__("backdoor.title");
+			let superAdmin = TAPi18n.__("backdoor.superAdmin");
+			let admin = TAPi18n.__("backdoor.admin");
+			let pro = TAPi18n.__("backdoor.pro");
+			let lecturer = TAPi18n.__("backdoor.lecturer");
+			let edu = TAPi18n.__("backdoor.edu");
+			let standard = TAPi18n.__("backdoor.standard");
+			let blocked = TAPi18n.__("backdoor.blocked");
+			let firstLogin = TAPi18n.__("backdoor.firstLogin");
+			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
+				' login"/></a>';
+			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label">' + title + ':</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
+				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
+				'<option id="adminLogin" value="editor">' + admin + '</option>' +
+				'<option id="proLogin" value="pro">' + pro + '</option>' +
+				'<option id="lecturerLogin" value="lecturer">' + Meteor.settings.public.university.default + '-' + lecturer + '</option>' +
+				'<option id="eduLogin" value="university">' + Meteor.settings.public.university.default +  '-' + edu + '</option>' +
+				'<option id="standardLogin" value="standard">' + standard + '</option>' +
+				'<option id="blockedLogin" value="blocked">' + blocked + '</option>' +
+				'<option id="firstLogin" value="firstLogin">' + firstLogin + '</option>' +
+				'</select></span>';
+		}
+		return loginButtons;
 	}
+});
+
+Template.welcome.onRendered(function () {
 	this.autorun(() => {
 		createTagCloud();
 	});

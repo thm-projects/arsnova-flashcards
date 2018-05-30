@@ -9,6 +9,7 @@ import {
 	resetFilters,
 	prepareQuery
 } from "../filter/filter.js";
+import {firstLoginBertAlert} from "../../startup/client/routes";
 
 Meteor.subscribe("cardsets");
 
@@ -83,4 +84,8 @@ Template.showLicense.helpers({
 
 Template.pool.onCreated(function () {
 	resetFilters();
+});
+
+Template.pool.onRendered(function () {
+	firstLoginBertAlert();
 });

@@ -10,10 +10,10 @@ arsnova.cards uses Meteor as application framework. Download and install [Meteor
 2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
 3. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
 4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
-5. Set your initial admin user in `settings.json` or `settings_test.json` (cas account)
+5. Set your initial admin user in `settings.json` or `settings_debug.json` (cas account)
 
 ### Settings
-Change `settings.json` or `settings_test.json` according to your needs
+Change `settings.json` or `settings_debug.json` according to your needs
 
 > Warning: Never publish your settings file!
 
@@ -21,7 +21,7 @@ Change `settings.json` or `settings_test.json` according to your needs
 Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost:
 
 - For development:
-  - `meteor --settings settings_test.json`
+  - `meteor --settings settings_debug.json`
 
 - For production:
   - `meteor --settings settings.json`

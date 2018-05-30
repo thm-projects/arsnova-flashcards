@@ -363,7 +363,9 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
+                                <div class="cardHeader {{#if isHintPreview}}{{#if gotAlternativeHintStyle}}box-pink{{else}}box-white{{/if}}{{else}}{{#if
+                                        isLecturePreview}}box-post-it{{else}}{{getCardBackground difficulty cardType
+                                                                                              backgroundStyle}}{{/if}}{{/if}}-header"
                                      data-cardtype="{{cardType}}">
                                     {{#if canCopyCard this.cardset_id}}
                                         {{#if isCardset}}

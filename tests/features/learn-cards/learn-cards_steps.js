@@ -7,7 +7,7 @@ module.exports = function () {
 		box5After, box6Before, box6After, card1, card2;
 
 	this.Given(/^I'm logged in$/, function () {
-		navigation.login("universityLogin");
+		navigation.login("edu");
 	});
 
 	this.Then(/^I'm at the leitner statistics to check my progress$/, function () {

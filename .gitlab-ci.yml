@@ -96,7 +96,7 @@ chimp:
     MONGO_DB: meteor-test
     MONGO_URL: "mongodb://$MONGO_HOST:$MONGO_PORT/$MONGO_DB"
   script:
-    - export METEOR_SETTINGS="$(cat settings_test.json)"
+    - export METEOR_SETTINGS="$(cat settings_debug.json)"
     - mongo --quiet --eval "version();" --host "$MONGO_HOST"
     - cd "$BUNDLE_DIR/programs/server" && npm install
     - cd -
