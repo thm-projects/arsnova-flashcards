@@ -21,6 +21,7 @@ Template.first_login_content_only.events({
 	'click #accept_button': function () {
 		Meteor.call('removeFirstLogin');
 		localStorage.setItem("displayedFirstLoginBertAlert", "true");
+		Router.go('pool');
 		window.scrollTo(0, 0);
 		document.location.reload(true);
 	},
