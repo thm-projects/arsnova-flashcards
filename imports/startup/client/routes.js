@@ -350,20 +350,24 @@ var goToCreated = function () {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
 			firstLoginBertAlert();
 		}
-		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-		actualDate.setHours(0, 0, 0, 0);
-		let count = Leitner.find({
-			user_id: Meteor.userId(),
-			active: true
-		}).count() + Wozniak.find({
-			user_id: Meteor.userId(), nextDate: {
-				$lte: actualDate
-			}
-		}).count();
-		if (count) {
-			Router.go('learn');
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+			Router.go('alldecks');
 		} else {
-			Router.go('pool');
+			let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+			actualDate.setHours(0, 0, 0, 0);
+			let count = Leitner.find({
+				user_id: Meteor.userId(),
+				active: true
+			}).count() + Wozniak.find({
+				user_id: Meteor.userId(), nextDate: {
+					$lte: actualDate
+				}
+			}).count();
+			if (count) {
+				Router.go('learn');
+			} else {
+				Router.go('pool');
+			}
 		}
 	} else {
 		this.next();
