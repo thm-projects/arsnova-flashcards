@@ -12,5 +12,24 @@ module.exports = {
 				version: '0.20.0'
 			}
 		}
-	}
+	},
+	//
+	// SauceLabs:
+	// ==========
+	/*/
+
+	user: "SAUCE_USER_NAME",
+	key: "SAUCE_USER_KEY",
+
+	browser: 'firefox',
+	platform: 'Linux'
+
+	// When using Sauce Connect Proxy
+	port: 4445,
+	host: "localhost",
+
+	// Without proxy:
+	//port: 80,
+	//host: "ondemand.saucelabs.com"
+	//*/
 };
