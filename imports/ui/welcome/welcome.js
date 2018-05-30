@@ -194,8 +194,8 @@ Template.welcome.helpers({
 				'<option id="blockedLogin" value="blocked">' + blocked + '</option>' +
 				'<option id="firstLogin" value="firstLogin">' + firstLogin + '</option>' +
 				'</select></span>';
-			return loginButtons;
 		}
+		return loginButtons;
 	}
 });
 
