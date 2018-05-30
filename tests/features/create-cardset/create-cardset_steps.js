@@ -7,7 +7,7 @@ module.exports = function () {
 	let description = "description";
 
 	this.Given(/^User is logged in$/, function () {
-		navigation.login("universityLogin");
+		navigation.login("edu");
 	});
 
 	this.Given(/^User is on the my cardset view$/, function () {

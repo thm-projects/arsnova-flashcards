@@ -185,11 +185,11 @@ Template.welcome.helpers({
 			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
 				' login"/></a>';
 			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label">' + title + ':</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
-				'<option id="adminLogin" value="admin">' + superAdmin + '</option>' +
-				'<option id="editorLogin" value="editor">' + admin + '</option>' +
+				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
+				'<option id="adminLogin" value="editor">' + admin + '</option>' +
 				'<option id="proLogin" value="pro">' + pro + '</option>' +
 				'<option id="lecturerLogin" value="lecturer">' + Meteor.settings.public.university.default + '-' + lecturer + '</option>' +
-				'<option id="universityLogin" value="university">' + Meteor.settings.public.university.default +  '-' + edu + '</option>' +
+				'<option id="eduLogin" value="university">' + Meteor.settings.public.university.default +  '-' + edu + '</option>' +
 				'<option id="standardLogin" value="standard">' + standard + '</option>' +
 				'<option id="blockedLogin" value="blocked">' + blocked + '</option>' +
 				'<option id="firstLogin" value="firstLogin">' + firstLogin + '</option>' +

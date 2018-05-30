@@ -11,7 +11,7 @@ module.exports = function () {
 	 * ---------------------------------------------------------------------
 	 */
 	this.Given(/^User is on the poolview with username "standard"$/, function () {
-		navigation.login("universityLogin");
+		navigation.login("edu");
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
 		navigation.selectMyCardset();
