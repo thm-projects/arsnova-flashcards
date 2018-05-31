@@ -37,7 +37,7 @@ export function skipAnswer(scrollRight = true) {
  */
 
 Template.learnAlgorithms.onCreated(function () {
-	Session.set('modifiedCard', undefined);
+	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	if (ActiveRoute.name('box')) {
 		Meteor.subscribe('leitner');

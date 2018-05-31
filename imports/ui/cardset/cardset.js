@@ -93,7 +93,7 @@ function changeCollapseIcon(iconId) {
 Template.cardset.onCreated(function () {
 	if (Session.get('activeCardsetID') !== Router.current().params._id) {
 		Session.set('activeCardsetID', Router.current().params._id);
-		Session.set('modifiedCard', undefined);
+		Session.set('activeCard', undefined);
 	}
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
@@ -336,7 +336,7 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
-			Session.set('modifiedCard', $(evt.target).data('id'));
+			Session.set('activeCard', $(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
 				Router.go('presentation', {
 					_id: Router.current().params._id
@@ -1248,7 +1248,7 @@ Template.cardsetImportForm.events({
 								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
-								Session.set('modifiedCard', undefined);
+								Session.set('activeCard', undefined);
 								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}

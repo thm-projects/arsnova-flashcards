@@ -43,7 +43,7 @@ function isEditModeOrPresentation() {
 
 export function updateNavigation() {
 	let card_id = $('.carousel-inner > .active').attr('data-id');
-	Session.set('modifiedCard', card_id);
+	Session.set('activeCard', card_id);
 	let cardType = Cards.findOne({_id: card_id}).cardType;
 	Session.set('cardType', Number(cardType));
 }
@@ -530,9 +530,9 @@ function getLeitnerCards() {
 function getEditModeCard() {
 	let id = "-1";
 	if (ActiveRoute.name('editCard')) {
-		id = Session.get('modifiedCard');
+		id = Session.get('activeCard');
 	} else {
-		Session.set('modifiedCard', undefined);
+		Session.set('activeCard', undefined);
 	}
 	return [{
 		"_id": id,
@@ -1287,8 +1287,8 @@ Template.flashcards.onDestroyed(function () {
 
 Template.flashcards.helpers({
 	cardActive: function (index) {
-		if (Session.get('modifiedCard')) {
-			return Session.get('modifiedCard') === this._id;
+		if (Session.get('activeCard')) {
+			return Session.get('activeCard') === this._id;
 		} else {
 			return 0 === index;
 		}
@@ -1538,10 +1538,10 @@ Template.flashcards.events({
 		}
 	},
 	"click #editCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 	},
 	"click #copyCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 		$('#copyCard').children().addClass("pressed");
 	},
 	"click #toggleFullscreen": function () {
@@ -1561,7 +1561,7 @@ Template.flashcards.events({
 		});
 	},
 	"click .selectCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 		Router.go('presentationlist', {
 			_id: Router.current().params._id
 		});
@@ -1652,7 +1652,7 @@ Template.copyCard.helpers({
 
 Template.copyCard.events({
 	"click .copyCardset": function (evt) {
-		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('modifiedCard'), function (error, result) {
+		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('activeCard'), function (error, result) {
 			if (result) {
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
@@ -1842,7 +1842,7 @@ Template.cancelEditForm.events({
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
-			Session.set('modifiedCard', undefined);
+			Session.set('activeCard', undefined);
 			Meteor.call("deleteCard", Router.current().params.card_id);
 			Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 			Router.go('cardsetdetailsid', {
