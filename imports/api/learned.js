@@ -306,56 +306,6 @@ if (Meteor.isServer) {
 					}
 				});
 			}
-		},
-		/** Moves a card at the end of a que
-		 *  @param {string} cardset_id - The cardset id from the card
-		 *  @param {string} card_id - The id from the card
-		 *  @param {number} mode - Is the card getting skipped in the leitner or wozniak mode?
-		 * */
-		skipCard: function (cardset_id, card_id, mode) {
-			// Make sure the user is logged in
-			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-			check(cardset_id, String);
-			check(card_id, String);
-			check(mode, Number);
-
-			var cardset = Cardsets.findOne({_id: cardset_id});
-
-			if (cardset !== undefined) {
-				let query = {};
-
-				query.card_id = card_id;
-				query.cardset_id = cardset_id;
-				query.user_id = Meteor.userId();
-
-				let currentLearned;
-				if (mode === 0) {
-					query.active = true;
-					currentLearned = Leitner.findOne(query);
-				} else {
-					currentLearned = Wozniak.findOne(query);
-				}
-
-				if (currentLearned !== undefined) {
-					let newSkipCount = ++currentLearned.skipped;
-
-					if (mode === 0) {
-						Leitner.update(currentLearned._id, {
-							$set: {
-								skipped: newSkipCount
-							}
-						});
-					} else {
-						Wozniak.update(currentLearned._id, {
-							$set: {
-								skipped: newSkipCount
-							}
-						});
-					}
-				}
-			}
 		}
 	});
 }

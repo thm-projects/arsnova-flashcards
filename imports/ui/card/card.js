@@ -321,7 +321,7 @@ let newFlashcardHeader;
 /**
  * Resizes flashcards to din a6 format
  */
-function resizeFlashcards() {
+export function resizeFlashcards() {
 	if (editorFullScreenActive) {
 		newFlashcardBodyHeight = ($(window).height() * 0.78);
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
@@ -495,28 +495,25 @@ function getCardIndexFilter() {
 	return cardIndexFilter;
 }
 
-function getCardsetCards(getIndex = false) {
-	if (getIndex) {
-		let sortQuery;
-		if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
-			sortQuery = {subject: 1, back: 1};
-		} else {
-			sortQuery = {subject: 1, front: 1};
-		}
-		let cards = [];
-		let indexCards;
-		if (Session.get('activeCardset').shuffled) {
-			indexCards = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-				sort: sortQuery, fields: {_id: 1}
-			});
-		} else {
-			indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
-		}
-		indexCards.forEach(function (indexCard) {
-			cards.push(indexCard._id);
-		});
-		return cards;
+function getCardsetCards() {
+	cardIndex = [];
+	let sortQuery;
+	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
+		sortQuery = {subject: 1, back: 1};
+	} else {
+		sortQuery = {subject: 1, front: 1};
 	}
+	let indexCards;
+	if (Session.get('activeCardset').shuffled) {
+		indexCards = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
+			sort: sortQuery, fields: {_id: 1}
+		});
+	} else {
+		indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
+	}
+	indexCards.forEach(function (indexCard) {
+		cardIndex.push(indexCard._id);
+	});
 	let query = "";
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
@@ -533,37 +530,26 @@ function getCardsetCards(getIndex = false) {
  * Get a set of cards for the learning algorithm by Leitner.
  * @return {Collection} The card set
  */
-function getLeitnerCards(getIndex = false) {
+function getLeitnerCards() {
 	let cards = [];
-	if (getIndex) {
-		let indexCards = Leitner.find({
-			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId(),
-			active: true
-		}, {
-			sort: {
-				currentDate: 1,
-				skipped: -1
-			},
-			fields: {
-				card_id: 1
-			}
-		});
-		indexCards.forEach(function (indexCard) {
-			cards.push(indexCard.card_id);
-		});
-		return cards;
-	}
+	cardIndex = [];
+	let indexCards = Leitner.find({
+		cardset_id: Session.get('activeCardset')._id,
+		user_id: Meteor.userId(),
+		active: true
+	}, {
+		fields: {
+			card_id: 1
+		}
+	});
+	indexCards.forEach(function (indexCard) {
+		cardIndex.push(indexCard.card_id);
+	});
 	let learnedCards = Leitner.find({
 		card_id: {$in: getCardIndexFilter()},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
-	}, {
-		sort: {
-			currentDate: 1,
-			skipped: -1
-		}
 	});
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
@@ -608,32 +594,12 @@ function getEditModeCard() {
  * Get a set of cards for the supermemo algorithm.
  * @return {Collection} The card collection
  */
-function getMemoCards(getIndex = false) {
+function getMemoCards() {
+	let cards = [];
+	cardIndex = [];
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
-	let cards = [];
-	if (getIndex) {
-		let indexCards = Wozniak.find({
-			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId(),
-			nextDate: {
-				$lte: actualDate
-			}
-		}, {
-			sort: {
-				nextDate: 1,
-				priority: 1
-			},
-			fields: {
-				card_id: 1
-			}
-		}).fetch();
-		indexCards.forEach(function (indexCard) {
-			cards.push(indexCard.card_id);
-		});
-		return cards;
-	}
-	let learnedCards = Wozniak.find({
+	let indexCards = Wozniak.find({
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
@@ -643,6 +609,20 @@ function getMemoCards(getIndex = false) {
 		sort: {
 			nextDate: 1,
 			priority: 1
+		},
+		fields: {
+			card_id: 1
+		}
+	}).fetch();
+	indexCards.forEach(function (indexCard) {
+		cardIndex.push(indexCard.card_id);
+	});
+	let learnedCards = Wozniak.find({
+		card_id: {$in: getCardIndexFilter()},
+		cardset_id: Router.current().params._id,
+		user_id: Meteor.userId(),
+		nextDate: {
+			$lte: actualDate
 		}
 	});
 	learnedCards.forEach(function (learnedCard) {
@@ -1298,18 +1278,6 @@ Template.flashcards.onCreated(function () {
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
-	if (isBox()) {
-		cardIndex = getLeitnerCards(true);
-	}
-	if (isCardset() || isPresentation()) {
-		cardIndex = getCardsetCards(true);
-	}
-	if (isMemo()) {
-		cardIndex = getMemoCards(true);
-	}
-	if (isEditMode()) {
-		cardIndex = getEditModeCard();
-	}
 });
 
 let resizeInterval;

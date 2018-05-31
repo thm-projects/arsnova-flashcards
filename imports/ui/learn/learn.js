@@ -7,26 +7,25 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {turnCard} from "../card/card.js";
 import "./learn.html";
 import {Cardsets} from "../../api/cardsets";
+import {resizeFlashcards} from "../card/card";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
 export function skipAnswer(scrollRight = true) {
-	let skippedCard = $('.carousel-inner > .active').attr('data-id');
 	if (scrollRight) {
 		$('.carousel').carousel('next');
 	} else {
 		$('.carousel').carousel('prev');
 	}
 	$('html, body').animate({scrollTop: '0px'}, 300);
+	$('#cardCarousel').on('slide.bs.carousel', function () {
+		resizeFlashcards();
+	});
 	$('#cardCarousel').on('slid.bs.carousel', function () {
-		if (ActiveRoute.name('box')) {
-			Meteor.call('skipCard', Router.current().params._id, skippedCard, 0);
-		} else {
-			Meteor.call('skipCard', Router.current().params._id, skippedCard, 1);
-		}
 		Session.set('animationPlaying', false);
+		Session.set('activeCard', $(".item.active").data('id'));
 	});
 }
 
@@ -140,9 +139,13 @@ Template.learnAnswerOptions.events({
 		if ($('.carousel-inner > .item').length === 1) {
 			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
 		} else {
+			$('#cardCarousel').on('slide.bs.carousel', function () {
+				resizeFlashcards();
+			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
 				Session.set('animationPlaying', false);
+				Session.set('activeCard', $(".item.active").data('id'));
 			});
 		}
 	},
@@ -154,9 +157,13 @@ Template.learnAnswerOptions.events({
 		if ($('.carousel-inner > .item').length === 1) {
 			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
 		} else {
+			$('#cardCarousel').on('slide.bs.carousel', function () {
+				resizeFlashcards();
+			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
 				Session.set('animationPlaying', false);
+				Session.set('activeCard', $(".item.active").data('id'));
 			});
 		}
 	},
@@ -168,9 +175,13 @@ Template.learnAnswerOptions.events({
 		if ($('.carousel-inner > .item').length === 1) {
 			Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
 		} else {
+			$('#cardCarousel').on('slide.bs.carousel', function () {
+				resizeFlashcards();
+			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
 				Session.set('animationPlaying', false);
+				Session.set('activeCard', $(".item.active").data('id'));
 			});
 		}
 	}
