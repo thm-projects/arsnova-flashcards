@@ -1,4 +1,4 @@
-.clockbox, #clock {
+.clockbox, .clock {
   position: absolute;
   width: $presentation_clock_size !important;
   height: $presentation_clock_size !important;
@@ -55,9 +55,9 @@
 
   /* Make all arms rotate around the same center point. */
   /* Optional: Use transition for animation. */
-  #hour,
-  #minute,
-  #second {
+  .hour,
+  .minute,
+  .second {
     transform-origin: 300px 300px;
     /*transition: transform .5s ease-in-out;*/
   }

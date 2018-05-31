@@ -380,9 +380,7 @@
                                     {{/if}}
                                     <div class="leftHeader" data-cardtype="{{cardType}}">
                                         {{#if isPresentation}}
-                                            {{#if cardActive @index}}
-                                                {{> presentationClock}}
-                                            {{/if}}
+                                            {{> presentationClock}}
                                         {{/if}}
                                         {{#unless isShuffledCardset}}
                                             {{#if isCardEditor this.cardset_id}}
