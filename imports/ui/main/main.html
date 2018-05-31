@@ -72,13 +72,6 @@
                                                     {{_ "navbar-collapse.pool"}}
                                                 </a>
                                             </li>
-                                            <li id="navbar-learn-decks"
-                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
-                                                data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                    {{_ "navbar-collapse.learndecks"}}
-                                                </a>
-                                            </li>
                                             <li id="navbar-own-decks"
                                                 class="{{#if isActiveRoute regex='home|create'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
@@ -91,6 +84,13 @@
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
                                                 <a href="{{pathFor route='courseIterations'}}" id="course">
                                                     {{_ "navbar-collapse.course"}}
+                                                </a>
+                                            </li>
+                                            <li id="navbar-learn-decks"
+                                                class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
+                                                data-toggle="collapse" data-target="#thm-top-navigation">
+                                                <a href="{{pathFor route='learn'}}" id="learnsets">
+                                                    {{_ "navbar-collapse.learndecks"}}
                                                 </a>
                                             </li>
                                         </ul>

@@ -50,8 +50,8 @@ function createTagCloud() {
 			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);
 			let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-canvas').width() / 450;
 			let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
-			let minimumSize = 10;
-			let biggestCardsetSize = 0;
+			let minimumSize = 0;
+			let biggestCardsetSize = 1;
 			let list = [];
 
 			cloud.forEach(function (cloud) {
