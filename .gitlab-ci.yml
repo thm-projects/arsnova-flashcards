@@ -3,6 +3,7 @@ variables:
   NODE_ENV: production
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
+  REVIEW_SETTINGS: settings_review.json
 
 stages:
   - test
@@ -110,6 +111,7 @@ review:
     - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     - mkdir -p $METEOR_HOME/app
+    - cp $REVIEW_SETTINGS $METEOR_HOME/meteor-settings.json
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
     - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_BUILD_REF_NAME
   environment:

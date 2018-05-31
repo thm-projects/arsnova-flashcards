@@ -787,15 +787,15 @@
     },
     "cardType11": {
       "name": "Quiz",
-      "front": "Frage",
+      "front": "Quizfrage",
       "back": "Antwort",
       "placeholders": {
-        "subject": "Gib das Thema oder die Frage an !",
-        "front": "Gib das Thema oder die Frage deines Quiz an !",
-        "back": "Gib die Antwort deines Quiz an !"
+        "subject": "Gib das Thema deines Quiz an !",
+        "front": "Gib hier die Quizfrage ein!",
+        "back": "Gib hier die richtige Antwort ein!"
       },
       "editorLabels": {
-        "subject": "Thema oder Frage"
+        "subject": "Thema des Quiz"
       }
     },
     "tooltip": {
@@ -1330,14 +1330,14 @@
     }
   },
   "backdoor": {
-    "title": "Backdoor Benutzer",
-    "superAdmin": "Super Admin, auch bekannt als Admin",
-    "admin": "Admin, auch bekannt als Editor",
-    "pro": "Pro Benutzer",
-    "lecturer": "Dozent",
-    "edu": "Student",
-    "standard": "Standard Benutzer",
-    "blocked": "Blockierter Benutzer",
+    "title": "Backdoor-Zugang zum Testen der User-Rollen",
+    "superAdmin": "SuperAdmin (in der DB als Admin bezeichnet)",
+    "admin": "Admin (in der DB als Editor bezeichnet)",
+    "pro": "Pro User",
+    "lecturer": "Dozent/in (CAS-Zugang)",
+    "edu": "Student/in (CAS-Zugang)",
+    "standard": "Standard User (Zugang über Facebook, Twitter, Google+)",
+    "blocked": "Blockierter User",
     "firstLogin": "Erstanmeldung"
   }
 }
