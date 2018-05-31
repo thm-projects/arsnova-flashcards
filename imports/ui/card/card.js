@@ -466,35 +466,66 @@ function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
-function getCardsetCards(getIndex = false) {
-	let query = "";
-	let sortQuery;
-	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
-		sortQuery = {subject: 1, back: 1};
-	} else {
-		sortQuery = {subject: 1, front: 1};
-	}
-	if (getIndex) {
-		if (Session.get('activeCardset').shuffled) {
-			return Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-				sort: sortQuery, fields: {_id: 1}
-			}).fetch();
+let cardIndex = [];
+
+function getCardIndexFilter() {
+	let cardIndexFilter = [];
+	if (Session.get('activeCard') !== undefined) {
+		let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
+		let nextCardIndex;
+		let previousCardIndex;
+		if (activeCardIndex === cardIndex.length - 1) {
+			nextCardIndex = 0;
 		} else {
-			return Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}}).fetch();
+			nextCardIndex = activeCardIndex + 1;
 		}
+		if (activeCardIndex === 0) {
+			previousCardIndex = cardIndex.length - 1;
+		} else {
+			previousCardIndex = activeCardIndex - 1;
+		}
+		cardIndexFilter.push(cardIndex[activeCardIndex]);
+		cardIndexFilter.push(cardIndex[nextCardIndex]);
+		cardIndexFilter.push(cardIndex[previousCardIndex]);
+	} else {
+		cardIndexFilter.push(cardIndex[0]);
+		cardIndexFilter.push(cardIndex[1]);
+		cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
 	}
+	return cardIndexFilter;
+}
+
+function getCardsetCards(getIndex = false) {
+	if (getIndex) {
+		let sortQuery;
+		if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
+			sortQuery = {subject: 1, back: 1};
+		} else {
+			sortQuery = {subject: 1, front: 1};
+		}
+		let cards = [];
+		let indexCards;
+		if (Session.get('activeCardset').shuffled) {
+			indexCards = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
+				sort: sortQuery, fields: {_id: 1}
+			});
+		} else {
+			indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
+		}
+		indexCards.forEach(function (indexCard) {
+			cards.push(indexCard._id);
+		});
+		return cards;
+	}
+	let query = "";
 	if (Session.get('activeCardset').shuffled) {
-		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: sortQuery
+		query = Cards.find({
+			_id: {$in: getCardIndexFilter()},
+			cardset_id: {$in: Session.get('activeCardset').cardGroups}
 		});
 	} else {
-		query = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery});
+		query = Cards.find({_id: {$in: getCardIndexFilter()}, cardset_id: Router.current().params._id});
 	}
-	query.observeChanges({
-		removed: function () {
-			$('#cardCarousel .item:first-child').addClass('active');
-		}
-	});
 	return query;
 }
 
@@ -502,9 +533,29 @@ function getCardsetCards(getIndex = false) {
  * Get a set of cards for the learning algorithm by Leitner.
  * @return {Collection} The card set
  */
-function getLeitnerCards() {
+function getLeitnerCards(getIndex = false) {
 	let cards = [];
+	if (getIndex) {
+		let indexCards = Leitner.find({
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			active: true
+		}, {
+			sort: {
+				currentDate: 1,
+				skipped: -1
+			},
+			fields: {
+				card_id: 1
+			}
+		});
+		indexCards.forEach(function (indexCard) {
+			cards.push(indexCard.card_id);
+		});
+		return cards;
+	}
 	let learnedCards = Leitner.find({
+		card_id: {$in: getCardIndexFilter()},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
@@ -557,11 +608,31 @@ function getEditModeCard() {
  * Get a set of cards for the supermemo algorithm.
  * @return {Collection} The card collection
  */
-function getMemoCards() {
+function getMemoCards(getIndex = false) {
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
 	let cards = [];
-
+	if (getIndex) {
+		let indexCards = Wozniak.find({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId(),
+			nextDate: {
+				$lte: actualDate
+			}
+		}, {
+			sort: {
+				nextDate: 1,
+				priority: 1
+			},
+			fields: {
+				card_id: 1
+			}
+		}).fetch();
+		indexCards.forEach(function (indexCard) {
+			cards.push(indexCard.card_id);
+		});
+		return cards;
+	}
 	let learnedCards = Wozniak.find({
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
@@ -1221,23 +1292,23 @@ Template.cardHintContentPreview.helpers({
  * ############################################################################
  */
 
-let cardsetIndex = {};
+
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
 	if (isBox()) {
-		cardsetIndex = getLeitnerCards(true);
+		cardIndex = getLeitnerCards(true);
 	}
 	if (isCardset() || isPresentation()) {
-		cardsetIndex = getCardsetCards(true);
+		cardIndex = getCardsetCards(true);
 	}
 	if (isMemo()) {
-		cardsetIndex = getMemoCards(true);
+		cardIndex = getMemoCards(true);
 	}
 	if (isEditMode()) {
-		cardsetIndex = getEditModeCard(true);
+		cardIndex = getEditModeCard();
 	}
 });
 
@@ -1290,11 +1361,16 @@ Template.flashcards.helpers({
 		if (Session.get('activeCard')) {
 			return Session.get('activeCard') === this._id;
 		} else {
-			return 0 === index;
+			if (0 === index) {
+				Session.set('activeCard', this._id);
+				return true;
+			} else {
+				return false;
+			}
 		}
 	},
 	cardsIndex: function (card_id) {
-		return cardsetIndex.findIndex(item => item._id === card_id) + 1;
+		return cardIndex.findIndex(item => item === card_id) + 1;
 	},
 	isLearningActive: function () {
 		return Session.get('activeCardset').learningActive;
@@ -1481,11 +1557,15 @@ Template.flashcards.events({
 				turnFront();
 			}
 		}
-		if (isPresentation()) {
-			$('#cardCarousel').on('slid.bs.carousel', function () {
+		$('#cardCarousel').on('slide.bs.carousel', function () {
+			resizeFlashcards();
+		});
+		$('#cardCarousel').on('slid.bs.carousel', function () {
+			Session.set('activeCard', $(".item.active").data('id'));
+			if (isPresentation()) {
 				updateNavigation();
-			});
-		}
+			}
+		});
 	},
 	"click .cardHeader": function (evt) {
 		if (!isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {

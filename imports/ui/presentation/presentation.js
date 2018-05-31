@@ -30,6 +30,10 @@ function updatePresentationClock() {
  * ############################################################################
  */
 
+Template.presentationView.onCreated(function () {
+	Session.set('activeCard', undefined);
+});
+
 Template.presentationView.onRendered(function () {
 	updateNavigation();
 });
