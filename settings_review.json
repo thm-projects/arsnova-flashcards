@@ -1,6 +1,6 @@
 {
   "public": {
-    "rooturl": "http://localhost:3000",
+    "rooturl": "http://localhost:<branch-port>",
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
