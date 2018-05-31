@@ -218,7 +218,16 @@ Template.cardsetList.helpers({
 	cardsetList: function () {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			if (this.shuffled) {
-				return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
+				let cardsetFilter = [];
+				let sortCardsets = Cardsets.find({_id: {$in: this.cardGroups}}, {
+					sort: {name: 1}, fields: {_id: 1, name: 1, kind: 1}
+				}).fetch();
+				sortCardsets.forEach(function (cardset) {
+					if (cardset._id !== Router.current().params._id) {
+						cardsetFilter.push(cardset);
+					}
+				});
+				return cardsetFilter;
 			} else {
 				return Cardsets.find({_id: this._id}).fetch();
 			}

@@ -505,15 +505,24 @@ function getCardsetCards() {
 	}
 	let indexCards;
 	if (Session.get('activeCardset').shuffled) {
-		indexCards = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: sortQuery, fields: {_id: 1}
+		let cardGroups = Cardsets.find({_id: {$in: Session.get('activeCardset').cardGroups}}, {
+			sort: {name: 1},
+			fields: {_id: 1}
+		});
+		cardGroups.forEach(function (cardset) {
+			indexCards = Cards.find({cardset_id: cardset._id}, {
+				sort: sortQuery, fields: {_id: 1}
+			});
+			indexCards.forEach(function (indexCard) {
+				cardIndex.push(indexCard._id);
+			});
 		});
 	} else {
 		indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
+		indexCards.forEach(function (indexCard) {
+			cardIndex.push(indexCard._id);
+		});
 	}
-	indexCards.forEach(function (indexCard) {
-		cardIndex.push(indexCard._id);
-	});
 	let query = "";
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
@@ -1325,15 +1334,12 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	cardActive: function (index) {
+	cardActive: function () {
 		if (Session.get('activeCard')) {
 			return Session.get('activeCard') === this._id;
 		} else {
-			if (0 === index) {
-				Session.set('activeCard', this._id);
+			if (this._id === cardIndex[0]) {
 				return true;
-			} else {
-				return false;
 			}
 		}
 	},

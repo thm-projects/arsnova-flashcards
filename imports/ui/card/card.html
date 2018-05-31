@@ -361,7 +361,7 @@
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
-                        <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
+                        <div class="item {{#if cardActive}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{#if isHintPreview}}{{#if gotAlternativeHintStyle}}box-pink{{else}}box-white{{/if}}{{else}}{{#if
                                         isLecturePreview}}box-post-it{{else}}{{getCardBackground difficulty cardType
