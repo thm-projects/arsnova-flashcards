@@ -458,9 +458,9 @@
                                         {{#if isCardsetOrPresentation}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 {{_ "preview"}}:
-                                                {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
+                                                {{cardsIndex this._id}} {{_ "of"}} {{getCardsetCount false}} <br>
                                             {{else}}
-                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
+                                                {{_ "admin.card.header"}} {{cardsIndex this._id}} {{_
                                                     "of"}} {{getCardsetCount true}}<br>
                                             {{/unless}}
                                         {{/if}}

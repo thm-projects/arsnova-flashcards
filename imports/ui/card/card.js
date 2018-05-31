@@ -466,7 +466,7 @@ function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
-function getCardsetCards() {
+function getCardsetCards(getIndex = false) {
 	let query = "";
 	let sortQuery;
 	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
@@ -474,12 +474,21 @@ function getCardsetCards() {
 	} else {
 		sortQuery = {subject: 1, front: 1};
 	}
+	if (getIndex) {
+		if (Session.get('activeCardset').shuffled) {
+			return Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
+				sort: sortQuery, fields: {_id: 1}
+			}).fetch();
+		} else {
+			return Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}}).fetch();
+		}
+	}
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
 			sort: sortQuery
 		});
 	} else {
-		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: sortQuery});
+		query = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery});
 	}
 	query.observeChanges({
 		removed: function () {
@@ -1212,11 +1221,24 @@ Template.cardHintContentPreview.helpers({
  * ############################################################################
  */
 
+let cardsetIndex = {};
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
+	if (isBox()) {
+		cardsetIndex = getLeitnerCards(true);
+	}
+	if (isCardset() || isPresentation()) {
+		cardsetIndex = getCardsetCards(true);
+	}
+	if (isMemo()) {
+		cardsetIndex = getMemoCards(true);
+	}
+	if (isEditMode()) {
+		cardsetIndex = getEditModeCard(true);
+	}
 });
 
 let resizeInterval;
@@ -1271,8 +1293,8 @@ Template.flashcards.helpers({
 			return 0 === index;
 		}
 	},
-	cardsIndex: function (index) {
-		return index + 1;
+	cardsIndex: function (card_id) {
+		return cardsetIndex.findIndex(item => item._id === card_id) + 1;
 	},
 	isLearningActive: function () {
 		return Session.get('activeCardset').learningActive;
