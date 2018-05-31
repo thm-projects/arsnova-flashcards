@@ -109,7 +109,6 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	data: function () {
-		Session.set('activeCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
