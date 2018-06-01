@@ -4,6 +4,7 @@ variables:
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
   REVIEW_SETTINGS: settings_review.json
+  DB_TEST_DUMP: tests/testDatabaseDump/meteor
 
 stages:
   - test
@@ -108,12 +109,22 @@ chimp:
 review:
   stage: review
   script:
+    # Generate port by using all digits in branch name till "-" is found
     - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
+    # Set a variable that points to the appo directory
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    # Make app directory
     - mkdir -p $METEOR_HOME/app
+    # Copy meteor settings into app directory
     - cp $REVIEW_SETTINGS $METEOR_HOME/meteor-settings.json
+    # Copy the build app (--delete deletes all previous versions of the app)
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
-    - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_BUILD_REF_NAME
+    # Make directory for mongo db test data dump
+    - mkdir -p $METEOR_HOME/app/dbdump
+    # Copy mongo db test data
+    - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
+    # Call script to setup everything
+    - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_BUILD_REF_NAME $METEOR_HOME/dbdump
   environment:
     name: review/$CI_BUILD_REF_NAME
     url: http://$CI_BUILD_REF_NAME.review.arsnova.cards/
