@@ -157,7 +157,7 @@ Template.welcome.events({
 
 Template.welcome.helpers({
 	getLoginButtons: function () {
-		let loginButtons = "";
+		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + ":&nbsp;</label><span id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
 			loginButtons += '<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use CAS for login"/></a>';
 		}
@@ -184,7 +184,7 @@ Template.welcome.helpers({
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
 			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
 				' login"/></a>';
-			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label">' + title + ':</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
+			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label" class="loginLabel">' + title + ':</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
 				'<option id="adminLogin" value="editor">' + admin + '</option>' +
 				'<option id="proLogin" value="pro">' + pro + '</option>' +
@@ -195,6 +195,7 @@ Template.welcome.helpers({
 				'<option id="firstLogin" value="firstLogin">' + firstLogin + '</option>' +
 				'</select></span>';
 		}
+		loginButtons += "</span>";
 		return loginButtons;
 	}
 });
