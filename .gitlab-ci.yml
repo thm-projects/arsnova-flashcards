@@ -122,7 +122,7 @@ review:
     # Make directory for mongo db test data dump
     - mkdir $METEOR_HOME/app/dbdump
     # Copy mongo db test data
-    - rsync -aqv --delete "$DB_TEST_DUMP/* $METEOR_HOME/dbdump
+    - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
     # Call script to setup everything
     - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_BUILD_REF_NAME $METEOR_HOME/dbdump
   environment:
