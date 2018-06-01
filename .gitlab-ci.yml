@@ -120,7 +120,7 @@ review:
     # Copy the build app (--delete deletes all previous versions of the app)
     - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
     # Make directory for mongo db test data dump
-    - mkdir $METEOR_HOME/app/dbdump
+    - mkdir -p $METEOR_HOME/app/dbdump
     # Copy mongo db test data
     - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
     # Call script to setup everything
