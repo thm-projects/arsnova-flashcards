@@ -798,6 +798,23 @@
         "subject": "Thema des Quiz"
       }
     },
+    "cardType12": {
+      "name": "Entwurfsmuster",
+      "front": "Problem",
+      "back": "Lösung",
+      "hint": "Literatur",
+      "lecture": "Beschreibung",
+      "placeholders": {
+        "subject": "Gib das Entwurfsmuster an !",
+        "front": "Gib das Problem an !",
+        "back": "Gib die Lösung an !",
+        "hint": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
+        "lecture": "Beschreibe das Entwurfsmuster !"
+      },
+      "editorLabels": {
+        "subject": "Gib das Entwurfsmuster an !"
+      }
+    },
     "tooltip": {
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
