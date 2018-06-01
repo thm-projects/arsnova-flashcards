@@ -1438,6 +1438,9 @@ Template.flashcards.helpers({
 	},
 	isShuffledCardset: function () {
 		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+	},
+	isWorkloadFullscreen: function () {
+		return Session.get("workloadFullscreenMode");
 	}
 });
 
