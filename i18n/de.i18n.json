@@ -88,7 +88,7 @@
     "upload-type2": "Mnemosyne",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
-    "success": "Karten erfolgreich importiert!",
+    "success": "Karten wurden importiert!",
     "wrong-template": "Fehlerhafte Dateistruktur",
     "wrong-file": "Falsches Dateiformat"
   },
@@ -338,7 +338,7 @@
     "downgrade": {
       "error": "Du kannst dein Konto nicht herunterstufen, solange du Pro-Karteien hast!",
       "confirm": "Bist du sicher, das Konto zurückzustufen? Dies bedeutet, dass dein Abonnement nicht länger aktiv ist. Du kannst später jederzeit dein Konto wieder hochstufen.",
-      "canceled": "Abonnement erfolgreich beendet!"
+      "canceled": "Dein Abonnement wurde beendet!"
     }
   },
   "billing": {
@@ -545,7 +545,7 @@
     "confirm-form-delete": {
       "title": "Kartei löschen",
       "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
-      "success": "Die Kartei wurde erfolgreich gelöscht",
+      "success": "Die Kartei wurde gelöscht",
       "failure": "Die Kartei konnte nicht gelöscht werden"
     },
     "shuffled": {
@@ -1140,12 +1140,12 @@
       "noCards": "Es müssen mindestens 5 Karten erstellt werden, um die Kartei zu veröffentlichen!",
       "changeOwner": "Besitzer/in ändern",
       "changeOwnerFailure": "Benutzer/in nicht gefunden",
-      "changeOwnerSuccess": "Besitzer/in erfolgreich geändert",
+      "changeOwnerSuccess": "Besitzer/in wurde geändert",
       "wordcloud": "Wortwolke:",
       "addToWordcloud": "Hinzufügen",
       "removeFromWordcloud": "Entfernen",
       "updateLearningFailure": "Fehler beim Aktualisieren der Bonus-Einstellungen",
-      "updateLearningSuccess": "Bonus-Einstellungen erfolgreich aktualisiert"
+      "updateLearningSuccess": "Bonus-Einstellungen wurden aktualisiert"
     },
     "card": {
       "header": "Karte",
@@ -1295,8 +1295,8 @@
   "import": {
     "cardset": "Kartei importieren",
     "success": {
-      "cardset": "Kartei wurde erfolgreich importiert",
-      "cards": "Karten wurden erfolgreich importiert"
+      "cardset": "Kartei wurde importiert",
+      "cards": "Karten wurden importiert"
     },
     "failure": "Fehlerhafte Dateistruktur"
   },
