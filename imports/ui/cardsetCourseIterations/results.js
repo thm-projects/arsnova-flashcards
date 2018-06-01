@@ -8,6 +8,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./results.html";
 import CardType from "../../api/cardTypes";
+import * as TargetAudience from "../../api/targetAudience";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -203,6 +204,9 @@ Template.cardsetCourseIterationResultRow.helpers({
 	},
 	getCardTypeName: function () {
 		return CardType.getCardTypeName(this.cardType);
+	},
+	getTargetAudienceName: function () {
+		return TargetAudience.getTargetAudienceName(this.targetAudience);
 	},
 	getColors: function () {
 		switch (this.kind) {
