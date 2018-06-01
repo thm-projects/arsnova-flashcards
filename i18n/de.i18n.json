@@ -553,26 +553,6 @@
       "short": "Gemischt"
     }
   },
-  "cardmemo": {
-    "showanswer": "Zeige Antwort",
-    "skipanswer": "Überspringen",
-    "rateanswer": "Bewerte deine Antwort",
-    "rate0": "Blackout",
-    "rate1": "Falsche Antwort, aber an die richtige erinnert",
-    "rate2": "Falsche Antwort, aber leicht an die richtige erinnert (ach ja!)",
-    "rate3": "Richtige Antwort nach längerem Überlegen",
-    "rate4": "Richtige Antwort nach kurzem Zögern",
-    "rate5": "Sofort und richtig",
-    "memotext": "Vergleiche die Antwort mit der aus deiner Erinnerung und bewerte sie auf einer Skala von 0 bis 5. Anhand deiner Bewertung wird der Zeitpunkt für die nächste Wiederholung der Lernkarte berechnet."
-  },
-  "memo-endscreen": {
-    "text": "Lernpensum abgeschlossen",
-    "back": "Zurück zur Kartei"
-  },
-  "memo-empty": {
-    "text": "Aktuell keine nach Lernplan zu lernenden Karten",
-    "back": "Zurück zur Kartei"
-  },
   "rating-field": {
     "title": " Bewerten",
     "stars": "Sterne",
@@ -1359,5 +1339,30 @@
   },
   "login": {
     "label": "Log in"
+  },
+  "wozniak": {
+    "show": "Zeige Antwort",
+    "skip": "Überspringen",
+    "rate": "Bewerte deine Antwort",
+    "answer": {
+      "0": "0: Blackout!",
+      "0Mobile": "0",
+      "1": "1: Falsch",
+      "1Mobile": "1",
+      "2": "2: Falsch, aber…",
+      "2Mobile": "2",
+      "3": "3: Richtig, aber…",
+      "3Mobile": "3",
+      "4": "4: Richtig",
+      "4Mobile": "4",
+      "5": "5: Perfekt!",
+      "5Mobile": "5"
+    },
+    "endscreen": {
+      "text": "Lernpensum abgeschlossen"
+    },
+    "empty": {
+      "text": "Aktuell keine nach Lernplan zu lernenden Karten"
+    }
   }
 }
