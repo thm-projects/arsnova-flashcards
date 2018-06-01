@@ -51,7 +51,7 @@
                 <div id="learn-navigation" class="btn-group btn-group-justified">
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-danger answer card-fail" id="notknown">{{_
+                            <button class="btn btn-raised btn-warning answer card-fail" id="notknown">{{_
                                     "notknow"}} {{#if fullscreenActive}}( {{_ "key" key='n'}} ){{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
@@ -61,7 +61,7 @@
                     {{/if}}
                     {{#if isActiveRoute 'memo'}}
                         <div class="btn-group">
-                            <button id="memoRate0" class="btn btn-default btn-raised btn-danger rate-answer wrong"
+                            <button id="memoRate0" class="btn btn-warning btn-raised btn-warning rate-answer wrong"
                                     data-id="0"
                                     data-toggle="tooltip" title="{{_ "wozniak.answer.0"}}"><span class="hidden-xs">{{_ "wozniak.answer.0"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.0Mobile"}}</span>

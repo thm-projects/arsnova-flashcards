@@ -1340,14 +1340,14 @@
     "firstLogin": "Erstanmeldung"
   },
   "login": {
-    "label": "Log in"
+    "label": "Melde dich an"
   },
   "wozniak": {
     "show": "Zeige Antwort",
     "skip": "Überspringen",
     "rate": "Bewerte deine Antwort",
     "answer": {
-      "0": "0: Blackout!",
+      "0": "0: Blackout",
       "0Mobile": "0",
       "1": "1: Falsch",
       "1Mobile": "1",
@@ -1357,7 +1357,7 @@
       "3Mobile": "3",
       "4": "4: Richtig",
       "4Mobile": "4",
-      "5": "5: Perfekt!",
+      "5": "5: Perfekt",
       "5Mobile": "5"
     },
     "endscreen": {
