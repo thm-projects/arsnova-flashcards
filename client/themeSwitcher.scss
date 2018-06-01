@@ -120,6 +120,8 @@ $themes: (
     $navbar_logout_text: map-get($map, "navbar_logout_text");
     $navbar_logout_text_hover: map-get($map, "navbar_logout_text_hover");
     //welcome page colors
+    $welcome_page_login_label: map-get($map, "welcome_page_login_label");
+    $welcome_page_login_label_shadow: map-get($map, "welcome_page_login_label_shadow");
     $footer_background: map-get($map, "footer_background");
     $footer_info_navigation_text: map-get($map, "footer_info_navigation_text");
     $footer_info_navigation_text_hover: map-get($map, "footer_info_navigation_text_hover");
@@ -426,7 +428,7 @@ $themes: (
       color: $white !important;
     }
 
-    .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover, .endPresentation, .endPresentation:hover {
+    #toggleFullscreen .glyphicon-log-out.pressed, .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover, .endPresentation, .endPresentation:hover {
       background-color: $thm_orange !important;
       border-color: $thm_orange !important;
       color: $white !important;
@@ -1600,6 +1602,11 @@ $themes: (
       .panel-footer {
         background-color: transparent !important;
       }
+    }
+
+    #login .loginLabel {
+      color: $welcome_page_login_label !important;
+      text-shadow: 1px 1px $welcome_page_login_label_shadow !important;
     }
 
     #learnBoxDisabled {

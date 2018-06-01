@@ -12,23 +12,24 @@ import {Session} from "meteor/session";
 //9: To-dos / To-do
 //10: Fotokartei / Photo library
 //11: Quiz
-let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 11];
+//12: Entwurfsmuster / Design pattern
+let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
 let cardTypesWithCenteredText = [1, 3, 4, 5, 6, 11];
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 11];
-let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 11, 12];
+let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7, 12];
 let cardTypesWithAlternativeHintStyle = [2];
-let cardTypesWithLearningModes = [0, 1, 3, 5, 6, 11];
+let cardTypesWithLearningModes = [0, 1, 3, 5, 6, 11, 12];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
-let cardTypesWithLecture = [0];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11];
+let cardTypesWithLecture = [0, 12];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
 let cardTypesWithSwappedSides = [6];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}, {cardType: 11}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}, {cardType: 11}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
 class CardType {

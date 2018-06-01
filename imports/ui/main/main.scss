@@ -26,6 +26,8 @@ $size_navbar_alldecks_border: 3px;
 
 //welcome page
 $size_footer_height: 40px;
+$font_size_login_label: 16px;
+$font_weight_login_label: bold;
 
 //info page
 $font_size_info_h1: 20px;
@@ -479,7 +481,10 @@ button {
 
 .dropdown, .dropup, .navbar-nav > li {
   .dropdown-menu {
-    max-height: 575px;
+    max-height: 625px;
+    @media(max-height: 768px) {
+      max-height: 575px;
+    }
     @media(max-width: 767px) {
       max-height: 225px;
     }
@@ -623,6 +628,18 @@ th {
 
 .hintContent .modal-body {
   font-size: 16px;
+}
+
+#login .loginLabel {
+  font-size: $font-size_login_label !important;
+  font-weight: $font-weight_login_label !important;
+
+}
+
+#login .loginLabel:first-child {
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .footer {

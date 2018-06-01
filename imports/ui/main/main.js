@@ -20,6 +20,7 @@ import "../admin/admin.js";
 import "../access_denied/access_denied.js";
 import "../first_login/first_login.js";
 import "../../api/groundDB.js";
+import {Cardsets} from "../../api/cardsets.js";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -230,6 +231,16 @@ Template.main.helpers({
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
+	},
+	getMyCardsetName: function () {
+		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
+			case 0:
+				return TAPi18n.__('navbar-collapse.noCarddecks');
+			case 1:
+				return TAPi18n.__('navbar-collapse.oneCarddeck');
+			default:
+				return TAPi18n.__('navbar-collapse.carddecks');
+		}
 	}
 });
 
