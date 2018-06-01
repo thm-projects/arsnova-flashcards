@@ -6,6 +6,7 @@ import CardType from "./cardTypes";
 import {Cardsets} from "./cardsets";
 
 let cardIndex = [];
+
 class CardIndex {
 
 	static getCardIndex () {
@@ -101,6 +102,7 @@ class CardIndex {
 	}
 
 	static getCardIndexFilter () {
+		let isLearningMode = (Router.current().route.getName() === "box" || Router.current().route.getName() === "memo");
 		let cardIndexFilter = [];
 		if (Session.get('activeCard') !== undefined) {
 			let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
@@ -111,18 +113,23 @@ class CardIndex {
 			} else {
 				nextCardIndex = activeCardIndex + 1;
 			}
-			if (activeCardIndex === 0) {
-				previousCardIndex = cardIndex.length - 1;
-			} else {
-				previousCardIndex = activeCardIndex - 1;
-			}
+
 			cardIndexFilter.push(cardIndex[activeCardIndex]);
 			cardIndexFilter.push(cardIndex[nextCardIndex]);
-			cardIndexFilter.push(cardIndex[previousCardIndex]);
+			if (!isLearningMode) {
+				if (activeCardIndex === 0) {
+					previousCardIndex = cardIndex.length - 1;
+				} else {
+					previousCardIndex = activeCardIndex - 1;
+				}
+				cardIndexFilter.push(cardIndex[previousCardIndex]);
+			}
 		} else {
 			cardIndexFilter.push(cardIndex[0]);
 			cardIndexFilter.push(cardIndex[1]);
-			cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
+			if (!isLearningMode) {
+				cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
+			}
 		}
 		return cardIndexFilter;
 	}

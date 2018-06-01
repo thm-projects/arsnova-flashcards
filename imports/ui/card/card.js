@@ -1318,15 +1318,14 @@ Template.flashcards.helpers({
 		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
+		CardIndex.initializeIndex();
 		if (isBox()) {
-			CardIndex.initializeIndex();
 			return getLeitnerCards();
 		}
 		if (isCardset() || isPresentation()) {
 			return getCardsetCards();
 		}
 		if (isMemo()) {
-			CardIndex.initializeIndex();
 			return getMemoCards();
 		}
 		if (isEditMode()) {
