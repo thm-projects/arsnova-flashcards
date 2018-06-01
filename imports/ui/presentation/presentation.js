@@ -38,6 +38,9 @@ Template.presentationView.onRendered(function () {
 	updateNavigation();
 });
 
+Template.presentationView.onDestroyed(function () {
+	Session.set('activeCard', undefined);
+});
 
 Template.presentationView.events({
 	"click #backToPresentation": function () {

@@ -29,6 +29,10 @@ export function isEditMode() {
 	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
 }
 
+export function isNewCard() {
+	return Router.current().route.getName() === "newCard";
+}
+
 /**
  * Function checks if route is a presentation view
  * @return {Boolean} Return true, when route is a presentation view.
@@ -1335,6 +1339,9 @@ Template.flashcards.onDestroyed(function () {
 
 Template.flashcards.helpers({
 	cardActive: function () {
+		if (isNewCard()) {
+			return true;
+		}
 		if (Session.get('activeCard')) {
 			return Session.get('activeCard') === this._id;
 		} else {
