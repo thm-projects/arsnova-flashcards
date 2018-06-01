@@ -471,34 +471,6 @@ function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
-function getCardIndexFilter() {
-	let cardIndexFilter = [];
-	let cardIndex = CardIndex.getCardIndex();
-	if (Session.get('activeCard') !== undefined) {
-		let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
-		let nextCardIndex;
-		let previousCardIndex;
-		if (activeCardIndex === cardIndex.length - 1) {
-			nextCardIndex = 0;
-		} else {
-			nextCardIndex = activeCardIndex + 1;
-		}
-		if (activeCardIndex === 0) {
-			previousCardIndex = cardIndex.length - 1;
-		} else {
-			previousCardIndex = activeCardIndex - 1;
-		}
-		cardIndexFilter.push(cardIndex[activeCardIndex]);
-		cardIndexFilter.push(cardIndex[nextCardIndex]);
-		cardIndexFilter.push(cardIndex[previousCardIndex]);
-	} else {
-		cardIndexFilter.push(cardIndex[0]);
-		cardIndexFilter.push(cardIndex[1]);
-		cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
-	}
-	return cardIndexFilter;
-}
-
 function getCardsetCards() {
 	let query = "";
 	let sortQuery = "";
@@ -509,11 +481,11 @@ function getCardsetCards() {
 	}
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
-			_id: {$in: getCardIndexFilter()},
+			_id: {$in: CardIndex.getCardIndexFilter()},
 			cardset_id: {$in: Session.get('activeCardset').cardGroups}
 		}, {sort: sortQuery});
 	} else {
-		query = Cards.find({_id: {$in: getCardIndexFilter()}, cardset_id: Router.current().params._id}, {sort: sortQuery});
+		query = Cards.find({_id: {$in: CardIndex.getCardIndexFilter()}, cardset_id: Router.current().params._id}, {sort: sortQuery});
 	}
 	return query;
 }
@@ -525,7 +497,7 @@ function getCardsetCards() {
 function getLeitnerCards() {
 	let cards = [];
 	let learnedCards = Leitner.find({
-		card_id: {$in: getCardIndexFilter()},
+		card_id: {$in: CardIndex.getCardIndexFilter()},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
@@ -578,7 +550,7 @@ function getMemoCards() {
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
 	let learnedCards = Wozniak.find({
-		card_id: {$in: getCardIndexFilter()},
+		card_id: {$in: CardIndex.getCardIndexFilter()},
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {

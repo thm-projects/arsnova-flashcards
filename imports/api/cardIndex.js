@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import {Session} from "meteor/session";
 import {Leitner, Wozniak} from "./learned";
 import {Cards} from "./cards";
 import CardType from "./cardTypes";
@@ -97,6 +98,33 @@ class CardIndex {
 			cardIndex.push(indexCard.card_id);
 		});
 		return cardIndex;
+	}
+
+	static getCardIndexFilter () {
+		let cardIndexFilter = [];
+		if (Session.get('activeCard') !== undefined) {
+			let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
+			let nextCardIndex;
+			let previousCardIndex;
+			if (activeCardIndex === cardIndex.length - 1) {
+				nextCardIndex = 0;
+			} else {
+				nextCardIndex = activeCardIndex + 1;
+			}
+			if (activeCardIndex === 0) {
+				previousCardIndex = cardIndex.length - 1;
+			} else {
+				previousCardIndex = activeCardIndex - 1;
+			}
+			cardIndexFilter.push(cardIndex[activeCardIndex]);
+			cardIndexFilter.push(cardIndex[nextCardIndex]);
+			cardIndexFilter.push(cardIndex[previousCardIndex]);
+		} else {
+			cardIndexFilter.push(cardIndex[0]);
+			cardIndexFilter.push(cardIndex[1]);
+			cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
+		}
+		return cardIndexFilter;
 	}
 }
 
