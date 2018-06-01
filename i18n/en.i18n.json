@@ -41,6 +41,8 @@
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting."
   },
   "navbar-collapse": {
+    "noCarddecks": "Create deck of cards",
+    "oneCarddeck": "My deck of cards",
     "carddecks": "My decks of cards",
     "learndecks": "Workload",
     "alldecks": "All decks",

@@ -33,6 +33,8 @@
     "backToStartButton": "Zurück zur Startseite"
   },
   "navbar-collapse": {
+    "noCarddecks": "Kartei anlegen",
+    "oneCarddeck": "Meine Kartei",
     "carddecks": "Meine Karteien",
     "learndecks": "Lernpensum",
     "alldecks": "Alle Karteien",
