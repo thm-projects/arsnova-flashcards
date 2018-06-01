@@ -14,6 +14,7 @@ import CardType from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
 import MarkdeepEditor from "../../api/markdeepEditor.js";
+import * as CardIndex from "../../api/cardIndex";
 
 /*
  * ############################################################################
@@ -470,10 +471,9 @@ function isCardset() {
 	return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
 }
 
-let cardIndex = [];
-
 function getCardIndexFilter() {
 	let cardIndexFilter = [];
+	let cardIndex = CardIndex.getCardIndex();
 	if (Session.get('activeCard') !== undefined) {
 		let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
 		let nextCardIndex;
@@ -500,41 +500,20 @@ function getCardIndexFilter() {
 }
 
 function getCardsetCards() {
-	cardIndex = [];
-	let sortQuery;
+	let query = "";
+	let sortQuery = "";
 	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
 		sortQuery = {subject: 1, back: 1};
 	} else {
 		sortQuery = {subject: 1, front: 1};
 	}
-	let indexCards;
-	if (Session.get('activeCardset').shuffled) {
-		let cardGroups = Cardsets.find({_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: {name: 1},
-			fields: {_id: 1}
-		});
-		cardGroups.forEach(function (cardset) {
-			indexCards = Cards.find({cardset_id: cardset._id}, {
-				sort: sortQuery, fields: {_id: 1}
-			});
-			indexCards.forEach(function (indexCard) {
-				cardIndex.push(indexCard._id);
-			});
-		});
-	} else {
-		indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
-		indexCards.forEach(function (indexCard) {
-			cardIndex.push(indexCard._id);
-		});
-	}
-	let query = "";
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
 			_id: {$in: getCardIndexFilter()},
 			cardset_id: {$in: Session.get('activeCardset').cardGroups}
-		});
+		}, {sort: sortQuery});
 	} else {
-		query = Cards.find({_id: {$in: getCardIndexFilter()}, cardset_id: Router.current().params._id});
+		query = Cards.find({_id: {$in: getCardIndexFilter()}, cardset_id: Router.current().params._id}, {sort: sortQuery});
 	}
 	return query;
 }
@@ -545,19 +524,6 @@ function getCardsetCards() {
  */
 function getLeitnerCards() {
 	let cards = [];
-	cardIndex = [];
-	let indexCards = Leitner.find({
-		cardset_id: Session.get('activeCardset')._id,
-		user_id: Meteor.userId(),
-		active: true
-	}, {
-		fields: {
-			card_id: 1
-		}
-	});
-	indexCards.forEach(function (indexCard) {
-		cardIndex.push(indexCard.card_id);
-	});
 	let learnedCards = Leitner.find({
 		card_id: {$in: getCardIndexFilter()},
 		cardset_id: Session.get('activeCardset')._id,
@@ -609,27 +575,8 @@ function getEditModeCard() {
  */
 function getMemoCards() {
 	let cards = [];
-	cardIndex = [];
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
-	let indexCards = Wozniak.find({
-		cardset_id: Router.current().params._id,
-		user_id: Meteor.userId(),
-		nextDate: {
-			$lte: actualDate
-		}
-	}, {
-		sort: {
-			nextDate: 1,
-			priority: 1
-		},
-		fields: {
-			card_id: 1
-		}
-	}).fetch();
-	indexCards.forEach(function (indexCard) {
-		cardIndex.push(indexCard.card_id);
-	});
 	let learnedCards = Wozniak.find({
 		card_id: {$in: getCardIndexFilter()},
 		cardset_id: Router.current().params._id,
@@ -1345,12 +1292,14 @@ Template.flashcards.helpers({
 		if (Session.get('activeCard')) {
 			return Session.get('activeCard') === this._id;
 		} else {
+			let cardIndex = CardIndex.getCardIndex();
 			if (this._id === cardIndex[0]) {
 				return true;
 			}
 		}
 	},
 	cardsIndex: function (card_id) {
+		let cardIndex = CardIndex.getCardIndex();
 		return cardIndex.findIndex(item => item === card_id) + 1;
 	},
 	isLearningActive: function () {
@@ -1398,12 +1347,14 @@ Template.flashcards.helpers({
 	},
 	getCards: function () {
 		if (isBox()) {
+			CardIndex.initializeIndex();
 			return getLeitnerCards();
 		}
 		if (isCardset() || isPresentation()) {
 			return getCardsetCards();
 		}
 		if (isMemo()) {
+			CardIndex.initializeIndex();
 			return getMemoCards();
 		}
 		if (isEditMode()) {

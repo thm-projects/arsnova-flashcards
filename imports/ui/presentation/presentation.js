@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
 import {updateNavigation} from "../card/card";
+import * as CardIndex from "../../api/cardIndex";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -32,6 +33,7 @@ function updatePresentationClock() {
 
 Template.presentationView.onCreated(function () {
 	Session.set('activeCard', undefined);
+	CardIndex.initializeIndex();
 });
 
 Template.presentationView.onRendered(function () {
