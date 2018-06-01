@@ -203,7 +203,19 @@ Template.cardsetCourseIterationResultRow.helpers({
 		}
 	},
 	getCardTypeName: function () {
-		return CardType.getCardTypeName(this.cardType);
+		if (this.shuffled) {
+			let cardTypes = _.uniq(Cardsets.find({_id: {$in: this.cardGroups}}, {fields: {cardType: 1}}).fetch(), function (item) {
+				return item.cardType;
+			});
+			switch (cardTypes.length) {
+				case 1:
+					return CardType.getCardTypeName(cardTypes[0].cardType);
+				default:
+					return TAPi18n.__('cardset.shuffled.short');
+			}
+		} else {
+			return CardType.getCardTypeName(this.cardType);
+		}
 	},
 	getTargetAudienceName: function () {
 		return TargetAudience.getTargetAudienceName(this.targetAudience);
