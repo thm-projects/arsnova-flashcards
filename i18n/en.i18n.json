@@ -1373,5 +1373,8 @@
     "standard": "Standard User",
     "blocked": "Blocked User",
     "firstLogin": "First Login"
+  },
+  "login": {
+    "label": "Log in"
   }
 }

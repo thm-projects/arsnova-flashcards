@@ -1339,5 +1339,8 @@
     "standard": "Standard User (Zugang über Facebook, Twitter, Google+)",
     "blocked": "Blockierter User",
     "firstLogin": "Erstanmeldung"
+  },
+  "login": {
+    "label": "Log in"
   }
 }
