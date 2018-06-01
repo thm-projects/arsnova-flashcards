@@ -561,26 +561,6 @@
       "short": "Shuffled"
     }
   },
-  "cardmemo": {
-    "showanswer": "Show answer",
-    "skipanswer": "Skip",
-    "rateanswer": "Rate your answer",
-    "rate0": "Blackout",
-    "rate1": "Wrong answer, but reminds on the right one",
-    "rate2": "Wrong answer, but reminds on the right one easily",
-    "rate3": "Right answer after thinking intently",
-    "rate4": "Right answer after short hesitation",
-    "rate5": "Perfect answer",
-    "memotext": "Compare the answer above with the one out of your memory and rate it with the scale. The next point of revision of your flashcard is based on the rating."
-  },
-  "memo-endscreen": {
-    "text": "Learning unit done successfully",
-    "back": "Back to deck of cards"
-  },
-  "memo-empty": {
-    "text": "After lesson plan there are no flashcards to learn at the moment",
-    "back": "Back to deck of cards"
-  },
   "meteorgame": {
     "description": "Destroy the meteorites before they reach the earth! Each meteorite is labelled with one page of one of your learn card - destroy it with the correct answer on the back!",
     "warning": "Attention! Meteor works best with flashcards, which contain short keywords and concised sentences.",
@@ -1393,5 +1373,30 @@
   },
   "login": {
     "label": "Log in"
+  },
+  "wozniak": {
+    "show": "Show answer",
+    "skip": "Skip",
+    "rate": "Rate your answer",
+    "answer": {
+      "0": "0: Blackout!",
+      "0Mobile": "0",
+      "1": "1: Wrong",
+      "1Mobile": "1",
+      "2": "2: Wrong, but…",
+      "2Mobile": "2",
+      "3": "3: Right, but…",
+      "3Mobile": "3",
+      "4": "4: Right",
+      "4Mobile": "4",
+      "5": "5: Perfect!",
+      "5Mobile": "5"
+    },
+    "endscreen": {
+      "text": "Learning unit done successfully"
+    },
+    "empty": {
+      "text": "After lesson plan there are no flashcards to learn at the moment"
+    }
   }
 }
