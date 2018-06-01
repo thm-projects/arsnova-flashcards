@@ -12,11 +12,17 @@
         </div>
     {{#unless isActiveRoute regex="create"}}
             <div class="hidden-xs {{#if isActiveRoute
-                                        regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} resultsHeader">
+                                        regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
+                                                                                                     regex="pool"}}col-lg-3{{/if}} resultsHeader">
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
     {{/unless}}
-    {{#if isActiveRoute regex="pool|alldecks"}}
+    {{#if isActiveRoute regex="pool"}}
+        <div class="hidden-xs col-sm-3 col-lg-2 resultsHeader">
+            <strong>{{_ "cardType"}}</strong>
+        </div>
+    {{/if}}
+    {{#if isActiveRoute regex="alldecks"}}
             <div class="hidden-xs col-sm-3 resultsHeader">
                 <strong>{{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span></strong>
             </div>
@@ -53,14 +59,20 @@
           regex="create"}}
         <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if
                 isActiveRoute
-                regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} collapseButton {{getCardBackground
+                regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute regex="pool"}}col-lg-3{{/if}} collapseButton {{getCardBackground
                 this.difficulty this.cardType 1}}"
              data-id="{{this.owner}}">
             {{getAuthorName this.owner}}
         </div>
 {{/unless}}
+    {{#if isActiveRoute regex="pool"}}
+        <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs col-sm-3 col-lg-2 {{getCardBackground this.difficulty this.cardType 1}}"
+             data-cardType="{{this.cardTyoe}}">
+            {{getCardTypeName this.cardType}}
+        </div>
+    {{/if}}
 {{#if isActiveRoute
-      regex="pool|alldecks"}}
+      regex="alldecks"}}
     <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardBackground
             this.difficulty this.cardType 1}}"
          data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
