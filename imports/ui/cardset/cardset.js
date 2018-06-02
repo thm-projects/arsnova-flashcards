@@ -16,6 +16,7 @@ import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 import CardType from "../../api/cardTypes";
 import TargetAudience from "../../api/targetAudience";
+import * as CardIndex from "../../api/cardIndex";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -91,13 +92,14 @@ function changeCollapseIcon(iconId) {
  */
 
 Template.cardset.onCreated(function () {
-	if (Session.get('activeCardsetID') !== Router.current().params._id) {
-		Session.set('activeCardsetID', Router.current().params._id);
-		Session.set('modifiedCard', undefined);
+	if (Session.get('activeCardset') === undefined || Session.get('activeCardset') !== Router.current().params._id) {
+		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
+		Session.set('activeCard', undefined);
 	}
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
+	CardIndex.initializeIndex();
 });
 
 Template.cardset.rendered = function () {
@@ -218,7 +220,16 @@ Template.cardsetList.helpers({
 	cardsetList: function () {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
 			if (this.shuffled) {
-				return Cardsets.find({_id: {$in: this.cardGroups}}, {name: 1}).fetch();
+				let cardsetFilter = [];
+				let sortCardsets = Cardsets.find({_id: {$in: this.cardGroups}}, {
+					sort: {name: 1}, fields: {_id: 1, name: 1, kind: 1}
+				}).fetch();
+				sortCardsets.forEach(function (cardset) {
+					if (cardset._id !== Router.current().params._id) {
+						cardsetFilter.push(cardset);
+					}
+				});
+				return cardsetFilter;
 			} else {
 				return Cardsets.find({_id: this._id}).fetch();
 			}
@@ -336,7 +347,7 @@ Template.cardsetList.helpers({
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
-			Session.set('modifiedCard', $(evt.target).data('id'));
+			Session.set('activeCard', $(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
 				Router.go('presentation', {
 					_id: Router.current().params._id
@@ -1248,7 +1259,7 @@ Template.cardsetImportForm.events({
 								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
-								Session.set('modifiedCard', undefined);
+								Session.set('activeCard', undefined);
 								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}

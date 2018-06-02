@@ -361,7 +361,7 @@
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
-                        <div class="item {{#if cardActive @index}}active{{/if}}" data-id="{{_id}}">
+                        <div class="item {{#if cardActive}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{#if isHintPreview}}{{#if gotAlternativeHintStyle}}box-pink{{else}}box-white{{/if}}{{else}}{{#if
                                         isLecturePreview}}box-post-it{{else}}{{getCardBackground difficulty cardType
@@ -380,9 +380,7 @@
                                     {{/if}}
                                     <div class="leftHeader" data-cardtype="{{cardType}}">
                                         {{#if isPresentation}}
-                                            {{#if cardActive @index}}
-                                                {{> presentationClock}}
-                                            {{/if}}
+                                            {{> presentationClock}}
                                         {{/if}}
                                         {{#unless isShuffledCardset}}
                                             {{#if isCardEditor this.cardset_id}}
@@ -458,9 +456,9 @@
                                         {{#if isCardsetOrPresentation}}
                                             {{#unless hasCardsetPermission cardset_id}}
                                                 {{_ "preview"}}:
-                                                {{cardsIndex @index}} {{_ "of"}} {{getCardsetCount false}} <br>
+                                                {{cardsIndex this._id}} {{_ "of"}} {{getCardsetCount false}} <br>
                                             {{else}}
-                                                {{_ "admin.card.header"}} {{cardsIndex @index}} {{_
+                                                {{_ "admin.card.header"}} {{cardsIndex this._id}} {{_
                                                     "of"}} {{getCardsetCount true}}<br>
                                             {{/unless}}
                                         {{/if}}
@@ -632,7 +630,7 @@
                                 <h4>{{getNextCardTime}}</h4>
                             {{/if}}
                             {{#if isActiveRoute 'memo'}}
-                                <h4>{{_ "wozniak.end.text"}}</h4>
+                                <h4>{{_ "wozniak.endscreen.text"}}</h4>
                             {{/if}}
                         </div>
                     </div>
