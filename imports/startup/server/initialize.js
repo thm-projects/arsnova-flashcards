@@ -492,27 +492,27 @@ Meteor.startup(function () {
 		);
 	}
 
-	let leitner = Leitner.find({skipped: {$exists: false}}).fetch();
+	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < leitner.length; i++) {
 		Leitner.update({
 				_id: leitner[i]._id
 			},
 			{
-				$set: {
-					skipped: 0
+				$unset: {
+					skipped: ""
 				}
 			}
 		);
 	}
 
-	let wozniak = Wozniak.find({skipped: {$exists: false}}).fetch();
+	let wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {
 		Wozniak.update({
 				_id: wozniak[i]._id
 			},
 			{
-				$set: {
-					skipped: 0
+				$unset: {
+					skipped: ""
 				}
 			}
 		);

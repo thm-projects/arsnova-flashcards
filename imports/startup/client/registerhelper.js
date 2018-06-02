@@ -1,6 +1,5 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
-import {CourseIterations} from "../../api/courseIterations.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Leitner} from "../../api/learned.js";
@@ -252,12 +251,17 @@ Template.registerHelper("singleUniversity", function () {
 	return Meteor.settings.public.university.singleUniversity;
 });
 
-// Returns the number of cards in a carddeck
-Template.registerHelper("countCards", function (cardset_id) {
-	if (Router.current().route.getName() === 'courseIterations') {
-		return CourseIterations.findOne({_id: cardset_id}).quantity;
+Template.registerHelper("getQuantity", function (item) {
+	if (item.shuffled) {
+		let quantity = 0;
+		this.cardGroups.forEach(function (cardset_id) {
+			if (cardset_id !== Router.current().params._id) {
+				quantity += Cardsets.findOne(cardset_id).quantity;
+			}
+		});
+		return quantity;
 	} else {
-		return Cardsets.findOne({_id: cardset_id}).quantity;
+		return item.quantity;
 	}
 });
 

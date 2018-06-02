@@ -14,6 +14,7 @@ import CardType from "../../api/cardTypes";
 import {backMaxLength, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "../../api/cards";
 import {isTextCentered} from "../markdeepEditor/navigation";
 import MarkdeepEditor from "../../api/markdeepEditor.js";
+import * as CardIndex from "../../api/cardIndex";
 
 /*
  * ############################################################################
@@ -27,6 +28,10 @@ import MarkdeepEditor from "../../api/markdeepEditor.js";
  */
 export function isEditMode() {
 	return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
+}
+
+export function isNewCard() {
+	return Router.current().route.getName() === "newCard";
 }
 
 /**
@@ -43,7 +48,7 @@ function isEditModeOrPresentation() {
 
 export function updateNavigation() {
 	let card_id = $('.carousel-inner > .active').attr('data-id');
-	Session.set('modifiedCard', card_id);
+	Session.set('activeCard', card_id);
 	let cardType = Cards.findOne({_id: card_id}).cardType;
 	Session.set('cardType', Number(cardType));
 }
@@ -321,7 +326,7 @@ let newFlashcardHeader;
 /**
  * Resizes flashcards to din a6 format
  */
-function resizeFlashcards() {
+export function resizeFlashcards() {
 	if (editorFullScreenActive) {
 		newFlashcardBodyHeight = ($(window).height() * 0.78);
 		$('#contentEditor').css('height', newFlashcardBodyHeight);
@@ -468,24 +473,20 @@ function isCardset() {
 
 function getCardsetCards() {
 	let query = "";
-	let sortQuery;
+	let sortQuery = "";
 	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
 		sortQuery = {subject: 1, back: 1};
 	} else {
 		sortQuery = {subject: 1, front: 1};
 	}
 	if (Session.get('activeCardset').shuffled) {
-		query = Cards.find({cardset_id: {$in: Session.get('activeCardset').cardGroups}}, {
-			sort: sortQuery
-		});
+		query = Cards.find({
+			_id: {$in: CardIndex.getCardIndexFilter()},
+			cardset_id: {$in: Session.get('activeCardset').cardGroups}
+		}, {sort: sortQuery});
 	} else {
-		query = Cards.find({cardset_id: Session.get('activeCardset')._id}, {sort: sortQuery});
+		query = Cards.find({_id: {$in: CardIndex.getCardIndexFilter()}, cardset_id: Router.current().params._id}, {sort: sortQuery});
 	}
-	query.observeChanges({
-		removed: function () {
-			$('#cardCarousel .item:first-child').addClass('active');
-		}
-	});
 	return query;
 }
 
@@ -496,14 +497,10 @@ function getCardsetCards() {
 function getLeitnerCards() {
 	let cards = [];
 	let learnedCards = Leitner.find({
+		card_id: {$in: CardIndex.getCardIndexFilter()},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
-	}, {
-		sort: {
-			currentDate: 1,
-			skipped: -1
-		}
 	});
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
@@ -521,9 +518,9 @@ function getLeitnerCards() {
 function getEditModeCard() {
 	let id = "-1";
 	if (ActiveRoute.name('editCard')) {
-		id = Session.get('modifiedCard');
+		id = Session.get('activeCard');
 	} else {
-		Session.set('modifiedCard', undefined);
+		Session.set('activeCard', undefined);
 	}
 	return [{
 		"_id": id,
@@ -549,20 +546,15 @@ function getEditModeCard() {
  * @return {Collection} The card collection
  */
 function getMemoCards() {
+	let cards = [];
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 	actualDate.setHours(0, 0, 0, 0);
-	let cards = [];
-
 	let learnedCards = Wozniak.find({
+		card_id: {$in: CardIndex.getCardIndexFilter()},
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
 			$lte: actualDate
-		}
-	}, {
-		sort: {
-			nextDate: 1,
-			priority: 1
 		}
 	});
 	learnedCards.forEach(function (learnedCard) {
@@ -1212,6 +1204,7 @@ Template.cardHintContentPreview.helpers({
  * ############################################################################
  */
 
+
 Template.flashcards.onCreated(function () {
 	Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	Session.set('reverseViewOrder', false);
@@ -1264,15 +1257,22 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	cardActive: function (index) {
-		if (Session.get('modifiedCard')) {
-			return Session.get('modifiedCard') === this._id;
+	cardActive: function () {
+		if (isNewCard()) {
+			return true;
+		}
+		if (Session.get('activeCard')) {
+			return Session.get('activeCard') === this._id;
 		} else {
-			return 0 === index;
+			let cardIndex = CardIndex.getCardIndex();
+			if (this._id === cardIndex[0]) {
+				return true;
+			}
 		}
 	},
-	cardsIndex: function (index) {
-		return index + 1;
+	cardsIndex: function (card_id) {
+		let cardIndex = CardIndex.getCardIndex();
+		return cardIndex.findIndex(item => item === card_id) + 1;
 	},
 	isLearningActive: function () {
 		return Session.get('activeCardset').learningActive;
@@ -1318,6 +1318,7 @@ Template.flashcards.helpers({
 		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
+		CardIndex.initializeIndex();
 		if (isBox()) {
 			return getLeitnerCards();
 		}
@@ -1357,7 +1358,18 @@ Template.flashcards.helpers({
 	},
 	getCardsetCount: function (getQuantityValue) {
 		if (getQuantityValue) {
-			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
+			let cardset = Cardsets.findOne(Router.current().params._id);
+			if (cardset.shuffled) {
+				let quantity = 0;
+				cardset.cardGroups.forEach(function (cardset_id) {
+					if (cardset_id !== Router.current().params._id) {
+						quantity += Cardsets.findOne(cardset_id).quantity;
+					}
+				});
+				return quantity;
+			} else {
+				return cardset.quantity;
+			}
 		} else {
 			return Cards.find({cardset_id: Router.current().params._id}).count();
 		}
@@ -1459,11 +1471,15 @@ Template.flashcards.events({
 				turnFront();
 			}
 		}
-		if (isPresentation()) {
-			$('#cardCarousel').on('slid.bs.carousel', function () {
+		$('#cardCarousel').on('slide.bs.carousel', function () {
+			resizeFlashcards();
+		});
+		$('#cardCarousel').on('slid.bs.carousel', function () {
+			Session.set('activeCard', $(".item.active").data('id'));
+			if (isPresentation()) {
 				updateNavigation();
-			});
-		}
+			}
+		});
 	},
 	"click .cardHeader": function (evt) {
 		if (!isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
@@ -1516,10 +1532,10 @@ Template.flashcards.events({
 		}
 	},
 	"click #editCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 	},
 	"click #copyCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 		$('#copyCard').children().addClass("pressed");
 	},
 	"click #toggleFullscreen": function () {
@@ -1539,7 +1555,7 @@ Template.flashcards.events({
 		});
 	},
 	"click .selectCard": function (evt) {
-		Session.set('modifiedCard', $(evt.target).data('id'));
+		Session.set('activeCard', $(evt.target).data('id'));
 		Router.go('presentationlist', {
 			_id: Router.current().params._id
 		});
@@ -1630,7 +1646,7 @@ Template.copyCard.helpers({
 
 Template.copyCard.events({
 	"click .copyCardset": function (evt) {
-		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('modifiedCard'), function (error, result) {
+		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('activeCard'), function (error, result) {
 			if (result) {
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
@@ -1820,7 +1836,7 @@ Template.cancelEditForm.events({
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
-			Session.set('modifiedCard', undefined);
+			Session.set('activeCard', undefined);
 			Meteor.call("deleteCard", Router.current().params.card_id);
 			Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 			Router.go('cardsetdetailsid', {

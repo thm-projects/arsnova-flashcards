@@ -55,7 +55,7 @@
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}
             {{else}}
-                {{#if this.quantity}}
+                {{#if getQuantity this}}
                     {{> flashcards cardset=this}}
                 {{/if}}
             {{/if}}
@@ -67,7 +67,7 @@
         {{#unless fullscreenActive}}
             {{> cardsetPreview}}
         {{/unless}}
-        {{#if this.quantity}}
+        {{#if getQuantity this}}
             {{> flashcards cardset=this}}
         {{/if}}
     {{/if}}
@@ -173,7 +173,7 @@
         {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
             <tr>
                 <td>{{_ "cardset.info.quantity"}}:</td>
-                <td>{{this.quantity}}</td>
+                <td>{{getQuantity this}}</td>
             </tr>
         {{/unless}}
         {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
@@ -403,7 +403,7 @@
                     {{/unless}}
                     {{#unless learningActive}}
                         {{#unless isShuffledCardset this._id}}
-                            {{#if this.quantity}}
+                            {{#if getQuantity this}}
                                 <div class="btn-group btn-group-raised">
                                     <a href="#" id="exportCardsBtn" class="btn btn-raised btn-default"><i
                                             class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
@@ -425,7 +425,7 @@
 </template>
 
 <template name="cardsetSidebar">
-    {{#if this.quantity}}
+    {{#if getQuantity this}}
         <div id="sidebar" class="col-md-3">
             {{#unless learningActiveAndNotEditor}}
                 {{#if gotPresentation}}
