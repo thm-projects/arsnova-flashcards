@@ -180,5 +180,107 @@ Meteor.methods({
 		} else {
 			return importCards(data, cardset, importType);
 		}
+	},
+	importDemo: function () {
+		if (Meteor.isServer) {
+			Cardsets.remove({_id: {$regex: /^DemoCardset([0-9]{0,10})/}});
+			Cards.remove({cardset_id: {$regex: /^DemoCardset([0-9]{0,10})/}});
+			try {
+				let fs = Npm.require("fs");
+				let cardGroups = [];
+				let demoPath = process.env.PWD + '/private/demo/';
+				let doesPathExist = fs.existsSync(demoPath);
+				if (!doesPathExist) {
+					demoPath = process.env.PWD + '/programs/server/assets/app/demo/';
+					doesPathExist = fs.existsSync(demoPath);
+				}
+				if (doesPathExist) {
+					let cardsetFiles = fs.readdirSync(demoPath);
+					for (let i = 0; i < cardsetFiles.length; i++) {
+						let cardsetId = "DemoCardset" + (i + 1);
+						cardGroups.push(cardsetId);
+						let cardset = JSON.parse('[' + fs.readFileSync(demoPath + cardsetFiles[i], 'utf8') + ']');
+						if (cardset[0].name !== undefined) {
+							Cardsets.insert({
+								_id: cardsetId,
+								name: cardset[0].name,
+								description: cardset[0].description,
+								date: cardset[0].date,
+								dateUpdated: cardset[0].dateUpdated,
+								editors: [],
+								owner: ".cards",
+								visible: true,
+								ratings: false,
+								kind: "demo",
+								price: 0,
+								reviewed: false,
+								reviewer: 'undefined',
+								request: false,
+								relevance: 0,
+								raterCount: 0,
+								quantity: 0,
+								license: [],
+								userDeleted: false,
+								learningActive: false,
+								maxCards: 0,
+								daysBeforeReset: 0,
+								learningStart: 0,
+								learningEnd: 0,
+								learningInterval: [],
+								learners: 0,
+								mailNotification: true,
+								webNotification: true,
+								wordcloud: false,
+								shuffled: false,
+								cardGroups: [""],
+								cardType: cardset[0].cardType,
+								difficulty: cardset[0].difficulty,
+								originalAuthor: cardset[0].originalAuthor
+							}, {trimStrings: false});
+							cardset.shift();
+							importCards(cardset, Cardsets.findOne(cardsetId), 0);
+						}
+					}
+				}
+				Cardsets.insert({
+					_id: "DemoCardset0",
+					name: "DemoCardset",
+					description: "",
+					date: new Date(),
+					dateUpdated: new Date(),
+					editors: [],
+					owner: ".cards",
+					visible: true,
+					ratings: false,
+					kind: "demo",
+					price: 0,
+					reviewed: false,
+					reviewer: 'undefined',
+					request: false,
+					relevance: 0,
+					raterCount: 0,
+					quantity: 0,
+					license: [],
+					userDeleted: false,
+					learningActive: false,
+					maxCards: 0,
+					daysBeforeReset: 0,
+					learningStart: 0,
+					learningEnd: 0,
+					learningInterval: [],
+					learners: 0,
+					mailNotification: true,
+					webNotification: true,
+					wordcloud: false,
+					shuffled: true,
+					cardGroups: cardGroups,
+					cardType: -1,
+					difficulty: 0,
+					originalAuthor: ""
+				}, {trimStrings: false});
+			} catch (error) {
+				throw new Meteor.Error(error);
+			}
+		}
 	}
 });

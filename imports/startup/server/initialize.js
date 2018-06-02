@@ -230,7 +230,7 @@ var initTestNotificationsUser = function () {
 					"loginTokens": [
 						{
 							"when": (new Date().setFullYear(2017, 9, 1)),
-							"hashedToken": ""
+							"hashedToken": "faeb4d60dd149329ca9ff491c3dcf0b97977cf0d7e025ee056ee4fb9a994fb6ec466b412a37352f2028d1307eb4793972c094ba9c8f0f768cae3997ef0f66176"
 						}
 					]
 				}
@@ -265,6 +265,56 @@ var initTestNotificationsUser = function () {
 	];
 };
 
+var initDemoCardsetUser = function () {
+	return [
+		{
+			"_id": ".cards",
+			"createdAt": (new Date().setFullYear(2017, 9, 1)),
+			"username": ".cards",
+			"roles": [
+				"standard",
+				"university"
+			],
+			"services": {
+				"resume": {
+					"loginTokens": [
+						{
+							"when": (new Date().setFullYear(2017, 10, 1)),
+							"hashedToken": "b2e01ff62ac8564da8b76a8e69ef2b8f8c1546849626f89886ba311949f22b81fa6abcf3421fe09156662d6e20c31a5175bdb44b481540ebb29ec86cadbf8b82"
+						}
+					]
+				}
+			},
+			"status": {
+				"online": false,
+				"lastLogin": {
+					"date": (new Date().setFullYear(2017, 10, 1)),
+					"ipAddr": "127.0.0.1",
+					"userAgent": ""
+				}
+			},
+			"visible": true,
+			"email": "",
+			"birthname": ".cards",
+			"givenname": "",
+			"lvl": 0,
+			"lastOnAt": (new Date().setFullYear(2017, 9, 5)),
+			"daysInRow": 0,
+			"selectedColorTheme": "default",
+			"mailNotification": true,
+			"webNotification": false,
+			"profile": {
+				"birthname": ".cards",
+				"givenname": "",
+				"completed": true,
+				"name": ".cards",
+				"title": ""
+			},
+			"blockedtext": null
+		}
+	];
+};
+
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	let themes = initColorThemes();
@@ -272,6 +322,7 @@ Meteor.startup(function () {
 	let testNotificationsCards = initTestNotificationsCards();
 	let testNotificationsLearned = initTestNotificationsLearned();
 	let testNotificationsUser = initTestNotificationsUser();
+	let demoCardsetUser = initDemoCardsetUser();
 
 	process.env.MAIL_URL = Meteor.settings.mail.url;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
@@ -626,5 +677,9 @@ Meteor.startup(function () {
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
 		Leitner.insert(testNotificationsLearned[learned]);
 	}
+
+	Meteor.users.remove(demoCardsetUser[0]._id);
+	Meteor.users.insert(demoCardsetUser[0]);
+	Meteor.call('importDemo');
 	cronScheduler.startCron();
 });

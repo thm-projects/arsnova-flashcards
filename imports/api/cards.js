@@ -205,8 +205,13 @@ Meteor.methods({
 		// Make sure the user is logged in and is authorized
 		var cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
-		if (cardset.owner !== Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
-			throw new Meteor.Error("not-authorized");
+		if (!Roles.userIsInRole(this.userId, [
+			'admin',
+			'editor'
+		])) {
+			if (cardset.owner !== Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
 		}
 		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
 			if (subject === "") {
