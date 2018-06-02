@@ -349,12 +349,6 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
                                      aria-label="License group" style="padding-top: 20px;">
-                                    {{#if isActiveRoute regex='alldecks'}}
-                                        <label class="btn btn-demo btn-sm active">
-                                            <input type="checkbox" autocomplete="off" value="demo" checked="">
-                                            {{_ 'access-level.demo.short'}}
-                                        </label>
-                                    {{/if}}
                                     {{#if isActiveRoute regex='alldecks|create|course'}}
                                         <label class="btn btn-warning btn-sm active">
                                             <input type="checkbox" autocomplete="off" value="personal" checked="">

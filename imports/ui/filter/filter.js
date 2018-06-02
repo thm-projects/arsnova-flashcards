@@ -27,7 +27,7 @@ Session.setDefault('poolFilterModule', false);
 Session.setDefault('poolFilterDifficulty', undefined);
 Session.setDefault('poolFilterLearnphase', undefined);
 Session.setDefault('poolFilterRating');
-Session.setDefault('poolFilter', ["demo", "personal", "free", "edu", "pro"]);
+Session.setDefault('poolFilter', ["personal", "free", "edu", "pro"]);
 Session.setDefault('selectedCardset');
 Session.setDefault("itemsLimit", items_increment);
 
@@ -200,8 +200,6 @@ export function resetFilters() {
 	Session.set('poolFilterUpdatedDate', undefined);
 	if (isPoolRoute()) {
 		Session.set('poolFilter', ["free", "edu", "pro"]);
-	} else if (isAllDecksRoute()) {
-		Session.set('poolFilter', ["demo", "personal", "free", "edu", "pro"]);
 	} else {
 		Session.set('poolFilter', ["personal", "free", "edu", "pro"]);
 	}
