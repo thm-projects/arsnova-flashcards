@@ -303,6 +303,8 @@
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
   },
   "profile": {
+    "logout": "Ausloggen",
+    "activity": "Lernaktivität",
     "overview": "Lernaktivität",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",

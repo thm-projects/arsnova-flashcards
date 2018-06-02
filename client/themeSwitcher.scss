@@ -1742,5 +1742,26 @@ $themes: (
         stroke: $presentation_clock_second_arm !important;
       }
     }
+    #profile-drop {
+      background-color: $thm_gray;
+      opacity: 0.9;
+      overflow: hidden;
+      text-align: left;
+      position: absolute;
+      min-width: auto;
+      a {
+        text-decoration: none;
+      }
+      td .fa, .glyphicon {
+        margin: 7px;
+      }
+      tr:hover {
+        background-color: $thm_green;
+      }
+      .logout-hover:hover {
+        background-color: red;
+      }
+    }
+
   }
 }

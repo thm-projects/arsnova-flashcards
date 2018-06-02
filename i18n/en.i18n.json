@@ -314,6 +314,8 @@
     "cancelEditCardTitle": "Exit editing mode"
   },
   "profile": {
+    "logout": "Logout",
+    "activity": "Activity",
     "overview": "Learning Progress",
     "billing": "Billing",
     "membership": "Membership",
