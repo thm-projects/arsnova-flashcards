@@ -363,9 +363,10 @@
                     {{#each getCards}}
                         <div class="item {{#if cardActive}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                <div class="cardHeader {{#if isHintPreview}}{{#if gotAlternativeHintStyle}}box-pink{{else}}box-white{{/if}}{{else}}{{#if
+                                <div class="cardHeader {{#if isHintPreview}}{{#if
+                                        gotAlternativeHintStyle}}box-pink{{else}}box-white{{/if}}{{else}}{{#if
                                         isLecturePreview}}box-post-it{{else}}{{getCardBackground difficulty cardType
-                                                                                              backgroundStyle}}{{/if}}{{/if}}-header"
+                                                                                                 backgroundStyle}}{{/if}}{{/if}}-header"
                                      data-cardtype="{{cardType}}">
                                     {{#if canCopyCard this.cardset_id}}
                                         {{#if isCardset}}
@@ -469,9 +470,20 @@
                                     </div>
                                     {{#if isPresentation}}
                                         <i class="card-button fa fa-list selectCard" data-id="{{this._id}}"></i>
-                                        <span class="glyphicon glyphicon-log-out card-button endPresentation"
-                                              data-type="cardNavigation"
-                                              title="{{_ "card.tooltip.endPresentation"}}"></span>
+                                        {{#if isDemo}}
+                                            <span id="toggleFullscreen"
+                                                  class="fullscreen"
+                                                  data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
+                                                <span class="glyphicon {{#if
+                                                        isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button {{#if
+                                                        fullscreenActive}}pressed{{/if}}"
+                                                      data-type="cardNavigation"></span>
+                                    </span>
+                                        {{else}}
+                                            <span class="glyphicon glyphicon-log-out card-button endPresentation"
+                                                  data-type="cardNavigation"
+                                                  title="{{_ "card.tooltip.endPresentation"}}"></span>
+                                        {{/if}}
                                     {{else}}
                                         {{#unless gotOneColumn}}
                                             {{#if gotBack}}
@@ -492,7 +504,8 @@
                                         <span id="toggleFullscreen"
                                               class="fullscreen"
                                               data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
-                                                <span class="glyphicon {{#if isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button {{#if
+                                                <span class="glyphicon {{#if
+                                                        isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button {{#if
                                                         fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
                                     </span>

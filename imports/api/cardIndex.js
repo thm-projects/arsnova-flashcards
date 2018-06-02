@@ -31,7 +31,12 @@ class CardIndex {
 		let cardIndex = [];
 		let sortQuery;
 		let indexCards = [];
-		let cardset = Cardsets.findOne(Router.current().params._id);
+		let cardset;
+		if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist") {
+			cardset = Cardsets.findOne("DemoCardset0");
+		} else {
+			cardset = Cardsets.findOne(Router.current().params._id);
+		}
 		if (CardType.gotSidesSwapped(cardset.cardType)) {
 			sortQuery = {subject: 1, back: 1};
 		} else {

@@ -215,17 +215,26 @@ Template.cardsetPreview.onCreated(function () {
  */
 Template.cardsetList.helpers({
 	isShuffledCardset: function () {
-		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+		if (Router.current().route.getName() === "demolist") {
+			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
+		} else {
+			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+		}
 	},
 	cardsetList: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
+		let isDemo = (Router.current().route.getName() === "demolist");
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || isDemo) {
+			let cardsetId = Router.current().params._id;
+			if (isDemo) {
+				cardsetId = "DemoCardset0";
+			}
 			if (this.shuffled) {
 				let cardsetFilter = [];
 				let sortCardsets = Cardsets.find({_id: {$in: this.cardGroups}}, {
 					sort: {name: 1}, fields: {_id: 1, name: 1, kind: 1}
 				}).fetch();
 				sortCardsets.forEach(function (cardset) {
-					if (cardset._id !== Router.current().params._id) {
+					if (cardset._id !== cardsetId) {
 						cardsetFilter.push(cardset);
 					}
 				});
@@ -256,7 +265,7 @@ Template.cardsetList.helpers({
 			.replace(/[\][\$=~`#|*_+-]/g, " ");
 	},
 	gotCards: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			if (this.shuffled) {
 				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
 			} else {
@@ -270,7 +279,7 @@ Template.cardsetList.helpers({
 		return CardType.gotSidesSwapped(this.cardType);
 	},
 	cardSubject: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			return _.uniq(Cards.find({
 				cardset_id: this._id
 			}, {
@@ -300,7 +309,7 @@ Template.cardsetList.helpers({
 		} else {
 			sortQuery = {front: 1};
 		}
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			return Cards.find({
 				cardset_id: this.cardset_id,
 				subject: this.subject
@@ -348,12 +357,14 @@ Template.cardsetList.helpers({
 
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			Session.set('activeCard', $(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
 				Router.go('presentation', {
 					_id: Router.current().params._id
 				});
+			} else if (Router.current().route.getName() === "demolist") {
+				Router.go('demo');
 			} else {
 				Router.go('cardsetcard', {
 					_id: Router.current().params._id,

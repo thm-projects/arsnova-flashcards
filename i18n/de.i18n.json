@@ -50,6 +50,8 @@
   },
   "contact": {
     "about": ".cards",
+    "demo": "Demo",
+    "demoTitle": "Demo Kartei",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -489,7 +491,8 @@
     "create": "Karten präsentieren",
     "start": "Starten",
     "list": {
-      "back":"Zurück zur Präsentation"
+      "back":"Zurück zur Präsentation",
+      "backDemo": "Zurück zur Demo Kartei"
     }
   },
   "pool": {

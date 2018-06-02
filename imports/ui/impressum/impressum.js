@@ -1,7 +1,11 @@
 //------------------------ IMPORTS
+import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
+
+Meteor.subscribe("cardsets");
+Meteor.subscribe("cards");
 
 /*
  * ############################################################################
