@@ -125,7 +125,9 @@ class CardIndex {
 				nextCardIndex = activeCardIndex + 1;
 			}
 			cardIndexFilter.push(cardIndex[activeCardIndex]);
-			cardIndexFilter.push(cardIndex[nextCardIndex]);
+			if (cardIndex.length > 1) {
+				cardIndexFilter.push(cardIndex[nextCardIndex]);
+			}
 			if (!isLearningMode) {
 				if (activeCardIndex === 0) {
 					previousCardIndex = cardIndex.length - 1;
