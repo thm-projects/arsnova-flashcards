@@ -85,17 +85,6 @@ if (Meteor.isServer) {
 					});
 				}
 			}
-		} else {
-			return Cards.find({
-				cardset_id: {
-					$in: Cardsets.find(
-						{
-							kind: {$in: ['demo']}
-						}).map(function (cardset) {
-						return cardset._id;
-					})
-				}
-			});
 		}
 	});
 
