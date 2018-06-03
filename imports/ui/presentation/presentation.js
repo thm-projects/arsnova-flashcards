@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
 import {updateNavigation} from "../card/card";
-import * as CardIndex from "../../api/cardIndex";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");

@@ -16,7 +16,6 @@ import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 import CardType from "../../api/cardTypes";
 import TargetAudience from "../../api/targetAudience";
-import * as CardIndex from "../../api/cardIndex";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");

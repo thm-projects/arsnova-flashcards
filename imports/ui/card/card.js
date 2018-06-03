@@ -480,27 +480,22 @@ function isCardset() {
 
 function getCardsetCards() {
 	let query = "";
-	let sortQuery = "";
 	if (isDemo()) {
 		Session.set('activeCardset', Cardsets.findOne("DemoCardset0"));
 	}
-	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
-		sortQuery = {subject: 1, back: 1};
-	} else {
-		sortQuery = {subject: 1, front: 1};
-	}
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
-			_id: {$in: CardIndex.getCardIndexFilter()},
+			_id: {$in: cardIndexFilter},
 			cardset_id: {$in: Session.get('activeCardset').cardGroups}
-		}, {sort: sortQuery});
+		}).fetch();
 	} else {
 		query = Cards.find({
-			_id: {$in: CardIndex.getCardIndexFilter()},
+			_id: {$in: cardIndexFilter},
 			cardset_id: Router.current().params._id
-		}, {sort: sortQuery});
+		}).fetch();
 	}
-	return query;
+	return CardIndex.sortQueryResult(cardIndexFilter, query);
 }
 
 /**
@@ -509,12 +504,14 @@ function getCardsetCards() {
  */
 function getLeitnerCards() {
 	let cards = [];
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	let learnedCards = Leitner.find({
-		card_id: {$in: CardIndex.getCardIndexFilter()},
+		card_id: {$in: cardIndexFilter},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
-	});
+	}, {fields: {card_id: 1}}).fetch();
+	learnedCards = CardIndex.sortQueryResult(cardIndexFilter, learnedCards, true);
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
 			_id: learnedCard.card_id
@@ -561,15 +558,17 @@ function getEditModeCard() {
 function getMemoCards() {
 	let cards = [];
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	actualDate.setHours(0, 0, 0, 0);
 	let learnedCards = Wozniak.find({
-		card_id: {$in: CardIndex.getCardIndexFilter()},
+		card_id: {$in: cardIndexFilter},
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
 			$lte: actualDate
 		}
 	});
+	learnedCards = CardIndex.sortQueryResult(cardIndexFilter, learnedCards, true);
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
 			_id: learnedCard.card_id
