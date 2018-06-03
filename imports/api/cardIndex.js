@@ -107,6 +107,7 @@ class CardIndex {
 	}
 
 	static getCardIndexFilter () {
+		this.initializeIndex();
 		let isLearningMode = (Router.current().route.getName() === "box" || Router.current().route.getName() === "memo");
 		let cardIndexFilter = [];
 		if (Session.get('activeCard') !== undefined) {

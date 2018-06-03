@@ -1334,7 +1334,6 @@ Template.flashcards.helpers({
 		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
-		CardIndex.initializeIndex();
 		if (isBox()) {
 			return getLeitnerCards();
 		}

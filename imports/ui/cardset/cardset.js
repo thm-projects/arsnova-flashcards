@@ -99,7 +99,6 @@ Template.cardset.onCreated(function () {
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
-	CardIndex.initializeIndex();
 });
 
 Template.cardset.rendered = function () {
