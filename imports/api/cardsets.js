@@ -15,9 +15,9 @@ if (Meteor.isServer) {
 	Meteor.publish("cardsets", function () {
 		if (this.userId) {
 			if (Roles.userIsInRole(this.userId, [
-					'admin',
-					'editor'
-				])) {
+				'admin',
+				'editor'
+			])) {
 				return Cardsets.find({});
 			} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
 				return Cardsets.find(
@@ -40,10 +40,7 @@ if (Meteor.isServer) {
 		} else {
 			return Cardsets.find(
 				{
-					$or: [
-						{kind: {$in: ['demo']}},
-						{wordcloud: true}
-					]
+					wordcloud: true
 				},
 				{
 					fields:
@@ -300,9 +297,9 @@ Meteor.methods({
 		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -331,9 +328,9 @@ Meteor.methods({
 		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -491,9 +488,9 @@ Meteor.methods({
 		let cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -548,9 +545,9 @@ Meteor.methods({
 		check(removedCardsets, [String]);
 		let cardset = Cardsets.findOne(id);
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -643,9 +640,9 @@ Meteor.methods({
 		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -726,9 +723,9 @@ Meteor.methods({
 		var cardset = Cardsets.findOne(id);
 
 		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+			'admin',
+			'editor'
+		])) {
 			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
