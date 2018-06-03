@@ -31,18 +31,23 @@ class CardIndex {
 		let cardIndex = [];
 		let sortQuery;
 		let indexCards = [];
-		let cardset = Cardsets.findOne(Router.current().params._id);
-		if (CardType.gotSidesSwapped(cardset.cardType)) {
-			sortQuery = {subject: 1, back: 1};
+		let cardset;
+		if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist") {
+			cardset = Cardsets.findOne("DemoCardset0");
 		} else {
-			sortQuery = {subject: 1, front: 1};
+			cardset = Cardsets.findOne(Router.current().params._id);
 		}
 		if (cardset.shuffled) {
 			let cardGroups = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
 				sort: {name: 1},
-				fields: {_id: 1}
+				fields: {_id: 1, cardType: 1}
 			});
 			cardGroups.forEach(function (cardGroup) {
+				if (CardType.gotSidesSwapped(cardGroup.cardType)) {
+					sortQuery = {subject: 1, back: 1};
+				} else {
+					sortQuery = {subject: 1, front: 1};
+				}
 				indexCards = Cards.find({cardset_id: cardGroup._id}, {
 					sort: sortQuery, fields: {_id: 1}
 				});
@@ -51,7 +56,12 @@ class CardIndex {
 				});
 			});
 		} else {
-			indexCards = Cards.find({cardset_id: Router.current().params._id}, {sort: sortQuery, fields: {_id: 1}});
+			if (CardType.gotSidesSwapped(cardset.cardType)) {
+				sortQuery = {subject: 1, back: 1};
+			} else {
+				sortQuery = {subject: 1, front: 1};
+			}
+			indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
 			indexCards.forEach(function (indexCard) {
 				cardIndex.push(indexCard._id);
 			});
@@ -102,6 +112,7 @@ class CardIndex {
 	}
 
 	static getCardIndexFilter () {
+		this.initializeIndex();
 		let isLearningMode = (Router.current().route.getName() === "box" || Router.current().route.getName() === "memo");
 		let cardIndexFilter = [];
 		if (Session.get('activeCard') !== undefined) {
@@ -113,7 +124,6 @@ class CardIndex {
 			} else {
 				nextCardIndex = activeCardIndex + 1;
 			}
-
 			cardIndexFilter.push(cardIndex[activeCardIndex]);
 			cardIndexFilter.push(cardIndex[nextCardIndex]);
 			if (!isLearningMode) {
@@ -132,6 +142,24 @@ class CardIndex {
 			}
 		}
 		return cardIndexFilter;
+	}
+
+	static sortQueryResult (cardIndexFilter, query, isLeitnerOrWozniak = false) {
+		let result = [];
+		for (let i = 0; i < cardIndexFilter.length; i++) {
+			for (let q = 0; q < query.length; q++) {
+				if (isLeitnerOrWozniak) {
+					if (cardIndexFilter[i] === query[q].card_id) {
+						result.push(query[q]);
+					}
+				} else {
+					if (cardIndexFilter[i] === query[q]._id) {
+						result.push(query[q]);
+					}
+				}
+			}
+		}
+		return result;
 	}
 }
 

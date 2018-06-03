@@ -9,6 +9,7 @@ import "./welcome.html";
 import {Session} from "meteor/session";
 
 Meteor.subscribe("cardsets");
+Meteor.subscribe("cards");
 
 function setActiveLanguage() {
 	let language = getUserLanguage();

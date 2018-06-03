@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
 import {updateNavigation} from "../card/card";
-import * as CardIndex from "../../api/cardIndex";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -32,8 +31,9 @@ function updatePresentationClock() {
  */
 
 Template.presentationView.onCreated(function () {
-	Session.set('activeCard', undefined);
-	CardIndex.initializeIndex();
+	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
+		Session.set('activeCard', undefined);
+	}
 });
 
 Template.presentationView.onRendered(function () {
@@ -41,14 +41,20 @@ Template.presentationView.onRendered(function () {
 });
 
 Template.presentationView.onDestroyed(function () {
-	Session.set('activeCard', undefined);
+	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
+		Session.set('activeCard', undefined);
+	}
 });
 
 Template.presentationView.events({
 	"click #backToPresentation": function () {
-		Router.go('presentation', {
-			_id: Router.current().params._id
-		});
+		if (Router.current().route.getName() === "demolist") {
+			Router.go('demo');
+		} else {
+			Router.go('presentation', {
+				_id: Router.current().params._id
+			});
+		}
 	}
 });
 

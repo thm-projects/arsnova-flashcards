@@ -66,6 +66,19 @@ Router.route('impressum', {
 	template: 'contact'
 });
 
+Router.route('demo', {
+	name: 'demo',
+	template: 'contact'
+});
+
+Router.route('demolist', {
+	name: 'demolist',
+	template: 'contact',
+	data: function () {
+		return Cardsets.findOne({_id: "DemoCardset0"});
+	}
+});
+
 Router.route('agb', {
 	name: 'agb',
 	template: 'contact'
@@ -381,6 +394,8 @@ Router.onBeforeAction(isSignedIn, {
 		'faq',
 		'help',
 		'impressum',
+		'demo',
+		'demolist',
 		'agb',
 		'datenschutz'
 	]

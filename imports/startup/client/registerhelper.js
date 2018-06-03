@@ -84,6 +84,8 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 				return TAPi18n.__('access-level.pro.short');
 			case "personal":
 				return TAPi18n.__('access-level.private.short');
+			case "demo":
+				return TAPi18n.__('access-level.demo.short');
 			default:
 				return 'Undefined!';
 		}
@@ -97,6 +99,8 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 				return TAPi18n.__('access-level.pro.long');
 			case "personal":
 				return TAPi18n.__('access-level.private.long');
+			case "demo":
+				return TAPi18n.__('access-level.demo.long');
 			default:
 				return 'Undefined!';
 		}
@@ -120,6 +124,8 @@ Template.registerHelper("getKind", function (kind, displayType = 0) {
 				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.short') + '</span>';
 			case "personal":
 				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.short') + '</span>';
+			case "demo":
+				return '<span class="label label-demo" data-id="demo">' + TAPi18n.__('access-level.demo.short') + '</span>';
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}
@@ -133,6 +139,8 @@ Template.registerHelper("getKind", function (kind, displayType = 0) {
 				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.long') + '</span>';
 			case "personal":
 				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.long') + '</span>';
+			case "demo":
+				return '<span class="label label-demo" data-id="demo">' + TAPi18n.__('access-level.demo.long') + '</span>';
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}
@@ -377,6 +385,9 @@ Template.registerHelper("getCourses", function () {
 });
 
 Template.registerHelper("hasCardsetPermission", function (_id) {
+	if (Router.current().route.getName() === "demo") {
+		return true;
+	}
 	let cardset = Cardsets.findOne({_id});
 	if (cardset === undefined) {
 		return false;

@@ -34,6 +34,10 @@ Session.setDefault("itemsLimit", items_increment);
 let filterQuery = {};
 Session.setDefault('filterQuery', filterQuery);
 
+function isAllDecksRoute() {
+	return Router.current().route.getName() === "alldecks";
+}
+
 function isPoolRoute() {
 	return Router.current().route.getName() === "pool";
 }

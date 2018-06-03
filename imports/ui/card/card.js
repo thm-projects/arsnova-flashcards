@@ -34,12 +34,16 @@ export function isNewCard() {
 	return Router.current().route.getName() === "newCard";
 }
 
+function isDemo() {
+	return Router.current().route.getName() === "demo";
+}
+
 /**
  * Function checks if route is a presentation view
  * @return {Boolean} Return true, when route is a presentation view.
  */
 function isPresentation() {
-	return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist");
+	return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist" || isDemo());
 }
 
 function isEditModeOrPresentation() {
@@ -337,6 +341,11 @@ export function resizeFlashcards() {
 			newFlashcardHeader = 0;
 		}
 		let newFlashcardWidth = $('#cardCarousel').width();
+		if (newFlashcardWidth >= 900) {
+			$(".cardContent").addClass("fullscreenContent");
+		} else {
+			$(".cardContent").removeClass("fullscreenContent");
+		}
 		newFlashcardBodyHeight = (newFlashcardWidth / Math.sqrt(2));
 		$('.cardContent').css('height', newFlashcardBodyHeight - newFlashcardHeader);
 		if ($(window).width() >= 1200) {
@@ -372,7 +381,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 	if (forceOff && (!isBox() && !isMemo())) {
 		Session.set("workloadFullscreenMode", false);
 	}
-	if ((Session.get('fullscreen') || forceOff) && !isPresentation()) {
+	if ((Session.get('fullscreen') || forceOff) && (isDemo() || !isPresentation())) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "70px");
 		$("#answerOptions").css("margin-top", "0");
@@ -381,7 +390,6 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#markdeepNavigation").css("display", '');
 		$("#markdeepEditorContent").css("display", '');
 		$(".fullscreen-button").removeClass("pressed");
-		$(".cardContent").removeClass("fullscreenContent");
 		let card_id;
 		if (Router.current().params.card_id) {
 			card_id = Router.current().params.card_id;
@@ -425,7 +433,6 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		$("#theme-wrapper").css("margin-top", "20px");
 		$("#answerOptions").css("margin-top", "-50px");
 		$(".editorElement").css("display", "none");
-		$(".cardContent").addClass("fullscreenContent");
 		if (isEditor) {
 			$("#preview").css("display", "none");
 			editorFullScreenActive = true;
@@ -473,21 +480,22 @@ function isCardset() {
 
 function getCardsetCards() {
 	let query = "";
-	let sortQuery = "";
-	if (CardType.gotSidesSwapped(Session.get('activeCardset').cardType)) {
-		sortQuery = {subject: 1, back: 1};
-	} else {
-		sortQuery = {subject: 1, front: 1};
+	if (isDemo()) {
+		Session.set('activeCardset', Cardsets.findOne("DemoCardset0"));
 	}
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	if (Session.get('activeCardset').shuffled) {
 		query = Cards.find({
-			_id: {$in: CardIndex.getCardIndexFilter()},
+			_id: {$in: cardIndexFilter},
 			cardset_id: {$in: Session.get('activeCardset').cardGroups}
-		}, {sort: sortQuery});
+		}).fetch();
 	} else {
-		query = Cards.find({_id: {$in: CardIndex.getCardIndexFilter()}, cardset_id: Router.current().params._id}, {sort: sortQuery});
+		query = Cards.find({
+			_id: {$in: cardIndexFilter},
+			cardset_id: Router.current().params._id
+		}).fetch();
 	}
-	return query;
+	return CardIndex.sortQueryResult(cardIndexFilter, query);
 }
 
 /**
@@ -496,12 +504,14 @@ function getCardsetCards() {
  */
 function getLeitnerCards() {
 	let cards = [];
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	let learnedCards = Leitner.find({
-		card_id: {$in: CardIndex.getCardIndexFilter()},
+		card_id: {$in: cardIndexFilter},
 		cardset_id: Session.get('activeCardset')._id,
 		user_id: Meteor.userId(),
 		active: true
-	});
+	}, {fields: {card_id: 1}}).fetch();
+	learnedCards = CardIndex.sortQueryResult(cardIndexFilter, learnedCards, true);
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
 			_id: learnedCard.card_id
@@ -548,15 +558,17 @@ function getEditModeCard() {
 function getMemoCards() {
 	let cards = [];
 	let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	actualDate.setHours(0, 0, 0, 0);
 	let learnedCards = Wozniak.find({
-		card_id: {$in: CardIndex.getCardIndexFilter()},
+		card_id: {$in: cardIndexFilter},
 		cardset_id: Router.current().params._id,
 		user_id: Meteor.userId(),
 		nextDate: {
 			$lte: actualDate
 		}
 	});
+	learnedCards = CardIndex.sortQueryResult(cardIndexFilter, learnedCards, true);
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
 			_id: learnedCard.card_id
@@ -1289,6 +1301,9 @@ Template.flashcards.helpers({
 	isPresentation: function () {
 		return isPresentation();
 	},
+	isDemo: function () {
+		return isDemo();
+	},
 	isMemo: function () {
 		return isMemo();
 	},
@@ -1318,11 +1333,10 @@ Template.flashcards.helpers({
 		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
-		CardIndex.initializeIndex();
 		if (isBox()) {
 			return getLeitnerCards();
 		}
-		if (isCardset() || isPresentation()) {
+		if (isCardset() || isPresentation() || isDemo()) {
 			return getCardsetCards();
 		}
 		if (isMemo()) {
@@ -1358,7 +1372,12 @@ Template.flashcards.helpers({
 	},
 	getCardsetCount: function (getQuantityValue) {
 		if (getQuantityValue) {
-			let cardset = Cardsets.findOne(Router.current().params._id);
+			let cardset;
+			if (isDemo()) {
+				cardset = Cardsets.findOne("DemoCardset0");
+			} else {
+				cardset = Cardsets.findOne(Router.current().params._id);
+			}
 			if (cardset.shuffled) {
 				let quantity = 0;
 				cardset.cardGroups.forEach(function (cardset_id) {
@@ -1371,7 +1390,11 @@ Template.flashcards.helpers({
 				return cardset.quantity;
 			}
 		} else {
-			return Cards.find({cardset_id: Router.current().params._id}).count();
+			if (isDemo()) {
+				return Cardsets.findOne("DemoCardset0").count();
+			} else {
+				return Cards.find({cardset_id: Router.current().params._id}).count();
+			}
 		}
 	},
 	getCardsetName: function () {
@@ -1449,7 +1472,11 @@ Template.flashcards.helpers({
 		getPlaceholder(mode);
 	},
 	isShuffledCardset: function () {
-		return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+		if (isDemo()) {
+			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
+		} else {
+			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+		}
 	},
 	isWorkloadFullscreen: function () {
 		return Session.get("workloadFullscreenMode");
@@ -1556,9 +1583,13 @@ Template.flashcards.events({
 	},
 	"click .selectCard": function (evt) {
 		Session.set('activeCard', $(evt.target).data('id'));
-		Router.go('presentationlist', {
-			_id: Router.current().params._id
-		});
+		if (isDemo()) {
+			Router.go('demolist');
+		} else {
+			Router.go('presentationlist', {
+				_id: Router.current().params._id
+			});
+		}
 	}
 });
 

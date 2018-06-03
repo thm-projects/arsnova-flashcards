@@ -38,7 +38,13 @@ if (Meteor.isServer) {
 					});
 			}
 		} else {
-			return Cardsets.find({wordcloud: true},
+			return Cardsets.find(
+				{
+					$or: [
+						{kind: {$in: ['demo']}},
+						{wordcloud: true}
+					]
+				},
 				{
 					fields:
 						{
@@ -54,7 +60,8 @@ if (Meteor.isServer) {
 							dateUpdated: 1,
 							wordcloud: 1,
 							cardGroups: 1,
-							license: 1
+							license: 1,
+							shuffled: 1
 						}
 				});
 		}

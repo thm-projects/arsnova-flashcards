@@ -1,29 +1,48 @@
 <template name="contact">
-    <div id="contact" class="col-md-8 col-md-offset-2">
-        {{> contactNavigation}}
-        <br>
-        {{#if isActiveRoute 'about'}}
-            {{> about}}
-        {{/if}}
-        {{#if isActiveRoute 'learning'}}
-            {{> learning}}
-        {{/if}}
-        {{#if isActiveRoute 'help'}}
-            {{> help}}
-        {{/if}}
-        {{#if isActiveRoute 'faq'}}
-            {{> faq}}
-        {{/if}}
-        {{#if isActiveRoute 'impressum'}}
-            {{> impressum}}
-        {{/if}}
-        {{#if isActiveRoute 'agb'}}
-            {{> agb}}
-        {{/if}}
-        {{#if isActiveRoute 'datenschutz'}}
-            {{> datenschutz}}
-        {{/if}}
-    </div>
+    {{#unless fullscreenActive}}
+        <div id="contact" class="col-md-8 col-md-offset-2">
+            <div class="row">
+                {{> contactNavigation}}
+            </div>
+            <br>
+            <div class="row">
+                {{#if isActiveRoute 'about'}}
+                    {{> about}}
+                {{/if}}
+                {{#if isActiveRoute 'demo'}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading info-tab">
+                            <h1>{{_ "contact.demoTitle"}}</h1>
+                        </div>
+                    </div>
+                    {{> presentationView}}
+                {{/if}}
+                {{#if isActiveRoute 'demolist'}}
+                    {{> presentationView}}
+                {{/if}}
+                {{#if isActiveRoute 'learning'}}
+                    {{> learning}}
+                {{/if}}
+                {{#if isActiveRoute 'help'}}
+                    {{> help}}
+                {{/if}}
+                {{#if isActiveRoute 'faq'}}
+                    {{> faq}}
+                {{/if}}
+                {{#if isActiveRoute 'impressum'}}
+                    {{> impressum}}
+                {{/if}}
+                {{#if isActiveRoute 'agb'}}
+                    {{> agb}}
+                {{/if}}
+                {{#if isActiveRoute 'datenschutz'}}
+                    {{> datenschutz}}
+                {{/if}}
+            </div>
+        </div>
+    {{else}}
+        {{> presentationView}}
+    {{/unless}}
 </template>
 
 <template name="contactNavigation">
@@ -42,6 +61,12 @@
                href="{{pathFor
                        route='about'}}">{{_
                     "contact.about"}}</a></li>
+        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
+                                                                                                   'demo'}}inactive{{/unless}}{{/if}}">
+            <a id="demo"
+               href="{{pathFor
+                       route='demo'}}">{{_
+                    "contact.demo"}}</a></li>
         <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
                                                                                                    'learning'}}inactive{{/unless}}{{/if}}">
             <a id="learning"
@@ -90,36 +115,46 @@
         </div>
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
-                <a href="/img/background/zettelkasten_wikipedia_original.jpg" data-lightbox="img-1" data-title="Zettelkasten">
+                <a href="/img/background/zettelkasten_wikipedia_original.jpg" data-lightbox="img-1"
+                   data-title="Zettelkasten">
                     <img src="/img/background/zettelkasten_wikipedia_original.jpg"
                          alt="Zettelkasten" class="img-responsive center-block"/>
                 </a>
                 <br/>
                 <p>
                     Das klassische analoge Studierzimmer (Foto zum Wikipedia-Begriff
-                    <a href="https://de.wikipedia.org/wiki/Zettelkasten" target="_blank">Zettelkasten</a>, Kai Schreiber, CC BY-SA 2.0)
+                    <a href="https://de.wikipedia.org/wiki/Zettelkasten" target="_blank">Zettelkasten</a>, Kai
+                    Schreiber, CC BY-SA 2.0)
                     kann durchaus eine kreative persönliche Lernumgebung sein.
-                    Das auf tausenden Zetteln in dutzenden Schuhkartons gesammelte Wissen ist zumindest der Mieterin des Zimmers
+                    Das auf tausenden Zetteln in dutzenden Schuhkartons gesammelte Wissen ist zumindest der Mieterin des
+                    Zimmers
                     (Schuhgröße 4&frac12; steht auf einigen Kartons) zugänglich.
-                    Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers
-                    und die Gesamtschau in den Kartons auf dem Boden und im Regal. Stimmt, aber dafür haben sie aber auch
+                    Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik
+                    des Papiers
+                    und die Gesamtschau in den Kartons auf dem Boden und im Regal. Stimmt, aber dafür haben sie aber
+                    auch
                     unbestreitbare
                     Vorteile:
                 </p>
                 <ul>
                     <li>
                         Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks
-                        wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen
-                        bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages, in deinem Job,
+                        wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst
+                        ausgezogen
+                        bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages, in deinem
+                        Job,
                         in einer Teambesprechung, brauchst du sicherlich das Wissen aus deinem Studium wieder.
                     </li>
                     <li>
-                        Die Karten der Plattform .cards sind nicht nur digital, sondern auch multimedial: Du kannst Bilder, Podcasts und Videos
+                        Die Karten der Plattform .cards sind nicht nur digital, sondern auch multimedial: Du kannst
+                        Bilder, Podcasts und Videos
                         einfügen. Du studierst ein MINT-Fach?
-                        Mit LaTeX kannst du die kompliziertesten mathematischen Formeln und mit farbigem Highlighting Programmiercode sauber auf Karten erfassen.
+                        Mit LaTeX kannst du die kompliziertesten mathematischen Formeln und mit farbigem Highlighting
+                        Programmiercode sauber auf Karten erfassen.
                     </li>
                     <li>
-                        Sie werden dir zum dauerhaften Memorieren an kognitionswissenschaftlich berechneten Tagen wieder vorgelegt.
+                        Sie werden dir zum dauerhaften Memorieren an kognitionswissenschaftlich berechneten Tagen wieder
+                        vorgelegt.
                         Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen.
                     </li>
                     <li>
@@ -148,15 +183,18 @@
                     Denn .cards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das
                     Mitschreiben
                     in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
-                    .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als ein virtueller Ort,
+                    .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als ein virtueller
+                    Ort,
                     wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeiten der Mitschrift, Lernkarten
                     erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
-                    — im Gegensatz zu Lernplattformen wie Moodle oder ILIAS, die meistens nur als Verteilungsplattformen für
+                    — im Gegensatz zu Lernplattformen wie Moodle oder ILIAS, die meistens nur als Verteilungsplattformen
+                    für
                     Skripte dienen.
                 </p>
-            <h2>Das Konzept</h2>
+                <h2>Das Konzept</h2>
                 <p>
-                    Das didaktische Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv zu
+                    Das didaktische Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv
+                    zu
                     bewerten,
                     um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über
                     den
@@ -194,7 +232,8 @@
                         href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
                     question-and-answer apps for quizzing in class and self-quizzing at home.
                 </p>
-                <a href="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg" data-lightbox="img-1" data-title="forgetting curve">
+                <a href="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
+                   data-lightbox="img-1" data-title="forgetting curve">
                     <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
                          alt="forgetting curve" class="img-responsive center-block"/>
                 </a>
@@ -288,7 +327,8 @@
                         href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
                     question-and-answer apps for quizzing in class and self-quizzing at home.
                 </p>
-                <a href="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg" data-lightbox="img-1" data-title="forgetting curve">
+                <a href="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
+                   data-lightbox="img-1" data-title="forgetting curve">
                     <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
                          alt="forgetting curve" class="img-responsive center-block"/>
                 </a>
@@ -333,8 +373,10 @@
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
                 <p>
-                    Auf .cards kannst du die Karten deiner Karteien (Mitschriften, Lernkarteien, Glossare, Anweisungen aus
-                    Programmiersprachen, Prüfungsfragen, Zitate, Abstracts, Exzerpte und Vokabeln) auf verschiedene Art und
+                    Auf .cards kannst du die Karten deiner Karteien (Mitschriften, Lernkarteien, Glossare, Anweisungen
+                    aus
+                    Programmiersprachen, Prüfungsfragen, Zitate, Abstracts, Exzerpte und Vokabeln) auf verschiedene Art
+                    und
                     Weise lernen:
                 </p>
                 <ul>
@@ -372,7 +414,7 @@
                             frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
                     </iframe>
                 </div>
-                <br />
+                <br/>
                 <p>
                     Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger
                     werdenden
@@ -386,7 +428,8 @@
                     Karten im letzten Fach gelten als dauerhaft gelernt. Die maximal tägliche Anzahl zu lernender Karten
                     wird von der Lehrperson vorgegeben.
                 </p>
-                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png" data-lightbox="img-1" data-title="Leitner-Lernmethode">
+                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                   data-lightbox="img-1" data-title="Leitner-Lernmethode">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
                          alt="Leitner-Lernmethode" class="img-responsive center-block"/>
                 </a>
@@ -468,7 +511,8 @@
                     to learn
                     is given by the teacher.
                 </p>
-                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png" data-lightbox="img-1" data-title="Leitner-Lernmethode">
+                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
+                   data-lightbox="img-1" data-title="Leitner-Lernmethode">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Leitner_system_alternative_no_text.svg/1000px-Leitner_system_alternative_no_text.svg.png"
                          alt="Leitner-Lernmethode" class="img-responsive center-block"/>
                 </a>
@@ -529,13 +573,16 @@
                         Karteien.
                         THM-Karteien tragen das grüne Label "THM". Wer sich über ein Konto eines sozialen
                         Netzwerks anmeldet,
-                        hat nur Zugang zu Karteien mit dem blauen Label "Frei", es sei denn, er oder sie hat ein Abonnement
+                        hat nur Zugang zu Karteien mit dem blauen Label "Frei", es sei denn, er oder sie hat ein
+                        Abonnement
                         oder zahlt einzeln für Edu- oder Pro-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
                     </li>
-                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine HTML5-App, die WebSocket-Technologie im
+                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine HTML5-App, die WebSocket-Technologie
+                        im
                         Online-Betrieb
                         verwendet. Ohne WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem
-                        Browser verwaltet. Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz hast.
+                        Browser verwaltet. Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz
+                        hast.
                     </li>
                 </ul>
 
@@ -771,7 +818,8 @@
                             Why not learn with paper index cards?
                         </p>
                         <br/>
-                        <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg" data-lightbox="img-1" data-title="Lernkartei analog">
+                        <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
+                           data-lightbox="img-1" data-title="Lernkartei analog">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lernkartei_Vokabelbox.jpg/1024px-Lernkartei_Vokabelbox.jpg"
                                  alt="Lernkartei analog" class="img-responsive center-block"/>
                         </a>
@@ -1646,7 +1694,8 @@
                 <h2>Grundsatz</h2>
                 <p>
                     Ihre personenbezogenen Daten werden vertraulich behandelt. Sämtliche Handlungen sind an die
-                    gesetzlichen Grundlagen des Hessischen Datenschutzgesetzes (HDSG), des Telemediengesetzes (TMG), der Datenschutz-Grundverordnung der EU (EU-DSGVO) sowie
+                    gesetzlichen Grundlagen des Hessischen Datenschutzgesetzes (HDSG), des Telemediengesetzes (TMG), der
+                    Datenschutz-Grundverordnung der EU (EU-DSGVO) sowie
                     dieser Datenschutzerklärung gebunden. Dies wird von der TransMIT GmH als Betreiber von .cards
                     garantiert.
                 </p>
@@ -1785,7 +1834,8 @@
                 <h2>Verzeichnis von Verarbeitungstätigkeiten</h2>
                 <p>
                     Eine Übersicht über die in .cards verarbeiteten personenbezogenen Daten finden Sie im
-                    <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verzeichnis von Verarbeitungstätigkeiten</a>.
+                    <a href="https://git.thm.de/arsnova/flashcards/wikis/verfahrensverzeichnis" target="_blank">Verzeichnis
+                        von Verarbeitungstätigkeiten</a>.
                 </p>
                 <br/>
                 <h2>Änderungen der Datenschutzerklärung</h2>

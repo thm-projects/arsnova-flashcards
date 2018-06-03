@@ -15,16 +15,17 @@
 </template>
 
 <template name="presentationView">
-    {{#if isActiveRoute 'presentationlist'}}
+    {{#if isActiveRoute regex='demolist|presentationlist'}}
         <button class="btn btn-raised btn-danger" id="backToPresentation">
-            <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "presentation.list.back"}}</span>
+            <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
+                    "presentation.list.backDemo"}}{{else}}{{_ "presentation.list.back"}}{{/if}}</span>
         </button>
         {{> cardsetList}}
     {{else}}
-        <div class="row">
+        <div class="{{#if isActiveRoute regex='demo'}}demo-padding {{/if}}row">
             {{> contentNavigation}}
         </div>
-        <div class="row">
+        <div class="{{#if isActiveRoute regex='demo'}}demo-padding {{/if}}row">
             {{> flashcards}}
         </div>
     {{/if}}
