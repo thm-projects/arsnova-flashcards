@@ -567,7 +567,7 @@ function getMemoCards() {
 		nextDate: {
 			$lte: actualDate
 		}
-	});
+	}, {fields: {card_id: 1}}).fetch();
 	learnedCards = CardIndex.sortQueryResult(cardIndexFilter, learnedCards, true);
 	learnedCards.forEach(function (learnedCard) {
 		let card = Cards.findOne({
