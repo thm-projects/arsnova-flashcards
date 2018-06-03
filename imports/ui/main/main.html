@@ -200,8 +200,10 @@
                 {{> yield}}
             </div>
         </div>
-        {{#unless currentUser}}
-            {{> footer}}
+        {{#unless fullscreenActive}}
+            {{#unless currentUser}}
+                {{> footer}}
+            {{/unless}}
         {{/unless}}
     </div> <!-- Theme Wrapper -->
 </template>

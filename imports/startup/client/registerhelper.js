@@ -385,6 +385,9 @@ Template.registerHelper("getCourses", function () {
 });
 
 Template.registerHelper("hasCardsetPermission", function (_id) {
+	if (Router.current().route.getName() === "demo") {
+		return true;
+	}
 	let cardset = Cardsets.findOne({_id});
 	if (cardset === undefined) {
 		return false;

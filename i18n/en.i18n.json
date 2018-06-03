@@ -58,6 +58,8 @@
   },
   "contact": {
     "about": ".cards",
+    "demo": "Demo",
+    "demoTitle": "Demo Cardset",
     "learning": "Learning",
     "help": "Help",
     "faq": "FAQ",
@@ -497,7 +499,8 @@
     "create": "Start a presentation",
     "start": "Start",
     "list": {
-      "back":"Back to the presentation"
+      "back":"Back to the presentation",
+      "backDemo": "Back to the demo cardset"
     }
   },
   "pool": {

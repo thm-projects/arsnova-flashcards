@@ -274,7 +274,7 @@ Meteor.methods({
 					wordcloud: false,
 					shuffled: true,
 					cardGroups: cardGroups,
-					cardType: -1,
+					cardType: 0,
 					difficulty: 0,
 					originalAuthor: ""
 				}, {trimStrings: false});
