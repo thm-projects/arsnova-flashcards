@@ -9,6 +9,20 @@
                 {{#if isActiveRoute 'about'}}
                     {{> about}}
                 {{/if}}
+                {{#if isActiveRoute 'demo'}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading info-tab">
+                            <h1>{{_ "contact.demoTitle"}}</h1>
+                        </div>
+                    </div>
+                    {{#if Template.subscriptionsReady}}
+                        {{> presentationView}}
+                    {{/if}}
+                {{/if}}
+                {{#if isActiveRoute 'demolist'}}
+                    {{> presentationView}}
+                {{/if}}
+
                 {{#if isActiveRoute 'learning'}}
                     {{> learning}}
                 {{/if}}
@@ -30,7 +44,9 @@
             </div>
         </div>
     {{else}}
-        {{> presentationView}}
+        {{#if Template.subscriptionsReady}}
+            {{> presentationView}}
+        {{/if}}
     {{/unless}}
 </template>
 
@@ -50,6 +66,12 @@
                href="{{pathFor
                        route='about'}}">{{_
                     "contact.about"}}</a></li>
+        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
+                                                                                                   'demo'}}inactive{{/unless}}{{/if}}">
+            <a id="demo"
+               href="{{pathFor
+                       route='demo'}}">{{_
+                    "contact.demo"}}</a></li>
         <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
                                                                                                    'learning'}}inactive{{/unless}}{{/if}}">
             <a id="learning"

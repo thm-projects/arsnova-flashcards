@@ -214,7 +214,7 @@ Template.cardsetPreview.onCreated(function () {
 Template.cardsetList.helpers({
 	isShuffledCardset: function () {
 		if (Router.current().route.getName() === "demolist") {
-			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
+			return Cardsets.findOne({kind: 'demo', shuffled: true}).shuffled;
 		} else {
 			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 		}
@@ -224,7 +224,7 @@ Template.cardsetList.helpers({
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || isDemo) {
 			let cardsetId = Router.current().params._id;
 			if (isDemo) {
-				cardsetId = "DemoCardset0";
+				cardsetId = Cardsets.findOne({kind: 'demo', shuffled: true})._id;
 			}
 			if (this.shuffled) {
 				let cardsetFilter = [];

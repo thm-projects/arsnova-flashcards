@@ -33,7 +33,7 @@ class CardIndex {
 		let indexCards = [];
 		let cardset;
 		if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist") {
-			cardset = Cardsets.findOne("DemoCardset0");
+			cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
 		} else {
 			cardset = Cardsets.findOne(Router.current().params._id);
 		}

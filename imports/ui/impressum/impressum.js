@@ -1,11 +1,7 @@
 //------------------------ IMPORTS
-import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
-
-Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 
 /*
  * ############################################################################
@@ -20,6 +16,11 @@ Template.contact.events({
 	'click #backToStartButton': function () {
 		Router.go('home');
 	}
+});
+
+Template.contact.onCreated(function () {
+	this.subscribe("cardsets");
+	this.subscribe("cards");
 });
 
 /*
