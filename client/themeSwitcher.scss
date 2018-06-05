@@ -1753,6 +1753,9 @@ $themes: (
       background-color: $navbar_profile_dropdown_background !important;
       color: $navbar_profile_dropdown_text !important;
       opacity: $navbar_profile_dropdown_background_opacity !important;
+      @media(max-width: 767px) {
+        opacity: 1 !important;
+      }
       tr:hover {
         background-color: $navbar_profile_dropdown_background_hover !important;
         color: $navbar_profile_dropdown_text_hover !important;

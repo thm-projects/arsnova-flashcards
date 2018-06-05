@@ -809,12 +809,23 @@ th {
 #profile-drop {
   overflow: hidden;
   text-align: left;
-  position: absolute;
   min-width: auto;
+  @media(min-width: 768px) {
+    position: absolute;
+  }
+  padding-top: 0;
+  padding-bottom: 0;
   a {
     text-decoration: none;
+    display:block;
+    height:100%;
+    width:100%;
+  }
+  td {
+    padding-left: 0;
+    padding-right: 0;
   }
   td .fa, .glyphicon {
-    margin: 7px;
+    margin-left: 5px;
   }
 }
