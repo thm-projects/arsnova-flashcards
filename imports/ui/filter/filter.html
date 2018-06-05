@@ -14,9 +14,9 @@
         <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}no-navigation{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-danger hidden-lg float-left" id="resetBtnMobile"
+                    <button class="resetFilters btn btn-raised btn-danger hidden-md hidden-lg float-left" id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
-                    <p class="navbar-text visible-sm-inline-block visible-md-inline-block">{{_
+                    <p class="navbar-text visible-sm-inline-block">{{_
                             "set-list.filter-info-small"}}</p>
                     <p class="navbar-text visible-xs-inline-block">{{_ "set-list.filter-info-extra-small"}}</p>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -29,15 +29,15 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="filter-nav">
-                    <ul class="nav navbar-nav col-lg-12">
+                    <ul class="nav navbar-nav col-md-12">
                         <li>
-                            <button class="resetFilters btn btn-raised btn-danger visible-lg" id="resetBtn"
+                            <button class="resetFilters btn btn-raised btn-danger visible-md visible-lg" id="resetBtn"
                                     role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}}
                             </button>
                         </li>
 
 			{{#if isActiveRoute regex='alldecks|pool'}}
-			<li class="dropdown"> 
+			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" id="t" value="down">
   				{{#if isActiveLanguage 'de'}}
@@ -48,8 +48,8 @@
 				</a>
 				<ul class="dropdown-menu">
  					<li>
- 						<a href="#" id="topicBtn">                              
-                                    		{{_ "set-list.topic"}}                           
+ 						<a href="#" id="topicBtn">
+                                    		{{_ "set-list.topic"}}
                                 		{{{getSortTopicIcon}}}
                             			</a>
                                 		<a href="#" class="createdDateBtn">
@@ -60,11 +60,11 @@
                                     		{{_ "pool.dateUpdated"}}
                                     		{{{getSortUpdatedDateIcon}}}
                                	 		</a>
-                            		</li>              
+                            		</li>
 				</ul>
-			</li> 
+			</li>
 			{{/if}}
-			
+
 			{{#if isActiveRoute regex='course|create'}}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -86,7 +86,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "cardType"}}
                                     {{#if hasCardTypeFilter}}
-                                     <span class="glyphicon glyphicon-filter navigationFilterIcon"></span> 
+                                     <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -143,7 +143,7 @@
                                 </ul>
                             </li>
                         {{/if}}
-                       
+
                         {{#if isActiveRoute regex='course'}}
                             {{#unless singleUniversity}}
                                 <li class="dropdown">
