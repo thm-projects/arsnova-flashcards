@@ -805,3 +805,16 @@ th {
   font-size: 13pt !important;
   font-style: italic;
 }
+
+#profile-drop {
+  overflow: hidden;
+  text-align: left;
+  position: absolute;
+  min-width: auto;
+  a {
+    text-decoration: none;
+  }
+  td .fa, .glyphicon {
+    margin: 7px;
+  }
+}

@@ -117,6 +117,13 @@ $themes: (
     $navbar_profile_text_active: map-get($map, "navbar_profile_text_active");
     $navbar_logout_background: map-get($map, "navbar_profile_background");
     $navbar_logout_background_hover: map-get($map, "navbar_logout_background_hover");
+    $navbar_profile_dropdown_background: map-get($map, "navbar_profile_dropdown_background");
+    $navbar_profile_dropdown_background_opacity: map-get($map, "navbar_profile_dropdown_background_opacity");
+    $navbar_profile_dropdown_background_hover: map-get($map, "navbar_profile_dropdown_background_hover");
+    $navbar_profile_dropdown_background_active: map-get($map, "navbar_profile_dropdown_background_active");
+    $navbar_profile_dropdown_text: map-get($map, "navbar_profile_dropdown_text");
+    $navbar_profile_dropdown_text_hover: map-get($map, "navbar_profile_dropdown_text_hover");
+    $navbar_profile_dropdown_text_active: map-get($map, "navbar_profile_dropdown_text_active");
     $navbar_logout_text: map-get($map, "navbar_logout_text");
     $navbar_logout_text_hover: map-get($map, "navbar_logout_text_hover");
     //welcome page colors
@@ -1743,23 +1750,20 @@ $themes: (
       }
     }
     #profile-drop {
-      background-color: $thm_gray;
-      opacity: 0.9;
-      overflow: hidden;
-      text-align: left;
-      position: absolute;
-      min-width: auto;
-      a {
-        text-decoration: none;
-      }
-      td .fa, .glyphicon {
-        margin: 7px;
-      }
+      background-color: $navbar_profile_dropdown_background !important;
+      color: $navbar_profile_dropdown_text !important;
+      opacity: $navbar_profile_dropdown_background_opacity !important;
       tr:hover {
-        background-color: $thm_green;
+        background-color: $navbar_profile_dropdown_background_hover !important;
+        color: $navbar_profile_dropdown_text_hover !important;
       }
-      .logout-hover:hover {
-        background-color: red;
+      .active {
+        background-color: $navbar_profile_dropdown_background_active !important;
+        color: $navbar_profile_dropdown_text_active !important;
+      }
+      .logout-dropdown:hover {
+        background-color: $navbar_logout_background_hover !important;
+        color: $navbar_logout_text_hover !important;
       }
     }
 
