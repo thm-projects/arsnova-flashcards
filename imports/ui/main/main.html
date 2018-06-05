@@ -163,20 +163,95 @@
                                                     </div>
                                                 </ul>
                                             </li>
-                                            <li id="navbar-profile" class="{{#if isActiveProfile}}active{{/if}}"
-                                                data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor 'profileOverview' _id=currentUser._id}}"
-                                                   id="usr-profile">
+
+
+                                            <li id="navbar profile"
+                                                class="dropdown {{#if isActiveProfile}}active{{/if}}">
+                                                <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="hidden-sm">
                                                         {{getUsername}}
                                                     </span>
                                                     <span class="visible-sm">
                                                         {{_ "navbar-collapse.myprofile"}}
                                                     </span>
+                                                    <span class="caret"></span>
                                                 </a>
+
+                                                <div id="profile-drop" class="dropdown-menu"
+                                                     aria-labelledby="navbarDropdown">
+
+                                                    <table>
+                                                        <tr class="{{#if isActiveRoute
+                                                                         'profileOverview'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="{{pathFor 'profileOverview'
+                                                                                   _id=currentUser._id}}"><i
+                                                                    class="fa fa-trophy"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="{{pathFor 'profileOverview'
+                                                                                   _id=currentUser._id}}">{{_
+                                                                    "profile.activity"}}</a></td>
+                                                        </tr>
+                                                        <tr class="{{#if isActiveRoute
+                                                                         'profileMembership'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/membership"><i
+                                                                    class="fa fa-users"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/membership">{{_
+                                                                    "profile.membership"}}</a></td>
+                                                        </tr>
+                                                        <tr class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/billing"><i
+                                                                    class="fa fa-credit-card"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/billing">{{_
+                                                                    "profile.billing"}}</a></td>
+                                                        </tr>
+                                                        <tr class="{{#if isActiveRoute
+                                                                         'profileNotifications'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/notifications"><i
+                                                                    class="fa fa-bell"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/notifications">{{_
+                                                                    "profile.notifications"}}</a></td>
+                                                        </tr>
+                                                        <tr class="{{#if isActiveRoute
+                                                                         'profileSettings'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/settings"><i
+                                                                    class="fa fa-cog"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/settings">{{_
+                                                                    "profile.settings.name"}}</a></td>
+                                                        </tr>
+                                                        {{#if isInRole 'lecturer'}}
+                                                            <tr class="{{#if isActiveRoute
+                                                                             'profileRequests'}}active{{/if}}">
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/requests"><i
+                                                                        class="fa fa-check"></i></a></td>
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/requests">{{_
+                                                                        "profile.requests"}}</a></td>
+                                                            </tr>
+                                                        {{/if}}
+                                                        <tr id="logout" class="hidden-xs logout-dropdown">
+                                                            <td><a class="dropdown-item" href="#"><i
+                                                                    class="glyphicon glyphicon-log-out"></i></a></td>
+                                                            <td><a class="dropdown-item" href="#">{{_
+                                                                    "profile.logout"}}</a></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </li>
-                                            <li id="navbar-logout"><a href="#" id="logout"><i
-                                                    class="glyphicon glyphicon-log-out"></i>
+                                            <li id="navbar-logout"><a href="#" id="logout"><span class="hidden-xs"><i
+                                                    class="glyphicon glyphicon-log-out"></i></span><span class="visible-xs"><i
+                                                    class="glyphicon glyphicon-log-out"></i> {{_
+                                                    "profile.logout"}}</span>
                                             </a></li>
                                         </ul>
                                     {{/if}}
