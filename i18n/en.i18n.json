@@ -316,6 +316,8 @@
     "cancelEditCardTitle": "Exit editing mode"
   },
   "profile": {
+    "logout": "Logout",
+    "activity": "Activity",
     "overview": "Learning Progress",
     "billing": "Billing",
     "membership": "Membership",
@@ -644,7 +646,8 @@
     "wordcloudFalse": "Not in Word-Cloud",
     "wordcloudEveryting": "All",
     "from": "From",
-    "noResults": "Keine Ergebnisse für diese Filtereinstellung"
+    "noResults": "Keine Ergebnisse für diese Filtereinstellung",
+    "sort": "Sort: "
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",

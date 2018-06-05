@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .pool-filter-margin {
     margin-top: 56px;
   }
@@ -11,8 +11,12 @@
   padding: 0;
   text-align: left;
 
-  #resetBtn, #resetBtnMobile {
+  #resetBtn {
     margin-left: 10px;
+  }
+
+  #resetBtnMobile {
+    margin-left: 20px;
   }
 
   .btn {
@@ -24,7 +28,7 @@
     padding: 20px 10px;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 900px) {
     .navbar-header {
       float: none;
     }
@@ -80,7 +84,7 @@
     }
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 889px) {
     .navbar-nav.col-lg-12 {
       margin-left: 0 !important;
     }
@@ -105,7 +109,7 @@
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 900px) {
     #filterCheckbox {
       padding-bottom: 0;
       padding-right: 10px;

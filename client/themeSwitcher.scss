@@ -119,6 +119,13 @@ $themes: (
     $navbar_profile_text_active: map-get($map, "navbar_profile_text_active");
     $navbar_logout_background: map-get($map, "navbar_profile_background");
     $navbar_logout_background_hover: map-get($map, "navbar_logout_background_hover");
+    $navbar_profile_dropdown_background: map-get($map, "navbar_profile_dropdown_background");
+    $navbar_profile_dropdown_background_opacity: map-get($map, "navbar_profile_dropdown_background_opacity");
+    $navbar_profile_dropdown_background_hover: map-get($map, "navbar_profile_dropdown_background_hover");
+    $navbar_profile_dropdown_background_active: map-get($map, "navbar_profile_dropdown_background_active");
+    $navbar_profile_dropdown_text: map-get($map, "navbar_profile_dropdown_text");
+    $navbar_profile_dropdown_text_hover: map-get($map, "navbar_profile_dropdown_text_hover");
+    $navbar_profile_dropdown_text_active: map-get($map, "navbar_profile_dropdown_text_active");
     $navbar_logout_text: map-get($map, "navbar_logout_text");
     $navbar_logout_text_hover: map-get($map, "navbar_logout_text_hover");
     //welcome page colors
@@ -205,6 +212,9 @@ $themes: (
     $background_lecture: map-get($map, "background_lecture");
     $background_hint: map-get($map, "background_hint");
     $background_hint_alternative: map-get($map, "background_hint_alternative");
+    $lecture_presentation_header_lines: map-get($map, "lecture_presentation_header_lines");
+    $hint_presentation_header_lines: map-get($map, "hint_presentation_header_lines");
+    $hint_alternative_presentation_header_lines: map-get($map, "hint_alternative_presentation_header_lines");
     $hint_text: map-get($map, "hint_text");
     $hint_text_alternative: map-get($map, "hint_text_alternative");
     $hint_link: map-get($map, "hint_link");
@@ -1138,12 +1148,24 @@ $themes: (
       background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 4px, $background_white 5px, $background_white 100%) !important;
     }
 
+    .box-hint-header {
+      background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 4px, $background_hint 5px, $background_hint 100%) !important;
+    }
+
+    .box-hint-alternative-header {
+      background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 4px, $background_hint_alternative 5px, $background_hint_alternative 100%) !important;
+    }
+
     .box-pink-header {
       background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 4px, $background_pink 5px, $background_pink 100%) !important;
     }
 
     .box-post-it-header {
       background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 4px, $background_post_it 5px, $background_post_it 100%) !important;
+    }
+
+    .box-lecture-header {
+      background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 4px, $background_lecture 5px, $background_lecture 100%) !important;
     }
 
     .box-difficultyBlank0-header, .box-difficultyLined0-header {
@@ -1772,5 +1794,26 @@ $themes: (
         stroke: $presentation_clock_second_arm !important;
       }
     }
+    #profile-drop {
+      background-color: $navbar_profile_dropdown_background !important;
+      color: $navbar_profile_dropdown_text !important;
+      opacity: $navbar_profile_dropdown_background_opacity !important;
+      @media(max-width: 767px) {
+        opacity: 1 !important;
+      }
+      tr:hover {
+        background-color: $navbar_profile_dropdown_background_hover !important;
+        color: $navbar_profile_dropdown_text_hover !important;
+      }
+      .active {
+        background-color: $navbar_profile_dropdown_background_active !important;
+        color: $navbar_profile_dropdown_text_active !important;
+      }
+      .logout-dropdown:hover {
+        background-color: $navbar_logout_background_hover !important;
+        color: $navbar_logout_text_hover !important;
+      }
+    }
+
   }
 }

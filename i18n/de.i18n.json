@@ -305,11 +305,13 @@
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
   },
   "profile": {
+    "logout": "Ausloggen",
+    "activity": "Lernaktivität",
     "overview": "Lernaktivität",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "notifications": "Benachrichtigungen",
-    "requests": "Pro-Anfragen Karteifreigabe",
+    "requests": "Pro-Karteifreigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
     "accept": "Akzeptieren",
@@ -610,7 +612,8 @@
     "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
-    "from": "Ab"
+    "from": "Ab",
+    "sort": "Sortieren nach: "
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
