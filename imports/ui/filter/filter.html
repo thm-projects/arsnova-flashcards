@@ -14,7 +14,8 @@
         <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}no-navigation{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
-                    <button class="resetFilters btn btn-raised btn-danger hidden-md hidden-lg float-left" id="resetBtnMobile"
+                    <button class="resetFilters btn btn-raised btn-danger hidden-md hidden-lg float-left"
+                            id="resetBtnMobile"
                             role="button"><i class="glyphicon glyphicon-filter"></i> {{_ "set-list.reset"}} </button>
                     <p class="navbar-text visible-sm-inline-block">{{_
                             "set-list.filter-info-small"}}</p>
@@ -36,48 +37,44 @@
                             </button>
                         </li>
 
-			{{#if isActiveRoute regex='alldecks|pool'}}
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" id="t" value="down">
-  				{{#if isActiveLanguage 'de'}}
-				Sortieren nach:
- 				{{else}}
-				Sort:
- 				{{/if}}
-				</a>
-				<ul class="dropdown-menu">
- 					<li>
- 						<a href="#" id="topicBtn">
-                                    		{{_ "set-list.topic"}}
-                                		{{{getSortTopicIcon}}}
-                            			</a>
-                                		<a href="#" class="createdDateBtn">
-                                    		{{_ "pool.release"}}
-                                    		{{{getSortCreatedDateIcon}}}
-                                		</a>
-                                		<a href="#" class="updatedDateBtn">
-                                    		{{_ "pool.dateUpdated"}}
-                                    		{{{getSortUpdatedDateIcon}}}
-                               	 		</a>
-                            		</li>
-				</ul>
-			</li>
-			{{/if}}
+                        {{#if isActiveRoute regex='alldecks|pool'}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="t" value="down">
+                                    {{_ "filter-pool.sort"}}{{{getSortTopicIcon}}}{{{getSortCreatedDateIcon}}}{{{getSortUpdatedDateIcon}}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" id="topicBtn">
+                                            {{_ "set-list.topic"}}
+                                            {{{getSortTopicIcon}}}
+                                        </a>
+                                        <a href="#" class="createdDateBtn">
+                                            {{_ "pool.release"}}
+                                            {{{getSortCreatedDateIcon}}}
+                                        </a>
+                                        <a href="#" class="updatedDateBtn">
+                                            {{_ "pool.dateUpdated"}}
+                                            {{{getSortUpdatedDateIcon}}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {{/if}}
 
-			{{#if isActiveRoute regex='course|create'}}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
-                                {{#if isActiveRoute regex='course'}}
-                                    {{_ "courseIteration.list.courseIteration"}}
-                                {{else}}
-                                    {{_ "set-list.topic"}}
-                                {{/if}}
-                                {{{getSortTopicIcon}}}
-                            </a>
-                        </li>
-  			{{/if}}
+                        {{#if isActiveRoute regex='course|create'}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="topicBtn" value="down">
+                                    {{#if isActiveRoute regex='course'}}
+                                        {{_ "courseIteration.list.courseIteration"}}
+                                    {{else}}
+                                        {{_ "set-list.topic"}}
+                                    {{/if}}
+                                    {{{getSortTopicIcon}}}
+                                </a>
+                            </li>
+                        {{/if}}
 
                         {{#unless isActiveRoute
                                   regex='course'}}
@@ -86,7 +83,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     {{_ "cardType"}}
                                     {{#if hasCardTypeFilter}}
-                                     <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
                                     {{/if}}
                                 </a>
                                 <ul class="dropdown-menu">

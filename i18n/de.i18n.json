@@ -610,7 +610,8 @@
     "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
-    "from": "Ab"
+    "from": "Ab",
+    "sort": "Sortieren nach: "
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
