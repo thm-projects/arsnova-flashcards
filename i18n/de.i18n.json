@@ -835,7 +835,7 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Thema des Kurses",
-        "description": "Nenne die Kompetenzziele des Kurses: Was soll man nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können? \n\nFormuliere die zu erreichenden Kompetenzen auf den Kompetenzstufen: Verstehen ➔︎ Anwenden ➔ Analysieren ➔ Synthetisieren ➔ Bewerten ➔ Innovieren. \n\nWähle zur Formulierung eines Kompetenzziels ein Verb aus der Vorschlagsliste, siehe unter Hilfe."
+        "description": "Nenne die Kompetenzziele des Kurses: Was soll man nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können?"
       }
     },
     "targetAudience1": {
