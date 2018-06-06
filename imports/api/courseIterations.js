@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
-import TargetAudience from "./targetAudience";
+import {TargetAudience} from "./targetAudience";
 
 export const CourseIterations = new Mongo.Collection("courseIterations");
 

@@ -4,7 +4,7 @@ import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
 import {CardType} from '../../api/cardTypes.js';
-import TargetAudience from "../../api/targetAudience";
+import {TargetAudience} from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
 import {CollegesCourses} from "../../api/colleges_courses";
