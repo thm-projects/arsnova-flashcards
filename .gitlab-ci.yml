@@ -165,12 +165,11 @@ deploy_staging:
   only:
     - staging
   tags:
-    - ssh
+    - rsync
   dependencies:
     - build
     - jsdoc
   script:
-    - apt-get install -y rsync
     - chmod -R a+rX,ug+w "build"
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
@@ -184,11 +183,10 @@ deploy_production:
   only:
     - master
   tags:
-    - ssh
+    - rsync
   dependencies:
     - build
   script:
-    - apt-get install -y rsync
     - chmod -R a+rX,ug+w "build"
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
