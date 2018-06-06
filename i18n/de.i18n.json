@@ -51,7 +51,7 @@
   "contact": {
     "about": ".cards",
     "demo": "Demo",
-    "demoTitle": "Demo Kartei",
+    "demoTitle": "Demo-Kartei",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -239,7 +239,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Wie lautet das Thema der Kartei?",
-    "descriptionplaceholder": "Beschreibung des Inhalts der Kartei: \n\nWorum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -494,7 +494,7 @@
     "start": "Starten",
     "list": {
       "back":"Zurück zur Präsentation",
-      "backDemo": "Zurück zur Demo Kartei"
+      "backDemo": "Zurück zur Demo-Kartei"
     }
   },
   "pool": {
@@ -613,7 +613,7 @@
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
-    "sort": "Sortieren nach: "
+    "sort": "Sortieren "
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
@@ -914,7 +914,7 @@
   "difficultyNotes3": "Praktikum",
   "arrowKeys": "Pfeiltasten",
   "key": "Taste __key__",
-  "cardType": "Karteityp",
+  "cardType": "Wähle den Karteityp",
   "preview": "Vorschau zufällig ausgewählter Karten",
   "previewEdit": "Vorschau",
   "of": "von",
