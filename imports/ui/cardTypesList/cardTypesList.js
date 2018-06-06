@@ -1,6 +1,6 @@
 import "./cardTypesList.html";
 import {Template} from "meteor/templating";
-import CardType from "../../api/cardTypes";
+import {CardType} from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
 import {filterCardType, prepareQuery} from "../filter/filter.js";
 import {Session} from "meteor/session";

@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import * as lib from '/client/lib.js';
 import {Paid} from "../../api/paid";
-import CardType from "../../api/cardTypes";
+import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.js";

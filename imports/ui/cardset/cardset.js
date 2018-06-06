@@ -14,7 +14,7 @@ import "../learn/learn.js";
 import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import CardType from "../../api/cardTypes";
+import {CardType} from "../../api/cardTypes";
 import TargetAudience from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");

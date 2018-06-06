@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
-import {updateNavigation} from "../card/card";
+import {CardEditor} from "../../api/cardEditor.js";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -37,7 +37,7 @@ Template.presentationView.onCreated(function () {
 });
 
 Template.presentationView.onRendered(function () {
-	updateNavigation();
+	CardEditor.updateNavigation();
 });
 
 Template.presentationView.onDestroyed(function () {

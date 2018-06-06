@@ -3,7 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetCourseIterationForm.html";
 import {Cardsets} from "../../api/cardsets.js";
-import {getCardTypeName, gotDifficultyLevel, gotNotesForDifficultyLevel} from '../../api/cardTypes';
+import {CardType} from '../../api/cardTypes.js';
 import TargetAudience from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {prepareQuery} from "../filter/filter";
@@ -30,7 +30,7 @@ function adjustDifficultyColor() {
 		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	} else {
 		let difficulty = 0;
-		if (!gotNotesForDifficultyLevel(Session.get('cardType'))) {
+		if (!CardType.gotNotesForDifficultyLevel(Session.get('cardType'))) {
 			difficulty = 1;
 		}
 		Session.set('difficultyColor', difficulty);
@@ -49,10 +49,10 @@ export function cleanModal() {
 	$('#helpSetName').html('');
 
 	if (newCardsetCourseIterationRoute()) {
-		$('#setCardType').html(getCardTypeName(0));
+		$('#setCardType').html(CardType.getCardTypeName(0));
 		$('#setCardType').val(0);
 	} else {
-		$('#setCardType').html(getCardTypeName(Session.get('previousCardType')));
+		$('#setCardType').html(CardType.getCardTypeName(Session.get('previousCardType')));
 		$('#setCardType').val(Session.get('previousCardType'));
 	}
 
@@ -367,7 +367,7 @@ Template.cardsetCourseIterationFormContent.helpers({
 		}
 	},
 	getCardTypeName: function (cardType) {
-		return getCardTypeName(cardType);
+		return CardType.getCardTypeName(cardType);
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
@@ -402,10 +402,10 @@ Template.cardsetCourseIterationFormContent.helpers({
 		}
 	},
 	gotDifficultyLevel: function () {
-		return gotDifficultyLevel(Session.get('cardType'));
+		return CardType.gotDifficultyLevel(Session.get('cardType'));
 	},
 	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(Session.get('cardType'));
+		return CardType.gotNotesForDifficultyLevel(Session.get('cardType'));
 	},
 	gotAccessControl: function () {
 		return TargetAudience.gotAccessControl(Session.get('targetAudience'));
@@ -503,7 +503,7 @@ Template.difficultyEditor.helpers({
 		return difficulty === Session.get('difficultyColor');
 	},
 	gotNotesForDifficultyLevel: function () {
-		return gotNotesForDifficultyLevel(Session.get('cardType'));
+		return CardType.gotNotesForDifficultyLevel(Session.get('cardType'));
 	}
 });
 

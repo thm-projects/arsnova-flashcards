@@ -19,6 +19,8 @@ import "../profile/profile.js";
 import "../admin/admin.js";
 import "../access_denied/access_denied.js";
 import "../first_login/first_login.js";
+import "../editor/editor.js";
+import "../editor/cardEditor.js";
 import "../../api/groundDB.js";
 import "../../api/cardIndex.js";
 import {Cardsets} from "../../api/cardsets.js";
