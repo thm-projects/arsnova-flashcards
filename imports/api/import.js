@@ -183,8 +183,11 @@ Meteor.methods({
 	},
 	importDemo: function () {
 		if (Meteor.isServer) {
-			Cardsets.remove({_id: {$regex: /^DemoCardset([0-9]{0,10})/}});
-			Cards.remove({cardset_id: {$regex: /^DemoCardset([0-9]{0,10})/}});
+			let oldDemoCardsets = Cardsets.find({kind: 'demo'}, {fields: {_id: 1}}).fetch();
+			for (let i = 0; i < oldDemoCardsets.length; i++) {
+				Cards.remove({cardset_id: oldDemoCardsets[i]._id});
+			}
+			Cardsets.remove({kind: 'demo'});
 			try {
 				let fs = Npm.require("fs");
 				let cardGroups = [];
@@ -197,12 +200,9 @@ Meteor.methods({
 				if (doesPathExist) {
 					let cardsetFiles = fs.readdirSync(demoPath);
 					for (let i = 0; i < cardsetFiles.length; i++) {
-						let cardsetId = "DemoCardset" + (i + 1);
-						cardGroups.push(cardsetId);
 						let cardset = JSON.parse('[' + fs.readFileSync(demoPath + cardsetFiles[i], 'utf8') + ']');
 						if (cardset[0].name !== undefined) {
-							Cardsets.insert({
-								_id: cardsetId,
+							let cardset_id = Cardsets.insert({
 								name: cardset[0].name,
 								description: cardset[0].description,
 								date: cardset[0].date,
@@ -237,13 +237,13 @@ Meteor.methods({
 								difficulty: cardset[0].difficulty,
 								originalAuthor: cardset[0].originalAuthor
 							}, {trimStrings: false});
+							cardGroups.push(cardset_id);
 							cardset.shift();
-							importCards(cardset, Cardsets.findOne(cardsetId), 0);
+							importCards(cardset, Cardsets.findOne(cardset_id), 0);
 						}
 					}
 				}
 				Cardsets.insert({
-					_id: "DemoCardset0",
 					name: "DemoCardset",
 					description: "",
 					date: new Date(),

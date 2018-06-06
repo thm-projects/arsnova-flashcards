@@ -481,7 +481,7 @@ function isCardset() {
 function getCardsetCards() {
 	let query = "";
 	if (isDemo()) {
-		Session.set('activeCardset', Cardsets.findOne("DemoCardset0"));
+		Session.set('activeCardset', Cardsets.findOne({kind: 'demo', shuffled: true}));
 	}
 	let cardIndexFilter = CardIndex.getCardIndexFilter();
 	if (Session.get('activeCardset').shuffled) {
@@ -1374,7 +1374,7 @@ Template.flashcards.helpers({
 		if (getQuantityValue) {
 			let cardset;
 			if (isDemo()) {
-				cardset = Cardsets.findOne("DemoCardset0");
+				cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
 			} else {
 				cardset = Cardsets.findOne(Router.current().params._id);
 			}
@@ -1391,7 +1391,7 @@ Template.flashcards.helpers({
 			}
 		} else {
 			if (isDemo()) {
-				return Cardsets.findOne("DemoCardset0").count();
+				return Cardsets.findOne({kind: 'demo', shuffled: true}).count();
 			} else {
 				return Cards.find({cardset_id: Router.current().params._id}).count();
 			}
@@ -1473,7 +1473,7 @@ Template.flashcards.helpers({
 	},
 	isShuffledCardset: function () {
 		if (isDemo()) {
-			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
+			return Cardsets.findOne({kind: 'demo', shuffled: true}).shuffled;
 		} else {
 			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 		}
