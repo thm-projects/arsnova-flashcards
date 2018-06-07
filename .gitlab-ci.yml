@@ -174,8 +174,8 @@ deploy_staging:
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
-    - rsync -aqv --delete -e "ssh" "build/bundle/"* "$NEW_STAGING_SSH_URL"
-    - rsync -aqv --delete -e "ssh" "build/jsdoc" "$NEW_STAGING_SSH_URL"
+    - rsync -rltgoDqv --delete -e "ssh" "build/bundle/"* "$NEW_STAGING_SSH_URL"
+    - rsync -rltgoDqv --delete -e "ssh" "build/jsdoc" "$NEW_STAGING_SSH_URL"
   environment: staging
 
 deploy_production:
@@ -191,7 +191,7 @@ deploy_production:
     - eval $(ssh-agent -s)
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
-    - rsync -aqv --delete -e "ssh" "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
+    - rsync -rltgoDqv --delete -e "ssh" "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
   environment: production
 
 sync_mirror:
