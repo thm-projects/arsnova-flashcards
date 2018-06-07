@@ -176,7 +176,7 @@ deploy_staging:
     - ssh-add <(echo "$NEW_STAGING_SSH_PRIVATE_KEY")
     - rsync -rltgoDqv --delete -e "ssh" "build/bundle/"* "$NEW_STAGING_SSH_URL"
     - rsync -rltgoDqv --delete -e "ssh" "build/jsdoc" "$NEW_STAGING_SSH_URL"
-    - ssh $NEW_STAGING_SSH '/home/meteor/appctl.sh deploy'
+    - ssh $NEW_STAGING_SSH 'nohup /home/meteor/appctl.sh deploy &'
   environment: staging
 
 deploy_production:
@@ -193,7 +193,7 @@ deploy_production:
     - mkdir ~/.ssh && echo "$NEW_PRODUCTION_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - ssh-add <(echo "$NEW_PRODUCTION_SSH_PRIVATE_KEY")
     - rsync -rltgoDqv --delete -e "ssh" "$BUNDLE_DIR/"* "$NEW_PRODUCTION_SSH_URL"
-    - ssh $NEW_PRODUCTION_SSH '/home/meteor/appctl.sh deploy'
+    - ssh $NEW_PRODUCTION_SSH 'nohup /home/meteor/appctl.sh deploy &'
   environment: production
 
 sync_mirror:
