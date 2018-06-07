@@ -5,218 +5,17 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
-import {Leitner} from "../../api/learned.js";
 import "./card.html";
 import '/client/hammer.js';
+import './header.js';
+import './content.js';
 import {skipAnswer} from "../learn/learn.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
-import {CardType} from "../../api/cardTypes";
 import {MarkdeepEditor} from "../../api/markdeepEditor.js";
 import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
 import {CardEditor} from "../../api/cardEditor.js";
-
-/*
- * ############################################################################
- * cardHint
- * ############################################################################
- */
-
-Template.cardHint.helpers({
-	gotAlternativeHintStyle: function (cardType) {
-		return CardType.gotAlternativeHintStyle(cardType);
-	},
-	getHintTitle: function () {
-		return CardType.getHintTitle();
-	},
-	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && Route.isEditModeOrPresentation());
-	}
-});
-
-/*
- * ############################################################################
- * cardHintContent
- * ############################################################################
- */
-
-Template.cardHintContent.helpers({
-	getHint: function () {
-		if (Route.isEditMode()) {
-			return Session.get('hintText');
-		} else if (Route.isPresentation()) {
-			return this.hint;
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
-		}
-	},
-	getPlaceholder: function () {
-		return CardType.getPlaceholderText(2);
-	},
-	gotHint: function () {
-		let hint;
-		if (Route.isEditMode()) {
-			return Session.get('hintText');
-		} else if (Route.isPresentation()) {
-			hint = this.hint;
-		} else if (Session.get('selectedHint')) {
-			hint = Cards.findOne({_id: Session.get('selectedHint')}).hint;
-		}
-		return hint !== '' && hint !== undefined;
-	},
-	isCentered: function () {
-		if (Route.isEditMode()) {
-			return Session.get('centerTextElement')[2];
-		} else if (Route.isPresentation()) {
-			return this.centerTextElement[2];
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
-		}
-	},
-	isEditMode: function () {
-		return Route.isEditMode();
-	}
-});
-
-/*
- * ############################################################################
- * cardSubject
- * ############################################################################
- */
-Template.cardSubject.helpers({
-	getSubject: function () {
-		if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
-		} else {
-			if (this.subject) {
-				return this.subject;
-			} else {
-				return CardType.getSubjectPlaceholderText(Session.get('cardType'));
-			}
-		}
-	},
-	gotLearningUnit: function () {
-		if (Session.get('selectedHint')) {
-			let card = Cards.findOne({_id: Session.get('selectedHint')});
-			return (CardType.gotLearningUnit(card.cardType) && card.learningUnit !== "0");
-		} else {
-			return (CardType.gotLearningUnit(this.cardType) && this.learningUnit !== "0");
-		}
-	},
-	getLearningIndex: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningIndex');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningIndex;
-		} else {
-			return this.learningIndex;
-		}
-	},
-	getLearningUnit: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningUnit');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningUnit;
-		} else {
-			return this.learningUnit;
-		}
-	}
-});
-
-/*
- * ############################################################################
- * cardFrontContent
- * ############################################################################
- */
-Template.cardFrontContent.helpers({
-	isCentered: function () {
-		if (CardType.gotSidesSwapped(this.cardType)) {
-			return CardVisuals.isCentered(1, this.centerTextElement);
-		} else {
-			return CardVisuals.isCentered(0, this.centerTextElement);
-		}
-	},
-	gotFront: function () {
-		if (Route.isEditMode()) {
-			return true;
-		} else {
-			return this.front !== '' && this.front !== undefined;
-		}
-	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
-	}
-});
-
-/*
- * ############################################################################
- * cardBackContent
- * ############################################################################
- */
-Template.cardBackContent.helpers({
-	isCentered: function () {
-		if (CardType.gotSidesSwapped(this.cardType)) {
-			return CardVisuals.isCentered(0, this.centerTextElement);
-		} else {
-			return CardVisuals.isCentered(1, this.centerTextElement);
-		}
-	},
-	gotBack: function () {
-		if (Route.isEditMode()) {
-			return true;
-		} else {
-			return this.back !== '' && this.back !== undefined;
-		}
-	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType);
-	}
-});
-
-/*
- * ############################################################################
- * cardLectureContent
- * ############################################################################
- */
-Template.cardLectureContent.helpers({
-	isCentered: function () {
-		return CardVisuals.isCentered(3, this.centerTextElement, this.cardType);
-	},
-	gotLecture: function () {
-		if (Route.isEditMode()) {
-			return true;
-		} else {
-			return this.lecture !== '' && this.lecture !== undefined;
-		}
-	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType);
-	},
-	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
-	}
-});
-
-/*
- * ############################################################################
- * cardHintContentPreview
- * ############################################################################
- */
-
-Template.cardHintContentPreview.helpers({
-	getPlaceholder: function (mode) {
-		if (Route.isPresentation()) {
-			return CardType.getPlaceholderText(mode, this.cardType);
-		}
-	},
-	gotHint: function () {
-		return this.hint !== '' && this.hint !== undefined;
-	},
-	isCentered: function () {
-		return CardVisuals.isCentered(2, this.centerTextElement, this.cardType);
-	}
-});
 
 /*
  * ############################################################################
@@ -290,55 +89,8 @@ Template.flashcards.helpers({
 			}
 		}
 	},
-	cardsIndex: function (card_id) {
-		let cardIndex = CardIndex.getCardIndex();
-		return cardIndex.findIndex(item => item === card_id) + 1;
-	},
-	isLearningActive: function () {
-		return Session.get('activeCardset').learningActive;
-	},
-	isBox: function () {
-		return Route.isBox();
-	},
 	isCardset: function () {
 		return Route.isCardset();
-	},
-	isCardsetOrPresentation: function () {
-		return Route.isCardset() || Route.isPresentation();
-	},
-	isPresentation: function () {
-		return Route.isPresentation();
-	},
-	isDemo: function () {
-		return Route.isDemo();
-	},
-	isMemo: function () {
-		return Route.isMemo();
-	},
-	isEditMode: function () {
-		return (Route.isEditMode() && !Session.get('fullscreen'));
-	},
-	isEditModeOrPresentation: function () {
-		return Route.isEditModeOrPresentation();
-	},
-	box: function () {
-		return Session.get("selectedBox");
-	},
-	isQuestionSide: function () {
-		return Session.get('isQuestionSide');
-	},
-	cardCountOne: function () {
-		var cardset = Session.get('activeCardset');
-		var count = Cards.find({
-			cardset_id: cardset._id
-		}).count();
-		return count === 1;
-	},
-	displaysLearningGoalInformation: function () {
-		return CardType.displaysLearningGoalInformation(this.cardType);
-	},
-	displaysSideInformation: function () {
-		return CardType.displaysSideInformation(this.cardType);
 	},
 	getCards: function () {
 		if (Route.isBox()) {
@@ -353,145 +105,28 @@ Template.flashcards.helpers({
 		if (Route.isEditMode()) {
 			return CardIndex.getEditModeCard();
 		}
-	},
-	gotAlternativeHintStyle: function () {
-		return CardType.gotAlternativeHintStyle(this.cardType);
-	},
-	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(this.cardType);
-	},
-	countBox: function () {
-		var maxIndex = Leitner.find({
-			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId(),
-			box: parseInt(Session.get('selectedBox'))
-		}).count();
-		Session.set('maxIndex', maxIndex);
-		return maxIndex;
-	},
-	countLeitner: function () {
-		var maxIndex = Leitner.find({
-			cardset_id: Session.get('activeCardset')._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count();
-		Session.set('maxIndex', maxIndex);
-		return maxIndex;
-	},
-	getCardsetCount: function (getQuantityValue) {
-		if (getQuantityValue) {
-			let cardset;
-			if (Route.isDemo()) {
-				cardset = Cardsets.findOne("DemoCardset0");
-			} else {
-				cardset = Cardsets.findOne(Router.current().params._id);
-			}
-			if (cardset.shuffled) {
-				let quantity = 0;
-				cardset.cardGroups.forEach(function (cardset_id) {
-					if (cardset_id !== Router.current().params._id) {
-						quantity += Cardsets.findOne(cardset_id).quantity;
-					}
-				});
-				return quantity;
-			} else {
-				return cardset.quantity;
-			}
-		} else {
-			if (Route.isDemo()) {
-				return Cardsets.findOne("DemoCardset0").count();
-			} else {
-				return Cards.find({cardset_id: Router.current().params._id}).count();
-			}
-		}
-	},
-	getCardsetName: function () {
-		return Cardsets.findOne({_id: this.cardset_id}).name;
-	},
-	getCardTypeName: function () {
-		return TAPi18n.__('card.cardType' + this.cardType + '.name');
-	},
-	getLearningGoalName: function () {
-		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
-	},
-	gotHint: function () {
-		return (CardType.gotHint(this.cardType) && this.hint !== "" && this.hint !== undefined);
-	},
-	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
-	},
-	gotLecture: function () {
-		return CardType.gotLecture(this.cardType);
-	},
-	getFrontTitle: function () {
-		return CardType.getFrontTitle(this.cardType);
-	},
-	getBackTitle: function () {
-		return CardType.getBackTitle(this.cardType);
-	},
-	gotDifficultyLevel: function () {
-		return CardType.gotDifficultyLevel(this.cardType);
-	},
-	gotLearningGoal: function () {
-		return CardType.gotLearningGoal(this.cardType);
-	},
-	gotNotesForDifficultyLevel: function () {
-		return CardType.gotNotesForDifficultyLevel(this.cardType);
-	},
-	reversedViewOrder: function () {
-		return Session.get('reverseViewOrder');
-	},
-	isFrontPreview: function () {
-		return (Session.get('activeEditMode') === 0 && Route.isEditModeOrPresentation() && !Session.get('dictionaryPreview'));
-	},
-	isLecturePreview: function () {
-		if (CardType.gotLecture(this.cardType)) {
-			return (Session.get('activeEditMode') === 3 && Route.isEditModeOrPresentation());
-		}
-	},
-	isDictionaryPreview: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryPreview') && Route.isEditMode();
-		}
-	},
-	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && Route.isEditModeOrPresentation());
-	},
-	isCentered: function (type) {
-		return CardVisuals.isCentered(type);
-	},
-	gotOneColumn: function () {
-		return CardType.gotOneColumn(this.cardType);
-	},
-	gotBack: function () {
-		if (CardType.gotOneColumn(this.cardType)) {
-			return true;
-		}
-		if (CardType.gotBack(this.cardType)) {
-			return this.back !== '' && this.back !== undefined;
-		} else {
-			return false;
-		}
-	},
-	gotFront: function () {
-		return this.front !== '' && this.front !== undefined;
-	},
-	getPlaceholder: function (mode) {
-		CardEditor.getPlaceholder(mode);
-	},
-	isShuffledCardset: function () {
-		if (Route.isDemo()) {
-			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
-		} else {
-			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
-		}
-	},
-	isWorkloadFullscreen: function () {
-		return Session.get("workloadFullscreenMode");
 	}
 });
 
-Template.flashcards.events({
+/*
+ * ############################################################################
+ * flashcardNavigation
+ * ############################################################################
+ */
+Template.flashcardNavigation.helpers({
+	isCardsetOrPresentation: function () {
+		return Route.isCardset() || Route.isPresentation();
+	},
+	cardCountOne: function () {
+		var cardset = Session.get('activeCardset');
+		var count = Cards.find({
+			cardset_id: cardset._id
+		}).count();
+		return count === 1;
+	}
+});
+
+Template.flashcardNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		if (Session.get('reverseViewOrder')) {
 			if (Route.isPresentation) {
@@ -515,110 +150,6 @@ Template.flashcards.events({
 				CardEditor.updateNavigation();
 			}
 		});
-	},
-	"click .cardHeader": function (evt) {
-		if (!Route.isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
-			if (Route.isEditMode() && !Session.get('fullscreen')) {
-				CardVisuals.turnCard(true);
-			} else {
-				CardVisuals.turnCard();
-			}
-		}
-	},
-	"click #showHint": function (evt) {
-		Session.set('selectedHint', $(evt.target).data('id'));
-		$('#showHint').children().addClass("pressed");
-	},
-	"click #showLecture": function (evt) {
-		setTimeout(function () {
-			$('html, body').animate({
-				scrollTop: $($(evt.target).data('target')).offset().top
-			}, 1000);
-		}, 500);
-		if (!$('#showLecture').children().hasClass("pressed")) {
-			$('#showLecture').children().addClass("pressed");
-		} else {
-			$('#showLecture').children().removeClass("pressed");
-		}
-	},
-	"click #swapOrder": function () {
-		if (Session.get('reverseViewOrder')) {
-			Session.set('reverseViewOrder', false);
-			if (Route.isEditMode()) {
-				CardVisuals.turnFront(true);
-			} else {
-				if (Route.isPresentation()) {
-					CardEditor.editFront();
-				} else {
-					CardVisuals.turnFront();
-				}
-			}
-		} else {
-			Session.set('reverseViewOrder', true);
-			if (Route.isEditMode()) {
-				CardVisuals.turnBack(true);
-			} else {
-				if (Route.isPresentation()) {
-					CardEditor.editBack();
-				} else {
-					CardEditor.turnBack();
-				}
-			}
-		}
-	},
-	"click #editCard": function (evt) {
-		Session.set('activeCard', $(evt.target).data('id'));
-	},
-	"click #copyCard": function (evt) {
-		Session.set('activeCard', $(evt.target).data('id'));
-		$('#copyCard').children().addClass("pressed");
-	},
-	"click #toggleFullscreen": function () {
-		if (Session.get("workloadFullscreenMode")) {
-			Session.set("workloadFullscreenMode", false);
-			CardVisuals.toggleFullscreen();
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
-			});
-		} else {
-			CardVisuals.toggleFullscreen();
-		}
-	},
-	"click .endPresentation": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
-	},
-	"click .selectCard": function (evt) {
-		Session.set('activeCard', $(evt.target).data('id'));
-		if (Route.isDemo()) {
-			Router.go('demolist');
-		} else {
-			Router.go('presentationlist', {
-				_id: Router.current().params._id
-			});
-		}
-	}
-});
-
-/*
- * ############################################################################
- * cardDictionaryContent
- * ############################################################################
- */
-
-Template.cardDictionaryContent.helpers({
-	getDictionarySearchText: function () {
-		let searchText;
-		if (Session.get('isQuestionSide')) {
-			searchText = this.front.trim();
-		} else {
-			searchText = this.back.trim();
-		}
-		let wordCount = searchText.split(/\s+/);
-		if (wordCount.length === 1) {
-			return "&query=" + searchText;
-		}
 	}
 });
 
