@@ -83,7 +83,7 @@ function createTagCloud() {
 					drawOutOfBound: false,
 					rotateRatio: 0,
 					fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
-					color: "LightGoldenRodYellow",
+					color: "random-light",
 					hover: wordcloudHover,
 					click: wordcloudClick,
 					backgroundColor: 'rgba(255,255,255, 0)',
