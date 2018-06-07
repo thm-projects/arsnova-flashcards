@@ -40,7 +40,10 @@ if (Meteor.isServer) {
 		} else {
 			return Cardsets.find(
 				{
-					wordcloud: true
+					$or: [
+						{kind: {$in: ['demo']}},
+						{wordcloud: true}
+					]
 				},
 				{
 					fields:

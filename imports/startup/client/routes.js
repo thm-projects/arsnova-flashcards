@@ -75,7 +75,7 @@ Router.route('demolist', {
 	name: 'demolist',
 	template: 'contact',
 	data: function () {
-		return Cardsets.findOne({_id: "DemoCardset0"});
+		return Cardsets.findOne({kind: 'demo', shuffled: true});
 	}
 });
 
