@@ -160,7 +160,7 @@ Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + ":&nbsp;</label><span id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
-			loginButtons += '<a id="cas" href=""><img src="img/gruen_eckig_Doktorhut.png" alt="use CAS for login"/></a>';
+			loginButtons += '<a id="cas" href=""><img src="img/THM_login.png" alt="use CAS for login"/></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
 			loginButtons += '<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>';

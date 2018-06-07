@@ -1645,8 +1645,8 @@ $themes: (
         background-color: transparent !important;
       }
       #slogan {
-        color: $thm_orange !important;
-	text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
+        color: white !important;
+	    text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
       }
       .panel-heading {
         background-color: transparent !important;
@@ -1684,7 +1684,7 @@ $themes: (
     }
 
     .color-cards {
-      color: $thm_green !important;
+      color: $thm_gray !important;
     }
 
     //profile
