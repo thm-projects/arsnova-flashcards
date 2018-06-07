@@ -114,40 +114,6 @@
     </div>
 </template>
 
-<template name="cardHintContent">
-    <div class="modal-body">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
-                    {{#if gotHint}}
-                        {{#mathjax}}{{getHint}}{{/mathjax}}
-                    {{else}}
-                        {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<template name="cardHint">
-    <div class="modal fade" id="showHintModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="showHintTitle">
-            <div class="modal-content {{#if gotAlternativeHintStyle
-                                            cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
-                <div class="modal-header">
-                    <h4 id="showHintTitle" class="modal-title">{{> cardSubject}}: {{getHintTitle}}
-                        {{#unless isHintPreview}}
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        {{/unless}}
-                    </h4>
-                </div>
-                {{> cardHintContent}}
-            </div>
-        </div>
-    </div>
-</template>
-
 <template name="copyCard">
     <div class="modal fade" id="showCopyCardModal" role="dialog">
         <div class="modal-dialog" aria-labelledby="showHintTitle">

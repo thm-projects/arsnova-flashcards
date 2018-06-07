@@ -10,6 +10,7 @@ import {CardIndex} from "../../api/cardIndex";
 import {Cardsets} from "../../api/cardsets";
 import {CardType} from "../../api/cardTypes";
 import "./header.html";
+import {MarkdeepEditor} from "../../api/markdeepEditor";
 
 /*
  * ############################################################################
@@ -31,12 +32,8 @@ Template.flashcardHeader.helpers({
 
 Template.flashcardHeaderDefault.events({
 	"click .cardHeader": function (evt) {
-		if (!Route.isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
-			if (Route.isEditMode() && !Session.get('fullscreen')) {
-				CardVisuals.turnCard(true);
-			} else {
-				CardVisuals.turnCard();
-			}
+		if (!CardType.gotOneColumn($(evt.target).data('cardtype')) && ($(evt.target).data('type') !== "cardNavigation")  && !$(evt.target).is('a, a *')) {
+			CardVisuals.turnCard();
 		}
 	}
 });
@@ -145,6 +142,17 @@ Template.flashcardHeaderPresentationLeft.helpers({
 	},
 	getPlaceholder: function (mode) {
 		CardEditor.getPlaceholder(mode);
+	},
+	isDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryPreview');
+		}
+	}
+});
+
+Template.flashcardHeaderPresentationLeft.events({
+	"click #showLecture": function () {
+		MarkdeepEditor.displayDictionary();
 	}
 });
 
@@ -178,7 +186,7 @@ Template.flashcardHeaderPresentationRight.helpers({
 		if (getQuantityValue) {
 			let cardset;
 			if (Route.isDemo()) {
-				cardset = Cardsets.findOne("DemoCardset0");
+				cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
 			} else {
 				cardset = Cardsets.findOne(Router.current().params._id);
 			}
@@ -195,7 +203,7 @@ Template.flashcardHeaderPresentationRight.helpers({
 			}
 		} else {
 			if (Route.isDemo()) {
-				return Cardsets.findOne("DemoCardset0").count();
+				return Cardsets.findOne({kind: 'demo', shuffled: true}).count();
 			} else {
 				return Cards.find({cardset_id: Router.current().params._id}).count();
 			}
@@ -224,6 +232,9 @@ Template.flashcardHeaderPresentationRight.events({
 				_id: Router.current().params._id
 			});
 		}
+	},
+	"click #toggleFullscreen": function () {
+		CardVisuals.toggleFullscreen();
 	}
 });
 
@@ -240,14 +251,8 @@ Template.flashcardHeaderContentDefaultLeft.helpers({
 	isMemo: function () {
 		return Route.isMemo();
 	},
-	isEditModeOrPresentation: function () {
-		return Route.isEditModeOrPresentation();
-	},
 	box: function () {
 		return Session.get("selectedBox");
-	},
-	isQuestionSide: function () {
-		return Session.get('isQuestionSide');
 	},
 	gotSidesSwapped: function () {
 		return CardType.gotSidesSwapped(this.cardType);
@@ -259,14 +264,14 @@ Template.flashcardHeaderContentDefaultLeft.helpers({
 		return CardType.gotDictionary(this.cardType);
 	},
 	gotLecture: function () {
-		return CardType.gotLecture(this.cardType);
+		return CardType.gotLecture(this.cardType) && this.lecture !== "" && this.lecture !== undefined;
 	},
 	getPlaceholder: function (mode) {
 		CardEditor.getPlaceholder(mode);
 	},
 	isShuffledCardset: function () {
 		if (Route.isDemo()) {
-			return Cardsets.findOne({_id: "DemoCardset0"}).shuffled;
+			return Cardsets.findOne({kind: 'demo', shuffled: true}).shuffled;
 		} else {
 			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 		}
@@ -341,7 +346,7 @@ Template.flashcardHeaderContentDefaultRight.helpers({
 		if (getQuantityValue) {
 			let cardset;
 			if (Route.isDemo()) {
-				cardset = Cardsets.findOne("DemoCardset0");
+				cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
 			} else {
 				cardset = Cardsets.findOne(Router.current().params._id);
 			}
@@ -358,7 +363,7 @@ Template.flashcardHeaderContentDefaultRight.helpers({
 			}
 		} else {
 			if (Route.isDemo()) {
-				return Cardsets.findOne("DemoCardset0").count();
+				return Cardsets.findOne({kind: 'demo', shuffled: true}).count();
 			} else {
 				return Cards.find({cardset_id: Router.current().params._id}).count();
 			}

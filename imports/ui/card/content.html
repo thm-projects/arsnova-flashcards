@@ -1,3 +1,11 @@
+<template name="flashcardContent">
+    {{#if isEditModeOrPresentation}}
+        {{> flashcardContentPresentation this}}
+    {{else}}
+        {{> flashcardContentDefault this}}
+    {{/if}}
+</template>
+
 <template name="cardFrontContent">
                                  <span class="{{#if gotFront}}{{#if
                                          isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
@@ -50,62 +58,26 @@
     </span>
 </template>
 
-<template name="flashcardContent">
-    <div class="cardContent {{#if
-            isHintPreview}}{{#if
-            gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
-            isLecturePreview}}lectureContent{{/if}}{{#if
-            isDictionaryPreview}}lectureContent{{/if}} centered cardfront {{#unless
-            isHintPreview}}{{#unless
-            isLecturePreview}}{{#unless isDictionaryPreview}}{{getCardBackground
-            difficulty cardType
-            backgroundStyle}}{{/unless}}{{/unless}}{{/unless}} detailfront{{cardsIndex this._id}}"
-         style="display: {{#if gotDictionary}}{{#if
-                 reversedViewOrder}}none{{/if}}{{/if}}">
-        {{#if isEditModeOrPresentation}}
-            {{#if isFrontPreview}}
-                {{#if gotSidesSwapped}}
-                    {{> cardBackContent this}}
-                {{else}}
-                    {{> cardFrontContent this}}
-                {{/if}}
-            {{/if}}
-            {{#if isHintPreview}}
-                {{> cardHintContentPreview this}}
-            {{/if}}
-            {{#if isLecturePreview}}
-                {{> cardLectureContent this}}
-            {{/if}}
-            {{#if isDictionaryPreview}}
-                {{> cardDictionaryContent this}}
-            {{/if}}
+<template name="flashcardContentDefault">
+    <div class="cardContent centered cardfront {{getCardBackground difficulty cardType
+                                                                   backgroundStyle}} detailfront{{cardsIndex this._id}}"
+         style="display: {{#if reversedViewOrder}}none{{/if}}">
+        {{#if gotSidesSwapped}}
+            {{> cardBackContent this}}
         {{else}}
-            {{#if gotSidesSwapped}}
-                {{> cardBackContent this}}
-            {{else}}
-                {{> cardFrontContent this}}
-            {{/if}}
+            {{> cardFrontContent this}}
         {{/if}}
     </div>
-    <div class="cardContent centered cardback {{#if
-            isDictionaryPreview}}lectureContent{{/if}} {{#unless
-            isDictionaryPreview}}{{getCardBackground
-            difficulty cardType backgroundStyle}}{{/unless}} detailback{{cardsIndex this._id}}"
-         style="display: {{#if gotDictionary}}{{#unless
-                 reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
-        {{#if isDictionaryPreview}}
-            {{> cardDictionaryContent this}}
-        {{else}}
-            {{#if gotOneColumn}}
+    <div class="cardContent centered cardback {{getCardBackground difficulty cardType
+                                                                  backgroundStyle}} detailback{{cardsIndex this._id}}"
+         style="display: {{#unless reversedViewOrder}}none{{/unless}}">
+        {{#unless gotOneColumn}}
+            {{#if gotSidesSwapped}}
                 {{> cardFrontContent this}}
             {{else}}
-                {{#if gotSidesSwapped}}
-                    {{> cardFrontContent this}}
-                {{else}}
-                    {{> cardBackContent this}}
-                {{/if}}
+                {{> cardBackContent this}}
             {{/if}}
-        {{/if}}
+        {{/unless}}
     </div>
     {{#unless gotNotesForDifficultyLevel}}
         <div class="collapsed collapse"
@@ -122,4 +94,75 @@
             </div>
         </div>
     {{/unless}}
+</template>
+
+<template name="flashcardContentPresentation">
+    <div class="cardContent {{#if
+            isHint}}{{#if
+            gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
+            isLecture}}lectureContent{{/if}}{{#if
+            isDictionary}}lectureContent{{/if}} centered cardfront {{#unless
+            isHint}}{{#unless
+            isLecture}}{{#unless isDictionary}}{{getCardBackground
+            difficulty cardType
+            backgroundStyle}}{{/unless}}{{/unless}}{{/unless}} detail{{cardsIndex this._id}}">
+        {{#if isDictionary}}
+            {{> cardDictionaryContent this}}
+        {{else}}
+            {{#if isFront}}
+                {{#if gotSidesSwapped}}
+                    {{> cardBackContent this}}
+                {{else}}
+                    {{> cardFrontContent this}}
+                {{/if}}
+            {{/if}}
+            {{#if isHint}}
+                {{> cardHintContentPreview this}}
+            {{/if}}
+            {{#if isLecture}}
+                {{> cardLectureContent this}}
+            {{/if}}
+            {{#if isBack}}
+                {{#if gotSidesSwapped}}
+                    {{> cardFrontContent this}}
+                {{else}}
+                    {{> cardBackContent this}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="cardHintContent">
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
+                    {{#if gotHint}}
+                        {{#mathjax}}{{getHint}}{{/mathjax}}
+                    {{else}}
+                        {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardHint">
+    <div class="modal fade" id="showHintModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content {{#if gotAlternativeHintStyle
+                                            cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
+                <div class="modal-header">
+                    <h4 id="showHintTitle" class="modal-title">{{> cardSubject}}: {{getHintTitle}}
+                        {{#unless isHintPreview}}
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        {{/unless}}
+                    </h4>
+                </div>
+                {{> cardHintContent}}
+            </div>
+        </div>
+    </div>
 </template>

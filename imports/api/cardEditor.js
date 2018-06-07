@@ -4,23 +4,13 @@ import {Meteor} from "meteor/meteor";
 import {backMaxLength, Cards, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "./cards";
 import {isTextCentered} from "../ui/markdeepEditor/navigation";
 import {Route} from "./route.js";
-import {CardVisuals} from "./cardVisuals";
 
-let isEditorFullscreen = false;
 export let CardEditor = class CardEditor {
 	static updateNavigation () {
 		let card_id = $('.carousel-inner > .active').attr('data-id');
 		Session.set('activeCard', card_id);
 		let cardType = Cards.findOne({_id: card_id}).cardType;
 		Session.set('cardType', Number(cardType));
-	}
-
-	static isEditorFullscreen () {
-		return isEditorFullscreen;
-	}
-
-	static setEditorFullscreen (isFullscreen) {
-		isEditorFullscreen = isFullscreen;
 	}
 
 	static checkBackgroundStyle () {
@@ -49,13 +39,13 @@ export let CardEditor = class CardEditor {
 
 	static prepareFront () {
 		isTextCentered();
+		Session.set('dictionaryPreview', 0);
+		Session.set('isQuestionSide', true);
 		if (Session.get('activeEditMode') === 1) {
 			$(".box").removeClass("disableCardTransition");
 		}
 		Session.set('activeEditMode', 0);
-		if (Session.get('fullscreen') && isEditorFullscreen) {
-			Session.set('lastEditMode', Session.get('activeEditMode'));
-		}
+		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 6);
 		if (!Route.isPresentation()) {
@@ -73,20 +63,19 @@ export let CardEditor = class CardEditor {
 		if (CardType.gotLecture(Session.get('cardType'))) {
 			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 		}
-		Session.set('dictionaryPreview', 0);
 	}
 
 	static prepareBack () {
 		isTextCentered();
+		Session.set('dictionaryPreview', 0);
+		Session.set('isQuestionSide', false);
 		if (Session.get('activeEditMode') !== 0 && (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3)) {
 			$(".box").addClass("disableCardTransition");
 		} else if (Session.get('activeEditMode') === 0) {
 			$(".box").removeClass("disableCardTransition");
 		}
 		Session.set('activeEditMode', 1);
-		if (Session.get('fullscreen') && isEditorFullscreen) {
-			Session.set('lastEditMode', Session.get('activeEditMode'));
-		}
+		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 10);
 		if (!Route.isPresentation()) {
@@ -104,28 +93,21 @@ export let CardEditor = class CardEditor {
 		if (CardType.gotHint(Session.get('cardType'))) {
 			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 		}
-		Session.set('dictionaryPreview', 0);
 	}
 
 	static editFront () {
 		this.prepareFront();
-		CardVisuals.turnFront();
 	}
 
 	static editBack () {
 		this.prepareBack();
-		CardVisuals.turnBack();
 	}
 
 	static editLecture () {
 		isTextCentered();
-		if (Session.get('activeEditMode') === 1) {
-			$(".box").addClass("disableCardTransition");
-		}
+		Session.set('dictionaryPreview', 0);
 		Session.set('activeEditMode', 3);
-		if (Session.get('fullscreen') && isEditorFullscreen) {
-			Session.set('lastEditMode', Session.get('activeEditMode'));
-		}
+		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 8);
 		if (!Route.isPresentation()) {
@@ -138,20 +120,13 @@ export let CardEditor = class CardEditor {
 		if (CardType.gotHint(Session.get('cardType'))) {
 			$('#editLecture').removeClass('btn-default').addClass('btn-primary');
 		}
-		$(".clicktoflip").css('display', "none");
-		CardVisuals.turnFront();
-		$(".cardFrontHeader").css('display', "none");
 	}
 
 	static editHint () {
 		isTextCentered();
-		if (Session.get('activeEditMode') === 1) {
-			$(".box").addClass("disableCardTransition");
-		}
+		Session.set('dictionaryPreview', 0);
 		Session.set('activeEditMode', 2);
-		if (Session.get('fullscreen') && isEditorFullscreen) {
-			Session.set('lastEditMode', Session.get('activeEditMode'));
-		}
+		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 12);
 		if (!Route.isPresentation()) {
@@ -164,9 +139,6 @@ export let CardEditor = class CardEditor {
 		if (CardType.gotHint(Session.get('cardType'))) {
 			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
 		}
-		$(".clicktoflip").css('display', "none");
-		CardVisuals.turnFront();
-		$(".cardFrontHeader").css('display', "none");
 	}
 
 	static initializeContent () {

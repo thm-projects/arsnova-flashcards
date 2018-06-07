@@ -14,7 +14,7 @@
         {{> flashcardHeaderContentDefaultRight this}}
         <br>
         <h2 data-cardtype="{{cardType}}">
-        {{> cardSubject this}}
+            {{> cardSubject this}}
         </h2>
     </div>
 </template>
@@ -72,7 +72,7 @@
         {{#unless isEditMode}}
             {{#if gotDictionary}}
                 <a href="#" id="showLecture">
-                    <img class="card-button showLectureImage showLectureImagePresentation"
+                    <img class="card-button showLectureImage showLectureImagePresentation {{#if isDictionary}}pressed{{/if}}"
                          data-type="cardNavigation"
                          data-toggle="collapse"
                          data-target="#collapseLecture-{{_id}}"
@@ -205,11 +205,5 @@
                                                         isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button {{#if
                                                         fullscreenActive}}pressed{{/if}}"
                                                       data-type="cardNavigation"></span>
-                                    </span>
-    <span class="cardfrontCheck" style="display: {{#if gotDictionary}}{{#if
-            reversedViewOrder}}none{{/if}}{{/if}}"></span>
-    <span class="cardbackCheck"
-          style="display: {{#if gotDictionary}}{{#unless
-                  reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}">
                                     </span>
 </template>

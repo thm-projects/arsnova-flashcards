@@ -11,6 +11,18 @@ import {CardIndex} from "../../api/cardIndex";
 
 /*
  * ############################################################################
+ * flashcardContent
+ * ############################################################################
+ */
+
+Template.flashcardContent.helpers({
+	isEditModeOrPresentation: function () {
+		return Route.isEditModeOrPresentation();
+	}
+});
+
+/*
+ * ############################################################################
  * cardHint
  * ############################################################################
  */
@@ -218,10 +230,55 @@ Template.cardHintContentPreview.helpers({
 
 /*
  * ############################################################################
- * flashcardContent
+ * flashcardContentDefault
  * ############################################################################
  */
-Template.flashcardContent.helpers({
+Template.flashcardContentDefault.helpers({
+	cardsIndex: function (card_id) {
+		let cardIndex = CardIndex.getCardIndex();
+		return cardIndex.findIndex(item => item === card_id) + 1;
+	},
+	isCardset: function () {
+		return Route.isCardset();
+	},
+	isMemo: function () {
+		return Route.isMemo();
+	},
+	box: function () {
+		return Session.get("selectedBox");
+	},
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
+	},
+	gotSidesSwapped: function () {
+		return CardType.gotSidesSwapped(this.cardType);
+	},
+	gotDictionary: function () {
+		return CardType.gotDictionary(this.cardType);
+	},
+	gotLecture: function () {
+		return CardType.gotLecture(this.cardType);
+	},
+	gotNotesForDifficultyLevel: function () {
+		return CardType.gotNotesForDifficultyLevel(this.cardType);
+	},
+	reversedViewOrder: function () {
+		return Session.get('reverseViewOrder');
+	},
+	gotOneColumn: function () {
+		return CardType.gotOneColumn(this.cardType);
+	},
+	getPlaceholder: function (mode) {
+		CardEditor.getPlaceholder(mode);
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardContentPresentation
+ * ############################################################################
+ */
+Template.flashcardContentPresentation.helpers({
 	cardsIndex: function (card_id) {
 		let cardIndex = CardIndex.getCardIndex();
 		return cardIndex.findIndex(item => item === card_id) + 1;
@@ -262,26 +319,29 @@ Template.flashcardContent.helpers({
 	reversedViewOrder: function () {
 		return Session.get('reverseViewOrder');
 	},
-	isFrontPreview: function () {
-		return (Session.get('activeEditMode') === 0 && Route.isEditModeOrPresentation() && !Session.get('dictionaryPreview'));
+	isFront: function () {
+		return (Session.get('activeEditMode') === 0  && !Session.get('dictionaryPreview'));
 	},
-	isLecturePreview: function () {
+	isLecture: function () {
 		if (CardType.gotLecture(this.cardType)) {
-			return (Session.get('activeEditMode') === 3 && Route.isEditModeOrPresentation());
+			return Session.get('activeEditMode') === 3;
 		}
 	},
-	isDictionaryPreview: function () {
+	isDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryPreview') && Route.isEditMode();
+			return Session.get('dictionaryPreview');
 		}
 	},
-	isHintPreview: function () {
-		return (Session.get('activeEditMode') === 2 && Route.isEditModeOrPresentation());
+	isHint: function () {
+		return Session.get('activeEditMode') === 2;
 	},
 	gotOneColumn: function () {
 		return CardType.gotOneColumn(this.cardType);
 	},
 	getPlaceholder: function (mode) {
 		CardEditor.getPlaceholder(mode);
+	},
+	isBack: function () {
+		return Session.get('activeEditMode') === 1;
 	}
 });

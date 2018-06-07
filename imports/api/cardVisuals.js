@@ -34,9 +34,6 @@ export let CardVisuals = class CardVisuals {
 		} else {
 			newFlashcardHeader = $('.active .cardHeader').outerHeight();
 			let editorHeader = $('#markdeepNavigation').outerHeight();
-			if (Session.get('activeEditMode') >= 2 || Session.get('dictionaryPreview')) {
-				newFlashcardHeader = 0;
-			}
 			let newFlashcardWidth = $('#cardCarousel').width();
 			if (newFlashcardWidth >= 900) {
 				$(".cardContent").addClass("fullscreenContent");
@@ -58,11 +55,11 @@ export let CardVisuals = class CardVisuals {
 	 */
 	static toggleFullscreen (forceOff = false, isEditor = false) {
 		let lastEditMode;
-		CardEditor.setEditorFullscreen(isEditor);
 		if (forceOff && (!Route.isBox() && !Route.isMemo())) {
 			Session.set("workloadFullscreenMode", false);
 		}
-		if ((Session.get('fullscreen') || forceOff) && (Route.isDemo() || !Route.isPresentation())) {
+		Session.set('dictionaryPreview', 0);
+		if (Session.get('fullscreen') || forceOff) {
 			Session.set('fullscreen', false);
 			$("#theme-wrapper").css("margin-top", "70px");
 			$("#answerOptions").css("margin-top", "0");
@@ -80,11 +77,6 @@ export let CardVisuals = class CardVisuals {
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
 			lastEditMode = Session.get('lastEditMode');
-			if (lastEditMode === 2 && lastEditMode === 3) {
-				$(".cardFrontHeader").css('display', "none");
-				$(".cardBackHeader").css('display', "none");
-				$(".clicktoflip").css('display', "none");
-			}
 			if (!isEditor) {
 				switch (lastEditMode) {
 					case 0:
@@ -104,12 +96,6 @@ export let CardVisuals = class CardVisuals {
 			}
 		} else {
 			Session.set('fullscreen', true);
-			if (Session.get('activeEditMode') === 1) {
-				$(".cardBackHeader").css('display', "");
-			} else {
-				$(".cardFrontHeader").css('display', "");
-			}
-			$(".clicktoflip").css('display', "");
 			$(".box").removeClass("disableCardTransition");
 			$("#theme-wrapper").css("margin-top", "20px");
 			$("#answerOptions").css("margin-top", "-50px");
@@ -121,11 +107,6 @@ export let CardVisuals = class CardVisuals {
 			} else {
 				$("#markdeepNavigation").css("display", "none");
 				$("#markdeepEditorContent").css("display", 'none');
-				if (!Route.isPresentation()) {
-					if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
-						Session.set('activeEditMode', 0);
-					}
-				}
 			}
 		}
 	}
@@ -135,18 +116,10 @@ export let CardVisuals = class CardVisuals {
 	 * a card or the other way around
 	 */
 	static turnCard (adjustEditWindow = false) {
-		if ($(".cardfrontCheck").css('display') === 'none') {
-			if (Route.isPresentation()) {
-				CardEditor.editFront();
-			} else {
-				this.turnFront(adjustEditWindow);
-			}
-		} else if ($(".cardbackCheck").css('display') === 'none') {
-			if (Route.isPresentation()) {
-				CardEditor.editBack();
-			} else {
-				this.turnBack(adjustEditWindow);
-			}
+		if ($(".cardFrontHeader").css('display') === 'none') {
+			this.turnFront(adjustEditWindow);
+		} else if ($(".cardBackHeader").css('display') === 'none') {
+			this.turnBack(adjustEditWindow);
 		}
 	}
 
@@ -167,8 +140,6 @@ export let CardVisuals = class CardVisuals {
 		if (Route.isEditMode() && adjustEditWindow) {
 			CardEditor.prepareFront();
 		}
-		$(".cardfrontCheck").css('display', "");
-		$(".cardbackCheck").css('display', "none");
 		$(".box .cardfront-symbol").css('display', "");
 		$(".box .cardback-symbol").css('display', "none");
 		$(".box .cardfront").css('display', "");

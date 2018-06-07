@@ -174,7 +174,7 @@ export let CardIndex = class CardIndex {
 	static getCardsetCards () {
 		let query = "";
 		if (Route.isDemo()) {
-			Session.set('activeCardset', Cardsets.findOne("DemoCardset0"));
+			Session.set('activeCardset', Cardsets.findOne({kind: 'demo', shuffled: true}));
 		}
 		let cardIndexFilter = this.getCardIndexFilter();
 		if (Session.get('activeCardset').shuffled) {
