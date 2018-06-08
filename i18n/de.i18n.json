@@ -238,8 +238,8 @@
     "editcard": "Editieren",
     "editreferences": "Kartei mischen",
     "name": "Thema",
-    "nameplaceholder": "Wie lautet das Thema der Kartei?",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "nameplaceholder": "Das Thema der Kartei mit einem Wort",
+    "descriptionplaceholder": "Worum geht es in der Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -257,7 +257,7 @@
     "delete": "Kartei löschen",
     "confirm": "Sicher?",
     "save": "Kartei speichern",
-    "name_required": "Gib einen Namen ein!",
+    "name_required": "Gib das Thema ein!",
     "description_required": "Gib eine Beschreibung ein!",
     "category_required": "Wähle eine Kategorie!",
     "price": "Verkaufspreis",
@@ -834,7 +834,7 @@
       "new": "Neuen Kurs anlegen (Zusammenfassung mehrerer Karteien)",
       "saveNew": "Kurs anlegen",
       "placeholder": {
-        "name": "Thema des Kurses",
+        "name": "Das Thema des Kurses mit einem Wort",
         "description": "Nenne die Kompetenzziele des Kurses: Was soll man nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können?"
       }
     },
