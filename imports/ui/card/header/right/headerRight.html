@@ -1,0 +1,42 @@
+<template name="flashcardHeaderPresentationRight">
+    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemCountCards this}}
+        <br>
+    </div>
+    {{> cardHeaderItemCardList this}}
+    {{#if isDemo}}
+        {{> cardHeaderItemToggleFullscreen this}}
+    {{else}}
+        {{> cardHeaderItemEndPresentation this}}
+    {{/if}}
+</template>
+
+<template name="flashcardHeaderContentDefaultRight">
+    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemCountCards this}}
+        <br>
+    </div>
+    {{> cardHeaderItemTurnCard this}}
+    {{> cardHeaderItemSwapOrder this}}
+    {{> cardHeaderItemToggleFullscreen this}}
+</template>
+
+<template name="flashcardHeaderContentLeitnerRight">
+    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemCountCardsLeitner this}}
+        <br>
+    </div>
+    {{> cardHeaderItemTurnCard this}}
+    {{> cardHeaderItemSwapOrder this}}
+    {{> cardHeaderItemToggleFullscreen this}}
+</template>
+
+<template name="flashcardHeaderContentWozniakRight">
+    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemCountCardsWozniak this}}
+        <br>
+    </div>
+    {{> cardHeaderItemTurnCard this}}
+    {{> cardHeaderItemSwapOrder this}}
+    {{> cardHeaderItemToggleFullscreen this}}
+</template>

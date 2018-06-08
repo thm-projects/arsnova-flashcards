@@ -1,13 +1,13 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../api/cards.js";
+import {Cards} from "../../../api/cards.js";
 import "./content.html";
 import '/client/hammer.js';
-import {CardVisuals} from "../../api/cardVisuals.js";
-import {CardType} from "../../api/cardTypes";
-import {Route} from "../../api/route.js";
-import {CardEditor} from "../../api/cardEditor";
-import {CardIndex} from "../../api/cardIndex";
+import {CardVisuals} from "../../../api/cardVisuals.js";
+import {CardType} from "../../../api/cardTypes";
+import {Route} from "../../../api/route.js";
+import {CardEditor} from "../../../api/cardEditor";
+import {CardIndex} from "../../../api/cardIndex";
 
 /*
  * ############################################################################

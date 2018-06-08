@@ -1,0 +1,12 @@
+<template name="cardHeaderItemSwapOrder">
+    {{#unless gotOneColumn}}
+        {{#if gotBack}}
+            <span id="swapOrder" data-type="cardNavigation"
+                  title="{{_ "card.tooltip.lockSide"}}">
+                                                <i class="fa fa-anchor card-button {{#if
+                                                        reversedViewOrder}}pressed{{/if}}"
+                                                   data-type="cardNavigation"></i>
+                                    </span>
+        {{/if}}
+    {{/unless}}
+</template>

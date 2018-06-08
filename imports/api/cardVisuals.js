@@ -1,10 +1,16 @@
 import {Session} from "meteor/session";
 import {CardEditor} from "./cardEditor";
 import {Route} from "./route";
+import {CardType} from "./cardTypes";
 
 let editorFullScreenActive = false;
 
 export let CardVisuals = class CardVisuals {
+
+	static isEditorFullscreen () {
+		return editorFullScreenActive;
+	}
+
 	static checkFullscreen () {
 		let currentRoute = Router.current().route.getName();
 		if (currentRoute === (Route.isPresentation() || !Route.isDemo())) {
@@ -171,5 +177,11 @@ export let CardVisuals = class CardVisuals {
 		$(".box").addClass("flipped");
 		$(".box .cardHeader").addClass("back");
 		$(".box .cardContent").addClass("back");
+	}
+
+	static cardHeaderTurnCard (evt) {
+		if (!CardType.gotOneColumn($(evt.target).data('cardtype')) && ($(evt.target).data('type') !== "cardNavigation")  && !$(evt.target).is('a, a *')) {
+			this.turnCard();
+		}
 	}
 };

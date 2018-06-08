@@ -1,0 +1,31 @@
+<template name="flashcardHeaderPresentationLeft">
+    <div class="leftHeader" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemClock}}
+        {{> cardHeaderItemDictionary this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderEditorLeft">
+    <div class="leftHeader" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemClock}}
+        {{#if fullscreenActive}}
+            {{> cardHeaderItemDictionary this}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="flashcardHeaderDefaultLeft">
+    <div class="leftHeader" data-cardtype="{{cardType}}">
+        {{> cardHeaderItemCopy this}}
+        {{> cardHeaderItemEdit this}}
+        {{> cardHeaderItemLecture this}}
+        {{> cardHeaderItemHint this}}
+        {{> cardHeaderItemDictionary this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderLeitnerLeft">
+</template>
+
+<template name="flashcardHeaderWozniakLeft">
+</template>

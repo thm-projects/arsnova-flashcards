@@ -1,0 +1,12 @@
+<template name="cardHeaderItemTurnCard">
+    {{#unless gotOneColumn}}
+        {{#if gotBack}}
+            <span id="turnCard" title="{{_ "card.tooltip.turnCard"}}"
+                  data-cardtype="{{cardType}}">
+                                                <span class="fa fa-refresh card-button {{#unless
+                                                        isQuestionSide}}pressed{{/unless}}"
+                                                      data-cardtype="{{cardType}}"></span>
+                                    </span>
+        {{/if}}
+    {{/unless}}
+</template>

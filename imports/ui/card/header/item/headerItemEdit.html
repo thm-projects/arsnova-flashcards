@@ -1,0 +1,13 @@
+<template name="cardHeaderItemEdit">
+    {{#unless isShuffledCardset}}
+        {{#if isCardEditor this.cardset_id}}
+            <a id="editCard" href="/cardset/{{cardset_id}}/editcard/{{_id}}"
+               data-id="{{_id}}"
+               data-type="cardNavigation">
+                                                    <span class="glyphicon glyphicon-pencil card-button"
+                                                          data-id="{{_id}}"
+                                                          data-type="cardNavigation"></span>
+            </a>
+        {{/if}}
+    {{/unless}}
+</template>

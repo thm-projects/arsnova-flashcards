@@ -7,8 +7,8 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import "./card.html";
 import '/client/hammer.js';
-import './header.js';
-import './content.js';
+import './header/header.js';
+import './content/content.js';
 import {skipAnswer} from "../learn/learn.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
@@ -238,11 +238,11 @@ Meteor.startup(function () {
 				CardVisuals.toggleFullscreen(true);
 			}
 		}
-		if (Session.get('fullscreen') && !isEditorFullscreen) {
+		if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
 			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						if (isPresentation()) {
+						if (Route.isPresentation()) {
 							MarkdeepEditor.cardSideNavigation();
 						}
 						break;
@@ -257,7 +257,7 @@ Meteor.startup(function () {
 						}
 						break;
 					case 27:
-						if (isPresentation()) {
+						if (Route.isPresentation()) {
 							$(".endPresentation").click();
 						}
 						break;
@@ -272,10 +272,10 @@ Meteor.startup(function () {
 						}
 						break;
 					case 38:
-						if (isEditMode()) {
-							turnFront(true);
+						if (Route.isEditMode()) {
+							CardVisuals.turnFront(true);
 						} else {
-							turnFront();
+							CardVisuals.turnFront();
 						}
 						break;
 					case 39:
@@ -289,10 +289,10 @@ Meteor.startup(function () {
 						}
 						break;
 					case 40:
-						if (isEditMode()) {
-							turnBack(true);
+						if (Route.isEditMode()) {
+							CardVisuals.turnBack(true);
 						} else {
-							turnBack();
+							CardVisuals.turnBack();
 						}
 						break;
 					case 48:
