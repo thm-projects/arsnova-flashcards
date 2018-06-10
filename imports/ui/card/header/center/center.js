@@ -4,7 +4,7 @@ import {CardEditor} from "../../../../api/cardEditor";
 import {Route} from "../../../../api/route";
 import {Cardsets} from "../../../../api/cardsets";
 import {CardType} from "../../../../api/cardTypes";
-import "./headerCenter.html";
+import "./center.html";
 
 /*
  * ############################################################################

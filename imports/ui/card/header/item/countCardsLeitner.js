@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemCountCardsLeitner.html";
+import "./countCardsLeitner.html";
 import {Leitner} from "../../../../api/learned";
 
 

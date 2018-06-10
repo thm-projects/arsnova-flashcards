@@ -1,4 +1,4 @@
-import "./headerItemClock.html";
+import "./clock.html";
 
 function updatePresentationClock() {
 	let date = new Date();

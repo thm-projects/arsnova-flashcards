@@ -1,4 +1,4 @@
-import "./headerItemCountCards.html";
+import "./countCards.html";
 import {Route} from "../../../../api/route";
 import {Cards} from "../../../../api/cards";
 import {CardIndex} from "../../../../api/cardIndex";

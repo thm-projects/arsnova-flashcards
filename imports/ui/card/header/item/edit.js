@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemEdit.html";
+import "./edit.html";
 import {Route} from "../../../../api/route";
 import {Cardsets} from "../../../../api/cardsets";
 /*

@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemSwapOrder.html";
+import "./swapOrder.html";
 import {Route} from "../../../../api/route";
 import {CardEditor} from "../../../../api/cardEditor";
 import {CardType} from "../../../../api/cardTypes";

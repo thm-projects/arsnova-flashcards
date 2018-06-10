@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemToggleFullscreen.html";
+import "./toggleFullscreen.html";
 import {CardVisuals} from "../../../../api/cardVisuals";
 
 /*

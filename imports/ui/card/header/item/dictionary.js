@@ -1,4 +1,4 @@
-import "./headerItemDictionary.html";
+import "./dictionary.html";
 import {Session} from "meteor/session";
 import {CardType} from "../../../../api/cardTypes";
 

@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemTurnCard.html";
+import "./turnCard.html";
 import {CardType} from "../../../../api/cardTypes";
 
 /*

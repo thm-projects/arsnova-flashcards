@@ -1,4 +1,4 @@
-import "./headerItemEndPresentation.html";
+import "./endPresentation.html";
 
 /*
  * ############################################################################

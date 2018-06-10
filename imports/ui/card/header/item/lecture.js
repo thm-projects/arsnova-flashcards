@@ -1,4 +1,4 @@
-import "./headerItemLecture.html";
+import "./lecture.html";
 import {CardType} from "../../../../api/cardTypes";
 
 /*

@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemCopy.html";
+import "./copy.html";
 
 /*
  * ############################################################################

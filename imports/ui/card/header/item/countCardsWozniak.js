@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemCountCardsWozniak.html";
+import "./countCardsWozniak.html";
 import {Wozniak} from "../../../../api/learned";
 
 

@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import "./headerItemHint.html";
+import "./hint.html";
 import {CardType} from "../../../../api/cardTypes";
 
 /*

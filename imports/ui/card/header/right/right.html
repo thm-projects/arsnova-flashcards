@@ -21,6 +21,13 @@
     {{> cardHeaderItemToggleFullscreen this}}
 </template>
 
+<template name="flashcardHeaderContentEditorRight">
+    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
+        <br>
+    </div>
+    {{> cardHeaderItemToggleFullscreen this}}
+</template>
+
 <template name="flashcardHeaderContentLeitnerRight">
     <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
         {{> cardHeaderItemCountCardsLeitner this}}
