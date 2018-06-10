@@ -1,10 +1,7 @@
 <template name="cardHeaderItemToggleFullscreen">
-    <span id="toggleFullscreen"
-          class="fullscreen"
-          data-type="cardNavigation" title="{{_ "card.tooltip.fullscreen"}}">
-                                                <span class="glyphicon {{#if
-                                                        isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button {{#if
+                                                <span class="toggleFullscreen fullscreen glyphicon {{#if
+                                                        isWorkloadFullscreen}}glyphicon-log-out{{else}}glyphicon-fullscreen{{/if}} card-button cardHeaderItem {{#if
                                                         fullscreenActive}}pressed{{/if}}"
-                                                      data-type="cardNavigation"></span>
-                                    </span>
+                                                      data-type="cardNavigation"
+                                                      title="{{_ "card.tooltip.fullscreen"}}"></span>
 </template>

@@ -1,10 +1,8 @@
 <template name="cardHeaderItemHint">
     {{#if gotHint}}
-        <a href="#" id="showHint">
-                                                    <span class="fa fa-book card-button"
-                                                          data-id="{{_id}}" data-type="cardNavigation"
-                                                          data-toggle="modal"
-                                                          data-target="#showHintModal"></span>
-        </a>
+        <span class="showHint fa fa-book card-button cardHeaderItem"
+              data-id="{{_id}}" data-type="cardNavigation"
+              data-toggle="modal"
+              data-target="#showHintModal"></span>
     {{/if}}
 </template>

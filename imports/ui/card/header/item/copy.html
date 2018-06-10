@@ -1,11 +1,7 @@
 <template name="cardHeaderItemCopy">
     {{#if canCopyCard this.cardset_id}}
-        <a href="#" id="copyCard" data-id="{{_id}}" data-type="cardNavigation"
-           data-toggle="modal"
-           data-target="#showCopyCardModal">
-                                                    <span class="glyphicon glyphicon-duplicate card-button"
+        <span class="copyCard glyphicon glyphicon-duplicate card-button cardHeaderItem"
                                                           data-id="{{_id}}"
                                                           data-type="cardNavigation"></span>
-        </a>
     {{/if}}
 </template>

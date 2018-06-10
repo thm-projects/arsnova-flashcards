@@ -35,6 +35,9 @@ Template.flashcardHeader.helpers({
 	isPresentation: function () {
 		return Route.isPresentation();
 	},
+	isDemo: function () {
+		return Route.isDemo();
+	},
 	isEditMode: function () {
 		return Route.isEditMode();
 	},
@@ -65,6 +68,26 @@ Template.flashcardHeaderDefault.events({
 */
 
 Template.flashcardHeaderPresentation.helpers({
+	gotAlternativeHintStyle: function () {
+		return CardType.gotAlternativeHintStyle(this.cardType);
+	},
+	isHintPreview: function () {
+		return Session.get('activeEditMode') === 2;
+	},
+	isLecturePreview: function () {
+		if (CardType.gotLecture(this.cardType)) {
+			return Session.get('activeEditMode') === 3;
+		}
+	}
+});
+
+/*
+* ############################################################################
+* flashcardHeaderDemo
+* ############################################################################
+*/
+
+Template.flashcardHeaderDemo.helpers({
 	gotAlternativeHintStyle: function () {
 		return CardType.gotAlternativeHintStyle(this.cardType);
 	},

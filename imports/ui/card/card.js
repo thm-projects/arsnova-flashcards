@@ -115,7 +115,7 @@ Template.flashcards.helpers({
  */
 Template.flashcardNavigation.helpers({
 	isCardsetOrPresentation: function () {
-		return Route.isCardset() || Route.isPresentation();
+		return Route.isCardset() || Route.isPresentationOrDemo();
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');
@@ -128,25 +128,29 @@ Template.flashcardNavigation.helpers({
 
 Template.flashcardNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
+		let showLecture = $('.item.active .showLecture.pressed');
 		if (Session.get('reverseViewOrder')) {
-			if (Route.isPresentation) {
+			if (Route.isPresentationOrDemo()) {
 				CardEditor.editBack();
 			} else {
+				showLecture.click();
 				CardVisuals.turnBack();
 			}
 		} else {
-			if (Route.isPresentation) {
+			if (Route.isPresentationOrDemo()) {
 				CardEditor.editFront();
 			} else {
+				showLecture.click();
 				CardVisuals.turnFront();
 			}
 		}
-		$('#cardCarousel').on('slide.bs.carousel', function () {
+		let flashcardCarousel = $('#cardCarousel');
+		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 		});
-		$('#cardCarousel').on('slid.bs.carousel', function () {
+		flashcardCarousel.on('slid.bs.carousel', function () {
 			Session.set('activeCard', $(".item.active").data('id'));
-			if (Route.isPresentation()) {
+			if (Route.isPresentationOrDemo()) {
 				CardEditor.updateNavigation();
 			}
 		});

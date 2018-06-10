@@ -15,7 +15,7 @@ Template.cardHeaderItemHint.helpers({
 });
 
 Template.cardHeaderItemHint.events({
-	"click #showHint": function (evt) {
+	"click .showHint": function (evt) {
 		Session.set('selectedHint', $(evt.target).data('id'));
 		$('#showHint').children().addClass("pressed");
 	}

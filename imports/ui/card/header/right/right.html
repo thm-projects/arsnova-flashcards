@@ -1,49 +1,72 @@
 <template name="flashcardHeaderPresentationRight">
-    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
-        {{> cardHeaderItemCountCards this}}
-        <br>
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCardList this}}
+            {{> cardHeaderItemEndPresentation this}}
+        </div>
     </div>
-    {{> cardHeaderItemCardList this}}
-    {{#if isDemo}}
-        {{> cardHeaderItemToggleFullscreen this}}
-    {{else}}
-        {{> cardHeaderItemEndPresentation this}}
-    {{/if}}
+</template>
+
+<template name="flashcardHeaderDemoRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCardList this}}
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
+    </div>
 </template>
 
 <template name="flashcardHeaderContentDefaultRight">
-    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
-        {{> cardHeaderItemCountCards this}}
-        <br>
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="hidden-xs cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemTurnCard this}}
+            {{> cardHeaderItemSwapOrder this}}
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
     </div>
-    {{> cardHeaderItemTurnCard this}}
-    {{> cardHeaderItemSwapOrder this}}
-    {{> cardHeaderItemToggleFullscreen this}}
 </template>
 
 <template name="flashcardHeaderContentEditorRight">
-    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
-        <br>
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
     </div>
-    {{> cardHeaderItemToggleFullscreen this}}
 </template>
 
 <template name="flashcardHeaderContentLeitnerRight">
-    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
-        {{> cardHeaderItemCountCardsLeitner this}}
-        <br>
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCardsLeitner this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemTurnCard this}}
+            {{> cardHeaderItemSwapOrder this}}
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
     </div>
-    {{> cardHeaderItemTurnCard this}}
-    {{> cardHeaderItemSwapOrder this}}
-    {{> cardHeaderItemToggleFullscreen this}}
 </template>
 
 <template name="flashcardHeaderContentWozniakRight">
-    <div class="cardNumber cardHeaderFirstRow" data-cardtype="{{cardType}}">
-        {{> cardHeaderItemCountCardsWozniak this}}
-        <br>
+    <div class="col-xs-4 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowDouble" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCardsWozniak this}}
+        </div>
+        <div class="cardHeaderRowDouble" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemTurnCard this}}
+            {{> cardHeaderItemSwapOrder this}}
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
     </div>
-    {{> cardHeaderItemTurnCard this}}
-    {{> cardHeaderItemSwapOrder this}}
-    {{> cardHeaderItemToggleFullscreen this}}
 </template>

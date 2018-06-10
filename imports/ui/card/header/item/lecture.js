@@ -14,16 +14,12 @@ Template.cardHeaderItemLecture.helpers({
 });
 
 Template.cardHeaderItemLecture.events({
-	"click #showLecture": function (evt) {
-		setTimeout(function () {
-			$('html, body').animate({
-				scrollTop: $($(evt.target).data('target')).offset().top
-			}, 1000);
-		}, 500);
-		if (!$('#showLecture').children().hasClass("pressed")) {
-			$('#showLecture').children().addClass("pressed");
+	"click .showLecture": function () {
+		let showLecture = $('.item.active .showLecture');
+		if (showLecture.hasClass("pressed")) {
+			showLecture.removeClass("pressed");
 		} else {
-			$('#showLecture').children().removeClass("pressed");
+			showLecture.addClass("pressed");
 		}
 	}
 });

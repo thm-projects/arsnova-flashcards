@@ -90,10 +90,6 @@
   top: 11px;
 }
 
-.clicktoflip {
-  font-style: italic;
-}
-
 img.cardside {
   position: relative;
   float: left;
@@ -102,96 +98,9 @@ img.cardside {
   left: unset;
 }
 
-.item {
-  width: 105% !important;
-}
-
-.leftHeader {
-  position: absolute;
-  display: block;
-  top: 12px;
-  left: 10px;
-  a {
-    margin-left: 5px;
-  }
-  a:first-child {
-    margin-left: 0 !important;
-  }
-}
-
-.leftHeader2 {
-  position: absolute;
-  display: block;
-  top: 50px;
-  left: 10px;
-}
-
-.card-button {
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-
-.fullscreen, #swapOrder, .cardNumber, #turnCard {
-  float: right;
-  position: absolute;
-  top: 50px;
-}
-
-#turnCard {
-  top: top+1px;
-}
-
-#copyCard {
-  position: absolute;
-  float: left;
-  left: 5px;
-  top: 40px;
-}
-
-.endPresentation, .selectCard {
-  position: absolute;
-  float: right;
-  top: 50px;
-  right: 8px;
-}
-
-.selectCard {
-  right: 55px;
-}
-
-#toggleFullscreen, .cardNumber {
-  right: 8px;
-}
-
-#swapOrder {
-  top: 51px;
-  right: 55px;
-}
-
-#turnCard {
-  right: 102px;
-}
-
-.showLectureImage {
-  position: absolute;
-  top: 0;
-  left: 45px;
-  height: 67px;
-}
-
-.showLectureImagePresentation {
-  left: $presentation_clock_size;
-}
-
 .btn-editCardset {
   float: left;
   margin-right: 7px;
-}
-
-.flip-container {
-  perspective: 1000px;
 }
 
 .flashcard, .flashcard-static {
@@ -218,19 +127,74 @@ img.cardside {
 }
 
 .cardHeader {
-  min-height: 90px;
-  text-align: center;
-  font-size: 12px;
-  padding: 15px 190px 0 190px;
-
   h2 {
-    margin-top: -20px;
-    margin-bottom: 0;
-    padding-bottom: 5px;
+    display: block;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     font-size: $font_size_card_header_subject !important;
     font-weight: $font_weight_card_header_subject !important;
     text-transform: $text_transform_card_header_subject !important;
+    text-overflow: ellipsis;
   }
+  .fa, img {
+    vertical-align: top;
+  }
+  img {
+    height: 87%;
+  }
+}
+
+.cardHeaderLeft {
+  padding: $card_header_padding 0 0 $card_header_padding;
+  height: 100%;
+  text-align: left;
+}
+
+.cardHeaderCenter {
+  padding: $card_header_padding $card_header_padding 0 $card_header_padding;
+  height: 100%;;
+  text-align: center;
+}
+
+.cardHeaderRight {
+  padding: $card_header_padding $card_header_padding 0 0;
+  height: 100%;
+  text-align: right;
+}
+
+.cardHeaderItem {
+  top: 0;
+  margin-right: $card_header_item_margin_horizontal;
+
+}
+
+.cardHeaderGroup {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  margin-right: $card_header_item_margin_horizontal;
+}
+
+.cardHeaderSmallText {
+  font-size: $font_size_card_header_small_text;
+}
+
+.cardHeaderSmallerText {
+  font-size: $font_size_card_header_smaller_text;
+}
+
+.cardHeaderRowHalf {
+  padding: 0;
+  height: 50%;
+  .cardHeaderItem:last-child {
+    margin-right: 0;
+  }
+}
+
+.card-button {
+  cursor: pointer;
 }
 
 .cardHeader a:hover {
@@ -241,19 +205,6 @@ img.cardside {
   padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
   line-height: 28px;
   font-size: $font_size_card_content !important;
-}
-
-#subjectEditor {
-  height: 36px !important;
-}
-
-.subjectEditor {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.subjectEditorButton {
-  margin: 0;
 }
 
 .cardContent {
@@ -310,6 +261,10 @@ img.cardside {
   @media(min-width: 768px) {
     margin-left: 15px;
   }
+}
+
+.item {
+  width: 105% !important;
 }
 
 .actionButtons > button {
@@ -380,63 +335,6 @@ img.cardside {
     padding-top: 19px;
     padding-bottom: 20px;
   }
-  .cardHeader {
-    padding: 20px 75px 0 75px;
-    font-size: 12px;
-  }
-
-  .card-button {
-    font-size: 16px;
-  }
-
-  .leftHeader {
-    top: 5px;
-    a {
-      margin-left: 0 !important;
-    }
-  }
-
-  .leftHeader2 {
-    top: 63px;
-  }
-  #clicktoflip {
-    top: 8px;
-    right: 5px;
-  }
-  #swapOrder {
-    top: 35px;
-    right: 8px;
-  }
-  #toggleFullscreen {
-    top: 63px;
-    right: 8px;
-  }
-  .endPresentation, #copyCard {
-    top: 35px;
-    right: 5px;
-  }
-
-  .selectCard {
-    top: 35px;
-    right: 40px;
-  }
-
-  #turnCard {
-    top: 64px;
-    right: 43px;
-  }
-
-  #copyCard {
-    float: right;
-    text-align: right;
-    right: 42px;
-  }
-
-  .showLectureImage {
-    top: 35px;
-    left: 0;
-    height: 48px;
-  }
 }
 
 #editorToolbar > .btn {
@@ -450,31 +348,6 @@ img.cardside {
 
 .cardSubjectRow {
   margin-top: -3px !important;
-}
-
-.cardHeaderFirstRow {
-  margin-top: 0;
-  height: 45px;
-  font-size: $font_size_card_header_first_row !important;
-  font-weight: $font_weight_card_header_first_row !important;
-}
-
-.cardHeaderSecondRow {
-  font-size: $font_size_card_header_second_row !important;
-  font-weight: $font_weight_card_header_second_row !important;
-}
-
-.cardNumber {
-  text-align: right;
-  top: 5px;
-  font-weight: $font_weight_card_header_number !important;
-  @media(min-width: 768px) {
-    top: 15px;
-  }
-}
-
-.fa-lock {
-  width: 36px;
 }
 
 .placeholder {

@@ -1,10 +1,8 @@
 <template name="cardHeaderItemLecture">
     {{#if gotLecture}}
-        <a href="#" id="showLecture">
-                                                    <span class="glyphicon glyphicon glyphicon-education card-button"
-                                                          data-type="cardNavigation"
-                                                          data-toggle="collapse"
-                                                          data-target="#collapseLecture-{{_id}}"></span>
-        </a>
+        <span class="showLecture glyphicon glyphicon glyphicon-education card-button cardHeaderItem"
+              data-type="cardNavigation"
+              data-toggle="collapse"
+              data-target="#collapseLecture-{{_id}}"></span>
     {{/if}}
 </template>

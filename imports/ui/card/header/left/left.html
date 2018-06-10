@@ -1,12 +1,12 @@
 <template name="flashcardHeaderPresentationLeft">
-    <div class="leftHeader" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         {{> cardHeaderItemClock}}
         {{> cardHeaderItemDictionary this}}
     </div>
 </template>
 
 <template name="flashcardHeaderEditorLeft">
-    <div class="leftHeader" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         {{> cardHeaderItemClock}}
         {{#if fullscreenActive}}
             {{> cardHeaderItemDictionary this}}
@@ -15,17 +15,24 @@
 </template>
 
 <template name="flashcardHeaderDefaultLeft">
-    <div class="leftHeader" data-cardtype="{{cardType}}">
-        {{> cardHeaderItemCopy this}}
-        {{> cardHeaderItemEdit this}}
-        {{> cardHeaderItemLecture this}}
-        {{> cardHeaderItemHint this}}
-        {{> cardHeaderItemDictionary this}}
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
+        <div class="hidden-xs cardHeaderGroup">
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemEdit this}}
+                {{> cardHeaderItemLecture this}}
+                {{> cardHeaderItemHint this}}
+            </div>
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemCopy this}}
+            </div>
+        </div>
+        <div class="hidden-xs cardHeaderGroup">
+            {{> cardHeaderItemDictionary this}}
+        </div>
     </div>
 </template>
 
-<template name="flashcardHeaderLeitnerLeft">
-</template>
-
-<template name="flashcardHeaderWozniakLeft">
+<template name="flashcardHeaderEmptyLeft">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
+    </div>
 </template>

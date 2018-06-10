@@ -1,6 +1,8 @@
 import "./dictionary.html";
 import {Session} from "meteor/session";
 import {CardType} from "../../../../api/cardTypes";
+import {MarkdeepEditor} from "../../../../api/markdeepEditor";
+import {Route} from "../../../../api/route";
 
 /*
  * ############################################################################
@@ -18,3 +20,19 @@ Template.cardHeaderItemDictionary.helpers({
 		}
 	}
 });
+
+Template.cardHeaderItemDictionary.events({
+	"click .showLecture": function () {
+		if (Route.isPresentationOrDemo()) {
+			MarkdeepEditor.displayDictionary();
+		} else {
+			let showLecture = $('.item.active .showLecture');
+			if (showLecture.hasClass("pressed")) {
+				showLecture.removeClass("pressed");
+			} else {
+				showLecture.addClass("pressed");
+			}
+		}
+	}
+});
+

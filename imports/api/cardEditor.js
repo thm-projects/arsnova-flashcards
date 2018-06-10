@@ -48,7 +48,7 @@ export let CardEditor = class CardEditor {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 6);
-		if (!Route.isPresentation()) {
+		if (!Route.isPresentationOrDemo()) {
 			if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 				$('#contentEditor').val(Session.get('backText'));
 				$('#editor').attr('data-content', Session.get('backText'));
@@ -78,7 +78,7 @@ export let CardEditor = class CardEditor {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 10);
-		if (!Route.isPresentation()) {
+		if (!Route.isPresentationOrDemo()) {
 			if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 				$('#contentEditor').val(Session.get('frontText'));
 				$('#editor').attr('data-content', Session.get('frontText'));
@@ -110,7 +110,7 @@ export let CardEditor = class CardEditor {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 8);
-		if (!Route.isPresentation()) {
+		if (!Route.isPresentationOrDemo()) {
 			$('#contentEditor').val(Session.get('lectureText'));
 			$('#editor').attr('data-content', Session.get('lectureText'));
 		}
@@ -129,7 +129,7 @@ export let CardEditor = class CardEditor {
 		Session.set('lastEditMode', Session.get('activeEditMode'));
 		$('#contentEditor').focus();
 		$('#contentEditor').attr('tabindex', 12);
-		if (!Route.isPresentation()) {
+		if (!Route.isPresentationOrDemo()) {
 			$('#contentEditor').val(Session.get('hintText'));
 			$('#editor').attr('data-content', Session.get('hintText'));
 		}

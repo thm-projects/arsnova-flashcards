@@ -15,7 +15,7 @@ Template.cardHeaderItemToggleFullscreen.helpers({
 });
 
 Template.cardHeaderItemToggleFullscreen.events({
-	"click #toggleFullscreen": function () {
+	"click .toggleFullscreen": function () {
 		if (Session.get("workloadFullscreenMode")) {
 			Session.set("workloadFullscreenMode", false);
 			CardVisuals.toggleFullscreen();

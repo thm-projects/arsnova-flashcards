@@ -19,7 +19,11 @@ Template.cardHeaderItemEdit.helpers({
 });
 
 Template.cardHeaderItemEdit.events({
-	"click #editCard": function (evt) {
+	"click .editCard": function (evt) {
 		Session.set('activeCard', $(evt.target).data('id'));
+		Router.go('editCard', {
+			_id: Router.current().params._id,
+			card_id: $(evt.target).data('id')
+		});
 	}
 });

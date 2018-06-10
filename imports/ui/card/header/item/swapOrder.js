@@ -31,7 +31,7 @@ Template.cardHeaderItemSwapOrder.helpers({
 });
 
 Template.cardHeaderItemSwapOrder.events({
-	"click #swapOrder": function () {
+	"click .swapOrder": function () {
 		if (Session.get('reverseViewOrder')) {
 			Session.set('reverseViewOrder', false);
 			if (Route.isEditMode()) {

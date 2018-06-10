@@ -13,7 +13,7 @@ export let CardVisuals = class CardVisuals {
 
 	static checkFullscreen () {
 		let currentRoute = Router.current().route.getName();
-		if (currentRoute === (Route.isPresentation() || !Route.isDemo())) {
+		if (currentRoute === (Route.isPresentation())) {
 			this.toggleFullscreen();
 			Session.set('previousRouteName', currentRoute);
 		} else if (currentRoute !== Session.get('previousRouteName')) {
@@ -32,26 +32,43 @@ export let CardVisuals = class CardVisuals {
 	 * Resizes flashcards to din a6 format
 	 */
 	static resizeFlashcard () {
-		let newFlashcardBodyHeight;
-		let newFlashcardHeader;
+		let contentEditor = $('#contentEditor');
+		let newFlashcardHeight;
 		if (editorFullScreenActive) {
-			newFlashcardBodyHeight = ($(window).height() * 0.78);
-			$('#contentEditor').css('height', newFlashcardBodyHeight);
+			newFlashcardHeight = ($(window).height() * 0.78);
+			$('#contentEditor').css('height', newFlashcardHeight);
 		} else {
-			newFlashcardHeader = $('.active .cardHeader').outerHeight();
-			let editorHeader = $('#markdeepNavigation').outerHeight();
-			let newFlashcardWidth = $('#cardCarousel').width();
-			if (newFlashcardWidth >= 900) {
-				$(".cardContent").addClass("fullscreenContent");
+			let flashcard = $('.flashcard');
+			let flashcardHeader = $('.cardHeader');
+			let flashcardBody = $('.cardContent');
+			let flashcardLecture = $('.cardContentCollapsed');
+			let flashcardControls = $('.carousel-control');
+			if (flashcard.width() < 500) {
+				newFlashcardHeight = flashcard.width();
+				flashcard.css('height', flashcard.width());
+				flashcardHeader.css('height', newFlashcardHeight * 0.27);
+				flashcardBody.css('height', newFlashcardHeight * 0.73);
+				flashcardLecture.css('height', newFlashcardHeight * 0.73);
+				flashcardControls.css('margin-top', newFlashcardHeight * 0.27);
+				flashcardControls.css('height', newFlashcardHeight * 0.73);
+				contentEditor.css('height', newFlashcardHeight);
 			} else {
-				$(".cardContent").removeClass("fullscreenContent");
-			}
-			newFlashcardBodyHeight = (newFlashcardWidth / Math.sqrt(2));
-			$('.cardContent').css('height', newFlashcardBodyHeight - newFlashcardHeader);
-			if ($(window).width() >= 1200) {
-				$('#contentEditor').css('height', (newFlashcardBodyHeight - editorHeader));
-			} else {
-				$('#contentEditor').css('height', 'unset');
+				newFlashcardHeight = flashcard.width() / Math.sqrt(2);
+				flashcard.css('height', newFlashcardHeight);
+				if (flashcard.width() > 900) {
+					flashcardHeader.css('height', newFlashcardHeight * 0.12);
+					flashcardBody.css('height', newFlashcardHeight * 0.88);
+					flashcardLecture.css('height', newFlashcardHeight * 0.88);
+					flashcardControls.css('margin-top', newFlashcardHeight * 0.12);
+					flashcardControls.css('height', newFlashcardHeight * 0.88);
+				} else {
+					flashcardHeader.css('height', newFlashcardHeight * 0.16);
+					flashcardBody.css('height', newFlashcardHeight * 0.84);
+					flashcardLecture.css('height', newFlashcardHeight * 0.84);
+					flashcardControls.css('margin-top', newFlashcardHeight * 0.16);
+					flashcardControls.css('height', newFlashcardHeight * 0.84);
+				}
+				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
 		}
 	}
@@ -65,7 +82,7 @@ export let CardVisuals = class CardVisuals {
 			Session.set("workloadFullscreenMode", false);
 		}
 		Session.set('dictionaryPreview', 0);
-		if (Session.get('fullscreen') || forceOff) {
+		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation())) {
 			Session.set('fullscreen', false);
 			$("#theme-wrapper").css("margin-top", "70px");
 			$("#answerOptions").css("margin-top", "0");
@@ -122,9 +139,9 @@ export let CardVisuals = class CardVisuals {
 	 * a card or the other way around
 	 */
 	static turnCard (adjustEditWindow = false) {
-		if ($(".cardFrontHeader").css('display') === 'none') {
+		if ($(".box").hasClass("flipped")) {
 			this.turnFront(adjustEditWindow);
-		} else if ($(".cardBackHeader").css('display') === 'none') {
+		} else {
 			this.turnBack(adjustEditWindow);
 		}
 	}

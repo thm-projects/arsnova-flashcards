@@ -19,7 +19,7 @@ export let Route = class Route {
 	}
 
 	static isDemo () {
-		return Router.current().route.getName() === "demo";
+		return Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist";
 	}
 
 	/**
@@ -27,11 +27,15 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a presentation view.
 	 */
 	static isPresentation () {
-		return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist" || this.isDemo());
+		return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist");
+	}
+
+	static isPresentationOrDemo () {
+		return this.isPresentation() || this.isDemo();
 	}
 
 	static isEditModeOrPresentation () {
-		return this.isEditMode() || this.isPresentation();
+		return this.isEditMode() || this.isPresentationOrDemo();
 	}
 
 	/**

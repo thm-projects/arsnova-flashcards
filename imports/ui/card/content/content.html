@@ -59,6 +59,21 @@
 </template>
 
 <template name="flashcardContentDefault">
+    {{#unless gotNotesForDifficultyLevel}}
+        <div class="collapsed collapse"
+             id="collapseLecture-{{_id}}"
+             style="{{#if isEditMode}}display: none{{/if}}">
+            <div class="cardContent {{#if
+                    gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                    gotLecture}}lectureContent{{/if}} detaillecture{{cardsIndex this._id}}">
+                {{#if gotDictionary}}
+                    {{> cardDictionaryContent}}
+                {{else}}
+                    {{> cardLectureContent this}}
+                {{/if}}
+            </div>
+        </div>
+    {{/unless}}
     <div class="cardContent centered cardfront {{getCardBackground difficulty cardType
                                                                    backgroundStyle}} detailfront{{cardsIndex this._id}}"
          style="display: {{#if reversedViewOrder}}none{{/if}}">
@@ -79,21 +94,6 @@
             {{/if}}
         {{/unless}}
     </div>
-    {{#unless gotNotesForDifficultyLevel}}
-        <div class="collapsed collapse"
-             id="collapseLecture-{{_id}}"
-             style="{{#if isEditMode}}display: none{{/if}}">
-            <div class="cardContent {{#if
-                    gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
-                    gotLecture}}lectureContent{{/if}} detaillecture{{cardsIndex this._id}}">
-                {{#if gotDictionary}}
-                    {{> cardDictionaryContent}}
-                {{else}}
-                    {{> cardLectureContent this}}
-                {{/if}}
-            </div>
-        </div>
-    {{/unless}}
 </template>
 
 <template name="flashcardContentPresentation">

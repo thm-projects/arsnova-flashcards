@@ -119,7 +119,7 @@ Template.contentNavigation.helpers({
 });
 
 Template.contentNavigation.onCreated(function () {
-	if (Session.get('fullscreen') && !Route.isPresentation()) {
+	if (Session.get('fullscreen') && !Route.isPresentationOrDemo()) {
 		CardVisuals.toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
