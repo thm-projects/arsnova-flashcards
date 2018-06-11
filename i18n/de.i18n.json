@@ -51,7 +51,7 @@
   "contact": {
     "about": ".cards",
     "demo": "Demo",
-    "demoTitle": "Demo-Kartei",
+    "demoTitle": "Zettel, Kartons, Regale oder Karten, Karteien, Kurse",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -1346,7 +1346,7 @@
     "firstLogin": "Erstanmeldung"
   },
   "login": {
-    "label": "Melde dich an"
+    "label": "Melde dich an "
   },
   "wozniak": {
     "show": "Zeige Antwort",
