@@ -117,54 +117,6 @@
                                                     </a>
                                                 </li>
                                             {{/if}}
-                                            <li id="notificationsBtn" class="dropdown">
-                                                <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fa fa-bell"></i> {{#if countNotifications}}
-                                                    <span class="badge">{{countNotifications}}</span>{{/if}}
-                                                </a>
-
-                                                <ul class="dropdown-menu notifications text-dark" role="menu"
-                                                    aria-labelledby="dLabel">
-                                                    <div class="notification-heading">
-                                                        <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                                        {{#if getNotifications.count}}
-                                                            <button id="clearBtn" type="button"
-                                                                    class="btn btn-default notification-button pull-right">{{_
-                                                                    "notifications.clearAll"}}</button>
-                                                        {{/if}}
-                                                    </div>
-                                                    <li class="divider"></li>
-                                                    {{#if getNotifications.count}}
-                                                        <div class="notifications-wrapper">
-                                                            {{#each getNotifications}}
-                                                                <a href="{{getLink}}" class="content">
-                                                                    <div class="notification-item">
-                                                                        <h4 class="item-title">{{getType type}}</h4>
-                                                                        <p class="item-info">{{text}}</p>
-                                                                    </div>
-                                                                </a>
-                                                            {{/each}}
-                                                        </div>
-                                                    {{else}}
-                                                        <div class="notification-heading">
-                                                            <h4 class="menu-title">{{_
-                                                                    "notifications.noNotification"}}</h4>
-                                                        </div>
-                                                    {{/if}}
-                                                    <li class="divider"></li>
-                                                    <div class="notification-footer">
-                                                        <a href="{{pathFor 'profileNotifications' _id=currentUser._id}}"
-                                                           type="button" class="btn btn-info notification-button"
-                                                           data-toggle="collapse"
-                                                           data-target="#thm-top-navigation">
-                                                            {{_ "notifications.viewAll"}} <i
-                                                                class="glyphicon glyphicon-circle-arrow-right"></i>
-                                                        </a>
-                                                    </div>
-                                                </ul>
-                                            </li>
-
-
                                             <li id="navbar profile"
                                                 class="dropdown {{#if isActiveProfile}}active{{/if}}">
                                                 <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
@@ -176,6 +128,8 @@
                                                         {{_ "navbar-collapse.myprofile"}}
                                                     </span>
                                                     <span class="caret"></span>
+                                                    {{#if countNotifications}}
+                                                        <span class="badge">{{countNotifications}}</span>{{/if}}
                                                 </a>
 
                                                 <div id="profile-drop" class="dropdown-menu"
@@ -212,10 +166,10 @@
                                                         </tr>
                                                         <tr class="{{#if isActiveRoute
                                                                          'profileNotifications'}}active{{/if}}">
-                                                            <td><a class="dropdown-item"
+                                                            <td><a class="dropdown-item notificationsBtn"
                                                                    href="/profile/{{currentUser._id}}/notifications"><i
                                                                     class="fa fa-bell"></i></a></td>
-                                                            <td><a class="dropdown-item"
+                                                            <td><a class="dropdown-item notificationsBtn"
                                                                    href="/profile/{{currentUser._id}}/notifications">{{_
                                                                     "profile.notifications"}}</a></td>
                                                         </tr>

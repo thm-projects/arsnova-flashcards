@@ -171,16 +171,10 @@ Template.main.events({
 		$('#searchDropdown').removeClass("open");
 		$('#input-search').val('');
 	},
-	'click #notificationsBtn': function () {
+	'click .notificationsBtn': function () {
 		var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
 		notifications.forEach(function (notification) {
 			Meteor.call("setNotificationAsRead", notification._id);
-		});
-	},
-	'click #clearBtn': function () {
-		var notifications = Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()});
-		notifications.forEach(function (notification) {
-			Meteor.call("setNotificationAsCleared", notification._id);
 		});
 	},
 	'click .lang': function (event) {
