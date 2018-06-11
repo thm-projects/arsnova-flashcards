@@ -127,20 +127,22 @@ class CardIndex {
 			cardIndexFilter.push(cardIndex[activeCardIndex]);
 			if (cardIndex.length > 1) {
 				cardIndexFilter.push(cardIndex[nextCardIndex]);
-			}
-			if (!isLearningMode) {
-				if (activeCardIndex === 0) {
-					previousCardIndex = cardIndex.length - 1;
-				} else {
-					previousCardIndex = activeCardIndex - 1;
+				if (!isLearningMode) {
+					if (activeCardIndex === 0) {
+						previousCardIndex = cardIndex.length - 1;
+					} else {
+						previousCardIndex = activeCardIndex - 1;
+					}
+					cardIndexFilter.push(cardIndex[previousCardIndex]);
 				}
-				cardIndexFilter.push(cardIndex[previousCardIndex]);
 			}
 		} else {
 			cardIndexFilter.push(cardIndex[0]);
-			cardIndexFilter.push(cardIndex[1]);
-			if (!isLearningMode) {
-				cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
+			if (cardIndex.length > 1) {
+				cardIndexFilter.push(cardIndex[1]);
+				if (!isLearningMode) {
+					cardIndexFilter.push(cardIndex[cardIndex.length - 1]);
+				}
 			}
 		}
 		return cardIndexFilter;

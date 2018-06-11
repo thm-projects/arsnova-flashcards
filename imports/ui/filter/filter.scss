@@ -10,13 +10,16 @@
 #filter-nav-wrapper, #filter-nav {
   padding: 0;
   text-align: left;
-
   #resetBtn {
     margin-left: 10px;
   }
 
+  a {
+    font-size: 14px;
+  }
+
   #resetBtnMobile {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   .btn {
@@ -82,6 +85,9 @@
     .btn-group {
       margin-left: 30px;
     }
+    #resetBtnMobile {
+      margin-left: 25px;
+    }
   }
 
   @media (max-width: 889px) {
@@ -103,9 +109,9 @@
     }
   }
 
-  @media (max-width: 768px) {
-    #filterCheckbox {
-      margin-left: 15px !important;
+  @media (max-width: 767px) {
+    .navbar-nav {
+      padding-left: 15px !important;
     }
   }
 

@@ -28,6 +28,7 @@
   "intro": {
     "about": "About .cards",
     "learnMore": "Find out more…",
+    "learnMoreMobile": "Find out more…",
     "impressum": "Legal Notice",
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
