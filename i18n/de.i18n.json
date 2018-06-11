@@ -27,7 +27,8 @@
   },
   "intro": {
     "about": "Was ist .cards?",
-    "learnMore": "Erfahre mehr über .cards in der Demo-Kartei…",
+    "learnMore": "Learn more about .cards in the demo cardset…",
+    "learnMoreMobile": "Erfahre mehr über .cards…",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
