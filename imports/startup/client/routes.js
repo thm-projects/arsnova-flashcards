@@ -68,12 +68,12 @@ Router.route('impressum', {
 
 Router.route('demo', {
 	name: 'demo',
-	template: 'contact'
+	template: 'demo'
 });
 
 Router.route('demolist', {
 	name: 'demolist',
-	template: 'contact',
+	template: 'demo',
 	data: function () {
 		return Cardsets.findOne({kind: 'demo', shuffled: true});
 	}
