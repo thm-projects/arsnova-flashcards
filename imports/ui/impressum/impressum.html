@@ -1,4 +1,37 @@
 <template name="contact">
+    <div id="contact" class="col-md-8 col-md-offset-2">
+        <div class="row">
+            {{> contactNavigation}}
+        </div>
+        <br>
+        <div class="row">
+            {{#if isActiveRoute 'about'}}
+                {{> about}}
+            {{/if}}
+            {{#if isActiveRoute 'learning'}}
+                {{> learning}}
+            {{/if}}
+            {{#if isActiveRoute 'help'}}
+                {{> help}}
+            {{/if}}
+            {{#if isActiveRoute 'faq'}}
+                {{> faq}}
+            {{/if}}
+            {{#if isActiveRoute 'impressum'}}
+                {{> impressum}}
+            {{/if}}
+            {{#if isActiveRoute 'agb'}}
+                {{> agb}}
+            {{/if}}
+            {{#if isActiveRoute 'datenschutz'}}
+                {{> datenschutz}}
+            {{/if}}
+        </div>
+    </div>
+    }
+</template>
+
+<template name="demo">
     {{#unless fullscreenActive}}
         <div id="contact" class="col-md-8 col-md-offset-2">
             <div class="row">
@@ -6,9 +39,6 @@
             </div>
             <br>
             <div class="row">
-                {{#if isActiveRoute 'about'}}
-                    {{> about}}
-                {{/if}}
                 {{#if isActiveRoute 'demo'}}
                     <div class="panel panel-default">
                         <div class="panel-heading info-tab">
@@ -21,25 +51,6 @@
                 {{/if}}
                 {{#if isActiveRoute 'demolist'}}
                     {{> presentationView}}
-                {{/if}}
-
-                {{#if isActiveRoute 'learning'}}
-                    {{> learning}}
-                {{/if}}
-                {{#if isActiveRoute 'help'}}
-                    {{> help}}
-                {{/if}}
-                {{#if isActiveRoute 'faq'}}
-                    {{> faq}}
-                {{/if}}
-                {{#if isActiveRoute 'impressum'}}
-                    {{> impressum}}
-                {{/if}}
-                {{#if isActiveRoute 'agb'}}
-                    {{> agb}}
-                {{/if}}
-                {{#if isActiveRoute 'datenschutz'}}
-                    {{> datenschutz}}
                 {{/if}}
             </div>
         </div>
@@ -66,8 +77,9 @@
                href="{{pathFor
                        route='about'}}">{{_
                     "contact.about"}}</a></li>
-        <li class="hidden-xs sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                   'demo'}}inactive{{/unless}}{{/if}}">
+        <li class="hidden-xs sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless
+                isActiveRoute
+                'demo'}}inactive{{/unless}}{{/if}}">
             <a id="demo"
                href="{{pathFor
                        route='demo'}}">{{_
@@ -124,7 +136,8 @@
                 <p>
                     .cards ist für das <b>Mitschreiben und Lernen mit Karten</b> in den Studiengängen der
                     Technischen Hochschule Mittelhessen, THM, entwickelt worden.
-                    Das <a href="https://github.com/thm-projects/arsnova-flashcards" target="_blank">Open-Source-Projekt</a>
+                    Das <a href="https://github.com/thm-projects/arsnova-flashcards"
+                           target="_blank">Open-Source-Projekt</a>
                     wurde in der
                     <a href="https://www.thm.de/site/hochschule/service/ag-qls.html" target="_blank">Arbeitsgemeinschaft
                         Qualität in Lehre und Studium</a>
@@ -139,17 +152,20 @@
                     Denn .cards unterstützt nicht nur das Lernen mit digitalen Karteikarten, sondern auch das
                     Mitschreiben
                     in Vorlesungen und eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen.
-                    Die Plattform .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als ein virtueller Ort,
+                    Die Plattform .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als
+                    ein virtueller Ort,
                     wo Lernzeit mit kognitiven Tätigkeiten (Mitschreiben, Nachbearbeiten der Mitschrift, Lernkarten
                     erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
-                    — im Gegensatz zu sogenannten Lernplattformen wie Moodle oder ILIAS, die meistens nur als Verteilungsplattformen
+                    — im Gegensatz zu sogenannten Lernplattformen wie Moodle oder ILIAS, die meistens nur als
+                    Verteilungsplattformen
                     für
                     Skripte dienen.
                 </p>
                 <h2>Das Konzept</h2>
                 <p>
                     Das didaktische Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv
-                    zu bewerten, um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes Lernen</b> über
+                    zu bewerten, um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes
+                    Lernen</b> über
                     den Semesterverlauf zu vergeben.
                     Das Lernen gemäß den in .cards implementierten Wiederholungs-Algorithmen von
                     <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder

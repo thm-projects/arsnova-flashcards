@@ -43,11 +43,15 @@ function isDemo() {
  * @return {Boolean} Return true, when route is a presentation view.
  */
 function isPresentation() {
+	return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist");
+}
+
+function isPresentationOrDemo() {
 	return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist" || isDemo());
 }
 
 function isEditModeOrPresentation() {
-	return isEditMode() || isPresentation();
+	return isEditMode() || isPresentationOrDemo();
 }
 
 export function updateNavigation() {
@@ -106,7 +110,7 @@ function prepareFront() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 6);
-	if (!isPresentation()) {
+	if (!isPresentationOrDemo()) {
 		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 			$('#contentEditor').val(Session.get('backText'));
 			$('#editor').attr('data-content', Session.get('backText'));
@@ -137,7 +141,7 @@ function prepareBack() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 10);
-	if (!isPresentation()) {
+	if (!isPresentationOrDemo()) {
 		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
 			$('#contentEditor').val(Session.get('frontText'));
 			$('#editor').attr('data-content', Session.get('frontText'));
@@ -220,7 +224,7 @@ function editLecture() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 8);
-	if (!isPresentation()) {
+	if (!isPresentationOrDemo()) {
 		$('#contentEditor').val(Session.get('lectureText'));
 		$('#editor').attr('data-content', Session.get('lectureText'));
 	}
@@ -246,7 +250,7 @@ function editHint() {
 	}
 	$('#contentEditor').focus();
 	$('#contentEditor').attr('tabindex', 12);
-	if (!isPresentation()) {
+	if (!isPresentationOrDemo()) {
 		$('#contentEditor').val(Session.get('hintText'));
 		$('#editor').attr('data-content', Session.get('hintText'));
 	}
@@ -381,7 +385,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 	if (forceOff && (!isBox() && !isMemo())) {
 		Session.set("workloadFullscreenMode", false);
 	}
-	if ((Session.get('fullscreen') || forceOff) && (isDemo() || !isPresentation())) {
+	if ((Session.get('fullscreen') || forceOff) && (!isPresentation())) {
 		Session.set('fullscreen', false);
 		$("#theme-wrapper").css("margin-top", "70px");
 		$("#answerOptions").css("margin-top", "0");
@@ -440,7 +444,7 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
 		} else {
 			$("#markdeepNavigation").css("display", "none");
 			$("#markdeepEditorContent").css("display", 'none');
-			if (!isPresentation()) {
+			if (!isPresentationOrDemo()) {
 				lastEditMode = Session.get('activeEditMode');
 				if (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3) {
 					Session.set('activeEditMode', 0);
@@ -456,13 +460,13 @@ export function toggleFullscreen(forceOff = false, isEditor = false) {
  */
 export function turnCard(adjustEditWindow = false) {
 	if ($(".cardfrontCheck").css('display') === 'none') {
-		if (isPresentation()) {
+		if (isPresentationOrDemo()) {
 			editFront();
 		} else {
 			turnFront(adjustEditWindow);
 		}
 	} else if ($(".cardbackCheck").css('display') === 'none') {
-		if (isPresentation()) {
+		if (isPresentationOrDemo()) {
 			editBack();
 		} else {
 			turnBack(adjustEditWindow);
@@ -863,7 +867,7 @@ Template.contentNavigation.helpers({
 });
 
 Template.contentNavigation.onCreated(function () {
-	if (Session.get('fullscreen') && !isPresentation()) {
+	if (Session.get('fullscreen') && !isPresentationOrDemo()) {
 		toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
@@ -1037,7 +1041,7 @@ Template.cardHintContent.helpers({
 	getHint: function () {
 		if (isEditMode()) {
 			return Session.get('hintText');
-		} else if (isPresentation()) {
+		} else if (isPresentationOrDemo()) {
 			return this.hint;
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).hint;
@@ -1050,7 +1054,7 @@ Template.cardHintContent.helpers({
 		let hint;
 		if (isEditMode()) {
 			return Session.get('hintText');
-		} else if (isPresentation()) {
+		} else if (isPresentationOrDemo()) {
 			hint = this.hint;
 		} else if (Session.get('selectedHint')) {
 			hint = Cards.findOne({_id: Session.get('selectedHint')}).hint;
@@ -1060,7 +1064,7 @@ Template.cardHintContent.helpers({
 	isCentered: function () {
 		if (isEditMode()) {
 			return Session.get('centerTextElement')[2];
-		} else if (isPresentation()) {
+		} else if (isPresentationOrDemo()) {
 			return this.centerTextElement[2];
 		} else if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).centerTextElement[2];
@@ -1198,7 +1202,7 @@ Template.cardLectureContent.helpers({
 
 Template.cardHintContentPreview.helpers({
 	getPlaceholder: function (mode) {
-		if (isPresentation()) {
+		if (isPresentationOrDemo()) {
 			return CardType.getPlaceholderText(mode, this.cardType);
 		}
 	},
@@ -1296,10 +1300,10 @@ Template.flashcards.helpers({
 		return isCardset();
 	},
 	isCardsetOrPresentation: function () {
-		return isCardset() || isPresentation();
+		return isCardset() || isPresentationOrDemo();
 	},
 	isPresentation: function () {
-		return isPresentation();
+		return isPresentationOrDemo();
 	},
 	isDemo: function () {
 		return isDemo();
@@ -1336,7 +1340,7 @@ Template.flashcards.helpers({
 		if (isBox()) {
 			return getLeitnerCards();
 		}
-		if (isCardset() || isPresentation() || isDemo()) {
+		if (isCardset() || isPresentationOrDemo() || isDemo()) {
 			return getCardsetCards();
 		}
 		if (isMemo()) {
@@ -1486,13 +1490,13 @@ Template.flashcards.helpers({
 Template.flashcards.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
 		if (Session.get('reverseViewOrder')) {
-			if (isPresentation) {
+			if (isPresentationOrDemo) {
 				editBack();
 			} else {
 				turnBack();
 			}
 		} else {
-			if (isPresentation) {
+			if (isPresentationOrDemo) {
 				editFront();
 			} else {
 				turnFront();
@@ -1503,13 +1507,13 @@ Template.flashcards.events({
 		});
 		$('#cardCarousel').on('slid.bs.carousel', function () {
 			Session.set('activeCard', $(".item.active").data('id'));
-			if (isPresentation()) {
+			if (isPresentationOrDemo()) {
 				updateNavigation();
 			}
 		});
 	},
 	"click .cardHeader": function (evt) {
-		if (!isPresentation() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
+		if (!isPresentationOrDemo() && !CardType.gotOneColumn($(evt.target).data('cardtype')) && Session.get('activeEditMode') !== 2 && Session.get('activeEditMode') !== 3 && ($(evt.target).data('type') !== "cardNavigation") && ($(evt.target).data('type') !== "cardImage") && !$(evt.target).is('a, a *')) {
 			if (isEditMode() && !Session.get('fullscreen')) {
 				turnCard(true);
 			} else {
@@ -1539,7 +1543,7 @@ Template.flashcards.events({
 			if (isEditMode()) {
 				turnFront(true);
 			} else {
-				if (isPresentation()) {
+				if (isPresentationOrDemo()) {
 					editFront();
 				} else {
 					turnFront();
@@ -1550,7 +1554,7 @@ Template.flashcards.events({
 			if (isEditMode()) {
 				turnBack(true);
 			} else {
-				if (isPresentation()) {
+				if (isPresentationOrDemo()) {
 					editBack();
 				} else {
 					turnBack();
@@ -1691,7 +1695,7 @@ Template.copyCard.events({
 Meteor.startup(function () {
 	$(document).on('keydown', function (event) {
 		if (event.keyCode === 27) {
-			if (isPresentation()) {
+			if (isPresentationOrDemo()) {
 				if (!$("#endPresentationModal").is(':visible')) {
 					$('#endPresentationModal').modal('show');
 				}
@@ -1703,7 +1707,7 @@ Meteor.startup(function () {
 			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						if (isPresentation()) {
+						if (isPresentationOrDemo()) {
 							MarkdeepEditor.cardSideNavigation();
 						}
 						break;
@@ -1718,7 +1722,7 @@ Meteor.startup(function () {
 						}
 						break;
 					case 27:
-						if (isPresentation()) {
+						if (isPresentationOrDemo()) {
 							$(".endPresentation").click();
 						}
 						break;

@@ -2,6 +2,7 @@
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
+import {toggleFullscreen} from "../card/card";
 
 /*
  * ############################################################################
@@ -35,4 +36,14 @@ Template.help.onRendered(function () {
 		$(window).scrollTop(($(target).offset().top - 70));
 		Session.set('helpTarget', undefined);
 	}
+});
+
+/*
+ * ############################################################################
+ * demo
+ * ############################################################################
+ */
+
+Template.demo.onRendered(function () {
+	toggleFullscreen();
 });
