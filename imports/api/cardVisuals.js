@@ -46,11 +46,11 @@ export let CardVisuals = class CardVisuals {
 			if (flashcard.width() < 500) {
 				newFlashcardHeight = flashcard.width();
 				flashcard.css('height', flashcard.width());
-				flashcardHeader.css('height', newFlashcardHeight * 0.27);
-				flashcardBody.css('height', newFlashcardHeight * 0.73);
-				flashcardLecture.css('height', newFlashcardHeight * 0.73);
-				flashcardControls.css('margin-top', newFlashcardHeight * 0.27);
-				flashcardControls.css('height', newFlashcardHeight * 0.73);
+				flashcardHeader.css('height', newFlashcardHeight * 0.20);
+				flashcardBody.css('height', newFlashcardHeight * 0.8);
+				flashcardLecture.css('height', newFlashcardHeight * 0.8);
+				flashcardControls.css('margin-top', newFlashcardHeight * 0.2);
+				flashcardControls.css('height', newFlashcardHeight * 0.8);
 				contentEditor.css('height', newFlashcardHeight);
 			} else {
 				newFlashcardHeight = flashcard.width() / Math.sqrt(2);

@@ -133,7 +133,10 @@ img.cardside {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size: $font_size_card_header_subject !important;
+    font-size: $font_size_card_header_subject;
+    @media(max-width: 767px) {
+      font-size: $font_size_card_header_subject * 0.9;
+    }
     font-weight: $font_weight_card_header_subject !important;
     text-transform: $text_transform_card_header_subject !important;
     text-overflow: ellipsis;
@@ -148,53 +151,83 @@ img.cardside {
 
 .cardHeaderLeft {
   padding: $card_header_padding 0 0 $card_header_padding;
+  @media(max-width: 767px) {
+    padding: ($card_header_padding / 2) 0 0 ($card_header_padding / 2);
+  }
   height: 100%;
   text-align: left;
+  .cardHeaderItem {
+    top: 0;
+    margin-right: $card_header_item_margin_horizontal;
+    @media(max-width: 767px) {
+      margin-right: $card_header_item_margin_horizontal / 2;
+    }
+  }
 }
 
 .cardHeaderCenter {
   padding: $card_header_padding $card_header_padding 0 $card_header_padding;
+  @media(max-width: 767px) {
+    padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 ($card_header_padding / 2);
+  }
   height: 100%;;
   text-align: center;
 }
 
 .cardHeaderRight {
   padding: $card_header_padding $card_header_padding 0 0;
+  @media(max-width: 767px) {
+    padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 0;
+  }
   height: 100%;
   text-align: right;
+  .cardHeaderItem {
+    top: 0;
+    margin-left: $card_header_item_margin_horizontal;
+    @media(max-width: 767px) {
+      margin-left: $card_header_item_margin_horizontal / 2;
+    }
+  }
 }
 
-.cardHeaderItem {
-  top: 0;
-  margin-right: $card_header_item_margin_horizontal;
-
-}
 
 .cardHeaderGroup {
   display: inline-block;
   height: 100%;
   vertical-align: top;
   margin-right: $card_header_item_margin_horizontal;
+  @media(max-width: 767px) {
+    margin-right: $card_header_item_margin_horizontal / 2;
+  }
 }
 
 .cardHeaderSmallText {
   font-size: $font_size_card_header_small_text;
+  @media(max-width: 767px) {
+    font-size: $font_size_card_header_small_text * 0.8;
+  }
 }
 
 .cardHeaderSmallerText {
   font-size: $font_size_card_header_smaller_text;
+  @media(max-width: 767px) {
+    font-size: $font_size_card_header_smaller_text * 0.8;
+  }
 }
 
 .cardHeaderRowHalf {
   padding: 0;
   height: 50%;
-  .cardHeaderItem:last-child {
-    margin-right: 0;
-  }
 }
 
 .card-button {
   cursor: pointer;
+  @media(max-width: 767px) {
+    font-size: 16px;
+  }
+  @media(max-width: 320px) {
+    font-size: 12px;
+  }
 }
 
 .cardHeader a:hover {

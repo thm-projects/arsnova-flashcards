@@ -27,10 +27,14 @@
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCards this}}
         </div>
-        <div class="hidden-xs cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemTurnCard this}}
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
             {{> cardHeaderItemSwapOrder this}}
-            {{> cardHeaderItemToggleFullscreen this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
         </div>
     </div>
 </template>
@@ -40,7 +44,9 @@
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemToggleFullscreen this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
         </div>
     </div>
 </template>
@@ -51,9 +57,13 @@
             {{> cardHeaderItemCountCardsLeitner this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemTurnCard this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
             {{> cardHeaderItemSwapOrder this}}
-            {{> cardHeaderItemToggleFullscreen this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
         </div>
     </div>
 </template>
@@ -64,9 +74,13 @@
             {{> cardHeaderItemCountCardsWozniak this}}
         </div>
         <div class="cardHeaderRowDouble" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemTurnCard this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
             {{> cardHeaderItemSwapOrder this}}
-            {{> cardHeaderItemToggleFullscreen this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
         </div>
     </div>
 </template>
