@@ -7,7 +7,7 @@
             {{#if filterCardTypes}}
                 <li>
                     <a href="#" class="filterCardType"
-                       data-id="{{this.cardType}}">{{getCardTypeName}}
+                       data-id="{{this.cardType}}">{{getCardTypeLongName}}
                         {{#if poolFilterCardType this.cardType}}
                             <span class="glyphicon glyphicon-filter"></span>
                         {{/if}}
@@ -17,7 +17,7 @@
         {{/each}}
     {{else}}
         {{#each getCardTypes}}
-            <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeName}}</a></li>
+            <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
         {{/each}}
     {{/if}}
 </template>

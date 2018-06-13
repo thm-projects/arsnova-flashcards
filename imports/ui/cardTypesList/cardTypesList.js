@@ -15,8 +15,8 @@ Template.cardTypesList.helpers({
 	getCardTypes: function () {
 		return CardType.getCardTypesOrder();
 	},
-	getCardTypeName: function () {
-		return CardType.getCardTypeName(this.cardType);
+	getCardTypeLongName: function () {
+		return CardType.getCardTypeLongName(this.cardType);
 	},
 	filterCardTypes: function () {
 		prepareQuery();
