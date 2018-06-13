@@ -12,7 +12,6 @@ import "./item/clock.js";
 import "./item/copy.js";
 import "./item/countCards.js";
 import "./item/countCardsLeitner.js";
-import "./item/countCardsWozniak.js";
 import "./item/dictionary.js";
 import "./item/edit.js";
 import "./item/endPresentation.js";

@@ -20,7 +20,7 @@ export function skipAnswer(scrollRight = true) {
 	}
 	$('html, body').animate({scrollTop: '0px'}, 300);
 	$('#cardCarousel').on('slide.bs.carousel', function () {
-		CardVisuals.resizeFlashcards();
+		CardVisuals.resizeFlashcard();
 	});
 	$('#cardCarousel').on('slid.bs.carousel', function () {
 		Session.set('animationPlaying', false);
@@ -139,7 +139,7 @@ Template.learnAnswerOptions.events({
 			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
 		} else {
 			$('#cardCarousel').on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcards();
+				CardVisuals.resizeFlashcard();
 			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, false);
@@ -157,7 +157,7 @@ Template.learnAnswerOptions.events({
 			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
 		} else {
 			$('#cardCarousel').on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcards();
+				CardVisuals.resizeFlashcard();
 			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, true);
@@ -175,7 +175,7 @@ Template.learnAnswerOptions.events({
 			Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
 		} else {
 			$('#cardCarousel').on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcards();
+				CardVisuals.resizeFlashcard();
 			});
 			$('#cardCarousel').on('slid.bs.carousel', function () {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
