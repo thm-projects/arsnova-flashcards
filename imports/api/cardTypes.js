@@ -206,6 +206,10 @@ class CardType {
 	static getCardTypeName (cardType) {
 		return TAPi18n.__('card.cardType' + cardType + '.name');
 	}
+
+	static getCardTypeLongName (cardType) {
+		return TAPi18n.__('card.cardType' + cardType + '.longName');
+	}
 }
 
 module.exports = CardType;

@@ -624,6 +624,7 @@
   "card": {
     "cardType0": {
       "name": "Lernkartei",
+      "longName": "Lernkartei",
       "front": "Lernziel",
       "back": "Zusammenfassung",
       "hint": "Links | Literatur ",
@@ -641,6 +642,7 @@
     },
     "cardType1": {
       "name": "Vokabelkartei",
+      "longName": "Vokabelkartei",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
@@ -654,6 +656,7 @@
     },
     "cardType2": {
       "name": "Mitschrift",
+      "longName": "Mitschrift",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
       "hint": "Offene Fragen | To-dos",
@@ -669,6 +672,7 @@
     },
     "cardType3": {
       "name": "Glossar",
+      "longName": "Glossar",
       "front": "Fachbegriff",
       "back": "Definition | Beschreibung",
       "hint": "Literatur zum Fachbegriff ",
@@ -684,6 +688,7 @@
     },
     "cardType4": {
       "name": "Zitatensammlung",
+      "longName": "Zitatensammlung",
       "front": "Wörtliches Zitat",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
@@ -699,6 +704,7 @@
     },
     "cardType5": {
       "name": "Prüfung",
+      "longName": "Prüfung",
       "front": "Prüfungsfrage",
       "back": "Erwartete Antwort",
       "hint": "Begründung",
@@ -714,6 +720,7 @@
     },
     "cardType6": {
       "name": "Anweisungssatz (Informatik)",
+      "longName": "Anweisungssatz (Informatik)",
       "front": "Wie lautet die Anweisung?",
       "back": "Was soll die Anweisung bewirken?",
       "hint": "Quelle | Online-API",
@@ -729,6 +736,7 @@
     },
     "cardType7": {
       "name": "Abstracts | Exzerpte",
+      "longName": "Abstracts | Exzerpte",
       "front": "Abstract | Exzerpt",
       "back": "Anmerkungen",
       "hint": "Bibliografische Angaben",
@@ -744,6 +752,7 @@
     },
     "cardType8": {
       "name": "Notizen",
+      "longName": "Notizen",
       "front": "Notizen",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an !",
@@ -755,6 +764,7 @@
     },
     "cardType9": {
       "name": "To-dos",
+      "longName": "To-dos",
       "front": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema oder Datum der To-dos an !",
@@ -766,6 +776,7 @@
     },
     "cardType10": {
       "name": "Fotokartei",
+      "longName": "Fotokartei",
       "front": "Fotokartei",
       "placeholders": {
         "subject": "Gib das Thema des Fotos an !",
@@ -777,6 +788,7 @@
     },
     "cardType11": {
       "name": "Quiz",
+      "longName": "Quiz",
       "front": "Quizfrage",
       "back": "Antwort",
       "placeholders": {
@@ -790,6 +802,7 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
+      "longName": "Entwurfsmuster",
       "front": "Problem",
       "back": "Lösung",
       "hint": "Literatur",

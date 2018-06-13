@@ -658,6 +658,7 @@
   "card": {
     "cardType0": {
       "name": "Flashcard",
+      "longName": "Flashcard",
       "front": "Frontside",
       "back": "Backside",
       "lecture": "Lecture",
@@ -675,6 +676,7 @@
     },
     "cardType1": {
       "name": "Vocabulary",
+      "longName": "Vocabulary",
       "front": "Frontside",
       "back": "Backside",
       "placeholders": {
@@ -688,6 +690,7 @@
     },
     "cardType2": {
       "name": "Notes",
+      "longName": "Notes",
       "front": "Frontside",
       "back": "Rework",
       "hint": "Literature",
@@ -703,6 +706,7 @@
     },
     "cardType3": {
       "name": "Glossary",
+      "longName": "Glossary",
       "front": "Frontside",
       "back": "Definition",
       "hint": "Literature",
@@ -718,6 +722,7 @@
     },
     "cardType4": {
       "name": "Citation",
+      "longName": "Citation",
       "front": "Citation",
       "back": "Cited person",
       "hint": "Reference",
@@ -733,6 +738,7 @@
     },
     "cardType5": {
       "name": "Exam",
+      "longName": "Exam",
       "front": "Audit question",
       "back": "Answer",
       "hint": "Explanation",
@@ -748,6 +754,7 @@
     },
     "cardType6": {
       "name": "Command set",
+      "longName": "Command set",
       "front": "Command",
       "back": "Definition",
       "hint": "Online API",
@@ -763,6 +770,7 @@
     },
     "cardType7": {
       "name": "Abstract",
+      "longName": "Abstract",
       "front": "Abstract",
       "back": "Cited person",
       "hint": "Reference",
@@ -778,6 +786,7 @@
     },
     "cardType8": {
       "name": "Notes",
+      "longName": "Notes",
       "front": "Notes",
       "placeholders": {
         "subject": "Subject",
@@ -789,6 +798,7 @@
     },
     "cardType9": {
       "name": "To-do",
+      "longName": "To-do",
       "front": "To-do",
       "placeholders": {
         "subject": "Subject",
@@ -800,6 +810,7 @@
     },
     "cardType10": {
       "name": "Photo library",
+      "longName": "Photo library",
       "front": "Photo library",
       "placeholders": {
         "subject": "Subject",
@@ -811,6 +822,7 @@
     },
     "cardType11": {
       "name": "Quiz",
+      "longName": "Quiz",
       "front": "Question",
       "back": "Answer",
       "placeholders": {
@@ -824,6 +836,7 @@
     },
     "cardType12": {
       "name": "Design Patterns",
+      "longName": "Design Patterns",
       "front": "Problem",
       "back": "Solution",
       "hint": "Literature",
