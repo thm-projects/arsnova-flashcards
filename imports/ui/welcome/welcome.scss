@@ -117,17 +117,16 @@
 
 .color-cards {
   font-weight: bold;
-  font-family: "Arial Black, AvenirNext-Heavy,Avenir-Black, Arial-BoldMT";
 }
 
 @media (max-width: 767px) {
   .color-dot:before {
-    font-size: 12vw;
+    font-size: 10vw;
   }
 
   .logo-header-chars {
     cursor: default;
-    font-size: 18vw;
+    font-size: 16vw;
   }
 }
 
