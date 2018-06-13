@@ -24,7 +24,7 @@
          data-cardtype="{{cardType}}">
             {{> flashcardHeaderDefaultLeft this}}
             {{> flashcardHeaderCenter this}}
-            {{> flashcardHeaderContentDefaultRight this}}
+            {{> flashcardHeaderDefaultRight this}}
     </div>
 </template>
 
@@ -60,24 +60,24 @@
          data-cardtype="{{cardType}}">
         {{> flashcardHeaderEditorLeft this}}
         {{> flashcardHeaderCenter this}}
-        {{> flashcardHeaderContentEditorRight this}}
+        {{> flashcardHeaderEditorRight this}}
     </div>
 </template>
 
 <template name="flashcardHeaderLeitner">
     <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
          data-cardtype="{{cardType}}">
-        {{> flashcardHeaderEmptyLeft}}
+        {{> flashcardHeaderLeitnerLeft}}
         {{> flashcardHeaderCenter this}}
-        {{> flashcardHeaderContentLeitnerRight this}}
+        {{> flashcardHeaderLeitnerRight this}}
     </div>
 </template>
 
 <template name="flashcardHeaderWozniak">
     <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
          data-cardtype="{{cardType}}">
-        {{> flashcardHeaderEmptyLeft}}
+        {{> flashcardHeaderWozniakLeft}}
         {{> flashcardHeaderCenter this}}
-        {{> flashcardHeaderContentWozniakRight this}}
+        {{> flashcardHeaderWozniakRight this}}
     </div>
 </template>

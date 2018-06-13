@@ -22,7 +22,7 @@
     </div>
 </template>
 
-<template name="flashcardHeaderContentDefaultRight">
+<template name="flashcardHeaderDefaultRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCards this}}
@@ -39,7 +39,7 @@
     </div>
 </template>
 
-<template name="flashcardHeaderContentEditorRight">
+<template name="flashcardHeaderEditorRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
@@ -51,7 +51,7 @@
     </div>
 </template>
 
-<template name="flashcardHeaderContentLeitnerRight">
+<template name="flashcardHeaderLeitnerRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCardsLeitner this}}
@@ -68,12 +68,12 @@
     </div>
 </template>
 
-<template name="flashcardHeaderContentWozniakRight">
-    <div class="col-xs-4 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowDouble" data-cardtype="{{cardType}}">
+<template name="flashcardHeaderWozniakRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCardsWozniak this}}
         </div>
-        <div class="cardHeaderRowDouble" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             <span class="hidden-xs" data-cardtype="{{cardType}}">
                 {{> cardHeaderItemTurnCard this}}
             </span>
