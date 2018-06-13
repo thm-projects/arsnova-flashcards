@@ -122,12 +122,11 @@
                                                 <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="hidden-sm">
-                                                        {{getUsername}}
+                                                        {{getUsername}} <span class="caret"></span>
                                                     </span>
                                                     <span class="visible-sm">
-                                                        {{_ "navbar-collapse.myprofile"}}
+                                                        {{_ "navbar-collapse.myprofile"}} <span class="caret"></span>
                                                     </span>
-                                                    <span class="caret"></span>
                                                     {{#if countNotifications}}
                                                         <span class="badge">{{countNotifications}}</span>{{/if}}
                                                 </a>
