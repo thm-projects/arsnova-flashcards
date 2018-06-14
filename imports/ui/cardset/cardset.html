@@ -48,9 +48,6 @@
         {{#unless learningActiveAndEditor}}
             {{selectedForLearning}}
         {{/unless}}
-        {{#unless fullscreenActive}}
-            {{> cardsetSidebar}}
-        {{/unless}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}
@@ -64,9 +61,6 @@
             {{> cardsetList}}
         {{/if}}
     {{else}}
-        {{#unless fullscreenActive}}
-            {{> cardsetPreview}}
-        {{/unless}}
         {{#if getQuantity this}}
             {{> flashcards cardset=this}}
         {{/if}}
@@ -346,284 +340,268 @@
                               placeholder="{{_ "cardset.request.reason"}}" rows="7"></textarea>
                 </div>
             {{/if}}
-            {{#if isCardsetOwner _id}}
-                <div class="panel-footer">
+
+            <div class="panel-footer">
+                {{#if hasCardsetPermission this._id}}
                     {{#unless learningActive}}
-                        {{#unless isShuffledCardset _id}}
-                            <div class="btn-group btn-group-raised">
-                                <a type="button" id="newCardBtn" class="btn btn-raised btn-success"
-                                   href="{{pathFor 'newCard'}}"
-                                    {{disableIfOffline}}>
-                                    <i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
-                                </a>
-                            </div>
-                            <div class="btn-group btn-group-raised">
-                                <a href="#" id="importCardsBtn" class="btn btn-raised btn-default" data-toggle="modal"
-                                   data-target="#importModal"><i
-                                        class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a>
-                            </div>
-                        {{/unless}}
+                        {{#if getQuantity this}}
+                            {{#if gotPresentation}}
+                                <div class="btn-group">
+                                    <button id="startPresentation"
+                                            class="btn btn-sm btn-raised btn-default" {{disableIfOffline}}><i
+                                            class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}
+                                    </button>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-raised btn-success learnBtn"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-graduation-cap"></i> {{_ "learn"}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                {{#if gotLearningModes}}
+                                    <li>
+                                        <a id="learnBox" {{disableIfOffline}}>{{_
+                                                "learnfile"}}</a>
+                                    </li>
+                                    <li>
+                                        <a id="learnMemo" {{disableIfOffline}}>{{_
+                                                "memo"}}</a>
+                                    </li>
+                                    {{#if gotEnoughCardsToFilter this.quanity}}
+                                        <li>
+                                            <a id="learnChoice" {{disableIfOffline}}
+                                               data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
+                                                    "learnSelection"}}</a>
+                                        </li>
+                                    {{/if}}
+                                    {{#if learningLeitner}}
+                                        <li>
+                                            <a id="leitnerProgress" {{disableIfOffline}}>{{_
+                                                    "leitnerProgress"}}</a>
+                                        </li>
+                                    {{/if}}
+                                {{/if}}
+                            </ul>
+                        </div>
+                        {{#if isCardsetOwner _id}}
+                            {{#unless isShuffledCardset _id}}
+                                <div class="btn-group">
+                                    <a type="button" id="newCardBtn" class="btn btn-sm btn-raised btn-success"
+                                       href="{{pathFor 'newCard'}}"
+                                        {{disableIfOffline}}><i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" id="importCardsBtn" class="btn btn-sm btn-raised btn-default"
+                                       data-toggle="modal"
+                                       data-target="#importModal"><i
+                                            class="fa fa-cloud-upload"></i> {{_ "sidebar-nav.importcard"}}</a>
+                                </div>
+                            {{/unless}}
+                        {{/if}}
                     {{/unless}}
                     {{#unless isDisabled}}
                         {{#if isShuffledCardset this._id}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="editShuffle" class="btn btn-raised btn-default"
-                                        type="button" {{disableIfOffline}}>
-                                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                            {{#if isCardsetOwner _id}}
+                                <div class="btn-group">
+                                    <button id="editShuffle" class="btn btn-sm btn-raised btn-default"
+                                            type="button" {{disableIfOffline}}>
+                                        <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                                    </button>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                    {{/unless}}
+                    {{#if isCardsetOwner _id}}
+                        <div class="btn-group">
+                            <button id="editCardset" class="btn btn-sm btn-raised btn-default" type="button"
+                                    data-toggle="modal"
+                                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                                <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
+                            </button>
+                        </div>
+                    {{/if}}
+                    {{#unless isShuffledCardset this._id}}
+                        {{#if isCardsetOwner _id}}
+                            <div class="btn-group">
+                                <button id="selectLicense" class="btn btn-sm btn-default btn-raised" type="button"
+                                        data-toggle="modal"
+                                        data-target="#selectLicenseModal" {{disableIfOffline}}>
+                                    <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
                                 </button>
                             </div>
                         {{/if}}
                     {{/unless}}
-                    <div class="btn-group btn-group-raised">
-                        <button id="editCardset" class="btn btn-raised btn-default" type="button"
-                                data-toggle="modal"
-                                data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
-                            <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
-                        </button>
-                    </div>
-                    {{#unless isShuffledCardset this._id}}
-                        <div class="btn-group btn-group-raised">
-                            <button id="selectLicense" class="btn btn-default btn-raised" type="button"
-                                    data-toggle="modal"
-                                    data-target="#selectLicenseModal" {{disableIfOffline}}>
-                                <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
-                            </button>
-                        </div>
-                    {{/unless}}
                     {{#unless isDisabled}}
                         {{#unless learningActive}}
-                            <div class="btn-group btn-group-raised">
-                                <button id="publishCardset" class="btn btn-raised btn-default" type="button"
-                                        data-toggle="modal"
-                                        data-target="#publishModal" {{disableIfOffline}}>
-                                    <i class="fa fa-eye"></i> {{getStatus}}
-                                </button>
-                            </div>
-                        {{/unless}}
-                    {{/unless}}
-                    {{#unless learningActive}}
-                        {{#unless isShuffledCardset this._id}}
-                            {{#if getQuantity this}}
-                                <div class="btn-group btn-group-raised">
-                                    <a href="#" id="exportCardsBtn" class="btn btn-raised btn-default"><i
-                                            class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}</a>
-                                </div>
-                                <div class="btn-group btn-group-raised deleteCardsButton pull-right">
-                                    <button id="delete_cards" class="btn btn-raised btn-danger" type="button"
+                            {{#if isCardsetOwner _id}}
+                                <div class="btn-group">
+                                    <button id="publishCardset" class="btn btn-sm btn-raised btn-default" type="button"
                                             data-toggle="modal"
-                                            data-target="#deleteCardsModal" {{disableIfOffline}}>
-                                        <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                                            data-target="#publishModal" {{disableIfOffline}}>
+                                        <i class="fa fa-eye"></i> {{getStatus}}
                                     </button>
                                 </div>
                             {{/if}}
                         {{/unless}}
                     {{/unless}}
-                </div>
-            {{/if}}
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-raised btn-default manageBtn" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-info-sign"></span> {{_ "manage"}} <span
+                                class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {{#if isCardsetOwner _id}}
+                                <li>
+                                    <a id="manageEditors"
+                                        {{disableIfOffline}}>
+                                        {{_ "sidebar-nav.manageEditors"}}
+                                    </a>
+                                </li>
+                            {{/if}}
+                            {{#unless learningActive}}
+                                {{#if learningLeitner}}
+                                    <li>
+                                        <a id="resetLeitner"
+                                           data-toggle="modal"
+                                           data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
+                                                "resetLearnfile"}}</a>
+                                    </li>
+                                {{/if}}
+                                {{#if learningMemo}}
+                                    <li>
+                                        <a id="resetMemo"
+                                           data-toggle="modal"
+                                           data-target="#resetMemoModal" {{disableIfOffline}}>{{_
+                                                "resetWozniak"}}</a>
+                                    </li>
+                                {{/if}}
+                            {{/unless}}
+                            {{#if enableIfPublished}}
+                                {{#if gotLearningModes}}
+                                    {{#if isCardsetOwner _id}}
+                                        {{#if isInRole 'lecturer'}}
+                                            <li>
+                                                <a id="startStopLearning"
+                                                   class="startStopLearn {{#if
+                                                           learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
+                                                   data-toggle="modal"
+                                                   data-target="{{#unless
+                                                           learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                                    {{#if learningActive}}
+                                                        {{_ "sidebar-nav.stopLearning"}}
+                                                    {{else}}
+                                                        {{_ "sidebar-nav.startLearning"}}
+                                                    {{/if}}
+                                                </a>
+                                            </li>
+                                        {{/if}}
+                                    {{/if}}
+                                    {{#if learningActiveAndEditor}}
+                                        <li>
+                                            <a id="showStats">
+                                                {{_ "box_stats"}}
+                                            </a>
+                                        </li>
+                                    {{/if}}
+                                {{/if}}
+                                {{#unless isEditor}}
+                                    <li>
+                                        <a id="report_button" data-toggle="modal" data-target="#reportModal">{{_
+                                                "report"}}</a>
+                                    </li>
+                                    {{#if learningActive}}
+                                        <li>
+                                            <a id="leaveLearnPhaseButton"
+                                               data-toggle="modal" data-target="#leaveModal">{{_
+                                                    "confirm-leave-learnphase.btn-txt"}}</a>
+                                        </li>
+                                    {{else}}
+                                        {{#if learning}}
+                                            <li>
+                                                <a id="leaveCardsetModalButton"
+                                                   data-toggle="modal" data-target="#leaveCardsetModal">{{_
+                                                        "confirm-leave-cardset.btn-txt"}}</a>
+                                            </li>
+                                        {{else}}
+                                            <li>
+                                                <a id="leaveCardsetButton">{{_
+                                                        "confirm-leave-cardset.btn-txt"}}</a>
+                                            </li>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/unless}}
+                                {{#if isEditor}}
+                                    {{#unless isCardsetOwner _id}}
+                                        <li>
+                                            <a id="leaveEditors"
+                                               data-toggle="modal" data-target="#leaveEditorsModal">{{_
+                                                    "sidebar-nav.leaveEditors"}}</a>
+                                        </li>
+                                    {{/unless}}
+                                {{/if}}
+                            {{/if}}
+                        </ul>
+                    </div>
+                    {{#unless learningActive}}
+                        {{#unless isShuffledCardset this._id}}
+                            {{#if getQuantity this}}
+                                {{#if isCardsetOwner _id}}
+                                    <div class="btn-group">
+                                        <button id="exportCardsBtn" class="btn btn-sm btn-raised btn-default"><i
+                                                class="fa fa-cloud-download"></i> {{_ "sidebar-nav.exportcard"}}
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button id="delete_cards" class="btn btn-sm btn-raised btn-danger" type="button"
+                                                data-toggle="modal"
+                                                data-target="#deleteCardsModal" {{disableIfOffline}}>
+                                            <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                                        </button>
+                                    </div>
+                                {{/if}}
+                            {{/if}}
+                        {{/unless}}
+                    {{/unless}}
+                {{else}}
+                    {{> cardsetPreview}}
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>
 
-<template name="cardsetSidebar">
-    {{#if getQuantity this}}
-        <div id="sidebar" class="col-md-3">
-            {{#unless learningActiveAndNotEditor}}
-                {{#if gotPresentation}}
-                    <div id="set-details-sideBar-region col-xs-12">
-                        <div class="well well-sm sidebar-nav">
-                            <span class="nav-header-cardset">{{_ "presentation.title"}}</span>
-                            <button id="startPresentation"
-                                    class="btn btn-raised btn-default choice btn-block" {{disableIfOffline}}><i
-                                    class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}</button>
-                        </div>
-                    </div>
-                {{/if}}
-                <div id="set-details-sideBar-region col-xs-12">
-                    <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "sidebar-nav.view"}}</span>
-                        <div class="btn-group btn-group-raised btn-group-justified">
-                            <a id="btnToCardLayout"
-                               class="btn btn-default btn-cardLayout {{#if isActiveRoute
-                                                                           regex='cardsetdetailsid|cardsetcard'}}active{{/if}}"
-                               href="/cardset/{{_id}}"><i class="fa fa-square-o"></i> {{_
-                                    "sidebar-nav.viewmap"}}</a>
-                            <a id="btnToListLayout"
-                               class="btn btn-default btn-listLayout {{#if isActiveRoute 'cardsetlistid'}}active{{/if}}"
-                               href="/cardsetlist/{{_id}}"><i class="fa fa-list"></i> {{_ "sidebar-nav.viewlist"}}</a>
-                        </div>
-                    </div>
-                </div>
-            {{/unless}}
-            {{#if gotLearningModes}}
-                {{#unless learningActive}}
-                    <div id="set-details-learn-region">
-                        <div class="well well-sm sidebar-nav">
-                        <span class="nav-header-cardset">{{_ "learn"}}<a href="\learning" id="showHintLearning">
-                                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                                        </a></span>
-
-                                <button id="learnBox"
-                                        class="btn btn-raised btn-success learn btn-block" {{disableIfOffline}}>{{_
-                                        "learnfile"}}</button>
-                                <button id="learnMemo"
-                                        class="btn btn-raised btn-success memo btn-block" {{disableIfOffline}}>{{_
-                                        "memo"}}</button>
-                            {{#if gotEnoughCardsToFilter this.quanity}}
-                                <button id="learnChoice"
-                                        class="btn btn-raised btn-success choice btn-block" {{disableIfOffline}}
-                                        data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
-                                        "learnSelection"}}</button>
-                            {{/if}}
-                            {{#if learningLeitner}}
-                                <button id="leitnerProgress"
-                                        class="btn btn-raised btn-default btn-block" {{disableIfOffline}}>{{_
-                                        "leitnerProgress"}}</button>
-                            {{/if}}
-                        </div>
-                    </div>
-                {{else}}
-                    {{#if learningLeitner}}
-                        <div id="set-details-learn-region">
-                            <div class="well well-sm sidebar-nav">
-                                <span class="nav-header-cardset">{{_ "learn"}}</span>
-                                <button id="leitnerProgress"
-                                        class="btn btn-raised btn-success btn-block" {{disableIfOffline}}>{{_
-                                        "leitnerProgress"}}</button>
-                            </div>
-                        </div>
-                    {{/if}}
-                {{/unless}}
-            {{/if}}
-            <div id="set-details-learn-region">
-                <a id="collapseManageButton" class="col-xs-12 card card-block collapseButton collapsed"
-                   href="#collapseManage" data-toggle="collapse">
-                    <strong>{{_ "manage"}}<a href="#" id="showHintManage">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                    </a></strong>
-                    <i id="collapseMangeIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
-                </a>
-                <div id="collapseManage" class="collapse well well-sm">
-                    {{#if isCardsetOwner _id}}
-                        <button id="manageEditors" type="button"
-                                class="btn btn-default btn-raised btn-block btn-default"
-                            {{disableIfOffline}}>
-                            {{_ "sidebar-nav.manageEditors"}}
-                        </button>
-                    {{/if}}
-                    {{#unless learningActive}}
-                        {{#if learningLeitner}}
-                            <button id="resetLeitner"
-                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                    data-toggle="modal"
-                                    data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
-                                    "resetLearnfile"}}</button>
-                        {{/if}}
-                        {{#if learningMemo}}
-                            <button id="resetMemo"
-                                    class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                    data-toggle="modal"
-                                    data-target="#resetMemoModal" {{disableIfOffline}}>{{_
-                                    "resetWozniak"}}</button>
-                        {{/if}}
-                    {{/unless}}
-                    {{#if enableIfPublished}}
-                        {{#if gotLearningModes}}
-                            {{#if isCardsetOwner _id}}
-                                {{#if isInRole 'lecturer'}}
-                                    <button id="startStopLearning"
-                                            class="btn btn-default btn-raised startStopLearn btn-block {{#if
-                                                    learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="{{#unless
-                                                    learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
-                                        {{#if learningActive}}
-                                            {{_ "sidebar-nav.stopLearning"}}
-                                        {{else}}
-                                            {{_ "sidebar-nav.startLearning"}}
-                                        {{/if}}
-                                    </button>
-                                {{/if}}
-                            {{/if}}
-                            {{#if learningActiveAndEditor}}
-                                <button id="showStats" class="btn btn-default btn-raised btn-block btn-default">
-                                    {{_ "box_stats"}}
-                                </button>
-                            {{/if}}
-                        {{/if}}
-                        {{#unless isEditor}}
-                            <button id="report_button"
-                                    style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                    class="btn btn-raised btn-default btn-block btn-warning flag" href="#"
-                                    data-toggle="modal" data-target="#reportModal">{{_
-                                    "report"}}</button>
-                            {{#if learningActive}}
-                                <button id="leaveLearnPhaseButton"
-                                        style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                        class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                        data-toggle="modal" data-target="#leaveModal">{{_
-                                        "confirm-leave-learnphase.btn-txt"}}</button>
-                            {{else}}
-                                {{#if learning}}
-                                    <button id="leaveCardsetModalButton"
-                                            style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                            class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                            data-toggle="modal" data-target="#leaveCardsetModal">{{_
-                                            "confirm-leave-cardset.btn-txt"}}</button>
-                                {{else}}
-                                    <button id="leaveCardsetButton"
-                                            style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                            class="btn btn-raised btn-default btn-block btn-danger flag" href="#">{{_
-                                            "confirm-leave-cardset.btn-txt"}}</button>
-                                {{/if}}
-                            {{/if}}
-                        {{/unless}}
-                        {{#if isEditor}}
-                            {{#unless isCardsetOwner _id}}
-                                <button id="leaveEditors"
-                                        style="white-space: normal; padding-left: 10px; padding-right: 10px;"
-                                        class="btn btn-raised btn-default btn-block btn-danger flag" href="#"
-                                        data-toggle="modal" data-target="#leaveEditorsModal">{{_
-                                        "sidebar-nav.leaveEditors"}}</button>
-                            {{/unless}}
-                        {{/if}}
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-    {{/if}}
-</template>
-
-
 <template name="cardsetPreview">
-    <div class="col-md-3">
-        <div id="cardsetPreview">
-            <div class="panel panel-default cardsetInfo">
-                <div class="panel-body">
+    <div id="cardsetPreview">
+        <div class="panel panel-default cardsetInfo">
+            <div class="panel-body">
                     <span class="nav-header-cardset">{{_ "sidebar-nav.preview"}}<a id="showPreviewHelp" href="#"
                                                                                    class="field-tip">
                                         <i class="glyphicon glyphicon-info-sign"></i>
                                     </a></span>
-                    <form role="form">
+                <form role="form">
+                    <div class="">
                         <div class="">
-                            <div class="">
-                                <div id="payment-form"></div>
-                                <button id="buyCardsetBtn" type="submit"
-                                        class="btn btn-success btn-block btn-raised">{{_
-                                        "cardset.money.buy"}} {{getPrice price}}
-                                </button>
-                            </div>
+                            <div id="payment-form"></div>
+                            <button id="buyCardsetBtn" type="submit"
+                                    class="btn btn-success btn-block btn-raised">{{_
+                                    "cardset.money.buy"}} {{getPrice price}}
+                            </button>
                         </div>
-                    </form>
-                    <button id="buyProBtn"
-                            class="btn btn-warning btn-block btn-raised">{{_ "cardset.money.pro"}}
-                    </button>
-                </div>
+                    </div>
+                </form>
+                <button id="buyProBtn"
+                        class="btn btn-warning btn-block btn-raised">{{_ "cardset.money.pro"}}
+                </button>
             </div>
         </div>
-        <div class="btn-group"
-             role="group">
-        </div>
+    </div>
+    <div class="btn-group"
+         role="group">
     </div>
 </template>
 

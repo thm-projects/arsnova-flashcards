@@ -141,13 +141,13 @@
                        data-target="{{#if isActiveRoute
                                           regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
                        data-id="{{this._id}}">
-                        <i class="fa fa-trash" data-id="{{this._id}}"></i>
+                        <i class="result fa fa-trash" data-id="{{this._id}}"></i>
                     </a>
                 {{/if}}
                 {{#if isActiveRoute regex="alldecks|create"}}
                     {{#unless this.shuffled}}
                         <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                           data-name="{{this.name}}"><i class="fa fa-cloud-download" data-id="{{this._id}}"
+                           data-name="{{this.name}}"><i class="result fa fa-cloud-download" data-id="{{this._id}}"
                                                         data-name="{{this.name}}"></i></a>
                     {{/unless}}
                 {{/if}}
