@@ -656,7 +656,7 @@
     },
     "cardType2": {
       "name": "Mitschrift",
-      "longName": "Mitschrift (Mitschrift | Nachbearbeitung | To-dos",
+      "longName": "Mitschrift (Mitschrift | Nachbearbeitung | To-dos)",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
       "hint": "To-dos",
@@ -736,8 +736,8 @@
     },
     "cardType7": {
       "name": "Exzerpte",
-      "longName": "Exzerpte (Exzerpt | Anmerkungen | Bibliografische Angaben",
-      "front": "Abstract | Exzerpt",
+      "longName": "Exzerpte (Exzerpt | Anmerkungen | Bibliografische Angaben)",
+      "front": "Exzerpt",
       "back": "Anmerkungen",
       "hint": "Bibliografische Angaben",
       "placeholders": {
@@ -775,12 +775,13 @@
       }
     },
     "cardType10": {
-      "name": "Fotokartei (Foto | Lizenz)",
-      "longName": "Fotokartei",
-      "front": "Fotokartei",
+      "name": "Fotokartei",
+      "longName": "Fotokartei (Foto | Lizenz)",
+      "front": "Foto",
+      "back": "Lizenz",
       "placeholders": {
         "subject": "Gib das Thema des Fotos an !",
-        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
+        "front": "Diese Karte ist für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
         "back": "Lizenz"
       },
       "editorLabels": {
