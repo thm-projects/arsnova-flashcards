@@ -362,26 +362,18 @@
                             </button>
                             <ul class="dropdown-menu">
                                 {{#if gotLearningModes}}
-                                    <li>
-                                        <a id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
-                                                "learnfile"}}</a>
-                                    </li>
-                                    <li>
-                                        <a id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
-                                                "memo"}}</a>
-                                    </li>
+                                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
+                                            "learnfile"}}</li>
+                                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
+                                            "memo"}}</li>
                                     {{#if gotEnoughCardsToFilter this.quanity}}
-                                        <li>
-                                            <a id="learnChoice" class="chooseList" {{disableIfOffline}}
-                                               data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
-                                                    "learnSelection"}}</a>
-                                        </li>
+                                        <li id="learnChoice" class="chooseList" {{disableIfOffline}}
+                                            data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
+                                                "learnSelection"}}</li>
                                     {{/if}}
                                     {{#if learningLeitner}}
-                                        <li>
-                                            <a id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
-                                                    "leitnerProgress"}}</a>
-                                        </li>
+                                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
+                                                "leitnerProgress"}}</li>
                                     {{/if}}
                                 {{/if}}
                             </ul>
@@ -456,92 +448,73 @@
                         </button>
                         <ul class="dropdown-menu">
                             {{#if isCardsetOwner _id}}
-                                <li>
-                                    <a id="manageEditors" class="manageEditorsList"
-                                        {{disableIfOffline}}>
-                                        {{_ "sidebar-nav.manageEditors"}}
-                                    </a>
+                                <li id="manageEditors" class="manageEditorsList"
+                                    {{disableIfOffline}}>
+                                    {{_ "sidebar-nav.manageEditors"}}
                                 </li>
                             {{/if}}
                             {{#unless learningActive}}
                                 {{#if learningLeitner}}
-                                    <li>
-                                        <a id="resetLeitner" class="resetLeitnerList"
-                                           data-toggle="modal"
-                                           data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
-                                                "resetLearnfile"}}</a>
-                                    </li>
+                                    <li id="resetLeitner" class="resetLeitnerList"
+                                        data-toggle="modal"
+                                        data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
+                                            "resetLearnfile"}}</li>
                                 {{/if}}
                                 {{#if learningMemo}}
-                                    <li>
-                                        <a id="resetMemo" class="resetWozniakList"
-                                           data-toggle="modal"
-                                           data-target="#resetMemoModal" {{disableIfOffline}}>{{_
-                                                "resetWozniak"}}</a>
-                                    </li>
+                                    <li id="resetMemo" class="resetWozniakList"
+                                        data-toggle="modal"
+                                        data-target="#resetMemoModal" {{disableIfOffline}}>{{_
+                                            "resetWozniak"}}</li>
                                 {{/if}}
                             {{/unless}}
                             {{#if enableIfPublished}}
                                 {{#if gotLearningModes}}
                                     {{#if isCardsetOwner _id}}
                                         {{#if isInRole 'lecturer'}}
-                                            <li>
-                                                <a id="startStopLearning"
-                                                   class="startStopLearn startStopLearningList {{#if
-                                                           learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
-                                                   data-toggle="modal"
-                                                   data-target="{{#unless
-                                                           learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
-                                                    {{#if learningActive}}
-                                                        {{_ "sidebar-nav.stopLearning"}}
-                                                    {{else}}
-                                                        {{_ "sidebar-nav.startLearning"}}
-                                                    {{/if}}
-                                                </a>
+                                            <li id="startStopLearning"
+                                                class="startStopLearn startStopLearningList {{#if
+                                                        learningActive}} btn-danger learnBoxActive {{else}} btn-success {{/if}}"
+                                                data-toggle="modal"
+                                                data-target="{{#unless
+                                                        learningActive}}#confirmLearnModal{{else}}#confirmEndLearnModal{{/unless}}">
+                                                {{#if learningActive}}
+                                                    {{_ "sidebar-nav.stopLearning"}}
+                                                {{else}}
+                                                    {{_ "sidebar-nav.startLearning"}}
+                                                {{/if}}
                                             </li>
                                         {{/if}}
                                     {{/if}}
                                     {{#if learningActiveAndEditor}}
-                                        <li>
-                                            <a id="showStats" class="showStatsList">
-                                                {{_ "box_stats"}}
-                                            </a>
+                                        <li id="showStats" class="showStatsList">
+                                            {{_ "box_stats"}}
                                         </li>
                                     {{/if}}
                                 {{/if}}
                                 {{#unless isEditor}}
-                                    <li>
-                                        <a id="report_button" class="reportList" data-toggle="modal" data-target="#reportModal">{{_
-                                                "report"}}</a>
-                                    </li>
+                                    <li id="report_button" class="reportList" data-toggle="modal"
+                                        data-target="#reportModal">{{_
+                                            "report"}}</li>
                                     {{#if learningActive}}
-                                        <li>
-                                            <a id="leaveLearnPhaseButton" class="leaveLearnPhaseList"
-                                               data-toggle="modal" data-target="#leaveModal">{{_
-                                                    "confirm-leave-learnphase.btn-txt"}}</a>
-                                        </li>
+                                        <li id="leaveLearnPhaseButton" class="leaveLearnPhaseList"
+                                            data-toggle="modal" data-target="#leaveModal">{{_
+                                                "confirm-leave-learnphase.btn-txt"}}</li>
                                     {{else}}
                                         {{#if learning}}
-                                            <li>
-                                                <a id="leaveCardsetModalButton" class="leaveCardsetList"
-                                                   data-toggle="modal" data-target="#leaveCardsetModal">{{_
-                                                        "confirm-leave-cardset.btn-txt"}}</a>
-                                            </li>
+                                            <li id="leaveCardsetModalButton" class="leaveCardsetList"
+                                                data-toggle="modal" data-target="#leaveCardsetModal">{{_
+                                                    "confirm-leave-cardset.btn-txt"}}</li>
                                         {{else}}
-                                            <li>
-                                                <a id="leaveCardsetButton" class="leaveCardsetList">{{_
-                                                        "confirm-leave-cardset.btn-txt"}}</a>
-                                            </li>
+                                            <li id="leaveCardsetButton" class="leaveCardsetList">{{_
+                                                    "confirm-leave-cardset.btn-txt"}}</li>
                                         {{/if}}
                                     {{/if}}
                                 {{/unless}}
                                 {{#if isEditor}}
                                     {{#unless isCardsetOwner _id}}
-                                        <li>
-                                            <a id="leaveEditors" class="leaveEditorsList"
-                                               data-toggle="modal" data-target="#leaveEditorsModal">{{_
-                                                    "sidebar-nav.leaveEditors"}}</a>
-                                        </li>
+                                        <li id="leaveEditors" class="leaveEditorsList"
+                                            data-toggle="modal" data-target="#leaveEditorsModal">{{_
+                                                "sidebar-nav.leaveEditors"}}</li>
                                     {{/unless}}
                                 {{/if}}
                             {{/if}}

@@ -146,7 +146,6 @@ $padding-card-list-row: 8px;
 
 .dropdown-menu {
   margin-left: 0;
-  cursor: pointer;
 }
 
 .btn-learn {
@@ -217,6 +216,12 @@ $padding-card-list-row: 8px;
 
   .panel-body {
     margin-top: 15px;
+  }
+
+  ul li {
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
   }
 }
 
