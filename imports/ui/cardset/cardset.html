@@ -58,7 +58,12 @@
             {{/if}}
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
-            {{> cardsetList}}
+            <div class="col-xs-12">
+                <button class="btn btn-raised btn-danger" id="backToCardsetDetailView">
+            <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "cardset.list.back"}}</span>
+                </button>
+                {{> cardsetList}}
+            </div>
         {{/if}}
     {{else}}
         {{#if getQuantity this}}
@@ -579,7 +584,7 @@
 </template>
 
 <template name="cardsetList">
-    <div class="{{#if isActiveRoute 'cardsetlistid'}}col-md-9{{/if}}" id="cardset-list">
+    <div id="cardset-list">
         {{#if gotCards}}
             {{#each cardsetList}}
                 {{#if isShuffledCardset this._id}}

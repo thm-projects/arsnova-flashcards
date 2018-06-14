@@ -177,6 +177,11 @@ Template.cardset.events({
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
 			Router.go('home');
 		}
+	},
+	'click #backToCardsetDetailView': function () {
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
