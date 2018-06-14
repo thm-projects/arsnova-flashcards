@@ -205,6 +205,15 @@ $themes: (
     $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
     $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
     $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
+    $cardset_footer_navigation_background: map-get($map, "cardset_footer_navigation_background");
+    $cardset_footer_navigation_presentation_background: map-get($map, "cardset_footer_navigation_presentation_background");
+    $cardset_footer_navigation_presentation_text: map-get($map, "cardset_footer_navigation_presentation_text");
+    $cardset_footer_navigation_presentation_background_hover: map-get($map, "cardset_footer_navigation_presentation_background_hover");
+    $cardset_footer_navigation_presentation_text_hover: map-get($map, "cardset_footer_navigation_presentation_text_hover");
+    $cardset_footer_navigation_learn_background: map-get($map, "cardset_footer_navigation_learn_background");
+    $cardset_footer_navigation_learn_text: map-get($map, "cardset_footer_navigation_learn_text");
+    $cardset_footer_navigation_learn_background_hover: map-get($map, "cardset_footer_navigation_learn_background_hover");
+    $cardset_footer_navigation_learn_text_hover: map-get($map, "cardset_footer_navigation_learn_text_hover");
     //card list
     $card_list_number_background: map-get($map, "card_list_number_background");
     $card_list_number_text: map-get($map, "card_list_number_text");
@@ -649,9 +658,28 @@ $themes: (
 
     }
 
-    .panel-footer, .sidebar-nav {
-      .btn-default > .fa {
-        color: black !important;
+    .panel-footer {
+      background-color: $cardset_footer_navigation_background !important;
+      border-color: $cardset_footer_navigation_background !important;
+
+      .presentationBtn {
+        background-color: $cardset_footer_navigation_presentation_background !important;
+        color: $cardset_footer_navigation_presentation_text !important;
+      }
+
+      .presentationBtn:hover {
+        background-color: $cardset_footer_navigation_presentation_background_hover !important;
+        color: $cardset_footer_navigation_presentation_text_hover !important;
+      }
+
+      .learnBtn {
+        background-color: $cardset_footer_navigation_learn_background !important;
+        color: $cardset_footer_navigation_learn_text !important;
+      }
+
+      .learnBtn:hover {
+        background-color: $cardset_footer_navigation_learn_background_hover !important;
+        color: $cardset_footer_navigation_learn_text_hover !important;
       }
     }
 
