@@ -721,13 +721,13 @@
     "cardType6": {
       "name": "Anweisungssatz",
       "longName": "Anweisungssatz (Semantik | Syntax | Online-API)",
-      "front": "Syntax: Wie lautet die Anweisung?",
-      "back": "Semantik: Was soll die Anweisung bewirken?",
-      "hint": "Quelle | Online-API",
+      "front": "Syntax der Anweisung",
+      "back": "Semantik der Anweisung",
+      "hint": "Online-API",
       "placeholders": {
         "subject": "Gib den Anwendungskontext der Anweisung an !",
-        "front": "Syntax der Anweisung \n\nVerwende die Code-Formatierung von Markdeep!",
-        "back": "Semantik der Anweisung",
+        "front": "Wie lautet die Anweisung? \n\nVerwende die Code-Formatierung von Markdeep!",
+        "back": "Was soll die Anweisung bewirken?",
         "hint": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
       },
       "editorLabels": {
