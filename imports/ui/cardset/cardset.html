@@ -173,7 +173,7 @@
         {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
             <tr>
                 <td>{{_ "cardset.info.quantity"}}:</td>
-                <td>{{getQuantity this}}</td>
+                <td class="cardsetCardQuantity" data-quantity="{{getQuantity this}}">{{getQuantity this}}</td>
             </tr>
         {{/unless}}
         {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}

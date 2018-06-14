@@ -15,8 +15,8 @@ module.exports = function () {
 	});
 	this.Given(/^he is on the view of a cardset$/, function () {
 		navigation.selectMyCardset();
-		countBeforeCreated = navigation.selectCardsetLink(3);
-		navigation.contentVisible(".carousel-inner");
+		navigation.selectCardsetLink(3);
+		countBeforeCreated = navigation.checkCardsetCardQuantity();
 	});
 	/**
 	 * ---------------------------------------------------------------------
@@ -45,7 +45,7 @@ module.exports = function () {
 	});
 	this.Then(/^the card should be saved$/, function () {
 		navigation.clickElement("#leftCarouselControl");
-		navigation.compareContent(".detailfront" + countBeforeCreated, "FRONTOFTHECARD", 0);
+		navigation.compareContent(".detailfront" + (++countBeforeCreated), "FRONTOFTHECARD", 0);
 	});
 	this.Then(/^they log out$/, function () {
 		navigation.logout();

@@ -152,7 +152,7 @@ Template.main.events({
 			Router.go('help');
 		}
 	},
-	'click #logout': function (event) {
+	'click .logout': function (event) {
 		event.preventDefault();
 		Meteor.logout();
 	},
