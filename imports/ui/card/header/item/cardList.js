@@ -11,7 +11,11 @@ import {Route} from "../../../../api/route";
 Template.cardHeaderItemCardList.events({
 	"click .selectCard": function (evt) {
 		Session.set('activeCard', $(evt.target).data('id'));
-		if (Route.isDemo()) {
+		if (Route.isCardset()) {
+			Router.go('cardsetlistid', {
+				_id: Router.current().params._id
+			});
+		} else if (Route.isDemo()) {
 			Router.go('demolist');
 		} else {
 			Router.go('presentationlist', {

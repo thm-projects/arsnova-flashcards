@@ -560,6 +560,9 @@
     "shuffled": {
       "long": "Gemischter Kartensatz",
       "short": "Gemischt"
+    },
+    "list": {
+      "back": "Zurück zur Karte"
     }
   },
   "rating-field": {
