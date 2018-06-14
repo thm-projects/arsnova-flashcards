@@ -624,16 +624,16 @@
   "card": {
     "cardType0": {
       "name": "Lernkartei",
-      "longName": "Lernkartei",
+      "longName": "Lernkartei (Lernziel | Vertiefung | Zusammenfassung | Literatur)",
       "front": "Lernziel",
       "back": "Zusammenfassung",
-      "hint": "Links | Literatur ",
-      "lecture": "Präsentation",
+      "hint": "Literatur ",
+      "lecture": "Vertiefung",
       "placeholders": {
         "subject": "Gib das kurzgefasste Lernziel an !",
         "front": "",
         "back": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
-        "hint": "Liste hier Links und Literatur zur Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
+        "hint": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
         "lecture": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
@@ -642,7 +642,7 @@
     },
     "cardType1": {
       "name": "Vokabelkartei",
-      "longName": "Vokabelkartei",
+      "longName": "Vokabelkartei (Fremdwort | Übersetzung)",
       "front": "Fremdwort",
       "back": "Übersetzung",
       "placeholders": {
@@ -656,10 +656,10 @@
     },
     "cardType2": {
       "name": "Mitschrift",
-      "longName": "Mitschrift",
+      "longName": "Mitschrift (Mitschrift | Nachbearbeitung | To-dos",
       "front": "Mitschrift",
       "back": "Nachbearbeitung",
-      "hint": "Offene Fragen | To-dos",
+      "hint": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema der Unterrichtsstunde an !",
         "front": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
@@ -672,10 +672,10 @@
     },
     "cardType3": {
       "name": "Glossar",
-      "longName": "Glossar",
+      "longName": "Glossar (Fachbegriff | Beschreibung | Literatur)",
       "front": "Fachbegriff",
-      "back": "Definition | Beschreibung",
-      "hint": "Literatur zum Fachbegriff ",
+      "back": "Beschreibung",
+      "hint": "Literatur",
       "placeholders": {
         "subject": "Gib das Fachgebiet an !",
         "front": "Fachbegriff",
@@ -688,13 +688,13 @@
     },
     "cardType4": {
       "name": "Zitatensammlung",
-      "longName": "Zitatensammlung",
-      "front": "Wörtliches Zitat",
+      "longName": "Zitatensammlung (Zitat | Zitierte Person | Quellenangabe)",
+      "front": "Zitat",
       "back": "Zitierte Person",
       "hint": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "front": "Zitat",
+        "front": "Wörtliches Zitat",
         "back": "Zitierte Person",
         "hint": "Quellenangabe"
       },
@@ -704,7 +704,7 @@
     },
     "cardType5": {
       "name": "Prüfung",
-      "longName": "Prüfung",
+      "longName": "Prüfung (Prüfungsfrage | Erwartete Antwort | Begründung)",
       "front": "Prüfungsfrage",
       "back": "Erwartete Antwort",
       "hint": "Begründung",
@@ -720,9 +720,9 @@
     },
     "cardType6": {
       "name": "Anweisungssatz",
-      "longName": "Anweisungssatz (Informatik)",
-      "front": "Wie lautet die Anweisung?",
-      "back": "Was soll die Anweisung bewirken?",
+      "longName": "Anweisungssatz (Semantik | Syntax | Online-API)",
+      "front": "Syntax: Wie lautet die Anweisung?",
+      "back": "Semantik: Was soll die Anweisung bewirken?",
       "hint": "Quelle | Online-API",
       "placeholders": {
         "subject": "Gib den Anwendungskontext der Anweisung an !",
@@ -736,7 +736,7 @@
     },
     "cardType7": {
       "name": "Exzerpte",
-      "longName": "Abstracts | Exzerpte",
+      "longName": "Exzerpte (Exzerpt | Anmerkungen | Bibliografische Angaben",
       "front": "Abstract | Exzerpt",
       "back": "Anmerkungen",
       "hint": "Bibliografische Angaben",
@@ -752,7 +752,7 @@
     },
     "cardType8": {
       "name": "Notizen",
-      "longName": "Notizen",
+      "longName": "Notizen (einseitig)",
       "front": "Notizen",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an !",
@@ -764,7 +764,7 @@
     },
     "cardType9": {
       "name": "To-dos",
-      "longName": "To-dos",
+      "longName": "To-dos (einseitig)",
       "front": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema oder Datum der To-dos an !",
@@ -775,12 +775,13 @@
       }
     },
     "cardType10": {
-      "name": "Fotokartei",
+      "name": "Fotokartei (Foto | Lizenz)",
       "longName": "Fotokartei",
       "front": "Fotokartei",
       "placeholders": {
         "subject": "Gib das Thema des Fotos an !",
-        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)"
+        "front": "Diese Karte ist einseitig für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
+        "back": "Lizenz"
       },
       "editorLabels": {
         "subject": "Thema des Fotos"
@@ -788,9 +789,9 @@
     },
     "cardType11": {
       "name": "Quiz",
-      "longName": "Quiz",
+      "longName": "Quiz (Quizfrage | Richtige Antwort)",
       "front": "Quizfrage",
-      "back": "Antwort",
+      "back": "Richtige Antwort",
       "placeholders": {
         "subject": "Gib das Thema deines Quiz an !",
         "front": "Gib hier die Quizfrage ein!",
@@ -802,7 +803,7 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
-      "longName": "Entwurfsmuster",
+      "longName": "Entwurfsmuster (Problem | Beschreibung | Lösung | Literatur)",
       "front": "Problem",
       "back": "Lösung",
       "hint": "Literatur",
