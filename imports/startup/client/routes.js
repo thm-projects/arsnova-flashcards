@@ -3,19 +3,8 @@ import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {toggleFullscreen} from "../../ui/card/card";
+import {CardVisuals} from "../../api/cardVisuals.js";
 
-
-function checkFullscreen() {
-	let currentRoute = Router.current().route.getName();
-	if (currentRoute === 'presentation') {
-		toggleFullscreen();
-		Session.set('previousRouteName', currentRoute);
-	} else if (currentRoute !== Session.get('previousRouteName')) {
-		Session.set('previousRouteName', currentRoute);
-		toggleFullscreen(true);
-	}
-}
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -331,7 +320,7 @@ Router.route('/admin/settings', {
 
 
 var isSignedIn = function () {
-	checkFullscreen();
+	CardVisuals.checkFullscreen();
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
 	} else {

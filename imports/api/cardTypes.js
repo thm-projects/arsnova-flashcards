@@ -32,7 +32,8 @@ let cardTypesWithAlternativePublishLimit = [0];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}, {cardType: 11}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
-class CardType {
+
+export let CardType = class CardType {
 	static gotPublishLimit (cardType, cardQuantity) {
 		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
 			return cardQuantity >= alternativePublishLimit;
@@ -210,6 +211,4 @@ class CardType {
 	static getCardTypeLongName (cardType) {
 		return TAPi18n.__('card.cardType' + cardType + '.longName');
 	}
-}
-
-module.exports = CardType;
+};

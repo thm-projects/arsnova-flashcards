@@ -1768,7 +1768,7 @@ $themes: (
 
     }
     //presentation colors
-    .clockbox, #clock {
+    .clock {
       .circle {
         fill: $presentation_clock_background !important;
         stroke: $presentation_clock_circle !important;

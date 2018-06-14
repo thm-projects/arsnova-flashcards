@@ -6,7 +6,7 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
-import {gotLearningModes} from "./cardTypes.js";
+import {CardType} from "./cardTypes";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -527,7 +527,7 @@ Meteor.methods({
 			}
 		);
 
-		if (!gotLearningModes(cardType)) {
+		if (!CardType.gotLearningModes(cardType)) {
 			Leitner.remove({
 				cardset_id: id
 			});

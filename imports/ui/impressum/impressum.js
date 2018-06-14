@@ -2,7 +2,7 @@
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
-import {toggleFullscreen} from "../card/card";
+import {CardVisuals} from "../../api/cardVisuals";
 
 /*
  * ############################################################################
@@ -45,5 +45,5 @@ Template.help.onRendered(function () {
  */
 
 Template.demo.onRendered(function () {
-	toggleFullscreen();
+	CardVisuals.toggleFullscreen();
 });

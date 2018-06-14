@@ -1,7 +1,7 @@
 import {Session} from "meteor/session";
-import {toggleFullscreen} from "../ui/card/card";
+import {CardVisuals} from "./cardVisuals.js";
 
-class MarkdeepEditor {
+export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
 		window.open("https://arsnova.cards/cardset/nqA6A8CyYNbEceyw9", "_blank");
 	}
@@ -48,8 +48,6 @@ class MarkdeepEditor {
 	}
 
 	static toggleFullscreen () {
-		toggleFullscreen(false, true);
+		CardVisuals.toggleFullscreen(false, true);
 	}
-}
-
-module.exports = MarkdeepEditor;
+};

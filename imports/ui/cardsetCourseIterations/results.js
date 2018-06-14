@@ -7,7 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./results.html";
-import CardType from "../../api/cardTypes";
+import {CardType} from "../../api/cardTypes";
 import * as TargetAudience from "../../api/targetAudience";
 
 Session.setDefault('cardsetId', undefined);
