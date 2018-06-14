@@ -719,7 +719,7 @@
       }
     },
     "cardType6": {
-      "name": "Anweisungssatz (Informatik)",
+      "name": "Anweisungssatz",
       "longName": "Anweisungssatz (Informatik)",
       "front": "Wie lautet die Anweisung?",
       "back": "Was soll die Anweisung bewirken?",
@@ -735,7 +735,7 @@
       }
     },
     "cardType7": {
-      "name": "Abstracts | Exzerpte",
+      "name": "Exzerpte",
       "longName": "Abstracts | Exzerpte",
       "front": "Abstract | Exzerpt",
       "back": "Anmerkungen",
