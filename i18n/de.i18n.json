@@ -627,9 +627,9 @@
   "card": {
     "cardType0": {
       "name": "Lernkartei",
-      "longName": "Lernkartei (Lernziel | Vertiefung | Zusammenfassung | Literatur)",
+      "longName": "Lernkartei (Lernziel | Vertiefung | Fazit | Literatur)",
       "front": "Lernziel",
-      "back": "Zusammenfassung",
+      "back": "Fazit",
       "hint": "Literatur ",
       "lecture": "Vertiefung",
       "placeholders": {
@@ -755,7 +755,7 @@
     },
     "cardType8": {
       "name": "Notizen",
-      "longName": "Notizen (einseitig)",
+      "longName": "Notizen (1 Seite)",
       "front": "Notizen",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an !",
@@ -767,7 +767,7 @@
     },
     "cardType9": {
       "name": "To-dos",
-      "longName": "To-dos (einseitig)",
+      "longName": "To-dos (1 Seite)",
       "front": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema oder Datum der To-dos an !",
@@ -793,9 +793,9 @@
     },
     "cardType11": {
       "name": "Quiz",
-      "longName": "Quiz (Quizfrage | Richtige Antwort)",
+      "longName": "Quiz (Quizfrage | Antwort)",
       "front": "Quizfrage",
-      "back": "Richtige Antwort",
+      "back": "Antwort",
       "placeholders": {
         "subject": "Gib das Thema deines Quiz an !",
         "front": "Gib hier die Quizfrage ein!",
@@ -807,7 +807,7 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
-      "longName": "Entwurfsmuster (Problem | Beschreibung | Lösung | Literatur)",
+      "longName": "Entwurfsmuster (Problem | Kontext | Lösung | Beschreibung | Beispiel | Literatur)",
       "front": "Problem",
       "back": "Lösung",
       "hint": "Literatur",
