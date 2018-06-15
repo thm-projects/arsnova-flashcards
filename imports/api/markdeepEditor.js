@@ -18,14 +18,22 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
-	static cardSideNavigation () {
+	static cardSideNavigation (forward = true) {
 		let navigationLength = $(".editorNavigation > button").length;
 		let index = ($(".btn-primary").index(".editorNavigation > button"));
 		++index;
-		if (index >= navigationLength) {
-			index = 1;
+		if (forward) {
+			if (index >= navigationLength) {
+				index = 1;
+			} else {
+				++index;
+			}
 		} else {
-			++index;
+			if (index <= 1) {
+				index = navigationLength;
+			} else {
+				--index;
+			}
 		}
 		$(".editorNavigation > button:nth-child(" + index + ")").click();
 	}
