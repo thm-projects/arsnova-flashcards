@@ -278,7 +278,7 @@ Meteor.startup(function () {
 					case 38:
 						if (Route.isPresentationOrDemo()) {
 							MarkdeepEditor.cardSideNavigation();
-						} else {
+						} else if (!Route.isEditMode()) {
 							CardVisuals.turnFront();
 						}
 						break;
@@ -295,7 +295,7 @@ Meteor.startup(function () {
 					case 40:
 						if (Route.isPresentationOrDemo()) {
 							MarkdeepEditor.cardSideNavigation(false);
-						} else {
+						} else if (!Route.isEditMode()) {
 							CardVisuals.turnBack();
 						}
 						break;
