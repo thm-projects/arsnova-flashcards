@@ -281,10 +281,15 @@ $themes: (
     $cardset_footer_navigation_manage_list_reset_wozniak_background_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_background_hover");
     $cardset_footer_navigation_manage_list_reset_wozniak_text_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_text_hover");
 
-    $cardset_footer_navigation_manage_list_start_stop_learning_background: map-get($map, "cardset_footer_navigation_manage_list_start_stop_learning_background");
-    $cardset_footer_navigation_manage_list_start_stop_learning_text: map-get($map, "cardset_footer_navigation_manage_list_start_stop_learning_text");
-    $cardset_footer_navigation_manage_list_start_stop_learning_background_hover: map-get($map, "cardset_footer_navigation_manage_list_start_stop_learning_background_hover");
-    $cardset_footer_navigation_manage_list_start_stop_learning_text_hover: map-get($map, "cardset_footer_navigation_manage_list_start_stop_learning_text_hover");
+    $cardset_footer_navigation_manage_list_start_learning_background: map-get($map, "cardset_footer_navigation_manage_list_start_learning_background");
+    $cardset_footer_navigation_manage_list_start_learning_text: map-get($map, "cardset_footer_navigation_manage_list_start_learning_text");
+    $cardset_footer_navigation_manage_list_start_learning_background_hover: map-get($map, "cardset_footer_navigation_manage_list_start_learning_background_hover");
+    $cardset_footer_navigation_manage_list_start_learning_text_hover: map-get($map, "cardset_footer_navigation_manage_list_start_learning_text_hover");
+
+    $cardset_footer_navigation_manage_list_stop_learning_background: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_background");
+    $cardset_footer_navigation_manage_list_stop_learning_text: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_text");
+    $cardset_footer_navigation_manage_list_stop_learning_background_hover: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_background_hover");
+    $cardset_footer_navigation_manage_list_stop_learning_text_hover: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_text_hover");
 
     $cardset_footer_navigation_manage_list_show_stats_background: map-get($map, "cardset_footer_navigation_manage_list_show_stats_background");
     $cardset_footer_navigation_manage_list_show_stats_text: map-get($map, "cardset_footer_navigation_manage_list_show_stats_text");
@@ -928,14 +933,24 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_reset_wozniak_text_hover !important;
       }
 
-      .startStopLearningList {
-        background-color: $cardset_footer_navigation_manage_list_start_stop_learning_background !important;
-        color: $cardset_footer_navigation_manage_list_start_stop_learning_text !important;
+      .startLearningList {
+        background-color: $cardset_footer_navigation_manage_list_start_learning_background !important;
+        color: $cardset_footer_navigation_manage_list_start_learning_text !important;
       }
 
-      .startStopLearningList:hover {
-        background-color: $cardset_footer_navigation_manage_list_start_stop_learning_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_start_stop_learning_text_hover !important;
+      .startLearningList:hover {
+        background-color: $cardset_footer_navigation_manage_list_start_learning_background_hover !important;
+        color: $cardset_footer_navigation_manage_list_start_learning_text_hover !important;
+      }
+
+      .stopLearningList {
+        background-color: $cardset_footer_navigation_manage_list_stop_learning_background !important;
+        color: $cardset_footer_navigation_manage_list_stop_learning_text !important;
+      }
+
+      .stopLearningList:hover {
+        background-color: $cardset_footer_navigation_manage_list_stop_learning_background_hover !important;
+        color: $cardset_footer_navigation_manage_list_stop_learning_text_hover !important;
       }
 
       .showStatsList {
