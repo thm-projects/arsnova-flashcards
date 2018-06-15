@@ -97,7 +97,7 @@ function importCards(data, cardset, importType) {
 					cardset_id: cardset._id,
 					cardGroup: -1,
 					cardType: cardset.cardType,
-					lecture: "",
+					lecture: item.lecture,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
