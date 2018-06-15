@@ -12,7 +12,7 @@
                                      {{#if gotFront}}
                                          {{#mathjax}}{{front}}{{/mathjax}}
                                      {{else}}
-                                         {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
+                                         {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
                                      {{/if}}
                                  </span>
 </template>
@@ -23,7 +23,7 @@
                                        {{#if gotBack}}
                                            {{#mathjax}}{{back}}{{/mathjax}}
                                        {{else}}
-                                           {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
+                                           {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
                                        {{/if}}
                                    </span>
 </template>
@@ -34,7 +34,29 @@
                                                 {{#if gotLecture}}
                                                     {{#mathjax}}{{lecture}}{{/mathjax}}
                                                 {{else}}
-                                                    {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
+                                                    {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                                                {{/if}}
+                                            </span>
+</template>
+
+<template name="cardTopContent">
+                                            <span class="{{#if gotTop}}{{#if
+                                                    isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                {{#if gotTop}}
+                                                    {{#mathjax}}{{top}}{{/mathjax}}
+                                                {{else}}
+                                                    {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                                                {{/if}}
+                                            </span>
+</template>
+
+<template name="cardBottomContent">
+                                            <span class="{{#if gotBottom}}{{#if
+                                                    isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                {{#if gotBottom}}
+                                                    {{#mathjax}}{{bottom}}{{/mathjax}}
+                                                {{else}}
+                                                    {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
                                                 {{/if}}
                                             </span>
 </template>
@@ -128,6 +150,12 @@
                 {{else}}
                     {{> cardBackContent this}}
                 {{/if}}
+            {{/if}}
+            {{#if isTop}}
+                {{> cardTopContent this}}
+            {{/if}}
+            {{#if isBottom}}
+                {{> cardBottomContent this}}
             {{/if}}
         {{/if}}
     </div>

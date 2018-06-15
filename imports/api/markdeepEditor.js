@@ -19,8 +19,8 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	}
 
 	static cardSideNavigation (forward = true) {
-		let navigationLength = $(".editorNavigation > button").length;
-		let index = ($(".btn-primary").index(".editorNavigation > button"));
+		let navigationLength = $(".editorNavigation a").length;
+		let index = ($(".btn-primary").index(".editorNavigation a"));
 		++index;
 		if (forward) {
 			if (index >= navigationLength) {
@@ -35,7 +35,7 @@ export let MarkdeepEditor = class MarkdeepEditor {
 				--index;
 			}
 		}
-		$(".editorNavigation > button:nth-child(" + index + ")").click();
+		$(".editorNavigation > li:nth-child(" + index + ") a").click();
 	}
 
 	static changeBackgroundStyle () {

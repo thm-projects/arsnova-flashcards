@@ -238,6 +238,8 @@ export let CardIndex = class CardIndex {
 			"cardGroup": 0,
 			"cardType": Session.get('cardType'),
 			"lecture": Session.get('lectureText'),
+			"top": Session.get('topText'),
+			"bottom": Session.get('bottomText'),
 			"centerTextElement": Session.get('centerTextElement'),
 			"date": Session.get('cardDate'),
 			"learningUnit": Session.get('learningUnit')

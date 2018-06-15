@@ -1,18 +1,8 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import {MarkdeepEditor} from "../../../api/markdeepEditor.js";
+import {CardType} from "../../../api/cardTypes";
 import "./navigation.html";
-import {MarkdeepEditor} from "../../api/markdeepEditor.js";
-import {CardType} from "../../api/cardTypes";
-
-export function isTextCentered() {
-	let centerTextElement = Session.get('centerTextElement');
-	let editMode = Session.get('activeEditMode');
-	if (centerTextElement !== undefined && centerTextElement[editMode]) {
-		$(".center-button").addClass('pressed');
-	} else {
-		$(".center-button").removeClass('pressed');
-	}
-}
 
 /*
  * ############################################################################

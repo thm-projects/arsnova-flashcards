@@ -1,0 +1,62 @@
+<template name="cardNavigation">
+    <nav class="col-xs-12 editorNavigation cardtext editorToolbar nav nav-justified">
+        {{> cardNavigationFront tabindex=5}}
+        {{#if gotLecture}}
+            {{> cardNavigationLecture tabindex=7}}
+        {{/if}}
+        {{#if gotBack}}
+            {{> cardNavigationBack tabindex=9}}
+        {{/if}}
+        {{#if gotHint}}
+            {{> cardNavigationHint tabindex=11}}
+        {{/if}}
+        {{#if gotTop}}
+            {{> cardNavigationTop tabindex=13}}
+        {{/if}}
+        {{#if gotBottom}}
+            {{> cardNavigationBottom tabindex=15}}
+        {{/if}}
+    </nav>
+</template>
+
+<template name="cardNavigationFront">
+    <li>
+        <a id="editFront"
+           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getFrontTitle}}</a>
+    </li>
+</template>
+
+<template name="cardNavigationLecture">
+    <li>
+        <a id="editLecture" class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{_
+                "card.cardType0.lecture"}}</a>
+    </li>
+</template>
+
+<template name="cardNavigationBack">
+    <li>
+        <a id="editBack"
+           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getBackTitle}}</a>
+    </li>
+</template>
+
+<template name="cardNavigationHint">
+    <li>
+        <a id="editHint"
+           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getHintTitle}}</a>
+    </li>
+</template>
+
+<template name="cardNavigationTop">
+    <li>
+        <a id="editTop"
+           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getTopTitle}}</a>
+    </li>
+</template>
+
+<template name="cardNavigationBottom">
+    <li>
+        <a id="editBottom"
+           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getBottomTitle}}</a>
+    </li>
+</template>

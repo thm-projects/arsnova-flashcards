@@ -1,9 +1,10 @@
 import {Session} from "meteor/session";
-import {CardType} from "../../api/cardTypes";
+import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
+import {CardEditor} from "../../../api/cardEditor";
+import {courseIterationRoute, newCardsetCourseIterationRoute} from "../../forms/cardsetCourseIterationForm";
 import "./content.html";
-import {isTextCentered} from "./navigation";
-import {courseIterationRoute, newCardsetCourseIterationRoute} from "../forms/cardsetCourseIterationForm";
+
 
 /*
  * ############################################################################
@@ -12,7 +13,7 @@ import {courseIterationRoute, newCardsetCourseIterationRoute} from "../forms/car
  */
 
 Template.markdeepContent.rendered = function () {
-	isTextCentered();
+	CardEditor.isTextCentered();
 };
 
 Template.markdeepContent.events({
@@ -42,6 +43,12 @@ Template.markdeepContent.events({
 				break;
 			case 3:
 				Session.set('lectureText', content);
+				break;
+			case 4:
+				Session.set('topText', content);
+				break;
+			case 5:
+				Session.set('bottomText', content);
 				break;
 		}
 	}

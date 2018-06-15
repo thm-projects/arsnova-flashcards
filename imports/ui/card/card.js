@@ -9,6 +9,7 @@ import "./card.html";
 import '/client/hammer.js';
 import './header/header.js';
 import './content/content.js';
+import './navigation/navigation.js';
 import {skipAnswer} from "../learn/learn.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
