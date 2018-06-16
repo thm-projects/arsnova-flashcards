@@ -2,12 +2,13 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Leitner, Wozniak} from "./learned";
 import {Cards} from "./cards";
-import CardType from "./cardTypes";
+import {CardType} from "./cardTypes";
 import {Cardsets} from "./cardsets";
+import {Route} from "./route";
 
 let cardIndex = [];
 
-class CardIndex {
+export let CardIndex = class CardIndex {
 
 	static getCardIndex () {
 		return cardIndex;
@@ -32,7 +33,7 @@ class CardIndex {
 		let sortQuery;
 		let indexCards = [];
 		let cardset;
-		if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist") {
+		if (Route.isDemo()) {
 			cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
 		} else {
 			cardset = Cardsets.findOne(Router.current().params._id);
@@ -165,6 +166,108 @@ class CardIndex {
 		}
 		return result;
 	}
-}
 
-module.exports = CardIndex;
+	/**
+	 * Get a set of cards for the cardset and presentation view
+	 * @return {Collection} The card set
+	 */
+	static getCardsetCards () {
+		let query = "";
+		if (Route.isDemo()) {
+			Session.set('activeCardset', Cardsets.findOne({kind: 'demo', shuffled: true}));
+		}
+		let cardIndexFilter = this.getCardIndexFilter();
+		if (Session.get('activeCardset').shuffled) {
+			query = Cards.find({
+				_id: {$in: cardIndexFilter},
+				cardset_id: {$in: Session.get('activeCardset').cardGroups}
+			}).fetch();
+		} else {
+			query = Cards.find({
+				_id: {$in: cardIndexFilter},
+				cardset_id: Router.current().params._id
+			}).fetch();
+		}
+		return this.sortQueryResult(cardIndexFilter, query);
+	}
+
+	/**
+	 * Get a set of cards for the learning algorithm by Leitner.
+	 * @return {Collection} The card set
+	 */
+	static getLeitnerCards () {
+		let cards = [];
+		let cardIndexFilter = this.getCardIndexFilter();
+		let learnedCards = Leitner.find({
+			card_id: {$in: cardIndexFilter},
+			cardset_id: Session.get('activeCardset')._id,
+			user_id: Meteor.userId(),
+			active: true
+		}, {fields: {card_id: 1}}).fetch();
+		learnedCards = this.sortQueryResult(cardIndexFilter, learnedCards, true);
+		learnedCards.forEach(function (learnedCard) {
+			let card = Cards.findOne({
+				_id: learnedCard.card_id
+			});
+			cards.push(card);
+		});
+		return cards;
+	}
+
+	/**
+	 * Get the Session Data of the card
+	 * @return {Collection} The Session Data of the card.
+	 */
+	static getEditModeCard () {
+		let id = "-1";
+		if (ActiveRoute.name('editCard')) {
+			id = Session.get('activeCard');
+		} else {
+			Session.set('activeCard', undefined);
+		}
+		return [{
+			"_id": id,
+			"subject": Session.get('subjectText'),
+			"difficulty": Session.get('difficultyColor'),
+			"learningGoalLevel": Session.get('learningGoalLevel'),
+			"backgroundStyle": Session.get('backgroundStyle'),
+			"front": Session.get('frontText'),
+			"back": Session.get('backText'),
+			"hint": Session.get('hintText'),
+			"cardset_id": Router.current().params._id,
+			"cardGroup": 0,
+			"cardType": Session.get('cardType'),
+			"lecture": Session.get('lectureText'),
+			"centerTextElement": Session.get('centerTextElement'),
+			"date": Session.get('cardDate'),
+			"learningUnit": Session.get('learningUnit')
+		}];
+	}
+
+	/**
+	 * Get a set of cards for the supermemo algorithm.
+	 * @return {Collection} The card collection
+	 */
+	static getMemoCards () {
+		let cards = [];
+		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		let cardIndexFilter = this.getCardIndexFilter();
+		actualDate.setHours(0, 0, 0, 0);
+		let learnedCards = Wozniak.find({
+			card_id: {$in: cardIndexFilter},
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId(),
+			nextDate: {
+				$lte: actualDate
+			}
+		}, {fields: {card_id: 1}}).fetch();
+		learnedCards = this.sortQueryResult(cardIndexFilter, learnedCards, true);
+		learnedCards.forEach(function (learnedCard) {
+			let card = Cards.findOne({
+				_id: learnedCard.card_id
+			});
+			cards.push(card);
+		});
+		return cards;
+	}
+};

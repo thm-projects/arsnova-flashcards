@@ -9,7 +9,7 @@ let targetAudienceWithSemester = [3, 4, 5];
 let targetAudienceWithModule = [2, 3, 4, 5, 6];
 let targetAudienceOrder = [{targetAudience: 1}, {targetAudience: 2}, {targetAudience: 3}, {targetAudience: 4}, {targetAudience: 5}, {targetAudience: 6}];
 
-class TargetAudience {
+export let TargetAudience = class TargetAudience {
 	static gotAccessControl (targetAudience) {
 		return targetAudienceWithAccessControl.includes(targetAudience);
 	}
@@ -33,6 +33,4 @@ class TargetAudience {
 	static getTargetAudienceOrder () {
 		return targetAudienceOrder;
 	}
-}
-
-module.exports = TargetAudience;
+};

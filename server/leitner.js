@@ -6,7 +6,7 @@ import {AdminSettings} from "../imports/api/adminSettings.js";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {check} from "meteor/check";
-import CardType from "../imports/api/cardTypes";
+import {CardType} from "../imports/api/cardTypes";
 
 
 /** Function returns the amount of cards inside a box that are valid to learn

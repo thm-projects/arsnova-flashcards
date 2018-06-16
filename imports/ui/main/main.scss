@@ -45,10 +45,9 @@ $font_size_navigation_arrows: 10pt;
 $padding_card_content_horizontal: 40pt;
 $padding_card_content_vertical: 13pt;
 $padding_card_conntent_horizontal_fullscreen_desktop: 100px;
-
-$font_size_card_header_first_row: 12px;
-$font_size_card_header_second_row: 10px;
-$font_size_card_header_subject: 18px;
+$font_size_card_header_small_text: 12px;
+$font_size_card_header_smaller_text: 10px;
+$font_size_card_header_subject: 16px;
 $font_size_card_content: 14pt;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
@@ -58,6 +57,12 @@ $hint_link_decoration: underline;
 $hint_link_alternative_decoration: underline;
 $text_transform_card_header_subject: uppercase;
 $font_style_card_header_subject_placeholder: italic;
+
+//card header
+$card_header_height: 95px;
+$card_header_padding: 7px;
+$card_header_row_height: $card_header_height - $card_header_padding;
+$card_header_item_margin_horizontal: 7px;
 
 //cardset
 $font_size_cardset_content: 12pt;
@@ -91,9 +96,6 @@ $font_weight_cardset_form_list: normal;
 
 //cookie consent
 $text_decoration_cookie_consent_link: none;
-
-//presentation clock
-$presentation_clock_size: 100px;
 
 html {
   position: relative;

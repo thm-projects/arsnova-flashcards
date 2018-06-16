@@ -13,13 +13,13 @@ import {Session} from "meteor/session";
 //10: Fotokartei / Photo library
 //11: Quiz
 //12: Entwurfsmuster / Design pattern
-let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
+let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 let cardTypesWithCenteredText = [1, 3, 4, 5, 6, 11];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 11, 12];
 let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7, 12];
 let cardTypesWithAlternativeHintStyle = [2];
-let cardTypesWithLearningModes = [0, 1, 3, 5, 6, 11, 12];
+let cardTypesWithLearningModes = [1, 3, 4, 5, 6, 11, 12];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
@@ -29,10 +29,11 @@ let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
 let cardTypesWithSwappedSides = [6];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}, {cardType: 11}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
-class CardType {
+
+export let CardType = class CardType {
 	static gotPublishLimit (cardType, cardQuantity) {
 		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
 			return cardQuantity >= alternativePublishLimit;
@@ -210,6 +211,4 @@ class CardType {
 	static getCardTypeLongName (cardType) {
 		return TAPi18n.__('card.cardType' + cardType + '.longName');
 	}
-}
-
-module.exports = CardType;
+};

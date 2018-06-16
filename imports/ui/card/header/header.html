@@ -1,0 +1,83 @@
+<template name="flashcardHeader">
+    {{#if isCardset}}
+        {{> flashcardHeaderDefault this}}
+    {{/if}}
+    {{#if isPresentation}}
+        {{> flashcardHeaderPresentation this}}
+    {{/if}}
+    {{#if isDemo}}
+        {{> flashcardHeaderDemo this}}
+    {{/if}}
+    {{#if isEditMode}}
+        {{> flashcardHeaderEditor this}}
+    {{/if}}
+    {{#if isBox}}
+        {{> flashcardHeaderLeitner this}}
+    {{/if}}
+    {{#if isMemo}}
+        {{> flashcardHeaderWozniak this}}
+    {{/if}}
+</template>
+
+<template name="flashcardHeaderDefault">
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
+         data-cardtype="{{cardType}}">
+            {{> flashcardHeaderDefaultLeft this}}
+            {{> flashcardHeaderCenter this}}
+            {{> flashcardHeaderDefaultRight this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderPresentation">
+    <div class="cardHeader {{#if isHintPreview}}{{#if
+            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
+            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
+                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+         data-cardtype="{{cardType}}">
+        {{> flashcardHeaderPresentationLeft this}}
+        {{> flashcardHeaderCenter this}}
+        {{> flashcardHeaderPresentationRight this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderDemo">
+    <div class="cardHeader {{#if isHintPreview}}{{#if
+            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
+            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
+                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+         data-cardtype="{{cardType}}">
+        {{> flashcardHeaderPresentationLeft this}}
+        {{> flashcardHeaderCenter this}}
+        {{> flashcardHeaderDemoRight this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderEditor">
+    <div class="cardHeader {{#if isHintPreview}}{{#if
+            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
+            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
+                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+         data-cardtype="{{cardType}}">
+        {{> flashcardHeaderEditorLeft this}}
+        {{> flashcardHeaderCenter this}}
+        {{> flashcardHeaderEditorRight this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderLeitner">
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
+         data-cardtype="{{cardType}}">
+        {{> flashcardHeaderLeitnerLeft}}
+        {{> flashcardHeaderCenter this}}
+        {{> flashcardHeaderLeitnerRight this}}
+    </div>
+</template>
+
+<template name="flashcardHeaderWozniak">
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
+         data-cardtype="{{cardType}}">
+        {{> flashcardHeaderWozniakLeft}}
+        {{> flashcardHeaderCenter this}}
+        {{> flashcardHeaderWozniakRight this}}
+    </div>
+</template>

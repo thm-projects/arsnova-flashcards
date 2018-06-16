@@ -1,0 +1,9 @@
+<template name="cardHeaderItemDictionary">
+    {{#if gotDictionary}}
+        <img class="showLecture card-button cardHeaderItem {{#if isDictionary}}pressed{{/if}}"
+             data-type="cardNavigation"
+             data-toggle="collapse"
+             data-target="#collapseLecture-{{_id}}"
+             src="/img/beolingus.png">
+    {{/if}}
+</template>

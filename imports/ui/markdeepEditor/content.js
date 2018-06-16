@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import CardType from "../../api/cardTypes";
+import {CardType} from "../../api/cardTypes";
 import {Template} from "meteor/templating";
 import "./content.html";
 import {isTextCentered} from "./navigation";

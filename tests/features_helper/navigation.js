@@ -29,8 +29,8 @@ module.exports = {
 		}
 	},
 	logout: function () {
-		browser.waitForVisible('#logout', global.threshold);
-		browser.click('#logout');
+		browser.waitForVisible('.logout-main', global.threshold);
+		browser.click('.logout-main');
 	},
 	selectMyCardset: function () {
 		browser.waitForVisible('#cardsets', global.threshold);
@@ -54,8 +54,12 @@ module.exports = {
 		}
 		browser.waitForVisible('#cardsetLink' + number, global.threshold);
 		browser.click('#cardsetLink' + number);
-		browser.waitForExist(".carousel-inner", global.threshold);
-		return browser.elements(".carousel-inner > div").value.length;
+	},
+	checkCardsetCardQuantity: function () {
+		browser.waitForExist("#collapseCardsetInfoButton", global.threshold);
+		browser.click('#collapseCardsetInfoButton');
+		browser.waitForExist(".cardsetCardQuantity", global.threshold);
+		return browser.getAttribute(".cardsetCardQuantity", "data-quantity");
 	},
 	checkUrl: function (url) {
 		browser.waitUntil(function () {

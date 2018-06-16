@@ -1,0 +1,192 @@
+<template name="contentNavigation">
+    <div class="btn-group col-xs-12 editorNavigation cardtext editorToolbar" role="group">
+        {{> contentNavigationFront tabindex=5}}
+        {{#if gotLecture}}
+            {{> contentNavigationLecture tabindex=7}}
+        {{/if}}
+        {{#if gotBack}}
+            {{> contentNavigationBack tabindex=9}}
+        {{/if}}
+        {{#if gotHint}}
+            {{> contentNavigationHint tabindex=11}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="contentNavigationFront">
+    <button id="editFront" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}{{#if gotOneColumn}}col-sm-12{{else}}col-sm-6{{/if}}{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getFrontTitle}}</button>
+</template>
+
+<template name="contentNavigationLecture">
+    <button id="editLecture" type="button" class="btn btn-default btn-raised col-xs-6 col-sm-3"
+            tabindex="{{tabindex}}">{{_
+            "card.cardType0.lecture"}}</button>
+</template>
+
+<template name="contentNavigationBack">
+    <button id="editBack" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getBackTitle}}</button>
+</template>
+
+<template name="contentNavigationHint">
+    <button id="editHint" type="button"
+            class="btn btn-default btn-raised col-xs-6 {{#if gotFourColumns}}col-sm-3{{else}}{{#if
+                    gotThreeColumns}}col-sm-4{{else}}col-sm-6{{/if}}{{/if}}"
+            tabindex="{{tabindex}}">{{getHintTitle}}</button>
+</template>
+
+<template name="learningGoalLevel">
+    <div id="learningGoalLevelGroup" class="form-group btn-group col-xs-12" role="group" data-toggle="buttons">
+        <label id="learningGoalLevel0"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             0}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 0}}active{{/if}}"
+               data-lvl="0">
+            {{#if isLearningGoalLevel 0}}
+                <input type="radio" name="learningGoalLevel" value="0" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="0">
+            {{/if}}
+            {{_ "learning-goal.level1"}}
+        </label>
+        <label id="learningGoalLevel1"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             1}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 1}}active{{/if}}"
+               data-lvl="1">
+            {{#if isLearningGoalLevel 1}}
+                <input type="radio" name="learningGoalLevel" value="1" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="1">
+            {{/if}}
+            {{_ "learning-goal.level2"}}
+        </label>
+        <label id="learningGoalLevel2"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             2}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 2}}active{{/if}}"
+               data-lvl="2">
+            {{#if isLearningGoalLevel 2}}
+                <input type="radio" name="learningGoalLevel" value="2" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="2">
+            {{/if}}
+            {{_ "learning-goal.level3"}}
+        </label>
+        <label id="learningGoalLevel3"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             3}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 3}}active{{/if}}"
+               data-lvl="3">
+            {{#if isLearningGoalLevel 3}}
+                <input type="radio" name="learningGoalLevel" value="3" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="3">
+            {{/if}}
+            {{_ "learning-goal.level4"}}
+        </label>
+        <label id="learningGoalLevel4"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             4}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 4}}active{{/if}}"
+               data-lvl="4">
+            {{#if isLearningGoalLevel 4}}
+                <input type="radio" name="learningGoalLevel" value="4" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="4">
+            {{/if}}
+            {{_ "learning-goal.level5"}}
+        </label>
+        <label id="learningGoalLevel5"
+               class="col-xs-6 col-sm-2 btn btn-raised {{#if isLearningGoalLevelChecked
+                                                             5}}btn-primary{{else}}btn-white{{/if}} {{#if
+                       isLearningGoalLevel 5}}active{{/if}}"
+               data-lvl="5">
+            {{#if isLearningGoalLevel 5}}
+                <input type="radio" name="learningGoalLevel" value="5" checked tabindex="4">
+            {{else}}
+                <input type="radio" name="learningGoalLevel" value="5">
+            {{/if}}
+            {{_ "learning-goal.level6"}}
+        </label>
+    </div>
+</template>
+
+
+<template name="subjectEditor">
+    {{#if gotLearningUnit}}
+        <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
+                data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
+    {{/if}}
+    <form class="subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
+        <input class="form-control editorBackground" id="subjectEditor" name="content"
+               placeholder="{{getSubjectPlaceholder}}" value="{{getSubject}}"
+               tabindex="1" autofocus {{isDisabled}}>
+    </form>
+</template>
+
+<template name="selectLearningUnit">
+    <div class="modal fade" id="showSelectLearningUnitModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showSelectLearningUnitTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="showSelectLearningUnitTitle" class="modal-title">{{_ "learningUnit.chooseIndex"}}</h4>
+                    <div class="modal-body">
+                        <button id="learningUnitCancel"
+                                class="btn btn-danger btn-raised" {{disableIfOffline}}>
+                            {{_ "learningUnit.cancel"}}
+                        </button>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="form-group setdetails name">
+                                    <label id="setLearningIndexLabel" class="col-md-3 control-label"
+                                           for="setLearningIndex">{{_
+                                            "card.cardType0.name"}}</label>
+                                    <div class="dropdown">
+                                        <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                            <button id="setLearningIndex" type="button"
+                                                    class="btn btn-raised btn-default setLearningIndexDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    value="{{getCardsetId}}">{{getCardsetName}}
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-raised dropdown-toggle setLearningIndexDropdown"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only"></span>
+                                            </button>
+                                            <ul class="dropdown-menu btn-raised longButton">
+                                                <li class="learningIndex" value="0" data="0">
+                                                    <a
+                                                            href="#">{{_ "learningUnit.none"}}</a></li>
+                                                {{#each learningIndex}}
+                                                    <li class="learningIndex" value="{{this._id}}" data="{{this._id}}">
+                                                        <a
+                                                                href="#">{{this.name}}</a></li>
+                                                {{/each}}
+                                            </ul>
+                                            <span id="helpSetLearningIndex" class="help-block learningIndex"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{#if gotLearningIndex}}
+                                    <hr>
+                                    <h4>{{_ "learningUnit.chooseUnit"}}</h4>
+                                    {{> cardsetList}}
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

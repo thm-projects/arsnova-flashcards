@@ -145,7 +145,7 @@ $padding-card-list-row: 8px;
 }
 
 .dropdown-menu {
-  margin-left: 12px;
+  margin-left: 0;
 }
 
 .btn-learn {
@@ -205,13 +205,23 @@ $padding-card-list-row: 8px;
 }
 
 .panel-footer {
-  padding: 10px;
+  padding: 0 10px;
   .btn-group {
-    margin-right: 10px;
+    margin-right: 5px;
     padding: 0;
   }
   .btn {
     padding: 8px 15px;
+  }
+
+  .panel-body {
+    margin-top: 15px;
+  }
+
+  ul li {
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
   }
 }
 

@@ -1,0 +1,168 @@
+<template name="flashcardContent">
+    {{#if isEditModeOrPresentation}}
+        {{> flashcardContentPresentation this}}
+    {{else}}
+        {{> flashcardContentDefault this}}
+    {{/if}}
+</template>
+
+<template name="cardFrontContent">
+                                 <span class="{{#if gotFront}}{{#if
+                                         isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                     {{#if gotFront}}
+                                         {{#mathjax}}{{front}}{{/mathjax}}
+                                     {{else}}
+                                         {{#mathjax}}{{getPlaceholder 0}}{{/mathjax}}
+                                     {{/if}}
+                                 </span>
+</template>
+
+<template name="cardBackContent">
+                                   <span class="{{#if gotBack}}{{#if
+                                           isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                       {{#if gotBack}}
+                                           {{#mathjax}}{{back}}{{/mathjax}}
+                                       {{else}}
+                                           {{#mathjax}}{{getPlaceholder 1}}{{/mathjax}}
+                                       {{/if}}
+                                   </span>
+</template>
+
+<template name="cardLectureContent">
+                                            <span class="{{#if gotLecture}}{{#if
+                                                    isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                                                {{#if gotLecture}}
+                                                    {{#mathjax}}{{lecture}}{{/mathjax}}
+                                                {{else}}
+                                                    {{#mathjax}}{{getPlaceholder 3}}{{/mathjax}}
+                                                {{/if}}
+                                            </span>
+</template>
+
+<template name="cardDictionaryContent">
+    <iframe class="dictionaryFrame"
+            src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
+            frameborder="0"
+            data-type="cardNavigation">
+    </iframe>
+</template>
+
+<template name="cardHintContentPreview">
+    <span class="{{#if gotHint}}{{#if
+            isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+        {{#if gotHint}}
+            {{#mathjax}}{{hint}}{{/mathjax}}
+        {{else}}
+            {{#mathjax}}{{getPlaceholder 2}}{{/mathjax}}
+        {{/if}}
+    </span>
+</template>
+
+<template name="flashcardContentDefault">
+    {{#unless gotNotesForDifficultyLevel}}
+        <div class="collapsed collapse"
+             id="collapseLecture-{{_id}}"
+             style="{{#if isEditMode}}display: none{{/if}}">
+            <div class="cardContent {{#if
+                    gotDictionary}}cardContentDictionary{{/if}} centered cardlecture {{#if
+                    gotLecture}}lectureContent{{/if}} detaillecture{{cardsIndex this._id}}">
+                {{#if gotDictionary}}
+                    {{> cardDictionaryContent}}
+                {{else}}
+                    {{> cardLectureContent this}}
+                {{/if}}
+            </div>
+        </div>
+    {{/unless}}
+    <div class="cardContent centered cardfront {{getCardBackground difficulty cardType
+                                                                   backgroundStyle}} detailfront{{cardsIndex this._id}}"
+         style="display: {{#if reversedViewOrder}}none{{/if}}">
+        {{#if gotSidesSwapped}}
+            {{> cardBackContent this}}
+        {{else}}
+            {{> cardFrontContent this}}
+        {{/if}}
+    </div>
+    <div class="cardContent centered cardback {{getCardBackground difficulty cardType
+                                                                  backgroundStyle}} detailback{{cardsIndex this._id}}"
+         style="display: {{#unless reversedViewOrder}}none{{/unless}}">
+        {{#unless gotOneColumn}}
+            {{#if gotSidesSwapped}}
+                {{> cardFrontContent this}}
+            {{else}}
+                {{> cardBackContent this}}
+            {{/if}}
+        {{/unless}}
+    </div>
+</template>
+
+<template name="flashcardContentPresentation">
+    <div class="cardContent {{#if
+            isHint}}{{#if
+            gotAlternativeHintStyle}}hintContentAlternative{{else}}hintContent{{/if}}{{/if}}{{#if
+            isLecture}}lectureContent{{/if}}{{#if
+            isDictionary}}lectureContent{{/if}} centered cardfront {{#unless
+            isHint}}{{#unless
+            isLecture}}{{#unless isDictionary}}{{getCardBackground
+            difficulty cardType
+            backgroundStyle}}{{/unless}}{{/unless}}{{/unless}} detail{{cardsIndex this._id}}">
+        {{#if isDictionary}}
+            {{> cardDictionaryContent this}}
+        {{else}}
+            {{#if isFront}}
+                {{#if gotSidesSwapped}}
+                    {{> cardBackContent this}}
+                {{else}}
+                    {{> cardFrontContent this}}
+                {{/if}}
+            {{/if}}
+            {{#if isHint}}
+                {{> cardHintContentPreview this}}
+            {{/if}}
+            {{#if isLecture}}
+                {{> cardLectureContent this}}
+            {{/if}}
+            {{#if isBack}}
+                {{#if gotSidesSwapped}}
+                    {{> cardFrontContent this}}
+                {{else}}
+                    {{> cardBackContent this}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="cardHintContent">
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12 {{#unless gotHint}}placeholder{{/unless}}">
+                    {{#if gotHint}}
+                        {{#mathjax}}{{getHint}}{{/mathjax}}
+                    {{else}}
+                        {{#mathjax}}{{getPlaceholder}}{{/mathjax}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="cardHint">
+    <div class="modal fade" id="showHintModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content {{#if gotAlternativeHintStyle
+                                            cardType}}hintContentAlternative{{else}}hintContent{{/if}}">
+                <div class="modal-header">
+                    <h4 id="showHintTitle" class="modal-title">{{> cardSubject}}: {{getHintTitle}}
+                        {{#unless isHintPreview}}
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        {{/unless}}
+                    </h4>
+                </div>
+                {{> cardHintContent}}
+            </div>
+        </div>
+    </div>
+</template>

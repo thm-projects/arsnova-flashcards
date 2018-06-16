@@ -1,0 +1,64 @@
+<template name="editor">
+    {{getContent}}
+    {{> cancelEditForm}}
+    {{> deleteCardForm}}
+    <div class="row firstEditorRow editorElement">
+        <div id="subject" class="col-md-6 cardtext editorElement">
+            <h5>{{getSubjectLabel}}</h5>
+            {{> selectLearningUnit}}
+            {{> subjectEditor}}
+        </div>
+        {{#if gotLearningGoal}}
+            <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
+                <h5>{{_ "learning-goal.name"}}</h5>
+                {{> learningGoalLevel}}
+            </div>
+        {{/if}}
+    </div>
+    <div class="row">
+        <div class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
+            <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
+            {{> contentNavigation}}
+            {{>markdeepNavigation}}
+            {{> markdeepContent}}
+        </div>
+        {{isTextCentered}}
+        <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
+            <h5 class="editorElement">{{_ "previewEdit"}}</h5>
+            {{> flashcards cardset=this}}
+        </div>
+        {{> btnCard}}
+    </div>
+</template>
+
+<template name="newCard">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if isCardsetOwner this._id}}
+                {{> editor}}
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="editCard">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#if isEditor}}
+                {{> editor}}
+            {{else}}
+                <h4>{{_ "permission"}}</h4>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>

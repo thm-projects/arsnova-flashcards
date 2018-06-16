@@ -1,0 +1,85 @@
+<template name="flashcardHeaderPresentationRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCardList this}}
+            {{> cardHeaderItemEndPresentation this}}
+        </div>
+    </div>
+</template>
+
+<template name="flashcardHeaderDemoRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCardList this}}
+            {{> cardHeaderItemToggleFullscreen this}}
+        </div>
+    </div>
+</template>
+
+<template name="flashcardHeaderDefaultRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCards this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
+            {{> cardHeaderItemSwapOrder this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
+        </div>
+    </div>
+</template>
+
+<template name="flashcardHeaderEditorRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
+        </div>
+    </div>
+</template>
+
+<template name="flashcardHeaderLeitnerRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCountCardsLeitner this}}
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
+            {{> cardHeaderItemSwapOrder this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
+        </div>
+    </div>
+</template>
+
+<template name="flashcardHeaderWozniakRight">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+        </div>
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemTurnCard this}}
+            </span>
+            {{> cardHeaderItemSwapOrder this}}
+            <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemToggleFullscreen this}}
+            </span>
+        </div>
+    </div>
+</template>

@@ -1,8 +1,8 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./navigation.html";
-import MarkdeepEditor from "../../api/markdeepEditor.js";
-import CardType from "../../api/cardTypes";
+import {MarkdeepEditor} from "../../api/markdeepEditor.js";
+import {CardType} from "../../api/cardTypes";
 
 export function isTextCentered() {
 	let centerTextElement = Session.get('centerTextElement');

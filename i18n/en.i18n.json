@@ -568,6 +568,9 @@
     "shuffled": {
       "long": "Shuffled Cardset",
       "short": "Shuffled"
+    },
+    "list": {
+      "back": "Back to the card"
     }
   },
   "meteorgame": {

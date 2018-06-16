@@ -10,18 +10,30 @@ module.exports = {
 		}
 	},
 	learnMemo: function (click = true) {
+		browser.waitForVisible('.learnBtn', global.threshold);
+		if (click) {
+			browser.click('.learnBtn');
+		}
 		browser.waitForVisible('#learnMemo', global.threshold);
 		if (click) {
 			browser.click('#learnMemo');
 		}
 	},
 	learnBox: function (click = true) {
+		browser.waitForVisible('.learnBtn', global.threshold);
+		if (click) {
+			browser.click('.learnBtn');
+		}
 		browser.waitForVisible('#learnBox', global.threshold);
 		if (click) {
 			browser.click('#learnBox');
 		}
 	},
 	leitnerProgress: function (click = true) {
+		browser.waitForVisible('.learnBtn', global.threshold);
+		if (click) {
+			browser.click('.learnBtn');
+		}
 		browser.waitForVisible('#leitnerProgress', global.threshold);
 		if (click) {
 			browser.click('#leitnerProgress');

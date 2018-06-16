@@ -14,8 +14,8 @@ import "../learn/learn.js";
 import "../presentation/presentation.js";
 import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
-import CardType from "../../api/cardTypes";
-import TargetAudience from "../../api/targetAudience";
+import {CardType} from "../../api/cardTypes";
+import {TargetAudience} from "../../api/targetAudience";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -177,6 +177,11 @@ Template.cardset.events({
 			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
 			Router.go('home');
 		}
+	},
+	'click #backToCardsetDetailView': function () {
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
@@ -384,6 +389,13 @@ Template.cardsetList.events({
  * ############################################################################
  */
 
+Template.cardsetInfo.onCreated(function () {
+	$('[data-toggle="tooltip"]').tooltip({
+		container: 'body'
+	});
+	Meteor.subscribe("cards");
+});
+
 Template.cardsetInfo.onRendered(function () {
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
@@ -416,6 +428,50 @@ Template.cardsetInfo.helpers({
 	},
 	isLecturerAndHasRequest: function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
+	},
+	gotPresentation: function () {
+		if (this.shuffled) {
+			return true;
+		} else {
+			return CardType.gotPresentationMode(this.cardType);
+		}
+	},
+	gotEnoughCardsToFilter: function () {
+		return (this.quantity >= 3);
+	},
+	gotLearningModes: function () {
+		if (this.shuffled) {
+			for (let i = 0; i < this.cardGroups.length; i++) {
+				if (CardType.gotLearningModes(Cardsets.findOne(this.cardGroups[i]).cardType)) {
+					return true;
+				}
+			}
+		} else {
+			return CardType.gotLearningModes(this.cardType);
+		}
+	},
+	learningLeitner: function () {
+		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
+	},
+	learningMemo: function () {
+		return Wozniak.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		});
+	},
+	learning: function () {
+		return (Leitner.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId()
+		}) || Wozniak.findOne({
+			cardset_id: Router.current().params._id,
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		}));
+	},
+	enableIfPublished: function () {
+		return this.kind !== 'personal';
 	}
 });
 
@@ -438,6 +494,59 @@ Template.cardsetInfo.events({
 	},
 	'click #importCardsBtn': function () {
 		Session.set('importType', 1);
+	},
+	"click #startPresentation": function () {
+		Router.go('presentation', {_id: this._id});
+	},
+	"click #learnChoice": function () {
+		Session.set("chooseFlashcardsMode", 0);
+	},
+	"click #learnBox": function () {
+		addToLeitner(this._id);
+		Router.go('box', {
+			_id: this._id
+		});
+	},
+	"click #learnMemo": function () {
+		Meteor.call("addWozniakCards", this._id);
+		Router.go('memo', {
+			_id: this._id
+		});
+	},
+	"click #leitnerProgress": function () {
+		Router.go('progress', {
+			_id: this._id,
+			user_id: Meteor.userId()
+		});
+	},
+	"click #startStopLearning": function () {
+		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
+			var now = new Date();
+			var end = new Date();
+			end.setMonth(end.getMonth() + 3);
+			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
+			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
+			var threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
+			document.getElementById('inputLearningStart').setAttribute("min", today);
+			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
+			$('#inputLearningStart').val(today);
+			document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
+			$('#inputLearningEnd').val(threeMonths);
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	"click #showStats": function () {
+		Router.go('cardsetstats', {_id: Router.current().params._id});
+	},
+	"click #manageEditors": function () {
+		Router.go('cardseteditors', {_id: Router.current().params._id});
+	},
+	"click #collapseManageButton": function () {
+		changeCollapseIcon("#collapseMangeIcon");
+	},
+	"click #leaveCardsetButton": function () {
+		Router.go('pool');
 	}
 });
 
@@ -748,124 +857,6 @@ Template.leaveEditorsForm.events({
 			Meteor.call("leaveEditors", Router.current().params._id);
 		});
 	}
-});
-
-/*
- * ############################################################################
- * cardsetSidebar
- * ############################################################################
- */
-Template.cardsetSidebar.events({
-	"click #startPresentation": function () {
-		Router.go('presentation', {_id: this._id});
-	},
-	"click #learnChoice": function () {
-		Session.set("chooseFlashcardsMode", 0);
-	},
-	"click #learnBox": function () {
-		addToLeitner(this._id);
-		Router.go('box', {
-			_id: this._id
-		});
-	},
-	"click #learnMemo": function () {
-		Meteor.call("addWozniakCards", this._id);
-		Router.go('memo', {
-			_id: this._id
-		});
-	},
-	"click #leitnerProgress": function () {
-		Router.go('progress', {
-			_id: this._id,
-			user_id: Meteor.userId()
-		});
-	},
-	"click #startStopLearning": function () {
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
-			var now = new Date();
-			var end = new Date();
-			end.setMonth(end.getMonth() + 3);
-			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-			var threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
-			document.getElementById('inputLearningStart').setAttribute("min", today);
-			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-			$('#inputLearningStart').val(today);
-			document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-			$('#inputLearningEnd').val(threeMonths);
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
-	},
-	"click #showStats": function () {
-		Router.go('cardsetstats', {_id: Router.current().params._id});
-	},
-	"click #manageEditors": function () {
-		Router.go('cardseteditors', {_id: Router.current().params._id});
-	},
-	"click #collapseManageButton": function () {
-		changeCollapseIcon("#collapseMangeIcon");
-	},
-	"click #leaveCardsetButton": function () {
-		Router.go('pool');
-	},
-	"click #showHintManage": function (event) {
-		event.stopPropagation();
-		Session.set('helpTarget', '#cardsetManageHelp');
-		Router.go('help');
-	}
-});
-
-Template.cardsetSidebar.helpers({
-	enableIfPublished: function () {
-		return this.kind !== 'personal';
-	},
-	gotEnoughCardsToFilter: function () {
-		return (this.quantity >= 3);
-	},
-	gotLearningModes: function () {
-		if (this.shuffled) {
-			for (let i = 0; i < this.cardGroups.length; i++) {
-				if (CardType.gotLearningModes(Cardsets.findOne(this.cardGroups[i]).cardType)) {
-					return true;
-				}
-			}
-		} else {
-			return CardType.gotLearningModes(this.cardType);
-		}
-	},
-	gotPresentation: function () {
-		if (this.shuffled) {
-			return true;
-		} else {
-			return CardType.gotPresentationMode(this.cardType);
-		}
-	},
-	learningLeitner: function () {
-		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
-	},
-	learningMemo: function () {
-		return Wozniak.findOne({
-			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId(),
-			interval: {$ne: 0}
-		});
-	},
-	learning: function () {
-		return (Leitner.findOne({
-			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId()
-		}) || Wozniak.findOne({
-			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId(),
-			interval: {$ne: 0}
-		}));
-	}
-});
-
-
-Template.cardsetSidebar.onCreated(function () {
-	Meteor.subscribe("cards");
 });
 
 /*
