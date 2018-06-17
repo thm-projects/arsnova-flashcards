@@ -1,23 +1,16 @@
 #welcome {
   text-align: center;
-  margin-top: -40px;
-  @media (min-width: 1200px) {
-    margin-top: -60px;
-  }
+  margin-top: -30px;
   .panel {
     box-shadow: none;
   }
   #slogan {
     display: inline-block;
-    text-align: left;
-    .lmargin {
-      margin-left: 20px;
-    }
 
     h2 {
-      padding-top: 0;
+      margin-top: -25px;
       @media (max-width: 414px) {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
       }
       @media (min-width: 415px) and (max-width: 767px) {
@@ -25,11 +18,11 @@
         font-weight: bold;
       }
       @media (min-width: 768px) and (max-width: 1023px) {
-        font-size: 42px;
+        font-size: 40px;
         font-weight: bold;
       }
       @media (min-width: 1024px) {
-        font-size: 55px;
+        font-size: 53px;
         font-weight: bold;
       }
     }
@@ -104,56 +97,15 @@
   }
 }
 
-.color-THM {
-  font-weight: bold;
-}
-
 .color-dot:before {
   content: ' \25CF';
-  font-size: 2.5vw;
+  font-size: 7vw;
   font-weight: bold;
-  vertical-align: sub;
+  vertical-align: -6%;
 }
 
-.color-cards {
+.logo-header-chars {
+  font-size: 10vw;
   font-weight: bold;
 }
 
-@media (max-width: 767px) {
-  .color-dot:before {
-    font-size: 10vw;
-  }
-
-  .logo-header-chars {
-    cursor: default;
-    font-size: 16vw;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .color-dot:before {
-    font-size: 10vw;
-  }
-
-  .logo-header-chars {
-    cursor: default;
-    font-size: 15vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  .color-dot:before {
-    font-size: 7vw;
-  }
-
-  .logo-header-chars {
-    cursor: default;
-    font-size: 10vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  #cards-welcome-image {
-    margin-top: -10px;
-  }
-}
