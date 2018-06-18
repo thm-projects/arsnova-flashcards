@@ -7,6 +7,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import "./learn.html";
 import {Cardsets} from "../../api/cardsets";
+import {CardEditor} from "../../api/cardEditor";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -26,6 +27,8 @@ export function skipAnswer(scrollRight = true) {
 		Session.set('animationPlaying', false);
 		Session.set('activeCard', $(".item.active").data('id'));
 	});
+	CardEditor.editFront();
+	Session.set('isQuestionSide', true);
 }
 
 /*
@@ -81,6 +84,9 @@ Template.learnAlgorithms.helpers({
 				}
 			});
 		}
+	},
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
 	}
 });
 
@@ -124,7 +130,8 @@ Template.learnAnswerOptions.helpers({
 
 Template.learnAnswerOptions.events({
 	"click #learnShowAnswer": function () {
-		CardVisuals.turnCard();
+		CardEditor.editBack();
+		Session.set('isQuestionSide', false);
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #skipAnswer": function () {
@@ -132,7 +139,8 @@ Template.learnAnswerOptions.events({
 	},
 	"click #known": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		CardVisuals.turnCard();
+		CardEditor.editFront();
+		Session.set('isQuestionSide', true);
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 		if ($('.carousel-inner > .item').length === 1) {
@@ -150,7 +158,8 @@ Template.learnAnswerOptions.events({
 	},
 	"click #notknown": function () {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		CardVisuals.turnCard();
+		CardEditor.editFront();
+		Session.set('isQuestionSide', true);
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 		if ($('.carousel-inner > .item').length === 1) {
@@ -168,7 +177,8 @@ Template.learnAnswerOptions.events({
 	},
 	"click .rate-answer": function (event) {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		CardVisuals.turnCard();
+		CardEditor.editFront();
+		Session.set('isQuestionSide', true);
 		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
 		if ($('.carousel-inner > .item').length === 1) {

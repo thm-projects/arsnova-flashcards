@@ -19,16 +19,8 @@
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
                 {{> cardHeaderItemEdit this}}
-                {{> cardHeaderItemLecture this}}
-
-                <span class="hidden-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
             </div>
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                <span class="visible-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
                 <span class="hidden-xs" data-cardtype="{{cardType}}">
                     {{> cardHeaderItemCardList this}}
                     {{> cardHeaderItemCopy this}}
@@ -43,20 +35,6 @@
 
 <template name="flashcardHeaderLeitnerLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
-        <div class="cardHeaderGroup">
-            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemLecture this}}
-
-                <span class="hidden-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
-            </div>
-            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                <span class="visible-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
-            </div>
-        </div>
         <div class="cardHeaderGroup" data-cardtype="{{cardType}}">
             {{> cardHeaderItemDictionary this}}
         </div>
@@ -65,20 +43,6 @@
 
 <template name="flashcardHeaderWozniakLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
-        <div class="cardHeaderGroup">
-            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemLecture this}}
-
-                <span class="hidden-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
-            </div>
-            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                <span class="visible-xs" data-cardtype="{{cardType}}">
-                    {{> cardHeaderItemHint this}}
-                </span>
-            </div>
-        </div>
         <div class="cardHeaderGroup" data-cardtype="{{cardType}}">
             {{> cardHeaderItemDictionary this}}
         </div>

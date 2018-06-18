@@ -22,11 +22,22 @@
             {{#if isFinished}}
                 {{> flashcardsEnd}}
             {{else}}
-                {{> learnAnswerOptions}}
-                {{> flashcards}}
+                <div class="col-xs-12">
+                    {{> learnAnswerOptions}}
+                </div>
+                {{#if isQuestionSide}}
+                    <div class="col-xs-12">
+                        {{> cardNavigation}}
+                    </div>
+                {{/if}}
+                <div class="col-xs-12">
+                    {{> flashcards cardset=this}}
+                </div>
             {{/if}}
         {{/if}}
-        {{> learnBackButton}}
+        <div class="col-xs-12">
+            {{> learnBackButton}}
+        </div>
     </div>
 </template>
 
@@ -63,35 +74,40 @@
                         <div class="btn-group">
                             <button id="memoRate0" class="btn btn-warning btn-raised btn-warning rate-answer wrong"
                                     data-id="0"
-                                    data-toggle="tooltip" title="{{_ "wozniak.answer.0"}}"><span class="hidden-xs">{{_ "wozniak.answer.0"}}</span>
+                                    data-toggle="tooltip" title="{{_ "wozniak.answer.0"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.0"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.0Mobile"}}</span>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button id="memoRate1" class="btn btn-default btn-raised rate-answer wrong" data-id="1"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.answer.1"}}"><span class="hidden-xs">{{_ "wozniak.answer.1"}}</span>
+                                    title="{{_ "wozniak.answer.1"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.1"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.1Mobile"}}</span>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button id="memoRate2" class="btn btn-default btn-raised rate-answer" data-id="2"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.answer.2"}}"><span class="hidden-xs">{{_ "wozniak.answer.2"}}</span>
+                                    title="{{_ "wozniak.answer.2"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.2"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.2Mobile"}}</span>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button id="memoRate3" class="btn btn-default btn-raised rate-answer" data-id="3"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.answer.3"}}"><span class="hidden-xs">{{_ "wozniak.answer.3"}}</span>
+                                    title="{{_ "wozniak.answer.3"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.3"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.3Mobile"}}</span>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button id="memoRate4" class="btn btn-default btn-raised rate-answer" data-id="4"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.answer.4"}}"><span class="hidden-xs">{{_ "wozniak.answer.4"}}</span>
+                                    title="{{_ "wozniak.answer.4"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.4"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.4Mobile"}}</span>
                             </button>
                         </div>
@@ -99,7 +115,8 @@
                             <button id="memoRate5" class="btn btn-default btn-raised btn-success rate-answer"
                                     data-id="5"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.rate.5"}}"><span class="hidden-xs">{{_ "wozniak.answer.5"}}</span>
+                                    title="{{_ "wozniak.rate.5"}}"><span class="hidden-xs">{{_
+                                    "wozniak.answer.5"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.5Mobile"}}</span>
                             </button>
                         </div>

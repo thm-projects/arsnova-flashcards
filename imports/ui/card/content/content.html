@@ -1,9 +1,5 @@
 <template name="flashcardContent">
-    {{#if isEditModeOrPresentation}}
-        {{> flashcardContentPresentation this}}
-    {{else}}
-        {{> flashcardContentDefault this}}
-    {{/if}}
+    {{> flashcardContentPresentation this}}
 </template>
 
 <template name="cardFrontContent">

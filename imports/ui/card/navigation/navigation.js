@@ -58,7 +58,11 @@ Template.cardNavigation.helpers({
 		return CardType.gotLecture(Session.get('cardType'));
 	},
 	gotBack: function () {
-		return CardType.gotBack(Session.get('cardType'));
+		if ((Route.isBox() || Route.isMemo())) {
+			return false;
+		} else {
+			return CardType.gotBack(Session.get('cardType'));
+		}
 	},
 	gotTop: function () {
 		return CardType.gotTop(Session.get('cardType'));
