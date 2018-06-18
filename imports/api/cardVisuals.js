@@ -1,7 +1,6 @@
 import {Session} from "meteor/session";
 import {CardEditor} from "./cardEditor";
 import {Route} from "./route";
-import {CardType} from "./cardTypes";
 
 let editorFullScreenActive = false;
 
@@ -134,71 +133,11 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	/**
-	 * Function changes from the backside to the front side of
-	 * a card or the other way around
-	 */
-	static turnCard (adjustEditWindow = false) {
-		if ($(".box").hasClass("flipped")) {
-			this.turnFront(adjustEditWindow);
-		} else {
-			this.turnBack(adjustEditWindow);
-		}
-	}
-
 	static isCentered (type, centerTextElement) {
 		if (Route.isEditMode()) {
 			return Session.get('centerTextElement')[type];
 		} else {
 			return centerTextElement[type];
-		}
-	}
-
-	static turnFront (adjustEditWindow = false) {
-		if (Session.get('reverseViewOrder')) {
-			Session.set('isQuestionSide', false);
-		} else {
-			Session.set('isQuestionSide', true);
-		}
-		if (Route.isEditMode() && adjustEditWindow) {
-			CardEditor.prepareFront();
-		}
-		$(".box .cardfront-symbol").css('display', "");
-		$(".box .cardback-symbol").css('display', "none");
-		$(".box .cardfront").css('display', "");
-		$(".box .cardFrontHeader").css('display', "");
-		$(".box .cardback").css('display', "none");
-		$(".box .cardBackHeader").css('display', "none");
-		$(".box").removeClass("flipped");
-		$(".box .cardHeader").removeClass("back");
-		$(".box .cardContent").removeClass("back");
-	}
-
-	static turnBack (adjustEditWindow = false) {
-		if (Session.get('reverseViewOrder')) {
-			Session.set('isQuestionSide', true);
-		} else {
-			Session.set('isQuestionSide', false);
-		}
-		if (Route.isEditMode() && adjustEditWindow) {
-			CardEditor.prepareBack();
-		}
-		$(".cardbackCheck").css('display', "");
-		$(".cardfrontCheck").css('display', "none");
-		$(".box .cardfront-symbol").css('display', "none");
-		$(".box .cardback-symbol").css('display', "");
-		$(".box .cardfront").css('display', "none");
-		$(".box .cardFrontHeader").css('display', "none");
-		$(".box .cardback").css('display', "");
-		$(".box .cardBackHeader").css('display', "");
-		$(".box").addClass("flipped");
-		$(".box .cardHeader").addClass("back");
-		$(".box .cardContent").addClass("back");
-	}
-
-	static cardHeaderTurnCard (evt) {
-		if (!CardType.gotOneColumn($(evt.target).data('cardtype')) && ($(evt.target).data('type') !== "cardNavigation")  && !$(evt.target).is('a, a *')) {
-			this.turnCard();
 		}
 	}
 };

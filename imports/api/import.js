@@ -24,6 +24,12 @@ function importCards(data, cardset, importType) {
 				if (item.lecture === undefined) {
 					item.lecture = "";
 				}
+				if (item.top === undefined) {
+					item.top = "";
+				}
+				if (item.bottom === undefined) {
+					item.bottom = "";
+				}
 				if (item.learningGoalLevel === undefined) {
 					item.learningGoalLevel = 0;
 				}
@@ -32,9 +38,9 @@ function importCards(data, cardset, importType) {
 				}
 				if (item.centerTextElement === undefined) {
 					if (cardset.cardType === 1) {
-						item.centerTextElement = [true, true, false, false];
+						item.centerTextElement = [true, true, false, false, false, false];
 					} else {
-						item.centerTextElement = [false, false, false, false];
+						item.centerTextElement = [false, false, false, false, false, false];
 					}
 				}
 
@@ -45,7 +51,7 @@ function importCards(data, cardset, importType) {
 
 			for (let i = 0; i < data.length; i++) {
 				let item = data[i];
-				let subject, front, back, hint, lecture;
+				let subject, front, back, hint, lecture, top, bottom;
 				try {
 					// If the string is UTF-8, this will work and not throw an error.
 					subject = decodeURIComponent(encodeURIComponent(item.subject));
@@ -53,6 +59,8 @@ function importCards(data, cardset, importType) {
 					back = decodeURIComponent(encodeURIComponent(item.back));
 					hint = decodeURIComponent(encodeURIComponent(item.hint));
 					lecture = decodeURIComponent(encodeURIComponent(item.lecture));
+					top = decodeURIComponent(encodeURIComponent(item.top));
+					bottom = decodeURIComponent(encodeURIComponent(item.bottom));
 				} catch (e) {
 					// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
 					subject = item.subject;
@@ -60,6 +68,8 @@ function importCards(data, cardset, importType) {
 					back = item.back;
 					hint = item.hint;
 					lecture = item.lecture;
+					top = item.top;
+					bottom = item.bottom;
 				}
 
 				let hlcodeReplacement = "\n```\n";
@@ -77,6 +87,8 @@ function importCards(data, cardset, importType) {
 					cardGroup: -1,
 					cardType: cardset.cardType,
 					lecture: lecture,
+					top: top,
+					bottom: bottom,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
@@ -98,6 +110,8 @@ function importCards(data, cardset, importType) {
 					cardGroup: -1,
 					cardType: cardset.cardType,
 					lecture: item.lecture,
+					top: item.top,
+					bottom: item.bottom,
 					centerTextElement: item.centerTextElement,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,

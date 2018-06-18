@@ -3,7 +3,6 @@ import "../card/card.js";
 import {Session} from "meteor/session";
 import {CardType} from "../../api/cardTypes";
 import {Template} from "meteor/templating";
-import {isTextCentered} from "../markdeepEditor/navigation";
 import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
 
@@ -42,7 +41,7 @@ Template.editor.helpers({
 		}
 	},
 	isTextCentered: function () {
-		isTextCentered();
+		CardEditor.isTextCentered();
 	}
 });
 

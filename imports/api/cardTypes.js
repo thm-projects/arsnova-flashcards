@@ -25,6 +25,8 @@ let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
 let cardTypesWithLecture = [0, 12];
+let cardTypesWithTop = [12];
+let cardTypesWithBottom = [12];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
 let cardTypesWithSwappedSides = [6];
 let cardTypesWithNotesForDifficultyLevel = [2];
@@ -61,6 +63,14 @@ export let CardType = class CardType {
 		return cardTypesWithLecture.includes(cardType);
 	}
 
+	static gotTop (cardType) {
+		return cardTypesWithTop.includes(cardType);
+	}
+
+	static gotBottom (cardType) {
+		return cardTypesWithBottom.includes(cardType);
+	}
+
 	static displaysSideInformation (cardType) {
 		return cardTypesWhichDisplaySideInformation.includes(cardType);
 	}
@@ -80,15 +90,13 @@ export let CardType = class CardType {
 		if (this.gotLecture(cardType)) {
 			i++;
 		}
+		if (this.gotTop(cardType)) {
+			i++;
+		}
+		if (this.gotBottom(cardType)) {
+			i++;
+		}
 		return i;
-	}
-
-	static gotFourColumns (cardType) {
-		return this.getColumnCount(cardType) === 4;
-	}
-
-	static gotThreeColumns (cardType) {
-		return this.getColumnCount(cardType) === 3;
 	}
 
 	static gotOneColumn (cardType) {
@@ -148,6 +156,22 @@ export let CardType = class CardType {
 		return TAPi18n.__('card.cardType' + activeCardType + '.hint');
 	}
 
+	static getTopTitle (cardType = -1) {
+		let activeCardType = cardType;
+		if (activeCardType === -1) {
+			activeCardType = Session.get('cardType');
+		}
+		return TAPi18n.__('card.cardType' + activeCardType + '.top');
+	}
+
+	static getBottomTitle (cardType = -1) {
+		let activeCardType = cardType;
+		if (activeCardType === -1) {
+			activeCardType = Session.get('cardType');
+		}
+		return TAPi18n.__('card.cardType' + activeCardType + '.bottom');
+	}
+
 	static getFrontTitle (cardType = -1) {
 		let activeCardType = cardType;
 		if (activeCardType === -1) {
@@ -199,6 +223,12 @@ export let CardType = class CardType {
 				break;
 			case 3:
 				side = 'lecture';
+				break;
+			case 4:
+				side = 'top';
+				break;
+			case 5:
+				side = 'bottom';
 				break;
 		}
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.' + side);

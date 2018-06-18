@@ -1,9 +1,7 @@
 import {Session} from "meteor/session";
 import "./swapOrder.html";
-import {Route} from "../../../../api/route";
 import {CardEditor} from "../../../../api/cardEditor";
 import {CardType} from "../../../../api/cardTypes";
-import {CardVisuals} from "../../../../api/cardVisuals";
 
 /*
  * ############################################################################
@@ -34,26 +32,11 @@ Template.cardHeaderItemSwapOrder.events({
 	"click .swapOrder": function () {
 		if (Session.get('reverseViewOrder')) {
 			Session.set('reverseViewOrder', false);
-			if (Route.isEditMode()) {
-				CardVisuals.turnFront(true);
-			} else {
-				if (Route.isPresentation()) {
-					CardEditor.editFront();
-				} else {
-					CardVisuals.turnFront();
-				}
-			}
+			CardEditor.editFront();
 		} else {
 			Session.set('reverseViewOrder', true);
-			if (Route.isEditMode()) {
-				CardVisuals.turnBack(true);
-			} else {
-				if (Route.isPresentation()) {
-					CardEditor.editBack();
-				} else {
-					CardVisuals.turnBack();
-				}
-			}
+			CardEditor.editBack();
 		}
+		Session.set('isQuestionSide', true);
 	}
 });

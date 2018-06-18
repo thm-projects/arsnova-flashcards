@@ -157,8 +157,8 @@ Template.cardFrontContent.helpers({
 			return this.front !== '' && this.front !== undefined;
 		}
 	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType, this.learningGoalLevel);
+	getPlaceholder: function () {
+		return CardType.getPlaceholderText(0, this.cardType, this.learningGoalLevel);
 	}
 });
 
@@ -182,8 +182,8 @@ Template.cardBackContent.helpers({
 			return this.back !== '' && this.back !== undefined;
 		}
 	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType);
+	getPlaceholder: function () {
+		return CardType.getPlaceholderText(1, this.cardType);
 	}
 });
 
@@ -203,8 +203,50 @@ Template.cardLectureContent.helpers({
 			return this.lecture !== '' && this.lecture !== undefined;
 		}
 	},
-	getPlaceholder: function (mode) {
-		return CardType.getPlaceholderText(mode, this.cardType);
+	getPlaceholder: function () {
+		return CardType.getPlaceholderText(3, this.cardType);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardTopContent
+ * ############################################################################
+ */
+Template.cardTopContent.helpers({
+	isCentered: function () {
+		return CardVisuals.isCentered(4, this.centerTextElement, this.cardType);
+	},
+	gotTop: function () {
+		if (Route.isEditMode()) {
+			return true;
+		} else {
+			return this.top !== '' && this.top !== undefined;
+		}
+	},
+	getPlaceholder: function () {
+		return CardType.getPlaceholderText(4, this.cardType);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardBottomContent
+ * ############################################################################
+ */
+Template.cardBottomContent.helpers({
+	isCentered: function () {
+		return CardVisuals.isCentered(5, this.centerTextElement, this.cardType);
+	},
+	gotBottom: function () {
+		if (Route.isEditMode()) {
+			return true;
+		} else {
+			return this.bottom !== '' && this.bottom !== undefined;
+		}
+	},
+	getPlaceholder: function () {
+		return CardType.getPlaceholderText(5, this.cardType);
 	}
 });
 
@@ -215,9 +257,9 @@ Template.cardLectureContent.helpers({
  */
 
 Template.cardHintContentPreview.helpers({
-	getPlaceholder: function (mode) {
+	getPlaceholder: function () {
 		if (Route.isPresentation()) {
-			return CardType.getPlaceholderText(mode, this.cardType);
+			return CardType.getPlaceholderText(2, this.cardType);
 		}
 	},
 	gotHint: function () {
@@ -292,9 +334,6 @@ Template.flashcardContentPresentation.helpers({
 	isEditMode: function () {
 		return (Route.isEditMode() && !Session.get('fullscreen'));
 	},
-	isEditModeOrPresentation: function () {
-		return Route.isEditModeOrPresentation();
-	},
 	box: function () {
 		return Session.get("selectedBox");
 	},
@@ -307,41 +346,32 @@ Template.flashcardContentPresentation.helpers({
 	gotSidesSwapped: function () {
 		return CardType.gotSidesSwapped(this.cardType);
 	},
-	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
+	isDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryPreview');
+		}
 	},
-	gotLecture: function () {
-		return CardType.gotLecture(this.cardType);
-	},
-	gotNotesForDifficultyLevel: function () {
-		return CardType.gotNotesForDifficultyLevel(this.cardType);
-	},
-	reversedViewOrder: function () {
-		return Session.get('reverseViewOrder');
+	getPlaceholder: function (mode) {
+		CardEditor.getPlaceholder(mode);
 	},
 	isFront: function () {
 		return (Session.get('activeEditMode') === 0  && !Session.get('dictionaryPreview'));
+	},
+	isBack: function () {
+		return Session.get('activeEditMode') === 1;
+	},
+	isHint: function () {
+		return Session.get('activeEditMode') === 2;
 	},
 	isLecture: function () {
 		if (CardType.gotLecture(this.cardType)) {
 			return Session.get('activeEditMode') === 3;
 		}
 	},
-	isDictionary: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryPreview');
-		}
+	isTop: function () {
+		return Session.get('activeEditMode') === 4;
 	},
-	isHint: function () {
-		return Session.get('activeEditMode') === 2;
-	},
-	gotOneColumn: function () {
-		return CardType.gotOneColumn(this.cardType);
-	},
-	getPlaceholder: function (mode) {
-		CardEditor.getPlaceholder(mode);
-	},
-	isBack: function () {
-		return Session.get('activeEditMode') === 1;
+	isBottom: function () {
+		return Session.get('activeEditMode') === 5;
 	}
 });

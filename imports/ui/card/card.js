@@ -9,6 +9,7 @@ import "./card.html";
 import '/client/hammer.js';
 import './header/header.js';
 import './content/content.js';
+import './navigation/navigation.js';
 import {skipAnswer} from "../learn/learn.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
@@ -128,21 +129,10 @@ Template.flashcardNavigation.helpers({
 
 Template.flashcardNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		let showLecture = $('.item.active .showLecture.pressed');
 		if (Session.get('reverseViewOrder')) {
-			if (Route.isPresentationOrDemo()) {
-				CardEditor.editBack();
-			} else {
-				showLecture.click();
-				CardVisuals.turnBack();
-			}
+			CardEditor.editBack();
 		} else {
-			if (Route.isPresentationOrDemo()) {
-				CardEditor.editFront();
-			} else {
-				showLecture.click();
-				CardVisuals.turnFront();
-			}
+			CardEditor.editFront();
 		}
 		let flashcardCarousel = $('#cardCarousel');
 		flashcardCarousel.on('slide.bs.carousel', function () {
@@ -276,11 +266,7 @@ Meteor.startup(function () {
 						}
 						break;
 					case 38:
-						if (Route.isPresentationOrDemo()) {
-							MarkdeepEditor.cardSideNavigation();
-						} else if (!Route.isEditMode()) {
-							CardVisuals.turnFront();
-						}
+						MarkdeepEditor.cardSideNavigation();
 						break;
 					case 39:
 						if ($('#rightCarouselControl').click()) {
@@ -293,11 +279,7 @@ Meteor.startup(function () {
 						}
 						break;
 					case 40:
-						if (Route.isPresentationOrDemo()) {
-							MarkdeepEditor.cardSideNavigation(false);
-						} else if (!Route.isEditMode()) {
-							CardVisuals.turnBack();
-						}
+						MarkdeepEditor.cardSideNavigation(false);
 						break;
 					case 48:
 						if (!Session.get('isQuestionSide')) {

@@ -37,7 +37,7 @@
 <template name="flashcards">
     {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
-    <div class="{{#if isCardset}}{{#unless fullscreenActive}}col-xs-12{{/unless}}{{/if}} flip-container"
+    <div class="flip-container"
          id="set-details-region">
         <div>
             <div id="cardCarousel" class="carousel slide" data-interval="false">

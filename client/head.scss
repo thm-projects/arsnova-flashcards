@@ -5,8 +5,9 @@
 @import '../imports/ui/cardset/cardset.scss';
 @import '../imports/ui/cardsetCourseIterations/results.scss';
 @import '../imports/ui/card/card.scss';
-@import '../imports/ui/markdeepEditor/content.scss';
-@import '../imports/ui/markdeepEditor/navigation.scss';
+@import '../imports/ui/card/navigation/navigation.scss';
+@import '../imports/ui/markdeepEditor/content/content';
+@import '../imports/ui/markdeepEditor/navigation/navigation';
 @import '../imports/ui/courseIterations/coursesIterations.scss';
 @import '../imports/ui/filter/filter.scss';
 @import '../imports/ui/forms/cardsetCourseIterationForm.scss';

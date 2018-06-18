@@ -842,14 +842,18 @@
       "longName": "Design Patterns",
       "front": "Problem",
       "back": "Solution",
-      "hint": "Literature",
+      "hint": "Context",
       "lecture": "Description",
+      "top": "Example",
+      "bottom": "Literature",
       "placeholders": {
         "subject": "Enter the Design Pattern !",
         "front": "State the problem !",
         "back": "Give the solution !",
-        "hint": "List here links and literature to deepen the design pattern! \n\nsearch your university library too! Most of the books are available online.",
-        "lecture": "Describe the Design Pattern!"
+        "hint": "Context",
+        "lecture": "Describe the Design Pattern!",
+        "top": "Example",
+        "bottom": "List here links and literature to deepen the design pattern! \n\nsearch your university library too! Most of the books are available online."
       },
       "editorLabels": {
         "subject": "Enter the design pattern !"
