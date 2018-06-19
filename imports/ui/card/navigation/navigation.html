@@ -1,61 +1,27 @@
 <template name="cardNavigation">
-    <nav class="col-xs-12 editorNavigation cardtext editorToolbar nav nav-justified">
-        {{> cardNavigationFront tabindex=5}}
-        {{#if gotLecture}}
-            {{> cardNavigationLecture tabindex=7}}
-        {{/if}}
-        {{#if gotBack}}
-            {{> cardNavigationBack tabindex=9}}
-        {{/if}}
-        {{#if gotHint}}
-            {{> cardNavigationHint tabindex=11}}
-        {{/if}}
-        {{#if gotTop}}
-            {{> cardNavigationTop tabindex=13}}
-        {{/if}}
-        {{#if gotBottom}}
-            {{> cardNavigationBottom tabindex=15}}
+    <nav class="col-xs-12 cardNavigation cardtext cardToolbar nav nav-justified">
+        {{#if isNavigationDisabled}}
+            {{> cardNavigationDisabled}}
+        {{else}}
+            {{> cardNavigationEnabled}}
         {{/if}}
     </nav>
 </template>
 
-<template name="cardNavigationFront">
-    <li>
-        <a id="editFront"
-           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getFrontTitle}}</a>
-    </li>
+<template name="cardNavigationDisabled">
+    <li><a class="btn btn-raised btn-primary">{{_ "card.navigationDisabled"}}</a></li>
 </template>
 
-<template name="cardNavigationLecture">
-    <li>
-        <a id="editLecture" class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getLectureTitle}}</a>
-    </li>
-</template>
-
-<template name="cardNavigationBack">
-    <li>
-        <a id="editBack"
-           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getBackTitle}}</a>
-    </li>
-</template>
-
-<template name="cardNavigationHint">
-    <li>
-        <a id="editHint"
-           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getHintTitle}}</a>
-    </li>
-</template>
-
-<template name="cardNavigationTop">
-    <li>
-        <a id="editTop"
-           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getTopTitle}}</a>
-    </li>
-</template>
-
-<template name="cardNavigationBottom">
-    <li>
-        <a id="editBottom"
-           class="btn btn-default btn-raised" type="button" tabindex="{{this.tabindex}}">{{getBottomTitle}}</a>
-    </li>
+<template name="cardNavigationEnabled">
+    {{#each getCardTypeSides}}
+        {{#unless isAnswer this.isAnswer this.contentId}}
+            <li>
+                <a class="btn btn-default btn-raised switchCardSide"
+                   type="button"
+                   data-content-id="{{this.contentId}}"
+                   data-navigation-id="{{@index}}" data-side="{{this.side}}" data-style="{{this.defaultStyle}}"
+                   tabindex="{{getTabIndex @index}}">{{getTitle}}</a>
+            </li>
+        {{/unless}}
+    {{/each}}
 </template>

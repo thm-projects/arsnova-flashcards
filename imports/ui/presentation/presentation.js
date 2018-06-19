@@ -21,6 +21,7 @@ Template.presentationView.onCreated(function () {
 	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
 		Session.set('activeCard', undefined);
 	}
+	Session.set('navigationDisabled', false);
 });
 
 Template.presentationView.onRendered(function () {

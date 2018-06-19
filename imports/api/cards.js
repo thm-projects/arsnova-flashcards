@@ -129,43 +129,43 @@ var CardsSchema = new SimpleSchema({
 	subject: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(5)
+		max: CardEditor.getMaxTextLength(1)
+	},
+	front: {
+		type: String,
+		optional: true,
+		max: CardEditor.getMaxTextLength(2)
+	},
+	back: {
+		type: String,
+		optional: true,
+		max: CardEditor.getMaxTextLength(2)
 	},
 	hint: {
 		type: String,
 		optional: true,
 		max: CardEditor.getMaxTextLength(2)
 	},
-	front: {
+	lecture: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(0)
-	},
-	back: {
-		type: String,
-		optional: true,
-		max: CardEditor.getMaxTextLength(1)
+		max: CardEditor.getMaxTextLength(2)
 	},
 	top: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(4)
+		max: CardEditor.getMaxTextLength(2)
 	},
 	bottom: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(5)
+		max: CardEditor.getMaxTextLength(2)
 	},
 	cardset_id: {
 		type: String
 	},
 	difficulty: {
 		type: Number
-	},
-	lecture: {
-		type: String,
-		optional: true,
-		max: CardEditor.getMaxTextLength(3)
 	},
 	centerText: {
 		type: Boolean,
@@ -208,15 +208,15 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, lecture, top, bottom, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
-		check(hint, String);
-		check(front, String);
-		check(back, String);
-		check(lecture, String);
-		check(top, String);
-		check(bottom, String);
+		check(content1, String);
+		check(content2, String);
+		check(content3, String);
+		check(content4, String);
+		check(content5, String);
+		check(content6, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
 		check(learningGoalLevel, Number);
@@ -245,14 +245,14 @@ Meteor.methods({
 		}
 		Cards.insert({
 			subject: subject.trim(),
-			hint: hint,
-			front: front,
-			back: back,
+			front: content1,
+			back: content2,
+			hint: content3,
+			lecture: content4,
+			top: content5,
+			bottom: content6,
 			cardset_id: cardset_id,
 			difficulty: cardset.difficulty,
-			lecture: lecture,
-			top: top,
-			bottom: bottom,
 			centerTextElement: centerTextElement,
 			date: date,
 			learningGoalLevel: learningGoalLevel,
@@ -279,32 +279,36 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ['admin']) || cardset.owner === Meteor.userId()) {
 			let card = Cards.findOne(card_id);
 			if (card !== undefined) {
-				let hint = "";
-				let lecture = "";
-				let back = "";
+				let content1 = "";
+				let content2 = "";
+				let content3 = "";
+				let content4 = "";
+				let content5 = "";
+				let content6 = "";
 				let learningUnit = "";
 				let learningIndex = -1;
-				let top = "";
-				let bottom = "";
+				if (card.front !== undefined) {
+					content1 = card.front;
+				}
 				if (card.back !== undefined) {
-					back = card.back;
+					content2 = card.back;
 				}
 				if (card.hint !== undefined) {
-					hint = card.hint;
+					content3 = card.hint;
 				}
 				if (card.lecture !== undefined) {
-					lecture = card.lecture;
+					content4 = card.lecture;
 				}
 				if (card.top !== undefined) {
-					top = card.top;
+					content5 = card.top;
 				}
 				if (card.bottom !== undefined) {
-					bottom = card.bottom;
+					content6 = card.bottom;
 				}
 				if (card.learningUnit !== undefined) {
 					learningUnit = card.learningUnit;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, lecture, top, bottom, "0", card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
+				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
 				return true;
 			}
 		} else {
@@ -378,15 +382,15 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, lecture, top, bottom, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
-		check(hint, String);
-		check(front, String);
-		check(back, String);
-		check(lecture, String);
-		check(top, String);
-		check(bottom, String);
+		check(content1, String);
+		check(content2, String);
+		check(content3, String);
+		check(content4, String);
+		check(content5, String);
+		check(content6, String);
 		check(centerTextElement, [Boolean]);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
@@ -416,12 +420,12 @@ Meteor.methods({
 		Cards.update(card_id, {
 			$set: {
 				subject: subject.trim(),
-				hint: hint,
-				front: front,
-				back: back,
-				lecture: lecture,
-				top: top,
-				bottom: bottom,
+				front: content1,
+				back: content2,
+				hint: content3,
+				lecture: content4,
+				top: content5,
+				bottom: content6,
 				centerTextElement: centerTextElement,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,

@@ -34,9 +34,6 @@ Template.flashcardHeaderCenter.helpers({
 	displaysSideInformation: function () {
 		return CardType.displaysSideInformation(this.cardType);
 	},
-	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(this.cardType);
-	},
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},

@@ -95,9 +95,9 @@ Template.cardset.onCreated(function () {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);
 	}
-	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
+	Session.set('navigationDisabled', false);
 });
 
 Template.cardset.rendered = function () {
@@ -279,9 +279,6 @@ Template.cardsetList.helpers({
 			return Cards.find({cardset_id: Session.get('tempLearningIndex'), cardType: 0}).count();
 		}
 	},
-	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(this.cardType);
-	},
 	cardSubject: function () {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			return _.uniq(Cards.find({
@@ -289,6 +286,7 @@ Template.cardsetList.helpers({
 			}, {
 				cardset_id: 1,
 				subject: 1,
+				cardType: 1,
 				sort: {subject: 1}
 			}).fetch(), function (card) {
 				return card.subject;
@@ -299,20 +297,16 @@ Template.cardsetList.helpers({
 			}, {
 				cardset_id: 1,
 				subject: 1,
-				cardType: 0,
+				cardType: 1,
 				sort: {subject: 1}
 			}).fetch(), function (card) {
 				return card.subject;
 			});
 		}
 	},
-	cardList: function () {
+	cardList: function (cardType) {
 		let sortQuery;
-		if (CardType.gotSidesSwapped(this.cardType)) {
-			sortQuery = {back: 1};
-		} else {
-			sortQuery = {front: 1};
-		}
+		sortQuery = CardType.getSortQuery(cardType);
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			return Cards.find({
 				cardset_id: this.cardset_id,
@@ -322,6 +316,10 @@ Template.cardsetList.helpers({
 				difficulty: 1,
 				front: 1,
 				back: 1,
+				hint: 1,
+				lecture: 1,
+				top: 1,
+				bottom: 1,
 				cardType: 1,
 				sort: sortQuery
 			});
@@ -335,6 +333,10 @@ Template.cardsetList.helpers({
 				difficulty: 1,
 				front: 1,
 				back: 1,
+				hint: 1,
+				lecture: 1,
+				top: 1,
+				bottom: 1,
 				cardType: 1,
 				sort: sortQuery
 			});
@@ -356,11 +358,31 @@ Template.cardsetList.helpers({
 	},
 	gotReferences: function () {
 		return Cardsets.findOne({_id: Router.current().params._id}).cardGroups !== [""];
+	},
+	getText: function () {
+		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+		switch (cubeSides[0].contentId) {
+			case 1:
+				return this.front;
+			case 2:
+				return this.back;
+			case 3:
+				return this.hint;
+			case 4:
+				return this.lecture;
+			case 5:
+				return this.top;
+			case 6:
+				return this.bottom;
+		}
 	}
 });
 
 Template.cardsetList.events({
 	'click .cardListRow': function (evt) {
+		let cubeSides = CardType.getCardTypeCubeSides($(evt.target).data('card-type'));
+		Session.set('cardType', $(evt.target).data('card-type'));
+		Session.set('activeCardContentId', cubeSides[0].contentId);
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
 			Session.set('activeCard', $(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
@@ -379,7 +401,7 @@ Template.cardsetList.events({
 			let learningUnit = $(evt.target).data('id');
 			Session.set('learningIndex', Session.get('tempLearningIndex'));
 			Session.set('learningUnit', learningUnit);
-			Session.set('subjectText', Cards.findOne({_id: learningUnit}).subject);
+			Session.set('subject', Cards.findOne({_id: learningUnit}).subject);
 			$('#showSelectLearningUnitModal').modal('hide');
 		}
 	}

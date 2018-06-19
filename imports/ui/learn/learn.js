@@ -49,6 +49,7 @@ Template.learnAlgorithms.onCreated(function () {
 	Session.set('animationPlaying', false);
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
+	Session.set('navigationDisabled', false);
 });
 
 Template.learnAlgorithms.helpers({

@@ -20,55 +20,37 @@
 </template>
 
 <template name="flashcardHeaderDefault">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
             {{> flashcardHeaderDefaultLeft this}}
             {{> flashcardHeaderCenter this}}
             {{> flashcardHeaderDefaultRight this}}
-    </div>
 </template>
 
 <template name="flashcardHeaderPresentation">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
         {{> flashcardHeaderPresentationLeft this}}
         {{> flashcardHeaderCenter this}}
         {{> flashcardHeaderPresentationRight this}}
-    </div>
 </template>
 
 <template name="flashcardHeaderDemo">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
         {{> flashcardHeaderPresentationLeft this}}
         {{> flashcardHeaderCenter this}}
         {{> flashcardHeaderDemoRight this}}
-    </div>
 </template>
 
 <template name="flashcardHeaderEditor">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
         {{> flashcardHeaderEditorLeft this}}
         {{> flashcardHeaderCenter this}}
         {{> flashcardHeaderEditorRight this}}
-    </div>
 </template>
 
 <template name="flashcardHeaderLeitner">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
         {{> flashcardHeaderLeitnerLeft}}
         {{> flashcardHeaderCenter this}}
         {{> flashcardHeaderLeitnerRight this}}
-    </div>
 </template>
 
 <template name="flashcardHeaderWozniak">
-    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
-         data-cardtype="{{cardType}}">
         {{> flashcardHeaderWozniakLeft}}
         {{> flashcardHeaderCenter this}}
         {{> flashcardHeaderWozniakRight this}}
-    </div>
 </template>

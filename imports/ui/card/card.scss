@@ -49,16 +49,16 @@
 
 
 @media(max-width: 767px) {
-  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
     border: 2px solid !important;
   }
-  #cardTypeGroup *:nth-child(even), #difficultyGroup *:nth-child(even), #learningGoalLevelGroup *:nth-child(even), .editorNavigation *:nth-child(even) {
+  #cardTypeGroup *:nth-child(even), #difficultyGroup *:nth-child(even), #learningGoalLevelGroup *:nth-child(even), .cardNavigation *:nth-child(even) {
     border-left: none !important;
   }
-  #cardTypeGroup *:nth-child(n+3), #difficultyGroup *:nth-child(n+3), #learningGoalLevelGroup *:nth-child(n+3), .editorNavigation *:nth-child(n+3) {
+  #cardTypeGroup *:nth-child(n+3), #difficultyGroup *:nth-child(n+3), #learningGoalLevelGroup *:nth-child(n+3), .cardNavigation *:nth-child(n+3) {
     border-top: none !important;
   }
-  #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
+  #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .cardNavigation *:last-child:nth-child(odd) {
     border-right: 2px solid !important;
   }
 
@@ -71,11 +71,11 @@
 }
 
 @media(min-width: 768px) {
-  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
     border-right: 2px solid !important;
   }
 
-  #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .editorNavigation *:last-child {
+  #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .cardNavigation *:last-child {
     border-right: none !important;
   }
 
@@ -271,12 +271,6 @@ img.cardside {
   padding: 50px;
 }
 
-#editFront, #editBack, #editHint, #editLecture {
-  @media(max-width: 767px) {
-    padding: 20px 0 20px 0 !important;
-  }
-}
-
 .actionButtons .btn:not(:first-of-type) {
   @media(min-width: 768px) {
     margin-left: 15px;
@@ -357,7 +351,7 @@ img.cardside {
   }
 }
 
-#editorToolbar > .btn {
+#cardToolbar > .btn {
   margin: 0 !important;
   padding: 0 !important;
 }

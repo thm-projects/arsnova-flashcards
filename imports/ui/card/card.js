@@ -17,6 +17,7 @@ import {MarkdeepEditor} from "../../api/markdeepEditor.js";
 import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
 import {CardEditor} from "../../api/cardEditor.js";
+import {CardType} from "../../api/cardTypes";
 
 /*
  * ############################################################################
@@ -34,9 +35,6 @@ Template.flashcards.onCreated(function () {
 
 let resizeInterval;
 Template.flashcards.onRendered(function () {
-	if (!Route.isEditMode()) {
-		Session.set('activeEditMode', 0);
-	}
 	if (window.innerWidth <= 1400) {
 		if (Router.current().route.getName() === "cardsetdetailsid") {
 			let mc = new Hammer.Manager(document.getElementById('set-details-region'));
@@ -77,15 +75,30 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	cardActive: function () {
-		if (Route.isNewCard()) {
+	cardActive: function (resetData) {
+		let cubeSides;
+		if (Route.isEditMode()) {
 			return true;
 		}
 		if (Session.get('activeCard')) {
-			return Session.get('activeCard') === this._id;
+			if (Session.get('activeCard') === this._id) {
+				if (resetData) {
+					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+					Session.set('cardType', this.cardType);
+					Session.set('activeCardContentId', cubeSides[0].contentId);
+					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
+				}
+				return true;
+			}
 		} else {
 			let cardIndex = CardIndex.getCardIndex();
 			if (this._id === cardIndex[0]) {
+				if (resetData) {
+					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+					Session.set('cardType', this.cardType);
+					Session.set('activeCardContentId', cubeSides[0].contentId);
+					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
+				}
 				return true;
 			}
 		}
@@ -106,6 +119,21 @@ Template.flashcards.helpers({
 		if (Route.isEditMode()) {
 			return CardIndex.getEditModeCard();
 		}
+	},
+	cardsIndex: function (card_id) {
+		let cardIndex = CardIndex.getCardIndex();
+		return cardIndex.findIndex(item => item === card_id) + 1;
+	},
+	isDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryPreview');
+		}
+	},
+	getCardSideColorActive: function () {
+		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, true);
+	},
+	getCardSideColorInactive: function () {
+		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, false);
 	}
 });
 
@@ -124,26 +152,28 @@ Template.flashcardNavigation.helpers({
 			cardset_id: cardset._id
 		}).count();
 		return count === 1;
+	},
+	isNavigationDisabled: function () {
+		return Session.get('navigationDisabled');
 	}
 });
 
 Template.flashcardNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		if (Session.get('reverseViewOrder')) {
-			CardEditor.editBack();
-		} else {
-			CardEditor.editFront();
-		}
-		let flashcardCarousel = $('#cardCarousel');
-		flashcardCarousel.on('slide.bs.carousel', function () {
-			CardVisuals.resizeFlashcard();
-		});
-		flashcardCarousel.on('slid.bs.carousel', function () {
-			Session.set('activeCard', $(".item.active").data('id'));
-			if (Route.isPresentationOrDemo()) {
+		if (!Session.get('navigationDisabled')) {
+			let flashcardCarousel = $('#cardCarousel');
+			flashcardCarousel.on('slide.bs.carousel', function () {
+				CardVisuals.resizeFlashcard();
+				Session.set('navigationDisabled', true);
+			});
+			flashcardCarousel.on('slid.bs.carousel', function () {
+				Session.set('activeCard', $(".item.active").data('id'));
 				CardEditor.updateNavigation();
-			}
-		});
+				setTimeout(function () {
+					Session.set('navigationDisabled', false);
+				}, 300);
+			});
+		}
 	}
 });
 
@@ -241,13 +271,15 @@ Meteor.startup(function () {
 						}
 						break;
 					case 32:
-						if ($('#rightCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							skipAnswer();
+						if (!Session.get('navigationDisabled')) {
+							if ($('#rightCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								skipAnswer();
+							}
 						}
 						break;
 					case 27:
@@ -256,26 +288,30 @@ Meteor.startup(function () {
 						}
 						break;
 					case 37:
-						if ($('#leftCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							skipAnswer(false);
+						if (!Session.get('navigationDisabled')) {
+							if ($('#leftCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								skipAnswer(false);
+							}
 						}
 						break;
 					case 38:
 						MarkdeepEditor.cardSideNavigation();
 						break;
 					case 39:
-						if ($('#rightCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							skipAnswer();
+						if (!Session.get('navigationDisabled')) {
+							if ($('#rightCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								skipAnswer();
+							}
 						}
 						break;
 					case 40:

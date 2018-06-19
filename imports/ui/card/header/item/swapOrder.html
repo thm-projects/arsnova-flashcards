@@ -1,9 +1,5 @@
 <template name="cardHeaderItemSwapOrder">
-    {{#unless gotOneColumn}}
-        {{#if gotBack}}
             <i class="swapOrder fa fa-anchor card-button cardHeaderItem {{#if
                     reversedViewOrder}}pressed{{/if}}"
                data-type="cardNavigation" title="{{_ "card.tooltip.lockSide"}}"></i>
-        {{/if}}
-    {{/unless}}
 </template>

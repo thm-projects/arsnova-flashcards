@@ -13,27 +13,301 @@ import {Session} from "meteor/session";
 //10: Fotokartei / Photo library
 //11: Quiz
 //12: Entwurfsmuster / Design pattern
-let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 let cardTypesWithCenteredText = [1, 3, 4, 5, 6, 11];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
-let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7, 12];
-let cardTypesWithAlternativeHintStyle = [2];
 let cardTypesWithLearningModes = [1, 3, 4, 5, 6, 11, 12];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
 let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
-let cardTypesWithLecture = [0, 12];
-let cardTypesWithTop = [12];
-let cardTypesWithBottom = [12];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
-let cardTypesWithSwappedSides = [6];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
+
+let cardTypeCubeSides = [
+	//0: Lernkartei / Flashcard
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 4,
+			"side": "right",
+			"defaultStyle": "lecture",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+
+	],
+	//1: Vokabelkartei / Vocabulary
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": true,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": true,
+			"isAnswer": true
+		}
+	],
+	//2: Mitschrift / Notes
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint-alternative",
+			"defaultCentered": false
+		}
+	],
+	//3: Glossar / Glossary
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+	],
+	//4: Zitatensammlung / Citation
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+	],
+	//5: Prüfung / Exam
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+	],
+	//6: Anweisungssatz / Command set
+	[
+		{
+			"contentId": 2,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 1,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+	],
+	//7: Abstract
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		}
+	],
+	//8: Notizen / Notes
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "post-it",
+			"defaultCentered": false
+		}
+	],
+	//9: To-dos / To-do
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "pink",
+			"defaultCentered": false
+		}
+	],
+	//10: Fotokartei / Photo library
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "white",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "white",
+			"defaultCentered": false,
+			"isAnswer": true
+		}
+	],
+	//11: Quiz
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": true,
+			"isQuestion": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": true,
+			"isAnswer": true
+		}
+	],
+	//12: Entwurfsmuster / Design pattern
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isQuestion": true
+		},
+		{
+			"contentId": 4,
+			"side": "right",
+			"defaultStyle": "lecture",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "hint",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 5,
+			"side": "top",
+			"defaultStyle": "hint-alternative",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 6,
+			"side": "bottom",
+			"defaultStyle": "hint-alternative",
+			"defaultCentered": false
+		}
+	]
+];
 
 export let CardType = class CardType {
 	static gotPublishLimit (cardType, cardQuantity) {
@@ -47,28 +321,39 @@ export let CardType = class CardType {
 		return cardTypesOrder;
 	}
 
+	static getCardTypeCubeSides (cardType) {
+		return cardTypeCubeSides[cardType];
+	}
+
 	static getCardTypesWithLearningModes () {
 		return cardTypesWithLearningModes;
 	}
 
-	static gotBack (cardType) {
-		return cardTypesWithBack.includes(cardType);
-	}
-
-	static gotHint (cardType) {
-		return cardTypesWithHint.includes(cardType);
-	}
-
-	static gotLecture (cardType) {
-		return cardTypesWithLecture.includes(cardType);
-	}
-
-	static gotTop (cardType) {
-		return cardTypesWithTop.includes(cardType);
-	}
-
-	static gotBottom (cardType) {
-		return cardTypesWithBottom.includes(cardType);
+	static getSortQuery (cardType) {
+		let sortQuery = {};
+		sortQuery.subject = 1;
+		let cubeSides = this.getCardTypeCubeSides(cardType);
+		switch (cubeSides[0].contentId) {
+			case 1:
+				sortQuery.front = 1;
+				break;
+			case 2:
+				sortQuery.back = 1;
+				break;
+			case 3:
+				sortQuery.hint = 1;
+				break;
+			case 4:
+				sortQuery.lecture = 1;
+				break;
+			case 5:
+				sortQuery.top = 1;
+				break;
+			case 6:
+				sortQuery.bottom = 1;
+				break;
+		}
+		return sortQuery;
 	}
 
 	static displaysSideInformation (cardType) {
@@ -77,35 +362,6 @@ export let CardType = class CardType {
 
 	static displaysLearningGoalInformation (cardType) {
 		return cardTypesWhichDisplayLearningGoalInformation.includes(cardType);
-	}
-
-	static getColumnCount (cardType) {
-		let i = 1;
-		if (this.gotBack(cardType)) {
-			i++;
-		}
-		if (this.gotHint(cardType)) {
-			i++;
-		}
-		if (this.gotLecture(cardType)) {
-			i++;
-		}
-		if (this.gotTop(cardType)) {
-			i++;
-		}
-		if (this.gotBottom(cardType)) {
-			i++;
-		}
-		return i;
-	}
-
-	static gotOneColumn (cardType) {
-		return this.getColumnCount(cardType) === 1;
-	}
-
-
-	static gotAlternativeHintStyle (cardType) {
-		return cardTypesWithAlternativeHintStyle.includes(cardType);
 	}
 
 	static gotLearningUnit (cardType) {
@@ -136,40 +392,12 @@ export let CardType = class CardType {
 		return cardTypesWithDictionary.includes(cardType);
 	}
 
-	static gotSidesSwapped (cardType) {
-		return cardTypesWithSwappedSides.includes(cardType);
-	}
-
 	static defaultCenteredText (cardType) {
 		if (cardTypesWithCenteredText.includes(cardType)) {
-			Session.set('centerTextElement', [true, true, false, false]);
+			Session.set('centerTextElement', [true, true, false, false, false, false]);
 		} else {
-			Session.set('centerTextElement', [false, false, false, false]);
+			Session.set('centerTextElement', [false, false, false, false, false, false]);
 		}
-	}
-
-	static getHintTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.hint');
-	}
-
-	static getTopTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.top');
-	}
-
-	static getBottomTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.bottom');
 	}
 
 	static getFrontTitle (cardType = -1) {
@@ -177,7 +405,7 @@ export let CardType = class CardType {
 		if (activeCardType === -1) {
 			activeCardType = Session.get('cardType');
 		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.front');
+		return TAPi18n.__('card.cardType' + activeCardType + '.content1');
 	}
 
 	static getBackTitle (cardType = -1) {
@@ -185,61 +413,24 @@ export let CardType = class CardType {
 		if (activeCardType === -1) {
 			activeCardType = Session.get('cardType');
 		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.back');
-	}
-
-	static getLectureTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.lecture');
+		return TAPi18n.__('card.cardType' + activeCardType + '.content2');
 	}
 
 	static getSubjectPlaceholderText (cardType = -1) {
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.subject');
 	}
 
-	static getPlaceholderText (activeMode = -1, cardType = -1, learningGoalLevel = -1) {
-		let side;
-		if (activeMode < 0) {
-			activeMode = Session.get('activeEditMode');
+	static getPlaceholderText (contentId = -1, cardType = -1, learningGoalLevel = -1) {
+		if (contentId < 0) {
+			contentId = Session.get('activeCardContentId');
 		}
 		if (cardType < 0) {
 			cardType = Session.get('cardType');
 		}
-		if (activeMode === 0 && this.gotLearningGoal(cardType)) {
+		if (contentId === 0 && this.gotLearningGoal(cardType)) {
 			return TAPi18n.__('learning-goal.level' + (++learningGoalLevel) + 'Placeholder');
 		}
-		switch (activeMode) {
-			case 0:
-				if (this.gotSidesSwapped(cardType)) {
-					side = 'back';
-				} else {
-					side = 'front';
-				}
-				break;
-			case 1:
-				if (this.gotSidesSwapped(cardType)) {
-					side = 'front';
-				} else {
-					side = 'back';
-				}
-				break;
-			case 2:
-				side = 'hint';
-				break;
-			case 3:
-				side = 'lecture';
-				break;
-			case 4:
-				side = 'top';
-				break;
-			case 5:
-				side = 'bottom';
-				break;
-		}
-		return TAPi18n.__('card.cardType' + cardType + '.placeholders.' + side);
+		return TAPi18n.__('card.cardType' + cardType + '.placeholders.content' + contentId);
 	}
 
 	static getCardTypeName (cardType) {

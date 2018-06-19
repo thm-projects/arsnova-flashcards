@@ -1,6 +1,6 @@
 import {Session} from "meteor/session";
-import {CardEditor} from "./cardEditor";
 import {Route} from "./route";
+import {CardType} from "./cardTypes";
 
 let editorFullScreenActive = false;
 
@@ -76,7 +76,6 @@ export let CardVisuals = class CardVisuals {
 	 * Toggle the card view between fullscreen and normal mode
 	 */
 	static toggleFullscreen (forceOff = false, isEditor = false) {
-		let lastEditMode;
 		if (forceOff && (!Route.isBox() && !Route.isMemo())) {
 			Session.set("workloadFullscreenMode", false);
 		}
@@ -98,24 +97,6 @@ export let CardVisuals = class CardVisuals {
 			}
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
-			lastEditMode = Session.get('lastEditMode');
-			if (!isEditor) {
-				switch (lastEditMode) {
-					case 0:
-						CardEditor.editFront();
-						break;
-					case 1:
-						CardEditor.editBack();
-						break;
-					case 2:
-						CardEditor.editHint();
-						break;
-					case 3:
-						CardEditor.editLecture();
-						break;
-				}
-				Session.set('activeEditMode', lastEditMode);
-			}
 		} else {
 			Session.set('fullscreen', true);
 			$(".box").removeClass("disableCardTransition");
@@ -133,11 +114,70 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	static isCentered (type, centerTextElement) {
+	static isCentered (contentId, centerTextElement) {
+		--contentId;
 		if (Route.isEditMode()) {
-			return Session.get('centerTextElement')[type];
+			return Session.get('centerTextElement')[contentId];
 		} else {
-			return centerTextElement[type];
+			return centerTextElement[contentId];
+		}
+	}
+
+	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
+		let box = "box-";
+		let style;
+		if (activeCard) {
+			style = Session.get('activeCardStyle');
+		} else {
+			let cubeSides = CardType.getCardTypeCubeSides(cardType);
+			style = cubeSides[0].defaultStyle;
+		}
+		if (style === "default") {
+			if (!CardType.gotDifficultyLevel(cardType)) {
+				if (backgroundStyle === 0) {
+					return box + 'difficultyLined0';
+				} else {
+					return box + 'difficultyBlank0';
+				}
+			}
+			if (difficulty === 0 && !CardType.gotNotesForDifficultyLevel(cardType)) {
+				difficulty = 1;
+			}
+			if (backgroundStyle === 0) {
+				switch (difficulty) {
+					case 0:
+						if (CardType.gotNotesForDifficultyLevel(cardType)) {
+							return box + 'difficultyLinedNote0';
+						}
+						break;
+					case 1:
+						return box + 'difficultyLined1';
+					case 2:
+						return box + 'difficultyLined2';
+					case 3:
+						return box + 'difficultyLined3';
+					default:
+						return '';
+				}
+			} else {
+				switch (difficulty) {
+					case 0:
+						if (CardType.gotNotesForDifficultyLevel(cardType)) {
+							return box + 'difficultyBlankNote0';
+						}
+						break;
+					case 1:
+						return box + 'difficultyBlank1';
+					case 2:
+						return box + 'difficultyBlank2';
+					case 3:
+						return box + 'difficultyBlank3';
+					default:
+						return '';
+				}
+			}
+		} else {
+			return box + style;
 		}
 	}
 };

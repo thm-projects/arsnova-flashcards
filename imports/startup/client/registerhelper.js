@@ -12,7 +12,6 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.js";
 import {getAuthorName} from "../../api/userdata";
-import {Route} from "../../api/route";
 
 Meteor.subscribe("collegesCourses");
 
@@ -530,18 +529,6 @@ Template.registerHelper("getLearnphase", function (state) {
 });
 
 Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
-	if (Route.isPresentationOrDemo() || Route.isCardset() || Route.isBox() || Route.isEditMode() || Route.isMemo()) {
-		if (Session.get('activeEditMode') === 2) {
-			if (CardType.gotAlternativeHintStyle(this.cardType)) {
-				return "box-hint-alternative";
-			} else {
-				return "box-hint";
-			}
-		}
-		if (CardType.gotLecture(this.cardType) && Session.get('activeEditMode') === 3) {
-			return "box-lecture";
-		}
-	}
 	switch (cardType) {
 		case 8:
 			return 'box-post-it';
