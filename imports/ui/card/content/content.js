@@ -258,12 +258,14 @@ Template.cardBottomContent.helpers({
 
 Template.cardHintContentPreview.helpers({
 	getPlaceholder: function () {
-		if (Route.isPresentation()) {
-			return CardType.getPlaceholderText(2, this.cardType);
-		}
+		return CardType.getPlaceholderText(2, this.cardType);
 	},
 	gotHint: function () {
-		return this.hint !== '' && this.hint !== undefined;
+		if (Route.isEditMode()) {
+			return true;
+		} else {
+			return this.hint !== '' && this.hint !== undefined;
+		}
 	},
 	isCentered: function () {
 		return CardVisuals.isCentered(2, this.centerTextElement, this.cardType);
