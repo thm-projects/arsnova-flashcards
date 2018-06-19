@@ -271,18 +271,6 @@ img.cardside {
   padding: 50px;
 }
 
-.editorNavigation {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.editorNavigation > .btn-primary {
-  cursor: default;
-  box-shadow: none !important;
-}
-
 #editFront, #editBack, #editHint, #editLecture {
   @media(max-width: 767px) {
     padding: 20px 0 20px 0 !important;

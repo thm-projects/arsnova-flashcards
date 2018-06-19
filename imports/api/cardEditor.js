@@ -1,11 +1,47 @@
 import {Session} from "meteor/session";
 import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
-import {backMaxLength, Cards, frontMaxLength, hintMaxLength, lectureMaxLength, subjectMaxLength} from "./cards";
-import {isTextCentered} from "../ui/markdeepEditor/navigation";
+import {Cards} from "./cards";
 import {Route} from "./route.js";
 
+const frontMaxLength = 100000;
+const backMaxLength = 100000;
+const hintMaxLength = 100000;
+const lectureMaxLength = 300000;
+const topMaxLength = 100000;
+const bottomMaxLength = 100000;
+const subjectMaxLength = 255;
+
 export let CardEditor = class CardEditor {
+	static getMaxTextLength (type) {
+		switch (type) {
+			case 0:
+				return frontMaxLength;
+			case 1:
+				return backMaxLength;
+			case 2:
+				return hintMaxLength;
+			case 3:
+				return lectureMaxLength;
+			case 4:
+				return topMaxLength;
+			case 5:
+				return bottomMaxLength;
+			case 6:
+				return subjectMaxLength;
+		}
+	}
+
+	static isTextCentered () {
+		let centerTextElement = Session.get('centerTextElement');
+		let editMode = Session.get('activeEditMode');
+		if (centerTextElement !== undefined && centerTextElement[editMode]) {
+			$(".center-button").addClass('pressed');
+		} else {
+			$(".center-button").removeClass('pressed');
+		}
+	}
+
 	static updateNavigation () {
 		let card_id = $('.carousel-inner > .active').attr('data-id');
 		Session.set('activeCard', card_id);
@@ -32,13 +68,15 @@ export let CardEditor = class CardEditor {
 		Session.set('backText', '');
 		Session.set('hintText', '');
 		Session.set('lectureText', '');
+		Session.set('topText', '');
+		Session.set('bottomText', '');
 		Session.set('learningGoalLevel', 0);
 		Session.set('backgroundStyle', 1);
 		Session.set('cameFromEditMode');
 	}
 
 	static prepareFront () {
-		isTextCentered();
+		this.isTextCentered();
 		Session.set('dictionaryPreview', 0);
 		Session.set('isQuestionSide', true);
 		if (Session.get('activeEditMode') === 1) {
@@ -60,13 +98,13 @@ export let CardEditor = class CardEditor {
 		$('#editFront').removeClass('btn-default').addClass('btn-primary');
 		$('#editBack').removeClass('btn-primary').addClass('btn-default');
 		$('#editHint').removeClass('btn-primary').addClass('btn-default');
-		if (CardType.gotLecture(Session.get('cardType'))) {
-			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
-		}
+		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editTop').removeClass('btn-primary').addClass('btn-default');
+		$('#editBottom').removeClass('btn-primary').addClass('btn-default');
 	}
 
 	static prepareBack () {
-		isTextCentered();
+		this.isTextCentered();
 		Session.set('dictionaryPreview', 0);
 		Session.set('isQuestionSide', false);
 		if (Session.get('activeEditMode') !== 0 && (Session.get('activeEditMode') === 2 || Session.get('activeEditMode') === 3)) {
@@ -87,12 +125,12 @@ export let CardEditor = class CardEditor {
 				$('#editor').attr('data-content', Session.get('backText'));
 			}
 		}
-		$('#editBack').removeClass('btn-default').addClass('btn-primary');
 		$('#editFront').removeClass('btn-primary').addClass('btn-default');
+		$('#editBack').removeClass('btn-default').addClass('btn-primary');
 		$('#editHint').removeClass('btn-primary').addClass('btn-default');
-		if (CardType.gotHint(Session.get('cardType'))) {
-			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
-		}
+		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editTop').removeClass('btn-primary').addClass('btn-default');
+		$('#editBottom').removeClass('btn-primary').addClass('btn-default');
 	}
 
 	static editFront () {
@@ -104,7 +142,7 @@ export let CardEditor = class CardEditor {
 	}
 
 	static editLecture () {
-		isTextCentered();
+		this.isTextCentered();
 		Session.set('dictionaryPreview', 0);
 		Session.set('activeEditMode', 3);
 		Session.set('lastEditMode', Session.get('activeEditMode'));
@@ -114,16 +152,16 @@ export let CardEditor = class CardEditor {
 			$('#contentEditor').val(Session.get('lectureText'));
 			$('#editor').attr('data-content', Session.get('lectureText'));
 		}
-		$('#editBack').removeClass('btn-primary').addClass('btn-default');
 		$('#editFront').removeClass('btn-primary').addClass('btn-default');
+		$('#editBack').removeClass('btn-primary').addClass('btn-default');
 		$('#editHint').removeClass('btn-primary').addClass('btn-default');
-		if (CardType.gotHint(Session.get('cardType'))) {
-			$('#editLecture').removeClass('btn-default').addClass('btn-primary');
-		}
+		$('#editLecture').removeClass('btn-default').addClass('btn-primary');
+		$('#editTop').removeClass('btn-primary').addClass('btn-default');
+		$('#editBottom').removeClass('btn-primary').addClass('btn-default');
 	}
 
 	static editHint () {
-		isTextCentered();
+		this.isTextCentered();
 		Session.set('dictionaryPreview', 0);
 		Session.set('activeEditMode', 2);
 		Session.set('lastEditMode', Session.get('activeEditMode'));
@@ -133,12 +171,50 @@ export let CardEditor = class CardEditor {
 			$('#contentEditor').val(Session.get('hintText'));
 			$('#editor').attr('data-content', Session.get('hintText'));
 		}
-		$('#editHint').removeClass('btn-default').addClass('btn-primary');
 		$('#editFront').removeClass('btn-primary').addClass('btn-default');
 		$('#editBack').removeClass('btn-primary').addClass('btn-default');
-		if (CardType.gotHint(Session.get('cardType'))) {
-			$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editHint').removeClass('btn-default').addClass('btn-primary');
+		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editTop').removeClass('btn-primary').addClass('btn-default');
+		$('#editBottom').removeClass('btn-primary').addClass('btn-default');
+	}
+
+	static editTop () {
+		this.isTextCentered();
+		Session.set('dictionaryPreview', 0);
+		Session.set('activeEditMode', 4);
+		Session.set('lastEditMode', Session.get('activeEditMode'));
+		$('#contentEditor').focus();
+		$('#contentEditor').attr('tabindex', 14);
+		if (!Route.isPresentationOrDemo()) {
+			$('#contentEditor').val(Session.get('topText'));
+			$('#editor').attr('data-content', Session.get('topText'));
 		}
+		$('#editFront').removeClass('btn-primary').addClass('btn-default');
+		$('#editBack').removeClass('btn-primary').addClass('btn-default');
+		$('#editHint').removeClass('btn-primary').addClass('btn-default');
+		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editTop').removeClass('btn-default').addClass('btn-primary');
+		$('#editBottom').removeClass('btn-primary').addClass('btn-default');
+	}
+
+	static editBottom () {
+		this.isTextCentered();
+		Session.set('dictionaryPreview', 0);
+		Session.set('activeEditMode', 5);
+		Session.set('lastEditMode', Session.get('activeEditMode'));
+		$('#contentEditor').focus();
+		$('#contentEditor').attr('tabindex', 16);
+		if (!Route.isPresentationOrDemo()) {
+			$('#contentEditor').val(Session.get('bottomText'));
+			$('#editor').attr('data-content', Session.get('bottomText'));
+		}
+		$('#editFront').removeClass('btn-primary').addClass('btn-default');
+		$('#editBack').removeClass('btn-primary').addClass('btn-default');
+		$('#editHint').removeClass('btn-primary').addClass('btn-default');
+		$('#editLecture').removeClass('btn-primary').addClass('btn-default');
+		$('#editTop').removeClass('btn-primary').addClass('btn-default');
+		$('#editBottom').removeClass('btn-default').addClass('btn-primary');
 	}
 
 	static initializeContent () {
@@ -173,6 +249,14 @@ export let CardEditor = class CardEditor {
 			Session.set('lectureText', '');
 		}
 
+		if (Session.get('topText') === undefined) {
+			Session.set('topText', '');
+		}
+
+		if (Session.get('bottomText') === undefined) {
+			Session.set('bottomText', '');
+		}
+
 		if (Session.get('learningIndex') === undefined) {
 			Session.set('learningIndex', '0');
 		}
@@ -193,6 +277,8 @@ export let CardEditor = class CardEditor {
 		let backText = Session.get('backText');
 		let hintText = Session.get('hintText');
 		let lectureText = Session.get('lectureText');
+		let topText = Session.get('topText');
+		let bottomText = Session.get('bottomText');
 		let cardType = Session.get('cardType');
 		let centerTextElement = Session.get('centerTextElement');
 		let date = Session.get('cardDate');
@@ -233,14 +319,22 @@ export let CardEditor = class CardEditor {
 			$('#editor .md-editor').css('border-color', '#b94a48');
 			Bert.alert(TAPi18n.__('text_max', {max: hintMaxLength}), "danger", 'growl-top-left');
 		}
+		if (topText.length > topMaxLength) {
+			$('#editor .md-editor').css('border-color', '#b94a48');
+			Bert.alert(TAPi18n.__('text_max', {max: topMaxLength}), "danger", 'growl-top-left');
+		}
+		if (bottomText.length > bottomMaxLength) {
+			$('#editor .md-editor').css('border-color', '#b94a48');
+			Bert.alert(TAPi18n.__('text_max', {max: bottomMaxLength}), "danger", 'growl-top-left');
+		}
 		if (CardType.gotLecture(cardType) && lectureText.length > lectureMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
 			Bert.alert(TAPi18n.__('text_max', {max: lectureMaxLength}), "danger", 'growl-top-left');
 		}
-		let editorsValidLength = (frontText.length <= frontMaxLength && backText.length <= backMaxLength && lectureText.length <= lectureMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && hintText.length <= hintMaxLength);
+		let editorsValidLength = (frontText.length <= frontMaxLength && backText.length <= backMaxLength && lectureText.length <= lectureMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && hintText.length <= hintMaxLength && topText.length <= topMaxLength && bottomText.length <= bottomMaxLength);
 		if (gotSubject && editorsValidLength) {
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
+				Meteor.call("addCard", Router.current().params._id, subjectText, hintText, frontText, backText, lectureText, topText, bottomText, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
 						Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						if (returnToCardset) {
@@ -257,7 +351,7 @@ export let CardEditor = class CardEditor {
 					}
 				});
 			} else {
-				Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
+				Meteor.call("updateCard", card_id, subjectText, hintText, frontText, backText, lectureText, topText, bottomText, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 				Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 				if (returnToCardset) {
 					Router.go('cardsetdetailsid', {

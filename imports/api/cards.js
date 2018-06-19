@@ -5,13 +5,9 @@ import {Cardsets} from "./cardsets.js";
 import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
+import {CardEditor} from "./cardEditor";
 
 export const Cards = new Mongo.Collection("cards");
-export const frontMaxLength = 100000;
-export const backMaxLength = 100000;
-export const hintMaxLength = 100000;
-export const lectureMaxLength = 300000;
-export const subjectMaxLength = 255;
 
 if (Meteor.isServer) {
 	Meteor.publish("cards", function () {
@@ -133,22 +129,32 @@ var CardsSchema = new SimpleSchema({
 	subject: {
 		type: String,
 		optional: true,
-		max: subjectMaxLength
+		max: CardEditor.getMaxTextLength(5)
 	},
 	hint: {
 		type: String,
 		optional: true,
-		max: hintMaxLength
+		max: CardEditor.getMaxTextLength(2)
 	},
 	front: {
 		type: String,
 		optional: true,
-		max: frontMaxLength
+		max: CardEditor.getMaxTextLength(0)
 	},
 	back: {
 		type: String,
 		optional: true,
-		max: backMaxLength
+		max: CardEditor.getMaxTextLength(1)
+	},
+	top: {
+		type: String,
+		optional: true,
+		max: CardEditor.getMaxTextLength(4)
+	},
+	bottom: {
+		type: String,
+		optional: true,
+		max: CardEditor.getMaxTextLength(5)
 	},
 	cardset_id: {
 		type: String
@@ -159,7 +165,7 @@ var CardsSchema = new SimpleSchema({
 	lecture: {
 		type: String,
 		optional: true,
-		max: lectureMaxLength
+		max: CardEditor.getMaxTextLength(3)
 	},
 	centerText: {
 		type: Boolean,
@@ -202,13 +208,15 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, hint, front, back, lecture, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	addCard: function (cardset_id, subject, hint, front, back, lecture, top, bottom, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(lecture, String);
+		check(top, String);
+		check(bottom, String);
 		check(centerTextElement, [Boolean]);
 		check(date, Date);
 		check(learningGoalLevel, Number);
@@ -243,6 +251,8 @@ Meteor.methods({
 			cardset_id: cardset_id,
 			difficulty: cardset.difficulty,
 			lecture: lecture,
+			top: top,
+			bottom: bottom,
 			centerTextElement: centerTextElement,
 			date: date,
 			learningGoalLevel: learningGoalLevel,
@@ -273,6 +283,9 @@ Meteor.methods({
 				let lecture = "";
 				let back = "";
 				let learningUnit = "";
+				let learningIndex = -1;
+				let top = "";
+				let bottom = "";
 				if (card.back !== undefined) {
 					back = card.back;
 				}
@@ -282,10 +295,16 @@ Meteor.methods({
 				if (card.lecture !== undefined) {
 					lecture = card.lecture;
 				}
+				if (card.top !== undefined) {
+					top = card.top;
+				}
+				if (card.bottom !== undefined) {
+					bottom = card.bottom;
+				}
 				if (card.learningUnit !== undefined) {
 					learningUnit = card.learningUnit;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, Number(card.difficulty), "0", card.cardType, lecture, card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningUnit);
+				Meteor.call("addCard", targetCardset_id, card.subject, hint, card.front, back, lecture, top, bottom, "0", card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
 				return true;
 			}
 		} else {
@@ -359,13 +378,15 @@ Meteor.methods({
 			});
 		}
 	},
-	updateCard: function (card_id, subject, hint, front, back, lecture, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	updateCard: function (card_id, subject, hint, front, back, lecture, top, bottom, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(hint, String);
 		check(front, String);
 		check(back, String);
 		check(lecture, String);
+		check(top, String);
+		check(bottom, String);
 		check(centerTextElement, [Boolean]);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
@@ -399,6 +420,8 @@ Meteor.methods({
 				front: front,
 				back: back,
 				lecture: lecture,
+				top: top,
+				bottom: bottom,
 				centerTextElement: centerTextElement,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,

@@ -29,10 +29,7 @@
 </template>
 
 <template name="flashcardHeaderPresentation">
-    <div class="cardHeader {{#if isHintPreview}}{{#if
-            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
-            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
-                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
          data-cardtype="{{cardType}}">
         {{> flashcardHeaderPresentationLeft this}}
         {{> flashcardHeaderCenter this}}
@@ -41,10 +38,7 @@
 </template>
 
 <template name="flashcardHeaderDemo">
-    <div class="cardHeader {{#if isHintPreview}}{{#if
-            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
-            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
-                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
          data-cardtype="{{cardType}}">
         {{> flashcardHeaderPresentationLeft this}}
         {{> flashcardHeaderCenter this}}
@@ -53,10 +47,7 @@
 </template>
 
 <template name="flashcardHeaderEditor">
-    <div class="cardHeader {{#if isHintPreview}}{{#if
-            gotAlternativeHintStyle}}box-hint-alternative{{else}}box-hint{{/if}}{{else}}{{#if
-            isLecturePreview}}box-lecture{{else}}{{getCardBackground difficulty cardType
-                                                                     backgroundStyle}}{{/if}}{{/if}}-header"
+    <div class="cardHeader {{getCardBackground difficulty cardType backgroundStyle}}-header"
          data-cardtype="{{cardType}}">
         {{> flashcardHeaderEditorLeft this}}
         {{> flashcardHeaderCenter this}}

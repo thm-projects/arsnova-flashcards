@@ -807,20 +807,24 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
-      "longName": "Entwurfsmuster (Problem | Kontext | Lösung | Beschreibung | Beispiel | Literatur)",
+      "longName": "Entwurfsmuster (Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise)",
       "front": "Problem",
+      "hint": "Kontext",
+      "lecture": "Kräfte",
       "back": "Lösung",
-      "hint": "Literatur",
-      "lecture": "Beschreibung",
+      "top": "Verwendung",
+      "bottom": "Verweise",
       "placeholders": {
-        "subject": "Gib das Entwurfsmuster an !",
-        "front": "Gib das Problem an !",
-        "back": "Gib die Lösung an !",
-        "hint": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
-        "lecture": "Beschreibe das Entwurfsmuster !"
+        "subject": "Wie heißt das Muster ?",
+        "front": "Welches Problem löst das Muster?",
+        "hint": "Wo tritt das Problem auf?",
+        "lecture": "Was sind die Vor- und Nachteile der Lösung?",
+        "back": "Beschreib die Lösung anhand eines Diagramms!",
+        "top": "Nenne konkrete Implementierungen des Entwurfsmusters!",
+        "bottom": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf!"
       },
       "editorLabels": {
-        "subject": "Gib das Entwurfsmuster an !"
+        "subject": "Gib den Namen des Entwurfsmusters an !"
       }
     },
     "tooltip": {

@@ -126,6 +126,7 @@ Template.cardset.rendered = function () {
 			}
 		});
 	}
+	$('html, body').animate({scrollTop: '0px'}, 0);
 };
 
 Template.cardset.helpers({
