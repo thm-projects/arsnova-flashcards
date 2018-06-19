@@ -369,29 +369,31 @@
                                 </div>
                             {{/if}}
                         {{/if}}
-                        {{#if gotLearningModes}}
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-raised learnBtn"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-graduation-cap"></i> {{_ "learn"}} <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
-                                            "learnfile"}}</li>
-                                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
-                                            "memo"}}</li>
-                                    {{#if gotEnoughCardsToFilter this.quanity}}
-                                        <li id="learnChoice" class="chooseList" {{disableIfOffline}}
-                                            data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
-                                                "learnSelection"}}</li>
-                                    {{/if}}
-                                    {{#if learningLeitner}}
-                                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
-                                                "leitnerProgress"}}</li>
-                                    {{/if}}
-                                </ul>
-                            </div>
+                        {{#if getQuantity this}}
+                            {{#if gotLearningModes}}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-raised learnBtn"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-graduation-cap"></i> {{_ "learn"}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
+                                                "learnfile"}}</li>
+                                        <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
+                                                "memo"}}</li>
+                                        {{#if gotEnoughCardsToFilter this.quanity}}
+                                            <li id="learnChoice" class="chooseList" {{disableIfOffline}}
+                                                data-toggle="modal" data-target="#chooseFlashcardsModal">{{_
+                                                    "learnSelection"}}</li>
+                                        {{/if}}
+                                        {{#if learningLeitner}}
+                                            <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
+                                                    "leitnerProgress"}}</li>
+                                        {{/if}}
+                                    </ul>
+                                </div>
+                            {{/if}}
                         {{/if}}
                         {{#if isCardsetOwner _id}}
                             {{#unless isShuffledCardset _id}}

@@ -188,6 +188,14 @@ export let CardType = class CardType {
 		return TAPi18n.__('card.cardType' + activeCardType + '.back');
 	}
 
+	static getLectureTitle (cardType = -1) {
+		let activeCardType = cardType;
+		if (activeCardType === -1) {
+			activeCardType = Session.get('cardType');
+		}
+		return TAPi18n.__('card.cardType' + activeCardType + '.lecture');
+	}
+
 	static getSubjectPlaceholderText (cardType = -1) {
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.subject');
 	}

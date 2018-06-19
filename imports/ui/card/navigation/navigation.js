@@ -142,6 +142,18 @@ Template.cardNavigationTop.helpers({
 	}
 });
 
+
+/*
+ * ############################################################################
+ * cardNavigationBottom
+ * ############################################################################
+ */
+Template.cardNavigationLecture.helpers({
+	getLectureTitle: function () {
+		return CardType.getLectureTitle();
+	}
+});
+
 /*
  * ############################################################################
  * cardNavigationBottom
