@@ -16,7 +16,7 @@ import {Session} from "meteor/session";
 let cardTypesWithBack = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 let cardTypesWithCenteredText = [1, 3, 4, 5, 6, 11];
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 11, 12];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
 let cardTypesWithHint = [0, 2, 3, 4, 5, 6, 7, 12];
 let cardTypesWithAlternativeHintStyle = [2];
 let cardTypesWithLearningModes = [1, 3, 4, 5, 6, 11, 12];
