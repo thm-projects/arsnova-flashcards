@@ -1,19 +1,10 @@
+import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Route} from "./route";
-import {Cards} from "./cards";
 import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
-import {MarkdeepEditor} from "./markdeepEditor";
 
 export let CardNavigation = class CardNavigation {
-
-	static isAnswer (isAnswer, contentId) {
-		let result = (Route.isBox() || Route.isMemo()) && isAnswer;
-		if (result) {
-			Session.set('questionSide', contentId);
-		}
-		return result;
-	}
 
 	static selectButton (index = 1) {
 		$(".cardNavigation > li:nth-child(" + index + ") a").click();
@@ -28,14 +19,38 @@ export let CardNavigation = class CardNavigation {
 		this.setActiveNavigationButton(navigationId);
 	}
 
-	static updateNavigation () {
-		Session.set('activeCard', $('.carousel-inner > .active').attr('data-id'));
-		Session.set('cardType', Cards.findOne({_id: Session.get('activeCard')}).cardType);
-	}
-
 	static setActiveNavigationButton (index) {
 		$('.cardNavigation a').removeClass('btn-primary').addClass('btn-default');
 		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary');
+	}
+
+	static filterNavigation (cubeSides, mode) {
+		if (cubeSides === undefined) {
+			return [""];
+		}
+		if (mode === false) {
+			mode = undefined;
+		}
+		let filteredSides = [];
+		let index = 0;
+		for (let i = 0; i < cubeSides.length; i++) {
+			if (cubeSides[i].isAnswer === mode) {
+				cubeSides[i].index = index++;
+				filteredSides.push(cubeSides[i]);
+			}
+		}
+		return filteredSides;
+	}
+
+	static indexNavigation (cubeSides) {
+		if (cubeSides === undefined) {
+			return [""];
+		}
+		let index = 0;
+		for (let i = 0; i < cubeSides.length; i++) {
+			cubeSides[i].index = index++;
+		}
+		return cubeSides;
 	}
 
 	static getTabIndex (index, contentEditor = false) {
@@ -79,21 +94,24 @@ export let CardNavigation = class CardNavigation {
 		this.selectButton(index);
 	}
 
-	static switchCard () {
-		if (!Session.get('navigationDisabled')) {
-			let flashcardCarousel = $('#cardCarousel');
-			flashcardCarousel.on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcard();
-				CardNavigation.toggleVisibility(false);
-			});
-			flashcardCarousel.on('slid.bs.carousel', function () {
-				Session.set('activeCard', $(".item.active").data('id'));
-				CardNavigation.updateNavigation();
-				setTimeout(function () {
-					CardNavigation.toggleVisibility(true);
-				}, 300);
-			});
-		}
+	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0) {
+		let flashcardCarousel = $('#cardCarousel');
+		flashcardCarousel.on('slide.bs.carousel', function () {
+			CardVisuals.resizeFlashcard();
+			CardNavigation.toggleVisibility(false);
+		});
+		flashcardCarousel.on('slid.bs.carousel', function () {
+			Session.set('activeCard', $(".item.active").data('id'));
+			Session.set('isQuestionSide', true);
+			if (updateLearningMode === 1) {
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+			} else if (updateLearningMode === 2) {
+				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+			}
+			setTimeout(function () {
+				CardNavigation.toggleVisibility(true);
+			}, 300);
+		});
 	}
 
 	static isVisible () {
@@ -110,56 +128,37 @@ export let CardNavigation = class CardNavigation {
 		} else {
 			$('.carousel').carousel('prev');
 		}
+		this.toggleVisibility(false);
+		this.switchCard();
+	}
+
+	static answerCard (updateLearningMode, answer) {
+		let answeredCard = $('.carousel-inner > .active').attr('data-id');
+		Session.set('isQuestionSide', false);
+		$('.carousel').carousel('next');
 		$('html, body').animate({scrollTop: '0px'}, 300);
-		$('#cardCarousel').on('slide.bs.carousel', function () {
-			CardVisuals.resizeFlashcard();
-		});
-		$('#cardCarousel').on('slid.bs.carousel', function () {
-			Session.set('animationPlaying', false);
-			Session.set('activeCard', $(".item.active").data('id'));
-		});
-		CardEditor.editFront();
-		Session.set('isQuestionSide', true);
+		if (updateLearningMode === 2) {
+			answer = $(answer.currentTarget).data("id");
+		}
+		if ($('.carousel-inner > .item').length === 1) {
+			if (updateLearningMode === 1) {
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+			} else if (updateLearningMode === 2) {
+				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+			}
+		} else {
+			this.toggleVisibility(false);
+			this.switchCard(updateLearningMode, answeredCard, answer);
+		}
 	}
 
 	static rateLeitner (answer) {
-		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		Session.set('isQuestionSide', true);
-		$('.carousel').carousel('next');
-		$('html, body').animate({scrollTop: '0px'}, 300);
-		if ($('.carousel-inner > .item').length === 1) {
-			Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
-		} else {
-			$('#cardCarousel').on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcard();
-			});
-			$('#cardCarousel').on('slid.bs.carousel', function () {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
-				Session.set('animationPlaying', false);
-				Session.set('activeCard', $(".item.active").data('id'));
-			});
-		}
+		this.answerCard(1, answer);
 	}
 
-	static rateWozniak (event) {
-		let answeredCard = $('.carousel-inner > .active').attr('data-id');
-		Session.set('isQuestionSide', true);
-		$('.carousel').carousel('next');
-		$('html, body').animate({scrollTop: '0px'}, 300);
-		if ($('.carousel-inner > .item').length === 1) {
-			Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
-		} else {
-			$('#cardCarousel').on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcard();
-			});
-			$('#cardCarousel').on('slid.bs.carousel', function () {
-				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, $(event.currentTarget).data("id"));
-				Session.set('animationPlaying', false);
-				Session.set('activeCard', $(".item.active").data('id'));
-			});
-		}
+	static rateWozniak (answer) {
+		this.answerCard(2, answer);
 	}
-
 
 	static keyEvents (event) {
 		if (event.keyCode === 27) {
@@ -176,7 +175,7 @@ export let CardNavigation = class CardNavigation {
 				switch (event.keyCode) {
 					case 9:
 						if (Route.isPresentation()) {
-							MarkdeepEditor.cardSideNavigation();
+							CardNavigation.cardSideNavigation();
 						}
 						break;
 					case 32:
@@ -209,7 +208,7 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 38:
-						MarkdeepEditor.cardSideNavigation();
+						CardNavigation.cardSideNavigation();
 						break;
 					case 39:
 						if (CardNavigation.isVisible()) {
@@ -224,7 +223,7 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 40:
-						MarkdeepEditor.cardSideNavigation(false);
+						CardNavigation.cardSideNavigation(false);
 						break;
 					case 48:
 						if (!Session.get('isQuestionSide')) {

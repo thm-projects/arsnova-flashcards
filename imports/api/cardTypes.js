@@ -35,8 +35,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 4,
@@ -65,8 +64,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": true,
-			"isQuestion": true
+			"defaultCentered": true
 		},
 		{
 			"contentId": 2,
@@ -82,8 +80,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -105,8 +102,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -128,8 +124,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -151,8 +146,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -174,8 +168,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 1,
@@ -197,8 +190,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -238,8 +230,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "white",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
@@ -255,8 +246,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": true,
-			"isQuestion": true
+			"defaultCentered": true
 		},
 		{
 			"contentId": 2,
@@ -272,8 +262,7 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isQuestion": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 4,

@@ -25,7 +25,7 @@ Template.presentationView.onCreated(function () {
 });
 
 Template.presentationView.onRendered(function () {
-	CardNavigation.updateNavigation();
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.presentationView.onDestroyed(function () {

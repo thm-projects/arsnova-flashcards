@@ -5,6 +5,7 @@ import {CardType} from "../../api/cardTypes";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
+import {CardVisuals} from "../../api/cardVisuals";
 
 
 /*
@@ -43,7 +44,7 @@ Template.editor.helpers({
 		}
 	},
 	isTextCentered: function () {
-		CardEditor.isTextCentered();
+		CardVisuals.isTextCentered();
 	}
 });
 

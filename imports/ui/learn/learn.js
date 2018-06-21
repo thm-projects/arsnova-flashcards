@@ -97,8 +97,8 @@ Template.learnAnswerOptions.helpers({
 	isQuestionSide: function () {
 		return Session.get('isQuestionSide');
 	},
-	isAnimationPlaying: function () {
-		return Session.get('animationPlaying');
+	isNavigationVisible: function () {
+		return !CardNavigation.isVisible();
 	},
 	gotOneCardLeft: function () {
 		if (Session.get('isQuestionSide')) {

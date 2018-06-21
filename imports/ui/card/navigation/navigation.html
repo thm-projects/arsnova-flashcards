@@ -1,7 +1,15 @@
 <template name="cardNavigation">
     <nav class="col-xs-12 cardNavigation cardtext cardToolbar nav nav-justified">
         {{#if isNavigationVisible}}
-            {{> cardNavigationEnabled}}
+            {{#if isLearningMode}}
+                {{#if isQuestionSide}}
+                    {{> cardNavigationEnabledQuestion}}
+                {{else}}
+                    {{> cardNavigationEnabledAnswer}}
+                {{/if}}
+            {{else}}
+                {{> cardNavigationEnabled}}
+            {{/if}}
         {{else}}
             {{> cardNavigationDisabled}}
         {{/if}}
@@ -14,14 +22,29 @@
 
 <template name="cardNavigationEnabled">
     {{#each getCardTypeSides}}
-        {{#unless isAnswer this.isAnswer this.contentId}}
-            <li>
-                <a class="btn btn-default btn-raised switchCardSide"
-                   type="button"
-                   data-content-id="{{this.contentId}}"
-                   data-navigation-id="{{@index}}" data-side="{{this.side}}" data-style="{{this.defaultStyle}}"
-                   tabindex="{{getTabIndex @index}}">{{getTitle}}</a>
-            </li>
-        {{/unless}}
+        {{> cardNavigationItem this}}
     {{/each}}
+</template>
+
+<template name="cardNavigationEnabledAnswer">
+    {{#each getCardTypeSides}}
+        {{> cardNavigationItem this}}
+    {{/each}}
+</template>
+
+<template name="cardNavigationEnabledQuestion">
+    {{#each getCardTypeSides}}
+        {{> cardNavigationItem this}}
+    {{/each}}
+</template>
+
+<template name="cardNavigationItem">
+        <li>
+            <a class="btn btn-default btn-raised switchCardSide"
+               type="button"
+               data-content-id="{{this.contentId}}"
+               data-navigation-id="{{this.index}}" data-side="{{this.side}}"
+               data-style="{{this.defaultStyle}}"
+               tabindex="{{getTabIndex this.index}}">{{getTitle}}</a>
+        </li>
 </template>
