@@ -1,9 +1,8 @@
 import {Session} from "meteor/session";
 import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
-import {Cards} from "./cards";
 import {Route} from "./route.js";
-import {MarkdeepEditor} from "./markdeepEditor";
+import {CardNavigation} from "./cardNavigation";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -15,35 +14,6 @@ export let CardEditor = class CardEditor {
 				return subjectMaxLength;
 			case 2:
 				return contentMaxLength;
-		}
-	}
-
-	static isTextCentered () {
-		let centerTextElement = Session.get('centerTextElement');
-		let contentId = Session.get('activeCardContentId');
-		--contentId;
-		if (centerTextElement !== undefined && centerTextElement[contentId]) {
-			$(".center-button").addClass('pressed');
-		} else {
-			$(".center-button").removeClass('pressed');
-		}
-	}
-
-	static updateNavigation () {
-		Session.set('activeCard', $('.carousel-inner > .active').attr('data-id'));
-		Session.set('cardType', Cards.findOne({_id: Session.get('activeCard')}).cardType);
-	}
-
-	static setActiveNavigationButton (index) {
-		$('.cardNavigation a').removeClass('btn-primary').addClass('btn-default');
-		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary');
-	}
-
-	static checkBackgroundStyle () {
-		if (Session.get('backgroundStyle')) {
-			$(".editorBrush").addClass('pressed');
-		} else {
-			$(".editorBrush").removeClass('pressed');
 		}
 	}
 
@@ -65,40 +35,10 @@ export let CardEditor = class CardEditor {
 		Session.set('cameFromEditMode');
 	}
 
-	static switchCardSide (contentId, navigationId, cardStyle) {
-		this.isTextCentered();
-		Session.set('dictionaryPreview', 0);
-		Session.set('activeCardStyle', cardStyle);
-		Session.set('activeCardContentId', contentId);
-		this.setEditorContent(navigationId);
-		this.setActiveNavigationButton(navigationId);
-	}
-
 	static setEditorContent (index) {
 		if (Route.isEditMode()) {
 			$('#contentEditor').focus();
-			$('#contentEditor').attr('tabindex', this.getTabIndex(index, true));
-		}
-	}
-
-	static getTabIndex (index, contentEditor = false) {
-		let increaseNumber = 0;
-		if (contentEditor) {
-			increaseNumber = 1;
-		}
-		switch (index) {
-			case 1:
-				return 3 + increaseNumber;
-			case 2 :
-				return 5 + increaseNumber;
-			case 3:
-				return 7 + increaseNumber;
-			case 4 :
-				return 9 + increaseNumber;
-			case 5 :
-				return 11 + increaseNumber;
-			case 6 :
-				return 13 + increaseNumber;
+			$('#contentEditor').attr('tabindex', CardNavigation.getTabIndex(index, true));
 		}
 	}
 
@@ -235,7 +175,7 @@ export let CardEditor = class CardEditor {
 							$('#editor').attr('data-content', '');
 							CardEditor.resetSessionData();
 							window.scrollTo(0, 0);
-							MarkdeepEditor.selectCardNavigationButton(1);
+							CardNavigation.selectButton();
 						}
 					}
 				});
@@ -255,5 +195,4 @@ export let CardEditor = class CardEditor {
 			}
 		}
 	}
-
 };

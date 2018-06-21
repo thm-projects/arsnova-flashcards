@@ -180,4 +180,22 @@ export let CardVisuals = class CardVisuals {
 			return box + style;
 		}
 	}
+
+	static isTextCentered () {
+		let centerTextElement = Session.get('centerTextElement');
+		let contentId = Session.get('activeCardContentId');
+		--contentId;
+		if (centerTextElement !== undefined && centerTextElement[contentId]) {
+			$(".center-button").addClass('pressed');
+		} else {
+			$(".center-button").removeClass('pressed');
+		}
+	}
+	static checkBackgroundStyle () {
+		if (Session.get('backgroundStyle')) {
+			$(".editorBrush").addClass('pressed');
+		} else {
+			$(".editorBrush").removeClass('pressed');
+		}
+	}
 };

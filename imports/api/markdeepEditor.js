@@ -19,30 +19,6 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
-	static selectCardNavigationButton (index) {
-		$(".cardNavigation > li:nth-child(" + index + ") a").click();
-	}
-
-	static cardSideNavigation (forward = true) {
-		let navigationLength = $(".cardNavigation a").length;
-		let index = ($(".btn-primary").index(".cardNavigation a"));
-		++index;
-		if (forward) {
-			if (index >= navigationLength) {
-				index = 1;
-			} else {
-				++index;
-			}
-		} else {
-			if (index <= 1) {
-				index = navigationLength;
-			} else {
-				--index;
-			}
-		}
-		this.selectCardNavigationButton(index);
-	}
-
 	static changeBackgroundStyle () {
 		if (Session.get('backgroundStyle') === 1) {
 			Session.set('backgroundStyle', 0);

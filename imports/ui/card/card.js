@@ -10,14 +10,12 @@ import '/client/hammer.js';
 import './header/header.js';
 import './content/content.js';
 import './navigation/navigation.js';
-import {skipAnswer} from "../learn/learn.js";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
-import {MarkdeepEditor} from "../../api/markdeepEditor.js";
 import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
-import {CardEditor} from "../../api/cardEditor.js";
 import {CardType} from "../../api/cardTypes";
+import {CardNavigation} from "../../api/cardNavigation";
 
 /*
  * ############################################################################
@@ -153,27 +151,14 @@ Template.flashcardNavigation.helpers({
 		}).count();
 		return count === 1;
 	},
-	isNavigationDisabled: function () {
-		return Session.get('navigationDisabled');
+	isNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 
 Template.flashcardNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		if (!Session.get('navigationDisabled')) {
-			let flashcardCarousel = $('#cardCarousel');
-			flashcardCarousel.on('slide.bs.carousel', function () {
-				CardVisuals.resizeFlashcard();
-				Session.set('navigationDisabled', true);
-			});
-			flashcardCarousel.on('slid.bs.carousel', function () {
-				Session.set('activeCard', $(".item.active").data('id'));
-				CardEditor.updateNavigation();
-				setTimeout(function () {
-					Session.set('navigationDisabled', false);
-				}, 300);
-			});
-		}
+		CardNavigation.switchCard();
 	}
 });
 
@@ -253,153 +238,7 @@ Template.copyCard.events({
 
 Meteor.startup(function () {
 	$(document).on('keydown', function (event) {
-		if (event.keyCode === 27) {
-			if (Route.isPresentation()) {
-				if (!$("#endPresentationModal").is(':visible')) {
-					$('#endPresentationModal').modal('show');
-				}
-			} else {
-				CardVisuals.toggleFullscreen(true);
-			}
-		}
-		if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
-			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
-				switch (event.keyCode) {
-					case 9:
-						if (Route.isPresentation()) {
-							MarkdeepEditor.cardSideNavigation();
-						}
-						break;
-					case 32:
-						if (!Session.get('navigationDisabled')) {
-							if ($('#rightCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
-							}
-							if (Session.get('isQuestionSide')) {
-								skipAnswer();
-							}
-						}
-						break;
-					case 27:
-						if (Route.isPresentation()) {
-							$(".endPresentation").click();
-						}
-						break;
-					case 37:
-						if (!Session.get('navigationDisabled')) {
-							if ($('#leftCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
-							}
-							if (Session.get('isQuestionSide')) {
-								skipAnswer(false);
-							}
-						}
-						break;
-					case 38:
-						MarkdeepEditor.cardSideNavigation();
-						break;
-					case 39:
-						if (!Session.get('navigationDisabled')) {
-							if ($('#rightCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
-							}
-							if (Session.get('isQuestionSide')) {
-								skipAnswer();
-							}
-						}
-						break;
-					case 40:
-						MarkdeepEditor.cardSideNavigation(false);
-						break;
-					case 48:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate0').click();
-						}
-						break;
-					case 49:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate1').click();
-						}
-						break;
-					case 50:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate2').click();
-						}
-						break;
-					case 51:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate3').click();
-						}
-						break;
-					case 52:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate4').click();
-						}
-						break;
-					case 53:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate5').click();
-						}
-						break;
-					case 78:
-						if (!Session.get('isQuestionSide')) {
-							$('#notknown').click();
-						}
-						break;
-					case 89:
-						if (!Session.get('isQuestionSide')) {
-							$('#known').click();
-						} else {
-							$('#learnShowAnswer').click();
-						}
-						break;
-					case 90:
-						if (!Session.get('isQuestionSide')) {
-							$('#known').click();
-						} else {
-							$('#learnShowAnswer').click();
-						}
-						break;
-					case 96:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate0').click();
-						}
-						break;
-					case 97:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate1').click();
-						}
-						break;
-					case 98:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate2').click();
-						}
-						break;
-					case 99:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate3').click();
-						}
-						break;
-					case 100:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate4').click();
-						}
-						break;
-					case 101:
-						if (!Session.get('isQuestionSide')) {
-							$('#memoRate5').click();
-						}
-						break;
-				}
-				event.preventDefault();
-			}
-		}
+		CardNavigation.keyEvents(event);
 	});
 });
 

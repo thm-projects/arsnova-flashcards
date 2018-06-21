@@ -1,9 +1,9 @@
 <template name="cardNavigation">
     <nav class="col-xs-12 cardNavigation cardtext cardToolbar nav nav-justified">
-        {{#if isNavigationDisabled}}
-            {{> cardNavigationDisabled}}
-        {{else}}
+        {{#if isNavigationVisible}}
             {{> cardNavigationEnabled}}
+        {{else}}
+            {{> cardNavigationDisabled}}
         {{/if}}
     </nav>
 </template>

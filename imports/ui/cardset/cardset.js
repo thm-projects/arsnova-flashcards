@@ -16,6 +16,7 @@ import "../forms/cardsetCourseIterationForm.js";
 import "./cardset.html";
 import {CardType} from "../../api/cardTypes";
 import {TargetAudience} from "../../api/targetAudience";
+import {CardNavigation} from "../../api/cardNavigation";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -97,7 +98,7 @@ Template.cardset.onCreated(function () {
 	}
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
-	Session.set('navigationDisabled', false);
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.cardset.rendered = function () {

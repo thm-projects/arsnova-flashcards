@@ -1,9 +1,9 @@
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../../api/cardVisuals";
 import {Route} from "../../../api/route";
-import {CardEditor} from "../../../api/cardEditor";
 import "./navigation.html";
 import {CardType} from "../../../api/cardTypes";
+import {CardNavigation} from "../../../api/cardNavigation";
 
 /*
  * ############################################################################
@@ -12,8 +12,8 @@ import {CardType} from "../../../api/cardTypes";
  */
 
 Template.cardNavigation.helpers({
-	isNavigationDisabled: function () {
-		return Session.get('navigationDisabled');
+	isNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 
@@ -22,7 +22,7 @@ Template.cardNavigation.onCreated(function () {
 		CardVisuals.toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
-	Session.set('navigationDisabled', false);
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.cardNavigation.onRendered(function () {
@@ -44,7 +44,7 @@ Template.cardNavigation.onRendered(function () {
 
 Template.cardNavigationEnabled.events({
 	'click .switchCardSide': function (event) {
-		CardEditor.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
 	}
 });
 
@@ -56,17 +56,13 @@ Template.cardNavigationEnabled.helpers({
 		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.content' + this.contentId);
 	},
 	getTabIndex: function (index) {
-		return CardEditor.getTabIndex(++index);
+		return CardNavigation.getTabIndex(++index);
 	},
 	isAnswer: function (isAnswer, contentId) {
-		let result = (Route.isBox() || Route.isMemo()) && isAnswer;
-		if (result) {
-			Session.set('questionSide', contentId);
-		}
-		return result;
+		return CardNavigation.isAnswer(isAnswer, contentId);
 	}
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	$(".cardNavigation > li:nth-child(1) a").click();
+	CardNavigation.selectButton();
 });
