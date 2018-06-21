@@ -2,7 +2,6 @@
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../api/cardVisuals";
 
 /*
  * ############################################################################
@@ -36,14 +35,4 @@ Template.help.onRendered(function () {
 		$(window).scrollTop(($(target).offset().top - 70));
 		Session.set('helpTarget', undefined);
 	}
-});
-
-/*
- * ############################################################################
- * demo
- * ############################################################################
- */
-
-Template.demo.onRendered(function () {
-	CardVisuals.toggleFullscreen();
 });
