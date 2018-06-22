@@ -528,7 +528,7 @@ Template.registerHelper("getLearnphase", function (state) {
 	}
 });
 
-Template.registerHelper("getCardBackground", function (difficulty, cardType, backgroundStyle) {
+Template.registerHelper("getCardsetBackground", function (difficulty, cardType, backgroundStyle) {
 	switch (cardType) {
 		case 8:
 			return 'box-post-it';
