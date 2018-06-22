@@ -1,10 +1,9 @@
 import {Session} from "meteor/session";
 import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
-import {CardEditor} from "../../../api/cardEditor";
+import {CardVisuals} from "../../../api/cardVisuals";
 import {courseIterationRoute, newCardsetCourseIterationRoute} from "../../forms/cardsetCourseIterationForm";
 import "./content.html";
-
 
 /*
  * ############################################################################
@@ -13,7 +12,7 @@ import "./content.html";
  */
 
 Template.markdeepContent.rendered = function () {
-	CardEditor.isTextCentered();
+	CardVisuals.isTextCentered();
 };
 
 Template.markdeepContent.events({
@@ -23,43 +22,16 @@ Template.markdeepContent.events({
 	'keyup #contentEditor': function () {
 		let content = $('#contentEditor').val();
 		$('#editor').attr('data-content', content);
-		switch (Session.get('activeEditMode')) {
-			case 0:
-				if (CardType.gotSidesSwapped(Session.get('cardType'))) {
-					Session.set('backText', content);
-				} else {
-					Session.set('frontText', content);
-				}
-				break;
-			case 1:
-				if (CardType.gotSidesSwapped(Session.get('cardType'))) {
-					Session.set('frontText', content);
-				} else {
-					Session.set('backText', content);
-				}
-				break;
-			case 2:
-				Session.set('hintText', content);
-				break;
-			case 3:
-				Session.set('lectureText', content);
-				break;
-			case 4:
-				Session.set('topText', content);
-				break;
-			case 5:
-				Session.set('bottomText', content);
-				break;
-		}
+		Session.set('content' + Session.get('activeCardContentId'), content);
 	}
 });
 
 Template.markdeepContent.helpers({
 	getPlaceholder: function () {
-		return CardType.getPlaceholderText(Session.get('activeEditMode'), Session.get('cardType'), Session.get('learningGoalLevel'));
+		return CardType.getPlaceholderText(Session.get('activeCardContentId'), Session.get('cardType'), Session.get('learningGoalLevel'));
 	},
-	gotSidesSwapped: function () {
-		return CardType.gotSidesSwapped(Session.get('cardType'));
+	getContent: function () {
+		return Session.get('content' + Session.get('activeCardContentId'))	;
 	},
 	getShuffleDescription: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {

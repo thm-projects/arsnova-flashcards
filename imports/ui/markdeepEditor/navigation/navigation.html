@@ -5,19 +5,15 @@
         </div>
         <div class="btn-group">
             {{#if isActiveRoute regex="editCard|newCard"}}
-                {{#unless isHintPreview}}
-                    <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
-                {{/unless}}
+                <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}">vertical_align_center</i>
                 {{#unless isFullscreenActive}}
                     {{#if gotDictionary}}
                         <i class="markdeep-dictionary fa fa-book card-button {{#if
                                 isDictionaryActive}}pressed{{/if}}"></i>
                     {{/if}}
                 {{/unless}}
-                {{#unless gotOneColumn}}
                     <i class="card-button fa fa-paint-brush markdeep-background-style {{#if
                             isAlternativeBackgroundStyle}}pressed{{/if}}"></i>
-                {{/unless}}
                 <i class="card-button glyphicon glyphicon-fullscreen markdeep-fullscreen {{#if
                         isFullscreenActive}}pressed{{/if}}"></i>
             {{/if}}

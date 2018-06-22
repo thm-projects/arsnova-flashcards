@@ -8,34 +8,15 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static center () {
 		let centerTextElement = Session.get('centerTextElement');
-		let editMode = Session.get('activeEditMode');
-		if (centerTextElement[editMode]) {
-			centerTextElement[editMode] = false;
+		let contentId = Session.get('activeCardContentId');
+		--contentId;
+		if (centerTextElement[contentId]) {
+			centerTextElement[contentId] = false;
 			Session.set('centerTextElement', centerTextElement);
 		} else {
-			centerTextElement[editMode] = true;
+			centerTextElement[contentId] = true;
 			Session.set('centerTextElement', centerTextElement);
 		}
-	}
-
-	static cardSideNavigation (forward = true) {
-		let navigationLength = $(".editorNavigation a").length;
-		let index = ($(".btn-primary").index(".editorNavigation a"));
-		++index;
-		if (forward) {
-			if (index >= navigationLength) {
-				index = 1;
-			} else {
-				++index;
-			}
-		} else {
-			if (index <= 1) {
-				index = navigationLength;
-			} else {
-				--index;
-			}
-		}
-		$(".editorNavigation > li:nth-child(" + index + ") a").click();
 	}
 
 	static changeBackgroundStyle () {

@@ -88,7 +88,7 @@ Template.subjectEditor.helpers({
 				return "";
 			}
 		}
-		return Session.get('subjectText');
+		return Session.get('subject');
 	},
 	getSubjectPlaceholder: function () {
 		return CardType.getSubjectPlaceholderText(Session.get('cardType'));
@@ -107,7 +107,7 @@ Template.subjectEditor.helpers({
 Template.subjectEditor.events({
 	'keyup #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
-		Session.set('subjectText', $('#subjectEditor').val());
+		Session.set('subject', $('#subjectEditor').val());
 	},
 	'click .subjectEditorButton': function () {
 		Session.set('tempLearningIndex', Session.get('learningIndex'));
@@ -116,7 +116,7 @@ Template.subjectEditor.events({
 });
 
 Template.subjectEditor.rendered = function () {
-	Session.set('subjectText', $('#subjectEditor').val());
+	Session.set('subject', $('#subjectEditor').val());
 };
 
 /*

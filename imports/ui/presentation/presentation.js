@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
-import {CardEditor} from "../../api/cardEditor.js";
+import {CardNavigation} from "../../api/cardNavigation";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -21,10 +21,11 @@ Template.presentationView.onCreated(function () {
 	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
 		Session.set('activeCard', undefined);
 	}
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.presentationView.onRendered(function () {
-	CardEditor.updateNavigation();
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.presentationView.onDestroyed(function () {

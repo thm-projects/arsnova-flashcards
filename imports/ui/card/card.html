@@ -35,7 +35,6 @@
 </template>
 
 <template name="flashcards">
-    {{> cardHint cardType=cardset.cardType}}
     {{> copyCard}}
     <div class="flip-container"
          id="set-details-region">
@@ -43,33 +42,33 @@
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
-                        <div class="item {{#if cardActive}}active{{/if}}" data-id="{{_id}}">
+                        <div class="item {{#if cardActive true}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
-                                {{> flashcardHeader this}}
-                                {{> flashcardContent this}}
+                                <div class="cardHeader {{#if
+                                        cardActive false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}-header"
+                                     data-cardtype="{{cardType}}">
+                                    {{> flashcardHeader this}}
+                                </div>
+                                <div class="cardContent detail{{cardsIndex this._id}} {{#if
+                                        cardActive false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
+                                    {{#if cardActive false}}
+                                        {{#if isDictionary}}
+                                            {{> cardDictionaryContent this}}
+                                        {{else}}
+                                            {{> cardContentActive this}}
+                                        {{/if}}
+                                    {{else}}
+                                        {{> cardContentInactive this}}
+                                    {{/if}}
+                                </div>
                             </div>
                         </div>
                     {{/each}}
                 </div>
-                {{> flashcardNavigation this}}
+                {{> cardArrowNavigation this}}
             </div>
         </div>
     </div>
-</template>
-
-<template name="flashcardNavigation">
-    {{#if isCardsetOrPresentation}}
-        {{#unless cardCountOne}}
-            <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
-               data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
-               data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        {{/unless}}
-    {{/if}}
 </template>
 
 <template name="flashcardsEmpty">

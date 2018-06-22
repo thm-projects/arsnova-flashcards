@@ -2,9 +2,9 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Leitner, Wozniak} from "./learned";
 import {Cards} from "./cards";
-import {CardType} from "./cardTypes";
 import {Cardsets} from "./cardsets";
 import {Route} from "./route";
+import {CardType} from "./cardTypes";
 
 let cardIndex = [];
 
@@ -44,11 +44,7 @@ export let CardIndex = class CardIndex {
 				fields: {_id: 1, cardType: 1}
 			});
 			cardGroups.forEach(function (cardGroup) {
-				if (CardType.gotSidesSwapped(cardGroup.cardType)) {
-					sortQuery = {subject: 1, back: 1};
-				} else {
-					sortQuery = {subject: 1, front: 1};
-				}
+				sortQuery = CardType.getSortQuery(cardGroup.cardType);
 				indexCards = Cards.find({cardset_id: cardGroup._id}, {
 					sort: sortQuery, fields: {_id: 1}
 				});
@@ -57,15 +53,11 @@ export let CardIndex = class CardIndex {
 				});
 			});
 		} else {
-			if (CardType.gotSidesSwapped(cardset.cardType)) {
-				sortQuery = {subject: 1, back: 1};
-			} else {
-				sortQuery = {subject: 1, front: 1};
-			}
+			sortQuery = CardType.getSortQuery(cardset.cardType);
 			indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
 			indexCards.forEach(function (indexCard) {
-				cardIndex.push(indexCard._id);
-			});
+				cardIndex.push(indexCard._id);}
+				);
 		}
 		return cardIndex;
 	}
@@ -227,19 +219,19 @@ export let CardIndex = class CardIndex {
 		}
 		return [{
 			"_id": id,
-			"subject": Session.get('subjectText'),
+			"subject": Session.get('subject'),
 			"difficulty": Session.get('difficultyColor'),
 			"learningGoalLevel": Session.get('learningGoalLevel'),
 			"backgroundStyle": Session.get('backgroundStyle'),
-			"front": Session.get('frontText'),
-			"back": Session.get('backText'),
-			"hint": Session.get('hintText'),
+			"front": Session.get('content1'),
+			"back": Session.get('content2'),
+			"hint": Session.get('content3'),
+			"lecture": Session.get('content4'),
+			"top": Session.get('content5'),
+			"bottom": Session.get('content6'),
 			"cardset_id": Router.current().params._id,
 			"cardGroup": 0,
 			"cardType": Session.get('cardType'),
-			"lecture": Session.get('lectureText'),
-			"top": Session.get('topText'),
-			"bottom": Session.get('bottomText'),
 			"centerTextElement": Session.get('centerTextElement'),
 			"date": Session.get('cardDate'),
 			"learningUnit": Session.get('learningUnit')
