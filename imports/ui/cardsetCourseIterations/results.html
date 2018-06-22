@@ -46,7 +46,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         {{#if isActiveRoute regex="learn"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}">
                 <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                    data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
@@ -64,7 +64,7 @@
                                                                               regex="course|pool|alldecks"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
-                                                              regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardBackground
+                                                              regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}} collapseButton {{getCardsetBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
@@ -73,14 +73,14 @@
             <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if
                     isActiveRoute
                     regex="course|pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
-                                                                                        regex="course|pool"}}col-lg-3{{/if}} collapseButton {{getCardBackground
+                                                                                        regex="course|pool"}}col-lg-3{{/if}} collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}
             </div>
         {{/unless}}
         {{#if isActiveRoute regex="course|pool"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs col-sm-3 col-lg-2 {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs col-sm-3 col-lg-2 {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-type="{{#if isActiveRoute
                                   regex="course"}}{{this.targetAudience}}{{else}}{{this.cardType}}{{/if}}">
@@ -94,7 +94,7 @@
         {{/if}}
         {{#if isActiveRoute
               regex="alldecks"}}
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
                 {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true}}{{else}}{{getMomentsDate
@@ -103,7 +103,7 @@
                                                                                                     true}}{{else}}{{getMomentsDate
                     this.dateUpdated}}{{/if}}</span>
             </div>
-            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardBackground
+            <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
                 {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort

@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {MarkdeepEditor} from "../../../api/markdeepEditor.js";
 import {CardType} from "../../../api/cardTypes";
 import "./navigation.html";
+import {CardVisuals} from "../../../api/cardVisuals";
 
 /*
  * ############################################################################
@@ -29,7 +30,7 @@ Template.markdeepNavigation.events({
 
 Template.markdeepNavigation.helpers({
 	isCenterTextActive: function () {
-		return Session.get('centerTextElement')[Session.get('activeEditMode')];
+		return CardVisuals.isCentered(Session.get('activeCardContentId'));
 	},
 	isDictionaryActive: function () {
 		return Session.get('dictionaryPreview');
@@ -40,13 +41,7 @@ Template.markdeepNavigation.helpers({
 	isFullscreenActive: function () {
 		return Session.get('fullscreen');
 	},
-	gotOneColumn: function () {
-		return CardType.gotOneColumn(Session.get('cardType'));
-	},
 	gotDictionary: function () {
 		return CardType.gotDictionary(Session.get('cardType'));
-	},
-	isHintPreview: function () {
-		return Session.get('activeEditMode') === 2;
 	}
 });

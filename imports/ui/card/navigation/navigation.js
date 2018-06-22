@@ -2,8 +2,9 @@ import {Session} from "meteor/session";
 import {CardVisuals} from "../../../api/cardVisuals";
 import {Route} from "../../../api/route";
 import {CardType} from "../../../api/cardTypes";
-import {CardEditor} from "../../../api/cardEditor";
+import {CardNavigation} from "../../../api/cardNavigation";
 import "./navigation.html";
+import {Cards} from "../../../api/cards";
 
 /*
  * ############################################################################
@@ -11,64 +12,15 @@ import "./navigation.html";
  * ############################################################################
  */
 
-Template.cardNavigation.events({
-	'click #editFront': function () {
-		CardEditor.editFront();
-	},
-	'click #editBack': function () {
-		CardEditor.editBack();
-	},
-	'click #editLecture': function () {
-		CardEditor.editLecture();
-	},
-	'click #editHint': function () {
-		CardEditor.editHint();
-	},
-	'click #editTop': function () {
-		CardEditor.editTop();
-	},
-	'click #editBottom': function () {
-		CardEditor.editBottom();
-	},
-	'focus #editFront': function () {
-		CardEditor.editFront();
-	},
-	'focus #editBack': function () {
-		CardEditor.editBack();
-	},
-	'focus #editLecture': function () {
-		CardEditor.editLecture();
-	},
-	'focus #editHint': function () {
-		CardEditor.editHint();
-	},
-	'focus #editTop': function () {
-		CardEditor.editTop();
-	},
-	'focus #editBottom': function () {
-		CardEditor.editBottom();
-	}
-});
-
 Template.cardNavigation.helpers({
-	gotHint: function () {
-		return CardType.gotHint(Session.get('cardType'));
+	isNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	},
-	gotLecture: function () {
-		return CardType.gotLecture(Session.get('cardType'));
+	isLearningMode: function () {
+		return (Route.isMemo() || Route.isBox());
 	},
-	gotBack: function () {
-		if ((Route.isBox() || Route.isMemo())) {
-			return false;
-		} else {
-			return CardType.gotBack(Session.get('cardType'));
-		}
-	},
-	gotTop: function () {
-		return CardType.gotTop(Session.get('cardType'));
-	},
-	gotBottom: function () {
-		return CardType.gotBottom(Session.get('cardType'));
+	isQuestionSide: function () {
+		return Session.get('isQuestionSide');
 	}
 });
 
@@ -77,6 +29,7 @@ Template.cardNavigation.onCreated(function () {
 		CardVisuals.toggleFullscreen();
 	}
 	Session.set('reverseViewOrder', false);
+	CardNavigation.toggleVisibility(true);
 });
 
 Template.cardNavigation.onRendered(function () {
@@ -87,80 +40,117 @@ Template.cardNavigation.onRendered(function () {
 			$("#button-row").insertAfter($("#preview"));
 		}
 	});
-	$('#editFront').click();
 });
+
 
 /*
  * ############################################################################
- * cardNavigationFront
+ * cardNavigationEnabled
  * ############################################################################
  */
-Template.cardNavigationFront.helpers({
-	getFrontTitle: function () {
-		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
-			return CardType.getBackTitle();
-		} else {
-			return CardType.getFrontTitle();
-		}
+
+Template.cardNavigationEnabled.events({
+	'click .switchCardSide': function (event) {
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
 	}
 });
 
-/*
- * ############################################################################
- * cardNavigationBack
- * ############################################################################
- */
-Template.cardNavigationBack.helpers({
-	getBackTitle: function () {
-		if (CardType.gotSidesSwapped(Session.get('cardType'))) {
-			return TAPi18n.__('card.cardType' + Session.get('cardType') + '.front');
-		} else {
-			return TAPi18n.__('card.cardType' + Session.get('cardType') + '.back');
-		}
+Template.cardNavigationEnabled.helpers({
+	getCardTypeSides: function () {
+		return CardNavigation.indexNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')));
 	}
+});
+
+Template.cardNavigationEnabled.onRendered(function () {
+	CardNavigation.selectButton(1);
 });
 
 /*
  * ############################################################################
- * cardNavigationHint
+ * cardNavigationEnabledAnswer
  * ############################################################################
  */
-Template.cardNavigationHint.helpers({
-	getHintTitle: function () {
-		return CardType.getHintTitle();
+
+Template.cardNavigationEnabledAnswer.events({
+	'click .switchCardSide': function (event) {
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
 	}
+});
+
+Template.cardNavigationEnabledAnswer.helpers({
+	getCardTypeSides: function () {
+		return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')), true);
+	}
+});
+
+Template.cardNavigationEnabledAnswer.onRendered(function () {
+	CardNavigation.selectButton(1);
 });
 
 /*
  * ############################################################################
- * cardNavigationTop
+ * cardNavigationEnabledQuestion
  * ############################################################################
  */
-Template.cardNavigationTop.helpers({
-	getTopTitle: function () {
-		return CardType.getTopTitle();
+
+Template.cardNavigationEnabledQuestion.events({
+	'click .switchCardSide': function (event) {
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
+	}
+});
+
+Template.cardNavigationEnabledQuestion.helpers({
+	getCardTypeSides: function () {
+		return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')), false);
+	}
+});
+
+Template.cardNavigationEnabledQuestion.onRendered(function () {
+	CardNavigation.selectButton(1);
+});
+
+/*
+ * ############################################################################
+ * cardNavigationItem
+ * ############################################################################
+ */
+
+Template.cardNavigationItem.helpers({
+	getTitle: function () {
+		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.content' + this.contentId);
+	},
+	getTabIndex: function (index) {
+		return CardNavigation.getTabIndex(++index);
+	},
+	isFirstButton: function (index) {
+		return index === 0;
 	}
 });
 
 
 /*
  * ############################################################################
- * cardNavigationBottom
+ * cardArrowNavigation
  * ############################################################################
  */
-Template.cardNavigationLecture.helpers({
-	getLectureTitle: function () {
-		return CardType.getLectureTitle();
+Template.cardArrowNavigation.helpers({
+	isCardsetOrPresentation: function () {
+		return Route.isCardset() || Route.isPresentationOrDemo();
+	},
+	cardCountOne: function () {
+		var cardset = Session.get('activeCardset');
+		var count = Cards.find({
+			cardset_id: cardset._id
+		}).count();
+		return count === 1;
+	},
+	isNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 
-/*
- * ############################################################################
- * cardNavigationBottom
- * ############################################################################
- */
-Template.cardNavigationBottom.helpers({
-	getBottomTitle: function () {
-		return CardType.getBottomTitle();
+Template.cardArrowNavigation.events({
+	"click #leftCarouselControl, click #rightCarouselControl": function () {
+		CardNavigation.switchCard();
 	}
 });

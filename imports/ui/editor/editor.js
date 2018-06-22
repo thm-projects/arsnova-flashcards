@@ -5,6 +5,7 @@ import {CardType} from "../../api/cardTypes";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
+import {CardVisuals} from "../../api/cardVisuals";
 
 
 /*
@@ -26,12 +27,14 @@ Template.editor.helpers({
 			Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 			CardEditor.resetSessionData(true);
 		} else if (Router.current().route.getName() === "editCard") {
-			Session.set('subjectText', this.subject);
-			Session.set('frontText', this.front);
-			Session.set('backText', this.back);
-			Session.set('hintText', this.hint);
+			Session.set('subject', this.subject);
+			Session.set('content1', this.front);
+			Session.set('content2', this.back);
+			Session.set('content3', this.hint);
+			Session.set('content4', this.lecture);
+			Session.set('content5', this.top);
+			Session.set('content6', this.bottom);
 			Session.set('cardType', this.cardType);
-			Session.set('lectureText', this.lecture);
 			Session.set('centerTextElement', this.centerTextElement);
 			Session.set('difficultyColor', this.difficulty);
 			Session.set('learningGoalLevel', this.learningGoalLevel);
@@ -41,7 +44,7 @@ Template.editor.helpers({
 		}
 	},
 	isTextCentered: function () {
-		CardEditor.isTextCentered();
+		CardVisuals.isTextCentered();
 	}
 });
 

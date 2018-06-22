@@ -659,19 +659,20 @@
     "remainingCourses": "__current__ of __total__ Courses"
   },
   "card": {
+    "navigationDisabled": "Changing card…",
     "cardType0": {
       "name": "Flashcard",
       "longName": "Flashcard",
-      "front": "Frontside",
-      "back": "Backside",
-      "lecture": "Lecture",
-      "hint": "Hint",
+      "content1": "Frontside",
+      "content2": "Backside",
+      "content3": "Lecture",
+      "content4": "Hint",
       "placeholders": {
         "subject": "Subject",
-        "front": "Frontside",
-        "back": "Backside",
-        "hint": "Hint",
-        "lecture": "Lecture"
+        "content1": "Frontside",
+        "content2": "Backside",
+        "content3": "Hint",
+        "content4": "Lecture"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -680,12 +681,12 @@
     "cardType1": {
       "name": "Vocabulary",
       "longName": "Vocabulary",
-      "front": "Frontside",
-      "back": "Backside",
+      "content1": "Frontside",
+      "content2": "Backside",
       "placeholders": {
         "subject": "Subject",
-        "front": "Frontside",
-        "back": "Backside"
+        "content1": "Frontside",
+        "content2": "Backside"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -694,14 +695,14 @@
     "cardType2": {
       "name": "Notes",
       "longName": "Notes",
-      "front": "Frontside",
-      "back": "Rework",
-      "hint": "Literature",
+      "content1": "Frontside",
+      "content2": "Rework",
+      "content3": "Literature",
       "placeholders": {
         "subject": "Subject",
-        "front": "Frontside",
-        "back": "Rework",
-        "hint": "Literature"
+        "content1": "Frontside",
+        "content2": "Rework",
+        "content3": "Literature"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -710,14 +711,14 @@
     "cardType3": {
       "name": "Glossary",
       "longName": "Glossary",
-      "front": "Frontside",
-      "back": "Definition",
-      "hint": "Literature",
+      "content1": "Frontside",
+      "content2": "Definition",
+      "content3": "Literature",
       "placeholders": {
         "subject": "Subject",
-        "front": "Frontside",
-        "back": "Definition",
-        "hint": "Literature"
+        "content1": "Frontside",
+        "content2": "Definition",
+        "content3": "Literature"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -726,14 +727,14 @@
     "cardType4": {
       "name": "Citation",
       "longName": "Citation",
-      "front": "Citation",
-      "back": "Cited person",
-      "hint": "Reference",
+      "content1": "Citation",
+      "content2": "Cited person",
+      "content3": "Reference",
       "placeholders": {
         "subject": "Subject",
-        "front": "Citation",
-        "back": "Cited person",
-        "hint": "Reference"
+        "content1": "Citation",
+        "content2": "Cited person",
+        "content3": "Reference"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -742,14 +743,14 @@
     "cardType5": {
       "name": "Exam",
       "longName": "Exam",
-      "front": "Audit question",
-      "back": "Answer",
-      "hint": "Explanation",
+      "content1": "Audit question",
+      "content2": "Answer",
+      "content3": "Explanation",
       "placeholders": {
         "subject": "Subject",
-        "front": "Assessment",
-        "back": "Audit question",
-        "hint": "Explanation"
+        "content1": "Assessment",
+        "content2": "Audit question",
+        "content3": "Explanation"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -758,14 +759,14 @@
     "cardType6": {
       "name": "Command set",
       "longName": "Command set",
-      "front": "Command",
-      "back": "Definition",
-      "hint": "Online API",
+      "content1": "Command",
+      "content2": "Definition",
+      "content3": "Online API",
       "placeholders": {
         "subject": "Subject",
-        "front": "Frontside",
-        "back": "Definition",
-        "hint": "Online API"
+        "content1": "Frontside",
+        "content2": "Definition",
+        "content3": "Online API"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -774,14 +775,14 @@
     "cardType7": {
       "name": "Abstract",
       "longName": "Abstract",
-      "front": "Abstract",
-      "back": "Cited person",
-      "hint": "Reference",
+      "content1": "Abstract",
+      "content2": "Cited person",
+      "content3": "Reference",
       "placeholders": {
         "subject": "Subject",
-        "front": "Citation",
-        "back": "Cited person",
-        "hint": "Reference"
+        "content1": "Citation",
+        "content2": "Cited person",
+        "content3": "Reference"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -790,10 +791,10 @@
     "cardType8": {
       "name": "Notes",
       "longName": "Notes",
-      "front": "Notes",
+      "content1": "Notes",
       "placeholders": {
         "subject": "Subject",
-        "front": "Notes"
+        "content1": "Notes"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -802,10 +803,10 @@
     "cardType9": {
       "name": "To-do",
       "longName": "To-do",
-      "front": "To-do",
+      "content1": "To-do",
       "placeholders": {
         "subject": "Subject",
-        "front": "To-do"
+        "content1": "To-do"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -814,10 +815,10 @@
     "cardType10": {
       "name": "Photo library",
       "longName": "Photo library",
-      "front": "Photo library",
+      "content1": "Photo library",
       "placeholders": {
         "subject": "Subject",
-        "front": "Photo library"
+        "content1": "Photo library"
       },
       "editorLabels": {
         "subject": "Subject"
@@ -826,12 +827,12 @@
     "cardType11": {
       "name": "Quiz",
       "longName": "Quiz",
-      "front": "Question",
-      "back": "Answer",
+      "content1": "Question",
+      "content2": "Answer",
       "placeholders": {
         "subject": "Enter the topic or question!",
-        "front": "Enter the topic or question of your quiz!",
-        "back": "Enter the answer to your quiz!"
+        "content1": "Enter the topic or question of your quiz!",
+        "content2": "Enter the answer to your quiz!"
       },
       "editorLabels": {
         "subject": "Topic or question"
@@ -840,20 +841,20 @@
     "cardType12": {
       "name": "Design Patterns",
       "longName": "Design Patterns",
-      "front": "Problem",
-      "back": "Solution",
-      "hint": "Context",
-      "lecture": "Description",
-      "top": "Example",
-      "bottom": "Literature",
+      "content1": "Problem",
+      "content2": "Solution",
+      "content3": "Context",
+      "content4": "Description",
+      "content5": "Example",
+      "content6": "Literature",
       "placeholders": {
         "subject": "Enter the Design Pattern !",
-        "front": "State the problem !",
-        "back": "Give the solution !",
-        "hint": "Context",
-        "lecture": "Describe the Design Pattern!",
-        "top": "Example",
-        "bottom": "List here links and literature to deepen the design pattern! \n\nsearch your university library too! Most of the books are available online."
+        "content1": "State the problem !",
+        "content2": "Give the solution !",
+        "content3": "Context",
+        "content4": "Describe the Design Pattern!",
+        "content5": "Example",
+        "content6": "List here links and literature to deepen the design pattern! \n\nsearch your university library too! Most of the books are available online."
       },
       "editorLabels": {
         "subject": "Enter the design pattern !"

@@ -625,7 +625,7 @@ $themes: (
       color: white !important;
     }
 
-    .hintContent {
+    .box-hint {
       background-color: $background_hint !important;
       color: $hint_text !important;
       a {
@@ -636,7 +636,7 @@ $themes: (
       }
     }
 
-    .hintContentAlternative {
+    .box-hint-alternative {
       background-color: $background_hint_alternative !important;
       color: $hint_text_alternative !important;
       a {
@@ -1558,10 +1558,10 @@ $themes: (
     }
 
     @media(max-width: 767px) {
-      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
         border-color: $item_selection_border !important;
       }
-      #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .editorNavigation *:last-child:nth-child(odd) {
+      #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .cardNavigation *:last-child:nth-child(odd) {
         border-right-color: $item_selection_border !important;
       }
 
@@ -1574,7 +1574,7 @@ $themes: (
     }
 
     @media(min-width: 768px) {
-      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .editorNavigation * {
+      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
         border-right-color: $item_selection_border !important;
       }
 
@@ -1597,7 +1597,7 @@ $themes: (
       background-color: $athens_gray_approx !important;
     }
 
-    .lectureContent, .cardContentDictionary {
+    .box-lecture, .cardContentDictionary {
       background-color: $background_lecture !important;
     }
 
