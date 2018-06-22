@@ -4,18 +4,17 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import "./card.html";
-import '/client/hammer.js';
-import './header/header.js';
-import './content/content.js';
-import './navigation/navigation.js';
 import {CardVisuals} from "../../api/cardVisuals.js";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor.js";
 import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
 import {CardType} from "../../api/cardTypes";
 import {CardNavigation} from "../../api/cardNavigation";
+import "./card.html";
+import '/client/hammer.js';
+import './header/header.js';
+import './content/content.js';
+import './navigation/navigation.js';
 
 /*
  * ############################################################################
@@ -132,33 +131,6 @@ Template.flashcards.helpers({
 	},
 	getCardSideColorInactive: function () {
 		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, false);
-	}
-});
-
-/*
- * ############################################################################
- * flashcardNavigation
- * ############################################################################
- */
-Template.flashcardNavigation.helpers({
-	isCardsetOrPresentation: function () {
-		return Route.isCardset() || Route.isPresentationOrDemo();
-	},
-	cardCountOne: function () {
-		var cardset = Session.get('activeCardset');
-		var count = Cards.find({
-			cardset_id: cardset._id
-		}).count();
-		return count === 1;
-	},
-	isNavigationVisible: function () {
-		return CardNavigation.isVisible();
-	}
-});
-
-Template.flashcardNavigation.events({
-	"click #leftCarouselControl, click #rightCarouselControl": function () {
-		CardNavigation.switchCard();
 	}
 });
 

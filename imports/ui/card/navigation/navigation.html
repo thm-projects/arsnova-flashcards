@@ -48,3 +48,20 @@
                tabindex="{{getTabIndex this.index}}">{{getTitle}}</a>
         </li>
 </template>
+
+<template name="cardArrowNavigation">
+    {{#if isNavigationVisible}}
+        {{#if isCardsetOrPresentation}}
+            {{#unless cardCountOne}}
+                <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
+                   data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
+                   data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            {{/unless}}
+        {{/if}}
+    {{/if}}
+</template>

@@ -4,6 +4,7 @@ import {Route} from "../../../api/route";
 import {CardType} from "../../../api/cardTypes";
 import {CardNavigation} from "../../../api/cardNavigation";
 import "./navigation.html";
+import {Cards} from "../../../api/cards";
 
 /*
  * ############################################################################
@@ -120,5 +121,33 @@ Template.cardNavigationItem.helpers({
 	},
 	getTabIndex: function (index) {
 		return CardNavigation.getTabIndex(++index);
+	}
+});
+
+
+/*
+ * ############################################################################
+ * cardArrowNavigation
+ * ############################################################################
+ */
+Template.cardArrowNavigation.helpers({
+	isCardsetOrPresentation: function () {
+		return Route.isCardset() || Route.isPresentationOrDemo();
+	},
+	cardCountOne: function () {
+		var cardset = Session.get('activeCardset');
+		var count = Cards.find({
+			cardset_id: cardset._id
+		}).count();
+		return count === 1;
+	},
+	isNavigationVisible: function () {
+		return CardNavigation.isVisible();
+	}
+});
+
+Template.cardArrowNavigation.events({
+	"click #leftCarouselControl, click #rightCarouselControl": function () {
+		CardNavigation.switchCard();
 	}
 });
