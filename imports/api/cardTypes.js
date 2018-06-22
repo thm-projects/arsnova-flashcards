@@ -15,7 +15,7 @@ import {Session} from "meteor/session";
 //12: Entwurfsmuster / Design pattern
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
-let cardTypesWithLearningModes = [1, 3, 4, 5, 6, 11, 12];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
 let cardTypesWhichDisplaySideInformation = [0];
@@ -40,7 +40,8 @@ let cardTypeCubeSides = [
 			"contentId": 4,
 			"side": "right",
 			"defaultStyle": "lecture",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		},
 		{
 			"contentId": 2,
@@ -53,7 +54,8 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "hint",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 
 	],
@@ -85,8 +87,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isAnswer": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 3,
@@ -114,7 +115,8 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "hint",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 	],
 	//4: Zitatensammlung / Citation
@@ -136,7 +138,8 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "hint",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 	],
 	//5: Prüfung / Exam
@@ -158,7 +161,8 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "hint",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 	],
 	//6: Anweisungssatz / Command set
@@ -180,7 +184,8 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "hint",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 	],
 	//7: Abstract
@@ -195,8 +200,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
-			"isAnswer": true
+			"defaultCentered": false
 		},
 		{
 			"contentId": 3,
@@ -235,8 +239,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "white",
-			"defaultCentered": false,
-			"isAnswer": true
+			"defaultCentered": false
 		}
 	],
 	//11: Quiz
@@ -267,7 +270,8 @@ let cardTypeCubeSides = [
 			"contentId": 4,
 			"side": "right",
 			"defaultStyle": "lecture",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		},
 		{
 			"contentId": 2,
@@ -286,13 +290,15 @@ let cardTypeCubeSides = [
 			"contentId": 5,
 			"side": "top",
 			"defaultStyle": "hint-alternative",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		},
 		{
 			"contentId": 6,
 			"side": "bottom",
 			"defaultStyle": "hint-alternative",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"isAnswer": true
 		}
 	]
 ];
