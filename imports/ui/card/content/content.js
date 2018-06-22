@@ -16,10 +16,25 @@ import "./content.html";
 Template.cardDictionaryContent.helpers({
 	getDictionarySearchText: function () {
 		let searchText;
-		if (Session.get('isQuestionSide')) {
-			searchText = this.front.trim();
-		} else {
-			searchText = this.back.trim();
+		switch (Session.get('activeCardContentId')) {
+			case 1:
+				searchText = this.front.trim();
+				break;
+			case 2:
+				searchText = this.back.trim();
+				break;
+			case 3:
+				searchText = this.hint.trim();
+				break;
+			case 4:
+				searchText = this.lecture.trim();
+				break;
+			case 5:
+				searchText = this.top.trim();
+				break;
+			case 6:
+				searchText = this.bottom.trim();
+				break;
 		}
 		let wordCount = searchText.split(/\s+/);
 		if (wordCount.length === 1) {
