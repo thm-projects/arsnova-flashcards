@@ -376,3 +376,61 @@ img.cardside {
     padding-left: $padding_card_conntent_horizontal_fullscreen_desktop !important;
     padding-right: $padding_card_conntent_horizontal_fullscreen_desktop !important;
 }
+
+.clock {
+  margin-top: -$card_header_padding;
+  margin-left: -$card_header_padding;
+  height: 100%;
+  width: auto;
+  @media(max-width: 900px) {
+    margin-left: -$card_header_padding / 2;
+    max-width: 82px;
+    max-height: 82px;
+  }
+  @media(min-width: 9001px) {
+    max-width: 95px;
+    max-height: 95px;
+  }
+  /* Clock styles */
+  .circle {
+    stroke-width: 9px;
+    stroke-miterlimit: 10;
+  }
+
+  .mid-circle {
+  }
+
+  .hour-marks {
+    stroke-width: 9px;
+    stroke-miterlimit: 10;
+  }
+
+  .hour-arm {
+    stroke-width: 17px;
+    stroke-miterlimit: 10;
+  }
+
+  .minute-arm {
+    stroke-width: 11px;
+    stroke-miterlimit: 10;
+  }
+
+  .second-arm {
+    stroke-width: 4px;
+    stroke-miterlimit: 10;
+  }
+
+  /* Transparent box ensuring arms center properly. */
+  .sizing-box {
+    fill: none;
+  }
+
+  /* Make all arms rotate around the same center point. */
+  /* Optional: Use transition for animation. */
+  .hour,
+  .minute,
+  .second {
+    transform-origin: 300px 300px;
+    /*transition: transform .5s ease-in-out;*/
+  }
+}
