@@ -13,7 +13,6 @@ import {Session} from "meteor/session";
 //10: Fotokartei / Photo library
 //11: Quiz
 //12: Entwurfsmuster / Design pattern
-let cardTypesWithCenteredText = [1, 3, 4, 5, 6, 11];
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
 let cardTypesWithLearningModes = [1, 3, 4, 5, 6, 11, 12];
@@ -381,12 +380,17 @@ export let CardType = class CardType {
 		return cardTypesWithDictionary.includes(cardType);
 	}
 
-	static defaultCenteredText (cardType) {
-		if (cardTypesWithCenteredText.includes(cardType)) {
-			Session.set('centerTextElement', [true, true, false, false, false, false]);
-		} else {
-			Session.set('centerTextElement', [false, false, false, false, false, false]);
+	static setDefaultCenteredText (cardType) {
+		let centerTextElement = [false, false, false, false, false, false];
+		let cubeSides = this.getCardTypeCubeSides(cardType);
+		for (let i = 0; i < centerTextElement.length; i++) {
+			for (let l = 0; l < cubeSides.length; l++) {
+				if (cubeSides[l].contentId === (i + 1)) {
+					centerTextElement[i] = cubeSides[l].defaultCentered;
+				}
+			}
 		}
+		Session.set('centerTextElement', centerTextElement);
 	}
 
 	static getFrontTitle (cardType = -1) {

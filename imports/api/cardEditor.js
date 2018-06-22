@@ -18,7 +18,6 @@ export let CardEditor = class CardEditor {
 	}
 
 	static resetSessionData (resetSubject = false) {
-		CardType.defaultCenteredText(Session.get('cardType'));
 		if (resetSubject && Session.get('cameFromEditMode') === false) {
 			Session.set('subject', '');
 			Session.set('learningUnit', "0");
@@ -33,6 +32,7 @@ export let CardEditor = class CardEditor {
 		Session.set('learningGoalLevel', 0);
 		Session.set('backgroundStyle', 1);
 		Session.set('cameFromEditMode');
+		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
 	static setEditorContent (index) {
