@@ -40,7 +40,7 @@
 
 <template name="cardNavigationItem">
         <li>
-            <a class="btn btn-default btn-raised switchCardSide"
+            <a class="btn {{#if isFirstButton this.index}}btn-primary{{else}}btn-default{{/if}} btn-raised switchCardSide"
                type="button"
                data-content-id="{{this.contentId}}"
                data-navigation-id="{{this.index}}" data-side="{{this.side}}"

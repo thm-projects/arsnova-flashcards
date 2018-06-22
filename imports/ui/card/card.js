@@ -104,18 +104,23 @@ Template.flashcards.helpers({
 		return Route.isCardset();
 	},
 	getCards: function () {
+		let result;
 		if (Route.isBox()) {
-			return CardIndex.getLeitnerCards();
+			result = CardIndex.getLeitnerCards();
 		}
 		if (Route.isCardset() || Route.isPresentation() || Route.isDemo()) {
-			return CardIndex.getCardsetCards();
+			result = CardIndex.getCardsetCards();
 		}
 		if (Route.isMemo()) {
-			return CardIndex.getMemoCards();
+			result = CardIndex.getMemoCards();
 		}
 		if (Route.isEditMode()) {
-			return CardIndex.getEditModeCard();
+			result = CardIndex.getEditModeCard();
 		}
+		if (Session.get('activeCard') === undefined) {
+			Session.set('activeCard', result[0]._id);
+		}
+		return result;
 	},
 	cardsIndex: function (card_id) {
 		let cardIndex = CardIndex.getCardIndex();

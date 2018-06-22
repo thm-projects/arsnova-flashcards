@@ -121,6 +121,9 @@ Template.cardNavigationItem.helpers({
 	},
 	getTabIndex: function (index) {
 		return CardNavigation.getTabIndex(++index);
+	},
+	isFirstButton: function (index) {
+		return index === 0;
 	}
 });
 
