@@ -860,7 +860,7 @@
       "saveNew": "Kurs anlegen",
       "placeholder": {
         "name": "Das Thema des Kurses mit einem Wort",
-        "description": "Nenne die Kompetenzziele des Kurses: Was soll man nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können?"
+        "description": "Nenne die Kompetenzziele des Kurses: Was willst du nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können?"
       }
     },
     "targetAudience1": {

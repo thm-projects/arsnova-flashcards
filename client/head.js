@@ -22,9 +22,9 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": ".cards verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
+			"message": "informatik.cards verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
-			"link": "Datenschutzerklärung",
+			"link": "[Datenschutzerklärung]",
 			"href": "/datenschutz"
 		}
 	});
