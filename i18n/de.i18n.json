@@ -107,7 +107,7 @@
     "text": "Willst du diese Kartei wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
-    "title": "Aktiver Lernphase mit Bonusvergabe beitreten",
+    "title": "Lernphase mit Bonusvergabe beitreten",
     "text": "Durch deinen Beitritt erlaubst du der Autorin bzw. dem Autor der Kartei folgenden Zugriff auf deine Daten:",
     "text2": "Diese Daten werden nur zur Bonusvergabe verwendet.",
     "enter": "Beitreten",
@@ -115,8 +115,8 @@
   },
   "confirm-leave-learnphase": {
     "btn-txt": "Lernphase verlassen",
-    "title": "Aktive Lernphase verlassen",
-    "text": "Willst du die aktive Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
+    "title": "Lernphase verlassen",
+    "text": "Willst du die Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-leave-cardset": {
     "btn-txt": "Kartei verlassen",
@@ -135,7 +135,7 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto selbst löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
+    "text": "Falls du sicher bist, dass du .cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .cards abgemeldet."
   },
   "confirmLearn-form": {
@@ -899,13 +899,13 @@
   },
   "permission": "Zugriff verweigert",
   "nocards": "Keine Karten vorhanden",
-  "learnPhaseActiveHeader": "Lernphase mit Bonusvergabe aktiv",
+  "learnPhaseActiveHeader": "Lernphase mit Bonusvergabe",
   "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis zum ",
-  "deadlineEpilogue1": " Zeit, um die derzeit aktiven Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit aktiven Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei zurückgesetzt.",
+  "deadlineEpilogue1": " Zeit, um die derzeit freigegebenen Karten zu lernen.",
+  "deadlineEpilogue2": " Zeit, um die derzeit freigegebenen Karten zu lernen, ansonsten wird deine Lernstatistik für diese Kartei zurückgesetzt.",
   "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
@@ -1343,7 +1343,7 @@
   },
   "bertAlert": {
     "firstLogin": {
-      "title": "Willkommen auf .cards !",
+      "title": "Willkommen auf informatik.cards !",
       "message": "Schau dich in Ruhe auf der Plattform um.
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
