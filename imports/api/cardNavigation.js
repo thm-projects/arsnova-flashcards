@@ -49,6 +49,9 @@ export let CardNavigation = class CardNavigation {
 		let index = 0;
 		for (let i = 0; i < cubeSides.length; i++) {
 			cubeSides[i].index = index++;
+			if (cubeSides[i].isAnswerFocus) {
+				Session.set('answerFocus', (i + 1));
+			}
 		}
 		return cubeSides;
 	}
