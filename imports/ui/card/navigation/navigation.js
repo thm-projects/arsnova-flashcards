@@ -79,12 +79,12 @@ Template.cardNavigationEnabledAnswer.events({
 
 Template.cardNavigationEnabledAnswer.helpers({
 	getCardTypeSides: function () {
-		return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')), true);
+		return CardNavigation.indexNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')));
 	}
 });
 
 Template.cardNavigationEnabledAnswer.onRendered(function () {
-	CardNavigation.selectButton(1);
+	CardNavigation.selectButton(Session.get('answerFocus'));
 });
 
 /*
