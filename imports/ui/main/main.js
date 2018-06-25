@@ -191,9 +191,9 @@ Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
 			if (Session.get('theme') === "default" && Router.current().route.getName() !== "presentation" && Router.current().route.getName() !== "presentationlist") {
-				$("body").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
+				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
 			} else {
-				$("body").css("background-image", "none");
+				$("html").css("background-image", "none");
 			}
 			return "theme-" + Session.get("theme");
 		}
