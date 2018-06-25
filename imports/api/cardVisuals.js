@@ -1,7 +1,7 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
-
+import * as screenfull from 'screenfull';
 let editorFullScreenActive = false;
 
 export let CardVisuals = class CardVisuals {
@@ -81,6 +81,7 @@ export let CardVisuals = class CardVisuals {
 		}
 		Session.set('dictionaryPreview', 0);
 		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation())) {
+			screenfull.exit();
 			Session.set('fullscreen', false);
 			$("#theme-wrapper").css("margin-top", "70px");
 			$("#answerOptions").css("margin-top", "0");
@@ -99,6 +100,7 @@ export let CardVisuals = class CardVisuals {
 			editorFullScreenActive = false;
 		} else {
 			Session.set('fullscreen', true);
+			screenfull.request();
 			$(".box").removeClass("disableCardTransition");
 			$("#theme-wrapper").css("margin-top", "20px");
 			$("#answerOptions").css("margin-top", "-50px");
