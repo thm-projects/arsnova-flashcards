@@ -48,7 +48,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
@@ -72,7 +73,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": true,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		}
 	],
 	//2: Mitschrift / Notes
@@ -109,7 +111,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
@@ -132,7 +135,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
@@ -155,7 +159,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
@@ -178,7 +183,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
@@ -255,7 +261,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": true,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		}
 	],
 	//12: Entwurfsmuster / Design pattern
@@ -278,7 +285,8 @@ let cardTypeCubeSides = [
 			"side": "back",
 			"defaultStyle": "default",
 			"defaultCentered": false,
-			"isAnswer": true
+			"isAnswer": true,
+			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
