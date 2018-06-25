@@ -142,6 +142,7 @@ Template.welcome.events({
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
 					setActiveLanguage();
+					document.location.reload(true);
 				}
 			});
 		}

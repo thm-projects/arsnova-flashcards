@@ -331,19 +331,23 @@ var isSignedIn = function () {
 };
 
 export function firstLoginBertAlert() {
-	let firstTimeLogin = 'displayedFirstLoginBertAlert';
-	if (localStorage.getItem(firstTimeLogin) === "true") {
-		Bert.defaults.hideDelay = 97200;
-		Bert.alert({
-			title: TAPi18n.__('bertAlert.firstLogin.title'),
-			message: TAPi18n.__('bertAlert.firstLogin.message'),
-			type: 'warning',
-			style: 'growl-top-left',
-			icon: 'fa-heart'
-		});
-		Bert.defaults.hideDelay = 7;
-		localStorage.setItem(firstTimeLogin, "false");
-	}
+	Meteor.subscribe("userData", {
+		onReady: function () {
+			let firstTimeLogin = 'displayedFirstLoginBertAlert';
+			if (localStorage.getItem(firstTimeLogin) === "true") {
+				Bert.defaults.hideDelay = 97200;
+				Bert.alert({
+					title: TAPi18n.__('bertAlert.firstLogin.title'),
+					message: TAPi18n.__('bertAlert.firstLogin.message'),
+					type: 'warning',
+					style: 'growl-top-left',
+					icon: 'fa-heart'
+				});
+				Bert.defaults.hideDelay = 7;
+				localStorage.setItem(firstTimeLogin, "false");
+			}
+		}
+	});
 }
 
 var goToCreated = function () {
