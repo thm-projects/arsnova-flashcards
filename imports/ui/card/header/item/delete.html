@@ -1,0 +1,9 @@
+<template name="cardHeaderItemDelete">
+{{#unless isShuffledCardset}}
+    {{#if isCardEditor this.cardset_id}}
+        <span class="deleteCard fa fa-trash card-button cardHeaderItem"
+                                                          data-id="{{_id}}"
+                                                          data-type="cardNavigation"></span>
+    {{/if}}
+{{/unless}}
+</template>

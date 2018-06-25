@@ -59,7 +59,9 @@ Template.flashcards.onRendered(function () {
 		$('#copyCard').children().removeClass("pressed");
 	});
 	new ResizeSensor($('#cardCarousel'), function () {
-		CardVisuals.resizeFlashcard();
+		setTimeout(function () {
+			CardVisuals.resizeFlashcard();
+		}, 250);
 	});
 	CardVisuals.resizeFlashcard();
 });
@@ -244,13 +246,20 @@ Template.cancelEditForm.events({
 
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
+		Meteor.call("deleteCard", Session.get('activeCard'));
+		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
+		if (Route.isCardset()) {
+			let result = CardIndex.getCardsetCards();
+			Session.set('activeCard', result[0]._id);
+		}
+		$('#deleteCardModal').modal('hide');
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
-			Session.set('activeCard', undefined);
-			Meteor.call("deleteCard", Router.current().params.card_id);
-			Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
-			});
-		}).modal('hide');
+			$('.deleteCard').removeClass("pressed");
+			if (Route.isEditMode()) {
+				Router.go('cardsetdetailsid', {
+					_id: Router.current().params._id
+				});
+			}
+		});
 	}
 });
