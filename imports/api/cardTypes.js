@@ -34,7 +34,8 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 4,
@@ -366,6 +367,15 @@ export let CardType = class CardType {
 		return cardTypesWhichDisplayLearningGoalInformation.includes(cardType);
 	}
 
+	static contentWithLearningGoalPlaceholder (contentId, cardType) {
+		let cubeSides = this.getCardTypeCubeSides(cardType);
+		for (let i = 0; i < cubeSides.length; i++) {
+			if (cubeSides[i].contentId === contentId) {
+				return cubeSides[i].gotLearningGoalPlaceholder;
+			}
+		}
+	}
+
 	static gotLearningUnit (cardType) {
 		return cardTypesWithLearningUnit.includes(cardType);
 	}
@@ -434,7 +444,7 @@ export let CardType = class CardType {
 		if (cardType < 0) {
 			cardType = Session.get('cardType');
 		}
-		if (contentId === 0 && this.gotLearningGoal(cardType)) {
+		if (this.contentWithLearningGoalPlaceholder(contentId, cardType)) {
 			return TAPi18n.__('learning-goal.level' + (++learningGoalLevel) + 'Placeholder');
 		}
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.content' + contentId);
