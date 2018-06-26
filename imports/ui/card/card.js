@@ -214,6 +214,7 @@ Template.copyCard.events({
 });
 
 Meteor.startup(function () {
+	CardNavigation.fullscreenExitEvents();
 	$(document).on('keydown', function (event) {
 		CardNavigation.keyEvents(event);
 	});
