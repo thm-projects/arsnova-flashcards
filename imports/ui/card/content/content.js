@@ -134,7 +134,7 @@ Template.cardContentActive.helpers({
 		}
 	},
 	getPlaceholder: function () {
-		return CardType.getPlaceholderText(Session.get('activeCardContentId'), this.cardType);
+		return CardType.getPlaceholderText(Session.get('activeCardContentId'), this.cardType, this.learningGoalLevel);
 	}
 });
 
@@ -184,6 +184,6 @@ Template.cardContentInactive.helpers({
 	},
 	getPlaceholder: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		return CardType.getPlaceholderText(cubeSides[0].contentId, this.cardType);
+		return CardType.getPlaceholderText(cubeSides[0].contentId, this.cardType, this.learningGoalLevel);
 	}
 });

@@ -698,7 +698,7 @@
       "content3": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "content1": "Wörtliches Zitat",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe \"Formatiere mit Markdeep\".",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
       },
@@ -786,7 +786,7 @@
       "placeholders": {
         "subject": "Gib das Thema des Fotos an !",
         "content1": "Diese Karte ist für Fotos und Bilder aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
-        "content2": "Lizenz"
+        "content2": "Wer hat die Rechte am Foto? \n\nUnter welcher Lizenz darf das Foto weitergegeben werden?"
       },
       "editorLabels": {
         "subject": "Thema des Fotos"

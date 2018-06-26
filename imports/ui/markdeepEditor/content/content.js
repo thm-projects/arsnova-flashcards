@@ -19,7 +19,7 @@ Template.markdeepContent.events({
 	'click #contentEditor': function () {
 		Session.set('dictionaryPreview', 0);
 	},
-	'keyup #contentEditor': function () {
+	'input #contentEditor': function () {
 		let content = $('#contentEditor').val();
 		$('#editor').attr('data-content', content);
 		Session.set('content' + Session.get('activeCardContentId'), content);
