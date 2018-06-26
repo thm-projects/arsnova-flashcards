@@ -1258,8 +1258,8 @@
     "subjectCardset": "aus der Kartei ",
     "subjectEnd": " zu lernen.",
     "textEnd": " zu lernen sind. ",
-    "newCards2Singular": " Karte erwartet dich in der Kartei ",
-    "newCards2Plural": " Karten erwarten dich in der Kartei ",
+    "newCards2Singular": " Karte in der Kartei ",
+    "newCards2Plural": " Karten in der Kartei ",
     "textIntro": "Hallo, ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen! \n\n",
     "textDate1": "Du hast noch bis zum ",
@@ -1272,7 +1272,7 @@
     "textEnding": "heute endet die Lernphase der Kartei ",
     "subjectReset": "Deine Lernstatistik wurde zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
-    "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass  ",
+    "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass ",
     "service": "Der Newsletter ist ein Service von .cards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 .cards",
@@ -1345,8 +1345,8 @@
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
-      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Lernpensum\", \"Meine Karteien\" und \"Kurse\"
-      dient dir als Einstieg in die großartigen Features von .cards, schau dir dazu auch die Hilfe und Demo-Karteien an!
+      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Kartei anlegen\", \"Kurse\" und \"Lernpensum\"
+      dient dir als Einstieg in die großartigen Features von .cards, schau dir dazu auch die Hilfe und Demo-Kartei an!
       </br>
       </br>
       Suche im Themen-Pool nach einem Thema, das dich interessiert.
