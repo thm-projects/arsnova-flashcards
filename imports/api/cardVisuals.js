@@ -81,11 +81,10 @@ export let CardVisuals = class CardVisuals {
 			Session.set("workloadFullscreenMode", false);
 		}
 		Session.set('dictionaryPreview', 0);
-		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation())) {
+		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation()) && !Session.get('workloadFullscreenMode')) {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.exit();
 			}
-			Session.set('fullscreen', false);
 			$("#theme-wrapper").css("margin-top", "70px");
 			$("#answerOptions").css("margin-top", "0");
 			$(".editorElement").css("display", '');
@@ -101,8 +100,8 @@ export let CardVisuals = class CardVisuals {
 			}
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
+			Session.set('fullscreen', false);
 		} else {
-			Session.set('fullscreen', true);
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.request();
 			}
@@ -118,6 +117,7 @@ export let CardVisuals = class CardVisuals {
 				$("#markdeepNavigation").css("display", "none");
 				$("#markdeepEditorContent").css("display", 'none');
 			}
+			Session.set('fullscreen', true);
 		}
 	}
 
