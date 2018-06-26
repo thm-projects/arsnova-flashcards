@@ -565,7 +565,7 @@ $themes: (
       color: $white !important;
     }
 
-    #toggleFullscreen .glyphicon-log-out.pressed, .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover, .endPresentation, .endPresentation:hover {
+    .glyphicon-log-out.pressed, .glyphicon-log-out.pressed:hover, .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover {
       background-color: $thm_orange !important;
       border-color: $thm_orange !important;
       color: $white !important;
