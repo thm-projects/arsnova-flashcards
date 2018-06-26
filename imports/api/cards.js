@@ -321,8 +321,13 @@ Meteor.methods({
 		var card = Cards.findOne(card_id);
 		var cardset = Cardsets.findOne(card.cardset_id);
 
-		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			throw new Meteor.Error("not-authorized");
+		if (!Roles.userIsInRole(this.userId, [
+			'admin',
+			'editor'
+		])) {
+			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
 		}
 
 		if (cardset.learningActive) {
