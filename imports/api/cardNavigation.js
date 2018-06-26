@@ -3,6 +3,7 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
+import * as screenfull from "screenfull";
 
 export let CardNavigation = class CardNavigation {
 
@@ -159,20 +160,25 @@ export let CardNavigation = class CardNavigation {
 		this.answerCard(1, answer);
 	}
 
+	static fullscreenExitEvents () {
+		if (screenfull.enabled) {
+			screenfull.on('change', () => {
+				if (screenfull.element === null && Session.get('fullscreen')) {
+					if (Route.isPresentation()) {
+						$(".endPresentation").click();
+					} else {
+						$(".toggleFullscreen").click();
+					}
+				}
+			});
+		}
+	}
+
 	static rateWozniak (answer) {
 		this.answerCard(2, answer);
 	}
 
 	static keyEvents (event) {
-		if (event.keyCode === 27) {
-			if (Route.isPresentation()) {
-				if (!$("#endPresentationModal").is(':visible')) {
-					$('#endPresentationModal').modal('show');
-				}
-			} else {
-				CardVisuals.toggleFullscreen(true);
-			}
-		}
 		if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
 			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
@@ -191,11 +197,6 @@ export let CardNavigation = class CardNavigation {
 							if (Session.get('isQuestionSide')) {
 								CardNavigation.skipAnswer();
 							}
-						}
-						break;
-					case 27:
-						if (Route.isPresentation()) {
-							$(".endPresentation").click();
 						}
 						break;
 					case 37:
