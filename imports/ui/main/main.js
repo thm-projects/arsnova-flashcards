@@ -243,6 +243,10 @@ Template.main.helpers({
 	}
 });
 
+Template.main.onCreated(function () {
+	document.title = Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last;
+});
+
 Template.main.onRendered(function () {
 	Session.set("searchValue", undefined);
 	Meteor.call("initUser");
