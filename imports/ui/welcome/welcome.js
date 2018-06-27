@@ -199,6 +199,12 @@ Template.welcome.helpers({
 		}
 		loginButtons += "</span>";
 		return loginButtons;
+	},
+	getFirstTitleWord: function () {
+		return Meteor.settings.public.welcome.title.first;
+	},
+	getLastTitleWord: function () {
+		return Meteor.settings.public.welcome.title.last;
 	}
 });
 
