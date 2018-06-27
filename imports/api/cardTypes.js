@@ -444,7 +444,7 @@ export let CardType = class CardType {
 		if (cardType < 0) {
 			cardType = Session.get('cardType');
 		}
-		if (this.contentWithLearningGoalPlaceholder(contentId, cardType)) {
+		if (this.gotLearningGoal(cardType) && this.contentWithLearningGoalPlaceholder(contentId, cardType)) {
 			return TAPi18n.__('learning-goal.level' + (++learningGoalLevel) + 'Placeholder');
 		}
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.content' + contentId);
