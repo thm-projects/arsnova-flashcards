@@ -21,6 +21,12 @@
       "singleUniversity": false,
       "default": "THM"
     },
+    "welcome": {
+      "title": {
+        "first": "review",
+        "last": "cards"
+      }
+    },
     "env": "Sandbox",
     "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
     "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"
