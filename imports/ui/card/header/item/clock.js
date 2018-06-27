@@ -1,4 +1,5 @@
 import "./clock.html";
+import {NavigatorCheck} from "../../../../api/navigatorCheck";
 
 function updatePresentationClock() {
 	let date = new Date();
@@ -18,6 +19,13 @@ function updatePresentationClock() {
  * presentationClock
  * ############################################################################
  */
+
+Template.cardHeaderItemClock.helpers({
+	isSafariOriOS: function () {
+		return NavigatorCheck.isIOS() || NavigatorCheck.isSafari();
+	}
+});
+
 let clockInterval;
 Template.cardHeaderItemClock.onRendered(function () {
 	updatePresentationClock();
