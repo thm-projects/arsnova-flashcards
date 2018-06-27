@@ -153,7 +153,8 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultCentered": false,
+			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
