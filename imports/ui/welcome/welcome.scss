@@ -111,3 +111,10 @@
   text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
 }
 
+.serverInventory {
+  display: inline-block;
+  text-align: center;
+  padding: $padding_vertical_inventory $padding_horizontal_inventory !important;
+  font-size: $font_size_inventory !important;
+  font-weight: $font_weight_inventory !important;
+}

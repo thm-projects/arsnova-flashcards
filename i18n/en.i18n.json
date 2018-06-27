@@ -1405,6 +1405,12 @@
   "login": {
     "label": "Log in"
   },
+  "inventory": {
+    "cardsets": "Cardsets",
+    "cards": "Cards",
+    "users": "User",
+    "usersOnline": "Online"
+  },
   "wozniak": {
     "show": "Show answer",
     "skip": "Skip",

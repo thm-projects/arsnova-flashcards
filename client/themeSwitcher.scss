@@ -147,6 +147,8 @@ $themes: (
     $footer_websocket_connecting: map-get($map, "footer_websocket_connecting");
     $footer_websocket_disconnected: map-get($map, "footer_websocket_disconnected");
     $placeholder: map-get($map, "placeholder");
+    $inventory_background: map-get($map, "inventory_background");
+    $inventory_text: map-get($map, "inventory_text");
     //info page colors
     $info_navigation_text: map-get($map, "info_navigation_text");
     $info_navigation_text_active: map-get($map, "info_navigation_text_active");
@@ -599,6 +601,11 @@ $themes: (
       label {
         color: white !important;
       }
+    }
+
+    .serverInventory {
+      background-color: $inventory_background !important;
+      color: $inventory_text !important;
     }
 
     .panel-heading.info-tab {

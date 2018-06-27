@@ -28,6 +28,7 @@ import {Cardsets} from "../../api/cardsets.js";
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
+Meteor.subscribe("serverStatistics");
 
 Session.setDefault("theme", "default");
 Session.setDefault("fullscreen", false);
