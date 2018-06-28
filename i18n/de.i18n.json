@@ -1370,6 +1370,12 @@
   "login": {
     "label": "Melde dich an "
   },
+  "inventory": {
+    "cardsets": "Themen:",
+    "cards": "Karten:",
+    "users": "User:",
+    "usersOnline": "Online:"
+  },
   "wozniak": {
     "show": "Zeige Antwort",
     "skip": "Überspringen",

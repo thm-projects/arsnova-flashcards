@@ -2,19 +2,31 @@
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
-import {Session} from "meteor/session";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
+Meteor.subscribe("userData");
+Meteor.subscribe("serverInventory");
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
 	TAPi18n.setLanguage(language);
 	Session.set('activeLanguage', language);
+}
+
+function splitLargeNumbers(number) {
+	let separator;
+	if (Session.get('activeLanguage') === "de") {
+		separator = ".";
+	} else {
+		separator = ",";
+	}
+	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 }
 
 /**
@@ -45,7 +57,7 @@ function createTagCloud() {
 	} else {
 		document.getElementById('tag-cloud-container').height = 'unset';
 		document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
-		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true));
+		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true) + $('#serverInventoryContainer').outerHeight(true) + 25);
 		if ($(window).width() > 700 && $(window).height() > 700) {
 			let textScale = 1.4;
 			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);
@@ -191,7 +203,7 @@ Template.welcome.helpers({
 				'<option id="adminLogin" value="editor">' + admin + '</option>' +
 				'<option id="proLogin" value="pro">' + pro + '</option>' +
 				'<option id="lecturerLogin" value="lecturer">' + Meteor.settings.public.university.default + '-' + lecturer + '</option>' +
-				'<option id="eduLogin" value="university">' + Meteor.settings.public.university.default +  '-' + edu + '</option>' +
+				'<option id="eduLogin" value="university">' + Meteor.settings.public.university.default + '-' + edu + '</option>' +
 				'<option id="standardLogin" value="standard">' + standard + '</option>' +
 				'<option id="blockedLogin" value="blocked">' + blocked + '</option>' +
 				'<option id="firstLogin" value="firstLogin">' + firstLogin + '</option>' +
@@ -205,6 +217,12 @@ Template.welcome.helpers({
 	},
 	getLastTitleWord: function () {
 		return Meteor.settings.public.welcome.title.last;
+	},
+	getServerInventory: function () {
+		return '<br><span id="serverInventoryContainer"><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) +
+			'</span><span class="serverInventory">' + TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></span><br><br>';
 	}
 });
 

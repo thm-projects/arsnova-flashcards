@@ -111,3 +111,20 @@
   text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
 }
 
+.serverInventory {
+  display: inline-block;
+  text-align: center;
+  margin-top: $margin_top_inventory !important;
+  padding: $padding_vertical_inventory $padding_horizontal_inventory !important;
+  font-size: $font_size_inventory !important;
+  font-weight: $font_weight_inventory !important;
+}
+
+@media (min-width: 768px) {
+  #serverInventoryContainer .serverInventory:first-child {
+    padding: $padding_vertical_inventory ($padding_horizontal_inventory /2) $padding_vertical_inventory $padding_horizontal_inventory !important;
+  }
+  #serverInventoryContainer .serverInventory:last-child {
+    padding: $padding_vertical_inventory $padding_horizontal_inventory $padding_vertical_inventory ($padding_horizontal_inventory /2) !important;
+  }
+}

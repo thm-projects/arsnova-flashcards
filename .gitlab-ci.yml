@@ -124,6 +124,7 @@ review:
     # Copy mongo db test data
     - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
     # Call script to setup everything
+    # First parameter is a unique port, second is used to generate the subdomain and the third points to the dbdump directory
     - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_PIPELINE_ID $METEOR_HOME/dbdump
   environment:
     name: review/$CI_BUILD_REF_NAME
