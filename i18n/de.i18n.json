@@ -1371,10 +1371,10 @@
     "label": "Melde dich an "
   },
   "inventory": {
-    "cardsets": "Karteien",
-    "cards": "Karten",
-    "users": "Benutzer",
-    "usersOnline": "Online"
+    "cardsets": "Themen:",
+    "cards": "Karten:",
+    "users": "User:",
+    "usersOnline": "Online:"
   },
   "wozniak": {
     "show": "Zeige Antwort",
