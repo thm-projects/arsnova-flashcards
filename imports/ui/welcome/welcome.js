@@ -57,7 +57,7 @@ function createTagCloud() {
 	} else {
 		document.getElementById('tag-cloud-container').height = 'unset';
 		document.getElementById('tag-cloud-canvas').width = document.getElementById('tag-cloud-container').offsetWidth;
-		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true) + $('#serverInventoryContainer').outerHeight(true));
+		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('.panel-heading').outerHeight(true) + $('#login').outerHeight(true) + $('#serverInventoryContainer').outerHeight(true) + 25);
 		if ($(window).width() > 700 && $(window).height() > 700) {
 			let textScale = 1.4;
 			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);

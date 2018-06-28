@@ -114,6 +114,7 @@
 .serverInventory {
   display: inline-block;
   text-align: center;
+  margin-top: $margin_top_inventory !important;
   padding: $padding_vertical_inventory $padding_horizontal_inventory !important;
   font-size: $font_size_inventory !important;
   font-weight: $font_weight_inventory !important;
