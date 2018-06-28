@@ -55,6 +55,7 @@
     "client": true,
     "module": true,
     "expect": true,
-    "Hammer": true
+    "Hammer": true,
+    "Counts": true
   }
 }

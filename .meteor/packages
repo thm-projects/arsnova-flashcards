@@ -68,3 +68,4 @@ fastclick
 jquery@1.11.10
 east5th:package-scan
 wtfzn:dompurify
+ros:publish-counts
