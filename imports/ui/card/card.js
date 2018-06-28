@@ -59,9 +59,7 @@ Template.flashcards.onRendered(function () {
 		$('#copyCard').children().removeClass("pressed");
 	});
 	new ResizeSensor($('#cardCarousel'), function () {
-		setTimeout(function () {
-			CardVisuals.resizeFlashcard();
-		}, 250);
+		CardVisuals.resizeFlashcard();
 	});
 	CardVisuals.resizeFlashcard();
 });
