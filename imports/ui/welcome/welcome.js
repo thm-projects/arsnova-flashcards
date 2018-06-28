@@ -219,10 +219,10 @@ Template.welcome.helpers({
 		return Meteor.settings.public.welcome.title.last;
 	},
 	getServerInventory: function () {
-		return '<br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span><br><br>';
+		return '<br><span id="serverInventoryContainer"><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) +
+			'</span><span class="serverInventory">' + TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></span><br><br>';
 	}
 });
 
