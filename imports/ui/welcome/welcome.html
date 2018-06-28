@@ -18,14 +18,14 @@
                 <a href="about" class="visible-xs btn btn-lg btn-raised btn-warning">{{_
                         "intro.learnMoreMobile"}}</a>
             </div>
-            <div id="tag-cloud-container">
-                <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
-            </div>
-            <div id="login" class="panel-footer">
-                {{{getLoginButtons}}}
-                {{{getServerInventory}}}
-            </div>
         </div>
+    </div>
+    <div id="tag-cloud-container" class="col-xs-12">
+        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
+    </div>
+    <div id="welcome-login" class="col-xs-12">
+        {{{getLoginButtons}}}
+        {{{getServerInventory}}}
     </div>
 </template>
 

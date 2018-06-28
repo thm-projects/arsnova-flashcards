@@ -28,26 +28,6 @@
     }
   }
 
-  #login {
-    margin-bottom: $size_footer_height !important;
-    margin-top: 20px;
-    padding-top: 0;
-    @media (max-height: 500px) {
-      margin-top: 0;
-    }
-    a {
-      margin-right: 14px;
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-    @media screen and (max-width: 320px) {
-      img {
-        padding-bottom: 14px;
-      }
-    }
-  }
-
   .panel-heading {
     padding-bottom: 20px;
     @media (max-height: 500px) {
@@ -60,7 +40,51 @@
     border-top: 0;
     min-height: 84px;
   }
+}
 
+#tag-cloud-container {
+  text-align: center;
+}
+
+#welcome-login {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: $size_footer_height !important;
+  margin-top: 0;
+  padding-top: 0;
+  text-align: center;
+  a {
+    margin-right: 14px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  img {
+    width: 64px;
+  }
+  @media (max-width: 360px) {
+    img {
+      width: 55px;
+    }
+
+    #BackdoorLogin img, #TestingBackdoorUsername {
+      margin-top: 15px;
+    }
+  }
+  #TestingBackdoorUsername {
+    padding: 12px 10px;
+  }
+  @media (min-width: 361px) and (max-width: 767px) {
+
+    #BackdoorLogin img, #TestingBackdoorUsername {
+      margin-left: -10px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    img {
+      padding-bottom: 14px;
+    }
+  }
   .item {
     height: 300px;
   }
@@ -72,28 +96,6 @@
     left: 0;
     right: 0;
     margin: auto;
-  }
-}
-
-#TestingBackdoorUsername {
-  padding: 12px 10px;
-}
-
-@media (max-width: 360px) {
-  img {
-    margin-top: 15px;
-    width: 55px;
-  }
-
-  #BackdoorLogin img, #TestingBackdoorUsername {
-    margin-top: 15px;
-  }
-}
-
-@media (min-width: 361px) and (max-width: 767px) {
-
-  #BackdoorLogin img, #TestingBackdoorUsername {
-    margin-left: -10px;
   }
 }
 
