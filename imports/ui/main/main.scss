@@ -488,7 +488,8 @@ button {
 
 .dropdown, .dropup, .navbar-nav > li {
   .dropdown-menu {
-    max-height: 625px;
+    max-height: 675px;
+    margin-left: 7px;
     @media(max-height: 768px) {
       max-height: 575px;
     }
