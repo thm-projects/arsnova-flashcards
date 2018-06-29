@@ -52,9 +52,7 @@
                                                 class="btn btn-raised btn-default setCardTypeDropdown longButton"
                                                 data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false"
-                                                value="{{#if isNew}}0{{else}}{{cardType}}{{/if}}">
-                                            {{#if isNew}}{{_ "card.cardType0.name"}}{{else}}{{getCardTypeName
-                                                    cardType}}{{/if}}
+                                                value="{{cardType}}">{{getCardTypeName cardType}}
                                         </button>
                                         <button type="button"
                                                 class="btn btn-raised dropdown-toggle setCardTypeDropdown"
