@@ -55,13 +55,14 @@ function createTagCloud() {
 		document.getElementById('tag-cloud-container').height = 0;
 		document.getElementById('tag-cloud-canvas').height = 0;
 	} else {
-		document.getElementById('tag-cloud-canvas').width = $('#tag-cloud-container').width();
+		let newWidth = $('#tag-cloud-container').width();
+		if (newWidth > 1024) {
+			newWidth = 1024;
+		}
+		document.getElementById('tag-cloud-canvas').width = newWidth;
 		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
 		if ($(window).width() > 700 && $(window).height() > 700) {
-			let textScale = 1.4;
-			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);
-			let weightFactor = Math.pow(textScale, 2.3) * $('#tag-cloud-canvas').width() / 450;
-			let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
+			let cloud = Cardsets.find({wordcloud: true, shuffled: false}, {fields: {name: 1, quantity: 1}}).fetch();
 			let minimumSize = 0;
 			let biggestCardsetSize = 0;
 			let list = [];
@@ -78,7 +79,7 @@ function createTagCloud() {
 				if (name.length > 25) {
 					name = name.substring(0, 25) + "…";
 				}
-				let quantitiy = cloud.quantity / biggestCardsetSize * 40;
+				let quantitiy = cloud.quantity / biggestCardsetSize * 10;
 				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
 				list.push([name, Number(quantitiy), cloud._id]);
 			});
@@ -87,11 +88,11 @@ function createTagCloud() {
 			});
 			WordCloud(document.getElementById('tag-cloud-canvas'),
 				{
-					list: list,
-					gridSize: gridSize,
-					weightFactor: weightFactor,
-					minSize: 24,
+					clearCanvas: true,
 					drawOutOfBound: false,
+					list: list,
+					gridSize: 24,
+					weightFactor: 24,
 					rotateRatio: 0,
 					fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
 					color: "random-light",
