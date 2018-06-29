@@ -49,11 +49,12 @@ export function cleanModal() {
 	$('#helpSetName').html('');
 
 	if (newCardsetCourseIterationRoute()) {
-		$('#setCardType').html(CardType.getCardTypeName(0));
-		$('#setCardType').val(0);
+		$('#setCardType').html(CardType.getCardTypeLongName(5));
+		$('#setCardType').val(5);
 	} else {
-		$('#setCardType').html(CardType.getCardTypeName(Session.get('previousCardType')));
+		$('#setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardType')));
 		$('#setCardType').val(Session.get('previousCardType'));
+		Session.set('cardType', Session.get('previousCardType'));
 	}
 
 	if (courseIterationRoute()) {
