@@ -1,6 +1,6 @@
 <template name="main">
     <div id="{{#if currentUser}}{{#if isInRole
-                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}theme-wrapper-no-nav{{/if}}"
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}"
          class="{{getTheme}}">
         {{> connectionStatusModal}}
         {{> underDevelopmentModal}}
