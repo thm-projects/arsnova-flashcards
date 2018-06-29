@@ -33,6 +33,7 @@ $font_weight_inventory: normal;
 $padding_horizontal_inventory: 15px;
 $padding_vertical_inventory: 5px;
 $margin_top_inventory: 10px;
+$padding_top_login: 10px;
 
 //info page
 $font_size_info_h1: 20px;
@@ -225,6 +226,10 @@ body {
 
 #theme-wrapper-no-nav {
   margin-top: 20px !important;
+}
+
+#theme-wrapper-no-nav-welcome {
+  margin-top: 0;
 }
 
 .modal-header .close {

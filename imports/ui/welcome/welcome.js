@@ -7,6 +7,7 @@ import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
+import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -50,14 +51,12 @@ function wordcloudHover(item, dimension) {
  * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
  */
 function createTagCloud() {
-	$('#cards-welcome-image').css('height', $('.color-cards').height());
 	if ($(window).height() <= 450) {
 		document.getElementById('tag-cloud-container').height = 0;
 		document.getElementById('tag-cloud-canvas').height = 0;
 	} else {
-		document.getElementById('tag-cloud-container').height = 'unset';
 		document.getElementById('tag-cloud-canvas').width = $('#tag-cloud-container').width();
-		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true) + 30);
+		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
 		if ($(window).width() > 700 && $(window).height() > 700) {
 			let textScale = 1.4;
 			let gridSize = Math.round(16 * $('#tag-cloud-canvas').width() / 1440);
@@ -227,13 +226,14 @@ Template.welcome.helpers({
 });
 
 Template.welcome.onRendered(function () {
-	this.autorun(() => {
-		createTagCloud();
-	});
-	$("#cards-welcome-image").load(function () {
-		createTagCloud();
-	});
+	createTagCloud();
 	$(window).resize(function () {
+		createTagCloud();
+	});
+	new ResizeSensor($('#welcome'), function () {
+		createTagCloud();
+	});
+	new ResizeSensor($('#welcome-login'), function () {
 		createTagCloud();
 	});
 });

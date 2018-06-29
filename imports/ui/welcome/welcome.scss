@@ -1,6 +1,5 @@
 #welcome {
   text-align: center;
-  margin-top: -30px;
   .panel {
     box-shadow: none;
   }
@@ -29,6 +28,7 @@
   }
 
   .panel-heading {
+    padding-top: 0;
     padding-bottom: 20px;
     @media (max-height: 500px) {
       padding-bottom: 0;
@@ -49,9 +49,8 @@
 #welcome-login {
   position: absolute;
   bottom: 0;
-  margin-bottom: $size_footer_height !important;
-  margin-top: 0;
-  padding-top: 0;
+  padding-top: $padding_top_login !important;
+  padding-bottom: $size_footer_height !important;
   text-align: center;
   a {
     margin-right: 14px;
@@ -60,11 +59,11 @@
     }
   }
   img {
-    width: 64px;
+    height: 64px;
   }
   @media (max-width: 360px) {
     img {
-      width: 55px;
+      height: 55px;
     }
 
     #BackdoorLogin img, #TestingBackdoorUsername {
