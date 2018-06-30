@@ -171,7 +171,7 @@ Template.welcome.events({
 
 Template.welcome.helpers({
 	getLoginButtons: function () {
-		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + "&nbsp;</label><span id='loginButtonRow'>";
+		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + "&nbsp;&nbsp;</label><span id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
 			loginButtons += '<a id="cas" href=""><img src="img/THM_login.png" alt="use CAS for login"/></a>';
 		}
@@ -219,10 +219,10 @@ Template.welcome.helpers({
 		return Meteor.settings.public.welcome.title.last;
 	},
 	getServerInventory: function () {
-		return '<br><span id="serverInventoryContainer"><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) +
-			'</span><span class="serverInventory">' + TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></span><br><br>';
+		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></br></br>';
 	}
 });
 
