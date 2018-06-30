@@ -197,6 +197,24 @@ deploy_production:
     - ssh $NEW_PRODUCTION_SSH 'touch /home/meteor/deploy.touch'
   environment: production
 
+deploy_linux:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - rsync
+  dependencies:
+    - build
+  script:
+    - chmod -R a+rX,ug+w "build"
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh
+    - ssh-keyscan "$LINUX_URL" >> ~/.ssh/known_hosts
+    - ssh-add <(echo "$LINUX_PRIVATE_KEY")
+    - rsync -rltgoDqv --delete -e "ssh" "$BUNDLE_DIR/"* "$LINUX_SSH_URL"
+    - ssh $LINUX_SSH 'touch /home/meteor/deploy.touch'
+  environment: production
+
 sync_mirror:
   stage: deploy
   tags:
