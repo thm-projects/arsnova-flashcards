@@ -10,7 +10,7 @@ import {Paid} from "../../api/paid";
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
-import "/client/markdeep.js";
+import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
 
 Meteor.subscribe("collegesCourses");
