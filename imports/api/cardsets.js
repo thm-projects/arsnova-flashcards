@@ -664,6 +664,13 @@ Meteor.methods({
 				});
 			}
 		});
+		if (kind !== "personal") {
+			Meteor.users.update(Meteor.user()._id, {
+				$set: {
+					visible: true
+				}
+			});
+		}
 	},
 	makeProRequest: function (cardset_id) {
 		check(cardset_id, String);

@@ -670,6 +670,17 @@ Meteor.startup(function () {
 		Learned.remove({});
 	}
 
+	let hiddenUsers = Meteor.users.find({visible: false}).fetch();
+	for (let i = 0; i < hiddenUsers.length; i++) {
+		if (Cardsets.findOne({owner: hiddenUsers[i]._id, kind: {$ne: "personal"}})) {
+			Meteor.users.update(hiddenUsers[i]._id, {
+				$set: {
+					visible: true
+				}
+			});
+		}
+	}
+
 	for (let card = 0; card < testNotificationsCards.length; card++) {
 		Cards.insert(testNotificationsCards[card]);
 	}
