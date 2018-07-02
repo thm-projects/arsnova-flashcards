@@ -397,6 +397,10 @@ export let CardType = class CardType {
 		return cardTypesWithDifficultyLevel.includes(cardType);
 	}
 
+	static withDifficultyLevel () {
+		return cardTypesWithDifficultyLevel;
+	}
+
 	static gotNotesForDifficultyLevel (cardType) {
 		return cardTypesWithNotesForDifficultyLevel.includes(cardType);
 	}
