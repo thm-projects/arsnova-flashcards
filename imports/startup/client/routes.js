@@ -4,7 +4,7 @@ import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
-
+import {Route} from "../../api/route.js";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -321,6 +321,9 @@ Router.route('/admin/settings', {
 
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
+	if (Meteor.user()) {
+		Route.setFirstTimeVisit();
+	}
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
 	} else {
