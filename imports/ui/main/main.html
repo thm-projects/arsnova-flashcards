@@ -1,6 +1,7 @@
 <template name="main">
     <div id="{{#if currentUser}}{{#if isInRole
-                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}"
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if
+            isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}"
          class="{{getTheme}}">
         {{> connectionStatusModal}}
         {{> underDevelopmentModal}}
@@ -201,8 +202,10 @@
                                                     </table>
                                                 </div>
                                             </li>
-                                            <li id="navbar-logout"><a href="#" class="logout logout-main"><span class="hidden-xs"><i
-                                                    class="glyphicon glyphicon-log-out"></i></span><span class="visible-xs"><i
+                                            <li id="navbar-logout"><a href="#" class="logout logout-main"><span
+                                                    class="hidden-xs"><i
+                                                    class="glyphicon glyphicon-log-out"></i></span><span
+                                                    class="visible-xs"><i
                                                     class="glyphicon glyphicon-log-out"></i> {{_
                                                     "profile.logout"}}</span>
                                             </a></li>
@@ -230,7 +233,9 @@
         </div>
         {{#unless fullscreenActive}}
             {{#unless currentUser}}
-                {{> footer}}
+                {{#unless isActiveRoute regex='demo|demolist'}}
+                    {{> footer}}
+                {{/unless}}
             {{/unless}}
         {{/unless}}
     </div> <!-- Theme Wrapper -->
