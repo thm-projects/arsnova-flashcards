@@ -3,7 +3,7 @@ import {CardVisuals} from "./cardVisuals.js";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
-		window.open("https://arsnova.cards/cardset/nqA6A8CyYNbEceyw9", "_blank");
+		window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
 	}
 
 	static center () {
