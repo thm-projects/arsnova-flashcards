@@ -18,9 +18,7 @@ let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
-let cardTypesWhichDisplaySideInformation = [0];
-let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 11, 12];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
@@ -360,14 +358,6 @@ export let CardType = class CardType {
 		return sortQuery;
 	}
 
-	static displaysSideInformation (cardType) {
-		return cardTypesWhichDisplaySideInformation.includes(cardType);
-	}
-
-	static displaysLearningGoalInformation (cardType) {
-		return cardTypesWhichDisplayLearningGoalInformation.includes(cardType);
-	}
-
 	static contentWithLearningGoalPlaceholder (contentId, cardType) {
 		let cubeSides = this.getCardTypeCubeSides(cardType);
 		for (let i = 0; i < cubeSides.length; i++) {
@@ -416,22 +406,6 @@ export let CardType = class CardType {
 			}
 		}
 		Session.set('centerTextElement', centerTextElement);
-	}
-
-	static getFrontTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.content1');
-	}
-
-	static getBackTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.content2');
 	}
 
 	static getSubjectPlaceholderText (cardType = -1) {

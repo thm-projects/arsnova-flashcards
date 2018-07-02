@@ -95,12 +95,6 @@ Template.subjectEditor.helpers({
 	},
 	gotLearningUnit: function () {
 		return CardType.gotLearningUnit(this.cardType);
-	},
-	isDisabled: function () {
-		if (Session.get('learningUnit') !== "0") {
-			return "disabled";
-		}
-		return "";
 	}
 });
 

@@ -2,25 +2,8 @@
     <div class="col-xs-6 cardHeaderCenter" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
-            {{#if displaysSideInformation}}
-                <span
-                        class="hidden-xs cardFrontHeader cardHeaderSmallerText"
-                        style="display: {{#if gotDictionary}}{{#if
-                                reversedViewOrder}}none{{/if}}{{/if}}"
-                        data-cardtype="{{cardType}}">{{_
-                        "sidebar-nav.view"}}: {{getFrontTitle}}
-                                                </span><span
-                    class="hidden-xs cardBackHeader cardHeaderSmallerText"
-                    style="display: {{#if gotDictionary}}{{#unless
-                            reversedViewOrder}}none{{/unless}}{{else}}none{{/if}}"
-                    data-cardtype="{{cardType}}">{{_
-                    "sidebar-nav.view"}}: {{getBackTitle}}
-                                                </span>
-            {{/if}}
-            {{#if displaysLearningGoalInformation}}
-                <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">{{#unless
-                        isEditModeOrPresentation}}{{#if
-                        displaysSideInformation}}|{{/if}}{{/unless}}
+            {{#if gotLearningGoal}}
+                <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
             {{/if}}
         </div>
