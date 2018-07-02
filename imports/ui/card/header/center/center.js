@@ -28,29 +28,14 @@ Template.flashcardHeaderCenter.helpers({
 	isQuestionSide: function () {
 		return Session.get('isQuestionSide');
 	},
-	displaysLearningGoalInformation: function () {
-		return CardType.displaysLearningGoalInformation(this.cardType);
-	},
-	displaysSideInformation: function () {
-		return CardType.displaysSideInformation(this.cardType);
+	gotLearningGoal: function () {
+		return CardType.gotLearningGoal(this.cardType);
 	},
 	getCardsetName: function () {
 		return Cardsets.findOne({_id: this.cardset_id}).name;
 	},
 	getLearningGoalName: function () {
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
-	},
-	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
-	},
-	getFrontTitle: function () {
-		return CardType.getFrontTitle(this.cardType);
-	},
-	getBackTitle: function () {
-		return CardType.getBackTitle(this.cardType);
-	},
-	reversedViewOrder: function () {
-		return Session.get('reverseViewOrder');
 	},
 	getPlaceholder: function (mode) {
 		CardEditor.getPlaceholder(mode);
