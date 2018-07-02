@@ -64,9 +64,8 @@
     <nav id="{{#if isActiveRoute 'home'}}contact-nav-footer{{else}}contact-nav{{/if}}" class="nav nav-justified">
         {{#unless currentUser}}
             {{#unless isActiveRoute 'home'}}
-                <li class="sm-12 md-2 inactive"><a id="about"
-                                                   href="{{pathFor
-                                                           route='home'}}">
+                <li class="sm-12 md-2 inactive"><a id="backToStartButton"
+                                                   href="#">
                     <i class="fa fa-home"></i> {{_
                         "contact.home"}}</a></li>
             {{/unless}}

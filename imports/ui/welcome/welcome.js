@@ -5,9 +5,11 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
+import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -223,6 +225,12 @@ Template.welcome.helpers({
 			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></br></br>';
+	}
+});
+
+Template.welcome.onCreated(function () {
+	if (Route.isFirstTimeVisit()) {
+		Router.go('demo');
 	}
 });
 

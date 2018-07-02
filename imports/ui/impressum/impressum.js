@@ -2,6 +2,7 @@
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
+import {Route} from "../../api/route.js";
 
 /*
  * ############################################################################
@@ -12,15 +13,26 @@ import {Session} from "meteor/session";
 Template.contact.events({
 	'click #backButton': function () {
 		window.history.back();
-	},
-	'click #backToStartButton': function () {
-		Router.go('home');
 	}
 });
 
 Template.contact.onCreated(function () {
 	this.subscribe("cardsets");
 	this.subscribe("cards");
+});
+
+/*
+ * ############################################################################
+ * contactNavigation
+ * ############################################################################
+ */
+
+Template.contactNavigation.events({
+	'click #backToStartButton': function (event) {
+		event.preventDefault();
+		Route.setFirstTimeVisit();
+		Router.go('home');
+	}
 });
 
 /*
