@@ -13,15 +13,16 @@ import {Session} from "meteor/session";
 //10: Fotokartei / Photo library
 //11: Quiz
 //12: Entwurfsmuster / Design pattern
+//13: Formelsammlung / Formulary
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
 
@@ -308,6 +309,39 @@ let cardTypeCubeSides = [
 			"defaultCentered": false,
 			"isAnswer": true
 		}
+	],
+	//13: Formelsammlung / Formulary
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"gotLearningGoalPlaceholder": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "lecture",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true,
+			"isAnswerFocus": true
+		},
+		{
+			"contentId": 4,
+			"side": "right",
+			"defaultStyle": "hint",
+			"defaultCentered": false,
+			"isAnswer": true
+		}
+
 	]
 ];
 

@@ -828,6 +828,24 @@
         "subject": "Gib den Namen des Entwurfsmusters an !"
       }
     },
+    "cardType13": {
+      "name": "Formelsammlung",
+      "longName": "Formelsammlung (Aufgabe | Formel | Lösung | Literatur)",
+      "content1": "Aufgabe",
+      "content2": "Formel",
+      "content3": "Lösung",
+      "content4": "Literatur",
+      "placeholders": {
+        "subject": "",
+        "content1": "",
+        "content2": "",
+        "content3": "",
+        "content4": ""
+      },
+      "editorLabels": {
+        "subject": "Gib den Namen der Formelsammlung an !"
+      }
+    },
     "tooltip": {
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
