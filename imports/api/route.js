@@ -60,6 +60,9 @@ export let Route = class Route {
 		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {
 			localStorage.setItem(firstTimeVisit, "true");
 		}
+		if ($(window).width() < 768) {
+			this.setFirstTimeVisit();
+		}
 		return localStorage.getItem(firstTimeVisit) === "true";
 	}
 
