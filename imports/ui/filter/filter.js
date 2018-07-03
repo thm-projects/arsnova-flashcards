@@ -7,12 +7,12 @@ import {Cardsets} from "../../api/cardsets.js";
 import {CourseIterations} from "../../api/courseIterations.js";
 import "./filter.html";
 import {getAuthorName} from "../../api/userdata";
+import {CardType} from "../../api/cardTypes";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("courseIterations");
 
 export let items_increment = 6;
-
 
 
 Session.setDefault('poolSortTopic');
@@ -91,7 +91,12 @@ export function prepareQuery() {
 		query.moduleActive = false;
 	}
 	if (Session.get('poolFilterDifficulty') !== undefined) {
-		query.difficulty = Number(Session.get('poolFilterDifficulty'));
+		if (Session.get('poolFilterDifficulty') === 0) {
+			query.cardType = {$nin: CardType.withDifficultyLevel()};
+		} else {
+			query.cardType = {$in: CardType.withDifficultyLevel()};
+			query.difficulty = Number(Session.get('poolFilterDifficulty'));
+		}
 	}
 	if (Session.get('poolFilterWordcloud') !== undefined) {
 		query.wordcloud = Session.get('poolFilterWordcloud');
@@ -392,9 +397,22 @@ Template.filterNavigation.helpers({
 	},
 	getDifficulty: function () {
 		prepareQuery();
-		return _.uniq(Cardsets.find(Session.get('filterQuery'), {sort: {"difficulty": 1}}).fetch(), function (item) {
+		let result;
+		let filter = Session.get('filterQuery');
+		filter.cardType = {$in: CardType.withDifficultyLevel()};
+		result = _.uniq(Cardsets.find(filter, {
+			sort: {"difficulty": 1},
+			fields: {"difficulty": 1}
+		}).fetch(), function (item) {
 			return item.difficulty;
 		});
+		filter.cardType = {$nin: CardType.withDifficultyLevel()};
+		let noDifficultyResult = Cardsets.findOne(filter, {fields: {"difficulty": 1}});
+		if (noDifficultyResult !== undefined) {
+			noDifficultyResult.difficulty = 0;
+			result.unshift(noDifficultyResult);
+		}
+		return result;
 	},
 	getAuthors: function () {
 		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
@@ -493,7 +511,7 @@ Template.filterNavigation.helpers({
 		return TAPi18n.__('difficulty' + this.difficulty);
 	},
 	hasDifficultyFilter: function () {
-		return Session.get('poolFilterDifficulty');
+		return Session.get('poolFilterDifficulty') !== undefined;
 	},
 	poolFilterDifficulty: function () {
 		return Session.get('poolFilterDifficulty') === this.difficulty;
