@@ -24,6 +24,7 @@ import "../editor/cardEditor.js";
 import "../../api/groundDB.js";
 import "../../api/cardIndex.js";
 import {Cardsets} from "../../api/cardsets.js";
+import {Route} from "../../api/route";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -241,6 +242,9 @@ Template.main.helpers({
 			default:
 				return TAPi18n.__('navbar-collapse.carddecks');
 		}
+	},
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit() && !Session.get('fullscreen');
 	}
 });
 

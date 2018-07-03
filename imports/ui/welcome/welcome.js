@@ -246,3 +246,20 @@ Template.welcome.onRendered(function () {
 		createTagCloud();
 	});
 });
+
+/*
+ * ############################################################################
+ * welcomeTitle
+ * ############################################################################
+ */
+Template.welcomeTitle.helpers({
+	getFirstTitleWord: function () {
+		return Meteor.settings.public.welcome.title.first;
+	},
+	getLastTitleWord: function () {
+		return Meteor.settings.public.welcome.title.last;
+	},
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
+	}
+});

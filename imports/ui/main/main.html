@@ -1,7 +1,7 @@
 <template name="main">
     <div id="{{#if currentUser}}{{#if isInRole
                                       'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if
-            isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}"
+            isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}{{#if isFirstTimeVisit}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}{{/if}}"
          class="{{getTheme}}">
         {{> connectionStatusModal}}
         {{> underDevelopmentModal}}
@@ -223,9 +223,9 @@
         <div id="main" class="{{#if isActiveRoute
                                     regex='home'}}{{else}}{{#if isActiveRoute
                                                                 regex='newCard|editCard'}}{{#if
-                fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}container{{/if}}{{/if}}">
+                fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}{{#unless isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}">
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="{{#if isActiveRoute regex='home'}}{{else}}row{{#if isActiveRoute
+            <div class="{{#if isActiveRoute regex='home'}}{{else}}{{#unless isFirstTimeVisit}}row{{/unless}}{{#if isActiveRoute
                                                                            regex='newCard|editCard'}}{{#unless
                     fullscreenActive}}col-lg-11{{/unless}}{{/if}}{{/if}}">
                 {{> yield}}

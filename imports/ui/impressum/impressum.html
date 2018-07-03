@@ -1,63 +1,75 @@
 <template name="contact">
-    <div id="contact" class="col-xs-12">
-        <div class="row">
-            {{> contactNavigation}}
-        </div>
-        <br>
-        <div class="row">
-            {{#if isActiveRoute 'about'}}
-                {{> about}}
-            {{/if}}
-            {{#if isActiveRoute 'learning'}}
-                {{> learning}}
-            {{/if}}
-            {{#if isActiveRoute 'help'}}
-                {{> help}}
-            {{/if}}
-            {{#if isActiveRoute 'faq'}}
-                {{> faq}}
-            {{/if}}
-            {{#if isActiveRoute 'impressum'}}
-                {{> impressum}}
-            {{/if}}
-            {{#if isActiveRoute 'agb'}}
-                {{> agb}}
-            {{/if}}
-            {{#if isActiveRoute 'datenschutz'}}
-                {{> datenschutz}}
-            {{/if}}
+    {{#if isFirstTimeVisit}}
+        {{> welcomeTitle}}
+    {{/if}}
+    <div class="{{#if isFirstTimeVisit}}container{{/if}}">
+        <div id="contact" class="col-md-8 col-md-offset-2">
+            <div class="row">
+                {{> contactNavigation}}
+            </div>
+            <br>
+            <div class="row">
+                {{#if isActiveRoute 'about'}}
+                    {{> about}}
+                {{/if}}
+                {{#if isActiveRoute 'learning'}}
+                    {{> learning}}
+                {{/if}}
+                {{#if isActiveRoute 'help'}}
+                    {{> help}}
+                {{/if}}
+                {{#if isActiveRoute 'faq'}}
+                    {{> faq}}
+                {{/if}}
+                {{#if isActiveRoute 'impressum'}}
+                    {{> impressum}}
+                {{/if}}
+                {{#if isActiveRoute 'agb'}}
+                    {{> agb}}
+                {{/if}}
+                {{#if isActiveRoute 'datenschutz'}}
+                    {{> datenschutz}}
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>
 
 <template name="demo">
     {{#unless fullscreenActive}}
-        <div id="contact" class="col-xs-12">
-            <div class="row">
-                {{> contactNavigation}}
-            </div>
-            <br>
-            <div class="row">
-                {{#if isActiveRoute 'demo'}}
-                    <div class="panel panel-default">
-                        <div class="panel-heading info-tab">
-                            <h1>{{_ "contact.demoTitle"}}</h1>
-                        </div>
-                    </div>
-                    {{#if Template.subscriptionsReady}}
-                        {{> presentationView}}
-                    {{/if}}
-                {{/if}}
-                {{#if isActiveRoute 'demolist'}}
-                    {{> presentationView}}
-                {{/if}}
-            </div>
-        </div>
-    {{else}}
-        {{#if Template.subscriptionsReady}}
-            {{> presentationView}}
+        {{#if isFirstTimeVisit}}
+            {{> welcomeTitle}}
         {{/if}}
     {{/unless}}
+    <div class="{{#if isFirstTimeVisit}}container{{/if}}">
+        {{#unless fullscreenActive}}
+            <div id="contact" class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    {{> contactNavigation}}
+                </div>
+                <br>
+                <div class="row">
+                    {{#if isActiveRoute 'demo'}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading info-tab">
+                                <h1>{{_ "contact.demoTitle"}}</h1>
+                            </div>
+                        </div>
+                        {{#if Template.subscriptionsReady}}
+                            {{> presentationView}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if isActiveRoute 'demolist'}}
+                        {{> presentationView}}
+                    {{/if}}
+                </div>
+            </div>
+        {{else}}
+            {{#if Template.subscriptionsReady}}
+                {{> presentationView}}
+            {{/if}}
+        {{/unless}}
+    </div>
 </template>
 
 <template name="contactNavigation">
@@ -1308,7 +1320,8 @@
                 <h2>Datensicherheit</h2>
                 <p>
                 <ul>
-                    <li>Der Betreiber von .cards legt ausschließlich aus betriebstechnischen Gründen Datensicherungen an.
+                    <li>Der Betreiber von .cards legt ausschließlich aus betriebstechnischen Gründen Datensicherungen
+                        an.
                         Eine regelmäßige Datensicherung findet nicht statt.
                     </li>
                     <li>Jeder Benutzer von .cards ist für die Datensicherung selbst verantwortlich.
@@ -1322,7 +1335,8 @@
                             </li>
                         </ol>
                     </li>
-                    <li>Für einen eventuellen Datenverlust (Karten, Karteien oder Lernstatistiken) wird keine Haftung übernommen.
+                    <li>Für einen eventuellen Datenverlust (Karten, Karteien oder Lernstatistiken) wird keine Haftung
+                        übernommen.
                     </li>
                 </ul>
                 </p>

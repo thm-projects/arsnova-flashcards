@@ -10,6 +10,13 @@ import {Route} from "../../api/route.js";
  * ############################################################################
  */
 
+
+Template.contact.helpers({
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
+	}
+});
+
 Template.contact.events({
 	'click #backButton': function () {
 		window.history.back();
@@ -46,5 +53,17 @@ Template.help.onRendered(function () {
 	if (target !== undefined) {
 		$(window).scrollTop(($(target).offset().top - 70));
 		Session.set('helpTarget', undefined);
+	}
+});
+
+/*
+ * ############################################################################
+ * demo
+ * ############################################################################
+ */
+
+Template.demo.helpers({
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
 	}
 });

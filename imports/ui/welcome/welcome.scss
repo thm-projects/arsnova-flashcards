@@ -129,3 +129,7 @@
     padding: $padding_vertical_inventory $padding_horizontal_inventory $padding_vertical_inventory ($padding_horizontal_inventory /2) !important;
   }
 }
+
+.welcome-title-no-padding {
+  padding-bottom: 0 !important;
+}
