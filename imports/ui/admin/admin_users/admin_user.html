@@ -172,7 +172,7 @@
                                         <div class="form-group"
                                              style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
                                             <label id="editUserBlockedLabelAdmin">{{_ "admin.user.blocked"}}</label>
-                                            <p>{{_ "admin.user.blockedtext"}}</p>
+                                            <p>{{_ "admin.user.blockedtext" lastAppTitle=(getLastAppTitle)}}</p>
                                             <div class="controls">
                                                 <div id="editUserBlockedAdmin" class="btn-group" data-toggle="buttons">
                                                     <label id="blockedOption1Admin"
@@ -207,7 +207,7 @@
                                         <div class="form-group"
                                              style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px">
                                             <label id="editUserEditorLabelAdmin">Admin User</label>
-                                            <p>{{_ "admin.user.editortext"}}</p>
+                                            <p>{{_ "admin.user.editortext" lastAppTitle=(getLastAppTitle)}}</p>
                                             <div class="controls">
                                                 <div id="editUserEditorAdmin" class="btn-group" data-toggle="buttons">
                                                     <label id="editorOption1Admin"

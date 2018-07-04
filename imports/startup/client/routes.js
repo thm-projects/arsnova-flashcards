@@ -337,8 +337,8 @@ export function firstLoginBertAlert() {
 			if (localStorage.getItem(firstTimeLogin) === "true") {
 				Bert.defaults.hideDelay = 97200;
 				Bert.alert({
-					title: TAPi18n.__('bertAlert.firstLogin.title'),
-					message: TAPi18n.__('bertAlert.firstLogin.message'),
+					title: TAPi18n.__('bertAlert.firstLogin.title', {firstAppTitle: Meteor.settings.public.welcome.title.first, lastAppTitle: Meteor.settings.public.welcome.title.last}),
+					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
 					type: 'warning',
 					style: 'growl-top-left',
 					icon: 'fa-heart'

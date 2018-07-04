@@ -1119,7 +1119,7 @@
                             {{else}}
                                 <input type="radio" name="cardType" value="1" data-type="1">
                             {{/if}}
-                            {{_ "upload-form.upload-type1"}}
+                            {{_ "upload-form.upload-type1" lastAppTitle=(getLastAppTitle)}}
                         </label>
                         <label id="importType2"
                                class="btn btn-default btn-white import-type {{#if importType 2}}active{{/if}}"

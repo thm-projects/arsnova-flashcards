@@ -212,12 +212,6 @@ Template.welcome.helpers({
 		loginButtons += "</span>";
 		return loginButtons;
 	},
-	getFirstTitleWord: function () {
-		return Meteor.settings.public.welcome.title.first;
-	},
-	getLastTitleWord: function () {
-		return Meteor.settings.public.welcome.title.last;
-	},
 	getServerInventory: function () {
 		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
