@@ -134,8 +134,10 @@ $themes: (
     $footer_background: map-get($map, "footer_background");
     $footer_info_navigation_text: map-get($map, "footer_info_navigation_text");
     $footer_info_navigation_text_hover: map-get($map, "footer_info_navigation_text_hover");
+    $footer_info_navigation_text_active: map-get($map, "footer_info_navigation_text_active");
     $footer_info_navigation_background: map-get($map, "footer_info_navigation_background");
     $footer_info_navigation_background_hover: map-get($map, "footer_info_navigation_background_hover");
+    $footer_info_navigation_background_active: map-get($map, "footer_info_navigation_background_active");
     $footer_info_navigation_border: map-get($map, "footer_info_navigation_border");
     $footer_icon: map-get($map, "footer_icon");
     $footer_icon_hover: map-get($map, "footer_icon_hover");
@@ -459,18 +461,36 @@ $themes: (
     }
 
     #contact-nav a {
-      color: $info_navigation_text_active !important;
-      background-color: $info_navigation_background_active !important;
-    }
-
-    #contact-nav .inactive a {
       color: $info_navigation_text !important;
       background-color: $info_navigation_background !important;
     }
 
-    #contact-nav .inactive a:hover {
+    #contact-nav a:hover {
       color: $info_navigation_text_hover !important;
       background-color: $info_navigation_background_hover !important;
+    }
+
+    #contact-nav .active a {
+      color: $info_navigation_text_active !important;
+      background-color: $info_navigation_background_active !important;
+    }
+
+    #contact-nav-footer a {
+      color: $footer_info_navigation_text !important;
+      background-color: $footer_info_navigation_background !important;
+    }
+
+    #contact-nav-footer a:hover {
+      color: $footer_info_navigation_text_hover !important;
+      background-color: $footer_info_navigation_background_hover !important;
+      i {
+        color: $footer_info_navigation_text_hover !important;
+      }
+    }
+
+    #contact-nav-footer .active a {
+      color: $footer_info_navigation_text_active !important;
+      background-color: $footer_info_navigation_background_active !important;
     }
 
     @media(max-width: 767px) {
@@ -709,7 +729,7 @@ $themes: (
       color: $home_button_icon !important;
     }
 
-    #about:hover i, .fa-home:hover {
+    #backToStartButton:hover i, .fa-home:hover {
       color: $home_button_icon_hover !important;
     }
 

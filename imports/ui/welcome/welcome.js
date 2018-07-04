@@ -5,9 +5,11 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
+import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -220,6 +222,12 @@ Template.welcome.helpers({
 	}
 });
 
+Template.welcome.onCreated(function () {
+	if (Route.isFirstTimeVisit()) {
+		Router.go('demo');
+	}
+});
+
 Template.welcome.onRendered(function () {
 	createTagCloud();
 	$(window).resize(function () {
@@ -231,4 +239,21 @@ Template.welcome.onRendered(function () {
 	new ResizeSensor($('#welcome-login'), function () {
 		createTagCloud();
 	});
+});
+
+/*
+ * ############################################################################
+ * welcomeTitle
+ * ############################################################################
+ */
+Template.welcomeTitle.helpers({
+	getFirstTitleWord: function () {
+		return Meteor.settings.public.welcome.title.first;
+	},
+	getLastTitleWord: function () {
+		return Meteor.settings.public.welcome.title.last;
+	},
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
+	}
 });

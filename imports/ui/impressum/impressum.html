@@ -1,86 +1,102 @@
 <template name="contact">
-    <div id="contact" class="col-md-8 col-md-offset-2">
-        <div class="row">
-            {{> contactNavigation}}
-        </div>
-        <br>
-        <div class="row">
-            {{#if isActiveRoute 'about'}}
-                {{> about}}
-            {{/if}}
-            {{#if isActiveRoute 'learning'}}
-                {{> learning}}
-            {{/if}}
-            {{#if isActiveRoute 'help'}}
-                {{> help}}
-            {{/if}}
-            {{#if isActiveRoute 'faq'}}
-                {{> faq}}
-            {{/if}}
-            {{#if isActiveRoute 'impressum'}}
-                {{> impressum}}
-            {{/if}}
-            {{#if isActiveRoute 'agb'}}
-                {{> agb}}
-            {{/if}}
-            {{#if isActiveRoute 'datenschutz'}}
-                {{> datenschutz}}
-            {{/if}}
-        </div>
-    </div>
-</template>
-
-<template name="demo">
-    {{#unless fullscreenActive}}
+    {{#if isFirstTimeVisit}}
+        {{> welcomeTitle}}
+    {{/if}}
+    <div class="{{#if isFirstTimeVisit}}container{{/if}}">
         <div id="contact" class="col-md-8 col-md-offset-2">
             <div class="row">
                 {{> contactNavigation}}
             </div>
             <br>
             <div class="row">
-                {{#if isActiveRoute 'demo'}}
-                    <div class="panel panel-default">
-                        <div class="panel-heading info-tab">
-                            <h1>{{_ "contact.demoTitle"}}</h1>
-                        </div>
-                    </div>
-                    {{#if Template.subscriptionsReady}}
-                        {{> presentationView}}
-                    {{/if}}
+                {{#if isActiveRoute 'about'}}
+                    {{> about}}
                 {{/if}}
-                {{#if isActiveRoute 'demolist'}}
-                    {{> presentationView}}
+                {{#if isActiveRoute 'learning'}}
+                    {{> learning}}
+                {{/if}}
+                {{#if isActiveRoute 'help'}}
+                    {{> help}}
+                {{/if}}
+                {{#if isActiveRoute 'faq'}}
+                    {{> faq}}
+                {{/if}}
+                {{#if isActiveRoute 'impressum'}}
+                    {{> impressum}}
+                {{/if}}
+                {{#if isActiveRoute 'agb'}}
+                    {{> agb}}
+                {{/if}}
+                {{#if isActiveRoute 'datenschutz'}}
+                    {{> datenschutz}}
                 {{/if}}
             </div>
         </div>
-    {{else}}
-        {{#if Template.subscriptionsReady}}
-            {{> presentationView}}
+    </div>
+</template>
+
+<template name="demo">
+    {{#unless fullscreenActive}}
+        {{#if isFirstTimeVisit}}
+            {{> welcomeTitle}}
         {{/if}}
     {{/unless}}
+    <div class="{{#if isFirstTimeVisit}}container{{/if}}">
+        {{#unless fullscreenActive}}
+            <div id="contact" class="col-md-8 col-md-offset-2">
+                {{#unless isFirstTimeVisit}}
+                    <div class="row">
+                        {{> contactNavigation}}
+                    </div>
+                    <br>
+                {{/unless}}
+                <div class="row">
+                    {{#if isActiveRoute 'demo'}}
+                        {{#unless isFirstTimeVisit}}
+                            <div class="panel panel-default">
+                                <div class="panel-heading info-tab">
+                                    <h1>{{_ "contact.demoTitle"}}</h1>
+                                </div>
+                            </div>
+                        {{/unless}}
+                        {{#if Template.subscriptionsReady}}
+                            {{> presentationView}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if isActiveRoute 'demolist'}}
+                        {{> presentationView}}
+                    {{/if}}
+                </div>
+            </div>
+        {{else}}
+            {{#if Template.subscriptionsReady}}
+                {{> presentationView}}
+            {{/if}}
+        {{/unless}}
+    </div>
 </template>
 
 <template name="contactNavigation">
-    <nav id="{{#if isActiveRoute 'home'}}contact-nav-footer{{else}}contact-nav{{/if}}" class="nav nav-justified">
+    <nav id="{{#if displayAsFooter}}contact-nav-footer{{else}}contact-nav{{/if}}" class="nav nav-justified">
         {{#unless currentUser}}
             {{#unless isActiveRoute 'home'}}
-                <li class="sm-12 md-2 inactive"><a id="about"
-                                                   href="{{pathFor
-                                                           route='home'}}">
+                <li class="sm-12 md-2 inactive {{#if displayAsFooter}}footer-info-navigation{{/if}}"><a
+                        id="backToStartButton"
+                        href="#">
                     <i class="fa fa-home"></i> {{_
                         "contact.home"}}</a></li>
             {{/unless}}
         {{/unless}}
 
-        <li class="hidden-xs sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless
+        <li class="hidden-xs sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if
                 isActiveRoute
-                'demo'}}inactive{{/unless}}{{/if}}">
+                'demo'}}active{{/if}}">
             <a id="demo"
                href="{{pathFor
                        route='demo'}}">{{_
                     "contact.demo"}}</a></li>
-        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                   'about'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                          'about'}}active{{/if}}">
             <a id="about"
                href="{{pathFor
                        route='about'}}">{{_
@@ -91,30 +107,30 @@
                href="{{pathFor
                        route='learning'}}">{{_
                     "contact.learning"}}</a></li>
-        <li class="sm-12 md-2 {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                  'help'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                         'help'}}active{{/if}}">
             <a id="help"
                href="{{pathFor
                        route='help'}}">{{_
                     "contact.help"}}</a></li>
-        <li class="sm-12 md-2 {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                  'faq'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                         'faq'}}active{{/if}}">
             <a id="faq" href="{{pathFor
                     route='faq'}}">{{_ "contact.faq"}}</a></li>
-        <li class="sm-12 md-2 {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                  'impressum'}}inactive{{/unless}} {{/if}}">
+        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                         'impressum'}}active{{/if}}">
             <a id="impressum"
                href="{{pathFor
                        route='impressum'}}">{{_
                     "contact.impressum"}}</a></li>
-        <li class="sm-12 md-2 {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                  'agb'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                         'agb'}}active{{/if}}">
             <a id="datenschutz"
                href="{{pathFor
                        route='agb'}}">{{_
                     "contact.agb"}}</a></li>
-        <li class="sm-12 md-2 {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                  'datenschutz'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                         'datenschutz'}}active{{/if}}">
             <a id="agb"
                href="{{pathFor
                        route='datenschutz'}}">{{_
@@ -1309,7 +1325,8 @@
                 <h2>Datensicherheit</h2>
                 <p>
                 <ul>
-                    <li>Der Betreiber von .cards legt ausschließlich aus betriebstechnischen Gründen Datensicherungen an.
+                    <li>Der Betreiber von .cards legt ausschließlich aus betriebstechnischen Gründen Datensicherungen
+                        an.
                         Eine regelmäßige Datensicherung findet nicht statt.
                     </li>
                     <li>Jeder Benutzer von .cards ist für die Datensicherung selbst verantwortlich.
@@ -1323,7 +1340,8 @@
                             </li>
                         </ol>
                     </li>
-                    <li>Für einen eventuellen Datenverlust (Karten, Karteien oder Lernstatistiken) wird keine Haftung übernommen.
+                    <li>Für einen eventuellen Datenverlust (Karten, Karteien oder Lernstatistiken) wird keine Haftung
+                        übernommen.
                     </li>
                 </ul>
                 </p>

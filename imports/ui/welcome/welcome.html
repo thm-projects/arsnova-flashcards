@@ -1,8 +1,19 @@
 <template name="welcome">
     {{> wordcloudModal}}
+    {{> welcomeTitle}}
+    <div id="tag-cloud-container" class="col-xs-12">
+        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
+    </div>
+    <div id="welcome-login" class="col-xs-12">
+        {{{getLoginButtons}}}
+        {{{getServerInventory}}}
+    </div>
+</template>
+
+<template name="welcomeTitle">
     <div class="col-xs-12" id="welcome">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading {{#if isFirstTimeVisit}}welcome-title-no-padding{{/if}}">
                 <div class="text-center">
                     <span class="color-cards logo-header-chars">{{getFirstAppTitle}}</span>
                     <span class="color-dot logo-header-dot"></span>
@@ -19,13 +30,6 @@
                         "intro.learnMoreMobile" lastAppTitle=(getLastAppTitle)}}</a>
             </div>
         </div>
-    </div>
-    <div id="tag-cloud-container" class="col-xs-12">
-        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
-    </div>
-    <div id="welcome-login" class="col-xs-12">
-        {{{getLoginButtons}}}
-        {{{getServerInventory}}}
     </div>
 </template>
 
