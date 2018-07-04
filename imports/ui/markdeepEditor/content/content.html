@@ -10,7 +10,7 @@
             <textarea class="form-control" data-provide="markdown" rows="10"
                       placeholder="{{#if isCourseIteration}}{{_
                               "courseIteration.modal.placeholder.description"}}{{else}}{{_
-                              "modal-dialog.descriptionplaceholder"}}{{/if}}"
+                              "modal-dialog.descriptionplaceholder" lastAppTitle=(getLastAppTitle)}}{{/if}}"
                       id="contentEditor"
                       value="{{#if
                               isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>

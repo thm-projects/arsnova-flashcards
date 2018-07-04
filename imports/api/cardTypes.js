@@ -13,17 +13,16 @@ import {Session} from "meteor/session";
 //10: Fotokartei / Photo library
 //11: Quiz
 //12: Entwurfsmuster / Design pattern
+//13: Formelsammlung / Formulary
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13];
 let cardTypesWithLearningGoal = [0, 5];
 let cardTypesWithLearningUnit = [];
-let cardTypesWhichDisplaySideInformation = [0];
-let cardTypesWhichDisplayLearningGoalInformation = [0, 5];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
 
@@ -276,40 +275,72 @@ let cardTypeCubeSides = [
 			"defaultCentered": false
 		},
 		{
-			"contentId": 4,
+			"contentId": 3,
 			"side": "right",
-			"defaultStyle": "lecture",
-			"defaultCentered": false,
-			"isAnswer": true
+			"defaultStyle": "default",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 4,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
-			"side": "back",
+			"side": "left",
 			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "hint",
-			"defaultCentered": false
-		},
-		{
 			"contentId": 5,
 			"side": "top",
-			"defaultStyle": "hint-alternative",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		},
 		{
 			"contentId": 6,
 			"side": "bottom",
-			"defaultStyle": "hint-alternative",
+			"defaultStyle": "hint",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
+	],
+	//13: Formelsammlung / Formulary
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"gotLearningGoalPlaceholder": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true
+		},
+		{
+			"contentId": 3,
+			"side": "left",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true,
+			"isAnswerFocus": true
+		},
+		{
+			"contentId": 4,
+			"side": "right",
+			"defaultStyle": "hint",
+			"defaultCentered": false,
+			"isAnswer": true
+		}
+
 	]
 ];
 
@@ -360,14 +391,6 @@ export let CardType = class CardType {
 		return sortQuery;
 	}
 
-	static displaysSideInformation (cardType) {
-		return cardTypesWhichDisplaySideInformation.includes(cardType);
-	}
-
-	static displaysLearningGoalInformation (cardType) {
-		return cardTypesWhichDisplayLearningGoalInformation.includes(cardType);
-	}
-
 	static contentWithLearningGoalPlaceholder (contentId, cardType) {
 		let cubeSides = this.getCardTypeCubeSides(cardType);
 		for (let i = 0; i < cubeSides.length; i++) {
@@ -397,6 +420,10 @@ export let CardType = class CardType {
 		return cardTypesWithDifficultyLevel.includes(cardType);
 	}
 
+	static withDifficultyLevel () {
+		return cardTypesWithDifficultyLevel;
+	}
+
 	static gotNotesForDifficultyLevel (cardType) {
 		return cardTypesWithNotesForDifficultyLevel.includes(cardType);
 	}
@@ -416,22 +443,6 @@ export let CardType = class CardType {
 			}
 		}
 		Session.set('centerTextElement', centerTextElement);
-	}
-
-	static getFrontTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.content1');
-	}
-
-	static getBackTitle (cardType = -1) {
-		let activeCardType = cardType;
-		if (activeCardType === -1) {
-			activeCardType = Session.get('cardType');
-		}
-		return TAPi18n.__('card.cardType' + activeCardType + '.content2');
 	}
 
 	static getSubjectPlaceholderText (cardType = -1) {

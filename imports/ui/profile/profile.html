@@ -300,7 +300,7 @@
                 <h4 class="panel-title">{{_ "profile.settings.delete"}}</h4>
             </div>
             <div class="panel-body">
-                <p>{{_ "profile.settings.deleteText"}}</p>
+                <p>{{_ "profile.settings.deleteText" lastAppTitle=(getLastAppTitle)}}</p>
                 <hr/>
                 <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3"
                         data-toggle="modal"
@@ -683,9 +683,9 @@
                     <h4 id="profileDelteConfirmModalTitle" class="modal-title">{{_ "confirm-form-profile.title"}}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{_ "confirm-form-profile.text"}}</p>
+                    <p>{{_ "confirm-form-profile.text" lastAppTitle=(getLastAppTitle)}}</p>
                     <br/>
-                    <p>{{_ "confirm-form-profile.text2"}}</p>
+                    <p>{{_ "confirm-form-profile.text2" lastAppTitle=(getLastAppTitle)}}</p>
                     <br/>
                     <hr/>
 

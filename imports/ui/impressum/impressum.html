@@ -100,9 +100,9 @@
             <a id="about"
                href="{{pathFor
                        route='about'}}">{{_
-                    "contact.about"}}</a></li>
-        <li class="sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
-                                                                                          'learning'}}active{{/if}}">
+                    "contact.about" lastAppTitle=(getLastAppTitle)}}</a></li>
+        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
+                                                                                                   'learning'}}inactive{{/unless}}{{/if}}">
             <a id="learning"
                href="{{pathFor
                        route='learning'}}">{{_
@@ -977,8 +977,8 @@
             {{#if isActiveLanguage 'de'}}
                 <h2>Dienstanbieter</h2>
                 <p>
-                    Der Betrieb der Webanwendung <b>.cards</b> unter <a href="https://informatik.cards" target="_blank">
-                    informatik.cards </a> ist eine kostenlose Dienstleistung (Software as a Service) der
+                    Der Betrieb der Webanwendung <b>.{{getLastAppTitle}}</b> unter <a href="home" target="_blank">
+                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> ist eine kostenlose Dienstleistung (Software as a Service) der
                     TransMIT-Gesellschaft
                     für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
                 </p>
@@ -1023,9 +1023,9 @@
             {{else}}
                 <h2>Service provider</h2>
                 <p>
-                    The operation of the web application <b>.cards</b> under <a href="https://informatik.cards"
+                    The operation of the web application <b>.{{getLastAppTitle}}</b> under <a href="home"
                                                                                 target="_blank">
-                    informatik.cards </a> is a free service (software as a service) of the
+                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> is a free service (software as a service) of the
                     TransMIT company
                     for Technologietransfer mbH, project area for mobile applications.
                 </p>

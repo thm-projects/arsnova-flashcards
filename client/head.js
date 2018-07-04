@@ -1,5 +1,6 @@
 // STARTUP IMPORTS
 
+import {Meteor} from "meteor/meteor";
 import "../imports/startup/client/i18n.js";
 import "../imports/startup/client/registerhelper.js";
 import "../imports/startup/client/registerServiceWorker";
@@ -22,7 +23,7 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": "informatik.cards verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
+			"message": Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
 			"link": "[Datenschutzerklärung]",
 			"href": "/datenschutz"

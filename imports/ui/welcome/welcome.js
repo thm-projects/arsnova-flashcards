@@ -65,8 +65,8 @@ function createTagCloud() {
 		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
 		if ($(window).width() > 700 && $(window).height() > 700) {
 			let cloud = Cardsets.find({wordcloud: true, shuffled: false}, {fields: {name: 1, quantity: 1}}).fetch();
-			let minimumSize = 0;
-			let biggestCardsetSize = 0;
+			let minimumSize = 1;
+			let biggestCardsetSize = 1;
 			let list = [];
 
 			cloud.forEach(function (cloud) {
@@ -81,7 +81,7 @@ function createTagCloud() {
 				if (name.length > 25) {
 					name = name.substring(0, 25) + "…";
 				}
-				let quantitiy = cloud.quantity / biggestCardsetSize * 10;
+				let quantitiy = cloud.quantity / biggestCardsetSize * 5;
 				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
 				list.push([name, Number(quantitiy), cloud._id]);
 			});
@@ -96,12 +96,12 @@ function createTagCloud() {
 					gridSize: 24,
 					weightFactor: 24,
 					rotateRatio: 0,
-					fontFamily: 'Roboto, Helvetica, Arial,sans-serif',
+					fontFamily: 'Roboto Condensed, Arial Narrow, sans-serif',
 					color: "random-light",
 					hover: wordcloudHover,
 					click: wordcloudClick,
 					backgroundColor: 'rgba(255,255,255, 0)',
-					wait: 500
+					wait: 400
 				});
 		}
 	}
@@ -213,12 +213,6 @@ Template.welcome.helpers({
 		}
 		loginButtons += "</span>";
 		return loginButtons;
-	},
-	getFirstTitleWord: function () {
-		return Meteor.settings.public.welcome.title.first;
-	},
-	getLastTitleWord: function () {
-		return Meteor.settings.public.welcome.title.last;
 	},
 	getServerInventory: function () {
 		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +

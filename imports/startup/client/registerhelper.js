@@ -15,6 +15,13 @@ import {getAuthorName} from "../../api/userdata";
 
 Meteor.subscribe("collegesCourses");
 
+Template.registerHelper('getFirstAppTitle', function () {
+	return Meteor.settings.public.welcome.title.first;
+});
+
+Template.registerHelper('getLastAppTitle', function () {
+	return Meteor.settings.public.welcome.title.last;
+});
 
 Template.registerHelper('extendContext', function (key, value) {
 	let result = _.clone(this);
