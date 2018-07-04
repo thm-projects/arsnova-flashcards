@@ -836,14 +836,14 @@
       "content3": "Lösung",
       "content4": "Literatur",
       "placeholders": {
-        "subject": "",
-        "content1": "",
-        "content2": "",
-        "content3": "",
-        "content4": ""
+        "subject": "Wie heißt die Formel ?",
+        "content1": "Beschreibe hier eine typische Aufgabe, die mit Hilfe der Formel zu lösen ist.",
+        "content2": "Formatiere die Formel mit TeX inline ($...$) oder abgesetzt ($$...$$).",
+        "content3": "Beschreibe, wie die Aufgabe mit der Formel gelöst wird.",
+        "content4": "Verlinke auf ausführliche Erläuterungen der Formel im Web."
       },
       "editorLabels": {
-        "subject": "Gib den Namen der Formelsammlung an !"
+        "subject": "Gib das Themengebiet der Formel an !"
       }
     },
     "tooltip": {
