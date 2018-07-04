@@ -1,12 +1,23 @@
 <template name="welcome">
     {{> wordcloudModal}}
+    {{> welcomeTitle}}
+    <div id="tag-cloud-container" class="col-xs-12">
+        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
+    </div>
+    <div id="welcome-login" class="col-xs-12">
+        {{{getLoginButtons}}}
+        {{{getServerInventory}}}
+    </div>
+</template>
+
+<template name="welcomeTitle">
     <div class="col-xs-12" id="welcome">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading {{#if isFirstTimeVisit}}welcome-title-no-padding{{/if}}">
                 <div class="text-center">
-                    <span class="color-cards logo-header-chars">{{getFirstTitleWord}}</span>
+                    <span class="color-cards logo-header-chars">{{getFirstAppTitle}}</span>
                     <span class="color-dot logo-header-dot"></span>
-                    <span class="color-cards logo-header-chars">{{getLastTitleWord}}</span>
+                    <span class="color-cards logo-header-chars">{{getLastAppTitle}}</span>
                 </div>
 
                 <span id="slogan">
@@ -14,18 +25,11 @@
                   </span>
                 <br>
                 <a href="demo" class="hidden-xs btn btn-lg btn-raised btn-warning">{{_
-                        "intro.learnMore"}}</a>
+                        "intro.learnMore" lastAppTitle=(getLastAppTitle)}}</a>
                 <a href="about" class="visible-xs btn btn-lg btn-raised btn-warning">{{_
-                        "intro.learnMoreMobile"}}</a>
+                        "intro.learnMoreMobile" lastAppTitle=(getLastAppTitle)}}</a>
             </div>
         </div>
-    </div>
-    <div id="tag-cloud-container" class="col-xs-12">
-        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
-    </div>
-    <div id="welcome-login" class="col-xs-12">
-        {{{getLoginButtons}}}
-        {{{getServerInventory}}}
     </div>
 </template>
 

@@ -1,3 +1,5 @@
+let firstTimeVisit = 'isFirstTimeVisit';
+
 export let Route = class Route {
 	/**
 	 * Function checks if route is a Cardset
@@ -52,5 +54,24 @@ export let Route = class Route {
 	 */
 	static isMemo () {
 		return Router.current().route.getName() === "memo";
+	}
+
+	static isHome () {
+		return Router.current().route.getName() === "home";
+	}
+
+	static isFirstTimeVisit () {
+		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {
+			localStorage.setItem(firstTimeVisit, "true");
+		}
+		if ($(window).width() < 768) {
+			this.setFirstTimeVisit();
+		}
+		return localStorage.getItem(firstTimeVisit) === "true";
+	}
+
+
+	static setFirstTimeVisit () {
+		localStorage.setItem(firstTimeVisit, "false");
 	}
 };

@@ -1,6 +1,8 @@
 <template name="main">
     <div id="{{#if currentUser}}{{#if isInRole
-                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}"
+                                      'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if
+            isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}{{#if
+            isFirstTimeVisit}}theme-wrapper-no-nav-welcome{{else}}theme-wrapper-no-nav{{/if}}{{/if}}{{/if}}"
          class="{{getTheme}}">
         {{> connectionStatusModal}}
         {{> underDevelopmentModal}}
@@ -201,8 +203,10 @@
                                                     </table>
                                                 </div>
                                             </li>
-                                            <li id="navbar-logout"><a href="#" class="logout logout-main"><span class="hidden-xs"><i
-                                                    class="glyphicon glyphicon-log-out"></i></span><span class="visible-xs"><i
+                                            <li id="navbar-logout"><a href="#" class="logout logout-main"><span
+                                                    class="hidden-xs"><i
+                                                    class="glyphicon glyphicon-log-out"></i></span><span
+                                                    class="visible-xs"><i
                                                     class="glyphicon glyphicon-log-out"></i> {{_
                                                     "profile.logout"}}</span>
                                             </a></li>
@@ -220,10 +224,12 @@
         <div id="main" class="{{#if isActiveRoute
                                     regex='home'}}{{else}}{{#if isActiveRoute
                                                                 regex='newCard|editCard'}}{{#if
-                fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}container{{/if}}{{/if}}">
+                fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}{{#unless
+                isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}">
             <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-            <div class="{{#if isActiveRoute regex='home'}}{{else}}row{{#if isActiveRoute
-                                                                           regex='newCard|editCard'}}{{#unless
+            <div class="{{#if isActiveRoute regex='home'}}{{else}}{{#unless isFirstTimeVisit}}row{{/unless}}{{#if
+                    isActiveRoute
+                    regex='newCard|editCard'}}{{#unless
                     fullscreenActive}}col-lg-11{{/unless}}{{/if}}{{/if}}">
                 {{> yield}}
             </div>
@@ -239,12 +245,12 @@
 <template name="footer">
     <div id="footer" class="footer">
         <ul class="container dropup">
-            {{#if isActiveRoute 'home'}}
+            {{#if displayFooterNavigation}}
                 <li class="hidden-xs col-sm-10">
                     {{> contactNavigation}}
                 </li>
                 <li class="visible-xs col-xs-2 col-sm-1 icon-container">
-                    <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info"}}">
+                    <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info" lastAppTitle=(getLastAppTitle)}}">
                         <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                     </a>
                 </li>
@@ -312,7 +318,7 @@
             <div class="modal-content hintContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"}}
+                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title" lastAppTitle=(getLastAppTitle)}}
                     </h4>
                 </div>
                 <div class="modal-body">

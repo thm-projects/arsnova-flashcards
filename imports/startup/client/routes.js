@@ -4,7 +4,7 @@ import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
-
+import {Route} from "../../api/route.js";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -321,6 +321,9 @@ Router.route('/admin/settings', {
 
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
+	if (Meteor.user()) {
+		Route.setFirstTimeVisit();
+	}
 	if (!(Meteor.user() || Meteor.loggingIn())) {
 		Router.go('home');
 	} else {
@@ -337,8 +340,8 @@ export function firstLoginBertAlert() {
 			if (localStorage.getItem(firstTimeLogin) === "true") {
 				Bert.defaults.hideDelay = 97200;
 				Bert.alert({
-					title: TAPi18n.__('bertAlert.firstLogin.title'),
-					message: TAPi18n.__('bertAlert.firstLogin.message'),
+					title: TAPi18n.__('bertAlert.firstLogin.title', {firstAppTitle: Meteor.settings.public.welcome.title.first, lastAppTitle: Meteor.settings.public.welcome.title.last}),
+					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
 					type: 'warning',
 					style: 'growl-top-left',
 					icon: 'fa-heart'

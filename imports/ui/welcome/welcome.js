@@ -5,9 +5,11 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
+import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -212,17 +214,17 @@ Template.welcome.helpers({
 		loginButtons += "</span>";
 		return loginButtons;
 	},
-	getFirstTitleWord: function () {
-		return Meteor.settings.public.welcome.title.first;
-	},
-	getLastTitleWord: function () {
-		return Meteor.settings.public.welcome.title.last;
-	},
 	getServerInventory: function () {
 		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
 			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></br></br>';
+	}
+});
+
+Template.welcome.onCreated(function () {
+	if (Route.isFirstTimeVisit()) {
+		Router.go('demo');
 	}
 });
 
@@ -237,4 +239,21 @@ Template.welcome.onRendered(function () {
 	new ResizeSensor($('#welcome-login'), function () {
 		createTagCloud();
 	});
+});
+
+/*
+ * ############################################################################
+ * welcomeTitle
+ * ############################################################################
+ */
+Template.welcomeTitle.helpers({
+	getFirstTitleWord: function () {
+		return Meteor.settings.public.welcome.title.first;
+	},
+	getLastTitleWord: function () {
+		return Meteor.settings.public.welcome.title.last;
+	},
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
+	}
 });

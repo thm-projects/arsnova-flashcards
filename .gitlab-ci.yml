@@ -200,7 +200,7 @@ deploy_production:
 deploy_linux:
   stage: deploy
   only:
-    - linux.cards
+    - master
   tags:
     - rsync
   dependencies:

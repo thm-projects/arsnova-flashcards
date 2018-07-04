@@ -26,9 +26,9 @@
     }
   },
   "intro": {
-    "about": "About .cards",
-    "learnMore": "Find out more…",
-    "learnMoreMobile": "Find out more…",
+    "about": "What is.__lastAppTitle__",
+    "learnMore": "Click on a topic to see details. Learn more about .__lastAppTitle__ in our demo-cardset…",
+    "learnMoreMobile": "Learn more about .__lastAppTitle__…",
     "impressum": "Legal Notice",
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
@@ -36,7 +36,7 @@
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
     "carousel-paragraph-0": "Create an learn your own digital flashcards.",
-    "carousel-header-1": ".cards speaks TeX",
+    "carousel-header-1": ".__lastAppTitle__ speaks TeX",
     "carousel-paragraph-1": "Finally, an easy way to learn bulky mathematical formulas.",
     "carousel-header-2": "Hello World!",
     "carousel-paragraph-2": "Learn program code easier - thanks to an automatic syntax highlighting."
@@ -58,7 +58,7 @@
     "info-extra-small": ""
   },
   "contact": {
-    "about": ".cards",
+    "about": ".__lastAppTitle__",
     "demo": "Demo",
     "home": "Home",
     "demoTitle": "Demo Cardset",
@@ -98,7 +98,7 @@
     "upload-title": "Import cards",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "File type",
-    "upload-type1": ".cards",
+    "upload-type1": ".__lastAppTitle__",
     "upload-type2": "Mnemosyne",
     "wait": "Uploading files…",
     "select-file": "Select file",
@@ -143,8 +143,8 @@
   },
   "confirm-form-profile": {
     "title": "Delete user profile",
-    "text": "If you do not think you will use .cards again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in .cards, so other users of the system can use them.",
-    "text2": "If you would still like to delete your user profile, please click the button \"Delete user profile\". After the process you will be automatically logged out of .cards."
+    "text": "If you do not think you will use .__lastAppTitle__ again, you can delete here your user profile. Keep in mind that you will not be able to reactivate your user profile or retrieve any of the content or information you have added. By deleting your user profile all personal data and private cardsets will be deleted. Published content remain in .__lastAppTitle__, so other users of the system can use them.",
+    "text2": "If you would still like to delete your user profile, please click the button \"Delete user profile\". After the process you will be automatically logged out of .__lastAppTitle__."
   },
   "confirmLearn-form": {
     "title": "Start Learning-Phase",
@@ -337,7 +337,7 @@
     "settings": {
       "name": "Profile",
       "delete": "Delete user profile",
-      "deleteText": "If you do not think you will use .cards again, you can delete here your user profile.",
+      "deleteText": "If you do not think you will use .__lastAppTitle__ again, you can delete here your user profile.",
       "appearance": "Appearance",
       "theme": "Color theme",
       "language": "Language"
@@ -1269,8 +1269,8 @@
       "clock": "",
       "roles": "User roles",
       "blocked": "Blocked user",
-      "blockedtext": "Do you want to deny the access to .cards for this user?",
-      "editortext": "Do you want to give this user admin rights? As an admin user the user can access the admin panel and is allowed to edit content of .cards.",
+      "blockedtext": "Do you want to deny the access to .__lastAppTitle__ for this user?",
+      "editortext": "Do you want to give this user admin rights? As an admin user the user can access the admin panel and is allowed to edit content of .__lastAppTitle__.",
       "blocked_text": "Reason for block",
       "blockedtext_invalid": "The \"Reason for block\" field is required!",
       "cancel": "Cancel",
@@ -1302,7 +1302,7 @@
     "button": "Accept"
   },
   "mailNotification": {
-    "subjectTitle": ".cards: Today ",
+    "subjectTitle": ".__lastAppTitle__: Today ",
     "subjectSingular1": "is ",
     "subjectPlural1": "are ",
     "subjectSingular2": " card ",
@@ -1312,11 +1312,11 @@
     "textEnd": " for learning. ",
     "newCards2Singular": " card awaits you in the cardset ",
     "newCards2Plural": " cards await you in the cardset ",
-    "greetings": "\n\nyour .cards-Team",
+    "greetings": "\n\nyour .__lastAppTitle__-Team",
     "subjectEnding": "ends the learning-phase of the cardset ",
     "textIntroEnding": "Dear participant, \n\n",
     "textEnding": "Today ends the learning-phase of the cardset ",
-    "subjectReset": ".cards: Your learning-progress is going to be resetted for the cardset ",
+    "subjectReset": ".__lastAppTitle__: Your learning-progress is going to be resetted for the cardset ",
     "textReset": "your learning-progress has been resetted due to inactivity. ",
     "mailCard": "the cardset ",
     "mailCard1": " needs your attention! \n\n",
@@ -1327,15 +1327,15 @@
     "textDate2": " to work on your active cards. Otherwise your learning progress will be resetted!",
     "subjectSingular3": " is. \n\n",
     "subjectPlural3": " are. \n\n",
-    "service": "This newsletter is a Service from .cards. You are receiving this email, because you signed up at ",
+    "service": "This newsletter is a Service from .__lastAppTitle__. You are receiving this email, because you signed up at ",
     "unsubscribe": "Not interested anymore? To unsubscribe stop the current learning phase.",
-    "copyright": "© 2017 .cards",
+    "copyright": "© 2018 .__lastAppTitle__",
     "my-cardset": "My Cardset",
     "auto-generated": "Please don't reply to this mail. It was automatically generated."
   },
   "footer": {
     "language": "Choose a language",
-    "info": "About .cards",
+    "info": "About .__lastAppTitle__",
     "connection": "Connection Status"
   },
   "language": {
@@ -1394,7 +1394,7 @@
   },
   "bertAlert": {
     "firstLogin": {
-      "title": "Welcome to informatik.cards !",
+      "title": "Welcome to __firstAppTitle__.__lastAppTitle__ !",
       "message": "Take a look around the platform.
       Here you can learn cards on a specific topic or create sets of cards for your studies.
       </br>

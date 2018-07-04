@@ -26,9 +26,9 @@
     }
   },
   "intro": {
-    "about": "Was ist .cards?",
-    "learnMore": "Klick auf ein Thema, um Details zu sehen. Erfahre mehr über .cards in unserer Demo-Kartei…",
-    "learnMoreMobile": "Erfahre mehr über .cards…",
+    "about": "Was ist .__lastAppTitle__?",
+    "learnMore": "Erfahre mehr über .__lastAppTitle__ in der Demo-Kartei…",
+    "learnMoreMobile": "Erfahre mehr über .__lastAppTitle__…",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
@@ -50,7 +50,7 @@
     "info-extra-small": "Hauptmenü"
   },
   "contact": {
-    "about": ".cards",
+    "about": ".__lastAppTitle__",
     "demo": "Demo",
     "home": "Startseite",
     "demoTitle": "Zettel, Kartons, Regale versus Karten, Karteien, Kurse",
@@ -90,7 +90,7 @@
     "upload-title": "Karten importieren",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "Dateiformat",
-    "upload-type1": ".cards",
+    "upload-type1": ".__lastAppTitle__",
     "upload-type2": "Mnemosyne",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
@@ -135,8 +135,8 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .cards nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .cards abgemeldet."
+    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
@@ -241,7 +241,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
-    "descriptionplaceholder": "Worum geht es in der Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .cards-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "descriptionplaceholder": "Worum geht es in der Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -326,7 +326,7 @@
     "settings": {
       "name": "Mein Profil",
       "delete": "Benutzerkonto löschen",
-      "deleteText": "Falls du sicher bist, dass du .cards nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
+      "deleteText": "Falls du sicher bist, dass du .__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
       "theme": "Hintergrundbild",
       "language": "Sprache"
@@ -614,7 +614,7 @@
   },
   "filter-pool": {
     "wordcloud": "Empfohlen",
-    "wordcloudTrue": "Von der .cards-Redaktion empfohlen",
+    "wordcloudTrue": "Von der .__lastAppTitle__-Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
@@ -1040,7 +1040,7 @@
   "badgetext2": "Stammgast",
   "badgetext3": " erhalten",
   "connection": {
-    "title": "Um .cards online nutzen zu können, ist eine WebSocket-Verbindung zum Server erforderlich.",
+    "title": "Um .__lastAppTitle__ online nutzen zu können, ist eine WebSocket-Verbindung zum Server erforderlich.",
     "webSocket": "WebSocket-Check",
     "connected": "okay",
     "disconnected": "keine Verbindung"
@@ -1233,8 +1233,8 @@
       "clock": " Uhr",
       "roles": "Benutzerrollen",
       "blocked": "Benutzer/in blockieren",
-      "blockedtext": "Willst du dem User den Zugang zu .cards verweigern?",
-      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von .cards zu bearbeiten.",
+      "blockedtext": "Willst du dem User den Zugang zu .__lastAppTitle__ verweigern?",
+      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von .__lastAppTitle__ zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
       "blockedtext_invalid": "Gib einen Grund für die Sperrung ein!",
       "cancel": "Abbrechen",
@@ -1266,7 +1266,7 @@
     "button": "Akzeptieren"
   },
   "mailNotification": {
-    "subjectTitle": ".cards: Heute ",
+    "subjectTitle": ".__lastAppTitle__: Heute ",
     "subjectSingular1": "ist ",
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
@@ -1284,22 +1284,22 @@
     "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "mailCard": "die Kartei ",
     "mailCard1": " benötigt deine Aufmerksamkeit! \n\n",
-    "greetings": " \n\nDein .cards-Team",
+    "greetings": " \n\nDein .__lastAppTitle__-Team",
     "subjectEnding": "endet die Lernphase der Kartei ",
     "textIntroEnding": "Hallo, \n\n",
     "textEnding": "heute endet die Lernphase der Kartei ",
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass ",
-    "service": "Der Newsletter ist ein Service von .cards. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
+    "service": "Der Newsletter ist ein Service von .__lastAppTitle__. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
-    "copyright": "© 2018 .cards",
+    "copyright": "© 2018 .__lastAppTitle__",
     "my-cardset": "Zur Kartei…",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
     "language": "Wähle eine Sprache",
-    "info": "Über .cards",
+    "info": "Über .__lastAppTitle__",
     "connection": "Verbindungsstatus"
   },
   "language": {
@@ -1358,13 +1358,13 @@
   },
   "bertAlert": {
     "firstLogin": {
-      "title": "Willkommen auf informatik.cards !",
+      "title": "Willkommen auf __firstAppTitle__.__lastAppTitle__ !",
       "message": "Schau dich in Ruhe auf der Plattform um.
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
       Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Kartei anlegen\", \"Kurse\" und \"Lernpensum\"
-      dient dir als Einstieg in die großartigen Features von .cards, schau dir dazu auch die Hilfe und Demo-Kartei an!
+      dient dir als Einstieg in die großartigen Features von .__lastAppTitle__, schau dir dazu auch die Hilfe und Demo-Kartei an!
       </br>
       </br>
       Suche im Themen-Pool nach einem Thema, das dich interessiert.

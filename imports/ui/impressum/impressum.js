@@ -2,6 +2,7 @@
 import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Session} from "meteor/session";
+import {Route} from "../../api/route.js";
 
 /*
  * ############################################################################
@@ -9,18 +10,42 @@ import {Session} from "meteor/session";
  * ############################################################################
  */
 
+
+Template.contact.helpers({
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
+	}
+});
+
 Template.contact.events({
 	'click #backButton': function () {
 		window.history.back();
-	},
-	'click #backToStartButton': function () {
-		Router.go('home');
 	}
 });
 
 Template.contact.onCreated(function () {
 	this.subscribe("cardsets");
 	this.subscribe("cards");
+});
+
+/*
+ * ############################################################################
+ * contactNavigation
+ * ############################################################################
+ */
+
+Template.contactNavigation.helpers({
+	displayAsFooter: function () {
+		return (Route.isHome() || Route.isFirstTimeVisit());
+	}
+});
+
+Template.contactNavigation.events({
+	'click #backToStartButton': function (event) {
+		event.preventDefault();
+		Route.setFirstTimeVisit();
+		Router.go('home');
+	}
 });
 
 /*
@@ -34,5 +59,17 @@ Template.help.onRendered(function () {
 	if (target !== undefined) {
 		$(window).scrollTop(($(target).offset().top - 70));
 		Session.set('helpTarget', undefined);
+	}
+});
+
+/*
+ * ############################################################################
+ * demo
+ * ############################################################################
+ */
+
+Template.demo.helpers({
+	isFirstTimeVisit: function () {
+		return Route.isFirstTimeVisit();
 	}
 });
