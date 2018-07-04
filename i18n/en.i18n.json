@@ -867,6 +867,24 @@
       "lockSide": "Back of the card becomes the front side."
     }
   },
+  "cardType13": {
+    "name": "Formulary",
+    "longName": "Formulary (Task | Formula | Solution | Literature)",
+    "content1": "Task",
+    "content2": "Formula",
+    "content3": "Solution",
+    "content4": "Literature",
+    "placeholders": {
+      "subject": "",
+      "content1": "",
+      "content2": "",
+      "content3": "",
+      "content4": ""
+    },
+    "editorLabels": {
+      "subject": "Enter the name of the formulary !"
+    }
+  },
   "courseIteration": {
     "name": "Course",
     "targetAudience": "Audience",

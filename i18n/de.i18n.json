@@ -814,18 +814,36 @@
       "content3": "Kontext",
       "content4": "Kräfte",
       "content5": "Verwendung",
-      "content6": "Verweise",
+      "content6": "Links & Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
         "content1": "Welches Problem löst das Muster?",
-        "content2": "Beschreib die Lösung anhand eines Diagramms!",
+        "content2": "Beschreib die Lösung anhand eines Diagramms.",
         "content3": "Wo tritt das Problem auf?",
         "content4": "Was sind die Vor- und Nachteile der Lösung?",
-        "content5": "Nenne konkrete Implementierungen des Entwurfsmusters!",
-        "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf!"
+        "content5": "Nenne konkrete Implementierungen des Entwurfsmusters.",
+        "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
         "subject": "Gib den Namen des Entwurfsmusters an !"
+      }
+    },
+    "cardType13": {
+      "name": "Formelsammlung",
+      "longName": "Formelsammlung (Aufgabe | Formel | Lösung | Literatur)",
+      "content1": "Aufgabe",
+      "content2": "Formel",
+      "content3": "Lösung",
+      "content4": "Literatur",
+      "placeholders": {
+        "subject": "Wie heißt die Formel ?",
+        "content1": "Beschreibe hier eine typische Aufgabe, die mit Hilfe der Formel zu lösen ist.",
+        "content2": "Formatiere die Formel mit TeX inline ($...$) oder abgesetzt ($$...$$).",
+        "content3": "Beschreibe, wie die Aufgabe mit der Formel gelöst wird.",
+        "content4": "Verlinke auf ausführliche Erläuterungen der Formel im Web."
+      },
+      "editorLabels": {
+        "subject": "Gib das Themengebiet der Formel an !"
       }
     },
     "tooltip": {
