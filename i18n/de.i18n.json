@@ -814,15 +814,15 @@
       "content3": "Kontext",
       "content4": "Kräfte",
       "content5": "Verwendung",
-      "content6": "Verweise",
+      "content6": "Links & Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
         "content1": "Welches Problem löst das Muster?",
-        "content2": "Beschreib die Lösung anhand eines Diagramms!",
+        "content2": "Beschreib die Lösung anhand eines Diagramms.",
         "content3": "Wo tritt das Problem auf?",
         "content4": "Was sind die Vor- und Nachteile der Lösung?",
-        "content5": "Nenne konkrete Implementierungen des Entwurfsmusters!",
-        "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf!"
+        "content5": "Nenne konkrete Implementierungen des Entwurfsmusters.",
+        "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
         "subject": "Gib den Namen des Entwurfsmusters an !"

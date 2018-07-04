@@ -22,7 +22,7 @@ let cardTypesWithLearningUnit = [];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 4}, {cardType: 7}, {cardType: 1}, {cardType: 8}, {cardType: 9}, {cardType: 10}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
 
@@ -275,37 +275,36 @@ let cardTypeCubeSides = [
 			"defaultCentered": false
 		},
 		{
-			"contentId": 4,
+			"contentId": 3,
 			"side": "right",
-			"defaultStyle": "lecture",
-			"defaultCentered": false,
-			"isAnswer": true
+			"defaultStyle": "default",
+			"defaultCentered": false
+		},
+		{
+			"contentId": 4,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false
 		},
 		{
 			"contentId": 2,
-			"side": "back",
+			"side": "left",
 			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "hint",
-			"defaultCentered": false
-		},
-		{
 			"contentId": 5,
 			"side": "top",
-			"defaultStyle": "hint-alternative",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		},
 		{
 			"contentId": 6,
 			"side": "bottom",
-			"defaultStyle": "hint-alternative",
+			"defaultStyle": "hint",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -322,7 +321,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 2,
 			"side": "back",
-			"defaultStyle": "lecture",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		},
