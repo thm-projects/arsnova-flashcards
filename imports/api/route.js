@@ -56,6 +56,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "memo";
 	}
 
+	static isHome () {
+		return Router.current().route.getName() === "home";
+	}
+
 	static isFirstTimeVisit () {
 		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {
 			localStorage.setItem(firstTimeVisit, "true");

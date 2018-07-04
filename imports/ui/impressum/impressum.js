@@ -34,6 +34,12 @@ Template.contact.onCreated(function () {
  * ############################################################################
  */
 
+Template.contactNavigation.helpers({
+	displayAsFooter: function () {
+		return (Route.isHome() || Route.isFirstTimeVisit());
+	}
+});
+
 Template.contactNavigation.events({
 	'click #backToStartButton': function (event) {
 		event.preventDefault();
