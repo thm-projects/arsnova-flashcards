@@ -13,7 +13,6 @@ import "./item/delete.js";
 import "./item/dictionary.js";
 import "./item/edit.js";
 import "./item/endPresentation.js";
-import "./item/swapOrder.js";
 import "./item/toggleFullscreen.js";
 
 

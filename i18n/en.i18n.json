@@ -863,8 +863,19 @@
     "tooltip": {
       "endPresentation": "Close presentation",
       "fullscreen": "With ESCAPE you get back to the normal view.",
-      "turnCard": "You can also do this by clicking on the card.",
-      "lockSide": "Back of the card becomes the front side."
+      "lockSide": "Back of the card becomes the front side.",
+      "showIndex": "Zeige den KartenIndex",
+      "edit": "",
+      "delete": "",
+      "dictionary": "",
+      "copy": "",
+      "markdeepEditor": {
+        "help": "",
+        "center": " ",
+        "dictionary": "",
+        "style": "",
+        "fullscreen": ""
+      }
     }
   },
   "cardType13": {

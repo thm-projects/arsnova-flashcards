@@ -849,8 +849,19 @@
     "tooltip": {
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
-      "turnCard": "Oder klick einfach auf die Karte.",
-      "lockSide": "Rückseite wird zur Vorderseite"
+      "lockSide": "Rückseite wird zur Vorderseite",
+      "showIndex": "Zeige den Index der Kartei",
+      "edit": "Bearbeite die Karte",
+      "delete": "Lösche die Karte",
+      "dictionary": "Zeige die BEOLINGUS Übersetzung",
+      "copy": "Erstelle eine Kopie von dieser Karte",
+      "markdeepEditor": {
+        "help": "Zeige die Markdeep Feature Demo",
+        "center": "Zentriere den Inhalt",
+        "dictionary": "Zeige die BEOLINGUS Übersetzung",
+        "style": "Ändere den Hintergrund für die Karte",
+        "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht."
+      }
     }
   },
   "courseIteration": {
