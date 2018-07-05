@@ -861,10 +861,11 @@
       }
     },
     "tooltip": {
+      "contrast": "",
       "endPresentation": "Close presentation",
       "fullscreen": "With ESCAPE you get back to the normal view.",
       "lockSide": "Back of the card becomes the front side.",
-      "showIndex": "Zeige den KartenIndex",
+      "showIndex": "",
       "edit": "",
       "delete": "",
       "dictionary": "",

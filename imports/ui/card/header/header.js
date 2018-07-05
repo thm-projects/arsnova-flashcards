@@ -4,6 +4,7 @@ import "./header.html";
 import "./left/left.js";
 import "./right/right.js";
 import "./item/cardList.js";
+import "./item/contrast.js";
 import "./center/center.js";
 import "./item/clock.js";
 import "./item/copy.js";
