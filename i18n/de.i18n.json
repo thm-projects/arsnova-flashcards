@@ -847,6 +847,7 @@
       }
     },
     "tooltip": {
+      "contrast": "Setze die Präsentation in den Kontrastmodus",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
       "lockSide": "Rückseite wird zur Vorderseite",
