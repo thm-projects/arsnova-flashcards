@@ -35,6 +35,23 @@ export let CardEditor = class CardEditor {
 		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
+	static loadEditModeContent (card) {
+		Session.set('subject', card.subject);
+		Session.set('content1', card.front);
+		Session.set('content2', card.back);
+		Session.set('content3', card.hint);
+		Session.set('content4', card.lecture);
+		Session.set('content5', card.top);
+		Session.set('content6', card.bottom);
+		Session.set('cardType', card.cardType);
+		Session.set('centerTextElement', card.centerTextElement);
+		Session.set('difficultyColor', card.difficulty);
+		Session.set('learningGoalLevel', card.learningGoalLevel);
+		Session.set('backgroundStyle', card.backgroundStyle);
+		Session.set('learningUnit', card.learningUnit);
+		Session.set('learningIndex', card.learningIndex);
+	}
+
 	static setEditorContent (index) {
 		if (Route.isEditMode()) {
 			$('#contentEditor').focus();
