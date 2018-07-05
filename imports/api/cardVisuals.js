@@ -133,6 +133,9 @@ export let CardVisuals = class CardVisuals {
 	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
 		let box = "box-";
 		let style;
+		if (Session.get('contrastMode')) {
+			return box + 'white';
+		}
 		if (activeCard) {
 			style = Session.get('activeCardStyle');
 		} else {

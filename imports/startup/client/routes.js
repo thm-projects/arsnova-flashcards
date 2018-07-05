@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import {Route} from "../../api/route.js";
+import {CardEditor} from "../../api/cardEditor";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -162,17 +163,17 @@ Router.route('/cardsetlist/:_id', {
 
 Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
+	template: 'newCard',
 	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
-		return cardset;
+		return Cardsets.findOne({_id: this.params._id});
 	}
 });
 
 Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
+	template: 'editCard',
 	data: function () {
-		let card = Cards.findOne({_id: this.params.card_id});
-		return card;
+		CardEditor.loadEditModeContent(Cards.findOne({_id: this.params.card_id}));
 	}
 });
 

@@ -64,7 +64,7 @@ function createTagCloud() {
 		document.getElementById('tag-cloud-canvas').width = newWidth;
 		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
 		if ($(window).width() > 700 && $(window).height() > 700) {
-			let cloud = Cardsets.find({wordcloud: true, shuffled: false}, {fields: {name: 1, quantity: 1}}).fetch();
+			let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
 			let minimumSize = 1;
 			let biggestCardsetSize = 1;
 			let list = [];

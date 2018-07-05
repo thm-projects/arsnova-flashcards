@@ -16,6 +16,8 @@ module.exports = {
 			browser.url(global.baseURL);
 			setResolution();
 			agreeCookies();
+			browser.waitForVisible('#backToStartButton', global.threshold);
+			browser.click("#backToStartButton");
 			userLogin += "Login";
 			browser.waitForVisible('#TestingBackdoorUsername', global.threshold);
 			this.clickElement('#TestingBackdoorUsername', global.threshold);

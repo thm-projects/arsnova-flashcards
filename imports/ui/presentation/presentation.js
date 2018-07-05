@@ -31,6 +31,7 @@ Template.presentationView.onRendered(function () {
 Template.presentationView.onDestroyed(function () {
 	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
 		Session.set('activeCard', undefined);
+		Session.set('contrastMode', false);
 	}
 });
 

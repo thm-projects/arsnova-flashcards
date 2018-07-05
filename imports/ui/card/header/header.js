@@ -4,6 +4,7 @@ import "./header.html";
 import "./left/left.js";
 import "./right/right.js";
 import "./item/cardList.js";
+import "./item/contrast.js";
 import "./center/center.js";
 import "./item/clock.js";
 import "./item/copy.js";
@@ -13,7 +14,6 @@ import "./item/delete.js";
 import "./item/dictionary.js";
 import "./item/edit.js";
 import "./item/endPresentation.js";
-import "./item/swapOrder.js";
 import "./item/toggleFullscreen.js";
 
 
