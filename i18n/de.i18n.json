@@ -515,7 +515,9 @@
   "cardset": {
     "info": {
       "author": "Autor/in",
-      "originalAuthor": "Verfasser",
+      "multipleAuthors": "Mehrere Autoren",
+      "publisher": "Herausgeber/in",
+      "originalAuthor": "Verfasser/in",
       "rating": "Bewertung",
       "userRating": "Deine Bewertung",
       "notRated": "Noch nicht bewertet",
