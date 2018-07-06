@@ -556,8 +556,7 @@ Meteor.startup(function () {
 		}
 		Cardsets.update(cardsets[i]._id, {
 			$set: {
-				quantity: totalQuantity,
-				dateUpdated: new Date()
+				quantity: totalQuantity
 			}
 		});
 	}
