@@ -1,8 +1,15 @@
 .cardNavigation {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: $margin_bottom_card_navigation;
+  @media(max-width: 767px) {
+    margin-bottom: $margin_bottom_card_navigation_mobile;
+  }
   padding-left: 0;
   padding-right: 0;
+}
+
+.cardEditorHeader .cardNavigation {
+  margin-bottom: 0;
 }
 
 .cardNavigation .btn {
