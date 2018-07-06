@@ -424,18 +424,16 @@
                             {{/unless}}
                         {{/if}}
                     {{/unless}}
-                    {{#unless isDisabled}}
-                        {{#if isShuffledCardset this._id}}
-                            {{#if isCardsetOwner _id}}
-                                <div class="btn-group">
-                                    <button id="editShuffle" class="btn btn-sm btn-raised editShuffleBtn"
-                                        {{disableIfOffline}}>
-                                        <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
-                                    </button>
-                                </div>
-                            {{/if}}
+                    {{#if isShuffledCardset this._id}}
+                        {{#if isCardsetOwner _id}}
+                            <div class="btn-group">
+                                <button id="editShuffle" class="btn btn-sm btn-raised editShuffleBtn"
+                                    {{disableIfOffline}}>
+                                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                                </button>
+                            </div>
                         {{/if}}
-                    {{/unless}}
+                    {{/if}}
                     {{#if isCardsetOwner _id}}
                         <div class="btn-group">
                             <button id="editCardset" class="btn btn-sm btn-raised eidtCardsetBtn"
