@@ -126,6 +126,7 @@ function importCards(data, cardset, importType) {
 				quantity: Cards.find({cardset_id: cardset._id}).count()
 			}
 		});
+		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 		return cardset._id;
 	}
 }
