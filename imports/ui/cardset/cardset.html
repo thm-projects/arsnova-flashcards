@@ -107,11 +107,23 @@
                      regex="pool|course|create|learn|shuffle"}}visible-xs{{/if}}">
         <td>{{_ "cardset.info.author"}}:</td>
         <td>
-            {{#each getAuthors this}}
-                {{getAuthorName this.owner}}
-            {{/each}}
+            {{#if gotMultipleAuthorsAndIsHome this}}
+                {{_ "cardset.info.multipleAuthors"}}
+            {{else}}
+                {{#each getAuthors this}}
+                    {{getAuthorName this.owner}}<br>
+                {{/each}}
+            {{/if}}
         </td>
     </tr>
+    {{#if this.shuffled}}
+        <tr>
+            <td>{{_ "cardset.info.publisher"}}:</td>
+            <td>
+                {{getAuthorName this.owner}}
+            </td>
+        </tr>
+    {{/if}}
     {{#if this.originalAuthor}}
         <tr>
             <td>{{_ "cardset.info.originalAuthor"}}:</td>
@@ -633,10 +645,12 @@
                                         <div class="cardListNumber" data-id="{{this._id}}">
                                             {{getPriority @index}}
                                         </div>
-                                        <div class="col-xs-11 listCard" data-id="{{this._id}}" data-card-type="{{this.cardType}}">
+                                        <div class="col-xs-11 listCard" data-id="{{this._id}}"
+                                             data-card-type="{{this.cardType}}">
                                             {{cleanText getText}}
                                         </div>
-                                        <i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}" data-card-type="{{this.cardType}}"></i>
+                                        <i class="glyphicon glyphicon-menu-right pull-right" data-id="{{this._id}}"
+                                           data-card-type="{{this.cardType}}"></i>
                                     </td>
                                 </tr>
                             {{/each}}

@@ -8,6 +8,7 @@ import {Cards} from "../../api/cards.js";
 import {Ratings} from "../../api/ratings.js";
 import {Paid} from "../../api/paid.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
+import {Route} from "../../api/route.js";
 import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/learn.js";
@@ -632,6 +633,15 @@ Template.cardsetInfoBoxContentOne.helpers({
 		var cardset = Cardsets.findOne(this._id);
 		if (cardset !== null) {
 			return count !== 0;
+		}
+	}, gotMultipleAuthorsAndIsHome: function (cardset) {
+		if (cardset !== undefined && cardset !== null) {
+			let cardsets = cardset.cardGroups;
+			cardsets.push(cardset._id);
+			let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+				return item.owner;
+			});
+			return owners.length > 1 && Route.isHome();
 		}
 	}, getAuthors: function (cardset) {
 		if (cardset !== undefined && cardset !== null) {
