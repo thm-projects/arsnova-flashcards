@@ -11,6 +11,10 @@ export let CardVisuals = class CardVisuals {
 		return editorFullScreenActive;
 	}
 
+	static isFullscreen () {
+		return Session.get('fullscreen');
+	}
+
 	static checkFullscreen () {
 		let currentRoute = Router.current().route.getName();
 		if (currentRoute === (Route.isPresentation())) {
