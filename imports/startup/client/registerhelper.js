@@ -266,20 +266,6 @@ Template.registerHelper("singleUniversity", function () {
 	return Meteor.settings.public.university.singleUniversity;
 });
 
-Template.registerHelper("getQuantity", function (item) {
-	if (item.shuffled) {
-		let quantity = 0;
-		this.cardGroups.forEach(function (cardset_id) {
-			if (cardset_id !== Router.current().params._id) {
-				quantity += Cardsets.findOne(cardset_id).quantity;
-			}
-		});
-		return quantity;
-	} else {
-		return item.quantity;
-	}
-});
-
 // Returns all Cards of a Carddeck
 Template.registerHelper("getCards", function () {
 	return Cards.find({
