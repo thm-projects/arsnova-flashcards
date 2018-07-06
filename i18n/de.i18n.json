@@ -628,8 +628,8 @@
     "navigationDisabled": "Karte wird gewechselt…",
     "cardType0": {
       "name": "Lernkartei",
-      "longName": "Lernkartei (Lernzielfrage | Vertiefung | Fazit | Literatur)",
-      "content1": "Lernzielfrage",
+      "longName": "Lernkartei (Lernziel | Vertiefung | Fazit | Literatur)",
+      "content1": "Lernziel",
       "content2": "Fazit",
       "content3": "Literatur ",
       "content4": "Vertiefung",
