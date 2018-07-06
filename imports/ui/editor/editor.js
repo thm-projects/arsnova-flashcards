@@ -23,6 +23,9 @@ Template.editor.helpers({
 	},
 	isTextCentered: function () {
 		CardVisuals.isTextCentered();
+	},
+	isEditorView: function () {
+		return CardVisuals.isEditorFullscreen() || !CardVisuals.isFullscreen();
 	}
 });
 
