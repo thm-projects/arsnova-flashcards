@@ -523,6 +523,8 @@
   "cardset": {
     "info": {
       "author": "Author",
+      "multipleAuthors": "Multiple Authors",
+      "publisher": "Publisher",
       "originalAuthor": "Original Author",
       "rating": "Rating",
       "userRating": "Your rating ",
