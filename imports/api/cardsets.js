@@ -312,6 +312,7 @@ Meteor.methods({
 		Cards.remove({
 			cardset_id: id
 		});
+		Meteor.call('updateShuffledCardsetQuantity', id);
 		Leitner.remove({
 			cardset_id: id
 		});
@@ -341,7 +342,6 @@ Meteor.methods({
 		Cards.remove({
 			cardset_id: id
 		});
-
 		Cardsets.update({
 				_id: id
 			},
@@ -355,6 +355,7 @@ Meteor.methods({
 				}
 			}
 		);
+		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 		Leitner.remove({
 			cardset_id: id
 		});
@@ -584,6 +585,36 @@ Meteor.methods({
 			});
 		}
 		return true;
+	},
+	updateShuffledCardsetQuantity: function (cardset_id) {
+		check(cardset_id, String);
+		if (Meteor.isServer) {
+			let cardsets = Cardsets.find({shuffled: true, cardGroups: {$in: [cardset_id]}}, {
+				fields: {
+					_id: 1,
+					quantity: 1,
+					cardGroups: 1,
+					dateUpdated: 1
+				}
+			}).fetch();
+			let totalQuantity;
+			let cardGroupsCardset;
+			for (let i = 0; i < cardsets.length; i++) {
+				totalQuantity = 0;
+				for (let k = 0; k < cardsets[i].cardGroups.length; k++) {
+					cardGroupsCardset = Cardsets.find(cardsets[i].cardGroups[k]).fetch();
+					if (cardGroupsCardset.length > 0) {
+						totalQuantity += cardGroupsCardset[0].quantity;
+					}
+				}
+				Cardsets.update(cardsets[i]._id, {
+					$set: {
+						quantity: totalQuantity,
+						dateUpdated: new Date()
+					}
+				});
+			}
+		}
 	},
 	activateLearningPeriodSetEdu: function (cardset_id) {
 		check(cardset_id, String);

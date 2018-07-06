@@ -52,7 +52,7 @@
             {{#if learningActiveAndNotEditor}}
                 {{> leitnerLearning}}
             {{else}}
-                {{#if getQuantity this}}
+                {{#if this.quantity}}
                     <div class="col-xs-12">
                         {{> cardNavigation}}
                     </div>
@@ -71,7 +71,7 @@
             </div>
         {{/if}}
     {{else}}
-        {{#if getQuantity this}}
+        {{#if this.quantity}}
             <div class="col-xs-12">
                 {{> cardNavigation}}
             </div>
@@ -194,7 +194,7 @@
         {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
             <tr>
                 <td>{{_ "cardset.info.quantity"}}:</td>
-                <td class="cardsetCardQuantity" data-quantity="{{getQuantity this}}">{{getQuantity this}}</td>
+                <td class="cardsetCardQuantity" data-quantity="{{this.quantity}}">{{this.quantity}}</td>
             </tr>
         {{/unless}}
         {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
@@ -371,7 +371,7 @@
             <div class="panel-footer">
                 {{#if hasCardsetPermission this._id}}
                     {{#unless learningActive}}
-                        {{#if getQuantity this}}
+                        {{#if this.quantity}}
                             {{#if gotPresentation}}
                                 <div class="btn-group">
                                     <button id="startPresentation"
@@ -381,7 +381,7 @@
                                 </div>
                             {{/if}}
                         {{/if}}
-                        {{#if getQuantity this}}
+                        {{#if this.quantity}}
                             {{#if gotLearningModes}}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-raised learnBtn"
@@ -559,7 +559,7 @@
                     </div>
                     {{#unless learningActive}}
                         {{#unless isShuffledCardset this._id}}
-                            {{#if getQuantity this}}
+                            {{#if this.quantity}}
                                 {{#if isCardsetOwner _id}}
                                     <div class="btn-group">
                                         <button id="exportCardsBtn" class="btn btn-sm btn-raised exportCardsBtn"><i

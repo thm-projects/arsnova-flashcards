@@ -543,6 +543,25 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({shuffled: true}).fetch();
+	let totalQuantity;
+	let cardGroupsCardset;
+	for (let i = 0; i < cardsets.length; i++) {
+		totalQuantity = 0;
+		for (let k = 0; k < cardsets[i].cardGroups.length; k++) {
+			cardGroupsCardset = Cardsets.find(cardsets[i].cardGroups[k]).fetch();
+			if (cardGroupsCardset.length > 0) {
+				totalQuantity += cardGroupsCardset[0].quantity;
+			}
+		}
+		Cardsets.update(cardsets[i]._id, {
+			$set: {
+				quantity: totalQuantity,
+				dateUpdated: new Date()
+			}
+		});
+	}
+
 	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < leitner.length; i++) {
 		Leitner.update({

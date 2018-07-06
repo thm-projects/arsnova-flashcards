@@ -71,10 +71,19 @@ Meteor.methods({
 			}
 		}, {multi: true});
 
+		let allPrivateUserCardsets = Cardsets.find({
+			owner: user_id,
+			kind: 'personal'
+		}).fetch();
+
 		Cardsets.remove({
 			owner: user_id,
 			kind: 'personal'
 		});
+
+		for (let i = 0; i < allPrivateUserCardsets.length; i++) {
+			Meteor.call('updateShuffledCardsetQuantity', allPrivateUserCardsets[i]._id);
+		}
 
 		Meteor.users.remove(user_id);
 	},

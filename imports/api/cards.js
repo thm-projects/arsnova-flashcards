@@ -269,6 +269,7 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
+		Meteor.call('updateShuffledCardsetQuantity', cardset_id);
 		return card_id;
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
@@ -353,6 +354,9 @@ Meteor.methods({
 				dateUpdated: new Date()
 			}
 		});
+
+		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+
 		Leitner.remove({
 			card_id: card_id
 		});
@@ -379,6 +383,7 @@ Meteor.methods({
 					dateUpdated: new Date()
 				}
 			});
+			Meteor.call('updateShuffledCardsetQuantity', card.cardset_id);
 			Leitner.remove({
 				card_id: card_id
 			});
