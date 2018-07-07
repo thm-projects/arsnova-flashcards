@@ -10,6 +10,20 @@ import {CardType} from "./cardTypes";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
+export function getShuffledCardsetReferences(kind) {
+	let shuffleddCardsetReferences = [];
+	let shuffledCardsets = Cardsets.find({
+		shuffled: true,
+		visible: true,
+		kind: {$in: kind}
+	}, {fields: {cardGroups: 1}}).fetch();
+	for (let i = 0; i < shuffledCardsets.length; i++) {
+		for (let k = 0; k < shuffledCardsets[i].cardGroups.length; k++) {
+			shuffleddCardsetReferences.push(shuffledCardsets[i].cardGroups[k]);
+		}
+	}
+	return shuffleddCardsetReferences;
+}
 
 if (Meteor.isServer) {
 	Meteor.publish("cardsets", function () {
@@ -25,7 +39,8 @@ if (Meteor.isServer) {
 						$or: [
 							{visible: true},
 							{request: true},
-							{owner: this.userId}
+							{owner: this.userId},
+							{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
 						]
 					});
 			} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
@@ -33,7 +48,8 @@ if (Meteor.isServer) {
 					{
 						$or: [
 							{visible: true},
-							{owner: this.userId}
+							{owner: this.userId},
+							{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
 						]
 					});
 			}

@@ -44,7 +44,7 @@
         {{> chooseFlashcards}}
         {{onEditmodalClose}}
     {{/unless}}
-    {{#if hasCardsetPermission this._id}}
+    {{#if hasCardsetPermission}}
         {{#unless learningActiveAndEditor}}
             {{selectedForLearning}}
         {{/unless}}
@@ -369,7 +369,7 @@
             {{/if}}
 
             <div class="panel-footer">
-                {{#if hasCardsetPermission this._id}}
+                {{#if hasCardsetPermission}}
                     {{#unless learningActive}}
                         {{#if this.quantity}}
                             {{#if gotPresentation}}
