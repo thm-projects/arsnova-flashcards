@@ -6,6 +6,7 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
 import {CardEditor} from "./cardEditor";
+import {getShuffledCardsetReferences} from "./cardsets";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -36,7 +37,8 @@ if (Meteor.isServer) {
 									$or: [
 										{owner: this.userId},
 										{visible: true},
-										{cardset_id: {$in: paidCardsets}}
+										{_id: {$in: paidCardsets}},
+										{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
 									]
 								}).map(function (cardset) {
 								return cardset._id;
@@ -54,7 +56,8 @@ if (Meteor.isServer) {
 											visible: true,
 											kind: {$in: ['demo', 'free', 'edu']}
 										},
-										{cardset_id: {$in: paidCardsets}}
+										{_id: {$in: paidCardsets}},
+										{_id: {$in: getShuffledCardsetReferences(['free', 'edu'])}}
 									]
 								}).map(function (cardset) {
 								return cardset._id;
@@ -72,7 +75,8 @@ if (Meteor.isServer) {
 											visible: true,
 											kind: {$in: ['demo', 'free']}
 										},
-										{cardset_id: {$in: paidCardsets}}
+										{_id: {$in: paidCardsets}},
+										{_id: {$in: getShuffledCardsetReferences(['free'])}}
 									]
 								}).map(function (cardset) {
 								return cardset._id;
