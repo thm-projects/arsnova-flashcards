@@ -377,11 +377,11 @@ Template.registerHelper("getCourses", function () {
 	});
 });
 
-Template.registerHelper("hasCardsetPermission", function (_id) {
+Template.registerHelper("hasCardsetPermission", function () {
 	if (Router.current().route.getName() === "demo") {
 		return true;
 	}
-	let cardset = Cardsets.findOne({_id});
+	let cardset = Cardsets.findOne({_id: Router.current().params._id});
 	if (cardset === undefined) {
 		return false;
 	}
