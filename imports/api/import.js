@@ -206,6 +206,7 @@ Meteor.methods({
 			try {
 				let fs = Npm.require("fs");
 				let cardGroups = [];
+				let totalQuantity = 0;
 				let demoPath = process.env.PWD + '/private/demo/';
 				let doesPathExist = fs.existsSync(demoPath);
 				if (!doesPathExist) {
@@ -217,6 +218,7 @@ Meteor.methods({
 					for (let i = 0; i < cardsetFiles.length; i++) {
 						let cardset = JSON.parse('[' + fs.readFileSync(demoPath + cardsetFiles[i], 'utf8') + ']');
 						if (cardset[0].name !== undefined) {
+							totalQuantity += cardset[0].quantity;
 							let cardset_id = Cardsets.insert({
 								name: cardset[0].name,
 								description: cardset[0].description,
@@ -233,7 +235,7 @@ Meteor.methods({
 								request: false,
 								relevance: 0,
 								raterCount: 0,
-								quantity: 0,
+								quantity: cardset[0].quantity,
 								license: [],
 								userDeleted: false,
 								learningActive: false,
@@ -274,7 +276,7 @@ Meteor.methods({
 					request: false,
 					relevance: 0,
 					raterCount: 0,
-					quantity: 0,
+					quantity: totalQuantity,
 					license: [],
 					userDeleted: false,
 					learningActive: false,
