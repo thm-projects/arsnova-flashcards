@@ -662,8 +662,8 @@
     },
     "cardType2": {
       "name": "Mitschrift",
-      "longName": "Mitschrift (Mitschrift | Nachbearbeitung | To-dos)",
-      "content1": "Mitschrift",
+      "longName": "Mitschrift (Foto der Mitschrift | Nachbearbeitung | To-dos)",
+      "content1": "Foto der Mitschrift",
       "content2": "Nachbearbeitung",
       "content3": "To-dos",
       "placeholders": {
