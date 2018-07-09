@@ -252,16 +252,14 @@ Template.admin_cardset.onRendered(function () {
 	let cardset = Cardsets.findOne({_id: Router.current().params._id});
 	Session.set('moduleActive', cardset.moduleActive);
 	if (cardset.learningActive) {
-		let now = cardset.learningStart;
-		let end = cardset.learningEnd;
-		let today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-		let tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-		let threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
-		document.getElementById('inputLearningStart').setAttribute("min", today);
-		document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-		$('#inputLearningStart').val(today);
-		document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-		$('#inputLearningEnd').val(threeMonths);
+		let start = moment(cardset.learningStart).format("YYYY-MM-DD");
+		let nextDay = moment(cardset.learningStart).add(1, 'day').format("YYYY-MM-DD");
+		let end = moment(cardset.learningEnd).format("YYYY-MM-DD");
+		document.getElementById('inputLearningStart').setAttribute("min", start);
+		document.getElementById('inputLearningStart').setAttribute("max", end);
+		$('#inputLearningStart').val(start);
+		document.getElementById('inputLearningEnd').setAttribute("min", nextDay);
+		$('#inputLearningEnd').val(end);
 	}
 });
 
