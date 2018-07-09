@@ -545,15 +545,15 @@ Template.cardsetInfo.events({
 		});
 	},
 	"click #startLearning": function () {
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
-			let today = moment().format("YYYY-MM-DD");
-			let tomorrow = moment().add(1, 'day').format("YYYY-MM-DD");
-			let threeMonths = moment().add(3, 'months').format("YYYY-MM-DD");
-			document.getElementById('inputLearningStart').setAttribute("min", today);
-			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-			$('#inputLearningStart').val(today);
-			document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-			$('#inputLearningEnd').val(threeMonths);
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId())) {
+			let start = moment().format("YYYY-MM-DD");
+			let nextDay = moment().add(1, 'day').format("YYYY-MM-DD");
+			let end = moment().add(3, 'months').format("YYYY-MM-DD");
+			document.getElementById('inputLearningStart').setAttribute("min", start);
+			document.getElementById('inputLearningStart').setAttribute("max", end);
+			$('#inputLearningStart').val(start);
+			document.getElementById('inputLearningEnd').setAttribute("min", nextDay);
+			$('#inputLearningEnd').val(end);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
