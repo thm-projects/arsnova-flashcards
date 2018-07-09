@@ -1,3 +1,4 @@
+import {Session} from "meteor/session";
 let firstTimeVisit = 'isFirstTimeVisit';
 
 export let Route = class Route {
@@ -67,7 +68,8 @@ export let Route = class Route {
 		if ($(window).width() < 768) {
 			this.setFirstTimeVisit();
 		}
-		return localStorage.getItem(firstTimeVisit) === "true";
+		Session.set('isFirstTimeVisit', localStorage.getItem(firstTimeVisit));
+		return Session.get('isFirstTimeVisit') === "true";
 	}
 
 
