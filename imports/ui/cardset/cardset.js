@@ -544,7 +544,7 @@ Template.cardsetInfo.events({
 			user_id: Meteor.userId()
 		});
 	},
-	"click #startStopLearning": function () {
+	"click #startLearning": function () {
 		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
 			var now = new Date();
 			var end = new Date();
