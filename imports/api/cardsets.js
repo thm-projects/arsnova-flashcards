@@ -386,7 +386,7 @@ Meteor.methods({
 	deactivateLearning: function (id) {
 		check(id, String);
 
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -414,7 +414,7 @@ Meteor.methods({
 		check(learningEnd, Date);
 		check(learningInterval, [String]);
 
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId()) {
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
 			if (!maxCards) {
 				maxCards = 5;
 			}

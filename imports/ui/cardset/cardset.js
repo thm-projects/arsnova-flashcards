@@ -544,19 +544,16 @@ Template.cardsetInfo.events({
 			user_id: Meteor.userId()
 		});
 	},
-	"click #startStopLearning": function () {
-		if (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId()) {
-			var now = new Date();
-			var end = new Date();
-			end.setMonth(end.getMonth() + 3);
-			var today = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + (now.getDate() < 10 ? "0" : "") + now.getDate();
-			var tomorrow = now.getFullYear() + "-" + ((now.getMonth() + 1) < 10 ? "0" : "") + (now.getMonth() + 1) + "-" + ((now.getDate() + 1) < 10 ? "0" : "") + (now.getDate() + 1);
-			var threeMonths = end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? "0" : "") + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? "0" : "") + end.getDate();
-			document.getElementById('inputLearningStart').setAttribute("min", today);
-			document.getElementById('inputLearningStart').setAttribute("max", threeMonths);
-			$('#inputLearningStart').val(today);
-			document.getElementById('inputLearningEnd').setAttribute("min", tomorrow);
-			$('#inputLearningEnd').val(threeMonths);
+	"click #startLearning": function () {
+		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId())) {
+			let start = moment().format("YYYY-MM-DD");
+			let nextDay = moment().add(1, 'day').format("YYYY-MM-DD");
+			let end = moment().add(3, 'months').format("YYYY-MM-DD");
+			document.getElementById('inputLearningStart').setAttribute("min", start);
+			document.getElementById('inputLearningStart').setAttribute("max", end);
+			$('#inputLearningStart').val(start);
+			document.getElementById('inputLearningEnd').setAttribute("min", nextDay);
+			$('#inputLearningEnd').val(end);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
