@@ -236,7 +236,9 @@
         </div>
         {{#unless fullscreenActive}}
             {{#unless currentUser}}
-                {{> footer}}
+                {{#unless isNotFirstDemoVisit}}
+                    {{> footer}}
+                {{/unless}}
             {{/unless}}
         {{/unless}}
     </div> <!-- Theme Wrapper -->
@@ -250,7 +252,8 @@
                     {{> contactNavigation}}
                 </li>
                 <li class="visible-xs col-xs-2 col-sm-1 icon-container">
-                    <a id="info" href="{{pathFor route='about'}}" aria-label="{{_ "footer.info" lastAppTitle=(getLastAppTitle)}}">
+                    <a id="info" href="{{pathFor route='about'}}"
+                       aria-label="{{_ "footer.info" lastAppTitle=(getLastAppTitle)}}">
                         <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                     </a>
                 </li>
@@ -318,7 +321,8 @@
             <div class="modal-content hintContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title" lastAppTitle=(getLastAppTitle)}}
+                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"
+                                                                           lastAppTitle=(getLastAppTitle)}}
                     </h4>
                 </div>
                 <div class="modal-body">

@@ -245,6 +245,9 @@ Template.main.helpers({
 	},
 	isFirstTimeVisit: function () {
 		return Route.isFirstTimeVisit() && !Session.get('fullscreen');
+	},
+	isNotFirstDemoVisit: function () {
+		return (!Route.isFirstTimeVisit() && Route.isDemo());
 	}
 });
 
