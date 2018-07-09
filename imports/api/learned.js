@@ -18,6 +18,7 @@ if (Meteor.isServer) {
 						cardset_id: {
 							$in: Cardsets.find(
 								{
+									id: {$nin: ['NotificationsTestCardset']},
 									$or: [
 										{owner: this.userId},
 										{editors: {$in: [this.userId]}}
@@ -75,7 +76,7 @@ if (Meteor.isServer) {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			return Leitner.find({
 				cardset_id: {
-					$in: Cardsets.find({}).map(function (cardset) {
+					$in: Cardsets.find({_id: {$nin: ['NotificationsTestCardset']}}).map(function (cardset) {
 						return cardset._id;
 					})
 				}

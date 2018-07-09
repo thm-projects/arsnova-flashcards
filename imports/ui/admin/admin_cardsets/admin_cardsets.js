@@ -18,7 +18,7 @@ import {getAuthorName} from "../../../api/userdata";
 
 Template.admin_cardsets.helpers({
 	cardsetListAdmin: function () {
-		var cardsets = Cardsets.find();
+		var cardsets = Cardsets.find({kind: {$nin: ['demo']}});
 		var fields = [];
 		var dateString = null;
 		var date = null;

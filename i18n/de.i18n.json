@@ -563,6 +563,10 @@
       "long": "Gemischter Kartensatz",
       "short": "Gemischt"
     },
+    "bonus": {
+      "long": "Bonus-Lernphase",
+      "short": "Bonus"
+    },
     "list": {
       "back": "Zurück zur Karte"
     }

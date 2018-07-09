@@ -56,6 +56,8 @@ $themes: (
     $disabled_text: map-get($map, "disabled_text");
     $shuffled_background: map-get($map, "shuffled_background");
     $shuffled_text: map-get($map, "shuffled_text");
+    $bonus_background: map-get($map, "bonus_background");
+    $bonus_text: map-get($map, "bonus_text");
     //navbar
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
@@ -1889,6 +1891,11 @@ $themes: (
     .label-shuffled {
       background-color: $shuffled_background !important;
       color: $shuffled_text !important;
+    }
+
+    .label-bonus {
+      background-color: $bonus_background !important;
+      color: $bonus_text !important;
     }
 
     .moduleRadioButtonLabel {
