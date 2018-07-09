@@ -116,7 +116,13 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 
 Template.registerHelper("getShuffleLabel", function (shuffled = false) {
 	if (shuffled) {
-		return '<span class="label label-shuffled" data-id="shuffled">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
+		return '<span class="label label-shuffled" data-id="shuffled" title="' + TAPi18n.__('cardset.shuffled.long') + '">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
+	}
+});
+
+Template.registerHelper("getBonusLabel", function (shuffled = false) {
+	if (shuffled) {
+		return '<span class="label label-bonus" data-id="bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
 	}
 });
 
@@ -124,15 +130,15 @@ Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
 			case "free":
-				return '<span class="label label-free" data-id="free">' + TAPi18n.__('access-level.free.short') + '</span>';
+				return '<span class="label label-free" data-id="free"title="' + TAPi18n.__('access-level.free.long') + '">' + TAPi18n.__('access-level.free.short') + '</span>';
 			case "edu":
-				return '<span class="label label-edu" data-id="edu">' + TAPi18n.__('access-level.edu.short') + '</span>';
+				return '<span class="label label-edu" data-id="edu"title="' + TAPi18n.__('access-level.edu.long') + '">' + TAPi18n.__('access-level.edu.short') + '</span>';
 			case "pro":
-				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.short') + '</span>';
+				return '<span class="label label-pro" data-id="pro"title="' + TAPi18n.__('access-level.pro.long') + '">' + TAPi18n.__('access-level.pro.short') + '</span>';
 			case "personal":
-				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.short') + '</span>';
+				return '<span class="label label-private" data-id="personal"title="' + TAPi18n.__('access-level.private.long') + '">' + TAPi18n.__('access-level.private.short') + '</span>';
 			case "demo":
-				return '<span class="label label-demo" data-id="demo">' + TAPi18n.__('access-level.demo.short') + '</span>';
+				return '<span class="label label-demo" data-id="demo"title="' + TAPi18n.__('access-level.demo.long') + '">' + TAPi18n.__('access-level.demo.short') + '</span>';
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}

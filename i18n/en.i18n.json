@@ -571,6 +571,10 @@
       "long": "Shuffled Cardset",
       "short": "Shuffled"
     },
+    "bonus": {
+      "long": "Bonus",
+      "short": "Bonus"
+    },
     "list": {
       "back": "Back to the card"
     }
