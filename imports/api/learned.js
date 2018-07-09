@@ -151,7 +151,7 @@ if (Meteor.isServer) {
 			Leitner.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
-			});
+			}, {multi: true});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
 		deleteWozniak: function (cardset_id) {
@@ -164,7 +164,7 @@ if (Meteor.isServer) {
 			Wozniak.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
-			});
+			}, {multi: true});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
 		updateWozniak: function (cardset_id, card_id, grade) {
