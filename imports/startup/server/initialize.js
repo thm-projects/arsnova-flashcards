@@ -29,7 +29,7 @@ var initTestNotificationsCardset = function () {
 			"owner": "NotificationsTestUser",
 			"visible": false,
 			"ratings": true,
-			"kind": "private",
+			"kind": "server",
 			"price": 0,
 			"reviewed": false,
 			"reviewer": "undefined",
@@ -142,75 +142,50 @@ var initTestNotificationsLearned = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
-			"isMemo": true,
 			"box": 1,
-			"ef": 2.5,
-			"reps": 0,
-			"interval": 0,
-			"active": true,
+			"active": false,
 			"nextDate": new Date(),
-			"currentDate": new Date(),
-			"skipped": 0
+			"currentDate": new Date()
 		},
 		{
 			"_id": "NotificationsTestLearned2",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
-			"isMemo": true,
 			"box": 1,
-			"ef": 2.5,
-			"reps": 0,
-			"interval": 0,
-			"active": true,
+			"active": false,
 			"nextDate": new Date(),
-			"currentDate": new Date(),
-			"skipped": 0
+			"currentDate": new Date()
 		},
 		{
 			"_id": "NotificationsTestLearned3",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
-			"isMemo": true,
 			"box": 1,
-			"ef": 2.5,
-			"reps": 0,
-			"interval": 0,
-			"active": true,
+			"active": false,
 			"nextDate": new Date(),
-			"currentDate": new Date(),
-			"skipped": 0
+			"currentDate": new Date()
 		},
 		{
 			"_id": "NotificationsTestLearned4",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
-			"isMemo": true,
 			"box": 1,
-			"ef": 2.5,
-			"reps": 0,
-			"interval": 0,
-			"active": true,
+			"active": false,
 			"nextDate": new Date(),
-			"currentDate": new Date(),
-			"skipped": 0
+			"currentDate": new Date()
 		},
 		{
 			"_id": "NotificationsTestLearned5",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
-			"isMemo": true,
 			"box": 1,
-			"ef": 2.5,
-			"reps": 0,
-			"interval": 0,
-			"active": true,
+			"active": false,
 			"nextDate": new Date(),
-			"currentDate": new Date(),
-			"skipped": 0
+			"currentDate": new Date()
 		}
 	];
 };
@@ -255,9 +230,9 @@ var initTestNotificationsUser = function () {
 			"webNotification": false,
 			"profile": {
 				"birthname": "User",
-				"givenname": "Standard",
+				"givenname": "NotificationsTest",
 				"completed": true,
-				"name": "standardUser",
+				"name": "NotificationsTestUser",
 				"title": ""
 			},
 			"blockedtext": null

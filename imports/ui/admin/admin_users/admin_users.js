@@ -19,7 +19,7 @@ Meteor.subscribe('allUsers');
 
 Template.admin_users.helpers({
 	userListAdmin: function () {
-		var users = Meteor.users.find();
+		var users = Meteor.users.find({_id: {$nin: ['NotificationsTestUser']}});
 		var fields = [];
 		var dateString = null;
 		var date = null;
