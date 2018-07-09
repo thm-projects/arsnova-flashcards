@@ -19,7 +19,13 @@ import {getAuthorName} from "../../../api/userdata";
 
 Template.admin_cards.helpers({
 	cardListAdmin: function () {
-		var cards = Cards.find();
+		var cards = Cards.find({
+			cardset_id: {
+				$nin: Cardsets.find({kind: {$in: ['demo']}}).map(function (cardset) {
+					return cardset._id;
+				})
+			}
+		});
 		var fields = [];
 
 		cards.forEach(function (card) {

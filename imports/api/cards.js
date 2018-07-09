@@ -24,7 +24,7 @@ if (Meteor.isServer) {
 				])) {
 					return Cards.find({
 						cardset_id: {
-							$in: Cardsets.find({}).map(function (cardset) {
+							$in: Cardsets.find({kind: {$nin: ['server']}}).map(function (cardset) {
 								return cardset._id;
 							})
 						}

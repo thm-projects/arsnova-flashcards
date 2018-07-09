@@ -32,7 +32,7 @@ if (Meteor.isServer) {
 				'admin',
 				'editor'
 			])) {
-				return Cardsets.find({});
+				return Cardsets.find({kind: {$nin: ['server']}});
 			} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
 				return Cardsets.find(
 					{
