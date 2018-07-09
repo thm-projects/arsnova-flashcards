@@ -67,14 +67,38 @@ function addLeitnerCards(cardset, user_id) {
 		if (cardset.shuffled) {
 			cardsetFilter = cardset.cardGroups;
 		}
-		cards = Cards.find({
-			cardset_id: {$in: cardsetFilter},
-			cardType: {$in: CardType.getCardTypesWithLearningModes()}
+
+		let existingItems = Leitner.find({
+			cardset_id: cardset._id,
+			user_id: user_id
+		}, {fields: {card_id: 1}}).fetch();
+		let excludedCards = [];
+		existingItems.forEach(function (existingItem) {
+			excludedCards.push(existingItem.card_id);
 		});
 
+		let newItems = [];
+		let nextDate = new Date();
+		cards = Cards.find({
+			_id: {$nin: excludedCards},
+			cardset_id: {$in: cardsetFilter},
+			cardType: {$in: CardType.getCardTypesWithLearningModes()}
+		}, {fields: {_id: 1}}).fetch();
 		cards.forEach(function (card) {
-			Meteor.call("addLeitner", cardset._id, card._id, user_id, false);
+			newItems.push({
+				card_id: card._id,
+				cardset_id: cardset._id,
+				user_id: user_id,
+				box: 1,
+				active: false,
+				nextDate: nextDate,
+				currentDate: nextDate,
+				skipped: 0
+			});
 		});
+		if (newItems.length > 0) {
+			Leitner.batchInsert(newItems);
+		}
 		Meteor.call("updateLearnerCount", cardset._id);
 		return true;
 	}
@@ -89,10 +113,10 @@ function setCards(cardset, user, isReset) {
 	if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		var algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
-		var cardCount = [];
+		let algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
+		let cardCount = [];
 		// i-loop: Get all cards that the user can learn right now
-		for (var i = 0; i < algorithm.length; i++) {
+		for (let i = 0; i < algorithm.length; i++) {
 			cardCount[i] = getCardCount(cardset._id, user._id, i + 1);
 		}
 
@@ -101,7 +125,7 @@ function setCards(cardset, user, isReset) {
 		}
 
 		// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
-		for (var k = algorithm.length; k > 0; k--) {
+		for (let k = algorithm.length; k > 0; k--) {
 			if (cardCount[k] === 0 && k - 1 >= 0) {
 				algorithm[k - 1] += algorithm[k];
 				algorithm[k] = 0;
@@ -110,48 +134,47 @@ function setCards(cardset, user, isReset) {
 
 		// j-loop: Scale all percentage values of boxes with cards to fill 100%
 		if (cardCount[0] === 0) {
-			for (var j = 0; j < algorithm.length; j++) {
+			for (let j = 0; j < algorithm.length; j++) {
 				if (cardCount[j] !== 0) {
 					algorithm[j] = algorithm[j] * (1 / (1 - algorithm[0]));
 				}
 			}
 			algorithm[0] = 0;
 		}
-
+		let randomSelectedCards = [];
 		// l-loop: Get all cards from a box that match the leitner criteria
-		for (var l = 0; l < algorithm.length; l++) {
-			var cards = Leitner.find({
+		for (let l = 0; l < algorithm.length; l++) {
+			let cards = Leitner.find({
 				cardset_id: cardset._id,
 				user_id: user._id,
 				box: (l + 1),
 				active: false,
 				nextDate: {$lte: new Date()},
 				cardType: {$ne: 2}
-			}).fetch();
+			}, {fields: {card_id: 1}}).fetch();
 			// c-loop: update one random card out of the l loop
-			for (var c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
+			for (let c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
 				if (cards.length !== 0) {
-					var nextCardIndex = Math.floor(Math.random() * (cards.length));
-					var nextCard = cards[nextCardIndex];
+					let nextCardIndex = Math.floor(Math.random() * (cards.length));
+					randomSelectedCards.push(cards[nextCardIndex].card_id);
 					cards.splice(nextCardIndex, 1);
-					Leitner.update({
-						cardset_id: cardset._id,
-						user_id: user._id,
-						card_id: nextCard.card_id
-					}, {
-						$set: {
-							active: true,
-							currentDate: new Date(),
-							skipped: 0
-						}
-					});
 				}
 			}
 		}
-
+		Leitner.update({
+			cardset_id: cardset._id,
+			user_id: user._id,
+			card_id: {$in: randomSelectedCards}
+		}, {
+			$set: {
+				active: true,
+				currentDate: new Date(),
+				skipped: 0
+			}
+		}, {multi: true});
 		if (user.mailNotification && mailsEnabled()) {
 			try {
-				var mail = new MailNotifier();
+				let mail = new MailNotifier();
 				if (isReset) {
 					mail.prepareMailReset(cardset, user._id);
 				} else {
@@ -163,7 +186,7 @@ function setCards(cardset, user, isReset) {
 		}
 		if (user.webNotification) {
 			try {
-				var web = new WebNotifier();
+				let web = new WebNotifier();
 				web.prepareWeb(cardset, user._id);
 			} catch (error) {
 				console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
@@ -339,7 +362,8 @@ Meteor.methods({
 	addWozniakCards: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+		let user_id = this.userId;
+		if (!Meteor.userId() || Roles.userIsInRole(user_id, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (cardset.shuffled) {
@@ -358,13 +382,38 @@ Meteor.methods({
 			if (cardset.shuffled) {
 				cardsetFilter = cardset.cardGroups;
 			}
+
+			let existingItems = Wozniak.find({
+				cardset_id: cardset._id,
+				user_id: user_id
+			}, {fields: {card_id: 1}}).fetch();
+			let excludedCards = [];
+			existingItems.forEach(function (existingItem) {
+				excludedCards.push(existingItem.card_id);
+			});
+
+			let newItems = [];
+			let nextDate = new Date();
 			cards = Cards.find({
+				_id: {$nin: excludedCards},
 				cardset_id: {$in: cardsetFilter},
 				cardType: {$in: CardType.getCardTypesWithLearningModes()}
-			});
+			}, {fields: {_id: 1}}).fetch();
 			cards.forEach(function (card) {
-				Meteor.call("addWozniak", cardset._id, card._id, Meteor.userId(), true);
+				newItems.push({
+					card_id: card._id,
+					cardset_id: cardset._id,
+					user_id: user_id,
+					ef: 2.5,
+					interval: 0,
+					reps: 0,
+					nextDate: nextDate,
+					skipped: 0
+				});
 			});
+			if (newItems.length > 0) {
+				Wozniak.batchInsert(newItems);
+			}
 			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
 		}
