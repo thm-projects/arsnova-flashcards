@@ -98,7 +98,7 @@ Template.cardContentActive.helpers({
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
 	},
 	gotContent: function () {
-		if (Route.isEditMode()) {
+		if (!Route.isCardset()) {
 			return true;
 		} else {
 			switch (Session.get('activeCardContentId')) {
@@ -149,20 +149,24 @@ Template.cardContentInactive.helpers({
 		return CardVisuals.isCentered(cubeSides[0].contentId, this.centerTextElement);
 	},
 	gotContent: function () {
-		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		switch (cubeSides[0].contentId) {
-			case 1:
-				return this.front !== '' && this.front !== undefined;
-			case 2:
-				return this.back !== '' && this.back !== undefined;
-			case 3:
-				return this.hint !== '' && this.hint !== undefined;
-			case 4:
-				return this.lecture !== '' && this.lecture !== undefined;
-			case 5:
-				return this.top !== '' && this.top !== undefined;
-			case 6:
-				return this.bottom !== '' && this.bottom !== undefined;
+		if (!Route.isCardset()) {
+			return true;
+		} else {
+			let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+			switch (cubeSides[0].contentId) {
+				case 1:
+					return this.front !== '' && this.front !== undefined;
+				case 2:
+					return this.back !== '' && this.back !== undefined;
+				case 3:
+					return this.hint !== '' && this.hint !== undefined;
+				case 4:
+					return this.lecture !== '' && this.lecture !== undefined;
+				case 5:
+					return this.top !== '' && this.top !== undefined;
+				case 6:
+					return this.bottom !== '' && this.bottom !== undefined;
+			}
 		}
 	},
 	getContent: function () {
