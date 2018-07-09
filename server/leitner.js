@@ -67,14 +67,38 @@ function addLeitnerCards(cardset, user_id) {
 		if (cardset.shuffled) {
 			cardsetFilter = cardset.cardGroups;
 		}
-		cards = Cards.find({
-			cardset_id: {$in: cardsetFilter},
-			cardType: {$in: CardType.getCardTypesWithLearningModes()}
+
+		let existingItems = Leitner.find({
+			cardset_id: cardset._id,
+			user_id: user_id
+		}, {fields: {card_id: 1}}).fetch();
+		let excludedCards = [];
+		existingItems.forEach(function (existingItem) {
+			excludedCards.push(existingItem.card_id);
 		});
 
+		let newItems = [];
+		let nextDate = new Date();
+		cards = Cards.find({
+			_id: {$nin: excludedCards},
+			cardset_id: {$in: cardsetFilter},
+			cardType: {$in: CardType.getCardTypesWithLearningModes()}
+		}, {fields: {_id: 1}}).fetch();
 		cards.forEach(function (card) {
-			Meteor.call("addLeitner", cardset._id, card._id, user_id, false);
+			newItems.push({
+				card_id: card._id,
+				cardset_id: cardset._id,
+				user_id: user_id,
+				box: 1,
+				active: false,
+				nextDate: nextDate,
+				currentDate: nextDate,
+				skipped: 0
+			});
 		});
+		if (newItems.length > 0) {
+			Leitner.batchInsert(newItems);
+		}
 		Meteor.call("updateLearnerCount", cardset._id);
 		return true;
 	}
@@ -339,7 +363,8 @@ Meteor.methods({
 	addWozniakCards: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || cardset.learningActive) {
+		let user_id = this.userId;
+		if (!Meteor.userId() || Roles.userIsInRole(user_id, 'blocked') || cardset.learningActive) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (cardset.shuffled) {
@@ -358,13 +383,38 @@ Meteor.methods({
 			if (cardset.shuffled) {
 				cardsetFilter = cardset.cardGroups;
 			}
+
+			let existingItems = Wozniak.find({
+				cardset_id: cardset._id,
+				user_id: user_id
+			}, {fields: {card_id: 1}}).fetch();
+			let excludedCards = [];
+			existingItems.forEach(function (existingItem) {
+				excludedCards.push(existingItem.card_id);
+			});
+
+			let newItems = [];
+			let nextDate = new Date();
 			cards = Cards.find({
+				_id: {$nin: excludedCards},
 				cardset_id: {$in: cardsetFilter},
 				cardType: {$in: CardType.getCardTypesWithLearningModes()}
-			});
+			}, {fields: {_id: 1}}).fetch();
 			cards.forEach(function (card) {
-				Meteor.call("addWozniak", cardset._id, card._id, Meteor.userId(), true);
+				newItems.push({
+					card_id: card._id,
+					cardset_id: cardset._id,
+					user_id: user_id,
+					ef: 2.5,
+					interval: 0,
+					reps: 0,
+					nextDate: nextDate,
+					skipped: 0
+				});
 			});
+			if (newItems.length > 0) {
+				Wozniak.batchInsert(newItems);
+			}
 			Meteor.call("updateLearnerCount", cardset._id);
 			return true;
 		}

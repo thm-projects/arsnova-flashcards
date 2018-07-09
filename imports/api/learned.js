@@ -94,62 +94,6 @@ if (Meteor.isServer) {
 			Leitner.remove({cardset_id: cardset_id});
 			Meteor.call("updateLearnerCount", cardset_id);
 		},
-		addLeitner: function (cardset_id, card_id, user_id) {
-			check(cardset_id, String);
-			check(card_id, String);
-			check(user_id, String);
-			// Make sure the user is logged in
-			if (!Meteor.isServer) {
-				throw new Meteor.Error("not-authorized");
-			} else {
-				Leitner.upsert({
-					cardset_id: cardset_id,
-					card_id: card_id,
-					user_id: user_id
-				}, {
-					$set: {
-						cardset_id: cardset_id,
-						card_id: card_id,
-						user_id: user_id
-					},
-					$setOnInsert: {
-						box: 1,
-						active: false,
-						nextDate: new Date(),
-						currentDate: new Date(),
-						skipped: 0
-					}
-				});
-			}
-		},
-		addWozniak: function (cardset_id, card_id, user_id) {
-			check(cardset_id, String);
-			check(card_id, String);
-			check(user_id, String);
-			// Make sure the user is logged in
-			if (!Meteor.isServer) {
-				throw new Meteor.Error("not-authorized");
-			} else {
-				Wozniak.upsert({
-					cardset_id: cardset_id,
-					card_id: card_id,
-					user_id: user_id
-				}, {
-					$set: {
-						cardset_id: cardset_id,
-						card_id: card_id,
-						user_id: user_id
-					},
-					$setOnInsert: {
-						ef: 2.5,
-						interval: 0,
-						reps: 0,
-						nextDate: new Date(),
-						skipped: 0
-					}
-				});
-			}
-		},
 		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card
 		 *  @param {string} card_id - The id from the card
