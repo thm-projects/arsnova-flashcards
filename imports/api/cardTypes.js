@@ -463,10 +463,18 @@ export let CardType = class CardType {
 	}
 
 	static getCardTypeName (cardType) {
-		return TAPi18n.__('card.cardType' + cardType + '.name');
+		if (cardType < 0) {
+			return TAPi18n.__('card.chooseCardType');
+		} else {
+			return TAPi18n.__('card.cardType' + cardType + '.name');
+		}
 	}
 
 	static getCardTypeLongName (cardType) {
-		return TAPi18n.__('card.cardType' + cardType + '.longName');
+		if (cardType < 0) {
+			return TAPi18n.__('card.chooseCardType');
+		} else {
+			return TAPi18n.__('card.cardType' + cardType + '.longName');
+		}
 	}
 };

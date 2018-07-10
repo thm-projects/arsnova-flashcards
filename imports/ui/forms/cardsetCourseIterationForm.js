@@ -49,8 +49,8 @@ export function cleanModal() {
 	$('#helpSetName').html('');
 
 	if (newCardsetCourseIterationRoute()) {
-		$('#setCardType').html(CardType.getCardTypeLongName(5));
-		$('#setCardType').val(5);
+		$('#setCardType').html(CardType.getCardTypeLongName(-1));
+		$('#setCardType').val(-1);
 	} else {
 		$('#setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardType')));
 		$('#setCardType').val(Session.get('previousCardType'));
@@ -152,6 +152,12 @@ export function saveCardset() {
 		bertDelayMultiplier++;
 		$('#setNameLabel').addClass('text-warning');
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
+	}
+	if (!courseIterationRoute() && $('#setCardType').val() < 0) {
+		errorMessage += "<li>" + TAPi18n.__('modal-dialog.cardType') + "</li>";
+		bertDelayMultiplier++;
+		$('#setCardTypeLabel').addClass('text-warning');
+		$('#helpSetCardType').html(TAPi18n.__('modal-dialog.cardType_required'));
 	}
 	if ($('#contentEditor').val() === "") {
 		error = true;
