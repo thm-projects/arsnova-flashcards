@@ -222,6 +222,11 @@ $padding-card-list-row: 8px;
     cursor: pointer;
     padding: 10px;
     width: 250px;
+    border-bottom: 2px solid;
+  }
+
+  ul li:last-child {
+    border-bottom: none;
   }
 }
 
