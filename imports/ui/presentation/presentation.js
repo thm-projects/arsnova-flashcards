@@ -18,9 +18,7 @@ Session.set('animationPlaying', false);
  */
 
 Template.presentationView.onCreated(function () {
-	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
-		Session.set('activeCard', undefined);
-	}
+	Session.set('activeCard', undefined);
 	CardNavigation.toggleVisibility(true);
 });
 
@@ -29,10 +27,8 @@ Template.presentationView.onRendered(function () {
 });
 
 Template.presentationView.onDestroyed(function () {
-	if (Router.current().route.getName() !== "demo" && Router.current().route.getName() !== "demolist") {
-		Session.set('activeCard', undefined);
-		Session.set('contrastMode', false);
-	}
+	Session.set('activeCard', undefined);
+	Session.set('contrastMode', false);
 });
 
 Template.presentationView.events({
