@@ -854,6 +854,7 @@
     },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
+      "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
       "lockSide": "Rückseite wird zur Vorderseite",

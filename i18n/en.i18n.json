@@ -868,6 +868,7 @@
     },
     "tooltip": {
       "contrast": "",
+      "backToCardset": "",
       "endPresentation": "Close presentation",
       "fullscreen": "With ESCAPE you get back to the normal view.",
       "lockSide": "Back of the card becomes the front side.",

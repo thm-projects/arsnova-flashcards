@@ -125,17 +125,3 @@ Template.learnAnswerOptions.events({
 		CardNavigation.rateWozniak(event);
 	}
 });
-
-/*
- * ############################################################################
- * learnAnswerOptions
- * ############################################################################
- */
-
-Template.learnBackButton.events({
-	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
-	}
-});

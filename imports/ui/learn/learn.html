@@ -33,9 +33,6 @@
                 </div>
             {{/if}}
         {{/if}}
-        <div class="col-xs-12">
-            {{> learnBackButton}}
-        </div>
     </div>
 </template>
 
@@ -126,14 +123,4 @@
     <br>
     <br>
     <br>
-</template>
-
-<template name="learnBackButton">
-    {{#unless fullscreenActive}}
-        <br>
-        <br>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton">
-            <span class="pull-left">{{_ "backbutton"}}</span>
-        </button>
-    {{/unless}}
 </template>
