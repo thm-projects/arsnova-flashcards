@@ -48,11 +48,11 @@
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
                     <a href="#" id="learnShowAnswer" class="btn btn-success btn-raised answer show-answer"
-                       title="success">{{_ "wozniak.show"}} {{#if fullscreenActive}}
+                       title="{{_ "wozniak.show"}}">{{_ "wozniak.show"}} {{#if fullscreenActive}}
                         ( {{_ "key" key='y'}} ){{/if}}</a>
                     {{#unless gotOneCardLeft}}
                         <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
-                           title="success">{{_ "wozniak.skip"}} {{#if fullscreenActive}}
+                           title="{{_ "wozniak.skip"}}">{{_ "wozniak.skip"}} {{#if fullscreenActive}}
                             ( {{_ "arrowKeys"}} ){{/if}}</a>
                     {{/unless}}
                 </div>
@@ -60,11 +60,11 @@
                 <div id="learn-navigation" class="btn-group btn-group-justified">
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-warning answer card-fail" id="notknown">{{_
+                            <button class="btn btn-raised btn-warning answer card-fail" id="notknown" title="{{_ "notknow"}}">{{_
                                     "notknow"}} {{#if fullscreenActive}}( {{_ "key" key='n'}} ){{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-success answer card-success" id="known">{{_
+                            <button class="btn btn-raised btn-success answer card-success" id="known" title="{{_ "know"}}">{{_
                                     "know"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</button>
                         </div>
                     {{/if}}
@@ -113,7 +113,7 @@
                             <button id="memoRate5" class="btn btn-default btn-raised btn-success rate-answer"
                                     data-id="5"
                                     data-toggle="tooltip"
-                                    title="{{_ "wozniak.rate.5"}}"><span class="hidden-xs">{{_
+                                    title="{{_ "wozniak.answer.5"}}"><span class="hidden-xs">{{_
                                     "wozniak.answer.5"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.5Mobile"}}</span>
                             </button>
