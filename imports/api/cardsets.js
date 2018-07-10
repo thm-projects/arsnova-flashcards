@@ -272,6 +272,9 @@ Meteor.methods({
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
+		if (cardType < 0) {
+			cardType = 0;
+		}
 		return Cardsets.insert({
 			name: name.trim(),
 			description: description,

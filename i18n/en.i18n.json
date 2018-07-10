@@ -256,6 +256,8 @@
     "description": "Description",
     "optional": "(Optional)",
     "category": "Category",
+    "cardType": "Card Type",
+    "cardType_required": "Card Type required",
     "visibility": "Visible for",
     "visibilityoption1": "Private",
     "visibilityoption2": "Public",
@@ -666,6 +668,7 @@
   },
   "card": {
     "navigationDisabled": "Changing card…",
+    "chooseCardType": "Select the purpose of your card set…",
     "cardType0": {
       "name": "Flashcard",
       "longName": "Flashcard",
