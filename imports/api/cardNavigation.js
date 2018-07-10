@@ -183,9 +183,7 @@ export let CardNavigation = class CardNavigation {
 			if ([9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101].indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						if (Route.isPresentation()) {
-							CardNavigation.cardSideNavigation();
-						}
+						CardNavigation.cardSideNavigation();
 						break;
 					case 32:
 						if (CardNavigation.isVisible()) {
