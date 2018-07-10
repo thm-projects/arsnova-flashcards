@@ -1116,7 +1116,8 @@ $themes: (
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
-      border-bottom: 3px solid $primary !important;
+      background-color: $bonus_background !important;
+      color: $bonus_text !important;
     }
 
     .cardListSubject th {
