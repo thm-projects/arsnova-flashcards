@@ -246,19 +246,15 @@
                                 </fieldset>
                             </form>
                         </div>
-                        {{#unless isDisabledCancelProfile}}
-                            <button id="profileCancel" type="button"
-                                    class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave"
-                                    data-id="disabled">{{_
-                                    "profile.cancel"}}</button>
-                        {{/unless}}
-                        {{#unless isDisabledSaveProfile}}
-                            <button id="profileSave" type="button"
-                                    class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
-                                {{disableIfOffline}}>
-                                {{_ "profile.save"}}
-                            </button>
-                        {{/unless}}
+                        <button id="profileCancel" type="button"
+                                class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave"
+                                data-id="disabled">{{_
+                                "profile.cancel"}}</button>
+                        <button id="profileSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
+                            {{disableIfOffline}}>
+                            {{_ "profile.save"}}
+                        </button>
                     {{/if}}
                 </form>
             </div>
