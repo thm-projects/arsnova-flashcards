@@ -52,12 +52,6 @@
                    data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
                     {{getWorkload}}
                 </a>
-                {{#if this.learningActive}}
-                    <span class="label label-success labelLearning"
-                          aria-label="active learnphase label" data-id="true">
-                        {{getLearnphaseStatus}}
-                    </span>
-                {{/if}}
             </div>
         {{/if}}
         <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute

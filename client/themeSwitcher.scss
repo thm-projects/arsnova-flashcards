@@ -802,6 +802,10 @@ $themes: (
       background-color: $cardset_footer_navigation_background !important;
       border-color: $cardset_footer_navigation_background !important;
 
+      ul li {
+        border-bottom-color: $cardset_form_border !important;
+      }
+
       .presentationBtn {
         background-color: $cardset_footer_navigation_presentation_background !important;
         color: $cardset_footer_navigation_presentation_text !important;
@@ -1116,7 +1120,8 @@ $themes: (
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
-      border-bottom: 3px solid $primary !important;
+      background-color: $bonus_background !important;
+      color: $bonus_text !important;
     }
 
     .cardListSubject th {

@@ -6,6 +6,7 @@ import "./right/right.js";
 import "./item/cardList.js";
 import "./item/contrast.js";
 import "./center/center.js";
+import "./item/backToCardset.js";
 import "./item/clock.js";
 import "./item/copy.js";
 import "./item/countCards.js";

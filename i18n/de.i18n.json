@@ -255,6 +255,8 @@
     "kind": "Kategorie",
     "close": "Schließen",
     "cancel": "Abbrechen",
+    "cardType": "Karteityp",
+    "cardType_required": "Wähle einen Karteityp!",
     "createcarddeck": "Anlegen",
     "delete": "Kartei löschen",
     "confirm": "Sicher?",
@@ -632,6 +634,7 @@
   },
   "card": {
     "navigationDisabled": "Karte wird gewechselt…",
+    "chooseCardType": "Wähle den Zweck deiner Kartei aus…",
     "cardType0": {
       "name": "Lernkartei",
       "longName": "Lernkartei (Lernziel | Vertiefung | Fazit | Literatur)",
@@ -854,6 +857,7 @@
     },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
+      "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit ESCAPE kommst du wieder in die Normalansicht.",
       "lockSide": "Rückseite wird zur Vorderseite",
