@@ -57,11 +57,13 @@
                 <div id="learn-navigation" class="btn-group btn-group-justified">
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-warning answer card-fail" id="notknown" title="{{_ "notknow"}}">{{_
+                            <button class="btn btn-raised btn-warning answer card-fail" id="notknown"
+                                    title="{{_ "notknow"}}">{{_
                                     "notknow"}} {{#if fullscreenActive}}( {{_ "key" key='n'}} ){{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-raised btn-success answer card-success" id="known" title="{{_ "know"}}">{{_
+                            <button class="btn btn-raised btn-success answer card-success" id="known"
+                                    title="{{_ "know"}}">{{_
                                     "know"}} {{#if fullscreenActive}}( {{_ "key" key='y'}} ){{/if}}</button>
                         </div>
                     {{/if}}
@@ -123,4 +125,11 @@
     <br>
     <br>
     <br>
+</template>
+
+<template name="learnBackButton">
+    <br>
+    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+        <span class="pull-left">{{_ "backbutton"}}</span>
+    </button>
 </template>

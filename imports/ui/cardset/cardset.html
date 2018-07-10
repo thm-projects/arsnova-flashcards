@@ -49,9 +49,7 @@
             {{selectedForLearning}}
         {{/unless}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
-            {{#if learningActiveAndNotEditor}}
-                {{> leitnerLearning}}
-            {{else}}
+            {{#unless learningActiveAndNotEditor}}
                 {{#if this.quantity}}
                     <div class="col-xs-12">
                         {{> cardNavigation}}
@@ -60,7 +58,7 @@
                         {{> flashcards cardset=this}}
                     </div>
                 {{/if}}
-            {{/if}}
+            {{/unless}}
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
             <div class="col-xs-12">
@@ -336,7 +334,8 @@
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
                             learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
-                        <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
+                        <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel
+                                this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
                         <h4 id="cardsetTitle">{{name}}</h4>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
@@ -370,6 +369,9 @@
 
             <div class="panel-footer">
                 {{#if hasCardsetPermission}}
+                    {{#if learningActive}}
+                        {{> leitnerLearning}}
+                    {{/if}}
                     {{#unless learningActive}}
                         {{#if this.quantity}}
                             {{#if gotPresentation}}
@@ -1448,46 +1450,11 @@
 </template>
 
 <template name="leitnerLearning">
-    <div class="col-xs-12 flip-container" id="set-details-region">
-        {{addToLeitner}}
-        <div id="cardCarousel" class="carousel slide" data-interval="false">
-            <div class="carousel-inner">
-                <div class="empty-item">
-                    <div class="box">
-                        <div class="block">
-                            {{#unless learningEnded}}
-                                <div class="bs-callout bs-callout-info" id="callout-alerts-no-default">
-                                    <h4><strong>{{_ "learnPhaseActiveHeader"}}</strong></h4>
-                                    <p>{{_ "learnPhaseActiveBody"}}</p>
-                                </div>
-                                {{#if notEmpty}}
-                                    <div class="alert alert-warning leitner-text" role="alert">{{Deadline}}</div>
-                                    <br><br>
-                                    <button id="learnBoxActive"
-                                            class="btn btn-raised btn-success learn btn-block btn-learn">{{_
-                                            "cardsToLearn"}}</button>
-                                {{else}}
-                                    {{#if allLearned}}
-                                        <br><br>
-                                        <div class="alert alert-success leitner-text" role="alert">{{_
-                                                "learnedEverything"}}</div>
-                                    {{else}}
-                                        <br><br>
-                                        <button id="learnBoxDisabled"
-                                                class="btn btn-warning learn btn-block btn-learn"
-                                                disabled>{{getNextCardTime}}</button>
-                                    {{/if}}
-                                {{/if}}
-                            {{else}}
-                                <div class="alert alert-danger leitner-header" role="alert">{{_
-                                        "learnPhaseEnded"}}</div>
-                            {{/unless}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{#if notEmpty}}
+        <button id="learnBoxActive"
+                class="btn btn-sm btn-raised btn-success learn btn-learn">{{_
+                "cardsToLearn"}}</button>
+    {{/if}}
 </template>
 
 <template name="cardsetLearnActivityStatistic">
