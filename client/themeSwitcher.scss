@@ -236,16 +236,24 @@ $themes: (
     $cardset_footer_navigation_learn_list_progress_text: map-get($map, "cardset_footer_navigation_learn_list_progress_text");
     $cardset_footer_navigation_learn_list_progress_background_hover: map-get($map, "cardset_footer_navigation_learn_list_progress_background_hover");
     $cardset_footer_navigation_learn_list_progress_text_hover: map-get($map, "cardset_footer_navigation_learn_list_progress_text_hover");
+    $cardset_footer_navigation_learn_list_reset_leitner_background: map-get($map, "cardset_footer_navigation_learn_list_reset_leitner_background");
+    $cardset_footer_navigation_learn_list_reset_leitner_text: map-get($map, "cardset_footer_navigation_learn_list_reset_leitner_text");
+    $cardset_footer_navigation_learn_list_reset_leitner_background_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_leitner_background_hover");
+    $cardset_footer_navigation_learn_list_reset_leitner_text_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_leitner_text_hover");
+    $cardset_footer_navigation_learn_list_reset_wozniak_background: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_background");
+    $cardset_footer_navigation_learn_list_reset_wozniak_text: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text");
+    $cardset_footer_navigation_learn_list_reset_wozniak_background_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_background_hover");
+    $cardset_footer_navigation_learn_list_reset_wozniak_text_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text_hover");
+
     $cardset_footer_navigation_new_card_background: map-get($map, "cardset_footer_navigation_new_card_background");
     $cardset_footer_navigation_new_card_text: map-get($map, "cardset_footer_navigation_new_card_text");
     $cardset_footer_navigation_new_card_background_hover: map-get($map, "cardset_footer_navigation_new_card_background_hover");
     $cardset_footer_navigation_new_card_text_hover: map-get($map, "cardset_footer_navigation_new_card_text_hover");
+
     $cardset_footer_navigation_import_cards_background: map-get($map, "cardset_footer_navigation_import_cards_background");
     $cardset_footer_navigation_import_cards_text: map-get($map, "cardset_footer_navigation_import_cards_text");
     $cardset_footer_navigation_import_cards_background_hover: map-get($map, "cardset_footer_navigation_import_cards_background_hover");
     $cardset_footer_navigation_import_cards_text_hover: map-get($map, "cardset_footer_navigation_import_cards_text_hover");
-
-
 
     $cardset_footer_navigation_edit_shuffle_background: map-get($map, "cardset_footer_navigation_edit_shuffle_background");
     $cardset_footer_navigation_edit_shuffle_text: map-get($map, "cardset_footer_navigation_edit_shuffle_text");
@@ -267,56 +275,43 @@ $themes: (
     $cardset_footer_navigation_publish_cardset_background_hover: map-get($map, "cardset_footer_navigation_publish_cardset_background_hover");
     $cardset_footer_navigation_publish_cardset_text_hover: map-get($map, "cardset_footer_navigation_publish_cardset_text_hover");
 
+    $cardset_footer_navigation_bonus_background: map-get($map, "cardset_footer_navigation_bonus_background");
+    $cardset_footer_navigation_bonus_text: map-get($map, "cardset_footer_navigation_bonus_text");
+    $cardset_footer_navigation_bonus_background_hover: map-get($map, "cardset_footer_navigation_bonus_background_hover");
+    $cardset_footer_navigation_bonus_text_hover: map-get($map, "cardset_footer_navigation_bonus_text_hover");
+    $cardset_footer_navigation_bonus_list_start_learning_background: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_background");
+    $cardset_footer_navigation_bonus_list_start_learning_text: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_text");
+    $cardset_footer_navigation_bonus_list_start_learning_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_background_hover");
+    $cardset_footer_navigation_bonus_list_start_learning_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_text_hover");
+    $cardset_footer_navigation_bonus_list_stop_learning_background: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_background");
+    $cardset_footer_navigation_bonus_list_stop_learning_text: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_text");
+    $cardset_footer_navigation_bonus_list_stop_learning_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_background_hover");
+    $cardset_footer_navigation_bonus_list_stop_learning_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_text_hover");
+    $cardset_footer_navigation_bonus_list_show_stats_background: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_background");
+    $cardset_footer_navigation_bonus_list_show_stats_text: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_text");
+    $cardset_footer_navigation_bonus_list_show_stats_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_background_hover");
+    $cardset_footer_navigation_bonus_list_show_stats_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_text_hover");
+
     $cardset_footer_navigation_manage_cardset_background: map-get($map, "cardset_footer_navigation_manage_cardset_background");
     $cardset_footer_navigation_manage_cardset_text: map-get($map, "cardset_footer_navigation_manage_cardset_text");
     $cardset_footer_navigation_manage_cardset_background_hover: map-get($map, "cardset_footer_navigation_manage_cardset_background_hover");
     $cardset_footer_navigation_manage_cardset_text_hover: map-get($map, "cardset_footer_navigation_manage_cardset_text_hover");
-
     $cardset_footer_navigation_manage_list_manage_editors_background: map-get($map, "cardset_footer_navigation_manage_list_manage_editors_background");
     $cardset_footer_navigation_manage_list_manage_editors_text: map-get($map, "cardset_footer_navigation_manage_list_manage_editors_text");
     $cardset_footer_navigation_manage_list_manage_editors_background_hover: map-get($map, "cardset_footer_navigation_manage_list_manage_editors_background_hover");
     $cardset_footer_navigation_manage_list_manage_editors_text_hover: map-get($map, "cardset_footer_navigation_manage_list_manage_editors_text_hover");
-
-    $cardset_footer_navigation_manage_list_reset_leitner_background: map-get($map, "cardset_footer_navigation_manage_list_reset_leitner_background");
-    $cardset_footer_navigation_manage_list_reset_leitner_text: map-get($map, "cardset_footer_navigation_manage_list_reset_leitner_text");
-    $cardset_footer_navigation_manage_list_reset_leitner_background_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_leitner_background_hover");
-    $cardset_footer_navigation_manage_list_reset_leitner_text_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_leitner_text_hover");
-
-    $cardset_footer_navigation_manage_list_reset_wozniak_background: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_background");
-    $cardset_footer_navigation_manage_list_reset_wozniak_text: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_text");
-    $cardset_footer_navigation_manage_list_reset_wozniak_background_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_background_hover");
-    $cardset_footer_navigation_manage_list_reset_wozniak_text_hover: map-get($map, "cardset_footer_navigation_manage_list_reset_wozniak_text_hover");
-
-    $cardset_footer_navigation_manage_list_start_learning_background: map-get($map, "cardset_footer_navigation_manage_list_start_learning_background");
-    $cardset_footer_navigation_manage_list_start_learning_text: map-get($map, "cardset_footer_navigation_manage_list_start_learning_text");
-    $cardset_footer_navigation_manage_list_start_learning_background_hover: map-get($map, "cardset_footer_navigation_manage_list_start_learning_background_hover");
-    $cardset_footer_navigation_manage_list_start_learning_text_hover: map-get($map, "cardset_footer_navigation_manage_list_start_learning_text_hover");
-
-    $cardset_footer_navigation_manage_list_stop_learning_background: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_background");
-    $cardset_footer_navigation_manage_list_stop_learning_text: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_text");
-    $cardset_footer_navigation_manage_list_stop_learning_background_hover: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_background_hover");
-    $cardset_footer_navigation_manage_list_stop_learning_text_hover: map-get($map, "cardset_footer_navigation_manage_list_stop_learning_text_hover");
-
-    $cardset_footer_navigation_manage_list_show_stats_background: map-get($map, "cardset_footer_navigation_manage_list_show_stats_background");
-    $cardset_footer_navigation_manage_list_show_stats_text: map-get($map, "cardset_footer_navigation_manage_list_show_stats_text");
-    $cardset_footer_navigation_manage_list_show_stats_background_hover: map-get($map, "cardset_footer_navigation_manage_list_show_stats_background_hover");
-    $cardset_footer_navigation_manage_list_show_stats_text_hover: map-get($map, "cardset_footer_navigation_manage_list_show_stats_text_hover");
-
     $cardset_footer_navigation_manage_list_report_background: map-get($map, "cardset_footer_navigation_manage_list_report_background");
     $cardset_footer_navigation_manage_list_report_text: map-get($map, "cardset_footer_navigation_manage_list_report_text");
     $cardset_footer_navigation_manage_list_report_background_hover: map-get($map, "cardset_footer_navigation_manage_list_report_background_hover");
     $cardset_footer_navigation_manage_list_report_text_hover: map-get($map, "cardset_footer_navigation_manage_list_report_text_hover");
-
     $cardset_footer_navigation_manage_list_leave_learn_phase_background: map-get($map, "cardset_footer_navigation_manage_list_leave_learn_phase_background");
     $cardset_footer_navigation_manage_list_leave_learn_phase_text: map-get($map, "cardset_footer_navigation_manage_list_leave_learn_phase_text");
     $cardset_footer_navigation_manage_list_leave_learn_phase_background_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_learn_phase_background_hover");
     $cardset_footer_navigation_manage_list_leave_learn_phase_text_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_learn_phase_text_hover");
-
     $cardset_footer_navigation_manage_list_leave_cardset_background: map-get($map, "cardset_footer_navigation_manage_list_leave_cardset_background");
     $cardset_footer_navigation_manage_list_leave_cardset_text: map-get($map, "cardset_footer_navigation_manage_list_leave_cardset_text");
     $cardset_footer_navigation_manage_list_leave_cardset_background_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_cardset_background_hover");
     $cardset_footer_navigation_manage_list_leave_cardset_text_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_cardset_text_hover");
-
     $cardset_footer_navigation_manage_list_leave_editors_background: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_background");
     $cardset_footer_navigation_manage_list_leave_editors_text: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_text");
     $cardset_footer_navigation_manage_list_leave_editors_background_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_background_hover");
@@ -951,53 +946,63 @@ $themes: (
       }
 
       .resetLeitnerList {
-        background-color: $cardset_footer_navigation_manage_list_reset_leitner_background !important;
-        color: $cardset_footer_navigation_manage_list_reset_leitner_text !important;
+        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background !important;
+        color: $cardset_footer_navigation_learn_list_reset_leitner_text !important;
       }
 
       .resetLeitnerList:hover {
-        background-color: $cardset_footer_navigation_manage_list_reset_leitner_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_reset_leitner_text_hover !important;
+        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background_hover !important;
+        color: $cardset_footer_navigation_learn_list_reset_leitner_text_hover !important;
       }
 
       .resetWozniakList {
-        background-color: $cardset_footer_navigation_manage_list_reset_wozniak_background !important;
-        color: $cardset_footer_navigation_manage_list_reset_wozniak_text !important;
+        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background !important;
+        color: $cardset_footer_navigation_learn_list_reset_wozniak_text !important;
       }
 
       .resetWozniakList:hover {
-        background-color: $cardset_footer_navigation_manage_list_reset_wozniak_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_reset_wozniak_text_hover !important;
+        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background_hover !important;
+        color: $cardset_footer_navigation_learn_list_reset_wozniak_text_hover !important;
+      }
+
+      .bonusBtn {
+        background-color: $cardset_footer_navigation_bonus_background !important;
+        color: $cardset_footer_navigation_bonus_text !important;
+      }
+
+      .bonusBtn:hover {
+        background-color: $cardset_footer_navigation_bonus_background_hover !important;
+        color: $cardset_footer_navigation_bonus_text_hover !important;
       }
 
       .startLearningList {
-        background-color: $cardset_footer_navigation_manage_list_start_learning_background !important;
-        color: $cardset_footer_navigation_manage_list_start_learning_text !important;
+        background-color: $cardset_footer_navigation_bonus_list_start_learning_background !important;
+        color: $cardset_footer_navigation_bonus_list_start_learning_text !important;
       }
 
       .startLearningList:hover {
-        background-color: $cardset_footer_navigation_manage_list_start_learning_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_start_learning_text_hover !important;
+        background-color: $cardset_footer_navigation_bonus_list_start_learning_background_hover !important;
+        color: $cardset_footer_navigation_bonus_list_start_learning_text_hover !important;
       }
 
       .stopLearningList {
-        background-color: $cardset_footer_navigation_manage_list_stop_learning_background !important;
-        color: $cardset_footer_navigation_manage_list_stop_learning_text !important;
+        background-color: $cardset_footer_navigation_bonus_list_stop_learning_background !important;
+        color: $cardset_footer_navigation_bonus_list_stop_learning_text !important;
       }
 
       .stopLearningList:hover {
-        background-color: $cardset_footer_navigation_manage_list_stop_learning_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_stop_learning_text_hover !important;
+        background-color: $cardset_footer_navigation_bonus_list_stop_learning_background_hover !important;
+        color: $cardset_footer_navigation_bonus_list_stop_learning_text_hover !important;
       }
 
       .showStatsList {
-        background-color: $cardset_footer_navigation_manage_list_show_stats_background !important;
-        color: $cardset_footer_navigation_manage_list_show_stats_text !important;
+        background-color: $cardset_footer_navigation_bonus_list_show_stats_background !important;
+        color: $cardset_footer_navigation_bonus_list_show_stats_text !important;
       }
 
       .showStatsList:hover {
-        background-color: $cardset_footer_navigation_manage_list_show_stats_background_hover !important;
-        color: $cardset_footer_navigation_manage_list_show_stats_text_hover !important;
+        background-color: $cardset_footer_navigation_bonus_list_show_stats_background_hover !important;
+        color: $cardset_footer_navigation_bonus_list_show_stats_text_hover !important;
       }
 
       .reportList {
