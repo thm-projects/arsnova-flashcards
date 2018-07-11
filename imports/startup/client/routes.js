@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import {Route} from "../../api/route.js";
 import {CardEditor} from "../../api/cardEditor";
+import {Filter} from "../../api/filter";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -81,27 +82,42 @@ Router.route('datenschutz', {
 
 Router.route('/alldecks', {
 	name: 'alldecks',
-	template: 'cardsets'
+	template: 'cardsets',
+	data: function () {
+		Filter.resetMaxItemCounter();
+	}
 });
 
 Router.route('/create', {
 	name: 'create',
-	template: 'cardsets'
+	template: 'cardsets',
+	data: function () {
+		Filter.resetMaxItemCounter();
+	}
 });
 
 Router.route('/course', {
 	name: 'courseIterations',
-	template: 'CourseIterations'
+	template: 'CourseIterations',
+	data: function () {
+		Filter.resetMaxItemCounter();
+	}
 });
 
 Router.route('/learn', {
 	name: 'learn',
-	template: 'cardsets'
+	template: 'cardsets',
+	data: function () {
+		Filter.resetMaxItemCounter();
+	}
 });
 
 Router.route('/shuffle', {
 	name: 'shuffle',
-	template: 'cardsets'
+	template: 'cardsets',
+	data: function () {
+		Filter.resetMaxItemCounter();
+	}
 });
 
 Router.route('/cardset', function () {

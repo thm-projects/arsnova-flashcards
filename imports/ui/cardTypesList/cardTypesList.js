@@ -2,8 +2,7 @@ import "./cardTypesList.html";
 import {Template} from "meteor/templating";
 import {CardType} from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
-import {filterCardType, prepareQuery} from "../filter/filter.js";
-import {Session} from "meteor/session";
+import {Filter} from "../../api/filter";
 
 /*
  * ############################################################################
@@ -18,19 +17,12 @@ Template.cardTypesList.helpers({
 	getCardTypeLongName: function () {
 		return CardType.getCardTypeLongName(this.cardType);
 	},
-	filterCardTypes: function () {
-		prepareQuery();
-		let query = Session.get('filterQuery');
-		query.cardType = this.cardType;
-		return Cardsets.findOne(query);
+	filterCardTypes: function (cardType) {
+		let query = Filter.getFilterQuery();
+		query.cardType = cardType;
+		return Cardsets.find(query).count();
 	},
-	poolFilterCardType: function (cardType) {
-		return Session.get('poolFilterCardType') === cardType;
-	}
-});
-
-Template.cardTypesList.events({
-	'click .filterCardType': function (event) {
-		filterCardType(event);
+	resultsFilterCardType: function (cardType) {
+		return Filter.getFilterQuery().cardType === cardType;
 	}
 });

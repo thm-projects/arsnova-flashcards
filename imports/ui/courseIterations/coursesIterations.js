@@ -7,10 +7,7 @@ import {CourseIterations} from "../../api/courseIterations.js";
 import "./coursesIterations.js";
 import "./coursesIterations.html";
 import {cleanModal} from "../forms/cardsetCourseIterationForm";
-import {
-	prepareQuery,
-	resetFilters
-} from "../filter/filter";
+import {Filter} from "../../api/filter";
 
 Session.set('courseIterationId', undefined);
 Session.set('moduleActive', true);
@@ -25,6 +22,9 @@ Meteor.subscribe("courses");
  * ############################################################################
  */
 
+Template.courseIterations.onCreated(function () {
+	Filter.resetMaxItemCounter();
+});
 
 Template.courseIterations.onRendered(function () {
 	cleanModal();
@@ -40,27 +40,22 @@ Template.courseIterationsList.helpers({
 	courseIterationsList: function (resultType) {
 		let query = {};
 		if (resultType !== 0) {
-			query = Session.get('filterQuery');
-			prepareQuery();
+			query = Filter.getFilterQuery();
 		}
 		switch (resultType) {
 			case 0:
 			case 1:
 				return CourseIterations.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
 				return CourseIterations.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				});
 		}
 	}
-});
-
-Template.courseIterationsList.onCreated(function () {
-	resetFilters();
 });
 
 Template.courseIterationsList.events({

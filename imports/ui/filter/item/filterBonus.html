@@ -1,0 +1,34 @@
+<template name="filterItemFilterBonus">
+    <li class="dropdown">
+        <a href="#" id="bonusFilter" class="dropdown-toggle" data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "set-list.learnphase"}}
+            {{#if hasBonusFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterBonus active" data-id="reset">{{_
+                        "set-list.everything"}}</a>
+            </li>
+            {{#if gotBonusCardsets}}
+                <li><a href="#" class="filterBonus" data-id="true">
+                    {{_ "set-list.activeLearnphase"}}
+                    {{#if resultsFilterBonus true}}
+                        <span class="glyphicon glyphicon-filter"></span>
+                    {{/if}}
+                </a></li>
+            {{/if}}
+            {{#if gotNoBonusCardsets}}
+                <li><a href="#" class="filterBonus" data-id="false">
+                    {{_ "set-list.inactiveLearnphase"}}
+                    {{#if resultsFilterBonus false}}
+                        <span class="glyphicon glyphicon-filter"></span>
+                    {{/if}}
+                </a></li>
+            {{/if}}
+        </ul>
+    </li>
+</template>

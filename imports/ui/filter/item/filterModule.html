@@ -1,0 +1,29 @@
+<template name="filterItemFilterModule">
+    <li class="dropdown">
+        <a href="#" id="moduleFilter" class="dropdown-toggle moduleBtn" data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "set-list.module"}}
+            {{#if hasModuleFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterModule active" data-id="">{{_
+                        "set-list.everything"}}</a>
+                <a href="#" class="filterNoModule active" data-id="">{{_
+                        "set-list.noModuleLong"}}</a>
+            </li>
+            {{#each getModules}}
+                <li><a href="#" class="filterModule" data-id="{{this.module}}">
+                    {{this.moduleToken}} [{{this.moduleNum}}]:
+                    {{this.module}}
+                    {{#if resultFilterModule this.module}}
+                        <span class="glyphicon glyphicon-filter"></span>
+                    {{/if}}
+                </a></li>
+            {{/each}}
+        </ul>
+    </li>
+</template>

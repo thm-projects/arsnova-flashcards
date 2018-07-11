@@ -6,8 +6,8 @@ import {Cardsets} from "../../api/cardsets.js";
 import {CardType} from '../../api/cardTypes.js';
 import {TargetAudience} from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
-import {prepareQuery} from "../filter/filter";
 import {CollegesCourses} from "../../api/colleges_courses";
+import {Filter} from "../../api/filter";
 
 export function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations' || Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
@@ -540,13 +540,12 @@ Template.semesterList.helpers({
 		];
 	},
 	displaySemester: function () {
-		prepareQuery();
-		let query = Session.get('filterQuery');
+		let query = Filter.getFilterQuery();
 		query.semester = this.semester;
 		return CourseIterations.findOne(query);
 	},
 	activeFilter: function () {
-		return Session.get('semester') === this.semester;
+		return Filter.getActiveFilter().semester === this.semester;
 	}
 });
 
@@ -564,12 +563,11 @@ Template.targetAudienceList.helpers({
 		return TargetAudience.getTargetAudienceName(targetAudience);
 	},
 	displayTargetAudience: function () {
-		prepareQuery();
-		let query = Session.get('filterQuery');
+		let query = Filter.getFilterQuery();
 		query.targetAudience = this.targetAudience;
 		return CourseIterations.findOne(query);
 	},
 	activeFilter: function () {
-		return Session.get('poolFilterTargetAudience') === this.targetAudience;
+		return Filter.getActiveFilter().targetAudience === this.targetAudience;
 	}
 });

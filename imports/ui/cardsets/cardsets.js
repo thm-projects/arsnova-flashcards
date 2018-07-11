@@ -4,14 +4,10 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
-import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
-import {
-	prepareQuery,
-	resetFilters
-} from "../filter/filter";
+import {Filter} from "../../api/filter";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -28,23 +24,20 @@ Template.create.helpers({
 	cardsetList: function (returnType) {
 		let query = {};
 		if (returnType !== 0) {
-			prepareQuery();
-			query = Session.get('filterQuery');
+			query = Filter.getFilterQuery();
 		}
-		if (Router.current().route.getName() === "create") {
-			query.owner = Meteor.userId();
-		}
+
 		switch (returnType) {
 			case 0:
 			case 1:
 				return Cardsets.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
 				return Cardsets.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				});
 		}
 	}
@@ -78,12 +71,8 @@ Template.create.events({
 	}
 });
 
-Template.create.onCreated(function () {
-	resetFilters();
-});
-
-Template.create.onRendered(function () {
-	cleanModal();
+Template.create.onDestroyed(function () {
+	Filter.resetMaxItemCounter();
 });
 
 /*
@@ -94,41 +83,19 @@ Template.create.onRendered(function () {
 
 Template.learn.helpers({
 	learnList: function (returnType) {
-		var leitnerCards = Leitner.find({
-			user_id: Meteor.userId()
-		});
-
-		let wozniakCards = Wozniak.find({
-			user_id: Meteor.userId()
-		});
-		var learnCardsets = [];
-		leitnerCards.forEach(function (leitnerCard) {
-			if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
-				learnCardsets.push(leitnerCard.cardset_id);
-			}
-		});
-
-		wozniakCards.forEach(function (wozniakCard) {
-			if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
-				learnCardsets.push(wozniakCard.cardset_id);
-			}
-		});
 		let query = {};
 		if (returnType !== 0) {
-			prepareQuery();
-			query = Session.get('filterQuery');
+			query = Filter.getFilterQuery();
 		}
-		Session.set('cardsetIdFilter', learnCardsets);
-		query._id = {$in: Session.get('cardsetIdFilter')};
 		switch (returnType) {
 			case 0:
 			case 1:
 				return Cardsets.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
-				return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
 		}
 	}
 });
@@ -141,10 +108,6 @@ Template.learn.events({
 		Session.set("selectingCardsetToLearn", true);
 		Router.go('pool');
 	}
-});
-
-Template.learn.onCreated(function () {
-	resetFilters();
 });
 
 /*
@@ -187,15 +150,11 @@ Template.shuffle.helpers({
 			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 		}
 
+		let query = Filter.getFilterQuery();
 		switch (resultType) {
 			case 0:
 			case 1:
-				return Cardsets.find({
-					$or: [
-						{owner: Meteor.userId()},
-						{kind: {$in: ["free", "edu"]}}
-					]
-				}, {
+				return Cardsets.find(query, {
 					fields: {
 						name: 1,
 						description: 1,
@@ -205,15 +164,10 @@ Template.shuffle.helpers({
 						kind: 1,
 						owner: 1
 					},
-					limit: Session.get('itemsLimit')
+					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
-				return Cardsets.find({
-					$or: [
-						{owner: Meteor.userId()},
-						{kind: {$in: ["free", "edu"]}}
-					]
-				}, {
+				return Cardsets.find(query, {
 					fields: {
 						name: 1,
 						description: 1,
@@ -223,7 +177,7 @@ Template.shuffle.helpers({
 						kind: 1,
 						owner: 1
 					},
-					sort: {name: 1}, limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()
 				});
 		}
 	},

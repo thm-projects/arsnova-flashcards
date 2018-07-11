@@ -1,0 +1,31 @@
+<template name="filterItemFilterCollege">
+    {{#unless singleUniversity}}
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle collegeBtn" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
+                {{_ "set-list.college"}}
+                {{#if hasCollegeFilter}}
+                    <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                {{/if}}
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#" class="noFilterCollege active" data-id="">{{_
+                            "set-list.everything"}}</a>
+                    <a href="#" class="filterNoModule active" data-id="">{{_
+                            "set-list.noCollege"}}</a>
+                </li>
+                {{#each getColleges}}
+                    <li>
+                        <a href="#" class="filterCollege"
+                           data-id="{{this.college}}">{{this.college}}
+                            {{#if resultsFilterCollege this.college}}
+                                <span class="glyphicon glyphicon-filter"></span>
+                            {{/if}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </li>
+    {{/unless}}
+</template>

@@ -1,0 +1,28 @@
+<template name="filterItemFilterAuthors">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "set-list.author"}}
+            {{#if hasAuthorFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+            </li>
+            {{#each getAuthors}}
+                {{#if filterAuthors this._id}}
+                    <li>
+                        <a href="#" class="filterAuthor"
+                           data-id="{{this._id}}">{{getAuthorName}}
+                            {{#if resultsFilterAuthor this._id}}
+                                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                            {{/if}}
+                        </a>
+                    </li>
+                {{/if}}
+            {{/each}}
+        </ul>
+    </li>
+</template>

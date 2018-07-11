@@ -1,0 +1,18 @@
+<template name="filterItemFilterSemester">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle semesterBtn" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false" id="semesterBtn">
+            {{_ "courseIteration.list.semester"}}
+            {{#if hasSemesterFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterSemester active" data-id="">{{_
+                        "set-list.everything"}}</a>
+            </li>
+            {{> semesterList filter=true}}
+        </ul>
+    </li>
+</template>
