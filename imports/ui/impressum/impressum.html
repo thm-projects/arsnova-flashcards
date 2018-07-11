@@ -42,37 +42,26 @@
         {{/if}}
     {{/unless}}
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
-        {{#unless fullscreenActive}}
-            <div id="contact" class="col-md-8 col-md-offset-2">
+        <div id="contact" class="col-xs-12 {{#unless fullscreenActive}}col-md-8 col-md-offset-2{{/unless}}">
+            {{#unless fullscreenActive}}
                 {{#unless isFirstTimeVisit}}
                     <div class="row">
                         {{> contactNavigation}}
-                    </div>
-                    <br>
-                {{/unless}}
-                <div class="row">
-                    {{#if isActiveRoute 'demo'}}
-                        {{#unless isFirstTimeVisit}}
-                            <div class="panel panel-default">
-                                <div class="panel-heading info-tab">
-                                    <h1>{{_ "contact.demoTitle"}}</h1>
-                                </div>
+                        <br>
+                        <div class="panel panel-default">
+                            <div class="panel-heading info-tab">
+                                <h1>{{_ "contact.demoTitle"}}</h1>
                             </div>
-                        {{/unless}}
-                        {{#if Template.subscriptionsReady}}
-                            {{> presentationView}}
-                        {{/if}}
-                    {{/if}}
-                    {{#if isActiveRoute 'demolist'}}
-                        {{> presentationView}}
-                    {{/if}}
-                </div>
+                        </div>
+                    </div>
+                {{/unless}}
+            {{/unless}}
+            <div class="row">
+                {{#if Template.subscriptionsReady}}
+                    {{> presentationView}}
+                {{/if}}
             </div>
-        {{else}}
-            {{#if Template.subscriptionsReady}}
-                {{> presentationView}}
-            {{/if}}
-        {{/unless}}
+        </div>
     </div>
 </template>
 
@@ -978,7 +967,8 @@
                 <h2>Dienstanbieter</h2>
                 <p>
                     Der Betrieb der Webanwendung <b>.{{getLastAppTitle}}</b> unter <a href="home" target="_blank">
-                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> ist eine kostenlose Dienstleistung (Software as a Service) der
+                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> ist eine kostenlose Dienstleistung (Software as a
+                    Service) der
                     TransMIT-Gesellschaft
                     für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
                 </p>
@@ -1024,7 +1014,7 @@
                 <h2>Service provider</h2>
                 <p>
                     The operation of the web application <b>.{{getLastAppTitle}}</b> under <a href="home"
-                                                                                target="_blank">
+                                                                                              target="_blank">
                     {{getFirstAppTitle}}.{{getLastAppTitle}} </a> is a free service (software as a service) of the
                     TransMIT company
                     for Technologietransfer mbH, project area for mobile applications.
