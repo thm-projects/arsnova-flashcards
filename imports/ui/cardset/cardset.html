@@ -476,12 +476,6 @@
                                 class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            {{#if isCardsetOwner _id}}
-                                <li id="manageEditors" class="manageEditorsList"
-                                    {{disableIfOffline}}>
-                                    {{_ "sidebar-nav.manageEditors"}}
-                                </li>
-                            {{/if}}
                             {{#if gotLearningModes}}
                                 {{#unless learningActive}}
                                     {{#if learningLeitner}}
