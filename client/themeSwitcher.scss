@@ -407,6 +407,10 @@ $themes: (
       }
     }
 
+    .table-user-list {
+      background-color: $white !important;
+    }
+
     #thm-top-navigation {
       .active {
         background-color: $thm_green !important;
