@@ -21,8 +21,8 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static setActiveNavigationButton (index) {
-		$('.cardNavigation a').removeClass('btn-primary').addClass('btn-default');
-		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary');
+		$('.cardNavigation a').removeClass('btn-primary').removeClass('card-navigation-active').addClass('btn-default');
+		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary').addClass('card-navigation-active');
 	}
 
 	static filterNavigation (cubeSides, mode) {
@@ -80,7 +80,7 @@ export let CardNavigation = class CardNavigation {
 
 	static cardSideNavigation (forward = true) {
 		let navigationLength = $(".cardNavigation a").length;
-		let index = ($(".btn-primary").index(".cardNavigation a"));
+		let index = ($(".card-navigation-active").index(".cardNavigation a"));
 		++index;
 		if (forward) {
 			if (index >= navigationLength) {
