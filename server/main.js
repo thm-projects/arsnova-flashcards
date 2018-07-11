@@ -8,6 +8,7 @@ import "../imports/api/allusers.js";
 import "../imports/api/billing.js";
 import "../imports/api/cards.js";
 import "../imports/api/cardsets.js";
+import "../imports/api/cardsetAPI.js";
 import "../imports/api/cardsetUserlist.js";
 import "../imports/api/colleges_courses.js";
 import "../imports/api/serverInventory.js";
