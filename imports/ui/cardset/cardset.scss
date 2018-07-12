@@ -373,10 +373,16 @@ th .field-tip {
   cursor: pointer;
 }
 
-.cardListName {
+.cardListName, .cardListOwner {
   padding: 5px 0 5px 10px;
-  font-size: 24px;
+  font-size: $font_size_card_list_cardset_name !important;
   font-weight: bold;
+}
+
+.cardListOwner {
+  padding-right: 10px;
+  float: right;
+  font-size: $font_size_card_list_cardset_owner !important;
 }
 
 .detailed-stats {
