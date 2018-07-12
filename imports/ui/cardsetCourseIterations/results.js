@@ -8,7 +8,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
 import "./results.html";
 import {CardType} from "../../api/cardTypes";
-import * as TargetAudience from "../../api/targetAudience";
+import {TargetAudience} from "../../api/targetAudience";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
