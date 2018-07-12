@@ -523,9 +523,6 @@ Template.cardsetInfo.events({
 	"click #startPresentation": function () {
 		Router.go('presentation', {_id: this._id});
 	},
-	"click #learnChoice": function () {
-		Session.set("chooseFlashcardsMode", 0);
-	},
 	"click #learnBox": function () {
 		addToLeitner(this._id);
 		Router.go('box', {
