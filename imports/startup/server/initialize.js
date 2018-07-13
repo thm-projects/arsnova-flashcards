@@ -536,6 +536,25 @@ Meteor.startup(function () {
 		});
 	}
 
+	cardsets = Cardsets.find({originalAuthorName: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					originalAuthorName: {
+						legacyName: cardsets[i].originalAuthor
+					}
+				},
+				$unset: {
+					originalAuthor: ""
+				}
+			}
+		);
+	}
+
+
 	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < leitner.length; i++) {
 		Leitner.update({
