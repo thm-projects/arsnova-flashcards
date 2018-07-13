@@ -139,6 +139,14 @@ Meteor.methods({
 			if (!data[0].name) {
 				throw new Meteor.Error(TAPi18n.__('import.failure'));
 			} else {
+				let originalAuthorName;
+				if (data[0].originalAuthor !== undefined) {
+					originalAuthorName = {
+						legacyName: data[0].originalAuthor
+					};
+				} else {
+					originalAuthorName = data[0].originalAuthorName;
+				}
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
 					description: data[0].description,
@@ -172,7 +180,7 @@ Meteor.methods({
 					cardGroups: [""],
 					cardType: data[0].cardType,
 					difficulty: data[0].difficulty,
-					originalAuthor: data[0].originalAuthor
+					originalAuthorName: originalAuthorName
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
@@ -215,8 +223,16 @@ Meteor.methods({
 				}
 				if (doesPathExist) {
 					let cardsetFiles = fs.readdirSync(demoPath);
+					let originalAuthorName;
 					for (let i = 0; i < cardsetFiles.length; i++) {
 						let cardset = JSON.parse('[' + fs.readFileSync(demoPath + cardsetFiles[i], 'utf8') + ']');
+						if (cardset[0].originalAuthor !== undefined) {
+							originalAuthorName = {
+								legacyName: cardset[0].originalAuthor
+							};
+						} else {
+							originalAuthorName = cardset[0].originalAuthorName;
+						}
 						if (cardset[0].name !== undefined) {
 							totalQuantity += cardset[0].quantity;
 							let cardset_id = Cardsets.insert({
@@ -252,7 +268,7 @@ Meteor.methods({
 								cardGroups: [""],
 								cardType: cardset[0].cardType,
 								difficulty: cardset[0].difficulty,
-								originalAuthor: cardset[0].originalAuthor
+								originalAuthorName: originalAuthorName
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
 							cardset.shift();
@@ -293,7 +309,7 @@ Meteor.methods({
 					cardGroups: cardGroups,
 					cardType: 0,
 					difficulty: 0,
-					originalAuthor: ""
+					originalAuthorName: ""
 				}, {trimStrings: false});
 			} catch (error) {
 				throw new Meteor.Error(error);

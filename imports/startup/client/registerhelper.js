@@ -430,8 +430,37 @@ Template.registerHelper("getCollege", function (value) {
 	}
 });
 
-Template.registerHelper("getAuthorName", function (owner) {
-	return getAuthorName(owner);
+Template.registerHelper("getAuthorName", function (owner, lastNameFirst = true) {
+	return getAuthorName(owner, lastNameFirst);
+});
+
+Template.registerHelper("getOriginalAuthorName", function (originalAuthorName, lastNameFirst = true) {
+	if (originalAuthorName.birthname === undefined) {
+		return originalAuthorName.legacyName;
+	}
+	let name = "";
+	if (lastNameFirst) {
+		if (originalAuthorName.birthname) {
+			name += originalAuthorName.birthname;
+		}
+		if (originalAuthorName.givenname) {
+			name += (", " + originalAuthorName.givenname);
+		}
+		if (originalAuthorName.title) {
+			name += (", " + originalAuthorName.title);
+		}
+	} else {
+		if (originalAuthorName.title) {
+			name += originalAuthorName.title + " ";
+		}
+		if (originalAuthorName.givenname) {
+			name += originalAuthorName.givenname + " ";
+		}
+		if (originalAuthorName.birthname) {
+			name += originalAuthorName.birthname;
+		}
+	}
+	return name;
 });
 
 Template.registerHelper("getAuthor", function (owner) {
