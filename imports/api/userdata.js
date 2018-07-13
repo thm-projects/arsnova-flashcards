@@ -9,9 +9,10 @@ import {Session} from "meteor/session";
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
  * @param owner - The database ID of the author
+ * @param lastNameFirst - Display the last name first
  * @returns {*} - Degree + givenname + birthname
  */
-export function getAuthorName(owner) {
+export function getAuthorName(owner, lastNameFirst = true) {
 	let author;
 	if (Meteor.isServer) {
 		author = Meteor.users.findOne({"_id": owner});
@@ -29,21 +30,42 @@ export function getAuthorName(owner) {
 	}
 	if (author) {
 		let name = "";
-		if (author.profile.birthname) {
-			name +=  author.profile.birthname;
+		if (lastNameFirst) {
+			if (author.profile.birthname) {
+				name += author.profile.birthname;
+			} else {
+				return author.profile.name + " (" + TAPi18n.__('complete-profile.title') + ")";
+			}
+			if (author.profile.givenname) {
+				name += (", " + author.profile.givenname);
+			}
+			if (author.profile.title) {
+				name += (", " + author.profile.title);
+			}
 		} else {
-			return author.profile.name + " (" + TAPi18n.__('complete-profile.title') + ")";
-		}
-		if (author.profile.givenname) {
-			name +=  (", " + author.profile.givenname);
-		}
-		if (author.profile.title) {
-			name +=  (", " + author.profile.title);
+			if (author.profile.title) {
+				name += author.profile.title + " ";
+			}
+			if (author.profile.givenname) {
+				name += author.profile.givenname + " ";
+			}
+			if (author.profile.birthname) {
+				name += author.profile.birthname;
+			}
 		}
 		return name;
 	} else {
 		return TAPi18n.__('admin.deletedUser');
 	}
+}
+
+export function exportAuthorName(owner) {
+	let author = Meteor.users.findOne({"_id": owner});
+	return {
+		title: author.profile.title,
+		birthname: author.profile.birthname,
+		givenname: author.profile.givenname
+	};
 }
 
 if (Meteor.isServer) {

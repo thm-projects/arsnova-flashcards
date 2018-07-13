@@ -31,7 +31,7 @@ module.exports = function () {
 	});
 
 	this.Then(/^I'll go back to the leitner statistics view to check my progress$/, function () {
-		navigation.back();
+		navigation.leitnerWozniakBackButton();
 		cardset.leitnerProgress();
 		box1After = navigation.getContent('#boxChart', 2, 'data-box1');
 		box2After = navigation.getContent('#boxChart', 2, 'data-box2');

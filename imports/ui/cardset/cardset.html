@@ -109,7 +109,7 @@
                 {{_ "cardset.info.multipleAuthors"}}
             {{else}}
                 {{#each getAuthors this}}
-                    {{getAuthorName this.owner}}<br>
+                    {{getAuthorName this.owner false}}<br>
                 {{/each}}
             {{/if}}
         </td>
@@ -118,15 +118,15 @@
         <tr>
             <td>{{_ "cardset.info.publisher"}}:</td>
             <td>
-                {{getAuthorName this.owner}}
+                {{getAuthorName this.owner false}}
             </td>
         </tr>
     {{/if}}
-    {{#if this.originalAuthor}}
+    {{#if this.originalAuthorName}}
         <tr>
             <td>{{_ "cardset.info.originalAuthor"}}:</td>
             <td>
-                {{this.originalAuthor}}
+                {{getOriginalAuthorName this.originalAuthorName false}}
             </td>
         </tr>
     {{/if}}

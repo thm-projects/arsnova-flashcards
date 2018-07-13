@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
 import {check} from "meteor/check";
-import {getAuthorName} from "./userdata";
+import {getAuthorName, exportAuthorName} from "./userdata";
 
 function exportCards(cardset_id) {
 	if (Meteor.isServer) {
@@ -57,8 +57,8 @@ Meteor.methods({
 		if (cardset.owner !== Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
-		if (cardset.originalAuthor === undefined) {
-			cardset.originalAuthor = getAuthorName(cardset.owner);
+		if (cardset.originalAuthorName === undefined) {
+			cardset.originalAuthorName = exportAuthorName(cardset.owner);
 		}
 		let cardsetString = JSON.stringify(cardset);
 		let cardString = exportCards(cardset_id);
