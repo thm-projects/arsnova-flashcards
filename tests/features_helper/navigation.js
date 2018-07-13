@@ -83,6 +83,12 @@ module.exports = {
 		browser.waitForExist('#logout_admin', global.threshold);
 		browser.click('#logout_admin');
 	},
+	leitnerWozniakBackButton: function (click = true) {
+		browser.waitForVisible('.backToCardset', global.threshold);
+		if (click) {
+			browser.click('.backToCardset');
+		}
+	},
 	back: function (click = true) {
 		browser.waitForVisible('#backButton', global.threshold);
 		if (click) {
