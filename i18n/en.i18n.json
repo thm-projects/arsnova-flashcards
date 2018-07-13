@@ -202,6 +202,8 @@
     "ratingFilterPlural": "> __rating__ Stars",
     "moreResults": "Show more results",
     "learnphase": "Bonus",
+    "bonusPoints": "Bonus points",
+    "bonusPointsPercentage": "Maximum 10 percentage points",
     "activeLearnphase": "Bonus",
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",

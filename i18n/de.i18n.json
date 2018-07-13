@@ -192,6 +192,8 @@
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Bonus",
+    "bonusPoints": "Bonuspunkte",
+    "bonusPointsPercentage": "Maximal 10 Prozentpunkte",
     "activeLearnphase": "Bonusphase aktiv",
     "inactiveLearnphase": "Bonusphase beendet",
     "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
