@@ -78,7 +78,8 @@ if (Meteor.isServer) {
 							cardGroups: 1,
 							license: 1,
 							shuffled: 1,
-							learningActive: 1
+							learningActive: 1,
+							originalAuthorName: 1
 						}
 				});
 		}
