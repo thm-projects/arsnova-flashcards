@@ -530,7 +530,7 @@
       "author": "Author",
       "multipleAuthors": "Multiple Authors",
       "publisher": "Publisher",
-      "originalAuthor": "Original Author",
+      "originalAuthor": "Author of the imported card set",
       "rating": "Rating",
       "userRating": "Your rating ",
       "notRated": "Not yet rated",

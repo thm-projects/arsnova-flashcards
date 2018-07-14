@@ -417,6 +417,24 @@ Meteor.startup(function () {
 		);
 	}
 
+	cards = Cards.find({originalAuthorName: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					originalAuthorName: {
+						legacyName: cards[i].originalAuthor
+					}
+				},
+				$unset: {
+					originalAuthor: ""
+				}
+			}
+		);
+	}
+
 	let cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({

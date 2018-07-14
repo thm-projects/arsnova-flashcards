@@ -206,6 +206,11 @@ var CardsSchema = new SimpleSchema({
 	originalAuthor: {
 		type: String,
 		optional: true
+	},
+	originalAuthorName: {
+		type: Object,
+		optional: true,
+		blackbox: true
 	}
 });
 

@@ -76,7 +76,14 @@ function importCards(data, cardset, importType) {
 				let regex = /<hlcode>|<\/hlcode>/g;
 				front = front.replace(regex, hlcodeReplacement);
 				back = back.replace(regex, hlcodeReplacement);
-
+				let originalAuthorName;
+				if (item.originalAuthor !== undefined) {
+					originalAuthorName = {
+						legacyName: item.originalAuthor
+					};
+				} else {
+					originalAuthorName = item.originalAuthorName;
+				}
 				Cards.insert({
 					subject: subject.trim(),
 					difficulty: cardset.difficulty,
@@ -94,7 +101,8 @@ function importCards(data, cardset, importType) {
 					backgroundStyle: item.backgroundStyle,
 					learningUnit: item.learningUnit,
 					date: item.date,
-					dateUpdated: item.dateUpdated
+					dateUpdated: item.dateUpdated,
+					originalAuthorName: originalAuthorName
 				}, {trimStrings: false});
 			}
 		} else {
