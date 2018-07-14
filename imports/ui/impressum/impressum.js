@@ -1,6 +1,8 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
 import "./impressum.html";
+import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/cards.js";
 import {Session} from "meteor/session";
 import {Route} from "../../api/route.js";
 
@@ -71,5 +73,12 @@ Template.help.onRendered(function () {
 Template.demo.helpers({
 	isFirstTimeVisit: function () {
 		return Route.isFirstTimeVisit();
+	},
+	gotDemoCardsetData: function () {
+		let cardset = Cardsets.findOne({shuffled: true, kind:  "demo"});
+		if (cardset !== undefined) {
+			let cardCount = Cards.find({cardset_id: {$in: cardset.cardGroups}}).count();
+			return cardCount === cardset.quantity;
+		}
 	}
 });

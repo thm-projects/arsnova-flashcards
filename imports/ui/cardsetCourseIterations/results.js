@@ -186,11 +186,13 @@ Template.cardsetCourseIterationResultRow.helpers({
 		let wozniak = getWozniakCount(this);
 		return leitner !== 0 && wozniak !== 0;
 	},
+	gotWorkload: function () {
+		let count = getLeitnerCount(this) + getWozniakCount(this);
+		return count !== 0;
+	},
 	getWorkload: function () {
 		let count = getLeitnerCount(this) + getWozniakCount(this);
 		switch (count) {
-			case 0:
-				return TAPi18n.__('set-list.noCardsToLearn');
 			case 1:
 				return TAPi18n.__('set-list.cardsToLearn');
 			default:

@@ -6,8 +6,9 @@
             </div>
         {{/if}}
         <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
-                                    regex="course|pool|learn"}}col-sm-4{{else}}{{#if isActiveRoute
-                                                                                              regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
+                                                                                                   regex="course|pool|learn"}}col-sm-4{{else}}{{#if
+                isActiveRoute
+                regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
             <strong>
                 {{#if isActiveRoute regex="course|pool"}}
                     {{_ "courseIteration.list.courseIteration"}}
@@ -25,7 +26,8 @@
             </div>
         {{/unless}}
         {{#if isActiveRoute regex="course|pool|alldecks"}}
-            <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 resultsHeader">
+            <div class="hidden-xs {{#if isActiveRoute
+                                        regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 resultsHeader">
                 <strong>
                     {{#if isActiveRoute regex="course"}}
                         {{_ "courseIteration.targetAudience"}}
@@ -48,14 +50,23 @@
         {{#if isActiveRoute regex="learn"}}
             <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}">
-                <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-                   data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}" data-id="{{this._id}}">
-                    {{getWorkload}}
-                </a>
+                {{#if gotWorkload}}
+                    <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+                       data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}"
+                       data-id="{{this._id}}">
+                        {{getWorkload}}
+                    </a>
+                {{else}}
+                    <span class="resultItemHeaderAuthor">
+                        {{_ "set-list.noCardsToLearn"}}
+                    </span>
+                {{/if}}
             </div>
         {{/if}}
-        <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
-                                                                              regex="course|pool"}}col-sm-4{{else}}{{#if
+        <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
+                                                                              regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if
+                isActiveRoute
+                regex="course|pool"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
                                                               regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
@@ -74,7 +85,9 @@
             </div>
         {{/unless}}
         {{#if isActiveRoute regex="course|pool|alldecks"}}
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if isActiveRoute regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if
+                    isActiveRoute
+                    regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-type="{{#if isActiveRoute
                                   regex="course"}}{{this.targetAudience}}{{else}}{{this.cardType}}{{/if}}">
