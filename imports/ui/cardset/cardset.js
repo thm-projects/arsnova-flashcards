@@ -662,6 +662,9 @@ Template.cardsetInfoBoxContentOne.helpers({
 			return 0;
 		}
 	},
+	gotOriginalAuthorData: function () {
+		return (this.originalAuthorName.birthname !== undefined || this.originalAuthorName.legacyName !== undefined);
+	},
 	hasAmount: function () {
 		return this.kind === 'pro' || this.kind === 'edu';
 	},

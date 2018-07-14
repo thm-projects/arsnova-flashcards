@@ -122,14 +122,16 @@
             </td>
         </tr>
     {{/if}}
-    {{#if this.originalAuthorName}}
-        <tr>
-            <td>{{_ "cardset.info.originalAuthor"}}:</td>
-            <td>
-                {{getOriginalAuthorName this.originalAuthorName false}}
-            </td>
-        </tr>
-    {{/if}}
+    {{#unless this.shuffled}}
+        {{#if gotOriginalAuthorData}}
+            <tr>
+                <td>{{_ "cardset.info.originalAuthor"}}:</td>
+                <td>
+                    {{getOriginalAuthorName this.originalAuthorName false}}
+                </td>
+            </tr>
+        {{/if}}
+    {{/unless}}
     {{#if isActiveRoute regex="learn"}}
         <tr>
             <td>{{_ "set-list.learningMode"}}:</td>
@@ -1575,7 +1577,9 @@
                 </tr>
                 <tr>
                     <td>{{_ "set-list.bonusPoints"}}:</td>
-                    <td><a href="https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/faq.html#bonuspunkte-an-der-thm" target="_blank">{{_ "set-list.bonusPointsPercentage"}}</a></td>
+                    <td>
+                        <a href="https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/faq.html#bonuspunkte-an-der-thm"
+                           target="_blank">{{_ "set-list.bonusPointsPercentage"}}</a></td>
                 </tr>
                 <tr>
                     <td>{{_ "pool.activeLearners"}}:</td>
