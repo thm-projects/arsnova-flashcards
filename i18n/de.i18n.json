@@ -639,16 +639,16 @@
     "navigationDisabled": "Karte wird gewechselt…",
     "chooseCardType": "Wähle den Zweck deiner Kartei aus…",
     "cardType0": {
-      "name": "Lernkartei",
-      "longName": "Lernkartei (Lernziel | Vertiefung | Fazit | Literatur)",
+      "name": "Lerneinheit",
+      "longName": "Lerneinheit (Lernziel | Vertiefung | Zusammenfassung | Literatur)",
       "content1": "Lernziel",
-      "content2": "Fazit",
+      "content2": "Zusammenfassung",
       "content3": "Literatur ",
       "content4": "Vertiefung",
       "placeholders": {
         "subject": "Gib das kurzgefasste Lernziel an !",
         "content1": "",
-        "content2": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen. ",
+        "content2": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen.",
         "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
         "content4": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
@@ -806,8 +806,8 @@
     },
     "cardType11": {
       "name": "Quiz",
-      "longName": "Quiz (Quizfrage | Antwort)",
-      "content1": "Quizfrage",
+      "longName": "Quiz (Frage | Antwort)",
+      "content1": "Frage",
       "content2": "Antwort",
       "placeholders": {
         "subject": "Gib das Thema deines Quiz an !",
