@@ -7,9 +7,10 @@ import WordCloud from "wordcloud";
 import {Cardsets} from "../../api/cardsets.js";
 import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
+import {ReactiveVar} from 'meteor/reactive-var';
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
-
+import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -215,10 +216,23 @@ Template.welcome.helpers({
 		return loginButtons;
 	},
 	getServerInventory: function () {
-		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsetsCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(Counts.get('cardsCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(Counts.get('usersCounter')) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(Counts.get('usersOnlineCounter')) + '</span></br></br>';
+		let cardsetCount, cardCount, userCount, onlineCount;
+		if (Meteor.settings.public.welcome.fakeStatistics) {
+			let inventory = new ReactiveVar(fakeInventory);
+			cardsetCount = inventory.curValue.cardsets;
+			cardCount = inventory.curValue.cards;
+			userCount = inventory.curValue.users;
+			onlineCount = inventory.curValue.online;
+		} else {
+			cardsetCount = Counts.get('cardsetsCounter');
+			cardCount = Counts.get('cardsCounter');
+			userCount = Counts.get('usersCounter');
+			onlineCount = Counts.get('usersOnlineCounter');
+		}
+		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(cardsetCount) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(cardCount) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(userCount) + "&nbsp;&nbsp;" +
+			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(onlineCount) + '</span></br></br>';
 	}
 });
 
