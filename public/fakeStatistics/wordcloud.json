@@ -1,117 +1,122 @@
 [
   {
-    "name": "DM: Diskrete Mathematik",
-    "color": "#96ceb4",
-    "quantity": 150
-  },
-  {
-    "name": "GdI: Grundlagen der Informatik",
-    "color": "#ffeead",
-    "quantity": 350
-  },
-  {
-    "name": "NTG: Naturwissenschaftliche und technische Grundlagen",
-    "color": "#ffcc5c",
+    "name": "Diskrete Mathematik",
+    "color": "#f78d90",
     "quantity": 100
   },
   {
-    "name": "OOP: Objektorientierte Programmierung",
-    "color": "#ff6f69",
+    "name": "Grundlagen der Informatik",
+    "color": "#b3b3e6",
     "quantity": 300
   },
   {
-    "name": "RA: Rechnernetze und ihre Anwendung",
-    "color": "#588c7e",
-    "quantity": 100
+    "name": "Naturwissenschaftliche & technische Grundlagen",
+    "color": "#ffb6c1",
+    "quantity": 50
   },
   {
-    "name": "AD: Algorithmen und Datenstrukturen",
+    "name": "OOP",
+    "color": "#ffcc00",
+    "quantity": 500
+  },
+  {
+    "name": "Rechnernetze",
+    "color": "#83f1f6",
+    "quantity": 150
+  },
+  {
+    "name": "Algorithmen & Datenstrukturen",
     "color": "#f2e394",
     "quantity": 200
   },
   {
-    "name": "PIS: Programmierung interaktiver Systeme",
+    "name": "Programmierung interaktiver Systeme",
     "color": "#f2ae72",
     "quantity": 200
   },
   {
-    "name": "WBS: Webbasierte Systeme",
-    "color": "#d96459",
-    "quantity": 400
+    "name": "Webbasierte Systeme",
+    "color": "#ffd700",
+    "quantity": 350
   },
   {
-    "name": "RI: Recht für Informatiker/innen",
+    "name": "Recht für Informatiker/innen",
     "color": "#f9d5e5",
-    "quantity": 50
+    "quantity": 25
   },
   {
-    "name": "LA: Lineare Algebra",
+    "name": "Lineare Algebra",
     "color": "#eeac99",
-    "quantity": 200
+    "quantity": 100
   },
   {
-    "name": "BWL: DV-orientierte Betriebswirtschaftslehre",
+    "name": "DV-orientierte BWL",
     "color": "#e06377",
     "quantity": 100
   },
   {
-    "name": "CB: Compilerbau",
-    "color": "#c83349",
-    "quantity": 100
-  },
-  {
-    "name": "SWT: Softwaretechnik",
-    "color": "#5b9aa0",
-    "quantity": 350
-  },
-  {
-    "name": "DBS: Datenbanksysteme",
-    "color": "#d6d4e0",
-    "quantity": 250
-  },
-  {
-    "name": "KSP: Konzepte systemnaher Programmierung",
-    "color": "#b8a9c9",
-    "quantity": 150
-  },
-  {
-    "name": "SD: Statistik und Datenanalyse",
-    "color": "#622569",
-    "quantity": 100
-  },
-  {
-    "name": "BS: Betriebssysteme",
-    "color": "#f4a688",
-    "quantity": 200
-  },
-  {
-    "name": "PM: Projektmanagement",
-    "color": "#f1e3dd",
-    "quantity": 50
-  },
-  {
-    "name": "WAI: Wissenschaftliches Arbeiten in der Informatik",
-    "color": "#bd5734",
-    "quantity": 50
-  },
-  {
-    "name": "CP: Code Refactoring",
-    "color": "#cab577",
-    "quantity": 50
-  },
-  {
-    "name": "LPI: Linux Essentials Certification",
-    "color": "#cab577",
+    "name": "Compilerbau",
+    "color": "#3cedd2",
     "quantity": 400
   },
   {
-    "name": "LPIC-1: Linux Server Professional Certification",
-    "color": "#cab577",
-    "quantity": 300
+    "name": "Softwaretechnik",
+    "color": "#ffe4e1",
+    "quantity": 500
   },
   {
-    "name": "EM: Entwurfsmuster",
-    "color": "#cab577",
+    "name": "Datenbanksysteme",
+    "color": "#57aef3",
+    "quantity": 250
+  },
+  {
+    "name": "Konzepte systemnaher Programmierung",
+    "color": "#cc5869",
+    "quantity": 100
+  },
+  {
+    "name": "Statistik & Datenanalyse",
+    "color": "#f5f5dc",
+    "quantity": 50
+  },
+  {
+    "name": "Betriebssysteme",
+    "color": "#f4a688",
+    "quantity": 250
+  },
+  {
+    "name": "Projektmanagement",
+    "color": "#f08080",
+    "quantity": 50
+  },
+  {
+    "name": "Wissenschaftliches Arbeiten",
+    "color": "#ffb6c1",
+    "quantity": 50
+  },
+  {
+    "name": "Code Refactoring",
+    "color": "#ffa07a",
+    "quantity": 100
+  },
+  {
+    "name": "Linux Essentials",
+    "color": "#2fe973",
+    "quantity": 400
+  },
+  {
+    "name": "Git",
+    "color": "#b3e6cc",
+    "quantity": 500
+  },
+  {
+    "name": "GitLab CI",
+    "color": "#fff0f5",
     "quantity": 200
+  },
+  {
+    "name": "Entwurfsmuster",
+    "color": "#cd5c5c",
+    "quantity": 150
   }
 ]
