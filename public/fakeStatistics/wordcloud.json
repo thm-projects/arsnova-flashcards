@@ -1,105 +1,115 @@
 {
-  "title": "Diskrete Mathematik",
+  "title": "DM: Diskrete Mathematik",
   "color": "#96ceb4",
-  "size": "156"
+  "size": "150"
 }
 {
-  "title": "Grundlagen der Informatik",
+  "title": "GdI: Grundlagen der Informatik",
   "color": "#ffeead",
-  "size": "256"
+  "size": "350"
 }
 {
-  "title": "Naturwissenschaftliche und technische Grundlagen",
+  "title": "NTG: Naturwissenschaftliche und technische Grundlagen",
   "color": "#ffcc5c",
-  "size": "130"
+  "size": "100"
 }
 {
-  "title": "Objektorientierte Programmierung",
+  "title": "OOP: Objektorientierte Programmierung",
   "color": "#ff6f69",
-  "size": "325"
+  "size": "300"
 }
 {
-  "title": "Rechnernetze und ihre Anwendung",
+  "title": "RA: Rechnernetze und ihre Anwendung",
   "color": "#588c7e",
-  "size": "78"
+  "size": "100"
 }
 {
-  "title": "Algorithmen und Datenstrukturen",
+  "title": "AD: Algorithmen und Datenstrukturen",
   "color": "#f2e394",
-  "size": "211"
+  "size": "200"
 }
 {
-  "title": "Programmierung interaktiver Systeme",
+  "title": "PIS: Programmierung interaktiver Systeme",
   "color": "#f2ae72",
-  "size": "233"
+  "size": "200"
 }
 {
-  "title": "Webbasierte Systeme",
+  "title": "WBS: Webbasierte Systeme",
   "color": "#d96459",
-  "size": "320"
+  "size": "400"
 }
 {
-  "title": "Recht für Informatiker/innen",
+  "title": "RI: Recht für Informatiker/innen",
   "color": "#f9d5e5",
-  "size": "67"
+  "size": "50"
 }
 {
-  "title": "Lineare Algebra",
+  "title": "LA: Lineare Algebra",
   "color": "#eeac99",
   "size": "200"
 }
 {
-  "title": "DV-orientierte Betriebswirtschaftslehre",
+  "title": "BWL: DV-orientierte Betriebswirtschaftslehre",
   "color": "#e06377",
-  "size": "120"
+  "size": "100"
 }
 {
-  "title": "Compilerbau",
+  "title": "CB: Compilerbau",
   "color": "#c83349",
-  "size": "120"
+  "size": "100"
 }
 {
-  "title": "Softwaretechnik",
+  "title": "SWT: Softwaretechnik",
   "color": "#5b9aa0",
-  "size": "320"
+  "size": "350"
 }
 {
-  "title": "Datenbanksysteme",
+  "title": "DBS: Datenbanksysteme",
   "color": "#d6d4e0",
-  "size": "180"
+  "size": "250"
 }
 {
-  "title": "Konzepte systemnaher Programmierung",
+  "title": "KSP: Konzepte systemnaher Programmierung",
   "color": "#b8a9c9",
-  "size": "156"
+  "size": "150"
 }
 {
-  "title": "Statistik und Datenanalyse",
+  "title": "SD: Statistik und Datenanalyse",
   "color": "#622569",
-  "size": "120"
+  "size": "100"
 }
 {
-  "title": "Betriebssysteme",
+  "title": "BS: Betriebssysteme",
   "color": "#f4a688",
-  "size": "220"
+  "size": "200"
 }
 {
-  "title": "Projektmanagement",
+  "title": "PM: Projektmanagement",
   "color": "#f1e3dd",
-  "size": "60"
+  "size": "50"
 }
 {
-  "title": "Wissenschaftliches Arbeiten in der Informatik",
+  "title": "WAI: Wissenschaftliches Arbeiten in der Informatik",
   "color": "#bd5734",
-  "size": "80"
+  "size": "50"
 }
 {
-  "title": "Unix as a Programming Environment",
-  "color": "#587e76",
+  "title": "CP: Code Refactoring",
+  "color": "#cab577",
+  "size": "50"
+}
+{
+  "title": "LPI: Linux Essentials Certification",
+  "color": "#cab577",
+  "size": "400"
+}
+{
+  "title": "LPIC-1: Linux Server Professional Certification",
+  "color": "#cab577",
   "size": "300"
 }
 {
-  "title": "Code Refactoring",
+  "title": "EM: Entwurfsmuster",
   "color": "#cab577",
-  "size": "180"
+  "size": "200"
 }
