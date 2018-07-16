@@ -25,7 +25,8 @@
       "title": {
         "first": "debug",
         "last": "cards"
-      }
+      },
+      "fakeStatistics": true
     },
     "env": "Sandbox",
     "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
