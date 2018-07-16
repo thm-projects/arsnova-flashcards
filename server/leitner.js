@@ -149,8 +149,7 @@ function setCards(cardset, user, isReset) {
 				user_id: user._id,
 				box: (l + 1),
 				active: false,
-				nextDate: {$lte: new Date()},
-				cardType: {$ne: 2}
+				nextDate: {$lte: new Date()}
 			}, {fields: {card_id: 1}}).fetch();
 			// c-loop: update one random card out of the l loop
 			for (let c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
@@ -168,8 +167,7 @@ function setCards(cardset, user, isReset) {
 		}, {
 			$set: {
 				active: true,
-				currentDate: new Date(),
-				skipped: 0
+				currentDate: new Date()
 			}
 		}, {multi: true});
 		if (user.mailNotification && mailsEnabled()) {
