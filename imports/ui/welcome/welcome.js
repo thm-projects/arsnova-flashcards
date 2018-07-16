@@ -11,6 +11,7 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
+import * as fakeWordCloud from '../../../public/fakeStatistics/wordcloud.json';
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("cards");
@@ -65,11 +66,15 @@ function createTagCloud() {
 		document.getElementById('tag-cloud-canvas').width = newWidth;
 		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
 		if ($(window).width() > 700 && $(window).height() > 700) {
-			let cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
+			let cloud = {};
 			let minimumSize = 1;
 			let biggestCardsetSize = 1;
 			let list = [];
-
+			if (Meteor.settings.public.welcome.fakeStatistics) {
+				cloud = new ReactiveVar(fakeWordCloud).curValue.default;
+			} else {
+				cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
+			}
 			cloud.forEach(function (cloud) {
 				if (cloud.quantity > biggestCardsetSize) {
 					biggestCardsetSize = cloud.quantity;
@@ -84,26 +89,58 @@ function createTagCloud() {
 				}
 				let quantitiy = cloud.quantity / biggestCardsetSize * 5;
 				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
-				list.push([name, Number(quantitiy), cloud._id]);
+				list.push([name, Number(quantitiy), cloud._id, cloud.color]);
 			});
 			list.sort(function (a, b) {
 				return (b[0].length * b[1]) - (a[0].length * a[1]);
 			});
-			WordCloud(document.getElementById('tag-cloud-canvas'),
-				{
-					clearCanvas: true,
-					drawOutOfBound: false,
-					list: list,
-					gridSize: 24,
-					weightFactor: 24,
-					rotateRatio: 0,
-					fontFamily: 'Roboto Condensed, Arial Narrow, sans-serif',
-					color: "random-light",
-					hover: wordcloudHover,
-					click: wordcloudClick,
-					backgroundColor: 'rgba(255,255,255, 0)',
-					wait: 400
-				});
+
+			let clearCanvas = true;
+			let drawOutOfBound = false;
+			let gridSize = 24;
+			let weightFactor = 24;
+			let rotateRatio = 0;
+			let fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
+			let color = "random-light";
+			let backgroundColor = 'rgba(255,255,255, 0)';
+			let wait = 400;
+			if (Meteor.settings.public.welcome.fakeStatistics) {
+				WordCloud(document.getElementById('tag-cloud-canvas'),
+					{
+						clearCanvas: clearCanvas,
+						drawOutOfBound: drawOutOfBound,
+						list: list,
+						gridSize: gridSize,
+						weightFactor: weightFactor,
+						rotateRatio: rotateRatio,
+						fontFamily: fontFamily,
+						color: function (word) {
+							for (let i = 0; i < list.length; i++) {
+								if (word === list[i][0]) {
+									return list[i][3];
+								}
+							}
+						},
+						backgroundColor: backgroundColor,
+						wait: wait
+					});
+			} else {
+				WordCloud(document.getElementById('tag-cloud-canvas'),
+					{
+						clearCanvas: clearCanvas,
+						drawOutOfBound: drawOutOfBound,
+						list: list,
+						gridSize: gridSize,
+						weightFactor: weightFactor,
+						rotateRatio: rotateRatio,
+						fontFamily: fontFamily,
+						color: color,
+						hover: wordcloudHover,
+						click: wordcloudClick,
+						backgroundColor: backgroundColor,
+						wait: wait
+					});
+			}
 		}
 	}
 }
