@@ -38,7 +38,7 @@ Template.cardDictionaryContent.helpers({
 		}
 		let wordCount = searchText.split(/\s+/);
 		if (wordCount.length === 1) {
-			return "&query=" + searchText;
+			return "&query=" + CardVisuals.removeMarkdeepTags(searchText);
 		}
 	}
 });

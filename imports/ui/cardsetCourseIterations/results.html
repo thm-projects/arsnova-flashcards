@@ -8,7 +8,7 @@
         <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
                                                                                                    regex="course|pool|learn"}}col-sm-4{{else}}{{#if
                 isActiveRoute
-                regex="create"}}col-xs-9{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
+                regex="create"}}col-xs-7 col-sm-6 col-md-7{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
             <strong>
                 {{#if isActiveRoute regex="course|pool"}}
                     {{_ "courseIteration.list.courseIteration"}}
@@ -25,9 +25,10 @@
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
         {{/unless}}
-        {{#if isActiveRoute regex="course|pool|alldecks"}}
+        {{#if isActiveRoute regex="create|course|pool|alldecks"}}
             <div class="hidden-xs {{#if isActiveRoute
-                                        regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 resultsHeader">
+                                        regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
+                                                                                          regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 resultsHeader">
                 <strong>
                     {{#if isActiveRoute regex="course"}}
                         {{_ "courseIteration.targetAudience"}}
@@ -69,7 +70,7 @@
                 regex="course|pool"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
-                                                              regex="create"}}col-sm-9{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
+                                                              regex="create"}}col-sm-6 col-md-7{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
                 this.difficulty this.cardType 1}}">
             {{> poolTitleContent}}
         </div>
@@ -84,10 +85,10 @@
                 {{getAuthorName this.owner}}
             </div>
         {{/unless}}
-        {{#if isActiveRoute regex="course|pool|alldecks"}}
+        {{#if isActiveRoute regex="create|course|pool|alldecks"}}
             <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if
                     isActiveRoute
-                    regex="alldecks"}}hidden-sm col-md-2{{else}}col-sm-3{{/if}} col-lg-2 {{getCardsetBackground
+                    regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-type="{{#if isActiveRoute
                                   regex="course"}}{{this.targetAudience}}{{else}}{{this.cardType}}{{/if}}">

@@ -18,6 +18,7 @@ import "./cardset.html";
 import {CardType} from "../../api/cardTypes";
 import {TargetAudience} from "../../api/targetAudience";
 import {CardNavigation} from "../../api/cardNavigation";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -255,20 +256,8 @@ Template.cardsetList.helpers({
 	getPriority: function (index) {
 		return index + 1;
 	},
-	cleanText: function (text) {
-		return text
-		// Remove image mark-up
-			.replace(/[\!][\[]/g, '')
-			// Remove inline links
-			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
-			// Remove blockquotes
-			.replace(/^\s{0,3}>\s?/g, '')
-			// Remove code blocks
-			.replace(/(`{3,})(.*?)\1/gm, '$2')
-			// Remove inline code
-			.replace(/`(.+?)`/g, '$1')
-			// Remove rest of mark-up
-			.replace(/[\][\$=~`#|*_+-]/g, " ");
+	cleanContent: function (text) {
+		return CardVisuals.removeMarkdeepTags(text);
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
