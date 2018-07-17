@@ -205,11 +205,28 @@ export let CardVisuals = class CardVisuals {
 			$(".center-button").removeClass('pressed');
 		}
 	}
+
 	static checkBackgroundStyle () {
 		if (Session.get('backgroundStyle')) {
 			$(".editorBrush").addClass('pressed');
 		} else {
 			$(".editorBrush").removeClass('pressed');
 		}
+	}
+
+	static removeMarkdeepTags (content) {
+		return content
+		// Remove image mark-up
+			.replace(/[\!][\[]/g, '')
+			// Remove inline links
+			.replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
+			// Remove blockquotes
+			.replace(/^\s{0,3}>\s?/g, '')
+			// Remove code blocks
+			.replace(/(`{3,})(.*?)\1/gm, '$2')
+			// Remove inline code
+			.replace(/`(.+?)`/g, '$1')
+			// Remove rest of mark-up
+			.replace(/[\][\$=~`#|*_+-]/g, " ");
 	}
 };
