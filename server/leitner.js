@@ -255,10 +255,11 @@ function getCardsets() {
 	} else {
 		if (Meteor.settings.public.university.singleUniversity) {
 			return Cardsets.find({
-				college: Meteor.settings.public.university.default
+				college: Meteor.settings.public.university.default,
+				kind: {$nin: ['server']}
 			}).fetch();
 		} else {
-			return Cardsets.find({}).fetch();
+			return Cardsets.find({kind: {$nin: ['server']}}).fetch();
 		}
 	}
 }

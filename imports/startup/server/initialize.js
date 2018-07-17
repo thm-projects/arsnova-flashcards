@@ -143,7 +143,7 @@ var initTestNotificationsLearned = function () {
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
 			"box": 1,
-			"active": false,
+			"active": true,
 			"nextDate": new Date(),
 			"currentDate": new Date()
 		},
@@ -153,7 +153,7 @@ var initTestNotificationsLearned = function () {
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
 			"box": 1,
-			"active": false,
+			"active": true,
 			"nextDate": new Date(),
 			"currentDate": new Date()
 		},
@@ -163,7 +163,7 @@ var initTestNotificationsLearned = function () {
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
 			"box": 1,
-			"active": false,
+			"active": true,
 			"nextDate": new Date(),
 			"currentDate": new Date()
 		},
@@ -173,7 +173,7 @@ var initTestNotificationsLearned = function () {
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
 			"box": 1,
-			"active": false,
+			"active": true,
 			"nextDate": new Date(),
 			"currentDate": new Date()
 		},
@@ -183,7 +183,7 @@ var initTestNotificationsLearned = function () {
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
 			"box": 1,
-			"active": false,
+			"active": true,
 			"nextDate": new Date(),
 			"currentDate": new Date()
 		}
