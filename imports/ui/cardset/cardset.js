@@ -257,7 +257,7 @@ Template.cardsetList.helpers({
 		return index + 1;
 	},
 	cleanContent: function (text) {
-		CardVisuals.removeMarkdeepTags(text);
+		return CardVisuals.removeMarkdeepTags(text);
 	},
 	gotCards: function () {
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
