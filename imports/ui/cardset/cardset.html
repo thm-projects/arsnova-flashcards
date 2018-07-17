@@ -229,16 +229,6 @@
             </td>
         </tr>
     {{/unless}}
-    {{#if isActiveRoute regex="create|learn|pool|shuffle|alldecks"}}
-        <tr>
-            <td>{{_ "cardset.info.release"}}:</td>
-            <td>{{getDate}}</td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.dateUpdated"}}:</td>
-            <td>{{getDateUpdated}}</td>
-        </tr>
-    {{/if}}
 </template>
 
 <template name="cardsetInfoBoxContentTwo">
@@ -292,16 +282,14 @@
             </tr>
         {{/if}}
     {{/if}}
-    {{#unless isActiveRoute regex="create|learn|pool"}}
-        <tr>
-            <td>{{_ "cardset.info.release"}}:</td>
-            <td>{{getMomentsDate this.date}}</td>
-        </tr>
-        <tr>
-            <td>{{_ "cardset.info.dateUpdated"}}:</td>
-            <td>{{getMomentsDate this.dateUpdated}}</td>
-        </tr>
-    {{/unless}}
+    <tr>
+        <td>{{_ "cardset.info.release"}}:</td>
+        <td>{{getMomentsDate this.date}}</td>
+    </tr>
+    <tr>
+        <td>{{_ "cardset.info.dateUpdated"}}:</td>
+        <td>{{getMomentsDate this.dateUpdated}}</td>
+    </tr>
     {{#unless isActiveRoute regex="home|course"}}
         {{#if ratingEnabled}}
             <tr>
