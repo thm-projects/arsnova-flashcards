@@ -113,11 +113,19 @@ function setCards(cardset, user, isReset) {
 	if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 		throw new Meteor.Error("not-authorized");
 	} else {
+		if (Meteor.settings.debugServer) {
+			console.log("===> Set new active cards for " + user._id);
+		}
 		let algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
 		let cardCount = [];
 		// i-loop: Get all cards that the user can learn right now
 		for (let i = 0; i < algorithm.length; i++) {
 			cardCount[i] = getCardCount(cardset._id, user._id, i + 1);
+		}
+
+		if (Meteor.settings.debugServer) {
+			console.log("===> Box Card Count: [" + cardCount + "]");
+			console.log("===> Maximum active cards: " + cardset.maxCards);
 		}
 
 		if (noCardsLeft(cardCount) === 0) {
@@ -142,6 +150,7 @@ function setCards(cardset, user, isReset) {
 			algorithm[0] = 0;
 		}
 		let randomSelectedCards = [];
+		let boxActiveCardCap = [];
 		// l-loop: Get all cards from a box that match the leitner criteria
 		for (let l = 0; l < algorithm.length; l++) {
 			let cards = Leitner.find({
@@ -151,6 +160,9 @@ function setCards(cardset, user, isReset) {
 				active: false,
 				nextDate: {$lte: new Date()}
 			}, {fields: {card_id: 1}}).fetch();
+			if (Meteor.settings.debugServer) {
+				boxActiveCardCap.push(cardset.maxCards * algorithm[l]);
+			}
 			// c-loop: update one random card out of the l loop
 			for (let c = 0; c < (cardset.maxCards * algorithm[l]); c++) {
 				if (cards.length !== 0) {
@@ -159,6 +171,10 @@ function setCards(cardset, user, isReset) {
 					cards.splice(nextCardIndex, 1);
 				}
 			}
+		}
+		if (Meteor.settings.debugServer) {
+			console.log("===> Active Card cap for each box: [" + boxActiveCardCap + "]");
+			console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
 		}
 		Leitner.update({
 			cardset_id: cardset._id,
@@ -201,6 +217,9 @@ function resetCards(cardset, user) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
+		if (Meteor.settings.debugServer) {
+			console.log("===> Reset cards");
+		}
 		Leitner.update({cardset_id: cardset._id, user_id: user._id}, {
 			$set: {
 				box: 1,
@@ -255,10 +274,11 @@ function getCardsets() {
 	} else {
 		if (Meteor.settings.public.university.singleUniversity) {
 			return Cardsets.find({
-				college: Meteor.settings.public.university.default
+				college: Meteor.settings.public.university.default,
+				kind: {$nin: ['server']}
 			}).fetch();
 		} else {
-			return Cardsets.find({}).fetch();
+			return Cardsets.find({kind: {$nin: ['server']}}).fetch();
 		}
 	}
 }
@@ -455,17 +475,35 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var cardsets = getCardsets();
-			for (var i = 0; i < cardsets.length; i++) {
-				var learners = getLearners(cardsets[i]._id);
+			let cardsets = getCardsets();
+			let cardsetCount = 0;
+			let currentCardsetWithLearners = 1;
+			if (Meteor.settings.debugServer) {
+				for (let i = 0; i < cardsets.length; i++) {
+					if (Leitner.findOne({cardset_id: cardsets[i]._id})) {
+						cardsetCount++;
+					}
+				}
+			}
+			for (let i = 0; i < cardsets.length; i++) {
+				let learners = getLearners(cardsets[i]._id);
+				let learnerCount = learners.length;
 				if (cardsets[i].learningEnd.getTime() > new Date().getTime()) {
-					for (var k = 0; k < learners.length; k++) {
-						var activeCard = getActiveCard(cardsets[i]._id, learners[k].user_id);
-						var user = Meteor.users.findOne(learners[k].user_id);
+					if (Meteor.settings.debugServer && learnerCount > 0) {
+						console.log("\nCardset " + currentCardsetWithLearners++ + " of " + cardsetCount + ": [" + cardsets[i].name + ", " + cardsets[i]._id + "]");
+					}
+					for (let k = 0; k < learners.length; k++) {
+						if (Meteor.settings.debugServer) {
+							console.log("=>User " + (k + 1) + " of " + learnerCount + ": " + learners[k].user_id);
+						}
+						let activeCard = getActiveCard(cardsets[i]._id, learners[k].user_id);
+						let user = Meteor.users.findOne(learners[k].user_id);
 						if (!activeCard) {
 							setCards(cardsets[i], user, false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							resetCards(cardsets[i], user);
+						} else if (Meteor.settings.debugServer) {
+							console.log("===> Nothing to do");
 						}
 					}
 				} else {

@@ -11,6 +11,8 @@ export class CronScheduler {
 			name: "leitnerCron",
 			schedule: function (parser) {
 				return parser.recur().on(Meteor.settings.public.leitner.dayIntervalHour).hour();
+				//Use this line on a local server to trigger the cronjob every 30 seconds
+				//return parser.text('every 30 seconds');
 			},
 			job: function () {
 				Meteor.call("updateLeitnerCards");
