@@ -272,14 +272,7 @@ function getCardsets() {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		if (Meteor.settings.public.university.singleUniversity) {
-			return Cardsets.find({
-				college: Meteor.settings.public.university.default,
-				kind: {$nin: ['server']}
-			}).fetch();
-		} else {
-			return Cardsets.find({kind: {$nin: ['server']}}).fetch();
-		}
+		return Cardsets.find({kind: {$nin: ['server']}}).fetch();
 	}
 }
 
