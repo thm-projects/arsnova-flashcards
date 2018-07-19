@@ -126,7 +126,7 @@
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
     "title": "Bearbeitergruppe verlassen",
-    "text": "Willst du deine Berechtigung für die Kartei \"__name__\" entfernen?"
+    "text": "Willst du deine Berechtigung für die Kartei <strong>\"__name__\"</strong> entfernen?"
   },
   "complete-profile": {
     "btn-txt": "Schließen",
@@ -946,9 +946,9 @@
   "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
-  "deadlinePrologue": "Du hast noch bis zum ",
-  "deadlineEpilogue1": " Zeit, um die derzeit freigegebenen Karten zu lernen.",
-  "deadlineEpilogue2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik für diese Kartei zurückgesetzt.",
+  "deadlinePrologue": "Du hast noch bis zum <strong>",
+  "deadlineEpilogue1": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen.",
+  "deadlineEpilogue2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik für diese Kartei zurückgesetzt.",
   "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
@@ -1305,10 +1305,10 @@
     "newCards2Plural": " Karten in der Kartei ",
     "textIntro": "Hallo, ",
     "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen! \n\n",
-    "textDate1": "Du hast noch bis zum ",
-    "textDate2": " Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
-    "mailCard": "die Kartei ",
-    "mailCard1": " benötigt deine Aufmerksamkeit! \n\n",
+    "textDate1": "Du hast noch bis zum <strong>",
+    "textDate2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
+    "mailCard": "die Kartei <strong>",
+    "mailCard1": "</strong> benötigt deine Aufmerksamkeit! \n\n",
     "greetings": " \n\nDein .__lastAppTitle__-Team",
     "subjectEnding": "endet die Lernphase der Kartei ",
     "textIntroEnding": "Hallo, \n\n",
