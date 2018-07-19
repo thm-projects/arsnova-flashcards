@@ -4,6 +4,7 @@ import {Leitner} from "../imports/api/learned.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
+import {getAuthorName} from "../imports/api/userdata";
 
 /**
  * Class used for sending the newsletter mail
@@ -55,7 +56,7 @@ export class MailNotifier {
 			var notifier = new Notifications();
 			var cards = notifier.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectTitle', {lastAppTitle: Meteor.settings.public.welcome.title.last}, Meteor.settings.mail.language);
-			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + ",";
+			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + getAuthorName(user_id, false) + ",";
 			var text = TAPi18n.__('mailNotification.textIntro1', null, Meteor.settings.mail.language) + TAPi18n.__('mailNotification.newCards1', null, Meteor.settings.mail.language);
 			var bold;
 			var textEnd;
