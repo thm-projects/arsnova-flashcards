@@ -896,6 +896,7 @@
       "course": "Studiengang",
       "progress": "Statistik",
       "semester": "Fachsemester",
+      "noSemester": "Ohne Fachsemester",
       "semesterList": "__count__. Semester"
     },
     "modal": {
@@ -971,6 +972,7 @@
   "yourhighscore": "Dein Highscore:",
   "points": "Punkte",
   "difficulty": "Level",
+  "noDifficulty": "Ohne Level",
   "difficulty0": "Allgemein",
   "difficulty1": "Basics",
   "difficulty2": "Fortgeschritten",

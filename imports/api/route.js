@@ -61,6 +61,30 @@ export let Route = class Route {
 		return Router.current().route.getName() === "home";
 	}
 
+	static isMyCardsets () {
+		return Router.current().route.getName() === "create";
+	}
+
+	static isAllCardsets () {
+		return Router.current().route.getName() === "alldecks";
+	}
+
+	static isWorkload () {
+		return Router.current().route.getName() === "learn";
+	}
+
+	static isShuffle () {
+		return Router.current().route.getName() === "shuffle";
+	}
+
+	static isPool () {
+		return Router.current().route.getName() === "pool";
+	}
+
+	static isCourseIteration () {
+		return Router.current().route.getName() === "courseIterations";
+	}
+
 	static isFirstTimeVisit () {
 		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {
 			localStorage.setItem(firstTimeVisit, "true");

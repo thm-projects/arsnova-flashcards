@@ -928,6 +928,7 @@
       "course": "Course",
       "progress": "Progress",
       "semester": "Semester",
+      "noSemester": "No Semester",
       "semesterList": "__count__. Semester"
     },
     "modal": {
@@ -1002,6 +1003,7 @@
   "yourhighscore": "Your highscore:",
   "points": "Points",
   "difficulty": "Level of Difficulty",
+  "noDifficulty": "No Difficulty",
   "difficulty0": "General",
   "difficulty1": "Basics",
   "difficulty2": "Advanced",

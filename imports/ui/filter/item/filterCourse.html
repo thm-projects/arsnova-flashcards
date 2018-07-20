@@ -1,0 +1,32 @@
+<template name="filterItemFilterCourse">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle courseBtn" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false" id="collegeBtn">
+            {{_ "set-list.course"}}
+            {{#if hasCourseFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterCourse active" data-id="">{{_
+                        "set-list.everything"}}</a>
+                <a href="#" class="filterNoCourse active" data-id="">{{_
+                        "set-list.noCourse"}}
+                    {{#if hasNoCourseFilter}}
+                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                    {{/if}}
+                </a>
+            </li>
+            {{#each getCourses}}
+                <li>
+                    <a href="#" class="filterCourse" data-id="{{this.course}}">{{this.course}}
+                        {{#if resultFilterCourse this.course}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </li>
+</template>

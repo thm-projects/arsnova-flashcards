@@ -232,8 +232,8 @@
 </template>
 
 <template name="cardsetInfoBoxContentTwo">
-    {{#if this.moduleActive}}
-        {{#if isActiveRoute regex="course"}}
+    {{#if isActiveRoute regex="courseIterations"}}
+        {{#if this.moduleActive}}
             {{#unless singleUniversity}}
                 <tr>
                     <td>{{_ "cardset.info.college"}}:</td>
