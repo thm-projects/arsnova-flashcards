@@ -22,6 +22,10 @@ export let TargetAudience = class TargetAudience {
 		return targetAudienceWithModule;
 	}
 
+	static getTargetAudienceWithSemester () {
+		return targetAudienceWithSemester;
+	}
+
 	static gotModule (targetAudience) {
 		return targetAudienceWithModule.includes(targetAudience);
 	}

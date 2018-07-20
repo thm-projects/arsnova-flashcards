@@ -204,6 +204,9 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	noDifficulty: {
+		type: Boolean
 	}
 });
 
@@ -313,7 +316,8 @@ Meteor.methods({
 			shuffled: shuffled,
 			cardGroups: cardGroups,
 			cardType: cardType,
-			difficulty: difficulty
+			difficulty: difficulty,
+			noDifficulty: !CardType.gotDifficultyLevel(cardType)
 		}, {trimStrings: false});
 	},
 	/**
@@ -536,7 +540,8 @@ Meteor.methods({
 				description: description,
 				dateUpdated: new Date(),
 				cardType: cardType,
-				difficulty: difficulty
+				difficulty: difficulty,
+				noDifficulty: !CardType.gotDifficultyLevel(cardType)
 			}
 		}, {trimStrings: false});
 

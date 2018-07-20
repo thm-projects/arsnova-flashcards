@@ -12,7 +12,11 @@
                 <a href="#" class="noFilterCourse active" data-id="">{{_
                         "set-list.everything"}}</a>
                 <a href="#" class="filterNoCourse active" data-id="">{{_
-                        "set-list.noCourse"}}</a>
+                        "set-list.noCourse"}}
+                    {{#if hasNoCourseFilter}}
+                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                    {{/if}}
+                </a>
             </li>
             {{#each getCourses}}
                 <li>

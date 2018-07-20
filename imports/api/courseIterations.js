@@ -104,6 +104,12 @@ const CourseIterationsSchema = new SimpleSchema({
 	},
 	targetAudience: {
 		type: Number
+	},
+	noModule: {
+		type: Boolean
+	},
+	noSemester: {
+		type: Boolean
 	}
 });
 
@@ -178,7 +184,9 @@ Meteor.methods({
 			course: course.trim(),
 			price: price.toString().replace(",", "."),
 			semester: semester,
-			targetAudience: targetAudience
+			targetAudience: targetAudience,
+			noModule: !TargetAudience.gotModule(targetAudience),
+			noSemester: !TargetAudience.gotModule(targetAudience)
 		}, {trimStrings: false});
 	},
 	/**

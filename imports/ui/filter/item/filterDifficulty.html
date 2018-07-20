@@ -14,6 +14,16 @@
                 <a href="#" class="noFilterDifficulty active">{{_
                         "set-list.everything"}}</a>
             </li>
+            {{#if displayNoDifficultyFilter}}
+                <li>
+                    <a href="#" class="filterNoDifficulty active">{{_
+                            "noDifficulty"}}
+                        {{#if hasNoDifficultyFilter}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
             {{#each getDifficulty}}
                 <li>
                     <a href="#" class="filterDifficulty"

@@ -12,6 +12,16 @@
                 <a href="#" class="noFilterSemester active" data-id="">{{_
                         "set-list.everything"}}</a>
             </li>
+            {{#if displayNoSemesterFilter}}
+                <li>
+                    <a href="#" class="filterNoSemester active" data-id="">{{_
+                            "courseIteration.list.noSemester"}}
+                        {{#if hasNoSemesterFilter}}
+                            <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
             {{> semesterList filter=true}}
         </ul>
     </li>

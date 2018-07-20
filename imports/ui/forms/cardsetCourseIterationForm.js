@@ -542,6 +542,7 @@ Template.semesterList.helpers({
 	displaySemester: function () {
 		let query = Filter.getFilterQuery();
 		query.semester = this.semester;
+		delete query.noSemester;
 		return CourseIterations.findOne(query);
 	},
 	activeFilter: function () {

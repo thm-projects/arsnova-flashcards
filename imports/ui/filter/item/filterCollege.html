@@ -12,8 +12,12 @@
                 <li>
                     <a href="#" class="noFilterCollege active" data-id="">{{_
                             "set-list.everything"}}</a>
-                    <a href="#" class="filterNoModule active" data-id="">{{_
-                            "set-list.noCollege"}}</a>
+                    <a href="#" class="filterNoCollege active" data-id="">{{_
+                            "set-list.noCollege"}}
+                        {{#if hasNoCollegeFilter}}
+                            <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                        {{/if}}
+                    </a>
                 </li>
                 {{#each getColleges}}
                     <li>

@@ -13,7 +13,11 @@
                 <a href="#" class="noFilterModule active" data-id="">{{_
                         "set-list.everything"}}</a>
                 <a href="#" class="filterNoModule active" data-id="">{{_
-                        "set-list.noModuleLong"}}</a>
+                        "set-list.noModuleLong"}}
+                    {{#if hasNoModuleFilter}}
+                        <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                    {{/if}}
+                </a>
             </li>
             {{#each getModules}}
                 <li><a href="#" class="filterModule" data-id="{{this.module}}">

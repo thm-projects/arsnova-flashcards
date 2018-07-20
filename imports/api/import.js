@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
 import {check} from "meteor/check";
+import {CardType} from "./cardTypes";
 
 function importCards(data, cardset, importType) {
 	if (Meteor.isServer) {
@@ -188,6 +189,7 @@ Meteor.methods({
 					cardGroups: [""],
 					cardType: data[0].cardType,
 					difficulty: data[0].difficulty,
+					noDifficulty: CardType.gotDifficultyLevel(data[0].cardType),
 					originalAuthorName: originalAuthorName
 				}, {trimStrings: false});
 				if (cardset_id) {
@@ -282,6 +284,7 @@ Meteor.methods({
 								cardGroups: [""],
 								cardType: cardset[0].cardType,
 								difficulty: cardset[0].difficulty,
+								noDifficulty: CardType.gotDifficultyLevel(cardset[0].cardType),
 								originalAuthorName: originalAuthorName
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
@@ -323,6 +326,7 @@ Meteor.methods({
 					cardGroups: cardGroups,
 					cardType: 0,
 					difficulty: 0,
+					noDifficulty: CardType.gotDifficultyLevel(0),
 					originalAuthorName: ""
 				}, {trimStrings: false});
 			} catch (error) {

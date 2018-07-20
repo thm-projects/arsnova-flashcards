@@ -78,8 +78,11 @@ export let Filter = class Filter {
 				case "module":
 					filter.module = content;
 					break;
+				case "noDifficulty":
+					filter.noDifficulty = content;
+					break;
 				case "noModule":
-					filter.noMdule = content;
+					filter.noModule = content;
 					break;
 				case "wordcloud":
 					filter.wordcloud = content;
@@ -95,6 +98,9 @@ export let Filter = class Filter {
 					break;
 				case "semester":
 					filter.semester = content;
+					break;
+				case "noSemester":
+					filter.noSemester = content;
 					break;
 			}
 		}
@@ -161,18 +167,23 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotCollegeFilter(filterType)) {
 			filter.college = undefined;
+			filter.noCollege = undefined;
 		}
 		if (FilterNavigation.gotCourseFilter(filterType)) {
 			filter.course = undefined;
+			filter.noCourse = undefined;
 		}
 		if (FilterNavigation.gotSemesterFilter(filterType)) {
 			filter.semester = undefined;
+			filter.noSemester = undefined;
 		}
 		if (FilterNavigation.gotModuleFilter(filterType)) {
 			filter.module = undefined;
+			filter.noModule = undefined;
 		}
 		if (FilterNavigation.gotDifficultyFilter(filterType)) {
 			filter.difficulty = undefined;
+			filter.noDifficulty = undefined;
 		}
 		if (FilterNavigation.gotBonusFilter(filterType)) {
 			filter.learningActive = undefined;
@@ -232,11 +243,20 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.semester !== undefined) {
 			query.semester = activeFilter.semester;
 		}
+		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.noSemester !== undefined) {
+			query.noSemester = activeFilter.noSemester;
+		}
 		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.module !== undefined) {
 			query.module = activeFilter.module;
 		}
+		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.noModule !== undefined) {
+			query.noModule = activeFilter.noModule;
+		}
 		if (FilterNavigation.gotDifficultyFilter(FilterNavigation.getRouteId()) && activeFilter.difficulty !== undefined) {
 			query.difficulty = activeFilter.difficulty;
+		}
+		if (FilterNavigation.gotDifficultyFilter(FilterNavigation.getRouteId()) && activeFilter.noDifficulty !== undefined) {
+			query.noDifficulty = activeFilter.noDifficulty;
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
 			query.learningActive = activeFilter.learningActive;

@@ -12,13 +12,22 @@ import {Cardsets} from "../../../api/cardsets";
 
 Template.filterItemFilterDifficulty.helpers({
 	hasDifficultyFilter: function () {
-		return Filter.getFilterQuery().difficulty !== undefined;
+		return (Filter.getFilterQuery().difficulty !== undefined || Filter.getFilterQuery().noDifficulty !== undefined);
+	},
+	hasNoDifficultyFilter: function () {
+		return Filter.getFilterQuery().noDifficulty !== undefined;
+	},
+	displayNoDifficultyFilter: function () {
+		let query = Filter.getFilterQuery();
+		delete query.difficulty;
+		query.noDifficulty = true;
+		return Cardsets.findOne(query);
 	},
 	getDifficulty: function () {
 		let result;
 		let query = Filter.getFilterQuery();
 		delete query.difficulty;
-		query.cardType = {$in: CardType.withDifficultyLevel()};
+		delete query.noDifficulty;
 		result = _.uniq(Cardsets.find(query, {
 			sort: {"difficulty": 1},
 			fields: {"difficulty": 1}
@@ -45,8 +54,14 @@ Template.filterItemFilterDifficulty.helpers({
 Template.filterItemFilterDifficulty.events({
 	'click .noFilterDifficulty': function () {
 		Filter.setActiveFilter(undefined, "difficulty");
+		Filter.setActiveFilter(undefined, "noDifficulty");
+	},
+	'click .filterNoDifficulty': function () {
+		Filter.setActiveFilter(undefined, "difficulty");
+		Filter.setActiveFilter(true, "noDifficulty");
 	},
 	'click .filterDifficulty': function (event) {
+		Filter.setActiveFilter(undefined, "noDifficulty");
 		Filter.setActiveFilter($(event.target).data('id'), "difficulty");
 	}
 });
