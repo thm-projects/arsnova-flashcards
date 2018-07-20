@@ -4,7 +4,7 @@ import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 import {exportAuthorName} from "./userdata";
 
-function exportCards(cardset_id) {
+function exportCards(cardset_id, isCardsExport = true) {
 	if (Meteor.isServer) {
 		let owner = Cardsets.findOne(cardset_id).owner;
 		let cards = Cards.find({
@@ -31,7 +31,11 @@ function exportCards(cardset_id) {
 				cardsString += ", ";
 			}
 		}
-		return cardsString;
+		if (isCardsExport) {
+			return '[' + cardsString + ']';
+		} else {
+			return cardsString;
+		}
 	}
 }
 
@@ -61,10 +65,10 @@ Meteor.methods({
 			cardset.originalAuthorName = exportAuthorName(cardset.owner);
 		}
 		let cardsetString = JSON.stringify(cardset);
-		let cardString = exportCards(cardset_id);
+		let cardString = exportCards(cardset_id, false);
 		if (cardString.length) {
 			cardsetString += (", " + cardString);
 		}
-		return cardsetString;
+		return '[' + cardsetString + ']';
 	}
 });
