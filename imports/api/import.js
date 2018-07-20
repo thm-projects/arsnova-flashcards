@@ -233,7 +233,13 @@ Meteor.methods({
 					let cardsetFiles = fs.readdirSync(demoPath);
 					let originalAuthorName;
 					for (let i = 0; i < cardsetFiles.length; i++) {
-						let cardset = JSON.parse('[' + fs.readFileSync(demoPath + cardsetFiles[i], 'utf8') + ']');
+						let cardset;
+						let res = fs.readFileSync(demoPath + cardsetFiles[i], 'utf8');
+						if (res.charAt(0) === '[' && res.charAt(res.length - 1) === ']') {
+							cardset = JSON.parse(res);
+						} else {
+							cardset = JSON.parse('[' + res  + ']');
+						}
 						if (cardset[0].originalAuthor !== undefined) {
 							originalAuthorName = {
 								legacyName: cardset[0].originalAuthor

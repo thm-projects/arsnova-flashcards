@@ -1275,8 +1275,12 @@ Template.cardsetImportForm.events({
 				var reader = new FileReader();
 				reader.onload = function () {
 					try {
-						var res = $.parseJSON('[' + this.result + ']');
-
+						let res;
+						if (this.result.charAt(0) === '[' && this.result.charAt(this.result.length - 1) === ']') {
+							res = $.parseJSON(this.result);
+						} else {
+							res = $.parseJSON('[' + this.result + ']');
+						}
 						Meteor.call('importCards', res, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);

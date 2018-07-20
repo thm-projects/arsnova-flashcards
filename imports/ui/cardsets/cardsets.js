@@ -55,7 +55,12 @@ Template.create.events({
 		if (evt.target.files[0].name.match(/\.(json)$/)) {
 			let reader = new FileReader();
 			reader.onload = function () {
-				let res = $.parseJSON('[' + this.result + ']');
+				let res;
+				if (this.result.charAt(0) === '[' && this.result.charAt(this.result.length - 1) === ']') {
+					res = $.parseJSON(this.result);
+				} else {
+					res = $.parseJSON('[' + this.result + ']');
+				}
 				Meteor.call('importCardset', res, function (error, result) {
 					if (error) {
 						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
