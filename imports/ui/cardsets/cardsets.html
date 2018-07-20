@@ -27,15 +27,13 @@
 <template name="shuffle">
     {{#if canShuffle}}
         {{#unless isShuffleRoute}}
-            {{#if shuffleList 0}}
-                <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
-                        "set-list.shuffleCardsets"}}</a>
-            {{/if}}
+            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                    "set-list.shuffleCardsets"}}</a>
         {{else}}
             <div class="col-md-12" id="set-list-region">
                 <div class="bs-callout bs-callout-info selectionInfo">
                     {{#if isActiveRoute 'shuffle'}}
-                        <a href="learn" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                        <a href="create" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
                                 "declinecard"}}</a>
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
@@ -65,20 +63,16 @@
                                 "set-list.shuffleRemove"}}</button>
                     {{/if}}
                 </div>
-                {{#if shuffleList 0}}
-                    {{> filterNavigation}}
-                    {{#if shuffleList 1}}
-                        {{#each shuffleList 2}}
-                            {{#unless isActiveCardset}}
-                                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-                            {{/unless}}
-                        {{/each}}
-                        {{> infiniteScroll}}
-                    {{else}}
-                        {{> noFilterResults}}
-                    {{/if}}
+                {{> filterNavigation}}
+                {{#if shuffleList 1}}
+                    {{#each shuffleList 2}}
+                        {{#unless isActiveCardset}}
+                            {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                        {{/unless}}
+                    {{/each}}
+                    {{> infiniteScroll}}
                 {{else}}
-                    {{> noResults}}
+                    {{> noFilterResults}}
                 {{/if}}
             </div>
         {{/unless}}
@@ -92,7 +86,7 @@
                     data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
-        {{> shuffle}}
+            {{> shuffle}}
             <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
                 {{_ "import.cardset"}} <input type="file" id="importCardset" style="display: none;">
             </label>
