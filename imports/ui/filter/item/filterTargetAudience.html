@@ -1,0 +1,19 @@
+<template name="filterItemFilterTargetAudience">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle targetAudienceBtn" data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false" id="targetAudienceBtn">
+            {{_ "courseIteration.targetAudience"}}
+            {{#if hasTargetAudienceFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterTargetAudience active" data-id="">{{_
+                        "set-list.everything"}}</a>
+            </li>
+            {{> targetAudienceList filter=true}}
+        </ul>
+    </li>
+</template>

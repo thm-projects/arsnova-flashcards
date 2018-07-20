@@ -1,0 +1,40 @@
+<template name="filterItemFilterWordcloud">
+    <li class="dropdown">
+        <a href="#" id="wordcloudFilter" class="dropdown-toggle wordcloudBtn"
+           data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "filter-pool.wordcloud"}}
+            {{#if hasWordcloudFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterWordcloud">{{_
+                        "filter-pool.wordcloudEveryting"}}</a>
+            </li>
+            {{#if gotRecommendedCardsets}}
+                <li>
+                    <a href="#" class="filterWordcloud"
+                       data-id="true">{{_ "filter-pool.wordcloudTrue"
+                                          lastAppTitle=(getLastAppTitle)}}
+                        {{#if resultsFilterWordcloud true}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+            {{#if gotNotRecommendedCardsets}}
+                <li>
+                    <a href="#" class="filterWordcloud"
+                       data-id="false">{{_ "filter-pool.wordcloudFalse"}}
+                        {{#if resultsFilterWordcloud false}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </li>
+</template>

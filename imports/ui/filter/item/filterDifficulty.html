@@ -1,0 +1,39 @@
+<template name="filterItemFilterDifficulty">
+    <li class="dropdown">
+        <a href="#" id="difficultyFilter" class="dropdown-toggle moduleBtn"
+           data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "difficulty"}}
+            {{#if hasDifficultyFilter}}
+                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="noFilterDifficulty active">{{_
+                        "set-list.everything"}}</a>
+            </li>
+            {{#if displayNoDifficultyFilter}}
+                <li>
+                    <a href="#" class="filterNoDifficulty active">{{_
+                            "noDifficulty"}}
+                        {{#if hasNoDifficultyFilter}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+            {{#each getDifficulty}}
+                <li>
+                    <a href="#" class="filterDifficulty"
+                       data-id="{{this.difficulty}}">{{getDifficultyName}}
+                        {{#if resultsFilterDifficulty}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </li>
+</template>

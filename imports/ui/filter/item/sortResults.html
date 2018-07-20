@@ -1,0 +1,24 @@
+<template name="filterItemSortResults">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false" id="t" value="down">
+            {{_ "filter-pool.sort"}}{{{getSortTopicIcon}}}{{{getSortCreatedDateIcon}}}{{{getSortUpdatedDateIcon}}}
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" id="topicBtn">
+                    {{_ "set-list.topic"}}
+                    {{{getSortTopicIcon}}}
+                </a>
+                <a href="#" class="createdDateBtn">
+                    {{_ "pool.release"}}
+                    {{{getSortCreatedDateIcon}}}
+                </a>
+                <a href="#" class="updatedDateBtn">
+                    {{_ "pool.dateUpdated"}}
+                    {{{getSortUpdatedDateIcon}}}
+                </a>
+            </li>
+        </ul>
+    </li>
+</template>

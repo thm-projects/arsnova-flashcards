@@ -1,0 +1,27 @@
+<template name="filterItemFilterKind">
+    <ul class="nav navbar-nav navbar-right">
+        <div id="filterCheckbox" class="btn-group" role="group" data-toggle="buttons"
+             aria-label="License group" style="padding-top: 20px;">
+            {{#if gotPersonalKind}}
+                <label class="btn btn-warning btn-sm {{#if isPersonalKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}}" data-kind="{{getPersonalKindTag}}">
+                    {{_ 'access-level.private.short'}}
+                </label>
+            {{/if}}
+            {{#if gotFreeKind}}
+                <label class="btn btn-info btn-sm {{#if isFreeKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}}" data-kind="{{getFreeKindTag}}">
+                   {{_ 'access-level.free.short'}}
+                </label>
+            {{/if}}
+            {{#if gotEduKind}}
+                <label class="btn btn-success btn-sm {{#if isEduKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}}" data-kind="{{getEduKindTag}}">
+                    {{_ 'access-level.edu.short'}}
+                </label>
+            {{/if}}
+            {{#if gotProKind}}
+                <label class="btn btn-danger btn-sm {{#if isProKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}}" data-kind="{{getProKindTag}}">
+                    {{_ 'access-level.pro.short'}}
+                </label>
+            {{/if}}
+        </div>
+    </ul>
+</template>

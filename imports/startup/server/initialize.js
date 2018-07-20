@@ -7,6 +7,8 @@ import {Learned, Leitner, Wozniak} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
+import {TargetAudience} from "../../api/targetAudience";
+import {CardType} from "../../api/cardTypes";
 
 var initColorThemes = function () {
 	return [{
@@ -55,7 +57,8 @@ var initTestNotificationsCardset = function () {
 			"shuffled": false,
 			"cardGroups": [],
 			"cardType": 0,
-			"difficulty": 1
+			"difficulty": 1,
+			"noDifficulty": CardType.gotDifficultyLevel(1)
 		}
 	];
 };
@@ -572,6 +575,18 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({}, {fields: {_id: 1, cardType: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					noDifficulty: !CardType.gotDifficultyLevel(cardsets[i].cardType)
+				}
+			}
+		);
+	}
 
 	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < leitner.length; i++) {
@@ -622,6 +637,20 @@ Meteor.startup(function () {
 			{
 				$set: {
 					targetAudience: Number(1)
+				}
+			}
+		);
+	}
+
+	courseIterations = CourseIterations.find({}, {fields: {_id: 1, targetAudience: 1}}).fetch();
+	for (let i = 0; i < courseIterations.length; i++) {
+		CourseIterations.update({
+				_id: courseIterations[i]._id
+			},
+			{
+				$set: {
+					noModule: !TargetAudience.gotModule(courseIterations[i].targetAudience),
+					noSemester: !TargetAudience.gotSemester(courseIterations[i].targetAudience)
 				}
 			}
 		);

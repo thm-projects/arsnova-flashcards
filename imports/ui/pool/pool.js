@@ -5,11 +5,8 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import "./pool.html";
-import {
-	resetFilters,
-	prepareQuery
-} from "../filter/filter.js";
 import {firstLoginBertAlert} from "../../startup/client/routes";
+import {Filter} from "../../api/filter";
 
 Meteor.subscribe("cardsets");
 
@@ -23,18 +20,17 @@ Template.category.helpers({
 	getDecks: function (resultType) {
 		let query = {};
 		if (resultType !== 0) {
-			prepareQuery();
-			query = Session.get('filterQuery');
+			query = Filter.getFilterQuery();
 		}
 		switch (resultType) {
 			case 0:
 			case 1:
 				return Cardsets.find(query, {
-					sort: Session.get('poolSortTopic'),
-					limit: Session.get('itemsLimit')
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
-				return Cardsets.find(query, {sort: Session.get('poolSortTopic'), limit: Session.get('itemsLimit')});
+				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
 		}
 	}
 });
@@ -80,10 +76,6 @@ Template.showLicense.helpers({
 			return (item.license.includes(type));
 		}
 	}
-});
-
-Template.pool.onCreated(function () {
-	resetFilters();
 });
 
 Template.pool.onRendered(function () {
