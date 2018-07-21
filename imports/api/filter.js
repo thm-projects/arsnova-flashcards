@@ -65,6 +65,9 @@ export let Filter = class Filter {
 					break;
 				case "difficulty":
 					filter.difficulty = content;
+					if (content !== undefined) {
+						filter.noDifficulty = false;
+					}
 					break;
 				case "author":
 					filter.owner = content;
