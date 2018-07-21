@@ -199,7 +199,7 @@ Meteor.methods({
 	},
 	importCards: function (data, cardset_id, importType) {
 		if (data[0].name) {
-			throw new Meteor.Error(TAPi18n.__('import.failure'));
+			data.shift();
 		}
 		check(cardset_id, String);
 		check(importType, Number);
