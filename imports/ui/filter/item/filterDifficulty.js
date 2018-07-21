@@ -1,7 +1,6 @@
 import "./filterDifficulty.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../api/filter";
-import {CardType} from "../../../api/cardTypes";
 import {Cardsets} from "../../../api/cardsets";
 
 /*
@@ -15,7 +14,7 @@ Template.filterItemFilterDifficulty.helpers({
 		return (Filter.getFilterQuery().difficulty !== undefined || Filter.getFilterQuery().noDifficulty !== undefined);
 	},
 	hasNoDifficultyFilter: function () {
-		return Filter.getFilterQuery().noDifficulty !== undefined;
+		return Filter.getFilterQuery().noDifficulty === true;
 	},
 	displayNoDifficultyFilter: function () {
 		let query = Filter.getFilterQuery();
@@ -23,31 +22,14 @@ Template.filterItemFilterDifficulty.helpers({
 		query.noDifficulty = true;
 		return Cardsets.findOne(query);
 	},
-	getDifficulty: function () {
-		let result;
+	displayDifficultyFilterNumber: function (difficulty) {
 		let query = Filter.getFilterQuery();
-		delete query.difficulty;
-		delete query.noDifficulty;
-		result = _.uniq(Cardsets.find(query, {
-			sort: {"difficulty": 1},
-			fields: {"difficulty": 1}
-		}).fetch(), function (item) {
-			return item.difficulty;
-		});
-		query.cardType = {$nin: CardType.withDifficultyLevel()};
-		query.shuffled = false;
-		let noDifficultyResult = Cardsets.findOne(query, {fields: {"difficulty": 1}});
-		if (noDifficultyResult !== undefined) {
-			noDifficultyResult.difficulty = 0;
-			result.unshift(noDifficultyResult);
-		}
-		return result;
+		query.difficulty = difficulty;
+		query.noDifficulty = false;
+		return Cardsets.findOne(query);
 	},
-	resultsFilterDifficulty: function () {
-		return Filter.getFilterQuery().difficulty === this.difficulty;
-	},
-	getDifficultyName: function () {
-		return TAPi18n.__('difficulty' + this.difficulty);
+	hasDifficultyFilterNumber: function (difficulty) {
+		return Filter.getFilterQuery().difficulty === difficulty;
 	}
 });
 

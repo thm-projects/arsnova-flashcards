@@ -625,7 +625,7 @@
   },
   "filter-pool": {
     "wordcloud": "Empfohlen",
-    "wordcloudTrue": "Von der .__lastAppTitle__-Redaktion empfohlen",
+    "wordcloudTrue": "Von der Redaktion empfohlen",
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
@@ -1318,7 +1318,7 @@
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass ",
-    "service": "Der Newsletter ist ein Service von .__lastAppTitle__. Du erhälst diese Mail, weil du dich angemeldet hast bei ",
+    "service": "Der Newsletter ist ein Service von .__lastAppTitle__.\nDu erhälst diese Mail, weil du dich angemeldet hast auf ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 .__lastAppTitle__",
     "my-cardset": "Zur Kartei…",
