@@ -87,13 +87,11 @@ function importCards(data, cardset, importType) {
 				}
 				Cards.insert({
 					subject: subject.trim(),
-					difficulty: cardset.difficulty,
 					front: front,
 					back: back,
 					hint: hint,
 					cardset_id: cardset._id,
 					cardGroup: -1,
-					cardType: cardset.cardType,
 					lecture: lecture,
 					top: top,
 					bottom: bottom,
@@ -111,13 +109,11 @@ function importCards(data, cardset, importType) {
 				let item = data[i];
 				Cards.insert({
 					subject: item.subject,
-					difficulty: cardset.difficulty,
 					front: item.front,
 					back: item.back,
 					hint: item.hint,
 					cardset_id: cardset._id,
 					cardGroup: -1,
-					cardType: cardset.cardType,
 					lecture: item.lecture,
 					top: item.top,
 					bottom: item.bottom,
