@@ -313,7 +313,7 @@ export let Filter = class Filter {
 			return {name: filter.name};
 		}
 		if (filter.date !== undefined) {
-			return {date: filter.name};
+			return {date: filter.date};
 		}
 		if (filter.dateUpdated !== undefined) {
 			return {dateUpdated: filter.dateUpdated};
