@@ -1242,6 +1242,7 @@
       "cancel": "Cancel",
       "save": "Save deck of cards",
       "delete": "Delete deck of cards",
+      "export": "Export deck of cards",
       "confirm": "Sure?",
       "name_required": "The name field is required!",
       "description_required": "The decription field is required!",
