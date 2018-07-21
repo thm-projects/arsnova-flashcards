@@ -369,14 +369,15 @@ th .field-tip {
   text-align: center;
 }
 
-.cardListSubject tbody tr:hover {
+.cardListSubject tbody th tr tr:hover {
   cursor: pointer;
+  font-weight: normal;
 }
 
 .cardListName, .cardListOwner {
   padding: 5px 0 5px 10px;
   font-size: $font_size_card_list_cardset_name !important;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .cardListOwner {

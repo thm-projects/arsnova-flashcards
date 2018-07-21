@@ -76,7 +76,7 @@ $card_header_item_margin_horizontal: 7px;
 $font_size_cardset_content: 12pt;
 $padding_cardset_content_horizontal: 25pt;
 $padding_cardset_content_vertical: 5pt;
-$font_size_card_list_cardset_name: 24px;
+$font_size_card_list_cardset_name: 18px;
 $font_size_card_list_cardset_owner: 14px;
 
 //markdeep
@@ -538,6 +538,7 @@ button {
 
 th {
   text-transform: uppercase;
+  font-weight: normal;
 }
 
 
