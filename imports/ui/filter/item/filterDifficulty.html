@@ -17,23 +17,43 @@
             {{#if displayNoDifficultyFilter}}
                 <li>
                     <a href="#" class="filterNoDifficulty active">{{_
-                            "noDifficulty"}}
+                            "difficulty0"}}
                         {{#if hasNoDifficultyFilter}}
                             <span class="glyphicon glyphicon-filter"></span>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
-            {{#each getDifficulty}}
+            {{#if displayDifficultyFilterNumber 1}}
                 <li>
-                    <a href="#" class="filterDifficulty"
-                       data-id="{{this.difficulty}}">{{getDifficultyName}}
-                        {{#if resultsFilterDifficulty}}
+                    <a href="#" class="filterDifficulty active" data-id="1">{{_
+                            "difficulty1"}}
+                        {{#if hasDifficultyFilterNumber 1}}
                             <span class="glyphicon glyphicon-filter"></span>
                         {{/if}}
                     </a>
                 </li>
-            {{/each}}
+            {{/if}}
+            {{#if displayDifficultyFilterNumber 2}}
+                <li>
+                    <a href="#" class="filterDifficulty active" data-id="2">{{_
+                            "difficulty2"}}
+                        {{#if hasDifficultyFilterNumber 2}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+            {{#if displayDifficultyFilterNumber 3}}
+                <li>
+                    <a href="#" class="filterDifficulty active" data-id="3">{{_
+                            "difficulty3"}}
+                        {{#if hasDifficultyFilterNumber 3}}
+                            <span class="glyphicon glyphicon-filter"></span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
         </ul>
     </li>
 </template>
