@@ -19,7 +19,7 @@ Template.editor.helpers({
 		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.editorLabels.subject');
 	},
 	gotLearningGoal: function () {
-		return CardType.gotLearningGoal(this.cardType);
+		return CardType.gotLearningGoal(Session.get('cardType'));
 	},
 	isTextCentered: function () {
 		CardVisuals.isTextCentered();
