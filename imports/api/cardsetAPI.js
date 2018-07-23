@@ -27,11 +27,11 @@ if (Meteor.isServer) {
 
 	JsonRoutes.add("post", "/cardsets/:id", function (req, res) {
 		var id = req.params.id;
-		var token = req.params.token;
+		var token = req.query.token;
 
-		var at = APIAccess.findOne({cardset_id: id, token: token});
+		var at = APIAccess.findOne({token: token});
 
-		if (!at) {
+		if (!at || at.cardset_id !== id) {
 			JsonRoutes.sendResult(res, {
 				data: "permission denied"
 			});
