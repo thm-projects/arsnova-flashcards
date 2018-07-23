@@ -15,18 +15,20 @@
 </template>
 
 <template name="presentationView">
-    {{#if isActiveRoute regex='demolist|presentationlist'}}
-        <button class="btn btn-raised btn-danger" id="backToPresentation">
+        {{#if isActiveRoute regex='demolist|presentationlist'}}
+            <div class="col-xs-12">
+                <button class="btn btn-raised btn-danger" id="backToPresentation">
             <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
                     "presentation.list.backDemo"}}{{else}}{{_ "presentation.list.back"}}{{/if}}</span>
-        </button>
-        {{> cardsetList}}
-    {{else}}
-        <div class="{{#if isActiveRoute regex='demo'}}demo-padding {{/if}}row">
-            {{> cardNavigation}}
-        </div>
-        <div class="{{#if isActiveRoute regex='demo'}}demo-padding {{/if}}row">
-            {{> flashcards}}
-        </div>
-    {{/if}}
+                </button>
+                {{> cardsetList}}
+            </div>
+        {{else}}
+            <div class="col-xs-12 {{#if isActiveRoute regex='demo'}}demo-padding {{/if}}">
+                {{> cardNavigation}}
+            </div>
+            <div class="col-xs-12 {{#if isActiveRoute regex='demo'}}demo-padding {{/if}}">
+                {{> flashcards}}
+            </div>
+        {{/if}}
 </template>
