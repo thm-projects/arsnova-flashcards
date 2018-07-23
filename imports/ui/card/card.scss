@@ -184,6 +184,12 @@ img.cardside {
   }
 }
 
+.cardHeaderCounter {
+  @media(max-width: 450px) {
+    display: none;
+  }
+}
+
 .cardHeaderRowHalf {
   padding: 0;
   height: 50%;
