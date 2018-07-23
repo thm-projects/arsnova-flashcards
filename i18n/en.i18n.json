@@ -1211,6 +1211,7 @@
     "no": "No",
     "editLearning": "Learning-phase settings",
     "updateLearning": "Update Learning-phase",
+    "apiAccess": "API Access",
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",

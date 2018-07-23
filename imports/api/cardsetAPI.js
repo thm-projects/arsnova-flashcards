@@ -1,3 +1,4 @@
+import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {JsonRoutes} from "meteor/simple:json-routes";
@@ -5,10 +6,6 @@ import {Cards} from "./cards.js";
 
 export const APIAccess = new Mongo.Collection("apiAccess");
 
-/*
-* function to automatically generate the mongo modifier for an update.
-* checks which attributes have changed.
-*/
 function mongoReplacementModifier(keep, change) {
 	var $unset = {};
 	for (var key in change) {
@@ -21,35 +18,43 @@ function mongoReplacementModifier(keep, change) {
 	return {$set: copy, $unset: $unset};
 }
 
-JsonRoutes.add("post", "/cardsets/:id", function (req, res) {
-	var id = req.params.id;
-	var token = req.params.token;
+if (Meteor.isServer) {
+	Meteor.publish("apiAccess", function () {
+		if (Roles.userIsInRole(this.userId, 'admin')) {
+			return APIAccess.find();
+		}
+	});
 
-	var at = APIAccess.findOne({cardset_id: id, token: token});
+	JsonRoutes.add("post", "/cardsets/:id", function (req, res) {
+		var id = req.params.id;
+		var token = req.params.token;
 
-	if (!at) {
-		JsonRoutes.sendResult(res, {
-			data: "permission denied"
-		});
-	} else {
-		var cards = req.body;
+		var at = APIAccess.findOne({cardset_id: id, token: token});
 
-		cards.forEach(function (card) {
-			card.cardset_id = id;
-			if (card._id != null && card._id !== "") {
-				var oldCard = Cards.findOne({_id: card._id});
-				var modifier = mongoReplacementModifier(card, oldCard);
-				Cards.update(card._id, modifier);
-			} else {
-				Cards.insert(card);
-			}
-		});
+		if (!at) {
+			JsonRoutes.sendResult(res, {
+				data: "permission denied"
+			});
+		} else {
+			var cards = req.body;
 
-		JsonRoutes.sendResult(res, {
-			data: "success"
-		});
-	}
-});
+			cards.forEach(function (card) {
+				card.cardset_id = id;
+				if (card._id != null && card._id !== "") {
+					var oldCard = Cards.findOne({_id: card._id});
+					var modifier = mongoReplacementModifier(card, oldCard);
+					Cards.update(card._id, modifier);
+				} else {
+					Cards.insert(card);
+				}
+			});
+
+			JsonRoutes.sendResult(res, {
+				data: "success"
+			});
+		}
+	});
+}
 
 var APIAccessSchema = new SimpleSchema({
 	cardset_id: {
@@ -61,3 +66,8 @@ var APIAccessSchema = new SimpleSchema({
 });
 
 APIAccess.attachSchema(APIAccessSchema);
+
+/*
+* function to automatically generate the mongo modifier for an update.
+* checks which attributes have changed.
+*/

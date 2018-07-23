@@ -431,6 +431,12 @@ Router.route('/admin/learningStatistics', {
 	}
 });
 
+Router.route('/admin/apiAccess', {
+	name: 'admin_apiAccess',
+	template: 'admin_apiAccess',
+	layoutTemplate: 'admin_main'
+});
+
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',

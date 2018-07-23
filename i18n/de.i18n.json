@@ -1145,6 +1145,7 @@
     "no": "Nein",
     "editLearning": "Bonus-Einstellungen",
     "updateLearning": "Bonus-Einstellungen aktualisieren",
+    "apiAccess": "API Zugänge",
     "confirm-form": {
       "cardsets": {
         "title": "Kartei löschen",
