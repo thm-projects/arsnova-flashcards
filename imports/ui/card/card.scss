@@ -46,43 +46,14 @@
   border-radius: 4px;
 }
 
-
-
-@media(max-width: 767px) {
-  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
-    border: 2px solid !important;
-  }
-  #cardTypeGroup *:nth-child(even), #difficultyGroup *:nth-child(even), #learningGoalLevelGroup *:nth-child(even), .cardNavigation *:nth-child(even) {
-    border-left: none !important;
-  }
-  #cardTypeGroup *:nth-child(n+3), #difficultyGroup *:nth-child(n+3), #learningGoalLevelGroup *:nth-child(n+3), .cardNavigation *:nth-child(n+3) {
-    border-top: none !important;
-  }
-  #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .cardNavigation *:last-child:nth-child(odd) {
-    border-right: 2px solid !important;
-  }
-
-  #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
-    border-bottom: 2px solid !important;
-  }
-  #cardTypeGroup *:nth-child(3) {
-    border-right: 2px solid !important;
-  }
+#cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
+  border-right: 2px solid !important;
 }
 
-@media(min-width: 768px) {
-  #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
-    border-right: 2px solid !important;
-  }
-
-  #cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .cardNavigation *:last-child {
-    border-right: none !important;
-  }
-
-  #cardTypeGroup *:nth-child(3) {
-    border-right: 4px solid !important;
-  }
+#cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .cardNavigation *:last-child {
+  border-right: none !important;
 }
+
 
 .btn-showPictureDetails {
   position: absolute;
@@ -189,7 +160,6 @@ img.cardside {
   }
 }
 
-
 .cardHeaderGroup {
   display: inline-block;
   height: 100%;
@@ -211,6 +181,12 @@ img.cardside {
   font-size: $font_size_card_header_smaller_text;
   @media(max-width: 767px) {
     font-size: $font_size_card_header_smaller_text * 0.8;
+  }
+}
+
+.cardHeaderCounter {
+  @media(max-width: 450px) {
+    display: none;
   }
 }
 
@@ -317,7 +293,7 @@ img.cardside {
 
 .center-align {
   display: table;
-  width:100%;
+  width: 100%;
   height: 100%;
   text-align: center;
   .md {
@@ -369,12 +345,12 @@ img.cardside {
 }
 
 .subjectPlaceholder {
-  font-style:  $font_style_card_header_subject_placeholder !important;
+  font-style: $font_style_card_header_subject_placeholder !important;
 }
 
 .fullscreenContent {
-    padding-left: $padding_card_conntent_horizontal_fullscreen_desktop !important;
-    padding-right: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+  padding-left: $padding_card_conntent_horizontal_fullscreen_desktop !important;
+  padding-right: $padding_card_conntent_horizontal_fullscreen_desktop !important;
 }
 
 .clock {
