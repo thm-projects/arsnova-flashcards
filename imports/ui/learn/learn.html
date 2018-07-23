@@ -15,25 +15,27 @@
 </template>
 
 <template name="learnAlgorithms">
-    <div class="col-xs-12">
-        {{#if noCards}}
+    {{#if noCards}}
+        <div class="col-xs-12">
             {{> flashcardsEmpty}}
-        {{else}}
-            {{#if isFinished}}
+        </div>
+    {{else}}
+        {{#if isFinished}}
+            <div class="col-xs-12">
                 {{> flashcardsEnd}}
-            {{else}}
-                <div class="col-xs-12">
-                    {{> learnAnswerOptions}}
-                </div>
-                <div class="col-xs-12">
-                    {{> cardNavigation}}
-                </div>
-                <div class="col-xs-12">
-                    {{> flashcards cardset=this}}
-                </div>
-            {{/if}}
+            </div>
+        {{else}}
+            <div class="col-xs-12">
+                {{> learnAnswerOptions}}
+            </div>
+            <div class="col-xs-12">
+                {{> cardNavigation}}
+            </div>
+            <div class="col-xs-12">
+                {{> flashcards cardset=this}}
+            </div>
         {{/if}}
-    </div>
+    {{/if}}
 </template>
 
 <template name="learnAnswerOptions">

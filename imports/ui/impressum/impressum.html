@@ -4,33 +4,29 @@
     {{/if}}
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
         <div id="contact" class="col-md-8 col-md-offset-2">
-            <div class="row">
-                {{> contactNavigation}}
-            </div>
+            {{> contactNavigation}}
             <br>
-            <div class="row">
-                {{#if isActiveRoute 'about'}}
-                    {{> about}}
-                {{/if}}
-                {{#if isActiveRoute 'learning'}}
-                    {{> learning}}
-                {{/if}}
-                {{#if isActiveRoute 'help'}}
-                    {{> help}}
-                {{/if}}
-                {{#if isActiveRoute 'faq'}}
-                    {{> faq}}
-                {{/if}}
-                {{#if isActiveRoute 'impressum'}}
-                    {{> impressum}}
-                {{/if}}
-                {{#if isActiveRoute 'agb'}}
-                    {{> agb}}
-                {{/if}}
-                {{#if isActiveRoute 'datenschutz'}}
-                    {{> datenschutz}}
-                {{/if}}
-            </div>
+            {{#if isActiveRoute 'about'}}
+                {{> about}}
+            {{/if}}
+            {{#if isActiveRoute 'learning'}}
+                {{> learning}}
+            {{/if}}
+            {{#if isActiveRoute 'help'}}
+                {{> help}}
+            {{/if}}
+            {{#if isActiveRoute 'faq'}}
+                {{> faq}}
+            {{/if}}
+            {{#if isActiveRoute 'impressum'}}
+                {{> impressum}}
+            {{/if}}
+            {{#if isActiveRoute 'agb'}}
+                {{> agb}}
+            {{/if}}
+            {{#if isActiveRoute 'datenschutz'}}
+                {{> datenschutz}}
+            {{/if}}
         </div>
     </div>
 </template>
