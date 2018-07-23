@@ -16,7 +16,7 @@
 
 <template name="presentationView">
         {{#if isActiveRoute regex='demolist|presentationlist'}}
-            <div class="col-xs-12">
+            <div class="{{#if isActiveRoute regex='demolist'}}row demo-padding{{else}}col-xs-12{{/if}}">
                 <button class="btn btn-raised btn-danger" id="backToPresentation">
             <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
                     "presentation.list.backDemo"}}{{else}}{{_ "presentation.list.back"}}{{/if}}</span>
@@ -24,10 +24,10 @@
                 {{> cardsetList}}
             </div>
         {{else}}
-            <div class="col-xs-12 {{#if isActiveRoute regex='demo'}}demo-padding {{/if}}">
+            <div class="{{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
                 {{> cardNavigation}}
             </div>
-            <div class="col-xs-12 {{#if isActiveRoute regex='demo'}}demo-padding {{/if}}">
+            <div class="{{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
                 {{> flashcards}}
             </div>
         {{/if}}
