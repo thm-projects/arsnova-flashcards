@@ -183,6 +183,7 @@ export let CardEditor = class CardEditor {
 				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
 						Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
+						Session.set('activeCard', result);
 						if (returnToCardset) {
 							Router.go('cardsetdetailsid', {
 								_id: Router.current().params._id
