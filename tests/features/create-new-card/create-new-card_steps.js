@@ -44,7 +44,6 @@ module.exports = function () {
 		navigation.compareUrl(url, browser.getUrl());
 	});
 	this.Then(/^the card should be saved$/, function () {
-		navigation.clickElement("#leftCarouselControl");
 		navigation.compareContent(".detail" + (++countBeforeCreated), "FRONTOFTHECARD", 0);
 	});
 	this.Then(/^they log out$/, function () {
