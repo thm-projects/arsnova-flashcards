@@ -545,20 +545,6 @@ Meteor.methods({
 			}
 		}, {trimStrings: false});
 
-		Cards.update({
-				cardset_id: cardset._id
-			},
-			{
-				$set: {
-					cardType: cardType,
-					difficulty: difficulty
-				}
-			},
-			{
-				multi: true
-			}
-		);
-
 		if (!CardType.gotLearningModes(cardType)) {
 			Leitner.remove({
 				cardset_id: id

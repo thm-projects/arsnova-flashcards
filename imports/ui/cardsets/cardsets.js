@@ -45,28 +45,38 @@ Template.create.helpers({
 
 Template.create.events({
 	'change #importCardset': function (evt) {
-		if (evt.target.files[0].name.match(/\.(json)$/)) {
-			let reader = new FileReader();
-			reader.onload = function () {
-				let res;
-				if (this.result.charAt(0) === '[' && this.result.charAt(this.result.length - 1) === ']') {
-					res = $.parseJSON(this.result);
-				} else {
-					res = $.parseJSON('[' + this.result + ']');
-				}
-				Meteor.call('importCardset', res, function (error, result) {
-					if (error) {
-						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+		if (Session.get('importCards') === undefined) {
+			if (evt.target.files[0].name.match(/\.(json)$/)) {
+				let reader = new FileReader();
+				reader.onload = function () {
+					let res;
+					if (this.result.charAt(0) === '[' && this.result.charAt(this.result.length - 1) === ']') {
+						res = $.parseJSON(this.result);
+					} else {
+						res = $.parseJSON('[' + this.result + ']');
 					}
-					if (result) {
-						Bert.alert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
-						Router.go('cardsetdetailsid', {
-							_id: result
+					let isCardset = true;
+					if (!res[0].name) {
+						Session.set('importCards', res);
+						$("#newCardSet").click();
+						isCardset = false;
+					}
+					if (isCardset) {
+						Meteor.call('importCardset', res, function (error, result) {
+							if (error) {
+								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+							}
+							if (result) {
+								Bert.alert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
+								Router.go('cardsetdetailsid', {
+									_id: result
+								});
+							}
 						});
 					}
-				});
-			};
-			reader.readAsText(evt.target.files[0]);
+				};
+				reader.readAsText(evt.target.files[0]);
+			}
 		}
 	}
 });

@@ -68,7 +68,6 @@ var initTestNotificationsCards = function () {
 		{
 			"_id": "NotificationsTestCard1",
 			"subject": "NotificationsTest: Card Nr. 1",
-			"difficulty": 1,
 			"front": "Front of NotificationsTest: Card Nr. 1",
 			"back": "Back of NotificationsTest: Card Nr. 1",
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
@@ -76,13 +75,11 @@ var initTestNotificationsCards = function () {
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 0,
-			"backgroundStyle": 0,
-			"cardType": 0
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard2",
 			"subject": "NotificationsTest: Card Nr. 2",
-			"difficulty": 1,
 			"front": "Front of NotificationsTest: Card Nr. 2",
 			"back": "Back of NotificationsTest: Card Nr. 2",
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
@@ -90,13 +87,11 @@ var initTestNotificationsCards = function () {
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 1,
-			"backgroundStyle": 0,
-			"cardType": 0
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard3",
 			"subject": "NotificationsTest: Card Nr. 3",
-			"difficulty": 1,
 			"front": "Front of NotificationsTest: Card Nr. 3",
 			"back": "Back of NotificationsTest: Card Nr. 3",
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
@@ -104,13 +99,11 @@ var initTestNotificationsCards = function () {
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 2,
-			"backgroundStyle": 0,
-			"cardType": 0
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard4",
 			"subject": "NotificationsTest: Card Nr. 4",
-			"difficulty": 1,
 			"front": "Front of NotificationsTest: Card Nr. 4",
 			"back": "Back of NotificationsTest: Card Nr. 4",
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
@@ -118,13 +111,11 @@ var initTestNotificationsCards = function () {
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 3,
-			"backgroundStyle": 0,
-			"cardType": 0
+			"backgroundStyle": 0
 		},
 		{
 			"_id": "NotificationsTestCard5",
 			"subject": "NotificationsTest: Card Nr. 5",
-			"difficulty": 1,
 			"front": "Front of NotificationsTest: Card Nr. 5",
 			"back": "Back of NotificationsTest: Card Nr. 5",
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
@@ -132,8 +123,7 @@ var initTestNotificationsCards = function () {
 			"lecture": "",
 			"centerTextElement": [false, false, false, false],
 			"learningGoalLevel": 4,
-			"backgroundStyle": 0,
-			"cardType": 0
+			"backgroundStyle": 0
 		}
 	];
 };
@@ -518,23 +508,6 @@ Meteor.startup(function () {
 					shuffled: false,
 					cardGroups: [""]
 				}
-			}
-		);
-	}
-
-	cardsets = Cardsets.find({}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Cards.update({
-				cardset_id: cardsets[i]._id
-			},
-			{
-				$set: {
-					cardType: cardsets[i].cardType,
-					difficulty: cardsets[i].difficulty
-				}
-			},
-			{
-				multi: true
 			}
 		);
 	}

@@ -94,7 +94,7 @@ function changeCollapseIcon(iconId) {
  */
 
 Template.cardset.onCreated(function () {
-	if (Session.get('activeCardset') === undefined || Session.get('activeCardset') !== Router.current().params._id) {
+	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== Router.current().params._id) {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);
 	}
@@ -277,7 +277,6 @@ Template.cardsetList.helpers({
 			}, {
 				cardset_id: 1,
 				subject: 1,
-				cardType: 1,
 				sort: {subject: 1}
 			}).fetch(), function (card) {
 				return card.subject;
@@ -288,50 +287,48 @@ Template.cardsetList.helpers({
 			}, {
 				cardset_id: 1,
 				subject: 1,
-				cardType: 1,
 				sort: {subject: 1}
 			}).fetch(), function (card) {
 				return card.subject;
 			});
 		}
 	},
-	cardList: function (cardType) {
+	cardList: function (countCards) {
 		let sortQuery;
-		sortQuery = CardType.getSortQuery(cardType);
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
+		sortQuery = CardType.getSortQuery(Cardsets.findOne({_id: this.cardset_id}).cardType);
+		if (countCards) {
 			return Cards.find({
 				cardset_id: this.cardset_id,
 				subject: this.subject
-			}, {
-				_id: 1,
-				difficulty: 1,
-				front: 1,
-				back: 1,
-				hint: 1,
-				lecture: 1,
-				top: 1,
-				bottom: 1,
-				cardType: 1,
+			}, {fields: {
+					_id: 1,
+					front: 1,
+					back: 1,
+					hint: 1,
+					lecture: 1,
+					top: 1,
+					bottom: 1,
+					cardset_id: 1
+				},
 				sort: sortQuery
-			});
-		} else {
-			return Cards.find({
-				cardset_id: this.cardset_id,
-				subject: this.subject,
-				cardType: 0
-			}, {
-				_id: 1,
-				difficulty: 1,
-				front: 1,
-				back: 1,
-				hint: 1,
-				lecture: 1,
-				top: 1,
-				bottom: 1,
-				cardType: 1,
-				sort: sortQuery
-			});
+			}).count();
 		}
+		let cards = Cards.find({
+			cardset_id: this.cardset_id,
+			subject: this.subject
+		}, {fields: {
+				_id: 1,
+				front: 1,
+				back: 1,
+				hint: 1,
+				lecture: 1,
+				top: 1,
+				bottom: 1,
+				cardset_id: 1
+			},
+			sort: sortQuery
+		}).fetch();
+		return CardVisuals.setTypeAndDifficulty(cards);
 	},
 	getColors: function () {
 		switch (this.kind) {

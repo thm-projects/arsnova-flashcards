@@ -3,6 +3,8 @@ import {Route} from "./route";
 import {CardType} from "./cardTypes";
 import * as screenfull from 'screenfull';
 import {NavigatorCheck} from "./navigatorCheck";
+import {Cardsets} from "./cardsets";
+
 let editorFullScreenActive = false;
 
 export let CardVisuals = class CardVisuals {
@@ -25,6 +27,7 @@ export let CardVisuals = class CardVisuals {
 			this.toggleFullscreen(true);
 		}
 	}
+
 	/**
 	 * Adjust the width of the fixed answer options to fit the screen
 	 */
@@ -212,6 +215,25 @@ export let CardVisuals = class CardVisuals {
 		} else {
 			$(".editorBrush").removeClass('pressed');
 		}
+	}
+
+	static setTypeAndDifficulty (cards) {
+		let cardset_id = "";
+		let cardsetData;
+		for (let i = 0; i < cards.length; i++) {
+			if (cardset_id !== cards[i].cardset_id) {
+				cardset_id = cards[i].cardset_id;
+				cardsetData = Cardsets.findOne({_id: cardset_id}, {
+					fields: {
+						cardType: 1,
+						difficulty: 1
+					}
+				});
+			}
+			cards[i].cardType = cardsetData.cardType;
+			cards[i].difficulty = cardsetData.difficulty;
+		}
+		return cards;
 	}
 
 	static removeMarkdeepTags (content) {
