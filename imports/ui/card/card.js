@@ -124,7 +124,7 @@ Template.flashcards.helpers({
 		if (Session.get('activeCard') === undefined) {
 			Session.set('activeCard', result[0]._id);
 		}
-		return result;
+		return CardVisuals.setTypeAndDifficulty(result);
 	},
 	cardsIndex: function (card_id) {
 		let cardIndex = CardIndex.getCardIndex();

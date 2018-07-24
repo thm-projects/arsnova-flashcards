@@ -13,7 +13,9 @@ function exportCards(cardset_id, isCardsExport = true) {
 			fields: {
 				'cardset_id': 0,
 				'cardGroup': 0,
-				'_id': 0
+				'_id': 0,
+				'cardType': 0,
+				'difficulty': 0
 			}, sort: {
 				'subject': 1,
 				'front': 1
@@ -26,7 +28,7 @@ function exportCards(cardset_id, isCardsExport = true) {
 			if (cards[i].originalAuthorName === undefined || (cards[i].originalAuthorName.birthname === undefined && cards[i].originalAuthorName.legacyName === undefined)) {
 				cards[i].originalAuthorName = exportAuthorName(owner);
 			}
-			cardsString += JSON.stringify(cards[i]);
+			cardsString += JSON.stringify(cards[i], null, 2);
 			if (i < cards.length - 1) {
 				cardsString += ", ";
 			}
@@ -64,7 +66,7 @@ Meteor.methods({
 		if (cardset.originalAuthorName === undefined || (cardset.originalAuthorName.birthname === undefined && cardset.originalAuthorName.legacyName === undefined)) {
 			cardset.originalAuthorName = exportAuthorName(cardset.owner);
 		}
-		let cardsetString = JSON.stringify(cardset);
+		let cardsetString = JSON.stringify(cardset, null, 2);
 		let cardString = exportCards(cardset_id, false);
 		if (cardString.length) {
 			cardsetString += (", " + cardString);

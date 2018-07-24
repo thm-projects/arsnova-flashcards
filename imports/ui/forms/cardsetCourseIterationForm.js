@@ -259,6 +259,10 @@ export function saveCardset() {
 				Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), function (error, result) {
 					$('#setCardsetCourseIterationFormModal').modal('hide');
 					if (result) {
+						if (Session.get('importCards') !== undefined) {
+							Meteor.call('importCards', Session.get('importCards'), result, 0);
+							Session.set('importCards', undefined);
+						}
 						$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
 							Router.go('cardsetdetailsid', {
 								_id: result
@@ -323,6 +327,8 @@ Template.cardsetCourseIterationFormContent.onRendered(function () {
 		if (!shuffleRoute()) {
 			cleanModal();
 		}
+		$('#importCardset').val('');
+		Session.set('importCards', undefined);
 	});
 });
 

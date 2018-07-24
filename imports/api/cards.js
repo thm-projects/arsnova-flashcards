@@ -168,9 +168,6 @@ var CardsSchema = new SimpleSchema({
 	cardset_id: {
 		type: String
 	},
-	difficulty: {
-		type: Number
-	},
 	centerText: {
 		type: Boolean,
 		optional: true
@@ -199,9 +196,6 @@ var CardsSchema = new SimpleSchema({
 	learningUnit: {
 		type: String,
 		optional: true
-	},
-	cardType: {
-		type: Number
 	},
 	originalAuthor: {
 		type: String,
@@ -261,14 +255,12 @@ Meteor.methods({
 			top: content5,
 			bottom: content6,
 			cardset_id: cardset_id,
-			difficulty: cardset.difficulty,
 			centerTextElement: centerTextElement,
 			date: date,
 			learningGoalLevel: learningGoalLevel,
 			backgroundStyle: backgroundStyle,
 			learningIndex: learningIndex,
-			learningUnit: learningUnit,
-			cardType: cardset.cardType
+			learningUnit: learningUnit
 		}, {trimStrings: false}, function (err, card) {
 			card_id = card;
 		});

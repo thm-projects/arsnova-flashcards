@@ -1206,6 +1206,7 @@
       "cancel": "Abbrechen",
       "save": "Kartei speichern",
       "delete": "Kartei löschen",
+      "export": "Kartei exportieren",
       "confirm": "Sicher?",
       "name_required": "Gib einen Namen ein!",
       "description_required": "Gib eine Beschreibung ein!",
