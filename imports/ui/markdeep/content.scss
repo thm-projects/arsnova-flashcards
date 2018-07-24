@@ -34,7 +34,10 @@
     box-sizing: unset;
     display: block;
     margin: 1em auto;
-    line-height: 140%;
+    line-height: $line_height_markdeep !important;
+    @media(max-width: 767px) {
+      line-height: $line_height_markdeep_mobile !important;
+    }
   }
 
 
