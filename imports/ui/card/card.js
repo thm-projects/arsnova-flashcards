@@ -78,9 +78,6 @@ Template.flashcards.onDestroyed(function () {
 Template.flashcards.helpers({
 	cardActive: function (resetData) {
 		let cubeSides;
-		if (Route.isEditMode()) {
-			return true;
-		}
 		if (Session.get('activeCard')) {
 			if (Session.get('activeCard') === this._id) {
 				if (resetData) {
