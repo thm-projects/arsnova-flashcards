@@ -403,14 +403,14 @@
   "panel-body": {
     "name": "Login-Kennung",
     "title": "Titel",
-    "title-desc": "Akademischer Titel",
+    "title-desc": "nur für Lehrende, Eintrag erfolgt durch Admin auf Antrag per THM-Mail",
     "birthname": "Nachname",
     "birthname-desc": "Nachname (öffentlich)",
     "givenname": "Vorname",
     "givenname-desc": "Vorname (öffentlich)",
     "login": "Du bist angemeldet über: ",
     "email": "E-Mail",
-    "email-desc": "E-Mail-Adresse",
+    "email-desc": "im Lernmodus für Erinnerungs-Nachrichten erforderlich (nicht öffentlich)",
     "emailValidation": "E-Mail bestätigen",
     "emailValidation-desc": "E-Mail-Adresse wiederholen",
     "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
@@ -1319,14 +1319,14 @@
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass ",
-    "service": "Der Newsletter ist ein Service von .__lastAppTitle__.\nDu erhälst diese Mail, weil du dich angemeldet hast auf ",
+    "service": "Der Newsletter ist ein Service von .__lastAppTitle__. \n\nDu erhältst diese Mail, weil du dich angemeldet hast auf ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 .__lastAppTitle__",
     "my-cardset": "Zur Kartei…",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
-    "language": "Wähle eine Sprache",
+    "language": "Wähle deine Sprache",
     "info": "Über .__lastAppTitle__",
     "connection": "Verbindungsstatus"
   },
@@ -1336,7 +1336,7 @@
   },
   "underDevelopment": {
     "title": "In Entwicklung",
-    "text": "Dieses Feature befindet sich in der Entwicklung und wird im Laufe des Sommersemesters 2018 verfügbar sein."
+    "text": "Das Feature befindet sich in der Entwicklung und wird zum Wintersemester 18/19 verfügbar sein."
   },
   "markdeep": {
     "editor": {
