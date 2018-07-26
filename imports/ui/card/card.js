@@ -76,26 +76,13 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	cardActive: function (resetData) {
-		let cubeSides;
+	isActiveCard: function (resetData) {
 		if (Route.isEditMode()) {
 			return true;
-		}
-		if (Session.get('activeCard')) {
+		} else {
 			if (Session.get('activeCard') === this._id) {
 				if (resetData) {
-					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-					Session.set('cardType', this.cardType);
-					Session.set('activeCardContentId', cubeSides[0].contentId);
-					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
-				}
-				return true;
-			}
-		} else {
-			let cardIndex = CardIndex.getCardIndex();
-			if (this._id === cardIndex[0]) {
-				if (resetData) {
-					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+					let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
 					Session.set('cardType', this.cardType);
 					Session.set('activeCardContentId', cubeSides[0].contentId);
 					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
@@ -248,16 +235,21 @@ Template.cancelEditForm.events({
 
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
-		Meteor.call("deleteCard", Session.get('activeCard'));
-		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-		let result = CardIndex.getCardsetCards();
-		Session.set('activeCard', result[0]._id);
-		$('#deleteCardModal').modal('hide');
-		$('#deleteCardModal').on('hidden.bs.modal', function () {
-			$('.deleteCard').removeClass("pressed");
-			if (Route.isEditMode()) {
-				Router.go('cardsetdetailsid', {
-					_id: Router.current().params._id
+		Meteor.call("deleteCard", Session.get('activeCard'), function (error, result) {
+			if (result) {
+				Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
+				$('#deleteCardModal').modal('hide');
+				Session.set('activeCard', undefined);
+				$('#deleteCardModal').on('hidden.bs.modal', function () {
+					$('.deleteCard').removeClass("pressed");
+					if (Route.isEditMode()) {
+						Router.go('cardsetdetailsid', {
+							_id: Router.current().params._id
+						});
+					} else {
+						CardVisuals.resizeFlashcard();
+						CardNavigation.selectButton();
+					}
 				});
 			}
 		});
