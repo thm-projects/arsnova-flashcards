@@ -3,6 +3,7 @@ import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
 import {Route} from "./route.js";
 import {CardNavigation} from "./cardNavigation";
+import {Cardsets} from "./cardsets";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -36,6 +37,7 @@ export let CardEditor = class CardEditor {
 	}
 
 	static loadEditModeContent (card) {
+		let cardset = Cardsets.findOne({_id: Router.current().params._id});
 		Session.set('subject', card.subject);
 		Session.set('content1', card.front);
 		Session.set('content2', card.back);
@@ -43,9 +45,9 @@ export let CardEditor = class CardEditor {
 		Session.set('content4', card.lecture);
 		Session.set('content5', card.top);
 		Session.set('content6', card.bottom);
-		Session.set('cardType', card.cardType);
+		Session.set('cardType', cardset.cardType);
 		Session.set('centerTextElement', card.centerTextElement);
-		Session.set('difficultyColor', card.difficulty);
+		Session.set('difficultyColor', cardset.difficulty);
 		Session.set('learningGoalLevel', card.learningGoalLevel);
 		Session.set('backgroundStyle', card.backgroundStyle);
 		Session.set('learningUnit', card.learningUnit);

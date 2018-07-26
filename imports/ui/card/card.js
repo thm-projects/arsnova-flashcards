@@ -250,10 +250,8 @@ Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		Meteor.call("deleteCard", Session.get('activeCard'));
 		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-		if (Route.isCardset()) {
-			let result = CardIndex.getCardsetCards();
-			Session.set('activeCard', result[0]._id);
-		}
+		let result = CardIndex.getCardsetCards();
+		Session.set('activeCard', result[0]._id);
 		$('#deleteCardModal').modal('hide');
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
 			$('.deleteCard').removeClass("pressed");
