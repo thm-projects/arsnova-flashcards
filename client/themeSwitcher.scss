@@ -1438,6 +1438,9 @@ $themes: (
                       $background_difficulty0_lines 26px,
                       $background_difficulty0_lines 28px
       ) local !important;
+      @media(max-width: 767px) {
+        background: $background_difficulty0 !important;
+      }
     }
 
     .box-difficultyLinedNote0 {
@@ -1448,6 +1451,9 @@ $themes: (
                       $background_difficulty0_lines_note 26px,
                       $background_difficulty0_lines_note 28px
       ) local !important;
+      @media(max-width: 767px) {
+        background: $background_difficulty0_note !important;
+      }
     }
 
     .box-white {
@@ -1490,6 +1496,9 @@ $themes: (
                       $background_difficulty1_lines 26px,
                       $background_difficulty1_lines 28px
       ) local !important;
+      @media(max-width: 767px) {
+        background: $background_difficulty1 !important;
+      }
     }
 
     .box-difficultyBlank0 {
@@ -1516,6 +1525,9 @@ $themes: (
                       $background_difficulty2_lines 26px,
                       $background_difficulty2_lines 28px
       ) local !important;
+      @media(max-width: 767px) {
+        background: $background_difficulty2 !important;
+      }
     }
 
     .box-difficultyBlank2 {
@@ -1538,6 +1550,9 @@ $themes: (
                       $background_difficulty3_lines 26px,
                       $background_difficulty3_lines 28px
       ) local !important;
+      @media(max-width: 767px) {
+        background: $background_difficulty3 !important;
+      }
     }
 
     .box-difficultyBlank3 {
@@ -1554,46 +1569,79 @@ $themes: (
 
     .box-white-header {
       background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 4px, $background_white 5px, $background_white 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
+      }
     }
 
     .box-hint-header {
       background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 4px, $background_hint 5px, $background_hint 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
+      }
     }
 
     .box-hint-alternative-header {
       background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 4px, $background_hint_alternative 5px, $background_hint_alternative 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 2px, $background_hint_alternative 3px, $background_hint_alternative 100%) !important;
+      }
     }
 
     .box-pink-header {
       background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 4px, $background_pink 5px, $background_pink 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
+      }
     }
 
     .box-post-it-header {
       background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 4px, $background_post_it 5px, $background_post_it 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 2px, $background_post_it 3px, $background_post_it 100%) !important;
+      }
     }
 
     .box-lecture-header {
       background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 4px, $background_lecture 5px, $background_lecture 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
+      }
     }
 
     .box-difficultyBlank0-header, .box-difficultyLined0-header {
       background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 4px, $background_difficulty0 5px, $background_difficulty0 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 2px, $background_difficulty0 3px, $background_difficulty0 100%) !important;
+      }
     }
 
     .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
       background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 4px, $background_difficulty0_note 5px, $background_difficulty0_note 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
+      }
     }
 
     .box-difficultyBlank1-header, .box-difficultyLined1-header {
       background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 4px, $background_difficulty1 5px, $background_difficulty1 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 2px, $background_difficulty1 3px, $background_difficulty1 100%) !important;
+      }
     }
 
     .box-difficultyBlank2-header, .box-difficultyLined2-header {
       background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 4px, $background_difficulty2 5px, $background_difficulty2 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 2px, $background_difficulty2 3px, $background_difficulty2 100%) !important;
+      }
     }
 
     .box-difficultyBlank3-header, .box-difficultyLined3-header {
       background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 4px, $background_difficulty3 5px, $background_difficulty3 100%) !important;
+      @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
+      }
     }
 
     @media(max-width: 767px) {

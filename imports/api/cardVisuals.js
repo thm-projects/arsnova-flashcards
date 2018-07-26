@@ -50,14 +50,14 @@ export let CardVisuals = class CardVisuals {
 			let flashcardBody = $('.cardContent');
 			let flashcardLecture = $('.cardContentCollapsed');
 			let flashcardControls = $('.carousel-control');
-			if (flashcard.width() < 500) {
+			if (flashcard.width() < 450) {
 				newFlashcardHeight = flashcard.width();
 				flashcard.css('height', flashcard.width());
-				flashcardHeader.css('height', newFlashcardHeight * 0.20);
-				flashcardBody.css('height', newFlashcardHeight * 0.8);
-				flashcardLecture.css('height', newFlashcardHeight * 0.8);
-				flashcardControls.css('margin-top', newFlashcardHeight * 0.2);
-				flashcardControls.css('height', newFlashcardHeight * 0.8);
+				flashcardHeader.css('height', newFlashcardHeight * 0.12);
+				flashcardBody.css('height', newFlashcardHeight * 0.88);
+				flashcardLecture.css('height', newFlashcardHeight * 0.88);
+				flashcardControls.css('margin-top', newFlashcardHeight * 0.12);
+				flashcardControls.css('height', newFlashcardHeight * 0.88);
 				contentEditor.css('height', newFlashcardHeight);
 			} else {
 				newFlashcardHeight = flashcard.width() / Math.sqrt(2);
@@ -71,7 +71,7 @@ export let CardVisuals = class CardVisuals {
 				} else {
 					flashcardHeader.css('height', newFlashcardHeight * 0.16);
 					flashcardBody.css('height', newFlashcardHeight * 0.84);
-					flashcardLecture.css('height', newFlashcardHeight * 0.84);
+					flashcardLecture.css('height', newFlashcardHeight * 0.86);
 					flashcardControls.css('margin-top', newFlashcardHeight * 0.16);
 					flashcardControls.css('height', newFlashcardHeight * 0.84);
 				}
@@ -92,8 +92,7 @@ export let CardVisuals = class CardVisuals {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.exit();
 			}
-			$("#theme-wrapper").css("margin-top", "70px");
-			$("#answerOptions").css("margin-top", "0");
+			$("#theme-wrapper").css("margin-top", "55px");
 			$(".editorElement").css("display", '');
 			$("#preview").css("display", "unset");
 			$("#markdeepNavigation").css("display", '');
@@ -113,8 +112,7 @@ export let CardVisuals = class CardVisuals {
 				screenfull.request();
 			}
 			$(".box").removeClass("disableCardTransition");
-			$("#theme-wrapper").css("margin-top", "20px");
-			$("#answerOptions").css("margin-top", "-50px");
+			$("#theme-wrapper").css("margin-top", "5px");
 			$(".editorElement").css("display", "none");
 			if (isEditor) {
 				$("#preview").css("display", "none");

@@ -45,9 +45,24 @@
   border-right: 4px solid;
 }
 
+#answerButtons {
+  margin-top: 0;
+  @media(max-width: 767px) {
+    margin-bottom: $margin_bottom_card_navigation_mobile;
+  }
+}
+
 #answerOptions {
-  position: fixed;
-  height: 130px;
   top: 0;
   z-index: 15;
+  @media(max-width: 767px) {
+    a, button {
+      font-size: $font_size_card_navigation_mobile !important;
+      padding: $padding_vertical_card_navigation_mobile $padding_horizontal_card_navigation_mobile !important;
+    }
+  }
+}
+
+.disabledAnswer {
+  opacity: 0;
 }

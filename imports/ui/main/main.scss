@@ -46,10 +46,13 @@ $font_size_infinite_scroll_text: 12px;
 $font_weight_infinite_scroll_text: bold;
 $margin_bottom_item: 10px;
 
+//markdeep
+$padding_inline_code: 5px;
+$line_height_markdeep: normal;
+$line_height_markdeep_mobile: normal;
+
 //card
 $margin_bottom_card_navigation: 15px;
-$font_size_card_navigation_mobile: 12px;
-$padding_horizontal_card_navigation_mobile: 3px;
 $font_size_navigation_arrows: 10pt;
 $padding_card_content_horizontal: 40pt;
 $padding_card_content_vertical: 13pt;
@@ -58,6 +61,7 @@ $font_size_card_header_small_text: 12px;
 $font_size_card_header_smaller_text: 10px;
 $font_size_card_header_subject: 16px;
 $font_size_card_content: 14pt;
+$line_height_card_content: normal;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
@@ -67,11 +71,26 @@ $hint_link_alternative_decoration: underline;
 $text_transform_card_header_subject: uppercase;
 $font_style_card_header_subject_placeholder: italic;
 
+//card mobile
+$margin_bottom_card_navigation_mobile: 5px;
+$font_size_card_navigation_mobile: 12px;
+$padding_vertical_card_navigation_mobile: 5px;
+$padding_horizontal_card_navigation_mobile: 3px;
+$padding_card_content_horizontal_mobile: 15px;
+$padding_card_content_vertical_mobile: 0px;
+$font_size_card_header_small_text_mobile: 10px;
+$font_size_card_header_smaller_text_mobile: 8px;
+$font_size_card_header_subject_mobile: 12px;
+$font_size_card_content_mobile: 12px;
+$line_height_card_content_mobile: normal;
+
 //card header
 $card_header_height: 95px;
 $card_header_padding: 7px;
 $card_header_row_height: $card_header_height - $card_header_padding;
 $card_header_item_margin_horizontal: 7px;
+
+//card header mobile
 
 //cardset
 $font_size_cardset_content: 12pt;
@@ -79,9 +98,6 @@ $padding_cardset_content_horizontal: 25pt;
 $padding_cardset_content_vertical: 5pt;
 $font_size_card_list_cardset_name: 18px;
 $font_size_card_list_cardset_owner: 14px;
-
-//markdeep
-$padding_inline_code: 5px;
 
 //markdeep editor
 $font_family_markdeep_help: $default_font;
@@ -226,7 +242,7 @@ body {
 }
 
 #theme-wrapper {
-  margin-top: 70px;
+  margin-top: 55px;
 }
 
 #theme-wrapper-no-nav {
