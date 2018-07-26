@@ -83,11 +83,12 @@ Template.flashcards.helpers({
 		}
 		if (Session.get('activeCard')) {
 			if (Session.get('activeCard') === this._id) {
-				if (resetData) {
+				if (resetData && (Session.get('previousActiveCard') !== Session.get('activeCard') || Session.get('previousActiveCard') === undefined)) {
 					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
 					Session.set('cardType', this.cardType);
 					Session.set('activeCardContentId', cubeSides[0].contentId);
 					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
+					Session.set('previousActiveCard', Session.get('activeCard'));
 				}
 				return true;
 			}
@@ -99,6 +100,7 @@ Template.flashcards.helpers({
 					Session.set('cardType', this.cardType);
 					Session.set('activeCardContentId', cubeSides[0].contentId);
 					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
+					Session.set('previousActiveCard', Session.get('activeCard'));
 				}
 				return true;
 			}
