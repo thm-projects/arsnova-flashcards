@@ -348,7 +348,7 @@ Meteor.methods({
 			});
 		}
 
-		Cards.remove(card_id);
+		let result = Cards.remove(card_id);
 		Cardsets.update(card.cardset_id, {
 			$set: {
 				quantity: Cards.find({cardset_id: card.cardset_id}).count(),
@@ -364,6 +364,7 @@ Meteor.methods({
 		Wozniak.remove({
 			card_id: card_id
 		});
+		return result;
 	},
 	deleteCardAdmin: function (card_id) {
 		check(card_id, String);
