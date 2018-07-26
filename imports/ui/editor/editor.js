@@ -45,3 +45,13 @@ Template.newCard.onCreated(function () {
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	CardEditor.resetSessionData(true);
 });
+
+/*
+ * ############################################################################
+ * editCard
+ * ############################################################################
+ */
+Template.editCard.onCreated(function () {
+	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
+	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+});

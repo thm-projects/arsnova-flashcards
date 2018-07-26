@@ -78,6 +78,9 @@ Template.flashcards.onDestroyed(function () {
 Template.flashcards.helpers({
 	cardActive: function (resetData) {
 		let cubeSides;
+		if (Route.isEditMode()) {
+			return true;
+		}
 		if (Session.get('activeCard')) {
 			if (Session.get('activeCard') === this._id) {
 				if (resetData) {
@@ -247,10 +250,8 @@ Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		Meteor.call("deleteCard", Session.get('activeCard'));
 		Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-		if (Route.isCardset()) {
-			let result = CardIndex.getCardsetCards();
-			Session.set('activeCard', result[0]._id);
-		}
+		let result = CardIndex.getCardsetCards();
+		Session.set('activeCard', result[0]._id);
 		$('#deleteCardModal').modal('hide');
 		$('#deleteCardModal').on('hidden.bs.modal', function () {
 			$('.deleteCard').removeClass("pressed");
