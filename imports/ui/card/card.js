@@ -76,26 +76,13 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	cardActive: function (resetData) {
-		let cubeSides;
+	isActiveCard: function (resetData) {
 		if (Route.isEditMode()) {
 			return true;
-		}
-		if (Session.get('activeCard')) {
+		} else {
 			if (Session.get('activeCard') === this._id) {
 				if (resetData) {
-					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-					Session.set('cardType', this.cardType);
-					Session.set('activeCardContentId', cubeSides[0].contentId);
-					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
-				}
-				return true;
-			}
-		} else {
-			let cardIndex = CardIndex.getCardIndex();
-			if (this._id === cardIndex[0]) {
-				if (resetData) {
-					cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+					let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
 					Session.set('cardType', this.cardType);
 					Session.set('activeCardContentId', cubeSides[0].contentId);
 					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
@@ -261,6 +248,7 @@ Template.deleteCardForm.events({
 						});
 					} else {
 						CardVisuals.resizeFlashcard();
+						CardNavigation.selectButton();
 					}
 				});
 			}

@@ -17,20 +17,6 @@
                     data-target="#cancelEditModal">{{_
                     "declinecard"}}</button>
         </div>
-        {{#if isEditMode}}
-            {{#unless learningActive}}
-                {{#if isCardsetOwner this.cardset_id}}
-                    <div class="col-xs-12 col-sm-3 col-md-6">
-                        <br>
-                        <button id="cardDelete"
-                                class="btn btn-danger btn-raised col-xs-12 col-md-3 pull-right"
-                                tabindex="16" data-toggle="modal"
-                                data-target="#deleteCardModal">{{_
-                                "deletecard"}}</button>
-                    </div>
-                {{/if}}
-            {{/unless}}
-        {{/if}}
     </div>
 </template>
 
@@ -43,16 +29,16 @@
             <div id="cardCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
-                        <div class="item {{#if cardActive true}}active{{/if}}" data-id="{{_id}}">
+                        <div class="item {{#if isActiveCard true}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{#if
-                                        cardActive false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}-header"
+                                        isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}-header"
                                      data-cardtype="{{cardType}}">
                                     {{> flashcardHeader this}}
                                 </div>
                                 <div class="cardContent detail{{cardsIndex this._id}} {{#if
-                                        cardActive false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
-                                    {{#if cardActive false}}
+                                        isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
+                                    {{#if isActiveCard false}}
                                         {{#if isDictionary}}
                                             {{> cardDictionaryContent this}}
                                         {{else}}
