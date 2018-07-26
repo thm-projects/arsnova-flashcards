@@ -98,6 +98,9 @@ Template.cardset.onCreated(function () {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);
 	}
+	if (Number(Session.get('activeCard')) === Number(-1)) {
+		Session.set('activeCard', undefined);
+	}
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
 	CardNavigation.toggleVisibility(true);
