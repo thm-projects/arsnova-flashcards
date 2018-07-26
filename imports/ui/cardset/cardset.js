@@ -97,7 +97,6 @@ Template.cardset.onCreated(function () {
 	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== Router.current().params._id) {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);
-		Session.set('previousActiveCard', undefined);
 	}
 	if (Number(Session.get('activeCard')) === Number(-1)) {
 		Session.set('activeCard', undefined);
