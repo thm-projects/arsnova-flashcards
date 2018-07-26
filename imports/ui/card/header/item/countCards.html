@@ -1,5 +1,5 @@
 <template name="cardHeaderItemCountCards">
-    <span class="cardHeaderSmallText cardHeaderCounter">
+    <span class="cardHeaderSmallText">
         {{#unless hasCardsetPermission cardset_id}}
             {{_ "preview"}}:
             {{cardsIndex this._id}} {{_ "of"}} {{getCardsetCount true}}

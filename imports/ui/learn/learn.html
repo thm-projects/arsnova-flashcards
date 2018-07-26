@@ -27,8 +27,6 @@
         {{else}}
             <div class="col-xs-12">
                 {{> learnAnswerOptions}}
-            </div>
-            <div class="col-xs-12">
                 {{> cardNavigation}}
             </div>
             <div class="col-xs-12">
@@ -40,9 +38,6 @@
 
 <template name="learnAnswerOptions">
     <div id="answerOptions">
-        <br>
-        <br>
-        <br>
         {{#unless isNavigationVisible}}
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
@@ -122,11 +117,12 @@
                     {{/if}}
                 </div>
             {{/if}}
+        {{else}}
+            <div class="btn-group btn-group-raised btn-group-justified disabledAnswer">
+                <a href="#" class="btn btn-raised answer show-answer">&nbsp;</a>
+            </div>
         {{/unless}}
     </div>
-    <br>
-    <br>
-    <br>
 </template>
 
 <template name="learnBackButton">

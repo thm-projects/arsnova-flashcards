@@ -22,7 +22,10 @@
 .carousel-control {
   font-size: $font_size_navigation_arrows !important;
   opacity: 1;
-  width: $padding_card_content_horizontal;
+  width: $padding_card_content_horizontal !important;
+  @media(max-width: 767px) {
+    width: $padding_card_content_horizontal_mobile !important;
+  }
   &.left {
     @extend %extend_1;
   }
@@ -32,8 +35,12 @@
 }
 
 #rightCarouselControl {
-  width: $padding_card_content_horizontal - 12pt;
+  width: $padding_card_content_horizontal - 12pt !important;
   margin-right: 12pt;
+  @media(max-width: 767px) {
+    width: $padding_card_content_horizontal_mobile !important;
+    margin-right: 2pt;
+  }
 }
 
 .carousel-inner {
@@ -99,13 +106,13 @@ img.cardside {
 .cardHeader {
   h2 {
     display: block;
-    height: 50%;
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     font-size: $font_size_card_header_subject;
     @media(max-width: 767px) {
-      font-size: $font_size_card_header_subject * 0.9;
+      font-size: $font_size_card_header_subject_mobile;
     }
     font-weight: $font_weight_card_header_subject !important;
     text-transform: $text_transform_card_header_subject !important;
@@ -173,18 +180,18 @@ img.cardside {
 .cardHeaderSmallText {
   font-size: $font_size_card_header_small_text;
   @media(max-width: 767px) {
-    font-size: $font_size_card_header_small_text * 0.8;
+    font-size: $font_size_card_header_small_text_mobile;
   }
 }
 
 .cardHeaderSmallerText {
   font-size: $font_size_card_header_smaller_text;
   @media(max-width: 767px) {
-    font-size: $font_size_card_header_smaller_text * 0.8;
+    font-size: $font_size_card_header_smaller_text_mobile;
   }
 }
 
-.cardHeaderCounter {
+.hiddenOnVerySmallDevices {
   @media(max-width: 450px) {
     display: none;
   }
@@ -211,8 +218,13 @@ img.cardside {
 
 .cardContent {
   padding: $padding_card_content_vertical $padding_card_content_horizontal !important;
-  line-height: 28px;
+  line-height: $line_height_card_content !important;
   font-size: $font_size_card_content !important;
+  @media(max-width: 767px) {
+    padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+    line-height: $line_height_card_content_mobile !important;
+    font-size: $font_size_card_content_mobile !important;
+  }
 }
 
 .cardContent {
