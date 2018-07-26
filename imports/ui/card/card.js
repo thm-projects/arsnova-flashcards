@@ -263,6 +263,7 @@ Template.deleteCardForm.events({
 						});
 					} else {
 						CardVisuals.resizeFlashcard();
+						CardNavigation.selectButton();
 					}
 				});
 			}
