@@ -251,6 +251,9 @@ $padding-card-list-row: 8px;
   .infoBox {
     padding: 10px;
     padding-bottom: 0;
+    @media(max-width: 767px) {
+      padding-top: 0 !important;
+    }
   }
 }
 
@@ -278,8 +281,14 @@ $padding-card-list-row: 8px;
 }
 
 .collapseButton {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: $padding_collapse_button;
+  padding-bottom: $padding_collapse_button;
+  font-size: $font_size_collapse_button;
+  @media(max-width: 767px) {
+    padding-top: $padding_collapse_button_mobile;
+    padding-bottom: $padding_collapse_button_mobile;
+    font-size: $font_size_collapse_button_mobile;
+  }
   text-decoration: none;
 }
 
@@ -293,6 +302,9 @@ $padding-card-list-row: 8px;
 
 .infoBoxTable td {
   padding-left: 15px !important;
+  @media(max-width: 767px) {
+    font-size: $font_size_collapse_button_content_mobile !important;
+  }
   a {
     display: block;
     width: 100%;
@@ -319,6 +331,9 @@ $padding-card-list-row: 8px;
 .collapseCardsetInfoContainer {
   display: block;
   min-height: 58px;
+  @media(max-width: 767px) {
+    min-height: 35px;
+  }
 }
 
 #collapseManageButton {
@@ -454,6 +469,9 @@ th .field-tip {
 ,.markdeepCardsetTitle, .markdeepCardsetContent {
   padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
+   @media(max-width: 767px) {
+     padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
+   }
 }
 
 .markdeepCardsetContent {
@@ -481,4 +499,24 @@ th .field-tip {
   margin-top: 0;
   padding-top: 10px;
   margin-bottom: 0;
+  font-size: $font_size_cardset_title;
+  @media(max-width: 767px) {
+    display: inline-block;
+    padding-top: 0;
+    font-size: $font_size_cardset_title_mobile;
+  }
+}
+
+.markdeepCardsetTitle {
+  @media(max-width: 767px) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .cardsetLabels {
+    @media(max-width: 767px) {
+      display: inline-block;
+      font-size: $font_size_cardset_label_mobile;
+    }
+  }
 }
