@@ -28,15 +28,24 @@
 
   blockquote {
     border-left: 0;
+    font-size: $font_size_blockquote_markdeep !important;
+    line-height: $line_height_blockquote_markdeep !important;
+    @media(max-width: 767px) {
+      font-size: $font_size_blockquote_markdeep_mobile !important;
+      line-height: $line_height_blockquote_markdeep_mobile !important;
+    }
   }
 
   p {
     box-sizing: unset;
     display: block;
     margin: 1em auto;
-    line-height: $line_height_markdeep !important;
+    line-height: $line_height_card_content !important;
+    font-size: $font_size_markdeep !important;
     @media(max-width: 767px) {
-      line-height: $line_height_markdeep_mobile !important;
+      padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+      line-height: $line_height_card_content_mobile !important;
+      font-size: $font_size_markdeep_mobile !important;
     }
   }
 

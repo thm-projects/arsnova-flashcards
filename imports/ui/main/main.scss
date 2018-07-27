@@ -5,14 +5,17 @@ $background: rgb(153, 153, 153);
   background: #F5AA01 !important;
   color: #FFF !important;
 }
+
 .bert-alert.success {
   background: #80BA24 !important;
   color: #FFF !important;
 }
+
 .bert-alert.info {
   background: #003BD1 !important;
   color: #FFF !important;
 }
+
 .bert-alert.danger {
   background: #9C132D !important;
   color: #FFF !important;
@@ -48,8 +51,14 @@ $margin_bottom_item: 10px;
 
 //markdeep
 $padding_inline_code: 5px;
+$font_size_markdeep: 16px;
+$font_size_markdeep_mobile: 12px;
 $line_height_markdeep: normal;
 $line_height_markdeep_mobile: normal;
+$font_size_blockquote_markdeep: $font_size_markdeep;
+$font_size_blockquote_markdeep_mobile: $font_size_markdeep_mobile;
+$line_height_blockquote_markdeep: $line_height_markdeep;
+$line_height_blockquote_markdeep_mobile: $line_height_markdeep_mobile;
 
 //card
 $margin_bottom_card_navigation: 15px;
@@ -60,7 +69,6 @@ $padding_card_conntent_horizontal_fullscreen_desktop: 100px;
 $font_size_card_header_small_text: 12px;
 $font_size_card_header_smaller_text: 10px;
 $font_size_card_header_subject: 16px;
-$font_size_card_content: 14pt;
 $line_height_card_content: normal;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
@@ -78,10 +86,9 @@ $padding_vertical_card_navigation_mobile: 5px;
 $padding_horizontal_card_navigation_mobile: 3px;
 $padding_card_content_horizontal_mobile: 15px;
 $padding_card_content_vertical_mobile: 0px;
-$font_size_card_header_small_text_mobile: 10px;
+$font_size_card_header_small_text_mobile: 9px;
 $font_size_card_header_smaller_text_mobile: 8px;
 $font_size_card_header_subject_mobile: 12px;
-$font_size_card_content_mobile: 12px;
 $line_height_card_content_mobile: normal;
 
 //card header
@@ -138,6 +145,9 @@ html {
 body {
   background: unset;
   margin: 0 0 70px;
+  @media(max-width: 767px) {
+    margin: 0;
+  }
   > .container {
     padding: 80px 15px 0;
   }
@@ -422,7 +432,7 @@ button {
   }
 
   .licenseInfo, .licenseInfoCreate {
-   border-bottom: solid 1px !important;
+    border-bottom: solid 1px !important;
   }
 
   .footer {
@@ -557,7 +567,6 @@ th {
   text-transform: uppercase;
   font-weight: normal;
 }
-
 
 .info-tab h1 {
   font-size: $font_size_info_h1;
@@ -852,9 +861,9 @@ th {
   padding-bottom: 0;
   a {
     text-decoration: none;
-    display:block;
-    height:100%;
-    width:100%;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
   td {
     padding-left: 0;

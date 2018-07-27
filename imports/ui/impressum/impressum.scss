@@ -1,3 +1,9 @@
+#contact {
+  @media(max-width: 767px) {
+    margin-bottom: 70px;
+  }
+}
+
 @media(max-width: 767px) {
   .modal-footer button {
     margin: 10px 0 !important;
