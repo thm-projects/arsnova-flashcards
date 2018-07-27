@@ -50,30 +50,43 @@ export let CardVisuals = class CardVisuals {
 			let flashcardBody = $('.cardContent');
 			let flashcardLecture = $('.cardContentCollapsed');
 			let flashcardControls = $('.carousel-control');
-			if (flashcard.width() < 450) {
-				newFlashcardHeight = flashcard.width();
-				flashcard.css('height', flashcard.width());
-				flashcardHeader.css('height', newFlashcardHeight * 0.12);
-				flashcardBody.css('height', newFlashcardHeight * 0.88);
-				flashcardLecture.css('height', newFlashcardHeight * 0.88);
-				flashcardControls.css('margin-top', newFlashcardHeight * 0.12);
-				flashcardControls.css('height', newFlashcardHeight * 0.88);
-				contentEditor.css('height', newFlashcardHeight);
+			let flashcardHeaderHeight = 0;
+			let flashcardBodyHeight = 0;
+			if ($(window).width() < 768) {
+				newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
+				if ($(window).width() < 450) {
+					flashcardHeaderHeight = 30;
+					flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+				} else {
+					flashcardHeaderHeight = 60;
+					flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+				}
+				flashcard.css('height', newFlashcardHeight);
+				flashcardHeader.css('height', flashcardHeaderHeight);
+				flashcardBody.css('height', flashcardBodyHeight);
+				flashcardLecture.css('height', flashcardBodyHeight);
+				flashcardControls.css('margin-top', flashcardHeaderHeight);
+				flashcardControls.css('height', flashcardBodyHeight);
+				contentEditor.css('height', flashcardBodyHeight);
 			} else {
 				newFlashcardHeight = flashcard.width() / Math.sqrt(2);
 				flashcard.css('height', newFlashcardHeight);
 				if (flashcard.width() > 900) {
-					flashcardHeader.css('height', newFlashcardHeight * 0.12);
-					flashcardBody.css('height', newFlashcardHeight * 0.88);
-					flashcardLecture.css('height', newFlashcardHeight * 0.88);
-					flashcardControls.css('margin-top', newFlashcardHeight * 0.12);
-					flashcardControls.css('height', newFlashcardHeight * 0.88);
+					flashcardHeaderHeight = 0.12;
+					flashcardBodyHeight = 0.88;
+					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
+					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
+					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
+					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
+					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
 				} else {
-					flashcardHeader.css('height', newFlashcardHeight * 0.16);
-					flashcardBody.css('height', newFlashcardHeight * 0.84);
-					flashcardLecture.css('height', newFlashcardHeight * 0.86);
-					flashcardControls.css('margin-top', newFlashcardHeight * 0.16);
-					flashcardControls.css('height', newFlashcardHeight * 0.84);
+					flashcardHeaderHeight = 0.16;
+					flashcardBodyHeight = 0.84;
+					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
+					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
+					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
+					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
+					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
 				}
 				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
@@ -107,6 +120,7 @@ export let CardVisuals = class CardVisuals {
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
 			Session.set('fullscreen', false);
+			this.resizeFlashcard();
 		} else {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.request();
@@ -123,6 +137,7 @@ export let CardVisuals = class CardVisuals {
 				$("#markdeepEditorContent").css("display", 'none');
 			}
 			Session.set('fullscreen', true);
+			this.resizeFlashcard();
 		}
 	}
 
