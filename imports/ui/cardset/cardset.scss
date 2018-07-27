@@ -232,6 +232,9 @@ $padding-card-list-row: 8px;
 
 #cardsetInfoDetail {
   margin-bottom: 20px;
+  @media(max-width: 767px) {
+    margin-bottom: 0 !important;
+  }
 }
 
 .panel-body {
@@ -448,9 +451,16 @@ th .field-tip {
   padding-bottom: 15px;
 }
 
-.markdeepCardsetContent {
+,.markdeepCardsetTitle, .markdeepCardsetContent {
   padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
+}
+
+.markdeepCardsetContent {
+  @media(max-width: 767px) {
+    overflow-y: scroll;
+  }
+
 }
 
 .markdeepCardset:first-child, .markdeepCardsetContent:first-child {
