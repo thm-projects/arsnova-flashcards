@@ -5,14 +5,17 @@ $background: rgb(153, 153, 153);
   background: #F5AA01 !important;
   color: #FFF !important;
 }
+
 .bert-alert.success {
   background: #80BA24 !important;
   color: #FFF !important;
 }
+
 .bert-alert.info {
   background: #003BD1 !important;
   color: #FFF !important;
 }
+
 .bert-alert.danger {
   background: #9C132D !important;
   color: #FFF !important;
@@ -138,6 +141,9 @@ html {
 body {
   background: unset;
   margin: 0 0 70px;
+  @media(max-width: 767px) {
+    margin: 0;
+  }
   > .container {
     padding: 80px 15px 0;
   }
@@ -422,7 +428,7 @@ button {
   }
 
   .licenseInfo, .licenseInfoCreate {
-   border-bottom: solid 1px !important;
+    border-bottom: solid 1px !important;
   }
 
   .footer {
@@ -557,7 +563,6 @@ th {
   text-transform: uppercase;
   font-weight: normal;
 }
-
 
 .info-tab h1 {
   font-size: $font_size_info_h1;
@@ -852,9 +857,9 @@ th {
   padding-bottom: 0;
   a {
     text-decoration: none;
-    display:block;
-    height:100%;
-    width:100%;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
   td {
     padding-left: 0;
