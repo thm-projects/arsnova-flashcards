@@ -19,6 +19,8 @@ import {CardType} from "../../api/cardTypes";
 import {TargetAudience} from "../../api/targetAudience";
 import {CardNavigation} from "../../api/cardNavigation";
 import {CardVisuals} from "../../api/cardVisuals";
+import {CardsetVisuals} from "../../api/cardsetVisuals";
+import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -414,6 +416,10 @@ Template.cardsetInfo.onRendered(function () {
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
 	});
+	new ResizeSensor($('#cardsetInfoDetail'), function () {
+		CardsetVisuals.resizeCardsetInfo();
+	});
+	CardsetVisuals.resizeCardsetInfo();
 });
 
 Template.cardsetInfo.helpers({

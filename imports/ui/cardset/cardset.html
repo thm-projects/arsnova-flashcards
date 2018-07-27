@@ -323,7 +323,7 @@
             <div class="panel-body">
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
-                            learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetContent">
+                            learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetTitle">
                         <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel
                                 this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
                         <h4 id="cardsetTitle">{{name}}</h4>
@@ -357,7 +357,7 @@
                 </div>
             {{/if}}
 
-            <div class="panel-footer">
+            <div class="cardsetInfoFooter panel-footer">
                 {{#if hasCardsetPermission}}
                     {{#if learningActive}}
                         {{> leitnerLearning}}
