@@ -1,0 +1,61 @@
+[{
+  "name": "M: Beispiel für eine Mitschrift-Karte",
+  "description": "In dieser Kartei werden die Mitschriften aus der SWT Vorlesung nachbearbeitet.",
+  "date": "2018-05-09T16:59:37.158Z",
+  "dateUpdated": "2018-07-28T09:23:29.874Z",
+  "editors": [],
+  "owner": "CYWvz28to9mWFAywP",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "nd"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 2,
+  "difficulty": 0,
+  "originalAuthorName": {
+    "birthname": "Klinge",
+    "givenname": "Dominik"
+  },
+  "noDifficulty": false
+}, {
+  "subject": "SWT-Mitschrift vom 08.05.2018",
+  "front": "![](https://arsnova.thm.de/blog/wp-content/uploads/2018/07/SWT-Mitschrift-08.05.2018.jpg alt=\"Mitschrift der SWT-Vorlesung vom 08.05.2018\")",
+  "back": "(##) Thema: Domänenmodellierung\n\n<img src = https://upload.wikimedia.org/wikipedia/commons/3/39/Grady_Booch%2C_CHM_2011_2_cropped.jpg align=\"right\" width = 130px height = 170px alt=\"Grady Booch\">\n<u>Wer ist **Grady Booch?**</u>\n\n\nGrady Booch ist ein **amerikanischer Informatiker**. \n\nEr gilt als **Pionier** auf dem Gebiet des **modularen** und **objektorientierten Softwareentwurfs**.\n\n<img src = https://upload.wikimedia.org/wikipedia/de/a/ac/Booch.png align=\"left\" width = 350px height = 220px alt=\"Beispiel: Booch Notation\">\n<u>Was trug **Booch** zum **UML-Diagramm** bei?</u>\n\n\nGrundlage für Boochs Mitarbeit an der Unified Modeling Language (UML) war seine **eigene Notation**, die durch ihre **charakteristische grafische Form** für **Klassen** auffällt. \n\nDiese Notation ist **nicht mehr gebräuchlich**.\n\nDie wesentlichen Elemente dieser Notation sind **Klassen** und ihre **Beziehungen** zueinander. \n\n**Klassen** werden durch eine **Wolke** symbolisiert.\n\n<u>Wozu dient die **Abbott-Textanalyse**?</u>\n\nDie Abbott Textanalyse wird durchgeführt, um **Systemkomponenten** zu **identifizieren**.\n\nSie **analysiert** den **Text** nach **Nomen** und kann daraus **navigierbare Klassendiagramme** erstellen.\n\n<u>Wer sind die **drei Amigos**?</u>\n\nDie **Väter von UML**, insbesondere **Grady Booch**, **Ivar Jacobson** und **James Rumbaugh**, auch „Die drei Amigos“ genannt, waren in den 1990er-Jahren bekannte **Vertreter** der **objektorientierten Programmierung**. \n\nAls sie zusammen beim Unternehmen Rational Software beschäftigt waren, entstand die **Idee**, die **verschiedenen Notationssysteme strukturiert zusammenzuführen**.\n\n<u>Was sind **Kardinalitäten**?</u>\n\nKardinalität spielt bei der **Assioziation in Klassendiagrammen** eine Rolle. Damit ist gemeint, dass zwischen **Objekten** von Klassen **Beziehungen** bestehen.\n\nIn UML Klassendiagrammen werden **Assoziationen** mit **Linien** verdeutlicht. \n\nOft wird die **Richtung der Assoziation** mit einem **Pfeil** angegeben.\n\n<u>Was sollte **niemals** in einem **Domänendiagramm** stehen?</u>\n\n**Domäne** kann man sich wie ein **Standbild** vorstellen.\n\nSie sind <u>**nicht**</u> veränderlich.\n\nDeshalb dürfen in einem Domänendiagramm **niemals Methoden** stehen.\n\n<u>Was sind **Schlüsselabstraktionen**?</u>\n\nEine **Klasse** oder ein **Objekt**, die einen Teil des **Vokabulars** des **Problembereichs** bilden. \n\nVorrangiger Nutzen bei der Festlegung solcher Abstraktionen ist die **Eingrenzung des Problems**; die im System befindlichen relevanten Dinge, die für das **Design** benötigt werden, werden somit **betont**, die **unwichtigen Dinge ausgegrenzt**.\n\nQuellen:\n\nInformationen über **Grady Booch** und die **Booch-Notation** [Wikipedia.org](https://de.wikipedia.org/wiki/Grady_Booch)\n\nInformationen über die **Abbot-Textanalyse** [informit.com](http://www.informit.com/articles/article.aspx?p=29043&seqNum=9) \n\nInformationen über die **3 Amigos** [Wikipedia.org](https://de.wikipedia.org/wiki/Unified_Modeling_Language#Von_den_Anfängen_zur_Unified_Modeling_Language_1.x)\n\nInformationen über **Kardinalitäten** [uni-blaetter.net](http://www.uni-blaetter.net/informatik/uml/kardinalitat-und-assoziation-uml/)\n\nInformationen über **Schlüsselabstraktionen** [wiki-hilfe.de](http://www.wiki-hilfe.de/wiki/Schlüsselabstraktion?redirectedFrom=Schl%FCsselkonzept)\n\n",
+  "centerTextElement": [
+    true,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-05-19T13:05:55.114Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "hint": "[x] Abbott-Analyse nachschlagen\n\n[x] Begriff \"Schlüsselabstraktionen\": Was ist das? Was machen diese?\n\n[x] Verdienst der drei Amigos? Wer sind sie? Was haben sie gemacht?\n",
+  "dateUpdated": "2018-07-28T09:23:29.858Z",
+  "originalAuthorName": {
+    "birthname": "Klinge",
+    "givenname": "Dominik"
+  }
+}]
