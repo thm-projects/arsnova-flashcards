@@ -22,7 +22,9 @@ $background: rgb(153, 153, 153);
 }
 
 //global
-$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+"Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+"Segoe UI Emoji", "Segoe UI Symbol";
 
 //navbar
 $size_navbar_alldecks_border: 3px;
@@ -53,8 +55,8 @@ $margin_bottom_item: 10px;
 $padding_inline_code: 5px;
 $font_size_markdeep: 16px;
 $font_size_markdeep_mobile: 12px;
-$line_height_markdeep: normal;
-$line_height_markdeep_mobile: normal;
+$line_height_markdeep: 170%;
+$line_height_markdeep_mobile: 170%;
 $font_size_blockquote_markdeep: $font_size_markdeep;
 $font_size_blockquote_markdeep_mobile: $font_size_markdeep_mobile;
 $line_height_blockquote_markdeep: $line_height_markdeep;
@@ -69,7 +71,7 @@ $padding_card_conntent_horizontal_fullscreen_desktop: 100px;
 $font_size_card_header_small_text: 12px;
 $font_size_card_header_smaller_text: 10px;
 $font_size_card_header_subject: 16px;
-$line_height_card_content: normal;
+$line_height_card_content: 170%;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
@@ -89,7 +91,7 @@ $padding_card_content_vertical_mobile: 0px;
 $font_size_card_header_small_text_mobile: 9px;
 $font_size_card_header_smaller_text_mobile: 8px;
 $font_size_card_header_subject_mobile: 12px;
-$line_height_card_content_mobile: normal;
+$line_height_card_content_mobile: 170%;
 
 //card header
 $card_header_height: 95px;
