@@ -64,7 +64,7 @@ $line_height_blockquote_markdeep_mobile: $line_height_markdeep_mobile;
 
 //card
 $margin_bottom_card_navigation: 15px;
-$font_size_navigation_arrows: 10pt;
+$font_size_navigation_arrows: 15pt;
 $padding_card_content_horizontal: 40pt;
 $padding_card_content_vertical: 13pt;
 $padding_card_conntent_horizontal_fullscreen_desktop: 100px;
@@ -122,7 +122,7 @@ $font_size_card_list_cardset_owner: 14px;
 $font_family_markdeep_help: $default_font;
 $font_family_markdeep_editor_content: 'Roboto Mono', monospace;
 $font_size_markdeep_help: 12pt;
-$font_weight_markdeep_help: bold;
+$font_weight_markdeep_help: normal;
 
 //search
 $font_size_search_results_subject: 16px;
@@ -157,6 +157,9 @@ html {
 body {
   background: unset;
   margin: 0 0 70px;
+  line-height: 170%;
+  font-weight: normal;
+  color: black;
   @media(max-width: 767px) {
     margin: 0;
   }
