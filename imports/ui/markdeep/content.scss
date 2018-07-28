@@ -30,9 +30,11 @@
     border-left: 0;
     font-size: $font_size_blockquote_markdeep !important;
     line-height: $line_height_blockquote_markdeep !important;
+    font-family: serif;
     @media(max-width: 767px) {
       font-size: $font_size_blockquote_markdeep_mobile !important;
       line-height: $line_height_blockquote_markdeep_mobile !important;
+      font-family: serif;
     }
   }
 
@@ -64,6 +66,7 @@
 
   hr {
     border-color: unset !important;
+    height: 2px;
   }
 
   .lightbox-container {
@@ -77,11 +80,11 @@
   }
 
   .admonition {
-    border-left-width: 40px !important;
+    border-left-width: 43px !important;
   }
 
   .admonition.tip::before, .admonition.warning::before, .admonition.error::before {
-    top: -3px;
+    top: 2px;
     left: -4.2rem;
   }
 
