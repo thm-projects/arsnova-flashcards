@@ -22,9 +22,17 @@ $background: rgb(153, 153, 153);
 }
 
 //global
-$default_font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-"Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-"Segoe UI Emoji", "Segoe UI Symbol";
+$default_font:
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol';
 
 //navbar
 $size_navbar_alldecks_border: 3px;
