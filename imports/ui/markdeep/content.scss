@@ -14,7 +14,7 @@
     padding: 0 !important;
   }
 
-  code > .output{
+  code > .output {
     font-weight: bold;
     background: #FF7;
     margin-left: -20px;
@@ -30,11 +30,11 @@
     border-left: 0;
     font-size: $font_size_blockquote_markdeep !important;
     line-height: $line_height_blockquote_markdeep !important;
-    font-family: serif;
+    font-family: cursive;
     @media(max-width: 767px) {
       font-size: $font_size_blockquote_markdeep_mobile !important;
       line-height: $line_height_blockquote_markdeep_mobile !important;
-      font-family: serif;
+      font-family: cursive;
     }
   }
 
@@ -50,7 +50,6 @@
       font-size: $font_size_markdeep_mobile !important;
     }
   }
-
 
   pre.listing.backtick {
     border: 0;
@@ -99,4 +98,9 @@
   iframe {
     width: 100% !important;
   }
+
+  a {
+    font-family: unset;
+  }
+
 }
