@@ -1,0 +1,59 @@
+[{
+  "name": "K: Beispiel für eine Zitatenkarte",
+  "description": "Für die Demo-Kartei",
+  "date": "2018-07-21T14:47:06.654Z",
+  "dateUpdated": "2018-07-30T14:30:41.315Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 4,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Thelen",
+    "givenname": "Christoph"
+  }
+}, {
+  "subject": "Über das Coden & Testen",
+  "front": "> \"<br />Why do most developers fear to make continuous changes to their code?</br>They are afraid they’ll break it! <br /><br />Why are they afraid they’ll break it? <br />Because they don’t have tests.<br />\"\n>  -- Wer ist der Autor?",
+  "back": "![\"Uncle Bob\"    [(Bildquelle)](https://en.wikipedia.org/wiki/Robert_C._Martin)](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Robert_Cecil_Martin.png/378px-Robert_Cecil_Martin.png width=250)\n> \"<br />Why do most developers fear to make continuous changes to their code?</br>They are afraid they’ll break it! <br /><br />Why are they afraid they’ll break it? <br />Because they don’t have tests.<br />\"\n>  -- Robert Cecil Martin",
+  "hint": "\n![Für Informatiker/innen ein \"Must Read\"](https://images.gr-assets.com/books/1347470803l/10284614.jpg width=250px) \nRobert C. Martin:<br />\n**The Clean Coder. A Code of Conduct for Professional Programmers.**<br /> \nPrentice Hall: Upper Saddle River NJ u. a. 2011. (S. 15).\n\n* Zum Begriff \"clean code\": https://de.wikipedia.org/wiki/Clean_Code\n\n* Über den Autor: https://de.wikipedia.org/wiki/Robert_Cecil_Martin",
+  "centerTextElement": [
+    true,
+    true,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-05-21T15:38:53.946Z",
+  "dateUpdated": "2018-07-30T14:30:41.303Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
