@@ -31,11 +31,17 @@
     font-size: $font_size_blockquote_markdeep !important;
     line-height: $line_height_blockquote_markdeep !important;
     font-family: cursive;
+    font-weight: bolder;
     @media(max-width: 767px) {
       font-size: $font_size_blockquote_markdeep_mobile !important;
       line-height: $line_height_blockquote_markdeep_mobile !important;
-      font-family: cursive;
     }
+  }
+
+  blockquote.fancyquote .author{
+    font-family: sans-serif;
+    font-weight: normal;
+    color: #F5AA01;
   }
 
   p {
