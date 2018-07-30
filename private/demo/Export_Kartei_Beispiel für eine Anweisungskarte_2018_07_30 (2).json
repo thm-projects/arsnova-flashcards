@@ -1,0 +1,60 @@
+[{
+  "name": "N: Beispiel für eine Anweisungskarte",
+  "description": "Anweisungskarte für die Demo-Kartei",
+  "date": "2018-07-27T09:26:56.595Z",
+  "dateUpdated": "2018-07-30T16:17:03.765Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 6,
+  "difficulty": 1,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "birthname": "Hanke",
+    "givenname": "Andre"
+  }
+}, {
+  "subject": "Keine Angst vor der Shell",
+  "front": "**less** kann aufgerufen werden wie ein Editor, also\n`less [OPTIONEN] DATEI`:\n\nInput             |  Output\n:-------------------------:|:-------------------------:\n![**Abb.1**: `less ek.txt`](https://arsnova-uploads.mni.thm.de/LinuxEssentials/less-ek.txt.png width=250)  |  ![**Abb. 2**: Output nach `less ek.txt`](https://arsnova-uploads.mni.thm.de/LinuxEssentials/less-ek.png width=250)\n\noder als **Pipe**, zum Beispiel\n`ls | less`:\n\nInput             |  Output\n:-------------------------:|:-------------------------:\n![**Abb.3**: `ls | less`](https://arsnova-uploads.mni.thm.de/LinuxEssentials/ls-less.png width=250px)  |  ![**Abb. 4**: Output nach `ls | less`](https://arsnova-uploads.mni.thm.de/LinuxEssentials/ls-less-output.png width=250px)\n\nHier wird der Output des Befehls `ls` an den Pager `less` weitergeleitet und dort angezeigt.\n\n!!! \n   Eine Übersicht über alle Optionen und Argumente von `less` findest du in den **manpages**.\n",
+  "back": "Anzeigen von (Text-) Dateien auf der Kommandozeile unter Linux",
+  "hint": "- [Wiki-Ubuntuuseres: less](https://wiki.ubuntuusers.de/less/)\n\n- Elsner, T. & Erker, T. & Lingnau, A. (2015). [Linux Essentials -- Die Einsteiger-Zertifizierung des LPI](https://www.tuxcademy.org/download/de/lxes/lxes-de-manual.pdf),  S. 72.",
+  "centerTextElement": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-07-27T07:58:47.193Z",
+  "dateUpdated": "2018-07-30T16:17:03.752Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
