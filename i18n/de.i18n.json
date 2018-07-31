@@ -1145,7 +1145,11 @@
     "no": "Nein",
     "editLearning": "Bonus-Einstellungen",
     "updateLearning": "Bonus-Einstellungen aktualisieren",
-    "apiAccess": "API Zugänge",
+    "api": {
+      "access": "API Zugänge",
+      "token": "Schlüssel",
+      "exportCardset": "Export der Kartei für API"
+    },
     "confirm-form": {
       "cardsets": {
         "title": "Kartei löschen",

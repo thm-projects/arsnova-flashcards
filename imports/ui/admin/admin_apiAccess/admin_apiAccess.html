@@ -1,3 +1,12 @@
 <template name="admin_apiAccess">
-
+    <div class="content-header">
+        <h1>
+            {{_ "admin.apiAccess"}}
+        </h1>
+    </div>
+    <div class="content">
+        <div class="admin_table">
+            {{> reactiveTable collection=apiAccessTokens settings=tableSettings}}
+        </div>
+    </div>
 </template>

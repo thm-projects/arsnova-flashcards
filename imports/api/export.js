@@ -12,8 +12,8 @@ function exportCards(cardset_id, isCardsExport = true) {
 		}, {
 			fields: {
 				'cardset_id': 0,
-				'cardGroup': 0
-				'_id': 0
+				'cardGroup': 0,
+				'_id': 0,
 				'cardType': 0,
 				'difficulty': 0
 			}, sort: {

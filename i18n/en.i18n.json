@@ -1211,7 +1211,11 @@
     "no": "No",
     "editLearning": "Learning-phase settings",
     "updateLearning": "Update Learning-phase",
-    "apiAccess": "API Access",
+    "api": {
+      "access": "API Access",
+      "token": "Token",
+      "exportCardset": "Export cardset for API"
+    },
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",
