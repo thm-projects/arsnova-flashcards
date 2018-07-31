@@ -86,8 +86,8 @@
                href="{{pathFor
                        route='about'}}">{{_
                     "contact.about" lastAppTitle=(getLastAppTitle)}}</a></li>
-        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#unless isActiveRoute
-                                                                                                   'learning'}}inactive{{/unless}}{{/if}}">
+        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#if isActiveRoute
+                                                                                                   'learning'}}active{{/if}}{{/if}}">
             <a id="learning"
                href="{{pathFor
                        route='learning'}}">{{_
