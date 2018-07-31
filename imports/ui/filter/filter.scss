@@ -83,8 +83,12 @@
     }
 
     #resetBtnMobile {
-      right: 45px !important;
-      top: 2px;
+      right: 40px !important;
+      top: 3px;
+    }
+
+    .filter-text-xs {
+      font-size: $font_size_filter_navbar_mobile !important;
     }
   }
 
@@ -102,7 +106,7 @@
     #resetBtnMobile {
       position: absolute;
       float: right;
-      top: 2px;
+      top: 3px;
       right: 60px;
     }
     .visible-xs-inline-block {
