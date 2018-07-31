@@ -277,18 +277,6 @@
                                 "profile.save"}}</button>
                     {{/unless}}
                 </div>
-                <div class="form-group row">
-                    <label for="sel2">{{_ "profile.settings.language"}}:</label>
-                    <select class="form-control" id="languageSelect">
-                        <option {{getSelectedLanguage "en"}} value="en">{{_ "language.english"}}</option>
-                        <option {{getSelectedLanguage "de"}} value="de">{{_ "language.german"}}</option>
-                    </select>
-                    {{#unless isDisabledSaveLanguage}}
-                        <button id="languageSave" type="button"
-                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
-                                "profile.save"}}</button>
-                    {{/unless}}
-                </div>
             </div>
         </div>
         <div class="panel panel-default">
