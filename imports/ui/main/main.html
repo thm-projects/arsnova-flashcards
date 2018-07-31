@@ -248,7 +248,7 @@
     <div id="footer" class="footer">
         <ul class="container dropup">
             {{#if displayFooterNavigation}}
-                <li class="hidden-xs col-sm-10">
+                <li class="hidden-xs col-sm-11">
                     {{> contactNavigation}}
                 </li>
                 <li class="visible-xs col-xs-2 col-sm-1 icon-container">
@@ -258,20 +258,6 @@
                     </a>
                 </li>
             {{/if}}
-            <li id="navbar-languagepanel" class="col-xs-2 col-sm-1 icon-container {{#if isActiveRoute
-                                                                                        'home'}}icon-container{{else}}icon-container-info{{/if}}"
-                data-toggle="collapse" data-target="#thm-top-navigation">
-                <a role="button" class="dropdown-toggle" data-toggle="dropdown"
-                   aria-label="{{_ "footer.language"}}">
-                    <p class="footer-icon"><span class="glyphicon glyphicon-globe"></span></p>
-                </a>
-                <ul class="dropdown-menu col-xs-12">
-                    {{#each getLanguages}}
-                        <li><a href="#" role="menuitem" class="lang"
-                               data-lang={{code}}>{{label.name}}</a></li>
-                    {{/each}}
-                </ul>
-            </li>
             <li class="col-xs-1 {{#if isActiveRoute
                                       'home'}}icon-container{{else}}icon-container-info{{/if}} pull-right">
                 {{> connectionStatus}}
