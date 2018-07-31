@@ -4,6 +4,22 @@
   }
 }
 
+@media(min-width: 768px) {
+  #contact-nav {
+    position: sticky;
+
+    z-index: 1000;
+  }
+
+  #theme-wrapper #contact-nav {
+    top: 40px;
+  }
+
+  #theme-wrapper-no-nav #contact-nav {
+    top: 0;
+  }
+}
+
 @media(max-width: 767px) {
   .modal-footer button {
     margin: 10px 0 !important;
