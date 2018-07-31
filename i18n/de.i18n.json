@@ -239,7 +239,7 @@
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Neue Kartei anlegen",
-    "editcard": "Editieren",
+    "editcard": "Kartei editieren",
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
@@ -829,11 +829,11 @@
       "content6": "Links & Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
-        "content1": "Welches Problem löst das Muster?",
-        "content2": "Beschreib die Lösung anhand eines Diagramms.",
-        "content3": "Wo tritt das Problem auf?",
-        "content4": "Was sind die Vor- und Nachteile der Lösung?",
-        "content5": "Nenne konkrete Implementierungen des Entwurfsmusters.",
+        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht. \n\nWelches häufig auftretende allgemeine Problem löst das hier beschriebene Muster?",
+        "content2": "Beschreib die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
+        "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
+        "content5": "Nenne konkrete Implementierungen und Anwendungen des Entwurfsmusters in der Praxis.",
         "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
