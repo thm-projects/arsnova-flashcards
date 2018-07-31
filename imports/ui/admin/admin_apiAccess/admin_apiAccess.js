@@ -44,7 +44,7 @@ Template.admin_apiAccess.helpers({
 					sortable: false,
 					cellClass: 'edit',
 					fn: function (value) {
-						return new Spacebars.SafeString("<button id='exportAPICardset' class='exportCardsBtn btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.exportCardset') + "' data-cardsetid='" + value + "'></button>");
+						return new Spacebars.SafeString("<button id='" + value + "' class='exportAPICardset btn btn-xs btn-raised'><i class='fa fa-cloud-download'></i> " + TAPi18n.__('export.filename.export') + "</button>");
 					}
 				},
 				{
@@ -54,5 +54,21 @@ Template.admin_apiAccess.helpers({
 				}
 			]
 		};
+	}
+});
+
+Template.admin_apiAccess.events({
+	'click .exportAPICardset': function (e) {
+		let cId = event.target.id;
+		Meteor.call('exportCards', cId, true, function (error, result) {
+			if (error) {
+				Bert.alert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
+			} else {
+				let exportData = new Blob([result], {
+					type: "application/json"
+				});
+				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
+			}
+		});
 	}
 });
