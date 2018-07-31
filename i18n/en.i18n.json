@@ -662,7 +662,7 @@
     "wordcloudFalse": "Not in Word-Cloud",
     "wordcloudEveryting": "All",
     "from": "From",
-    "noResults": "Keine Ergebnisse für diese Filtereinstellung",
+    "noResults": "No results for this filter setting",
     "sort": "Sort: "
   },
   "infinite-scroll": {

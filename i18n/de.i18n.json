@@ -243,7 +243,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
-    "descriptionplaceholder": "Worum geht es in der Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -629,6 +629,7 @@
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
+    "noResults": "Keine Karteien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
     "sort": "Sortieren "
   },
   "infinite-scroll": {
@@ -710,7 +711,7 @@
       "content3": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe \"Formatiere mit Markdeep\".",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe \"Formatiere deinen Text mit Markdeep\".",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
       },
@@ -829,15 +830,15 @@
       "content6": "Links & Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
-        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht. \n\nWelches häufig auftretende allgemeine Problem löst das hier beschriebene Muster?",
-        "content2": "Beschreib die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster?",
+        "content2": "Beschreib die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre anhand eines Anwendungsbeispiels, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
         "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
         "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
         "content5": "Nenne konkrete Implementierungen und Anwendungen des Entwurfsmusters in der Praxis.",
         "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
-        "subject": "Gib den Namen des Entwurfsmusters an !"
+        "subject": "Gib den Namen des Entwurfsmusters an ! Entweder bezeichnet der Mustername das Problem oder die Lösung des Problems."
       }
     },
     "cardType13": {
@@ -870,7 +871,7 @@
       "dictionary": "Zeige die BEOLINGUS Übersetzung",
       "copy": "Erstelle eine Kopie von dieser Karte",
       "markdeepEditor": {
-        "help": "Zeige die Markdeep Feature Demo",
+        "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Inhalt",
         "dictionary": "Zeige die BEOLINGUS Übersetzung",
         "style": "Ändere den Hintergrund für die Karte",
@@ -1340,7 +1341,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatiere mit Markdeep…"
+      "help": "Formatiere deinen Text mit Markdeep…"
     }
   },
   "access-level": {

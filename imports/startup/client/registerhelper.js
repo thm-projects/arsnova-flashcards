@@ -49,10 +49,9 @@ Template.registerHelper("isLecturer", function () {
 
 Template.registerHelper("isActiveLanguage", function (language) {
 	if (Session.get('activeLanguage') === undefined) {
-		return TAPi18n.getLanguage() === language;
-	} else {
-		return Session.get('activeLanguage') === language;
+		Session.set('activeLanguage', 'de');
 	}
+	return Session.get('activeLanguage') === language;
 });
 
 
@@ -331,7 +330,7 @@ function getCalendarString(type = '', minutes = '') {
 }
 
 Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
-	let minutes = "H:MM";
+	let minutes = "H:mm";
 	let dateFormat = "D. MMMM YYYY";
 	if (displayMinutes === true) {
 		dateFormat = "D. MMM YY " + minutes;
