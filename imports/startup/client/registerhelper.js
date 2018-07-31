@@ -331,7 +331,7 @@ function getCalendarString(type = '', minutes = '') {
 }
 
 Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
-	let minutes = "H:MM";
+	let minutes = "H:mm";
 	let dateFormat = "D. MMMM YYYY";
 	if (displayMinutes === true) {
 		dateFormat = "D. MMM YY " + minutes;
