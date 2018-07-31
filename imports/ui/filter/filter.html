@@ -14,15 +14,15 @@
         <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}no-navigation{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
+                    <p class="navbar-text visible-sm-inline-block">{{_
+                            "set-list.filter-info-small"}}</p>
+                    <p class="navbar-text visible-xs-inline-block filter-text-xs">{{_ "set-list.filter-info-extra-small"}}</p>
                     {{#if gotResetButton}}
-                        <button class="resetFilters btn btn-raised btn-danger hidden-md hidden-lg float-left"
+                        <button class="resetFilters btn btn-raised btn-sm btn-danger hidden-md hidden-lg float-left"
                                 id="resetBtnMobile"
                                 role="button"><i class="glyphicon glyphicon-filter"></i> {{_
                                 "set-list.reset"}} </button>
                     {{/if}}
-                    <p class="navbar-text visible-sm-inline-block">{{_
-                            "set-list.filter-info-small"}}</p>
-                    <p class="navbar-text visible-xs-inline-block">{{_ "set-list.filter-info-extra-small"}}</p>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#filter-nav"
                             aria-expanded="false">
