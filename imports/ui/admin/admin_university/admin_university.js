@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
 
 Meteor.subscribe("collegesCourses");
 
@@ -41,18 +42,18 @@ function addCollegeAndCourse() {
 	if (edit) {
 		Meteor.call("editCollegesCourses", editCollege, editCourse, college, course);
 		document.getElementById("newEntry").reset();
-		Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
+		BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		edit = false;
 	} else {
 		if (college === "" || course === "") {
-			Bert.alert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('admin-interval.errorAllFields'), 'danger', 'growl-top-left');
 		} else {
 			if (CollegesCourses.findOne({college: {$regex: college, $options: "i"}})) {
 				if (CollegesCourses.findOne({
 						college: {$regex: college, $options: "i"},
 						course: {$regex: course, $options: "i"}
 					})) {
-					Bert.alert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-top-left');
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('admin-interval.existingCourse'), 'danger', 'growl-top-left');
 					return;
 				} else {
 					college = CollegesCourses.findOne({college: {$regex: college, $options: "i"}}).college;
@@ -60,7 +61,7 @@ function addCollegeAndCourse() {
 			}
 			Meteor.call("updateCollegesCoursess", college, course);
 			document.getElementById("newEntry").reset();
-			Bert.alert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		}
 	}
 }

@@ -8,6 +8,7 @@ import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
 import {Filter} from "../../api/filter";
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -64,10 +65,10 @@ Template.create.events({
 					if (isCardset) {
 						Meteor.call('importCardset', res, function (error, result) {
 							if (error) {
-								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							}
 							if (result) {
-								Bert.alert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
 								Router.go('cardsetdetailsid', {
 									_id: result
 								});
@@ -135,10 +136,10 @@ Template.shuffle.events({
 		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();
 		Meteor.call("updateShuffleGroups", Router.current().params._id, Session.get("ShuffledCardsets"), removedCardsets, function (error, result) {
 			if (error) {
-				Bert.alert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-top-left');
 			}
 			if (result) {
-				Bert.alert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-top-left');
 				Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 			}
 		});
@@ -271,9 +272,9 @@ Template.cardsetDeleteForm.events({
 	'click #deleteCardset': function () {
 		Meteor.call("deleteCardset", Session.get('cardsetId'), (error) => {
 			if (error) {
-				Bert.alert(TAPi18n.__('cardset.confirm-form-delete.failure'), "danger", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.confirm-form-delete.failure'), "danger", 'growl-top-left');
 			} else {
-				Bert.alert(TAPi18n.__('cardset.confirm-form-delete.success'), "success", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.confirm-form-delete.success'), "success", 'growl-top-left');
 			}
 			$('#confirmDeleteCardsetModal').modal('hide');
 		});

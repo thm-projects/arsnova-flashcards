@@ -9,6 +9,7 @@ import "../cardset/cardset.js";
 import "./results.html";
 import {CardType} from "../../api/cardTypes";
 import {TargetAudience} from "../../api/targetAudience";
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -141,7 +142,7 @@ Template.cardsetCourseIterationResultRow.events({
 		let name = $(event.target).data('name');
 		Meteor.call('exportCardset', $(event.target).data('id'), function (error, result) {
 			if (error) {
-				Bert.alert(TAPi18n.__('export.failure.cardset'), 'danger', 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('export.failure.cardset'), 'danger', 'growl-top-left');
 			} else {
 				let exportData = new Blob([result], {
 					type: "application/json"
