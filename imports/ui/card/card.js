@@ -15,6 +15,7 @@ import '/client/hammer.js';
 import './header/header.js';
 import './content/content.js';
 import './navigation/navigation.js';
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 /*
  * ############################################################################
@@ -198,7 +199,7 @@ Template.copyCard.events({
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
 				$('.modal-backdrop').remove();
-				Bert.alert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
 			}
 		});
 	}
@@ -237,7 +238,7 @@ Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		Meteor.call("deleteCard", Session.get('activeCard'), function (error, result) {
 			if (result) {
-				Bert.alert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 				$('#deleteCardModal').modal('hide');
 				Session.set('activeCard', undefined);
 				$('#deleteCardModal').on('hidden.bs.modal', function () {
