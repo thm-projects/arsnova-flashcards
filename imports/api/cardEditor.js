@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Route} from "./route.js";
 import {CardNavigation} from "./cardNavigation";
 import {Cardsets} from "./cardsets";
+import {BertAlertVisuals} from "./bertAlertVisuals";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -140,51 +141,51 @@ export let CardEditor = class CardEditor {
 			if (subject === "") {
 				$('#subjectEditor').css('border', '1px solid');
 				$('#subjectEditor').css('border-color', '#b94a48');
-				Bert.alert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
 				gotSubject = false;
 			}
 		} else {
 			if (subject === "" && learningUnit === "0") {
 				$('#subjectEditor').css('border', '1px solid');
 				$('#subjectEditor').css('border-color', '#b94a48');
-				Bert.alert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
 				gotSubject = false;
 			}
 		}
 		if ($('#subjectEditor').val().length > subjectMaxLength) {
 			$('#subjectEditor .form-control').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('cardsubject_max', {max: subjectMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardsubject_max', {max: subjectMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content1.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content2.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content3.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content4.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content5.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		if (content6.length > contentMaxLength) {
 			$('#editor .md-editor').css('border-color', '#b94a48');
-			Bert.alert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('text_max', {max: contentMaxLength}), "danger", 'growl-top-left');
 		}
 		let editorsValidLength = (content1.length <= contentMaxLength && content2.length <= contentMaxLength && content3.length <= contentMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && content4.length <= contentMaxLength && content5.length <= contentMaxLength && content6.length <= contentMaxLength);
 		if (gotSubject && editorsValidLength) {
 			if (ActiveRoute.name('newCard')) {
 				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
-						Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
+						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						Session.set('activeCard', result);
 						if (returnToCardset) {
 							Router.go('cardsetdetailsid', {
@@ -201,7 +202,7 @@ export let CardEditor = class CardEditor {
 				});
 			} else {
 				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
-				Bert.alert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 				if (returnToCardset) {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id

@@ -21,6 +21,7 @@ import {CardNavigation} from "../../api/cardNavigation";
 import {CardVisuals} from "../../api/cardVisuals";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -126,7 +127,7 @@ Template.cardset.rendered = function () {
 							if (error) {
 								throw new Meteor.Error('transaction-creation-failed');
 							} else {
-								Bert.alert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');
 							}
 						});
 					}
@@ -148,7 +149,7 @@ Template.cardset.helpers({
 			addToLeitner(this._id);
 			Meteor.call("addWozniakCards", this._id);
 			Session.set("selectingCardsetToLearn", false);
-			Bert.alert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');
 		}
 	}
 });
@@ -173,17 +174,17 @@ Template.cardset.events({
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
-		Bert.alert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-top-left');
+		BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-top-left');
 		Router.go('home');
 	},
 	'click #declineRequest': function () {
 		var reason = $('#declineRequestReason').val();
 		if (reason === '') {
-			Bert.alert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.reason'), 'danger', 'growl-top-left');
 		} else {
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id, TAPi18n.__('set-list.author'));
 			Meteor.call("declineProRequest", this._id);
-			Bert.alert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
 			Router.go('home');
 		}
 	},
@@ -500,7 +501,7 @@ Template.cardsetInfo.events({
 		let name = this.name;
 		Meteor.call('exportCards', this._id, function (error, result) {
 			if (error) {
-				Bert.alert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
 			} else {
 				let exportData = new Blob([result], {
 					type: "application/json"
@@ -1290,17 +1291,17 @@ Template.cardsetImportForm.events({
 						Meteor.call('importCards', res, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
-								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
 								Session.set('activeCard', undefined);
-								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}
 						});
 					} catch (e) {
 						tmpl.uploading.set(false);
-						Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+						BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 					}
 				};
 				reader.readAsText(evt.target.files[0]);
@@ -1311,10 +1312,10 @@ Template.cardsetImportForm.events({
 						Meteor.call('importCards', results.data, cardset_id, Number(importType), function (error) {
 							if (error) {
 								tmpl.uploading.set(false);
-								Bert.alert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
 							} else {
 								tmpl.uploading.set(false);
-								Bert.alert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
+								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
 								$('#importModal').modal('toggle');
 							}
 						});
@@ -1407,7 +1408,7 @@ Template.cardsetPublishForm.events({
 			license.push("by");
 			license.push("nd");
 			Meteor.call("updateLicense", Router.current().params._id, license);
-			Bert.alert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
 		}
 
 		Meteor.call("publishCardset", Router.current().params._id, kind, price, visible);
@@ -1737,9 +1738,9 @@ Template.leitnerLearning.onRendered(function () {
 						text += TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 					}
 				}
-				Bert.alert(text, bertType, 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(text, bertType, 'growl-top-left');
 			} else {
-				Bert.alert(TAPi18n.__('learnPhaseEnded'), bertType, 'growl-top-left');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('learnPhaseEnded'), bertType, 'growl-top-left');
 			}
 			Bert.defaults.hideDelay = 7;
 		}, 2000);

@@ -8,6 +8,7 @@ import {TargetAudience} from "../../api/targetAudience";
 import {CourseIterations} from "../../api/courseIterations";
 import {CollegesCourses} from "../../api/colleges_courses";
 import {Filter} from "../../api/filter";
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 export function newCardsetCourseIterationRoute() {
 	return Router.current().route.getName() === 'courseIterations' || Router.current().route.getName() === 'create' || Router.current().route.getName() === 'shuffle';
@@ -203,7 +204,7 @@ export function saveCardset() {
 	}
 	errorMessage += "</ul>";
 	Bert.defaults.hideDelay = bertDelay * bertDelayMultiplier;
-	Bert.alert(errorMessage, 'warning', 'growl-top-left');
+	BertAlertVisuals.displayBertAlert(errorMessage, 'warning', 'growl-top-left');
 	if (!error) {
 		let name, cardType, description, module, moduleShort, moduleNum, moduleLink, college, course, shuffled,
 			cardGroups;
@@ -287,12 +288,7 @@ export function saveCardset() {
 		}
 		return false;
 	} else {
-		Bert.alert({
-			title: TAPi18n.__('modal-dialog.missingFields') + ':',
-			message: errorMessage,
-			type: 'danger',
-			style: 'growl-top-left'
-		});
+		BertAlertVisuals.displayBertAlert(errorMessage, 'danger', 'growl-top-left', TAPi18n.__('modal-dialog.missingFields'));
 	}
 }
 

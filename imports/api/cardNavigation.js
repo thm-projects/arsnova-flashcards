@@ -180,140 +180,145 @@ export let CardNavigation = class CardNavigation {
 
 	static keyEvents (event) {
 		let keyCodes = [];
-		if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode() || Route.isDemo()) {
-			keyCodes = [9];
-		}
-		if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
-			keyCodes = [9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101];
-		}
-		if (keyCodes.indexOf(event.keyCode) > -1) {
-			switch (event.keyCode) {
-				case 9:
-					CardNavigation.cardSideNavigation();
-					break;
-				case 32:
-					if (CardNavigation.isVisible()) {
-						if ($('#rightCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							CardNavigation.skipAnswer();
-						}
-					}
-					break;
-				case 37:
-					if (CardNavigation.isVisible()) {
-						if ($('#leftCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							CardNavigation.skipAnswer(false);
-						}
-					}
-					break;
-				case 38:
-					CardNavigation.cardSideNavigation();
-					break;
-				case 39:
-					if (CardNavigation.isVisible()) {
-						if ($('#rightCarouselControl').click()) {
-							$('#showHintModal').modal('hide');
-							$('body').removeClass('modal-open');
-							$('.modal-backdrop').remove();
-						}
-						if (Session.get('isQuestionSide')) {
-							CardNavigation.skipAnswer();
-						}
-					}
-					break;
-				case 40:
-					CardNavigation.cardSideNavigation(false);
-					break;
-				case 48:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate0').click();
-					}
-					break;
-				case 49:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate1').click();
-					}
-					break;
-				case 50:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate2').click();
-					}
-					break;
-				case 51:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate3').click();
-					}
-					break;
-				case 52:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate4').click();
-					}
-					break;
-				case 53:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate5').click();
-					}
-					break;
-				case 78:
-					if (!Session.get('isQuestionSide')) {
-						$('#notknown').click();
-					}
-					break;
-				case 89:
-					if (!Session.get('isQuestionSide')) {
-						$('#known').click();
-					} else {
-						$('#learnShowAnswer').click();
-					}
-					break;
-				case 90:
-					if (!Session.get('isQuestionSide')) {
-						$('#known').click();
-					} else {
-						$('#learnShowAnswer').click();
-					}
-					break;
-				case 96:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate0').click();
-					}
-					break;
-				case 97:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate1').click();
-					}
-					break;
-				case 98:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate2').click();
-					}
-					break;
-				case 99:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate3').click();
-					}
-					break;
-				case 100:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate4').click();
-					}
-					break;
-				case 101:
-					if (!Session.get('isQuestionSide')) {
-						$('#memoRate5').click();
-					}
-					break;
+		if (!$('#input-search').is(":focus")) {
+			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
+				keyCodes = [9];
 			}
-			event.preventDefault();
+			if (Route.isDemo()) {
+				keyCodes = [9, 32, 37, 38, 39, 40];
+			}
+			if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
+				keyCodes = [9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101];
+			}
+			if (keyCodes.indexOf(event.keyCode) > -1) {
+				switch (event.keyCode) {
+					case 9:
+						CardNavigation.cardSideNavigation();
+						break;
+					case 32:
+						if (CardNavigation.isVisible()) {
+							if ($('#rightCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								CardNavigation.skipAnswer();
+							}
+						}
+						break;
+					case 37:
+						if (CardNavigation.isVisible()) {
+							if ($('#leftCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								CardNavigation.skipAnswer(false);
+							}
+						}
+						break;
+					case 38:
+						CardNavigation.cardSideNavigation();
+						break;
+					case 39:
+						if (CardNavigation.isVisible()) {
+							if ($('#rightCarouselControl').click()) {
+								$('#showHintModal').modal('hide');
+								$('body').removeClass('modal-open');
+								$('.modal-backdrop').remove();
+							}
+							if (Session.get('isQuestionSide')) {
+								CardNavigation.skipAnswer();
+							}
+						}
+						break;
+					case 40:
+						CardNavigation.cardSideNavigation(false);
+						break;
+					case 48:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate0').click();
+						}
+						break;
+					case 49:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate1').click();
+						}
+						break;
+					case 50:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate2').click();
+						}
+						break;
+					case 51:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate3').click();
+						}
+						break;
+					case 52:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate4').click();
+						}
+						break;
+					case 53:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate5').click();
+						}
+						break;
+					case 78:
+						if (!Session.get('isQuestionSide')) {
+							$('#notknown').click();
+						}
+						break;
+					case 89:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
+					case 90:
+						if (!Session.get('isQuestionSide')) {
+							$('#known').click();
+						} else {
+							$('#learnShowAnswer').click();
+						}
+						break;
+					case 96:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate0').click();
+						}
+						break;
+					case 97:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate1').click();
+						}
+						break;
+					case 98:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate2').click();
+						}
+						break;
+					case 99:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate3').click();
+						}
+						break;
+					case 100:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate4').click();
+						}
+						break;
+					case 101:
+						if (!Session.get('isQuestionSide')) {
+							$('#memoRate5').click();
+						}
+						break;
+				}
+				event.preventDefault();
+			}
 		}
 	}
 };

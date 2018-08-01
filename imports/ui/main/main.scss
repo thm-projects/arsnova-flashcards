@@ -1,6 +1,7 @@
 //can't be modified inside theme-switcher
 $background: rgb(153, 153, 153);
 //bert alert (Doesn't work in theme-switcher)
+
 .bert-alert.warning {
   background: #F5AA01 !important;
   color: #FFF !important;
@@ -81,6 +82,8 @@ $font_size_card_header_small_text: 12px;
 $font_size_card_header_smaller_text: 10px;
 $font_size_card_header_subject: 16px;
 $line_height_card_content: 170%;
+$line_height_card_header: 100%;
+$line_height_card_header_mobile: 100%;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: bold;
 $font_weight_card_header_second_row: normal;
