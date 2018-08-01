@@ -140,6 +140,12 @@ img.cardside {
       margin-right: $card_header_item_margin_horizontal / 2;
     }
   }
+  @media(min-width: 768px) {
+    line-height: $line_height_card_header !important;
+  }
+  @media(max-width: 767px) {
+    line-height: $line_height_card_header_mobile !important;
+  }
 }
 
 .cardHeaderCenter {
@@ -149,6 +155,12 @@ img.cardside {
   }
   height: 100%;;
   text-align: center;
+  @media(min-width: 768px) {
+    line-height: $line_height_card_header !important;
+  }
+  @media(max-width: 767px) {
+    line-height: $line_height_card_header_mobile !important;
+  }
 }
 
 .cardHeaderRight {
@@ -164,6 +176,12 @@ img.cardside {
     @media(max-width: 767px) {
       margin-left: $card_header_item_margin_horizontal / 2;
     }
+  }
+  @media(min-width: 768px) {
+    line-height: $line_height_card_header !important;
+  }
+  @media(max-width: 767px) {
+    line-height: $line_height_card_header_mobile !important;
   }
 }
 
