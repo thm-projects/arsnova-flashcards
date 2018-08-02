@@ -210,6 +210,9 @@ Template.registerHelper("isCardsetEditor", function (user_id) {
 Template.registerHelper("learningActiveAndNotEditor", function () {
 	if (Router.current().params._id) {
 		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && cardset.learningActive) {
+			return false;
+		}
 		return (cardset.owner !== Meteor.userId() && !cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
 	}
 });
@@ -217,6 +220,9 @@ Template.registerHelper("learningActiveAndNotEditor", function () {
 Template.registerHelper("learningActiveAndEditor", function () {
 	if (Router.current().params._id) {
 		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && cardset.learningActive) {
+			return true;
+		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
 	}
 });
