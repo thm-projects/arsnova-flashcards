@@ -243,7 +243,7 @@
     "editreferences": "Kartei mischen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen?",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -830,11 +830,11 @@
       "content6": "Links & Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
-        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster?",
-        "content2": "Beschreib die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre anhand eines Anwendungsbeispiels, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster? \n\nBeschreibe das Muster in allen seinen Aspekten – \"Problem\", \"Kontext\", \"Kräfte\", \"Lösung\" und \"Verwendung\" – so ausführlich, dass du die oben ausgewählte Kompetenzstufe \"Verstehen\", \"Anwenden\" usw. anhand deiner Beschreibung erreichen kannst!",
+        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
         "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
         "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
-        "content5": "Nenne konkrete Implementierungen und Anwendungen des Entwurfsmusters in der Praxis.",
+        "content5": "Nenne mindestens zwei konkrete Implementierungen und Anwendungen des Entwurfsmusters in der Praxis.",
         "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
@@ -891,7 +891,7 @@
     "list": {
       "selectCourse": "Kurs auswählen",
       "createCourse": "Neuen Kurs anlegen",
-      "empty": "Ein Kurs fasst mehrere Themen (= Karteien) zusammen. Jeder kann Kurse anlegen. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
+      "empty": "Ein Kurs fasst mehrere Themen (= Karteien) zusammen. Jeder kann Kurse auf .cards anlegen. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
       "courseIteration": "Thema des Kurses",
       "module": "Modul",
       "course": "Studiengang",
@@ -1117,7 +1117,7 @@
     "notifyuser": "Benutzer/in benachrichtigen",
     "view": "Übersicht",
     "deleted": "Gelöscht",
-    "deletedUser": "Gelöschte/r Benutzer/in",
+    "deletedUser": "Konto gelöscht",
     "complaint": "Nachrichten",
     "lecturermessages": "Anfragen wegen Dozentenstatus",
     "send": "Gesendete Nachrichten",
