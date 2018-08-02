@@ -188,7 +188,7 @@ Template.cardset.events({
 			Router.go('home');
 		}
 	},
-	'click #backToCardsetDetailView': function () {
+	'click #backToCardsetDetailView, cllick #backToCardsetDetailViewFullscreen': function () {
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
