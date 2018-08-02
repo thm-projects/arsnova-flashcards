@@ -436,3 +436,18 @@ img.cardside {
     /*transition: transform .5s ease-in-out;*/
   }
 }
+
+#backToCardsetDetailView, #backToCardsetDetailViewFullscreen, #backToPresentation, #backToPresentationFullscreen {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 1000;
+}
+
+#backToCardsetDetailView, #backToPresentation {
+  top: 50px;
+}
+
+#backToPresentationFullscreen, #backToCardsetDetailViewFullscreen {
+  top: 15px;
+}
+
