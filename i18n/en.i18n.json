@@ -910,6 +910,18 @@
       "subject": "Enter the name of the formulary !"
     }
   },
+  "cardType14": {
+    "name": "Lecture",
+    "longName": "Lecture",
+    "content1": "Lecture",
+    "placeholders": {
+      "subject": "",
+      "content1": ""
+    },
+    "editorLabels": {
+      "subject": ""
+    }
+  },
   "courseIteration": {
     "name": "Course",
     "targetAudience": "Audience",
