@@ -859,6 +859,18 @@
         "subject": "Gib das Themengebiet der Formel an !"
       }
     },
+    "cardType14": {
+      "name": "Vortrag",
+      "longName": "Vortrag  (1 Seite)",
+      "content1": "Vortrag",
+      "placeholders": {
+        "subject": "Gib das Thema der Folie an!",
+        "content1": ""
+      },
+      "editorLabels": {
+        "subject": "Thema der Folie"
+      }
+    },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",

@@ -32,7 +32,7 @@ Template.presentationView.onDestroyed(function () {
 });
 
 Template.presentationView.events({
-	"click #backToPresentation": function () {
+	"click #backToPresentation, click #backToPresentationFullscreen": function () {
 		if (Router.current().route.getName() === "demolist") {
 			Router.go('demo');
 		} else {

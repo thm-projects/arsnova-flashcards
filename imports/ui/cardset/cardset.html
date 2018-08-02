@@ -62,7 +62,7 @@
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
             <div class="col-xs-12">
-                <button class="btn btn-raised btn-danger" id="backToCardsetDetailView">
+                <button class="btn btn-raised btn-danger" id="{{#if fullscreenActive}}backToCardsetDetailViewFullscreen{{else}}backToCardsetDetailView{{/if}}">
                     <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "cardset.list.back"}}</span>
                 </button>
                 {{> cardsetList}}
