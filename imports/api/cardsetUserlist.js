@@ -19,11 +19,6 @@ function getCardsetInfo(cardset) {
 		[TAPi18n.__('modal-dialog.kind'), cardset.kind],
 		[TAPi18n.__('cardset.info.rating'), cardset.relevance],
 		[TAPi18n.__('cardset.info.quantity'), cardset.quantity],
-		[TAPi18n.__('cardset.info.module'), cardset.module],
-		[TAPi18n.__('cardset.info.moduleShort'), cardset.moduleToken],
-		[TAPi18n.__('cardset.info.moduleNum'), cardset.moduleNum],
-		[TAPi18n.__('cardset.info.college'), cardset.college],
-		[TAPi18n.__('cardset.info.course'), cardset.course],
 		[TAPi18n.__('cardset.info.author'), getAuthorName(cardset.owner)],
 		[TAPi18n.__('cardset.info.release'), moment(cardset.date).locale("de").format('LL')],
 		[TAPi18n.__('cardset.info.dateUpdated'), moment(cardset.dateUpdated).locale("de").format('LL')]
@@ -66,9 +61,6 @@ function getLearners(data, cardset_id) {
 		return d.user_id;
 	});
 	for (let i = 0; i < distinctData.length; i++) {
-		if (distinctData[i].user_id === Meteor.userId()) {
-			continue;
-		}
 		let user = Meteor.users.find({_id: distinctData[i].user_id}).fetch();
 
 		let filter = [];
@@ -104,13 +96,13 @@ Meteor.methods({
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		let cardsetInfo = getCardsetInfo(cardset);
 		let learningPhaseInfo = getLearningPhaseInfo(cardset);
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor", "lecturer"])) && (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
 			let infoCol = ";;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
-			let infoCardsetLength = 11;
+			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
 			let infoLearningPhaseLength = 7;
 			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
@@ -141,7 +133,7 @@ Meteor.methods({
 	getLearningData: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor", "lecturer"])) && (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			return getLearners(Leitner.find({cardset_id: cardset_id}).fetch(), cardset_id);
 		}
 	},
