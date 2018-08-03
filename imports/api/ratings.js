@@ -16,9 +16,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	addRating: function (cardset_id, owner, rating) {
+	addRating: function (cardset_id, rating) {
 		check(cardset_id, String);
-		check(owner, String);
 		check(rating, Number);
 
 		// Make sure the user is logged in
@@ -26,9 +25,13 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
+		if (Cardsets.findOne({_id: cardset_id}).owner === Meteor.userId()) {
+			throw new Meteor.Error("not-authorized");
+		}
+
 		Ratings.insert({
 			cardset_id: cardset_id,
-			user: owner,
+			user: Meteor.userId(),
 			rating: rating
 		});
 
@@ -43,9 +46,8 @@ Meteor.methods({
 			}
 		});
 	},
-	updateRating: function (cardset_id, owner, rating) {
+	updateRating: function (cardset_id, rating) {
 		check(cardset_id, String);
-		check(owner, String);
 		check(rating, Number);
 
 		// Make sure the user is logged in
@@ -53,9 +55,13 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 
+		if (Cardsets.findOne({_id: cardset_id}).owner === Meteor.userId()) {
+			throw new Meteor.Error("not-authorized");
+		}
+
 		Ratings.update({
 				cardset_id: cardset_id,
-				user: owner
+				user: Meteor.userId()
 			},
 			{
 				$set: {
