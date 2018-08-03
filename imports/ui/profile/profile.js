@@ -596,7 +596,11 @@ Template.profileNotifications.events({
 
 Template.profileNotifications.helpers({
 	getNotifications: function () {
-		return Notifications.find({target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+			return Notifications.find({}, {sort: {date: -1}});
+		} else {
+			return Notifications.find({target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
+		}
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;

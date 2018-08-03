@@ -226,10 +226,11 @@ Template.main.helpers({
 		return false;
 	},
 	countNotifications: function () {
-		return Notifications.find({read: false, target_type: 'user', target: Meteor.userId()}).count();
-	},
-	getNotifications: function () {
-		return Notifications.find({cleared: false, target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+			return Notifications.find({}).count();
+		} else {
+			return Notifications.find({read: false, target_type: 'user', target: Meteor.userId()}).count();
+		}
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
