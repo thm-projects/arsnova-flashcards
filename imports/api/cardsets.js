@@ -544,15 +544,6 @@ Meteor.methods({
 				noDifficulty: !CardType.gotDifficultyLevel(cardType)
 			}
 		}, {trimStrings: false});
-
-		if (!CardType.gotLearningModes(cardType)) {
-			Leitner.remove({
-				cardset_id: id
-			});
-			Wozniak.remove({
-				cardset_id: id
-			});
-		}
 	},
 	/**
 	 * Update the cardGroups of the shuffled cardset
