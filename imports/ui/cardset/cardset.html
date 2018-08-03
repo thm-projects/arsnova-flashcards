@@ -297,13 +297,13 @@
                 <td>
                     {{#if canRateCardset}}
                         {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
-                            {{> starsRating id="rating" class='rating' rating=(getAverageRating) mutable=true}}
+                            {{> starsRating id="rating" class='star-ratings' rating=(getAverageRating) mutable=true}}
                         {{else}}
-                            {{> starsRating class='rating' rating=(getAverageRating) mutable=false}}
+                            {{> starsRating class='star-ratings' rating=(getAverageRating) mutable=false}}
                         {{/if}}
 
                     {{else}}
-                        {{> starsRating class='rating' rating=(getAverageRating) mutable=false}}
+                        {{> starsRating class='star-ratings' rating=(getAverageRating) mutable=false}}
                     {{/if}} ({{this.raterCount}})
                 </td>
             </tr>
