@@ -1447,6 +1447,9 @@
       Click on the topic to see the cards.
       </br>
       </br>"
+    },
+    "publishBonus": {
+      "message": ""
     }
   },
   "backdoor": {

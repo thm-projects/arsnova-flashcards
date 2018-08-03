@@ -1413,6 +1413,9 @@
       Mit einem Klick auf das Thema gelangst du zu den Karten.
       </br>
       </br>"
+    },
+    "publishBonus": {
+      "message": "Damit Studenten Ihre Bonusphase benutzen können, muss Ihre Kartei mindestens __cardcount__ besitzen und die Zugangsstufe \"Frei\", \"__edu__\" oder \"Pro\" verwenden."
     }
   },
   "backdoor": {
