@@ -81,6 +81,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "editshuffle";
 	}
 
+	static isRepetitorium () {
+		return Router.current().route.getName() === "repetitorium";
+	}
+
 	static isPool () {
 		return Router.current().route.getName() === "pool";
 	}

@@ -89,6 +89,39 @@ Template.create.onDestroyed(function () {
 
 /*
  * ############################################################################
+ * repetitorium
+ * ############################################################################
+ */
+
+Template.repetitorium.helpers({
+	cardsetList: function (returnType) {
+		let query = {};
+		if (returnType !== 0) {
+			query = Filter.getFilterQuery();
+		}
+
+		switch (returnType) {
+			case 0:
+			case 1:
+				return Cardsets.find(query, {
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
+				}).count();
+			case 2:
+				return Cardsets.find(query, {
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
+				});
+		}
+	}
+});
+
+Template.repetitorium.onDestroyed(function () {
+	Filter.resetMaxItemCounter();
+});
+
+/*
+ * ############################################################################
  * learn
  * ############################################################################
  */
