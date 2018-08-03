@@ -96,9 +96,9 @@ Router.route('/create', {
 	}
 });
 
-Router.route('/course', {
-	name: 'courseIterations',
-	template: 'CourseIterations',
+Router.route('/repetitorium', {
+	name: 'repetitorium',
+	template: 'cardsets',
 	data: function () {
 		Filter.resetMaxItemCounter();
 	}

@@ -11,6 +11,7 @@ Session.setDefault('maxItemsCounter', itemIncrementCounter);
 Session.setDefault('poolFilter', undefined);
 Session.setDefault('myCardsetFilter', undefined);
 Session.setDefault('courseIterationFilter', undefined);
+Session.setDefault('repetitoriumFilter', undefined);
 Session.setDefault('workloadFilter', undefined);
 Session.setDefault('allCardsetsFilter', undefined);
 Session.setDefault('shuffleFilter', undefined);
@@ -33,10 +34,10 @@ export let Filter = class Filter {
 				}
 				return Session.get('myCardsetFilter');
 			case 2:
-				if (Session.get('courseIterationFilter') === undefined) {
+				if (Session.get('repetitoriumFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
-				return Session.get('courseIterationFilter');
+				return Session.get('repetitoriumFilter');
 			case 3:
 				if (Session.get('workloadFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
@@ -115,7 +116,7 @@ export let Filter = class Filter {
 				Session.set('myCardsetFilter', filter);
 				break;
 			case 2:
-				Session.set('courseIterationFilter', filter);
+				Session.set('repetitoriumFilter', filter);
 				break;
 			case 3:
 				Session.set('workloadFilter', filter);
@@ -219,6 +220,7 @@ export let Filter = class Filter {
 			filter.dateUpdated = -1;
 		}
 		filter.noModule = undefined;
+		filter.shuffled = Route.isRepetitorium();
 		this.setActiveFilter(filter);
 	}
 
@@ -270,6 +272,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
+		query.shuffled = activeFilter.shuffled;
 		return query;
 	}
 

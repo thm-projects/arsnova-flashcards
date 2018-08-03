@@ -12,6 +12,11 @@
                 {{> create}}
             {{/if}}
 
+            {{#if isActiveRoute regex='repetitorium'}}
+                {{> cardsetDeleteForm}}
+                {{> repetitorium}}
+            {{/if}}
+
             {{#if isActiveRoute 'learn'}}
                 {{> learn}}
             {{/if}}
@@ -33,7 +38,7 @@
             <div class="col-md-12" id="set-list-region">
                 <div class="bs-callout bs-callout-info selectionInfo">
                     {{#if isActiveRoute 'shuffle'}}
-                        <a href="create" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                        <a href="repetitorium" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
                                 "declinecard"}}</a>
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
@@ -86,11 +91,29 @@
                     data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
-            {{> shuffle}}
             <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
                 {{_ "import.cardset"}} <input type="file" id="importCardset" style="display: none;">
             </label>
         {{/if}}
+        {{#if cardsetList 0}}
+            {{> filterNavigation}}
+            {{#if cardsetList 1}}
+                {{#each cardsetList 2}}
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
+        {{else}}
+            {{> noResults}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="repetitorium">
+    <div class="col-md-12" id="set-list-region">
+        {{> shuffle}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
             {{#if cardsetList 1}}

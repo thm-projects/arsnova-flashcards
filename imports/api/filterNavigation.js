@@ -13,13 +13,13 @@ let filtersWithDefaultSortDateUpdated = [4];
 let filtersWithAuthor = [0, 2, 3, 4, 5];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
-let filtersWithTargetAudience = [2];
-let filtersWithSemester = [2];
-let filtersWithCollege = [2];
-let filtersWithCourse = [2];
-let filtersWithModule = [2];
-let filtersWithBonus = [0, 3, 4, 5];
-let filtersWithWordcloud = [0, 1, 4, 5];
+let filtersWithTargetAudience = [];
+let filtersWithSemester = [];
+let filtersWithCollege = [];
+let filtersWithCourse = [];
+let filtersWithModule = [];
+let filtersWithBonus = [0, 2, 3, 4, 5];
+let filtersWithWordcloud = [0, 1, 2, 4, 5];
 let filtersWithKind = [0, 1, 2, 3, 4, 5];
 let filtersWithPersonalKind = [1, 2, 3, 4, 5];
 let filtersWithFreeKind = [0, 1, 2, 3, 4, 5];
@@ -112,7 +112,7 @@ export let FilterNavigation = class FilterNavigation {
 		if (Route.isMyCardsets()) {
 			return 1;
 		}
-		if (Route.isCourseIteration()) {
+		if (Route.isRepetitorium()) {
 			return 2;
 		}
 		if (Route.isWorkload()) {
