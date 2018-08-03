@@ -306,7 +306,8 @@ Template.cardsetList.helpers({
 			return Cards.find({
 				cardset_id: this.cardset_id,
 				subject: this.subject
-			}, {fields: {
+			}, {
+				fields: {
 					_id: 1,
 					front: 1,
 					back: 1,
@@ -322,7 +323,8 @@ Template.cardsetList.helpers({
 		let cards = Cards.find({
 			cardset_id: this.cardset_id,
 			subject: this.subject
-		}, {fields: {
+		}, {
+			fields: {
 				_id: 1,
 				front: 1,
 				back: 1,
@@ -615,16 +617,7 @@ Template.cardsetInfoBoxContentOne.helpers({
 	ratingEnabled: function () {
 		return this.ratings === true;
 	},
-	hasRated: function () {
-		var count = Ratings.find({
-			cardset_id: this._id,
-			user: Meteor.userId()
-		}).count();
-		var cardset = Cardsets.findOne(this._id);
-		if (cardset !== null) {
-			return count !== 0;
-		}
-	}, gotMultipleAuthorsAndIsHome: function (cardset) {
+	gotMultipleAuthorsAndIsHome: function (cardset) {
 		if (cardset !== undefined && cardset !== null) {
 			let cardsets = cardset.cardGroups;
 			cardsets.push(cardset._id);
@@ -633,7 +626,8 @@ Template.cardsetInfoBoxContentOne.helpers({
 			});
 			return owners.length > 1 && Route.isHome();
 		}
-	}, getAuthors: function (cardset) {
+	},
+	getAuthors: function (cardset) {
 		if (cardset !== undefined && cardset !== null) {
 			let cardsets = cardset.cardGroups;
 			let owner_id = [];
@@ -647,6 +641,17 @@ Template.cardsetInfoBoxContentOne.helpers({
 			return owners;
 		}
 	},
+	canRateCardset: function () {
+		return Cardsets.findOne({_id: this._id}).owner !== Meteor.userId();
+	},
+	getAverageRating: function () {
+		let ratings = Ratings.find({cardset_id: this._id}).fetch();
+		let averageRating = 0;
+		for (let i = 0; i < ratings.length; i++) {
+			averageRating += ratings[i].rating;
+		}
+		return averageRating / ratings.length;
+	},
 	getUserRating: function () {
 		var userrating = Ratings.findOne({
 			cardset_id: this._id,
@@ -655,7 +660,7 @@ Template.cardsetInfoBoxContentOne.helpers({
 		if (userrating) {
 			return userrating.rating;
 		} else {
-			return 0;
+			return 0 + " " + TAPi18n.__('cardset.info.notRated');
 		}
 	},
 	gotOriginalAuthorData: function () {
@@ -733,9 +738,9 @@ Template.cardsetInfoBoxContentOne.events({
 			user: Meteor.userId()
 		}).count();
 		if (count === 0) {
-			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+			Meteor.call("addRating", cardset_id, rating);
 		} else {
-			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
+			Meteor.call("updateRating", cardset_id, rating);
 		}
 	},
 	'click .showLicense': function (event) {
@@ -767,6 +772,17 @@ Template.cardsetInfoBoxContentTwo.helpers({
 			return count !== 0;
 		}
 	},
+	canRateCardset: function () {
+		return Cardsets.findOne({_id: this._id}).owner !== Meteor.userId();
+	},
+	getAverageRating: function () {
+		let ratings = Ratings.find({cardset_id: this._id}).fetch();
+		let averageRating = 0;
+		for (let i = 0; i < ratings.length; i++) {
+			averageRating += ratings[i].rating;
+		}
+		return averageRating / ratings.length;
+	},
 	getUserRating: function () {
 		var userrating = Ratings.findOne({
 			cardset_id: this._id,
@@ -775,7 +791,7 @@ Template.cardsetInfoBoxContentTwo.helpers({
 		if (userrating) {
 			return userrating.rating;
 		} else {
-			return 0;
+			return 0 + " " + TAPi18n.__('cardset.info.notRated');
 		}
 	},
 	hasAmount: function () {
@@ -818,9 +834,9 @@ Template.cardsetInfoBoxContentTwo.events({
 			user: Meteor.userId()
 		}).count();
 		if (count === 0) {
-			Meteor.call("addRating", cardset_id, Meteor.userId(), rating);
+			Meteor.call("addRating", cardset_id, rating);
 		} else {
-			Meteor.call("updateRating", cardset_id, Meteor.userId(), rating);
+			Meteor.call("updateRating", cardset_id, rating);
 		}
 	}
 });

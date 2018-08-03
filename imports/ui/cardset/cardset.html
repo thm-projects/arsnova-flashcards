@@ -295,23 +295,23 @@
             <tr>
                 <td>{{_ "cardset.info.rating"}}:</td>
                 <td>
-                    {{#if isCardsetOwner _id}}
-                        {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
-                    {{else}}
-                        {{#unless isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
-                            {{> starsRating id='ratingLocked' rating=getAverage mutable=false}}
+                    {{#if canRateCardset}}
+                        {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                            {{> starsRating id="rating" class='rating' rating=(getAverageRating) mutable=true}}
                         {{else}}
-                            {{> starsRating id='rating' rating=getAverage mutable=true}}
-                        {{/unless}}
+                            {{> starsRating class='rating' rating=(getAverageRating) mutable=false}}
+                        {{/if}}
+
+                    {{else}}
+                        {{> starsRating class='rating' rating=(getAverageRating) mutable=false}}
                     {{/if}} ({{this.raterCount}})
                 </td>
             </tr>
             <tr>
-                {{#unless isCardsetOwner _id}}
+                {{#if canRateCardset}}
                     <td>{{_ "cardset.info.userRating"}}:</td>
-                    <td><span id="userRating">{{getUserRating}}</span>{{#unless hasRated}}
-                        ({{_ "cardset.info.notRated"}}){{/unless}}</td>
-                {{/unless}}
+                    <td><span id="userRating">{{getUserRating}}</span></td>
+                {{/if}}
             </tr>
         {{/if}}
     {{/unless}}
