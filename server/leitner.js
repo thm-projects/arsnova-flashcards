@@ -463,6 +463,20 @@ Meteor.methods({
 			Meteor.call("updateLearnerCount", cardset._id);
 		}
 	},
+	updateLeitnerCardIndex: function (cardset_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1}});
+			let activeLearners = Leitner.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
+			activeLearners = _.uniq(activeLearners, false, function (d) {
+				return d.user_id;
+			});
+			for (let i = 0; i < activeLearners.length; i++) {
+				addLeitnerCards(cardset, activeLearners[i].user_id);
+			}
+		}
+	},
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
 	updateLeitnerCards: function () {
 		if (!Meteor.isServer) {

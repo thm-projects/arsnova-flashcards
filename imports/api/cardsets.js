@@ -592,6 +592,7 @@ Meteor.methods({
 				card_id: removedCards[i]._id
 			});
 		}
+		Meteor.call("updateLeitnerCardIndex", cardset._id);
 		return true;
 	},
 	updateShuffledCardsetQuantity: function (cardset_id) {
