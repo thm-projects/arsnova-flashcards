@@ -306,7 +306,8 @@ Template.cardsetList.helpers({
 			return Cards.find({
 				cardset_id: this.cardset_id,
 				subject: this.subject
-			}, {fields: {
+			}, {
+				fields: {
 					_id: 1,
 					front: 1,
 					back: 1,
@@ -322,7 +323,8 @@ Template.cardsetList.helpers({
 		let cards = Cards.find({
 			cardset_id: this.cardset_id,
 			subject: this.subject
-		}, {fields: {
+		}, {
+			fields: {
 				_id: 1,
 				front: 1,
 				back: 1,
@@ -562,6 +564,19 @@ Template.cardsetInfo.events({
 	},
 	"click #leaveCardsetButton": function () {
 		Router.go('pool');
+	},
+	"click .bonusBtn": function () {
+		if (this.kind === "personal") {
+			let cardCount = CardType.getPublishLimit(this.cardType);
+			let cardCountMessage = "";
+			if (cardCount === 1) {
+				cardCountMessage = cardCount + " " + TAPi18n.__('confirmLearn-form.card');
+			} else {
+				cardCountMessage = cardCount + " " + TAPi18n.__('confirmLearn-form.cards');
+			}
+			Bert.defaults.hideDelay = 15000;
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('bertAlert.publishBonus.message', {cardcount: cardCountMessage, edu: Meteor.settings.public.university.default}), 'warning', 'growl-top-left');
+		}
 	}
 });
 
