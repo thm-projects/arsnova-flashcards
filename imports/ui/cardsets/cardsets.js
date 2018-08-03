@@ -219,6 +219,10 @@ Template.shuffle.created = function () {
  */
 
 Template.cardsets.onCreated(function () {
+	Session.set('ratingsLoaded', false);
+	Meteor.subscribe('ratings', function () {
+		Session.set('ratingsLoaded', true);
+	});
 	Session.set("selectingCardsetToLearn", false);
 });
 
