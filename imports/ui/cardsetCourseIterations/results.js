@@ -131,6 +131,12 @@ Template.cardsetCourseIterationResultRow.events({
 			_id: $(event.target).data('id')
 		});
 	},
+	'click .editShuffle': function (event) {
+		event.preventDefault();
+		Router.go('editshuffle', {
+			_id: $(event.target).data('id')
+		});
+	},
 	'click .collapseCardsetInfoButton': function (event) {
 		if ($(event.target).hasClass('glyphicon-collapse-up')) {
 			$(event.target).addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
@@ -244,5 +250,8 @@ Template.cardsetCourseIterationResultRow.helpers({
 	},
 	firstItem: function (index) {
 		return index === 0;
+	},
+	canSeeNavigationItems: function () {
+		return (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) || this.owner === Meteor.userId());
 	}
 });

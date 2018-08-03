@@ -88,7 +88,8 @@
         {{#if isActiveRoute regex="create|course|pool|alldecks"}}
             <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if
                     isActiveRoute
-                    regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
+                    regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
+                                                                      regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-type="{{#if isActiveRoute
                                   regex="course"}}{{this.targetAudience}}{{else}}{{this.cardType}}{{/if}}">
@@ -138,26 +139,33 @@
                         </a>
                     {{/if}}
                 {{/if}}
-                {{#if isActiveRoute regex="alldecks|create|course"}}
-                    <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
-                       title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
-                       data-target="#underDevelopmentModal">
-                        <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
-                    </a>
-                    <a class="resultNavigationElement {{#if isActiveRoute
-                                                            regex="alldecks|create"}}deleteCardset{{else}}deleteCourseIteration{{/if}}" {{disableIfOffline}}
-                       title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                       data-target="{{#if isActiveRoute
-                                          regex="alldecks|create"}}#confirmDeleteCardsetModal{{else}}#confirmDeleteCourseIterationModal{{/if}}"
-                       data-id="{{this._id}}">
-                        <i class="result fa fa-trash" data-id="{{this._id}}"></i>
-                    </a>
+                {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
+                    {{#if canSeeNavigationItems}}
+                        <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
+                           title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
+                           data-target="#underDevelopmentModal">
+                            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
+                        </a>
+                        {{#if isActiveRoute regex="repetitorium"}}
+                            <a class="resultNavigationElement manageCourseIteration editShuffle"
+                               title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
+                                <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
+                            </a>
+                        {{/if}}
+                        <a class="resultNavigationElement deleteCardset" {{disableIfOffline}}
+                           title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                           data-target="#confirmDeleteCardsetModal"
+                           data-id="{{this._id}}">
+                            <i class="result fa fa-trash" data-id="{{this._id}}"></i>
+                        </a>
+                    {{/if}}
                 {{/if}}
                 {{#if isActiveRoute regex="alldecks|create"}}
                     {{#unless this.shuffled}}
                         <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                           data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i class="result fa fa-cloud-download" data-id="{{this._id}}"
-                                                        data-name="{{this.name}}"></i></a>
+                           data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
+                                class="result fa fa-cloud-download" data-id="{{this._id}}"
+                                data-name="{{this.name}}"></i></a>
                     {{/unless}}
                 {{/if}}
                 {{#if isActiveRoute regex="learn"}}
