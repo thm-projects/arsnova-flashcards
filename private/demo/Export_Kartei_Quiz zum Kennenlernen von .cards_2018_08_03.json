@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-08-01T04:52:55.686Z",
+  "dateUpdated": "2018-08-03T15:44:47.995Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -104,9 +104,9 @@
     "givenname": "Klaus"
   }
 }, {
-  "subject": "4. Digitale Regale: Kurse",
-  "front": "Was wird auf .cards unter einem **Kurs** verstanden?",
-  "back": "\nEin Kurs ist das aktuelle Angebot eines Bachelor- oder Mastermoduls als Vorlesung, Übung, Seminar oder Praktikum. Die offizielle Modulbeschreibung nennt die Lernziele und Lerninhalte. Thematisch gebündelt stehen Lerninhalte auf .cards als Karteien zur Verfügung -- im sogenannten **Themen-Pool**. Da einzelne Themen auch in mehreren Kursen relevant sind, zum Beispiel $\\LaTeX$ oder Wissenschaftliches Schreiben, kann eine Kartei auf .cards auch in mehreren Kursen genutzt werden.\n\n!!! NOTE Kurs vs. Kartei\n   Ein Kurs auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das Schuhkartons, die nebeneinander lagern.\n\n!!! NOTE Kurs vs. Bonusvergabe\n   Das Kurskonzept von .cards erlaubt das Lernen mit einer beliebigen Auswahl thematischer Karteien. Die Lehrperson kann **Bonuspunkte** für das wiederholte Lernen einzelner Themen als auch für das Lernen aller Themen eines Kurses vergeben.\n\n!!! TIP Jeder kann Kurse\n   Du kannst deine eigenen Kurse zusammenstellen. Es bedarf hierzu keiner Lehrperson! Das Kurskonzept ermöglicht dir eine **einfache Organisation deiner Karteien** und bei Bedarf auch Crash-Kurse vor der Klausur.\n\n\n\n \n",
+  "subject": "4. Digitale Regale: Repetitorien",
+  "front": "Was wird auf .cards unter einem **Repetitorium** verstanden?",
+  "back": "\n> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare etc.) und deshalb nebeneinander stehen. \n\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
   "centerTextElement": [
     true,
     false,
@@ -118,7 +118,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-07-15T08:29:34.851Z",
+  "dateUpdated": "2018-08-03T15:44:47.973Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

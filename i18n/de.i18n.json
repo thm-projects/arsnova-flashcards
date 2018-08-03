@@ -130,17 +130,17 @@
   },
   "complete-profile": {
     "btn-txt": "Schließen",
-    "title": "Nutzerprofil unvollständig",
-    "text": "Dein Benutzerprofil ist unvollständig. Um einen Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
+    "title": "Benutzerprofil unvollständig",
+    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
+    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, private Karteien und deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren! ",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -489,8 +489,8 @@
     "private": "Privat",
     "license": " Lizenz",
     "bonus": "Bonus",
-    "startLearning": "Lernphase starten",
-    "stopLearning": "Lernphase beenden",
+    "startLearning": "Bonus-Lernphase starten",
+    "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
     "preview": "Kostenpflichtige Kartei"
@@ -954,7 +954,7 @@
     "save": "Speichern",
     "cancel": "Zurück"
   },
-  "permission": "Zugriff verweigert",
+  "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase mit Bonusvergabe",
   "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
@@ -1295,11 +1295,11 @@
     }
   },
   "access-denied": {
-    "title": "Zugriff verweigert",
+    "title": "Kein Zugang",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund für die Sperrung: ",
-    "memo": "Lernen nach Woźniak ist gesperrt, solange die Bonusoption aktiv ist.",
+    "memo": "Lernen nach Woźniak ist gesperrt, solange die Bonusphase aktiv ist.",
     "back": "Zurück"
   },
   "first-login": {
@@ -1415,7 +1415,7 @@
       </br>"
     },
     "publishBonus": {
-      "message": "Damit Studenten Ihre Bonusphase benutzen können, muss Ihre Kartei mindestens __cardcount__ besitzen und die Zugangsstufe \"Frei\", \"__edu__\" oder \"Pro\" verwenden."
+      "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als \"Frei\", \"__edu__\" oder \"Pro\" veröffentlicht worden sein."
     }
   },
   "backdoor": {
